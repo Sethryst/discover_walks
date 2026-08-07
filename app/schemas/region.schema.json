@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Gremlin Lab Region Configuration",
+  "type": "object",
+  "required": ["id", "name", "bbox", "sources"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+    "name": {"type": "string"},
+    "bbox": {"type": "array", "items": {"type": "number"}, "minItems": 4, "maxItems": 4},
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "provider", "url", "domains", "licenseUrl"],
+        "properties": {
+          "id": {"type": "string"},
+          "name": {"type": "string"},
+          "provider": {"enum": ["arcgis_feature_service", "geojson", "osm_overpass", "ebird_recent", "nps_events", "usgs_monitoring_locations", "tribe_events", "phila_special_events", "nyc_events"]},
+          "url": {"type": "string", "format": "uri"},
+          "domains": {"type": "array", "items": {"enum": ["parks", "trails", "route", "facilities", "coffee", "nature", "water", "community", "art", "wildlife", "plant", "rest", "history", "scenic", "accessibility", "pantry", "event", "detour"]}},
+          "licenseUrl": {"type": "string", "format": "uri"},
+          "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+          "credentialEnv": {"type": "string"},
+          "queryParams": {"type": "object", "additionalProperties": {"type": "string"}},
+          "providerOptions": {"type": "object"},
+          "authorityTier": {"enum": ["city_government", "state_government", "federal_government", "regional_partner", "community"]},
+          "status": {"enum": ["active", "disabled"]}
+        }
+      }
+    }
+  }
+}

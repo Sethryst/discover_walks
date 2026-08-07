@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Gremlin Lab Civic Artifact v1",
+  "type": "object",
+  "required": ["schemaVersion", "regionId", "generatedAt", "producer", "items"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "regionId": {"type": "string"},
+    "generatedAt": {"type": "string", "format": "date-time"},
+    "producer": {"type": "object", "required": ["name", "version"]},
+    "items": {"type": "array", "items": {"$ref": "#/$defs/item"}}
+  },
+  "$defs": {
+    "item": {
+      "type": "object",
+      "required": ["id", "summary", "officialUrl", "source"],
+      "properties": {
+        "id": {"type": "string"}, "title": {"type": "string"}, "name": {"type": "string"}, "date": {"type": "string", "format": "date"}, "locationLabel": {"type": "string"}, "summary": {"type": "string"}, "officialUrl": {"type": "string", "format": "uri"},
+        "organizer": {"type": "object", "required": ["id", "name"]},
+        "barriers": {"type": "object", "properties": {"weekdayDaytime": {"type": "boolean"}, "transitAccessible": {"type": "boolean"}, "childcareProvided": {"type": "boolean"}}},
+        "structure": {"type": "object"},
+        "participation": {"type": "object", "required": ["whatYouWillDo", "timeCommitment", "riskClarity"]},
+        "source": {"type": "object", "required": ["name", "url", "authorityTier", "reviewStatus"]}
+      }
+    }
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "id": "nyc",
+  "name": "New York City, NY",
+  "bbox": [40.4774, -74.2591, 40.9176, -73.7004],
+  "enrichment": {"wikimedia": {"enabled": true}},
+  "sources": [
+    {
+      "id": "osm-nyc-walk-coffee",
+      "name": "OpenStreetMap NYC cafés and bakeries",
+      "provider": "osm_overpass",
+      "url": "https://overpass-api.de/api/interpreter",
+      "domains": ["coffee"],
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "confidence": 0.75,
+      "providerOptions": {"selector": "[\"amenity\"=\"cafe\"]"},
+      "status": "active"
+    },
+    {
+      "id": "osm-nyc-nature-gardens",
+      "name": "OpenStreetMap NYC public gardens",
+      "provider": "osm_overpass",
+      "url": "https://overpass-api.de/api/interpreter",
+      "domains": ["nature"],
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "confidence": 0.75,
+      "providerOptions": {"selector": "[\"leisure\"=\"garden\"]"},
+      "status": "active"
+    },
+    {
+      "id": "osm-nyc-water-beaches",
+      "name": "OpenStreetMap NYC beaches",
+      "provider": "osm_overpass",
+      "url": "https://overpass-api.de/api/interpreter",
+      "domains": ["water"],
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "confidence": 0.75,
+      "providerOptions": {"selector": "[\"natural\"=\"beach\"]"},
+      "status": "active"
+    },
+    {
+      "id": "osm-nyc-community-libraries",
+      "name": "OpenStreetMap NYC libraries",
+      "provider": "osm_overpass",
+      "url": "https://overpass-api.de/api/interpreter",
+      "domains": ["community"],
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "confidence": 0.8,
+      "providerOptions": {"selector": "[\"amenity\"=\"library\"]"},
+      "status": "active"
+    },
+    {
+      "id": "osm-nyc-public-art",
+      "name": "OpenStreetMap NYC public art",
+      "provider": "osm_overpass",
+      "url": "https://overpass-api.de/api/interpreter",
+      "domains": ["art"],
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "confidence": 0.7,
+      "providerOptions": {"selector": "[\"tourism\"=\"artwork\"]"},
+      "status": "active"
+    },
+    {
+      "id": "ebird-nyc-recent-hotspots",
+      "name": "eBird NYC recent hotspot observations",
+      "provider": "ebird_recent",
+      "url": "https://api.ebird.org/v2/data/obs/geo/recent",
+      "domains": ["wildlife"],
+      "licenseUrl": "https://science.ebird.org/en/status-and-trends/products-access-terms-of-use",
+      "confidence": 0.7,
+      "credentialEnv": "EBIRD_API_TOKEN",
+      "providerOptions": {"days": 7, "distanceKm": 25, "centers": [{"lat": 40.7128, "lng": -74.006}, {"lat": 40.8448, "lng": -73.8648}, {"lat": 40.7282, "lng": -73.7949}, {"lat": 40.5795, "lng": -74.1502}]},
+      "status": "active"
+    },
+    {
+      "id":"nyc-city-events","name":"NYC Event Calendar","provider":"nyc_events","url":"https://api.nyc.gov/calendar/search","domains":["event"],"licenseUrl":"https://api-portal.nyc.gov/","authorityTier":"city_government","confidence":0.95,"credentialEnv":"NYC_API_SUBSCRIPTION_KEY","status":"active"
+    }
+  ]
+}

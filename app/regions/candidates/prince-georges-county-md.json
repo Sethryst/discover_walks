@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "regionId": "prince-georges-county-md",
+  "name": "Prince George's County, Maryland",
+  "status": "candidate_only",
+  "timezone": "America/New_York",
+  "sources": [
+    {
+      "id": "pgparks-events",
+      "name": "M-NCPPC PG Parks events",
+      "authorityTier": "regional_partner",
+      "provider": "endpoint_unverified",
+      "domains": ["event"],
+      "status": "disabled",
+      "activationRequirements": ["exact endpoint", "terms review", "saved fixture", "verified coordinates"]
+    },
+    {
+      "id": "pgcmls-events",
+      "name": "Prince George's County Memorial Library System events",
+      "authorityTier": "regional_partner",
+      "provider": "endpoint_unverified",
+      "domains": ["event"],
+      "status": "disabled",
+      "activationRequirements": ["exact endpoint", "terms review", "saved fixture", "verified branch coordinates"]
+    },
+    {
+      "id": "capital-area-food-bank",
+      "name": "Capital Area Food Bank",
+      "authorityTier": "regional_partner",
+      "provider": "endpoint_unverified",
+      "domains": ["pantry"],
+      "status": "disabled",
+      "activationRequirements": ["exact endpoint", "terms review", "verified address and coordinates", "saved fixture"]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "regionId": "nyc",
+  "vote": [
+    {
+      "id": "nyc-boe-2026-general-election",
+      "title": "General Election",
+      "date": "2026-11-03",
+      "type": "general_election",
+      "summary": "Vote in New York City's general election. Polls are open from 6:00 AM to 9:00 PM.",
+      "officialUrl": "https://www.vote.nyc/elections",
+      "expiresAt": "2026-11-04T05:00:00Z",
+      "source": {
+        "name": "New York City Board of Elections",
+        "url": "https://www.vote.nyc/elections",
+        "authorityTier": "election_authority",
+        "reviewStatus": "verified"
+      }
+    }
+  ],
+  "volunteer": [{"id":"nyc-service-volunteer-search","title":"NYC Service volunteer opportunities","summary":"Find community volunteer opportunities through New York City's official service office.","timeCommitment":"Varies by opportunity","officialUrl":"https://www.nyc.gov/html/nycservice/home.html","expiresAt":"2026-09-05T00:00:00Z","organizer":{"id":"nyc-service","name":"NYC Service"},"participation":{"whatYouWillDo":"Choose a community-service opportunity published through the City service office.","timeCommitment":"Varies; confirm with the hosting organization.","riskClarity":"Requirements are set by each hosting opportunity and should be reviewed before signing up."},"source":{"name":"NYC Service","url":"https://www.nyc.gov/html/nycservice/home.html","authorityTier":"local_government","reviewStatus":"verified"}}],
+  "organizers": [{"id":"nyc-service","name":"NYC Service","summary":"New York City's service office, which directs residents to volunteer opportunities.","officialUrl":"https://www.nyc.gov/html/nycservice/home.html","source":{"name":"NYC Service","url":"https://www.nyc.gov/html/nycservice/home.html","authorityTier":"local_government","reviewStatus":"verified"}}],
+  "events": [
+    {"id":"nyc-for-free-summer-streets-2026-08-22","title":"Summer Streets 2026","date":"2026-08-22","locationLabel":"Brooklyn and the Bronx","summary":"A car-free Summer Streets day with free cultural programs, performances, fitness, art, and activities.","officialUrl":"https://www.nycforfree.co/events/summer-streets-2026","expiresAt":"2026-08-23T04:00:00Z","source":{"name":"NYC for FREE","url":"https://www.nycforfree.co/events/summer-streets-2026","authorityTier":"editorial","reviewStatus":"editorially_verified"}},
+    {"id":"nyc-for-free-harlem-week-2026","title":"Harlem Week 2026","date":"2026-08-06","locationLabel":"Harlem","summary":"A free-event listing in Harlem, active through August 16 according to the editorial calendar.","officialUrl":"https://www.nycforfree.co/weekly-roundup","expiresAt":"2026-08-17T04:00:00Z","source":{"name":"NYC for FREE","url":"https://www.nycforfree.co/weekly-roundup","authorityTier":"editorial","reviewStatus":"editorially_verified"}}
+  ]
+}

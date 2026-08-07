@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Discovery registry only. Event publication still requires an explicit free claim, mapable location, date/time, source URL, and expiry.",
+  "regions": {
+    "asheville": [{"name":"Explore Asheville Free Events","url":"https://www.exploreasheville.com/events/free-events-asheville-nc","tier":"organizer_controlled","freeClaim":"explicit"}],
+    "boise-meridian-idaho": [{"name":"Meridian City Events","url":"https://www.meridiancity.org/cityevents","tier":"local_government","freeClaim":"per_listing"},{"name":"Boise State Public Radio Community Calendar","url":"https://www.boisestatepublicradio.org/community-calendar-search?f0=00000178-b7ab-d01e-aff8-b7fbab860000","tier":"editorial","freeClaim":"per_listing"}],
+    "boston": [{"name":"The Boston Calendar","url":"https://www.thebostoncalendar.com/","tier":"editorial","freeClaim":"per_listing"}],
+    "boulder": [{"name":"Boulder Official Calendar","url":"https://www.bouldercoloradousa.com/events/","tier":"organizer_controlled","freeClaim":"per_listing"}],
+    "chicago": [{"name":"Chicago On the Cheap","url":"https://chicagoonthecheap.com/events/","tier":"editorial","freeClaim":"per_listing"}],
+    "denver": [{"name":"Denver Public Events Calendar","url":"https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Public-Event-Film-Permitting/Public-Events-Calendar","tier":"local_government","freeClaim":"per_listing"}],
+    "keystone-colorado": [{"name":"Summit Daily Events","url":"https://www.summitdaily.com/explore-summit/calendar/","tier":"editorial","freeClaim":"per_listing"}],
+    "new-orleans": [{"name":"French Quarter Journal Events","url":"https://www.frenchquarterjournal.com/events","tier":"editorial","freeClaim":"per_listing"}],
+    "norfolk": [{"name":"Norfolk Public Library Calendar","url":"https://norfolk.libcal.com/calendars","tier":"local_government","freeClaim":"per_listing"}],
+    "nyc": [{"name":"NYC for FREE","url":"https://www.nycforfree.co/weekly-roundup","tier":"editorial","freeClaim":"editorial"},{"name":"NYC Parks Events","url":"https://www.nycgovparks.org/events/","tier":"local_government","freeClaim":"per_listing"}],
+    "philadelphia": [{"name":"Philadelphia Family Events","url":"https://phillyfamily.com/events/","tier":"editorial","freeClaim":"per_listing"}],
+    "portland-maine": [{"name":"Maine Public Community Calendar","url":"https://www.mainepublic.org/community-calendar","tier":"editorial","freeClaim":"per_listing"}],
+    "portland": [{"name":"Portland Living on the Cheap","url":"https://portlandlivingonthecheap.com/category/free-events/","tier":"editorial","freeClaim":"editorial"}],
+    "prince-georges-county-md": [{"name":"PG Parks Free Events","url":"https://blackhistory.pgparks.com/activities-events-events/category/free","tier":"local_government","freeClaim":"explicit"}],
+    "richmond": [{"name":"RICtoday Events","url":"https://6amcity.com/web/va/richmond/events","tier":"editorial","freeClaim":"per_listing"}],
+    "san-francisco": [{"name":"Funcheap SF","url":"https://sf.funcheap.com/","tier":"editorial","freeClaim":"editorial"}],
+    "santa-fe": [{"name":"Santa Fe Official Calendar","url":"https://www.santafe.org/visiting-santa-fe/calendar/","tier":"organizer_controlled","freeClaim":"per_listing"}],
+    "seattle": [{"name":"Greater Seattle on the Cheap","url":"https://www.greaterseattleonthecheap.com/events/","tier":"editorial","freeClaim":"editorial"}],
+    "sedona-arizona": [{"name":"Visit Sedona Calendar","url":"https://visitsedona.com/events-calendar/","tier":"organizer_controlled","freeClaim":"per_listing"},{"name":"City of Sedona Free to Be Me Drum Circle","url":"https://www.sedonaaz.gov/your-government/departments-and-programs/parks-recreation/programs/free-to-be-me-drum-circle","tier":"local_government","freeClaim":"explicit"}],
+    "washington-dc": [{"name":"District Fray Free Events","url":"https://districtfray.com/events/free-events/","tier":"editorial","freeClaim":"editorial"}],
+    "wolf-trap-va": [{"name":"Wolf Trap","url":"https://www.wolftrap.org/","tier":"organizer_controlled","freeClaim":"per_listing"}]
+  }
+}

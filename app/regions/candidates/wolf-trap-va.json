@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "regionId": "wolf-trap-va",
+  "name": "Wolf Trap, Virginia",
+  "status": "candidate_only",
+  "timezone": "America/New_York",
+  "sources": [
+    {
+      "id": "nps-wolf-trap",
+      "name": "NPS Wolf Trap events",
+      "authorityTier": "federal_government",
+      "provider": "nps_events",
+      "url": "https://developer.nps.gov/api/v1/events?parkCode=wotr",
+      "domains": ["event"],
+      "credentialEnv": "NPS_API_KEY",
+      "refreshAfter": "PT2H",
+      "status": "disabled",
+      "activationRequirements": ["NPS_API_KEY", "saved fixture", "verified event-to-venue coordinate rule"],
+      "licenseUrl": "https://www.nps.gov/subjects/developer/guides.htm"
+    },
+    {
+      "id": "wolf-trap-foundation",
+      "name": "Wolf Trap Foundation calendar",
+      "authorityTier": "regional_partner",
+      "provider": "html_candidate",
+      "url": "https://www.wolftrap.org/calendar",
+      "domains": ["event"],
+      "status": "disabled",
+      "activationRequirements": ["terms review", "permitted acquisition method", "saved fixture", "verified coordinates"],
+      "licenseUrl": "https://www.wolftrap.org/calendar"
+    },
+    {
+      "id": "food-for-others",
+      "name": "Food For Others",
+      "authorityTier": "regional_partner",
+      "provider": "html_candidate",
+      "url": "https://foodforothers.org",
+      "domains": ["pantry"],
+      "status": "disabled",
+      "activationRequirements": ["terms review", "permitted acquisition method", "verified address and coordinates", "saved fixture"],
+      "licenseUrl": "https://foodforothers.org"
+    }
+  ]
+}

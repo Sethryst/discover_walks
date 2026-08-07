@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Implementation queue for fixture-tested event adapters. Not a region configuration.",
+  "queue": [
+    {"regionId":"nyc","source":"NYC Parks Events","url":"https://www.nycgovparks.org/events/","tier":"local_government","nextStep":"Locate structured event endpoint or RSS; retain NYC for FREE as editorial discovery."},
+    {"regionId":"san-francisco","source":"SF Recreation and Parks","url":"https://sfrecpark.org/Calendar.aspx","tier":"local_government","nextStep":"Inspect RSS and event-page address fields."},
+    {"regionId":"chicago","source":"Chicago Cultural Center / DCASE","url":"https://www.chicago.gov/city/en/depts/dca/supp_info/ccc_calendar.html","tier":"local_government","nextStep":"Inspect City RSS or structured event listing."},
+    {"regionId":"portland","source":"City of Portland Events","url":"https://events.portlandonline.us/","tier":"local_government","nextStep":"Identify event feed and explicit-free metadata."},
+    {"regionId":"seattle","source":"Seattle Event Calendar","url":"https://www.seattle.gov/event-calendar","tier":"local_government","nextStep":"Inspect documented JSON/RSS endpoint; filter physically located free events."},
+    {"regionId":"prince-georges-county-md","source":"PG Parks Free Events","url":"https://pgparks.com/activities-events-events/category/free","tier":"regional_partner","nextStep":"Extend the existing Tribe adapter with explicit-free filtering and mapped venues."},
+    {"regionId":"washington-dc","source":"DC Department of Parks and Recreation","url":"https://dpr.dc.gov/service/attend-events","tier":"local_government","nextStep":"Find feed or calendar data with addresses; include NPS DC as a second official source."},
+    {"regionId":"norfolk","source":"City of Norfolk Calendar","url":"https://www.norfolk.gov/calendar.aspx","tier":"local_government","nextStep":"Inspect calendar export/feed and geocode official venue addresses."},
+    {"regionId":"sedona-arizona","source":"City of Sedona Parks and Recreation","url":"https://www.sedonaaz.gov/your-government/departments-and-programs/parks-recreation/calendar","tier":"local_government","nextStep":"Implement fixture-backed official event parser; begin with explicitly free entries."},
+    {"regionId":"boise-meridian-idaho","source":"City of Meridian Events","url":"https://www.meridiancity.org/cityevents","tier":"local_government","nextStep":"Publish broad City calendar entries to the Events table first; promote only entries with a precise venue/address to map POIs."},
+    {"regionId":"wolf-trap-va","source":"NPS Wolf Trap Calendar","url":"https://www.nps.gov/wotr/planyourvisit/calendar.htm","tier":"federal_government","nextStep":"Extend NPS event filtering only when no-cost admission is explicit."}
+  ],
+  "editorialDiscovery": [
+    {"regionId":"nyc","source":"NYC for FREE","url":"https://www.nycforfree.co/events"},
+    {"regionId":"san-francisco","source":"Funcheap SF","url":"https://sf.funcheap.com/"},
+    {"regionId":"chicago","source":"Chicago On the Cheap","url":"https://chicagoonthecheap.com/events/"},
+    {"regionId":"portland","source":"Portland Living on the Cheap","url":"https://portlandlivingonthecheap.com/category/free-events/"},
+    {"regionId":"seattle","source":"Greater Seattle on the Cheap","url":"https://www.greaterseattleonthecheap.com/events/"}
+  ]
+}

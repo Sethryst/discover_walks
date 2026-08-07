@@ -1,0 +1,50 @@
+{
+  "id": "norfolk",
+  "name": "Norfolk, VA",
+  "bbox": [36.80, -76.35, 36.95, -76.17],
+  "sources": [
+    {
+      "id": "norfolk-rpos-parks",
+      "name": "City of Norfolk Parks",
+      "provider": "arcgis_feature_service",
+      "url": "https://gisshare.norfolk.gov/pubserver/rest/services/OpenData/RPOS/FeatureServer/1",
+      "domains": ["parks"],
+      "licenseUrl": "https://www.norfolk.gov/",
+      "confidence": 0.95,
+      "status": "active"
+    },
+    {
+      "id": "norfolk-rpos-recreation-centers",
+      "name": "City of Norfolk Recreation Centers",
+      "provider": "arcgis_feature_service",
+      "url": "https://gisshare.norfolk.gov/pubserver/rest/services/OpenData/RPOS/FeatureServer/0",
+      "domains": ["facilities"],
+      "licenseUrl": "https://www.norfolk.gov/",
+      "confidence": 0.95,
+      "status": "active"
+    },
+    {
+      "id": "norfolk-rpos-elizabeth-river-trail",
+      "name": "City of Norfolk Elizabeth River Trail",
+      "provider": "arcgis_feature_service",
+      "url": "https://gisshare.norfolk.gov/pubserver/rest/services/OpenData/RPOS/FeatureServer/4",
+      "domains": ["trails"],
+      "licenseUrl": "https://www.norfolk.gov/",
+      "confidence": 0.95,
+      "status": "active"
+    },
+    {
+      "id": "ebird-norfolk-recent-hotspots",
+      "name": "eBird Norfolk recent hotspot observations",
+      "provider": "ebird_recent",
+      "url": "https://api.ebird.org/v2/data/obs/geo/recent",
+      "domains": ["wildlife"],
+      "licenseUrl": "https://science.ebird.org/en/status-and-trends/products-access-terms-of-use",
+      "authorityTier": "community",
+      "confidence": 0.7,
+      "credentialEnv": "EBIRD_API_TOKEN",
+      "providerOptions": {"days": 7, "distanceKm": 25},
+      "status": "active"
+    }
+  ]
+}

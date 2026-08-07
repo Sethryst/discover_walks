@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Source intelligence for civic meeting, volunteer, and event adapters. URLs are discovery inputs, not published facts.",
+  "regions": {
+    "boise-meridian-idaho":{"meetings":"https://www.cityofboise.org/city-government/city-council/","volunteer":"https://www.boisewatershed.org/about/volunteer/","events":"https://www.meridiancity.org/cityevents"},
+    "nyc":{"meetings":"https://legistar.council.nyc.gov/Calendar.aspx","volunteer":"https://www.nycgovparks.org/events/volunteer","events":"https://www.nycgovparks.org/events/","feed":"https://www.nycgovparks.org/news/rss"},
+    "san-francisco":{"meetings":"https://sfbos.org/participate-and-submit-public-comments","volunteer":"https://www.sfparks.org/support-park/volunteer","events":"https://sfrecpark.org/Calendar.aspx","feed":"https://sfrecpark.org/rss.aspx"},
+    "chicago":{"meetings":"https://www.chicityclerk.com/public-comment-process","volunteer":"https://www.chicagoparkdistrict.com/volunteer/","events":"https://www.chicago.gov/city/en/depts/dca/supp_info/ccc_calendar.html","feed":"https://www.chicago.gov/city/en/rss.html"},
+    "portland":{"meetings":"https://www.portland.gov/council/meetings","volunteer":"https://www.portland.gov/parks/volunteer","events":"https://events.portlandonline.us/"},
+    "seattle":{"meetings":"https://www.seattle.gov/civic-meetings","volunteer":"https://www.seattle.gov/parks/volunteer-and-ways-to-give","events":"https://www.seattle.gov/event-calendar","feed":"https://seattle.net/api"},
+    "prince-georges-county-md":{"meetings":"https://www.princegeorgescountymd.gov/govt/council/","volunteer":"https://www.pgparks.com/get-involved/volunteer-opportunities","events":"https://pgparks.com/activities-events-events/category/free"},
+    "washington-dc":{"meetings":"https://dcouncil.us/","volunteer":"https://dpr.dc.gov/page/volunteer-and-give-back","events":"https://dpr.dc.gov/service/attend-events"},
+    "norfolk":{"meetings":"https://www.norfolk.gov/calendar.aspx","volunteer":"https://www.norfolk.gov/4248/Volunteer","events":"https://www.norfolk.gov/calendar.aspx"},
+    "sedona-arizona":{"meetings":"https://www.sedonaaz.gov/your-government/general-information/city-calendar","volunteer":"https://www.sedonaaz.gov/community/residents/volunteer","events":"https://www.sedonaaz.gov/your-government/departments-and-programs/parks-recreation/calendar"},
+    "wolf-trap-va":{"meetings":"https://www.viennava.gov/","volunteer":"https://www.nps.gov/wotr/getinvolved/volunteer.htm","events":"https://www.nps.gov/wotr/planyourvisit/calendar.htm"},
+    "asheville":{"meetings":"https://www.ashevillenc.gov/government/","volunteer":"https://www.ashevillenc.gov/parks/","events":"https://www.exploreasheville.com/events"},
+    "boulder":{"meetings":"https://bouldercolorado.gov/events","volunteer":"https://bouldercounty.gov/open-space/activities/calendar/","events":"https://bouldercolorado.gov/events"},
+    "keystone-colorado":{"meetings":"https://www.summitcountyco.gov/","volunteer":"https://www.volunteermatch.org/","events":"https://www.town.keystone.co.us/events"},
+    "denver":{"meetings":"https://www.denvergov.org/pocketgov/en-US/city-government/meetings-boards/city-council-meetings","volunteer":"https://www.denvergov.org/pocketgov/en-US/parks-recreation/programs-services/volunteer","events":"https://www.downtown-denver.com/events/"},
+    "new-orleans":{"meetings":"https://nola.gov/city-government/city-council/","volunteer":"https://www.nola.gov/parks-and-parkways/special-events/","events":"https://www.neworleans.com/events/"},
+    "portland-maine":{"meetings":"https://www.portlandmaine.gov/government","volunteer":"https://www.portlandmaine.gov/parks-recreation","events":"https://www.visitportland.com/events/"},
+    "richmond":{"meetings":"https://www.richmondgov.com/government","volunteer":"https://www.jrps.org/volunteer","events":"https://www.visitrichmondva.com/events/"},
+    "santa-fe":{"meetings":"https://www.santafenm.gov/city-government","volunteer":"https://www.santafenm.gov/parks_recreation","events":"https://www.santafe.org/events/"},
+    "boston":{"meetings":"https://www.boston.gov/government","volunteer":"https://www.boston.gov/parks","events":"https://www.bostonusa.com/events/"},
+    "philadelphia":{"meetings":"https://www.phila.gov/government","volunteer":"https://friendsoftheparks.org/volunteer","events":"https://www.phila.gov/parks/"}
+  }
+}
