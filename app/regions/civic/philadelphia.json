@@ -1,22 +1,10 @@
 {
   "regionId": "philadelphia",
-  "vote": [
-    {
-      "id": "phila-2026-general-election",
-      "title": "General Election",
-      "date": "2026-11-03",
-      "type": "general_election",
-      "summary": "Vote in Philadelphia's general election. Polls are open from 7:00 AM to 8:00 PM.",
-      "officialUrl": "https://vote.phila.gov/",
-      "expiresAt": "2026-11-04T05:00:00Z",
-      "source": {
-        "name": "Philadelphia City Commissioners",
-        "url": "https://vote.phila.gov/",
-        "authorityTier": "election_authority",
-        "reviewStatus": "verified"
-      }
-    }
-  ],
-  "volunteer": [{"id":"phl-parks-individual-volunteer","title":"Philadelphia Parks & Recreation volunteer projects","summary":"Help improve Philadelphia public spaces through Parks & Recreation volunteer opportunities and Park Friends service days.","timeCommitment":"Project-based","officialUrl":"https://www.phila.gov/departments/philadelphia-parks-recreation/get-involved/business-and-individual-volunteer-opportunities/","expiresAt":"2026-09-05T00:00:00Z","organizer":{"id":"phl-parks-recreation","name":"Philadelphia Parks & Recreation"},"participation":{"whatYouWillDo":"Join an individual or group public-space project through the official Parks & Recreation program.","timeCommitment":"Project-based; confirm the event schedule before committing.","riskClarity":"Outdoor service projects may have physical requirements; the organizer provides project-specific details."},"source":{"name":"Philadelphia Parks & Recreation","url":"https://www.phila.gov/departments/philadelphia-parks-recreation/get-involved/business-and-individual-volunteer-opportunities/","authorityTier":"local_government","reviewStatus":"verified"}}],
-  "organizers": [{"id":"phl-parks-recreation","name":"Philadelphia Parks & Recreation","summary":"City department offering public-space volunteer opportunities.","officialUrl":"https://www.phila.gov/departments/philadelphia-parks-recreation/get-involved/business-and-individual-volunteer-opportunities/","source":{"name":"Philadelphia Parks & Recreation","url":"https://www.phila.gov/departments/philadelphia-parks-recreation/get-involved/business-and-individual-volunteer-opportunities/","authorityTier":"local_government","reviewStatus":"verified"}}]
+  "vote": [{"id":"pa-philadelphia-2026-general-election","title":"Pennsylvania General Election","date":"2026-11-03","summary":"Vote in Pennsylvania's general election. Use Philadelphia's official election resources for registration, polling place, and ballot information.","officialUrl":"https://vote.phila.gov/","expiresAt":"2026-11-04T05:00:00Z","source":{"name":"Philadelphia City Commissioners","url":"https://vote.phila.gov/","authorityTier":"election_authority","reviewStatus":"verified"}}],
+  "volunteer": [{"id":"phl-parks-volunteer","title":"Philadelphia Parks & Recreation volunteer opportunities","summary":"Find volunteer opportunities supporting Philadelphia parks and recreation programs.","timeCommitment":"Varies by opportunity","officialUrl":"https://www.phila.gov/departments/philadelphia-parks-recreation/get-involved/business-and-individual-volunteer-opportunities/","expiresAt":"2026-09-05T00:00:00Z","organizer":{"id":"phl-parks","name":"Philadelphia Parks & Recreation"},"participation":{"whatYouWillDo":"Choose a listed parks or recreation volunteer opportunity.","timeCommitment":"Varies; confirm with the hosting program.","riskClarity":"Requirements and physical activity vary by opportunity."},"source":{"name":"Philadelphia Parks & Recreation","url":"https://www.phila.gov/departments/philadelphia-parks-recreation/get-involved/business-and-individual-volunteer-opportunities/","authorityTier":"local_government","reviewStatus":"verified"}}],
+  "organizers": [{"id":"phl-parks","name":"Philadelphia Parks & Recreation","summary":"Philadelphia's parks and recreation department.","officialUrl":"https://www.phila.gov/departments/philadelphia-parks-recreation/","source":{"name":"Philadelphia Parks & Recreation","url":"https://www.phila.gov/departments/philadelphia-parks-recreation/","authorityTier":"local_government","reviewStatus":"verified"}}],
+  "events": [
+    {"id":"phl-pierogi-fest-2026-08-08","title":"Port Richmond Pierogi Fest 2026","date":"2026-08-08","locationLabel":"Port Richmond","summary":"Listed on Philadelphia's official permitted special-events calendar for August 8.","officialUrl":"https://www.phila.gov/departments/office-of-special-events/events/special-events-calendar/","expiresAt":"2026-08-09T04:00:00Z","source":{"name":"Philadelphia Office of Special Events","url":"https://www.phila.gov/departments/office-of-special-events/events/special-events-calendar/","authorityTier":"local_government","reviewStatus":"verified"}},
+    {"id":"phl-chinese-lantern-festival-2026-08-07","title":"Philadelphia Chinese Lantern Festival","date":"2026-08-07","locationLabel":"Franklin Square","summary":"Listed on Philadelphia's official permitted special-events calendar for August 7.","officialUrl":"https://www.phila.gov/departments/office-of-special-events/events/special-events-calendar/","expiresAt":"2026-08-08T04:00:00Z","source":{"name":"Philadelphia Office of Special Events","url":"https://www.phila.gov/departments/office-of-special-events/events/special-events-calendar/","authorityTier":"local_government","reviewStatus":"verified"}}
+  ]
 }
