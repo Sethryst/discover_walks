@@ -9,6 +9,7 @@ from typing import Any
 
 
 ARTIFACTS = ("vote", "meetings", "volunteer", "organizers", "events")
+SOURCE_LINK_ARTIFACTS = {"eventSources": ("event-sources.json", "events", "Event calendar"), "volunteerSources": ("volunteer-sources.json", "volunteer", "Volunteer opportunities")}
 
 
 def load_civic_artifacts(region_id: str, producer_version: str, generated_at: str) -> dict[str, dict[str, Any]]:
@@ -32,7 +33,33 @@ def load_civic_artifacts(region_id: str, producer_version: str, generated_at: st
             "producer": {"name": "Gremlin Lab", "version": producer_version},
             "items": sorted(items, key=lambda item: (item.get("date", ""), item.get("name", item.get("title", "")), item["id"])),
         }
+    for field, (filename, registry_field, label) in SOURCE_LINK_ARTIFACTS.items():
+        item = _source_link(region_id, field, registry_field, label)
+        if item:
+            artifacts[filename] = {
+                "schemaVersion": 1,
+                "regionId": region_id,
+                "generatedAt": generated_at,
+                "producer": {"name": "Gremlin Lab", "version": producer_version},
+                "items": [item],
+            }
     return artifacts
+
+
+def _source_link(region_id: str, field: str, registry_field: str, label: str) -> dict[str, Any] | None:
+    """Expose a reviewed directory link without representing it as a dated event or shift."""
+    registry_path = Path(__file__).parents[1] / "regions" / "civic-source-priority.json"
+    registry = json.loads(registry_path.read_text(encoding="utf-8"))
+    url = registry.get("regions", {}).get(region_id, {}).get(registry_field)
+    if not isinstance(url, str) or not url.startswith("https://"):
+        return None
+    return {
+        "id": f"{region_id}:{field}",
+        "title": label,
+        "summary": f"Browse the linked {label.lower()} for current listings. This is a source link, not a claim about a specific scheduled item.",
+        "officialUrl": url,
+        "source": {"name": "Gremlin Lab reviewed source link", "url": url, "reviewStatus": "source_link"},
+    }
 
 
 def _validate_items(artifact: str, items: Any) -> None:

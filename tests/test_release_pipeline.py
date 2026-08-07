@@ -51,6 +51,8 @@ class ReleasePipelineTests(unittest.TestCase):
             artifact = Path(directory) / "nyc" / "civic" / "vote.json"
             self.assertTrue(artifact.exists())
             self.assertIn("civic/vote.json", manifest["checksums"])
+            self.assertIn("civic/event-sources.json", manifest["checksums"])
+            self.assertIn("civic/volunteer-sources.json", manifest["checksums"])
 
     def test_civic_can_attach_without_rebuilding_pois(self) -> None:
         release, manifest = build_release("nyc", [], [], "test", TIMESTAMP)

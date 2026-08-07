@@ -1,8 +1,10 @@
 # Civic engagement contract
 
-Gremlin Lab may release `civic/vote.json`, `meetings.json`, `volunteer.json`, `organizers.json`, and `events.json`. Every file is an independently checksummed, build-time artifact using `app/schemas/civic-artifact.schema.json`.
+Gremlin Lab may release `civic/vote.json`, `meetings.json`, `volunteer.json`, `organizers.json`, `events.json`, `event-sources.json`, and `volunteer-sources.json`. Every file is an independently checksummed, build-time artifact using `app/schemas/civic-artifact.schema.json`.
 
 `civic/events.json` is the event-table discovery layer. It requires a date, source URL, expiry, and `locationLabel` (for example, a borough, neighborhood, or venue name), but does not require coordinates. Only an event with a precise WGS84 coordinate belongs in `pois.json` as `category:event`; the application must never invent a pin from a broad location label.
+
+`civic/event-sources.json` and `civic/volunteer-sources.json` provide one reviewed hyperlink per region when no individually verified event or volunteer item is available. The application should show them as “Explore current listings” links in the relevant table. They are deliberately not dated events or shifts and must never be presented as such.
 
 Opportunity records may include:
 
