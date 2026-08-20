@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "regionId": "portland",
+  "generatedAt": "2026-08-06T12:35:12.737985Z",
+  "artifacts": {
+    "vote": {
+      "generatedAt": "2026-08-07T03:25:17.422721Z",
+      "items": [
+        {
+          "date": "2026-11-03",
+          "expiresAt": "2026-11-04T07:00:00Z",
+          "id": "or-portland-2026-general-election",
+          "officialUrl": "https://sos.oregon.gov/elections/Pages/current-election.aspx",
+          "source": {
+            "authorityTier": "election_authority",
+            "name": "Oregon Secretary of State",
+            "reviewStatus": "verified",
+            "url": "https://sos.oregon.gov/elections/Pages/current-election.aspx"
+          },
+          "summary": "Vote in Oregon's general election. Use the Secretary of State's election page for official deadlines and ballot information.",
+          "title": "Oregon General Election"
+        }
+      ],
+      "producer": {
+        "name": "Gremlin Lab",
+        "version": "development"
+      },
+      "regionId": "portland",
+      "schemaVersion": 1
+    },
+    "events": {
+      "generatedAt": "2026-08-07T03:25:17.422721Z",
+      "items": [
+        {
+          "date": "2026-08-09",
+          "expiresAt": "2026-08-10T04:00:00Z",
+          "id": "portland-washington-park-summer-festival-2026-08-09",
+          "locationLabel": "Washington Park Rose Garden Amphitheater",
+          "officialUrl": "https://www.portland.gov/parks/arts-culture/summer-free-all/cultural-events",
+          "source": {
+            "authorityTier": "local_government",
+            "name": "Portland Parks & Recreation",
+            "reviewStatus": "verified",
+            "url": "https://www.portland.gov/parks/arts-culture/summer-free-all/cultural-events"
+          },
+          "summary": "A free Portland Parks & Recreation Summer Free For All festival with live music in Washington Park.",
+          "title": "Washington Park Summer Festival"
+        },
+        {
+          "date": "2026-08-21",
+          "expiresAt": "2026-08-22T04:00:00Z",
+          "id": "portland-somali-heritage-day-2026-08-21",
+          "locationLabel": "Luuwit View Park",
+          "officialUrl": "https://www.portland.gov/parks/arts-culture/summer-free-all/cultural-events",
+          "source": {
+            "authorityTier": "local_government",
+            "name": "Portland Parks & Recreation",
+            "reviewStatus": "verified",
+            "url": "https://www.portland.gov/parks/arts-culture/summer-free-all/cultural-events"
+          },
+          "summary": "A free Portland Parks & Recreation Summer Free For All special event at Luuwit View Park.",
+          "title": "Somali Heritage Day — Celebrating our Stories"
+        }
+      ],
+      "producer": {
+        "name": "Gremlin Lab",
+        "version": "development"
+      },
+      "regionId": "portland",
+      "schemaVersion": 1
+    },
+    "event-sources": {
+      "generatedAt": "2026-08-07T03:25:17.422721Z",
+      "items": [
+        {
+          "id": "portland:eventSources",
+          "officialUrl": "https://events.portlandonline.us/",
+          "source": {
+            "name": "Gremlin Lab reviewed source link",
+            "reviewStatus": "source_link",
+            "url": "https://events.portlandonline.us/"
+          },
+          "summary": "Browse the linked event calendar for current listings. This is a source link, not a claim about a specific scheduled item.",
+          "title": "Event calendar"
+        }
+      ],
+      "producer": {
+        "name": "Gremlin Lab",
+        "version": "development"
+      },
+      "regionId": "portland",
+      "schemaVersion": 1
+    },
+    "volunteer-sources": {
+      "generatedAt": "2026-08-07T03:25:17.422721Z",
+      "items": [
+        {
+          "id": "portland:volunteerSources",
+          "officialUrl": "https://www.portland.gov/parks/volunteer",
+          "source": {
+            "name": "Gremlin Lab reviewed source link",
+            "reviewStatus": "source_link",
+            "url": "https://www.portland.gov/parks/volunteer"
+          },
+          "summary": "Browse the linked volunteer opportunities for current listings. This is a source link, not a claim about a specific scheduled item.",
+          "title": "Volunteer opportunities"
+        }
+      ],
+      "producer": {
+        "name": "Gremlin Lab",
+        "version": "development"
+      },
+      "regionId": "portland",
+      "schemaVersion": 1
+    }
+  }
+}

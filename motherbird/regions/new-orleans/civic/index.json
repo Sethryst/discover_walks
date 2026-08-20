@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "regionId": "new-orleans",
+  "generatedAt": "2026-08-06T12:13:35.470513Z",
+  "artifacts": {
+    "vote": {
+      "generatedAt": "2026-08-07T03:25:17.422721Z",
+      "items": [
+        {
+          "date": "2026-11-03",
+          "expiresAt": "2026-11-04T06:00:00Z",
+          "id": "la-new-orleans-2026-november-election",
+          "officialUrl": "https://www.sos.la.gov/elections-voting/election-dates",
+          "source": {
+            "authorityTier": "election_authority",
+            "name": "Louisiana Secretary of State",
+            "reviewStatus": "verified",
+            "url": "https://www.sos.la.gov/elections-voting/election-dates"
+          },
+          "summary": "Louisiana's November election includes the U.S. Senate general election and open U.S. Representative primary. Polls are open from 6:00 AM to 8:00 PM.",
+          "title": "Louisiana November Election",
+          "type": "general_election"
+        }
+      ],
+      "producer": {
+        "name": "Gremlin Lab",
+        "version": "development"
+      },
+      "regionId": "new-orleans",
+      "schemaVersion": 1
+    },
+    "event-sources": {
+      "generatedAt": "2026-08-07T03:25:17.422721Z",
+      "items": [
+        {
+          "id": "new-orleans:eventSources",
+          "officialUrl": "https://www.neworleans.com/events/",
+          "source": {
+            "name": "Gremlin Lab reviewed source link",
+            "reviewStatus": "source_link",
+            "url": "https://www.neworleans.com/events/"
+          },
+          "summary": "Browse the linked event calendar for current listings. This is a source link, not a claim about a specific scheduled item.",
+          "title": "Event calendar"
+        }
+      ],
+      "producer": {
+        "name": "Gremlin Lab",
+        "version": "development"
+      },
+      "regionId": "new-orleans",
+      "schemaVersion": 1
+    },
+    "volunteer-sources": {
+      "generatedAt": "2026-08-07T03:25:17.422721Z",
+      "items": [
+        {
+          "id": "new-orleans:volunteerSources",
+          "officialUrl": "https://www.nola.gov/parks-and-parkways/special-events/",
+          "source": {
+            "name": "Gremlin Lab reviewed source link",
+            "reviewStatus": "source_link",
+            "url": "https://www.nola.gov/parks-and-parkways/special-events/"
+          },
+          "summary": "Browse the linked volunteer opportunities for current listings. This is a source link, not a claim about a specific scheduled item.",
+          "title": "Volunteer opportunities"
+        }
+      ],
+      "producer": {
+        "name": "Gremlin Lab",
+        "version": "development"
+      },
+      "regionId": "new-orleans",
+      "schemaVersion": 1
+    }
+  }
+}

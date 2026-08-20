@@ -1,0 +1,163 @@
+{
+  "schemaVersion": 1,
+  "regionId": "norfolk",
+  "generatedAt": "2026-08-06T21:14:05.302541Z",
+  "artifacts": {
+    "vote": {
+      "generatedAt": "2026-08-07T03:25:17.422721Z",
+      "items": [
+        {
+          "date": "2026-11-03",
+          "expiresAt": "2026-11-04T05:00:00Z",
+          "id": "va-norfolk-2026-general-election",
+          "officialUrl": "https://www.elections.virginia.gov/casting-a-ballot/calendars-schedules/upcoming-elections.html",
+          "source": {
+            "authorityTier": "election_authority",
+            "name": "Virginia Department of Elections",
+            "reviewStatus": "verified",
+            "url": "https://www.elections.virginia.gov/casting-a-ballot/calendars-schedules/upcoming-elections.html"
+          },
+          "summary": "Virginia's general and special elections include federal, local, and proposed constitutional-amendment contests. Check your voter record and polling place through Virginia's official election tools.",
+          "title": "Virginia General and Special Elections",
+          "type": "general_election"
+        }
+      ],
+      "producer": {
+        "name": "Gremlin Lab",
+        "version": "development"
+      },
+      "regionId": "norfolk",
+      "schemaVersion": 1
+    },
+    "volunteer": {
+      "generatedAt": "2026-08-07T03:25:17.422721Z",
+      "items": [
+        {
+          "expiresAt": "2026-09-05T00:00:00Z",
+          "id": "norfolk-city-volunteer",
+          "officialUrl": "https://www.norfolk.gov/4248/Volunteer",
+          "organizer": {
+            "id": "city-norfolk",
+            "name": "City of Norfolk"
+          },
+          "participation": {
+            "riskClarity": "Some roles require a background check or other role-specific screening.",
+            "timeCommitment": "Varies by program.",
+            "whatYouWillDo": "Select a City volunteer program and complete its application process."
+          },
+          "source": {
+            "authorityTier": "local_government",
+            "name": "City of Norfolk",
+            "reviewStatus": "verified",
+            "url": "https://www.norfolk.gov/4248/Volunteer"
+          },
+          "summary": "Volunteer with City of Norfolk programs, including community, library, animal-care, and environmental opportunities.",
+          "timeCommitment": "Varies by role",
+          "title": "City of Norfolk volunteer opportunities"
+        }
+      ],
+      "producer": {
+        "name": "Gremlin Lab",
+        "version": "development"
+      },
+      "regionId": "norfolk",
+      "schemaVersion": 1
+    },
+    "organizers": {
+      "generatedAt": "2026-08-07T03:25:17.422721Z",
+      "items": [
+        {
+          "id": "city-norfolk",
+          "name": "City of Norfolk",
+          "officialUrl": "https://www.norfolk.gov/4248/Volunteer",
+          "source": {
+            "authorityTier": "local_government",
+            "name": "City of Norfolk",
+            "reviewStatus": "verified",
+            "url": "https://www.norfolk.gov/4248/Volunteer"
+          },
+          "summary": "Municipal government with volunteer programs across several departments."
+        }
+      ],
+      "producer": {
+        "name": "Gremlin Lab",
+        "version": "development"
+      },
+      "regionId": "norfolk",
+      "schemaVersion": 1
+    },
+    "events": {
+      "generatedAt": "2026-08-07T03:25:17.422721Z",
+      "items": [
+        {
+          "date": "2026-09-12",
+          "endsAt": "2026-09-12T14:00:00-04:00",
+          "expiresAt": "2026-09-13T04:00:00Z",
+          "id": "norfolk-nacc-waggin-wheels-2026-09-12",
+          "locationLabel": "Park Place Multi-Services Center",
+          "officialUrl": "https://www.norfolk.gov/calendar.aspx?EID=15266&PREVIEW=YES",
+          "source": {
+            "authorityTier": "local_government",
+            "name": "City of Norfolk Animal Care Center",
+            "reviewStatus": "verified",
+            "url": "https://www.norfolk.gov/calendar.aspx?EID=15266&PREVIEW=YES"
+          },
+          "startsAt": "2026-09-12T12:00:00-04:00",
+          "summary": "Free pet food, supplies, and animal-care resources for Norfolk residents, while supplies last.",
+          "title": "NACC Waggin' Wheels Mobile Pet Pantry",
+          "venueAddress": "606 W. 29th Street, Norfolk, VA 23508"
+        }
+      ],
+      "producer": {
+        "name": "Gremlin Lab",
+        "version": "development"
+      },
+      "regionId": "norfolk",
+      "schemaVersion": 1
+    },
+    "event-sources": {
+      "generatedAt": "2026-08-07T03:25:17.422721Z",
+      "items": [
+        {
+          "id": "norfolk:eventSources",
+          "officialUrl": "https://www.norfolk.gov/calendar.aspx",
+          "source": {
+            "name": "Gremlin Lab reviewed source link",
+            "reviewStatus": "source_link",
+            "url": "https://www.norfolk.gov/calendar.aspx"
+          },
+          "summary": "Browse the linked event calendar for current listings. This is a source link, not a claim about a specific scheduled item.",
+          "title": "Event calendar"
+        }
+      ],
+      "producer": {
+        "name": "Gremlin Lab",
+        "version": "development"
+      },
+      "regionId": "norfolk",
+      "schemaVersion": 1
+    },
+    "volunteer-sources": {
+      "generatedAt": "2026-08-07T03:25:17.422721Z",
+      "items": [
+        {
+          "id": "norfolk:volunteerSources",
+          "officialUrl": "https://www.norfolk.gov/4248/Volunteer",
+          "source": {
+            "name": "Gremlin Lab reviewed source link",
+            "reviewStatus": "source_link",
+            "url": "https://www.norfolk.gov/4248/Volunteer"
+          },
+          "summary": "Browse the linked volunteer opportunities for current listings. This is a source link, not a claim about a specific scheduled item.",
+          "title": "Volunteer opportunities"
+        }
+      ],
+      "producer": {
+        "name": "Gremlin Lab",
+        "version": "development"
+      },
+      "regionId": "norfolk",
+      "schemaVersion": 1
+    }
+  }
+}

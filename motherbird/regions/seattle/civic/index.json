@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "regionId": "seattle",
+  "generatedAt": "2026-08-06T12:59:25.984315Z",
+  "artifacts": {
+    "vote": {
+      "generatedAt": "2026-08-07T03:25:17.422721Z",
+      "items": [
+        {
+          "date": "2026-11-03",
+          "expiresAt": "2026-11-04T08:00:00Z",
+          "id": "wa-seattle-2026-general-election",
+          "officialUrl": "https://www.sos.wa.gov/elections/elections-calendar/dates-and-deadlines",
+          "source": {
+            "authorityTier": "election_authority",
+            "name": "Washington Secretary of State",
+            "reviewStatus": "verified",
+            "url": "https://www.sos.wa.gov/elections/elections-calendar/dates-and-deadlines"
+          },
+          "summary": "Vote in Washington's general election. Use the Secretary of State's election calendar for official deadlines and ballot information.",
+          "title": "Washington General Election"
+        }
+      ],
+      "producer": {
+        "name": "Gremlin Lab",
+        "version": "development"
+      },
+      "regionId": "seattle",
+      "schemaVersion": 1
+    },
+    "events": {
+      "generatedAt": "2026-08-07T03:25:17.422721Z",
+      "items": [
+        {
+          "date": "2026-08-07",
+          "expiresAt": "2026-08-08T04:00:00Z",
+          "id": "seattle-center-city-cinema-footloose-2026-08-07",
+          "locationLabel": "Freeway Park",
+          "officialUrl": "https://www.seattle.gov/parks/recreation/events-and-attractions/park-activation-events",
+          "source": {
+            "authorityTier": "local_government",
+            "name": "Seattle Parks and Recreation",
+            "reviewStatus": "verified",
+            "url": "https://www.seattle.gov/parks/recreation/events-and-attractions/park-activation-events"
+          },
+          "summary": "A free outdoor Center City Cinema screening at Freeway Park, presented through Seattle Parks programming.",
+          "title": "Center City Cinema: Footloose"
+        },
+        {
+          "date": "2026-08-15",
+          "expiresAt": "2026-08-16T04:00:00Z",
+          "id": "seattle-big-day-of-play-2026-08-15",
+          "locationLabel": "Rainier Playfield and Mt. Baker Rowing and Sailing Center",
+          "officialUrl": "https://www.seattle.gov/parks/recreation/outdoor-activation-and-mobile-recreation/big-day-of-play",
+          "source": {
+            "authorityTier": "local_government",
+            "name": "Seattle Parks and Recreation",
+            "reviewStatus": "verified",
+            "url": "https://www.seattle.gov/parks/recreation/outdoor-activation-and-mobile-recreation/big-day-of-play"
+          },
+          "summary": "Seattle Parks & Recreation's free citywide play and recreation celebration, with activities at Rainier Playfield and Mt. Baker Rowing and Sailing Center.",
+          "title": "Big Day of Play"
+        }
+      ],
+      "producer": {
+        "name": "Gremlin Lab",
+        "version": "development"
+      },
+      "regionId": "seattle",
+      "schemaVersion": 1
+    },
+    "event-sources": {
+      "generatedAt": "2026-08-07T03:25:17.422721Z",
+      "items": [
+        {
+          "id": "seattle:eventSources",
+          "officialUrl": "https://www.seattle.gov/event-calendar",
+          "source": {
+            "name": "Gremlin Lab reviewed source link",
+            "reviewStatus": "source_link",
+            "url": "https://www.seattle.gov/event-calendar"
+          },
+          "summary": "Browse the linked event calendar for current listings. This is a source link, not a claim about a specific scheduled item.",
+          "title": "Event calendar"
+        }
+      ],
+      "producer": {
+        "name": "Gremlin Lab",
+        "version": "development"
+      },
+      "regionId": "seattle",
+      "schemaVersion": 1
+    },
+    "volunteer-sources": {
+      "generatedAt": "2026-08-07T03:25:17.422721Z",
+      "items": [
+        {
+          "id": "seattle:volunteerSources",
+          "officialUrl": "https://www.seattle.gov/parks/volunteer-and-ways-to-give",
+          "source": {
+            "name": "Gremlin Lab reviewed source link",
+            "reviewStatus": "source_link",
+            "url": "https://www.seattle.gov/parks/volunteer-and-ways-to-give"
+          },
+          "summary": "Browse the linked volunteer opportunities for current listings. This is a source link, not a claim about a specific scheduled item.",
+          "title": "Volunteer opportunities"
+        }
+      ],
+      "producer": {
+        "name": "Gremlin Lab",
+        "version": "development"
+      },
+      "regionId": "seattle",
+      "schemaVersion": 1
+    }
+  }
+}

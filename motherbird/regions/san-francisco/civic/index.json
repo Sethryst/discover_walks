@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "regionId": "san-francisco",
+  "generatedAt": "2026-08-06T12:47:37.612764Z",
+  "artifacts": {
+    "vote": {
+      "generatedAt": "2026-08-07T03:25:17.422721Z",
+      "items": [
+        {
+          "date": "2026-11-03",
+          "expiresAt": "2026-11-04T07:00:00Z",
+          "id": "ca-san-francisco-2026-general-election",
+          "officialUrl": "https://www.sos.ca.gov/elections/upcoming-elections/general-election-november-3-2026",
+          "source": {
+            "authorityTier": "election_authority",
+            "name": "California Secretary of State",
+            "reviewStatus": "verified",
+            "url": "https://www.sos.ca.gov/elections/upcoming-elections/general-election-november-3-2026"
+          },
+          "summary": "California's general election is November 3, 2026. Polls are open from 7:00 AM to 8:00 PM; active registered voters receive a ballot by mail.",
+          "title": "California General Election",
+          "type": "general_election"
+        }
+      ],
+      "producer": {
+        "name": "Gremlin Lab",
+        "version": "development"
+      },
+      "regionId": "san-francisco",
+      "schemaVersion": 1
+    },
+    "event-sources": {
+      "generatedAt": "2026-08-07T03:25:17.422721Z",
+      "items": [
+        {
+          "id": "san-francisco:eventSources",
+          "officialUrl": "https://sfrecpark.org/Calendar.aspx",
+          "source": {
+            "name": "Gremlin Lab reviewed source link",
+            "reviewStatus": "source_link",
+            "url": "https://sfrecpark.org/Calendar.aspx"
+          },
+          "summary": "Browse the linked event calendar for current listings. This is a source link, not a claim about a specific scheduled item.",
+          "title": "Event calendar"
+        }
+      ],
+      "producer": {
+        "name": "Gremlin Lab",
+        "version": "development"
+      },
+      "regionId": "san-francisco",
+      "schemaVersion": 1
+    },
+    "volunteer-sources": {
+      "generatedAt": "2026-08-07T03:25:17.422721Z",
+      "items": [
+        {
+          "id": "san-francisco:volunteerSources",
+          "officialUrl": "https://www.sfparks.org/support-park/volunteer",
+          "source": {
+            "name": "Gremlin Lab reviewed source link",
+            "reviewStatus": "source_link",
+            "url": "https://www.sfparks.org/support-park/volunteer"
+          },
+          "summary": "Browse the linked volunteer opportunities for current listings. This is a source link, not a claim about a specific scheduled item.",
+          "title": "Volunteer opportunities"
+        }
+      ],
+      "producer": {
+        "name": "Gremlin Lab",
+        "version": "development"
+      },
+      "regionId": "san-francisco",
+      "schemaVersion": 1
+    }
+  }
+}

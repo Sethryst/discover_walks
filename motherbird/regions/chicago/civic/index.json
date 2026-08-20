@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "regionId": "chicago",
+  "generatedAt": "2026-08-06T11:54:51.952818Z",
+  "artifacts": {
+    "vote": {
+      "generatedAt": "2026-08-07T03:38:31.328773Z",
+      "items": [
+        {
+          "date": "2026-11-03",
+          "expiresAt": "2026-11-04T06:00:00Z",
+          "id": "il-chicago-2026-general-election",
+          "officialUrl": "https://www.elections.il.gov/",
+          "source": {
+            "authorityTier": "election_authority",
+            "name": "Illinois State Board of Elections",
+            "reviewStatus": "verified",
+            "url": "https://www.elections.il.gov/"
+          },
+          "summary": "Illinois' next general election is Tuesday, November 3, 2026. Use the State Board of Elections to locate voting services and current official guidance.",
+          "title": "Illinois General Election",
+          "type": "general_election"
+        }
+      ],
+      "producer": {
+        "name": "Gremlin Lab",
+        "version": "acceptance-test"
+      },
+      "regionId": "chicago",
+      "schemaVersion": 1
+    },
+    "event-sources": {
+      "generatedAt": "2026-08-07T03:38:31.328773Z",
+      "items": [
+        {
+          "id": "chicago:eventSources",
+          "officialUrl": "https://www.chicago.gov/city/en/depts/dca/supp_info/ccc_calendar.html",
+          "source": {
+            "name": "Gremlin Lab reviewed source link",
+            "reviewStatus": "source_link",
+            "url": "https://www.chicago.gov/city/en/depts/dca/supp_info/ccc_calendar.html"
+          },
+          "summary": "Browse the linked event calendar for current listings. This is a source link, not a claim about a specific scheduled item.",
+          "title": "Event calendar"
+        }
+      ],
+      "producer": {
+        "name": "Gremlin Lab",
+        "version": "acceptance-test"
+      },
+      "regionId": "chicago",
+      "schemaVersion": 1
+    },
+    "volunteer-sources": {
+      "generatedAt": "2026-08-07T03:38:31.328773Z",
+      "items": [
+        {
+          "id": "chicago:volunteerSources",
+          "officialUrl": "https://www.chicagoparkdistrict.com/volunteer/",
+          "source": {
+            "name": "Gremlin Lab reviewed source link",
+            "reviewStatus": "source_link",
+            "url": "https://www.chicagoparkdistrict.com/volunteer/"
+          },
+          "summary": "Browse the linked volunteer opportunities for current listings. This is a source link, not a claim about a specific scheduled item.",
+          "title": "Volunteer opportunities"
+        }
+      ],
+      "producer": {
+        "name": "Gremlin Lab",
+        "version": "acceptance-test"
+      },
+      "regionId": "chicago",
+      "schemaVersion": 1
+    }
+  }
+}

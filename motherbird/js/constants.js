@@ -79,6 +79,7 @@
     supplementalPoiFile: './regions/washington-dc/washington-dc-poi.json',
     neighborhoodFile: './regions/washington-dc/geography/neighborhoods.geojson',
     geographySourceFile: './regions/washington-dc/geography/source.json',
+    civicFile: './regions/washington-dc/civic/index.json',
     weatherFile: './regions/washington-dc/weather.json'
   },
   sedona: {

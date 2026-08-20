@@ -24,7 +24,16 @@ async function load() {
   const file = CITIES[state.activeCity]?.civicFile;
   if (!file) return null;
   if (cache.has(file)) return cache.get(file);
-  try { const response = await fetch(file); const data = response.ok ? await response.json() : null; cache.set(file, data); return data; } catch { return null; }
+  try {
+    const response = await fetch(file);
+    const payload = response.ok ? await response.json() : null;
+    // Civic packages include release metadata, while the renderer consumes
+    // only named civic artifacts. Accept the legacy flat shape during the
+    // transition so an already cached package cannot break the app.
+    const data = payload?.artifacts || payload;
+    cache.set(file, data);
+    return data;
+  } catch { return null; }
 }
 function civicCard(item, label = 'Upcoming') {
   const participation = item.participation?.whatYouWillDo || item.participation?.timeCommitment ? `<p>${escapeHtml([item.participation.whatYouWillDo, item.participation.timeCommitment].filter(Boolean).join(' · '))}</p>` : '';

@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "regionId": "boise-meridian-idaho",
+  "generatedAt": "2026-08-07T00:45:37.065164Z",
+  "artifacts": {
+    "vote": {
+      "generatedAt": "2026-08-07T03:25:17.422721Z",
+      "items": [
+        {
+          "date": "2026-11-03",
+          "expiresAt": "2026-11-04T07:00:00Z",
+          "id": "id-boise-meridian-2026-general-election",
+          "officialUrl": "https://sos.idaho.gov/elections/",
+          "source": {
+            "authorityTier": "election_authority",
+            "name": "Idaho Secretary of State",
+            "reviewStatus": "verified",
+            "url": "https://sos.idaho.gov/elections/"
+          },
+          "summary": "Idaho's general election is November 3, 2026. Check the Secretary of State for official registration and voting details.",
+          "title": "Idaho General Election",
+          "type": "general_election"
+        }
+      ],
+      "producer": {
+        "name": "Gremlin Lab",
+        "version": "development"
+      },
+      "regionId": "boise-meridian-idaho",
+      "schemaVersion": 1
+    },
+    "volunteer": {
+      "generatedAt": "2026-08-07T03:25:17.422721Z",
+      "items": [
+        {
+          "expiresAt": "2026-09-06T00:00:00Z",
+          "id": "boise-watershed-climate-volunteer",
+          "officialUrl": "https://www.boisewatershed.org/about/volunteer/",
+          "organizer": {
+            "id": "city-boise-watershed",
+            "name": "City of Boise WaterShed"
+          },
+          "participation": {
+            "riskClarity": "Projects may involve outdoor physical work; organizers provide project-specific details.",
+            "timeCommitment": "No ongoing commitment is required for many projects.",
+            "whatYouWillDo": "Choose a hands-on environmental volunteer opportunity and sign up for City updates."
+          },
+          "source": {
+            "authorityTier": "local_government",
+            "name": "City of Boise WaterShed",
+            "reviewStatus": "verified",
+            "url": "https://www.boisewatershed.org/about/volunteer/"
+          },
+          "summary": "Join hands-on City of Boise climate-action projects such as cleanups, invasive-plant removal, and tree planting.",
+          "timeCommitment": "One-time and ongoing opportunities",
+          "title": "Boise climate-action volunteer opportunities"
+        }
+      ],
+      "producer": {
+        "name": "Gremlin Lab",
+        "version": "development"
+      },
+      "regionId": "boise-meridian-idaho",
+      "schemaVersion": 1
+    },
+    "organizers": {
+      "generatedAt": "2026-08-07T03:25:17.422721Z",
+      "items": [
+        {
+          "id": "city-boise-watershed",
+          "name": "City of Boise WaterShed",
+          "officialUrl": "https://www.boisewatershed.org/about/volunteer/",
+          "source": {
+            "authorityTier": "local_government",
+            "name": "City of Boise WaterShed",
+            "reviewStatus": "verified",
+            "url": "https://www.boisewatershed.org/about/volunteer/"
+          },
+          "summary": "City of Boise environmental learning center and partner for climate-action volunteer opportunities."
+        }
+      ],
+      "producer": {
+        "name": "Gremlin Lab",
+        "version": "development"
+      },
+      "regionId": "boise-meridian-idaho",
+      "schemaVersion": 1
+    },
+    "events": {
+      "generatedAt": "2026-08-07T03:25:17.422721Z",
+      "items": [
+        {
+          "date": "2026-08-12",
+          "expiresAt": "2026-08-13T04:00:00Z",
+          "id": "meridian-main-street-mix-2026-08-12",
+          "locationLabel": "Old Town Meridian — Generations Plaza",
+          "officialUrl": "https://www.boisestatepublicradio.org/community-calendar-search?f0=00000178-b7ab-d01e-aff8-b7fbab860000",
+          "source": {
+            "authorityTier": "editorial",
+            "name": "Boise State Public Radio Community Calendar",
+            "reviewStatus": "editorially_verified",
+            "url": "https://www.boisestatepublicradio.org/community-calendar-search?f0=00000178-b7ab-d01e-aff8-b7fbab860000"
+          },
+          "summary": "Free live music in downtown Meridian; the series runs from 5:30 PM to 7:30 PM.",
+          "title": "Meridian's Main Street Mix Live Music"
+        }
+      ],
+      "producer": {
+        "name": "Gremlin Lab",
+        "version": "development"
+      },
+      "regionId": "boise-meridian-idaho",
+      "schemaVersion": 1
+    },
+    "event-sources": {
+      "generatedAt": "2026-08-07T03:25:17.422721Z",
+      "items": [
+        {
+          "id": "boise-meridian-idaho:eventSources",
+          "officialUrl": "https://www.meridiancity.org/cityevents",
+          "source": {
+            "name": "Gremlin Lab reviewed source link",
+            "reviewStatus": "source_link",
+            "url": "https://www.meridiancity.org/cityevents"
+          },
+          "summary": "Browse the linked event calendar for current listings. This is a source link, not a claim about a specific scheduled item.",
+          "title": "Event calendar"
+        }
+      ],
+      "producer": {
+        "name": "Gremlin Lab",
+        "version": "development"
+      },
+      "regionId": "boise-meridian-idaho",
+      "schemaVersion": 1
+    },
+    "volunteer-sources": {
+      "generatedAt": "2026-08-07T03:25:17.422721Z",
+      "items": [
+        {
+          "id": "boise-meridian-idaho:volunteerSources",
+          "officialUrl": "https://www.boisewatershed.org/about/volunteer/",
+          "source": {
+            "name": "Gremlin Lab reviewed source link",
+            "reviewStatus": "source_link",
+            "url": "https://www.boisewatershed.org/about/volunteer/"
+          },
+          "summary": "Browse the linked volunteer opportunities for current listings. This is a source link, not a claim about a specific scheduled item.",
+          "title": "Volunteer opportunities"
+        }
+      ],
+      "producer": {
+        "name": "Gremlin Lab",
+        "version": "development"
+      },
+      "regionId": "boise-meridian-idaho",
+      "schemaVersion": 1
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "regionId": "asheville",
+  "generatedAt": "2026-08-06T11:39:53.082138Z",
+  "artifacts": {
+    "vote": {
+      "generatedAt": "2026-08-07T03:25:17.422721Z",
+      "items": [
+        {
+          "date": "2026-11-03",
+          "expiresAt": "2026-11-04T05:00:00Z",
+          "id": "nc-asheville-2026-general-election",
+          "officialUrl": "https://www.ncsbe.gov/news/events/election-day-2026-general-election",
+          "source": {
+            "authorityTier": "election_authority",
+            "name": "North Carolina State Board of Elections",
+            "reviewStatus": "verified",
+            "url": "https://www.ncsbe.gov/news/events/election-day-2026-general-election"
+          },
+          "summary": "Vote in North Carolina's general election. Polling places are open from 6:30 AM to 7:30 PM; voters in line by closing may vote.",
+          "title": "North Carolina General Election",
+          "type": "general_election"
+        }
+      ],
+      "producer": {
+        "name": "Gremlin Lab",
+        "version": "development"
+      },
+      "regionId": "asheville",
+      "schemaVersion": 1
+    },
+    "event-sources": {
+      "generatedAt": "2026-08-07T03:25:17.422721Z",
+      "items": [
+        {
+          "id": "asheville:eventSources",
+          "officialUrl": "https://www.exploreasheville.com/events",
+          "source": {
+            "name": "Gremlin Lab reviewed source link",
+            "reviewStatus": "source_link",
+            "url": "https://www.exploreasheville.com/events"
+          },
+          "summary": "Browse the linked event calendar for current listings. This is a source link, not a claim about a specific scheduled item.",
+          "title": "Event calendar"
+        }
+      ],
+      "producer": {
+        "name": "Gremlin Lab",
+        "version": "development"
+      },
+      "regionId": "asheville",
+      "schemaVersion": 1
+    },
+    "volunteer-sources": {
+      "generatedAt": "2026-08-07T03:25:17.422721Z",
+      "items": [
+        {
+          "id": "asheville:volunteerSources",
+          "officialUrl": "https://www.ashevillenc.gov/parks/",
+          "source": {
+            "name": "Gremlin Lab reviewed source link",
+            "reviewStatus": "source_link",
+            "url": "https://www.ashevillenc.gov/parks/"
+          },
+          "summary": "Browse the linked volunteer opportunities for current listings. This is a source link, not a claim about a specific scheduled item.",
+          "title": "Volunteer opportunities"
+        }
+      ],
+      "producer": {
+        "name": "Gremlin Lab",
+        "version": "development"
+      },
+      "regionId": "asheville",
+      "schemaVersion": 1
+    }
+  }
+}
