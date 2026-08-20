@@ -1,0 +1,46 @@
+{
+  "id": "arlington-va",
+  "name": "Arlington County, Virginia",
+  "bbox": [38.83, -77.17, 38.93, -77.03],
+  "sources": [
+    {
+      "id": "arlington-boundary",
+      "name": "Arlington County Boundary",
+      "provider": "arcgis_feature_service",
+      "url": "https://arlgis.arlingtonva.us/arcgis/rest/services/Open_Data/od_County_Polygon/FeatureServer/0",
+      "domains": [],
+      "layerRole": "jurisdiction_boundary",
+      "artifactName": "boundary.geojson",
+      "propertyMapping": {"id": "OBJECTID", "name": "COUNTY", "include": ["STATE"]},
+      "licenseUrl": "https://gisdata-arlgis.opendata.arcgis.com/",
+      "attribution": "Arlington County GIS Mapping Center",
+      "authorityTier": "county_government",
+      "confidence": 0.98
+    },
+    {
+      "id": "arlington-county-parks",
+      "name": "Arlington County Public Parks",
+      "provider": "arcgis_feature_service",
+      "url": "https://arlgis.arlingtonva.us/arcgis/rest/services/Open_Data/od_Park_Polygons/FeatureServer/0",
+      "domains": ["parks"],
+      "queryParams": {"where": "Ownership IN ('Arlington County Park','Arlington County DES')"},
+      "propertyMapping": {"id": "OBJECTID", "name": "ParkName", "include": ["Ownership", "Acreage", "LocationDescription", "MaintenanceResponsibility"]},
+      "licenseUrl": "https://gisdata-arlgis.opendata.arcgis.com/",
+      "attribution": "Arlington County Parks and Recreation / GIS Mapping Center",
+      "authorityTier": "county_government",
+      "confidence": 0.97
+    },
+    {
+      "id": "arlington-bike-routes",
+      "name": "Arlington Bike Routes",
+      "provider": "arcgis_feature_service",
+      "url": "https://arlgis.arlingtonva.us/arcgis/rest/services/Open_Data/od_Bike_Route_Lines/FeatureServer/0",
+      "domains": ["trails"],
+      "propertyMapping": {"id": "OBJECTID", "name": "Label", "include": ["GISID", "Route_Type", "DisplayType", "Use_Caution", "BikeBoulevard", "Diff_L", "Diff_R"]},
+      "licenseUrl": "https://gisdata-arlgis.opendata.arcgis.com/datasets/c55e4481e8504e60a32476923e201bc7",
+      "attribution": "Arlington County GIS Mapping Center",
+      "authorityTier": "county_government",
+      "confidence": 0.95
+    }
+  ]
+}
