@@ -106,6 +106,17 @@ function interestScore(stops, preferences) {
 }
 
 function tagsForStops(stops) { return stops.flatMap(poiTags); }
+const smoothSurface = (value) => /asphalt|concrete|paved/i.test(String(value || ''));
+const noStairs = (value) => !value || /^(0|false|no|none)$/i.test(String(value));
+const adaTagged = (value) => /^(yes|true|y|1)$/i.test(String(value || ''));
+export function routeEvidence(route, nearby = []) {
+  const places = [...(route.stops || []), ...nearby.map((entry) => entry.poi || entry)];
+  const accessibleSegments = places.filter((place) => smoothSurface(place.surface) && noStairs(place.stairs)).length;
+  const adaPlaces = places.filter((place) => adaTagged(place.accessibility?.ada) || adaTagged(place.wheelchair)).length;
+  const restrooms = places.filter((place) => place.restrooms === true || poiTags(place).includes('restrooms')).length;
+  const drinkingWater = places.filter((place) => place.drinkingWater === true).length;
+  return { accessibleSegments, adaPlaces, restrooms, drinkingWater };
+}
 function routeComplexity(coordinates = []) {
   let turns = 0;
   for (let index = 2; index < coordinates.length; index += 1) {
@@ -119,7 +130,8 @@ function routeComplexity(coordinates = []) {
 export function objectiveCost(route, objectiveKey) {
   const tags = tagsForStops(route.stops || []);
   const greenSignals = tags.filter((tag) => ['park', 'trail', 'nature', 'garden', 'water_access'].includes(tag)).length;
-  const accessSignals = (route.stops || []).filter((stop) => stop.accessibility || stop.wheelchair || poiTags(stop).includes('accessibility')).length;
+  const evidence = routeEvidence(route);
+  const accessSignals = evidence.accessibleSegments + evidence.adaPlaces;
   const distance = Number(route.distanceMeters) || Number(route.distanceMiles || 0) * 1609.344;
   const complexity = routeComplexity(route.coordinates);
   if (objectiveKey === 'shortest') return distance;
@@ -144,7 +156,7 @@ function objectiveAlternatives(routes) {
     const route = assignments.get(objective.key);
     if (!route) return null;
     const influences = getPoisNearRoute(route.coordinates, 100).slice(0, 4).map(({ poi, distanceMeters }) => ({ id: poi.id, name: poi.name, distanceMeters: Math.round(distanceMeters), source: poi.source }));
-    return { ...route, title: `${objective.label} · ${route.title}`, objective, styleKey: objective.styleKey, color: objective.color, influences, objectiveCost: Math.round(objectiveCost(route, objective.key)), provenance: { routeGeometry: 'OSM pedestrian router', placeSignals: 'installed regional POI package', objectiveDataStatus: objective.dataStatus } };
+    return { ...route, title: `${objective.label} · ${route.title}`, objective, styleKey: objective.styleKey, color: objective.color, influences, evidence: routeEvidence(route, influences), objectiveCost: Math.round(objectiveCost(route, objective.key)), provenance: { routeGeometry: 'OSM pedestrian router', placeSignals: 'installed regional POI package', objectiveDataStatus: objective.dataStatus } };
   }).filter(Boolean);
 }
 
@@ -230,7 +242,12 @@ export function renderPlanPreview() {
     : `${plan.estimatedDurationMinutes}-minute ${plan.routeMode === 'round-trip' ? 'loop back to your start' : 'walk'} ranked for time and distance.`;
   el('planStops').innerHTML = plan.stops.map((stop, index) => `<li><span>${index + 1}</span><strong>${escapeHtml(stop.name)}</strong><small>${escapeHtml(stop.sourceType === 'osm-quiet-fallback' ? 'quiet place · OpenStreetMap' : poiTags(stop).find((tag) => !tag.startsWith('history_')) || 'place')}</small></li>`).join('');
   influencePanel.classList.remove('hidden');
-  influencePanel.innerHTML = `${plan.influences.length ? plan.influences.map((item) => `<span class="influence-chip">${escapeHtml(item.name)} · ${item.distanceMeters}m</span>`).join('') : '<span class="influence-chip">No nearby public POI influenced this route</span>'}<small class="provenance-note">${escapeHtml(plan.objective.label)}: ${escapeHtml(plan.objective.note)} Geometry: ${escapeHtml(plan.provenance.routeGeometry)}.</small>`;
+  const support = [];
+  if (plan.evidence?.accessibleSegments) support.push(`${plan.evidence.accessibleSegments} paved or stair-free local segments`);
+  if (plan.evidence?.adaPlaces) support.push(`${plan.evidence.adaPlaces} ADA-tagged places`);
+  if (plan.evidence?.restrooms) support.push(`${plan.evidence.restrooms} restroom locations`);
+  if (plan.evidence?.drinkingWater) support.push(`${plan.evidence.drinkingWater} water locations`);
+  influencePanel.innerHTML = `${plan.influences.length ? plan.influences.map((item) => `<span class="influence-chip">${escapeHtml(item.name)} · ${item.distanceMeters}m</span>`).join('') : '<span class="influence-chip">No nearby public POI influenced this route</span>'}${support.length ? `<small class="provenance-note">Local support near this route: ${escapeHtml(support.join(' · '))}.</small>` : ''}<small class="provenance-note">${escapeHtml(plan.objective.label)}: ${escapeHtml(plan.objective.note)} Geometry: ${escapeHtml(plan.provenance.routeGeometry)}.</small>`;
 }
 
 export function previewTimeBasedPlan({ fit = false } = {}) {
