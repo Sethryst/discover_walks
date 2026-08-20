@@ -126,7 +126,7 @@
 ];
                   export const DEFAULT_SETTINGS = {
   id: 'app-settings', activeCity: 'vienna', lastSyncedAt: null,
-  enableGeofencing: true, geofenceCategories: ['library', 'park', 'public_art', 'recreation_center', 'water_access', 'history', 'community_garden', 'trail', 'wifi'], favoriteCategories: [], defaultGeofenceRadiusMeters: 50, customObservationTags: {}, onboardingCompleted: false, entitlements: { fieldEdition: false, offlineRegions: [], partnerGrants: [] }
+  enableGeofencing: true, geofenceCategories: ['library', 'park', 'public_art', 'recreation_center', 'water_access', 'history', 'community_garden', 'trail', 'wifi'], favoriteCategories: [], favoriteRegionIds: [], defaultGeofenceRadiusMeters: 50, customObservationTags: {}, onboardingCompleted: false, entitlements: { fieldEdition: false, offlineRegions: [], partnerGrants: [] }
 };
 
 export const OBSERVATION_ICONS = ['camera', 'tree', 'star', 'heart', 'coffee', 'book-open', 'music', 'wind'];

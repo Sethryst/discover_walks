@@ -6,6 +6,7 @@ import { cityDiscoverableSites } from './poi.js';
 import db from './storage.js';
 import { badge, renderGeofenceCategoryChips } from './ui.js';
 import { fieldEditionStatus } from './entitlements.js';
+import { renderFavoriteRegions } from './region-favorites.js';
 
 export function renderProfile() {
   const profile = state.profile; const cityDiscoveries = sitesForProfile(profile).length; const totalCitySites = cityDiscoverableSites().length;
@@ -43,6 +44,7 @@ export function renderProfile() {
   el('onlineTeaserText').textContent = onlineName ? `Last aggregate sync: ${state.settings.lastSyncedAt ? shortDate(state.settings.lastSyncedAt) : 'not yet'}. Routes, observations, photos, and notes remain local.` : 'Optional online mode shares only aggregate points and miles with friends—never routes, observations, photos, or notes.';
   el('fieldEditionStatus').textContent = fieldEditionStatus();
   el('fieldEditionDetail').textContent = state.settings.entitlements?.fieldEdition || state.settings.entitlements?.partnerGrants?.length ? 'Offline Field Editions are available for the regions you can access.' : 'Your walks and reflections are always yours.';
+  void renderFavoriteRegions(state.settings);
 }
 
 export async function updateProfile(mutator) {

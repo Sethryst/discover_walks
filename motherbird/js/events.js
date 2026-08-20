@@ -10,6 +10,7 @@ import { city, citySites, displayPoiName, geofenceCategoriesForCity, renderPoiTa
 import { syncProfile, renderOnline, openOnline, signIn, signUp, createOnlineProfile, updateAccountUsername, updateAccountPhone, updateAccountEmail, updateAccountPassword, acceptFriend, refreshFriends, findFriend, createCohort, respondToOrganizerRequest, inviteFriendToCohort, respondToCohortInvite, saveOrganizerProfile, createOrganizerRequest, saveCohortSettings, sendCohortMessage } from './online.js';
 import { refreshCityMap, switchCity } from './city.js';
 import { renderProfile } from './profile.js';
+import { toggleFavoriteRegion } from './region-favorites.js';
 import db from './storage.js';
 import { renderExplorePlaces, setExploreTab } from './explore.js';
 import { renderDiscoveryHeadline } from './discovery.js';
@@ -206,5 +207,13 @@ el('accountPasswordForm').addEventListener('submit', updateAccountPassword);
     el('preferenceSaveStatus').textContent = 'Saved on this device';
     renderProfile();
     renderDiscoveryHeadline();
+  });
+  el('toggleFavoriteRegionButton').addEventListener('click', async () => {
+    const id = el('favoriteRegionSelect').value; if (!id) return;
+    if (await toggleFavoriteRegion(state.settings, id)) { await db.put('settings', state.settings); renderProfile(); }
+  });
+  el('favoriteRegionChips').addEventListener('click', async (event) => {
+    const button = event.target.closest('[data-favorite-region]'); if (!button) return;
+    if (await toggleFavoriteRegion(state.settings, button.dataset.favoriteRegion)) { await db.put('settings', state.settings); renderProfile(); }
   });
 }
