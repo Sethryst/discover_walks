@@ -65,6 +65,7 @@ export function initEvents() {
   el('journalButton').addEventListener('click', () => openJournal());
   el('demoButton').addEventListener('click', () => { const site = citySites()[0]; state.map.flyTo([site.lat, site.lng], Math.max(city().zoom + 2, 16)); setTimeout(() => showHistory(site, 28), 350); });
   el('settingsButton').addEventListener('click', () => openSheet('infoSheet'));
+  el('advancedAppearanceForm').addEventListener('submit', async (event) => { event.preventDefault(); state.settings.staticAppearance = { headlineTitle: el('advancedHeadlineTitle').value.trim() || 'A walk with a purpose', headlineIcon: el('advancedHeadlineIcon').value, developerName: el('developerName').value.trim(), developerUrl: el('developerUrl').value.trim() }; await db.put('settings', state.settings); const { applyStaticAppearance } = await import('./ui.js'); applyStaticAppearance(); toast('Appearance saved on this device.'); });
   el('fieldEditionButton').addEventListener('click', () => openSheet('fieldEditionSheet'));
   el('partnerAccessButton').addEventListener('click', () => { openSheet('fieldEditionSheet'); toast('Partner access will be verified by your institution in a production release.'); });
   el('profileJournalButton').addEventListener('click', () => openJournal());

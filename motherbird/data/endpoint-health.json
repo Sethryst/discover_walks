@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-08-20T19:23:28.446Z",
+  "scope": "Account registration, repository configuration, redacted health, and production evidence are independent gates.",
+  "registrations": [
+    {
+      "id": "nyc-event-calendar",
+      "service": "NYC Event Calendar",
+      "registered": true,
+      "configured": true,
+      "credentialStatus": "named-not-verified",
+      "health": {
+        "status": "blocked",
+        "detail": "NYC_API_SUBSCRIPTION_KEY is not available in this runner."
+      },
+      "productionStatus": "not-verified",
+      "nextAction": "Provision NYC_API_SUBSCRIPTION_KEY in the runner, then rerun this audit."
+    },
+    {
+      "id": "nyc-geoclient-v2",
+      "service": "NYC Geoclient V2",
+      "registered": true,
+      "configured": true,
+      "credentialStatus": "named-not-verified",
+      "health": {
+        "status": "blocked",
+        "detail": "NYC_GEOCLIENT_SUBSCRIPTION_KEY is not available in this runner."
+      },
+      "productionStatus": "not-verified",
+      "nextAction": "Provision NYC_GEOCLIENT_SUBSCRIPTION_KEY in the runner, then rerun this audit."
+    },
+    {
+      "id": "supabase-project",
+      "service": "Supabase project",
+      "registered": true,
+      "configured": true,
+      "credentialStatus": "not-required-or-browser-public",
+      "health": {
+        "status": "verified",
+        "httpStatus": 200,
+        "detail": "RLS-protected profile read succeeded; no rows or credential values recorded.",
+        "publicSchema": {
+          "status": "unavailable",
+          "httpStatus": 401,
+          "exposedRelationCount": 0,
+          "exposedRelations": []
+        }
+      },
+      "productionStatus": "not-verified",
+      "nextAction": "Reconcile the public schema with the proposed migration, then verify a real import manifest before marking production."
+    }
+  ],
+  "summary": {
+    "registered": 3,
+    "configured": 3,
+    "healthVerified": 1,
+    "producing": 0
+  }
+}

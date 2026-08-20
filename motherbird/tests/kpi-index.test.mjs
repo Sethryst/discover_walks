@@ -7,6 +7,12 @@ test('KPI inventory reconciles the frontend and producer source contracts', asyn
   const model = await collectKpiInventory();
   assert.equal(model.summary.selectableRegions, Object.keys(CITIES).length);
   assert.equal(model.summary.configuredEndpoints, model.sources.length);
+  assert.equal(model.summary.registeredAccounts, 3);
+  assert.equal(model.summary.registeredConfigured, 3);
+  assert.equal(model.summary.registeredHealthy, model.endpointRegistry.registrations.filter((endpoint) => endpoint.healthStatus === 'verified').length);
+  assert.equal(model.summary.registeredProducing, 0);
+  assert.ok(model.endpointRegistry.registrations.every((endpoint) => endpoint.registrationEvidence.includes('Mailbox')));
+  assert.equal(model.endpointRegistry.registrations.find((endpoint) => endpoint.id === 'nyc-geoclient-v2').configured, true);
   assert.equal(model.summary.producerRegions, model.configs.length);
   assert.equal(model.summary.backlogCandidates, 101);
   assert.equal(model.summary.coreReadyRegions, model.cities.filter((city) => city.missingRequiredFiles.length === 0).length);
@@ -41,6 +47,9 @@ test('KPI page exposes operator paths without publishing credential values', asy
   const html = renderKpiHtml(model);
   assert.match(html, /How data reaches a walker/);
   assert.match(html, /Endpoint inventory/);
+  assert.match(html, /Account-to-data pipeline/);
+  assert.match(html, /Registered product/);
+  assert.match(html, /Healthy.*requires a dated redacted probe/s);
   assert.match(html, /Live browser services/);
   assert.match(html, /Prioritized repair queue/);
   assert.match(html, /Product delivery progress/);

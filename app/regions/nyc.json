@@ -72,7 +72,24 @@
       "status": "active"
     },
     {
-      "id":"nyc-city-events","name":"NYC Event Calendar","provider":"nyc_events","url":"https://api.nyc.gov/calendar/search","domains":["event"],"licenseUrl":"https://api-portal.nyc.gov/","authorityTier":"city_government","confidence":0.95,"credentialEnv":"NYC_API_SUBSCRIPTION_KEY","status":"active"
+      "id": "nyc-city-events",
+      "name": "NYC Event Calendar",
+      "provider": "nyc_events",
+      "url": "https://api.nyc.gov/calendar/search",
+      "domains": ["event"],
+      "licenseUrl": "https://api-portal.nyc.gov/",
+      "authorityTier": "city_government",
+      "confidence": 0.95,
+      "credentialEnv": "NYC_API_SUBSCRIPTION_KEY",
+      "providerOptions": {
+        "geocoder": {
+          "provider": "nyc_geoclient_v2",
+          "url": "https://api.nyc.gov/geoclient/v2/search",
+          "credentialEnv": "NYC_GEOCLIENT_SUBSCRIPTION_KEY",
+          "matchPolicy": "exact-only"
+        }
+      },
+      "status": "active"
     }
   ]
 }

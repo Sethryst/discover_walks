@@ -26,11 +26,23 @@ export function openFiltersSheet() {
 }
 export function closeSheets() {
   state.modalOpen = null;
+  document.body.classList.remove('journal-open');
   el('modalBackdrop').classList.add('hidden');
   document.querySelectorAll('.sheet').forEach((sheet) => sheet.classList.add('hidden'));
   if (state.draftMarker) { state.draftMarker.remove(); state.draftMarker = null; }
 }
-export function openSheet(id) { state.modalOpen = id; el('modalBackdrop').classList.remove('hidden'); el(id).classList.remove('hidden'); }
+export function openSheet(id) { state.modalOpen = id; document.body.classList.toggle('journal-open', id === 'journalSheet'); el('modalBackdrop').classList.remove('hidden'); el(id).classList.remove('hidden'); }
+export function applyStaticAppearance() {
+  const appearance = { headlineTitle: 'A walk with a purpose', headlineIcon: 'walk', developerName: '', developerUrl: '', ...(state.settings.staticAppearance || {}) };
+  const allowedIcons = new Set(['walk', 'tree', 'heart', 'star', 'coffee']);
+  if (!allowedIcons.has(appearance.headlineIcon)) appearance.headlineIcon = 'walk';
+  el('headlineTitle').textContent = appearance.headlineTitle || 'A walk with a purpose';
+  el('headlineIcon').src = `./icons/${appearance.headlineIcon}.svg`;
+  const credit = el('developerCredit');
+  credit.classList.toggle('hidden', !appearance.developerName);
+  credit.innerHTML = appearance.developerName ? `Built by ${escapeHtml(appearance.developerName)}${/^https:\/\//.test(appearance.developerUrl || '') ? ` · <a href="${escapeHtml(appearance.developerUrl)}" target="_blank" rel="noreferrer">visit ↗</a>` : ''}` : '';
+  ['advancedHeadlineTitle', 'advancedHeadlineIcon', 'developerName', 'developerUrl'].forEach((id) => { if (el(id)) el(id).value = appearance[{ advancedHeadlineTitle: 'headlineTitle', advancedHeadlineIcon: 'headlineIcon', developerName: 'developerName', developerUrl: 'developerUrl' }[id]] || ''; });
+}
 export function openProfile() { showView('profile'); }
 export function showView(view) {
   state.activeView = view;

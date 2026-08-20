@@ -4,6 +4,7 @@ import { DEFAULT_SETTINGS, CITIES, POINTS_PER_MILE, POINTS_PER_OBSERVATION, POIN
 import { normalizeProfile, sitesForProfile } from './utils.js';
 import { toast, openSheet } from './ui.js';
 import { initMap } from './map.js';
+import { applyStaticAppearance } from './ui.js';
 import { loadAllCityData, refreshCityMap } from './city.js';
 import { initEvents } from './events.js';
 import { renderArchive } from './archive.js';
@@ -41,6 +42,7 @@ export async function init() {
   }
 
   await refreshCityMap(false);
+  applyStaticAppearance();
   startDiscoveryHeadline();
   await renderArchive();
   if (!state.settings.onboardingCompleted) {

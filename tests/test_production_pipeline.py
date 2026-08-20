@@ -10,7 +10,7 @@ from app.pipeline.domains import CoffeeGremlin, NatureGremlin, ParksGremlin, Rou
 from app.pipeline.intermediate import IntermediateFeature
 from app.pipeline.entity_resolution import find_duplicate_candidates
 from app.pipeline.region_builder import _release_safe_records
-from app.pipeline.source_config import SourceConfig
+from app.pipeline.source_config import SourceConfig, load_region
 from app.pipeline.validation import validate_records
 from app.pipeline.wikimedia import _context
 from app.pipeline.adapters.ebird import EbirdProvider
@@ -41,6 +41,14 @@ class ProductionPipelineTests(unittest.TestCase):
         self.assertEqual(records[0]["name"], "Pollard Street Playground")
         self.assertEqual(records[0]["validationStatus"], "valid")
         self.assertEqual(report[0]["errors"], [])
+
+    def test_nyc_event_geocoder_is_a_governed_source_dependency(self) -> None:
+        region = load_region(Path("app/regions/nyc.json"))
+        source = next(source for source in region["sources"] if source.id == "nyc-city-events")
+        geocoder = source.provider_options["geocoder"]
+        self.assertEqual(geocoder["provider"], "nyc_geoclient_v2")
+        self.assertEqual(geocoder["credentialEnv"], "NYC_GEOCLIENT_SUBSCRIPTION_KEY")
+        self.assertEqual(geocoder["matchPolicy"], "exact-only")
 
     def test_arcgis_source_mapping_preserves_a_city_specific_stable_id_and_label(self) -> None:
         source = SourceConfig.from_dict({"id": "alexandria-parks", "name": "Alexandria Parks", "provider": "arcgis_feature_service", "url": "https://example.test/layer", "domains": ["parks"], "licenseUrl": "https://example.test/license", "propertyMapping": {"id": "FACILITYID", "name": "LOCATION"}})

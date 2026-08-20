@@ -1,0 +1,374 @@
+{
+  "surface": "report",
+  "manifest": {
+    "version": 1,
+    "surface": "report",
+    "title": "Appalachian Corridor Lab upstream research",
+    "description": "Technical evidence package for correcting the lab geometry and preserving promotion gates.",
+    "generatedAt": "2026-08-20T19:03:00.306Z",
+    "cards": [],
+    "charts": [
+      {
+        "id": "parking_distance",
+        "title": "Official parking distance to authoritative centerline",
+        "subtitle": "Support-envelope screening distance in metres; proximity does not establish public access.",
+        "type": "bar",
+        "dataset": "parking",
+        "sourceId": "parking_inventory",
+        "valueFormat": "number",
+        "encodings": {
+          "x": {
+            "field": "accessPoint",
+            "type": "nominal",
+            "label": "Official access point"
+          },
+          "y": {
+            "field": "distanceMeters",
+            "type": "quantitative",
+            "label": "Distance (m)"
+          },
+          "tooltip": [
+            {
+              "field": "objectId",
+              "type": "nominal",
+              "label": "Source object ID"
+            },
+            {
+              "field": "priorityBand",
+              "type": "quantitative",
+              "label": "Research priority band"
+            }
+          ]
+        }
+      }
+    ],
+    "tables": [
+      {
+        "id": "source_health",
+        "title": "Source health probes",
+        "subtitle": "Observed during the 20 August 2026 package build.",
+        "dataset": "source_health",
+        "sourceId": "health_matrix",
+        "defaultSort": {
+          "field": "source",
+          "direction": "asc"
+        },
+        "columns": [
+          {
+            "field": "source",
+            "label": "Source",
+            "type": "text"
+          },
+          {
+            "field": "httpStatus",
+            "label": "HTTP status",
+            "format": "number"
+          },
+          {
+            "field": "healthy",
+            "label": "Healthy",
+            "type": "text"
+          },
+          {
+            "field": "latencyMs",
+            "label": "Latency (ms)",
+            "format": "number"
+          },
+          {
+            "field": "freshnessSlaHours",
+            "label": "SLA (hours)",
+            "format": "number"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "parking_inventory",
+        "label": "Official parking inventory",
+        "path": "official-parking-inventory-v20260820.json"
+      },
+      {
+        "id": "centerline_geometry",
+        "label": "Authoritative centerline segment",
+        "path": "centerline-segment-v20260820.geojson"
+      },
+      {
+        "id": "health_matrix",
+        "label": "Source health matrix",
+        "path": "source-health-matrix-v20260820.json"
+      }
+    ],
+    "blocks": [
+      {
+        "id": "title",
+        "type": "markdown",
+        "body": "# Appalachian Corridor Lab upstream research"
+      },
+      {
+        "id": "technical_summary",
+        "type": "markdown",
+        "body": "## The current tight envelope is the wrong slice\n\nThe named Bears Den / Snickers Gap focus sits east of the existing route envelope. Pulling the authoritative centerline across the support envelope replaces 6–13 km false connection distances with 4–441 m screening distances. This makes geometric review possible, but **zero entries are editor-verified and zero walkable windows should be emitted**.",
+        "sourceId": "parking_inventory"
+      },
+      {
+        "id": "findings",
+        "type": "markdown",
+        "body": "## The corrected network creates a usable research base\n\nThe package contains 37 centerline features, 4,487 vertices, 10 unique official parking records, six access-evidence seeds, and 17 natural endpoint candidates. These are research records, not live access claims.",
+        "sourceId": "centerline_geometry"
+      },
+      {
+        "id": "chart_note",
+        "type": "markdown",
+        "body": "The distance chart shows geometric plausibility only. Snickers Gap is almost coincident with the corrected centerline, while several support-envelope lots require longer connector review. Every bar still needs current access, closure, and connection-method evidence."
+      },
+      {
+        "id": "parking_chart",
+        "type": "chart",
+        "chartId": "parking_distance",
+        "layout": "full"
+      },
+      {
+        "id": "scope",
+        "type": "markdown",
+        "body": "## Scope and definitions\n\n**Research region:** the configured support envelope, not an administrative boundary. **Distance:** point-to-line-segment screening distance in a local equirectangular projection. **Verified entry:** an official access record with current public-access, closure, connector, and editor evidence; none currently qualify."
+      },
+      {
+        "id": "methods",
+        "type": "markdown",
+        "body": "## Method preserves authority and unknowns\n\nNPS/ATC ArcGIS geometry was requested in EPSG:4326 and clipped server-side. Parking records retain raw attributes and source object IDs. Named lab locations rank first, followed by geometric proximity. Unknown access, capacity, surface, closures, and relocation status remain null or explicitly unresolved."
+      },
+      {
+        "id": "health_note",
+        "type": "markdown",
+        "body": "Source health is mixed: official ArcGIS services, Nominatim, and ATC pages responded successfully; the primary Overpass probe returned HTTP 406. Fallback success does not clear the OSM source-health blocker."
+      },
+      {
+        "id": "health_table",
+        "type": "table",
+        "tableId": "source_health",
+        "layout": "full"
+      },
+      {
+        "id": "limitations",
+        "type": "markdown",
+        "body": "## Access remains the binding limitation\n\nGeometry cannot prove that parking is currently public, open, safe, or legally connected to the trail. The Snickers Gap county memorandum is useful research evidence but still requires a current review. No structured relocation or corridor-closure feed was established. Events and volunteer opportunities remain source-only because the four-field promotion contract is not reliably available."
+      },
+      {
+        "id": "next_steps",
+        "type": "markdown",
+        "body": "## Redefine the micro-region before resuming automation\n\n1. Split the existing Morgan Mill slice from the intended Bears Den / Snickers Gap lab.\n2. Review current access and connector evidence for Bears Den and Snickers Gap.\n3. Bind a 15–40 minute window only after one entry is editor-verified.\n4. Apply the versioned urban research template independently to DC and Richmond."
+      },
+      {
+        "id": "questions",
+        "type": "markdown",
+        "body": "## Questions that determine promotion readiness\n\n- Which authority owns the current-access decision for each lot?\n- Is there a reliable official closure or relocation feed for this corridor?\n- Should Bears Den / Snickers Gap become the first micro-region while Morgan Mill remains a separate lab?"
+      }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "generatedAt": "2026-08-20T19:03:00.306Z",
+    "status": "partial",
+    "datasets": {
+      "parking": [
+        {
+          "rank": 1,
+          "accessPoint": "Bears Den Upper Parking Area",
+          "distanceMeters": 148,
+          "longitude": -77.8542369293026,
+          "latitude": 39.1113714902956,
+          "objectId": 74,
+          "priorityBand": 1
+        },
+        {
+          "rank": 2,
+          "accessPoint": "Bears Den Lower Parking Area",
+          "distanceMeters": 210,
+          "longitude": -77.8539994861581,
+          "latitude": 39.1102580500824,
+          "objectId": 75,
+          "priorityBand": 1
+        },
+        {
+          "rank": 3,
+          "accessPoint": "Snickers Gap (VA Rte 679) Parking Area",
+          "distanceMeters": 4,
+          "longitude": -77.8523128570345,
+          "latitude": 39.1165474744032,
+          "objectId": 72,
+          "priorityBand": 2
+        },
+        {
+          "rank": 4,
+          "accessPoint": "Ashby Gap (VA Rte 601) Parking Area",
+          "distanceMeters": 68,
+          "longitude": -77.9622197738149,
+          "latitude": 39.0171402172985,
+          "objectId": 76,
+          "priorityBand": 3
+        },
+        {
+          "rank": 5,
+          "accessPoint": "PATC G. R. Thompson A.T. Parking Area",
+          "distanceMeters": 82,
+          "longitude": -77.9995525993692,
+          "latitude": 38.9853377664956,
+          "objectId": 78,
+          "priorityBand": 4
+        },
+        {
+          "rank": 6,
+          "accessPoint": "G. R. Thompson - Orchard Parking Area",
+          "distanceMeters": 100,
+          "longitude": -77.9946725982659,
+          "latitude": 38.9917877679745,
+          "objectId": 77,
+          "priorityBand": 4
+        },
+        {
+          "rank": 7,
+          "accessPoint": "G. R. Thompson - Trillium Trail Parking Area",
+          "distanceMeters": 226,
+          "longitude": -78.0270226058707,
+          "latitude": 38.9536277590884,
+          "objectId": 80,
+          "priorityBand": 4
+        },
+        {
+          "rank": 8,
+          "accessPoint": "G. R. Thompson - VA Rte 638 (Blue Mtn Rd) Parking Area",
+          "distanceMeters": 283,
+          "longitude": -78.0197656992291,
+          "latitude": 38.9632014082851,
+          "objectId": 178,
+          "priorityBand": 4
+        },
+        {
+          "rank": 9,
+          "accessPoint": "G. R. Thompson - Ridge Parking Area",
+          "distanceMeters": 441,
+          "longitude": -78.0182826040457,
+          "latitude": 38.9675577622143,
+          "objectId": 79,
+          "priorityBand": 4
+        },
+        {
+          "rank": 10,
+          "accessPoint": "VA Rte 7 Commuter Parking Area",
+          "distanceMeters": 355,
+          "longitude": -77.8467128732285,
+          "latitude": 39.1154827324067,
+          "objectId": 73,
+          "priorityBand": 9
+        }
+      ],
+      "source_health": [
+        {
+          "source": "NPS/ATC centerline ArcGIS",
+          "httpStatus": 200,
+          "healthy": "yes",
+          "latencyMs": 11,
+          "freshnessSlaHours": 168
+        },
+        {
+          "source": "NPS/ATC parking ArcGIS",
+          "httpStatus": 200,
+          "healthy": "yes",
+          "latencyMs": 121,
+          "freshnessSlaHours": 168
+        },
+        {
+          "source": "OpenStreetMap Overpass primary",
+          "httpStatus": 406,
+          "healthy": "no",
+          "latencyMs": 316,
+          "freshnessSlaHours": 24
+        },
+        {
+          "source": "OpenStreetMap Nominatim fallback",
+          "httpStatus": 200,
+          "healthy": "yes",
+          "latencyMs": 422,
+          "freshnessSlaHours": 24
+        },
+        {
+          "source": "ATC events",
+          "httpStatus": 200,
+          "healthy": "yes",
+          "latencyMs": 352,
+          "freshnessSlaHours": 24
+        },
+        {
+          "source": "ATC volunteer",
+          "httpStatus": 200,
+          "healthy": "yes",
+          "latencyMs": 509,
+          "freshnessSlaHours": 24
+        }
+      ]
+    },
+    "accessIssues": [
+      {
+        "id": "current_access_unverified",
+        "dataset": "parking",
+        "message": "Current public access, closure, and connector evidence is incomplete; no entry is promotion-ready."
+      }
+    ]
+  },
+  "sources": [
+    {
+      "id": "parking_inventory",
+      "query": {
+        "engine": "duckdb",
+        "language": "sql",
+        "sql": "SELECT rank, officialNames[1] AS accessPoint, distanceToCenterlineMeters AS distanceMeters, coordinates[1] AS longitude, coordinates[2] AS latitude, objectId, priorityBand FROM UNNEST((SELECT records FROM read_json_auto('official-parking-inventory-v20260820.json'))) AS t",
+        "description": "Shapes the reviewed official NPS/ATC parking inventory for the report.",
+        "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/ANST_Facilities/FeatureServer/2/query?where=1%3D1&geometry=%7B%22xmin%22%3A-78.22%2C%22ymin%22%3A38.95%2C%22xmax%22%3A-77.8%2C%22ymax%22%3A39.3%2C%22spatialReference%22%3A%7B%22wkid%22%3A4326%7D%7D&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=true&outSR=4326&f=geojson",
+        "executed_at": "2026-08-20T19:03:00.306Z",
+        "tables_used": [
+          "official-parking-inventory-v20260820.json",
+          "ANST_Facilities/FeatureServer/2"
+        ],
+        "filters": [
+          "supportBounds",
+          "parking/access attributes retained"
+        ]
+      }
+    },
+    {
+      "id": "centerline_geometry",
+      "query": {
+        "engine": "ArcGIS FeatureServer",
+        "description": "Official Appalachian Trail centerline clipped to the support envelope.",
+        "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/ANST_Centerline/FeatureServer/0",
+        "executed_at": "2026-08-20T19:03:00.306Z",
+        "tables_used": [
+          "ANST_Centerline/FeatureServer/0"
+        ],
+        "filters": [
+          "supportBounds"
+        ],
+        "metric_definitions": {
+          "distanceMeters": "Minimum point-to-line-segment distance in a local equirectangular projection."
+        }
+      }
+    },
+    {
+      "id": "health_matrix",
+      "query": {
+        "engine": "duckdb",
+        "language": "sql",
+        "sql": "SELECT name AS source, status AS httpStatus, CASE WHEN healthy THEN 'yes' ELSE 'no' END AS healthy, latencyMs, freshnessSlaHours FROM UNNEST((SELECT sources FROM read_json_auto('source-health-matrix-v20260820.json'))) AS t",
+        "description": "Shapes one bounded health probe per external source used by the research package.",
+        "executed_at": "2026-08-20T19:03:00.306Z",
+        "tables_used": [
+          "source-health-matrix-v20260820.json"
+        ],
+        "filters": [
+          "single observed run; not historical uptime"
+        ]
+      }
+    }
+  ]
+}
