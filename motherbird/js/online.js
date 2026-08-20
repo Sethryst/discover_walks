@@ -15,6 +15,7 @@ import {
   toast
 } from './ui.js';
 import { renderProfile } from './profile.js';
+import { readSupabaseHeartbeat } from './heartbeat.js';
 
 export async function setupOnline() {
   if (!onlineConfigured() || state.online.client) return;
@@ -23,6 +24,12 @@ export async function setupOnline() {
   const { data } = await state.online.client.auth.getSession();
   state.online.session = data.session;
   if (state.online.session) await loadRemoteProfile();
+  try {
+    await readSupabaseHeartbeat(state.online.client, state.settings, (settings) => db.put('settings', settings));
+  } catch (error) {
+    // Heartbeat availability must never prevent local use or online sign-in.
+    console.warn('Supabase heartbeat unavailable:', error.message);
+  }
   state.online.client.auth.onAuthStateChange((_event, session) => {
     state.online.session = session;
     setTimeout(() => { if (session) void loadRemoteProfile(); else { state.online.remoteProfile = null; renderProfile(); } }, 0);

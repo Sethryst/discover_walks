@@ -86,7 +86,8 @@ The app is fully usable with `supabase-config.js` left blank. To enable the opti
 1. Create a Supabase project and run [supabase-schema.sql](./supabase-schema.sql) in the SQL editor.
 2. In Supabase Auth, enable email magic links and add the deployed app URL to the allowed redirect URLs.
 3. Put the project URL and browser-safe publishable/anon key into [supabase-config.js](./supabase-config.js). Never put a `service_role` or secret key in the app.
-4. Reload the app, open **Profile**, select **Go Online**, and request an email sign-in link.
+4. The scheduled zero-write project heartbeat reuses this public configuration. It reads only the existing RLS-protected `profiles` endpoint and never needs a `service_role` key or additional GitHub secret.
+5. Reload the app, open **Profile**, select **Go Online**, and request an email sign-in link.
 
 Online mode sends only these aggregate fields: public username, total points, total miles, number of sites discovered, and update timestamp. It **never** sends GPS routes, route points, exact location, journal reflections, observation notes, photos, or history-moment locations. Local data remains the source of truth and sync resumes after connectivity returns.
 

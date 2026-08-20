@@ -134,7 +134,7 @@
   ['trail', '🥾 Trails'], ['wifi', '📶 Free Wi-Fi']
 ];
                   export const DEFAULT_SETTINGS = {
-  id: 'app-settings', activeCity: 'vienna', lastSyncedAt: null,
+  id: 'app-settings', activeCity: 'vienna', lastSyncedAt: null, lastSupabaseHeartbeatAt: null,
   enableGeofencing: true, geofenceCategories: ['library', 'park', 'public_art', 'recreation_center', 'water_access', 'history', 'community_garden', 'trail', 'wifi'], favoriteCategories: [], favoriteRegionIds: [], defaultGeofenceRadiusMeters: 50, customObservationTags: {}, onboardingCompleted: false, entitlements: { fieldEdition: false, offlineRegions: [], partnerGrants: [] }
 };
 
