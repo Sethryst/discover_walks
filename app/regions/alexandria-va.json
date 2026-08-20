@@ -1,0 +1,45 @@
+{
+  "id": "alexandria-va",
+  "name": "Alexandria, Virginia",
+  "bbox": [38.78585, -77.14433, 38.84496, -77.03727],
+  "sources": [
+    {
+      "id": "alexandria-boundary",
+      "name": "City of Alexandria Boundary",
+      "provider": "arcgis_feature_service",
+      "url": "https://services2.arcgis.com/ChYV69FhfjwkvRmy/ArcGIS/rest/services/Boundary/FeatureServer/0",
+      "domains": [],
+      "layerRole": "jurisdiction_boundary",
+      "artifactName": "boundary.geojson",
+      "propertyMapping": {"id": "FID", "name": "NAME", "include": ["STATE"]},
+      "licenseUrl": "https://cityofalexandria-alexgis.opendata.arcgis.com/",
+      "attribution": "City of Alexandria, Virginia GIS Division",
+      "authorityTier": "city_government",
+      "confidence": 0.98
+    },
+    {
+      "id": "alexandria-parks",
+      "name": "City of Alexandria Parks",
+      "provider": "arcgis_feature_service",
+      "url": "https://services2.arcgis.com/ChYV69FhfjwkvRmy/ArcGIS/rest/services/Park/FeatureServer/0",
+      "domains": ["parks"],
+      "propertyMapping": {"id": "FID", "name": "LOCATION", "include": ["FACILITYID", "PARKID"]},
+      "licenseUrl": "https://cityofalexandria-alexgis.opendata.arcgis.com/",
+      "attribution": "City of Alexandria GIS / Recreation, Parks and Cultural Activities",
+      "authorityTier": "city_government",
+      "confidence": 0.96
+    },
+    {
+      "id": "alexandria-park-trails",
+      "name": "City of Alexandria Recreation and Park Trails",
+      "provider": "arcgis_feature_service",
+      "url": "https://services2.arcgis.com/ChYV69FhfjwkvRmy/ArcGIS/rest/services/Rec_Park_Trails/FeatureServer/0",
+      "domains": ["trails"],
+      "propertyMapping": {"id": "GlobalID", "name": "TRAIL_NAME", "include": ["PrimePark", "SurfaceType", "Owner", "Maintenance"]},
+      "licenseUrl": "https://cityofalexandria-alexgis.opendata.arcgis.com/",
+      "attribution": "City of Alexandria GIS / Recreation, Parks and Cultural Activities",
+      "authorityTier": "city_government",
+      "confidence": 0.96
+    }
+  ]
+}

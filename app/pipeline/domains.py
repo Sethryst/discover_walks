@@ -30,7 +30,7 @@ class DomainGremlin(ABC):
     def map(self, feature: IntermediateFeature) -> dict[str, Any]:
         """Create a canonical record with all original attributes kept under provenance."""
         properties = feature.properties
-        name = _first(properties, "PARK_NAME", "PARKNAME", "NAME", "name", "FACILITY_NAME")
+        name = _configured_property(feature, "name", "PARK_NAME", "PARKNAME", "NAME", "name", "FACILITY_NAME")
         return {
             "id": f"{self.domain}:{feature.metadata['sourceMetadata']['sourceConfigId']}:{feature.source_id}",
             "domain": self.domain,
@@ -55,7 +55,7 @@ class ParksGremlin(DomainGremlin):
 
     def accepts(self, feature: IntermediateFeature) -> bool:
         tags = feature.properties
-        return feature.geometry.get("type") in {"Polygon", "MultiPolygon", "Point"} and bool(_first(tags, "PARK_NAME", "PARKNAME", "NAME", "name"))
+        return feature.geometry.get("type") in {"Polygon", "MultiPolygon", "Point"} and bool(_configured_property(feature, "name", "PARK_NAME", "PARKNAME", "NAME", "name"))
 
     def attributes(self, properties: dict[str, Any]) -> dict[str, Any]:
         output = super().attributes(properties)
@@ -69,7 +69,7 @@ class TrailsGremlin(DomainGremlin):
     domain = "trails"
 
     def accepts(self, feature: IntermediateFeature) -> bool:
-        return feature.geometry.get("type") in {"LineString", "MultiLineString"} and bool(_first(feature.properties, "NAME", "TRAIL_NAME", "name"))
+        return feature.geometry.get("type") in {"LineString", "MultiLineString"} and bool(_configured_property(feature, "name", "NAME", "TRAIL_NAME", "name"))
 
 
 class RouteGremlin(DomainGremlin):
@@ -110,7 +110,7 @@ class FacilitiesGremlin(DomainGremlin):
     domain = "facilities"
 
     def accepts(self, feature: IntermediateFeature) -> bool:
-        return feature.geometry.get("type") in {"Point", "Polygon", "MultiPolygon"} and bool(_first(feature.properties, "NAME", "FACILITY_NAME", "CENTER_NAME", "name"))
+        return feature.geometry.get("type") in {"Point", "Polygon", "MultiPolygon"} and bool(_configured_property(feature, "name", "NAME", "FACILITY_NAME", "CENTER_NAME", "name"))
 
 
 class CoffeeGremlin(DomainGremlin):
@@ -134,6 +134,15 @@ def _first(properties: dict[str, Any], *names: str) -> str | None:
         if value not in (None, ""):
             return str(value)
     return None
+
+
+def _configured_property(feature: IntermediateFeature, logical_name: str, *fallback_names: str) -> str | None:
+    """Read an explicit source mapping first, then use established aliases."""
+    mapping = feature.metadata.get("sourceMetadata", {}).get("propertyMapping", {})
+    mapped_field = mapping.get(logical_name)
+    if mapped_field and feature.properties.get(mapped_field) not in (None, ""):
+        return str(feature.properties[mapped_field])
+    return _first(feature.properties, *fallback_names)
 
 
 def _truthy(value: Any) -> bool:

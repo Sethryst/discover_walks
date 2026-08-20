@@ -33,15 +33,21 @@ class ArcGisFeatureServiceProvider(SourceAdapter):
             if not body.get("exceededTransferLimit") or not batch:
                 break
             offset += len(batch)
+        raw = {"type": "FeatureCollection", "features": all_features}
+        return self.parse(raw, source, timestamp), raw
+
+    def parse(self, raw: dict[str, Any], source: SourceConfig, timestamp: str) -> list[IntermediateFeature]:
+        """Recreate intermediate features from a cached ArcGIS GeoJSON response."""
         output: list[IntermediateFeature] = []
-        for index, feature in enumerate(all_features):
+        for index, feature in enumerate(raw.get("features", [])):
             properties = feature.get("properties") or {}
             geometry = feature.get("geometry")
             if not geometry:
                 continue
-            identifier = str(feature.get("id", properties.get("OBJECTID", properties.get("objectid", index))))
-            output.append(IntermediateFeature(identifier, source.name, source.url, geometry, dict(properties), timestamp, {"rawFormat": "arcgis", "sourceMetadata": {"sourceConfigId": source.id, "layerUrl": source.url}, "confidence": source.confidence}))
-        return output, {"type": "FeatureCollection", "features": all_features}
+            mapped_id = source.property_mapping.get("id")
+            identifier = str(properties.get(mapped_id) or feature.get("id", properties.get("OBJECTID", properties.get("objectid", index))))
+            output.append(IntermediateFeature(identifier, source.name, source.url, geometry, dict(properties), timestamp, {"rawFormat": "arcgis", "sourceMetadata": {"sourceConfigId": source.id, "layerUrl": source.url, "propertyMapping": source.property_mapping}, "confidence": source.confidence}))
+        return output
 
     def _request(self, url: str, source_id: str) -> dict[str, Any]:
         try:

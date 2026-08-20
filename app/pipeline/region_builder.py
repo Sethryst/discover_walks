@@ -39,11 +39,11 @@ def build_region(region_file: Path, output_root: Path, cache_root: Path, produce
             continue
         try:
             provider = ProviderRegistry.create(source)
-            if use_cache and (isinstance(provider, OsmOverpassProvider) or source.layer_role):
+            if use_cache and (isinstance(provider, OsmOverpassProvider) or source.layer_role or hasattr(provider, "parse")):
                 try:
                     cache_path = _latest_cached_response(cache_root, region["id"], source.id)
                     raw_response = load_cached_response(cache_path)
-                    features = provider.parse(raw_response, source, timestamp) if isinstance(provider, OsmOverpassProvider) else []
+                    features = provider.parse(raw_response, source, timestamp) if hasattr(provider, "parse") else []
                 except FileNotFoundError:
                     features, raw_response = provider.acquire(source, region)
                     cache_path = cache_response(cache_root, region["id"], source.id, raw_response, timestamp)

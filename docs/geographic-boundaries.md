@@ -25,3 +25,5 @@ For the complete consumer-ready release, run the normal all-source replay: `.ven
 ## Add City X boundaries
 
 Add one region source using the existing `geojson` provider. Set `layerRole`, a safe `artifactName`, `propertyMapping.id`, `propertyMapping.name`, optional public properties in `propertyMapping.include`, attribution, and license URL. No core change is needed. Add a thin adapter only when City X does not expose GeoJSON; the adapter should return the same raw `FeatureCollection` contract before shared normalization.
+
+Alexandria, Virginia is the first ArcGIS FeatureServer configuration using this path. Its boundary, parks, and recreation-trails sources live in `app/regions/alexandria-va.json`. The park feed's `FACILITYID` repeats across polygons, so the configuration uses unique `FID` as the stable release identifier and preserves `FACILITYID` as public provenance. ArcGIS sources now replay from the shared raw cache with `--use-cache`, the same as GeoJSON boundary fixtures.

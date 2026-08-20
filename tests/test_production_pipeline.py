@@ -42,6 +42,16 @@ class ProductionPipelineTests(unittest.TestCase):
         self.assertEqual(records[0]["validationStatus"], "valid")
         self.assertEqual(report[0]["errors"], [])
 
+    def test_arcgis_source_mapping_preserves_a_city_specific_stable_id_and_label(self) -> None:
+        source = SourceConfig.from_dict({"id": "alexandria-parks", "name": "Alexandria Parks", "provider": "arcgis_feature_service", "url": "https://example.test/layer", "domains": ["parks"], "licenseUrl": "https://example.test/license", "propertyMapping": {"id": "FACILITYID", "name": "LOCATION"}})
+        class AlexandriaProvider(ArcGisFeatureServiceProvider):
+            def _request(self, url: str, source_id: str) -> dict:
+                return {"type": "FeatureCollection", "features": [{"id": 7, "properties": {"FID": 7, "FACILITYID": "000004PARK", "LOCATION": "620 Burnside Place"}, "geometry": {"type": "Polygon", "coordinates": [[[-77.1, 38.8], [-77.1, 38.81], [-77.09, 38.81], [-77.1, 38.8]]]}}]}
+        features, _ = AlexandriaProvider().acquire(source, {"id": "alexandria-va"})
+        record = ParksGremlin().process(features)[0]
+        self.assertEqual(features[0].source_id, "000004PARK")
+        self.assertEqual(record["name"], "620 Burnside Place")
+
     def test_same_place_candidates_are_flagged_not_deleted(self) -> None:
         records = [{"id": "parks:a:1", "domain": "parks", "name": "Park", "geometry": {"type": "Point", "coordinates": [-76.2, 36.8]}, "sources": [{"sourceId": "1", "sourceName": "A"}], "validationFlags": []}, {"id": "parks:b:1", "domain": "parks", "name": "Park", "geometry": {"type": "Point", "coordinates": [-76.2, 36.8]}, "sources": [{"sourceId": "1", "sourceName": "B"}], "validationFlags": []}]
         groups = find_duplicate_candidates(records)
