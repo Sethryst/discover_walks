@@ -37,12 +37,11 @@ export function addWalkPoint(point) {
 }
 export function updateWalkDisplay() {
   const walk = state.activeWalk;
-  if (!walk) { el('walkDuration').textContent = '00:00'; el('walkDistance').textContent = '0.00'; el('walkPoints').textContent = '0'; el('activeRouteButton').classList.add('hidden'); el('walkingTopbar').classList.add('hidden'); return; }
+  if (!walk) { el('walkDuration').textContent = '00:00'; el('walkDistance').textContent = '0.00'; el('walkPoints')?.replaceChildren(); el('activeRouteButton').classList.add('hidden'); el('walkingTopbar').classList.add('hidden'); return; }
   const pausedNow = walk.pausedAt ? Date.now() - new Date(walk.pausedAt).getTime() : 0;
   walk.durationSeconds = Math.max(0, Math.floor((Date.now() - new Date(walk.startedAt).getTime() - (walk.pausedMilliseconds || 0) - pausedNow) / 1000));
   el('walkDuration').textContent = formatDuration(walk.durationSeconds);
   el('walkDistance').textContent = formatDistance(walk.distanceMeters);
-  el('walkPoints').textContent = calculateWalkAward(walk).total;
   const distance = formatDistance(walk.distanceMeters);
   const duration = formatDuration(walk.durationSeconds);
   el('activeRouteButton').classList.remove('hidden');

@@ -5,8 +5,12 @@ import { distanceMeters } from './geo.js';
 import { switchCity } from './city.js';
 
 const defaultHeadlines = [
-  ['History', ''], ['A gentle walk', ''], ['Nature to notice', ''], ['Your next landmark', '']
+  ['History', 'Read the landscape at an unhurried pace.'], ['A gentle walk', 'Choose a little time outside, without making it a project.'], ['Nature to notice', 'Look for small signs of life in the places you already pass.'], ['Your next landmark', 'Let one place change how you see a familiar block.']
 ];
+
+const DETAIL_BY_TAG = {
+  park: 'Start with a pocket of green, then follow your curiosity.', trail: 'Follow a walking path and notice what gathers at its edges.', history: 'Read the landscape at an unhurried pace.', water_access: 'Let water set the pace for a slower walk.', public_art: 'Find a detail that changes with distance and light.'
+};
 
 let headlineIndex = 0;
 
@@ -20,7 +24,7 @@ export function renderDiscoveryHeadline() {
     .filter((tag) => !tag.startsWith('history_')).slice(0, 5);
   const categories = preferences.length ? preferences : dataCategories;
   const choices = categories.length
-    ? categories.map((tag) => [labelFor(tag), ''])
+    ? categories.map((tag) => [labelFor(tag), DETAIL_BY_TAG[tag] || 'Choose an experience, or shape a route of your own.'])
     : defaultHeadlines;
   const [headline, detail] = choices[headlineIndex % choices.length];
   el('discoveryHeadline').textContent = headline;

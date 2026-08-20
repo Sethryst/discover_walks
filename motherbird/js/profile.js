@@ -3,25 +3,19 @@ import { CITIES, GEOFENCE_CATEGORIES } from './constants.js';
 import { el, sitesForProfile, cityLabel, escapeHtml, shortDate, normalizeProfile } from './utils.js';
 import { syncProfile } from './online.js';
 import db from './storage.js';
-import { badge, renderGeofenceCategoryChips } from './ui.js';
+import { renderGeofenceCategoryChips } from './ui.js';
 import { fieldEditionStatus } from './entitlements.js';
 import { renderFavoriteRegions } from './region-favorites.js';
 
 export function renderProfile() {
   const profile = state.profile; const cityDiscoveries = sitesForProfile(profile).length;
-  el('profilePoints').textContent = Math.round(profile.totalPoints).toLocaleString();
   el('profileStats').innerHTML = [
     [profile.walksCompleted, 'Walks completed'], [profile.milesTotal.toFixed(1), 'Miles total'],
-    [cityDiscoveries, 'Places remembered'], [profile.observationsLogged, 'Observations'], [profile.streakDays, 'Day streak']
+    [cityDiscoveries, 'Places remembered'], [profile.observationsLogged, 'Observations']
   ].map(([value, label]) => `<div class="profile-stat"><strong>${value}</strong><span>${label}</span></div>`).join('');
-  el('badgeList').innerHTML = [
-    badge('First Steps', profile.walksCompleted >= 1, 'Complete one walk.'),
-    badge('Place Keeper', cityDiscoveries >= 5, `Remember five meaningful places in ${cityLabel(state.activeCity)}.`),
-    badge('Century Club', profile.totalPoints >= 100, 'Earn 100 total trail points.'),
-    badge('Naturalist', profile.observationsLogged >= 10, 'Log 10 nature observations.')
-  ].join('');
   el('journalSummary').textContent = `${profile.observationsLogged} observations · ${profile.walksCompleted} walks · ${cityDiscoveries} places remembered`;
-  el('profileNextMilestone').textContent = profile.walksCompleted < 1 ? 'Complete a walk to earn First Steps.' : profile.totalPoints < 100 ? `${Math.max(0, 100 - Math.round(profile.totalPoints))} points to Century Club.` : 'Your local trail story is growing.';
+  el('profileRecordLead').textContent = profile.walksCompleted || profile.observationsLogged || cityDiscoveries ? 'Your local walking story.' : 'A blank page is welcome.';
+  el('profileRecordDetail').textContent = profile.walksCompleted || profile.observationsLogged || cityDiscoveries ? 'These are your memories—not a score. They stay on this device unless you choose otherwise.' : 'Start with one walk, observation, or reflection. It stays on this device unless you choose otherwise.';
   const select = el('citySelect');
   const grouped = {};
   Object.entries(CITIES).forEach(([id, item]) => {
@@ -40,8 +34,8 @@ export function renderProfile() {
   el('favoriteCategoryChips').innerHTML = GEOFENCE_CATEGORIES.map(([id, label]) => `<button type="button" class="poi-chip ${favorites.has(id) ? 'active' : ''}" data-favorite-category="${id}">${label}</button>`).join('');
   renderGeofenceCategoryChips();
   const onlineName = state.online.remoteProfile?.username;
-  el('onlineTeaserTitle').textContent = onlineName ? `Online as @${onlineName}` : 'Stay local by default';
-  el('onlineTeaserText').textContent = onlineName ? `Last aggregate sync: ${state.settings.lastSyncedAt ? shortDate(state.settings.lastSyncedAt) : 'not yet'}. Routes, observations, photos, and notes remain local.` : 'Optional online mode shares only aggregate points and miles with friends—never routes, observations, photos, or notes.';
+  el('onlineTeaserTitle').textContent = onlineName ? `Optional profile: @${onlineName}` : 'Stay local by default';
+  el('onlineTeaserText').textContent = onlineName ? `Last aggregate sync: ${state.settings.lastSyncedAt ? shortDate(state.settings.lastSyncedAt) : 'not yet'}. Routes, observations, photos, and notes remain local.` : 'Optional online mode maintains only a minimal aggregate profile. Routes, observations, photos, and notes never leave this device.';
   el('fieldEditionStatus').textContent = fieldEditionStatus();
   el('fieldEditionDetail').textContent = state.settings.entitlements?.fieldEdition || state.settings.entitlements?.partnerGrants?.length ? 'Offline Field Editions are available for the regions you can access.' : 'Your walks and reflections are always yours.';
   void renderFavoriteRegions(state.settings);

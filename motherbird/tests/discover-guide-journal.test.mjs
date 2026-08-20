@@ -27,14 +27,35 @@ test('Field Guide subjects are educational records with explicit HTTPS knowledge
   }
 });
 
-test('primary modes and personal counters are visible without collection-style totals', async () => {
+test('first-run modes make human Discover experiences visible and keep civic actions secondary', async () => {
+  const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  assert.match(html, />Discover<\/button>/);
+  assert.match(html, />Field Guide<\/button>/);
+  assert.match(html, />Journal<\/button>/);
+  assert.match(html, /Places to Explore/);
+  assert.match(html, /History &amp; Heritage/);
+  assert.match(html, /Art &amp; Culture/);
+  assert.match(html, /Food &amp; Community/);
+  assert.doesNotMatch(html, /data-view="vote"/);
+  assert.doesNotMatch(html, /data-view="volunteer"/);
+});
+
+test('Guide is a season-and-place-aware companion, while Journal avoids collection language', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
   const profile = await readFile(new URL('../js/profile.js', import.meta.url), 'utf8');
-  assert.match(html, />Discover<\/button>/);
-  assert.match(html, />Guide<\/button>/);
-  assert.match(html, />Journal<\/button>/);
+  const guide = await readFile(new URL('../js/field-guide.js', import.meta.url), 'utf8');
+  const explore = await readFile(new URL('../js/explore.js', import.meta.url), 'utf8');
+  const planner = await readFile(new URL('../js/planner.js', import.meta.url), 'utf8');
   assert.match(html, /What are you looking at\?/);
+  assert.match(guide, /seasonNote/);
+  assert.match(guide, /In this guide:/);
   assert.match(profile, /observations.*walks.*places remembered/);
   assert.doesNotMatch(profile, /cityDiscoveries.*\/.*totalCitySites/);
   assert.doesNotMatch(profile, /Discover every stop/);
+  assert.doesNotMatch(html, /Total trail points/);
+  assert.doesNotMatch(html, /Walk pts/);
+  assert.doesNotMatch(html, /Your first walk earns a milestone/);
+  assert.doesNotMatch(html, />Leaderboard</);
+  assert.match(explore, /not enough reviewed local material/);
+  assert.match(planner, /Try a shorter loop/);
 });

@@ -18,7 +18,7 @@ export function fieldEditionStatus() {
   const access = normalizedEntitlements(state.settings?.entitlements);
   if (access.fieldEdition) return 'Field Edition active';
   if (access.partnerGrants.length) return 'Partner Field Edition access active';
-  return 'Free edition';
+  return 'Optional offline edition';
 }
 
 // This is deliberately only a local entitlement model. A production purchase

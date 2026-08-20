@@ -16,13 +16,26 @@ export const FIELD_GUIDE_SUBJECTS = [
 
 function relevance(subject) {
   const localTags = new Set((state.cityPois[state.activeCity] || []).flatMap(poiTags));
-  return subject.relatedTags.reduce((score, tag) => score + (localTags.has(tag) ? 1 : 0), 0);
+  const interests = new Set(state.settings?.favoriteCategories || []);
+  return subject.relatedTags.reduce((score, tag) => score + (localTags.has(tag) ? 2 : 0) + (interests.has(tag) ? 3 : 0), 0);
+}
+
+function seasonNote(date = new Date()) {
+  const month = date.getMonth();
+  if (month <= 1) return 'Winter field note: look for structure—evergreen cover, bark, water, and the birds that remain.';
+  if (month <= 4) return 'Spring field note: listen for returning birds and notice new growth along water and paths.';
+  if (month <= 7) return 'Summer field note: shade, water, and the edges between planted and wild spaces tell a fuller story.';
+  if (month <= 10) return 'Autumn field note: watch for changing canopy, seed heads, and movement along sheltered corridors.';
+  return 'Early winter field note: take a slower look at the forms that stay visible after leaves fall.';
 }
 
 export function renderFieldGuide() {
   const target = el('fieldGuideList');
   if (!target) return;
   const subjects = FIELD_GUIDE_SUBJECTS.map((subject) => ({ ...subject, relevance: relevance(subject) })).filter((subject) => subject.relevance > 0).sort((a, b) => b.relevance - a.relevance || a.name.localeCompare(b.name));
-  el('fieldGuideCount').textContent = `${subjects.length} subjects relevant to this region`;
-  target.innerHTML = subjects.length ? subjects.map((subject) => `<article class="guide-card"><span class="guide-group">${escapeHtml(subject.group)}</span><h3>${escapeHtml(subject.name)}</h3><p>${escapeHtml(subject.cue)}</p><a href="${escapeHtml(subject.sourceUrl)}" target="_blank" rel="noreferrer">Learn with ${escapeHtml(subject.sourceName)} ↗</a></article>`).join('') : '<div class="empty-state"><strong>Your local guide is taking shape.</strong>Explore the map now; educational subjects will appear when a reviewed guide package matches this region.</div>';
+  el('fieldGuideCount').textContent = subjects.length ? 'Things to notice near here' : 'Your local guide is taking shape';
+  el('fieldGuideSeason').textContent = seasonNote();
+  const groups = [...new Set(subjects.map((subject) => subject.group))];
+  const available = subjects.length ? `<p class="guide-availability"><strong>In this guide:</strong> ${groups.map(escapeHtml).join(' · ')}<span>Ordered for this region${state.settings?.favoriteCategories?.length ? ' and what you chose to notice' : ''}.</span></p>` : '';
+  target.innerHTML = subjects.length ? available + subjects.map((subject) => `<article class="guide-card"><span class="guide-group">${escapeHtml(subject.group)}</span><h3>${escapeHtml(subject.name)}</h3><p>${escapeHtml(subject.cue)}</p><a href="${escapeHtml(subject.sourceUrl)}" target="_blank" rel="noreferrer">Learn with ${escapeHtml(subject.sourceName)} ↗</a></article>`).join('') : '<div class="empty-state"><strong>Your local guide is taking shape.</strong>Explore the map now; educational subjects will appear when a reviewed guide package matches this region.</div>';
 }
