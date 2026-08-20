@@ -78,6 +78,14 @@
     dataFile: './regions/fairfax-county-va/pois.json',
     civicFile: './regions/fairfax-county-va/civic/index.json'
   },
+  alexandria: {
+    name: 'Alexandria',
+    state: 'VA',
+    center: { lat: 38.8048, lng: -77.0469 },
+    zoom: 13,
+    dataFile: './regions/alexandria-va/pois.json',
+    civicFile: './regions/alexandria-va/civic/index.json'
+  },
   dc: {
     name: 'Washington',
     state: 'DC',
