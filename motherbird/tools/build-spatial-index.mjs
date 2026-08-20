@@ -48,6 +48,7 @@ export async function buildSpatialPackage({ regionId, configPath, outputPath, ge
   const configPayload = await readFile(configFile);
   const config = JSON.parse(configPayload);
   if (config.schemaVersion !== SPATIAL_INDEX_SCHEMA_VERSION || config.regionId !== regionId) throw new Error(`${regionId}: incompatible spatial-index source configuration.`);
+  if (!config.syncIdentity?.poiVersion || !config.syncIdentity?.boundaryVintage) throw new Error(`${regionId}: spatial sync identity must declare poiVersion and boundaryVintage.`);
 
   const poiPath = path.resolve(root, config.poi.file);
   const poiPayload = await readFile(poiPath);
@@ -93,6 +94,7 @@ export async function buildSpatialPackage({ regionId, configPath, outputPath, ge
     schemaVersion: SPATIAL_INDEX_SCHEMA_VERSION,
     artifactType: 'regional-spatial-index-package',
     regionId,
+    syncIdentity: config.syncIdentity,
     generatedAt,
     provider: { name: 'flatbush', libraryVersion: FLATBUSH_LIBRARY_VERSION, serializedFormatVersion: 3, nodeSize: 16 },
     coordinateOrder: 'minLng,minLat,maxLng,maxLat',

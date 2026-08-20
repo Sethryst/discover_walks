@@ -10,6 +10,7 @@ const close = {
   reason: 'reported-closed',
   actorId: 'device:abc',
   createdAt: '2026-08-20T00:00:00.000Z',
+  expiresAt: '2026-11-18T00:00:00.000Z',
   base: { poiVersion: 'dc-pois-2026-08', boundaryVintage: '2026', sourceChecksum: 'sha256:abc' }
 };
 

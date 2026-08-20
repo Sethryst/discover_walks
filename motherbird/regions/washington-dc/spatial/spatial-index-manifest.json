@@ -2,6 +2,10 @@
   "schemaVersion": 1,
   "artifactType": "regional-spatial-index-package",
   "regionId": "washington-dc",
+  "syncIdentity": {
+    "poiVersion": "dc-pois-2026-08-20",
+    "boundaryVintage": "dc-municipal-boundaries-2026-08-20"
+  },
   "generatedAt": "2026-08-20T20:08:46.710Z",
   "provider": {
     "name": "flatbush",
@@ -18,7 +22,7 @@
   "inputs": {
     "config": {
       "file": "regions/washington-dc/spatial-index.json",
-      "checksum": "sha256:8619b3456bec9c069ee3b6e6f430e3a274ac06335b644339cd37b9627609b633"
+      "checksum": "sha256:3bd00b1850e7ff9b3643abf200ee244d8f9729ce7aff600409e9d1e99505e8f6"
     },
     "poi": {
       "file": "regions/washington-dc/washington-dc-poi.json",

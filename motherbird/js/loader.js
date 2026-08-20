@@ -13,6 +13,7 @@ import { initExplore } from './explore.js';
 import { startDiscoveryHeadline } from './discovery.js';
 import { normalizedEntitlements } from './entitlements.js';
 import { initNeighborhoodDiscovery } from './neighborhoods.js';
+import { restoreLocalPoiClosures } from './spatial-closure-reporting.js';
 
 export async function init() {
   try {
@@ -96,5 +97,6 @@ export async function loadLocalState() {
   state.settings.entitlements = normalizedEntitlements(state.settings.entitlements);
   if (!CITIES[state.settings.activeCity]) state.settings.activeCity = 'vienna';
   state.activeCity = state.settings.activeCity;
+  await restoreLocalPoiClosures();
   await Promise.all([db.put('profile', state.profile), db.put('settings', state.settings)]);
 }

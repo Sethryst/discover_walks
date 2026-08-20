@@ -24,6 +24,25 @@ create table if not exists public.county_pois (
 );
 create index if not exists county_pois_geom_idx on public.county_pois using gist (geom);
 
+-- County operators keep the newest three canonical packages. This is a
+-- service-role maintenance function; browser roles receive no execute grant.
+create or replace function public.prune_county_poi_versions(target_region_id text, keep_versions integer default 3)
+returns void language plpgsql security definer set search_path = public as $$
+begin
+  if keep_versions < 1 then raise exception 'keep_versions must be at least 1'; end if;
+  with stale as (
+    select region_id, poi_version from public.county_poi_versions
+    where region_id = target_region_id
+    order by published_at desc offset keep_versions
+  )
+  delete from public.county_pois p using stale s where p.region_id = s.region_id and p.poi_version = s.poi_version;
+  delete from public.county_poi_versions v
+  where v.region_id = target_region_id and v.poi_version not in (
+    select poi_version from public.county_poi_versions where region_id = target_region_id order by published_at desc limit keep_versions
+  );
+end;
+$$;
+
 -- This is an append-only intent ledger, not a command channel for county data.
 create table if not exists public.spatial_local_operations (
   operation_id uuid primary key default gen_random_uuid(),

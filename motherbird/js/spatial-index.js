@@ -6,12 +6,12 @@ const METERS_PER_DEGREE = 111_320;
 
 export { SpatialGridIndex } from './spatial-index-providers.js';
 
-let active = makeActive(null, new SpatialGridIndex(), null, new Map());
+let active = makeActive(null, new SpatialGridIndex(), null, new Map(), null);
 
 export function reindexSpatialData(cityId, pois = [], neighborhoodGeojson = null) {
   const index = createGridIndex(pois);
   const neighborhoods = new Map((neighborhoodGeojson?.features || []).map((feature) => [feature.properties?.id || feature.id, feature]));
-  active = makeActive(cityId, index, null, neighborhoods);
+  active = makeActive(cityId, index, null, neighborhoods, null);
   return { cityId, poiCount: pois.length, neighborhoodCount: neighborhoods.size, provider: index.kind };
 }
 
@@ -19,7 +19,7 @@ export async function upgradeSpatialDataFromPackage(cityId, pois = [], neighborh
   const fallback = reindexSpatialData(cityId, pois, neighborhoodGeojson);
   try {
     const loaded = await loadFlatbushPackage(baseUrl, pois, loaderOptions);
-    active = makeActive(cityId, loaded.poiIndex, loaded.boundaryIndex, active.neighborhoods);
+    active = makeActive(cityId, loaded.poiIndex, loaded.boundaryIndex, active.neighborhoods, loaded.manifest);
     return { ...fallback, provider: loaded.poiIndex.kind, manifest: loaded.manifest };
   } catch (error) {
     return { ...fallback, fallbackReason: error.message };
@@ -56,11 +56,13 @@ export function removeSessionSpatialRecord(id, metadata = {}) { active.overlay.r
 
 export function clearSessionSpatialChanges() { active.overlay.clear(); return spatialIndexStatus(); }
 
-export function spatialIndexStatus() { return { cityId: active.cityId, ...active.index.status(), boundaryProvider: active.boundaryIndex?.kind || null, boundaryRecords: active.boundaryIndex?.ids.length || 0, neighborhoods: active.neighborhoods.size }; }
+export function spatialSyncIdentity() { return active.manifest ? { regionId: active.manifest.regionId, ...active.manifest.syncIdentity, sourceChecksum: active.manifest.inputs.poi.checksum } : null; }
 
-function makeActive(cityId, baseIndex, boundaryIndex, neighborhoods) {
+export function spatialIndexStatus() { return { cityId: active.cityId, ...active.index.status(), syncIdentity: spatialSyncIdentity(), boundaryProvider: active.boundaryIndex?.kind || null, boundaryRecords: active.boundaryIndex?.ids.length || 0, neighborhoods: active.neighborhoods.size }; }
+
+function makeActive(cityId, baseIndex, boundaryIndex, neighborhoods, manifest) {
   const overlay = new SessionSpatialOverlay();
-  return { cityId, baseIndex, index: new CompositeSpatialIndex(baseIndex, overlay), overlay, boundaryIndex, neighborhoods };
+  return { cityId, baseIndex, index: new CompositeSpatialIndex(baseIndex, overlay), overlay, boundaryIndex, neighborhoods, manifest };
 }
 
 function toPoint(value) { if (Array.isArray(value) && Number.isFinite(value[0]) && Number.isFinite(value[1])) return { lat: value[0], lng: value[1] }; if (Number.isFinite(value?.lat) && Number.isFinite(value?.lng)) return value; return null; }

@@ -14,6 +14,7 @@ export const state = {
   neighborhoodData: null,
   discoveredNeighborhoodIds: new Set(),
   spatialIndexCity: null,
+  locallyClosedPoiIds: new Map(),
 
   // map objects
   map: null,

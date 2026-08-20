@@ -8,7 +8,7 @@ const store = {
   async all(name) { return [...records.entries()].filter(([key]) => key.startsWith(`${name}:`)).map(([, value]) => structuredClone(value)); }
 };
 const operation = (id, createdAt) => ({
-  operationId: id, schemaVersion: 1, poiId: 'county:trail:123', kind: 'local-close', reason: 'reported-closed', actorId: 'device:abc', createdAt,
+  operationId: id, schemaVersion: 1, poiId: 'county:trail:123', kind: 'local-close', reason: 'reported-closed', actorId: 'device:abc', createdAt, expiresAt: '2026-11-18T00:00:00.000Z',
   base: { poiVersion: 'dc-pois-2026-08', boundaryVintage: '2026', sourceChecksum: 'sha256:abc' }
 });
 

@@ -69,6 +69,7 @@ test('runtime upgrades behind the existing API without changing exact neighborho
   const gridResult = getPoisInNeighborhood(neighborhoodId).map((record) => record.id);
   const result = await upgradeSpatialDataFromPackage('dc', records, neighborhoods, '/spatial', { fetchImpl: fileFetch(), cryptoImpl: webcrypto });
   assert.equal(result.provider, 'flatbush-package');
+  assert.equal(spatialIndexStatus().syncIdentity.poiVersion, 'dc-pois-2026-08-20');
   assert.equal(spatialIndexStatus().boundaryRecords, 101);
   assert.deepEqual(getPoisInNeighborhood(neighborhoodId).map((record) => record.id), gridResult);
 });

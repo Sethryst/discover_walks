@@ -31,6 +31,7 @@ export async function loadFlatbushPackage(baseUrl, records, { fetchImpl = global
 function validateManifest(manifest) {
   if (manifest?.schemaVersion !== SPATIAL_INDEX_SCHEMA_VERSION) throw new Error(`Unsupported spatial index schema ${manifest?.schemaVersion}.`);
   if (manifest.artifactType !== 'regional-spatial-index-package' || manifest.coordinateOrder !== 'minLng,minLat,maxLng,maxLat') throw new Error('Spatial index manifest contract is invalid.');
+  if (typeof manifest.syncIdentity?.poiVersion !== 'string' || !manifest.syncIdentity.poiVersion || typeof manifest.syncIdentity?.boundaryVintage !== 'string' || !manifest.syncIdentity.boundaryVintage) throw new Error('Spatial index manifest is missing approved sync identity.');
   for (const kind of ['pois', 'boundaries']) for (const key of ['binary', 'ids', 'binaryChecksum', 'idsChecksum', 'featureCount']) {
     if (manifest.indexes?.[kind]?.[key] === undefined) throw new Error(`Spatial index manifest is missing indexes.${kind}.${key}.`);
   }

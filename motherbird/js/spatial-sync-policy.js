@@ -13,6 +13,7 @@ export function validateSpatialSyncOperation(operation) {
   if (!operation || typeof operation !== 'object') throw new TypeError('Spatial sync operation must be an object.');
   if (operation.schemaVersion !== SPATIAL_SYNC_OPERATION_SCHEMA_VERSION) throw new Error(`Unsupported spatial sync operation schema: ${operation.schemaVersion}.`);
   if (!['local-close', 'local-reopen', 'local-note'].includes(operation.kind)) throw new TypeError(`Unsupported spatial sync operation kind: ${operation.kind}.`);
+  if (operation.kind === 'local-close' && Number.isNaN(Date.parse(operation.expiresAt || ''))) throw new TypeError('A local-close operation needs a valid expiresAt timestamp.');
   const base = operation.base;
   if (!base || typeof base !== 'object') throw new TypeError('Spatial sync operation needs a base artifact identity.');
   return {
