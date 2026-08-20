@@ -1,5 +1,6 @@
 import { state } from './state.js';
 import { escapeHtml } from './utils.js';
+import { DC_OFFICIAL_TRAILS } from '../data/dc-official-trails.js';
 
 // Route geometry is rendered only after it is packaged from an authoritative
 // GIS source. The prior hand-generalized lines remain listed for research, but
@@ -19,15 +20,7 @@ export const CURATED_ROUTES = [
     sourceName: 'NYC DOT Greenways', sourceUrl: 'https://www.nyc.gov/html/dot/html/bicyclists/greenways.shtml',
     geometryStatus: 'needs_official_geometry', coordinates: []
   },
-  {
-    id: 'dc-anacostia-riverwalk-south-capitol-section', city: 'dc', title: 'Anacostia Riverwalk: South Capitol section',
-    distanceMiles: 0.6, durationMinutes: 12, difficulty: 'Easy', category: 'waterfront',
-    description: 'A verified short section of the Anacostia Riverwalk Trail; suitable as a building block, not a claimed full-trail route.',
-    sourceName: 'DDOT Bike Trails (DC) GIS', sourceUrl: 'https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15',
-    geometryStatus: 'validated', geometryProvenance: { type: 'official-gis', featureName: 'Anacostia Riverwalk Trail', retrievedAt: '2026-08-04' },
-    coordinates: [[38.872796,-76.998926],[38.872876,-76.999603],[38.872954,-77.000479],[38.873207,-77.000620],[38.873213,-77.001241],[38.873049,-77.001451],[38.873047,-77.002214],[38.873045,-77.002329],[38.872778,-77.002402],[38.872728,-77.002631],[38.872543,-77.003514],[38.872530,-77.003592],[38.872083,-77.004660],[38.871542,-77.005992],[38.871191,-77.006015],[38.870837,-77.006521],[38.870521,-77.006779],[38.870180,-77.007043]],
-    sections: [{ id: 'south-capitol', name: 'South Capitol to Navy Yard', durationMinutes: 12, completionReward: 10 }]
-  }
+  ...DC_OFFICIAL_TRAILS
 ];
 
 export function validateRoute(route) {

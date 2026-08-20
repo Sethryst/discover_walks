@@ -17,6 +17,7 @@
     "build:civic-packages": "node tools/build-civic-packages.mjs",
     "verify:dc-sources": "node tools/dc-sources/fetch-all.mjs --verify-only",
     "fetch:dc-sources": "node tools/dc-sources/fetch-all.mjs",
+    "refresh:dc-official-trails": "node tools/refresh-dc-official-trails.mjs",
     "build:dc-pois": "node tools/build-dc-pois.mjs",
     "validate:dc-pois": "node tools/validate-dc-pois.mjs",
     "inspect:dc-pois": "node tools/inspect-dc-pois.mjs",

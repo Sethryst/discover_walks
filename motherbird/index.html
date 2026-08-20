@@ -63,28 +63,18 @@
         <button class="trail-feature hidden" id="trailFeatureButton" type="button">🥾 <span><strong>Elizabeth River Trail</strong><small>Explore the featured route</small></span></button>
 
         <section class="walk-strip" aria-label="Walk controls">
-          <div class="walk-stats">
-            <div><span class="stat-value" id="walkDuration">00:00</span><span class="stat-label">Duration</span></div>
-            <div><span class="stat-value" id="walkDistance">0.00</span><span class="stat-label">Miles</span></div>
+          <div class="walk-tools">
+            <div class="walk-stats">
+              <div><span class="stat-value" id="walkDuration">00:00</span><span class="stat-label">Duration</span></div>
+              <div><span class="stat-value" id="walkDistance">0.00</span><span class="stat-label">Miles</span></div>
+            </div>
+            <button class="compact-walk-action" id="addObservationButton" type="button" title="Add a private nature observation"><img class="ui-icon ui-icon--small" src="./icons/camera.svg" alt="" /><span>Observe</span></button>
+            <button class="compact-walk-action" id="demoButton" type="button" title="Preview a history prompt"><img class="ui-icon ui-icon--small" src="./icons/star.svg" alt="" /><span>History</span></button>
           </div>
           <button class="primary-button" id="walkButton"><img class="ui-icon ui-icon--small" src="./icons/activity.svg" alt="" /> Start walk</button>
         </section>
         <p class="walk-recording-note">Keep Discover Walks open while recording. Background tracking is not available in this web version.</p>
-
-        <section class="quick-actions" aria-label="Journal actions">
-          <button class="action-card observation-action" id="addObservationButton">
-            <span class="action-icon observation-icon"><img class="ui-icon" src="./icons/camera.svg" alt="" /></span>
-            <span><strong>Add observation</strong><small>A private nature note</small></span>
-          </button>
-          <button class="action-card journal-action" id="journalButton">
-            <span class="action-icon journal-icon"><img class="ui-icon" src="./icons/book-open.svg" alt="" /></span>
-            <span><strong>Reflect on this walk</strong><small>Write a private note on a lined page</small></span>
-          </button>
-          <button class="action-card history-action" id="demoButton">
-            <span class="action-icon demo-icon"><img class="ui-icon" src="./icons/star.svg" alt="" /></span>
-            <span><strong>Try a history stop</strong><small>Preview the prompt</small></span>
-          </button>
-        </section>
+        <button class="walk-journal-link" id="journalButton" type="button"><img class="ui-icon ui-icon--small" src="./icons/book-open.svg" alt="" /> Reflect in your Journal</button>
       </div>
 
       <div id="fieldGuideView" class="app-view hidden" aria-label="Field Guide">
