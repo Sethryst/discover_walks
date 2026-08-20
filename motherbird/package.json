@@ -10,6 +10,7 @@
     "test": "node --test tests/*.test.mjs",
     "audit:imports": "node tools/audit-imports.mjs",
     "sync:gremlin-geography": "node tools/sync-gremlin-geography.mjs",
+    "sync:gremlin-pois": "node tools/sync-gremlin-pois.mjs",
     "verify:gremlin": "node tools/verify-gremlin-inventory.mjs",
     "build:civic-packages": "node tools/build-civic-packages.mjs",
     "verify:dc-sources": "node tools/dc-sources/fetch-all.mjs --verify-only",

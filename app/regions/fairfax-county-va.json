@@ -1,0 +1,45 @@
+{
+  "id": "fairfax-county-va",
+  "name": "Fairfax County, Virginia",
+  "bbox": [38.52, -77.54, 39.07, -76.78],
+  "sources": [
+    {
+      "id": "fairfax-county-boundary",
+      "name": "Fairfax County Boundary",
+      "provider": "arcgis_feature_service",
+      "url": "https://services1.arcgis.com/ioennV6PpG5Xodq0/ArcGIS/rest/services/Fairfax_County_Boundary/FeatureServer/0",
+      "domains": [],
+      "layerRole": "jurisdiction_boundary",
+      "artifactName": "boundary.geojson",
+      "propertyMapping": {"id": "OBJECTID", "name": "NAME", "include": ["GlobalID_1"]},
+      "licenseUrl": "https://data-fairfaxcountygis.opendata.arcgis.com/datasets/e6e10e55d29642238d4d03b1a4a11b09",
+      "attribution": "Fairfax County, Virginia Department of Information Technology GIS Division",
+      "authorityTier": "county_government",
+      "confidence": 0.98
+    },
+    {
+      "id": "fairfax-county-parks",
+      "name": "Fairfax County Park Authority Parks",
+      "provider": "arcgis_feature_service",
+      "url": "https://services1.arcgis.com/ioennV6PpG5Xodq0/ArcGIS/rest/services/OpenData_A1/FeatureServer/5",
+      "domains": ["parks"],
+      "propertyMapping": {"id": "OBJECTID", "name": "PARK_NAME", "include": ["PARK_CLASSIFICATION", "SUPERVISOR_DISTRICT", "PLANNING_DISTRICT", "GIS_ESTIMATED_ACREAGE", "MAINTENANCE_AREA", "MASTER_PLANNED"]},
+      "licenseUrl": "https://data-fairfaxcountygis.opendata.arcgis.com/",
+      "attribution": "Fairfax County Park Authority / Fairfax County GIS",
+      "authorityTier": "county_government",
+      "confidence": 0.96
+    },
+    {
+      "id": "fairfax-county-trails",
+      "name": "Fairfax County Park Authority Trails",
+      "provider": "arcgis_feature_service",
+      "url": "https://services1.arcgis.com/ioennV6PpG5Xodq0/ArcGIS/rest/services/OpenData_A1/FeatureServer/3",
+      "domains": ["trails"],
+      "propertyMapping": {"id": "OBJECTID", "name": "TRAIL_NAME", "include": ["SURFACE_MATERIAL", "MAINTENANCE_RESPONSIBILITY", "DIFFICULTY", "ADA", "STEPS", "PARK_NAME", "WIDTH", "RESTRICTION"]},
+      "licenseUrl": "https://data-fairfaxcountygis.opendata.arcgis.com/",
+      "attribution": "Fairfax County Park Authority / Fairfax County GIS",
+      "authorityTier": "county_government",
+      "confidence": 0.96
+    }
+  ]
+}

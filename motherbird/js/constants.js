@@ -70,6 +70,14 @@
     dataFile: './data/pgcounty-poi.json',
     civicFile: './regions/prince-georges-county/civic/index.json', weatherFile: './regions/prince-georges-county/weather.json'
   },
+  fairfax: {
+    name: 'Fairfax County',
+    state: 'VA',
+    center: { lat: 38.8462, lng: -77.3064 },
+    zoom: 11,
+    dataFile: './regions/fairfax-county-va/pois.json',
+    civicFile: './regions/fairfax-county-va/civic/index.json'
+  },
   dc: {
     name: 'Washington',
     state: 'DC',
