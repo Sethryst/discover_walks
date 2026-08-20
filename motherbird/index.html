@@ -29,8 +29,12 @@
       </header>
 
       <div id="mapView" class="app-view">
-        <div class="mode-intro"><p class="eyebrow">DISCOVER</p><strong>What’s worth your time outside?</strong><button class="text-button" id="browseDiscoverButton" type="button">Browse walks &amp; places →</button></div>
-        <section class="discovery-headline" aria-live="polite"><p class="eyebrow">TODAY’S INSPIRATION</p><h1>Walk</h1><p id="discoveryHeadline">History</p><p id="discoveryHeadlineDetail">A meaningful stop is waiting on your map.</p></section>
+        <div class="mode-intro"><p class="eyebrow">DISCOVER</p><strong>What’s worth your time outside?</strong><button class="text-button" id="browseDiscoverButton" type="button">See routes &amp; local finds →</button></div>
+        <section class="discovery-headline" aria-live="polite"><p class="eyebrow">A WALKING LENS</p><h1>A walk with a purpose</h1><p id="discoveryHeadline">History</p><p id="discoveryHeadlineDetail">Choose an experience, or shape a route of your own.</p></section>
+        <section class="discover-ways" id="discoverWays" aria-label="Choose a Discover experience">
+          <p>What feels right today?</p>
+          <div><button type="button" data-discover-group="explore"><span>⌁</span>Places to Explore</button><button type="button" data-discover-group="heritage"><span>✦</span>History &amp; Heritage</button><button type="button" data-discover-group="culture"><span>◇</span>Art &amp; Culture</button><button type="button" data-discover-group="community"><span>●</span>Food &amp; Community</button></div>
+        </section>
         <p class="weather-brief hidden" id="weatherBrief" aria-live="polite"></p>
         <section class="map-panel" aria-label="Walking map">
           <div id="map" role="application" aria-label="Map of historical places"></div>
@@ -62,22 +66,21 @@
           <div class="walk-stats">
             <div><span class="stat-value" id="walkDuration">00:00</span><span class="stat-label">Duration</span></div>
             <div><span class="stat-value" id="walkDistance">0.00</span><span class="stat-label">Miles</span></div>
-            <div><span class="stat-value" id="walkPoints">0</span><span class="stat-label">Walk pts</span></div>
           </div>
           <button class="primary-button" id="walkButton"><img class="ui-icon ui-icon--small" src="./icons/activity.svg" alt="" /> Start walk</button>
         </section>
         <p class="walk-recording-note">Keep Discover Walks open while recording. Background tracking is not available in this web version.</p>
 
         <section class="quick-actions" aria-label="Journal actions">
-          <button class="action-card" id="addObservationButton">
+          <button class="action-card observation-action" id="addObservationButton">
             <span class="action-icon observation-icon"><img class="ui-icon" src="./icons/camera.svg" alt="" /></span>
-            <span><strong>Observe</strong><small>Pin wildlife or nature</small></span>
+            <span><strong>Add observation</strong><small>A private nature note</small></span>
           </button>
-          <button class="action-card" id="journalButton">
+          <button class="action-card journal-action" id="journalButton">
             <span class="action-icon journal-icon"><img class="ui-icon" src="./icons/book-open.svg" alt="" /></span>
-            <span><strong>Reflect</strong><small>Save a walk note</small></span>
+            <span><strong>Reflect on this walk</strong><small>Write a private note on a lined page</small></span>
           </button>
-          <button class="action-card" id="demoButton">
+          <button class="action-card history-action" id="demoButton">
             <span class="action-icon demo-icon"><img class="ui-icon" src="./icons/star.svg" alt="" /></span>
             <span><strong>Try a history stop</strong><small>Preview the prompt</small></span>
           </button>
@@ -87,8 +90,8 @@
       <div id="fieldGuideView" class="app-view hidden" aria-label="Field Guide">
         <p class="eyebrow">FIELD GUIDE</p>
         <h2 class="explore-heading">What are you looking at?</h2>
-        <p class="profile-section-intro">A small, source-backed guide to things you may encounter nearby—not another directory of places.</p>
-        <div class="guide-summary"><strong id="fieldGuideCount">Subjects relevant to this region</strong><span>Knowledge sources are separate from map inventory.</span></div>
+        <p class="profile-section-intro">A source-backed companion for things you may encounter here—not another directory of places.</p>
+        <div class="guide-summary"><strong id="fieldGuideCount">Things to notice near here</strong><span id="fieldGuideSeason">Loading this season’s field note…</span></div>
         <section class="guide-list" id="fieldGuideList" aria-live="polite"></section>
       </div>
 
@@ -102,17 +105,24 @@
           <button class="explore-tab" type="button" role="tab" aria-selected="false" data-explore-tab="events">Events</button>
         </div>
         <section id="exploreRoutes" class="explore-panel" role="tabpanel">
-          <button class="time-walk-card" id="planWalkButton" type="button"><span class="time-walk-icon"><img class="ui-icon" src="./icons/route.svg" alt="" /></span><span><strong>Create a walk that fits my schedule</strong><small>Choose time and interests — we’ll shape a starting plan.</small></span><img class="ui-icon ui-icon--small ui-icon--inverse" src="./icons/arrow-right.svg" alt="" /></button>
+          <button class="time-walk-card" id="planWalkButton" type="button"><span class="time-walk-icon"><img class="ui-icon" src="./icons/route.svg" alt="" /></span><span><strong>See a walk shaped around your time</strong><small>Compare several color-coded pedestrian routes, weighted to what you want to notice.</small></span><img class="ui-icon ui-icon--small ui-icon--inverse" src="./icons/arrow-right.svg" alt="" /></button>
           <div class="section-heading"><div><p class="eyebrow">START HERE</p><h2>Curated walks</h2></div></div>
           <div class="route-list" id="curatedRoutesList"></div>
         </section>
         <section id="explorePlaces" class="explore-panel hidden" role="tabpanel">
+          <p class="explore-category-intro">Choose an experience, then see a small selection for this moment.</p>
           <div class="poi-chips explore-place-filters" id="explorePlaceFilters" aria-label="Place categories"></div>
           <div class="explore-list" id="explorePlacesList"></div>
           <button class="secondary-button wide-button" id="showPlacesOnMapButton" type="button">Show filtered places on map</button>
         </section>
         <section id="exploreEvents" class="explore-panel hidden" role="tabpanel">
           <div id="exploreEventsList" class="route-list" aria-live="polite"></div>
+          <section class="civic-paths" aria-label="Community companion">
+            <p class="eyebrow">COMMUNITY COMPANION</p>
+            <strong>Take part locally.</strong>
+            <p>Official civic information lives separately from your walking profile and journal.</p>
+            <div><button type="button" class="secondary-button" data-civic-view="vote">Voting information</button><button type="button" class="secondary-button" data-civic-view="volunteer">Volunteer locally</button></div>
+          </section>
         </section>
       </div>
 
@@ -123,10 +133,10 @@
         <label class="city-select-label">Current city
           <select id="citySelect" aria-label="Choose current city"></select>
         </label>
-        <section class="points-hero" aria-label="Total points">
-          <span>Total trail points</span>
-          <strong id="profilePoints">0</strong>
-          <small id="profileNextMilestone">Your first walk earns a milestone.</small>
+        <section class="journal-record" aria-label="Your personal journal record">
+          <span>YOUR PERSONAL RECORD</span>
+          <strong id="profileRecordLead">A blank page is welcome.</strong>
+          <small id="profileRecordDetail">Walks, observations, and reflections remain on this device unless you choose otherwise.</small>
         </section>
         <div class="profile-stats" id="profileStats" aria-live="polite"></div>
         <section class="favorite-categories">
@@ -134,6 +144,11 @@
           <p class="profile-section-intro">Choose a few interests to personalize your map inspiration.</p>
           <div class="poi-chips" id="favoriteCategoryChips" role="group" aria-label="Favorite place categories"></div>
           <small class="save-indicator" id="preferenceSaveStatus">Saved on this device</small>
+        </section>
+        <section class="revisit-start">
+          <p class="sheet-kicker">YOUR START</p><h2>Change your starting point.</h2>
+          <p class="profile-section-intro">Region and walking interests only shape local suggestions. Revisit this short setup whenever you want.</p>
+          <button class="secondary-button" id="reopenOnboardingButton" type="button">Personalize my start</button>
         </section>
         <section class="favorite-categories">
           <p class="sheet-kicker">FAVORITE REGIONS</p><h2>Keep places close.</h2>
@@ -144,12 +159,8 @@
         </section>
         <section class="field-edition-section">
           <p class="sheet-kicker">FIELD EDITIONS</p><h2>Bring a region with you.</h2>
-          <p class="profile-section-intro">Offline map packages, curated local stories, and seasonal guides live separately from your personal journal.</p>
-          <div class="field-edition-card"><span id="fieldEditionStatus">Free edition</span><strong id="fieldEditionDetail">Your walks and reflections are always yours.</strong><button class="secondary-button" id="fieldEditionButton" type="button">View Field Editions</button><button class="text-button" id="partnerAccessButton" type="button">I have partner access</button></div>
-        </section>
-        <section class="badges-section">
-          <p class="sheet-kicker">MILESTONES</p>
-          <div class="badge-list" id="badgeList"></div>
+          <p class="profile-section-intro">Optional downloadable regional bundles for times you want maps and guides available offline. Discover, Field Guide basics, and your Journal do not require one.</p>
+          <div class="field-edition-card"><span id="fieldEditionStatus">Optional offline edition</span><strong id="fieldEditionDetail">No purchase is required to walk, reflect, or keep your local records.</strong><button class="secondary-button" id="fieldEditionButton" type="button">See what an edition includes</button><button class="text-button" id="partnerAccessButton" type="button">I have partner access</button></div>
         </section>
         <section class="geofence-settings">
           <p class="sheet-kicker">PROXIMITY ALERTS &amp; GEOFENCING</p>
@@ -204,8 +215,8 @@
         </section>
 
         <section class="online-teaser">
-          <div><strong id="onlineTeaserTitle">Stay local by default</strong><p id="onlineTeaserText">Optional online mode shares only aggregate points and miles with friends—never routes, observations, photos, or notes.</p></div>
-          <button class="secondary-button" id="goOnlineButton">Go Online</button>
+          <div><strong id="onlineTeaserTitle">Stay local by default</strong><p id="onlineTeaserText">Optional online mode maintains only a minimal aggregate profile. Routes, observations, photos, and notes never leave this device.</p></div>
+          <button class="secondary-button" id="goOnlineButton">About optional sign-in</button>
         </section>
       </div>
 
@@ -223,9 +234,7 @@
 
     <nav class="bottom-nav" aria-label="Primary navigation">
       <button class="nav-item active" data-view="map" title="Discover"><img class="ui-icon" src="./icons/compass.svg" alt="" />Discover</button>
-      <button class="nav-item" data-view="fieldGuide" title="Field Guide"><img class="ui-icon" src="./icons/book-open.svg" alt="" />Guide</button>
-      <button class="nav-item" data-view="vote" title="Vote"><img class="ui-icon" src="./icons/check-circle.svg" alt="" />Vote</button>
-      <button class="nav-item" data-view="volunteer" title="Volunteer"><img class="ui-icon" src="./icons/heart.svg" alt="" />Volunteer</button>
+      <button class="nav-item" data-view="fieldGuide" title="Field Guide"><img class="ui-icon" src="./icons/book-open.svg" alt="" />Field Guide</button>
       <button class="nav-item" data-view="profile"><img class="ui-icon" src="./icons/user.svg" alt="" />Journal</button>
     </nav>
 
@@ -298,20 +307,44 @@
     </section>
 
     <section class="sheet hidden" id="onboardingSheet" role="dialog" aria-modal="true" aria-labelledby="onboardingTitle">
-      <span class="sheet-kicker">WELCOME TO WALK &amp; WILDLIFE</span><h2 id="onboardingTitle">What would you like to notice?</h2>
-      <p class="sheet-intro">Choose any interests to make nearby discoveries more relevant. You can change these at any time in Profile.</p>
-      <label class="onboarding-region">Start with a region<select id="onboardingCitySelect" aria-label="Choose a starting region"></select></label>
-      <div class="poi-chips" id="onboardingInterestChips" role="group" aria-label="Initial interests"><button class="poi-chip" type="button" data-onboarding-interest="park">Green space</button><button class="poi-chip" type="button" data-onboarding-interest="trail">Wildlife</button><button class="poi-chip" type="button" data-onboarding-interest="history">Local history</button><button class="poi-chip" type="button" data-onboarding-interest="water_access">Water</button><button class="poi-chip" type="button" data-onboarding-interest="public_art">Public art</button></div>
-      <div class="onboarding-value-preview" id="onboardingValuePreview" aria-live="polite"></div>
-      <p class="privacy-boundary">Browse by regional center first. Your GPS is not required, and these preferences stay on this device.</p>
-      <div class="sheet-actions onboarding-actions"><button class="secondary-button" id="skipOnboardingButton" type="button">Skip for now</button><button class="primary-button" id="saveOnboardingButton" type="button">Show my first walks</button></div>
+      <div class="onboarding-progress" aria-label="Setup progress"><span id="onboardingProgressText">1 of 3 ready</span><div aria-hidden="true"><i id="onboardingProgressBar"></i></div></div>
+      <section data-onboarding-step="region">
+        <span class="sheet-kicker">WELCOME TO DISCOVER WALKS</span><h2 id="onboardingTitle">Where are you starting?</h2>
+        <p class="sheet-intro">We’ve selected a regional center so you can start exploring right away. You can change it any time.</p>
+        <label class="onboarding-region"><span>Starting region</span><select id="onboardingCitySelect" aria-label="Choose a starting region"></select></label>
+        <button class="text-button" id="useOnboardingLocationButton" type="button">Use my location instead <span aria-hidden="true">→</span></button>
+        <p class="privacy-boundary" id="onboardingLocationNote">GPS is optional. If you do not use it, this regional center is all the app needs.</p>
+        <div class="sheet-actions onboarding-actions"><button class="secondary-button" id="skipOnboardingButton" type="button">Skip for now</button><button class="primary-button" id="onboardingRegionNextButton" type="button">Continue</button></div>
+      </section>
+      <section class="hidden" data-onboarding-step="interests">
+        <span class="sheet-kicker">YOUR WALKING LENS</span><h2>What do you care about?</h2>
+        <p class="sheet-intro">Choose up to three things you want more of. This shapes suggestions only; add or change interests later in Journal.</p>
+        <p class="onboarding-choice-label"><span id="onboardingInterestCount">0 of 3 chosen</span></p>
+        <div class="poi-chips" id="onboardingInterestChips" role="group" aria-label="Initial interests"><button class="poi-chip" type="button" data-onboarding-interest="park">Green space</button><button class="poi-chip" type="button" data-onboarding-interest="trail">Wildlife</button><button class="poi-chip" type="button" data-onboarding-interest="history">Local history</button><button class="poi-chip" type="button" data-onboarding-interest="water_access">Water</button><button class="poi-chip" type="button" data-onboarding-interest="public_art">Public art</button></div>
+        <div class="sheet-actions onboarding-actions"><button class="secondary-button" id="onboardingInterestBackButton" type="button">Back</button><button class="primary-button" id="onboardingInterestNextButton" type="button">See my first ideas</button></div>
+      </section>
+      <section class="hidden" data-onboarding-step="ready">
+        <span class="sheet-kicker">YOUR FIRST LOOK</span><h2>Start with a small adventure.</h2>
+        <div class="onboarding-value-preview" id="onboardingValuePreview" aria-live="polite"><strong>Walk ideas near you</strong><span></span></div>
+        <div class="onboarding-field-guide-note"><strong>Field Guide comes with you.</strong><span>It matches source-backed subjects to each region and will grow as more local guides launch.</span></div>
+        <p class="privacy-boundary">No account is needed. Explore first; optional sign-in only appears later if you choose it.</p>
+        <div class="sheet-actions onboarding-actions"><button class="secondary-button" id="onboardingReadyBackButton" type="button">Adjust choices</button><button class="primary-button" id="saveOnboardingButton" type="button">Show my walk options</button></div>
+      </section>
+    </section>
+
+    <section class="sheet hidden" id="regionSheet" role="dialog" aria-modal="true" aria-labelledby="regionSheetTitle">
+      <button class="close-sheet" data-close-sheet aria-label="Close">×</button><span class="sheet-kicker">YOUR STARTING REGION</span><h2 id="regionSheetTitle">Where are you starting?</h2>
+      <p class="sheet-intro">This changes your map, walking ideas, and local guide. It does not use GPS unless you choose to share it.</p>
+      <label class="onboarding-region">Region<select id="quickCitySelect" aria-label="Choose a region"></select></label>
+      <p class="privacy-boundary">You can keep more places close with Favorite Regions in Journal.</p>
+      <button class="primary-button wide-button" id="applyQuickCityButton" type="button">Use this region</button>
     </section>
 
     <section class="sheet hidden" id="fieldEditionSheet" role="dialog" aria-modal="true" aria-labelledby="fieldEditionTitle">
       <button class="close-sheet" data-close-sheet aria-label="Close">×</button><span class="sheet-kicker">FIELD EDITIONS</span><h2 id="fieldEditionTitle">Offline, with care.</h2>
-      <p class="sheet-intro">Field Editions fund durable regional map packages and local editorial work. They never restrict your personal journal, privacy controls, exports, or data deletion.</p>
+      <p class="sheet-intro">An optional download for selected regions: offline maps, locally curated stories, and seasonal guide material. It never limits your Journal, privacy controls, exports, or data deletion.</p>
       <div class="field-edition-benefits"><span>Offline map regions</span><span>Curated local stories</span><span>Seasonal field guides</span></div>
-      <p class="privacy-boundary">Payment and partner verification are not connected in this prototype. A production release needs server-verified purchase and institutional grants.</p>
+      <p class="privacy-boundary">Nothing here is required to use Discover, Field Guide basics, or your personal Journal. Payment and partner verification are not connected in this prototype.</p>
     </section>
 
     <section class="sheet hidden" id="routeSheet" role="dialog" aria-modal="true" aria-labelledby="routeSheetTitle">
@@ -357,8 +390,8 @@
     <section class="sheet tall-sheet hidden" id="onlineSheet" role="dialog" aria-modal="true" aria-labelledby="onlineTitle">
       <button class="close-sheet" data-close-sheet aria-label="Close">×</button>
       <span class="sheet-kicker">OPTIONAL ONLINE MODE</span>
-      <h2 id="onlineTitle">Friends, not tracking.</h2>
-      <p class="privacy-boundary">Online mode can sync only total points, miles, and number of sites discovered. Your routes, journal, nature notes, and photos stay on this device.</p>
+      <h2 id="onlineTitle">Your choice to connect.</h2>
+      <p class="privacy-boundary">An account is optional. Your routes, journal, nature notes, and photos stay on this device. This prototype’s online feature only maintains a minimal aggregate profile.</p>
       <section id="onlineSetupPanel" class="online-panel hidden">
         <strong>Connect a Supabase project first</strong>
         <p>Add your project URL and publishable/anon key to <code>supabase-config.js</code>, then run the included SQL schema. Until then, everything remains local.</p>
@@ -386,52 +419,13 @@
   <p class="auth-privacy">By continuing, you agree to the <a href="./terms.html" target="_blank" rel="noreferrer">Terms of Service</a> and acknowledge the <a href="./privacy.html" target="_blank" rel="noreferrer">Privacy Policy</a>.</p>
 </form>
       <form id="usernameForm" class="online-panel hidden">
-  <p>Choose the public name friends will search for. It is the only identity shown on the leaderboard.</p>
+  <p>Choose a simple account name for this optional profile. It is not attached to your routes, journal, observations, or photos.</p>
   <label>Username <input id="usernameInput" maxlength="24" pattern="[A-Za-z0-9_]{3,24}" required placeholder="e.g., trailfriend" /></label>
   <button class="primary-button wide-button" type="submit">Create online profile</button>
 </form>
       <section id="onlineDashboard" class="online-panel hidden">
-        <div class="online-status"><span class="status-dot"></span><span id="onlineStatusText">Online</span><button class="text-button" id="syncNowButton">Sync now</button><button class="text-button" id="accountSettingsButton">Account settings</button></div>
-        <div class="leaderboard-heading"><div><p class="sheet-kicker">SMALL CIRCLE</p><h3>Leaderboard</h3></div><button class="text-button" id="refreshFriendsButton">Refresh</button></div>
-        <div id="leaderboardList" class="leaderboard-list"></div>
-        <form id="friendSearchForm" class="friend-form">
-          <label>Add a friend by username <div class="inline-form"><input id="friendUsernameInput" maxlength="24" required placeholder="username" /><button class="secondary-button" type="submit">Find</button></div></label>
-        </form>
-        <div id="friendSearchResult" class="friend-result hidden"></div>
-        <section id="incomingRequests" class="requests-section hidden"><p class="sheet-kicker">REQUESTS</p><div id="incomingRequestsList"></div></section>
-        <section class="requests-section" id="cohortPanel">
-          <p class="sheet-kicker">NEIGHBORHOOD COHORTS</p>
-          <p class="sheet-intro">Create a small group around the issues you choose. Neighborhood labels are self-described—not inferred from your routes or location.</p>
-          <form id="createCohortForm" class="friend-form">
-            <label>Group name <input id="cohortNameInput" maxlength="80" required placeholder="Saturday Walkers" /></label>
-            <label>Neighborhood label <input id="cohortNeighborhoodInput" maxlength="120" required placeholder="My neighborhood" /></label>
-            <label>Walking cadence <input id="cohortCadenceInput" maxlength="80" placeholder="Weekly" /></label>
-            <fieldset><legend>What does your group care about?</legend><div id="cohortIssueChoices" class="poi-chips"></div></fieldset>
-            <label><input id="cohortDiscoveryOptIn" type="checkbox" /> Let organizers with a matching local issue discover this group</label>
-            <button class="primary-button wide-button" type="submit">Create cohort</button>
-          </form>
-          <div id="cohortList" class="leaderboard-list"></div>
-          <div id="cohortInviteList" class="leaderboard-list"></div>
-        </section>
-        <section class="requests-section" id="organizerPanel">
-          <p class="sheet-kicker">ORGANIZER PILOT</p>
-          <p class="sheet-intro">Create a public organizer profile and one expiring local request. For this pilot, a cohort shares its neighborhood code directly with the organizer it chooses to work with.</p>
-          <form id="organizerProfileForm" class="friend-form">
-            <label>Affiliation <input id="organizerAffiliationInput" maxlength="120" required placeholder="Organization or community group" /></label>
-            <label>Public profile link <input id="organizerProfileLinkInput" type="url" required placeholder="https://…" /></label>
-            <button class="secondary-button wide-button" type="submit">Save organizer profile</button>
-          </form>
-          <form id="organizerRequestForm" class="friend-form">
-            <label>Neighborhood code <input id="organizerNeighborhoodInput" maxlength="80" required placeholder="Shared by the cohort" /></label>
-            <label>Issue <select id="organizerIssueSelect" required></select></label>
-            <label>Request title <input id="organizerRequestTitleInput" maxlength="140" required /></label>
-            <label>What are you organizing around? <textarea id="organizerRequestSummaryInput" maxlength="600" required></textarea></label>
-            <label>Official link <input id="organizerRequestLinkInput" type="url" required placeholder="https://…" /></label>
-            <label>Expires <input id="organizerRequestExpiryInput" type="datetime-local" required /></label>
-            <button class="primary-button wide-button" type="submit">Publish organizer request</button>
-          </form>
-          <div id="organizerRequestList" class="leaderboard-list"></div>
-        </section>
+        <div class="online-status"><span class="status-dot"></span><span id="onlineStatusText">Online</span><button class="text-button" id="syncNowButton">Sync aggregate profile</button><button class="text-button" id="accountSettingsButton">Account settings</button></div>
+        <p class="sheet-intro">There are no rankings, follower counts, shared maps, or shared journal entries here. Connecting an account should never turn walking into a competition.</p>
       </section>
     </section>
 

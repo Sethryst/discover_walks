@@ -7,24 +7,24 @@ import { getCurrentLocation, startWalk, stopWalk, togglePauseWalk, updateWalkDis
 import { openObservation, saveObservation, setDraftObservationIcon } from './observation.js';
 import { openJournal, closeSheets, openSheet, openAccountSettings, openFiltersSheet, openProfile, renderGeofenceCategoryChips, setArchiveFilter, showView, toast } from './ui.js';
 import { city, citySites, displayPoiName, geofenceCategoriesForCity, renderPoiTagFilters, renderCityPois, showHistory, savePlaceMemory, searchPois, searchOsm } from './poi.js';
-import { syncProfile, renderOnline, openOnline, signIn, signUp, signInWithGoogle, createOnlineProfile, updateAccountUsername, updateAccountPhone, updateAccountEmail, updateAccountPassword, acceptFriend, refreshFriends, findFriend, createCohort, respondToOrganizerRequest, inviteFriendToCohort, respondToCohortInvite, saveOrganizerProfile, createOrganizerRequest, saveCohortSettings, sendCohortMessage } from './online.js';
+import { syncProfile, renderOnline, openOnline, signIn, signUp, signInWithGoogle, createOnlineProfile, updateAccountUsername, updateAccountPhone, updateAccountEmail, updateAccountPassword } from './online.js';
 import { refreshCityMap, switchCity } from './city.js';
 import { renderProfile } from './profile.js';
 import { toggleFavoriteRegion } from './region-favorites.js';
 import db from './storage.js';
-import { renderExplorePlaces, setExploreTab } from './explore.js';
-import { renderDiscoveryHeadline } from './discovery.js';
+import { openDiscoverGroup, renderExplorePlaces, setExploreTab } from './explore.js';
+import { nearestCityFromCurrentLocation, renderDiscoveryHeadline } from './discovery.js';
 import { showCuratedRoute } from './routes.js';
 import { generateTimeBasedPlan, previewTimeBasedPlan, choosePlan, changePlan, setPlanningMode, lockSelectedPlanOnMap, togglePlanVisibility, draftWalkFromText } from './planner.js';
 import { wordCount } from './reflection.js';
-import { onboardingValue } from './onboarding.js';
+import { onboardingProgress, onboardingValue } from './onboarding.js';
 
 export function initEvents() {
   initBackupControls();
   el('archiveList').addEventListener('click', (event) => { const card = event.target.closest('[data-walk-id]'); if (card) openWalkDetail(card.dataset.walkId); });
   el('archiveList').addEventListener('keydown', (event) => { const card = event.target.closest('[data-walk-id]'); if (card && (event.key === 'Enter' || event.key === ' ')) { event.preventDefault(); openWalkDetail(card.dataset.walkId); } });
   el('locateButton').addEventListener('click', getCurrentLocation);
-  el('homeCityButton').addEventListener('click', () => openProfile());
+  el('homeCityButton').addEventListener('click', () => openRegionChooser());
   el('walkButton').addEventListener('click', () => state.activeWalk ? stopWalk() : startWalk());
   el('activeRouteButton').addEventListener('click', () => { updateWalkDisplay(); openSheet('routeSheet'); });
   el('routePauseButton').addEventListener('click', togglePauseWalk);
@@ -35,7 +35,12 @@ export function initEvents() {
   window.addEventListener('planner-point-selected', async () => { openSheet('planWalkSheet'); await generateTimeBasedPlan(); });
   window.addEventListener('planner-route-selected', () => openSheet('planWalkSheet'));
   el('showPlanOptionsOnMap').addEventListener('click', () => { closeSheets(); showView('map'); previewTimeBasedPlan({ fit: true }); toast('Tap a colored route on the map to select it.'); });
-  el('planOptions').addEventListener('click', (event) => { const toggle = event.target.closest('[data-route-toggle]'); if (toggle) { togglePlanVisibility(toggle.dataset.routeToggle, toggle.checked); return; } const option = event.target.closest('[data-plan-option]'); if (option) choosePlan(option.dataset.planOption); if (event.target.closest('[data-change-plan]')) changePlan(); });
+  el('planOptions').addEventListener('click', (event) => {
+    const toggle = event.target.closest('[data-route-toggle]'); if (toggle) { togglePlanVisibility(toggle.dataset.routeToggle, toggle.checked); return; }
+    const option = event.target.closest('[data-plan-option]'); if (option) choosePlan(option.dataset.planOption);
+    if (event.target.closest('[data-change-plan]')) changePlan();
+    if (event.target.closest('[data-quick-retry="shorter"]')) { const time = document.querySelector('input[name="walkTime"][value="15"]'); const mode = document.querySelector('input[name="routeMode"][value="round-trip"]'); if (time) time.checked = true; if (mode) mode.checked = true; void generateTimeBasedPlan(); }
+  });
   el('draftTextWalkButton').addEventListener('click', () => void draftWalkFromText(el('textWalkInput').value));
   el('startPlannedWalkButton').addEventListener('click', async () => { if (!state.plannedRoute) { toast('Choose a route on the map before starting your walk.'); return; } if (!lockSelectedPlanOnMap()) { toast('A walkable road route could not be found.'); return; } setPlanningMode(false); closeSheets(); showView('map'); startWalk(); });
   el('planWalkSheet').addEventListener('change', (event) => { if (event.target.matches('input[name="walkTime"], input[name="routeMode"]')) void generateTimeBasedPlan(); });
@@ -49,6 +54,8 @@ export function initEvents() {
   });
   el('showPlacesOnMapButton').addEventListener('click', () => { showView('map'); renderCityPois(); });
   el('browseDiscoverButton').addEventListener('click', () => { showView('explore'); setExploreTab('routes'); renderExplorePlaces(); });
+  el('discoverWays').addEventListener('click', (event) => { const button = event.target.closest('[data-discover-group]'); if (!button) return; showView('explore'); openDiscoverGroup(button.dataset.discoverGroup); });
+  el('exploreEvents').addEventListener('click', (event) => { const button = event.target.closest('[data-civic-view]'); if (button) showView(button.dataset.civicView); });
   el('explorePlacesList').addEventListener('click', (event) => {
     const item = event.target.closest('[data-place-id]'); if (!item) return;
     const poi = (state.cityPois[state.activeCity] || []).find((place) => place.id === item.dataset.placeId);
@@ -125,12 +132,49 @@ el('poiSearchResults').addEventListener('click', (event) => {
   el('observationIconPicker').addEventListener('click', (event) => { const button = event.target.closest('[data-observation-icon]'); if (button) setDraftObservationIcon(button.dataset.observationIcon); });
   el('photoInput').addEventListener('change', (event) => { el('photoName').textContent = event.target.files[0]?.name || 'Optional, stored only on this device'; });
   const onboardingCity = el('onboardingCitySelect');
-  onboardingCity.innerHTML = Object.entries(CITIES).sort(([, a], [, b]) => a.name.localeCompare(b.name)).map(([id, item]) => `<option value="${id}">${item.name}, ${item.state}</option>`).join('');
-  onboardingCity.value = state.activeCity;
-  const renderOnboardingValue = () => { const id = onboardingCity.value; el('onboardingValuePreview').textContent = onboardingValue(CITIES[id]?.name || 'your region', state.settings.favoriteCategories || []); };
-  const finishOnboarding = async (applyChoices = false) => { const nextCity = onboardingCity.value; state.settings.onboardingCompleted = true; await db.put('settings', state.settings); if (applyChoices && CITIES[nextCity] && nextCity !== state.activeCity) await switchCity(nextCity); closeSheets(); renderProfile(); if (applyChoices) { showView('explore'); setExploreTab('routes'); toast(onboardingValue(CITIES[state.activeCity].name, state.settings.favoriteCategories || [])); } };
-  el('onboardingInterestChips').addEventListener('click', (event) => { const button = event.target.closest('[data-onboarding-interest]'); if (!button) return; const interests = new Set(state.settings.favoriteCategories || []); const id = button.dataset.onboardingInterest; interests.has(id) ? interests.delete(id) : interests.add(id); state.settings.favoriteCategories = [...interests]; button.classList.toggle('active', interests.has(id)); renderOnboardingValue(); });
+  const cityOptions = () => Object.entries(CITIES).sort(([, a], [, b]) => a.name.localeCompare(b.name)).map(([id, item]) => `<option value="${id}">${item.name}, ${item.state}</option>`).join('');
+  onboardingCity.innerHTML = cityOptions(); onboardingCity.value = state.activeCity;
+  const quickCity = el('quickCitySelect'); quickCity.innerHTML = cityOptions(); quickCity.value = state.activeCity;
+  let onboardingInterests = [];
+  let onboardingStep = 'region';
+  const setOnboardingStep = (step) => {
+    onboardingStep = step;
+    document.querySelectorAll('[data-onboarding-step]').forEach((section) => section.classList.toggle('hidden', section.dataset.onboardingStep !== step));
+    renderOnboardingValue();
+  };
+  const renderOnboardingValue = () => {
+    const id = onboardingCity.value;
+    const progress = onboardingProgress(onboardingInterests, onboardingStep);
+    el('onboardingValuePreview').querySelector('span').textContent = onboardingValue(CITIES[id]?.name || 'your region', onboardingInterests);
+    el('onboardingProgressText').textContent = `${progress} of 3 ready`;
+    el('onboardingProgressBar').style.width = `${(progress / 3) * 100}%`;
+    el('onboardingInterestCount').textContent = `${onboardingInterests.length} of 3 chosen`;
+    document.querySelectorAll('[data-onboarding-interest]').forEach((button) => button.classList.toggle('active', onboardingInterests.includes(button.dataset.onboardingInterest)));
+  };
+  const finishOnboarding = async (applyChoices = false) => {
+    const nextCity = onboardingCity.value;
+    state.settings.onboardingCompleted = true;
+    if (applyChoices) state.settings.favoriteCategories = onboardingInterests;
+    await db.put('settings', state.settings);
+    if (applyChoices && CITIES[nextCity] && nextCity !== state.activeCity) await switchCity(nextCity);
+    closeSheets(); renderProfile();
+    if (!applyChoices) { showView('map'); toast('Start with an experience above, or tap the region name whenever you want to change your starting point.'); return; }
+    showView('map');
+    setPlanningMode(true);
+    openSheet('planWalkSheet');
+    await generateTimeBasedPlan();
+    toast('Your color-coded walk options are on the map. They are weighted toward your interests—choose a line to preview it.');
+  };
+  const openRegionChooser = () => { quickCity.value = state.activeCity; openSheet('regionSheet'); };
+  el('applyQuickCityButton').addEventListener('click', async () => { const nextCity = quickCity.value; if (CITIES[nextCity] && nextCity !== state.activeCity) await switchCity(nextCity); closeSheets(); toast(`${CITIES[state.activeCity].name} is now your starting region.`); });
+  el('reopenOnboardingButton').addEventListener('click', () => { onboardingCity.value = state.activeCity; onboardingInterests = [...(state.settings.favoriteCategories || [])].slice(0, 3); setOnboardingStep('region'); openSheet('onboardingSheet'); });
+  el('onboardingInterestChips').addEventListener('click', (event) => { const button = event.target.closest('[data-onboarding-interest]'); if (!button) return; const id = button.dataset.onboardingInterest; onboardingInterests = onboardingInterests.includes(id) ? onboardingInterests.filter((item) => item !== id) : onboardingInterests.length < 3 ? [...onboardingInterests, id] : onboardingInterests; if (onboardingInterests.length === 3 && !onboardingInterests.includes(id)) toast('Choose up to three for now. You can add more later in Journal.'); renderOnboardingValue(); });
   onboardingCity.addEventListener('change', renderOnboardingValue); renderOnboardingValue();
+  el('onboardingRegionNextButton').addEventListener('click', () => setOnboardingStep('interests'));
+  el('onboardingInterestBackButton').addEventListener('click', () => setOnboardingStep('region'));
+  el('onboardingInterestNextButton').addEventListener('click', () => setOnboardingStep('ready'));
+  el('onboardingReadyBackButton').addEventListener('click', () => setOnboardingStep('interests'));
+  el('useOnboardingLocationButton').addEventListener('click', async () => { const button = el('useOnboardingLocationButton'); button.disabled = true; el('onboardingLocationNote').textContent = 'Finding the nearest available regional center…'; const closest = await nearestCityFromCurrentLocation(); button.disabled = false; if (!closest) { el('onboardingLocationNote').textContent = 'Location was not available. Your selected regional center still works without it.'; return; } onboardingCity.value = closest.id; el('onboardingLocationNote').textContent = `${CITIES[closest.id].name} is the nearest available regional center. You can change it any time.`; renderOnboardingValue(); });
   el('skipOnboardingButton').addEventListener('click', () => void finishOnboarding(false));
   el('saveOnboardingButton').addEventListener('click', () => void finishOnboarding(true));
   document.querySelectorAll('[data-close-sheet]').forEach((button) => button.addEventListener('click', () => { const wasPlanner = button.closest('#planWalkSheet'); closeSheets(); if (wasPlanner) setPlanningMode(false); }));
@@ -143,20 +187,10 @@ el('googleSignInButton').addEventListener('click', signInWithGoogle);
 el('signUpButton').addEventListener('click', signUp);
 el('usernameForm').addEventListener('submit', createOnlineProfile);
   el('syncNowButton').addEventListener('click', async () => { try { await syncProfile(); await renderOnline(); toast('Aggregate stats synced.'); } catch (error) { toast(error.message || 'Could not sync right now.'); } });
-  el('refreshFriendsButton').addEventListener('click', refreshFriends); el('friendSearchForm').addEventListener('submit', findFriend);
-  el('createCohortForm').addEventListener('submit', createCohort);
-  el('cohortList').addEventListener('click', (event) => { const button = event.target.closest('[data-cohort-response]'); if (button) respondToOrganizerRequest(button); });
-  el('cohortList').addEventListener('submit', (event) => { const form = event.target.closest('[data-cohort-invite-form]'); if (form) { event.preventDefault(); inviteFriendToCohort(form); } });
-  el('cohortList').addEventListener('submit', (event) => { const form = event.target.closest('[data-cohort-settings-form]'); if (form) { event.preventDefault(); saveCohortSettings(form); } });
-  el('cohortList').addEventListener('submit', (event) => { const form = event.target.closest('[data-cohort-chat-form]'); if (form) { event.preventDefault(); sendCohortMessage(form); } });
-  el('cohortInviteList').addEventListener('click', (event) => { const button = event.target.closest('[data-cohort-invite]'); if (button) respondToCohortInvite(button); });
-  el('organizerProfileForm').addEventListener('submit', saveOrganizerProfile);
-  el('organizerRequestForm').addEventListener('submit', createOrganizerRequest);
 el('accountSettingsButton').addEventListener('click', openAccountSettings);
 el('accountUsernameForm').addEventListener('submit', updateAccountUsername);
 el('accountEmailForm').addEventListener('submit', updateAccountEmail);
 el('accountPasswordForm').addEventListener('submit', updateAccountPassword);
-  el('incomingRequestsList').addEventListener('click', (event) => { const button = event.target.closest('[data-accept-id]'); if (button) acceptFriend(button.dataset.acceptId); });
   document.querySelectorAll('.nav-item').forEach((button) => button.addEventListener('click', () => {
     closeSheets();
     if (button.dataset.view === 'profile') openProfile();
@@ -165,11 +199,11 @@ el('accountPasswordForm').addEventListener('submit', updateAccountPassword);
     else showView('map');
   }));
   el('clearDataButton').addEventListener('click', async () => {
-    if (!confirm("Clear every locally saved walk, reflection, observation, and profile score on this device? This can't be undone.")) return;
+    if (!confirm("Clear every locally saved walk, reflection, observation, and personal profile record on this device? This can't be undone.")) return;
     await db.clearAll();
     state.profile = normalizeProfile(DEFAULT_PROFILE); state.settings = { ...DEFAULT_SETTINGS }; state.activeCity = 'vienna';
     await Promise.all([db.put('profile', state.profile), db.put('settings', state.settings)]);
-    closeSheets(); await refreshCityMap(true); renderArchive(); toast('Local journal data and points cleared.');
+    closeSheets(); await refreshCityMap(true); renderArchive(); toast('Local journal data cleared.');
   });
   el('poiTagFilters').addEventListener('click', (event) => {
     const button = event.target.closest('[data-poi-tag]'); if (!button) return;

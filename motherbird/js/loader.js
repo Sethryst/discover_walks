@@ -9,7 +9,7 @@ import { initEvents } from './events.js';
 import { renderArchive } from './archive.js';
 import { setupOnline, openOnline } from './online.js';
 import { initExplore } from './explore.js';
-import { nearestCityFromCurrentLocation, startDiscoveryHeadline } from './discovery.js';
+import { startDiscoveryHeadline } from './discovery.js';
 import { normalizedEntitlements } from './entitlements.js';
 import { initNeighborhoodDiscovery } from './neighborhoods.js';
 
@@ -18,11 +18,9 @@ export async function init() {
     await db.open();
     await loadLocalState();
     const requestedCity = new URLSearchParams(globalThis.location?.search || '').get('city');
-    const closest = requestedCity && CITIES[requestedCity] ? { id: requestedCity, point: null } : await nearestCityFromCurrentLocation();
-    if (closest) {
-      state.activeCity = closest.id;
-      state.settings.activeCity = closest.id;
-      if (closest.point) state.currentPosition = closest.point;
+    if (requestedCity && CITIES[requestedCity]) {
+      state.activeCity = requestedCity;
+      state.settings.activeCity = requestedCity;
       await db.put('settings', state.settings);
     }
     await loadAllCityData();

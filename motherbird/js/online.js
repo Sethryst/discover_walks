@@ -8,12 +8,7 @@ import {
 import { state } from './state.js';
 
 import db from './storage.js';
-import {
-  openSheet,
-  renderIncomingRequests,
-  renderLeaderboard,
-  toast
-} from './ui.js';
+import { openSheet, toast } from './ui.js';
 import { renderProfile } from './profile.js';
 import { readSupabaseHeartbeat } from './heartbeat.js';
 
@@ -74,8 +69,6 @@ export async function renderOnline() {
   if (!state.online.remoteProfile?.username) { username.classList.remove('hidden'); return; }
   dashboard.classList.remove('hidden');
   el('onlineStatusText').textContent = state.settings.lastSyncedAt ? `Last synced ${shortDate(state.settings.lastSyncedAt)}` : 'Online — aggregate stats ready to sync';
-  await refreshFriends();
-  await refreshCohorts();
 }
 export async function signIn() {
   if (!onlineConfigured()) return;

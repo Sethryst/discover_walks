@@ -3,7 +3,7 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
 import { CITIES } from '../js/constants.js';
-import { onboardingValue } from '../js/onboarding.js';
+import { onboardingProgress, onboardingValue } from '../js/onboarding.js';
 import { routesForCity, validateRoute } from '../js/routes.js';
 import { state } from '../js/state.js';
 
@@ -22,5 +22,25 @@ test('a new walker can choose Loudoun and open a verified official GIS route', a
 });
 
 test('onboarding turns region and interests into an immediate first action', () => {
-  assert.equal(onboardingValue('Loudoun County', ['park', 'trail']), 'We’ll open Loudoun County with green space and wildlife and trails ready to explore.');
+  assert.equal(onboardingProgress([], 'region'), 1);
+  assert.equal(onboardingProgress([], 'interests'), 1);
+  assert.equal(onboardingProgress(['park'], 'interests'), 2);
+  assert.equal(onboardingProgress(['park'], 'ready'), 3);
+  assert.equal(onboardingValue('Loudoun County', ['park', 'trail']), 'Your first Discover Walks view in Loudoun County will prioritize green space and wildlife and trails.');
+});
+
+test('onboarding hands a tailored walker into the route planner rather than an inventory list', async () => {
+  const events = await readFile(path.join(root, 'js/events.js'), 'utf8');
+  assert.match(events, /openSheet\('planWalkSheet'\)/);
+  assert.match(events, /await generateTimeBasedPlan\(\)/);
+  assert.match(events, /color-coded walk options/);
+  assert.match(events, /weighted toward your interests/);
+  assert.match(events, /onboardingInterests.length < 3/);
+  const html = await readFile(path.join(root, 'index.html'), 'utf8');
+  assert.match(html, /Use my location instead/);
+});
+
+test('first launch does not request GPS until the walker chooses it in onboarding', async () => {
+  const loader = await readFile(path.join(root, 'js/loader.js'), 'utf8');
+  assert.doesNotMatch(loader, /nearestCityFromCurrentLocation/);
 });
