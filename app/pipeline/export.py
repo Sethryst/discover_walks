@@ -20,18 +20,21 @@ def build_release(region_id: str, pois: list[dict[str, Any]], warnings: list[dic
     return release, manifest
 
 
-def write_bundle(output_root: Path, release: dict[str, Any], manifest: dict[str, Any], dry_run: bool = False, supplemental: dict[str, Any] | None = None, civic: dict[str, dict[str, Any]] | None = None) -> Path:
+def write_bundle(output_root: Path, release: dict[str, Any], manifest: dict[str, Any], dry_run: bool = False, supplemental: dict[str, Any] | None = None, civic: dict[str, dict[str, Any]] | None = None, geography: dict[str, Any] | None = None) -> Path:
     """Write a region bundle deterministically, including a checksum for every public file."""
     bundle_dir = output_root / release["regionId"]
     pois_bytes = _json_bytes(release)
     supplemental = supplemental or {}
     civic = civic or {}
+    geography = geography or {}
     supplemental_bytes = {name: _json_bytes(value) for name, value in supplemental.items()}
     civic_bytes = {name: _json_bytes(value) for name, value in civic.items()}
+    geography_bytes = {name: _json_bytes(value) for name, value in geography.items()}
     manifest["checksums"] = {
         "pois.json": _checksum(pois_bytes),
         **{f"supplemental/{name}": _checksum(value) for name, value in supplemental_bytes.items()},
         **{f"civic/{name}": _checksum(value) for name, value in civic_bytes.items()},
+        **{f"geography/{name}": _checksum(value) for name, value in geography_bytes.items()},
     }
     manifest_bytes = _json_bytes(manifest)
     if not dry_run:
@@ -48,10 +51,15 @@ def write_bundle(output_root: Path, release: dict[str, Any], manifest: dict[str,
             civic_dir.mkdir(exist_ok=True)
             for name, content in civic_bytes.items():
                 (civic_dir / name).write_bytes(content)
+        if geography_bytes:
+            geography_dir = bundle_dir / "geography"
+            geography_dir.mkdir(exist_ok=True)
+            for name, content in geography_bytes.items():
+                (geography_dir / name).write_bytes(content)
     return bundle_dir
 
 
-def _json_bytes(value: dict[str, Any]) -> bytes:
+def _json_bytes(value: Any) -> bytes:
     return (json.dumps(value, ensure_ascii=False, indent=2, sort_keys=True) + "\n").encode("utf-8")
 
 

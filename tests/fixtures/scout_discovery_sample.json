@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "regionId": "sample-city",
+  "candidates": [
+    {
+      "id": "official-api",
+      "url": "https://city.example.gov/api/events",
+      "publisher": "Sample City",
+      "category": "events",
+      "dataType": "JSON API",
+      "authority": "government",
+      "coverageValue": "high",
+      "structureClarity": "clear",
+      "alignedProviderPattern": true,
+      "governance": ["Official city publisher"],
+      "maintenance": ["Current records observed"],
+      "stability": ["Versioned API"],
+      "discovery": {"origin": "automated", "foundAt": "2026-08-07T00:00:00Z", "method": "known_platform_pattern", "methodDetail": "Structured pattern probe", "confidence": 0.95}
+    },
+    {
+      "id": "uncertain-calendar",
+      "url": "https://community.example.org/calendar",
+      "publisher": "Community Institution",
+      "category": "volunteer",
+      "dataType": "other",
+      "authority": "official_partner",
+      "coverageValue": "medium",
+      "structureClarity": "unclear",
+      "alignedProviderPattern": false,
+      "discovery": {"origin": "human", "foundAt": "2026-08-07T00:00:00Z", "method": "human_provided_lead", "methodDetail": "Captain supplied URL", "confidence": 0.5}
+    },
+    {
+      "id": "duplicate-pdf",
+      "url": "https://city.example.gov/events.pdf",
+      "publisher": "Sample City",
+      "category": "events",
+      "dataType": "other",
+      "authority": "government",
+      "coverageValue": "low",
+      "structureClarity": "unclear",
+      "alignedProviderPattern": false,
+      "duplicateOf": "official-api",
+      "discovery": {"origin": "automated", "foundAt": "2026-08-07T00:00:00Z", "method": "official_domain_search", "methodDetail": "Alternative source retained for evaluation", "confidence": 0.9}
+    }
+  ]
+}

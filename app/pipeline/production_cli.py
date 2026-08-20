@@ -20,12 +20,13 @@ def main() -> int:
     parser.add_argument("--generated-at")
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--use-cache", action="store_true", help="Replay the latest raw cache instead of contacting providers.")
+    parser.add_argument("--only-source", action="append", help="Build only the named configured source (repeatable).")
     args = parser.parse_args()
     configure_logging()
     region_file = Path(__file__).parents[1] / "regions" / f"{args.region_id}.json"
     if not region_file.exists():
         parser.error(f"No configured region: {args.region_id}")
-    result = build_region(region_file, args.output, args.cache, args.producer_version, args.generated_at, args.dry_run, args.use_cache)
+    result = build_region(region_file, args.output, args.cache, args.producer_version, args.generated_at, args.dry_run, args.use_cache, set(args.only_source) if args.only_source else None)
     logging.getLogger(__name__).info("Production mission complete", extra={"region_id": args.region_id, "records": result["records"], "pois": result["publicPois"], "warnings": len(result["warnings"]), "destination": result["destination"], "dry_run": args.dry_run})
     return 0
 

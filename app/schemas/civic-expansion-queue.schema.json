@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gremlin-lab.local/schemas/civic-expansion-queue.schema.json",
+  "title": "Gremlin Lab Civic Expansion Queue",
+  "type": "object",
+  "required": ["schemaVersion", "kind", "generatedAt", "readOnly", "region", "discoverySummary", "queue", "captainDecision"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "kind": {"const": "civic-expansion-queue"},
+    "generatedAt": {"type": "string", "format": "date-time"},
+    "readOnly": {"const": true},
+    "region": {
+      "type": "object",
+      "required": ["id", "name", "providerCount", "recordDepth", "categoryCoverage", "estimatedCoveragePercent", "missingCategories"]
+    },
+    "discoverySummary": {
+      "type": "object",
+      "required": ["candidateCount", "automatedDiscoveryCount", "humanProvidedLeadCount", "methods", "scope"]
+    },
+    "queue": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["rank", "id", "url", "publisher", "category", "likelyDataType", "trustSignals", "coverageValue", "estimatedProviderDifficulty", "scores", "classification", "recommendedAction", "evaluationReasoning", "discovery"],
+        "properties": {
+          "rank": {"type": "integer", "minimum": 1},
+          "url": {"type": "string", "format": "uri", "pattern": "^https://"},
+          "classification": {"enum": ["READY", "INVESTIGATE", "REJECT"]},
+          "estimatedProviderDifficulty": {"enum": ["LOW", "MEDIUM", "HIGH"]},
+          "discovery": {
+            "type": "object",
+            "required": ["origin", "foundAt", "method", "methodDetail", "confidence"],
+            "properties": {
+              "origin": {"enum": ["automated", "human"]},
+              "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+            }
+          }
+        }
+      }
+    },
+    "captainDecision": {"type": "object", "required": ["required", "allowedActions"]}
+  }
+}

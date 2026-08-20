@@ -1,1 +1,24 @@
-{"id":"washington-dc","name":"Washington, DC","bbox":[38.79,-77.12,39.02,-76.91],"profile":"urban-walklife","enrichment":{"wikimedia":{"enabled":true}}}
+{
+  "id": "washington-dc",
+  "name": "Washington, DC",
+  "bbox": [38.79, -77.12, 39.02, -76.91],
+  "profile": "urban-walklife",
+  "enrichment": {"wikimedia": {"enabled": true}},
+  "sources": [
+    {
+      "id": "dc-neighborhood-clusters",
+      "name": "DC Neighborhood Clusters",
+      "provider": "geojson",
+      "url": "https://opendata.dc.gov/api/download/v1/items/f6c703ebe2534fc3800609a07bad8f5b/geojson?layers=17",
+      "domains": [],
+      "layerRole": "neighborhood_boundaries",
+      "artifactName": "neighborhoods.geojson",
+      "propertyMapping": {"id": "GIS_ID", "name": "NAME", "include": ["NBH_NAMES", "TYPE"]},
+      "licenseUrl": "https://opendata.dc.gov/datasets/DCGIS::neighborhood-clusters/about",
+      "attribution": "District of Columbia, Office of the Chief Technology Officer, DC GIS",
+      "authorityTier": "city_government",
+      "confidence": 0.98,
+      "status": "active"
+    }
+  ]
+}

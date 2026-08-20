@@ -350,7 +350,7 @@ class EventGremlin(DomainGremlin):
 
     def attributes(self, properties: dict[str, Any]) -> dict[str, Any]:
         output = super().attributes(properties)
-        output.update({"type": properties.get("eventType", "event"), "startsAt": properties["startsAt"], "endsAt": properties.get("endsAt"), "freshnessExpiresAt": properties.get("endsAt"), "isFree": properties.get("isFree"), "officialUrl": properties.get("officialUrl")})
+        output.update({"type": properties.get("eventType", "event"), "startsAt": properties["startsAt"], "endsAt": properties.get("endsAt"), "freshnessExpiresAt": properties.get("endsAt"), "isFree": properties.get("isFree"), "officialUrl": properties.get("officialUrl"), "venueAddress": properties.get("venueAddress") or _first(properties, "ADDRESS", "ADDRESS1", "address", "addr:full")})
         return output
 
 

@@ -1,0 +1,31 @@
+name: Refresh governed releases
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 10 * * 1" # Weekly Monday 10:17 UTC; publish only after review/package handoff.
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Refresh and verify release bundles
+        run: python -m app.pipeline.refresh_cli --producer-version "${{ github.sha }}"
+        env:
+          EBIRD_API_TOKEN: ${{ secrets.EBIRD_API_TOKEN }}
+          NPS_API_KEY: ${{ secrets.NPS_API_KEY }}
+          USGS_WATER_API_KEY: ${{ secrets.USGS_WATER_API_KEY }}
+          NYC_EVENT_SUBSCRIPTION_KEY: ${{ secrets.NYC_EVENT_SUBSCRIPTION_KEY }}
+          NYC_GEOCLIENT_SUBSCRIPTION_KEY: ${{ secrets.NYC_GEOCLIENT_SUBSCRIPTION_KEY }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gremlin-lab-releases
+          path: releases/
+          retention-days: 14

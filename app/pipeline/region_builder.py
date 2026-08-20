@@ -8,11 +8,12 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from app.pipeline.cache import cache_response
+from app.pipeline.cache import cache_response, load_cached_response
 from app.pipeline.civic import load_civic_artifacts
 from app.pipeline.domains import AccessibilityGremlin, ArtGremlin, CoffeeGremlin, CommunityGremlin, DetourGremlin, EventGremlin, FacilitiesGremlin, HistoryGremlin, NatureGremlin, PantryGremlin, ParksGremlin, PlantGremlin, RestGremlin, RouteGremlin, ScenicGremlin, TrailsGremlin, WaterGremlin, WildlifeGremlin
 from app.pipeline.entity_resolution import find_duplicate_candidates
 from app.pipeline.export import build_release, write_bundle
+from app.pipeline.geography import build_boundary_layer, verify_geographic_artifacts
 from app.pipeline.nws import build_weather_snapshot
 from app.pipeline.registry import ProviderRegistry
 from app.pipeline.adapters.osm import OsmOverpassProvider
@@ -24,29 +25,46 @@ from app.pipeline.wikimedia import WikimediaEnricher
 GREMLINS = {"parks": ParksGremlin(), "trails": TrailsGremlin(), "route": RouteGremlin(), "facilities": FacilitiesGremlin(), "coffee": CoffeeGremlin(), "nature": NatureGremlin(), "water": WaterGremlin(), "community": CommunityGremlin(), "art": ArtGremlin(), "wildlife": WildlifeGremlin(), "plant": PlantGremlin(), "rest": RestGremlin(), "history": HistoryGremlin(), "scenic": ScenicGremlin(), "accessibility": AccessibilityGremlin(), "pantry": PantryGremlin(), "event": EventGremlin(), "detour": DetourGremlin()}
 
 
-def build_region(region_file: Path, output_root: Path, cache_root: Path, producer_version: str, generated_at: str | None = None, dry_run: bool = False, use_cache: bool = False) -> dict[str, Any]:
+def build_region(region_file: Path, output_root: Path, cache_root: Path, producer_version: str, generated_at: str | None = None, dry_run: bool = False, use_cache: bool = False, only_sources: set[str] | None = None) -> dict[str, Any]:
     """Acquire, cache, process, validate, review, and publish a configured region release."""
     region = load_region(region_file)
     timestamp = generated_at or datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
     by_domain: dict[str, list[Any]] = defaultdict(list)
     source_reports: list[dict[str, Any]] = []
     warnings: list[dict[str, str]] = []
+    geography: dict[str, Any] = {}
+    geography_manifest: list[dict[str, Any]] = []
     for source in region["sources"]:
+        if only_sources and source.id not in only_sources:
+            continue
         try:
             provider = ProviderRegistry.create(source)
-            if use_cache and isinstance(provider, OsmOverpassProvider):
+            if use_cache and (isinstance(provider, OsmOverpassProvider) or source.layer_role):
                 try:
                     cache_path = _latest_cached_response(cache_root, region["id"], source.id)
-                    raw_response = json.loads(cache_path.read_text(encoding="utf-8"))
-                    if not isinstance(provider, OsmOverpassProvider):
-                        raise ValueError(f"Cached replay is not yet supported for {source.provider}")
-                    features = provider.parse(raw_response, source, timestamp)
+                    raw_response = load_cached_response(cache_path)
+                    features = provider.parse(raw_response, source, timestamp) if isinstance(provider, OsmOverpassProvider) else []
                 except FileNotFoundError:
                     features, raw_response = provider.acquire(source, region)
                     cache_path = cache_response(cache_root, region["id"], source.id, raw_response, timestamp)
             else:
                 features, raw_response = provider.acquire(source, region)
                 cache_path = cache_response(cache_root, region["id"], source.id, raw_response, timestamp)
+            if source.layer_role:
+                artifact, layer_warnings = build_boundary_layer(raw_response, source, region["id"], timestamp, cache_path)
+                artifact_name = source.artifact_name or f"{source.layer_role}.geojson"
+                geography[artifact_name] = artifact
+                warnings.extend(layer_warnings)
+                geography_manifest.append({
+                    "role": source.layer_role,
+                    "filename": f"geography/{artifact_name}",
+                    "featureCount": len(artifact["features"]),
+                    "idField": "id",
+                    "nameField": "name",
+                    "sourceId": source.id,
+                })
+                source_reports.append({"id": source.id, "name": source.name, "url": source.url, "provider": source.provider, "layerRole": source.layer_role, "licenseUrl": source.license_url, "authorityTier": source.authority_tier, "recordCount": len(artifact["features"]), "cachedAt": str(cache_path), "acquiredAt": timestamp})
+                continue
             for domain in source.domains:
                 by_domain[domain].extend(features)
             source_reports.append({"id": source.id, "name": source.name, "url": source.url, "provider": source.provider, "licenseUrl": source.license_url, "authorityTier": source.authority_tier, "recordCount": len(features), "cachedAt": str(cache_path), "acquiredAt": timestamp})
@@ -55,11 +73,12 @@ def build_region(region_file: Path, output_root: Path, cache_root: Path, produce
     if not source_reports:
         raise RuntimeError("No approved source succeeded; refusing to replace an existing release.")
     weather_snapshot: dict[str, Any] | None = None
-    try:
-        weather_snapshot, weather_report = build_weather_snapshot(region, timestamp)
-        source_reports.append(weather_report)
-    except Exception as exc:
-        warnings.append({"code": "source_unavailable", "source": "nws-forecast", "detail": str(exc)})
+    if not only_sources:
+        try:
+            weather_snapshot, weather_report = build_weather_snapshot(region, timestamp)
+            source_reports.append(weather_report)
+        except Exception as exc:
+            warnings.append({"code": "source_unavailable", "source": "nws-forecast", "detail": str(exc)})
     records = [record for domain, features in by_domain.items() for record in GREMLINS[domain].process(features)]
     if region.get("enrichment", {}).get("wikimedia", {}).get("enabled"):
         warnings.extend(WikimediaEnricher().enrich(records, cache_root, region["id"], timestamp))
@@ -68,12 +87,14 @@ def build_region(region_file: Path, output_root: Path, cache_root: Path, produce
     public_pois = [_public_poi(record) for record in records if record["validationStatus"] != "rejected" and _representative_coordinate(record["geometry"]) is not None]
     release, manifest = build_release(region["id"], public_pois, warnings, producer_version, timestamp)
     manifest["sources"] = source_reports
+    manifest["geography"] = geography_manifest
     supplemental = {"canonical-records.json": _release_safe_records(records), "validation-report.json": validation_report, "dedup-groups.json": dedup_groups}
     if weather_snapshot is not None:
         supplemental["weather.json"] = weather_snapshot
     civic = load_civic_artifacts(region["id"], producer_version, timestamp)
-    destination = write_bundle(output_root, release, manifest, dry_run=dry_run, supplemental=supplemental, civic=civic)
-    return {"destination": str(destination), "records": len(records), "publicPois": len(public_pois), "warnings": warnings, "sources": source_reports}
+    destination = write_bundle(output_root, release, manifest, dry_run=dry_run, supplemental=supplemental, civic=civic, geography=geography)
+    verified_geography = {} if dry_run else verify_geographic_artifacts(destination, manifest)
+    return {"destination": str(destination), "records": len(records), "publicPois": len(public_pois), "geography": verified_geography, "warnings": warnings, "sources": source_reports}
 
 
 def _latest_cached_response(cache_root: Path, region_id: str, source_id: str) -> Path:

@@ -26,3 +26,8 @@ One region failure is retained in `releases/batch-report.json`; successful regio
 ## eBird
 
 eBird requires an account-bound API key. Configure it as `EBIRD_API_TOKEN` only after terms approval. Treat hotspots as durable places; treat observations as dated, expiring wildlife signals with observation/source timestamps and no personal observer data.
+## Scheduled refresh
+
+Run `python -m app.pipeline.refresh_cli` weekly in a build environment. The command reacquires each configured source, rebuilds each independent release, verifies every producer-manifest SHA-256, and writes `releases/refresh-report.json`. A failing region is reported and does not authorize the consuming app to replace a previously verified package.
+
+The included GitHub Actions workflow is schedule-ready but deliberately only uploads the resulting release artifact. It never commits data, changes the consuming app, or creates a runtime connection. A package reviewer must verify the release artifact and import it into the other application's local build assets.

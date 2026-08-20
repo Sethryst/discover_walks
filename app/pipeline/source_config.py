@@ -25,15 +25,42 @@ class SourceConfig:
     provider_options: dict[str, Any] = field(default_factory=dict)
     credential_env: str | None = None
     authority_tier: str = "community"
+    layer_role: str | None = None
+    property_mapping: dict[str, Any] = field(default_factory=dict)
+    attribution: str | None = None
+    artifact_name: str | None = None
 
     @classmethod
     def from_dict(cls, raw: dict[str, Any]) -> "SourceConfig":
         """Validate and construct source configuration from region JSON."""
-        required = ("id", "name", "provider", "url", "domains", "licenseUrl")
+        required = ("id", "name", "provider", "url", "licenseUrl")
         missing = [key for key in required if key not in raw]
         if missing:
             raise ValueError(f"Source configuration missing: {', '.join(missing)}")
-        return cls(raw["id"], raw["name"], raw["provider"], raw["url"], tuple(raw["domains"]), raw["licenseUrl"], float(raw.get("confidence", 0.9)), dict(raw.get("queryParams", {})), dict(raw.get("providerOptions", {})), raw.get("credentialEnv"), raw.get("authorityTier", "community"))
+        domains = tuple(raw.get("domains", ()))
+        layer_role = raw.get("layerRole")
+        if not domains and not layer_role:
+            raise ValueError(f"Source '{raw['id']}' requires domains or layerRole.")
+        mapping = dict(raw.get("propertyMapping", {}))
+        if layer_role and not {"id", "name"}.issubset(mapping):
+            raise ValueError(f"Geographic source '{raw['id']}' requires propertyMapping.id and propertyMapping.name.")
+        return cls(
+            id=raw["id"],
+            name=raw["name"],
+            provider=raw["provider"],
+            url=raw["url"],
+            domains=domains,
+            license_url=raw["licenseUrl"],
+            confidence=float(raw.get("confidence", 0.9)),
+            query_params=dict(raw.get("queryParams", {})),
+            provider_options=dict(raw.get("providerOptions", {})),
+            credential_env=raw.get("credentialEnv"),
+            authority_tier=raw.get("authorityTier", "community"),
+            layer_role=layer_role,
+            property_mapping=mapping,
+            attribution=raw.get("attribution"),
+            artifact_name=raw.get("artifactName"),
+        )
 
     def credential(self) -> str | None:
         """Resolve an optional token at execution time only."""

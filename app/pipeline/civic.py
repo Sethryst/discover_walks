@@ -4,8 +4,10 @@ from __future__ import annotations
 
 import json
 import hashlib
+import importlib
 from pathlib import Path
 from typing import Any
+from datetime import datetime
 
 
 ARTIFACTS = ("vote", "meetings", "volunteer", "organizers", "events")
@@ -21,8 +23,11 @@ def load_civic_artifacts(region_id: str, producer_version: str, generated_at: st
     if document.get("regionId") != region_id:
         raise ValueError(f"Civic definition region mismatch: {source}")
     artifacts: dict[str, dict[str, Any]] = {}
+    automated_events = _automated_events(region_id, generated_at)
     for artifact in ARTIFACTS:
         items = document.get(artifact, [])
+        if artifact == "events":
+            items = _merge_items(items, automated_events)
         if not items:
             continue
         _validate_items(artifact, items)
@@ -44,6 +49,29 @@ def load_civic_artifacts(region_id: str, producer_version: str, generated_at: st
                 "items": [item],
             }
     return artifacts
+
+
+def _automated_events(region_id: str, generated_at: str) -> list[dict[str, Any]]:
+    registry_path = Path(__file__).parents[1] / "regions" / "civic-providers.json"
+    registry = json.loads(registry_path.read_text(encoding="utf-8"))
+    provider = registry.get("providers", {}).get(region_id)
+    if provider is None:
+        return []
+    try:
+        module_name = str(provider["module"])
+        fetch_cards = getattr(importlib.import_module(module_name), "fetch_cards")
+        return fetch_cards(datetime.fromisoformat(generated_at.replace("Z", "+00:00")))
+    except Exception as exc:
+        # Scheduled production must report a failed civic acquisition rather
+        # than quietly replacing useful event data with an empty artifact.
+        raise RuntimeError(f"{provider.get('label', region_id)} civic event refresh failed: {exc}") from exc
+
+
+def _merge_items(reviewed: list[dict[str, Any]], automated: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Retain reviewed cards and add source-derived records without ID collisions."""
+    result = {item["id"]: item for item in automated}
+    result.update({item["id"]: item for item in reviewed})
+    return list(result.values())
 
 
 def _source_link(region_id: str, field: str, registry_field: str, label: str) -> dict[str, Any] | None:

@@ -1,0 +1,600 @@
+{
+  "captainDecision": {
+    "allowedActions": [
+      "APPROVE_FOR_PROVIDER_RESEARCH",
+      "REQUEST_MORE_EVIDENCE",
+      "REJECT"
+    ],
+    "required": true
+  },
+  "discoverySummary": {
+    "automatedDiscoveryCount": 13,
+    "candidateCount": 13,
+    "humanProvidedLeadCount": 0,
+    "methods": {
+      "calendar_feed_pattern": 1,
+      "existing_source_intelligence": 1,
+      "government_domain_pattern": 1,
+      "institutional_calendar_pattern": 2,
+      "known_platform_pattern": 2,
+      "official_domain_search": 5,
+      "regional_institution_pattern": 1
+    },
+    "scope": "Structured source discovery and supplied leads; not a general internet crawl."
+  },
+  "generatedAt": "2026-08-07T08:01:24.355503Z",
+  "kind": "civic-expansion-queue",
+  "queue": [
+    {
+      "category": "meetings",
+      "classification": "READY",
+      "coverageValue": "high",
+      "discovery": {
+        "confidence": 0.98,
+        "foundAt": "2026-08-07T00:00:00Z",
+        "method": "known_platform_pattern",
+        "methodDetail": "Probed the common Legistar civic-meeting host pattern and confirmed Denver's official publisher.",
+        "origin": "automated"
+      },
+      "estimatedProviderDifficulty": "MEDIUM",
+      "evaluationReasoning": "High-authority publisher, identifiable structure, and an existing Gremlin Lab provider pattern are present.",
+      "id": "denver-legistar-meetings",
+      "likelyDataType": "HTML calendar",
+      "publisher": "City and County of Denver",
+      "rank": 1,
+      "recommendedAction": "Captain may approve immediate provider research and fixture capture.",
+      "scores": {
+        "coverageGapMultiplier": 1.5,
+        "coverageImpact": 5,
+        "difficulty": 3,
+        "impactEffortRatio": 12.5,
+        "trust": 5
+      },
+      "trustSignals": {
+        "authority": "government",
+        "governance": [
+          "Official city legislative calendar",
+          "Meeting agendas and public-comment sessions"
+        ],
+        "maintenance": [
+          "Current dated meetings observed"
+        ],
+        "stability": [
+          "Legistar calendar platform",
+          "Stable meeting-detail links",
+          "Calendar export controls"
+        ]
+      },
+      "url": "https://denver.legistar.com/Calendar.aspx"
+    },
+    {
+      "category": "volunteer",
+      "classification": "READY",
+      "coverageValue": "high",
+      "discovery": {
+        "confidence": 0.94,
+        "foundAt": "2026-08-07T00:00:00Z",
+        "method": "official_domain_search",
+        "methodDetail": "Followed the official parks volunteer portal to its public calendar view.",
+        "origin": "automated"
+      },
+      "estimatedProviderDifficulty": "MEDIUM",
+      "evaluationReasoning": "High-authority publisher, identifiable structure, and an existing Gremlin Lab provider pattern are present.",
+      "id": "engage-denver-volunteer-calendar",
+      "likelyDataType": "HTML calendar",
+      "publisher": "Denver Parks & Recreation",
+      "rank": 2,
+      "recommendedAction": "Captain may approve immediate provider research and fixture capture.",
+      "scores": {
+        "coverageGapMultiplier": 1.5,
+        "coverageImpact": 5,
+        "difficulty": 3,
+        "impactEffortRatio": 12.5,
+        "trust": 5
+      },
+      "trustSignals": {
+        "authority": "government",
+        "governance": [
+          "Official denvergov.org volunteer system",
+          "Parks department opportunities"
+        ],
+        "maintenance": [
+          "Current activities and open-assignment filtering observed"
+        ],
+        "stability": [
+          "Dedicated calendar endpoint",
+          "Public opportunity descriptions"
+        ]
+      },
+      "url": "https://engagedenver.denvergov.org/CalendarList?onlyShowActivitiesWithOpenAssignments=true&showActivities=true"
+    },
+    {
+      "category": "culturalActivities",
+      "classification": "READY",
+      "coverageValue": "high",
+      "discovery": {
+        "confidence": 0.96,
+        "foundAt": "2026-08-07T00:00:00Z",
+        "method": "official_domain_search",
+        "methodDetail": "Searched official Denver agency domains for structured event calendars.",
+        "origin": "automated"
+      },
+      "estimatedProviderDifficulty": "MEDIUM",
+      "evaluationReasoning": "High-authority publisher, identifiable structure, and an existing Gremlin Lab provider pattern are present.",
+      "id": "denver-arts-venues-calendar",
+      "likelyDataType": "HTML calendar",
+      "publisher": "Denver Arts & Venues",
+      "rank": 3,
+      "recommendedAction": "Captain may approve immediate provider research and fixture capture.",
+      "scores": {
+        "coverageGapMultiplier": 0.65,
+        "coverageImpact": 5,
+        "difficulty": 3,
+        "impactEffortRatio": 5.42,
+        "trust": 5
+      },
+      "trustSignals": {
+        "authority": "government",
+        "governance": [
+          "Denver city agency",
+          "Agency-managed public venues"
+        ],
+        "maintenance": [
+          "Current event dates and venue filters observed"
+        ],
+        "stability": [
+          "Paginated calendar",
+          "Individual event pages",
+          "Venue taxonomy"
+        ]
+      },
+      "url": "https://www.artsandvenuesdenver.com/events/calendar"
+    },
+    {
+      "category": "publicSpaces",
+      "classification": "READY",
+      "coverageValue": "medium",
+      "discovery": {
+        "confidence": 0.93,
+        "foundAt": "2026-08-07T00:00:00Z",
+        "method": "known_platform_pattern",
+        "methodDetail": "Checked the ArcGIS Hub/group pattern used by municipal open-data catalogs.",
+        "origin": "automated"
+      },
+      "estimatedProviderDifficulty": "LOW",
+      "evaluationReasoning": "High-authority publisher, identifiable structure, and an existing Gremlin Lab provider pattern are present.",
+      "id": "denver-open-data-arcgis",
+      "likelyDataType": "ArcGIS",
+      "publisher": "City and County of Denver Open Data Catalog",
+      "rank": 4,
+      "recommendedAction": "Captain may approve immediate provider research and fixture capture.",
+      "scores": {
+        "coverageGapMultiplier": 0.65,
+        "coverageImpact": 3,
+        "difficulty": 2,
+        "impactEffortRatio": 4.88,
+        "trust": 5
+      },
+      "trustSignals": {
+        "authority": "government",
+        "governance": [
+          "Official Denver open-data group",
+          "Published CC BY 3.0 licensing"
+        ],
+        "maintenance": [
+          "Public ArcGIS catalog remains accessible"
+        ],
+        "stability": [
+          "ArcGIS item identifiers",
+          "Existing Gremlin Lab ArcGIS adapter pattern"
+        ]
+      },
+      "url": "https://www.arcgis.com/home/group.html?id=31a0c1babcc84c80b4ebcff5fecb159b"
+    },
+    {
+      "category": "culturalActivities",
+      "classification": "READY",
+      "coverageValue": "high",
+      "discovery": {
+        "confidence": 0.94,
+        "foundAt": "2026-08-07T00:00:00Z",
+        "method": "institutional_calendar_pattern",
+        "methodDetail": "Searched major public-facing cultural institutions for paginated calendars.",
+        "origin": "automated"
+      },
+      "estimatedProviderDifficulty": "MEDIUM",
+      "evaluationReasoning": "High-authority publisher, identifiable structure, and an existing Gremlin Lab provider pattern are present.",
+      "id": "denver-botanic-gardens-calendar",
+      "likelyDataType": "HTML calendar",
+      "publisher": "Denver Botanic Gardens",
+      "rank": 5,
+      "recommendedAction": "Captain may approve immediate provider research and fixture capture.",
+      "scores": {
+        "coverageGapMultiplier": 0.65,
+        "coverageImpact": 5,
+        "difficulty": 3,
+        "impactEffortRatio": 4.33,
+        "trust": 4
+      },
+      "trustSignals": {
+        "authority": "public_institution",
+        "governance": [
+          "Long-running regional cultural and botanical institution"
+        ],
+        "maintenance": [
+          "Hundreds of current results and explicit page count observed"
+        ],
+        "stability": [
+          "Numbered pagination",
+          "Individual event detail pages",
+          "Category and location filters"
+        ]
+      },
+      "url": "https://www.botanicgardens.org/calendar?location%5B231%5D=231&page=0"
+    },
+    {
+      "category": "libraries",
+      "classification": "READY",
+      "coverageValue": "high",
+      "discovery": {
+        "confidence": 0.9,
+        "foundAt": "2026-08-07T00:00:00Z",
+        "method": "official_domain_search",
+        "methodDetail": "Identified the library's official event endpoint from its documented calendar launch.",
+        "origin": "automated"
+      },
+      "estimatedProviderDifficulty": "MEDIUM",
+      "evaluationReasoning": "High-authority publisher, identifiable structure, and an existing Gremlin Lab provider pattern are present.",
+      "id": "denver-library-events",
+      "likelyDataType": "HTML calendar",
+      "publisher": "Denver Public Library",
+      "rank": 6,
+      "recommendedAction": "Captain may approve immediate provider research and fixture capture.",
+      "scores": {
+        "coverageGapMultiplier": 0.65,
+        "coverageImpact": 5,
+        "difficulty": 3,
+        "impactEffortRatio": 4.33,
+        "trust": 4
+      },
+      "trustSignals": {
+        "authority": "public_institution",
+        "governance": [
+          "Official public library system"
+        ],
+        "maintenance": [
+          "Library describes a current event calendar with date, location, and event-type filters"
+        ],
+        "stability": [
+          "Individual event pages",
+          "Location filters",
+          "Calendar-add function"
+        ]
+      },
+      "url": "https://www.denverlibrary.org/events"
+    },
+    {
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "coverageValue": "high",
+      "discovery": {
+        "confidence": 0.78,
+        "foundAt": "2026-08-07T00:00:00Z",
+        "method": "regional_institution_pattern",
+        "methodDetail": "Checked the official destination organization as a breadth source, separate from government authority.",
+        "origin": "automated"
+      },
+      "estimatedProviderDifficulty": "MEDIUM",
+      "evaluationReasoning": "Requires investigation because publisher authority is below government/public-institution tier.",
+      "id": "visit-denver-calendar",
+      "likelyDataType": "HTML calendar",
+      "publisher": "VISIT DENVER",
+      "rank": 7,
+      "recommendedAction": "Human review is required before provider work.",
+      "scores": {
+        "coverageGapMultiplier": 1.5,
+        "coverageImpact": 5,
+        "difficulty": 3,
+        "impactEffortRatio": 7.5,
+        "trust": 3
+      },
+      "trustSignals": {
+        "authority": "official_partner",
+        "governance": [
+          "Regional destination marketing organization"
+        ],
+        "maintenance": [
+          "Broad current visitor calendar"
+        ],
+        "stability": [
+          "Dedicated event detail pages and categories"
+        ]
+      },
+      "url": "https://www.denver.org/events/"
+    },
+    {
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "coverageValue": "medium",
+      "discovery": {
+        "confidence": 0.68,
+        "foundAt": "2026-08-07T00:00:00Z",
+        "method": "government_domain_pattern",
+        "methodDetail": "Expanded from municipal sources to the relevant state parks and wildlife publisher.",
+        "origin": "automated"
+      },
+      "estimatedProviderDifficulty": "HIGH",
+      "evaluationReasoning": "Requires investigation because data structure needs confirmation, discovery confidence is limited.",
+      "id": "colorado-parks-wildlife-events",
+      "likelyDataType": "HTML calendar",
+      "publisher": "Colorado Parks and Wildlife",
+      "rank": 8,
+      "recommendedAction": "Human review is required before provider work.",
+      "scores": {
+        "coverageGapMultiplier": 1.5,
+        "coverageImpact": 3,
+        "difficulty": 4,
+        "impactEffortRatio": 5.62,
+        "trust": 5
+      },
+      "trustSignals": {
+        "authority": "government",
+        "governance": [
+          "Official Colorado state wildlife agency"
+        ],
+        "maintenance": [
+          "Agency maintains public programs and events"
+        ],
+        "stability": [
+          "Stable state agency domain"
+        ]
+      },
+      "url": "https://cpw.state.co.us/events"
+    },
+    {
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "coverageValue": "medium",
+      "discovery": {
+        "confidence": 0.72,
+        "foundAt": "2026-08-07T00:00:00Z",
+        "method": "existing_source_intelligence",
+        "methodDetail": "Recovered an existing Denver lead from civic-source-priority.json.",
+        "origin": "automated"
+      },
+      "estimatedProviderDifficulty": "MEDIUM",
+      "evaluationReasoning": "Requires investigation because discovery confidence is limited, publisher authority is below government/public-institution tier.",
+      "id": "downtown-denver-events",
+      "likelyDataType": "HTML calendar",
+      "publisher": "Downtown Denver Partnership",
+      "rank": 9,
+      "recommendedAction": "Human review is required before provider work.",
+      "scores": {
+        "coverageGapMultiplier": 1.5,
+        "coverageImpact": 3,
+        "difficulty": 3,
+        "impactEffortRatio": 4.5,
+        "trust": 3
+      },
+      "trustSignals": {
+        "authority": "official_partner",
+        "governance": [
+          "Downtown business improvement and civic partnership organization"
+        ],
+        "maintenance": [
+          "Previously recorded in Gremlin Lab source intelligence"
+        ],
+        "stability": [
+          "Dedicated calendar"
+        ]
+      },
+      "url": "https://www.downtowndenver.com/events/"
+    },
+    {
+      "category": "culturalActivities",
+      "classification": "INVESTIGATE",
+      "coverageValue": "medium",
+      "discovery": {
+        "confidence": 0.7,
+        "foundAt": "2026-08-07T00:00:00Z",
+        "method": "calendar_feed_pattern",
+        "methodDetail": "Probed the common WordPress iCalendar export query on the official event archive.",
+        "origin": "automated"
+      },
+      "estimatedProviderDifficulty": "LOW",
+      "evaluationReasoning": "Requires investigation because data structure needs confirmation, discovery confidence is limited.",
+      "id": "denver-zoo-ical",
+      "likelyDataType": "RSS/ICS",
+      "publisher": "Denver Zoo Conservation Alliance",
+      "rank": 10,
+      "recommendedAction": "Human review is required before provider work.",
+      "scores": {
+        "coverageGapMultiplier": 0.65,
+        "coverageImpact": 3,
+        "difficulty": 2,
+        "impactEffortRatio": 3.9,
+        "trust": 4
+      },
+      "trustSignals": {
+        "authority": "public_institution",
+        "governance": [
+          "Established conservation institution"
+        ],
+        "maintenance": [
+          "Current event archive and dates observed"
+        ],
+        "stability": [
+          "Calendar-export URL appears available"
+        ]
+      },
+      "url": "https://denverzoo.org/events/?ical=1"
+    },
+    {
+      "category": "recreation",
+      "classification": "INVESTIGATE",
+      "coverageValue": "high",
+      "discovery": {
+        "confidence": 0.78,
+        "foundAt": "2026-08-07T00:00:00Z",
+        "method": "official_domain_search",
+        "methodDetail": "Located official recreation programming while probing the parks department source family.",
+        "origin": "automated"
+      },
+      "estimatedProviderDifficulty": "HIGH",
+      "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern.",
+      "id": "denver-parks-recreation-programs",
+      "likelyDataType": "other",
+      "publisher": "Denver Parks & Recreation",
+      "rank": 11,
+      "recommendedAction": "Human review is required before provider work.",
+      "scores": {
+        "coverageGapMultiplier": 0.65,
+        "coverageImpact": 5,
+        "difficulty": 5,
+        "impactEffortRatio": 3.25,
+        "trust": 5
+      },
+      "trustSignals": {
+        "authority": "government",
+        "governance": [
+          "Official city parks and recreation department"
+        ],
+        "maintenance": [
+          "Current seasonal activity information observed"
+        ],
+        "stability": [
+          "Stable department landing area"
+        ]
+      },
+      "url": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Parks-Recreation/Activities-Programs"
+    },
+    {
+      "category": "culturalActivities",
+      "classification": "INVESTIGATE",
+      "coverageValue": "medium",
+      "discovery": {
+        "confidence": 0.65,
+        "foundAt": "2026-08-07T00:00:00Z",
+        "method": "institutional_calendar_pattern",
+        "methodDetail": "Checked major public history institutions serving the Denver region.",
+        "origin": "automated"
+      },
+      "estimatedProviderDifficulty": "HIGH",
+      "evaluationReasoning": "Requires investigation because data structure needs confirmation, discovery confidence is limited.",
+      "id": "history-colorado-events",
+      "likelyDataType": "HTML calendar",
+      "publisher": "History Colorado",
+      "rank": 12,
+      "recommendedAction": "Human review is required before provider work.",
+      "scores": {
+        "coverageGapMultiplier": 0.65,
+        "coverageImpact": 3,
+        "difficulty": 4,
+        "impactEffortRatio": 1.95,
+        "trust": 4
+      },
+      "trustSignals": {
+        "authority": "public_institution",
+        "governance": [
+          "Colorado state historical society"
+        ],
+        "maintenance": [
+          "Institutional events program"
+        ],
+        "stability": [
+          "Stable public-institution domain"
+        ]
+      },
+      "url": "https://www.historycolorado.org/events"
+    },
+    {
+      "category": "libraries",
+      "classification": "REJECT",
+      "coverageValue": "low",
+      "discovery": {
+        "confidence": 0.9,
+        "foundAt": "2026-08-07T00:00:00Z",
+        "method": "official_domain_search",
+        "methodDetail": "Retained as a rejected alternative rather than silently discarding a discoverable official source.",
+        "origin": "automated"
+      },
+      "estimatedProviderDifficulty": "HIGH",
+      "evaluationReasoning": "Duplicates the likely coverage of denver-library-events.",
+      "id": "denver-library-quarterly-pdf",
+      "likelyDataType": "other",
+      "publisher": "Denver Public Library",
+      "rank": 13,
+      "recommendedAction": "Do not spend provider effort unless new evidence changes the evaluation.",
+      "scores": {
+        "coverageGapMultiplier": 0.65,
+        "coverageImpact": 1,
+        "difficulty": 5,
+        "impactEffortRatio": 0.52,
+        "trust": 4
+      },
+      "trustSignals": {
+        "authority": "public_institution",
+        "governance": [
+          "Official public library publication"
+        ],
+        "maintenance": [
+          "Quarterly publications are current"
+        ],
+        "stability": [
+          "PDF/publication format is less suitable for recurring structured acquisition"
+        ]
+      },
+      "url": "https://www.denverlibrary.org/publications"
+    }
+  ],
+  "readOnly": true,
+  "region": {
+    "categoryCoverage": {
+      "culturalActivities": "present",
+      "events": "missing",
+      "libraries": "present",
+      "meetings": "missing",
+      "parks": "present",
+      "publicSpaces": "present",
+      "recreation": "present",
+      "volunteer": "missing"
+    },
+    "coverageEstimateMethod": "Share of eight target categories with a configured source or current released records; this is a planning estimate, not a completeness claim.",
+    "estimatedCoveragePercent": 62.5,
+    "id": "denver",
+    "missingCategories": [
+      "events",
+      "meetings",
+      "volunteer"
+    ],
+    "name": "Denver, CO",
+    "providerCount": {
+      "automatedCivicProviders": 0,
+      "byCategory": {
+        "accessibility": 1,
+        "art": 1,
+        "coffee": 1,
+        "community": 1,
+        "facilities": 1,
+        "history": 1,
+        "nature": 1,
+        "parks": 1,
+        "plant": 1,
+        "rest": 1,
+        "route": 1,
+        "scenic": 1,
+        "trails": 1,
+        "water": 1,
+        "wildlife": 1
+      },
+      "configuredGeographicSources": 15
+    },
+    "recordDepth": {
+      "events": 0,
+      "meetings": 0,
+      "publicPois": 5370,
+      "volunteer": 0
+    }
+  },
+  "schemaVersion": 1
+}

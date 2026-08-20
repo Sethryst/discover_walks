@@ -18,3 +18,16 @@ def cache_response(cache_root: Path, region_id: str, source_id: str, body: Any, 
     data_path.write_bytes(payload)
     data_path.with_suffix(".sha256").write_text(f"sha256:{digest}\n", encoding="utf-8")
     return data_path
+
+
+def load_cached_response(path: Path) -> Any:
+    """Load a cached response only after its content checksum is verified."""
+    payload = path.read_bytes()
+    checksum_path = path.with_suffix(".sha256")
+    if not checksum_path.exists():
+        raise ValueError(f"Cached response has no checksum sidecar: {path}")
+    expected = checksum_path.read_text(encoding="utf-8").strip()
+    actual = f"sha256:{hashlib.sha256(payload).hexdigest()}"
+    if expected != actual:
+        raise ValueError(f"Cached response checksum mismatch: {path}")
+    return json.loads(payload)
