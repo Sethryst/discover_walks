@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./vendor/leaflet-markercluster/MarkerCluster.Default.css">
     <link rel="stylesheet" href="./vendor/maplibre-gl.css" />
     <link rel="stylesheet" href="./styles.css">
-    <title>Walk & Wildlife</title>
+    <title>Discover Walks</title>
   </head>
   <body>
     <main class="app-shell">
@@ -66,7 +66,7 @@
           </div>
           <button class="primary-button" id="walkButton"><img class="ui-icon ui-icon--small" src="./icons/activity.svg" alt="" /> Start walk</button>
         </section>
-        <p class="walk-recording-note">Keep Walk &amp; Wildlife open while recording. Background tracking is not available in this web version.</p>
+        <p class="walk-recording-note">Keep Discover Walks open while recording. Background tracking is not available in this web version.</p>
 
         <section class="quick-actions" aria-label="Journal actions">
           <button class="action-card" id="addObservationButton">
@@ -382,7 +382,8 @@
       Create account
     </button>
   </div>
-  <p class="auth-privacy">Google authenticates your account. Walk &amp; Wildlife never receives or stores your Google password.</p>
+  <p class="auth-privacy">Google authenticates your account. Discover Walks never receives or stores your Google password.</p>
+  <p class="auth-privacy">By continuing, you agree to the <a href="./terms.html" target="_blank" rel="noreferrer">Terms of Service</a> and acknowledge the <a href="./privacy.html" target="_blank" rel="noreferrer">Privacy Policy</a>.</p>
 </form>
       <form id="usernameForm" class="online-panel hidden">
   <p>Choose the public name friends will search for. It is the only identity shown on the leaderboard.</p>
@@ -453,6 +454,7 @@
       </form>
     </section>
 
+    <footer class="app-legal-links"><a href="./privacy.html">Privacy</a><span aria-hidden="true">·</span><a href="./terms.html">Terms</a><span aria-hidden="true">·</span><a href="mailto:wellnesswalkshamptonroads@gmail.com">Support</a></footer>
     <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
     <script src="./vendor/leaflet/leaflet.js"></script>
     <script src="./vendor/leaflet-markercluster/leaflet.markercluster.js"></script>

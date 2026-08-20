@@ -1,4 +1,4 @@
--- Walk & Wildlife optional online mode.
+-- Discover Walks optional online mode.
 -- This schema intentionally stores aggregates only: no GPS routes, observations,
 -- photos, journal text, or historic moment locations are ever sent to Supabase.
 

@@ -1,4 +1,4 @@
-# Walk & Wildlife — Multi-city Demo
+# Discover Walks — Multi-city Demo
 
 A mobile-first, local-first walking journal that introduces historic places as a person moves through Vienna, VA or a Norfolk, VA prototype layer. It includes walk recording, geofenced historic prompts, personal reflections, geotagged nature observations, and a local points profile. The default experience has no account, server, analytics, or paid backend.
 

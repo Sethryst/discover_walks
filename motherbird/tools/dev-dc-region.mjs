@@ -22,7 +22,7 @@ server.listen(selfTest ? 0 : 8080, '127.0.0.1', async () => {
   if (!selfTest) { console.log(`DC region server: ${url}`); return; }
   try {
     const response = await fetch(url); const html = await response.text();
-    if (!response.ok || !html.includes('Walk &amp; Wildlife')) throw new Error('app shell response was invalid');
+    if (!response.ok || !html.includes('Discover Walks')) throw new Error('app shell response was invalid');
     console.log(`✓ DC development server self-test passed (${response.status})`);
   } finally { server.close(); }
 });

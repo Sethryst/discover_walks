@@ -1,8 +1,8 @@
-# Walk & Wildlife: Product Direction and Sustainability
+# Discover Walks: Product Direction and Sustainability
 
 ## Product promise
 
-Walk & Wildlife is a private, walking-first field journal. It helps people form a relationship with nearby nature, history, and their own experience of a walk. It is not a step leaderboard, an ad-supported map, or a system for extracting location data.
+Discover Walks is a private, walking-first field journal. It helps people form a relationship with nearby nature, history, and their own experience of a walk. It is not a step leaderboard, an ad-supported map, or a system for extracting location data.
 
 The product test is simple: does a feature deepen attention, agency, or connection? If it does not, it is probably noise.
 
@@ -24,7 +24,7 @@ During a walk, surface at most one or two relevant discoveries. Rank them by the
 
 ### Place cards, not raw map data
 
-OpenStreetMap and public datasets are the geographic foundation. Walk & Wildlife turns selected places into an experience layer:
+OpenStreetMap and public datasets are the geographic foundation. Discover Walks turns selected places into an experience layer:
 
 - a short, sourced story;
 - one inviting question rather than a trivia dump;

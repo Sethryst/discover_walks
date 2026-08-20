@@ -1,4 +1,4 @@
-/* Walk & Wildlife Journal — local-first walking, history, and nature journal. */
+/* Discover Walks Journal — local-first walking, history, and nature journal. */
 
 import { init } from './js/loader.js';
 

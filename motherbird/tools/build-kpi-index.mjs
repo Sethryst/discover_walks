@@ -2,7 +2,7 @@ import { mkdir, readFile, readdir, stat, writeFile } from 'node:fs/promises';
 import { dirname, extname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { CITIES } from '../js/constants.js';
-import { DISCOVER_GROUPS } from '../js/discovery-taxonomy.js';
+import { DISCOVER_GROUPS, discoverGroupFor, publishingState } from '../js/discovery-taxonomy.js';
 import { FIELD_GUIDE_SUBJECTS } from '../js/field-guide.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -47,6 +47,71 @@ function countPoiRecords(payload) {
   return ['pointsOfInterest', 'pois', 'features'].reduce((count, key) => count + (Array.isArray(payload[key]) ? payload[key].length : 0), 0);
 }
 
+function poiRecords(payload) {
+  if (!payload) return [];
+  if (Array.isArray(payload)) return payload;
+  for (const key of ['pointsOfInterest', 'pois', 'features']) if (Array.isArray(payload[key])) return payload[key];
+  return [];
+}
+
+function authorityFamily(poi) {
+  const sourceValues = Array.isArray(poi.source) ? poi.source : [poi.source];
+  const source = sourceValues.map((item) => typeof item === 'string' ? item : `${item?.name || ''} ${item?.url || ''}`).join(' ').toLowerCase();
+  const tags = Array.isArray(poi.tags) ? poi.tags : [];
+  if (tags.includes('osm') || /openstreetmap|osm\.org/.test(source)) return 'Open/community';
+  if (/\.gov\b|\.mil\b|nps\.gov|usgs\.gov|si\.edu|cornell\.edu/.test(source)) return 'Government/institutional';
+  return 'Unclassified/other';
+}
+
+const ENRICHMENT_FIELDS = [
+  ['description', 'Description or story'], ['source', 'Source provenance'], ['website', 'Official link'],
+  ['hours', 'Hours'], ['accessibility', 'Accessibility'], ['amenities', 'Amenities'],
+  ['review', 'Review evidence'], ['publishingState', 'Explicit publishing state'], ['discoverCategory', 'Explicit Discover category']
+];
+
+function meaningful(value) {
+  if (value == null || value === '' || value === 'N/A') return false;
+  if (Array.isArray(value)) return value.length > 0;
+  if (typeof value === 'object') return Object.values(value).some(meaningful);
+  if (typeof value === 'boolean') return value;
+  return true;
+}
+
+export function poiMetadataKpi(poi) {
+  const values = {
+    description: poi.description || poi.story || poi.context || poi.historyText,
+    source: poi.source,
+    website: poi.website || poi.link || poi.officialUrl,
+    hours: poi.hours || poi.openingHours,
+    accessibility: poi.accessibility || poi.wheelchair,
+    amenities: poi.amenities || [poi.restrooms && 'restrooms', poi.parking && 'parking', poi.drinkingWater && 'drinking water'].filter(Boolean),
+    review: poi.review?.validationStatus || poi.editorial_status,
+    publishingState: poi.publishingState,
+    discoverCategory: poi.discoverCategory
+  };
+  const present = ENRICHMENT_FIELDS.filter(([key]) => meaningful(values[key])).map(([key]) => key);
+  const missing = ENRICHMENT_FIELDS.filter(([key]) => !meaningful(values[key])).map(([key]) => key);
+  return { present, missing, completeness: Math.round(present.length / ENRICHMENT_FIELDS.length * 100) };
+}
+
+function summarizeMetadata(records) {
+  const missing = Object.fromEntries(ENRICHMENT_FIELDS.map(([key, label]) => [key, { key, label, count: 0 }]));
+  let totalScore = 0;
+  let narrativeReady = 0;
+  for (const poi of records) {
+    const metric = poiMetadataKpi(poi);
+    totalScore += metric.completeness;
+    if (!metric.missing.includes('description') && !metric.missing.includes('source')) narrativeReady += 1;
+    metric.missing.forEach((key) => { missing[key].count += 1; });
+  }
+  return {
+    averageCompleteness: records.length ? Math.round(totalScore / records.length) : 0,
+    narrativeReady,
+    narrativeReadyRate: records.length ? Math.round(narrativeReady / records.length * 100) : 0,
+    missing: Object.values(missing).sort((a, b) => b.count - a.count)
+  };
+}
+
 function countJourneyRecords(payload) {
   if (!payload) return 0;
   if (Array.isArray(payload)) return payload.length;
@@ -65,6 +130,30 @@ function domainsFor(source) {
 function frontendFor(source) {
   const views = new Set(domainsFor(source).map((domain) => FRONTEND_PATHS[domain]).filter(Boolean));
   return views.size ? [...views].join(', ') : 'Producer package (no explicit view mapping)';
+}
+
+export function buildExperienceMetrics(records) {
+  const categories = Object.fromEntries(DISCOVER_GROUPS.map((group) => [group.id, { id: group.id, label: group.label, featured: 0, published: 0, candidate: 0, total: 0, authority: { 'Government/institutional': 0, 'Open/community': 0, 'Unclassified/other': 0 } }]));
+  const states = { featured: 0, published: 0, candidate: 0, personal: 0 };
+  const tags = new Set();
+  for (const poi of records) {
+    const group = discoverGroupFor(poi);
+    const stateName = publishingState(poi);
+    const category = categories[group.id];
+    category.total += 1;
+    category[stateName] = (category[stateName] || 0) + 1;
+    category.authority[authorityFamily(poi)] += 1;
+    states[stateName] = (states[stateName] || 0) + 1;
+    for (const tag of Array.isArray(poi.tags) ? poi.tags : [poi.category].filter(Boolean)) tags.add(tag);
+  }
+  return {
+    total: records.length,
+    categories: Object.values(categories),
+    states,
+    tags: [...tags],
+    publishedCount: states.featured + states.published,
+    nonemptyCategoryCount: Object.values(categories).filter((category) => category.total > 0).length
+  };
 }
 
 export async function collectKpiInventory() {
@@ -106,7 +195,8 @@ export async function collectKpiInventory() {
     for (const file of optionalFiles) if (!(await exists(appPath(file)))) missingOptionalFiles.push(file);
     const regionId = CITY_REGION_IDS[cityId] || cityId;
     const configuredSources = sources.filter((source) => source.regionId === regionId).length;
-    const poiCount = countPoiRecords(data) + countPoiRecords(supplemental);
+    const records = [...poiRecords(data), ...poiRecords(supplemental)];
+    const poiCount = records.length;
     const journeyCount = countJourneyRecords(journeys);
     const civicExists = Boolean(city.civicFile && await exists(appPath(city.civicFile)));
     const readinessScore = (poiCount > 0 ? 30 : 0) + (civicExists ? 20 : 0) +
@@ -124,8 +214,20 @@ export async function collectKpiInventory() {
       readinessLabel: readinessScore >= 80 ? 'Strong' : readinessScore >= 60 ? 'Usable' : 'Thin',
       status: missingRequiredFiles.length ? 'Core broken' : missingOptionalFiles.length ? 'Core ready · enhancements missing' : 'Fully referenced'
     });
+    cities[cities.length - 1].experience = buildExperienceMetrics(records);
+    cities[cities.length - 1].metadata = summarizeMetadata(records);
+    cities[cities.length - 1].poiFiles = [city.dataFile, city.supplementalPoiFile].filter(Boolean);
   }
   cities.sort((a, b) => a.name.localeCompare(b.name));
+
+  for (const city of cities) {
+    const localTags = new Set(city.experience.tags);
+    city.experience.guideSubjects = FIELD_GUIDE_SUBJECTS.filter((subject) => subject.relatedTags.some((tag) => localTags.has(tag))).map(({ id, group, name, sourceName }) => ({ id, group, name, sourceName }));
+    city.experience.guideSubjectCount = city.experience.guideSubjects.length;
+    city.experience.discoverReady = city.experience.publishedCount >= 24 && city.experience.nonemptyCategoryCount >= 2;
+    city.experience.guideReady = city.experience.guideSubjectCount >= 3;
+    city.experience.launchStatus = city.experience.discoverReady && city.experience.guideReady ? 'Launch-ready' : city.experience.total > 0 ? 'Thin' : 'Content-blocked';
+  }
 
   const backlog = await readJson(resolve(repoRoot, 'expansion-queues', 'regional-source-backlog.json'), {});
   const configuredRegionIds = new Set(configs.map((region) => region.id));
@@ -198,7 +300,12 @@ export async function collectKpiInventory() {
       discoverCategories: DISCOVER_GROUPS.length,
       fieldGuideSubjects: FIELD_GUIDE_SUBJECTS.length,
       workflowCount: automationJobs.length,
-      scheduledWorkflowCount: automationJobs.filter((job) => job.scheduled).length
+      scheduledWorkflowCount: automationJobs.filter((job) => job.scheduled).length,
+      launchReadyRegions: cities.filter((city) => city.experience.launchStatus === 'Launch-ready').length,
+      thinExperienceRegions: cities.filter((city) => city.experience.launchStatus === 'Thin').length,
+      contentBlockedRegions: cities.filter((city) => city.experience.launchStatus === 'Content-blocked').length
+      ,averagePoiMetadata: Math.round(cities.reduce((sum, city) => sum + city.metadata.averageCompleteness * city.poiCount, 0) / Math.max(cities.reduce((sum, city) => sum + city.poiCount, 0), 1))
+      ,narrativeReadyPois: cities.reduce((sum, city) => sum + city.metadata.narrativeReady, 0)
     }
   };
 }
@@ -263,13 +370,20 @@ export function renderKpiHtml(model) {
 <section class="panel"><h2>Live browser services</h2><p>These calls are separate from scheduled producer endpoints. They are invoked by explicit app behavior and follow the listed privacy boundary.</p><table><thead><tr><th>Service</th><th>Endpoint</th><th>When called</th><th>Frontend consumer</th><th>Privacy boundary</th></tr></thead><tbody>${runtimeRows}</tbody></table></section>
 <section class="panel"><h2>Repository automation</h2><p>${summary.workflowCount} GitHub Actions workflows are declared; ${summary.scheduledWorkflowCount} currently have scheduled triggers. Manual dispatch remains available where the workflow declares it.</p><table><thead><tr><th>Workflow</th><th>File</th><th>Scheduled</th><th>Manual run</th></tr></thead><tbody>${workflowRows}</tbody></table></section>
 <section class="panel"><h2>How to read the KPIs</h2><p class="note"><b>Core-ready</b> means the required place and civic files exist. Optional supplement, journey, and cached-weather references are reported separately. <b>Configured endpoint</b> means a governed definition exists—not that it was fetched during this build. <b>Review backlog</b> is discovery-only and never publishes automatically. Record counts measure package depth, not geographic completeness.</p><p>Rebuild with <code>cd motherbird &amp;&amp; npm run build</code>. The generator re-reads regional configs, CITIES mappings, packaged artifacts, and the review backlog.</p></section>
-<footer><a href="../">← Mother Bird</a> · Generated from repository sources</footer></main><script>const q=document.querySelector('#sourceSearch'),p=document.querySelector('#providerFilter'),rows=[...document.querySelectorAll('#sourceTable tbody tr')],empty=document.querySelector('#sourceEmpty'),gapFilter=document.querySelector('#gapFilter'),gapRows=[...document.querySelectorAll('#gapTable tbody tr')];function filter(){const needle=q.value.trim().toLowerCase(),provider=p.value.toLowerCase();let shown=0;for(const row of rows){const ok=(!needle||row.textContent.toLowerCase().includes(needle))&&(!provider||row.children[2].textContent.toLowerCase()===provider);row.hidden=!ok;if(ok)shown++}empty.hidden=shown>0}function filterGaps(){for(const row of gapRows)row.hidden=Boolean(gapFilter.value)&&row.children[0].textContent.trim()!==gapFilter.value}q.addEventListener('input',filter);p.addEventListener('change',filter);gapFilter.addEventListener('change',filterGaps)</script></body></html>`;
+<footer><a href="../">← Mother Bird</a> · <a href="./enrichment.html">POI enrichment KPI →</a> · Generated from repository sources</footer></main><script>const q=document.querySelector('#sourceSearch'),p=document.querySelector('#providerFilter'),rows=[...document.querySelectorAll('#sourceTable tbody tr')],empty=document.querySelector('#sourceEmpty'),gapFilter=document.querySelector('#gapFilter'),gapRows=[...document.querySelectorAll('#gapTable tbody tr')];function filter(){const needle=q.value.trim().toLowerCase(),provider=p.value.toLowerCase();let shown=0;for(const row of rows){const ok=(!needle||row.textContent.toLowerCase().includes(needle))&&(!provider||row.children[2].textContent.toLowerCase()===provider);row.hidden=!ok;if(ok)shown++}empty.hidden=shown>0}function filterGaps(){for(const row of gapRows)row.hidden=Boolean(gapFilter.value)&&row.children[0].textContent.trim()!==gapFilter.value}q.addEventListener('input',filter);p.addEventListener('change',filter);gapFilter.addEventListener('change',filterGaps)</script></body></html>`;
+}
+
+export function renderEnrichmentHtml(model) {
+  const regions = model.cities.map((city) => ({ id: city.cityId, name: `${city.name}, ${city.state}`, files: city.poiFiles.map((file) => `../${String(file).replace(/^\.\//, '')}`), count: city.poiCount, metadata: city.metadata }));
+  const regionRows = model.cities.map((city) => `<tr><td>${escapeHtml(city.name)}, ${escapeHtml(city.state)}</td><td>${city.poiCount.toLocaleString()}</td><td><b>${city.metadata.averageCompleteness}%</b></td><td>${city.metadata.narrativeReady.toLocaleString()} · ${city.metadata.narrativeReadyRate}%</td><td>${escapeHtml(city.metadata.missing.slice(0, 3).map((item) => `${item.label} (${item.count.toLocaleString()})`).join(' · '))}</td></tr>`).join('');
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>POI enrichment KPI · Gremlin Labs</title><style>:root{--ink:#17221d;--muted:#5f6d65;--paper:#f5f2e9;--card:#fffdf7;--line:#d8d2c2;--green:#287454;--mint:#dcecdf;--amber:#9b6500;--red:#9b3c2f}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}header,main{width:min(1440px,calc(100% - 32px));margin:auto}header{padding:48px 0 24px}h1{font:700 clamp(2rem,5vw,4.3rem)/1 Georgia,serif;margin:.25rem 0 1rem}h2{font:700 1.55rem Georgia,serif}p{color:var(--muted)}a{color:var(--green)}.eyebrow{letter-spacing:.14em;text-transform:uppercase;font-size:.75rem;color:var(--green);font-weight:800}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0}.card,.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:0 4px 18px #203b2810}.card,.panel{padding:20px}.card b{display:block;font:700 2.3rem Georgia,serif;color:var(--green)}.panel{margin-bottom:20px;overflow:hidden}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}input,select{min-height:42px;border:1px solid var(--line);background:white;border-radius:10px;padding:8px 12px;font:inherit}input{flex:1;min-width:220px}table{width:100%;border-collapse:collapse;font-size:.88rem}th{text-align:left;color:var(--muted);font-size:.72rem;text-transform:uppercase}th,td{padding:11px 9px;border-bottom:1px solid #e5e0d4;vertical-align:top}.pill{display:inline-block;border-radius:999px;padding:3px 8px;font-size:.75rem;font-weight:700}.good{background:var(--mint);color:var(--green)}.warn{background:#f8e9c5;color:var(--amber)}.bad{background:#f7ded8;color:var(--red)}.meter{height:8px;background:#ebe7dc;border-radius:99px;overflow:hidden;min-width:90px}.meter i{display:block;height:100%;background:var(--green)}.note{border-left:4px solid var(--green);padding-left:14px}footer{padding:24px 0 50px;color:var(--muted)}@media(max-width:800px){.cards{grid-template-columns:1fr}table,tbody,tr,td{display:block}thead{display:none}tr{padding:10px 0;border-bottom:1px solid var(--line)}td{border:0;padding:4px 0}header{padding-top:28px}}</style></head><body><header><div class="eyebrow">Gremlin Labs · content operations</div><h1>POI enrichment KPI</h1><p>Measures whether every place can support a useful decision or story—not merely a map pin and “visit here.” Select a region to inspect individual records directly from its deployed package.</p><p>Generated ${escapeHtml(model.generatedAt)}. Completeness checks nine fields; it does not judge prose quality or factual truth.</p></header><main><section class="cards"><article class="card"><span>POI metadata completeness</span><b>${model.summary.averagePoiMetadata}%</b><small>weighted across deployed records</small></article><article class="card"><span>Narrative-ready POIs</span><b>${model.summary.narrativeReadyPois.toLocaleString()}</b><small>both description/story and source provenance</small></article><article class="card"><span>Explicit publishing/category fields</span><b>0%</b><small>contract migration required; inference is not counted</small></article></section><section class="panel"><h2>Region enrichment queue</h2><p>The largest missing fields are the highest-leverage producer work for each region.</p><table><thead><tr><th>Region</th><th>POIs</th><th>Completeness</th><th>Narrative ready</th><th>Largest gaps</th></tr></thead><tbody>${regionRows}</tbody></table></section><section class="panel"><h2>Inspect each POI</h2><div class="toolbar"><select id="region">${regions.map((r) => `<option value="${escapeHtml(r.id)}">${escapeHtml(r.name)} · ${r.count.toLocaleString()}</option>`).join('')}</select><input id="search" type="search" placeholder="Search name, category, id, or missing field…"></div><p id="status">Choose a region to load its deployed POI metadata.</p><table><thead><tr><th>Place</th><th>Category</th><th>Metadata</th><th>Missing enrichment</th><th>Source</th></tr></thead><tbody id="poiRows"></tbody></table></section><section class="panel"><h2>Metric contract</h2><p class="note"><b>Narrative-ready</b> means the record has descriptive context and source provenance. <b>Completeness</b> checks description/story, provenance, official link, hours, accessibility, amenities, review evidence, explicit publishing state, and explicit Discover category. Missing data is a producer backlog signal—not permission to fabricate it. Matching should use stable source IDs, authoritative URLs, spatial proximity, and normalized names, with ambiguous joins held for review.</p></section><footer><a href="./">← Data & capability index</a> · <a href="../">Mother Bird</a></footer></main><script>const regions=${JSON.stringify(regions).replace(/</g, '\\u003c')};const fieldLabels={description:'Description/story',source:'Source provenance',website:'Official link',hours:'Hours',accessibility:'Accessibility',amenities:'Amenities',review:'Review evidence',publishingState:'Publishing state',discoverCategory:'Discover category'};let records=[];const meaningful=v=>v!==null&&v!==undefined&&v!==''&&v!=='N/A'&&(!Array.isArray(v)||v.length>0)&&(typeof v!=='object'||Array.isArray(v)||Object.values(v).some(meaningful));function metric(p){const v={description:p.description||p.story||p.context||p.historyText,source:p.source,website:p.website||p.link||p.officialUrl,hours:p.hours||p.openingHours,accessibility:p.accessibility||p.wheelchair,amenities:p.amenities||[p.restrooms&&'restrooms',p.parking&&'parking',p.drinkingWater&&'water'].filter(Boolean),review:p.review?.validationStatus||p.editorial_status,publishingState:p.publishingState,discoverCategory:p.discoverCategory};const missing=Object.keys(v).filter(k=>!meaningful(v[k]));return{missing,score:Math.round((9-missing.length)/9*100)}}function sources(p){const a=Array.isArray(p.source)?p.source:[p.source];return a.filter(Boolean).map(s=>typeof s==='string'?s:(s.name||s.url||'Source')).join(', ')||'Missing'}function render(){const q=document.querySelector('#search').value.trim().toLowerCase();const shown=records.filter(p=>{const m=metric(p);return !q||[p.name,p.id,p.category,...m.missing.map(k=>fieldLabels[k])].join(' ').toLowerCase().includes(q)}).slice(0,250);document.querySelector('#poiRows').innerHTML=shown.map(p=>{const m=metric(p);const cls=m.score>=70?'good':m.score>=40?'warn':'bad';return '<tr><td><b>'+esc(p.name||'Unnamed')+'</b><br><small>'+esc(p.id||'No stable id')+'</small></td><td>'+esc(p.category||'Missing')+'</td><td><span class="pill '+cls+'">'+m.score+'%</span><div class="meter"><i style="width:'+m.score+'%"></i></div></td><td>'+esc(m.missing.map(k=>fieldLabels[k]).join(' · ')||'None')+'</td><td>'+esc(sources(p))+'</td></tr>'}).join('');document.querySelector('#status').textContent='Showing '+shown.length+' of '+records.length+' records'+(records.length>250?' (first 250; search to narrow)':'')+'.'}async function load(){const r=regions.find(x=>x.id===document.querySelector('#region').value);document.querySelector('#status').textContent='Loading '+r.name+'…';const payloads=await Promise.all(r.files.map(f=>fetch(f).then(x=>x.ok?x.json():null).catch(()=>null)));records=payloads.flatMap(p=>p?.pois||p?.pointsOfInterest||[]);render()}const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));document.querySelector('#region').addEventListener('change',load);document.querySelector('#search').addEventListener('input',render);load();</script></body></html>`;
 }
 
 export async function buildKpiIndex(outputDirectory = resolve(motherbirdRoot, 'dist', 'kpi')) {
   const model = await collectKpiInventory();
   await mkdir(outputDirectory, { recursive: true });
   await writeFile(resolve(outputDirectory, 'index.html'), renderKpiHtml(model));
+  await writeFile(resolve(outputDirectory, 'enrichment.html'), renderEnrichmentHtml(model));
   await writeFile(resolve(outputDirectory, 'inventory.json'), JSON.stringify(model, null, 2));
   return model;
 }

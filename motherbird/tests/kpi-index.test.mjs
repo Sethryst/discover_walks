@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { CITIES } from '../js/constants.js';
-import { collectKpiInventory, renderKpiHtml } from '../tools/build-kpi-index.mjs';
+import { collectKpiInventory, poiMetadataKpi, renderEnrichmentHtml, renderKpiHtml } from '../tools/build-kpi-index.mjs';
 
 test('KPI inventory reconciles the frontend and producer source contracts', async () => {
   const model = await collectKpiInventory();
@@ -17,6 +17,23 @@ test('KPI inventory reconciles the frontend and producer source contracts', asyn
   assert.equal(model.summary.workflowCount, model.automationJobs.length);
   assert.ok(model.sources.some((source) => source.provider === 'arcgis_feature_service'));
   assert.ok(model.sources.some((source) => source.frontend.includes('Walk')));
+});
+
+test('POI enrichment KPI makes missing narrative metadata actionable', () => {
+  const bare = poiMetadataKpi({ id: 'park-1', name: 'Park', lat: 1, lng: 2, category: 'park' });
+  const enriched = poiMetadataKpi({ id: 'park-2', name: 'Park', lat: 1, lng: 2, category: 'park', description: 'A riverside pause.', source: [{ name: 'City parks', url: 'https://example.gov/parks/2' }], website: 'https://example.gov/parks/2', hours: 'Dawn to dusk', amenities: ['bench'], review: { validationStatus: 'valid' }, publishingState: 'published', discoverCategory: 'explore' });
+  assert.ok(bare.missing.includes('description'));
+  assert.ok(bare.missing.includes('publishingState'));
+  assert.ok(enriched.completeness > bare.completeness);
+});
+
+test('enrichment page supports region-level and individual POI inspection', async () => {
+  const html = renderEnrichmentHtml(await collectKpiInventory());
+  assert.match(html, /POI enrichment KPI/);
+  assert.match(html, /Inspect each POI/);
+  assert.match(html, /Narrative-ready/);
+  assert.match(html, /Explicit publishing\/category fields/);
+  assert.match(html, /first 250; search to narrow/);
 });
 
 test('KPI page exposes operator paths without publishing credential values', async () => {

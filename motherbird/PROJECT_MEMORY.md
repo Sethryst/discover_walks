@@ -2,7 +2,7 @@
 
 ## What This Project Is
 
-Walk & Wildlife is a static, mobile-first web app for recording walks, discovering sourced local places, and keeping private observations and reflections. It loads ES modules directly in the browser, stores the personal journal in IndexedDB, and adds optional aggregate social/civic and installable regional-content systems around that local-first core. See [README.md](README.md) and [docs/Architecture.md](docs/Architecture.md).
+Discover Walks is a static, mobile-first web app for recording walks, discovering sourced local places, and keeping private observations and reflections. It loads ES modules directly in the browser, stores the personal journal in IndexedDB, and adds optional aggregate social/civic and installable regional-content systems around that local-first core. See [README.md](README.md) and [docs/Architecture.md](docs/Architecture.md).
 
 ## Core Constraints
 

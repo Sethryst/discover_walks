@@ -1,7 +1,7 @@
 # Field Editions
 
 A Field Edition is a bounded, installable content package for one place. It is
-not a city map and it never replaces the ordinary Walk & Wildlife experience.
+not a city map and it never replaces the ordinary Discover Walks experience.
 
 ## Source layout
 

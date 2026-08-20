@@ -226,3 +226,4 @@ button:active { transform: translateY(1px); }.action-card:active, .primary-butto
 .google-auth-button span { align-items: center; background: linear-gradient(135deg,#4285f4,#34a853 48%,#fbbc05 72%,#ea4335); border-radius: 50%; color: #fff; display: flex; font: 800 14px system-ui; height: 24px; justify-content: center; width: 24px; }
 .auth-divider { align-items: center; color: var(--muted); display: flex; font-size: 10px; gap: 10px; margin: 13px 0; text-transform: uppercase; }.auth-divider::before,.auth-divider::after { background: var(--line); content: ''; flex: 1; height: 1px; }
 .auth-privacy { color: var(--muted); font-size: 10px; line-height: 1.45; margin: 10px 0 0; text-align: center; }
+.auth-privacy a,.app-legal-links a { color: var(--moss); font-weight: 800; }.app-legal-links{align-items:center;color:var(--muted);display:flex;font-size:10px;gap:8px;justify-content:center;padding:12px 16px 78px}.app-legal-links a{text-decoration:none}

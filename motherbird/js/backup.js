@@ -17,7 +17,7 @@ export async function importJournal(event) {
   const file = event.target.files[0]; event.target.value = ''; if (!file) return;
   try {
     const backup = JSON.parse(await file.text());
-    if (backup.format !== 'walk-wildlife-journal' || backup.version !== 1 || !Array.isArray(backup.walks) || !Array.isArray(backup.observations) || !Array.isArray(backup.moments)) throw new Error('Choose a Walk & Wildlife journal backup file.');
+    if (backup.format !== 'walk-wildlife-journal' || backup.version !== 1 || !Array.isArray(backup.walks) || !Array.isArray(backup.observations) || !Array.isArray(backup.moments)) throw new Error('Choose a Discover Walks journal backup file.');
     if (!confirm('Replace this device\'s current journal with this backup? This cannot be undone.')) return;
     await db.clearAll();
     await Promise.all([...backup.walks.map((item) => db.put('walks', item)), ...backup.observations.map((item) => db.put('observations', item)), ...backup.moments.map((item) => db.put('moments', item))]);

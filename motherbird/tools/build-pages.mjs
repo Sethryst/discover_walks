@@ -21,11 +21,14 @@ const publishEntries = [
   'icons',
   'index.html',
   'js',
+  'legal.css',
   'manifest.webmanifest',
+  'privacy.html',
   'regions',
   'service-worker.js',
   'styles.css',
   'supabase-config.js',
+  'terms.html',
   'vendor'
 ];
 

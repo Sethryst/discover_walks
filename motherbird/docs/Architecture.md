@@ -2,7 +2,7 @@
 
 > AI handoff reference — keep this file aligned with implementation.
 
-Walk & Wildlife is a mobile-first, local-first web app. It has no bundler or server requirement: `index.html` loads Leaflet, optional Supabase support, `supabase-config.js`, and the ES-module entry point `app.js` directly.
+Discover Walks is a mobile-first, local-first web app. It has no bundler or server requirement: `index.html` loads Leaflet, optional Supabase support, `supabase-config.js`, and the ES-module entry point `app.js` directly.
 
 ## Runtime shape
 
