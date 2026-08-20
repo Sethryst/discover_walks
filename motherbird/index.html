@@ -29,6 +29,7 @@
       </header>
 
       <div id="mapView" class="app-view">
+        <div class="mode-intro"><p class="eyebrow">DISCOVER</p><strong>What’s worth your time outside?</strong><button class="text-button" id="browseDiscoverButton" type="button">Browse walks &amp; places →</button></div>
         <section class="discovery-headline" aria-live="polite"><p class="eyebrow">TODAY’S INSPIRATION</p><h1>Walk</h1><p id="discoveryHeadline">History</p><p id="discoveryHeadlineDetail">A meaningful stop is waiting on your map.</p></section>
         <p class="weather-brief hidden" id="weatherBrief" aria-live="polite"></p>
         <section class="map-panel" aria-label="Walking map">
@@ -83,7 +84,15 @@
         </section>
       </div>
 
-      <div id="exploreView" class="app-view hidden" aria-label="Explore walks and places">
+      <div id="fieldGuideView" class="app-view hidden" aria-label="Field Guide">
+        <p class="eyebrow">FIELD GUIDE</p>
+        <h2 class="explore-heading">What are you looking at?</h2>
+        <p class="profile-section-intro">A small, source-backed guide to things you may encounter nearby—not another directory of places.</p>
+        <div class="guide-summary"><strong id="fieldGuideCount">Subjects relevant to this region</strong><span>Knowledge sources are separate from map inventory.</span></div>
+        <section class="guide-list" id="fieldGuideList" aria-live="polite"></section>
+      </div>
+
+      <div id="exploreView" class="app-view hidden" aria-label="Discover walks and places">
         <p class="eyebrow">DISCOVER NEARBY</p>
         <h2 class="explore-heading">Find your next walk</h2>
         <label class="explore-search"><img class="ui-icon ui-icon--small" src="./icons/search.svg" alt="" /><input id="exploreSearchInput" type="search" placeholder="Search routes, places, events" autocomplete="off" /></label>
@@ -108,8 +117,9 @@
       </div>
 
       <div id="profileView" class="app-view hidden" aria-label="Profile">
-        <p class="eyebrow">YOUR TRAIL PROFILE</p>
-        <h2 class="profile-heading">Keep moving, gently.</h2>
+        <p class="eyebrow">JOURNAL</p>
+        <h2 class="profile-heading">What did you notice?</h2>
+        <p class="profile-section-intro" id="journalSummary">Your walks, observations, and reflections stay personal and local.</p>
         <label class="city-select-label">Current city
           <select id="citySelect" aria-label="Choose current city"></select>
         </label>
@@ -212,11 +222,11 @@
     </main>
 
     <nav class="bottom-nav" aria-label="Primary navigation">
-      <button class="nav-item active" data-view="map" title="Home"><img class="ui-icon" src="./icons/home.svg" alt="" />Home</button>
-      <button class="nav-item" data-view="explore" title="Explore"><img class="ui-icon" src="./icons/compass.svg" alt="" />Explore</button>
+      <button class="nav-item active" data-view="map" title="Discover"><img class="ui-icon" src="./icons/compass.svg" alt="" />Discover</button>
+      <button class="nav-item" data-view="fieldGuide" title="Field Guide"><img class="ui-icon" src="./icons/book-open.svg" alt="" />Guide</button>
       <button class="nav-item" data-view="vote" title="Vote"><img class="ui-icon" src="./icons/check-circle.svg" alt="" />Vote</button>
       <button class="nav-item" data-view="volunteer" title="Volunteer"><img class="ui-icon" src="./icons/heart.svg" alt="" />Volunteer</button>
-      <button class="nav-item" data-view="profile"><img class="ui-icon" src="./icons/user.svg" alt="" />Profile</button>
+      <button class="nav-item" data-view="profile"><img class="ui-icon" src="./icons/user.svg" alt="" />Journal</button>
     </nav>
 
     <div class="modal-backdrop hidden" id="modalBackdrop" role="presentation"></div>

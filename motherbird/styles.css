@@ -202,3 +202,22 @@ button:active { transform: translateY(1px); }.action-card:active, .primary-butto
 @keyframes loadingPulse { from { opacity: .35; transform: scale(.75); } to { opacity: 1; transform: scale(1); } }
 @media (max-width: 430px) { .app-shell { padding-left: 14px; padding-right: 14px; }.map-panel { border-radius: 18px; min-height: 320px; }.walk-strip { align-items: stretch; flex-direction: column; gap: 12px; }.walk-strip .primary-button { width: 100%; }.walk-stats { gap: 10px; }.walk-stats div { padding-right: 7px; }.quick-actions { gap: 7px; }.action-card { min-height: 100px; }.action-card small { font-size: 8.5px; }.poi-search { right: 10px; width: min(210px, 52%); }.filters-button { left: 10px; }.sheet { border-radius: 22px 22px 0 0; padding-left: 17px; padding-right: 17px; }.sheet-actions { grid-template-columns: 1fr; }.bottom-nav { padding-left: 8px; padding-right: 8px; }.nav-item { font-size: 9px; padding-left: 2px; padding-right: 2px; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; } }
+
+/* Discover / Field Guide / Journal intent architecture. */
+.mode-intro { align-items: center; background: linear-gradient(135deg,#edf3df,#f8edde); border: 1px solid #d8e1c7; border-radius: 13px; display: grid; grid-template-columns: 1fr auto; margin: 0 0 13px; padding: 12px 14px; }
+.mode-intro .eyebrow { grid-column: 1; margin: 0; }
+.mode-intro strong { color: var(--pine); font-family: Georgia,serif; grid-column: 1; }
+.mode-intro button { grid-column: 2; grid-row: 1 / 3; }
+.discover-context { background: #edf3df; border-radius: 10px; display: grid; gap: 2px; margin: 0 0 10px; padding: 10px 12px; }
+.discover-context strong { color: var(--pine); font-size: 12px; }
+.discover-context span { color: var(--muted); font-size: 10px; }
+.guide-summary { background: linear-gradient(135deg,#e8f1f3,#edf3df); border-radius: 13px; display: grid; gap: 3px; margin: 15px 0; padding: 14px; }
+.guide-summary strong { color: var(--pine); }
+.guide-summary span { color: var(--muted); font-size: 11px; }
+.guide-list { display: grid; gap: 12px; }
+.guide-card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 15px; }
+.guide-card h3 { color: var(--pine); font-family: Georgia,serif; margin: 4px 0 6px; }
+.guide-card p { color: var(--muted); font-size: 12px; line-height: 1.5; margin: 0 0 9px; }
+.guide-card a { color: var(--moss); font-size: 11px; font-weight: 800; }
+.guide-group { color: #1b8b7e; font-size: 9px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+@media(max-width:430px){.mode-intro{grid-template-columns:1fr}.mode-intro button{grid-column:1;grid-row:auto;justify-self:start;padding-left:0}.bottom-nav .nav-item{font-size:8.5px}}

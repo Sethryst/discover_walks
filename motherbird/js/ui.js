@@ -6,6 +6,7 @@ import { renderProfile } from './profile.js';
 import { geofenceCategoriesForCity, renderPoiTagFilters } from './poi.js';
 import { renderCivic } from './civic.js';
 import { promptForWalk, REFLECTION_PROMPTS, wordCount } from './reflection.js';
+import { renderFieldGuide } from './field-guide.js';
 
 export function setArchiveFilter(filter = 'all') {
   state.archiveFilter = filter;
@@ -35,13 +36,16 @@ export function showView(view) {
   state.activeView = view;
   el('mapView').classList.toggle('hidden', view !== 'map');
   el('exploreView').classList.toggle('hidden', view !== 'explore');
+  el('fieldGuideView').classList.toggle('hidden', view !== 'fieldGuide');
   el('profileView').classList.toggle('hidden', view !== 'profile');
   el('voteView').classList.toggle('hidden', view !== 'vote');
   el('volunteerView').classList.toggle('hidden', view !== 'volunteer');
-  document.querySelectorAll('.nav-item').forEach((item) => item.classList.toggle('active', item.dataset.view === view));
+  document.querySelectorAll('.nav-item').forEach((item) => item.classList.toggle('active', item.dataset.view === view || (view === 'explore' && item.dataset.view === 'map')));
   if (view === 'profile') {
     renderProfile();
     renderArchive();
+  } else if (view === 'fieldGuide') {
+    renderFieldGuide();
   } else if (view === 'vote' || view === 'volunteer') {
     renderCivic(view);
   } else if (view === 'map' && state.map) {

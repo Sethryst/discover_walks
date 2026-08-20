@@ -48,6 +48,7 @@ export function initEvents() {
     toast(`${route.title} previewed. Check the official route page before you go.`);
   });
   el('showPlacesOnMapButton').addEventListener('click', () => { showView('map'); renderCityPois(); });
+  el('browseDiscoverButton').addEventListener('click', () => { showView('explore'); setExploreTab('routes'); renderExplorePlaces(); });
   el('explorePlacesList').addEventListener('click', (event) => {
     const item = event.target.closest('[data-place-id]'); if (!item) return;
     const poi = (state.cityPois[state.activeCity] || []).find((place) => place.id === item.dataset.placeId);
@@ -158,7 +159,7 @@ el('accountPasswordForm').addEventListener('submit', updateAccountPassword);
   document.querySelectorAll('.nav-item').forEach((button) => button.addEventListener('click', () => {
     closeSheets();
     if (button.dataset.view === 'profile') openProfile();
-    else if (button.dataset.view === 'explore') { showView('explore'); setExploreTab('routes'); renderExplorePlaces(); }
+    else if (button.dataset.view === 'fieldGuide') showView('fieldGuide');
     else if (button.dataset.view === 'vote' || button.dataset.view === 'volunteer') showView(button.dataset.view);
     else showView('map');
   }));

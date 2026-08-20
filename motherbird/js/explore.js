@@ -1,11 +1,13 @@
 import { state } from './state.js';
 import { el, escapeHtml } from './utils.js';
-import { poiTags, displayPoiName } from './poi.js';
+import { displayPoiName } from './poi.js';
 import { renderCuratedRoutes } from './routes.js';
 import { generateTimeBasedPlan } from './planner.js';
 import { renderCivicEvents } from './civic.js';
+import { DISCOVER_GROUPS, discoverGroupFor, publishingState, rankDiscoverPlaces } from './discovery-taxonomy.js';
 
 let activeTab = 'routes';
+let activeDiscoverGroup = '';
 
 export function initExplore() {
   renderCuratedRoutes();
@@ -14,7 +16,7 @@ export function initExplore() {
     const button = event.target.closest('[data-explore-tag]');
     if (!button) return;
     const tag = button.dataset.exploreTag;
-    state.poiTags.has(tag) ? state.poiTags.delete(tag) : state.poiTags.add(tag);
+    activeDiscoverGroup = activeDiscoverGroup === tag ? '' : tag;
     renderExplorePlaces();
   });
   el('exploreSearchInput').addEventListener('input', renderExplorePlaces);
@@ -39,11 +41,14 @@ export function setExploreTab(tab) {
 export function renderExplorePlaces() {
   const all = state.cityPois[state.activeCity] || [];
   const query = el('exploreSearchInput').value.trim().toLowerCase();
-  const tags = [...state.poiTags];
-  const places = all.filter((poi) => (!query || `${poi.name || ''} ${displayPoiName(poi)}`.toLowerCase().includes(query)) && (!tags.length || tags.some((tag) => poiTags(poi).includes(tag)))).slice(0, 50);
-  const available = ['park', 'trail', 'history', 'library', 'public_art', 'water_access'].filter((tag) => all.some((poi) => poiTags(poi).includes(tag)));
-  el('explorePlaceFilters').innerHTML = available.map((tag) => `<button type="button" class="poi-chip ${state.poiTags.has(tag) ? 'active' : ''}" data-explore-tag="${tag}">${tag.replace('_', ' ')}</button>`).join('');
-  el('explorePlacesList').innerHTML = places.length ? places.map((poi) => `<button type="button" class="place-result" data-place-id="${escapeHtml(poi.id)}"><span>${poiTags(poi).includes('history') ? '✦' : '●'}</span><span><strong>${escapeHtml(displayPoiName(poi))}</strong><small>${escapeHtml(poiTags(poi).filter((tag) => !tag.startsWith('history_'))[0] || 'place')}</small></span><b>›</b></button>`).join('') : '<div class="empty-state">No places match these filters. Try clearing a category or search.</div>';
+  const places = rankDiscoverPlaces(all.filter((poi) => {
+    const matchesText = !query || `${poi.name || ''} ${displayPoiName(poi)}`.toLowerCase().includes(query);
+    const matchesGroup = !activeDiscoverGroup || discoverGroupFor(poi).id === activeDiscoverGroup;
+    return matchesText && matchesGroup && (publishingState(poi) !== 'candidate' || Boolean(query));
+  })).slice(0, 24);
+  el('explorePlaceFilters').innerHTML = DISCOVER_GROUPS.map((group) => `<button type="button" class="poi-chip ${activeDiscoverGroup === group.id ? 'active' : ''}" aria-pressed="${activeDiscoverGroup === group.id}" data-explore-tag="${group.id}">${group.icon} ${group.label}</button>`).join('');
+  const context = places.length ? `<p class="discover-context"><strong>${places.length} relevant places in this view</strong><span>Selected for this moment from the larger regional inventory.</span></p>` : '';
+  el('explorePlacesList').innerHTML = context + (places.length ? places.map((poi) => { const group = discoverGroupFor(poi); return `<button type="button" class="place-result" data-place-id="${escapeHtml(poi.id)}"><span>${group.icon}</span><span><strong>${escapeHtml(displayPoiName(poi))}</strong><small>${escapeHtml(group.label)}${publishingState(poi) === 'featured' ? ' · Curated' : ''}</small></span><b>›</b></button>`; }).join('') : '<div class="empty-state"><strong>Nothing relevant surfaced here yet.</strong>Try another experience category or a broader search.</div>');
 }
 
 export function updatePlanPreview() {
