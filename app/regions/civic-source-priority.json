@@ -2,6 +2,9 @@
   "schemaVersion": 1,
   "purpose": "Source intelligence for civic meeting, volunteer, and event adapters. URLs are discovery inputs, not published facts.",
   "regions": {
+    "fairfax-county-va":{"meetings":"https://www.fairfaxcounty.gov/calendar/","events":"https://librarycalendar.fairfaxcounty.gov/"},
+    "alexandria-va":{"meetings":"https://apps.alexandriava.gov/Calendar/","events":"https://apps.alexandriava.gov/Calendar/"},
+    "arlington-va":{"meetings":"https://www.arlingtonva.us/Government/Topics/Meeting-Calendar","events":"https://www.arlingtonva.us/Government/Topics/Meeting-Calendar"},
     "boise-meridian-idaho":{"meetings":"https://www.cityofboise.org/city-government/city-council/","volunteer":"https://www.boisewatershed.org/about/volunteer/","events":"https://www.meridiancity.org/cityevents"},
     "nyc":{"meetings":"https://legistar.council.nyc.gov/Calendar.aspx","volunteer":"https://www.nycgovparks.org/events/volunteer","events":"https://www.nycgovparks.org/events/","feed":"https://www.nycgovparks.org/news/rss"},
     "san-francisco":{"meetings":"https://sfbos.org/participate-and-submit-public-comments","volunteer":"https://www.sfparks.org/support-park/volunteer","events":"https://sfrecpark.org/Calendar.aspx","feed":"https://sfrecpark.org/rss.aspx"},
