@@ -14,7 +14,7 @@
     dataFile: './data/vienna-poi.json',
     // Journeys complement the local places package; they must not replace it.
     journeyFile: './data/vienna-trails.json',
-    civicFile: './regions/wolf-trap-va/civic/index.json'
+    civicFile: './regions/vienna/civic/index.json'
   },
   norfolk: {
     name: 'Norfolk',
