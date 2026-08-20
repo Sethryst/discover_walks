@@ -4,6 +4,7 @@
 const APP_CACHE = 'walk-wildlife-shell-v41'; // bump when shell assets change
 const TILE_CACHE = 'walk-wildlife-osm-viewed-tiles-v1';
 const LIBRARY_CACHE = 'walk-wildlife-library-v2';
+const libraryPath = new URL('./vendor/', self.registration.scope).pathname;
 const shell = [
   './', './index.html', './styles.css', './app.js', './manifest.webmanifest', './supabase-config.js', './assets/walk-companion.gif',
   './js/archive.js', './js/backup.js', './js/city.js', './js/civic.js', './js/constants.js', './js/discovery.js',
@@ -68,7 +69,7 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  if (url.origin === self.location.origin && url.pathname.startsWith('/vendor/')) {
+  if (url.origin === self.location.origin && url.pathname.startsWith(libraryPath)) {
     event.respondWith(caches.open(LIBRARY_CACHE).then(async (cache) => {
       const saved = await cache.match(event.request);
       if (saved) return saved;

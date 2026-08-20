@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - "motherbird/**"
-      - ".github/workflows/deploy-motherbird-pages.yml"
   workflow_dispatch:
 
 permissions:
@@ -28,13 +25,28 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: motherbird/package-lock.json
+
+      - name: Install Motherbird dependencies
+        working-directory: motherbird
+        run: npm ci
+
+      - name: Build Motherbird
+        working-directory: motherbird
+        run: npm run build
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload Motherbird site
+      - name: Upload built Motherbird site
         uses: actions/upload-pages-artifact@v3
         with:
-          path: motherbird
+          path: motherbird/dist
 
       - name: Deploy to GitHub Pages
         id: deployment
