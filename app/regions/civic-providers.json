@@ -1,6 +1,7 @@
 {
   "schemaVersion": 1,
   "providers": {
+    "fairfax-county-va": {"label": "Fairfax County public meetings", "module": "app.pipeline.fairfax_civic", "artifact": "meetings", "pagination": "official Public Meetings RSS; each item verified against its official detail page / 90-day window"},
     "boston": {"label": "Boston", "module": "app.pipeline.boston_civic", "pagination": "17 official pages / 90-day window"},
     "philadelphia": {"label": "Philadelphia special events", "module": "app.pipeline.philly_civic", "pagination": "initial official view only; source pagination endpoint currently unavailable"},
     "washington-dc": {"label": "DC.gov", "module": "app.pipeline.dc_civic", "pagination": "official Load More pages / 90-day window"},

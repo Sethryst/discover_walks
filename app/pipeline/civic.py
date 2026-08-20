@@ -23,11 +23,11 @@ def load_civic_artifacts(region_id: str, producer_version: str, generated_at: st
     if document.get("regionId") != region_id:
         raise ValueError(f"Civic definition region mismatch: {source}")
     artifacts: dict[str, dict[str, Any]] = {}
-    automated_events = _automated_events(region_id, generated_at)
     for artifact in ARTIFACTS:
         items = document.get(artifact, [])
-        if artifact == "events":
-            items = _merge_items(items, automated_events)
+        automated_items = _automated_items(region_id, artifact, generated_at)
+        if automated_items:
+            items = _merge_items(items, automated_items)
         if not items:
             continue
         _validate_items(artifact, items)
@@ -51,11 +51,11 @@ def load_civic_artifacts(region_id: str, producer_version: str, generated_at: st
     return artifacts
 
 
-def _automated_events(region_id: str, generated_at: str) -> list[dict[str, Any]]:
+def _automated_items(region_id: str, artifact: str, generated_at: str) -> list[dict[str, Any]]:
     registry_path = Path(__file__).parents[1] / "regions" / "civic-providers.json"
     registry = json.loads(registry_path.read_text(encoding="utf-8"))
     provider = registry.get("providers", {}).get(region_id)
-    if provider is None:
+    if provider is None or provider.get("artifact", "events") != artifact:
         return []
     try:
         module_name = str(provider["module"])
