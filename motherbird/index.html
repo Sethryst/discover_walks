@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#173c35" />
+    <meta name="description" content="A local-first walking, history, and wildlife journal." />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="stylesheet" href="./vendor/leaflet/leaflet.css" />
+    <link rel="stylesheet" href="./vendor/leaflet-markercluster/MarkerCluster.css">
+    <link rel="stylesheet" href="./vendor/leaflet-markercluster/MarkerCluster.Default.css">
+    <link rel="stylesheet" href="./vendor/maplibre-gl.css" />
+    <link rel="stylesheet" href="./styles.css">
+    <title>Walk & Wildlife</title>
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="walking-topbar hidden" id="walkingTopbar" aria-live="polite">
+        <img src="./assets/walk-companion.gif" alt="Animated walking companion" />
+        <span><strong>Walk in progress</strong><small id="walkingTopbarStatus">Recording your route</small></span>
+        <span class="walking-topbar-dot" aria-hidden="true"></span>
+      </aside>
+      <header class="app-header">
+        <div>
+          <p class="eyebrow">YOUR WALK, YOUR WAY</p>
+          <button class="city-badge" id="homeCityButton" type="button"><span id="activeCityLabel">Vienna, VA</span> <span aria-hidden="true">⌄</span></button>
+        </div>
+        <button class="icon-button" id="settingsButton" aria-label="Open privacy and offline information" title="Privacy and offline information">i</button>
+      </header>
+
+      <div id="mapView" class="app-view">
+        <section class="discovery-headline" aria-live="polite"><p class="eyebrow">TODAY’S INSPIRATION</p><h1>Walk</h1><p id="discoveryHeadline">History</p><p id="discoveryHeadlineDetail">A meaningful stop is waiting on your map.</p></section>
+        <p class="weather-brief hidden" id="weatherBrief" aria-live="polite"></p>
+        <section class="map-panel" aria-label="Walking map">
+          <div id="map" role="application" aria-label="Map of historical places"></div>
+          <div id="fieldEditionMap" class="field-edition-map hidden" role="application" aria-label="Offline Field Edition map"></div>
+          <div id="fieldEditionMapHeader" class="field-edition-map-header hidden">
+            <span>🌿 <strong id="fieldEditionMapTitle">Field Edition</strong></span>
+            <button id="exitFieldEditionButton" type="button" aria-label="Exit Field Edition map">×</button>
+          </div>
+          <div class="poi-search" id="poiSearch">
+  <input id="poiSearchInput" type="text" placeholder="Search places..." autocomplete="off" />
+  <div class="poi-search-results hidden" id="poiSearchResults"></div>
+</div>
+          <button class="filters-button" id="filtersButton" aria-label="Filter places on map" title="Filter places">
+            <span aria-hidden="true">☰</span> Filters<span class="filters-badge hidden" id="filtersBadge"></span>
+          </button>
+          <button class="locate-button" id="locateButton" aria-label="Use my location" title="Use my location">⌖</button>
+          <div class="map-key" aria-label="Map legend"><span class="key-history">✦</span> History stop <span class="key-wildlife">●</span> Your observation</div>
+          <aside class="neighborhood-discovery hidden" id="neighborhoodDiscoveryPanel" aria-live="polite">
+            <strong>Neighborhood field notes</strong><span id="neighborhoodDiscoveryCount">0 discovered</span>
+            <small id="neighborhoodSource">Producer boundary package</small><button type="button" id="resetNeighborhoodsButton">Reset</button>
+          </aside>
+        </section>
+
+        <button class="active-route-fab hidden" id="activeRouteButton" type="button" aria-label="Open active walk details"><span>●</span><strong id="activeRouteSummary">0.00 mi · 00:00</strong></button>
+
+        <button class="trail-feature hidden" id="trailFeatureButton" type="button">🥾 <span><strong>Elizabeth River Trail</strong><small>Explore the featured route</small></span></button>
+
+        <section class="walk-strip" aria-label="Walk controls">
+          <div class="walk-stats">
+            <div><span class="stat-value" id="walkDuration">00:00</span><span class="stat-label">Duration</span></div>
+            <div><span class="stat-value" id="walkDistance">0.00</span><span class="stat-label">Miles</span></div>
+            <div><span class="stat-value" id="walkPoints">0</span><span class="stat-label">Walk pts</span></div>
+          </div>
+          <button class="primary-button" id="walkButton"><span aria-hidden="true">▶</span> Start walk</button>
+        </section>
+        <p class="walk-recording-note">Keep Walk &amp; Wildlife open while recording. Background tracking is not available in this web version.</p>
+
+        <section class="quick-actions" aria-label="Journal actions">
+          <button class="action-card" id="addObservationButton">
+            <span class="action-icon observation-icon">⌁</span>
+            <span><strong>Observe</strong><small>Pin wildlife or nature</small></span>
+          </button>
+          <button class="action-card" id="journalButton">
+            <span class="action-icon journal-icon">✎</span>
+            <span><strong>Reflect</strong><small>Save a walk note</small></span>
+          </button>
+          <button class="action-card" id="demoButton">
+            <span class="action-icon demo-icon">✦</span>
+            <span><strong>Try a history stop</strong><small>Preview the prompt</small></span>
+          </button>
+        </section>
+      </div>
+
+      <div id="exploreView" class="app-view hidden" aria-label="Explore walks and places">
+        <p class="eyebrow">DISCOVER NEARBY</p>
+        <h2 class="explore-heading">Find your next walk</h2>
+        <label class="explore-search"><span aria-hidden="true">⌕</span><input id="exploreSearchInput" type="search" placeholder="Search routes, places, events" autocomplete="off" /></label>
+        <div class="explore-tabs" role="tablist" aria-label="Explore categories">
+          <button class="explore-tab active" type="button" role="tab" aria-selected="true" data-explore-tab="routes">Routes</button>
+          <button class="explore-tab" type="button" role="tab" aria-selected="false" data-explore-tab="places">Places</button>
+          <button class="explore-tab" type="button" role="tab" aria-selected="false" data-explore-tab="events">Events</button>
+        </div>
+        <section id="exploreRoutes" class="explore-panel" role="tabpanel">
+          <button class="time-walk-card" id="planWalkButton" type="button"><span class="time-walk-icon">◷</span><span><strong>Create a walk that fits my schedule</strong><small>Choose time and interests — we’ll shape a starting plan.</small></span><b>→</b></button>
+          <div class="section-heading"><div><p class="eyebrow">START HERE</p><h2>Curated walks</h2></div></div>
+          <div class="route-list" id="curatedRoutesList"></div>
+        </section>
+        <section id="explorePlaces" class="explore-panel hidden" role="tabpanel">
+          <div class="poi-chips explore-place-filters" id="explorePlaceFilters" aria-label="Place categories"></div>
+          <div class="explore-list" id="explorePlacesList"></div>
+          <button class="secondary-button wide-button" id="showPlacesOnMapButton" type="button">Show filtered places on map</button>
+        </section>
+        <section id="exploreEvents" class="explore-panel hidden" role="tabpanel">
+          <div id="exploreEventsList" class="route-list" aria-live="polite"></div>
+        </section>
+      </div>
+
+      <div id="profileView" class="app-view hidden" aria-label="Profile">
+        <p class="eyebrow">YOUR TRAIL PROFILE</p>
+        <h2 class="profile-heading">Keep moving, gently.</h2>
+        <label class="city-select-label">Current city
+          <select id="citySelect" aria-label="Choose current city"></select>
+        </label>
+        <section class="points-hero" aria-label="Total points">
+          <span>Total trail points</span>
+          <strong id="profilePoints">0</strong>
+          <small id="profileNextMilestone">Your first walk earns a milestone.</small>
+        </section>
+        <div class="profile-stats" id="profileStats" aria-live="polite"></div>
+        <section class="favorite-categories">
+          <p class="sheet-kicker">WALKING PREFERENCES</p><h2>What draws you out?</h2>
+          <p class="profile-section-intro">Choose a few interests to personalize your map inspiration.</p>
+          <div class="poi-chips" id="favoriteCategoryChips" role="group" aria-label="Favorite place categories"></div>
+          <small class="save-indicator" id="preferenceSaveStatus">Saved on this device</small>
+        </section>
+        <section class="field-edition-section">
+          <p class="sheet-kicker">FIELD EDITIONS</p><h2>Bring a region with you.</h2>
+          <p class="profile-section-intro">Offline map packages, curated local stories, and seasonal guides live separately from your personal journal.</p>
+          <div class="field-edition-card"><span id="fieldEditionStatus">Free edition</span><strong id="fieldEditionDetail">Your walks and reflections are always yours.</strong><button class="secondary-button" id="fieldEditionButton" type="button">View Field Editions</button><button class="text-button" id="partnerAccessButton" type="button">I have partner access</button></div>
+        </section>
+        <section class="badges-section">
+          <p class="sheet-kicker">MILESTONES</p>
+          <div class="badge-list" id="badgeList"></div>
+        </section>
+        <section class="geofence-settings">
+          <p class="sheet-kicker">PROXIMITY ALERTS &amp; GEOFENCING</p>
+          <div class="setting-row">
+            <div>
+              <strong>Geofence Notifications</strong>
+              <small>Alert when near places during a walk</small>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="geofenceToggle" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div id="geofenceOptionsContainer" class="geofence-options">
+            <label class="setting-label">Alert radius
+              <select id="geofenceRadiusSelect" aria-label="Geofence alert radius">
+                <option value="30">30 meters (close)</option>
+                <option value="50" selected>50 meters (recommended)</option>
+                <option value="75">75 meters</option>
+                <option value="100">100 meters (wide)</option>
+              </select>
+            </label>
+            <div class="setting-label">Categories to trigger alerts for</div>
+            <div class="poi-chips geofence-category-chips" id="geofenceCategoryChips" role="group" aria-label="Geofence place categories"></div>
+          </div>
+        </section>
+
+        <section class="profile-journal-section">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">WALK REFLECTIONS</p>
+              <h2>Journal</h2>
+            </div>
+            <button class="text-button" id="profileJournalButton">New reflection</button>
+          </div>
+          <p class="profile-section-intro">Save how a walk felt — mood and a few words stay on this device.</p>
+        </section>
+
+        <section class="profile-archive-section">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">YOUR LOCAL ARCHIVE</p>
+              <h2>Recent moments</h2>
+            </div>
+          </div>
+          <div class="archive-filter" role="group" aria-label="Archive filter">
+            <button class="filter-button active" data-filter="all">All</button>
+            <button class="filter-button" data-filter="walk">Walks</button>
+            <button class="filter-button" data-filter="observation">Observations</button>
+          </div>
+          <section class="archive-list" id="archiveList" aria-live="polite"></section>
+        </section>
+
+        <section class="online-teaser">
+          <div><strong id="onlineTeaserTitle">Stay local by default</strong><p id="onlineTeaserText">Optional online mode shares only aggregate points and miles with friends—never routes, observations, photos, or notes.</p></div>
+          <button class="secondary-button" id="goOnlineButton">Go Online</button>
+        </section>
+      </div>
+
+      <div id="voteView" class="app-view hidden" aria-label="Vote">
+        <p class="eyebrow">CIVIC COMPANION</p><h2 class="explore-heading">Vote</h2>
+        <p class="profile-section-intro">Sourced election information only. Polling lookup stays on the official site; your address is never stored here.</p>
+        <div id="voteCivicContent" class="civic-card-list" aria-live="polite"></div>
+      </div>
+      <div id="volunteerView" class="app-view hidden" aria-label="Volunteer">
+        <p class="eyebrow">CIVIC COMPANION</p><h2 class="explore-heading">Volunteer</h2>
+        <p class="profile-section-intro">Verified local ways to help, with clear time commitments and official links.</p>
+        <div id="volunteerCivicContent" class="civic-card-list" aria-live="polite"></div>
+      </div>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Primary navigation">
+      <button class="nav-item active" data-view="map" title="Home"><span>⌖</span>Home</button>
+      <button class="nav-item" data-view="explore" title="Explore"><span>⌕</span>Explore</button>
+      <button class="nav-item" data-view="vote" title="Vote"><span>✓</span>Vote</button>
+      <button class="nav-item" data-view="volunteer" title="Volunteer"><span>♡</span>Volunteer</button>
+      <button class="nav-item" data-view="profile"><span>◉</span>Profile</button>
+    </nav>
+
+    <div class="modal-backdrop hidden" id="modalBackdrop" role="presentation"></div>
+    <section class="sheet hidden" id="historySheet" role="dialog" aria-modal="true" aria-labelledby="historyTitle">
+  <button class="close-sheet" data-close-sheet aria-label="Close">×</button>
+  <span class="sheet-kicker">YOU'RE NEAR</span>
+  <h2 id="historyTitle">A historic place</h2>
+  <p class="distance-pill" id="historyDistance">Within your walking radius</p>
+  <p class="return-banner hidden" id="historyReturnBanner"></p>
+  <p class="verification-warning hidden" id="historyWarning">Prototype stop — its location and story still need verification before public use.</p>
+  <p id="historyDescription"></p>
+  <a class="source-link" id="historySource" href="https://www.viennava.gov/About/History" target="_blank" rel="noreferrer">Read the local history ↗</a>
+  <label>A note for next time (optional) <textarea id="historyNoteInput" rows="2" maxlength="300" placeholder="What did this place feel like today?"></textarea></label>
+  <div class="sheet-actions">
+    <button class="secondary-button" id="dismissHistoryButton">Not now</button>
+    <button class="primary-button" id="saveHistoryMomentButton">Save this moment</button>
+  </div>
+</section>
+
+    <section class="sheet hidden" id="observationSheet" role="dialog" aria-modal="true" aria-labelledby="observationTitle">
+      <button class="close-sheet" data-close-sheet aria-label="Close">×</button>
+      <span class="sheet-kicker">NATURE OBSERVATION</span>
+      <h2 id="observationTitle">What did you notice?</h2>
+      <p class="sheet-intro" id="observationLocation">Pin a moment to the map.</p>
+      <form id="observationForm">
+        <label>What did you notice? <input id="speciesInput" required maxlength="80" placeholder="e.g., a bright yellow butterfly by the bridge" /></label>
+        <label>Personal tags <input id="observationTags" maxlength="120" placeholder="e.g., birdsong, sketch spot (optional)" /></label>
+        <fieldset class="observation-icon-set"><legend>Marker icon</legend><div class="observation-icon-picker" id="observationIconPicker" role="group" aria-label="Choose a marker icon"><button type="button" class="observation-icon-choice active" data-observation-icon="camera" aria-label="Camera"><img src="./icons/camera.svg" alt="" /></button><button type="button" class="observation-icon-choice" data-observation-icon="tree" aria-label="Tree"><img src="./icons/tree.svg" alt="" /></button><button type="button" class="observation-icon-choice" data-observation-icon="star" aria-label="Star"><img src="./icons/star.svg" alt="" /></button><button type="button" class="observation-icon-choice" data-observation-icon="heart" aria-label="Heart"><img src="./icons/heart.svg" alt="" /></button><button type="button" class="observation-icon-choice" data-observation-icon="coffee" aria-label="Coffee"><img src="./icons/coffee.svg" alt="" /></button><button type="button" class="observation-icon-choice" data-observation-icon="book-open" aria-label="Book"><img src="./icons/book-open.svg" alt="" /></button><button type="button" class="observation-icon-choice" data-observation-icon="music" aria-label="Music"><img src="./icons/music.svg" alt="" /></button><button type="button" class="observation-icon-choice" data-observation-icon="wind" aria-label="Wind"><img src="./icons/wind.svg" alt="" /></button></div></fieldset>
+        <label>Note <textarea id="observationNote" rows="3" maxlength="500" placeholder="Color, behavior, weather, or a small detail…"></textarea></label>
+        <label class="photo-field">Photo <input id="photoInput" type="file" accept="image/*" capture="environment" /><span id="photoName">Optional, stored only on this device</span></label>
+        <button class="primary-button wide-button" type="submit">Save observation</button>
+      </form>
+    </section>
+
+    <section class="sheet hidden" id="journalSheet" role="dialog" aria-modal="true" aria-labelledby="journalTitle">
+      <button class="close-sheet" data-close-sheet aria-label="Close">×</button>
+      <span class="sheet-kicker">WALK REFLECTION</span>
+      <h2 id="journalTitle">Hold onto this feeling.</h2>
+      <p class="sheet-intro" id="journalPrompt">A private note for your own return.</p>
+      <form id="journalForm">
+        <fieldset class="mood-set"><legend>How did this walk feel?</legend>
+          <div class="mood-options">
+            <label><input type="radio" name="mood" value="Restored" checked /><span>Restored</span></label>
+            <label><input type="radio" name="mood" value="Curious" /><span>Curious</span></label>
+            <label><input type="radio" name="mood" value="Steady" /><span>Steady</span></label>
+            <label><input type="radio" name="mood" value="Energized" /><span>Energized</span></label>
+          </div>
+        </fieldset>
+        <label>Reflection <textarea id="journalNote" rows="5" maxlength="1000" placeholder="A few words about where your feet and attention took you…"></textarea></label>
+        <button class="primary-button wide-button" type="submit">Save reflection</button>
+      </form>
+    </section>
+
+    <section class="sheet hidden" id="filtersSheet" role="dialog" aria-modal="true" aria-labelledby="filtersTitle">
+      <button class="close-sheet" data-close-sheet aria-label="Close">×</button>
+      <span class="sheet-kicker">MAP FILTERS</span>
+      <div class="filters-sheet-heading">
+        <h2 id="filtersTitle">Places to explore</h2>
+        <button class="text-button" id="clearPoiFiltersButton">Show all</button>
+      </div>
+      <p class="sheet-intro">Choose tags to show on the map. Leave all unselected to see everything.</p>
+      <div class="poi-chips" id="poiTagFilters" role="group" aria-label="Place tags"></div>
+      <p class="sheet-intro" id="poiFilterStatus" role="status"></p>
+      <button class="primary-button wide-button" id="applyFiltersButton" type="button">Apply filters</button>
+    </section>
+
+    <section class="sheet hidden" id="onboardingSheet" role="dialog" aria-modal="true" aria-labelledby="onboardingTitle">
+      <span class="sheet-kicker">WELCOME TO WALK &amp; WILDLIFE</span><h2 id="onboardingTitle">What would you like to notice?</h2>
+      <p class="sheet-intro">Choose any interests to make nearby discoveries more relevant. You can change these at any time in Profile.</p>
+      <div class="poi-chips" id="onboardingInterestChips" role="group" aria-label="Initial interests"><button class="poi-chip" type="button" data-onboarding-interest="park">Green space</button><button class="poi-chip" type="button" data-onboarding-interest="trail">Wildlife</button><button class="poi-chip" type="button" data-onboarding-interest="history">Local history</button><button class="poi-chip" type="button" data-onboarding-interest="water_access">Water</button><button class="poi-chip" type="button" data-onboarding-interest="public_art">Public art</button></div>
+      <div class="sheet-actions onboarding-actions"><button class="secondary-button" id="skipOnboardingButton" type="button">Skip for now</button><button class="primary-button" id="saveOnboardingButton" type="button">Save interests</button></div>
+    </section>
+
+    <section class="sheet hidden" id="fieldEditionSheet" role="dialog" aria-modal="true" aria-labelledby="fieldEditionTitle">
+      <button class="close-sheet" data-close-sheet aria-label="Close">×</button><span class="sheet-kicker">FIELD EDITIONS</span><h2 id="fieldEditionTitle">Offline, with care.</h2>
+      <p class="sheet-intro">Field Editions fund durable regional map packages and local editorial work. They never restrict your personal journal, privacy controls, exports, or data deletion.</p>
+      <div class="field-edition-benefits"><span>Offline map regions</span><span>Curated local stories</span><span>Seasonal field guides</span></div>
+      <p class="privacy-boundary">Payment and partner verification are not connected in this prototype. A production release needs server-verified purchase and institutional grants.</p>
+    </section>
+
+    <section class="sheet hidden" id="routeSheet" role="dialog" aria-modal="true" aria-labelledby="routeSheetTitle">
+      <button class="close-sheet" data-close-sheet aria-label="Close">×</button><span class="sheet-kicker">ACTIVE WALK</span><h2 id="routeSheetTitle">Your walk is underway</h2>
+      <div class="route-progress"><strong id="routeSheetDistance">0.00 mi</strong><span id="routeSheetDuration">00:00 elapsed</span></div>
+      <p class="sheet-intro">Keep the app open to record your route. Nearby places will appear as you explore.</p>
+      <div class="sheet-actions"><button class="secondary-button" id="routePauseButton" type="button">Pause</button><button class="primary-button" id="routeEndButton" type="button">End walk</button></div>
+    </section>
+
+    <section class="sheet tall-sheet hidden" id="planWalkSheet" role="dialog" aria-modal="true" aria-labelledby="planWalkTitle">
+      <button class="close-sheet" data-close-sheet aria-label="Close">×</button><span class="sheet-kicker">TIME-BASED WALK</span><h2 id="planWalkTitle">Plan your walk</h2>
+      <fieldset class="planner-options"><legend>1. How much time do you have?</legend><div class="planner-choice-row"><label><input type="radio" name="walkTime" value="15" checked />15 min</label><label><input type="radio" name="walkTime" value="30" />30 min</label><label><input type="radio" name="walkTime" value="45" />45 min</label><label><input type="radio" name="walkTime" value="60" />60+ min</label></div></fieldset>
+      <fieldset class="planner-options"><legend>2. Route shape</legend><div class="planner-choice-row"><label><input type="radio" name="routeMode" value="round-trip" checked />Round trip</label><label><input type="radio" name="routeMode" value="point-to-point" />Point to point</label></div></fieldset>
+      <div id="pointToPointControls">
+        <p class="planner-endpoints" id="planEndpoints">Start: current location · End: choose a destination</p>
+        <div class="planner-choice-row"><button class="secondary-button" id="choosePlanStartButton" type="button">Change start</button><button class="secondary-button" id="choosePlanEndButton" type="button">Choose destination</button></div>
+      </div>
+      <fieldset class="planner-options"><legend>3. What would feel good today?</legend><div class="poi-chips"><button type="button" class="poi-chip planner-chip" data-planner-tag="park">Green space</button><button type="button" class="poi-chip planner-chip" data-planner-tag="trail">Wildlife</button><button type="button" class="poi-chip planner-chip" data-planner-tag="history">Learn something local</button><button type="button" class="poi-chip planner-chip" data-planner-tag="quiet">Move gently</button></div></fieldset>
+      <label class="text-walk-helper"><span>Describe a walk</span><textarea id="textWalkInput" rows="2" maxlength="240" placeholder="A gentle 30 minute walk through Meridian Hill Park and local history"></textarea><small>Matched only against public places already on this device.</small></label>
+      <button class="secondary-button wide-button" id="draftTextWalkButton" type="button">Draft this local walk</button>
+      <div class="plan-preview"><span>YOUR STARTING PLAN</span><strong id="planDistance">~0.75 miles</strong><p id="planSummary">A gentle loop with nearby discoveries.</p></div>
+      <div class="plan-influences hidden" id="planInfluences" aria-live="polite"></div>
+      <div class="route-options" id="planOptions" aria-label="Suggested routes"></div>
+      <button class="secondary-button plan-map-button" id="showPlanOptionsOnMap" type="button">View route options on map</button>
+      <ol class="plan-stops" id="planStops" aria-label="Two discoveries along this walk"></ol>
+      <div class="sheet-actions"><button class="secondary-button" type="button" data-close-sheet>Cancel</button><button class="primary-button" id="startPlannedWalkButton" type="button">Start walk</button></div>
+    </section>
+
+    <section class="sheet hidden" id="infoSheet" role="dialog" aria-modal="true" aria-labelledby="infoTitle">
+      <button class="close-sheet" data-close-sheet aria-label="Close">×</button>
+      <span class="sheet-kicker">DESIGNED FOR YOUR DEVICE</span>
+      <h2 id="infoTitle">Private by default.</h2>
+      <ul class="info-list">
+        <li>Walks, reflections, and observations are stored in this browser using IndexedDB.</li>
+        <li>Location is only requested while you choose to use it. This web demo does not track in the background.</li>
+        <li>Map tiles are cached as you view them; open the app once while online before relying on a route offline.</li>
+        <li>Historic prompts use a small prototype dataset. Confirm accessibility, hours, and safety guidance before each visit.</li>
+        <li id="norfolkAttribution" class="hidden">Norfolk places data: City of Norfolk Open Data.</li>
+      </ul>
+      <button class="secondary-button wide-button" id="clearDataButton">Clear this device's journal data</button>
+    </section>
+
+    <section class="sheet tall-sheet hidden" id="onlineSheet" role="dialog" aria-modal="true" aria-labelledby="onlineTitle">
+      <button class="close-sheet" data-close-sheet aria-label="Close">×</button>
+      <span class="sheet-kicker">OPTIONAL ONLINE MODE</span>
+      <h2 id="onlineTitle">Friends, not tracking.</h2>
+      <p class="privacy-boundary">Online mode can sync only total points, miles, and number of sites discovered. Your routes, journal, nature notes, and photos stay on this device.</p>
+      <section id="onlineSetupPanel" class="online-panel hidden">
+        <strong>Connect a Supabase project first</strong>
+        <p>Add your project URL and publishable/anon key to <code>supabase-config.js</code>, then run the included SQL schema. Until then, everything remains local.</p>
+      </section>
+      <form id="magicLinkForm" class="online-panel hidden">
+  <label>Email
+    <input id="onlineEmail" type="email" autocomplete="email" required placeholder="you@example.com" />
+  </label>
+
+  <label>Password
+    <input id="onlinePassword" type="password" autocomplete="current-password" required />
+  </label>
+
+  <div class="sheet-actions">
+    <button class="secondary-button" type="button" id="signInButton">
+      Sign in
+    </button>
+    <button class="primary-button wide-button" type="button" id="signUpButton">
+      Create account
+    </button>
+  </div>
+</form>
+      <form id="usernameForm" class="online-panel hidden">
+  <p>Choose the public name friends will search for. It is the only identity shown on the leaderboard.</p>
+  <label>Username <input id="usernameInput" maxlength="24" pattern="[A-Za-z0-9_]{3,24}" required placeholder="e.g., trailfriend" /></label>
+  <button class="primary-button wide-button" type="submit">Create online profile</button>
+</form>
+      <section id="onlineDashboard" class="online-panel hidden">
+        <div class="online-status"><span class="status-dot"></span><span id="onlineStatusText">Online</span><button class="text-button" id="syncNowButton">Sync now</button><button class="text-button" id="accountSettingsButton">Account settings</button></div>
+        <div class="leaderboard-heading"><div><p class="sheet-kicker">SMALL CIRCLE</p><h3>Leaderboard</h3></div><button class="text-button" id="refreshFriendsButton">Refresh</button></div>
+        <div id="leaderboardList" class="leaderboard-list"></div>
+        <form id="friendSearchForm" class="friend-form">
+          <label>Add a friend by username <div class="inline-form"><input id="friendUsernameInput" maxlength="24" required placeholder="username" /><button class="secondary-button" type="submit">Find</button></div></label>
+        </form>
+        <div id="friendSearchResult" class="friend-result hidden"></div>
+        <section id="incomingRequests" class="requests-section hidden"><p class="sheet-kicker">REQUESTS</p><div id="incomingRequestsList"></div></section>
+        <section class="requests-section" id="cohortPanel">
+          <p class="sheet-kicker">NEIGHBORHOOD COHORTS</p>
+          <p class="sheet-intro">Create a small group around the issues you choose. Neighborhood labels are self-described—not inferred from your routes or location.</p>
+          <form id="createCohortForm" class="friend-form">
+            <label>Group name <input id="cohortNameInput" maxlength="80" required placeholder="Saturday Walkers" /></label>
+            <label>Neighborhood label <input id="cohortNeighborhoodInput" maxlength="120" required placeholder="My neighborhood" /></label>
+            <label>Walking cadence <input id="cohortCadenceInput" maxlength="80" placeholder="Weekly" /></label>
+            <fieldset><legend>What does your group care about?</legend><div id="cohortIssueChoices" class="poi-chips"></div></fieldset>
+            <label><input id="cohortDiscoveryOptIn" type="checkbox" /> Let organizers with a matching local issue discover this group</label>
+            <button class="primary-button wide-button" type="submit">Create cohort</button>
+          </form>
+          <div id="cohortList" class="leaderboard-list"></div>
+          <div id="cohortInviteList" class="leaderboard-list"></div>
+        </section>
+        <section class="requests-section" id="organizerPanel">
+          <p class="sheet-kicker">ORGANIZER PILOT</p>
+          <p class="sheet-intro">Create a public organizer profile and one expiring local request. For this pilot, a cohort shares its neighborhood code directly with the organizer it chooses to work with.</p>
+          <form id="organizerProfileForm" class="friend-form">
+            <label>Affiliation <input id="organizerAffiliationInput" maxlength="120" required placeholder="Organization or community group" /></label>
+            <label>Public profile link <input id="organizerProfileLinkInput" type="url" required placeholder="https://…" /></label>
+            <button class="secondary-button wide-button" type="submit">Save organizer profile</button>
+          </form>
+          <form id="organizerRequestForm" class="friend-form">
+            <label>Neighborhood code <input id="organizerNeighborhoodInput" maxlength="80" required placeholder="Shared by the cohort" /></label>
+            <label>Issue <select id="organizerIssueSelect" required></select></label>
+            <label>Request title <input id="organizerRequestTitleInput" maxlength="140" required /></label>
+            <label>What are you organizing around? <textarea id="organizerRequestSummaryInput" maxlength="600" required></textarea></label>
+            <label>Official link <input id="organizerRequestLinkInput" type="url" required placeholder="https://…" /></label>
+            <label>Expires <input id="organizerRequestExpiryInput" type="datetime-local" required /></label>
+            <button class="primary-button wide-button" type="submit">Publish organizer request</button>
+          </form>
+          <div id="organizerRequestList" class="leaderboard-list"></div>
+        </section>
+      </section>
+    </section>
+
+    <section class="sheet hidden" id="accountSheet" role="dialog" aria-modal="true" aria-labelledby="accountTitle">
+      <button class="close-sheet" data-close-sheet aria-label="Close">×</button>
+      <span class="sheet-kicker">ACCOUNT SETTINGS</span>
+      <h2 id="accountTitle">Manage your account</h2>
+      <form id="accountUsernameForm" class="online-panel">
+        <label>Username <input id="accountUsernameInput" maxlength="24" pattern="[A-Za-z0-9_]{3,24}" required /></label>
+        <button class="secondary-button" type="submit">Update username</button>
+      </form>
+      <form id="accountEmailForm" class="online-panel">
+        <label>Email <input id="accountEmailInput" type="email" required /></label>
+        <button class="secondary-button" type="submit">Update email</button>
+        <p class="sheet-intro">Changing your email may ask you to confirm via a link sent to the new address.</p>
+      </form>
+      <form id="accountPasswordForm" class="online-panel">
+        <label>New password <input id="accountPasswordInput" type="password" autocomplete="new-password" required minlength="6" /></label>
+        <button class="secondary-button" type="submit">Update password</button>
+      </form>
+    </section>
+
+    <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
+    <script src="./vendor/leaflet/leaflet.js"></script>
+    <script src="./vendor/leaflet-markercluster/leaflet.markercluster.js"></script>
+    <script src="./vendor/maplibre-gl.js"></script>
+    <script src="./vendor/pmtiles.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./supabase-config.js"></script>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

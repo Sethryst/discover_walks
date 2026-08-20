@@ -1,0 +1,15 @@
+{
+  "id": "meadowlark-gardens",
+  "title": "Meadowlark Botanical Gardens Field Edition",
+  "boundary": "./boundary.geojson",
+  "zoomLevels": { "min": 12, "max": 18 },
+  "osm": { "pbfUrl": "https://download.geofabrik.de/north-america/us/virginia-latest.osm.pbf" },
+  "contentSources": ["osm", "wikidata", "editorial"],
+  "offlineCapabilities": ["map", "curated-places", "curated-routes", "stories", "journal-prompts"],
+  "editorial": {
+    "places": "./places.json",
+    "routes": "./routes.json",
+    "stories": "./stories.json",
+    "sources": "./sources.json"
+  }
+}

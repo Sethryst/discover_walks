@@ -1,0 +1,110 @@
+{
+  "generatedAt": "2026-08-07T10:21:26.858342Z",
+  "pois": [
+    {
+      "category": "journey",
+      "chapters": [
+        {
+          "amenities": [
+            "restrooms"
+          ],
+          "description": "Enjoy water views and local birdlife around the central ponds.",
+          "distance_miles": 1.2,
+          "estimated_duration_minutes": 34,
+          "experience_score": 35,
+          "geometry": {
+            "coordinates": [],
+            "type": "LineString"
+          },
+          "id": "meadowlark-gardens-loop-chapter-2",
+          "is_loop": true,
+          "name": "Lake Caroline Loop",
+          "stops": [
+            {
+              "name": "Lake View",
+              "type": "viewpoint"
+            }
+          ]
+        },
+        {
+          "amenities": [
+            "restrooms",
+            "parking"
+          ],
+          "description": "A peaceful stroll to the iconic traditional Korean Bell Garden.",
+          "distance_miles": 0.8,
+          "estimated_duration_minutes": 27,
+          "experience_score": 20,
+          "geometry": {
+            "coordinates": [],
+            "type": "LineString"
+          },
+          "id": "meadowlark-gardens-loop-chapter-1",
+          "is_loop": false,
+          "name": "Korean Bell Garden Walk",
+          "stops": [
+            {
+              "name": "Korean Bell Pavilion",
+              "type": "viewpoint"
+            }
+          ]
+        }
+      ],
+      "description": "A 95-acre oasis of beautiful gardens, peaceful ponds, and native plant collections.",
+      "featured": true,
+      "id": "meadowlark-gardens-loop",
+      "lat": 0.0,
+      "lng": 0.0,
+      "name": "Meadowlark Botanical Gardens",
+      "region": "vienna",
+      "type": "journey"
+    },
+    {
+      "category": "journey",
+      "chapters": [
+        {
+          "amenities": [
+            "transit",
+            "coffee",
+            "parking"
+          ],
+          "description": "A flat walk past the historic Vienna Train Station with easy town access.",
+          "distance_miles": 1.5,
+          "estimated_duration_minutes": 45,
+          "experience_score": 35,
+          "geometry": {
+            "coordinates": [],
+            "type": "LineString"
+          },
+          "id": "wod-trail-vienna-chapter-1",
+          "is_loop": false,
+          "name": "Train Station to Community Center",
+          "stops": [
+            {
+              "name": "Vienna Train Station Museum",
+              "type": "historic_site"
+            },
+            {
+              "name": "Town Center Cafe",
+              "type": "rest"
+            }
+          ]
+        }
+      ],
+      "description": "A paved, highly accessible rail-trail walk through the heart of historic downtown Vienna.",
+      "featured": true,
+      "id": "wod-trail-vienna",
+      "lat": 0.0,
+      "lng": 0.0,
+      "name": "W&OD Trail: Historic Vienna",
+      "region": "vienna",
+      "type": "journey"
+    }
+  ],
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "development"
+  },
+  "regionId": "vienna",
+  "schemaVersion": 1
+}
