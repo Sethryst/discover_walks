@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "artifactType": "civic-boundary-manifest",
+  "regionId": "washington-dc",
+  "generatedAt": "2026-08-20T19:59:42.440Z",
+  "cadence": {
+    "fastPath": "daily",
+    "slowPath": "weekly",
+    "note": "DC is tier 1; a failed source must retain the prior verified artifact rather than ship an empty layer."
+  },
+  "sourcePolicy": {
+    "runtimeNetworkAccess": false,
+    "provider": "dcgis-arcgis",
+    "osmRole": "none — civic boundaries are authoritative government data"
+  },
+  "schemaCompatibility": {
+    "minimumReaderVersion": 1,
+    "cachePolicy": "Readers must reject an unknown schemaVersion and refresh the package."
+  },
+  "layers": [
+    {
+      "id": "wards",
+      "filename": "wards.geojson",
+      "role": "ward_boundaries",
+      "featureCount": 8,
+      "checksum": "sha256:2fbc150dc4bfb456bc8fba6af12612011a8e7d39a4bab4896fbf9fed964876cc",
+      "sourceUrl": "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_APPS/PropertyQuest/MapServer/35/query?where=1%3D1&outFields=WARD%2CNAME%2CWARD_ID%2CGIS_ID&returnGeometry=true&outSR=4326&f=geojson",
+      "effectiveFrom": null
+    },
+    {
+      "id": "ancs",
+      "filename": "ancs.geojson",
+      "role": "anc_boundaries",
+      "featureCount": 40,
+      "checksum": "sha256:8c7e93d7398cc8e880229522f8d270206f4c93c87c917bf1a9189bb94715db33",
+      "sourceUrl": "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Administrative_Other_Boundaries_WebMercator/MapServer/1/query?where=1%3D1&outFields=NAME%2CANC_ID%2CGIS_ID&returnGeometry=true&outSR=4326&f=geojson",
+      "effectiveFrom": "2013-01-01"
+    },
+    {
+      "id": "police-districts",
+      "filename": "police-districts.geojson",
+      "role": "police_district_boundaries",
+      "featureCount": 7,
+      "checksum": "sha256:ad9bc47e060f3372bbeecff0f3d0ef3ba95afb507474e0b5f933b230a7f9f8c7",
+      "sourceUrl": "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Public_Safety_WebMercator/MapServer/9/query?where=1%3D1&outFields=NAME%2CDISTRICT%2CPOLICEDISTRICT%2CGLOBALID&returnGeometry=true&outSR=4326&f=geojson",
+      "effectiveFrom": "2019-01-10"
+    }
+  ],
+  "featureFingerprints": {
+    "wards": {
+      "1": "sha256:cb941737124b6f226a5d7ccdbf85bbd7dcd7640bd3279c9e4cce8cf91382ab6e",
+      "2": "sha256:155aa306507a7d11ff851b6ebe6ce95ace65b83a86b1d0d50a481a0a2dce9d89",
+      "3": "sha256:faff3771118dd69c8deb394062ae199b168f7d12733c7e2e928ee5e3f9ce921e",
+      "4": "sha256:23dae939c25bcf684a3e76185e3b7192625de16992592d6139eb57da440dcc07",
+      "5": "sha256:80bae7be1f50569298e9bc7a3f849c27e72a901338f9401bcc06a850099d1399",
+      "6": "sha256:0ab38797215e842d8506e6ea2fc3cd79bfb0f8b95c2e895862435ab244e7f980",
+      "7": "sha256:0e6b644be889e99dc05b2ea826e210e17e43dacce6b52c4ec6e4ea8c4bf8cb3b",
+      "8": "sha256:6788beed06e9e34ba54ae3189567f43cc3d85e6ce7307238eb7da8052c8ccf8e"
+    },
+    "ancs": {
+      "1A": "sha256:f5fdc954808f838a6fef37f691a6398ed86e5add3a8df391af448bcce90e4a4d",
+      "1B": "sha256:f8330e3da08a8136c6bdd74d7940f7ec646099182c51e2e65452ef4f8b65dd94",
+      "1C": "sha256:93102fff896c3ee3e37e7f6d7c4d4571942988e4525cc7459d4a5d596eec6c8e",
+      "1D": "sha256:4ffa7f81edf2273503cfe527202511381e6c19104076fc3aeec0f3b0c83de116",
+      "2A": "sha256:44a077fb6c4eb78e38b00c67d95bb84b54f6937eb79324f83e827f3bc3a42ecb",
+      "2B": "sha256:4c420c529dd8ebc845aa7e959923ab5f79042bd047ceb20e2f1686f0e6403e16",
+      "2C": "sha256:4ef0fc1f7c8409040ae851718caa5eb343711d59f5b5b2af8c95c7d3651e2754",
+      "2D": "sha256:49ce412c5f0c0fa84c2d82bf82a2cee5b7544d7d61764cca10ec928967a122e4",
+      "2E": "sha256:b728745e8f411b2de1dab8407775aac65414c835af4679c994f7d6f5a1f8a9cb",
+      "2F": "sha256:2e22bd46b7e26519ffd988c7c2a166b4840baa16f9f963a5f7c9a42b4aaa1aec",
+      "3B": "sha256:e0520788eca09ac65b826a9ad581a879b1580e6efeac323b90c7d42f7c7f7057",
+      "3C": "sha256:d54da6a594ec14a0987de3e410e23690f0da2f9c00c3196c5b15d00989da7b01",
+      "3D": "sha256:6b9df81fbe4b34ff9c20bfc81d61c95c9a07f3076722e4c6f15d2eed5988accb",
+      "3E": "sha256:4db00245495021a2f0b60e71d9e808075b4192cf7c63c007e52b381070ee5dd5",
+      "3F": "sha256:e01998e4aeec461ec5e9d634ad25f46d12bb6aba040855792e3560142a66b9be",
+      "3G": "sha256:a52489bb4c54a319fd066e8732e071c2d749c0336f4e15635e09053b7448fe38",
+      "4A": "sha256:1ea6618a42c8ae49183519253d70a340c93cebc52858bd0711d71a6ab8ec33af",
+      "4B": "sha256:65b4bc5b514b661129cde0da2f397fb34566ff12682794e049687d7712aead1f",
+      "4C": "sha256:bca1fcc3bec156ac8845dda51448dacc873bc46b55850c777294ad1c7e9e9c4d",
+      "4D": "sha256:ec307b9747e441f1aaa75c852742e598be2e0d41c370b898a162616edcf12c2d",
+      "5A": "sha256:1e82f7aed7b1522d536267be60479e3e2b5388f33bb57d3878c75cfe71b1d085",
+      "5B": "sha256:6d0dac1101b3d890e76fb926570645ffc15c86c30d2a3792a77cc35e80c35c2f",
+      "5C": "sha256:88e11e044dd068edc31db0630f5cad30e702e51132fe469901b195144a503cdd",
+      "5D": "sha256:a484fc36ce82cbd35b6a42f090ed45b27f27940e159762911a7e2bb288279cc0",
+      "5E": "sha256:ce4ee199671532f086b67628b00a434c55f2650563aca103053cfdd1a90899ae",
+      "6A": "sha256:65ca4224113e8f0082fb4def417eb9495a074c834cf07a717afe20b25d8121e4",
+      "6B": "sha256:386aa3ecf83580023ef011b9dd98e85b898e81aed94a6971769557df8f42c480",
+      "6C": "sha256:1fb1e6d0880389b56d72e56cf59e294b041f949fdeff365aee74aa0381276146",
+      "6D": "sha256:779c3c819578faa16e63506df39ea4ed3cd9d3675c1805bb5c022b40547ab8e3",
+      "6E": "sha256:8743a43327d59cf86877e877205decf9c1cd8a1aa238fe3cc685b4ea91420289",
+      "7B": "sha256:c22facb99826818d51954732672b642917781b698422ca897723ac3a5c91acd7",
+      "7C": "sha256:f4e3a18b59b6e0dfc8bb74a09b54e7630d4d0872681ae1af6b1e9c26cf20911f",
+      "7D": "sha256:237bc4dbfa7fcd4c7aa8fd4e881dbb74e22c1291bedf268d8e241172b85b4767",
+      "7E": "sha256:dfdd700f5cfe32b771c8b467cf5e32f6588d5cbff41780a56f2671f1a7876a4b",
+      "7F": "sha256:e30f2c72a525adf08337682a0cdc31a7331a66b094bbcc3b784fa026b3e9f999",
+      "8A": "sha256:52e86d82a209adc977f74a8f75b9efdc13bfd120f3311c3afcf08638b1c7fc9e",
+      "8B": "sha256:152c5398df1aced25cf8688c661ecf26b77dbb8ee0595fbb683b5c62da32e8e1",
+      "8C": "sha256:d78f02093d953baa9990ca2657f08ed953686accd71412d78211bf55a0c2df9e",
+      "8D": "sha256:ed00789bfe0b67c658b2590e4db2376eb721b43f645bd70827f49dfec7006b0c",
+      "8E": "sha256:4375de7daffff550291f091a201792a9a7314f69032bde5accd196fe89b3b814"
+    },
+    "police-districts": {
+      "1D": "sha256:0623a5a251eac35c6c47c182f8223d0749485e6d05c9079cfc91a8691ec58bb7",
+      "2D": "sha256:1bea68859adef0dacfee7e89d3a2e053f6f64688e7f4a45a4fddbc1e3aef31ba",
+      "3D": "sha256:d920a5cd6d0db11624bffba6d53a6e51325d93ddeddd6f711644aa40e6f0ef80",
+      "4D": "sha256:5f1cb291f308365b2c9a74a053f8a11c8dcdd89312cb59d8906358d556e65801",
+      "5D": "sha256:262ee6013a6e0aec64a85cd860ee01d360881a6bad0d840aa0be62869102f9b5",
+      "6D": "sha256:404843e142a4b6a4efd8a01eca60b97aff01c7e8fec7d3783580223ae5368feb",
+      "7D": "sha256:724f838fa853791b34b7318588920539a11f4a5e89979436956f81a49c38743c"
+    }
+  },
+  "featureChanges": {},
+  "featureCountTrend": [
+    {
+      "generatedAt": "2026-08-20T19:59:14.808Z",
+      "counts": {
+        "wards": 8,
+        "ancs": 40,
+        "police-districts": 7
+      }
+    },
+    {
+      "generatedAt": "2026-08-20T19:59:42.440Z",
+      "counts": {
+        "wards": 8,
+        "ancs": 40,
+        "police-districts": 7
+      }
+    }
+  ],
+  "enrichment": {
+    "filename": "pois-with-boundaries.json",
+    "method": "point-in-polygon for point POIs only",
+    "limitation": "Polygon/line overlap weighting is intentionally not claimed in v1."
+  },
+  "index": {
+    "filename": "boundaries-indexed.json",
+    "format": "JSON bbox prefilter + GeoJSON point-in-polygon",
+    "binaryFlatbuffer": "deferred until a versioned FlatBuffers schema is adopted"
+  }
+}

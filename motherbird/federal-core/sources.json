@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "provider": "federal-core",
+  "policy": {
+    "municipalSources": "plugins-only",
+    "runtimeNetworkAccess": false,
+    "artifactGranularity": "national source, regional install packages",
+    "femaStatus": "adaptive tiled ingestion with object-ID deduplication"
+  },
+  "layers": [
+    {
+      "id": "states",
+      "adapter": "tiger-arcgis",
+      "boundaryType": "state",
+      "classification": "legal",
+      "authority": "U.S. Census Bureau",
+      "vintage": "2025-01-01",
+      "expectedDescriptionIncludes": "January 1, 2025 vintage",
+      "service": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/0",
+      "idField": "GEOID",
+      "nameField": "NAME",
+      "scopeQueries": {
+        "dc": "GEOID='11'",
+        "national": "1=1"
+      }
+    },
+    {
+      "id": "counties",
+      "adapter": "tiger-arcgis",
+      "boundaryType": "county",
+      "classification": "legal",
+      "authority": "U.S. Census Bureau",
+      "vintage": "2025-01-01",
+      "expectedDescriptionIncludes": "January 1, 2025 vintage",
+      "service": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/1",
+      "idField": "GEOID",
+      "nameField": "NAME",
+      "scopeQueries": {
+        "dc": "GEOID='11001'",
+        "national": "1=1"
+      }
+    },
+    {
+      "id": "congressional-districts",
+      "adapter": "tiger-arcgis",
+      "boundaryType": "congressional_district",
+      "classification": "legal",
+      "authority": "U.S. Census Bureau",
+      "vintage": "119th-congress-2025-01-01",
+      "expectedDescriptionIncludes": "119th Congressional Districts; January 1, 2025 vintage",
+      "service": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Legislative/MapServer/0",
+      "idField": "GEOID",
+      "nameField": "BASENAME",
+      "scopeQueries": {
+        "dc": "STATE='11'",
+        "national": "1=1"
+      }
+    },
+    {
+      "id": "fema-nfhl",
+      "adapter": "fema-nfhl-tiled",
+      "boundaryType": "floodplain",
+      "classification": "contextual_risk",
+      "authority": "Federal Emergency Management Agency",
+      "vintage": "NFHL-current",
+      "service": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28",
+      "idField": "FLD_AR_ID",
+      "nameField": "FLD_ZONE",
+      "objectIdField": "OBJECTID",
+      "outFields": "OBJECTID,DFIRM_ID,FLD_AR_ID,FLD_ZONE,ZONE_SUBTY,SFHA_TF,SOURCE_CIT,GFID,GlobalID",
+      "batchSize": 200,
+      "maxFeaturesPerTile": 1500,
+      "maxTileDepth": 12,
+      "scopeEnvelopes": {
+        "dc": [-77.12, 38.79, -76.9, 39.0],
+        "national": [-180, -15, 180, 72]
+      },
+      "scopeQueries": {
+        "dc": "DFIRM_ID='110001'",
+        "national": "1=1"
+      }
+    }
+  ]
+}
