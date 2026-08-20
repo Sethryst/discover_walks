@@ -221,3 +221,8 @@ button:active { transform: translateY(1px); }.action-card:active, .primary-butto
 .guide-card a { color: var(--moss); font-size: 11px; font-weight: 800; }
 .guide-group { color: #1b8b7e; font-size: 9px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
 @media(max-width:430px){.mode-intro{grid-template-columns:1fr}.mode-intro button{grid-column:1;grid-row:auto;justify-self:start;padding-left:0}.bottom-nav .nav-item{font-size:8.5px}}
+
+.google-auth-button { align-items: center; background: #fff; border: 1px solid #cfd5d1; border-radius: 11px; color: var(--ink); display: flex; font-size: 13px; font-weight: 800; gap: 10px; justify-content: center; min-height: 46px; width: 100%; }
+.google-auth-button span { align-items: center; background: linear-gradient(135deg,#4285f4,#34a853 48%,#fbbc05 72%,#ea4335); border-radius: 50%; color: #fff; display: flex; font: 800 14px system-ui; height: 24px; justify-content: center; width: 24px; }
+.auth-divider { align-items: center; color: var(--muted); display: flex; font-size: 10px; gap: 10px; margin: 13px 0; text-transform: uppercase; }.auth-divider::before,.auth-divider::after { background: var(--line); content: ''; flex: 1; height: 1px; }
+.auth-privacy { color: var(--muted); font-size: 10px; line-height: 1.45; margin: 10px 0 0; text-align: center; }

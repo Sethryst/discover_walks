@@ -364,6 +364,8 @@
         <p>Add your project URL and publishable/anon key to <code>supabase-config.js</code>, then run the included SQL schema. Until then, everything remains local.</p>
       </section>
       <form id="magicLinkForm" class="online-panel hidden">
+  <button class="google-auth-button" type="button" id="googleSignInButton"><span aria-hidden="true">G</span> Continue with Google</button>
+  <div class="auth-divider"><span>or use email</span></div>
   <label>Email
     <input id="onlineEmail" type="email" autocomplete="email" required placeholder="you@example.com" />
   </label>
@@ -380,6 +382,7 @@
       Create account
     </button>
   </div>
+  <p class="auth-privacy">Google authenticates your account. Walk &amp; Wildlife never receives or stores your Google password.</p>
 </form>
       <form id="usernameForm" class="online-panel hidden">
   <p>Choose the public name friends will search for. It is the only identity shown on the leaderboard.</p>

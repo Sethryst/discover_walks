@@ -11,6 +11,10 @@ test('KPI inventory reconciles the frontend and producer source contracts', asyn
   assert.equal(model.summary.backlogCandidates, 101);
   assert.equal(model.summary.coreReadyRegions, model.cities.filter((city) => city.missingRequiredFiles.length === 0).length);
   assert.ok(model.cities.every((city) => city.readinessScore >= 0 && city.readinessScore <= 100));
+  assert.equal(model.summary.experienceModes, 3);
+  assert.equal(model.summary.discoverCategories, 4);
+  assert.ok(model.summary.fieldGuideSubjects >= 6);
+  assert.equal(model.summary.workflowCount, model.automationJobs.length);
   assert.ok(model.sources.some((source) => source.provider === 'arcgis_feature_service'));
   assert.ok(model.sources.some((source) => source.frontend.includes('Walk')));
 });
@@ -22,6 +26,9 @@ test('KPI page exposes operator paths without publishing credential values', asy
   assert.match(html, /Endpoint inventory/);
   assert.match(html, /Live browser services/);
   assert.match(html, /Prioritized repair queue/);
+  assert.match(html, /Product delivery progress/);
+  assert.match(html, /Repository automation/);
+  assert.match(html, /Google sign-in/);
   assert.match(html, /Readiness is a transparent product score/);
   assert.match(html, /id="gapFilter"/);
   assert.match(html, /id="sourceSearch"/);

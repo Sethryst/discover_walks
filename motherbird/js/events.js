@@ -7,7 +7,7 @@ import { getCurrentLocation, startWalk, stopWalk, togglePauseWalk, updateWalkDis
 import { openObservation, saveObservation, setDraftObservationIcon } from './observation.js';
 import { openJournal, closeSheets, openSheet, openAccountSettings, openFiltersSheet, openProfile, renderGeofenceCategoryChips, setArchiveFilter, showView, toast } from './ui.js';
 import { city, citySites, displayPoiName, geofenceCategoriesForCity, renderPoiTagFilters, renderCityPois, showHistory, savePlaceMemory, searchPois, searchOsm } from './poi.js';
-import { syncProfile, renderOnline, openOnline, signIn, signUp, createOnlineProfile, updateAccountUsername, updateAccountPhone, updateAccountEmail, updateAccountPassword, acceptFriend, refreshFriends, findFriend, createCohort, respondToOrganizerRequest, inviteFriendToCohort, respondToCohortInvite, saveOrganizerProfile, createOrganizerRequest, saveCohortSettings, sendCohortMessage } from './online.js';
+import { syncProfile, renderOnline, openOnline, signIn, signUp, signInWithGoogle, createOnlineProfile, updateAccountUsername, updateAccountPhone, updateAccountEmail, updateAccountPassword, acceptFriend, refreshFriends, findFriend, createCohort, respondToOrganizerRequest, inviteFriendToCohort, respondToCohortInvite, saveOrganizerProfile, createOrganizerRequest, saveCohortSettings, sendCohortMessage } from './online.js';
 import { refreshCityMap, switchCity } from './city.js';
 import { renderProfile } from './profile.js';
 import { toggleFavoriteRegion } from './region-favorites.js';
@@ -139,6 +139,7 @@ el('poiSearchResults').addEventListener('click', (event) => {
   el('citySelect').addEventListener('change', (event) => switchCity(event.target.value));
   el('goOnlineButton').addEventListener('click', openOnline);
   el('signInButton').addEventListener('click', signIn);
+el('googleSignInButton').addEventListener('click', signInWithGoogle);
 el('signUpButton').addEventListener('click', signUp);
 el('usernameForm').addEventListener('submit', createOnlineProfile);
   el('syncNowButton').addEventListener('click', async () => { try { await syncProfile(); await renderOnline(); toast('Aggregate stats synced.'); } catch (error) { toast(error.message || 'Could not sync right now.'); } });

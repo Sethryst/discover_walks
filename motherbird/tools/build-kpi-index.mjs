@@ -2,6 +2,8 @@ import { mkdir, readFile, readdir, stat, writeFile } from 'node:fs/promises';
 import { dirname, extname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { CITIES } from '../js/constants.js';
+import { DISCOVER_GROUPS } from '../js/discovery-taxonomy.js';
+import { FIELD_GUIDE_SUBJECTS } from '../js/field-guide.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const motherbirdRoot = resolve(here, '..');
@@ -151,8 +153,28 @@ export async function collectKpiInventory() {
     counts[source.provider] = (counts[source.provider] || 0) + 1; return counts;
   }, {})).map(([provider, count]) => ({ provider, count })).sort((a, b) => b.count - a.count);
 
+  const workflowDirectory = resolve(repoRoot, '.github', 'workflows');
+  const automationJobs = [];
+  if (await exists(workflowDirectory)) {
+    for (const filename of await readdir(workflowDirectory)) {
+      if (!/\.ya?ml$/i.test(filename)) continue;
+      const body = await readFile(resolve(workflowDirectory, filename), 'utf8');
+      const name = body.match(/^name:\s*(.+)$/m)?.[1]?.trim() || filename;
+      automationJobs.push({ name, filename, scheduled: /\bschedule\s*:/m.test(body), manual: /\bworkflow_dispatch\s*:/m.test(body) });
+    }
+  }
+
+  const productCapabilities = [
+    { capability: 'Discover', status: 'Shipped', evidence: `${DISCOVER_GROUPS.length} experience categories · relevant view capped at 24 places`, frontend: 'Map + Discover browser', next: 'Add distance-aware ranking and saved collections' },
+    { capability: 'Field Guide', status: 'Foundation shipped', evidence: `${FIELD_GUIDE_SUBJECTS.length} source-backed educational subjects`, frontend: 'Guide mode', next: 'Generate reviewed regional and seasonal guide packages' },
+    { capability: 'Journal', status: 'Shipped', evidence: 'Personal walks · observations · reflections · remembered places', frontend: 'Journal mode + local IndexedDB', next: 'Add collections and subject references without syncing private content' },
+    { capability: 'Regional source backlog', status: 'Automated', evidence: `${Number(backlog?.summary?.candidateCount || 0)} candidates across ${Number(backlog?.summary?.regionCount || 0)} regions`, frontend: 'KPI operator queue', next: 'Promote passing official structured sources through review gates' },
+    { capability: 'Pages inventory', status: 'Automated', evidence: 'Rebuilt from CITIES, artifacts, configs, endpoints, workflows, and UI contracts', frontend: '/kpi/', next: 'Add live endpoint health and freshness history' },
+    { capability: 'Google sign-in', status: 'Code ready', evidence: 'Supabase OAuth redirect contains no password or client secret', frontend: 'Journal → Go Online', next: 'Enable Google provider in Supabase and Google Cloud' }
+  ];
+
   return {
-    generatedAt: new Date().toISOString(), cities, configs: configs.map(({ id, name }) => ({ id, name })), sources, providers, gaps,
+    generatedAt: new Date().toISOString(), cities, configs: configs.map(({ id, name }) => ({ id, name })), sources, providers, gaps, automationJobs, productCapabilities,
     runtimeServices: [
       { service: 'NWS', endpoint: 'api.weather.gov', trigger: 'User requests live conditions', consumer: 'js/weather.js → weather brief', privacy: 'Uses selected region center; no user GPS sent' },
       { service: 'Open-Meteo', endpoint: 'api.open-meteo.com', trigger: 'User requests live conditions', consumer: 'js/weather.js → weather brief', privacy: 'Uses selected region center; no user GPS sent' },
@@ -171,7 +193,12 @@ export async function collectKpiInventory() {
       readyBacklog: Number(backlog?.summary?.classifications?.READY || 0),
       gaps: gaps.length,
       p0Gaps: gaps.filter((gap) => gap.priority === 'P0').length,
-      p1Gaps: gaps.filter((gap) => gap.priority === 'P1').length
+      p1Gaps: gaps.filter((gap) => gap.priority === 'P1').length,
+      experienceModes: 3,
+      discoverCategories: DISCOVER_GROUPS.length,
+      fieldGuideSubjects: FIELD_GUIDE_SUBJECTS.length,
+      workflowCount: automationJobs.length,
+      scheduledWorkflowCount: automationJobs.filter((job) => job.scheduled).length
     }
   };
 }
@@ -183,6 +210,7 @@ function renderRows(rows, columns) {
 export function renderKpiHtml(model) {
   const { summary } = model;
   const cards = [
+    ['Experience modes', summary.experienceModes, `${summary.discoverCategories} Discover categories · ${summary.fieldGuideSubjects} Guide subjects`],
     ['Core-ready regions', summary.coreReadyRegions, `of ${summary.selectableRegions} selectable regions load required place + civic packages`],
     ['Average readiness', `${summary.averageReadiness}%`, 'Places 30 · civic 20 · walks 20 · producer 20 · conditions 10'],
     ['Producer regions', summary.producerRegions, 'Governed region source configurations'],
@@ -212,17 +240,28 @@ export function renderKpiHtml(model) {
     { key: 'service', label: 'Service' }, { key: 'endpoint', label: 'Endpoint' }, { key: 'trigger', label: 'When called' },
     { key: 'consumer', label: 'Frontend consumer' }, { key: 'privacy', label: 'Privacy boundary' }
   ]);
+  const capabilityRows = renderRows(model.productCapabilities, [
+    { key: 'capability', label: 'Capability' }, { key: 'status', label: 'Status', render: (r) => `<span class="pill ${/shipped|automated/i.test(r.status) ? 'good' : 'warn'}">${escapeHtml(r.status)}</span>` },
+    { key: 'evidence', label: 'Observable evidence' }, { key: 'frontend', label: 'User/operator surface' }, { key: 'next', label: 'Next automation step' }
+  ]);
+  const workflowRows = renderRows(model.automationJobs, [
+    { key: 'name', label: 'Workflow' }, { key: 'filename', label: 'File' },
+    { key: 'scheduled', label: 'Scheduled', render: (r) => r.scheduled ? '<span class="pill good">Yes</span>' : 'No' },
+    { key: 'manual', label: 'Manual run', render: (r) => r.manual ? 'Available' : 'Not declared' }
+  ]);
   const providerBars = model.providers.slice(0, 10).map(({ provider, count }) => `<div class="bar-row"><span>${escapeHtml(provider)}</span><div class="bar"><i style="width:${Math.max(4, count / model.providers[0].count * 100)}%"></i></div><strong>${count}</strong></div>`).join('');
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Gremlin Labs data & capability index</title>
 <style>:root{--ink:#17221d;--muted:#5f6d65;--paper:#f5f2e9;--card:#fffdf7;--line:#d8d2c2;--green:#287454;--mint:#dcecdf;--amber:#9b6500;--red:#9b3c2f}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}header,main{width:min(1440px,calc(100% - 32px));margin:auto}header{padding:48px 0 24px}h1{font:700 clamp(2rem,5vw,4.4rem)/.98 Georgia,serif;max-width:900px;margin:.25rem 0 1rem}h2{font:700 1.55rem Georgia,serif;margin:0 0 .35rem}p{color:var(--muted)}.eyebrow{letter-spacing:.14em;text-transform:uppercase;font-size:.75rem;color:var(--green);font-weight:800}.updated{font-size:.85rem}.cards{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:24px 0}.card,.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:0 4px 18px #203b2810}.card{padding:18px}.card b{display:block;font:700 2.2rem Georgia,serif;color:var(--green)}.card small{color:var(--muted)}.panel{padding:22px;margin:0 0 20px;overflow:hidden}.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:28px;margin-top:18px}.flow div{background:var(--mint);padding:14px;border-radius:12px;position:relative}.flow div:not(:last-child):after{content:'→';position:absolute;right:-22px;top:30%;font-weight:800;color:var(--green)}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}input,select{min-height:42px;border:1px solid var(--line);background:white;border-radius:10px;padding:8px 12px;font:inherit}input{flex:1;min-width:220px}table{width:100%;border-collapse:collapse;font-size:.88rem}th{text-align:left;color:var(--muted);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase}th,td{padding:11px 9px;border-bottom:1px solid #e5e0d4;vertical-align:top}a{color:var(--green)}.pill{display:inline-block;border-radius:999px;padding:3px 8px;font-size:.75rem;font-weight:700}.good{background:var(--mint);color:var(--green)}.warn{background:#f8e9c5;color:var(--amber)}.bad{background:#f7ded8;color:var(--red)}.score{height:7px;width:90px;background:#ebe7dc;border-radius:99px;overflow:hidden;margin-bottom:4px}.score span{display:block;height:100%;background:var(--green)}.bar-row{display:grid;grid-template-columns:190px 1fr 35px;gap:10px;align-items:center;margin:9px 0}.bar{height:12px;background:#ebe7dc;border-radius:99px;overflow:hidden}.bar i{display:block;height:100%;background:var(--green);border-radius:99px}.two{display:grid;grid-template-columns:1fr 1fr;gap:20px}.note{border-left:4px solid var(--green);padding-left:14px}.empty{padding:24px;text-align:center;color:var(--muted)}footer{padding:24px 0 50px;color:var(--muted)}@media(max-width:1100px){.cards{grid-template-columns:repeat(3,1fr)}}@media(max-width:900px){.cards{grid-template-columns:repeat(2,1fr)}.flow,.two{grid-template-columns:1fr}.flow div:not(:last-child):after{content:'↓';right:50%;top:auto;bottom:-26px}}@media(max-width:650px){header,main{width:min(100% - 20px,1440px)}header{padding-top:28px}.cards{grid-template-columns:1fr 1fr}.card{padding:14px}.card b{font-size:1.8rem}.panel{padding:16px}table,tbody,tr,td{display:block}thead{display:none}tr{padding:10px 0;border-bottom:1px solid var(--line)}td{border:0;padding:4px 0 4px 42%}td:before{content:attr(data-label);float:left;margin-left:-72%;width:68%;color:var(--muted);font-size:.72rem;text-transform:uppercase}.bar-row{grid-template-columns:120px 1fr 28px}}</style></head><body>
 <header><div class="eyebrow">Gremlin Labs · operator dashboard</div><h1>Data & capability index</h1><p>One repository-backed view of what Mother Bird can show, where the data originates, how it is transformed, and what is not connected yet.</p><p class="updated">Generated ${escapeHtml(model.generatedAt)} during the Pages build. Counts describe repository state—not a claim of geographic completeness.</p></header><main>
 <section class="cards">${cards.map(([label,value,note])=>`<article class="card"><span>${escapeHtml(label)}</span><b>${value}</b><small>${escapeHtml(note)}</small></article>`).join('')}</section>
 <section class="panel"><h2>How data reaches a walker</h2><p>Secrets stay in scheduled producer jobs. Published browser assets contain reviewed outputs, never credential values.</p><div class="flow"><div><b>Official source</b><br><small>ArcGIS, APIs, RSS/ICS, open data</small></div><div><b>Provider adapter</b><br><small>Fetch, normalize, validate</small></div><div><b>Governed artifact</b><br><small>Attribution, stable IDs, freshness</small></div><div><b>Mother Bird package</b><br><small>POIs, journeys, civic, conditions</small></div><div><b>Frontend view</b><br><small>Map, Walks, Vote, Volunteer, Events</small></div></div></section>
+<section class="panel"><h2>Product delivery progress</h2><p>Observable UI behavior and automation foundations detected from the same code and repository contracts deployed to Pages.</p><table><thead><tr><th>Capability</th><th>Status</th><th>Observable evidence</th><th>User/operator surface</th><th>Next automation step</th></tr></thead><tbody>${capabilityRows}</tbody></table></section>
 <section class="panel"><h2>Regional readiness</h2><p>Counts are records the deployed app can load through <code>CITIES</code>. Readiness is a transparent product score: places 30 points, civic package 20, plotted walks 20, governed producer 20, and private region-center conditions 10.</p><div class="table-wrap"><table><thead><tr><th>App region</th><th>Places</th><th>Walks/routes</th><th>Civic items</th><th>Conditions</th><th>Producer sources</th><th>Readiness</th><th>References</th></tr></thead><tbody>${cityRows}</tbody></table></div></section>
 <section class="panel"><h2>Prioritized repair queue</h2><p>P0 blocks a required app package. P1 is a stale enhancement reference or missing governed producer. P2 is usable producer work waiting for frontend packaging.</p><div class="toolbar"><select id="gapFilter"><option value="">All priorities</option><option>P0</option><option>P1</option><option>P2</option></select></div><table id="gapTable"><thead><tr><th>Priority</th><th>Type</th><th>Region</th><th>What is not connected</th><th>Next action</th></tr></thead><tbody>${gapRows || '<tr><td colspan="5" class="empty">No connection gaps detected.</td></tr>'}</tbody></table></section>
 <section class="panel"><h2>Provider mix</h2><p>Configured source endpoints by acquisition adapter.</p>${providerBars}</section>
 <section class="panel"><h2>Endpoint inventory</h2><p>Every governed geographic source in <code>app/regions</code>. Credential names identify the required GitHub Actions secret; values are never read or published.</p><div class="toolbar"><input id="sourceSearch" type="search" placeholder="Search region, source, endpoint, or frontend…"><select id="providerFilter"><option value="">All providers</option>${model.providers.map(({provider})=>`<option>${escapeHtml(provider)}</option>`).join('')}</select></div><table id="sourceTable"><thead><tr><th>Region</th><th>Source</th><th>Provider</th><th>Data</th><th>Endpoint</th><th>Credential</th><th>Frontend connection</th></tr></thead><tbody>${sourceRows}</tbody></table><p id="sourceEmpty" class="empty" hidden>No endpoints match those filters.</p></section>
 <section class="panel"><h2>Live browser services</h2><p>These calls are separate from scheduled producer endpoints. They are invoked by explicit app behavior and follow the listed privacy boundary.</p><table><thead><tr><th>Service</th><th>Endpoint</th><th>When called</th><th>Frontend consumer</th><th>Privacy boundary</th></tr></thead><tbody>${runtimeRows}</tbody></table></section>
+<section class="panel"><h2>Repository automation</h2><p>${summary.workflowCount} GitHub Actions workflows are declared; ${summary.scheduledWorkflowCount} currently have scheduled triggers. Manual dispatch remains available where the workflow declares it.</p><table><thead><tr><th>Workflow</th><th>File</th><th>Scheduled</th><th>Manual run</th></tr></thead><tbody>${workflowRows}</tbody></table></section>
 <section class="panel"><h2>How to read the KPIs</h2><p class="note"><b>Core-ready</b> means the required place and civic files exist. Optional supplement, journey, and cached-weather references are reported separately. <b>Configured endpoint</b> means a governed definition exists—not that it was fetched during this build. <b>Review backlog</b> is discovery-only and never publishes automatically. Record counts measure package depth, not geographic completeness.</p><p>Rebuild with <code>cd motherbird &amp;&amp; npm run build</code>. The generator re-reads regional configs, CITIES mappings, packaged artifacts, and the review backlog.</p></section>
 <footer><a href="../">← Mother Bird</a> · Generated from repository sources</footer></main><script>const q=document.querySelector('#sourceSearch'),p=document.querySelector('#providerFilter'),rows=[...document.querySelectorAll('#sourceTable tbody tr')],empty=document.querySelector('#sourceEmpty'),gapFilter=document.querySelector('#gapFilter'),gapRows=[...document.querySelectorAll('#gapTable tbody tr')];function filter(){const needle=q.value.trim().toLowerCase(),provider=p.value.toLowerCase();let shown=0;for(const row of rows){const ok=(!needle||row.textContent.toLowerCase().includes(needle))&&(!provider||row.children[2].textContent.toLowerCase()===provider);row.hidden=!ok;if(ok)shown++}empty.hidden=shown>0}function filterGaps(){for(const row of gapRows)row.hidden=Boolean(gapFilter.value)&&row.children[0].textContent.trim()!==gapFilter.value}q.addEventListener('input',filter);p.addEventListener('change',filter);gapFilter.addEventListener('change',filterGaps)</script></body></html>`;
 }

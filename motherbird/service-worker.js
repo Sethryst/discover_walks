@@ -1,14 +1,14 @@
 // Keep the whole module graph with the shell. Caching only app.js leaves an
 // offline (or briefly disconnected) reload with a blank app when any imported
 // module was not already in the runtime cache.
-const APP_CACHE = 'walk-wildlife-shell-v41'; // bump when shell assets change
+const APP_CACHE = 'walk-wildlife-shell-v42'; // bump when shell assets change
 const TILE_CACHE = 'walk-wildlife-osm-viewed-tiles-v1';
 const LIBRARY_CACHE = 'walk-wildlife-library-v2';
 const libraryPath = new URL('./vendor/', self.registration.scope).pathname;
 const shell = [
   './', './index.html', './styles.css', './app.js', './manifest.webmanifest', './supabase-config.js', './assets/walk-companion.gif',
-  './js/archive.js', './js/backup.js', './js/city.js', './js/civic.js', './js/constants.js', './js/discovery.js',
-  './js/entitlements.js', './js/events.js', './js/explore.js', './js/field-edition-loader.js', './js/geo.js', './js/geofence.js',
+  './js/archive.js', './js/backup.js', './js/city.js', './js/civic.js', './js/constants.js', './js/discovery.js', './js/discovery-taxonomy.js',
+  './js/entitlements.js', './js/events.js', './js/explore.js', './js/field-edition-loader.js', './js/field-guide.js', './js/geo.js', './js/geofence.js',
   './js/loader.js', './js/map.js', './js/observation.js', './js/online.js', './js/planner.js', './js/poi.js', './js/profile.js',
   './js/neighborhoods.js', './js/spatial-index.js', './js/text-to-walk.js',
   './js/quiet-places.js', './js/region-api.js', './js/region-installer.js', './js/region-manager.js', './js/region-package.js',

@@ -18,7 +18,7 @@ import { renderProfile } from './profile.js';
 import { readSupabaseHeartbeat } from './heartbeat.js';
 
 export async function setupOnline() {
-  if (!onlineConfigured() || state.online.client) return;
+  if (state.online.client || !onlineConfigured()) return;
   const config = onlineConfig();
   state.online.client = window.supabase.createClient(config.url, config.anonKey);
   const { data } = await state.online.client.auth.getSession();
@@ -103,6 +103,26 @@ export async function signUp() {
   await loadRemoteProfile();
   await renderOnline();
 }
+
+export function oauthReturnUrl(href = globalThis.location?.href || 'https://sethryst.github.io/gremlin_labs/') {
+  const url = new URL(href);
+  url.search = '';
+  url.hash = '';
+  url.pathname = url.pathname.endsWith('/') ? url.pathname : url.pathname.replace(/[^/]*$/, '');
+  return url.toString();
+}
+
+export async function signInWithGoogle() {
+  await setupOnline();
+  if (!state.online.client) { toast('Online sign-in is not configured yet.'); return false; }
+  const { error } = await state.online.client.auth.signInWithOAuth({
+    provider: 'google',
+    options: { redirectTo: oauthReturnUrl() }
+  });
+  if (error) { toast(error.message || 'Google sign-in could not start.'); return false; }
+  return true;
+}
+
 export async function createOnlineProfile(event) {
   event.preventDefault();
   if (!onlineConfigured()) return;
@@ -339,8 +359,8 @@ export async function createOrganizerRequest(event) {
 }
 
 
-export function onlineConfig() { return window.WALK_WILDLIFE_SUPABASE || {}; }
+export function onlineConfig() { return globalThis.window?.WALK_WILDLIFE_SUPABASE || {}; }
 export function onlineConfigured() {
   const config = onlineConfig();
-  return Boolean(config.url && config.anonKey && window.supabase?.createClient);
+  return Boolean(config.url && config.anonKey && globalThis.window?.supabase?.createClient);
 }
