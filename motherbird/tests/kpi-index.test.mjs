@@ -23,6 +23,9 @@ test('KPI inventory reconciles the frontend and producer source contracts', asyn
   assert.equal(model.summary.workflowCount, model.automationJobs.length);
   assert.ok(model.sources.some((source) => source.provider === 'arcgis_feature_service'));
   assert.ok(model.sources.some((source) => source.frontend.includes('Walk')));
+  assert.equal(model.summary.spatialSyncReady, true);
+  assert.equal(model.summary.spatialIndexedPois, 1436);
+  assert.equal(model.spatialSync.transport, 'disabled-local-outbox-only');
 });
 
 test('POI enrichment KPI makes missing narrative metadata actionable', () => {
@@ -55,6 +58,8 @@ test('KPI page exposes operator paths without publishing credential values', asy
   assert.match(html, /Product delivery progress/);
   assert.match(html, /Repository automation/);
   assert.match(html, /Google sign-in/);
+  assert.match(html, /DC spatial solo-pilot KPI/);
+  assert.match(html, /local-only sync transport/);
   assert.match(html, /Readiness is a transparent product score/);
   assert.match(html, /id="gapFilter"/);
   assert.match(html, /id="sourceSearch"/);
