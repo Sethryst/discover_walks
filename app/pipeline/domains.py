@@ -73,12 +73,16 @@ class TrailsGremlin(DomainGremlin):
 
     def attributes(self, properties: dict[str, Any]) -> dict[str, Any]:
         output = super().attributes(properties)
+        surface = _first(properties, "SURFACE_MATERIAL", "SURFACE_TYPE", "SurfaceType", "surface", "SI_SURFACE")
+        if isinstance(surface, (int, float)) or str(surface or "").isdigit():
+            surface = {1: "Concrete", 2: "Asphalt", 3: "Brick", 4: "Dirt or Gravel", 5: "Other"}.get(int(surface), str(surface))
+        access = _first(properties, "ADA", "ada", "SI_ACCESSIBILITY")
         output.update({
-            "surface": _first(properties, "SURFACE_MATERIAL", "SURFACE_TYPE", "SurfaceType", "surface"),
-            "width": _first(properties, "WIDTH", "width"),
+            "surface": surface,
+            "width": _first(properties, "WIDTH", "width", "SI_WIDTH"),
             "difficulty": _first(properties, "DIFFICULTY", "difficulty"),
             "stairs": _first(properties, "STEPS", "stairs"),
-            "accessibility": {"ada": _first(properties, "ADA", "ada")} if _first(properties, "ADA", "ada") else None,
+            "accessibility": {"ada": access} if access else None,
             "maintenance": _first(properties, "MAINTENANCE_RESPONSIBILITY", "TRAILOWNER", "Owner", "Maintenance"),
         })
         return output

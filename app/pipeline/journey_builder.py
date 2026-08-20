@@ -98,6 +98,8 @@ def build_journeys(
             "description": route.get("description", ""),
             "featured": bool(route.get("featured", False)),
             "regionId": region_id,
+            "access": route.get("access"),
+            "sources": _editorial_sources(route.get("sources", [])),
             "chapters": chapters,
         })
 
@@ -145,6 +147,10 @@ def _source_metadata(record: dict[str, Any], route: dict[str, Any], part: dict[s
         if source.get("name") and source.get("url"):
             sources.append({"name": str(source["name"]), "url": str(source["url"]), "type": str(source.get("type", "editorial"))})
     return list({(source["name"], source["url"], source["type"]): source for source in sources}.values())
+
+
+def _editorial_sources(values: list[dict[str, Any]]) -> list[dict[str, str]]:
+    return [{"name": str(source["name"]), "url": str(source["url"]), "type": str(source.get("type", "editorial"))} for source in values if source.get("name") and str(source.get("url", "")).startswith("https://")]
 
 
 def _warning(code: str, route: dict[str, Any], part: dict[str, Any], detail: str) -> dict[str, str]:

@@ -1,0 +1,4781 @@
+{
+  "generatedAt": "2026-08-20T10:48:53.937732Z",
+  "kind": "regional-source-review-backlog",
+  "omissions": [
+    {
+      "reason": "Rejected non-HTTPS or empty candidate: capital-area-food-bank",
+      "regionId": "prince-georges-county-md"
+    },
+    {
+      "reason": "Rejected non-HTTPS or empty candidate: pgcmls-events",
+      "regionId": "prince-georges-county-md"
+    },
+    {
+      "reason": "Rejected non-HTTPS or empty candidate: pgparks-events",
+      "regionId": "prince-georges-county-md"
+    }
+  ],
+  "publicationPolicy": "Discovery never publishes app data. A reviewed provider, fixture, contract validation, and release build are required.",
+  "readOnly": true,
+  "regions": [
+    {
+      "coverage": {
+        "categoryCoverage": {
+          "culturalActivities": "missing",
+          "events": "missing",
+          "libraries": "missing",
+          "meetings": "present",
+          "parks": "present",
+          "publicSpaces": "missing",
+          "recreation": "present",
+          "volunteer": "missing"
+        },
+        "coverageEstimateMethod": "Share of eight target categories with a configured source or current released records; this is a planning estimate, not a completeness claim.",
+        "estimatedCoveragePercent": 37.5,
+        "id": "alexandria-va",
+        "missingCategories": [
+          "events",
+          "volunteer",
+          "libraries",
+          "culturalActivities",
+          "publicSpaces"
+        ],
+        "name": "Alexandria, Virginia",
+        "providerCount": {
+          "automatedCivicProviders": 1,
+          "byCategory": {
+            "parks": 1,
+            "trails": 1
+          },
+          "configuredGeographicSources": 2
+        },
+        "recordDepth": {
+          "events": 0,
+          "meetings": 66,
+          "publicPois": 819,
+          "volunteer": 0
+        }
+      },
+      "id": "alexandria-va",
+      "name": "Alexandria, Virginia",
+      "queue": [
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "events-apps-alexandriava-gov-c408c804",
+          "likelyDataType": "HTML calendar",
+          "publisher": "apps.alexandriava.gov",
+          "rank": 1,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 12.5,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://apps.alexandriava.gov/Calendar/"
+        },
+        {
+          "category": "meetings",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "meetings-apps-alexandriava-gov-c408c804",
+          "likelyDataType": "HTML calendar",
+          "publisher": "apps.alexandriava.gov",
+          "rank": 2,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 5.42,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://apps.alexandriava.gov/Calendar/"
+        }
+      ]
+    },
+    {
+      "coverage": {
+        "categoryCoverage": {
+          "culturalActivities": "missing",
+          "events": "missing",
+          "libraries": "missing",
+          "meetings": "missing",
+          "parks": "present",
+          "publicSpaces": "missing",
+          "recreation": "present",
+          "volunteer": "missing"
+        },
+        "coverageEstimateMethod": "Share of eight target categories with a configured source or current released records; this is a planning estimate, not a completeness claim.",
+        "estimatedCoveragePercent": 25.0,
+        "id": "arlington-va",
+        "missingCategories": [
+          "events",
+          "meetings",
+          "volunteer",
+          "libraries",
+          "culturalActivities",
+          "publicSpaces"
+        ],
+        "name": "Arlington County, Virginia",
+        "providerCount": {
+          "automatedCivicProviders": 0,
+          "byCategory": {
+            "parks": 1,
+            "trails": 1
+          },
+          "configuredGeographicSources": 2
+        },
+        "recordDepth": {
+          "events": 0,
+          "meetings": 0,
+          "publicPois": 902,
+          "volunteer": 0
+        }
+      },
+      "id": "arlington-va",
+      "name": "Arlington County, Virginia",
+      "queue": [
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "events-arlingtonva-us-cb15b262",
+          "likelyDataType": "HTML calendar",
+          "publisher": "arlingtonva.us",
+          "rank": 1,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 2.5,
+            "trust": 1
+          },
+          "trustSignals": {
+            "authority": "unknown",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.arlingtonva.us/Government/Topics/Meeting-Calendar"
+        },
+        {
+          "category": "meetings",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "meetings-arlingtonva-us-cb15b262",
+          "likelyDataType": "HTML calendar",
+          "publisher": "arlingtonva.us",
+          "rank": 2,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 2.5,
+            "trust": 1
+          },
+          "trustSignals": {
+            "authority": "unknown",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.arlingtonva.us/Government/Topics/Meeting-Calendar"
+        }
+      ]
+    },
+    {
+      "coverage": {
+        "categoryCoverage": {
+          "culturalActivities": "present",
+          "events": "missing",
+          "libraries": "present",
+          "meetings": "missing",
+          "parks": "present",
+          "publicSpaces": "present",
+          "recreation": "present",
+          "volunteer": "missing"
+        },
+        "coverageEstimateMethod": "Share of eight target categories with a configured source or current released records; this is a planning estimate, not a completeness claim.",
+        "estimatedCoveragePercent": 62.5,
+        "id": "asheville",
+        "missingCategories": [
+          "events",
+          "meetings",
+          "volunteer"
+        ],
+        "name": "Asheville, NC",
+        "providerCount": {
+          "automatedCivicProviders": 0,
+          "byCategory": {
+            "accessibility": 1,
+            "art": 1,
+            "coffee": 1,
+            "community": 1,
+            "facilities": 1,
+            "history": 1,
+            "nature": 1,
+            "parks": 1,
+            "plant": 1,
+            "rest": 1,
+            "route": 1,
+            "scenic": 1,
+            "trails": 1,
+            "water": 1,
+            "wildlife": 1
+          },
+          "configuredGeographicSources": 15
+        },
+        "recordDepth": {
+          "events": 0,
+          "meetings": 0,
+          "publicPois": 499,
+          "volunteer": 0
+        }
+      },
+      "id": "asheville",
+      "name": "Asheville, NC",
+      "queue": [
+        {
+          "category": "meetings",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "meetings-ashevillenc-gov-644961e1",
+          "likelyDataType": "HTML calendar",
+          "publisher": "ashevillenc.gov",
+          "rank": 1,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 12.5,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.ashevillenc.gov/government/"
+        },
+        {
+          "category": "volunteer",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "volunteer-ashevillenc-gov-3ebf2f4c",
+          "likelyDataType": "HTML calendar",
+          "publisher": "ashevillenc.gov",
+          "rank": 2,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 12.5,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.ashevillenc.gov/parks/"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "editorial_registry:editorial-event-sources.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "events-exploreasheville-com-94d72b77",
+          "likelyDataType": "HTML calendar",
+          "publisher": "Explore Asheville Free Events",
+          "rank": 3,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 7.5,
+            "trust": 3
+          },
+          "trustSignals": {
+            "authority": "official_partner",
+            "governance": [
+              "Free claim: explicit"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.exploreasheville.com/events/free-events-asheville-nc"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "events-exploreasheville-com-8e96aa9e",
+          "likelyDataType": "HTML calendar",
+          "publisher": "exploreasheville.com",
+          "rank": 4,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 2.5,
+            "trust": 1
+          },
+          "trustSignals": {
+            "authority": "unknown",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.exploreasheville.com/events"
+        }
+      ]
+    },
+    {
+      "coverage": {
+        "categoryCoverage": {
+          "culturalActivities": "present",
+          "events": "present",
+          "libraries": "present",
+          "meetings": "missing",
+          "parks": "missing",
+          "publicSpaces": "present",
+          "recreation": "present",
+          "volunteer": "present"
+        },
+        "coverageEstimateMethod": "Share of eight target categories with a configured source or current released records; this is a planning estimate, not a completeness claim.",
+        "estimatedCoveragePercent": 75.0,
+        "id": "boise-meridian-idaho",
+        "missingCategories": [
+          "meetings",
+          "parks"
+        ],
+        "name": "Boise, Meridian & Old Town, Idaho",
+        "providerCount": {
+          "automatedCivicProviders": 0,
+          "byCategory": {
+            "accessibility": 1,
+            "art": 1,
+            "coffee": 1,
+            "community": 1,
+            "facilities": 1,
+            "history": 1,
+            "nature": 1,
+            "plant": 1,
+            "rest": 1,
+            "route": 1,
+            "scenic": 1,
+            "trails": 1,
+            "water": 2,
+            "wildlife": 1
+          },
+          "configuredGeographicSources": 15
+        },
+        "recordDepth": {
+          "events": 1,
+          "meetings": 0,
+          "publicPois": 677,
+          "volunteer": 1
+        }
+      },
+      "id": "boise-meridian-idaho",
+      "name": "Boise, Meridian & Old Town, Idaho",
+      "queue": [
+        {
+          "category": "meetings",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "meetings-cityofboise-org-3b05a56d",
+          "likelyDataType": "HTML calendar",
+          "publisher": "cityofboise.org",
+          "rank": 1,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 2.5,
+            "trust": 1
+          },
+          "trustSignals": {
+            "authority": "unknown",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.cityofboise.org/city-government/city-council/"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "editorial_registry:editorial-event-sources.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "events-boisestatepublicradio-org-1b57dd9c",
+          "likelyDataType": "HTML calendar",
+          "publisher": "Boise State Public Radio Community Calendar",
+          "rank": 2,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 2.17,
+            "trust": 2
+          },
+          "trustSignals": {
+            "authority": "editorial",
+            "governance": [
+              "Free claim: per_listing"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.boisestatepublicradio.org/community-calendar-search?f0=00000178-b7ab-d01e-aff8-b7fbab860000"
+        },
+        {
+          "category": "volunteer",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "volunteer-boisewatershed-org-b6e8d60b",
+          "likelyDataType": "HTML calendar",
+          "publisher": "boisewatershed.org",
+          "rank": 3,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 1.08,
+            "trust": 1
+          },
+          "trustSignals": {
+            "authority": "unknown",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.boisewatershed.org/about/volunteer/"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "events-meridiancity-org-44f75203",
+          "likelyDataType": "HTML calendar",
+          "publisher": "meridiancity.org",
+          "rank": 4,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 1.08,
+            "trust": 1
+          },
+          "trustSignals": {
+            "authority": "unknown",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.meridiancity.org/cityevents"
+        }
+      ]
+    },
+    {
+      "coverage": {
+        "categoryCoverage": {
+          "culturalActivities": "present",
+          "events": "present",
+          "libraries": "present",
+          "meetings": "missing",
+          "parks": "missing",
+          "publicSpaces": "present",
+          "recreation": "present",
+          "volunteer": "missing"
+        },
+        "coverageEstimateMethod": "Share of eight target categories with a configured source or current released records; this is a planning estimate, not a completeness claim.",
+        "estimatedCoveragePercent": 62.5,
+        "id": "boston",
+        "missingCategories": [
+          "meetings",
+          "volunteer",
+          "parks"
+        ],
+        "name": "Boston, MA",
+        "providerCount": {
+          "automatedCivicProviders": 1,
+          "byCategory": {
+            "accessibility": 1,
+            "art": 1,
+            "coffee": 1,
+            "community": 1,
+            "facilities": 1,
+            "history": 1,
+            "nature": 1,
+            "plant": 1,
+            "rest": 1,
+            "route": 1,
+            "scenic": 1,
+            "trails": 1,
+            "water": 2,
+            "wildlife": 1
+          },
+          "configuredGeographicSources": 15
+        },
+        "recordDepth": {
+          "events": 307,
+          "meetings": 0,
+          "publicPois": 3067,
+          "volunteer": 0
+        }
+      },
+      "id": "boston",
+      "name": "Boston, MA",
+      "queue": [
+        {
+          "category": "meetings",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "meetings-boston-gov-269e52b6",
+          "likelyDataType": "HTML calendar",
+          "publisher": "boston.gov",
+          "rank": 1,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 12.5,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.boston.gov/government"
+        },
+        {
+          "category": "volunteer",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "volunteer-boston-gov-98c6b1e6",
+          "likelyDataType": "HTML calendar",
+          "publisher": "boston.gov",
+          "rank": 2,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 12.5,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.boston.gov/parks"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "editorial_registry:editorial-event-sources.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "events-thebostoncalendar-com-6e034980",
+          "likelyDataType": "HTML calendar",
+          "publisher": "The Boston Calendar",
+          "rank": 3,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 2.17,
+            "trust": 2
+          },
+          "trustSignals": {
+            "authority": "editorial",
+            "governance": [
+              "Free claim: per_listing"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.thebostoncalendar.com/"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "events-bostonusa-com-7323eab4",
+          "likelyDataType": "HTML calendar",
+          "publisher": "bostonusa.com",
+          "rank": 4,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 1.08,
+            "trust": 1
+          },
+          "trustSignals": {
+            "authority": "unknown",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.bostonusa.com/events/"
+        }
+      ]
+    },
+    {
+      "coverage": {
+        "categoryCoverage": {
+          "culturalActivities": "present",
+          "events": "missing",
+          "libraries": "present",
+          "meetings": "missing",
+          "parks": "present",
+          "publicSpaces": "present",
+          "recreation": "present",
+          "volunteer": "missing"
+        },
+        "coverageEstimateMethod": "Share of eight target categories with a configured source or current released records; this is a planning estimate, not a completeness claim.",
+        "estimatedCoveragePercent": 62.5,
+        "id": "boulder",
+        "missingCategories": [
+          "events",
+          "meetings",
+          "volunteer"
+        ],
+        "name": "Boulder, CO",
+        "providerCount": {
+          "automatedCivicProviders": 0,
+          "byCategory": {
+            "accessibility": 1,
+            "art": 1,
+            "coffee": 1,
+            "community": 1,
+            "facilities": 1,
+            "history": 1,
+            "nature": 1,
+            "parks": 1,
+            "plant": 1,
+            "rest": 1,
+            "route": 1,
+            "scenic": 1,
+            "trails": 1,
+            "water": 1,
+            "wildlife": 1
+          },
+          "configuredGeographicSources": 15
+        },
+        "recordDepth": {
+          "events": 0,
+          "meetings": 0,
+          "publicPois": 2292,
+          "volunteer": 0
+        }
+      },
+      "id": "boulder",
+      "name": "Boulder, CO",
+      "queue": [
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "events-bouldercolorado-gov-96089785",
+          "likelyDataType": "HTML calendar",
+          "publisher": "bouldercolorado.gov",
+          "rank": 1,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 12.5,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://bouldercolorado.gov/events"
+        },
+        {
+          "category": "meetings",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "meetings-bouldercolorado-gov-96089785",
+          "likelyDataType": "HTML calendar",
+          "publisher": "bouldercolorado.gov",
+          "rank": 2,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 12.5,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://bouldercolorado.gov/events"
+        },
+        {
+          "category": "volunteer",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "volunteer-bouldercounty-gov-e331dd88",
+          "likelyDataType": "HTML calendar",
+          "publisher": "bouldercounty.gov",
+          "rank": 3,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 12.5,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://bouldercounty.gov/open-space/activities/calendar/"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "editorial_registry:editorial-event-sources.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "events-bouldercoloradousa-com-8fb18e01",
+          "likelyDataType": "HTML calendar",
+          "publisher": "Boulder Official Calendar",
+          "rank": 4,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 7.5,
+            "trust": 3
+          },
+          "trustSignals": {
+            "authority": "official_partner",
+            "governance": [
+              "Free claim: per_listing"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.bouldercoloradousa.com/events/"
+        }
+      ]
+    },
+    {
+      "coverage": {
+        "categoryCoverage": {
+          "culturalActivities": "present",
+          "events": "missing",
+          "libraries": "present",
+          "meetings": "missing",
+          "parks": "missing",
+          "publicSpaces": "present",
+          "recreation": "present",
+          "volunteer": "missing"
+        },
+        "coverageEstimateMethod": "Share of eight target categories with a configured source or current released records; this is a planning estimate, not a completeness claim.",
+        "estimatedCoveragePercent": 50.0,
+        "id": "chicago",
+        "missingCategories": [
+          "events",
+          "meetings",
+          "volunteer",
+          "parks"
+        ],
+        "name": "Chicago, IL",
+        "providerCount": {
+          "automatedCivicProviders": 0,
+          "byCategory": {
+            "accessibility": 1,
+            "art": 1,
+            "coffee": 1,
+            "community": 1,
+            "facilities": 1,
+            "history": 1,
+            "nature": 1,
+            "plant": 1,
+            "rest": 1,
+            "route": 1,
+            "scenic": 1,
+            "trails": 1,
+            "water": 2,
+            "wildlife": 1
+          },
+          "configuredGeographicSources": 15
+        },
+        "recordDepth": {
+          "events": 0,
+          "meetings": 0,
+          "publicPois": 3452,
+          "volunteer": 0
+        }
+      },
+      "id": "chicago",
+      "name": "Chicago, IL",
+      "queue": [
+        {
+          "category": "events",
+          "classification": "READY",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.82,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "LOW",
+          "evaluationReasoning": "High-authority publisher, identifiable structure, and an existing Gremlin Lab provider pattern are present.",
+          "id": "events-chicago-gov-44124097",
+          "likelyDataType": "RSS/ICS",
+          "publisher": "chicago.gov",
+          "rank": 1,
+          "recommendedAction": "Captain may approve immediate provider research and fixture capture.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 1,
+            "impactEffortRatio": 37.5,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.chicago.gov/city/en/rss.html"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "events-chicago-gov-83a3ca20",
+          "likelyDataType": "HTML calendar",
+          "publisher": "chicago.gov",
+          "rank": 2,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 12.5,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.chicago.gov/city/en/depts/dca/supp_info/ccc_calendar.html"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "editorial_registry:editorial-event-sources.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "events-chicagoonthecheap-com-c652aec2",
+          "likelyDataType": "HTML calendar",
+          "publisher": "Chicago On the Cheap",
+          "rank": 3,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 5.0,
+            "trust": 2
+          },
+          "trustSignals": {
+            "authority": "editorial",
+            "governance": [
+              "Free claim: per_listing"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://chicagoonthecheap.com/events/"
+        },
+        {
+          "category": "volunteer",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "volunteer-chicagoparkdistrict-com-ba93a249",
+          "likelyDataType": "HTML calendar",
+          "publisher": "chicagoparkdistrict.com",
+          "rank": 4,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 2.5,
+            "trust": 1
+          },
+          "trustSignals": {
+            "authority": "unknown",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.chicagoparkdistrict.com/volunteer/"
+        },
+        {
+          "category": "meetings",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "meetings-chicityclerk-com-959bf3e4",
+          "likelyDataType": "HTML calendar",
+          "publisher": "chicityclerk.com",
+          "rank": 5,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 2.5,
+            "trust": 1
+          },
+          "trustSignals": {
+            "authority": "unknown",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.chicityclerk.com/public-comment-process"
+        }
+      ]
+    },
+    {
+      "coverage": {
+        "categoryCoverage": {
+          "culturalActivities": "present",
+          "events": "missing",
+          "libraries": "present",
+          "meetings": "missing",
+          "parks": "present",
+          "publicSpaces": "present",
+          "recreation": "present",
+          "volunteer": "missing"
+        },
+        "coverageEstimateMethod": "Share of eight target categories with a configured source or current released records; this is a planning estimate, not a completeness claim.",
+        "estimatedCoveragePercent": 62.5,
+        "id": "denver",
+        "missingCategories": [
+          "events",
+          "meetings",
+          "volunteer"
+        ],
+        "name": "Denver, CO",
+        "providerCount": {
+          "automatedCivicProviders": 0,
+          "byCategory": {
+            "accessibility": 1,
+            "art": 1,
+            "coffee": 1,
+            "community": 1,
+            "facilities": 1,
+            "history": 1,
+            "nature": 1,
+            "parks": 1,
+            "plant": 1,
+            "rest": 1,
+            "route": 1,
+            "scenic": 1,
+            "trails": 1,
+            "water": 1,
+            "wildlife": 1
+          },
+          "configuredGeographicSources": 15
+        },
+        "recordDepth": {
+          "events": 0,
+          "meetings": 0,
+          "publicPois": 5370,
+          "volunteer": 0
+        }
+      },
+      "id": "denver",
+      "name": "Denver, CO",
+      "queue": [
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "editorial_registry:editorial-event-sources.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "events-denvergov-org-c69e47eb",
+          "likelyDataType": "HTML calendar",
+          "publisher": "Denver Public Events Calendar",
+          "rank": 1,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 12.5,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Free claim: per_listing"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Public-Event-Film-Permitting/Public-Events-Calendar"
+        },
+        {
+          "category": "meetings",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "meetings-denvergov-org-461d818b",
+          "likelyDataType": "HTML calendar",
+          "publisher": "denvergov.org",
+          "rank": 2,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 2.5,
+            "trust": 1
+          },
+          "trustSignals": {
+            "authority": "unknown",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.denvergov.org/pocketgov/en-US/city-government/meetings-boards/city-council-meetings"
+        },
+        {
+          "category": "volunteer",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "volunteer-denvergov-org-ffc494c0",
+          "likelyDataType": "HTML calendar",
+          "publisher": "denvergov.org",
+          "rank": 3,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 2.5,
+            "trust": 1
+          },
+          "trustSignals": {
+            "authority": "unknown",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.denvergov.org/pocketgov/en-US/parks-recreation/programs-services/volunteer"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "events-downtown-denver-com-920db7f3",
+          "likelyDataType": "HTML calendar",
+          "publisher": "downtown-denver.com",
+          "rank": 4,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 2.5,
+            "trust": 1
+          },
+          "trustSignals": {
+            "authority": "unknown",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.downtown-denver.com/events/"
+        }
+      ]
+    },
+    {
+      "coverage": {
+        "categoryCoverage": {
+          "culturalActivities": "missing",
+          "events": "missing",
+          "libraries": "missing",
+          "meetings": "present",
+          "parks": "present",
+          "publicSpaces": "present",
+          "recreation": "present",
+          "volunteer": "missing"
+        },
+        "coverageEstimateMethod": "Share of eight target categories with a configured source or current released records; this is a planning estimate, not a completeness claim.",
+        "estimatedCoveragePercent": 50.0,
+        "id": "fairfax-county-va",
+        "missingCategories": [
+          "events",
+          "volunteer",
+          "libraries",
+          "culturalActivities"
+        ],
+        "name": "Fairfax County, Virginia",
+        "providerCount": {
+          "automatedCivicProviders": 1,
+          "byCategory": {
+            "facilities": 2,
+            "parks": 1,
+            "trails": 2
+          },
+          "configuredGeographicSources": 5
+        },
+        "recordDepth": {
+          "events": 0,
+          "meetings": 3,
+          "publicPois": 1986,
+          "volunteer": 0
+        }
+      },
+      "id": "fairfax-county-va",
+      "name": "Fairfax County, Virginia",
+      "queue": [
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "events-librarycalendar-fairfaxcounty-gov-8d007a14",
+          "likelyDataType": "HTML calendar",
+          "publisher": "librarycalendar.fairfaxcounty.gov",
+          "rank": 1,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 12.5,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://librarycalendar.fairfaxcounty.gov/"
+        },
+        {
+          "category": "meetings",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "meetings-fairfaxcounty-gov-6f6370e4",
+          "likelyDataType": "HTML calendar",
+          "publisher": "fairfaxcounty.gov",
+          "rank": 2,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 5.42,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.fairfaxcounty.gov/calendar/"
+        }
+      ]
+    },
+    {
+      "coverage": {
+        "categoryCoverage": {
+          "culturalActivities": "missing",
+          "events": "missing",
+          "libraries": "missing",
+          "meetings": "missing",
+          "parks": "present",
+          "publicSpaces": "missing",
+          "recreation": "present",
+          "volunteer": "missing"
+        },
+        "coverageEstimateMethod": "Share of eight target categories with a configured source or current released records; this is a planning estimate, not a completeness claim.",
+        "estimatedCoveragePercent": 25.0,
+        "id": "falls-church-va",
+        "missingCategories": [
+          "events",
+          "meetings",
+          "volunteer",
+          "libraries",
+          "culturalActivities",
+          "publicSpaces"
+        ],
+        "name": "City of Falls Church, Virginia",
+        "providerCount": {
+          "automatedCivicProviders": 0,
+          "byCategory": {
+            "parks": 1,
+            "trails": 1
+          },
+          "configuredGeographicSources": 2
+        },
+        "recordDepth": {
+          "events": 0,
+          "meetings": 0,
+          "publicPois": 120,
+          "volunteer": 0
+        }
+      },
+      "id": "falls-church-va",
+      "name": "City of Falls Church, Virginia",
+      "queue": []
+    },
+    {
+      "coverage": {
+        "categoryCoverage": {
+          "culturalActivities": "present",
+          "events": "missing",
+          "libraries": "present",
+          "meetings": "missing",
+          "parks": "present",
+          "publicSpaces": "present",
+          "recreation": "present",
+          "volunteer": "missing"
+        },
+        "coverageEstimateMethod": "Share of eight target categories with a configured source or current released records; this is a planning estimate, not a completeness claim.",
+        "estimatedCoveragePercent": 62.5,
+        "id": "keystone-colorado",
+        "missingCategories": [
+          "events",
+          "meetings",
+          "volunteer"
+        ],
+        "name": "Keystone & Summit County, CO",
+        "providerCount": {
+          "automatedCivicProviders": 0,
+          "byCategory": {
+            "accessibility": 1,
+            "art": 1,
+            "coffee": 1,
+            "community": 1,
+            "facilities": 1,
+            "history": 1,
+            "nature": 1,
+            "parks": 1,
+            "plant": 1,
+            "rest": 1,
+            "route": 1,
+            "scenic": 1,
+            "trails": 1,
+            "water": 1,
+            "wildlife": 1
+          },
+          "configuredGeographicSources": 15
+        },
+        "recordDepth": {
+          "events": 0,
+          "meetings": 0,
+          "publicPois": 1173,
+          "volunteer": 0
+        }
+      },
+      "id": "keystone-colorado",
+      "name": "Keystone & Summit County, CO",
+      "queue": [
+        {
+          "category": "meetings",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "meetings-summitcountyco-gov-0e4237c8",
+          "likelyDataType": "HTML calendar",
+          "publisher": "summitcountyco.gov",
+          "rank": 1,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 12.5,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.summitcountyco.gov/"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "editorial_registry:editorial-event-sources.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "events-summitdaily-com-1e792ddf",
+          "likelyDataType": "HTML calendar",
+          "publisher": "Summit Daily Events",
+          "rank": 2,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 5.0,
+            "trust": 2
+          },
+          "trustSignals": {
+            "authority": "editorial",
+            "governance": [
+              "Free claim: per_listing"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.summitdaily.com/explore-summit/calendar/"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "events-town-keystone-co-us-e3452f18",
+          "likelyDataType": "HTML calendar",
+          "publisher": "town.keystone.co.us",
+          "rank": 3,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 2.5,
+            "trust": 1
+          },
+          "trustSignals": {
+            "authority": "unknown",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.town.keystone.co.us/events"
+        },
+        {
+          "category": "volunteer",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "volunteer-volunteermatch-org-79b64c6c",
+          "likelyDataType": "HTML calendar",
+          "publisher": "volunteermatch.org",
+          "rank": 4,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 2.5,
+            "trust": 1
+          },
+          "trustSignals": {
+            "authority": "unknown",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.volunteermatch.org/"
+        }
+      ]
+    },
+    {
+      "coverage": {
+        "categoryCoverage": {
+          "culturalActivities": "missing",
+          "events": "missing",
+          "libraries": "missing",
+          "meetings": "missing",
+          "parks": "missing",
+          "publicSpaces": "missing",
+          "recreation": "present",
+          "volunteer": "missing"
+        },
+        "coverageEstimateMethod": "Share of eight target categories with a configured source or current released records; this is a planning estimate, not a completeness claim.",
+        "estimatedCoveragePercent": 12.5,
+        "id": "loudoun-county-va",
+        "missingCategories": [
+          "events",
+          "meetings",
+          "volunteer",
+          "parks",
+          "libraries",
+          "culturalActivities",
+          "publicSpaces"
+        ],
+        "name": "Loudoun County, Virginia",
+        "providerCount": {
+          "automatedCivicProviders": 0,
+          "byCategory": {
+            "trails": 2
+          },
+          "configuredGeographicSources": 2
+        },
+        "recordDepth": {
+          "events": 0,
+          "meetings": 0,
+          "publicPois": 828,
+          "volunteer": 0
+        }
+      },
+      "id": "loudoun-county-va",
+      "name": "Loudoun County, Virginia",
+      "queue": [
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "events-loudoun-gov-6856d112",
+          "likelyDataType": "HTML calendar",
+          "publisher": "loudoun.gov",
+          "rank": 1,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 12.5,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.loudoun.gov/calendar.aspx"
+        },
+        {
+          "category": "meetings",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "meetings-loudoun-gov-349cf574",
+          "likelyDataType": "HTML calendar",
+          "publisher": "loudoun.gov",
+          "rank": 2,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 12.5,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.loudoun.gov/meetings"
+        },
+        {
+          "category": "volunteer",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "volunteer-loudoun-gov-81bf3267",
+          "likelyDataType": "HTML calendar",
+          "publisher": "loudoun.gov",
+          "rank": 3,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 12.5,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.loudoun.gov/volunteer"
+        }
+      ]
+    },
+    {
+      "coverage": {
+        "categoryCoverage": {
+          "culturalActivities": "present",
+          "events": "missing",
+          "libraries": "present",
+          "meetings": "missing",
+          "parks": "missing",
+          "publicSpaces": "present",
+          "recreation": "present",
+          "volunteer": "missing"
+        },
+        "coverageEstimateMethod": "Share of eight target categories with a configured source or current released records; this is a planning estimate, not a completeness claim.",
+        "estimatedCoveragePercent": 50.0,
+        "id": "new-orleans",
+        "missingCategories": [
+          "events",
+          "meetings",
+          "volunteer",
+          "parks"
+        ],
+        "name": "New Orleans, LA",
+        "providerCount": {
+          "automatedCivicProviders": 0,
+          "byCategory": {
+            "accessibility": 1,
+            "art": 1,
+            "coffee": 1,
+            "community": 1,
+            "facilities": 1,
+            "history": 1,
+            "nature": 1,
+            "plant": 1,
+            "rest": 1,
+            "route": 1,
+            "scenic": 1,
+            "trails": 1,
+            "water": 2,
+            "wildlife": 1
+          },
+          "configuredGeographicSources": 15
+        },
+        "recordDepth": {
+          "events": 0,
+          "meetings": 0,
+          "publicPois": 1113,
+          "volunteer": 0
+        }
+      },
+      "id": "new-orleans",
+      "name": "New Orleans, LA",
+      "queue": [
+        {
+          "category": "meetings",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "meetings-nola-gov-b2493356",
+          "likelyDataType": "HTML calendar",
+          "publisher": "nola.gov",
+          "rank": 1,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 12.5,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://nola.gov/city-government/city-council/"
+        },
+        {
+          "category": "volunteer",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "volunteer-nola-gov-c959480f",
+          "likelyDataType": "HTML calendar",
+          "publisher": "nola.gov",
+          "rank": 2,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 12.5,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.nola.gov/parks-and-parkways/special-events/"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "editorial_registry:editorial-event-sources.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "events-frenchquarterjournal-com-71d351d3",
+          "likelyDataType": "HTML calendar",
+          "publisher": "French Quarter Journal Events",
+          "rank": 3,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 5.0,
+            "trust": 2
+          },
+          "trustSignals": {
+            "authority": "editorial",
+            "governance": [
+              "Free claim: per_listing"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.frenchquarterjournal.com/events"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "events-neworleans-com-0da88206",
+          "likelyDataType": "HTML calendar",
+          "publisher": "neworleans.com",
+          "rank": 4,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 2.5,
+            "trust": 1
+          },
+          "trustSignals": {
+            "authority": "unknown",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.neworleans.com/events/"
+        }
+      ]
+    },
+    {
+      "coverage": {
+        "categoryCoverage": {
+          "culturalActivities": "missing",
+          "events": "present",
+          "libraries": "missing",
+          "meetings": "missing",
+          "parks": "present",
+          "publicSpaces": "present",
+          "recreation": "present",
+          "volunteer": "present"
+        },
+        "coverageEstimateMethod": "Share of eight target categories with a configured source or current released records; this is a planning estimate, not a completeness claim.",
+        "estimatedCoveragePercent": 62.5,
+        "id": "norfolk",
+        "missingCategories": [
+          "meetings",
+          "libraries",
+          "culturalActivities"
+        ],
+        "name": "Norfolk, VA",
+        "providerCount": {
+          "automatedCivicProviders": 0,
+          "byCategory": {
+            "facilities": 1,
+            "parks": 1,
+            "trails": 1,
+            "wildlife": 1
+          },
+          "configuredGeographicSources": 4
+        },
+        "recordDepth": {
+          "events": 1,
+          "meetings": 0,
+          "publicPois": 188,
+          "volunteer": 1
+        }
+      },
+      "id": "norfolk",
+      "name": "Norfolk, VA",
+      "queue": [
+        {
+          "category": "events",
+          "classification": "READY",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.82,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "editorial_registry:editorial-event-sources.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "LOW",
+          "evaluationReasoning": "High-authority publisher, identifiable structure, and an existing Gremlin Lab provider pattern are present.",
+          "id": "events-norfolk-libcal-com-ed2e4bde",
+          "likelyDataType": "RSS/ICS",
+          "publisher": "Norfolk Public Library Calendar",
+          "rank": 1,
+          "recommendedAction": "Captain may approve immediate provider research and fixture capture.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 1,
+            "impactEffortRatio": 16.25,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Free claim: per_listing"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://norfolk.libcal.com/calendars"
+        },
+        {
+          "category": "meetings",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "meetings-norfolk-gov-67d13024",
+          "likelyDataType": "HTML calendar",
+          "publisher": "norfolk.gov",
+          "rank": 2,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 12.5,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.norfolk.gov/calendar.aspx"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "events-norfolk-gov-67d13024",
+          "likelyDataType": "HTML calendar",
+          "publisher": "norfolk.gov",
+          "rank": 3,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 5.42,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.norfolk.gov/calendar.aspx"
+        },
+        {
+          "category": "volunteer",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "volunteer-norfolk-gov-ff89d6a7",
+          "likelyDataType": "HTML calendar",
+          "publisher": "norfolk.gov",
+          "rank": 4,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 5.42,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.norfolk.gov/4248/Volunteer"
+        }
+      ]
+    },
+    {
+      "coverage": {
+        "categoryCoverage": {
+          "culturalActivities": "present",
+          "events": "present",
+          "libraries": "present",
+          "meetings": "missing",
+          "parks": "missing",
+          "publicSpaces": "missing",
+          "recreation": "missing",
+          "volunteer": "present"
+        },
+        "coverageEstimateMethod": "Share of eight target categories with a configured source or current released records; this is a planning estimate, not a completeness claim.",
+        "estimatedCoveragePercent": 50.0,
+        "id": "nyc",
+        "missingCategories": [
+          "meetings",
+          "parks",
+          "recreation",
+          "publicSpaces"
+        ],
+        "name": "New York City, NY",
+        "providerCount": {
+          "automatedCivicProviders": 0,
+          "byCategory": {
+            "art": 1,
+            "coffee": 1,
+            "community": 1,
+            "event": 1,
+            "nature": 1,
+            "water": 1,
+            "wildlife": 1
+          },
+          "configuredGeographicSources": 7
+        },
+        "recordDepth": {
+          "events": 2,
+          "meetings": 0,
+          "publicPois": 3463,
+          "volunteer": 1
+        }
+      },
+      "id": "nyc",
+      "name": "New York City, NY",
+      "queue": [
+        {
+          "category": "meetings",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "meetings-legistar-council-nyc-gov-e75d3835",
+          "likelyDataType": "HTML calendar",
+          "publisher": "legistar.council.nyc.gov",
+          "rank": 1,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 12.5,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://legistar.council.nyc.gov/Calendar.aspx"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.82,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "LOW",
+          "evaluationReasoning": "Requires investigation because publisher authority is below government/public-institution tier.",
+          "id": "events-nycgovparks-org-3468fa93",
+          "likelyDataType": "RSS/ICS",
+          "publisher": "nycgovparks.org",
+          "rank": 2,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 1,
+            "impactEffortRatio": 3.25,
+            "trust": 1
+          },
+          "trustSignals": {
+            "authority": "unknown",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.nycgovparks.org/news/rss"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "editorial_registry:editorial-event-sources.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "events-nycforfree-co-3a433d76",
+          "likelyDataType": "HTML calendar",
+          "publisher": "NYC for FREE",
+          "rank": 3,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 2.17,
+            "trust": 2
+          },
+          "trustSignals": {
+            "authority": "editorial",
+            "governance": [
+              "Free claim: editorial"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.nycforfree.co/weekly-roundup"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "events-nycgovparks-org-61d38c99",
+          "likelyDataType": "HTML calendar",
+          "publisher": "nycgovparks.org",
+          "rank": 4,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 1.08,
+            "trust": 1
+          },
+          "trustSignals": {
+            "authority": "unknown",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.nycgovparks.org/events/"
+        },
+        {
+          "category": "volunteer",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "volunteer-nycgovparks-org-4b7ad625",
+          "likelyDataType": "HTML calendar",
+          "publisher": "nycgovparks.org",
+          "rank": 5,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 1.08,
+            "trust": 1
+          },
+          "trustSignals": {
+            "authority": "unknown",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.nycgovparks.org/events/volunteer"
+        }
+      ]
+    },
+    {
+      "coverage": {
+        "categoryCoverage": {
+          "culturalActivities": "present",
+          "events": "present",
+          "libraries": "present",
+          "meetings": "missing",
+          "parks": "missing",
+          "publicSpaces": "present",
+          "recreation": "present",
+          "volunteer": "present"
+        },
+        "coverageEstimateMethod": "Share of eight target categories with a configured source or current released records; this is a planning estimate, not a completeness claim.",
+        "estimatedCoveragePercent": 75.0,
+        "id": "philadelphia",
+        "missingCategories": [
+          "meetings",
+          "parks"
+        ],
+        "name": "Philadelphia, PA",
+        "providerCount": {
+          "automatedCivicProviders": 1,
+          "byCategory": {
+            "accessibility": 1,
+            "art": 1,
+            "coffee": 1,
+            "community": 1,
+            "event": 1,
+            "facilities": 1,
+            "history": 1,
+            "nature": 1,
+            "pantry": 1,
+            "plant": 1,
+            "rest": 1,
+            "route": 1,
+            "scenic": 1,
+            "trails": 1,
+            "water": 2,
+            "wildlife": 1
+          },
+          "configuredGeographicSources": 17
+        },
+        "recordDepth": {
+          "events": 10,
+          "meetings": 0,
+          "publicPois": 2516,
+          "volunteer": 1
+        }
+      },
+      "id": "philadelphia",
+      "name": "Philadelphia, PA",
+      "queue": [
+        {
+          "category": "meetings",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "meetings-phila-gov-a4cb56f4",
+          "likelyDataType": "HTML calendar",
+          "publisher": "phila.gov",
+          "rank": 1,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 12.5,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.phila.gov/government"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "events-phila-gov-7efb5a03",
+          "likelyDataType": "HTML calendar",
+          "publisher": "phila.gov",
+          "rank": 2,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 5.42,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.phila.gov/parks/"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "editorial_registry:editorial-event-sources.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "events-phillyfamily-com-c8e106d8",
+          "likelyDataType": "HTML calendar",
+          "publisher": "Philadelphia Family Events",
+          "rank": 3,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 2.17,
+            "trust": 2
+          },
+          "trustSignals": {
+            "authority": "editorial",
+            "governance": [
+              "Free claim: per_listing"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://phillyfamily.com/events/"
+        },
+        {
+          "category": "volunteer",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "volunteer-friendsoftheparks-org-5e217463",
+          "likelyDataType": "HTML calendar",
+          "publisher": "friendsoftheparks.org",
+          "rank": 4,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 1.08,
+            "trust": 1
+          },
+          "trustSignals": {
+            "authority": "unknown",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://friendsoftheparks.org/volunteer"
+        }
+      ]
+    },
+    {
+      "coverage": {
+        "categoryCoverage": {
+          "culturalActivities": "present",
+          "events": "present",
+          "libraries": "present",
+          "meetings": "missing",
+          "parks": "missing",
+          "publicSpaces": "present",
+          "recreation": "present",
+          "volunteer": "missing"
+        },
+        "coverageEstimateMethod": "Share of eight target categories with a configured source or current released records; this is a planning estimate, not a completeness claim.",
+        "estimatedCoveragePercent": 62.5,
+        "id": "portland",
+        "missingCategories": [
+          "meetings",
+          "volunteer",
+          "parks"
+        ],
+        "name": "Portland, OR",
+        "providerCount": {
+          "automatedCivicProviders": 0,
+          "byCategory": {
+            "accessibility": 1,
+            "art": 1,
+            "coffee": 1,
+            "community": 1,
+            "facilities": 1,
+            "history": 1,
+            "nature": 1,
+            "plant": 1,
+            "rest": 1,
+            "route": 1,
+            "scenic": 1,
+            "trails": 1,
+            "water": 2,
+            "wildlife": 1
+          },
+          "configuredGeographicSources": 15
+        },
+        "recordDepth": {
+          "events": 2,
+          "meetings": 0,
+          "publicPois": 4990,
+          "volunteer": 0
+        }
+      },
+      "id": "portland",
+      "name": "Portland, OR",
+      "queue": [
+        {
+          "category": "meetings",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "meetings-portland-gov-a7c4178f",
+          "likelyDataType": "HTML calendar",
+          "publisher": "portland.gov",
+          "rank": 1,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 12.5,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.portland.gov/council/meetings"
+        },
+        {
+          "category": "volunteer",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "volunteer-portland-gov-fe600e12",
+          "likelyDataType": "HTML calendar",
+          "publisher": "portland.gov",
+          "rank": 2,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 12.5,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.portland.gov/parks/volunteer"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "editorial_registry:editorial-event-sources.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "events-portlandlivingonthecheap-com-be5408f7",
+          "likelyDataType": "HTML calendar",
+          "publisher": "Portland Living on the Cheap",
+          "rank": 3,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 2.17,
+            "trust": 2
+          },
+          "trustSignals": {
+            "authority": "editorial",
+            "governance": [
+              "Free claim: editorial"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://portlandlivingonthecheap.com/category/free-events/"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "events-events-portlandonline-us-09e0b6eb",
+          "likelyDataType": "HTML calendar",
+          "publisher": "events.portlandonline.us",
+          "rank": 4,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 1.08,
+            "trust": 1
+          },
+          "trustSignals": {
+            "authority": "unknown",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://events.portlandonline.us/"
+        }
+      ]
+    },
+    {
+      "coverage": {
+        "categoryCoverage": {
+          "culturalActivities": "present",
+          "events": "missing",
+          "libraries": "present",
+          "meetings": "missing",
+          "parks": "present",
+          "publicSpaces": "present",
+          "recreation": "present",
+          "volunteer": "missing"
+        },
+        "coverageEstimateMethod": "Share of eight target categories with a configured source or current released records; this is a planning estimate, not a completeness claim.",
+        "estimatedCoveragePercent": 62.5,
+        "id": "portland-maine",
+        "missingCategories": [
+          "events",
+          "meetings",
+          "volunteer"
+        ],
+        "name": "Portland, ME",
+        "providerCount": {
+          "automatedCivicProviders": 0,
+          "byCategory": {
+            "accessibility": 1,
+            "art": 1,
+            "coffee": 1,
+            "community": 1,
+            "facilities": 1,
+            "history": 1,
+            "nature": 1,
+            "parks": 1,
+            "plant": 1,
+            "rest": 1,
+            "route": 1,
+            "scenic": 1,
+            "trails": 1,
+            "water": 1,
+            "wildlife": 1
+          },
+          "configuredGeographicSources": 15
+        },
+        "recordDepth": {
+          "events": 0,
+          "meetings": 0,
+          "publicPois": 520,
+          "volunteer": 0
+        }
+      },
+      "id": "portland-maine",
+      "name": "Portland, ME",
+      "queue": [
+        {
+          "category": "meetings",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "meetings-portlandmaine-gov-bc259924",
+          "likelyDataType": "HTML calendar",
+          "publisher": "portlandmaine.gov",
+          "rank": 1,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 12.5,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.portlandmaine.gov/government"
+        },
+        {
+          "category": "volunteer",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "volunteer-portlandmaine-gov-2c137978",
+          "likelyDataType": "HTML calendar",
+          "publisher": "portlandmaine.gov",
+          "rank": 2,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 12.5,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.portlandmaine.gov/parks-recreation"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "editorial_registry:editorial-event-sources.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "events-mainepublic-org-bfb30cd0",
+          "likelyDataType": "HTML calendar",
+          "publisher": "Maine Public Community Calendar",
+          "rank": 3,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 5.0,
+            "trust": 2
+          },
+          "trustSignals": {
+            "authority": "editorial",
+            "governance": [
+              "Free claim: per_listing"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.mainepublic.org/community-calendar"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "events-visitportland-com-6515f560",
+          "likelyDataType": "HTML calendar",
+          "publisher": "visitportland.com",
+          "rank": 4,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 2.5,
+            "trust": 1
+          },
+          "trustSignals": {
+            "authority": "unknown",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.visitportland.com/events/"
+        }
+      ]
+    },
+    {
+      "coverage": {
+        "categoryCoverage": {
+          "culturalActivities": "missing",
+          "events": "present",
+          "libraries": "missing",
+          "meetings": "missing",
+          "parks": "missing",
+          "publicSpaces": "missing",
+          "recreation": "present",
+          "volunteer": "present"
+        },
+        "coverageEstimateMethod": "Share of eight target categories with a configured source or current released records; this is a planning estimate, not a completeness claim.",
+        "estimatedCoveragePercent": 37.5,
+        "id": "prince-georges-county-md",
+        "missingCategories": [
+          "meetings",
+          "parks",
+          "libraries",
+          "culturalActivities",
+          "publicSpaces"
+        ],
+        "name": "Prince George's County, Maryland",
+        "providerCount": {
+          "automatedCivicProviders": 1,
+          "byCategory": {
+            "event": 1,
+            "wildlife": 1
+          },
+          "configuredGeographicSources": 2
+        },
+        "recordDepth": {
+          "events": 176,
+          "meetings": 0,
+          "publicPois": 939,
+          "volunteer": 3
+        }
+      },
+      "id": "prince-georges-county-md",
+      "name": "Prince George's County, Maryland",
+      "queue": [
+        {
+          "category": "meetings",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "meetings-princegeorgescountymd-gov-95ea3f6d",
+          "likelyDataType": "HTML calendar",
+          "publisher": "princegeorgescountymd.gov",
+          "rank": 1,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 12.5,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.princegeorgescountymd.gov/govt/council/"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "editorial_registry:editorial-event-sources.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "events-blackhistory-pgparks-com-49fafbc4",
+          "likelyDataType": "HTML calendar",
+          "publisher": "PG Parks Free Events",
+          "rank": 2,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 5.42,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Free claim: explicit"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://blackhistory.pgparks.com/activities-events-events/category/free"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "events-pgparks-com-005aa0a6",
+          "likelyDataType": "HTML calendar",
+          "publisher": "pgparks.com",
+          "rank": 3,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 1.08,
+            "trust": 1
+          },
+          "trustSignals": {
+            "authority": "unknown",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://pgparks.com/activities-events-events/category/free"
+        },
+        {
+          "category": "volunteer",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "volunteer-pgparks-com-bf740430",
+          "likelyDataType": "HTML calendar",
+          "publisher": "pgparks.com",
+          "rank": 4,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 1.08,
+            "trust": 1
+          },
+          "trustSignals": {
+            "authority": "unknown",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.pgparks.com/get-involved/volunteer-opportunities"
+        }
+      ]
+    },
+    {
+      "coverage": {
+        "categoryCoverage": {
+          "culturalActivities": "present",
+          "events": "missing",
+          "libraries": "present",
+          "meetings": "missing",
+          "parks": "missing",
+          "publicSpaces": "present",
+          "recreation": "present",
+          "volunteer": "missing"
+        },
+        "coverageEstimateMethod": "Share of eight target categories with a configured source or current released records; this is a planning estimate, not a completeness claim.",
+        "estimatedCoveragePercent": 50.0,
+        "id": "richmond",
+        "missingCategories": [
+          "events",
+          "meetings",
+          "volunteer",
+          "parks"
+        ],
+        "name": "Richmond, VA",
+        "providerCount": {
+          "automatedCivicProviders": 0,
+          "byCategory": {
+            "accessibility": 1,
+            "art": 1,
+            "coffee": 1,
+            "community": 1,
+            "facilities": 1,
+            "history": 1,
+            "nature": 1,
+            "plant": 1,
+            "rest": 1,
+            "route": 1,
+            "scenic": 1,
+            "trails": 1,
+            "water": 2,
+            "wildlife": 1
+          },
+          "configuredGeographicSources": 15
+        },
+        "recordDepth": {
+          "events": 0,
+          "meetings": 0,
+          "publicPois": 1036,
+          "volunteer": 0
+        }
+      },
+      "id": "richmond",
+      "name": "Richmond, VA",
+      "queue": [
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "editorial_registry:editorial-event-sources.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "events-6amcity-com-a7dfd2b6",
+          "likelyDataType": "HTML calendar",
+          "publisher": "RICtoday Events",
+          "rank": 1,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 5.0,
+            "trust": 2
+          },
+          "trustSignals": {
+            "authority": "editorial",
+            "governance": [
+              "Free claim: per_listing"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://6amcity.com/web/va/richmond/events"
+        },
+        {
+          "category": "volunteer",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "volunteer-jrps-org-2a3b895f",
+          "likelyDataType": "HTML calendar",
+          "publisher": "jrps.org",
+          "rank": 2,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 2.5,
+            "trust": 1
+          },
+          "trustSignals": {
+            "authority": "unknown",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.jrps.org/volunteer"
+        },
+        {
+          "category": "meetings",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "meetings-richmondgov-com-87666ac9",
+          "likelyDataType": "HTML calendar",
+          "publisher": "richmondgov.com",
+          "rank": 3,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 2.5,
+            "trust": 1
+          },
+          "trustSignals": {
+            "authority": "unknown",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.richmondgov.com/government"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "events-visitrichmondva-com-1ae28ba3",
+          "likelyDataType": "HTML calendar",
+          "publisher": "visitrichmondva.com",
+          "rank": 4,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 2.5,
+            "trust": 1
+          },
+          "trustSignals": {
+            "authority": "unknown",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.visitrichmondva.com/events/"
+        }
+      ]
+    },
+    {
+      "coverage": {
+        "categoryCoverage": {
+          "culturalActivities": "present",
+          "events": "missing",
+          "libraries": "present",
+          "meetings": "missing",
+          "parks": "missing",
+          "publicSpaces": "present",
+          "recreation": "present",
+          "volunteer": "missing"
+        },
+        "coverageEstimateMethod": "Share of eight target categories with a configured source or current released records; this is a planning estimate, not a completeness claim.",
+        "estimatedCoveragePercent": 50.0,
+        "id": "san-francisco",
+        "missingCategories": [
+          "events",
+          "meetings",
+          "volunteer",
+          "parks"
+        ],
+        "name": "San Francisco, CA",
+        "providerCount": {
+          "automatedCivicProviders": 0,
+          "byCategory": {
+            "accessibility": 1,
+            "art": 1,
+            "coffee": 1,
+            "community": 1,
+            "facilities": 1,
+            "history": 1,
+            "nature": 1,
+            "plant": 1,
+            "rest": 1,
+            "route": 1,
+            "scenic": 1,
+            "trails": 1,
+            "water": 2,
+            "wildlife": 1
+          },
+          "configuredGeographicSources": 15
+        },
+        "recordDepth": {
+          "events": 0,
+          "meetings": 0,
+          "publicPois": 407,
+          "volunteer": 0
+        }
+      },
+      "id": "san-francisco",
+      "name": "San Francisco, CA",
+      "queue": [
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.82,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "LOW",
+          "evaluationReasoning": "Requires investigation because publisher authority is below government/public-institution tier.",
+          "id": "events-sfrecpark-org-ddd118f6",
+          "likelyDataType": "RSS/ICS",
+          "publisher": "sfrecpark.org",
+          "rank": 1,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 1,
+            "impactEffortRatio": 7.5,
+            "trust": 1
+          },
+          "trustSignals": {
+            "authority": "unknown",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://sfrecpark.org/rss.aspx"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "editorial_registry:editorial-event-sources.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "events-sf-funcheap-com-cfc0d68c",
+          "likelyDataType": "HTML calendar",
+          "publisher": "Funcheap SF",
+          "rank": 2,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 5.0,
+            "trust": 2
+          },
+          "trustSignals": {
+            "authority": "editorial",
+            "governance": [
+              "Free claim: editorial"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://sf.funcheap.com/"
+        },
+        {
+          "category": "meetings",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "meetings-sfbos-org-705d79ff",
+          "likelyDataType": "HTML calendar",
+          "publisher": "sfbos.org",
+          "rank": 3,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 2.5,
+            "trust": 1
+          },
+          "trustSignals": {
+            "authority": "unknown",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://sfbos.org/participate-and-submit-public-comments"
+        },
+        {
+          "category": "volunteer",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "volunteer-sfparks-org-ddcc85b5",
+          "likelyDataType": "HTML calendar",
+          "publisher": "sfparks.org",
+          "rank": 4,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 2.5,
+            "trust": 1
+          },
+          "trustSignals": {
+            "authority": "unknown",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.sfparks.org/support-park/volunteer"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "events-sfrecpark-org-822dab73",
+          "likelyDataType": "HTML calendar",
+          "publisher": "sfrecpark.org",
+          "rank": 5,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 2.5,
+            "trust": 1
+          },
+          "trustSignals": {
+            "authority": "unknown",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://sfrecpark.org/Calendar.aspx"
+        }
+      ]
+    },
+    {
+      "coverage": {
+        "categoryCoverage": {
+          "culturalActivities": "present",
+          "events": "missing",
+          "libraries": "present",
+          "meetings": "missing",
+          "parks": "present",
+          "publicSpaces": "present",
+          "recreation": "present",
+          "volunteer": "missing"
+        },
+        "coverageEstimateMethod": "Share of eight target categories with a configured source or current released records; this is a planning estimate, not a completeness claim.",
+        "estimatedCoveragePercent": 62.5,
+        "id": "santa-fe",
+        "missingCategories": [
+          "events",
+          "meetings",
+          "volunteer"
+        ],
+        "name": "Santa Fe, NM",
+        "providerCount": {
+          "automatedCivicProviders": 0,
+          "byCategory": {
+            "accessibility": 1,
+            "art": 1,
+            "coffee": 1,
+            "community": 1,
+            "facilities": 1,
+            "history": 1,
+            "nature": 1,
+            "parks": 1,
+            "plant": 1,
+            "rest": 1,
+            "route": 1,
+            "scenic": 1,
+            "trails": 1,
+            "water": 1,
+            "wildlife": 1
+          },
+          "configuredGeographicSources": 15
+        },
+        "recordDepth": {
+          "events": 0,
+          "meetings": 0,
+          "publicPois": 1023,
+          "volunteer": 0
+        }
+      },
+      "id": "santa-fe",
+      "name": "Santa Fe, NM",
+      "queue": [
+        {
+          "category": "meetings",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "meetings-santafenm-gov-4df17058",
+          "likelyDataType": "HTML calendar",
+          "publisher": "santafenm.gov",
+          "rank": 1,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 12.5,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.santafenm.gov/city-government"
+        },
+        {
+          "category": "volunteer",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "volunteer-santafenm-gov-57a0cd99",
+          "likelyDataType": "HTML calendar",
+          "publisher": "santafenm.gov",
+          "rank": 2,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 12.5,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.santafenm.gov/parks_recreation"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "editorial_registry:editorial-event-sources.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "events-santafe-org-8f1eb055",
+          "likelyDataType": "HTML calendar",
+          "publisher": "Santa Fe Official Calendar",
+          "rank": 3,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 7.5,
+            "trust": 3
+          },
+          "trustSignals": {
+            "authority": "official_partner",
+            "governance": [
+              "Free claim: per_listing"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.santafe.org/visiting-santa-fe/calendar/"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "events-santafe-org-068ccfff",
+          "likelyDataType": "HTML calendar",
+          "publisher": "santafe.org",
+          "rank": 4,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 2.5,
+            "trust": 1
+          },
+          "trustSignals": {
+            "authority": "unknown",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.santafe.org/events/"
+        }
+      ]
+    },
+    {
+      "coverage": {
+        "categoryCoverage": {
+          "culturalActivities": "present",
+          "events": "present",
+          "libraries": "present",
+          "meetings": "missing",
+          "parks": "missing",
+          "publicSpaces": "present",
+          "recreation": "present",
+          "volunteer": "missing"
+        },
+        "coverageEstimateMethod": "Share of eight target categories with a configured source or current released records; this is a planning estimate, not a completeness claim.",
+        "estimatedCoveragePercent": 62.5,
+        "id": "seattle",
+        "missingCategories": [
+          "meetings",
+          "volunteer",
+          "parks"
+        ],
+        "name": "Seattle, WA",
+        "providerCount": {
+          "automatedCivicProviders": 0,
+          "byCategory": {
+            "accessibility": 1,
+            "art": 1,
+            "coffee": 1,
+            "community": 1,
+            "facilities": 1,
+            "history": 1,
+            "nature": 1,
+            "plant": 1,
+            "rest": 1,
+            "route": 1,
+            "scenic": 1,
+            "trails": 1,
+            "water": 2,
+            "wildlife": 1
+          },
+          "configuredGeographicSources": 15
+        },
+        "recordDepth": {
+          "events": 2,
+          "meetings": 0,
+          "publicPois": 8383,
+          "volunteer": 0
+        }
+      },
+      "id": "seattle",
+      "name": "Seattle, WA",
+      "queue": [
+        {
+          "category": "meetings",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "meetings-seattle-gov-3418b89c",
+          "likelyDataType": "HTML calendar",
+          "publisher": "seattle.gov",
+          "rank": 1,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 12.5,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.seattle.gov/civic-meetings"
+        },
+        {
+          "category": "volunteer",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "volunteer-seattle-gov-c1758f69",
+          "likelyDataType": "HTML calendar",
+          "publisher": "seattle.gov",
+          "rank": 2,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 12.5,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.seattle.gov/parks/volunteer-and-ways-to-give"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "events-seattle-gov-cca4136c",
+          "likelyDataType": "HTML calendar",
+          "publisher": "seattle.gov",
+          "rank": 3,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 5.42,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.seattle.gov/event-calendar"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.82,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "LOW",
+          "evaluationReasoning": "Requires investigation because publisher authority is below government/public-institution tier.",
+          "id": "events-seattle-net-25130bd8",
+          "likelyDataType": "JSON API",
+          "publisher": "seattle.net",
+          "rank": 4,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 1,
+            "impactEffortRatio": 3.25,
+            "trust": 1
+          },
+          "trustSignals": {
+            "authority": "unknown",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://seattle.net/api"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "editorial_registry:editorial-event-sources.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "events-greaterseattleonthecheap-com-7d63f8d3",
+          "likelyDataType": "HTML calendar",
+          "publisher": "Greater Seattle on the Cheap",
+          "rank": 5,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 2.17,
+            "trust": 2
+          },
+          "trustSignals": {
+            "authority": "editorial",
+            "governance": [
+              "Free claim: editorial"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.greaterseattleonthecheap.com/events/"
+        }
+      ]
+    },
+    {
+      "coverage": {
+        "categoryCoverage": {
+          "culturalActivities": "present",
+          "events": "missing",
+          "libraries": "present",
+          "meetings": "missing",
+          "parks": "present",
+          "publicSpaces": "present",
+          "recreation": "present",
+          "volunteer": "present"
+        },
+        "coverageEstimateMethod": "Share of eight target categories with a configured source or current released records; this is a planning estimate, not a completeness claim.",
+        "estimatedCoveragePercent": 75.0,
+        "id": "sedona-arizona",
+        "missingCategories": [
+          "events",
+          "meetings"
+        ],
+        "name": "Sedona, Arizona",
+        "providerCount": {
+          "automatedCivicProviders": 0,
+          "byCategory": {
+            "accessibility": 1,
+            "art": 1,
+            "coffee": 1,
+            "community": 1,
+            "facilities": 1,
+            "history": 1,
+            "nature": 1,
+            "parks": 1,
+            "plant": 1,
+            "rest": 1,
+            "route": 1,
+            "scenic": 1,
+            "trails": 1,
+            "water": 1,
+            "wildlife": 1
+          },
+          "configuredGeographicSources": 15
+        },
+        "recordDepth": {
+          "events": 0,
+          "meetings": 0,
+          "publicPois": 696,
+          "volunteer": 1
+        }
+      },
+      "id": "sedona-arizona",
+      "name": "Sedona, Arizona",
+      "queue": [
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "editorial_registry:editorial-event-sources.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "events-sedonaaz-gov-605e78d8",
+          "likelyDataType": "HTML calendar",
+          "publisher": "City of Sedona Free to Be Me Drum Circle",
+          "rank": 1,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 12.5,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Free claim: explicit"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.sedonaaz.gov/your-government/departments-and-programs/parks-recreation/programs/free-to-be-me-drum-circle"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "events-sedonaaz-gov-c0071a9f",
+          "likelyDataType": "HTML calendar",
+          "publisher": "sedonaaz.gov",
+          "rank": 2,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 12.5,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.sedonaaz.gov/your-government/departments-and-programs/parks-recreation/calendar"
+        },
+        {
+          "category": "meetings",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "meetings-sedonaaz-gov-a23d2c98",
+          "likelyDataType": "HTML calendar",
+          "publisher": "sedonaaz.gov",
+          "rank": 3,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 12.5,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.sedonaaz.gov/your-government/general-information/city-calendar"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "editorial_registry:editorial-event-sources.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "events-visitsedona-com-64ad436c",
+          "likelyDataType": "HTML calendar",
+          "publisher": "Visit Sedona Calendar",
+          "rank": 4,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 7.5,
+            "trust": 3
+          },
+          "trustSignals": {
+            "authority": "official_partner",
+            "governance": [
+              "Free claim: per_listing"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://visitsedona.com/events-calendar/"
+        },
+        {
+          "category": "volunteer",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "volunteer-sedonaaz-gov-79ca6cb2",
+          "likelyDataType": "HTML calendar",
+          "publisher": "sedonaaz.gov",
+          "rank": 5,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 5.42,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.sedonaaz.gov/community/residents/volunteer"
+        }
+      ]
+    },
+    {
+      "coverage": {
+        "categoryCoverage": {
+          "culturalActivities": "present",
+          "events": "present",
+          "libraries": "present",
+          "meetings": "missing",
+          "parks": "missing",
+          "publicSpaces": "present",
+          "recreation": "present",
+          "volunteer": "present"
+        },
+        "coverageEstimateMethod": "Share of eight target categories with a configured source or current released records; this is a planning estimate, not a completeness claim.",
+        "estimatedCoveragePercent": 75.0,
+        "id": "washington-dc",
+        "missingCategories": [
+          "meetings",
+          "parks"
+        ],
+        "name": "Washington, DC",
+        "providerCount": {
+          "automatedCivicProviders": 1,
+          "byCategory": {
+            "accessibility": 1,
+            "art": 1,
+            "coffee": 1,
+            "community": 1,
+            "facilities": 1,
+            "history": 1,
+            "nature": 1,
+            "plant": 1,
+            "rest": 1,
+            "route": 1,
+            "scenic": 1,
+            "trails": 1,
+            "water": 2,
+            "wildlife": 1
+          },
+          "configuredGeographicSources": 15
+        },
+        "recordDepth": {
+          "events": 9,
+          "meetings": 0,
+          "publicPois": 4023,
+          "volunteer": 1
+        }
+      },
+      "id": "washington-dc",
+      "name": "Washington, DC",
+      "queue": [
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "events-dpr-dc-gov-67b39fe7",
+          "likelyDataType": "HTML calendar",
+          "publisher": "dpr.dc.gov",
+          "rank": 1,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 5.42,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://dpr.dc.gov/service/attend-events"
+        },
+        {
+          "category": "volunteer",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "volunteer-dpr-dc-gov-52180f8a",
+          "likelyDataType": "HTML calendar",
+          "publisher": "dpr.dc.gov",
+          "rank": 2,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 5.42,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://dpr.dc.gov/page/volunteer-and-give-back"
+        },
+        {
+          "category": "meetings",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "meetings-dcouncil-us-4d64fb67",
+          "likelyDataType": "HTML calendar",
+          "publisher": "dcouncil.us",
+          "rank": 3,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 2.5,
+            "trust": 1
+          },
+          "trustSignals": {
+            "authority": "unknown",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://dcouncil.us/"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "editorial_registry:editorial-event-sources.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "events-districtfray-com-d21bcaee",
+          "likelyDataType": "HTML calendar",
+          "publisher": "District Fray Free Events",
+          "rank": 4,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 2.17,
+            "trust": 2
+          },
+          "trustSignals": {
+            "authority": "editorial",
+            "governance": [
+              "Free claim: editorial"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://districtfray.com/events/free-events/"
+        }
+      ]
+    },
+    {
+      "coverage": {
+        "categoryCoverage": {
+          "culturalActivities": "missing",
+          "events": "present",
+          "libraries": "missing",
+          "meetings": "present",
+          "parks": "missing",
+          "publicSpaces": "missing",
+          "recreation": "missing",
+          "volunteer": "present"
+        },
+        "coverageEstimateMethod": "Share of eight target categories with a configured source or current released records; this is a planning estimate, not a completeness claim.",
+        "estimatedCoveragePercent": 37.5,
+        "id": "wolf-trap-va",
+        "missingCategories": [
+          "parks",
+          "libraries",
+          "recreation",
+          "culturalActivities",
+          "publicSpaces"
+        ],
+        "name": "Wolf Trap, Virginia",
+        "providerCount": {
+          "automatedCivicProviders": 0,
+          "byCategory": {
+            "event": 1,
+            "water": 1,
+            "wildlife": 1
+          },
+          "configuredGeographicSources": 3
+        },
+        "recordDepth": {
+          "events": 3,
+          "meetings": 2,
+          "publicPois": 19,
+          "volunteer": 1
+        }
+      },
+      "id": "wolf-trap-va",
+      "name": "Wolf Trap, Virginia",
+      "queue": [
+        {
+          "category": "events",
+          "classification": "READY",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.8,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "candidate_registry:wolf-trap-va.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "LOW",
+          "evaluationReasoning": "High-authority publisher, identifiable structure, and an existing Gremlin Lab provider pattern are present.",
+          "id": "nps-wolf-trap",
+          "likelyDataType": "JSON API",
+          "publisher": "NPS Wolf Trap events",
+          "rank": 1,
+          "recommendedAction": "Captain may approve immediate provider research and fixture capture.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 1,
+            "impactEffortRatio": 16.25,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Registry status: disabled",
+              "NPS_API_KEY",
+              "saved fixture",
+              "verified event-to-venue coordinate rule"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://developer.nps.gov/api/v1/events?parkCode=wotr"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "events-nps-gov-675f6405",
+          "likelyDataType": "HTML calendar",
+          "publisher": "nps.gov",
+          "rank": 2,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 5.42,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.nps.gov/wotr/planyourvisit/calendar.htm"
+        },
+        {
+          "category": "volunteer",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "volunteer-nps-gov-20ec7407",
+          "likelyDataType": "HTML calendar",
+          "publisher": "nps.gov",
+          "rank": 3,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 5.42,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.nps.gov/wotr/getinvolved/volunteer.htm"
+        },
+        {
+          "category": "meetings",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "civic_priority:civic-source-priority.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
+          "id": "meetings-viennava-gov-bc6ebc78",
+          "likelyDataType": "HTML calendar",
+          "publisher": "viennava.gov",
+          "rank": 4,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 5.42,
+            "trust": 5
+          },
+          "trustSignals": {
+            "authority": "government",
+            "governance": [
+              "Discovery registry only"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.viennava.gov/"
+        },
+        {
+          "category": "publicSpaces",
+          "classification": "INVESTIGATE",
+          "coverageValue": "medium",
+          "discovery": {
+            "confidence": 0.6,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "candidate_registry:wolf-trap-va.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "food-for-others",
+          "likelyDataType": "HTML calendar",
+          "publisher": "Food For Others",
+          "rank": 5,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 1.5,
+            "coverageImpact": 3,
+            "difficulty": 3,
+            "impactEffortRatio": 4.5,
+            "trust": 3
+          },
+          "trustSignals": {
+            "authority": "official_partner",
+            "governance": [
+              "Registry status: disabled",
+              "terms review",
+              "permitted acquisition method",
+              "verified address and coordinates",
+              "saved fixture"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://foodforothers.org"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.62,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "editorial_registry:editorial-event-sources.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "events-wolftrap-org-f9ccaf58",
+          "likelyDataType": "HTML calendar",
+          "publisher": "Wolf Trap",
+          "rank": 6,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 3.25,
+            "trust": 3
+          },
+          "trustSignals": {
+            "authority": "official_partner",
+            "governance": [
+              "Free claim: per_listing"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.wolftrap.org/"
+        },
+        {
+          "category": "events",
+          "classification": "INVESTIGATE",
+          "coverageValue": "high",
+          "discovery": {
+            "confidence": 0.6,
+            "foundAt": "2026-08-20T10:48:53.937732Z",
+            "method": "candidate_registry:wolf-trap-va.json",
+            "origin": "automated"
+          },
+          "estimatedProviderDifficulty": "MEDIUM",
+          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
+          "id": "wolf-trap-foundation",
+          "likelyDataType": "HTML calendar",
+          "publisher": "Wolf Trap Foundation calendar",
+          "rank": 7,
+          "recommendedAction": "Human review is required before provider work.",
+          "scores": {
+            "coverageGapMultiplier": 0.65,
+            "coverageImpact": 5,
+            "difficulty": 3,
+            "impactEffortRatio": 3.25,
+            "trust": 3
+          },
+          "trustSignals": {
+            "authority": "official_partner",
+            "governance": [
+              "Registry status: disabled",
+              "terms review",
+              "permitted acquisition method",
+              "saved fixture",
+              "verified coordinates"
+            ],
+            "maintenance": [],
+            "stability": []
+          },
+          "url": "https://www.wolftrap.org/calendar"
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 1,
+  "summary": {
+    "candidateCount": 101,
+    "classifications": {
+      "INVESTIGATE": 98,
+      "READY": 3,
+      "REJECT": 0
+    },
+    "regionCount": 26
+  }
+}

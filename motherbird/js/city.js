@@ -25,7 +25,10 @@ export async function loadCityData(cityId) {
         return supplementResponse.ok ? await supplementResponse.json() : null;
       } catch { return null; }
     }));
-    supplements = packages.flatMap((pack) => pack?.pois || pack?.pointsOfInterest || []);
+    supplements = packages.flatMap((pack) => {
+      if (pack?.journeys?.length) return pack.journeys.map((journey) => ({ ...journey, category: 'journey', type: 'journey' }));
+      return pack?.pois || pack?.pointsOfInterest || [];
+    });
   }
   const mergeSupplements = (pois) => {
     const byId = new Map(pois.map((poi) => [poi.id, poi]));

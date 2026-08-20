@@ -5,6 +5,7 @@ import db from './storage.js';
 import { updateProfile } from './profile.js';
 import { closeSheets, openSheet, toast, momentCard } from './ui.js';
 import { city } from './poi.js';
+import { buildReflectionMoment, wordCount } from './reflection.js';
 
 export async function saveHistoryMoment() {
   const site = state.currentSite; if (!site) return;
@@ -28,9 +29,9 @@ export async function saveJournal(event) {
   const mood = document.querySelector('input[name="mood"]:checked').value;
   const note = el('journalNote').value.trim();
   const walkId = event.currentTarget.dataset.walkId;
-  const moment = { id: uid('moment'), type: 'journal', title: mood, note: note || 'A reflection saved after a walk.', createdAt: new Date().toISOString(), walkId: walkId || null, city: state.activeCity };
+  const moment = buildReflectionMoment({ id: uid('moment'), city: state.activeCity, heading: el('journalHeading').value, mood, note, prompt: event.currentTarget.dataset.prompt, walkId, createdAt: new Date().toISOString() });
   await db.put('moments', moment);
-  closeSheets(); toast('Reflection saved locally.'); renderArchive();
+  closeSheets(); toast(`Reflection saved locally · ${wordCount(note)} words.`); renderArchive();
 }
 export async function renderArchive() {
   let items = await allArchiveItems();

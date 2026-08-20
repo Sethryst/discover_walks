@@ -22,7 +22,7 @@ jobs:
           EBIRD_API_TOKEN: ${{ secrets.EBIRD_API_TOKEN }}
           NPS_API_KEY: ${{ secrets.NPS_API_KEY }}
           USGS_WATER_API_KEY: ${{ secrets.USGS_WATER_API_KEY }}
-          NYC_EVENT_SUBSCRIPTION_KEY: ${{ secrets.NYC_EVENT_SUBSCRIPTION_KEY }}
+          NYC_API_SUBSCRIPTION_KEY: ${{ secrets.NYC_API_SUBSCRIPTION_KEY }}
           NYC_GEOCLIENT_SUBSCRIPTION_KEY: ${{ secrets.NYC_GEOCLIENT_SUBSCRIPTION_KEY }}
       - uses: actions/upload-artifact@v4
         with:

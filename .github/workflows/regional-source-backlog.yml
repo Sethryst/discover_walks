@@ -1,0 +1,27 @@
+name: Build regional source review backlog
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "37 11 * * 2"
+
+permissions:
+  contents: read
+
+jobs:
+  scout:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Generate governed review backlog
+        run: python -m app.scout.backlog --output expansion-queues/regional-source-backlog.json
+      - name: Verify scout contracts
+        run: python -m unittest tests.test_civic_scout tests.test_source_backlog
+      - uses: actions/upload-artifact@v4
+        with:
+          name: regional-source-review-backlog
+          path: expansion-queues/regional-source-backlog.json
+          retention-days: 30

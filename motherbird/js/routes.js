@@ -46,8 +46,8 @@ export function routesForCity(cityId = state.activeCity) {
     .filter(poi => poi.category === 'journey')
     .map(journey => {
       const chapters = journey.chapters || [];
-      const distanceMiles = chapters.reduce((sum, ch) => sum + (ch.distance_miles || 0), 0);
-      const durationMinutes = chapters.reduce((sum, ch) => sum + (ch.estimated_duration_minutes || 0), 0);
+      const distanceMiles = chapters.reduce((sum, ch) => sum + (ch.distanceMiles ?? ch.distance_miles ?? 0), 0);
+      const durationMinutes = chapters.reduce((sum, ch) => sum + (ch.estimatedDurationMinutes ?? ch.estimated_duration_minutes ?? 0), 0);
       const coordinates = chapters
         .flatMap((chapter) => chapter.geometry?.coordinates || [])
         .map(([lng, lat]) => [lat, lng])
@@ -60,6 +60,8 @@ export function routesForCity(cityId = state.activeCity) {
         durationMinutes: durationMinutes,
         difficulty: distanceMiles > 5 ? 'Challenging' : (distanceMiles > 2 ? 'Moderate' : 'Easy'),
         description: journey.description,
+        access: journey.access,
+        sources: journey.sources || [],
         isJourney: true,
         coordinates,
         chapters
@@ -86,15 +88,20 @@ export function renderCuratedRoutes() {
 
   container.innerHTML = routes.map((route) => {
     if (route.isJourney) {
-      const chaptersHtml = route.chapters.map((ch, i) => `
+      const chaptersHtml = route.chapters.map((ch, i) => {
+        const chapterMiles = ch.distanceMiles ?? ch.distance_miles ?? 0;
+        const chapterMinutes = ch.estimatedDurationMinutes ?? ch.estimated_duration_minutes ?? 0;
+        return `
         <details class="journey-chapter" style="margin-top:0.5rem; background:rgba(0,0,0,0.03); padding:0.5rem; border-radius:4px;">
-          <summary style="cursor:pointer; font-weight:600;">Chapter ${i+1}: ${escapeHtml(ch.name)} <span style="font-weight:normal; opacity:0.8; font-size:0.9em; float:right;">${(ch.distance_miles||0).toFixed(1)} mi · ${(ch.estimated_duration_minutes||0)} min</span></summary>
+          <summary style="cursor:pointer; font-weight:600;">Section ${i+1}: ${escapeHtml(ch.name)} <span style="font-weight:normal; opacity:0.8; font-size:0.9em; float:right;">${chapterMiles < 0.1 ? '&lt;0.1' : Number(chapterMiles).toFixed(1)} mi · ${chapterMinutes < 1 ? '&lt;1' : chapterMinutes} min</span></summary>
           <div style="margin-top:0.5rem; font-size:0.9em;">
             <p style="margin:0 0 0.5rem 0;">${escapeHtml(ch.description || '')}</p>
             ${ch.stops?.length ? `<p style="margin:0; font-style:italic;">Stops: ${ch.stops.map(s => escapeHtml(s.name)).join(', ')}</p>` : ''}
           </div>
         </details>
-      `).join('');
+      `; }).join('');
+      const accessHtml = route.access ? `<div class="route-access"><strong>Getting there</strong><p>${escapeHtml([route.access.startLabel, route.access.destinationLabel].filter(Boolean).join(' → '))}</p>${route.access.note ? `<small>${escapeHtml(route.access.note)}</small>` : ''}</div>` : '';
+      const source = route.sources?.find((item) => /^https:\/\//.test(item.url || ''));
 
       return `
         <article class="route-card journey-card">
@@ -105,6 +112,8 @@ export function renderCuratedRoutes() {
             <span class="difficulty ${route.difficulty.toLowerCase()}">${escapeHtml(route.difficulty)}</span>
             <small class="route-audit-note">Modular Journey</small>
             <p style="margin-top:0.5rem;">${escapeHtml(route.description || '')}</p>
+            ${accessHtml}
+            ${source ? `<a class="text-button" href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer">${escapeHtml(source.name)} ↗</a>` : ''}
             <div class="journey-chapters-container" style="margin-top:1rem;">
               ${chaptersHtml}
             </div>

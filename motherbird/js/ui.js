@@ -1,10 +1,11 @@
 import { state } from './state.js';
-import { GEOFENCE_CATEGORIES } from './constants.js';
+import { CITIES, GEOFENCE_CATEGORIES } from './constants.js';
 import { el, escapeHtml, formatDistance, formatDuration, shortDate } from './utils.js';
 import { renderArchive } from './archive.js';
 import { renderProfile } from './profile.js';
 import { geofenceCategoriesForCity, renderPoiTagFilters } from './poi.js';
 import { renderCivic } from './civic.js';
+import { promptForWalk, REFLECTION_PROMPTS, wordCount } from './reflection.js';
 
 export function setArchiveFilter(filter = 'all') {
   state.archiveFilter = filter;
@@ -64,18 +65,16 @@ export function renderIncomingRequests() {
 export function toast(message) { const node = el('toast'); node.textContent = message; node.classList.remove('hidden'); clearTimeout(toast.timeout); toast.timeout = setTimeout(() => node.classList.add('hidden'), 3200); }
 export function setStatus() { /* Map status copy is intentionally omitted. */ }
 export function openJournal(walkId = null) {
-  const prompts = [
-    'What did you notice today that surprised you?',
-    'Describe one place you will remember.',
-    'What changed between the beginning and end of this walk?',
-    'What did your attention return to?'
-  ];
-  const index = walkId ? [...walkId].reduce((sum, character) => sum + character.charCodeAt(0), 0) % prompts.length : 0;
+  const prompt = promptForWalk(walkId || '');
   el('journalForm').reset();
   el('journalForm').dataset.walkId = walkId || '';
+  el('journalForm').dataset.prompt = prompt;
   el('journalTitle').textContent = walkId ? 'Tell it back, in your own words.' : 'Hold onto this feeling.';
-  el('journalPrompt').textContent = walkId ? prompts[index] : 'A private note for your own return.';
-  el('journalNote').placeholder = walkId ? 'Optional—your words stay on this device…' : 'A few words about where your feet and attention took you…';
+  el('journalPrompt').textContent = prompt;
+  el('journalContext').textContent = `${new Date().toLocaleDateString([], { month: 'long', day: 'numeric', year: 'numeric' })} · ${CITIES[state.activeCity].name} · private on this device`;
+  el('journalPromptChoices').innerHTML = REFLECTION_PROMPTS.map((item) => `<button class="poi-chip ${item === prompt ? 'active' : ''}" type="button" data-journal-prompt="${escapeHtml(item)}" aria-pressed="${item === prompt}">${escapeHtml(item)}</button>`).join('');
+  el('journalWordCount').textContent = `${wordCount(el('journalNote').value)} words`;
+  el('journalNote').placeholder = 'Write across the lines. A sentence is enough; a whole page is welcome.';
   openSheet('journalSheet');
 }
 export function momentCard(item) {

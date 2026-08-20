@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "regionId": "loudoun-county-va",
+  "routes": [
+    {
+      "id": "wod-eastern-loudoun-verified-section",
+      "name": "W&OD: Eastern Loudoun Verified Section",
+      "description": "A continuous paved section assembled only from adjoining Loudoun County GIS trail segments. It is a map preview for planning, not a claim about parking or current closures.",
+      "featured": true,
+      "access": {
+        "startLabel": "Western mapped endpoint: 39.00321, -77.42681",
+        "destinationLabel": "Eastern mapped endpoint: 38.99377, -77.41809",
+        "note": "Use the map preview to choose an appropriate public access point. Parking, transit, and closure status have not yet been verified for this section."
+      },
+      "sources": [
+        {
+          "name": "Loudoun County Countywide Sidewalks and Trails",
+          "url": "https://logis.loudoun.gov/gis/rest/services/COL/CountywideSidewalksTrails/MapServer/5",
+          "type": "official-gis"
+        }
+      ],
+      "chapters": [
+        {"id":"wod-19162","name":"Official segment 19162","canonicalRecordId":"trails:loudoun-wod-trail:19162","amenities":[],"stops":[]},
+        {"id":"wod-19087","name":"Official segment 19087","canonicalRecordId":"trails:loudoun-wod-trail:19087","amenities":[],"stops":[]},
+        {"id":"wod-18920","name":"Official segment 18920","canonicalRecordId":"trails:loudoun-wod-trail:18920","amenities":[],"stops":[]},
+        {"id":"wod-18897","name":"Official segment 18897","canonicalRecordId":"trails:loudoun-wod-trail:18897","amenities":[],"stops":[]},
+        {"id":"wod-18891","name":"Official segment 18891","canonicalRecordId":"trails:loudoun-wod-trail:18891","amenities":[],"stops":[]},
+        {"id":"wod-18827","name":"Official segment 18827","canonicalRecordId":"trails:loudoun-wod-trail:18827","amenities":[],"stops":[]},
+        {"id":"wod-18790","name":"Official segment 18790","canonicalRecordId":"trails:loudoun-wod-trail:18790","amenities":[],"stops":[]}
+      ]
+    }
+  ]
+}

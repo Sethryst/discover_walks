@@ -1,5 +1,5 @@
 import { state } from './state.js';
-import { DEFAULT_PROFILE, DEFAULT_SETTINGS, GEOFENCE_CATEGORIES } from './constants.js';
+import { CITIES, DEFAULT_PROFILE, DEFAULT_SETTINGS, GEOFENCE_CATEGORIES } from './constants.js';
 import { el, normalizeProfile } from './utils.js';
 import { initBackupControls } from './backup.js';
 import { openWalkDetail, saveHistoryMoment, saveJournal, renderArchive } from './archive.js';
@@ -16,6 +16,8 @@ import { renderExplorePlaces, setExploreTab } from './explore.js';
 import { renderDiscoveryHeadline } from './discovery.js';
 import { showCuratedRoute } from './routes.js';
 import { generateTimeBasedPlan, previewTimeBasedPlan, choosePlan, changePlan, setPlanningMode, lockSelectedPlanOnMap, togglePlanVisibility, draftWalkFromText } from './planner.js';
+import { wordCount } from './reflection.js';
+import { onboardingValue } from './onboarding.js';
 
 export function initEvents() {
   initBackupControls();
@@ -117,12 +119,19 @@ el('poiSearchResults').addEventListener('click', (event) => {
   el('poiSearchInput').value = '';
 });
   el('observationForm').addEventListener('submit', saveObservation); el('journalForm').addEventListener('submit', saveJournal);
+  el('journalPromptChoices').addEventListener('click', (event) => { const button = event.target.closest('[data-journal-prompt]'); if (!button) return; el('journalForm').dataset.prompt = button.dataset.journalPrompt; el('journalPrompt').textContent = button.dataset.journalPrompt; document.querySelectorAll('[data-journal-prompt]').forEach((choice) => { const selected = choice === button; choice.classList.toggle('active', selected); choice.setAttribute('aria-pressed', String(selected)); }); el('journalNote').focus(); });
+  el('journalNote').addEventListener('input', (event) => { const count = wordCount(event.target.value); el('journalWordCount').textContent = `${count} word${count === 1 ? '' : 's'}`; });
   el('observationIconPicker').addEventListener('click', (event) => { const button = event.target.closest('[data-observation-icon]'); if (button) setDraftObservationIcon(button.dataset.observationIcon); });
   el('photoInput').addEventListener('change', (event) => { el('photoName').textContent = event.target.files[0]?.name || 'Optional, stored only on this device'; });
-  const finishOnboarding = async () => { state.settings.onboardingCompleted = true; await db.put('settings', state.settings); closeSheets(); renderProfile(); };
-  el('onboardingInterestChips').addEventListener('click', (event) => { const button = event.target.closest('[data-onboarding-interest]'); if (!button) return; const interests = new Set(state.settings.favoriteCategories || []); const id = button.dataset.onboardingInterest; interests.has(id) ? interests.delete(id) : interests.add(id); state.settings.favoriteCategories = [...interests]; button.classList.toggle('active', interests.has(id)); });
-  el('skipOnboardingButton').addEventListener('click', finishOnboarding);
-  el('saveOnboardingButton').addEventListener('click', finishOnboarding);
+  const onboardingCity = el('onboardingCitySelect');
+  onboardingCity.innerHTML = Object.entries(CITIES).sort(([, a], [, b]) => a.name.localeCompare(b.name)).map(([id, item]) => `<option value="${id}">${item.name}, ${item.state}</option>`).join('');
+  onboardingCity.value = state.activeCity;
+  const renderOnboardingValue = () => { const id = onboardingCity.value; el('onboardingValuePreview').textContent = onboardingValue(CITIES[id]?.name || 'your region', state.settings.favoriteCategories || []); };
+  const finishOnboarding = async (applyChoices = false) => { const nextCity = onboardingCity.value; state.settings.onboardingCompleted = true; await db.put('settings', state.settings); if (applyChoices && CITIES[nextCity] && nextCity !== state.activeCity) await switchCity(nextCity); closeSheets(); renderProfile(); if (applyChoices) { showView('explore'); setExploreTab('routes'); toast(onboardingValue(CITIES[state.activeCity].name, state.settings.favoriteCategories || [])); } };
+  el('onboardingInterestChips').addEventListener('click', (event) => { const button = event.target.closest('[data-onboarding-interest]'); if (!button) return; const interests = new Set(state.settings.favoriteCategories || []); const id = button.dataset.onboardingInterest; interests.has(id) ? interests.delete(id) : interests.add(id); state.settings.favoriteCategories = [...interests]; button.classList.toggle('active', interests.has(id)); renderOnboardingValue(); });
+  onboardingCity.addEventListener('change', renderOnboardingValue); renderOnboardingValue();
+  el('skipOnboardingButton').addEventListener('click', () => void finishOnboarding(false));
+  el('saveOnboardingButton').addEventListener('click', () => void finishOnboarding(true));
   document.querySelectorAll('[data-close-sheet]').forEach((button) => button.addEventListener('click', () => { const wasPlanner = button.closest('#planWalkSheet'); closeSheets(); if (wasPlanner) setPlanningMode(false); }));
   el('modalBackdrop').addEventListener('click', closeSheets);
   document.querySelectorAll('.archive-filter .filter-button').forEach((button) => button.addEventListener('click', () => setArchiveFilter(button.dataset.filter)));

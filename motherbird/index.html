@@ -256,7 +256,9 @@
       <span class="sheet-kicker">WALK REFLECTION</span>
       <h2 id="journalTitle">Hold onto this feeling.</h2>
       <p class="sheet-intro" id="journalPrompt">A private note for your own return.</p>
+      <p class="journal-context" id="journalContext">Today · private on this device</p>
       <form id="journalForm">
+        <label>Page title <input id="journalHeading" maxlength="80" placeholder="Give this moment a name (optional)" /></label>
         <fieldset class="mood-set"><legend>How did this walk feel?</legend>
           <div class="mood-options">
             <label><input type="radio" name="mood" value="Restored" checked /><span>Restored</span></label>
@@ -265,7 +267,9 @@
             <label><input type="radio" name="mood" value="Energized" /><span>Energized</span></label>
           </div>
         </fieldset>
-        <label>Reflection <textarea id="journalNote" rows="5" maxlength="1000" placeholder="A few words about where your feet and attention took you…"></textarea></label>
+        <fieldset class="journal-prompt-set"><legend>Choose a thread</legend><div class="journal-prompt-choices" id="journalPromptChoices"></div></fieldset>
+        <label class="journal-page-label">Your page <textarea class="lined-journal" id="journalNote" rows="9" maxlength="2000" placeholder="A few words about where your feet and attention took you…"></textarea></label>
+        <div class="journal-writing-meta"><small id="journalWordCount" aria-live="polite">0 words</small><small>Saved only on this device</small></div>
         <button class="primary-button wide-button" type="submit">Save reflection</button>
       </form>
     </section>
@@ -286,8 +290,11 @@
     <section class="sheet hidden" id="onboardingSheet" role="dialog" aria-modal="true" aria-labelledby="onboardingTitle">
       <span class="sheet-kicker">WELCOME TO WALK &amp; WILDLIFE</span><h2 id="onboardingTitle">What would you like to notice?</h2>
       <p class="sheet-intro">Choose any interests to make nearby discoveries more relevant. You can change these at any time in Profile.</p>
+      <label class="onboarding-region">Start with a region<select id="onboardingCitySelect" aria-label="Choose a starting region"></select></label>
       <div class="poi-chips" id="onboardingInterestChips" role="group" aria-label="Initial interests"><button class="poi-chip" type="button" data-onboarding-interest="park">Green space</button><button class="poi-chip" type="button" data-onboarding-interest="trail">Wildlife</button><button class="poi-chip" type="button" data-onboarding-interest="history">Local history</button><button class="poi-chip" type="button" data-onboarding-interest="water_access">Water</button><button class="poi-chip" type="button" data-onboarding-interest="public_art">Public art</button></div>
-      <div class="sheet-actions onboarding-actions"><button class="secondary-button" id="skipOnboardingButton" type="button">Skip for now</button><button class="primary-button" id="saveOnboardingButton" type="button">Save interests</button></div>
+      <div class="onboarding-value-preview" id="onboardingValuePreview" aria-live="polite"></div>
+      <p class="privacy-boundary">Browse by regional center first. Your GPS is not required, and these preferences stay on this device.</p>
+      <div class="sheet-actions onboarding-actions"><button class="secondary-button" id="skipOnboardingButton" type="button">Skip for now</button><button class="primary-button" id="saveOnboardingButton" type="button">Show my first walks</button></div>
     </section>
 
     <section class="sheet hidden" id="fieldEditionSheet" role="dialog" aria-modal="true" aria-labelledby="fieldEditionTitle">

@@ -86,6 +86,15 @@
     dataFile: './regions/alexandria-va/pois.json',
     civicFile: './regions/alexandria-va/civic/index.json'
   },
+  loudoun: {
+    name: 'Loudoun County',
+    state: 'VA',
+    center: { lat: 39.0768, lng: -77.6536 },
+    zoom: 11,
+    dataFile: './regions/loudoun-county-va/pois.json',
+    journeyFile: './regions/loudoun-county-va/journeys.json',
+    civicFile: './regions/loudoun-county-va/civic/index.json'
+  },
   dc: {
     name: 'Washington',
     state: 'DC',
