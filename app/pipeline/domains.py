@@ -71,6 +71,18 @@ class TrailsGremlin(DomainGremlin):
     def accepts(self, feature: IntermediateFeature) -> bool:
         return feature.geometry.get("type") in {"LineString", "MultiLineString"} and bool(_configured_property(feature, "name", "NAME", "TRAIL_NAME", "name"))
 
+    def attributes(self, properties: dict[str, Any]) -> dict[str, Any]:
+        output = super().attributes(properties)
+        output.update({
+            "surface": _first(properties, "SURFACE_MATERIAL", "SURFACE_TYPE", "SurfaceType", "surface"),
+            "width": _first(properties, "WIDTH", "width"),
+            "difficulty": _first(properties, "DIFFICULTY", "difficulty"),
+            "stairs": _first(properties, "STEPS", "stairs"),
+            "accessibility": {"ada": _first(properties, "ADA", "ada")} if _first(properties, "ADA", "ada") else None,
+            "maintenance": _first(properties, "MAINTENANCE_RESPONSIBILITY", "TRAILOWNER", "Owner", "Maintenance"),
+        })
+        return output
+
 
 class RouteGremlin(DomainGremlin):
     """Collect named, pedestrian-suitable route segments as featured-walk candidates."""
@@ -111,6 +123,17 @@ class FacilitiesGremlin(DomainGremlin):
 
     def accepts(self, feature: IntermediateFeature) -> bool:
         return feature.geometry.get("type") in {"Point", "Polygon", "MultiPolygon"} and bool(_configured_property(feature, "name", "NAME", "FACILITY_NAME", "CENTER_NAME", "name"))
+
+    def attributes(self, properties: dict[str, Any]) -> dict[str, Any]:
+        output = super().attributes(properties)
+        output.update({
+            "parking": _truthy(properties.get("PARKING")),
+            "restrooms": _truthy(properties.get("RESTROOMS")),
+            "drinkingWater": _truthy(properties.get("DRINKING_FOUNTAINS")),
+            "trails": _truthy(properties.get("TRAILS")),
+            "website": _first(properties, "WEBSITE_LINK", "website"),
+        })
+        return output
 
 
 class CoffeeGremlin(DomainGremlin):
