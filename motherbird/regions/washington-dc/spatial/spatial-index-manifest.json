@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "artifactType": "regional-spatial-index-package",
+  "regionId": "washington-dc",
+  "generatedAt": "2026-08-20T20:08:46.710Z",
+  "provider": {
+    "name": "flatbush",
+    "libraryVersion": "4.6.2",
+    "serializedFormatVersion": 3,
+    "nodeSize": 16
+  },
+  "coordinateOrder": "minLng,minLat,maxLng,maxLat",
+  "semantics": {
+    "role": "candidate-prefilter-only",
+    "exactGeometryRequired": true,
+    "ordinalIdentity": false
+  },
+  "inputs": {
+    "config": {
+      "file": "regions/washington-dc/spatial-index.json",
+      "checksum": "sha256:8619b3456bec9c069ee3b6e6f430e3a274ac06335b644339cd37b9627609b633"
+    },
+    "poi": {
+      "file": "regions/washington-dc/washington-dc-poi.json",
+      "checksum": "sha256:97797935e249f6d41600b5dbfa38095545945544c57eb090fa67562ec35c73da",
+      "featureCount": 1436
+    },
+    "boundaries": [
+      {
+        "layer": "neighborhoods",
+        "file": "regions/washington-dc/geography/neighborhoods.geojson",
+        "featureCount": 46,
+        "checksum": "sha256:c78ba3956b49d68085d27326ae8c1803d807d00b04116bd914fa4eca5f9e9806"
+      },
+      {
+        "layer": "wards",
+        "file": "regions/washington-dc/geography/wards.geojson",
+        "featureCount": 8,
+        "checksum": "sha256:2fbc150dc4bfb456bc8fba6af12612011a8e7d39a4bab4896fbf9fed964876cc"
+      },
+      {
+        "layer": "ancs",
+        "file": "regions/washington-dc/geography/ancs.geojson",
+        "featureCount": 40,
+        "checksum": "sha256:8c7e93d7398cc8e880229522f8d270206f4c93c87c917bf1a9189bb94715db33"
+      },
+      {
+        "layer": "police-districts",
+        "file": "regions/washington-dc/geography/police-districts.geojson",
+        "featureCount": 7,
+        "checksum": "sha256:ad9bc47e060f3372bbeecff0f3d0ef3ba95afb507474e0b5f933b230a7f9f8c7"
+      }
+    ]
+  },
+  "indexes": {
+    "pois": {
+      "binary": "pois.flatbush",
+      "ids": "pois.ids.json",
+      "featureCount": 1436,
+      "recordFingerprint": "sha256:2925aaa305cde50f258a8f0dd42adc3af5f733e2be86259cf0f05291e52c4810",
+      "binaryChecksum": "sha256:5a1b16798988e1a78cd6518915efc85952630082075537251223c534fc7a0dce",
+      "idsChecksum": "sha256:7b366f1d2c497b4e44ecf7db52dfaff85fb8ea3a1201d648726f66512255e93c"
+    },
+    "boundaries": {
+      "binary": "boundaries.flatbush",
+      "ids": "boundaries.ids.json",
+      "featureCount": 101,
+      "binaryChecksum": "sha256:b6d6fd8d8366269686c6096dd5ec43f2824b61e90833151f8b2f6095147888b0",
+      "idsChecksum": "sha256:976d5950a41609b9e998aaa307f1e3cb6daf862d1795385d3a119ab13a95827b"
+    }
+  },
+  "replay": "node tools/build-spatial-index.mjs washington-dc --generated-at 2026-08-20T20:08:46.710Z"
+}

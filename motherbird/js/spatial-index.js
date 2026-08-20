@@ -1,27 +1,29 @@
-const DEFAULT_CELL_DEGREES = 0.01;
+import { CompositeSpatialIndex, createGridIndex, SpatialGridIndex } from './spatial-index-providers.js';
+import { loadFlatbushPackage } from './spatial-package-loader.js';
+import { SessionSpatialOverlay } from './spatial-overlay.js';
+
 const METERS_PER_DEGREE = 111_320;
 
-export class SpatialGridIndex {
-  constructor(cellDegrees = DEFAULT_CELL_DEGREES) { this.cellDegrees = cellDegrees; this.cells = new Map(); }
-  insert(item) { const key = this.key(item.lat, item.lng); if (!this.cells.has(key)) this.cells.set(key, []); this.cells.get(key).push(item); }
-  queryBbox(west, south, east, north) {
-    const found = new Map();
-    const minX = Math.floor(west / this.cellDegrees); const maxX = Math.floor(east / this.cellDegrees);
-    const minY = Math.floor(south / this.cellDegrees); const maxY = Math.floor(north / this.cellDegrees);
-    for (let x = minX; x <= maxX; x += 1) for (let y = minY; y <= maxY; y += 1) (this.cells.get(`${x}:${y}`) || []).forEach((item) => found.set(item.id, item));
-    return [...found.values()];
-  }
-  key(lat, lng) { return `${Math.floor(lng / this.cellDegrees)}:${Math.floor(lat / this.cellDegrees)}`; }
-}
+export { SpatialGridIndex } from './spatial-index-providers.js';
 
-let active = { cityId: null, index: new SpatialGridIndex(), neighborhoods: new Map() };
+let active = makeActive(null, new SpatialGridIndex(), null, new Map());
 
 export function reindexSpatialData(cityId, pois = [], neighborhoodGeojson = null) {
-  const index = new SpatialGridIndex();
-  pois.filter((poi) => Number.isFinite(poi.lat) && Number.isFinite(poi.lng)).forEach((poi) => index.insert(poi));
+  const index = createGridIndex(pois);
   const neighborhoods = new Map((neighborhoodGeojson?.features || []).map((feature) => [feature.properties?.id || feature.id, feature]));
-  active = { cityId, index, neighborhoods };
-  return { cityId, poiCount: pois.length, neighborhoodCount: neighborhoods.size };
+  active = makeActive(cityId, index, null, neighborhoods);
+  return { cityId, poiCount: pois.length, neighborhoodCount: neighborhoods.size, provider: index.kind };
+}
+
+export async function upgradeSpatialDataFromPackage(cityId, pois = [], neighborhoodGeojson = null, baseUrl = `./regions/${cityId}/spatial`, loaderOptions = {}) {
+  const fallback = reindexSpatialData(cityId, pois, neighborhoodGeojson);
+  try {
+    const loaded = await loadFlatbushPackage(baseUrl, pois, loaderOptions);
+    active = makeActive(cityId, loaded.poiIndex, loaded.boundaryIndex, active.neighborhoods);
+    return { ...fallback, provider: loaded.poiIndex.kind, manifest: loaded.manifest };
+  } catch (error) {
+    return { ...fallback, fallbackReason: error.message };
+  }
 }
 
 export function getPoisNearRoute(latlngs, radiusMeters = 120) {
@@ -34,7 +36,7 @@ export function getPoisNearRoute(latlngs, radiusMeters = 120) {
   const candidates = new Map();
   for (let i = 1; i < route.length; i += 1) {
     const a = route[i - 1]; const b = route[i];
-    active.index.queryBbox(Math.min(a.lng, b.lng) - lngPad, Math.min(a.lat, b.lat) - latPad, Math.max(a.lng, b.lng) + lngPad, Math.max(a.lat, b.lat) + latPad).forEach((poi) => candidates.set(poi.id, poi));
+    active.index.searchBbox(Math.min(a.lng, b.lng) - lngPad, Math.min(a.lat, b.lat) - latPad, Math.max(a.lng, b.lng) + lngPad, Math.max(a.lat, b.lat) + latPad).forEach((poi) => candidates.set(poi.id, poi));
   }
   return [...candidates.values()].map((poi) => ({ poi, distanceMeters: routeDistance(poi, route) })).filter((result) => result.distanceMeters <= radiusMeters).sort((a, b) => a.distanceMeters - b.distanceMeters || String(a.poi.id).localeCompare(String(b.poi.id)));
 }
@@ -43,10 +45,23 @@ export function getPoisInNeighborhood(neighborhoodId) {
   const feature = active.neighborhoods.get(neighborhoodId);
   if (!feature) return [];
   const [west, south, east, north] = geometryBbox(feature.geometry);
-  return active.index.queryBbox(west, south, east, north).filter((poi) => pointInGeometry([poi.lng, poi.lat], feature.geometry)).sort((a, b) => String(a.id).localeCompare(String(b.id)));
+  return active.index.searchBbox(west, south, east, north).filter((poi) => pointInGeometry([poi.lng, poi.lat], feature.geometry)).sort((a, b) => String(a.id).localeCompare(String(b.id)));
 }
 
-export function spatialIndexStatus() { return { cityId: active.cityId, cells: active.index.cells.size, neighborhoods: active.neighborhoods.size }; }
+/** Adds or replaces a POI only for this browser session; it never mutates a package. */
+export function upsertSessionSpatialRecord(record) { active.overlay.upsert(record); return spatialIndexStatus(); }
+
+/** Hides a POI only for this browser session; Module 3 defines durable sync semantics. */
+export function removeSessionSpatialRecord(id, metadata = {}) { active.overlay.remove(id, metadata); return spatialIndexStatus(); }
+
+export function clearSessionSpatialChanges() { active.overlay.clear(); return spatialIndexStatus(); }
+
+export function spatialIndexStatus() { return { cityId: active.cityId, ...active.index.status(), boundaryProvider: active.boundaryIndex?.kind || null, boundaryRecords: active.boundaryIndex?.ids.length || 0, neighborhoods: active.neighborhoods.size }; }
+
+function makeActive(cityId, baseIndex, boundaryIndex, neighborhoods) {
+  const overlay = new SessionSpatialOverlay();
+  return { cityId, baseIndex, index: new CompositeSpatialIndex(baseIndex, overlay), overlay, boundaryIndex, neighborhoods };
+}
 
 function toPoint(value) { if (Array.isArray(value) && Number.isFinite(value[0]) && Number.isFinite(value[1])) return { lat: value[0], lng: value[1] }; if (Number.isFinite(value?.lat) && Number.isFinite(value?.lng)) return value; return null; }
 function routeDistance(point, route) { let minimum = Infinity; for (let i = 1; i < route.length; i += 1) minimum = Math.min(minimum, pointSegmentDistance(point, route[i - 1], route[i])); return minimum; }

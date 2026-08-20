@@ -1,7 +1,7 @@
 import { CITIES } from './constants.js';
 import db from './storage.js';
 import { state } from './state.js';
-import { reindexSpatialData } from './spatial-index.js';
+import { reindexSpatialData, upgradeSpatialDataFromPackage } from './spatial-index.js';
 import { el, escapeHtml } from './utils.js';
 import { toast } from './ui.js';
 
@@ -18,7 +18,8 @@ export async function loadNeighborhoodsForCity(cityId = state.activeCity) {
   state.neighborhoodLayer?.remove(); state.neighborhoodLayer = null; state.neighborhoodData = null; state.discoveredNeighborhoodIds = new Set();
   el('neighborhoodDiscoveryPanel')?.classList.add('hidden');
   const file = CITIES[cityId]?.neighborhoodFile;
-  if (!file || !state.map) { reindexSpatialData(cityId, state.cityPois[cityId] || [], null); return null; }
+  const spatialIndexPath = CITIES[cityId]?.spatialIndexPath || `./regions/${cityId}/spatial`;
+  if (!file || !state.map) { await upgradeSpatialDataFromPackage(cityId, state.cityPois[cityId] || [], null, spatialIndexPath); return null; }
   try {
     const response = await fetch(file);
     if (!response.ok) throw new Error(`Boundary package returned ${response.status}`);
@@ -29,7 +30,8 @@ export async function loadNeighborhoodsForCity(cityId = state.activeCity) {
     state.neighborhoodData = data;
     state.neighborhoodLayer = L.geoJSON(data, { style: neighborhoodStyle, onEachFeature }).addTo(state.map);
     state.neighborhoodLayer.bringToBack();
-    reindexSpatialData(cityId, state.cityPois[cityId] || [], data);
+    const spatial = await upgradeSpatialDataFromPackage(cityId, state.cityPois[cityId] || [], data, spatialIndexPath);
+    if (spatial.fallbackReason && !/returned 404/.test(spatial.fallbackReason)) console.warn('Static spatial package unavailable:', spatial.fallbackReason);
     updateDiscoveryPanel();
     return data;
   } catch (error) {
