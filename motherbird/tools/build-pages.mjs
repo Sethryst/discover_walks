@@ -2,6 +2,7 @@ import { access, cp, mkdir, rm, writeFile } from 'node:fs/promises';
 import { constants } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { buildKpiIndex } from './build-kpi-index.mjs';
 
 const toolDirectory = dirname(fileURLToPath(import.meta.url));
 const sourceDirectory = resolve(toolDirectory, '..');
@@ -39,5 +40,6 @@ for (const entry of publishEntries) {
 
 await access(resolve(outputDirectory, 'index.html'), constants.R_OK);
 await writeFile(resolve(outputDirectory, '.nojekyll'), '');
+await buildKpiIndex(resolve(outputDirectory, 'kpi'));
 
 console.log(`Built GitHub Pages site: ${outputDirectory}`);
