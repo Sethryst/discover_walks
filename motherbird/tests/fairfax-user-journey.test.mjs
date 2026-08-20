@@ -3,7 +3,7 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
 import { CITIES } from '../js/constants.js';
-import { objectiveCost, ROUTE_OBJECTIVES, routeEvidence } from '../js/planner.js';
+import { objectiveCost, ROUTE_OBJECTIVES, routeEvidence, routeExplanation } from '../js/planner.js';
 
 const appRoot = path.resolve(import.meta.dirname, '..');
 
@@ -22,6 +22,8 @@ test('accessible ranking favors a paved, stair-free route without claiming real 
   assert.ok(objectiveCost(accessible, 'accessible') < objectiveCost(stairs, 'accessible'));
   assert.deepEqual(routeEvidence(accessible), { accessibleSegments: 1, adaPlaces: 1, restrooms: 0, drinkingWater: 0 });
   assert.match(ROUTE_OBJECTIVES.find((item) => item.key === 'shade').note, /not installed/i);
+  assert.match(routeExplanation({ ...accessible, objective: { key: 'accessible' }, evidence: routeEvidence(accessible) }).join(' '), /paved or stair-free/i);
+  assert.match(routeExplanation({ ...accessible, objective: { key: 'shade' } }).join(' '), /canopy coverage is not installed/i);
 });
 
 test('the published Fairfax package includes user-visible sidewalk and comfort evidence', async () => {

@@ -117,6 +117,23 @@ export function routeEvidence(route, nearby = []) {
   const drinkingWater = places.filter((place) => place.drinkingWater === true).length;
   return { accessibleSegments, adaPlaces, restrooms, drinkingWater };
 }
+export function routeExplanation(route) {
+  const evidence = route.evidence || routeEvidence(route, route.influences || []);
+  const reasons = [];
+  if (route.objective?.key === 'accessible') {
+    if (evidence.accessibleSegments) reasons.push(`${evidence.accessibleSegments} paved or stair-free local segments`);
+    if (evidence.adaPlaces) reasons.push(`${evidence.adaPlaces} ADA-tagged places`);
+    if (!reasons.length) reasons.push('fewer turns and the available accessibility signals');
+  } else if (route.objective?.key === 'green') {
+    const greenStops = (route.stops || []).filter((stop) => poiTags(stop).some((tag) => ['park', 'trail', 'nature', 'garden', 'water_access'].includes(tag))).length;
+    reasons.push(greenStops ? `${greenStops} nearby green-space stops` : 'available public green-space signals');
+  } else if (route.objective?.key === 'shortest') reasons.push('the shortest available pedestrian distance');
+  else if (route.objective?.key === 'shade') reasons.push('green-place proximity only; canopy coverage is not installed yet');
+  else reasons.push('time fit, distance, and public-place signals');
+  if (evidence.restrooms) reasons.push(`${evidence.restrooms} restroom locations nearby`);
+  if (evidence.drinkingWater) reasons.push(`${evidence.drinkingWater} water locations nearby`);
+  return reasons;
+}
 function routeComplexity(coordinates = []) {
   let turns = 0;
   for (let index = 2; index < coordinates.length; index += 1) {
@@ -242,12 +259,8 @@ export function renderPlanPreview() {
     : `${plan.estimatedDurationMinutes}-minute ${plan.routeMode === 'round-trip' ? 'loop back to your start' : 'walk'} ranked for time and distance.`;
   el('planStops').innerHTML = plan.stops.map((stop, index) => `<li><span>${index + 1}</span><strong>${escapeHtml(stop.name)}</strong><small>${escapeHtml(stop.sourceType === 'osm-quiet-fallback' ? 'quiet place · OpenStreetMap' : poiTags(stop).find((tag) => !tag.startsWith('history_')) || 'place')}</small></li>`).join('');
   influencePanel.classList.remove('hidden');
-  const support = [];
-  if (plan.evidence?.accessibleSegments) support.push(`${plan.evidence.accessibleSegments} paved or stair-free local segments`);
-  if (plan.evidence?.adaPlaces) support.push(`${plan.evidence.adaPlaces} ADA-tagged places`);
-  if (plan.evidence?.restrooms) support.push(`${plan.evidence.restrooms} restroom locations`);
-  if (plan.evidence?.drinkingWater) support.push(`${plan.evidence.drinkingWater} water locations`);
-  influencePanel.innerHTML = `${plan.influences.length ? plan.influences.map((item) => `<span class="influence-chip">${escapeHtml(item.name)} · ${item.distanceMeters}m</span>`).join('') : '<span class="influence-chip">No nearby public POI influenced this route</span>'}${support.length ? `<small class="provenance-note">Local support near this route: ${escapeHtml(support.join(' · '))}.</small>` : ''}<small class="provenance-note">${escapeHtml(plan.objective.label)}: ${escapeHtml(plan.objective.note)} Geometry: ${escapeHtml(plan.provenance.routeGeometry)}.</small>`;
+  const reasons = routeExplanation(plan);
+  influencePanel.innerHTML = `${plan.influences.length ? plan.influences.map((item) => `<span class="influence-chip">${escapeHtml(item.name)} · ${item.distanceMeters}m</span>`).join('') : '<span class="influence-chip">No nearby public POI influenced this route</span>'}<small class="provenance-note"><strong>Why this route:</strong> ${escapeHtml(reasons.join(' · '))}.</small><small class="provenance-note">${escapeHtml(plan.objective.label)}: ${escapeHtml(plan.objective.note)} Geometry: ${escapeHtml(plan.provenance.routeGeometry)}.</small>`;
 }
 
 export function previewTimeBasedPlan({ fit = false } = {}) {
