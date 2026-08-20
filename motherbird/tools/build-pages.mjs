@@ -11,6 +11,7 @@ const outputDirectory = resolve(sourceDirectory, 'dist');
 // This is a static, browser-native application. Copy only the runtime files
 // and directories needed by index.html, its module graph, and its data loaders.
 const publishEntries = [
+  'appalachian-lab',
   'app.js',
   'assets',
   'civic-releases',

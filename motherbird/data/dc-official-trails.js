@@ -3,12 +3,12 @@ export const DC_OFFICIAL_TRAILS = [
   {
     "id": "dc-anacostia-river-trail-east-bank-section-1",
     "city": "dc",
-    "title": "Anacostia River Trail · Fort Dupont edge",
+    "title": "Anacostia River Trail: East Bank · Fort Dupont edge",
     "distanceMiles": 0.3,
     "durationMinutes": 6,
     "difficulty": "Easy",
     "category": "waterfront",
-    "description": "A source-mapped East Bank corridor. Verify access and any closures before heading out. Short source-preserving stretch 1 of 8; near Fort Dupont edge.",
+    "description": "A source-mapped East Bank corridor. Verify access and any closures before heading out. Short source-preserving stretch 1 of 8; Fort Dupont edge.",
     "sourceName": "DDOT Bike Trails (DC) GIS",
     "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
     "geometryStatus": "validated",
@@ -251,12 +251,12 @@ export const DC_OFFICIAL_TRAILS = [
   {
     "id": "dc-anacostia-river-trail-east-bank-section-2",
     "city": "dc",
-    "title": "Anacostia River Trail · Fairlawn bend",
+    "title": "Anacostia River Trail: East Bank · Fairlawn bend",
     "distanceMiles": 0.3,
     "durationMinutes": 6,
     "difficulty": "Easy",
     "category": "waterfront",
-    "description": "A source-mapped East Bank corridor. Verify access and any closures before heading out. Short source-preserving stretch 2 of 8; near Fairlawn bend.",
+    "description": "A source-mapped East Bank corridor. Verify access and any closures before heading out. Short source-preserving stretch 2 of 8; Fairlawn bend.",
     "sourceName": "DDOT Bike Trails (DC) GIS",
     "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
     "geometryStatus": "validated",
@@ -455,12 +455,12 @@ export const DC_OFFICIAL_TRAILS = [
   {
     "id": "dc-anacostia-river-trail-east-bank-section-3",
     "city": "dc",
-    "title": "Anacostia River Trail · Anacostia Recreation",
+    "title": "Anacostia River Trail: East Bank · Anacostia Recreation",
     "distanceMiles": 0.3,
     "durationMinutes": 6,
     "difficulty": "Easy",
     "category": "waterfront",
-    "description": "A source-mapped East Bank corridor. Verify access and any closures before heading out. Short source-preserving stretch 3 of 8; near Anacostia Recreation.",
+    "description": "A source-mapped East Bank corridor. Verify access and any closures before heading out. Short source-preserving stretch 3 of 8; Anacostia Recreation.",
     "sourceName": "DDOT Bike Trails (DC) GIS",
     "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
     "geometryStatus": "validated",
@@ -591,12 +591,12 @@ export const DC_OFFICIAL_TRAILS = [
   {
     "id": "dc-anacostia-river-trail-east-bank-section-4",
     "city": "dc",
-    "title": "Anacostia River Trail · Historic Anacostia",
+    "title": "Anacostia River Trail: East Bank · Historic Anacostia",
     "distanceMiles": 0.3,
     "durationMinutes": 6,
     "difficulty": "Easy",
     "category": "waterfront",
-    "description": "A source-mapped East Bank corridor. Verify access and any closures before heading out. Short source-preserving stretch 4 of 8; near Historic Anacostia.",
+    "description": "A source-mapped East Bank corridor. Verify access and any closures before heading out. Short source-preserving stretch 4 of 8; Historic Anacostia.",
     "sourceName": "DDOT Bike Trails (DC) GIS",
     "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
     "geometryStatus": "validated",
@@ -699,12 +699,12 @@ export const DC_OFFICIAL_TRAILS = [
   {
     "id": "dc-anacostia-river-trail-east-bank-section-5",
     "city": "dc",
-    "title": "Anacostia River Trail · Poplar Point",
+    "title": "Anacostia River Trail: East Bank · Poplar Point",
     "distanceMiles": 0.3,
     "durationMinutes": 6,
     "difficulty": "Easy",
     "category": "waterfront",
-    "description": "A source-mapped East Bank corridor. Verify access and any closures before heading out. Short source-preserving stretch 5 of 8; near Poplar Point.",
+    "description": "A source-mapped East Bank corridor. Verify access and any closures before heading out. Short source-preserving stretch 5 of 8; Poplar Point.",
     "sourceName": "DDOT Bike Trails (DC) GIS",
     "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
     "geometryStatus": "validated",
@@ -775,12 +775,12 @@ export const DC_OFFICIAL_TRAILS = [
   {
     "id": "dc-anacostia-river-trail-east-bank-section-6",
     "city": "dc",
-    "title": "Anacostia River Trail · 11th Street Bridge",
+    "title": "Anacostia River Trail: East Bank · 11th Street Bridge",
     "distanceMiles": 0.3,
     "durationMinutes": 6,
     "difficulty": "Easy",
     "category": "waterfront",
-    "description": "A source-mapped East Bank corridor. Verify access and any closures before heading out. Short source-preserving stretch 6 of 8; near 11th Street Bridge.",
+    "description": "A source-mapped East Bank corridor. Verify access and any closures before heading out. Short source-preserving stretch 6 of 8; 11th Street Bridge.",
     "sourceName": "DDOT Bike Trails (DC) GIS",
     "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
     "geometryStatus": "validated",
@@ -899,12 +899,12 @@ export const DC_OFFICIAL_TRAILS = [
   {
     "id": "dc-anacostia-river-trail-east-bank-section-7",
     "city": "dc",
-    "title": "Anacostia River Trail · Navy Yard approach",
+    "title": "Anacostia River Trail: East Bank · Navy Yard approach",
     "distanceMiles": 0.3,
     "durationMinutes": 6,
     "difficulty": "Easy",
     "category": "waterfront",
-    "description": "A source-mapped East Bank corridor. Verify access and any closures before heading out. Short source-preserving stretch 7 of 8; near Navy Yard approach.",
+    "description": "A source-mapped East Bank corridor. Verify access and any closures before heading out. Short source-preserving stretch 7 of 8; Navy Yard approach.",
     "sourceName": "DDOT Bike Trails (DC) GIS",
     "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
     "geometryStatus": "validated",
@@ -991,12 +991,12 @@ export const DC_OFFICIAL_TRAILS = [
   {
     "id": "dc-anacostia-river-trail-east-bank-section-8",
     "city": "dc",
-    "title": "Anacostia River Trail · Yards Park edge",
+    "title": "Anacostia River Trail: East Bank · Yards Park edge",
     "distanceMiles": 0.3,
     "durationMinutes": 6,
     "difficulty": "Easy",
     "category": "waterfront",
-    "description": "A source-mapped East Bank corridor. Verify access and any closures before heading out. Short source-preserving stretch 8 of 8; near Yards Park edge.",
+    "description": "A source-mapped East Bank corridor. Verify access and any closures before heading out. Short source-preserving stretch 8 of 8; Yards Park edge.",
     "sourceName": "DDOT Bike Trails (DC) GIS",
     "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
     "geometryStatus": "validated",
@@ -1149,6 +1149,10898 @@ export const DC_OFFICIAL_TRAILS = [
       [
         38.8675101484866,
         -77.0026677166469
+      ]
+    ]
+  },
+  {
+    "id": "dc-rock-creek-park-trail-section-1",
+    "city": "dc",
+    "title": "Rock Creek Park Trail · Stretch 1 of 16",
+    "distanceMiles": 0.5,
+    "durationMinutes": 11,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Rock Creek Park corridor. Verify access and any closures before heading out. Short source-preserving stretch 1 of 16; Stretch 1 of 16.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Rock Creek Park Trail —  Rock Creek Park Multi-Use Trail",
+      "sourceRecordId": "3",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Rock Creek Park Trail",
+    "sectionNumber": 1,
+    "sectionCount": 16,
+    "coordinates": [
+      [
+        38.9012761159208,
+        -77.0573950365357
+      ],
+      [
+        38.901108261589,
+        -77.0574275336977
+      ],
+      [
+        38.9010029875555,
+        -77.0574506025005
+      ],
+      [
+        38.9009256953922,
+        -77.0574294917928
+      ],
+      [
+        38.9012761159208,
+        -77.0573950365357
+      ],
+      [
+        38.9011761968591,
+        -77.0574099741682
+      ],
+      [
+        38.9014112388552,
+        -77.0573688754369
+      ],
+      [
+        38.9013070492976,
+        -77.0573904120185
+      ],
+      [
+        38.9012761159208,
+        -77.0573950365357
+      ],
+      [
+        38.9014112388552,
+        -77.0573688754369
+      ],
+      [
+        38.9012761159208,
+        -77.0573950365357
+      ],
+      [
+        38.9042055218405,
+        -77.056726100647
+      ],
+      [
+        38.9041554137846,
+        -77.0567260607967
+      ],
+      [
+        38.9040497475156,
+        -77.0567113443431
+      ],
+      [
+        38.9039695857398,
+        -77.0567151035713
+      ],
+      [
+        38.9038879234599,
+        -77.0567312539326
+      ],
+      [
+        38.9037569864406,
+        -77.0567509689591
+      ],
+      [
+        38.9036401267425,
+        -77.0567688931684
+      ],
+      [
+        38.9034697753391,
+        -77.0567795681057
+      ],
+      [
+        38.9034190872895,
+        -77.0567903371126
+      ],
+      [
+        38.9033191069939,
+        -77.0568425080379
+      ],
+      [
+        38.9032177159888,
+        -77.0568964784774
+      ],
+      [
+        38.9030839479657,
+        -77.0569450182604
+      ],
+      [
+        38.9030121364093,
+        -77.0569719864717
+      ],
+      [
+        38.9029642661064,
+        -77.0569791548123
+      ],
+      [
+        38.9028840240841,
+        -77.0569700822158
+      ],
+      [
+        38.9027854798092,
+        -77.0569627969516
+      ],
+      [
+        38.9027263525319,
+        -77.056959145881
+      ],
+      [
+        38.9026812991396,
+        -77.0569663164512
+      ],
+      [
+        38.902379963027,
+        -77.0570885911881
+      ],
+      [
+        38.9023349007973,
+        -77.0571119765751
+      ],
+      [
+        38.9022574307197,
+        -77.0571929914666
+      ],
+      [
+        38.9022010788547,
+        -77.0572722200731
+      ],
+      [
+        38.902151780195,
+        -77.0573208263395
+      ],
+      [
+        38.9021038948617,
+        -77.0573622260339
+      ],
+      [
+        38.9020448020783,
+        -77.0573892336619
+      ],
+      [
+        38.9019884377463,
+        -77.0573927621543
+      ],
+      [
+        38.90192367404,
+        -77.0573999165155
+      ],
+      [
+        38.9018349884403,
+        -77.0573836303228
+      ],
+      [
+        38.9017885349735,
+        -77.0573745845926
+      ],
+      [
+        38.9016745052928,
+        -77.0573618807288
+      ],
+      [
+        38.901566104143,
+        -77.0573617935558
+      ],
+      [
+        38.9014112388552,
+        -77.0573688754369
+      ],
+      [
+        38.90168939032355,
+        -77.05730489166983
+      ]
+    ]
+  },
+  {
+    "id": "dc-rock-creek-park-trail-section-2",
+    "city": "dc",
+    "title": "Rock Creek Park Trail · Stretch 2 of 16",
+    "distanceMiles": 0.5,
+    "durationMinutes": 11,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Rock Creek Park corridor. Verify access and any closures before heading out. Short source-preserving stretch 2 of 16; Stretch 2 of 16.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Rock Creek Park Trail —  Rock Creek Park Multi-Use Trail",
+      "sourceRecordId": "3",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Rock Creek Park Trail",
+    "sectionNumber": 2,
+    "sectionCount": 16,
+    "coordinates": [
+      [
+        38.90168939032355,
+        -77.05730489166983
+      ],
+      [
+        38.9042055218405,
+        -77.056726100647
+      ],
+      [
+        38.9043286231525,
+        -77.0566307070004
+      ],
+      [
+        38.9044300349185,
+        -77.0565316918947
+      ],
+      [
+        38.9045779340741,
+        -77.0563732550993
+      ],
+      [
+        38.9047384867456,
+        -77.0562472597459
+      ],
+      [
+        38.9047863673947,
+        -77.0562184693119
+      ],
+      [
+        38.9048497385559,
+        -77.0561770783368
+      ],
+      [
+        38.9048962198746,
+        -77.0561320711867
+      ],
+      [
+        38.9049328468693,
+        -77.0560834522655
+      ],
+      [
+        38.9050145314426,
+        -77.0560168523112
+      ],
+      [
+        38.9051708606804,
+        -77.0558944548982
+      ],
+      [
+        38.9053412558692,
+        -77.0557918875552
+      ],
+      [
+        38.9054116669393,
+        -77.0557523033759
+      ],
+      [
+        38.9054454597566,
+        -77.0557433209689
+      ],
+      [
+        38.9054877039586,
+        -77.0557235343351
+      ],
+      [
+        38.9055679752477,
+        -77.0556713460253
+      ],
+      [
+        38.9056369773682,
+        -77.0556317605022
+      ],
+      [
+        38.9057355491193,
+        -77.0555813882425
+      ],
+      [
+        38.905849608813,
+        -77.0555274238916
+      ],
+      [
+        38.9059143843441,
+        -77.0554950416587
+      ],
+      [
+        38.9059622605203,
+        -77.0554752591281
+      ],
+      [
+        38.9061298290569,
+        -77.0553943092908
+      ],
+      [
+        38.9063128890455,
+        -77.0553079661898
+      ],
+      [
+        38.9064945375043,
+        -77.0552270253107
+      ],
+      [
+        38.9066156369928,
+        -77.0551712632404
+      ],
+      [
+        38.9067930621813,
+        -77.0550885186848
+      ],
+      [
+        38.9068931145542,
+        -77.0550345246438
+      ],
+      [
+        38.9070056922489,
+        -77.0549859796442
+      ],
+      [
+        38.9071296076739,
+        -77.0549320209711
+      ],
+      [
+        38.9073042192058,
+        -77.0548438657825
+      ],
+      [
+        38.9074013792587,
+        -77.0548024980873
+      ],
+      [
+        38.9075041721576,
+        -77.0547593337104
+      ],
+      [
+        38.9075914744,
+        -77.0547197614234
+      ],
+      [
+        38.9076970856885,
+        -77.0546675887144
+      ],
+      [
+        38.9077745346271,
+        -77.0546298084092
+      ],
+      [
+        38.9078590268233,
+        -77.0545812245372
+      ],
+      [
+        38.9079984433007,
+        -77.0544912397922
+      ],
+      [
+        38.9081082894661,
+        -77.0544174483938
+      ],
+      [
+        38.9081533561423,
+        -77.0543832481891
+      ],
+      [
+        38.9082153312414,
+        -77.0543166271188
+      ],
+      [
+        38.9082491364271,
+        -77.0542788152501
+      ],
+      [
+        38.9082998384255,
+        -77.0542374109087
+      ],
+      [
+        38.9083998341748,
+        -77.0541491970777
+      ],
+      [
+        38.9084716659354,
+        -77.0540789789054
+      ],
+      [
+        38.9085364627639,
+        -77.0540015492791
+      ],
+      [
+        38.9085730829544,
+        -77.0539637369149
+      ],
+      [
+        38.9086040688263,
+        -77.0539367338521
+      ],
+      [
+        38.9086449129382,
+        -77.0538971236881
+      ],
+      [
+        38.9086984373794,
+        -77.0538395045902
+      ],
+      [
+        38.90870420105759,
+        -77.05383079730284
+      ]
+    ]
+  },
+  {
+    "id": "dc-rock-creek-park-trail-section-3",
+    "city": "dc",
+    "title": "Rock Creek Park Trail · Stretch 3 of 16",
+    "distanceMiles": 0.5,
+    "durationMinutes": 11,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Rock Creek Park corridor. Verify access and any closures before heading out. Short source-preserving stretch 3 of 16; Stretch 3 of 16.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Rock Creek Park Trail —  Rock Creek Park Multi-Use Trail",
+      "sourceRecordId": "3",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Rock Creek Park Trail",
+    "sectionNumber": 3,
+    "sectionCount": 16,
+    "coordinates": [
+      [
+        38.90870420105759,
+        -77.05383079730284
+      ],
+      [
+        38.9087139353176,
+        -77.0538160915895
+      ],
+      [
+        38.9087421133692,
+        -77.0537692645861
+      ],
+      [
+        38.9087745153418,
+        -77.0537206398014
+      ],
+      [
+        38.9088026999759,
+        -77.0536593983946
+      ],
+      [
+        38.908828159199,
+        -77.0536107083462
+      ],
+      [
+        38.9089205186639,
+        -77.0534267647316
+      ],
+      [
+        38.909008648391,
+        -77.0532191551762
+      ],
+      [
+        38.9090570372528,
+        -77.0530932620194
+      ],
+      [
+        38.9091071626918,
+        -77.0529496938458
+      ],
+      [
+        38.9091382714869,
+        -77.0528635556863
+      ],
+      [
+        38.9091452022612,
+        -77.0528083279142
+      ],
+      [
+        38.9091487389882,
+        -77.0526205386326
+      ],
+      [
+        38.9091488055622,
+        -77.0524725149392
+      ],
+      [
+        38.909143709866,
+        -77.0522869295423
+      ],
+      [
+        38.9091386088633,
+        -77.0521146009876
+      ],
+      [
+        38.9091386620183,
+        -77.0519952977236
+      ],
+      [
+        38.9091352601102,
+        -77.0518826215087
+      ],
+      [
+        38.9091215443103,
+        -77.0516705186156
+      ],
+      [
+        38.9091233219613,
+        -77.0515556359497
+      ],
+      [
+        38.909137164948,
+        -77.0514783198927
+      ],
+      [
+        38.9091561790031,
+        -77.051418682527
+      ],
+      [
+        38.9091889989337,
+        -77.0513678925726
+      ],
+      [
+        38.9092425471791,
+        -77.0512839776953
+      ],
+      [
+        38.9092926221933,
+        -77.0512442454639
+      ],
+      [
+        38.9094048615758,
+        -77.051158163378
+      ],
+      [
+        38.9094049147833,
+        -77.0510344414811
+      ],
+      [
+        38.9094118957256,
+        -77.0508621210022
+      ],
+      [
+        38.9094309334688,
+        -77.0507472501299
+      ],
+      [
+        38.9094516741072,
+        -77.0506854033029
+      ],
+      [
+        38.9094896735713,
+        -77.0506324073817
+      ],
+      [
+        38.9095552860638,
+        -77.05058826738
+      ],
+      [
+        38.9096364275253,
+        -77.0505640225167
+      ],
+      [
+        38.9097158325774,
+        -77.0505596606045
+      ],
+      [
+        38.9097607035366,
+        -77.0505795755096
+      ],
+      [
+        38.909831459403,
+        -77.0506216033326
+      ],
+      [
+        38.9099539719695,
+        -77.0507255288718
+      ],
+      [
+        38.9100782103791,
+        -77.0508316651127
+      ],
+      [
+        38.9102196941572,
+        -77.0509731634034
+      ],
+      [
+        38.9103232243486,
+        -77.0510660297539
+      ],
+      [
+        38.910357732463,
+        -77.0511014038935
+      ],
+      [
+        38.9105786015168,
+        -77.0512849383957
+      ],
+      [
+        38.9107287370089,
+        -77.0513778392396
+      ],
+      [
+        38.9108201879461,
+        -77.0514596512821
+      ],
+      [
+        38.9110048068552,
+        -77.0516431606824
+      ],
+      [
+        38.9111704474085,
+        -77.0518067737526
+      ],
+      [
+        38.9112584333634,
+        -77.0519150976046
+      ],
+      [
+        38.9113895342036,
+        -77.0521140354576
+      ],
+      [
+        38.9115068428027,
+        -77.0522709876004
+      ],
+      [
+        38.9116017222271,
+        -77.0524058286942
+      ],
+      [
+        38.9117535400711,
+        -77.0525937390083
+      ],
+      [
+        38.9119277812122,
+        -77.0528214341186
+      ],
+      [
+        38.911993329344,
+        -77.0529253242201
+      ],
+      [
+        38.9120364359101,
+        -77.0530269886509
+      ],
+      [
+        38.9120726262329,
+        -77.0531573708054
+      ],
+      [
+        38.9121191441665,
+        -77.0533496224019
+      ],
+      [
+        38.9121777149502,
+        -77.0536125851196
+      ],
+      [
+        38.9122259477213,
+        -77.0538313510711
+      ],
+      [
+        38.9122707691748,
+        -77.0539573209931
+      ],
+      [
+        38.9123466127924,
+        -77.0541915750381
+      ],
+      [
+        38.9124165977582,
+        -77.0543136696618
+      ],
+      [
+        38.9125799175184,
+        -77.0542586703129
+      ],
+      [
+        38.9126858093351,
+        -77.0542128143673
+      ],
+      [
+        38.9127019328267,
+        -77.0542702472699
+      ],
+      [
+        38.9127521031131,
+        -77.0544287653899
+      ],
+      [
+        38.912772621745034,
+        -77.05449531114657
+      ]
+    ]
+  },
+  {
+    "id": "dc-rock-creek-park-trail-section-4",
+    "city": "dc",
+    "title": "Rock Creek Park Trail · Stretch 4 of 16",
+    "distanceMiles": 0.5,
+    "durationMinutes": 11,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Rock Creek Park corridor. Verify access and any closures before heading out. Short source-preserving stretch 4 of 16; Stretch 4 of 16.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Rock Creek Park Trail —  Rock Creek Park Multi-Use Trail",
+      "sourceRecordId": "3",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Rock Creek Park Trail",
+    "sectionNumber": 4,
+    "sectionCount": 16,
+    "coordinates": [
+      [
+        38.912772621745034,
+        -77.05449531114657
+      ],
+      [
+        38.9128130217019,
+        -77.0546263357542
+      ],
+      [
+        38.9128614121167,
+        -77.0547526962176
+      ],
+      [
+        38.9129223560672,
+        -77.0548951454961
+      ],
+      [
+        38.9129779411535,
+        -77.0549870593652
+      ],
+      [
+        38.9130622182254,
+        -77.0551180429261
+      ],
+      [
+        38.9131357502813,
+        -77.0552007848361
+      ],
+      [
+        38.9132254291638,
+        -77.0552904299613
+      ],
+      [
+        38.9132900014764,
+        -77.0553501968337
+      ],
+      [
+        38.9133492003648,
+        -77.0553869911725
+      ],
+      [
+        38.9134058804664,
+        -77.0554352690106
+      ],
+      [
+        38.9134718899125,
+        -77.0554904435824
+      ],
+      [
+        38.913579507737,
+        -77.0555934245371
+      ],
+      [
+        38.9136799379651,
+        -77.0557147750483
+      ],
+      [
+        38.9137789250884,
+        -77.0558489869602
+      ],
+      [
+        38.9139496667536,
+        -77.0560383803564
+      ],
+      [
+        38.9140630047843,
+        -77.0561836288115
+      ],
+      [
+        38.9141232524757,
+        -77.0562773879461
+      ],
+      [
+        38.9141963959143,
+        -77.056422605335
+      ],
+      [
+        38.9142709715302,
+        -77.0565733368918
+      ],
+      [
+        38.9143182955877,
+        -77.0566744359088
+      ],
+      [
+        38.914385716252,
+        -77.0567755510589
+      ],
+      [
+        38.9144804051207,
+        -77.0568950620593
+      ],
+      [
+        38.914582273495,
+        -77.0570090675118
+      ],
+      [
+        38.9146453968624,
+        -77.0570918048036
+      ],
+      [
+        38.9147027647677,
+        -77.0572021003117
+      ],
+      [
+        38.9147256982136,
+        -77.0572737800936
+      ],
+      [
+        38.9147457507373,
+        -77.0573656707135
+      ],
+      [
+        38.9147686967226,
+        -77.0574134649952
+      ],
+      [
+        38.9148059875287,
+        -77.0574814805318
+      ],
+      [
+        38.9148547557871,
+        -77.0575605321128
+      ],
+      [
+        38.9149135745846,
+        -77.0576414287509
+      ],
+      [
+        38.9149838698935,
+        -77.0577351983703
+      ],
+      [
+        38.9150584783763,
+        -77.0578161080996
+      ],
+      [
+        38.9151503006886,
+        -77.0579227579981
+      ],
+      [
+        38.9152048205668,
+        -77.0579852776748
+      ],
+      [
+        38.9153052510222,
+        -77.0581011215078
+      ],
+      [
+        38.9153683809413,
+        -77.0581673221541
+      ],
+      [
+        38.9154501614477,
+        -77.0582611011198
+      ],
+      [
+        38.9156711330512,
+        -77.0584670844273
+      ],
+      [
+        38.9157816265519,
+        -77.0585535380134
+      ],
+      [
+        38.9158792168096,
+        -77.0586087432643
+      ],
+      [
+        38.9159466754546,
+        -77.0586308490045
+      ],
+      [
+        38.9160141386628,
+        -77.0586474430744
+      ],
+      [
+        38.9161203602173,
+        -77.0586640679052
+      ],
+      [
+        38.9162136629186,
+        -77.0586806821554
+      ],
+      [
+        38.9162753842287,
+        -77.0586954324416
+      ],
+      [
+        38.9163385516408,
+        -77.0586881335211
+      ],
+      [
+        38.9163758786297,
+        -77.0586826524951
+      ],
+      [
+        38.9164979249687,
+        -77.058634977092
+      ],
+      [
+        38.9165811992006,
+        -77.0586074821492
+      ],
+      [
+        38.9166242717395,
+        -77.0585983297375
+      ],
+      [
+        38.9167233320379,
+        -77.0585818735156
+      ],
+      [
+        38.9168841246824,
+        -77.0585599550077
+      ],
+      [
+        38.9169788808491,
+        -77.0585379833489
+      ],
+      [
+        38.9171138395228,
+        -77.0585031806757
+      ],
+      [
+        38.9172028629423,
+        -77.0584646652873
+      ],
+      [
+        38.9172689178271,
+        -77.0584242917926
+      ],
+      [
+        38.9173349726608,
+        -77.0583875966119
+      ],
+      [
+        38.9173751779282,
+        -77.0583674156755
+      ],
+      [
+        38.9175087308703,
+        -77.0582719708145
+      ],
+      [
+        38.9176494716294,
+        -77.0581563198344
+      ],
+      [
+        38.9177284726146,
+        -77.0580663439518
+      ],
+      [
+        38.9178462674113,
+        -77.0579028968302
+      ],
+      [
+        38.917974119833,
+        -77.0577247563089
+      ],
+      [
+        38.9180574527343,
+        -77.0575814942915
+      ],
+      [
+        38.9181321662781,
+        -77.0574474106941
+      ],
+      [
+        38.9182011431643,
+        -77.0573059734103
+      ],
+      [
+        38.9182543192858,
+        -77.0571810611599
+      ],
+      [
+        38.9182990336625,
+        -77.0570692344271
+      ],
+      [
+        38.9183491935764,
+        -77.0569183627713
+      ],
+      [
+        38.91836285984581,
+        -77.05687353645948
+      ]
+    ]
+  },
+  {
+    "id": "dc-rock-creek-park-trail-section-5",
+    "city": "dc",
+    "title": "Rock Creek Park Trail · Stretch 5 of 16",
+    "distanceMiles": 0.5,
+    "durationMinutes": 11,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Rock Creek Park corridor. Verify access and any closures before heading out. Short source-preserving stretch 5 of 16; Stretch 5 of 16.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Rock Creek Park Trail —  Rock Creek Park Multi-Use Trail",
+      "sourceRecordId": "3",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Rock Creek Park Trail",
+    "sectionNumber": 5,
+    "sectionCount": 16,
+    "coordinates": [
+      [
+        38.91836285984581,
+        -77.05687353645948
+      ],
+      [
+        38.9184455290277,
+        -77.0566023758073
+      ],
+      [
+        38.918523185132,
+        -77.056319449317
+      ],
+      [
+        38.9186181041414,
+        -77.0559575193334
+      ],
+      [
+        38.9186986156484,
+        -77.0557058329147
+      ],
+      [
+        38.9187834247432,
+        -77.0554706873652
+      ],
+      [
+        38.9188236573849,
+        -77.0553917031434
+      ],
+      [
+        38.9188667565779,
+        -77.0553219080003
+      ],
+      [
+        38.9189845614544,
+        -77.0551327263398
+      ],
+      [
+        38.9190563804549,
+        -77.0550427398818
+      ],
+      [
+        38.9191655262166,
+        -77.0549491069823
+      ],
+      [
+        38.9193062602332,
+        -77.0548426337563
+      ],
+      [
+        38.9193881192226,
+        -77.0547728675796
+      ],
+      [
+        38.9195044477137,
+        -77.0546663761181
+      ],
+      [
+        38.9195690834059,
+        -77.0545892462698
+      ],
+      [
+        38.9196337241456,
+        -77.0544992530413
+      ],
+      [
+        38.9197041222111,
+        -77.0543798613234
+      ],
+      [
+        38.9197472268172,
+        -77.0542990395505
+      ],
+      [
+        38.9197745363606,
+        -77.0542255557812
+      ],
+      [
+        38.9197919588054,
+        -77.0541743361872
+      ],
+      [
+        38.9198112753721,
+        -77.0541237799081
+      ],
+      [
+        38.9198517691361,
+        -77.0539768013557
+      ],
+      [
+        38.9198628293549,
+        -77.0538991883603
+      ],
+      [
+        38.9198637888567,
+        -77.0538109830379
+      ],
+      [
+        38.9198583194102,
+        -77.0537180692088
+      ],
+      [
+        38.919864774411,
+        -77.0536639744689
+      ],
+      [
+        38.9198739720837,
+        -77.0536439882321
+      ],
+      [
+        38.9198895982768,
+        -77.0536275354363
+      ],
+      [
+        38.9199107355836,
+        -77.053613438032
+      ],
+      [
+        38.9199732250525,
+        -77.0535829071308
+      ],
+      [
+        38.920018257278,
+        -77.0535523630663
+      ],
+      [
+        38.9200899404225,
+        -77.0535065494231
+      ],
+      [
+        38.9201597867504,
+        -77.0534607343107
+      ],
+      [
+        38.9201974677991,
+        -77.0534348894179
+      ],
+      [
+        38.9202351484791,
+        -77.0534078671345
+      ],
+      [
+        38.9202646886259,
+        -77.0533821602357
+      ],
+      [
+        38.9202823781318,
+        -77.0533627636976
+      ],
+      [
+        38.9202935603015,
+        -77.0533407723122
+      ],
+      [
+        38.9203116245555,
+        -77.0532956862036
+      ],
+      [
+        38.9203374351648,
+        -77.0532286072433
+      ],
+      [
+        38.9203649597202,
+        -77.0531681278303
+      ],
+      [
+        38.920392602876,
+        -77.0530844701567
+      ],
+      [
+        38.9204374950926,
+        -77.0530187417314
+      ],
+      [
+        38.9205133395212,
+        -77.0529080806031
+      ],
+      [
+        38.9206116095211,
+        -77.0527487820157
+      ],
+      [
+        38.9206945621127,
+        -77.0526682205969
+      ],
+      [
+        38.9207850715088,
+        -77.0525701400559
+      ],
+      [
+        38.9208605113637,
+        -77.0524185947414
+      ],
+      [
+        38.9208971819799,
+        -77.0522909936822
+      ],
+      [
+        38.9209505851697,
+        -77.0521013682703
+      ],
+      [
+        38.9209827794874,
+        -77.0519933730916
+      ],
+      [
+        38.9210270097064,
+        -77.051923966681
+      ],
+      [
+        38.9210772707782,
+        -77.051846846467
+      ],
+      [
+        38.9211235032584,
+        -77.0517941575517
+      ],
+      [
+        38.9212500984036,
+        -77.0517428126549
+      ],
+      [
+        38.921453468029,
+        -77.0516116641413
+      ],
+      [
+        38.9215430132038,
+        -77.0514366238561
+      ],
+      [
+        38.9215931027536,
+        -77.0513206304514
+      ],
+      [
+        38.919665528764696,
+        -77.05192106127042
+      ]
+    ]
+  },
+  {
+    "id": "dc-rock-creek-park-trail-section-6",
+    "city": "dc",
+    "title": "Rock Creek Park Trail · Stretch 6 of 16",
+    "distanceMiles": 0.5,
+    "durationMinutes": 11,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Rock Creek Park corridor. Verify access and any closures before heading out. Short source-preserving stretch 6 of 16; Stretch 6 of 16.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Rock Creek Park Trail —  Rock Creek Park Multi-Use Trail",
+      "sourceRecordId": "3",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Rock Creek Park Trail",
+    "sectionNumber": 6,
+    "sectionCount": 16,
+    "coordinates": [
+      [
+        38.919665528764696,
+        -77.05192106127042
+      ],
+      [
+        38.912247062759626,
+        -77.05423188080057
+      ]
+    ]
+  },
+  {
+    "id": "dc-rock-creek-park-trail-section-7",
+    "city": "dc",
+    "title": "Rock Creek Park Trail · Stretch 7 of 16",
+    "distanceMiles": 0.5,
+    "durationMinutes": 11,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Rock Creek Park corridor. Verify access and any closures before heading out. Short source-preserving stretch 7 of 16; Stretch 7 of 16.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Rock Creek Park Trail —  Rock Creek Park Multi-Use Trail",
+      "sourceRecordId": "3",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Rock Creek Park Trail",
+    "sectionNumber": 7,
+    "sectionCount": 16,
+    "coordinates": [
+      [
+        38.912247062759626,
+        -77.05423188080057
+      ],
+      [
+        38.90482861826857,
+        -77.0565426936292
+      ]
+    ]
+  },
+  {
+    "id": "dc-rock-creek-park-trail-section-8",
+    "city": "dc",
+    "title": "Rock Creek Park Trail · Stretch 8 of 16",
+    "distanceMiles": 0.5,
+    "durationMinutes": 11,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Rock Creek Park corridor. Verify access and any closures before heading out. Short source-preserving stretch 8 of 16; Stretch 8 of 16.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Rock Creek Park Trail —  Rock Creek Park Multi-Use Trail",
+      "sourceRecordId": "3",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Rock Creek Park Trail",
+    "sectionNumber": 8,
+    "sectionCount": 16,
+    "coordinates": [
+      [
+        38.90482861826857,
+        -77.0565426936292
+      ],
+      [
+        38.9046860705761,
+        -77.0565870966084
+      ],
+      [
+        38.9046859892243,
+        -77.0567548036367
+      ],
+      [
+        38.9045985643647,
+        -77.0568875013533
+      ],
+      [
+        38.9044401896279,
+        -77.056957251795
+      ],
+      [
+        38.9043146096054,
+        -77.0569571515157
+      ],
+      [
+        38.9042272790566,
+        -77.0568941928891
+      ],
+      [
+        38.9041836444652,
+        -77.0568033174779
+      ],
+      [
+        38.9042055218405,
+        -77.056726100647
+      ],
+      [
+        38.91069884395195,
+        -77.05470744955808
+      ]
+    ]
+  },
+  {
+    "id": "dc-rock-creek-park-trail-section-9",
+    "city": "dc",
+    "title": "Rock Creek Park Trail · Stretch 9 of 16",
+    "distanceMiles": 0.5,
+    "durationMinutes": 11,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Rock Creek Park corridor. Verify access and any closures before heading out. Short source-preserving stretch 9 of 16; Stretch 9 of 16.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Rock Creek Park Trail —  Rock Creek Park Multi-Use Trail",
+      "sourceRecordId": "3",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Rock Creek Park Trail",
+    "sectionNumber": 9,
+    "sectionCount": 16,
+    "coordinates": [
+      [
+        38.91069884395195,
+        -77.05470744955808
+      ],
+      [
+        38.918118144278104,
+        -77.05240092934773
+      ]
+    ]
+  },
+  {
+    "id": "dc-rock-creek-park-trail-section-10",
+    "city": "dc",
+    "title": "Rock Creek Park Trail · Stretch 10 of 16",
+    "distanceMiles": 0.5,
+    "durationMinutes": 11,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Rock Creek Park corridor. Verify access and any closures before heading out. Short source-preserving stretch 10 of 16; Stretch 10 of 16.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Rock Creek Park Trail —  Rock Creek Park Multi-Use Trail",
+      "sourceRecordId": "3",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Rock Creek Park Trail",
+    "sectionNumber": 10,
+    "sectionCount": 16,
+    "coordinates": [
+      [
+        38.918118144278104,
+        -77.05240092934773
+      ],
+      [
+        38.9215931027536,
+        -77.0513206304514
+      ],
+      [
+        38.9216841074368,
+        -77.05132297807
+      ],
+      [
+        38.9220218409823,
+        -77.0514465763488
+      ],
+      [
+        38.9221447565988,
+        -77.0515126498543
+      ],
+      [
+        38.9222468037311,
+        -77.0516128598993
+      ],
+      [
+        38.9223693094314,
+        -77.0517419019157
+      ],
+      [
+        38.9224538737077,
+        -77.0518953285009
+      ],
+      [
+        38.9225166242207,
+        -77.0520202132228
+      ],
+      [
+        38.9225641988016,
+        -77.052149974263
+      ],
+      [
+        38.922651496315,
+        -77.0522959103547
+      ],
+      [
+        38.9227034789422,
+        -77.0523178451869
+      ],
+      [
+        38.9227573569351,
+        -77.0523739181016
+      ],
+      [
+        38.9228860008079,
+        -77.0524992824283
+      ],
+      [
+        38.9230044801247,
+        -77.0525653276026
+      ],
+      [
+        38.9231435745773,
+        -77.0526181991339
+      ],
+      [
+        38.9232517661375,
+        -77.0526446629303
+      ],
+      [
+        38.9233451316769,
+        -77.0526753769191
+      ],
+      [
+        38.921705942194706,
+        -77.0514078829118
+      ]
+    ]
+  },
+  {
+    "id": "dc-rock-creek-park-trail-section-11",
+    "city": "dc",
+    "title": "Rock Creek Park Trail · Stretch 11 of 16",
+    "distanceMiles": 0.5,
+    "durationMinutes": 11,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Rock Creek Park corridor. Verify access and any closures before heading out. Short source-preserving stretch 11 of 16; Stretch 11 of 16.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Rock Creek Park Trail —  Rock Creek Park Multi-Use Trail",
+      "sourceRecordId": "3",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Rock Creek Park Trail",
+    "sectionNumber": 11,
+    "sectionCount": 16,
+    "coordinates": [
+      [
+        38.921705942194706,
+        -77.0514078829118
+      ],
+      [
+        38.9215931027536,
+        -77.0513206304514
+      ],
+      [
+        38.9216008493527,
+        -77.0511328586171
+      ],
+      [
+        38.9215974457447,
+        -77.051071660966
+      ],
+      [
+        38.9215961571558,
+        -77.05100450987
+      ],
+      [
+        38.9215996682312,
+        -77.0509206700855
+      ],
+      [
+        38.9216036673148,
+        -77.0508186117247
+      ],
+      [
+        38.9216307279545,
+        -77.0507344692492
+      ],
+      [
+        38.9216948933969,
+        -77.0505743683605
+      ],
+      [
+        38.9217474577503,
+        -77.0504538012244
+      ],
+      [
+        38.9218007854743,
+        -77.0503530055855
+      ],
+      [
+        38.9219599457663,
+        -77.0501722113859
+      ],
+      [
+        38.9220093914594,
+        -77.0501178751039
+      ],
+      [
+        38.9220627691119,
+        -77.0500638863069
+      ],
+      [
+        38.9221162153742,
+        -77.05000739047
+      ],
+      [
+        38.9221678405362,
+        -77.0499604692632
+      ],
+      [
+        38.9222147994286,
+        -77.0498986375799
+      ],
+      [
+        38.9222591380838,
+        -77.0498318360864
+      ],
+      [
+        38.9223285363537,
+        -77.0497516485799
+      ],
+      [
+        38.9223918012475,
+        -77.0497043038717
+      ],
+      [
+        38.9224133254483,
+        -77.0496838037666
+      ],
+      [
+        38.9224756101995,
+        -77.0496385997205
+      ],
+      [
+        38.9225357907649,
+        -77.0495951008445
+      ],
+      [
+        38.9225965746872,
+        -77.0495456622585
+      ],
+      [
+        38.9226505941933,
+        -77.0494878190871
+      ],
+      [
+        38.922711502292,
+        -77.0494385972152
+      ],
+      [
+        38.9227765458758,
+        -77.0493898843731
+      ],
+      [
+        38.9228404006087,
+        -77.0493490676573
+      ],
+      [
+        38.9229217648783,
+        -77.049314483284
+      ],
+      [
+        38.9230137920021,
+        -77.0492720345139
+      ],
+      [
+        38.9231161395378,
+        -77.0492348294104
+      ],
+      [
+        38.9235072931174,
+        -77.0491202523256
+      ],
+      [
+        38.9236303359715,
+        -77.0490731423042
+      ],
+      [
+        38.9236474730771,
+        -77.049058903981
+      ],
+      [
+        38.9237045644439,
+        -77.0489724691871
+      ],
+      [
+        38.9237108358162,
+        -77.048960099626
+      ],
+      [
+        38.9238003720211,
+        -77.0489498606799
+      ],
+      [
+        38.9239879604046,
+        -77.0488616514534
+      ],
+      [
+        38.9240987581961,
+        -77.0487820267761
+      ],
+      [
+        38.9242579664607,
+        -77.0486444652627
+      ],
+      [
+        38.9243025150159,
+        -77.0485563729152
+      ],
+      [
+        38.9243303683821,
+        -77.0484682806418
+      ],
+      [
+        38.9243863266973,
+        -77.048510678531
+      ],
+      [
+        38.9245299697962,
+        -77.0485627055801
+      ],
+      [
+        38.9246972723175,
+        -77.0486212392853
+      ],
+      [
+        38.9248240175569,
+        -77.0486646003259
+      ],
+      [
+        38.9249169725873,
+        -77.0486776455909
+      ],
+      [
+        38.9250318989021,
+        -77.0486885424437
+      ],
+      [
+        38.9250640045399,
+        -77.0487058742711
+      ],
+      [
+        38.9251028627951,
+        -77.0487448475451
+      ],
+      [
+        38.9251772047705,
+        -77.0488076465837
+      ],
+      [
+        38.9252515430999,
+        -77.0488747726618
+      ],
+      [
+        38.9253208133208,
+        -77.048937568486
+      ],
+      [
+        38.9254171210174,
+        -77.0490176930033
+      ],
+      [
+        38.925471183358,
+        -77.0490696590268
+      ],
+      [
+        38.9255218702927,
+        -77.049112968949
+      ],
+      [
+        38.9256266276565,
+        -77.0491952632253
+      ],
+      [
+        38.9257398420708,
+        -77.0492580888948
+      ],
+      [
+        38.9258310952073,
+        -77.0492971002157
+      ],
+      [
+        38.9259426296653,
+        -77.0493339610392
+      ],
+      [
+        38.9260423362171,
+        -77.0493664856763
+      ],
+      [
+        38.9260710709566,
+        -77.0493643420897
+      ],
+      [
+        38.9261386774797,
+        -77.0493622254109
+      ],
+      [
+        38.9261961424011,
+        -77.0493665921605
+      ],
+      [
+        38.9262806438986,
+        -77.0493839608643
+      ],
+      [
+        38.9263414823628,
+        -77.0493991497263
+      ],
+      [
+        38.9264124614569,
+        -77.0494186726233
+      ],
+      [
+        38.9264631683773,
+        -77.049416544274
+      ],
+      [
+        38.9265189442621,
+        -77.0494165829285
+      ],
+      [
+        38.9265662667152,
+        -77.0494209427155
+      ],
+      [
+        38.9266085147116,
+        -77.049436118781
+      ],
+      [
+        38.9266117158569,
+        -77.0494370897304
+      ],
+      [
+        38.9267014623138,
+        -77.0494643121765
+      ],
+      [
+        38.9269701717647,
+        -77.0495294118862
+      ],
+      [
+        38.9271526915909,
+        -77.0495728135464
+      ],
+      [
+        38.9273284487994,
+        -77.0496227035855
+      ],
+      [
+        38.9274754831966,
+        -77.0496466081248
+      ],
+      [
+        38.9275819577295,
+        -77.049661828097
+      ],
+      [
+        38.9276394272398,
+        -77.0496532128582
+      ],
+      [
+        38.9276715492663,
+        -77.0496315976303
+      ],
+      [
+        38.9277189010726,
+        -77.0495688801347
+      ],
+      [
+        38.9277341363591,
+        -77.0495126320032
+      ],
+      [
+        38.927738204352295,
+        -77.04946702223522
+      ]
+    ]
+  },
+  {
+    "id": "dc-rock-creek-park-trail-section-12",
+    "city": "dc",
+    "title": "Rock Creek Park Trail · Stretch 12 of 16",
+    "distanceMiles": 0.5,
+    "durationMinutes": 11,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Rock Creek Park corridor. Verify access and any closures before heading out. Short source-preserving stretch 12 of 16; Stretch 12 of 16.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Rock Creek Park Trail —  Rock Creek Park Multi-Use Trail",
+      "sourceRecordId": "3",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Rock Creek Park Trail",
+    "sectionNumber": 12,
+    "sectionCount": 16,
+    "coordinates": [
+      [
+        38.927738204352295,
+        -77.04946702223522
+      ],
+      [
+        38.9277426273551,
+        -77.0494174321494
+      ],
+      [
+        38.9277494310545,
+        -77.0493157370518
+      ],
+      [
+        38.9277444022354,
+        -77.0492161984526
+      ],
+      [
+        38.927735992503,
+        -77.0491188210696
+      ],
+      [
+        38.9277089985985,
+        -77.0490019580085
+      ],
+      [
+        38.9276634114099,
+        -77.0488894093461
+      ],
+      [
+        38.9276363973996,
+        -77.0488201487044
+      ],
+      [
+        38.927593754722,
+        -77.0487381661342
+      ],
+      [
+        38.9275325360512,
+        -77.048619115435
+      ],
+      [
+        38.9274776467482,
+        -77.0485190023792
+      ],
+      [
+        38.9274248664461,
+        -77.0484270052685
+      ],
+      [
+        38.927348855153,
+        -77.0483160594469
+      ],
+      [
+        38.9272833990913,
+        -77.0482240540798
+      ],
+      [
+        38.927205262,
+        -77.0481428602023
+      ],
+      [
+        38.9271334539888,
+        -77.0480860114394
+      ],
+      [
+        38.9270574181356,
+        -77.0480318666377
+      ],
+      [
+        38.9269391387485,
+        -77.0479533494635
+      ],
+      [
+        38.9268673330657,
+        -77.047888387963
+      ],
+      [
+        38.9268124176746,
+        -77.0478504851677
+      ],
+      [
+        38.9267511817177,
+        -77.0477693024055
+      ],
+      [
+        38.9266709470965,
+        -77.0476529467643
+      ],
+      [
+        38.9265780426566,
+        -77.0475176488906
+      ],
+      [
+        38.9265125892496,
+        -77.0474175309981
+      ],
+      [
+        38.9264281374234,
+        -77.0472768306085
+      ],
+      [
+        38.9263795850186,
+        -77.0471794298453
+      ],
+      [
+        38.9263458096835,
+        -77.0471090848876
+      ],
+      [
+        38.9263162568405,
+        -77.0470468570147
+      ],
+      [
+        38.9262951546647,
+        -77.046984635915
+      ],
+      [
+        38.926274053542,
+        -77.0469197093414
+      ],
+      [
+        38.9262466021997,
+        -77.046884530022
+      ],
+      [
+        38.9262064640835,
+        -77.0468412316337
+      ],
+      [
+        38.9260670950636,
+        -77.046700493104
+      ],
+      [
+        38.9260248620812,
+        -77.0466490770516
+      ],
+      [
+        38.9259636263589,
+        -77.0465651907188
+      ],
+      [
+        38.9259340732236,
+        -77.046502964558
+      ],
+      [
+        38.9259150799825,
+        -77.0464488583603
+      ],
+      [
+        38.9259024249678,
+        -77.0463947563153
+      ],
+      [
+        38.9258897794067,
+        -77.0463190172403
+      ],
+      [
+        38.9258834668657,
+        -77.0462541008261
+      ],
+      [
+        38.9258856081972,
+        -77.0461810757159
+      ],
+      [
+        38.9258919795522,
+        -77.0460972348086
+      ],
+      [
+        38.9259110273504,
+        -77.0460134009132
+      ],
+      [
+        38.9259406341492,
+        -77.0459376902708
+      ],
+      [
+        38.9259934941878,
+        -77.0458295354316
+      ],
+      [
+        38.9261013345469,
+        -77.0455970016721
+      ],
+      [
+        38.9262112796891,
+        -77.0453806981432
+      ],
+      [
+        38.9263127569961,
+        -77.0452076606447
+      ],
+      [
+        38.9264522784164,
+        -77.0449913733833
+      ],
+      [
+        38.9265579776934,
+        -77.0448291583355
+      ],
+      [
+        38.926695374463,
+        -77.0446453242103
+      ],
+      [
+        38.9267862658927,
+        -77.0445290778909
+      ],
+      [
+        38.9268348772147,
+        -77.0444777181198
+      ],
+      [
+        38.926915190044,
+        -77.0443993318991
+      ],
+      [
+        38.9269954937106,
+        -77.0443425828868
+      ],
+      [
+        38.9270610071248,
+        -77.044293938878
+      ],
+      [
+        38.9271138358234,
+        -77.0442669254885
+      ],
+      [
+        38.9272427341186,
+        -77.0442047952027
+      ],
+      [
+        38.9275089698324,
+        -77.044115703359
+      ],
+      [
+        38.9277287551912,
+        -77.0440428040359
+      ],
+      [
+        38.9278978431445,
+        -77.0440091372537
+      ],
+      [
+        38.9280824884581,
+        -77.0439562732872
+      ],
+      [
+        38.9281763939474,
+        -77.0439583690147
+      ],
+      [
+        38.9282480140393,
+        -77.0439645255333
+      ],
+      [
+        38.9284564957242,
+        -77.0440135589077
+      ],
+      [
+        38.9286156380885,
+        -77.0440645976219
+      ],
+      [
+        38.9287540875645,
+        -77.0441176616147
+      ],
+      [
+        38.9288225142295,
+        -77.0441523440405
+      ],
+      [
+        38.9290500597462,
+        -77.0442951203064
+      ],
+      [
+        38.9292966891207,
+        -77.0444807023254
+      ],
+      [
+        38.929342818499265,
+        -77.04451765317714
+      ]
+    ]
+  },
+  {
+    "id": "dc-rock-creek-park-trail-section-13",
+    "city": "dc",
+    "title": "Rock Creek Park Trail · Stretch 13 of 16",
+    "distanceMiles": 0.5,
+    "durationMinutes": 11,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Rock Creek Park corridor. Verify access and any closures before heading out. Short source-preserving stretch 13 of 16; Stretch 13 of 16.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Rock Creek Park Trail —  Rock Creek Park Multi-Use Trail",
+      "sourceRecordId": "3",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Rock Creek Park Trail",
+    "sectionNumber": 13,
+    "sectionCount": 16,
+    "coordinates": [
+      [
+        38.929342818499265,
+        -77.04451765317714
+      ],
+      [
+        38.9295130828644,
+        -77.0446540394348
+      ],
+      [
+        38.9297040111741,
+        -77.0448192112159
+      ],
+      [
+        38.9299187939089,
+        -77.0450434907365
+      ],
+      [
+        38.9299919733399,
+        -77.0451311581268
+      ],
+      [
+        38.9301176519836,
+        -77.0452799888546
+      ],
+      [
+        38.930367401446,
+        -77.0456265558405
+      ],
+      [
+        38.9306330582363,
+        -77.0459853606498
+      ],
+      [
+        38.9308987270218,
+        -77.0463156419434
+      ],
+      [
+        38.9310164723964,
+        -77.0464461509763
+      ],
+      [
+        38.9312232831552,
+        -77.0466480009952
+      ],
+      [
+        38.931379199994,
+        -77.0468009326721
+      ],
+      [
+        38.9314953415843,
+        -77.0469151215735
+      ],
+      [
+        38.9316003432268,
+        -77.0470252276288
+      ],
+      [
+        38.9316798709611,
+        -77.0471556953887
+      ],
+      [
+        38.9317450744409,
+        -77.0472861527865
+      ],
+      [
+        38.9317911833224,
+        -77.0474043723875
+      ],
+      [
+        38.9318245679554,
+        -77.04750016861
+      ],
+      [
+        38.931875440296,
+        -77.0476469194048
+      ],
+      [
+        38.9319199437143,
+        -77.0477977420284
+      ],
+      [
+        38.9319978143628,
+        -77.048085115856
+      ],
+      [
+        38.9320597911875,
+        -77.0483174606917
+      ],
+      [
+        38.9321027019713,
+        -77.0484682830417
+      ],
+      [
+        38.9321233576246,
+        -77.0485538817609
+      ],
+      [
+        38.9321678411287,
+        -77.0487474978278
+      ],
+      [
+        38.9322186717929,
+        -77.0489900247479
+      ],
+      [
+        38.9322583879315,
+        -77.0491673367325
+      ],
+      [
+        38.9322885721151,
+        -77.0492998107715
+      ],
+      [
+        38.9323155847153,
+        -77.049405792761
+      ],
+      [
+        38.932336237092,
+        -77.0494975058741
+      ],
+      [
+        38.9323552950348,
+        -77.0495953318018
+      ],
+      [
+        38.932369582791,
+        -77.0496809278674
+      ],
+      [
+        38.9323886310308,
+        -77.0498011691111
+      ],
+      [
+        38.9324076965177,
+        -77.0498786156147
+      ],
+      [
+        38.9324347225623,
+        -77.0499540309317
+      ],
+      [
+        38.9324728795311,
+        -77.0500518705242
+      ],
+      [
+        38.9325237740018,
+        -77.0501374925648
+      ],
+      [
+        38.93256353922,
+        -77.0501966145261
+      ],
+      [
+        38.9326128479277,
+        -77.0502659342543
+      ],
+      [
+        38.9326669415958,
+        -77.0503169157655
+      ],
+      [
+        38.9327067234034,
+        -77.050337322355
+      ],
+      [
+        38.9327560592784,
+        -77.0503455067527
+      ],
+      [
+        38.9327910745583,
+        -77.0503455314778
+      ],
+      [
+        38.9328499601573,
+        -77.0503557629127
+      ],
+      [
+        38.9329136166432,
+        -77.0503741484724
+      ],
+      [
+        38.9329772704898,
+        -77.0503986468332
+      ],
+      [
+        38.93433583194039,
+        -77.04955205334359
+      ]
+    ]
+  },
+  {
+    "id": "dc-rock-creek-park-trail-section-14",
+    "city": "dc",
+    "title": "Rock Creek Park Trail · Stretch 14 of 16",
+    "distanceMiles": 0.5,
+    "durationMinutes": 11,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Rock Creek Park corridor. Verify access and any closures before heading out. Short source-preserving stretch 14 of 16; Stretch 14 of 16.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Rock Creek Park Trail —  Rock Creek Park Multi-Use Trail",
+      "sourceRecordId": "3",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Rock Creek Park Trail",
+    "sectionNumber": 14,
+    "sectionCount": 16,
+    "coordinates": [
+      [
+        38.93433583194039,
+        -77.04955205334359
+      ],
+      [
+        38.9367363106197,
+        -77.0480561845914
+      ],
+      [
+        38.9366694723252,
+        -77.0481379303324
+      ],
+      [
+        38.9366458194808,
+        -77.0481395095311
+      ],
+      [
+        38.9365785963695,
+        -77.0481362749589
+      ],
+      [
+        38.9364727832635,
+        -77.0481314226347
+      ],
+      [
+        38.9363196639764,
+        -77.0481265372381
+      ],
+      [
+        38.9362711117816,
+        -77.0481312864855
+      ],
+      [
+        38.936195174281,
+        -77.0481296412144
+      ],
+      [
+        38.9361279557571,
+        -77.0481152497998
+      ],
+      [
+        38.9360483319855,
+        -77.048089701254
+      ],
+      [
+        38.9360007118014,
+        -77.0480755884046
+      ],
+      [
+        38.9359211350002,
+        -77.048069421722
+      ],
+      [
+        38.9358399621152,
+        -77.0480693669927
+      ],
+      [
+        38.9357524206119,
+        -77.0480774590317
+      ],
+      [
+        38.9356839767644,
+        -77.0480876019832
+      ],
+      [
+        38.9356043898968,
+        -77.0481058884428
+      ],
+      [
+        38.9355152541034,
+        -77.0481200934754
+      ],
+      [
+        38.9354006477067,
+        -77.0481465083856
+      ],
+      [
+        38.9353067306042,
+        -77.0481708991491
+      ],
+      [
+        38.9352526101834,
+        -77.0481892026319
+      ],
+      [
+        38.9351825653665,
+        -77.0482237984663
+      ],
+      [
+        38.9351125163309,
+        -77.0482685832544
+      ],
+      [
+        38.935048938567,
+        -77.0483379994455
+      ],
+      [
+        38.9350472307227,
+        -77.0483398633133
+      ],
+      [
+        38.9349915032089,
+        -77.0483907717177
+      ],
+      [
+        38.9349373580905,
+        -77.0484620591163
+      ],
+      [
+        38.9348848064969,
+        -77.0485333463381
+      ],
+      [
+        38.9348290620012,
+        -77.0486270484266
+      ],
+      [
+        38.9347908317544,
+        -77.0487003843803
+      ],
+      [
+        38.9347319247967,
+        -77.048741101176
+      ],
+      [
+        38.9346061640176,
+        -77.0487980728708
+      ],
+      [
+        38.9345472622312,
+        -77.0488306385597
+      ],
+      [
+        38.9344501393742,
+        -77.0489120834785
+      ],
+      [
+        38.9344023746603,
+        -77.0489507695399
+      ],
+      [
+        38.934303660896,
+        -77.0490342522013
+      ],
+      [
+        38.934138064835,
+        -77.0491971616285
+      ],
+      [
+        38.9340982588591,
+        -77.0492358528257
+      ],
+      [
+        38.9340393754642,
+        -77.04933342879
+      ],
+      [
+        38.9340138370673,
+        -77.0493906666945
+      ],
+      [
+        38.9339947057768,
+        -77.0494660526546
+      ],
+      [
+        38.9339739731674,
+        -77.0495638520345
+      ],
+      [
+        38.9339564361636,
+        -77.0496351641644
+      ],
+      [
+        38.9339452713506,
+        -77.0496922135329
+      ],
+      [
+        38.9339293268705,
+        -77.0497594495572
+      ],
+      [
+        38.9339069961299,
+        -77.0498694768048
+      ],
+      [
+        38.933894231629,
+        -77.049946903831
+      ],
+      [
+        38.9338655519939,
+        -77.0500161676634
+      ],
+      [
+        38.9338209477405,
+        -77.0501078370849
+      ],
+      [
+        38.9337636128036,
+        -77.0501933857441
+      ],
+      [
+        38.9337078757078,
+        -77.0502646671178
+      ],
+      [
+        38.9336362218189,
+        -77.0503379785964
+      ],
+      [
+        38.933524760601,
+        -77.0504499778284
+      ],
+      [
+        38.933465846877,
+        -77.0505069940526
+      ],
+      [
+        38.933386224313,
+        -77.050604750607
+      ],
+      [
+        38.933334081768,
+        -77.0506478815056
+      ],
+      [
+        38.9333186370315,
+        -77.0506478705342
+      ],
+      [
+        38.9333034419691,
+        -77.0506454480682
+      ],
+      [
+        38.9332302543947,
+        -77.0505883372045
+      ],
+      [
+        38.9331141067279,
+        -77.0504945181657
+      ],
+      [
+        38.9330138661093,
+        -77.0504251629241
+      ],
+      [
+        38.9329788613788,
+        -77.050400684779
+      ],
+      [
+        38.933171251984795,
+        -77.05028021255195
+      ]
+    ]
+  },
+  {
+    "id": "dc-rock-creek-park-trail-section-15",
+    "city": "dc",
+    "title": "Rock Creek Park Trail · Stretch 15 of 16",
+    "distanceMiles": 0.5,
+    "durationMinutes": 11,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Rock Creek Park corridor. Verify access and any closures before heading out. Short source-preserving stretch 15 of 16; Stretch 15 of 16.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Rock Creek Park Trail —  Rock Creek Park Multi-Use Trail",
+      "sourceRecordId": "3",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Rock Creek Park Trail",
+    "sectionNumber": 15,
+    "sectionCount": 16,
+    "coordinates": [
+      [
+        38.933171251984795,
+        -77.05028021255195
+      ],
+      [
+        38.9367386595221,
+        -77.0480463533228
+      ],
+      [
+        38.936746349072,
+        -77.0480286616765
+      ],
+      [
+        38.9367471963537,
+        -77.0480011267986
+      ],
+      [
+        38.9367470162195,
+        -77.0479878866398
+      ],
+      [
+        38.9367506879876,
+        -77.0479571967673
+      ],
+      [
+        38.9367521795527,
+        -77.0479269610246
+      ],
+      [
+        38.9367529252402,
+        -77.0479010789171
+      ],
+      [
+        38.9367524705817,
+        -77.0478740587369
+      ],
+      [
+        38.936750770877,
+        -77.0478494656577
+      ],
+      [
+        38.9367489984791,
+        -77.0478285934441
+      ],
+      [
+        38.9367449962948,
+        -77.047808279142
+      ],
+      [
+        38.9367421593738,
+        -77.0477889610194
+      ],
+      [
+        38.9367381239142,
+        -77.0477684944486
+      ],
+      [
+        38.9367336813068,
+        -77.047734719521
+      ],
+      [
+        38.936732636012,
+        -77.0477222965566
+      ],
+      [
+        38.9367365093337,
+        -77.0476986276405
+      ],
+      [
+        38.9367503879549,
+        -77.0476909425017
+      ],
+      [
+        38.9367724547251,
+        -77.0476908499953
+      ],
+      [
+        38.936797314901,
+        -77.0476865090245
+      ],
+      [
+        38.9368225262534,
+        -77.047682528151
+      ],
+      [
+        38.9368466966507,
+        -77.047675347004
+      ],
+      [
+        38.9368693494583,
+        -77.0476718246259
+      ],
+      [
+        38.936900858427,
+        -77.0476724708465
+      ],
+      [
+        38.9369110988654,
+        -77.047672954055
+      ],
+      [
+        38.9369275460194,
+        -77.0476756536674
+      ],
+      [
+        38.9369468617968,
+        -77.047681836212
+      ],
+      [
+        38.9369634965558,
+        -77.0476950043691
+      ],
+      [
+        38.9369804223857,
+        -77.0477057101805
+      ],
+      [
+        38.9370342739861,
+        -77.0477300222137
+      ],
+      [
+        38.9370984415123,
+        -77.047770679381
+      ],
+      [
+        38.9371196052242,
+        -77.0477782392346
+      ],
+      [
+        38.9371403953154,
+        -77.0477896570328
+      ],
+      [
+        38.9371597863968,
+        -77.0478033253765
+      ],
+      [
+        38.9371776732047,
+        -77.047821118505
+      ],
+      [
+        38.9371915453937,
+        -77.0478423772856
+      ],
+      [
+        38.9372064658348,
+        -77.0478643934226
+      ],
+      [
+        38.937219175078,
+        -77.0478899675424
+      ],
+      [
+        38.9372321362751,
+        -77.0479162073648
+      ],
+      [
+        38.9372468527126,
+        -77.0479413999166
+      ],
+      [
+        38.9372605206598,
+        -77.0479663945382
+      ],
+      [
+        38.9372750093048,
+        -77.0479912743796
+      ],
+      [
+        38.9372908991695,
+        -77.0480129036764
+      ],
+      [
+        38.9373227395824,
+        -77.0480509534808
+      ],
+      [
+        38.9373696886638,
+        -77.0481241156604
+      ],
+      [
+        38.9373791046711,
+        -77.0481512563176
+      ],
+      [
+        38.9373879887992,
+        -77.0481815120213
+      ],
+      [
+        38.9373924946743,
+        -77.0482100969203
+      ],
+      [
+        38.9373959026965,
+        -77.0482358551903
+      ],
+      [
+        38.9373989765636,
+        -77.0482811026487
+      ],
+      [
+        38.9373978380335,
+        -77.0483135154094
+      ],
+      [
+        38.9374062482107,
+        -77.0483613663108
+      ],
+      [
+        38.9374212632647,
+        -77.0484526700653
+      ],
+      [
+        38.937427913032,
+        -77.0484921528574
+      ],
+      [
+        38.9374395322556,
+        -77.0486063267719
+      ],
+      [
+        38.9374600832495,
+        -77.0488323821691
+      ],
+      [
+        38.9374694141965,
+        -77.0488858959709
+      ],
+      [
+        38.937468732243,
+        -77.0489741821532
+      ],
+      [
+        38.9374736855545,
+        -77.049114565526
+      ],
+      [
+        38.9374740831517,
+        -77.0491309248353
+      ],
+      [
+        38.9374771949629,
+        -77.0491708066721
+      ],
+      [
+        38.9374804680007,
+        -77.0492064290225
+      ],
+      [
+        38.9374785312641,
+        -77.0492576432464
+      ],
+      [
+        38.9374762157793,
+        -77.0492883942813
+      ],
+      [
+        38.9374618831961,
+        -77.0493597364222
+      ],
+      [
+        38.9374584317519,
+        -77.0494181596409
+      ],
+      [
+        38.9374545704849,
+        -77.0494444527544
+      ],
+      [
+        38.9374519785682,
+        -77.0495003286434
+      ],
+      [
+        38.9374481012594,
+        -77.0495644217894
+      ],
+      [
+        38.9374403889123,
+        -77.0495907133658
+      ],
+      [
+        38.9374326702801,
+        -77.0496317941469
+      ],
+      [
+        38.937427521093,
+        -77.0496679469714
+      ],
+      [
+        38.9374197994351,
+        -77.0497139597788
+      ],
+      [
+        38.9374081654503,
+        -77.0499078803963
+      ],
+      [
+        38.9374101882728,
+        -77.0499468733303
+      ],
+      [
+        38.937416530078,
+        -77.0499680373492
+      ],
+      [
+        38.9374232652764,
+        -77.0499898221901
+      ],
+      [
+        38.9374288089808,
+        -77.0500150976165
+      ],
+      [
+        38.9374330938089,
+        -77.0502135704547
+      ],
+      [
+        38.937432869471,
+        -77.0502283191416
+      ],
+      [
+        38.9374334263892,
+        -77.0502592751531
+      ],
+      [
+        38.9374339998646,
+        -77.0502894168587
+      ],
+      [
+        38.9374407980144,
+        -77.0503175882946
+      ],
+      [
+        38.9374459079859,
+        -77.0503395231272
+      ],
+      [
+        38.9374534079371,
+        -77.0503675393558
+      ],
+      [
+        38.9374655326824,
+        -77.0503852472358
+      ],
+      [
+        38.9374779590109,
+        -77.0504034005572
+      ],
+      [
+        38.9374921125684,
+        -77.0504207638563
+      ],
+      [
+        38.937504041212,
+        -77.0504440680397
+      ],
+      [
+        38.9375113991491,
+        -77.0504712917979
+      ],
+      [
+        38.9375181002484,
+        -77.0504988080667
+      ],
+      [
+        38.9375241830459,
+        -77.050529162485
+      ],
+      [
+        38.9375372186478,
+        -77.050671369621
+      ],
+      [
+        38.9375394235114,
+        -77.0506971468141
+      ],
+      [
+        38.9375410426062,
+        -77.0507151356549
+      ],
+      [
+        38.9375419389447,
+        -77.0507379383854
+      ],
+      [
+        38.9375423405111,
+        -77.0507570809411
+      ],
+      [
+        38.9375439687767,
+        -77.0507767480265
+      ],
+      [
+        38.9375415421868,
+        -77.0507989866722
+      ],
+      [
+        38.937539322938,
+        -77.050822941763
+      ],
+      [
+        38.9375377452318,
+        -77.0508506782425
+      ],
+      [
+        38.9375353149793,
+        -77.0508812988323
+      ],
+      [
+        38.9375390043851,
+        -77.0509111648355
+      ],
+      [
+        38.9375413141752,
+        -77.0509399675499
+      ],
+      [
+        38.93754458871,
+        -77.0509709209434
+      ],
+      [
+        38.937549096117,
+        -77.0510047541751
+      ],
+      [
+        38.9376128602873,
+        -77.0511473923137
+      ],
+      [
+        38.93775359021289,
+        -77.05132602247198
+      ]
+    ]
+  },
+  {
+    "id": "dc-rock-creek-park-trail-section-16",
+    "city": "dc",
+    "title": "Rock Creek Park Trail · Stretch 16 of 16",
+    "distanceMiles": 0.5,
+    "durationMinutes": 11,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Rock Creek Park corridor. Verify access and any closures before heading out. Short source-preserving stretch 16 of 16; Stretch 16 of 16.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Rock Creek Park Trail —  Rock Creek Park Multi-Use Trail",
+      "sourceRecordId": "3",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Rock Creek Park Trail",
+    "sectionNumber": 16,
+    "sectionCount": 16,
+    "coordinates": [
+      [
+        38.93775359021289,
+        -77.05132602247198
+      ],
+      [
+        38.9377623950106,
+        -77.0513371985058
+      ],
+      [
+        38.9377770349991,
+        -77.0513645338171
+      ],
+      [
+        38.9377908189918,
+        -77.0513923264345
+      ],
+      [
+        38.9378078787876,
+        -77.0514151316827
+      ],
+      [
+        38.9378219661654,
+        -77.0514392450952
+      ],
+      [
+        38.9378343529046,
+        -77.0514610100565
+      ],
+      [
+        38.9379096241348,
+        -77.0516373746473
+      ],
+      [
+        38.9379228305666,
+        -77.0516673492458
+      ],
+      [
+        38.9379363039746,
+        -77.0516924853969
+      ],
+      [
+        38.937948171879,
+        -77.0517181175227
+      ],
+      [
+        38.9379614510263,
+        -77.0517425095868
+      ],
+      [
+        38.937976780242,
+        -77.0517633194299
+      ],
+      [
+        38.9380178365289,
+        -77.0517896071741
+      ],
+      [
+        38.9380430358144,
+        -77.0517948655341
+      ],
+      [
+        38.9380703202577,
+        -77.0517946189128
+      ],
+      [
+        38.9382380746211,
+        -77.0518006429291
+      ],
+      [
+        38.9382581348119,
+        -77.0518177768361
+      ],
+      [
+        38.9382735937138,
+        -77.0518406607587
+      ],
+      [
+        38.938288186415,
+        -77.0518646686641
+      ],
+      [
+        38.9382995472726,
+        -77.05188994301
+      ],
+      [
+        38.938308207113,
+        -77.0519159466775
+      ],
+      [
+        38.9383242501292,
+        -77.0519379394544
+      ],
+      [
+        38.9383398312302,
+        -77.0519574231734
+      ],
+      [
+        38.9383587072893,
+        -77.0519795483738
+      ],
+      [
+        38.9384418078789,
+        -77.0521455130367
+      ],
+      [
+        38.9384518530934,
+        -77.0521736355195
+      ],
+      [
+        38.9384738912071,
+        -77.0522195517108
+      ],
+      [
+        38.938488679596,
+        -77.052236873401
+      ],
+      [
+        38.9385049641701,
+        -77.0522463366392
+      ],
+      [
+        38.9385255179872,
+        -77.0522492814462
+      ],
+      [
+        38.9385471885162,
+        -77.0522428588093
+      ],
+      [
+        38.9385712530037,
+        -77.0522354194322
+      ],
+      [
+        38.9385951632835,
+        -77.0522182690939
+      ],
+      [
+        38.9386189071075,
+        -77.0522026873063
+      ],
+      [
+        38.9386388111147,
+        -77.0521922113032
+      ],
+      [
+        38.9386571925601,
+        -77.0521820905941
+      ],
+      [
+        38.9386750720155,
+        -77.0521724781818
+      ],
+      [
+        38.9388422488308,
+        -77.0520635281955
+      ],
+      [
+        38.9388820518079,
+        -77.0520356184355
+      ],
+      [
+        38.9388987475504,
+        -77.0520159078025
+      ],
+      [
+        38.9390694867795,
+        -77.0519601534213
+      ],
+      [
+        38.9390898639941,
+        -77.0519530664703
+      ],
+      [
+        38.9391120725818,
+        -77.0519500629168
+      ],
+      [
+        38.939134672701,
+        -77.0519417191617
+      ],
+      [
+        38.9392066116967,
+        -77.0519222516784
+      ],
+      [
+        38.9392330730058,
+        -77.0519093188143
+      ],
+      [
+        38.9392568041785,
+        -77.0519018420998
+      ],
+      [
+        38.9392828457749,
+        -77.0518887370487
+      ],
+      [
+        38.9393078696394,
+        -77.05188328327
+      ],
+      [
+        38.9393300607305,
+        -77.0518791019947
+      ],
+      [
+        38.9393541082052,
+        -77.0518774596707
+      ],
+      [
+        38.9393745909858,
+        -77.051878097442
+      ],
+      [
+        38.9395584525494,
+        -77.0518425858813
+      ],
+      [
+        38.9395852842664,
+        -77.0518251893038
+      ],
+      [
+        38.9396077981857,
+        -77.0518060282417
+      ],
+      [
+        38.9396265818528,
+        -77.0517907389315
+      ],
+      [
+        38.9396455720667,
+        -77.0517748649587
+      ],
+      [
+        38.9396607880347,
+        -77.0517584668729
+      ],
+      [
+        38.9396732547294,
+        -77.0517398959707
+      ],
+      [
+        38.9396838870486,
+        -77.0517199303498
+      ],
+      [
+        38.9396991554091,
+        -77.0517052244096
+      ],
+      [
+        38.9397926662546,
+        -77.0516333691891
+      ],
+      [
+        38.9398212444341,
+        -77.0516205356887
+      ],
+      [
+        38.9398443516579,
+        -77.0516122728556
+      ],
+      [
+        38.9398661290977,
+        -77.0516023296107
+      ],
+      [
+        38.9398872749375,
+        -77.0516008154223
+      ],
+      [
+        38.9399114728421,
+        -77.0515971372348
+      ],
+      [
+        38.9399339166204,
+        -77.0516020995382
+      ],
+      [
+        38.9399546582509,
+        -77.0516061101568
+      ],
+      [
+        38.9399765383065,
+        -77.0516126661482
+      ],
+      [
+        38.9399985793076,
+        -77.0516199074192
+      ],
+      [
+        38.9400400115574,
+        -77.0516190042641
+      ],
+      [
+        38.9400772376237,
+        -77.0516124576053
+      ],
+      [
+        38.9401080467333,
+        -77.0516026177566
+      ],
+      [
+        38.9401337223663,
+        -77.0515960627236
+      ],
+      [
+        38.9401812206096,
+        -77.0515813050079
+      ],
+      [
+        38.9402070963138,
+        -77.0515827148144
+      ],
+      [
+        38.9402311665414,
+        -77.0515784863065
+      ],
+      [
+        38.9402526714698,
+        -77.0515757023921
+      ],
+      [
+        38.9402766024077,
+        -77.0515788709876
+      ],
+      [
+        38.9403147145068,
+        -77.0515731842635
+      ],
+      [
+        38.9403365309401,
+        -77.0515830610775
+      ],
+      [
+        38.9403481990048,
+        -77.0515900434125
+      ],
+      [
+        38.9403655716042,
+        -77.05158164371
+      ],
+      [
+        38.9403858256341,
+        -77.0515800988694
+      ],
+      [
+        38.9404532271336,
+        -77.0515788730469
+      ],
+      [
+        38.9405183192439,
+        -77.0515707558459
+      ],
+      [
+        38.9405825976313,
+        -77.0515632563046
+      ],
+      [
+        38.9406497922195,
+        -77.0515634329412
+      ],
+      [
+        38.9407105504672,
+        -77.0515674979111
+      ],
+      [
+        38.9407693288296,
+        -77.0515692072051
+      ],
+      [
+        38.9408293655929,
+        -77.0515669621297
+      ],
+      [
+        38.9408880341313,
+        -77.0515705353717
+      ],
+      [
+        38.9409518949701,
+        -77.0515702043792
+      ],
+      [
+        38.9410132316747,
+        -77.0515637696359
+      ],
+      [
+        38.9410788171797,
+        -77.051574600995
+      ],
+      [
+        38.9411466684308,
+        -77.0515911875968
+      ],
+      [
+        38.9412077005632,
+        -77.0516012855489
+      ],
+      [
+        38.9412671084918,
+        -77.0516113996446
+      ],
+      [
+        38.94132754709,
+        -77.0516110362188
+      ],
+      [
+        38.9413804408054,
+        -77.0515932980954
+      ],
+      [
+        38.9414339017608,
+        -77.0515782341452
+      ],
+      [
+        38.941489495865,
+        -77.0515631982455
+      ],
+      [
+        38.9415457987832,
+        -77.0515464279837
+      ],
+      [
+        38.9415897054465,
+        -77.0515356538157
+      ],
+      [
+        38.9416328985525,
+        -77.0515026201658
+      ],
+      [
+        38.9416790889354,
+        -77.0514874781731
+      ],
+      [
+        38.9417218024843,
+        -77.0514633144782
+      ],
+      [
+        38.9417645096328,
+        -77.0514373063111
+      ],
+      [
+        38.9418081890966,
+        -77.0514085073542
+      ],
+      [
+        38.9418473838869,
+        -77.0513702303106
+      ],
+      [
+        38.9418863215168,
+        -77.0513328896795
+      ],
+      [
+        38.9419279785505,
+        -77.0513000807496
+      ],
+      [
+        38.9419724834179,
+        -77.0512685911245
+      ],
+      [
+        38.9420144048978,
+        -77.0512530847938
+      ],
+      [
+        38.9420596387789,
+        -77.0512333428671
+      ],
+      [
+        38.9420970278658,
+        -77.0512041654139
+      ],
+      [
+        38.942142534055,
+        -77.0511694119648
+      ],
+      [
+        38.9421737027485,
+        -77.0511467576477
+      ],
+      [
+        38.9422133501502,
+        -77.0511217943121
+      ],
+      [
+        38.9422508310607,
+        -77.0510947507837
+      ],
+      [
+        38.9423042504129,
+        -77.0510530910629
+      ],
+      [
+        38.9423255581182,
+        -77.0510315577119
+      ],
+      [
+        38.9423607692832,
+        -77.0510057409521
+      ],
+      [
+        38.9424018743822,
+        -77.0509782823294
+      ],
+      [
+        38.942442520953,
+        -77.0509384208508
+      ],
+      [
+        38.9424777817888,
+        -77.0509164036887
+      ],
+      [
+        38.9425235193573,
+        -77.0508879608741
+      ],
+      [
+        38.9425763499449,
+        -77.0508514692893
+      ],
+      [
+        38.9426085744392,
+        -77.0508327431453
+      ],
+      [
+        38.9426473954433,
+        -77.0508083937144
+      ],
+      [
+        38.9426864089853,
+        -77.0507887299515
+      ],
+      [
+        38.9427244725201,
+        -77.0507599146912
+      ],
+      [
+        38.9427772861504,
+        -77.0507333396344
+      ],
+      [
+        38.9428140443399,
+        -77.0507128990301
+      ],
+      [
+        38.9428600173333,
+        -77.0506877782349
+      ],
+      [
+        38.9429067130023,
+        -77.0506663145588
+      ],
+      [
+        38.9429573436418,
+        -77.0506444960606
+      ],
+      [
+        38.9429935281935,
+        -77.0506277369712
+      ],
+      [
+        38.9430371137875,
+        -77.0506092805301
+      ],
+      [
+        38.9430787290745,
+        -77.0505850204811
+      ],
+      [
+        38.9431698370777,
+        -77.0505267840348
+      ],
+      [
+        38.9432521820898,
+        -77.0504866191873
+      ],
+      [
+        38.9432614241252,
+        -77.0504814487382
+      ],
+      [
+        38.9433089024123,
+        -77.0504540966402
+      ],
+      [
+        38.9433565438037,
+        -77.0504266027383
+      ],
+      [
+        38.9433971862413,
+        -77.050402142227
+      ],
+      [
+        38.9434278667059,
+        -77.0503832576942
+      ],
+      [
+        38.9434730249262,
+        -77.0503589433605
+      ],
+      [
+        38.9435287337624,
+        -77.0503448243659
+      ],
+      [
+        38.9435649556073,
+        -77.0503396740835
+      ],
+      [
+        38.9436221090607,
+        -77.0503179024365
+      ],
+      [
+        38.9436570059221,
+        -77.0503019668873
+      ],
+      [
+        38.9437057815963,
+        -77.0502740582799
+      ],
+      [
+        38.9437518158409,
+        -77.0502549975626
+      ],
+      [
+        38.9438063025484,
+        -77.0502443450757
+      ],
+      [
+        38.9438565187764,
+        -77.0502244890168
+      ],
+      [
+        38.9439847444542,
+        -77.0501911592577
+      ],
+      [
+        38.944072224209,
+        -77.0501632476896
+      ],
+      [
+        38.944144875041,
+        -77.0501320034474
+      ],
+      [
+        38.9442423816634,
+        -77.0500205182504
+      ],
+      [
+        38.9442211224199,
+        -77.0498890903439
+      ],
+      [
+        38.9441830827392,
+        -77.0498371973657
+      ],
+      [
+        38.9442965239525,
+        -77.0497550837728
+      ],
+      [
+        38.9443025380304,
+        -77.0497018049845
+      ],
+      [
+        38.9442805448644,
+        -77.049677158202
+      ]
+    ]
+  },
+  {
+    "id": "dc-c-and-o-canal-towpath-section-1",
+    "city": "dc",
+    "title": "C&O Canal Towpath · Stretch 1 of 17",
+    "distanceMiles": 0.6,
+    "durationMinutes": 12,
+    "difficulty": "Easy",
+    "category": "waterfront",
+    "description": "A source-mapped C&O Canal corridor. Verify access and any closures before heading out. Short source-preserving stretch 1 of 17; Stretch 1 of 17.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "C&O Canal Towpath — C&O Canal Towpath (Rock Creek Trail to DC Border)",
+      "sourceRecordId": "12",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Crushed Gravel",
+    "use": "Bike/Ped",
+    "collection": "C&O Canal Towpath",
+    "sectionNumber": 1,
+    "sectionCount": 17,
+    "coordinates": [
+      [
+        38.9041554192156,
+        -77.0650534345917
+      ],
+      [
+        38.9041707882716,
+        -77.0633321764771
+      ],
+      [
+        38.9041554192156,
+        -77.0650534345917
+      ],
+      [
+        38.9041481689148,
+        -77.0658644147081
+      ],
+      [
+        38.9041532347514,
+        -77.0661028848267
+      ],
+      [
+        38.9041760997581,
+        -77.0663317541482
+      ],
+      [
+        38.9041989703709,
+        -77.0665531586744
+      ],
+      [
+        38.9042218493502,
+        -77.0667591895886
+      ],
+      [
+        38.9042295181635,
+        -77.0668505608488
+      ],
+      [
+        38.9043020084209,
+        -77.0671787503223
+      ],
+      [
+        38.9043401572535,
+        -77.0673847950085
+      ],
+      [
+        38.9043477654275,
+        -77.0675833437058
+      ],
+      [
+        38.9043439642699,
+        -77.0677739762367
+      ],
+      [
+        38.9043341639752,
+        -77.068045360662
+      ],
+      [
+        38.9043510851053,
+        -77.068329634555
+      ],
+      [
+        38.9043935985803,
+        -77.0686685975217
+      ],
+      [
+        38.9044431818399,
+        -77.0689203895249
+      ],
+      [
+        38.9044658685275,
+        -77.0690515125622
+      ],
+      [
+        38.9044774191721,
+        -77.0691928890812
+      ],
+      [
+        38.9044924954813,
+        -77.0692933287093
+      ],
+      [
+        38.904511776382,
+        -77.0694217727772
+      ],
+      [
+        38.9045308457416,
+        -77.0695285307896
+      ],
+      [
+        38.9045892761385,
+        -77.0699037463787
+      ],
+      [
+        38.9045893497248,
+        -77.0699042179845
+      ],
+      [
+        38.9046491307059,
+        -77.0703144708472
+      ],
+      [
+        38.9046492771035,
+        -77.0703151996211
+      ],
+      [
+        38.9046872841851,
+        -77.070505145513
+      ],
+      [
+        38.9047368291571,
+        -77.0708715330879
+      ],
+      [
+        38.9048093361739,
+        -77.0712910926853
+      ],
+      [
+        38.90488181822,
+        -77.0717488682476
+      ],
+      [
+        38.90495039006038,
+        -77.07221116715492
+      ]
+    ]
+  },
+  {
+    "id": "dc-c-and-o-canal-towpath-section-2",
+    "city": "dc",
+    "title": "C&O Canal Towpath · Stretch 2 of 17",
+    "distanceMiles": 0.6,
+    "durationMinutes": 12,
+    "difficulty": "Easy",
+    "category": "waterfront",
+    "description": "A source-mapped C&O Canal corridor. Verify access and any closures before heading out. Short source-preserving stretch 2 of 17; Stretch 2 of 17.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "C&O Canal Towpath — C&O Canal Towpath (Rock Creek Trail to DC Border)",
+      "sourceRecordId": "12",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Crushed Gravel",
+    "use": "Bike/Ped",
+    "collection": "C&O Canal Towpath",
+    "sectionNumber": 2,
+    "sectionCount": 17,
+    "coordinates": [
+      [
+        38.90495039006038,
+        -77.07221116715492
+      ],
+      [
+        38.904954280363,
+        -77.0722373948694
+      ],
+      [
+        38.9050343675429,
+        -77.0727408637902
+      ],
+      [
+        38.9050915550346,
+        -77.0732214690307
+      ],
+      [
+        38.9051221433982,
+        -77.0737020475592
+      ],
+      [
+        38.9051487716625,
+        -77.0741979963463
+      ],
+      [
+        38.9051640781999,
+        -77.0746864662948
+      ],
+      [
+        38.90518317037,
+        -77.0751516587079
+      ],
+      [
+        38.9052174544969,
+        -77.0756094012698
+      ],
+      [
+        38.9052708805716,
+        -77.076051790698
+      ],
+      [
+        38.905335743276,
+        -77.0764564169326
+      ],
+      [
+        38.9054234535544,
+        -77.0768224126866
+      ],
+      [
+        38.9055226699053,
+        -77.0771734881608
+      ],
+      [
+        38.9056523539671,
+        -77.0777688269962
+      ],
+      [
+        38.9056713879388,
+        -77.0779212707327
+      ],
+      [
+        38.9056904991081,
+        -77.0782112039921
+      ],
+      [
+        38.9056828547972,
+        -77.0784782653198
+      ],
+      [
+        38.9056751927441,
+        -77.0785164724526
+      ],
+      [
+        38.9056675992502,
+        -77.0787071037821
+      ],
+      [
+        38.9056370859335,
+        -77.0789130826348
+      ],
+      [
+        38.9055950998721,
+        -77.0790808330653
+      ],
+      [
+        38.9055531636856,
+        -77.0793021740557
+      ],
+      [
+        38.9054692745821,
+        -77.0796381132188
+      ],
+      [
+        38.9053585936512,
+        -77.0800043314667
+      ],
+      [
+        38.9052479814348,
+        -77.0803933888534
+      ],
+      [
+        38.9051449894015,
+        -77.0808052961348
+      ],
+      [
+        38.9050457704115,
+        -77.0812172076773
+      ],
+      [
+        38.9049923752506,
+        -77.081621700874
+      ],
+      [
+        38.9049924406806,
+        -77.082018349506
+      ],
+      [
+        38.9050228747471,
+        -77.0824224994173
+      ],
+      [
+        38.90508039768357,
+        -77.08266690644378
+      ]
+    ]
+  },
+  {
+    "id": "dc-c-and-o-canal-towpath-section-3",
+    "city": "dc",
+    "title": "C&O Canal Towpath · Stretch 3 of 17",
+    "distanceMiles": 0.6,
+    "durationMinutes": 12,
+    "difficulty": "Easy",
+    "category": "waterfront",
+    "description": "A source-mapped C&O Canal corridor. Verify access and any closures before heading out. Short source-preserving stretch 3 of 17; Stretch 3 of 17.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "C&O Canal Towpath — C&O Canal Towpath (Rock Creek Trail to DC Border)",
+      "sourceRecordId": "12",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Crushed Gravel",
+    "use": "Bike/Ped",
+    "collection": "C&O Canal Towpath",
+    "sectionNumber": 3,
+    "sectionCount": 17,
+    "coordinates": [
+      [
+        38.90508039768357,
+        -77.08266690644378
+      ],
+      [
+        38.9051144963977,
+        -77.082811787179
+      ],
+      [
+        38.9052479677656,
+        -77.0832314323202
+      ],
+      [
+        38.9054043375433,
+        -77.0836664822136
+      ],
+      [
+        38.9055608062315,
+        -77.0840782522708
+      ],
+      [
+        38.905701920533,
+        -77.0844825385363
+      ],
+      [
+        38.9058469007366,
+        -77.0848793624237
+      ],
+      [
+        38.9059803858836,
+        -77.0852687078944
+      ],
+      [
+        38.9061100918811,
+        -77.0856650784783
+      ],
+      [
+        38.9062321794535,
+        -77.0860315702893
+      ],
+      [
+        38.9063389416425,
+        -77.0863519232815
+      ],
+      [
+        38.9064228656306,
+        -77.0865729746685
+      ],
+      [
+        38.9065335224753,
+        -77.0869622997796
+      ],
+      [
+        38.9066822868566,
+        -77.0874505063736
+      ],
+      [
+        38.9068234137214,
+        -77.0879387044372
+      ],
+      [
+        38.9069607034488,
+        -77.0883891238428
+      ],
+      [
+        38.9070980917417,
+        -77.0888237314538
+      ],
+      [
+        38.9071972719984,
+        -77.0891748318613
+      ],
+      [
+        38.9073193244029,
+        -77.089571644832
+      ],
+      [
+        38.907429939642,
+        -77.0898920128738
+      ],
+      [
+        38.9074604214517,
+        -77.0899759519346
+      ],
+      [
+        38.9074795327287,
+        -77.0900062857082
+      ],
+      [
+        38.9075939319137,
+        -77.0903117247158
+      ],
+      [
+        38.9077770395545,
+        -77.0907543038149
+      ],
+      [
+        38.9079525611498,
+        -77.091127910714
+      ],
+      [
+        38.9081204237895,
+        -77.0915322588402
+      ],
+      [
+        38.9083263444453,
+        -77.0919823426038
+      ],
+      [
+        38.9085595508848,
+        -77.09235859469135
+      ]
+    ]
+  },
+  {
+    "id": "dc-c-and-o-canal-towpath-section-4",
+    "city": "dc",
+    "title": "C&O Canal Towpath · Stretch 4 of 17",
+    "distanceMiles": 0.6,
+    "durationMinutes": 12,
+    "difficulty": "Easy",
+    "category": "waterfront",
+    "description": "A source-mapped C&O Canal corridor. Verify access and any closures before heading out. Short source-preserving stretch 4 of 17; Stretch 4 of 17.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "C&O Canal Towpath — C&O Canal Towpath (Rock Creek Trail to DC Border)",
+      "sourceRecordId": "12",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Crushed Gravel",
+    "use": "Bike/Ped",
+    "collection": "C&O Canal Towpath",
+    "sectionNumber": 4,
+    "sectionCount": 17,
+    "coordinates": [
+      [
+        38.9085595508848,
+        -77.09235859469135
+      ],
+      [
+        38.9085628648406,
+        -77.0923639413824
+      ],
+      [
+        38.908772648346,
+        -77.092699822964
+      ],
+      [
+        38.9089557640078,
+        -77.0930123876113
+      ],
+      [
+        38.9091655588178,
+        -77.0933328981358
+      ],
+      [
+        38.9094211288911,
+        -77.0937070631164
+      ],
+      [
+        38.9096996204979,
+        -77.0940654456312
+      ],
+      [
+        38.9099857409682,
+        -77.0944317504992
+      ],
+      [
+        38.9102642354811,
+        -77.0947826707969
+      ],
+      [
+        38.9105465061211,
+        -77.0951336000262
+      ],
+      [
+        38.9108211445267,
+        -77.0954770538678
+      ],
+      [
+        38.9111148303993,
+        -77.0958200955001
+      ],
+      [
+        38.9114315166137,
+        -77.0961561434051
+      ],
+      [
+        38.9117519056189,
+        -77.0964763834657
+      ],
+      [
+        38.9120875770299,
+        -77.0967817121356
+      ],
+      [
+        38.9124003658762,
+        -77.0970562603186
+      ],
+      [
+        38.9127055358194,
+        -77.0973079579241
+      ],
+      [
+        38.9130107167739,
+        -77.0975447201895
+      ],
+      [
+        38.9133578632305,
+        -77.0977731963426
+      ],
+      [
+        38.9137469540647,
+        -77.0980175463337
+      ],
+      [
+        38.914055934769,
+        -77.0982235697089
+      ],
+      [
+        38.9144831826761,
+        -77.0984982910302
+      ],
+      [
+        38.9148379698473,
+        -77.0987193175989
+      ],
+      [
+        38.91505449562224,
+        -77.09885943554515
+      ]
+    ]
+  },
+  {
+    "id": "dc-c-and-o-canal-towpath-section-5",
+    "city": "dc",
+    "title": "C&O Canal Towpath · Stretch 5 of 17",
+    "distanceMiles": 0.6,
+    "durationMinutes": 12,
+    "difficulty": "Easy",
+    "category": "waterfront",
+    "description": "A source-mapped C&O Canal corridor. Verify access and any closures before heading out. Short source-preserving stretch 5 of 17; Stretch 5 of 17.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "C&O Canal Towpath — C&O Canal Towpath (Rock Creek Trail to DC Border)",
+      "sourceRecordId": "12",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Crushed Gravel",
+    "use": "Bike/Ped",
+    "collection": "C&O Canal Towpath",
+    "sectionNumber": 5,
+    "sectionCount": 17,
+    "coordinates": [
+      [
+        38.91505449562224,
+        -77.09885943554515
+      ],
+      [
+        38.9152155594629,
+        -77.0989636630191
+      ],
+      [
+        38.9155779780569,
+        -77.0991926125552
+      ],
+      [
+        38.915902222954,
+        -77.0994061349164
+      ],
+      [
+        38.9161692755732,
+        -77.0995738907791
+      ],
+      [
+        38.9163523642717,
+        -77.099695839494
+      ],
+      [
+        38.9164209678393,
+        -77.0997416252627
+      ],
+      [
+        38.9166155560099,
+        -77.0998640302682
+      ],
+      [
+        38.9169435823042,
+        -77.1000700966595
+      ],
+      [
+        38.9173059962897,
+        -77.1002986180312
+      ],
+      [
+        38.9176302528111,
+        -77.1004972132892
+      ],
+      [
+        38.9179163331008,
+        -77.1006878495752
+      ],
+      [
+        38.9180498504912,
+        -77.1007794199045
+      ],
+      [
+        38.9181109179031,
+        -77.1008098203898
+      ],
+      [
+        38.9181947955279,
+        -77.1008556299609
+      ],
+      [
+        38.9184236894738,
+        -77.1009930271188
+      ],
+      [
+        38.9186639752195,
+        -77.1011532869652
+      ],
+      [
+        38.9189539286869,
+        -77.1013285572086
+      ],
+      [
+        38.9192056979156,
+        -77.101504212718
+      ],
+      [
+        38.919392639487,
+        -77.1016340852655
+      ],
+      [
+        38.9195261570003,
+        -77.1017256592633
+      ],
+      [
+        38.9197053823716,
+        -77.1018476148817
+      ],
+      [
+        38.9198694135784,
+        -77.1019774576313
+      ],
+      [
+        38.9199762663139,
+        -77.1020461474942
+      ],
+      [
+        38.9200220454296,
+        -77.1020919063296
+      ],
+      [
+        38.9201516807211,
+        -77.1022063225589
+      ],
+      [
+        38.9209451350978,
+        -77.1028700048612
+      ],
+      [
+        38.9212961361279,
+        -77.1031903632834
+      ],
+      [
+        38.9214753844868,
+        -77.103381304661
+      ],
+      [
+        38.9216547066687,
+        -77.1035871841213
+      ],
+      [
+        38.92219333755631,
+        -77.10426095826098
+      ]
+    ]
+  },
+  {
+    "id": "dc-c-and-o-canal-towpath-section-6",
+    "city": "dc",
+    "title": "C&O Canal Towpath · Stretch 6 of 17",
+    "distanceMiles": 0.6,
+    "durationMinutes": 12,
+    "difficulty": "Easy",
+    "category": "waterfront",
+    "description": "A source-mapped C&O Canal corridor. Verify access and any closures before heading out. Short source-preserving stretch 6 of 17; Stretch 6 of 17.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "C&O Canal Towpath — C&O Canal Towpath (Rock Creek Trail to DC Border)",
+      "sourceRecordId": "12",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Crushed Gravel",
+    "use": "Bike/Ped",
+    "collection": "C&O Canal Towpath",
+    "sectionNumber": 6,
+    "sectionCount": 17,
+    "coordinates": [
+      [
+        38.92219333755631,
+        -77.10426095826098
+      ],
+      [
+        38.9225816481617,
+        -77.1047466965469
+      ],
+      [
+        38.9226845901596,
+        -77.104868991017
+      ],
+      [
+        38.9227990671453,
+        -77.1050444659828
+      ],
+      [
+        38.9229020671197,
+        -77.105197077567
+      ],
+      [
+        38.923027948607,
+        -77.1053800408288
+      ],
+      [
+        38.9231690895139,
+        -77.1055784040261
+      ],
+      [
+        38.9233445483209,
+        -77.1058761173071
+      ],
+      [
+        38.9234552042751,
+        -77.1060058954572
+      ],
+      [
+        38.9235582092646,
+        -77.1061506011903
+      ],
+      [
+        38.9238786227525,
+        -77.1066009958396
+      ],
+      [
+        38.9240579015365,
+        -77.1068451157046
+      ],
+      [
+        38.9242295593483,
+        -77.1070738484239
+      ],
+      [
+        38.9243897959122,
+        -77.1073104726514
+      ],
+      [
+        38.9244355186094,
+        -77.1074173107481
+      ],
+      [
+        38.924561423595,
+        -77.1075699638192
+      ],
+      [
+        38.9247254505157,
+        -77.1077912178054
+      ],
+      [
+        38.9248933232661,
+        -77.1080274174832
+      ],
+      [
+        38.925057290908,
+        -77.108218357473
+      ],
+      [
+        38.9251984421091,
+        -77.1084013548181
+      ],
+      [
+        38.9253472063342,
+        -77.1086072111225
+      ],
+      [
+        38.9255112646467,
+        -77.1087906843121
+      ],
+      [
+        38.9257134518521,
+        -77.1090344109245
+      ],
+      [
+        38.925927091679,
+        -77.1092328998934
+      ],
+      [
+        38.9261406944572,
+        -77.1094696176927
+      ],
+      [
+        38.9263428632786,
+        -77.1096373344369
+      ],
+      [
+        38.926495423952,
+        -77.109820354312
+      ],
+      [
+        38.9266556627808,
+        -77.1099576915398
+      ],
+      [
+        38.9266861884594,
+        -77.1099805868363
+      ],
+      [
+        38.9267167066885,
+        -77.1100113911449
+      ],
+      [
+        38.9270905472983,
+        -77.1102936178119
+      ],
+      [
+        38.9271553720947,
+        -77.1103394148306
+      ],
+      [
+        38.9273003385081,
+        -77.1104767308346
+      ],
+      [
+        38.9274414636184,
+        -77.1105911918186
+      ],
+      [
+        38.927502512912,
+        -77.1106369834753
+      ],
+      [
+        38.9276665416107,
+        -77.1107589503897
+      ],
+      [
+        38.9278419819012,
+        -77.1108809356107
+      ],
+      [
+        38.9280289193612,
+        -77.1110029393301
+      ],
+      [
+        38.9282348981315,
+        -77.1111328836904
+      ],
+      [
+        38.92840550823012,
+        -77.11123784182811
+      ]
+    ]
+  },
+  {
+    "id": "dc-c-and-o-canal-towpath-section-7",
+    "city": "dc",
+    "title": "C&O Canal Towpath · Stretch 7 of 17",
+    "distanceMiles": 0.6,
+    "durationMinutes": 12,
+    "difficulty": "Easy",
+    "category": "waterfront",
+    "description": "A source-mapped C&O Canal corridor. Verify access and any closures before heading out. Short source-preserving stretch 7 of 17; Stretch 7 of 17.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "C&O Canal Towpath — C&O Canal Towpath (Rock Creek Trail to DC Border)",
+      "sourceRecordId": "12",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Crushed Gravel",
+    "use": "Bike/Ped",
+    "collection": "C&O Canal Towpath",
+    "sectionNumber": 7,
+    "sectionCount": 17,
+    "coordinates": [
+      [
+        38.92840550823012,
+        -77.11123784182811
+      ],
+      [
+        38.9284332470376,
+        -77.1112549065482
+      ],
+      [
+        38.9286278213286,
+        -77.1113769241891
+      ],
+      [
+        38.9288300327268,
+        -77.1114989544383
+      ],
+      [
+        38.9290207511201,
+        -77.1116134986853
+      ],
+      [
+        38.9291923451177,
+        -77.1117201031462
+      ],
+      [
+        38.9293563935969,
+        -77.1118192263951
+      ],
+      [
+        38.9295509668441,
+        -77.1119416865615
+      ],
+      [
+        38.929711154165,
+        -77.1120408047517
+      ],
+      [
+        38.9298332681006,
+        -77.1121170154285
+      ],
+      [
+        38.9299705672828,
+        -77.1121932491066
+      ],
+      [
+        38.9300926793125,
+        -77.1122694591656
+      ],
+      [
+        38.9303672783121,
+        -77.1124219279587
+      ],
+      [
+        38.9304016559344,
+        -77.1124527409903
+      ],
+      [
+        38.9307029896142,
+        -77.1126434823632
+      ],
+      [
+        38.9310004759512,
+        -77.1128188420234
+      ],
+      [
+        38.9310691606697,
+        -77.1128646488074
+      ],
+      [
+        38.9312369844003,
+        -77.1129637832813
+      ],
+      [
+        38.9314277814253,
+        -77.1130858043955
+      ],
+      [
+        38.9316147164575,
+        -77.1132078200311
+      ],
+      [
+        38.9318130712129,
+        -77.1133223866153
+      ],
+      [
+        38.932091513873,
+        -77.1134902490408
+      ],
+      [
+        38.9322860159674,
+        -77.1135968991097
+      ],
+      [
+        38.9325225379319,
+        -77.113726906291
+      ],
+      [
+        38.9327590601693,
+        -77.1138564749091
+      ],
+      [
+        38.9329917126794,
+        -77.1139939490544
+      ],
+      [
+        38.9332168005734,
+        -77.1141463514278
+      ],
+      [
+        38.9334495095514,
+        -77.114314147053
+      ],
+      [
+        38.9337012448382,
+        -77.1145048259508
+      ],
+      [
+        38.933926301856,
+        -77.1146879917552
+      ],
+      [
+        38.9341438069222,
+        -77.1148711465493
+      ],
+      [
+        38.9343612270133,
+        -77.1150543034775
+      ],
+      [
+        38.9345442695155,
+        -77.1152070836268
+      ],
+      [
+        38.9348418695459,
+        -77.1154356334604
+      ],
+      [
+        38.934899048986,
+        -77.1154893376655
+      ],
+      [
+        38.9350707634037,
+        -77.115641663424
+      ],
+      [
+        38.9352652797587,
+        -77.1158173162128
+      ],
+      [
+        38.9354445860799,
+        -77.1160157962483
+      ],
+      [
+        38.9356429016104,
+        -77.1162521016192
+      ],
+      [
+        38.93569713659466,
+        -77.11632280689955
+      ]
+    ]
+  },
+  {
+    "id": "dc-c-and-o-canal-towpath-section-8",
+    "city": "dc",
+    "title": "C&O Canal Towpath · Stretch 8 of 17",
+    "distanceMiles": 0.6,
+    "durationMinutes": 12,
+    "difficulty": "Easy",
+    "category": "waterfront",
+    "description": "A source-mapped C&O Canal corridor. Verify access and any closures before heading out. Short source-preserving stretch 8 of 17; Stretch 8 of 17.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "C&O Canal Towpath — C&O Canal Towpath (Rock Creek Trail to DC Border)",
+      "sourceRecordId": "12",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Crushed Gravel",
+    "use": "Bike/Ped",
+    "collection": "C&O Canal Towpath",
+    "sectionNumber": 8,
+    "sectionCount": 17,
+    "coordinates": [
+      [
+        38.93569713659466,
+        -77.11632280689955
+      ],
+      [
+        38.9358184024916,
+        -77.1164808993072
+      ],
+      [
+        38.9360548609962,
+        -77.1167559398115
+      ],
+      [
+        38.9361502323815,
+        -77.1168852946503
+      ],
+      [
+        38.936333374919,
+        -77.1171066386097
+      ],
+      [
+        38.9363990094256,
+        -77.1171902451543
+      ],
+      [
+        38.936399140779,
+        -77.1171904126145
+      ],
+      [
+        38.93191441054942,
+        -77.10969578006505
+      ]
+    ]
+  },
+  {
+    "id": "dc-c-and-o-canal-towpath-section-9",
+    "city": "dc",
+    "title": "C&O Canal Towpath · Stretch 9 of 17",
+    "distanceMiles": 0.6,
+    "durationMinutes": 12,
+    "difficulty": "Easy",
+    "category": "waterfront",
+    "description": "A source-mapped C&O Canal corridor. Verify access and any closures before heading out. Short source-preserving stretch 9 of 17; Stretch 9 of 17.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "C&O Canal Towpath — C&O Canal Towpath (Rock Creek Trail to DC Border)",
+      "sourceRecordId": "12",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Crushed Gravel",
+    "use": "Bike/Ped",
+    "collection": "C&O Canal Towpath",
+    "sectionNumber": 9,
+    "sectionCount": 17,
+    "coordinates": [
+      [
+        38.93191441054942,
+        -77.10969578006505
+      ],
+      [
+        38.92683587476441,
+        -77.10120881258887
+      ]
+    ]
+  },
+  {
+    "id": "dc-c-and-o-canal-towpath-section-10",
+    "city": "dc",
+    "title": "C&O Canal Towpath · Stretch 10 of 17",
+    "distanceMiles": 0.6,
+    "durationMinutes": 12,
+    "difficulty": "Easy",
+    "category": "waterfront",
+    "description": "A source-mapped C&O Canal corridor. Verify access and any closures before heading out. Short source-preserving stretch 10 of 17; Stretch 10 of 17.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "C&O Canal Towpath — C&O Canal Towpath (Rock Creek Trail to DC Border)",
+      "sourceRecordId": "12",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Crushed Gravel",
+    "use": "Bike/Ped",
+    "collection": "C&O Canal Towpath",
+    "sectionNumber": 10,
+    "sectionCount": 17,
+    "coordinates": [
+      [
+        38.92683587476441,
+        -77.10120881258887
+      ],
+      [
+        38.921757453202744,
+        -77.0927220359964
+      ]
+    ]
+  },
+  {
+    "id": "dc-c-and-o-canal-towpath-section-11",
+    "city": "dc",
+    "title": "C&O Canal Towpath · Stretch 11 of 17",
+    "distanceMiles": 0.6,
+    "durationMinutes": 12,
+    "difficulty": "Easy",
+    "category": "waterfront",
+    "description": "A source-mapped C&O Canal corridor. Verify access and any closures before heading out. Short source-preserving stretch 11 of 17; Stretch 11 of 17.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "C&O Canal Towpath — C&O Canal Towpath (Rock Creek Trail to DC Border)",
+      "sourceRecordId": "12",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Crushed Gravel",
+    "use": "Bike/Ped",
+    "collection": "C&O Canal Towpath",
+    "sectionNumber": 11,
+    "sectionCount": 17,
+    "coordinates": [
+      [
+        38.921757453202744,
+        -77.0927220359964
+      ],
+      [
+        38.91667914584348,
+        -77.08423545025266
+      ]
+    ]
+  },
+  {
+    "id": "dc-c-and-o-canal-towpath-section-12",
+    "city": "dc",
+    "title": "C&O Canal Towpath · Stretch 12 of 17",
+    "distanceMiles": 0.6,
+    "durationMinutes": 12,
+    "difficulty": "Easy",
+    "category": "waterfront",
+    "description": "A source-mapped C&O Canal corridor. Verify access and any closures before heading out. Short source-preserving stretch 12 of 17; Stretch 12 of 17.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "C&O Canal Towpath — C&O Canal Towpath (Rock Creek Trail to DC Border)",
+      "sourceRecordId": "12",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Crushed Gravel",
+    "use": "Bike/Ped",
+    "collection": "C&O Canal Towpath",
+    "sectionNumber": 12,
+    "sectionCount": 17,
+    "coordinates": [
+      [
+        38.91667914584348,
+        -77.08423545025266
+      ],
+      [
+        38.911600952665694,
+        -77.07574905532267
+      ]
+    ]
+  },
+  {
+    "id": "dc-c-and-o-canal-towpath-section-13",
+    "city": "dc",
+    "title": "C&O Canal Towpath · Stretch 13 of 17",
+    "distanceMiles": 0.6,
+    "durationMinutes": 12,
+    "difficulty": "Easy",
+    "category": "waterfront",
+    "description": "A source-mapped C&O Canal corridor. Verify access and any closures before heading out. Short source-preserving stretch 13 of 17; Stretch 13 of 17.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "C&O Canal Towpath — C&O Canal Towpath (Rock Creek Trail to DC Border)",
+      "sourceRecordId": "12",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Crushed Gravel",
+    "use": "Bike/Ped",
+    "collection": "C&O Canal Towpath",
+    "sectionNumber": 13,
+    "sectionCount": 17,
+    "coordinates": [
+      [
+        38.911600952665694,
+        -77.07574905532267
+      ],
+      [
+        38.906522873648456,
+        -77.06726285117146
+      ]
+    ]
+  },
+  {
+    "id": "dc-c-and-o-canal-towpath-section-14",
+    "city": "dc",
+    "title": "C&O Canal Towpath · Stretch 14 of 17",
+    "distanceMiles": 0.6,
+    "durationMinutes": 12,
+    "difficulty": "Easy",
+    "category": "waterfront",
+    "description": "A source-mapped C&O Canal corridor. Verify access and any closures before heading out. Short source-preserving stretch 14 of 17; Stretch 14 of 17.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "C&O Canal Towpath — C&O Canal Towpath (Rock Creek Trail to DC Border)",
+      "sourceRecordId": "12",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Crushed Gravel",
+    "use": "Bike/Ped",
+    "collection": "C&O Canal Towpath",
+    "sectionNumber": 14,
+    "sectionCount": 17,
+    "coordinates": [
+      [
+        38.906522873648456,
+        -77.06726285117146
+      ],
+      [
+        38.9041707882716,
+        -77.0633321764771
+      ],
+      [
+        38.9041749115641,
+        -77.0628698758032
+      ],
+      [
+        38.9043237138134,
+        -77.0650493074023
+      ],
+      [
+        38.9041554192156,
+        -77.0650534345917
+      ],
+      [
+        38.9043237138134,
+        -77.0650493074023
+      ],
+      [
+        38.9043355973191,
+        -77.0643275319332
+      ],
+      [
+        38.9043367828151,
+        -77.06422274684
+      ],
+      [
+        38.9043393112955,
+        -77.0633336300275
+      ],
+      [
+        38.9043393112955,
+        -77.0633336300275
+      ],
+      [
+        38.9041707882716,
+        -77.0633321764771
+      ],
+      [
+        38.9043393112955,
+        -77.0633336300275
+      ],
+      [
+        38.9043393203321,
+        -77.0633302543737
+      ],
+      [
+        38.9043381221927,
+        -77.0628733249957
+      ],
+      [
+        38.904333321427586,
+        -77.06281937783494
+      ]
+    ]
+  },
+  {
+    "id": "dc-c-and-o-canal-towpath-section-15",
+    "city": "dc",
+    "title": "C&O Canal Towpath · Stretch 15 of 17",
+    "distanceMiles": 0.6,
+    "durationMinutes": 12,
+    "difficulty": "Easy",
+    "category": "waterfront",
+    "description": "A source-mapped C&O Canal corridor. Verify access and any closures before heading out. Short source-preserving stretch 15 of 17; Stretch 15 of 17.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "C&O Canal Towpath — C&O Canal Towpath (Rock Creek Trail to DC Border)",
+      "sourceRecordId": "12",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Crushed Gravel",
+    "use": "Bike/Ped",
+    "collection": "C&O Canal Towpath",
+    "sectionNumber": 15,
+    "sectionCount": 17,
+    "coordinates": [
+      [
+        38.904333321427586,
+        -77.06281937783494
+      ],
+      [
+        38.9043223169925,
+        -77.06269571879
+      ],
+      [
+        38.9043197830139,
+        -77.0624213703413
+      ],
+      [
+        38.9042934477405,
+        -77.0612440226378
+      ],
+      [
+        38.9042802090924,
+        -77.0607868804261
+      ],
+      [
+        38.9042770524188,
+        -77.0603771871381
+      ],
+      [
+        38.9042636666901,
+        -77.0601960489262
+      ],
+      [
+        38.9042302324496,
+        -77.0596828275449
+      ],
+      [
+        38.9041665879523,
+        -77.0589367064626
+      ],
+      [
+        38.9041196979059,
+        -77.0583674127968
+      ],
+      [
+        38.9041029853504,
+        -77.0580913970446
+      ],
+      [
+        38.9040828407235,
+        -77.0579447543248
+      ],
+      [
+        38.9040931936051,
+        -77.0574531341422
+      ],
+      [
+        38.904073107655,
+        -77.0571814289495
+      ],
+      [
+        38.9040530156714,
+        -77.0569226604307
+      ],
+      [
+        38.9040497475156,
+        -77.0567113443431
+      ],
+      [
+        38.90427460208777,
+        -77.06128109983503
+      ]
+    ]
+  },
+  {
+    "id": "dc-c-and-o-canal-towpath-section-16",
+    "city": "dc",
+    "title": "C&O Canal Towpath · Stretch 16 of 17",
+    "distanceMiles": 0.6,
+    "durationMinutes": 12,
+    "difficulty": "Easy",
+    "category": "waterfront",
+    "description": "A source-mapped C&O Canal corridor. Verify access and any closures before heading out. Short source-preserving stretch 16 of 17; Stretch 16 of 17.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "C&O Canal Towpath — C&O Canal Towpath (Rock Creek Trail to DC Border)",
+      "sourceRecordId": "12",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Crushed Gravel",
+    "use": "Bike/Ped",
+    "collection": "C&O Canal Towpath",
+    "sectionNumber": 16,
+    "sectionCount": 17,
+    "coordinates": [
+      [
+        38.90427460208777,
+        -77.06128109983503
+      ],
+      [
+        38.9043756120959,
+        -77.0633339424121
+      ],
+      [
+        38.9043393112955,
+        -77.0633336300275
+      ],
+      [
+        38.9045177523588,
+        -77.0680192383156
+      ],
+      [
+        38.9045493875443,
+        -77.0680213990303
+      ],
+      [
+        38.9045562407186,
+        -77.0677864758513
+      ],
+      [
+        38.9045177523588,
+        -77.0680192383156
+      ],
+      [
+        38.9045562407186,
+        -77.0677864758513
+      ],
+      [
+        38.9045514961181,
+        -77.0677863030198
+      ],
+      [
+        38.9045112287215,
+        -77.0677848328589
+      ],
+      [
+        38.9043880194791,
+        -77.067780453533
+      ],
+      [
+        38.9043779004335,
+        -77.068002057158
+      ],
+      [
+        38.9043498160306,
+        -77.0681133154095
+      ],
+      [
+        38.9045514961181,
+        -77.0677863030198
+      ],
+      [
+        38.904484847435,
+        -77.0673351878554
+      ],
+      [
+        38.9044117139003,
+        -77.0667986924081
+      ],
+      [
+        38.9043178156835,
+        -77.0660007818079
+      ],
+      [
+        38.90432013948063,
+        -77.06562591154692
+      ]
+    ]
+  },
+  {
+    "id": "dc-c-and-o-canal-towpath-section-17",
+    "city": "dc",
+    "title": "C&O Canal Towpath · Stretch 17 of 17",
+    "distanceMiles": 0.6,
+    "durationMinutes": 12,
+    "difficulty": "Easy",
+    "category": "waterfront",
+    "description": "A source-mapped C&O Canal corridor. Verify access and any closures before heading out. Short source-preserving stretch 17 of 17; Stretch 17 of 17.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "C&O Canal Towpath — C&O Canal Towpath (Rock Creek Trail to DC Border)",
+      "sourceRecordId": "12",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Crushed Gravel",
+    "use": "Bike/Ped",
+    "collection": "C&O Canal Towpath",
+    "sectionNumber": 17,
+    "sectionCount": 17,
+    "coordinates": [
+      [
+        38.90432013948063,
+        -77.06562591154692
+      ],
+      [
+        38.9043237138134,
+        -77.0650493074023
+      ],
+      [
+        38.9045562407186,
+        -77.0677864758513
+      ],
+      [
+        38.9045524391997,
+        -77.0677926736522
+      ],
+      [
+        38.9045514961181,
+        -77.0677863030198
+      ],
+      [
+        38.9045562407186,
+        -77.0677864758513
+      ],
+      [
+        38.9045514961181,
+        -77.0677863030198
+      ],
+      [
+        38.9048810386194,
+        -77.0678053542643
+      ],
+      [
+        38.904674391584,
+        -77.0678020346286
+      ],
+      [
+        38.9045711690493,
+        -77.0677870203695
+      ],
+      [
+        38.9045562407186,
+        -77.0677864758513
+      ],
+      [
+        38.9049854558621,
+        -77.0710988553958
+      ],
+      [
+        38.9049314236939,
+        -77.0707472594014
+      ],
+      [
+        38.9049075060691,
+        -77.0705916208061
+      ],
+      [
+        38.9048743211443,
+        -77.0704019361376
+      ],
+      [
+        38.9047963130933,
+        -77.0699884635774
+      ],
+      [
+        38.9047265363538,
+        -77.0697305544774
+      ],
+      [
+        38.9046755999624,
+        -77.0694045384899
+      ],
+      [
+        38.9046534281437,
+        -77.0692626197453
+      ],
+      [
+        38.9046369665367,
+        -77.0691572545402
+      ],
+      [
+        38.9045640127535,
+        -77.068637243777
+      ],
+      [
+        38.9044990447121,
+        -77.0682910022127
+      ],
+      [
+        38.9045177523588,
+        -77.0680192383156
+      ]
+    ]
+  },
+  {
+    "id": "dc-capital-crescent-trail-section-1",
+    "city": "dc",
+    "title": "Capital Crescent Trail · Stretch 1 of 13",
+    "distanceMiles": 0.3,
+    "durationMinutes": 6,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Capital Crescent corridor. Verify access and any closures before heading out. Short source-preserving stretch 1 of 13; Stretch 1 of 13.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Capital Crescent Trail — Capital Cresent Trail",
+      "sourceRecordId": "2",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Capital Crescent Trail",
+    "sectionNumber": 1,
+    "sectionCount": 13,
+    "coordinates": [
+      [
+        38.9044291599678,
+        -77.07088574575
+      ],
+      [
+        38.9046758888929,
+        -77.0717520068054
+      ],
+      [
+        38.9047630175633,
+        -77.0722987266611
+      ],
+      [
+        38.9048350205821,
+        -77.0727613872944
+      ],
+      [
+        38.904895764525,
+        -77.0732563034899
+      ],
+      [
+        38.9049584083061,
+        -77.0740427505613
+      ],
+      [
+        38.9049833091017,
+        -77.0751798175529
+      ],
+      [
+        38.9050343974619,
+        -77.0754422659661
+      ],
+      [
+        38.9050597908755,
+        -77.0758030841844
+      ],
+      [
+        38.905092489501264,
+        -77.07599154345802
+      ]
+    ]
+  },
+  {
+    "id": "dc-capital-crescent-trail-section-2",
+    "city": "dc",
+    "title": "Capital Crescent Trail · Stretch 2 of 13",
+    "distanceMiles": 0.3,
+    "durationMinutes": 6,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Capital Crescent corridor. Verify access and any closures before heading out. Short source-preserving stretch 2 of 13; Stretch 2 of 13.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Capital Crescent Trail — Capital Cresent Trail",
+      "sourceRecordId": "2",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Capital Crescent Trail",
+    "sectionNumber": 2,
+    "sectionCount": 13,
+    "coordinates": [
+      [
+        38.905092489501264,
+        -77.07599154345802
+      ],
+      [
+        38.9052087289128,
+        -77.0766614919512
+      ],
+      [
+        38.9053535021012,
+        -77.077350436522
+      ],
+      [
+        38.9054298480939,
+        -77.0781595734408
+      ],
+      [
+        38.9053865965385,
+        -77.0789576455176
+      ],
+      [
+        38.905347944212,
+        -77.0792691975857
+      ],
+      [
+        38.9053050714028,
+        -77.0795042112694
+      ],
+      [
+        38.9051047166905,
+        -77.0804449569604
+      ],
+      [
+        38.90495783098558,
+        -77.08107749158494
+      ]
+    ]
+  },
+  {
+    "id": "dc-capital-crescent-trail-section-3",
+    "city": "dc",
+    "title": "Capital Crescent Trail · Stretch 3 of 13",
+    "distanceMiles": 0.3,
+    "durationMinutes": 6,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Capital Crescent corridor. Verify access and any closures before heading out. Short source-preserving stretch 3 of 13; Stretch 3 of 13.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Capital Crescent Trail — Capital Cresent Trail",
+      "sourceRecordId": "2",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Capital Crescent Trail",
+    "sectionNumber": 3,
+    "sectionCount": 13,
+    "coordinates": [
+      [
+        38.90495783098558,
+        -77.08107749158494
+      ],
+      [
+        38.9048637564526,
+        -77.0814826052032
+      ],
+      [
+        38.9048377988679,
+        -77.0819526962941
+      ],
+      [
+        38.9048802254378,
+        -77.0823627354733
+      ],
+      [
+        38.9050463202059,
+        -77.0830517133065
+      ],
+      [
+        38.9052935671146,
+        -77.0837407873224
+      ],
+      [
+        38.9056772362748,
+        -77.0847853584684
+      ],
+      [
+        38.9058306869624,
+        -77.0852228700719
+      ],
+      [
+        38.906069137212384,
+        -77.08594522793078
+      ]
+    ]
+  },
+  {
+    "id": "dc-capital-crescent-trail-section-4",
+    "city": "dc",
+    "title": "Capital Crescent Trail · Stretch 4 of 13",
+    "distanceMiles": 0.3,
+    "durationMinutes": 6,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Capital Crescent corridor. Verify access and any closures before heading out. Short source-preserving stretch 4 of 13; Stretch 4 of 13.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Capital Crescent Trail — Capital Cresent Trail",
+      "sourceRecordId": "2",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Capital Crescent Trail",
+    "sectionNumber": 4,
+    "sectionCount": 13,
+    "coordinates": [
+      [
+        38.906069137212384,
+        -77.08594522793078
+      ],
+      [
+        38.9062440888645,
+        -77.0864752240236
+      ],
+      [
+        38.9065935343834,
+        -77.0875580474682
+      ],
+      [
+        38.9072653166042,
+        -77.0897066966714
+      ],
+      [
+        38.9074883292036,
+        -77.090434649019
+      ],
+      [
+        38.90760577561692,
+        -77.09076328161514
+      ]
+    ]
+  },
+  {
+    "id": "dc-capital-crescent-trail-section-5",
+    "city": "dc",
+    "title": "Capital Crescent Trail · Stretch 5 of 13",
+    "distanceMiles": 0.3,
+    "durationMinutes": 6,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Capital Crescent corridor. Verify access and any closures before heading out. Short source-preserving stretch 5 of 13; Stretch 5 of 13.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Capital Crescent Trail — Capital Cresent Trail",
+      "sourceRecordId": "2",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Capital Crescent Trail",
+    "sectionNumber": 5,
+    "sectionCount": 13,
+    "coordinates": [
+      [
+        38.90760577561692,
+        -77.09076328161514
+      ],
+      [
+        38.9077952002417,
+        -77.0912933199914
+      ],
+      [
+        38.9082045719752,
+        -77.092157595788
+      ],
+      [
+        38.9086396834418,
+        -77.0928743120231
+      ],
+      [
+        38.9090228004111,
+        -77.0933423927804
+      ],
+      [
+        38.9097038248327,
+        -77.0942418970071
+      ],
+      [
+        38.91013697415547,
+        -77.09477275580426
+      ]
+    ]
+  },
+  {
+    "id": "dc-capital-crescent-trail-section-6",
+    "city": "dc",
+    "title": "Capital Crescent Trail · Stretch 6 of 13",
+    "distanceMiles": 0.3,
+    "durationMinutes": 6,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Capital Crescent corridor. Verify access and any closures before heading out. Short source-preserving stretch 6 of 13; Stretch 6 of 13.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Capital Crescent Trail — Capital Cresent Trail",
+      "sourceRecordId": "2",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Capital Crescent Trail",
+    "sectionNumber": 6,
+    "sectionCount": 13,
+    "coordinates": [
+      [
+        38.91013697415547,
+        -77.09477275580426
+      ],
+      [
+        38.9110761247527,
+        -77.0959237592347
+      ],
+      [
+        38.9115200038139,
+        -77.0963879062941
+      ],
+      [
+        38.9124077979641,
+        -77.0971709025998
+      ],
+      [
+        38.9127834265769,
+        -77.0974721076256
+      ],
+      [
+        38.91337508787415,
+        -77.09785613696432
+      ]
+    ]
+  },
+  {
+    "id": "dc-capital-crescent-trail-section-7",
+    "city": "dc",
+    "title": "Capital Crescent Trail · Stretch 7 of 13",
+    "distanceMiles": 0.3,
+    "durationMinutes": 6,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Capital Crescent corridor. Verify access and any closures before heading out. Short source-preserving stretch 7 of 13; Stretch 7 of 13.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Capital Crescent Trail — Capital Cresent Trail",
+      "sourceRecordId": "2",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Capital Crescent Trail",
+    "sectionNumber": 7,
+    "sectionCount": 13,
+    "coordinates": [
+      [
+        38.91337508787415,
+        -77.09785613696432
+      ],
+      [
+        38.9146404558881,
+        -77.0986774488262
+      ],
+      [
+        38.91700064044357,
+        -77.10018253456069
+      ]
+    ]
+  },
+  {
+    "id": "dc-capital-crescent-trail-section-8",
+    "city": "dc",
+    "title": "Capital Crescent Trail · Stretch 8 of 13",
+    "distanceMiles": 0.3,
+    "durationMinutes": 6,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Capital Crescent corridor. Verify access and any closures before heading out. Short source-preserving stretch 8 of 13; Stretch 8 of 13.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Capital Crescent Trail — Capital Cresent Trail",
+      "sourceRecordId": "2",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Capital Crescent Trail",
+    "sectionNumber": 8,
+    "sectionCount": 13,
+    "coordinates": [
+      [
+        38.91700064044357,
+        -77.10018253456069
+      ],
+      [
+        38.9180087211143,
+        -77.1008253859145
+      ],
+      [
+        38.9198217178759,
+        -77.102031327581
+      ],
+      [
+        38.9204113941739,
+        -77.1025922597794
+      ],
+      [
+        38.92052178527556,
+        -77.10272651376717
+      ]
+    ]
+  },
+  {
+    "id": "dc-capital-crescent-trail-section-9",
+    "city": "dc",
+    "title": "Capital Crescent Trail · Stretch 9 of 13",
+    "distanceMiles": 0.3,
+    "durationMinutes": 6,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Capital Crescent corridor. Verify access and any closures before heading out. Short source-preserving stretch 9 of 13; Stretch 9 of 13.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Capital Crescent Trail — Capital Cresent Trail",
+      "sourceRecordId": "2",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Capital Crescent Trail",
+    "sectionNumber": 9,
+    "sectionCount": 13,
+    "coordinates": [
+      [
+        38.92052178527556,
+        -77.10272651376717
+      ],
+      [
+        38.9215298466135,
+        -77.1039524844523
+      ],
+      [
+        38.9219179831914,
+        -77.1045763860914
+      ],
+      [
+        38.9222633475111,
+        -77.1052603755403
+      ],
+      [
+        38.9225362696091,
+        -77.1057528883956
+      ],
+      [
+        38.9226684391908,
+        -77.106021011199
+      ],
+      [
+        38.9229200559523,
+        -77.1064533509709
+      ],
+      [
+        38.92312954819185,
+        -77.10667473137917
+      ]
+    ]
+  },
+  {
+    "id": "dc-capital-crescent-trail-section-10",
+    "city": "dc",
+    "title": "Capital Crescent Trail · Stretch 10 of 13",
+    "distanceMiles": 0.3,
+    "durationMinutes": 6,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Capital Crescent corridor. Verify access and any closures before heading out. Short source-preserving stretch 10 of 13; Stretch 10 of 13.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Capital Crescent Trail — Capital Cresent Trail",
+      "sourceRecordId": "2",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Capital Crescent Trail",
+    "sectionNumber": 10,
+    "sectionCount": 13,
+    "coordinates": [
+      [
+        38.92312954819185,
+        -77.10667473137917
+      ],
+      [
+        38.9232827706217,
+        -77.1068366488046
+      ],
+      [
+        38.9237480670436,
+        -77.1071435539307
+      ],
+      [
+        38.9241720991089,
+        -77.1072219082529
+      ],
+      [
+        38.9246604649538,
+        -77.1072747461658
+      ],
+      [
+        38.9251284202158,
+        -77.1073926860111
+      ],
+      [
+        38.9254903024504,
+        -77.1076601754959
+      ],
+      [
+        38.9256524519846,
+        -77.1078353983552
+      ],
+      [
+        38.9258785791502,
+        -77.1081091478431
+      ],
+      [
+        38.9259475677468,
+        -77.1082189682133
+      ],
+      [
+        38.9262454499873,
+        -77.1086127770479
+      ],
+      [
+        38.9264928821478,
+        -77.108941246251
+      ],
+      [
+        38.92657496913062,
+        -77.10902101034253
+      ]
+    ]
+  },
+  {
+    "id": "dc-capital-crescent-trail-section-11",
+    "city": "dc",
+    "title": "Capital Crescent Trail · Stretch 11 of 13",
+    "distanceMiles": 0.3,
+    "durationMinutes": 6,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Capital Crescent corridor. Verify access and any closures before heading out. Short source-preserving stretch 11 of 13; Stretch 11 of 13.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Capital Crescent Trail — Capital Cresent Trail",
+      "sourceRecordId": "2",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Capital Crescent Trail",
+    "sectionNumber": 11,
+    "sectionCount": 13,
+    "coordinates": [
+      [
+        38.92657496913062,
+        -77.10902101034253
+      ],
+      [
+        38.9267916055403,
+        -77.1092315163913
+      ],
+      [
+        38.9273080893199,
+        -77.1096041503349
+      ],
+      [
+        38.9278604775143,
+        -77.1099870134438
+      ],
+      [
+        38.9283745696715,
+        -77.1102347280961
+      ],
+      [
+        38.9287638029328,
+        -77.1104703901648
+      ],
+      [
+        38.9291565227274,
+        -77.1107280131285
+      ],
+      [
+        38.9296389403174,
+        -77.1109857785483
+      ],
+      [
+        38.9300871765865,
+        -77.1112544309373
+      ],
+      [
+        38.930198978658694,
+        -77.11132259932587
+      ]
+    ]
+  },
+  {
+    "id": "dc-capital-crescent-trail-section-12",
+    "city": "dc",
+    "title": "Capital Crescent Trail · Stretch 12 of 13",
+    "distanceMiles": 0.3,
+    "durationMinutes": 6,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Capital Crescent corridor. Verify access and any closures before heading out. Short source-preserving stretch 12 of 13; Stretch 12 of 13.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Capital Crescent Trail — Capital Cresent Trail",
+      "sourceRecordId": "2",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Capital Crescent Trail",
+    "sectionNumber": 12,
+    "sectionCount": 13,
+    "coordinates": [
+      [
+        38.930198978658694,
+        -77.11132259932587
+      ],
+      [
+        38.9305097922121,
+        -77.1115121097586
+      ],
+      [
+        38.9309666125051,
+        -77.1117370344228
+      ],
+      [
+        38.93120146229,
+        -77.1118139624661
+      ],
+      [
+        38.9315660243774,
+        -77.1119681935763
+      ],
+      [
+        38.9320981611578,
+        -77.1121106754436
+      ],
+      [
+        38.9325122865317,
+        -77.1123136661739
+      ],
+      [
+        38.932674507795,
+        -77.1124068885319
+      ],
+      [
+        38.9330117169627,
+        -77.1126425740692
+      ],
+      [
+        38.9333232758962,
+        -77.1129000969919
+      ],
+      [
+        38.933793439951,
+        -77.1133435855462
+      ],
+      [
+        38.93386538947415,
+        -77.11341552557532
+      ]
+    ]
+  },
+  {
+    "id": "dc-capital-crescent-trail-section-13",
+    "city": "dc",
+    "title": "Capital Crescent Trail · Stretch 13 of 13",
+    "distanceMiles": 0.3,
+    "durationMinutes": 6,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Capital Crescent corridor. Verify access and any closures before heading out. Short source-preserving stretch 13 of 13; Stretch 13 of 13.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Capital Crescent Trail — Capital Cresent Trail",
+      "sourceRecordId": "2",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Capital Crescent Trail",
+    "sectionNumber": 13,
+    "sectionCount": 13,
+    "coordinates": [
+      [
+        38.93386538947415,
+        -77.11341552557532
+      ],
+      [
+        38.9344455750162,
+        -77.1139956345596
+      ],
+      [
+        38.9350090176231,
+        -77.1143793547779
+      ],
+      [
+        38.9354915025966,
+        -77.1145606015644
+      ],
+      [
+        38.9359696438936,
+        -77.1148129406678
+      ],
+      [
+        38.936272666075,
+        -77.1150595310769
+      ],
+      [
+        38.9366012362544,
+        -77.1153881990404
+      ],
+      [
+        38.936874326198,
+        -77.1156675590847
+      ],
+      [
+        38.9369980755821,
+        -77.1157880787194
+      ],
+      [
+        38.9371304216243,
+        -77.115853920994
+      ],
+      [
+        38.9373438690655,
+        -77.1159745872949
+      ],
+      [
+        38.9373468997351,
+        -77.1159752173808
+      ],
+      [
+        38.9373496899314,
+        -77.1159757986317
+      ]
+    ]
+  },
+  {
+    "id": "dc-metropolitan-branch-trail-section-1",
+    "city": "dc",
+    "title": "Metropolitan Branch Trail · Stretch 1 of 10",
+    "distanceMiles": 0.4,
+    "durationMinutes": 9,
+    "difficulty": "Easy",
+    "category": "community",
+    "description": "A source-mapped Metropolitan Branch corridor. Verify access and any closures before heading out. Short source-preserving stretch 1 of 10; Stretch 1 of 10.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Metropolitan Branch Trail — MBT - Union Station to 8th St NE",
+      "sourceRecordId": "32",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "DDOT",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Metropolitan Branch Trail",
+    "sectionNumber": 1,
+    "sectionCount": 10,
+    "coordinates": [
+      [
+        38.8970542905161,
+        -77.0077805922604
+      ],
+      [
+        38.897290509396,
+        -77.0076756981475
+      ],
+      [
+        38.8977079590737,
+        -77.0075610504416
+      ],
+      [
+        38.89905237645,
+        -77.0070525630821
+      ],
+      [
+        38.8997661332298,
+        -77.0068098091725
+      ],
+      [
+        38.8999330113372,
+        -77.0067472155386
+      ],
+      [
+        38.9000050544372,
+        -77.00672223499
+      ],
+      [
+        38.9001386972082,
+        -77.0066725967073
+      ],
+      [
+        38.90056056481,
+        -77.0065647026053
+      ],
+      [
+        38.9005762405994,
+        -77.0065585940556
+      ],
+      [
+        38.9006193015204,
+        -77.0065414197032
+      ],
+      [
+        38.9006621823227,
+        -77.0065233242022
+      ],
+      [
+        38.9007047929161,
+        -77.0065044216731
+      ],
+      [
+        38.9007471333065,
+        -77.0064845968317
+      ],
+      [
+        38.900833083219,
+        -77.0064146761043
+      ],
+      [
+        38.9009140639365,
+        -77.0063968813217
+      ],
+      [
+        38.9009551433698,
+        -77.0063727896033
+      ],
+      [
+        38.9009957733245,
+        -77.006347891985
+      ],
+      [
+        38.9010239694185,
+        -77.0063325629282
+      ],
+      [
+        38.9010518962043,
+        -77.006316424544
+      ],
+      [
+        38.9010795536625,
+        -77.0062998261415
+      ],
+      [
+        38.9011070300875,
+        -77.0062825360077
+      ],
+      [
+        38.9011343263735,
+        -77.0062646694259
+      ],
+      [
+        38.9011612623532,
+        -77.0062462263796
+      ],
+      [
+        38.9011880181995,
+        -77.0062270916006
+      ],
+      [
+        38.9012145038163,
+        -77.0062074956479
+      ],
+      [
+        38.9012407192157,
+        -77.0061872068006
+      ],
+      [
+        38.9012666643911,
+        -77.0061663426479
+      ],
+      [
+        38.9013762105387,
+        -77.0059931457162
+      ],
+      [
+        38.9014775579682,
+        -77.0060320546287
+      ],
+      [
+        38.9015101697373,
+        -77.0060201819421
+      ],
+      [
+        38.9015432300499,
+        -77.0060096938486
+      ],
+      [
+        38.9015764722473,
+        -77.0060008197437
+      ],
+      [
+        38.9016099837108,
+        -77.0059935596369
+      ],
+      [
+        38.9016436752582,
+        -77.0059879135229
+      ],
+      [
+        38.9016775468955,
+        -77.0059837661193
+      ],
+      [
+        38.9017115085274,
+        -77.0059813479901
+      ],
+      [
+        38.9017454700824,
+        -77.0059804285606
+      ],
+      [
+        38.902150805979,
+        -77.0059024881032
+      ],
+      [
+        38.9026048749783,
+        -77.005936275713
+      ],
+      [
+        38.903252304121395,
+        -77.00591992136218
+      ]
+    ]
+  },
+  {
+    "id": "dc-metropolitan-branch-trail-section-2",
+    "city": "dc",
+    "title": "Metropolitan Branch Trail · Stretch 2 of 10",
+    "distanceMiles": 0.4,
+    "durationMinutes": 9,
+    "difficulty": "Easy",
+    "category": "community",
+    "description": "A source-mapped Metropolitan Branch corridor. Verify access and any closures before heading out. Short source-preserving stretch 2 of 10; Stretch 2 of 10.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Metropolitan Branch Trail — MBT - Union Station to 8th St NE",
+      "sourceRecordId": "32",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "DDOT",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Metropolitan Branch Trail",
+    "sectionNumber": 2,
+    "sectionCount": 10,
+    "coordinates": [
+      [
+        38.903252304121395,
+        -77.00591992136218
+      ],
+      [
+        38.9035041144864,
+        -77.0059135605193
+      ],
+      [
+        38.905678358149,
+        -77.0058194223192
+      ],
+      [
+        38.9056695475547,
+        -77.0037666148755
+      ],
+      [
+        38.9036579272793,
+        -77.0036581956461
+      ],
+      [
+        38.9034936787225,
+        -77.0036623352657
+      ],
+      [
+        38.9034105395228,
+        -77.0036684919568
+      ],
+      [
+        38.903221725058565,
+        -77.0036669032458
+      ]
+    ]
+  },
+  {
+    "id": "dc-metropolitan-branch-trail-section-3",
+    "city": "dc",
+    "title": "Metropolitan Branch Trail · Stretch 3 of 10",
+    "distanceMiles": 0.4,
+    "durationMinutes": 9,
+    "difficulty": "Easy",
+    "category": "community",
+    "description": "A source-mapped Metropolitan Branch corridor. Verify access and any closures before heading out. Short source-preserving stretch 3 of 10; Stretch 3 of 10.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Metropolitan Branch Trail — MBT - Union Station to 8th St NE",
+      "sourceRecordId": "32",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "DDOT",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Metropolitan Branch Trail",
+    "sectionNumber": 3,
+    "sectionCount": 10,
+    "coordinates": [
+      [
+        38.903221725058565,
+        -77.0036669032458
+      ],
+      [
+        38.903139370993,
+        -77.0036662103073
+      ],
+      [
+        38.9028454310519,
+        -77.0036663692739
+      ],
+      [
+        38.902301752043,
+        -77.0037073576501
+      ],
+      [
+        38.9021745450384,
+        -77.003707352188
+      ],
+      [
+        38.9021219081305,
+        -77.0037129603903
+      ],
+      [
+        38.9020166326892,
+        -77.0037185704501
+      ],
+      [
+        38.9017709931614,
+        -77.0037073312027
+      ],
+      [
+        38.90159114941,
+        -77.0037073218506
+      ],
+      [
+        38.9015297396132,
+        -77.0037017054586
+      ],
+      [
+        38.9014507828017,
+        -77.0037129265909
+      ],
+      [
+        38.9013586685589,
+        -77.0037185372845
+      ],
+      [
+        38.9011700515541,
+        -77.0037185274466
+      ],
+      [
+        38.901020168817,
+        -77.0037143198475
+      ],
+      [
+        38.9005998145096,
+        -77.0037128834263
+      ],
+      [
+        38.9004155845501,
+        -77.0037128749847
+      ],
+      [
+        38.9001743498115,
+        -77.0037370647739
+      ],
+      [
+        38.9000901775965,
+        -77.0037339373698
+      ],
+      [
+        38.8999330751682,
+        -77.0037128498568
+      ],
+      [
+        38.8997596266685,
+        -77.0037041601224
+      ],
+      [
+        38.8994976976266,
+        -77.0036800608252
+      ],
+      [
+        38.8983958874857,
+        -77.0036828329091
+      ],
+      [
+        38.8982862565422,
+        -77.0036849552998
+      ],
+      [
+        38.8971451009819,
+        -77.0036955260434
+      ],
+      [
+        38.89714508244179,
+        -77.00420093379553
+      ]
+    ]
+  },
+  {
+    "id": "dc-metropolitan-branch-trail-section-4",
+    "city": "dc",
+    "title": "Metropolitan Branch Trail · Stretch 4 of 10",
+    "distanceMiles": 0.4,
+    "durationMinutes": 9,
+    "difficulty": "Easy",
+    "category": "community",
+    "description": "A source-mapped Metropolitan Branch corridor. Verify access and any closures before heading out. Short source-preserving stretch 4 of 10; Stretch 4 of 10.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Metropolitan Branch Trail — MBT - Union Station to 8th St NE",
+      "sourceRecordId": "32",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "DDOT",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Metropolitan Branch Trail",
+    "sectionNumber": 4,
+    "sectionCount": 10,
+    "coordinates": [
+      [
+        38.89714508244179,
+        -77.00420093379553
+      ],
+      [
+        38.8971450578616,
+        -77.0048709952257
+      ],
+      [
+        38.8965239239077,
+        -77.0050812813854
+      ],
+      [
+        38.90178952179549,
+        -77.00419324570817
+      ]
+    ]
+  },
+  {
+    "id": "dc-metropolitan-branch-trail-section-5",
+    "city": "dc",
+    "title": "Metropolitan Branch Trail · Stretch 5 of 10",
+    "distanceMiles": 0.4,
+    "durationMinutes": 9,
+    "difficulty": "Easy",
+    "category": "community",
+    "description": "A source-mapped Metropolitan Branch corridor. Verify access and any closures before heading out. Short source-preserving stretch 5 of 10; Stretch 5 of 10.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Metropolitan Branch Trail — MBT - Union Station to 8th St NE",
+      "sourceRecordId": "32",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "DDOT",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Metropolitan Branch Trail",
+    "sectionNumber": 5,
+    "sectionCount": 10,
+    "coordinates": [
+      [
+        38.90178952179549,
+        -77.00419324570817
+      ],
+      [
+        38.9068857204106,
+        -77.00333377898
+      ],
+      [
+        38.906454899289,
+        -77.0035017098593
+      ],
+      [
+        38.9058912446296,
+        -77.0036895819091
+      ],
+      [
+        38.9057617651436,
+        -77.0037385751479
+      ],
+      [
+        38.9057439393372,
+        -77.0037411198435
+      ],
+      [
+        38.90588896860334,
+        -77.00369578184718
+      ]
+    ]
+  },
+  {
+    "id": "dc-metropolitan-branch-trail-section-6",
+    "city": "dc",
+    "title": "Metropolitan Branch Trail · Stretch 6 of 10",
+    "distanceMiles": 0.4,
+    "durationMinutes": 9,
+    "difficulty": "Easy",
+    "category": "community",
+    "description": "A source-mapped Metropolitan Branch corridor. Verify access and any closures before heading out. Short source-preserving stretch 6 of 10; Stretch 6 of 10.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Metropolitan Branch Trail — MBT - Union Station to 8th St NE",
+      "sourceRecordId": "32",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "DDOT",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Metropolitan Branch Trail",
+    "sectionNumber": 6,
+    "sectionCount": 10,
+    "coordinates": [
+      [
+        38.90588896860334,
+        -77.00369578184718
+      ],
+      [
+        38.9061888454286,
+        -77.0036020365311
+      ],
+      [
+        38.9059819152073,
+        -77.003669675739
+      ],
+      [
+        38.9037789134943,
+        -77.0043307843212
+      ],
+      [
+        38.90730724368894,
+        -77.00294185233906
+      ]
+    ]
+  },
+  {
+    "id": "dc-metropolitan-branch-trail-section-7",
+    "city": "dc",
+    "title": "Metropolitan Branch Trail · Stretch 7 of 10",
+    "distanceMiles": 0.4,
+    "durationMinutes": 9,
+    "difficulty": "Easy",
+    "category": "community",
+    "description": "A source-mapped Metropolitan Branch corridor. Verify access and any closures before heading out. Short source-preserving stretch 7 of 10; Stretch 7 of 10.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Metropolitan Branch Trail — MBT - Union Station to 8th St NE",
+      "sourceRecordId": "32",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "DDOT",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Metropolitan Branch Trail",
+    "sectionNumber": 7,
+    "sectionCount": 10,
+    "coordinates": [
+      [
+        38.90730724368894,
+        -77.00294185233906
+      ],
+      [
+        38.9093125221164,
+        -77.0021524717575
+      ],
+      [
+        38.908743791834,
+        -77.0024324188352
+      ],
+      [
+        38.9083609895652,
+        -77.0026703721509
+      ],
+      [
+        38.9080930267904,
+        -77.0028803328117
+      ],
+      [
+        38.907857878362,
+        -77.0029853083133
+      ],
+      [
+        38.9074805483392,
+        -77.0031252710063
+      ],
+      [
+        38.9070649362439,
+        -77.0032652316176
+      ],
+      [
+        38.9068680676087,
+        -77.003335211247
+      ],
+      [
+        38.9068516625041,
+        -77.0033352116324
+      ],
+      [
+        38.90847826598867,
+        -77.00255118297275
+      ]
+    ]
+  },
+  {
+    "id": "dc-metropolitan-branch-trail-section-8",
+    "city": "dc",
+    "title": "Metropolitan Branch Trail · Stretch 8 of 10",
+    "distanceMiles": 0.4,
+    "durationMinutes": 9,
+    "difficulty": "Easy",
+    "category": "community",
+    "description": "A source-mapped Metropolitan Branch corridor. Verify access and any closures before heading out. Short source-preserving stretch 8 of 10; Stretch 8 of 10.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Metropolitan Branch Trail — MBT - Union Station to 8th St NE",
+      "sourceRecordId": "32",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "DDOT",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Metropolitan Branch Trail",
+    "sectionNumber": 8,
+    "sectionCount": 10,
+    "coordinates": [
+      [
+        38.90847826598867,
+        -77.00255118297275
+      ],
+      [
+        38.9097258528598,
+        -77.0019498416676
+      ],
+      [
+        38.9093563453936,
+        -77.0021317253728
+      ],
+      [
+        38.9093150075262,
+        -77.0021520740579
+      ],
+      [
+        38.9097277410297,
+        -77.0019485907394
+      ],
+      [
+        38.9099367249193,
+        -77.0018808139065
+      ],
+      [
+        38.9119416728845,
+        -77.0009080943732
+      ],
+      [
+        38.9119870713193,
+        -77.0009080200066
+      ],
+      [
+        38.9120286745208,
+        -77.000910383063
+      ],
+      [
+        38.9120777294028,
+        -77.000915109898
+      ],
+      [
+        38.9121340980407,
+        -77.0009343175576
+      ],
+      [
+        38.912139196733,
+        -77.0009378550767
+      ],
+      [
+        38.9123110677519,
+        -77.0010447260152
+      ],
+      [
+        38.9124255929154,
+        -77.0011062159658
+      ],
+      [
+        38.9125363236825,
+        -77.0011725833353
+      ],
+      [
+        38.9132541896785,
+        -77.0008000430342
+      ],
+      [
+        38.91370278991546,
+        -77.00054747193991
+      ]
+    ]
+  },
+  {
+    "id": "dc-metropolitan-branch-trail-section-9",
+    "city": "dc",
+    "title": "Metropolitan Branch Trail · Stretch 9 of 10",
+    "distanceMiles": 0.4,
+    "durationMinutes": 9,
+    "difficulty": "Easy",
+    "category": "community",
+    "description": "A source-mapped Metropolitan Branch corridor. Verify access and any closures before heading out. Short source-preserving stretch 9 of 10; Stretch 9 of 10.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Metropolitan Branch Trail — MBT - Union Station to 8th St NE",
+      "sourceRecordId": "32",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "DDOT",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Metropolitan Branch Trail",
+    "sectionNumber": 9,
+    "sectionCount": 10,
+    "coordinates": [
+      [
+        38.91370278991546,
+        -77.00054747193991
+      ],
+      [
+        38.9140631181489,
+        -77.0003445997862
+      ],
+      [
+        38.9154184258708,
+        -76.9996301891948
+      ],
+      [
+        38.9161112471609,
+        -76.9992827372671
+      ],
+      [
+        38.9167964733051,
+        -76.9989352867735
+      ],
+      [
+        38.9181265491291,
+        -76.9982093768515
+      ],
+      [
+        38.9194565998164,
+        -76.9975029739434
+      ],
+      [
+        38.91968879122498,
+        -76.99737762694465
+      ]
+    ]
+  },
+  {
+    "id": "dc-metropolitan-branch-trail-section-10",
+    "city": "dc",
+    "title": "Metropolitan Branch Trail · Stretch 10 of 10",
+    "distanceMiles": 0.4,
+    "durationMinutes": 9,
+    "difficulty": "Easy",
+    "category": "community",
+    "description": "A source-mapped Metropolitan Branch corridor. Verify access and any closures before heading out. Short source-preserving stretch 10 of 10; Stretch 10 of 10.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Metropolitan Branch Trail — MBT - Union Station to 8th St NE",
+      "sourceRecordId": "32",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "DDOT",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Metropolitan Branch Trail",
+    "sectionNumber": 10,
+    "sectionCount": 10,
+    "coordinates": [
+      [
+        38.91968879122498,
+        -76.99737762694465
+      ],
+      [
+        38.9206975968924,
+        -76.9968330298663
+      ],
+      [
+        38.9208461360139,
+        -76.9967322673776
+      ],
+      [
+        38.9209770396284,
+        -76.9966378776562
+      ],
+      [
+        38.921091645526,
+        -76.9965511199938
+      ],
+      [
+        38.9211804747033,
+        -76.9964567317042
+      ],
+      [
+        38.92130423585,
+        -76.996377286403
+      ],
+      [
+        38.9213057753783,
+        -76.9963774639121
+      ],
+      [
+        38.921555354974,
+        -76.9963595875161
+      ],
+      [
+        38.9216930077497,
+        -76.9962508826701
+      ],
+      [
+        38.923899860756,
+        -76.9952018302391
+      ],
+      [
+        38.9251268886262,
+        -76.9948446167675
+      ],
+      [
+        38.9252767901719,
+        -76.9948336963962
+      ],
+      [
+        38.9256397249353,
+        -76.9948026896332
+      ],
+      [
+        38.9256915551653,
+        -76.9949667542747
+      ]
+    ]
+  },
+  {
+    "id": "dc-fort-circle-trail-section-1",
+    "city": "dc",
+    "title": "Fort Circle Trail · Stretch 1 of 7",
+    "distanceMiles": 0.4,
+    "durationMinutes": 7,
+    "difficulty": "Easy",
+    "category": "history",
+    "description": "A source-mapped Fort Circle corridor. Verify access and any closures before heading out. Short source-preserving stretch 1 of 7; Stretch 1 of 7.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Ft. Circle Trail — null",
+      "sourceRecordId": "15",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Natural Surface",
+    "use": "Hiker/Biker Trail",
+    "collection": "Fort Circle Trail",
+    "sectionNumber": 1,
+    "sectionCount": 7,
+    "coordinates": [
+      [
+        38.8810139383625,
+        -76.9457405534356
+      ],
+      [
+        38.8810635120325,
+        -76.9456195767068
+      ],
+      [
+        38.8833476114781,
+        -76.9445685653429
+      ],
+      [
+        38.8851505594669,
+        -76.9449790483009
+      ],
+      [
+        38.88603922052237,
+        -76.94505957549416
+      ]
+    ]
+  },
+  {
+    "id": "dc-fort-circle-trail-section-2",
+    "city": "dc",
+    "title": "Fort Circle Trail · Stretch 2 of 7",
+    "distanceMiles": 0.4,
+    "durationMinutes": 7,
+    "difficulty": "Easy",
+    "category": "history",
+    "description": "A source-mapped Fort Circle corridor. Verify access and any closures before heading out. Short source-preserving stretch 2 of 7; Stretch 2 of 7.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Ft. Circle Trail — null",
+      "sourceRecordId": "15",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Natural Surface",
+    "use": "Hiker/Biker Trail",
+    "collection": "Fort Circle Trail",
+    "sectionNumber": 2,
+    "sectionCount": 7,
+    "coordinates": [
+      [
+        38.88603922052237,
+        -76.94505957549416
+      ],
+      [
+        38.8869533914419,
+        -76.9451424142974
+      ],
+      [
+        38.8896345002038,
+        -76.9471617002868
+      ],
+      [
+        38.8903030178402,
+        -76.9470653336025
+      ],
+      [
+        38.8904123382286,
+        -76.9466596481974
+      ],
+      [
+        38.890589775341795,
+        -76.94648529935192
+      ]
+    ]
+  },
+  {
+    "id": "dc-fort-circle-trail-section-3",
+    "city": "dc",
+    "title": "Fort Circle Trail · Stretch 3 of 7",
+    "distanceMiles": 0.4,
+    "durationMinutes": 7,
+    "difficulty": "Easy",
+    "category": "history",
+    "description": "A source-mapped Fort Circle corridor. Verify access and any closures before heading out. Short source-preserving stretch 3 of 7; Stretch 3 of 7.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Ft. Circle Trail — null",
+      "sourceRecordId": "15",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Natural Surface",
+    "use": "Hiker/Biker Trail",
+    "collection": "Fort Circle Trail",
+    "sectionNumber": 3,
+    "sectionCount": 7,
+    "coordinates": [
+      [
+        38.890589775341795,
+        -76.94648529935192
+      ],
+      [
+        38.8910057090515,
+        -76.9460766049093
+      ],
+      [
+        38.8914263024315,
+        -76.9457739226139
+      ],
+      [
+        38.892042657889,
+        -76.9450580986417
+      ],
+      [
+        38.8926763381824,
+        -76.9444233724475
+      ],
+      [
+        38.8933432002195,
+        -76.9443989664641
+      ],
+      [
+        38.8934995965718,
+        -76.9443520800962
+      ],
+      [
+        38.8936238160569,
+        -76.9442734186461
+      ],
+      [
+        38.8936238160569,
+        -76.9442734186461
+      ],
+      [
+        38.8936158828639,
+        -76.9442008256005
+      ],
+      [
+        38.8936076655296,
+        -76.9441256541668
+      ],
+      [
+        38.8935871151845,
+        -76.9439479640882
+      ],
+      [
+        38.8935914411519,
+        -76.9438282430454
+      ],
+      [
+        38.8936498667588,
+        -76.9437253135833
+      ],
+      [
+        38.8937638053415,
+        -76.9435456473865
+      ],
+      [
+        38.8938368458697,
+        -76.9434408349934
+      ],
+      [
+        38.8939566549553,
+        -76.9433097988524
+      ],
+      [
+        38.8940735443236,
+        -76.9431881166461
+      ],
+      [
+        38.8942313512163,
+        -76.9430402125939
+      ],
+      [
+        38.8943409482825,
+        -76.9429559471086
+      ],
+      [
+        38.8944169580837,
+        -76.9429409215983
+      ],
+      [
+        38.8945207424803,
+        -76.9429258738363
+      ],
+      [
+        38.8945748478779,
+        -76.9429613715874
+      ],
+      [
+        38.89460113086397,
+        -76.94299496238834
+      ]
+    ]
+  },
+  {
+    "id": "dc-fort-circle-trail-section-4",
+    "city": "dc",
+    "title": "Fort Circle Trail · Stretch 4 of 7",
+    "distanceMiles": 0.4,
+    "durationMinutes": 7,
+    "difficulty": "Easy",
+    "category": "history",
+    "description": "A source-mapped Fort Circle corridor. Verify access and any closures before heading out. Short source-preserving stretch 4 of 7; Stretch 4 of 7.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Ft. Circle Trail — null",
+      "sourceRecordId": "15",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Natural Surface",
+    "use": "Hiker/Biker Trail",
+    "collection": "Fort Circle Trail",
+    "sectionNumber": 4,
+    "sectionCount": 7,
+    "coordinates": [
+      [
+        38.89460113086397,
+        -76.94299496238834
+      ],
+      [
+        38.8946450605597,
+        -76.9430511064528
+      ],
+      [
+        38.8947255003016,
+        -76.9431277371271
+      ],
+      [
+        38.8948877616689,
+        -76.94312012536
+      ],
+      [
+        38.8950690289126,
+        -76.9431181099418
+      ],
+      [
+        38.8952058306746,
+        -76.9430972630347
+      ],
+      [
+        38.89527637345,
+        -76.9431306317173
+      ],
+      [
+        38.8954631665598,
+        -76.9430826715065
+      ],
+      [
+        38.8955751998898,
+        -76.9429678352598
+      ],
+      [
+        38.8958217733358,
+        -76.9429198265915
+      ],
+      [
+        38.8959936392612,
+        -76.9429101269789
+      ],
+      [
+        38.8962253928803,
+        -76.943120313075
+      ],
+      [
+        38.8962778225387,
+        -76.9433688938505
+      ],
+      [
+        38.8965021204487,
+        -76.9436173380061
+      ],
+      [
+        38.8966963130509,
+        -76.9434163737844
+      ],
+      [
+        38.8968904383488,
+        -76.9430815327899
+      ],
+      [
+        38.8971519295675,
+        -76.9429761370167
+      ],
+      [
+        38.8974955958942,
+        -76.9428228619915
+      ],
+      [
+        38.8978142239274,
+        -76.9427904185709
+      ],
+      [
+        38.8979004790845,
+        -76.9428015740752
+      ],
+      [
+        38.8980027857786,
+        -76.942756595587
+      ],
+      [
+        38.8980963227963,
+        -76.9427097518828
+      ],
+      [
+        38.8981752612667,
+        -76.9427096884897
+      ],
+      [
+        38.8983025638382,
+        -76.9426692120115
+      ],
+      [
+        38.89759453008829,
+        -76.94350852445163
+      ]
+    ]
+  },
+  {
+    "id": "dc-fort-circle-trail-section-5",
+    "city": "dc",
+    "title": "Fort Circle Trail · Stretch 5 of 7",
+    "distanceMiles": 0.4,
+    "durationMinutes": 7,
+    "difficulty": "Easy",
+    "category": "history",
+    "description": "A source-mapped Fort Circle corridor. Verify access and any closures before heading out. Short source-preserving stretch 5 of 7; Stretch 5 of 7.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Ft. Circle Trail — null",
+      "sourceRecordId": "15",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Natural Surface",
+    "use": "Hiker/Biker Trail",
+    "collection": "Fort Circle Trail",
+    "sectionNumber": 5,
+    "sectionCount": 7,
+    "coordinates": [
+      [
+        38.89759453008829,
+        -76.94350852445163
+      ],
+      [
+        38.8946776023083,
+        -76.9469662886797
+      ],
+      [
+        38.8945780741303,
+        -76.9466988654186
+      ],
+      [
+        38.8944741952531,
+        -76.9465062699015
+      ],
+      [
+        38.8944170611976,
+        -76.9462388137919
+      ],
+      [
+        38.8943848081388,
+        -76.9460386816947
+      ],
+      [
+        38.8943306534062,
+        -76.9458984287286
+      ],
+      [
+        38.8941844041236,
+        -76.9457601134098
+      ],
+      [
+        38.8940542268029,
+        -76.9456030811614
+      ],
+      [
+        38.894045858143954,
+        -76.94558584236971
+      ]
+    ]
+  },
+  {
+    "id": "dc-fort-circle-trail-section-6",
+    "city": "dc",
+    "title": "Fort Circle Trail · Stretch 6 of 7",
+    "distanceMiles": 0.4,
+    "durationMinutes": 7,
+    "difficulty": "Easy",
+    "category": "history",
+    "description": "A source-mapped Fort Circle corridor. Verify access and any closures before heading out. Short source-preserving stretch 6 of 7; Stretch 6 of 7.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Ft. Circle Trail — null",
+      "sourceRecordId": "15",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Natural Surface",
+    "use": "Hiker/Biker Trail",
+    "collection": "Fort Circle Trail",
+    "sectionNumber": 6,
+    "sectionCount": 7,
+    "coordinates": [
+      [
+        38.894045858143954,
+        -76.94558584236971
+      ],
+      [
+        38.89395618907,
+        -76.9454011309965
+      ],
+      [
+        38.89389177643,
+        -76.9452066378703
+      ],
+      [
+        38.8938039812012,
+        -76.9450252580117
+      ],
+      [
+        38.8937381376587,
+        -76.9448981074101
+      ],
+      [
+        38.8937146935507,
+        -76.944784019099
+      ],
+      [
+        38.8937277820893,
+        -76.9446418442122
+      ],
+      [
+        38.8937145765797,
+        -76.9445371011959
+      ],
+      [
+        38.8936443374376,
+        -76.9443893786298
+      ],
+      [
+        38.8936238160569,
+        -76.9442734186461
+      ],
+      [
+        38.8958807698883,
+        -76.9429158219868
+      ],
+      [
+        38.8958594332265,
+        -76.9427255576076
+      ],
+      [
+        38.8958593941174,
+        -76.9426440084453
+      ],
+      [
+        38.8958381381416,
+        -76.9426168413252
+      ],
+      [
+        38.8966033247599,
+        -76.9435404619801
+      ],
+      [
+        38.89685533806535,
+        -76.94382865034832
+      ]
+    ]
+  },
+  {
+    "id": "dc-fort-circle-trail-section-7",
+    "city": "dc",
+    "title": "Fort Circle Trail · Stretch 7 of 7",
+    "distanceMiles": 0.4,
+    "durationMinutes": 7,
+    "difficulty": "Easy",
+    "category": "history",
+    "description": "A source-mapped Fort Circle corridor. Verify access and any closures before heading out. Short source-preserving stretch 7 of 7; Stretch 7 of 7.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Ft. Circle Trail — null",
+      "sourceRecordId": "15",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Natural Surface",
+    "use": "Hiker/Biker Trail",
+    "collection": "Fort Circle Trail",
+    "sectionNumber": 7,
+    "sectionCount": 7,
+    "coordinates": [
+      [
+        38.89685533806535,
+        -76.94382865034832
+      ],
+      [
+        38.8970071579133,
+        -76.9440022630636
+      ],
+      [
+        38.8971986652821,
+        -76.9446817032589
+      ],
+      [
+        38.8972413930495,
+        -76.9451981595041
+      ],
+      [
+        38.8972628903425,
+        -76.94574181612
+      ],
+      [
+        38.896986937457,
+        -76.9461769642001
+      ],
+      [
+        38.8964348766655,
+        -76.9467210463641
+      ],
+      [
+        38.8962226356684,
+        -76.9471289552082
+      ],
+      [
+        38.8960739363894,
+        -76.9471290654091
+      ],
+      [
+        38.8959676369865,
+        -76.9469388601465
+      ],
+      [
+        38.8956701651185,
+        -76.9467759834438
+      ],
+      [
+        38.8954791542352,
+        -76.9471566879629
+      ],
+      [
+        38.895288141204,
+        -76.9475373904441
+      ],
+      [
+        38.8948206564081,
+        -76.947211542199
+      ],
+      [
+        38.8946293733604,
+        -76.9469942206682
+      ]
+    ]
+  },
+  {
+    "id": "dc-marvin-gaye-trail-section-1",
+    "city": "dc",
+    "title": "Marvin Gaye Trail · Stretch 1 of 7",
+    "distanceMiles": 0.3,
+    "durationMinutes": 6,
+    "difficulty": "Easy",
+    "category": "community",
+    "description": "A source-mapped Marvin Gaye corridor. Verify access and any closures before heading out. Short source-preserving stretch 1 of 7; Stretch 1 of 7.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Marvin Gaye Trail — Marvin Gaye Trail",
+      "sourceRecordId": "104",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "DPR/DGS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Marvin Gaye Trail",
+    "sectionNumber": 1,
+    "sectionCount": 7,
+    "coordinates": [
+      [
+        38.9019352158613,
+        -76.9426112484946
+      ],
+      [
+        38.9018624240743,
+        -76.942597103945
+      ],
+      [
+        38.9017974205917,
+        -76.9425749765947
+      ],
+      [
+        38.9017569675597,
+        -76.9425491323301
+      ],
+      [
+        38.901739601834,
+        -76.9424807582278
+      ],
+      [
+        38.9017251432536,
+        -76.9424474998564
+      ],
+      [
+        38.9016947957158,
+        -76.942412406311
+      ],
+      [
+        38.9016687902904,
+        -76.9423939437132
+      ],
+      [
+        38.9016355665205,
+        -76.9423847293276
+      ],
+      [
+        38.9016110142465,
+        -76.9423847491576
+      ],
+      [
+        38.9015806876587,
+        -76.9423921668482
+      ],
+      [
+        38.9015474802805,
+        -76.9424143732454
+      ],
+      [
+        38.9015243820749,
+        -76.9424365714645
+      ],
+      [
+        38.9014955031553,
+        -76.9424495331352
+      ],
+      [
+        38.9014709554425,
+        -76.9424606432938
+      ],
+      [
+        38.9014464040779,
+        -76.9424625111045
+      ],
+      [
+        38.9014074096255,
+        -76.9424662397222
+      ],
+      [
+        38.901339532599,
+        -76.9424736876382
+      ],
+      [
+        38.9012687638701,
+        -76.942477440713
+      ],
+      [
+        38.9011965501817,
+        -76.9424774989433
+      ],
+      [
+        38.9010477888909,
+        -76.9424794668954
+      ],
+      [
+        38.900961132101,
+        -76.9424795367693
+      ],
+      [
+        38.9009076854355,
+        -76.9424629456171
+      ],
+      [
+        38.9008600094521,
+        -76.942433411582
+      ],
+      [
+        38.9008340058583,
+        -76.9424204943189
+      ],
+      [
+        38.9007690023298,
+        -76.9423983662958
+      ],
+      [
+        38.9006967795422,
+        -76.9423836384025
+      ],
+      [
+        38.9006216722978,
+        -76.9423726099946
+      ],
+      [
+        38.9005301005415,
+        -76.9423726839684
+      ],
+      [
+        38.9004469128509,
+        -76.9423709020346
+      ],
+      [
+        38.9003328120786,
+        -76.9423691462316
+      ],
+      [
+        38.9003197947541,
+        -76.9423284943075
+      ],
+      [
+        38.9002807299616,
+        -76.9421899045329
+      ],
+      [
+        38.9002532420192,
+        -76.9420956638616
+      ],
+      [
+        38.9002488888382,
+        -76.942055004995
+      ],
+      [
+        38.9002242106926,
+        -76.9418018085392
+      ],
+      [
+        38.9001995273988,
+        -76.9415412203613
+      ],
+      [
+        38.900189394188,
+        -76.9414950212212
+      ],
+      [
+        38.9001792628117,
+        -76.9414525191949
+      ],
+      [
+        38.9001662563139,
+        -76.9414358946418
+      ],
+      [
+        38.9001171239711,
+        -76.9413823345344
+      ],
+      [
+        38.9000853348485,
+        -76.9413527884878
+      ],
+      [
+        38.8999538610607,
+        -76.9412660270504
+      ],
+      [
+        38.8996894730015,
+        -76.9411017484401
+      ],
+      [
+        38.8996071240423,
+        -76.94105191229
+      ],
+      [
+        38.8995233338537,
+        -76.9410094715835
+      ],
+      [
+        38.8994756556233,
+        -76.9409762420287
+      ],
+      [
+        38.8993802972633,
+        -76.9409060871459
+      ],
+      [
+        38.8993297253089,
+        -76.9408617701034
+      ],
+      [
+        38.899245911631,
+        -76.9407731229715
+      ],
+      [
+        38.8992011082827,
+        -76.9407140154132
+      ],
+      [
+        38.8991591976409,
+        -76.9406622996214
+      ],
+      [
+        38.8991187253384,
+        -76.9405976436039
+      ],
+      [
+        38.899069947683,
+        -76.9405939652724
+      ],
+      [
+        38.8990075087941,
+        -76.9405866473935
+      ],
+      [
+        38.8989944362837,
+        -76.9404406453409
+      ],
+      [
+        38.8989727381805,
+        -76.9403759739069
+      ],
+      [
+        38.8989235646726,
+        -76.9402410933223
+      ],
+      [
+        38.8988960959765,
+        -76.9401875168069
+      ],
+      [
+        38.8988512866452,
+        -76.9401173199635
+      ],
+      [
+        38.8988108130906,
+        -76.9400508165956
+      ],
+      [
+        38.89877207267887,
+        -76.9400144698341
+      ]
+    ]
+  },
+  {
+    "id": "dc-marvin-gaye-trail-section-2",
+    "city": "dc",
+    "title": "Marvin Gaye Trail · Stretch 2 of 7",
+    "distanceMiles": 0.3,
+    "durationMinutes": 6,
+    "difficulty": "Easy",
+    "category": "community",
+    "description": "A source-mapped Marvin Gaye corridor. Verify access and any closures before heading out. Short source-preserving stretch 2 of 7; Stretch 2 of 7.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Marvin Gaye Trail — Marvin Gaye Trail",
+      "sourceRecordId": "104",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "DPR/DGS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Marvin Gaye Trail",
+    "sectionNumber": 2,
+    "sectionCount": 7,
+    "coordinates": [
+      [
+        38.89877207267887,
+        -76.9400144698341
+      ],
+      [
+        38.8986966581407,
+        -76.939943714927
+      ],
+      [
+        38.8986431796637,
+        -76.939864284912
+      ],
+      [
+        38.8985997826757,
+        -76.9397312472035
+      ],
+      [
+        38.8985578228867,
+        -76.9395852717579
+      ],
+      [
+        38.8985433387117,
+        -76.9395076570316
+      ],
+      [
+        38.8985129796814,
+        -76.9394503876738
+      ],
+      [
+        38.8984883928898,
+        -76.9393838715006
+      ],
+      [
+        38.8984507829854,
+        -76.9392711601325
+      ],
+      [
+        38.8984492962198,
+        -76.9391924866173
+      ],
+      [
+        38.8984521462181,
+        -76.9391159063378
+      ],
+      [
+        38.898443466687,
+        -76.9390900381173
+      ],
+      [
+        38.8984376626324,
+        -76.9390382929739
+      ],
+      [
+        38.8984289531591,
+        -76.9389551286071
+      ],
+      [
+        38.8984231451783,
+        -76.9388959906186
+      ],
+      [
+        38.8984230706556,
+        -76.9387536759215
+      ],
+      [
+        38.8984229813883,
+        -76.9385836376873
+      ],
+      [
+        38.8984197435857,
+        -76.9379219688574
+      ],
+      [
+        38.8984195287904,
+        -76.9375190513169
+      ],
+      [
+        38.8984279607367,
+        -76.9370828588151
+      ],
+      [
+        38.8984337158928,
+        -76.9370421923724
+      ],
+      [
+        38.8984697973931,
+        -76.936995954198
+      ],
+      [
+        38.8986531152045,
+        -76.9367980297954
+      ],
+      [
+        38.898699302587,
+        -76.9367425415604
+      ],
+      [
+        38.898722373885,
+        -76.9366759838414
+      ],
+      [
+        38.8987295667204,
+        -76.9366205301176
+      ],
+      [
+        38.8987251975829,
+        -76.9365539967354
+      ],
+      [
+        38.8987136194648,
+        -76.9365114964164
+      ],
+      [
+        38.8986875870656,
+        -76.9364468314444
+      ],
+      [
+        38.8986687645526,
+        -76.936359980251
+      ],
+      [
+        38.898662946187,
+        -76.9362842074053
+      ],
+      [
+        38.8986627916172,
+        -76.9360014249947
+      ],
+      [
+        38.8986669978481,
+        -76.9357703900749
+      ],
+      [
+        38.8986683910438,
+        -76.9356779758989
+      ],
+      [
+        38.8986524397322,
+        -76.9355615507639
+      ],
+      [
+        38.8986307408485,
+        -76.93549873021
+      ],
+      [
+        38.8985830160918,
+        -76.9353841818898
+      ],
+      [
+        38.8985584271075,
+        -76.9353195149855
+      ],
+      [
+        38.898541081594,
+        -76.935293655048
+      ],
+      [
+        38.8984948273296,
+        -76.9352271611053
+      ],
+      [
+        38.8984717108838,
+        -76.9352123951914
+      ],
+      [
+        38.8984355933224,
+        -76.9351939463905
+      ],
+      [
+        38.8984095818625,
+        -76.9351699423326
+      ],
+      [
+        38.8983792308435,
+        -76.9351293085781
+      ],
+      [
+        38.8983546622581,
+        -76.935101607395
+      ],
+      [
+        38.8983401914212,
+        -76.9350517184567
+      ],
+      [
+        38.8983271440308,
+        -76.9349648627886
+      ],
+      [
+        38.898318785132126,
+        -76.93491629681017
+      ]
+    ]
+  },
+  {
+    "id": "dc-marvin-gaye-trail-section-3",
+    "city": "dc",
+    "title": "Marvin Gaye Trail · Stretch 3 of 7",
+    "distanceMiles": 0.3,
+    "durationMinutes": 6,
+    "difficulty": "Easy",
+    "category": "community",
+    "description": "A source-mapped Marvin Gaye corridor. Verify access and any closures before heading out. Short source-preserving stretch 3 of 7; Stretch 3 of 7.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Marvin Gaye Trail — Marvin Gaye Trail",
+      "sourceRecordId": "104",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "DPR/DGS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Marvin Gaye Trail",
+    "sectionNumber": 3,
+    "sectionCount": 7,
+    "coordinates": [
+      [
+        38.898318785132126,
+        -76.93491629681017
+      ],
+      [
+        38.898314103658,
+        -76.9348890970103
+      ],
+      [
+        38.8983110794832,
+        -76.9346469799107
+      ],
+      [
+        38.8983094041506,
+        -76.9342348235452
+      ],
+      [
+        38.8983122306527,
+        -76.9341239269082
+      ],
+      [
+        38.8983358131077,
+        -76.9340463244733
+      ],
+      [
+        38.898343903711,
+        -76.93394461759
+      ],
+      [
+        38.8983452954632,
+        -76.9338522049498
+      ],
+      [
+        38.8983438117811,
+        -76.9337838203359
+      ],
+      [
+        38.8983394429776,
+        -76.9337191365654
+      ],
+      [
+        38.898333576679,
+        -76.9335620417061
+      ],
+      [
+        38.8983262956173,
+        -76.9334566982137
+      ],
+      [
+        38.8983204901208,
+        -76.9334068015393
+      ],
+      [
+        38.8983016570605,
+        -76.9333070138139
+      ],
+      [
+        38.8982799284367,
+        -76.9331942910671
+      ],
+      [
+        38.8982509521263,
+        -76.933035370149
+      ],
+      [
+        38.8982350024246,
+        -76.932926339133
+      ],
+      [
+        38.8982335075772,
+        -76.9328394731042
+      ],
+      [
+        38.8982363689231,
+        -76.9327914163039
+      ],
+      [
+        38.8982608637501,
+        -76.932691587978
+      ],
+      [
+        38.8982868163934,
+        -76.9326157858526
+      ],
+      [
+        38.8983098880444,
+        -76.9325492271812
+      ],
+      [
+        38.8983199555866,
+        -76.9324771358416
+      ],
+      [
+        38.8983329131355,
+        -76.9324068908229
+      ],
+      [
+        38.8983314014965,
+        -76.932288604179
+      ],
+      [
+        38.898331112276,
+        -76.9317914279459
+      ],
+      [
+        38.898306534261,
+        -76.9316919124267
+      ],
+      [
+        38.8983021147646,
+        -76.9316010869924
+      ],
+      [
+        38.8982988791012,
+        -76.9310115013627
+      ],
+      [
+        38.8983147070729,
+        -76.9309098328036
+      ],
+      [
+        38.8983290911096,
+        -76.9308100135267
+      ],
+      [
+        38.898316051719,
+        -76.9307434892881
+      ],
+      [
+        38.898311840858,
+        -76.9306715153137
+      ],
+      [
+        38.898307290241,
+        -76.9305827005328
+      ],
+      [
+        38.8982913468502,
+        -76.9304866077579
+      ],
+      [
+        38.8982521961049,
+        -76.9302260446834
+      ],
+      [
+        38.8982434693051,
+        -76.9301244000671
+      ],
+      [
+        38.8982419788087,
+        -76.9300467748567
+      ],
+      [
+        38.8982447580828,
+        -76.9298637964549
+      ],
+      [
+        38.898239959646,
+        -76.929756374846
+      ],
+      [
+        38.8982330616912,
+        -76.9296272332754
+      ],
+      [
+        38.8982185552932,
+        -76.9295237465447
+      ],
+      [
+        38.89820219794094,
+        -76.92941060430407
+      ]
+    ]
+  },
+  {
+    "id": "dc-marvin-gaye-trail-section-4",
+    "city": "dc",
+    "title": "Marvin Gaye Trail · Stretch 4 of 7",
+    "distanceMiles": 0.3,
+    "durationMinutes": 6,
+    "difficulty": "Easy",
+    "category": "community",
+    "description": "A source-mapped Marvin Gaye corridor. Verify access and any closures before heading out. Short source-preserving stretch 4 of 7; Stretch 4 of 7.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Marvin Gaye Trail — Marvin Gaye Trail",
+      "sourceRecordId": "104",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "DPR/DGS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Marvin Gaye Trail",
+    "sectionNumber": 4,
+    "sectionCount": 7,
+    "coordinates": [
+      [
+        38.89820219794094,
+        -76.92941060430407
+      ],
+      [
+        38.898167793405,
+        -76.9291726314205
+      ],
+      [
+        38.8981344314073,
+        -76.9289360901904
+      ],
+      [
+        38.8981054190962,
+        -76.9287291173365
+      ],
+      [
+        38.8980865309691,
+        -76.9285443118604
+      ],
+      [
+        38.8980589549676,
+        -76.9283244001158
+      ],
+      [
+        38.8980371430994,
+        -76.9280841510071
+      ],
+      [
+        38.8980327349224,
+        -76.9279621720271
+      ],
+      [
+        38.8980341173767,
+        -76.9278623656951
+      ],
+      [
+        38.8980326173796,
+        -76.92777180418
+      ],
+      [
+        38.8980239136117,
+        -76.9277108212878
+      ],
+      [
+        38.8980152164354,
+        -76.9276590791507
+      ],
+      [
+        38.8980007366928,
+        -76.9275999512203
+      ],
+      [
+        38.8979703491356,
+        -76.9275075700365
+      ],
+      [
+        38.897947201878,
+        -76.9274447540019
+      ],
+      [
+        38.8979182858139,
+        -76.9273967295165
+      ],
+      [
+        38.8978835970163,
+        -76.9273542546955
+      ],
+      [
+        38.8978474586626,
+        -76.9273043897346
+      ],
+      [
+        38.8978011871801,
+        -76.9272175699742
+      ],
+      [
+        38.8977664983174,
+        -76.9271750964627
+      ],
+      [
+        38.8977361484757,
+        -76.9271437071831
+      ],
+      [
+        38.8976913428345,
+        -76.9270920033791
+      ],
+      [
+        38.8976479867274,
+        -76.9270476897949
+      ],
+      [
+        38.8976234182777,
+        -76.9270218395858
+      ],
+      [
+        38.8975901632395,
+        -76.9269645792393
+      ],
+      [
+        38.897556892881,
+        -76.9268814425001
+      ],
+      [
+        38.8975236386744,
+        -76.9268241822715
+      ],
+      [
+        38.897506275319,
+        -76.926774298559
+      ],
+      [
+        38.8974831392581,
+        -76.9267299645155
+      ],
+      [
+        38.8974325468288,
+        -76.9266616325098
+      ],
+      [
+        38.8973761775571,
+        -76.9265951544476
+      ],
+      [
+        38.8972836625576,
+        -76.926467722644
+      ],
+      [
+        38.8972301821557,
+        -76.9264012418933
+      ],
+      [
+        38.8971579113349,
+        -76.9263107545302
+      ],
+      [
+        38.8971145446934,
+        -76.9262516562929
+      ],
+      [
+        38.8971087477924,
+        -76.9262202434528
+      ],
+      [
+        38.8971116145913,
+        -76.9261851247102
+      ],
+      [
+        38.8970909496287,
+        -76.9261199406468
+      ],
+      [
+        38.8970696343536,
+        -76.926033614294
+      ],
+      [
+        38.8970233736347,
+        -76.9259652786825
+      ],
+      [
+        38.8970045831769,
+        -76.9259412709666
+      ],
+      [
+        38.8969713615975,
+        -76.9259376096708
+      ],
+      [
+        38.8968875878789,
+        -76.9259284560405
+      ],
+      [
+        38.896813923342,
+        -76.9259192907814
+      ],
+      [
+        38.8967835895701,
+        -76.9259137774669
+      ],
+      [
+        38.8967474717017,
+        -76.9258971816952
+      ],
+      [
+        38.8966737722454,
+        -76.9258344198135
+      ],
+      [
+        38.8966289736875,
+        -76.9257919570087
+      ],
+      [
+        38.8965827339707,
+        -76.9257568895898
+      ],
+      [
+        38.8965408319658,
+        -76.9257292103755
+      ],
+      [
+        38.8964989334804,
+        -76.9257070759816
+      ],
+      [
+        38.8964050252336,
+        -76.9256609687778
+      ],
+      [
+        38.8963674529729,
+        -76.9256295882703
+      ],
+      [
+        38.8963255447749,
+        -76.9255908208172
+      ],
+      [
+        38.8962951918672,
+        -76.9255538880727
+      ],
+      [
+        38.8962576028005,
+        -76.9254947849758
+      ],
+      [
+        38.896215655902,
+        -76.9253968754145
+      ],
+      [
+        38.8961592468988,
+        -76.9252694094148
+      ],
+      [
+        38.8961028377559,
+        -76.9251419436167
+      ],
+      [
+        38.89606087623825,
+        -76.925052133746
+      ]
+    ]
+  },
+  {
+    "id": "dc-marvin-gaye-trail-section-5",
+    "city": "dc",
+    "title": "Marvin Gaye Trail · Stretch 5 of 7",
+    "distanceMiles": 0.3,
+    "durationMinutes": 6,
+    "difficulty": "Easy",
+    "category": "community",
+    "description": "A source-mapped Marvin Gaye corridor. Verify access and any closures before heading out. Short source-preserving stretch 5 of 7; Stretch 5 of 7.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Marvin Gaye Trail — Marvin Gaye Trail",
+      "sourceRecordId": "104",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "DPR/DGS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Marvin Gaye Trail",
+    "sectionNumber": 5,
+    "sectionCount": 7,
+    "coordinates": [
+      [
+        38.89606087623825,
+        -76.925052133746
+      ],
+      [
+        38.8960493257592,
+        -76.9250274123563
+      ],
+      [
+        38.8960044844469,
+        -76.9249202647614
+      ],
+      [
+        38.895933613962,
+        -76.9247650933277
+      ],
+      [
+        38.8959075681899,
+        -76.9246911935428
+      ],
+      [
+        38.89589450177,
+        -76.9245840127818
+      ],
+      [
+        38.8958828783915,
+        -76.9244768305325
+      ],
+      [
+        38.8958611196943,
+        -76.9243308470209
+      ],
+      [
+        38.8958466059025,
+        -76.9242218200701
+      ],
+      [
+        38.8958262789146,
+        -76.9240573542588
+      ],
+      [
+        38.8958030816712,
+        -76.9239206141384
+      ],
+      [
+        38.8957712242498,
+        -76.9237931238153
+      ],
+      [
+        38.8957103704506,
+        -76.9234974806245
+      ],
+      [
+        38.8956842775065,
+        -76.9233515035728
+      ],
+      [
+        38.8956538392049,
+        -76.9231870481166
+      ],
+      [
+        38.8956161804685,
+        -76.9230226017443
+      ],
+      [
+        38.8955901283983,
+        -76.9229394624967
+      ],
+      [
+        38.8955018935348,
+        -76.9227381071557
+      ],
+      [
+        38.895448398758,
+        -76.9226531488921
+      ],
+      [
+        38.8953919953325,
+        -76.9225386236859
+      ],
+      [
+        38.8953428358868,
+        -76.9224573578423
+      ],
+      [
+        38.8952922388106,
+        -76.9223871830707
+      ],
+      [
+        38.8952373037523,
+        -76.9223096205815
+      ],
+      [
+        38.8951867185577,
+        -76.9222560789221
+      ],
+      [
+        38.8951274660598,
+        -76.9222006977933
+      ],
+      [
+        38.8950869936965,
+        -76.9221526899396
+      ],
+      [
+        38.8950580862008,
+        -76.9221194545574
+      ],
+      [
+        38.8950392702905,
+        -76.9220584859419
+      ],
+      [
+        38.8950262391497,
+        -76.9220104482299
+      ],
+      [
+        38.8950131670996,
+        -76.9218890986628
+      ],
+      [
+        38.8950087748663,
+        -76.9218127148977
+      ],
+      [
+        38.8950014732953,
+        -76.9216925924932
+      ],
+      [
+        38.8949942125314,
+        -76.9216334603387
+      ],
+      [
+        38.8949768279987,
+        -76.9215540084714
+      ],
+      [
+        38.8949550929927,
+        -76.9214486870649
+      ],
+      [
+        38.8949246756651,
+        -76.9213193499311
+      ],
+      [
+        38.8949087511559,
+        -76.9212639231172
+      ],
+      [
+        38.8948610024298,
+        -76.9211346053051
+      ],
+      [
+        38.8947756224963,
+        -76.9208888961294
+      ],
+      [
+        38.8947177415959,
+        -76.9207263232955
+      ],
+      [
+        38.8946613073783,
+        -76.9205692926106
+      ],
+      [
+        38.8946352422352,
+        -76.9204695225961
+      ],
+      [
+        38.8946337692467,
+        -76.9204270160472
+      ],
+      [
+        38.8946234813627,
+        -76.9201664395305
+      ],
+      [
+        38.8946191120616,
+        -76.9201146959298
+      ],
+      [
+        38.8945742481466,
+        -76.9199798315327
+      ],
+      [
+        38.8945676669535,
+        -76.91995522905513
+      ]
+    ]
+  },
+  {
+    "id": "dc-marvin-gaye-trail-section-6",
+    "city": "dc",
+    "title": "Marvin Gaye Trail · Stretch 6 of 7",
+    "distanceMiles": 0.3,
+    "durationMinutes": 6,
+    "difficulty": "Easy",
+    "category": "community",
+    "description": "A source-mapped Marvin Gaye corridor. Verify access and any closures before heading out. Short source-preserving stretch 6 of 7; Stretch 6 of 7.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Marvin Gaye Trail — Marvin Gaye Trail",
+      "sourceRecordId": "104",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "DPR/DGS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Marvin Gaye Trail",
+    "sectionNumber": 6,
+    "sectionCount": 7,
+    "coordinates": [
+      [
+        38.8945676669535,
+        -76.91995522905513
+      ],
+      [
+        38.8944917115706,
+        -76.919671285008
+      ],
+      [
+        38.8944323763895,
+        -76.9194976261854
+      ],
+      [
+        38.8944077743955,
+        -76.9194255760699
+      ],
+      [
+        38.8943788371565,
+        -76.9193516830799
+      ],
+      [
+        38.8943672600553,
+        -76.9193184295625
+      ],
+      [
+        38.89435850075,
+        -76.9191835263946
+      ],
+      [
+        38.8943439808695,
+        -76.9190726538124
+      ],
+      [
+        38.8943309429945,
+        -76.9190153768497
+      ],
+      [
+        38.8942962168873,
+        -76.9189248568205
+      ],
+      [
+        38.8941920802142,
+        -76.9187124401328
+      ],
+      [
+        38.8941096408868,
+        -76.918548050611
+      ],
+      [
+        38.8940142001821,
+        -76.9183781317438
+      ],
+      [
+        38.8939448047232,
+        -76.9182784119142
+      ],
+      [
+        38.893868190661,
+        -76.9181823973331
+      ],
+      [
+        38.8938465087093,
+        -76.9181583960443
+      ],
+      [
+        38.8937858218738,
+        -76.9181196547469
+      ],
+      [
+        38.8936919066994,
+        -76.9180680158677
+      ],
+      [
+        38.8936456646393,
+        -76.9180329537461
+      ],
+      [
+        38.8935488769106,
+        -76.918003495483
+      ],
+      [
+        38.8934477565449,
+        -76.9179758900819
+      ],
+      [
+        38.8933914191481,
+        -76.917959322355
+      ],
+      [
+        38.8933538464942,
+        -76.9179316428238
+      ],
+      [
+        38.8933393779087,
+        -76.917892849948
+      ],
+      [
+        38.8933349942006,
+        -76.9178207781995
+      ],
+      [
+        38.8933320442744,
+        -76.917780261457
+      ],
+      [
+        38.8933334747022,
+        -76.9177135892368
+      ],
+      [
+        38.8933132441054,
+        -76.9176988278874
+      ],
+      [
+        38.8932872459571,
+        -76.9176988578787
+      ],
+      [
+        38.8932496889679,
+        -76.9176896610736
+      ],
+      [
+        38.8932207888122,
+        -76.9176712130098
+      ],
+      [
+        38.8931933236712,
+        -76.9176361308521
+      ],
+      [
+        38.8931643888029,
+        -76.9175659354286
+      ],
+      [
+        38.8930718011547,
+        -76.9173498139781
+      ],
+      [
+        38.8930298513335,
+        -76.9172574580963
+      ],
+      [
+        38.8929994643345,
+        -76.9171761767851
+      ],
+      [
+        38.8929849936947,
+        -76.9171373831046
+      ],
+      [
+        38.8929560576255,
+        -76.9170671892421
+      ],
+      [
+        38.8929444916827,
+        -76.9170505691395
+      ],
+      [
+        38.8929151943237,
+        -76.9170551921234
+      ],
+      [
+        38.8928549497396,
+        -76.9170562177564
+      ],
+      [
+        38.892823145235,
+        -76.9170137487713
+      ],
+      [
+        38.8926915703488,
+        -76.916810611311
+      ],
+      [
+        38.8925773456743,
+        -76.9166333266721
+      ],
+      [
+        38.8924934831388,
+        -76.9165022106683
+      ],
+      [
+        38.8924457635101,
+        -76.9164209505944
+      ],
+      [
+        38.8923040673119,
+        -76.9162048904833
+      ],
+      [
+        38.892228880537,
+        -76.9160867019688
+      ],
+      [
+        38.8921797165754,
+        -76.9160054441741
+      ],
+      [
+        38.8921319886168,
+        -76.9159130958938
+      ],
+      [
+        38.8920885949428,
+        -76.9158225915412
+      ],
+      [
+        38.892073635700115,
+        -76.91578439667384
+      ]
+    ]
+  },
+  {
+    "id": "dc-marvin-gaye-trail-section-7",
+    "city": "dc",
+    "title": "Marvin Gaye Trail · Stretch 7 of 7",
+    "distanceMiles": 0.3,
+    "durationMinutes": 6,
+    "difficulty": "Easy",
+    "category": "community",
+    "description": "A source-mapped Marvin Gaye corridor. Verify access and any closures before heading out. Short source-preserving stretch 7 of 7; Stretch 7 of 7.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Marvin Gaye Trail — Marvin Gaye Trail",
+      "sourceRecordId": "104",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "DPR/DGS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Marvin Gaye Trail",
+    "sectionNumber": 7,
+    "sectionCount": 7,
+    "coordinates": [
+      [
+        38.892073635700115,
+        -76.91578439667384
+      ],
+      [
+        38.8920365044755,
+        -76.9156895909254
+      ],
+      [
+        38.8919988943705,
+        -76.9156083199565
+      ],
+      [
+        38.8919627001787,
+        -76.9154882374725
+      ],
+      [
+        38.8919366065828,
+        -76.9153552064918
+      ],
+      [
+        38.8919003638346,
+        -76.9151685945398
+      ],
+      [
+        38.8918786055887,
+        -76.9150392553017
+      ],
+      [
+        38.8918567609832,
+        -76.9147916388854
+      ],
+      [
+        38.891846538901,
+        -76.914638261713
+      ],
+      [
+        38.8918536924488,
+        -76.9145458490423
+      ],
+      [
+        38.8918695052076,
+        -76.9144441860177
+      ],
+      [
+        38.8918881960198,
+        -76.9143277351042
+      ],
+      [
+        38.891905449015,
+        -76.914222373576
+      ],
+      [
+        38.8919068668107,
+        -76.9141854108906
+      ],
+      [
+        38.8919068315019,
+        -76.9141373610817
+      ],
+      [
+        38.8919067816792,
+        -76.9140708302234
+      ],
+      [
+        38.8919067159306,
+        -76.9139802738825
+      ],
+      [
+        38.8919037107026,
+        -76.9138213435659
+      ],
+      [
+        38.8919036588713,
+        -76.9137511160388
+      ],
+      [
+        38.8919035423658,
+        -76.9136641319471
+      ],
+      [
+        38.8919049250746,
+        -76.9125546968581
+      ],
+      [
+        38.8918625406059,
+        -76.9123827123462
+      ],
+      [
+        38.8918969643875,
+        -76.9121860581942
+      ],
+      [
+        38.8918997712333,
+        -76.9108195947543
+      ],
+      [
+        38.8918804555786,
+        -76.9106770750883
+      ],
+      [
+        38.8920722904817,
+        -76.9103720839037
+      ]
+    ]
+  },
+  {
+    "id": "dc-suitland-parkway-trail-section-1",
+    "city": "dc",
+    "title": "Suitland Parkway Trail · Stretch 1 of 7",
+    "distanceMiles": 0.7,
+    "durationMinutes": 14,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Suitland Parkway corridor. Verify access and any closures before heading out. Short source-preserving stretch 1 of 7; Stretch 1 of 7.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Suitland Parkway Trail — Stanton Rd SE to Maryland Border",
+      "sourceRecordId": "4",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "DDOT",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Suitland Parkway Trail",
+    "sectionNumber": 1,
+    "sectionCount": 7,
+    "coordinates": [
+      [
+        38.8511303727119,
+        -76.9725285707176
+      ],
+      [
+        38.8507237708161,
+        -76.9720135502095
+      ],
+      [
+        38.8504587327312,
+        -76.9715959479646
+      ],
+      [
+        38.8502699309966,
+        -76.9712711383126
+      ],
+      [
+        38.8499721879434,
+        -76.9706957534252
+      ],
+      [
+        38.8497651910164,
+        -76.9701899512187
+      ],
+      [
+        38.8495654282668,
+        -76.9696006100707
+      ],
+      [
+        38.8494237588843,
+        -76.9691133513167
+      ],
+      [
+        38.8493074846741,
+        -76.9685982360167
+      ],
+      [
+        38.8492238633678,
+        -76.9680552616613
+      ],
+      [
+        38.8491255630867,
+        -76.9669414376173
+      ],
+      [
+        38.8491289880117,
+        -76.9662267030199
+      ],
+      [
+        38.8491723877761,
+        -76.9657068776013
+      ],
+      [
+        38.8492247874967,
+        -76.9652722064289
+      ],
+      [
+        38.8510696090103,
+        -76.96957433919563
+      ]
+    ]
+  },
+  {
+    "id": "dc-suitland-parkway-trail-section-2",
+    "city": "dc",
+    "title": "Suitland Parkway Trail · Stretch 2 of 7",
+    "distanceMiles": 0.7,
+    "durationMinutes": 14,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Suitland Parkway corridor. Verify access and any closures before heading out. Short source-preserving stretch 2 of 7; Stretch 2 of 7.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Suitland Parkway Trail — Stanton Rd SE to Maryland Border",
+      "sourceRecordId": "4",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "DDOT",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Suitland Parkway Trail",
+    "sectionNumber": 2,
+    "sectionCount": 7,
+    "coordinates": [
+      [
+        38.8510696090103,
+        -76.96957433919563
+      ],
+      [
+        38.853097092721,
+        -76.9743024410968
+      ],
+      [
+        38.8529211454181,
+        -76.9743025044325
+      ],
+      [
+        38.8524009027006,
+        -76.9737626747817
+      ],
+      [
+        38.852411754576,
+        -76.9736002246872
+      ],
+      [
+        38.8521685759622,
+        -76.9735306952575
+      ],
+      [
+        38.851776537015,
+        -76.9731873850053
+      ],
+      [
+        38.851580512861,
+        -76.9729971662089
+      ],
+      [
+        38.8514425666632,
+        -76.9728533395358
+      ],
+      [
+        38.851326407397,
+        -76.972760558607
+      ],
+      [
+        38.85219639430206,
+        -76.97723132932634
+      ]
+    ]
+  },
+  {
+    "id": "dc-suitland-parkway-trail-section-3",
+    "city": "dc",
+    "title": "Suitland Parkway Trail · Stretch 3 of 7",
+    "distanceMiles": 0.7,
+    "durationMinutes": 14,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Suitland Parkway corridor. Verify access and any closures before heading out. Short source-preserving stretch 3 of 7; Stretch 3 of 7.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Suitland Parkway Trail — Stanton Rd SE to Maryland Border",
+      "sourceRecordId": "4",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "DDOT",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Suitland Parkway Trail",
+    "sectionNumber": 3,
+    "sectionCount": 7,
+    "coordinates": [
+      [
+        38.85219639430206,
+        -76.97723132932634
+      ],
+      [
+        38.8534033682652,
+        -76.9834338409067
+      ],
+      [
+        38.853482130571,
+        -76.9832994857096
+      ],
+      [
+        38.8534768686099,
+        -76.9832356773402
+      ],
+      [
+        38.8536107467082,
+        -76.9828830109949
+      ],
+      [
+        38.853781372426,
+        -76.9824262249444
+      ],
+      [
+        38.8538968680438,
+        -76.9820903528366
+      ],
+      [
+        38.8540333579524,
+        -76.9816637988905
+      ],
+      [
+        38.8541383744309,
+        -76.9812259600596
+      ],
+      [
+        38.8542483520533,
+        -76.980662866702
+      ],
+      [
+        38.8543298443263,
+        -76.9800852494915
+      ],
+      [
+        38.8543691490692,
+        -76.9795848291489
+      ],
+      [
+        38.8543743202297,
+        -76.9791280787324
+      ],
+      [
+        38.8543321593555,
+        -76.9783388549822
+      ],
+      [
+        38.8542637831197,
+        -76.9778183160411
+      ],
+      [
+        38.8541665336209,
+        -76.977368315271
+      ],
+      [
+        38.85412013831297,
+        -76.97720043388429
+      ]
+    ]
+  },
+  {
+    "id": "dc-suitland-parkway-trail-section-4",
+    "city": "dc",
+    "title": "Suitland Parkway Trail · Stretch 4 of 7",
+    "distanceMiles": 0.7,
+    "durationMinutes": 14,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Suitland Parkway corridor. Verify access and any closures before heading out. Short source-preserving stretch 4 of 7; Stretch 4 of 7.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Suitland Parkway Trail — Stanton Rd SE to Maryland Border",
+      "sourceRecordId": "4",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "DDOT",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Suitland Parkway Trail",
+    "sectionNumber": 4,
+    "sectionCount": 7,
+    "coordinates": [
+      [
+        38.85412013831297,
+        -76.97720043388429
+      ],
+      [
+        38.8539011118518,
+        -76.9764078867999
+      ],
+      [
+        38.8537384720261,
+        -76.975954090834
+      ],
+      [
+        38.853102380006,
+        -76.9744636414919
+      ],
+      [
+        38.853102343898,
+        -76.9742990809454
+      ],
+      [
+        38.855613541539356,
+        -76.98344526839058
+      ]
+    ]
+  },
+  {
+    "id": "dc-suitland-parkway-trail-section-5",
+    "city": "dc",
+    "title": "Suitland Parkway Trail · Stretch 5 of 7",
+    "distanceMiles": 0.7,
+    "durationMinutes": 14,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Suitland Parkway corridor. Verify access and any closures before heading out. Short source-preserving stretch 5 of 7; Stretch 5 of 7.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Suitland Parkway Trail — Stanton Rd SE to Maryland Border",
+      "sourceRecordId": "4",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "DDOT",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Suitland Parkway Trail",
+    "sectionNumber": 5,
+    "sectionCount": 7,
+    "coordinates": [
+      [
+        38.855613541539356,
+        -76.98344526839058
+      ],
+      [
+        38.8583402845137,
+        -76.9933765067557
+      ],
+      [
+        38.858332058851,
+        -76.9933594154249
+      ],
+      [
+        38.8583518921439,
+        -76.9931778271713
+      ],
+      [
+        38.8580978455831,
+        -76.9931477655419
+      ],
+      [
+        38.8577332464039,
+        -76.9932049626514
+      ],
+      [
+        38.8573004304834,
+        -76.9932711890952
+      ],
+      [
+        38.8566982536082,
+        -76.9933735310724
+      ],
+      [
+        38.85667522511442,
+        -76.99336837930733
+      ]
+    ]
+  },
+  {
+    "id": "dc-suitland-parkway-trail-section-6",
+    "city": "dc",
+    "title": "Suitland Parkway Trail · Stretch 6 of 7",
+    "distanceMiles": 0.7,
+    "durationMinutes": 14,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Suitland Parkway corridor. Verify access and any closures before heading out. Short source-preserving stretch 6 of 7; Stretch 6 of 7.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Suitland Parkway Trail — Stanton Rd SE to Maryland Border",
+      "sourceRecordId": "4",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "DDOT",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Suitland Parkway Trail",
+    "sectionNumber": 6,
+    "sectionCount": 7,
+    "coordinates": [
+      [
+        38.85667522511442,
+        -76.99336837930733
+      ],
+      [
+        38.8565100687596,
+        -76.9933314317437
+      ],
+      [
+        38.8564418501619,
+        -76.9933073715635
+      ],
+      [
+        38.8557267519986,
+        -76.9931810849889
+      ],
+      [
+        38.8556044365471,
+        -76.9932292315129
+      ],
+      [
+        38.8555009386082,
+        -76.9932743656606
+      ],
+      [
+        38.8554115577532,
+        -76.9933826748789
+      ],
+      [
+        38.8552045537841,
+        -76.9933165119057
+      ],
+      [
+        38.854978726613,
+        -76.993172132086
+      ],
+      [
+        38.8547740706851,
+        -76.9930397858352
+      ],
+      [
+        38.8545835275454,
+        -76.9928833707121
+      ],
+      [
+        38.8543549451913,
+        -76.9926693630945
+      ],
+      [
+        38.8541684808954,
+        -76.9924342912348
+      ],
+      [
+        38.8539137290188,
+        -76.9920716080837
+      ],
+      [
+        38.8537167519239,
+        -76.9917391442701
+      ],
+      [
+        38.8535145087259,
+        -76.9912286894515
+      ],
+      [
+        38.853388419905,
+        -76.9907551697969
+      ],
+      [
+        38.8533515936475,
+        -76.9899928166816
+      ],
+      [
+        38.853259632119,
+        -76.9894521276064
+      ],
+      [
+        38.8531387650378,
+        -76.9887099405801
+      ],
+      [
+        38.8530914816934,
+        -76.9885722536127
+      ],
+      [
+        38.8529233914877,
+        -76.9883439089669
+      ],
+      [
+        38.8528892193327,
+        -76.9880013614156
+      ],
+      [
+        38.8528576565869,
+        -76.9875379086913
+      ],
+      [
+        38.8528320534696,
+        -76.9870879136364
+      ],
+      [
+        38.852841796944,
+        -76.9866076396623
+      ],
+      [
+        38.8528915788124,
+        -76.9856404171133
+      ],
+      [
+        38.8529818282628,
+        -76.984913786536
+      ],
+      [
+        38.8530778642298,
+        -76.9843641901662
+      ],
+      [
+        38.8532721047129,
+        -76.983729410569
+      ],
+      [
+        38.85330422420068,
+        -76.98362373081252
+      ]
+    ]
+  },
+  {
+    "id": "dc-suitland-parkway-trail-section-7",
+    "city": "dc",
+    "title": "Suitland Parkway Trail · Stretch 7 of 7",
+    "distanceMiles": 0.7,
+    "durationMinutes": 14,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Suitland Parkway corridor. Verify access and any closures before heading out. Short source-preserving stretch 7 of 7; Stretch 7 of 7.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Suitland Parkway Trail — Stanton Rd SE to Maryland Border",
+      "sourceRecordId": "4",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "DDOT",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Suitland Parkway Trail",
+    "sectionNumber": 7,
+    "sectionCount": 7,
+    "coordinates": [
+      [
+        38.85330422420068,
+        -76.98362373081252
+      ],
+      [
+        38.8533456020973,
+        -76.9834875889765
+      ],
+      [
+        38.8533981168256,
+        -76.9834372004003
+      ],
+      [
+        38.8587777119534,
+        -76.9934716248569
+      ],
+      [
+        38.8587452392298,
+        -76.9934706277571
+      ],
+      [
+        38.8583963902915,
+        -76.993479765081
+      ]
+    ]
+  },
+  {
+    "id": "dc-georgetown-waterfront-trail-section-1",
+    "city": "dc",
+    "title": "Georgetown Waterfront Trail · Stretch 1 of 3",
+    "distanceMiles": 0.5,
+    "durationMinutes": 10,
+    "difficulty": "Easy",
+    "category": "waterfront",
+    "description": "A source-mapped Georgetown waterfront corridor. Verify access and any closures before heading out. Short source-preserving stretch 1 of 3; Stretch 1 of 3.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Georgetown Waterfront Trail — null",
+      "sourceRecordId": "14",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": null,
+    "use": null,
+    "collection": "Georgetown Waterfront Trail",
+    "sectionNumber": 1,
+    "sectionCount": 3,
+    "coordinates": [
+      [
+        38.902454998853,
+        -77.0626456274285
+      ],
+      [
+        38.9021761018433,
+        -77.0625935789498
+      ],
+      [
+        38.9019427113676,
+        -77.0619430980611
+      ],
+      [
+        38.9018310787767,
+        -77.0616503779746
+      ],
+      [
+        38.9017194565961,
+        -77.0613381491746
+      ],
+      [
+        38.9016788668891,
+        -77.0612210657243
+      ],
+      [
+        38.9014605852118,
+        -77.0608177082988
+      ],
+      [
+        38.9013286478116,
+        -77.060479455942
+      ],
+      [
+        38.9011815232469,
+        -77.060030646314
+      ],
+      [
+        38.9010699000481,
+        -77.0597119208935
+      ],
+      [
+        38.9008974189934,
+        -77.0591590501203
+      ],
+      [
+        38.9007197196476,
+        -77.0588727861334
+      ],
+      [
+        38.9006588331281,
+        -77.0586971644222
+      ],
+      [
+        38.9010707616794,
+        -77.0580017178086
+      ],
+      [
+        38.9010607047974,
+        -77.0577871205722
+      ],
+      [
+        38.9009693937313,
+        -77.0574814218609
+      ],
+      [
+        38.9009636465068,
+        -77.0574537307365
+      ],
+      [
+        38.901762764647,
+        -77.06023572845768
+      ]
+    ]
+  },
+  {
+    "id": "dc-georgetown-waterfront-trail-section-2",
+    "city": "dc",
+    "title": "Georgetown Waterfront Trail · Stretch 2 of 3",
+    "distanceMiles": 0.5,
+    "durationMinutes": 10,
+    "difficulty": "Easy",
+    "category": "waterfront",
+    "description": "A source-mapped Georgetown waterfront corridor. Verify access and any closures before heading out. Short source-preserving stretch 2 of 3; Stretch 2 of 3.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Georgetown Waterfront Trail — null",
+      "sourceRecordId": "14",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": null,
+    "use": null,
+    "collection": "Georgetown Waterfront Trail",
+    "sectionNumber": 2,
+    "sectionCount": 3,
+    "coordinates": [
+      [
+        38.901762764647,
+        -77.06023572845768
+      ],
+      [
+        38.902454998853,
+        -77.0626456274285
+      ],
+      [
+        38.9024555219115,
+        -77.0626848631543
+      ],
+      [
+        38.9024862157003,
+        -77.0628482284815
+      ],
+      [
+        38.9026632543074,
+        -77.0637905258835
+      ],
+      [
+        38.9029318932294,
+        -77.0650002955863
+      ],
+      [
+        38.903190676553,
+        -77.0656443155376
+      ],
+      [
+        38.9034594411081,
+        -77.0666004893926
+      ],
+      [
+        38.903570968063,
+        -77.0670557968465
+      ],
+      [
+        38.9036165597096,
+        -77.0672964477094
+      ],
+      [
+        38.9037308922554,
+        -77.0678054103517
+      ],
+      [
+        38.9037787424323,
+        -77.0680184252224
+      ],
+      [
+        38.9039156164963,
+        -77.0684837717535
+      ],
+      [
+        38.9039686962342,
+        -77.0687188323517
+      ],
+      [
+        38.90393331392181,
+        -77.06854112929707
+      ]
+    ]
+  },
+  {
+    "id": "dc-georgetown-waterfront-trail-section-3",
+    "city": "dc",
+    "title": "Georgetown Waterfront Trail · Stretch 3 of 3",
+    "distanceMiles": 0.5,
+    "durationMinutes": 10,
+    "difficulty": "Easy",
+    "category": "waterfront",
+    "description": "A source-mapped Georgetown waterfront corridor. Verify access and any closures before heading out. Short source-preserving stretch 3 of 3; Stretch 3 of 3.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Georgetown Waterfront Trail — null",
+      "sourceRecordId": "14",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": null,
+    "use": null,
+    "collection": "Georgetown Waterfront Trail",
+    "sectionNumber": 3,
+    "sectionCount": 3,
+    "coordinates": [
+      [
+        38.90393331392181,
+        -77.06854112929707
+      ],
+      [
+        38.902459538074,
+        -77.0611392820945
+      ],
+      [
+        38.9024623366975,
+        -77.0613322858669
+      ],
+      [
+        38.9024457499695,
+        -77.0619513386066
+      ],
+      [
+        38.902454998853,
+        -77.0626456274285
+      ]
+    ]
+  },
+  {
+    "id": "dc-klingle-valley-trail-section-1",
+    "city": "dc",
+    "title": "Klingle Valley Trail · Stretch 1 of 3",
+    "distanceMiles": 0.2,
+    "durationMinutes": 4,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Klingle Valley corridor. Verify access and any closures before heading out. Short source-preserving stretch 1 of 3; Stretch 1 of 3.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Klingle Valley Trail — Klingle Valley Trail",
+      "sourceRecordId": "113",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "DDOT",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Klingle Valley Trail",
+    "sectionNumber": 1,
+    "sectionCount": 3,
+    "coordinates": [
+      [
+        38.9333776792016,
+        -77.0506002014595
+      ],
+      [
+        38.9333434777988,
+        -77.0510363486524
+      ],
+      [
+        38.9333547980544,
+        -77.0512042754442
+      ],
+      [
+        38.9333774371229,
+        -77.0513206737355
+      ],
+      [
+        38.9334075435548,
+        -77.0514461821108
+      ],
+      [
+        38.9334412007925,
+        -77.0515801588256
+      ],
+      [
+        38.9334667882845,
+        -77.0517018084605
+      ],
+      [
+        38.9334800264612,
+        -77.0518329425212
+      ],
+      [
+        38.9334458078516,
+        -77.0520854586058
+      ],
+      [
+        38.9334266861016,
+        -77.05239542056
+      ],
+      [
+        38.9334377583413,
+        -77.0526056966672
+      ],
+      [
+        38.9334599014554,
+        -77.0528019192674
+      ],
+      [
+        38.9334776339025,
+        -77.0529700370705
+      ],
+      [
+        38.9334296415304,
+        -77.0532331186341
+      ],
+      [
+        38.933371592548,
+        -77.0534569227217
+      ],
+      [
+        38.9333199830868,
+        -77.0537338469099
+      ],
+      [
+        38.93325870613,
+        -77.0538898315384
+      ],
+      [
+        38.933192539812,
+        -77.0540251278993
+      ],
+      [
+        38.9331293791023,
+        -77.0541241382725
+      ],
+      [
+        38.9330526432702,
+        -77.0542221116612
+      ],
+      [
+        38.9329848078328,
+        -77.0543117494175
+      ],
+      [
+        38.9329271453233,
+        -77.0543918899907
+      ],
+      [
+        38.9329126549485,
+        -77.05441289067616
+      ]
+    ]
+  },
+  {
+    "id": "dc-klingle-valley-trail-section-2",
+    "city": "dc",
+    "title": "Klingle Valley Trail · Stretch 2 of 3",
+    "distanceMiles": 0.2,
+    "durationMinutes": 4,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Klingle Valley corridor. Verify access and any closures before heading out. Short source-preserving stretch 2 of 3; Stretch 2 of 3.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Klingle Valley Trail — Klingle Valley Trail",
+      "sourceRecordId": "113",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "DDOT",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Klingle Valley Trail",
+    "sectionNumber": 2,
+    "sectionCount": 3,
+    "coordinates": [
+      [
+        38.9329126549485,
+        -77.05441289067616
+      ],
+      [
+        38.9328815568435,
+        -77.0544579606989
+      ],
+      [
+        38.9328365585399,
+        -77.0545255980241
+      ],
+      [
+        38.932810446686,
+        -77.0545958666768
+      ],
+      [
+        38.9327934698133,
+        -77.054691810085
+      ],
+      [
+        38.9327096951634,
+        -77.0554528740003
+      ],
+      [
+        38.9326210160446,
+        -77.0562885803524
+      ],
+      [
+        38.9325773456938,
+        -77.0567725511752
+      ],
+      [
+        38.932575986946,
+        -77.0568880185248
+      ],
+      [
+        38.9325849397235,
+        -77.0570186098745
+      ],
+      [
+        38.9326056944615,
+        -77.0571853762161
+      ],
+      [
+        38.9326434946866,
+        -77.0573847591942
+      ],
+      [
+        38.9326865446109,
+        -77.0576042552503
+      ],
+      [
+        38.9327060782769,
+        -77.0577173580102
+      ],
+      [
+        38.9327227702524,
+        -77.0578402919792
+      ],
+      [
+        38.9327153340079,
+        -77.0579364556211
+      ],
+      [
+        38.9326866061127,
+        -77.0580316826943
+      ],
+      [
+        38.9326143707154,
+        -77.0581341529946
+      ],
+      [
+        38.9325605344941,
+        -77.0581755303741
+      ],
+      [
+        38.93247100216827,
+        -77.05823107733636
+      ]
+    ]
+  },
+  {
+    "id": "dc-klingle-valley-trail-section-3",
+    "city": "dc",
+    "title": "Klingle Valley Trail · Stretch 3 of 3",
+    "distanceMiles": 0.2,
+    "durationMinutes": 4,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Klingle Valley corridor. Verify access and any closures before heading out. Short source-preserving stretch 3 of 3; Stretch 3 of 3.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Klingle Valley Trail — Klingle Valley Trail",
+      "sourceRecordId": "113",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "DDOT",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Klingle Valley Trail",
+    "sectionNumber": 3,
+    "sectionCount": 3,
+    "coordinates": [
+      [
+        38.93247100216827,
+        -77.05823107733636
+      ],
+      [
+        38.9324493862703,
+        -77.0582444881068
+      ],
+      [
+        38.9322144687353,
+        -77.0583505707722
+      ],
+      [
+        38.9319187769382,
+        -77.0584378346779
+      ],
+      [
+        38.9317529929231,
+        -77.0584568360571
+      ],
+      [
+        38.9315865816434,
+        -77.0584547839395
+      ],
+      [
+        38.9314599091434,
+        -77.058466286032
+      ],
+      [
+        38.9313429447753,
+        -77.0585248183206
+      ],
+      [
+        38.9311896775079,
+        -77.0587113591626
+      ],
+      [
+        38.9308914055818,
+        -77.0591036572797
+      ],
+      [
+        38.9307776152598,
+        -77.0592798186814
+      ],
+      [
+        38.9306307848879,
+        -77.0595108428436
+      ],
+      [
+        38.9305154306944,
+        -77.0596858460232
+      ],
+      [
+        38.9303937917872,
+        -77.0598929872958
+      ],
+      [
+        38.9303583640211,
+        -77.0599753073727
+      ],
+      [
+        38.9303326570731,
+        -77.0600646257685
+      ],
+      [
+        38.930317965648,
+        -77.0601570027448
+      ],
+      [
+        38.9302884614818,
+        -77.0606001704588
+      ]
+    ]
+  },
+  {
+    "id": "dc-rose-park-trail-section-1",
+    "city": "dc",
+    "title": "Rose Park Trail · Stretch 1 of 2",
+    "distanceMiles": 0.4,
+    "durationMinutes": 9,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Rose Park corridor. Verify access and any closures before heading out. Short source-preserving stretch 1 of 2; Stretch 1 of 2.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Rose Park Trail — Rose Park Trail",
+      "sourceRecordId": "16",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Rose Park Trail",
+    "sectionNumber": 1,
+    "sectionCount": 2,
+    "coordinates": [
+      [
+        38.9084837802902,
+        -77.054461181754
+      ],
+      [
+        38.9082684855009,
+        -77.0546574506358
+      ],
+      [
+        38.9080532136215,
+        -77.0548003390766
+      ],
+      [
+        38.9078896964979,
+        -77.0548642677315
+      ],
+      [
+        38.9077695316312,
+        -77.0549730652166
+      ],
+      [
+        38.9075676413422,
+        -77.0550412329552
+      ],
+      [
+        38.907345733664,
+        -77.0551072519052
+      ],
+      [
+        38.9071388300678,
+        -77.0551946309503
+      ],
+      [
+        38.9070020085825,
+        -77.0552479024055
+      ],
+      [
+        38.9067250297375,
+        -77.055354443267
+      ],
+      [
+        38.9063545954507,
+        -77.0555292328158
+      ],
+      [
+        38.9062110940831,
+        -77.0555995783498
+      ],
+      [
+        38.9060830108085,
+        -77.0556559657265
+      ],
+      [
+        38.905817459163,
+        -77.0557783927989
+      ],
+      [
+        38.9056306676156,
+        -77.055926732404
+      ],
+      [
+        38.905536908498,
+        -77.0560474145997
+      ],
+      [
+        38.9054367801994,
+        -77.0561177935627
+      ],
+      [
+        38.9053800035614,
+        -77.0562351758971
+      ],
+      [
+        38.9053616073951,
+        -77.0563291036647
+      ],
+      [
+        38.9053332236207,
+        -77.0563781881242
+      ],
+      [
+        38.90775841794309,
+        -77.05490254002365
+      ]
+    ]
+  },
+  {
+    "id": "dc-rose-park-trail-section-2",
+    "city": "dc",
+    "title": "Rose Park Trail · Stretch 2 of 2",
+    "distanceMiles": 0.4,
+    "durationMinutes": 9,
+    "difficulty": "Easy",
+    "category": "nature",
+    "description": "A source-mapped Rose Park corridor. Verify access and any closures before heading out. Short source-preserving stretch 2 of 2; Stretch 2 of 2.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "Rose Park Trail — Rose Park Trail",
+      "sourceRecordId": "16",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Asphalt",
+    "use": "Bike/Ped",
+    "collection": "Rose Park Trail",
+    "sectionNumber": 2,
+    "sectionCount": 2,
+    "coordinates": [
+      [
+        38.90775841794309,
+        -77.05490254002365
+      ],
+      [
+        38.9084837802902,
+        -77.054461181754
+      ],
+      [
+        38.9086354780023,
+        -77.054702568156
+      ],
+      [
+        38.9087258000717,
+        -77.0541944722835
+      ],
+      [
+        38.9087258000717,
+        -77.0541944722835
+      ],
+      [
+        38.9084837802902,
+        -77.054461181754
+      ],
+      [
+        38.9089361254305,
+        -77.0539213311702
+      ],
+      [
+        38.9087258000717,
+        -77.0541944722835
+      ],
+      [
+        38.9093415552832,
+        -77.0538212854199
+      ],
+      [
+        38.9091430309584,
+        -77.0538275403445
+      ],
+      [
+        38.9090128835271,
+        -77.0538808221134
+      ],
+      [
+        38.9089361254305,
+        -77.0539213311702
+      ],
+      [
+        38.9095790146118,
+        -77.0525723850349
+      ],
+      [
+        38.9095195015813,
+        -77.0526430553422
+      ],
+      [
+        38.9094625763097,
+        -77.0527183739241
+      ],
+      [
+        38.9094301798096,
+        -77.0527538188595
+      ],
+      [
+        38.909321887606,
+        -77.0530526071306
+      ],
+      [
+        38.9091949556035,
+        -77.0533727888677
+      ],
+      [
+        38.9091064312583,
+        -77.0536054547561
+      ],
+      [
+        38.9089361254305,
+        -77.0539213311702
+      ]
+    ]
+  },
+  {
+    "id": "dc-national-mall-tidal-basin-section-1",
+    "city": "dc",
+    "title": "National Mall: Tidal Basin · Stretch 1 of 1",
+    "distanceMiles": 0.2,
+    "durationMinutes": 3,
+    "difficulty": "Easy",
+    "category": "history",
+    "description": "A source-mapped Tidal Basin loop. Verify access and any closures before heading out. Short source-preserving stretch 1 of 1; Stretch 1 of 1.",
+    "sourceName": "DDOT Bike Trails (DC) GIS",
+    "sourceUrl": "https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15",
+    "geometryStatus": "validated",
+    "geometryProvenance": {
+      "type": "official-gis",
+      "featureName": "National Mall Trails — Tidal Basin",
+      "sourceRecordId": "1",
+      "retrievedAt": "2026-08-20",
+      "method": "equal-distance source-feature section"
+    },
+    "maintenance": "NPS",
+    "surface": "Other",
+    "use": null,
+    "collection": "National Mall: Tidal Basin",
+    "sectionNumber": 1,
+    "sectionCount": 1,
+    "coordinates": [
+      [
+        38.8819383031561,
+        -77.0339550727629
+      ],
+      [
+        38.8820214773539,
+        -77.0338753250597
+      ],
+      [
+        38.8821254469459,
+        -77.0337689900674
+      ],
+      [
+        38.8822316282296,
+        -77.0336493498208
+      ],
+      [
+        38.8824246614128,
+        -77.0334405334029
+      ],
+      [
+        38.8825582955914,
+        -77.0333076554126
+      ],
+      [
+        38.8827364616769,
+        -77.0331747976308
+      ],
+      [
+        38.8829740153256,
+        -77.0330039845845
+      ],
+      [
+        38.8830779341909,
+        -77.0329660481908
+      ],
+      [
+        38.8831685369337,
+        -77.0329405691913
+      ],
+      [
+        38.8835127992043,
+        -77.0329773113273
+      ],
+      [
+        38.8837627442786,
+        -77.0330881749283
+      ],
+      [
+        38.8839279186914,
+        -77.033185754642
       ]
     ]
   }

@@ -69,6 +69,23 @@ export function routeById(routeId) {
   return routesForCity(state.activeCity).find((route) => route.id === routeId) || null;
 }
 
+export function compactRouteCollections(routes) {
+  const groups = new Map();
+  for (const route of routes) {
+    const key = route.collection || route.id;
+    if (!groups.has(key)) groups.set(key, { title: route.collection || null, routes: [] });
+    groups.get(key).routes.push(route);
+  }
+  return [...groups.values()];
+}
+
+function renderCompactCollection(collection) {
+  const sections = [...collection.routes].sort((a, b) => (a.sectionNumber || 0) - (b.sectionNumber || 0));
+  const minutes = Math.max(...sections.map((route) => route.durationMinutes || 0));
+  const miles = Math.max(...sections.map((route) => route.distanceMiles || 0));
+  return `<details class="route-collection"><summary><span><strong>${escapeHtml(collection.title)}</strong><small>${sections.length} short stretches · up to ${miles.toFixed(1)} mi · about ${minutes} min each</small></span><b aria-hidden="true">⌄</b></summary><p>Pick one stretch—there is no need to walk the whole corridor.</p><div class="route-section-list">${sections.map((route) => `<button class="route-section" type="button" data-curated-route="${escapeHtml(route.id)}"><span><strong>${escapeHtml(route.title.replace(/^.*?·\s*/, ''))}</strong><small>${route.distanceMiles.toFixed(1)} mi · about ${route.durationMinutes} min</small></span><b>View</b></button>`).join('')}</div></details>`;
+}
+
 export function renderCuratedRoutes() {
   const container = document.getElementById('curatedRoutesList');
   if (!container) return;
@@ -79,7 +96,9 @@ export function renderCuratedRoutes() {
     return;
   }
 
-  container.innerHTML = routes.map((route) => {
+  container.innerHTML = compactRouteCollections(routes).map((collection) => {
+    if (collection.title && collection.routes.length > 1) return renderCompactCollection(collection);
+    const [route] = collection.routes;
     if (route.isJourney) {
       const chaptersHtml = route.chapters.map((ch, i) => {
         const chapterMiles = ch.distanceMiles ?? ch.distance_miles ?? 0;

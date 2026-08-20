@@ -10,17 +10,23 @@ import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const output = path.join(root, 'data', 'dc-official-trails.js');
 const layer = 'https://services.arcgis.com/neT9SoYxizqTHZPH/ArcGIS/rest/services/MBT_Map_Draft_WFL1/FeatureServer/15/query';
-const records = [{
-  id: 'dc-anacostia-river-trail-east-bank',
-  objectId: 55,
-  title: 'Anacostia River Trail: East Bank',
-  // These are orientation labels, not invented trail names. The city GIS
-  // publishes the corridor as one feature, so a walker gets manageable
-  // source-preserving sections instead of one overwhelming eight-mile card.
-  sectionLabels: ['Fort Dupont edge', 'Fairlawn bend', 'Anacostia Recreation', 'Historic Anacostia', 'Poplar Point', '11th Street Bridge', 'Navy Yard approach', 'Yards Park edge'],
-  description: 'A source-mapped East Bank corridor. Verify access and any closures before heading out.',
-  category: 'waterfront'
-}];
+// These names and object IDs come from DDOT's public bike-trails layer. Long
+// corridors are split from their official geometry into modest walk choices;
+// their collection is rendered as one compact card in the companion.
+const records = [
+  { id: 'dc-anacostia-river-trail-east-bank', objectId: 55, title: 'Anacostia River Trail: East Bank', sectionLabels: ['Fort Dupont edge', 'Fairlawn bend', 'Anacostia Recreation', 'Historic Anacostia', 'Poplar Point', '11th Street Bridge', 'Navy Yard approach', 'Yards Park edge'], description: 'A source-mapped East Bank corridor. Verify access and any closures before heading out.', category: 'waterfront' },
+  { id: 'dc-rock-creek-park-trail', objectId: 3, title: 'Rock Creek Park Trail', description: 'A source-mapped Rock Creek Park corridor. Verify access and any closures before heading out.', category: 'nature' },
+  { id: 'dc-c-and-o-canal-towpath', objectId: 12, title: 'C&O Canal Towpath', description: 'A source-mapped C&O Canal corridor. Verify access and any closures before heading out.', category: 'waterfront' },
+  { id: 'dc-capital-crescent-trail', objectId: 2, title: 'Capital Crescent Trail', description: 'A source-mapped Capital Crescent corridor. Verify access and any closures before heading out.', category: 'nature' },
+  { id: 'dc-metropolitan-branch-trail', objectId: 32, title: 'Metropolitan Branch Trail', description: 'A source-mapped Metropolitan Branch corridor. Verify access and any closures before heading out.', category: 'community' },
+  { id: 'dc-fort-circle-trail', objectId: 15, title: 'Fort Circle Trail', description: 'A source-mapped Fort Circle corridor. Verify access and any closures before heading out.', category: 'history' },
+  { id: 'dc-marvin-gaye-trail', objectId: 104, title: 'Marvin Gaye Trail', description: 'A source-mapped Marvin Gaye corridor. Verify access and any closures before heading out.', category: 'community' },
+  { id: 'dc-suitland-parkway-trail', objectId: 4, title: 'Suitland Parkway Trail', description: 'A source-mapped Suitland Parkway corridor. Verify access and any closures before heading out.', category: 'nature' },
+  { id: 'dc-georgetown-waterfront-trail', objectId: 14, title: 'Georgetown Waterfront Trail', description: 'A source-mapped Georgetown waterfront corridor. Verify access and any closures before heading out.', category: 'waterfront' },
+  { id: 'dc-klingle-valley-trail', objectId: 113, title: 'Klingle Valley Trail', description: 'A source-mapped Klingle Valley corridor. Verify access and any closures before heading out.', category: 'nature' },
+  { id: 'dc-rose-park-trail', objectId: 16, title: 'Rose Park Trail', description: 'A source-mapped Rose Park corridor. Verify access and any closures before heading out.', category: 'nature' },
+  { id: 'dc-national-mall-tidal-basin', objectId: 1, title: 'National Mall: Tidal Basin', description: 'A source-mapped Tidal Basin loop. Verify access and any closures before heading out.', category: 'history' }
+];
 
 const EARTH_RADIUS_METERS = 6371008.8;
 function distanceMeters([lat1, lng1], [lat2, lng2]) {
@@ -74,14 +80,16 @@ async function fetchRecord(record) {
   if (!coordinates.every(([lat, lng]) => Number.isFinite(lat) && Number.isFinite(lng) && Math.abs(lat) <= 90 && Math.abs(lng) <= 180)) throw new Error(`DC GIS returned invalid WGS84 coordinates for ${record.id}`);
   const meters = Number(feature.attributes.SEGMENT_LENGTH);
   if (!Number.isFinite(meters) || meters <= 0) throw new Error(`DC GIS returned no usable length for ${record.id}`);
-  const sections = splitIntoWalkSections(coordinates, record.sectionLabels.length);
+  const sectionCount = record.sectionLabels?.length || Math.max(1, Math.ceil(meters / 1600));
+  const sectionLabels = record.sectionLabels || Array.from({ length: sectionCount }, (_, index) => `Stretch ${index + 1} of ${sectionCount}`);
+  const sections = splitIntoWalkSections(coordinates, sectionCount);
   return sections.map((section, index) => {
     const sectionMeters = section.slice(1).reduce((sum, point, pointIndex) => sum + distanceMeters(section[pointIndex], point), 0);
     return {
-      id: `${record.id}-section-${index + 1}`, city: 'dc', title: `Anacostia River Trail · ${record.sectionLabels[index]}`,
+      id: `${record.id}-section-${index + 1}`, city: 'dc', title: `${record.title} · ${sectionLabels[index]}`,
       distanceMiles: Number((sectionMeters / 1609.344).toFixed(1)),
       durationMinutes: Math.round(sectionMeters / 80), difficulty: 'Easy', category: record.category,
-      description: `${record.description} Short source-preserving stretch ${index + 1} of ${sections.length}; near ${record.sectionLabels[index]}.`,
+      description: `${record.description} Short source-preserving stretch ${index + 1} of ${sections.length}; ${sectionLabels[index]}.`,
       sourceName: 'DDOT Bike Trails (DC) GIS', sourceUrl: layer.replace('/query', ''),
       geometryStatus: 'validated',
       geometryProvenance: { type: 'official-gis', featureName: `${feature.attributes.NAME.trim()} — ${feature.attributes.TRAIL_SEGMENT}`, sourceRecordId: String(feature.attributes.OBJECTID), retrievedAt: new Date().toISOString().slice(0, 10), method: 'equal-distance source-feature section' },

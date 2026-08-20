@@ -18,6 +18,8 @@
     "verify:dc-sources": "node tools/dc-sources/fetch-all.mjs --verify-only",
     "fetch:dc-sources": "node tools/dc-sources/fetch-all.mjs",
     "refresh:dc-official-trails": "node tools/refresh-dc-official-trails.mjs",
+    "refresh:appalachian-lab": "node tools/refresh-appalachian-corridor-lab.mjs",
+    "check:appalachian-lab": "node tools/region-build.mjs appalachian-corridor-lab --dry-run",
     "build:dc-pois": "node tools/build-dc-pois.mjs",
     "validate:dc-pois": "node tools/validate-dc-pois.mjs",
     "inspect:dc-pois": "node tools/inspect-dc-pois.mjs",
@@ -42,7 +44,7 @@
     "test:producer-poi-display": "node tests/producer-poi-display.test.mjs",
     "test:regional-filters": "node tests/regional-poi-filtering.test.mjs",
     "test:regions": "node tests/boundary-resolver.test.mjs && node tests/region-runtime.test.mjs",
-    "test:region-packages": "node tests/region-package-output.test.mjs norfolk new-york-city philadelphia richmond washington-dc keystone-colorado prince-georges-county",
+    "test:region-packages": "node tests/region-package-output.test.mjs",
     "test:civic-ui": "node tests/civic-ui.test.mjs"
   },
   "repository": {
