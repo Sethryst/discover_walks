@@ -335,6 +335,10 @@ export async function collectKpiInventory() {
     closurePolicy: 'authenticated solo operator · immediate hide · 90 days · self-review',
     retentionVersions: 3
   };
+  const federalPoiProgress = await readJson(resolve(motherbirdRoot, 'data', 'federal-region-poi-progress.json'));
+  const federalProgressRegions = Object.keys(federalPoiProgress?.regions || {}).length;
+  const federalTaggedPois = new Set(Object.values(federalPoiProgress?.regions || {}).flatMap((region) => region?.poiIds || [])).size;
+  const federalProgressReady = federalPoiProgress?.schemaVersion === 1 && federalPoiProgress?.artifactType === 'federal-region-poi-progress' && federalTaggedPois > 0;
 
   const productCapabilities = [
     { capability: 'Discover', status: 'Shipped', evidence: `${DISCOVER_GROUPS.length} experience categories · relevant view capped at 24 places`, frontend: 'Map + Discover browser', next: 'Add distance-aware ranking and saved collections' },
@@ -342,6 +346,7 @@ export async function collectKpiInventory() {
     { capability: 'Journal', status: 'Shipped', evidence: 'Personal walks · observations · reflections · remembered places', frontend: 'Journal mode + local IndexedDB', next: 'Add collections and subject references without syncing private content' },
     { capability: 'Regional source backlog', status: 'Automated', evidence: `${Number(backlog?.summary?.candidateCount || 0)} candidates across ${Number(backlog?.summary?.regionCount || 0)} regions`, frontend: 'KPI operator queue', next: 'Promote passing official structured sources through review gates' },
     { capability: 'Pages inventory', status: 'Automated', evidence: 'Rebuilt from CITIES, artifacts, configs, endpoints, workflows, and UI contracts', frontend: '/kpi/', next: 'Add live endpoint health and freshness history' },
+    { capability: 'Federal region progress', status: federalProgressReady ? 'Shipped · local-first' : 'Awaiting tagged POIs', evidence: federalProgressReady ? `${federalTaggedPois.toLocaleString()} tagged POIs · ${federalProgressRegions} federal regions · ${federalPoiProgress.congress}th Congress` : 'Canonical POI tag index is missing or empty', frontend: 'Map → Boundaries region readout', next: 'Re-run federal POI tagging after a POI refresh or Congress rollover' },
     { capability: 'DC spatial solo pilot', status: spatialSync.deploymentReady ? 'Package ready · transport off' : 'Identity blocked', evidence: `${spatialSync.poiCount.toLocaleString()} POIs · ${spatialSync.boundaryCount} boundaries · ${spatialSync.poiVersion || 'missing POI version'}`, frontend: 'Authenticated DC map closure control', next: 'Enable county transport only after a separately approved tenant deployment' },
     { capability: 'Google sign-in', status: 'Code ready', evidence: 'Supabase OAuth redirect contains no password or client secret', frontend: 'Journal → Go Online', next: 'Enable Google provider in Supabase and Google Cloud' }
   ];
@@ -379,6 +384,8 @@ export async function collectKpiInventory() {
       experienceModes: 3,
       discoverCategories: DISCOVER_GROUPS.length,
       fieldGuideSubjects: FIELD_GUIDE_SUBJECTS.length,
+      federalTaggedPois,
+      federalProgressRegions,
       workflowCount: automationJobs.length,
       scheduledWorkflowCount: automationJobs.filter((job) => job.scheduled).length,
       launchReadyRegions: cities.filter((city) => city.experience.launchStatus === 'Launch-ready').length,
