@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { access, cp, mkdir, rename, rm } from 'node:fs/promises';
+import { access, cp, mkdir, readFile, rename, rm } from 'node:fs/promises';
 import { constants } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -16,8 +16,18 @@ export async function exportFederalRegionRuntime({
   const stagingRoot = `${outputRoot}.staging`;
   const previousRoot = `${outputRoot}.previous`;
   assertSafe(outputRoot); assertSafe(stagingRoot); assertSafe(previousRoot);
-  // POI progress can change while immutable boundary shards do not. Always
-  // publish through staging so the browser never receives a stale index.
+  // Boundary shards and progress may update independently. Skip a no-op
+  // export, which also avoids an unnecessary Windows/OneDrive directory swap.
+  try {
+    const [sourceManifest, publishedManifest, sourceProgress, publishedProgress] = await Promise.all([
+      readFile(path.join(sourceRoot, 'manifest.json')), readFile(path.join(outputRoot, 'manifest.json')),
+      readFile(poiProgressFile), readFile(path.join(outputRoot, 'poi-progress.json'))
+    ]);
+    if (sourceManifest.equals(publishedManifest) && sourceProgress.equals(publishedProgress)) {
+      await Promise.all([rm(stagingRoot, { recursive: true, force: true }), rm(previousRoot, { recursive: true, force: true })]);
+      return outputRoot;
+    }
+  } catch (error) { if (error.code !== 'ENOENT') throw error; }
   await rm(stagingRoot, { recursive: true, force: true });
   await mkdir(stagingRoot, { recursive: true });
   await Promise.all([

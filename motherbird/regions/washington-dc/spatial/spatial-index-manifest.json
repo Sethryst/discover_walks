@@ -6,7 +6,7 @@
     "poiVersion": "dc-pois-2026-08-20",
     "boundaryVintage": "dc-municipal-boundaries-2026-08-20"
   },
-  "generatedAt": "2026-08-20T20:08:46.710Z",
+  "generatedAt": "2026-08-21T18:38:54.617Z",
   "provider": {
     "name": "flatbush",
     "libraryVersion": "4.6.2",
@@ -22,11 +22,11 @@
   "inputs": {
     "config": {
       "file": "regions/washington-dc/spatial-index.json",
-      "checksum": "sha256:3bd00b1850e7ff9b3643abf200ee244d8f9729ce7aff600409e9d1e99505e8f6"
+      "checksum": "sha256:bd405145af7ba69c9a22ea32b716e37cd1c447b7c002ff6b33c27df9dc486389"
     },
     "poi": {
       "file": "regions/washington-dc/washington-dc-poi.json",
-      "checksum": "sha256:97797935e249f6d41600b5dbfa38095545945544c57eb090fa67562ec35c73da",
+      "checksum": "sha256:032c29e17031c57bbf859b164d60b776d1f0a68a8e8c0a8d9f1bf7656894fc9b",
       "featureCount": 1436
     },
     "boundaries": [
@@ -40,19 +40,19 @@
         "layer": "wards",
         "file": "regions/washington-dc/geography/wards.geojson",
         "featureCount": 8,
-        "checksum": "sha256:2fbc150dc4bfb456bc8fba6af12612011a8e7d39a4bab4896fbf9fed964876cc"
+        "checksum": "sha256:06b5f33319586e23507b6d4fb20e9aa0bd4fc75150f0dde6a917bdde0532b8e1"
       },
       {
         "layer": "ancs",
         "file": "regions/washington-dc/geography/ancs.geojson",
         "featureCount": 40,
-        "checksum": "sha256:8c7e93d7398cc8e880229522f8d270206f4c93c87c917bf1a9189bb94715db33"
+        "checksum": "sha256:f3bc161e0b2a76f767a1b1dc3dc4129243c5ca671dfbf34d569eb4d1169c2b2a"
       },
       {
         "layer": "police-districts",
         "file": "regions/washington-dc/geography/police-districts.geojson",
         "featureCount": 7,
-        "checksum": "sha256:ad9bc47e060f3372bbeecff0f3d0ef3ba95afb507474e0b5f933b230a7f9f8c7"
+        "checksum": "sha256:c81c234d1c0513d992590996e5c6cc1c4e4f41be555d326142fbc85186cc3dd7"
       }
     ]
   },
@@ -73,5 +73,5 @@
       "idsChecksum": "sha256:976d5950a41609b9e998aaa307f1e3cb6daf862d1795385d3a119ab13a95827b"
     }
   },
-  "replay": "node tools/build-spatial-index.mjs washington-dc --generated-at 2026-08-20T20:08:46.710Z"
+  "replay": "node tools/build-spatial-index.mjs washington-dc --generated-at 2026-08-21T18:38:54.617Z"
 }
