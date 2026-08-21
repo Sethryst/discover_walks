@@ -82,6 +82,7 @@
         <h2 class="explore-heading">What are you looking at?</h2>
         <p class="profile-section-intro">A source-backed companion for things you may encounter here—not another directory of places.</p>
         <div class="guide-summary"><strong id="fieldGuideCount">Things to notice near here</strong><span id="fieldGuideSeason">Loading this season’s field note…</span></div>
+        <div class="poi-chips" id="fieldGuideFilters" aria-label="Field Guide categories"></div>
         <section class="guide-list" id="fieldGuideList" aria-live="polite"></section>
       </div>
 
@@ -102,6 +103,7 @@
         <section id="explorePlaces" class="explore-panel hidden" role="tabpanel">
           <p class="explore-category-intro">Choose an experience, then see a small selection for this moment.</p>
           <div class="poi-chips explore-place-filters" id="explorePlaceFilters" aria-label="Place categories"></div>
+          <label class="verification-filter"><input id="verifiedPlacesOnly" type="checkbox" /> Show verified places only</label>
           <div class="explore-list" id="explorePlacesList"></div>
           <button class="secondary-button wide-button" id="showPlacesOnMapButton" type="button">Show filtered places on map</button>
         </section>

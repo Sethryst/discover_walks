@@ -151,7 +151,7 @@ export class FederalBoundaryOverlay {
   }
 
   createControl() {
-    const control = this.L.control({ position: 'bottomleft' });
+    const control = this.L.control({ position: 'topleft' });
     control.onAdd = () => {
       const container = this.L.DomUtil.create('section', 'leaflet-control federal-boundary-control');
       container.setAttribute('aria-label', 'Federal boundary layers');

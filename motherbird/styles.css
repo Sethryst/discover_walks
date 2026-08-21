@@ -48,6 +48,7 @@ h2 { font-family: Georgia, "Times New Roman", serif; font-size: 22px; letter-spa
 .map-status.locating .status-dot { background: var(--coral); box-shadow: 0 0 0 5px rgba(221, 118, 92, .18); }
 .locate-button { background: var(--paper); bottom: 14px; box-shadow: 0 3px 12px rgba(23, 60, 53, .17); color: var(--pine); font-size: 26px; height: 43px; position: absolute; right: 13px; width: 43px; z-index: 500; }
 .filters-button { align-items: center; background: var(--paper); border: 0; border-radius: 99px; box-shadow: 0 3px 12px rgba(23, 60, 53, .17); color: var(--pine); display: inline-flex; font-size: 12px; font-weight: 800; gap: 6px; left: 13px; padding: 9px 13px; position: absolute; top: 58px; z-index: 500; }
+.verification-filter { align-items: center; color: var(--muted); display: flex; font-size: 13px; gap: 8px; margin: 12px 0; }
 .filters-badge { align-items: center; background: var(--coral); border-radius: 50%; color: #fff; display: inline-flex; font-size: 10px; height: 18px; justify-content: center; min-width: 18px; padding: 0 4px; }
 .filters-sheet-heading { align-items: end; display: flex; justify-content: space-between; }
 .filters-sheet-heading h2 { margin-bottom: 0; }
@@ -74,6 +75,7 @@ h2 { font-family: Georgia, "Times New Roman", serif; font-size: 22px; letter-spa
 .key-history { color: var(--coral); font-size: 14px; }.key-wildlife { color: var(--moss); font-size: 14px; margin-left: 5px; }
 .federal-boundaries-ready .map-key { left: auto; right: 64px; }
 .federal-boundary-control { background: transparent; border: 0; box-shadow: none; display: grid; gap: 5px; margin-bottom: 38px !important; max-width: min(230px, calc(100vw - 42px)); }
+.leaflet-top .federal-boundary-control { margin-top: 12px !important; }
 .federal-region-status { background: rgba(255, 253, 250, .93); border: 1px solid rgba(69, 88, 75, .18); border-radius: 12px; box-shadow: 0 3px 12px rgba(23, 60, 53, .12); color: var(--pine); max-width: 220px; padding: 6px 10px; }
 .federal-current-region { font-family: Georgia, "Times New Roman", serif; font-size: 11px; font-weight: 700; line-height: 1.2; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .federal-region-progress { color: #52645a; font-size: 10px; line-height: 1.25; margin-top: 2px; }

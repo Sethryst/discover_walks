@@ -90,7 +90,7 @@ export function renderCityPois() {
       const hours = poi.hours ? `Hours: ${typeof poi.hours === 'string' ? poi.hours : JSON.stringify(poi.hours)}` : null;
       const status = poi.status ? `Status: ${poi.status}` : null;
       const eventTiming = poi.startsAt || poi.endsAt ? `Event: ${poi.startsAt || 'date TBA'}${poi.endsAt ? ` – ${poi.endsAt}` : ''}` : null;
-      const details = [poi.description, historyText(poi), poi.address, status, hours, eventTiming, relevance, seasonal, poi.review?.flags?.length ? 'Needs review' : null, tagLabels ? `Tags: ${tagLabels}` : null].filter(Boolean).map(escapeHtml).join('<br>');
+      const details = [displayPoiDescription(poi), historyText(poi), poi.address, status, hours, eventTiming, relevance, seasonal, poi.review?.flags?.length ? 'Needs review' : null, tagLabels ? `Tags: ${tagLabels}` : null].filter(Boolean).map(escapeHtml).join('<br>');
       const links = [poi.link, poi.website, sourceUrl(poi), historyUrl(poi)].filter(Boolean).filter((url, index, all) => all.indexOf(url) === index).map((url, index) => `<a href="${escapeHtml(url)}" target="_blank" rel="noreferrer">${index === 0 && (poi.link || poi.website) ? 'Website' : 'Source'} ↗</a>`).join(' · ');
       const closeControl = canReportPoiClosure() ? `<br><button type="button" class="text-button" data-close-poi="${escapeHtml(poi.id)}">Hide as closed for 90 days</button>` : '';
       const visitControl = `<br><button type="button" class="text-button" data-visit-poi="${escapeHtml(poi.id)}"${isPoiVisited(poi) ? ' disabled' : ''}>${isPoiVisited(poi) ? 'Visited' : 'Mark visited'}</button>`;
@@ -195,6 +195,7 @@ export function migratePoi(poi, cityId) {
   return { ...poi, city: cityId, tags: normalizePoiTags(poi), radius: poi.radius || config?.defaultGeofenceRadiusMeters || 50 };
 }
 export function displayPoiName(poi) {
+  if (/^\d+$/.test(String(poi?.name || '')) && /^HeritageTrailPt_/i.test(String(poi?.sourceId || ''))) return `DC Neighborhood Heritage Trail sign ${poi.name}`;
   // USGS monitoring names are sometimes legal-land descriptions such as
   // "03N 02E 10BBCC1". They identify a station but are not useful human
   // place names, so present the record's real purpose instead.
@@ -202,6 +203,10 @@ export function displayPoiName(poi) {
   if (!isUsgsWater) return poi?.name || 'Unnamed place';
   return `USGS water monitoring location${poi.type ? ` · ${poi.type}` : ''}${poi.agency ? ` · ${poi.agency}` : ''}`;
 }
+
+export function displayPoiDescription(poi) { return /^https:\/\/www\.culturaltourismdc\.org\/portal\/dc-neighborhood-heritage-trails\/?$/i.test(String(poi?.description || '')) ? 'DC Neighborhood Heritage Trail sign location, sourced from DC GIS.' : poi?.description; }
+
+export function isVerifiedPoi(poi) { return poi?.review?.validationStatus === 'valid' || poi?.unverified === false || (Array.isArray(poi?.source) ? poi.source : [poi?.source]).some((source) => typeof source === 'object' && source?.url); }
 export function isWaterMonitoringAnchor(poi) {
   return poi?.category === 'water' && (poi.monitoringLocationId || (Array.isArray(poi.source) && poi.source.some((source) => /USGS water monitoring/i.test(source?.name || ''))));
 }

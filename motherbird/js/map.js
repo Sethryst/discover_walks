@@ -14,7 +14,6 @@ export function initMap() {
   // location—not the regional centroid—and keep enough zoom for a walk.
   const initialZoom = state.currentPosition ? Math.max(active.zoom, 14) : active.zoom;
   state.map = L.map('map', { zoomControl: false, attributionControl: true }).setView([initialPosition.lat, initialPosition.lng], initialZoom);
-  L.control.zoom({ position: 'bottomright' }).addTo(state.map);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap contributors', crossOrigin: true }).addTo(state.map);
   state.historyRadiusLayer = L.layerGroup().addTo(state.map);
   const clusterOptions = (badgeClass) => ({

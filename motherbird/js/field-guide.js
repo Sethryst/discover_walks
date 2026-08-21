@@ -2,6 +2,8 @@ import { state } from './state.js';
 import { el, escapeHtml } from './utils.js';
 import { poiTags } from './poi.js';
 
+let activeGuideGroup = '';
+
 // Educational subjects are separate from POIs. A future reviewed Gremlin guide
 // package can extend this contract with regional and seasonal subjects.
 export const FIELD_GUIDE_SUBJECTS = [
@@ -32,10 +34,15 @@ function seasonNote(date = new Date()) {
 export function renderFieldGuide() {
   const target = el('fieldGuideList');
   if (!target) return;
-  const subjects = FIELD_GUIDE_SUBJECTS.map((subject) => ({ ...subject, relevance: relevance(subject) })).filter((subject) => subject.relevance > 0).sort((a, b) => b.relevance - a.relevance || a.name.localeCompare(b.name));
+  const allSubjects = FIELD_GUIDE_SUBJECTS.map((subject) => ({ ...subject, relevance: relevance(subject) })).filter((subject) => subject.relevance > 0).sort((a, b) => b.relevance - a.relevance || a.name.localeCompare(b.name));
+  const subjects = allSubjects.filter((subject) => !activeGuideGroup || subject.group === activeGuideGroup);
+  const filterTarget = el('fieldGuideFilters');
+  const groups = [...new Set(allSubjects.map((subject) => subject.group))];
+  if (filterTarget) filterTarget.innerHTML = groups.map((group) => `<button type="button" class="poi-chip ${activeGuideGroup === group ? 'active' : ''}" aria-pressed="${activeGuideGroup === group}" data-guide-group="${escapeHtml(group)}">${escapeHtml(group)}</button>`).join('');
   el('fieldGuideCount').textContent = subjects.length ? 'Things to notice near here' : 'Your local guide is taking shape';
   el('fieldGuideSeason').textContent = seasonNote();
-  const groups = [...new Set(subjects.map((subject) => subject.group))];
-  const available = subjects.length ? `<p class="guide-availability"><strong>In this guide:</strong> ${groups.map(escapeHtml).join(' · ')}<span>Ordered for this region${state.settings?.favoriteCategories?.length ? ' and what you chose to notice' : ''}.</span></p>` : '';
+  const available = subjects.length ? `<p class="guide-availability"><strong>In this guide:</strong> ${[...new Set(subjects.map((subject) => subject.group))].map(escapeHtml).join(' · ')}<span>Ordered for this region${state.settings?.favoriteCategories?.length ? ' and what you chose to notice' : ''}.</span></p>` : '';
   target.innerHTML = subjects.length ? available + subjects.map((subject) => `<article class="guide-card"><span class="guide-group">${escapeHtml(subject.group)}</span><h3>${escapeHtml(subject.name)}</h3><p>${escapeHtml(subject.cue)}</p><a href="${escapeHtml(subject.sourceUrl)}" target="_blank" rel="noreferrer">Learn with ${escapeHtml(subject.sourceName)} ↗</a></article>`).join('') : '<div class="empty-state"><strong>Your local guide is taking shape.</strong>Explore the map now; educational subjects will appear when a reviewed guide package matches this region.</div>';
 }
+
+export function initFieldGuideFilters() { el('fieldGuideFilters')?.addEventListener('click', (event) => { const button = event.target.closest('[data-guide-group]'); if (!button) return; activeGuideGroup = activeGuideGroup === button.dataset.guideGroup ? '' : button.dataset.guideGroup; renderFieldGuide(); }); }
