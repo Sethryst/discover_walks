@@ -5,7 +5,7 @@ export class FederalRegionLoader {
   constructor(baseUrl, { fetchImpl = globalThis.fetch, cryptoImpl = globalThis.crypto } = {}) {
     if (typeof fetchImpl !== 'function') throw new Error('Federal region loading requires fetch.');
     this.baseUrl = String(baseUrl).replace(/\/$/, '');
-    this.fetchImpl = fetchImpl;
+    this.fetchImpl = fetchImpl.bind(globalThis);
     this.cryptoImpl = cryptoImpl;
     this.cache = new Map();
   }

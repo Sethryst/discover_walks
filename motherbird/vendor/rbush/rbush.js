@@ -1,4 +1,4 @@
-import quickselect from 'quickselect';
+import quickselect from './quickselect.js';
 
 export default class RBush {
     constructor(maxEntries = 9) {

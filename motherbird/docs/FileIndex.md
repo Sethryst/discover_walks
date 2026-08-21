@@ -8,7 +8,10 @@ This is an intentionally compact index of files an AI is likely to need. Use `rg
 | --- | --- | --- |
 | `tools/build-federal-regions.mjs` | Federal Core national artifacts, Flatbush | Streams nationwide sources into canonical and zoom-sharded display/index artifacts. |
 | `js/federal-region-loader.js` | Flatbush package provider, Web Crypto | Verifies and loads only federal shards required by a viewport. |
+| `js/federal-boundaries.js` | Federal region loader, Leaflet, map state | Renders zoom-aware pastel federal overlays, layer controls, and the current-region label. |
+| `tools/export-federal-region-runtime.mjs` | Nationwide derived artifacts | Publishes display/index shards without canonical geometry for the browser build. |
 | `docs/NationwideFederalRegions.md` | Federal Core contract | Identity, retention, zoom, acquisition, and update runbook. |
+| `docs/FederalBoundaryOverlay.md` | Federal runtime contract | Rendering, controls, priority, performance, and publication behavior. |
 | `index.html` | CDN Leaflet/Supabase, local CSS and app entry | Defines every DOM target and application shell. |
 | `app.js` | `loader.js` | Browser entry point. |
 | `js/loader.js` | storage, city, map, events, archive, online, region UI | Initializes all runtime subsystems. |

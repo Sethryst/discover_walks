@@ -29,6 +29,7 @@ export const state = {
   fieldEditionEntryLayer: null,
   fieldEditionMap: null,
   fieldEditionProtocol: null,
+  federalBoundaryOverlay: null,
 
   // walking session
   activeWalk: null,

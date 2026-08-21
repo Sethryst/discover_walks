@@ -55,3 +55,5 @@ Districts use two-digit Census district codes (`00` at-large and `98` delegate/r
 6. Publish the derived directory; clients select the manifest atomically.
 
 Never silently accept a partial REST response. A fallback must paginate to declared completeness and its acquisition method must remain visible in the source manifest.
+
+The browser rendering, center-label priority, and session layer controls are documented in [FederalBoundaryOverlay.md](./FederalBoundaryOverlay.md).

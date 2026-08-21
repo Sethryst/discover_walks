@@ -72,6 +72,27 @@ h2 { font-family: Georgia, "Times New Roman", serif; font-size: 22px; letter-spa
 .trail-feature { align-items: center; background: #e7f1e8; border: 1px solid #b9d0b5; border-radius: 12px; color: var(--pine); display: flex; gap: 9px; margin: 14px 0 0; padding: 10px; text-align: left; width: 100%; }
 .map-key { background: rgba(255, 253, 250, .9); border-radius: 6px; bottom: 13px; color: var(--muted); font-size: 10px; left: 13px; padding: 6px 8px; position: absolute; z-index: 500; }
 .key-history { color: var(--coral); font-size: 14px; }.key-wildlife { color: var(--moss); font-size: 14px; margin-left: 5px; }
+.federal-boundaries-ready .map-key { left: auto; right: 64px; }
+.federal-boundary-control { background: transparent; border: 0; box-shadow: none; display: grid; gap: 5px; margin-bottom: 38px !important; max-width: min(230px, calc(100vw - 42px)); }
+.federal-current-region { background: rgba(255, 253, 250, .93); border: 1px solid rgba(69, 88, 75, .18); border-radius: 99px; box-shadow: 0 3px 12px rgba(23, 60, 53, .12); color: var(--pine); font-family: Georgia, "Times New Roman", serif; font-size: 11px; font-weight: 700; line-height: 1.2; max-width: 220px; overflow: hidden; padding: 6px 10px; text-overflow: ellipsis; white-space: nowrap; }
+.federal-boundary-disclosure { align-items: center; background: rgba(255, 253, 250, .96); border: 1px solid rgba(69, 88, 75, .18); border-radius: 99px; box-shadow: 0 3px 12px rgba(23, 60, 53, .15); color: var(--pine); display: inline-flex; font-size: 11px; font-weight: 800; gap: 6px; justify-self: start; min-height: 34px; padding: 7px 11px; }
+.federal-boundary-disclosure > span { color: #806295; font-size: 16px; line-height: 1; }
+.federal-boundary-panel { background: rgba(255, 253, 250, .97); border: 1px solid rgba(69, 88, 75, .2); border-radius: 13px; box-shadow: 0 8px 22px rgba(23, 60, 53, .18); color: var(--ink); display: grid; gap: 10px; padding: 11px; width: 218px; }
+.federal-boundary-heading { align-items: center; display: flex; justify-content: space-between; }
+.federal-boundary-heading strong { color: var(--pine); font-family: Georgia, "Times New Roman", serif; font-size: 13px; }
+.federal-boundary-heading button { align-items: center; background: #eef0e5; border: 0; border-radius: 50%; color: var(--pine); display: flex; font-size: 18px; height: 26px; justify-content: center; line-height: 1; padding: 0 0 2px; width: 26px; }
+.federal-boundary-options { display: grid; gap: 7px; }
+.federal-boundary-option { align-items: center; color: var(--pine); cursor: pointer; display: grid; font-size: 11px; font-weight: 700; gap: 7px; grid-template-columns: 16px 13px minmax(0, 1fr) auto; }
+.federal-boundary-option input { accent-color: var(--moss); height: 15px; margin: 0; padding: 0; width: 15px; }
+.federal-boundary-option i { background: var(--boundary-swatch); border: 1px solid rgba(49, 65, 56, .24); border-radius: 4px; height: 11px; width: 11px; }
+.federal-boundary-option small { color: var(--muted); font-size: 8px; font-weight: 800; }
+.federal-boundary-option--zoom-hidden { opacity: .5; }
+.federal-opacity { border-top: 1px solid var(--line); color: var(--pine); display: grid; font-size: 10px; font-weight: 800; gap: 5px; padding-top: 8px; }
+.federal-opacity > span { display: flex; justify-content: space-between; }
+.federal-opacity output { color: var(--muted); font-variant-numeric: tabular-nums; }
+.federal-opacity input { accent-color: #806295; margin: 0; padding: 0; width: 100%; }
+.federal-boundary-control--error .federal-current-region { color: #876343; }
+.map-panel:has(.neighborhood-discovery:not(.hidden)) .federal-boundary-control { margin-bottom: 105px !important; }
 .wildlife-marker { background: var(--moss); border: 3px solid #fffdf7; border-radius: 50%; box-shadow: 0 2px 8px rgba(23, 60, 53, .27); height: 18px; width: 18px; }.user-marker { background: #2476b7; border: 4px solid #fff; border-radius: 50%; box-shadow: 0 1px 7px rgba(16, 75, 120, .42); height: 18px; width: 18px; }
 .personal-observation-marker { align-items: center; background: #e4efd4; border-color: #fffdf7; display: flex; height: 28px; justify-content: center; width: 28px; }.personal-observation-marker img { height: 18px; width: 18px; }
 .poi-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }.poi-chip { background: var(--paper); border: 1px solid #d9ddd0; border-radius: 99px; color: var(--muted); font-size: 11px; font-weight: 800; padding: 7px 10px; }.poi-chip.active { background: #dfeac9; border-color: #aabe89; color: var(--pine); }.poi-marker { align-items: center; border: 2px solid #fffdf7; border-radius: 50%; box-shadow: 0 2px 7px rgba(23,60,53,.24); color: #fff; display: flex; font-size: 13px; font-weight: 900; height: 27px; justify-content: center; width: 27px; }.poi-marker.park { background: #4b7657; }.poi-marker.public_art { background: #a45c7b; }.poi-marker.recreation_center { background: #376b9b; }.poi-marker.water_access { background: #3487ab; }.poi-marker.library { background: #86613d; }.poi-marker.trail { background: #8f7135; }.poi-marker.community_garden { background: #5a9e4f; }.poi-marker.coffee { background: #8a5a3b; }.poi-marker.wifi { background: #d48e28; }.trail-feature strong, .trail-feature small { display: block; }.trail-feature small { color: var(--muted); font-size: 10px; margin-top: 2px; }

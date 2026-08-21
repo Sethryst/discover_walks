@@ -19,7 +19,7 @@ export async function loadNeighborhoodsForCity(cityId = state.activeCity) {
   el('neighborhoodDiscoveryPanel')?.classList.add('hidden');
   const file = CITIES[cityId]?.neighborhoodFile;
   const spatialIndexPath = CITIES[cityId]?.spatialIndexPath || `./regions/${cityId}/spatial`;
-  if (!file || !state.map) { await upgradeSpatialDataFromPackage(cityId, state.cityPois[cityId] || [], null, spatialIndexPath); return null; }
+  if (!file || !state.map) { await upgradeSpatialDataFromPackage(cityId, state.cityPois[cityId] || [], null, spatialIndexPath); notifyNeighborhoodUpdate(); return null; }
   try {
     const response = await fetch(file);
     if (!response.ok) throw new Error(`Boundary package returned ${response.status}`);
@@ -33,13 +33,16 @@ export async function loadNeighborhoodsForCity(cityId = state.activeCity) {
     const spatial = await upgradeSpatialDataFromPackage(cityId, state.cityPois[cityId] || [], data, spatialIndexPath);
     if (spatial.fallbackReason && !/returned 404/.test(spatial.fallbackReason)) console.warn('Static spatial package unavailable:', spatial.fallbackReason);
     updateDiscoveryPanel();
+    notifyNeighborhoodUpdate();
     return data;
   } catch (error) {
     console.warn('Neighborhood package unavailable:', error);
     reindexSpatialData(cityId, state.cityPois[cityId] || [], null);
+    notifyNeighborhoodUpdate();
     return null;
   }
 }
+function notifyNeighborhoodUpdate() { globalThis.window?.dispatchEvent(new CustomEvent('neighborhood-boundaries-updated')); }
 
 export async function markNeighborhoodDiscovered(neighborhoodId) {
   if (!neighborhoodId || state.discoveredNeighborhoodIds.has(neighborhoodId)) return;
