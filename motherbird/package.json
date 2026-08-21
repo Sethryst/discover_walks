@@ -30,6 +30,7 @@
     "build:federal-core": "node tools/build-federal-core.mjs",
     "build:federal-core:national": "node tools/build-federal-core.mjs --national",
     "build:federal-regions": "node tools/build-federal-regions.mjs",
+    "tag:federal-pois": "node tools/tag-pois-with-federal-regions.mjs",
     "publish:federal-regions": "node tools/export-federal-region-runtime.mjs",
     "build:spatial-index": "node tools/build-spatial-index.mjs",
     "check:spatial-sync": "node tools/check-spatial-sync-readiness.mjs",

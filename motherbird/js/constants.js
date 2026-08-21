@@ -130,7 +130,7 @@
 };
                   export const DEFAULT_PROFILE = {
   id: 'local-user', totalPoints: 0, walksCompleted: 0, milesTotal: 0,
-  sitesDiscovered: {}, observationsLogged: 0, streakDays: 0, lastWalkDate: null
+  sitesDiscovered: {}, visitedPoiIds: [], observationsLogged: 0, streakDays: 0, lastWalkDate: null
 };
                   export const GEOFENCE_CATEGORIES = [
   ['library', '📚 Libraries'], ['park', '🌳 Parks'], ['public_art', '🎨 Public Art'],

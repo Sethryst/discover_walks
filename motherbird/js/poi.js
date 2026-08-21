@@ -5,6 +5,7 @@ import { distanceMeters } from './geo.js';
 import { openSheet } from './ui.js';
 import db from './storage.js';
 import { canReportPoiClosure, isLocallyClosedPoi, reportPoiClosed } from './spatial-closure-reporting.js';
+import { isPoiVisited, markPoiVisited } from './poi-visit-tracking.js';
 
 export function renderPoiTagFilters() {
   const pois = state.cityPois[state.activeCity] || [];
@@ -92,10 +93,11 @@ export function renderCityPois() {
       const details = [poi.description, historyText(poi), poi.address, status, hours, eventTiming, relevance, seasonal, poi.review?.flags?.length ? 'Needs review' : null, tagLabels ? `Tags: ${tagLabels}` : null].filter(Boolean).map(escapeHtml).join('<br>');
       const links = [poi.link, poi.website, sourceUrl(poi), historyUrl(poi)].filter(Boolean).filter((url, index, all) => all.indexOf(url) === index).map((url, index) => `<a href="${escapeHtml(url)}" target="_blank" rel="noreferrer">${index === 0 && (poi.link || poi.website) ? 'Website' : 'Source'} ↗</a>`).join(' · ');
       const closeControl = canReportPoiClosure() ? `<br><button type="button" class="text-button" data-close-poi="${escapeHtml(poi.id)}">Hide as closed for 90 days</button>` : '';
-      const marker = L.marker([poi.lat, poi.lng], { icon, title: displayPoiName(poi), interactive: !state.planningMode, place: poi }).bindPopup(`<strong>${escapeHtml(displayPoiName(poi))}</strong>${details ? `<br><span>${details}</span>` : ''}${links ? `<br>${links}` : ''}${closeControl}`);
-      marker.on('popupopen', (event) => event.popup.getElement()?.querySelector('[data-close-poi]')?.addEventListener('click', async () => {
+      const visitControl = `<br><button type="button" class="text-button" data-visit-poi="${escapeHtml(poi.id)}"${isPoiVisited(poi) ? ' disabled' : ''}>${isPoiVisited(poi) ? 'Visited' : 'Mark visited'}</button>`;
+      const marker = L.marker([poi.lat, poi.lng], { icon, title: displayPoiName(poi), interactive: !state.planningMode, place: poi }).bindPopup(`<strong>${escapeHtml(displayPoiName(poi))}</strong>${details ? `<br><span>${details}</span>` : ''}${links ? `<br>${links}` : ''}${visitControl}${closeControl}`);
+      marker.on('popupopen', (event) => { const popup = event.popup.getElement(); popup?.querySelector('[data-close-poi]')?.addEventListener('click', async () => {
         try { await reportPoiClosed(poi); state.map.closePopup(); renderCityPois(); } catch (error) { console.warn('Could not record local closure:', error.message); }
-      }, { once: true }));
+      }, { once: true }); popup?.querySelector('[data-visit-poi]')?.addEventListener('click', async () => { await markPoiVisited(poi); state.map.closePopup(); renderCityPois(); }); });
       return marker;
     });
   if (state.poiLayer.addLayers) state.poiLayer.addLayers(markers); else markers.forEach((marker) => marker.addTo(state.poiLayer));

@@ -47,4 +47,6 @@ test('map boot and offline shell include the federal overlay modules', async () 
   assert.match(mapSource, /initFederalBoundaries\(\)/);
   assert.match(worker, /federal-boundaries\.js/);
   assert.match(worker, /federal-region-loader\.js/);
+  assert.match(worker, /federal-region-progress\.js/);
+  assert.match(worker, /poi-visit-tracking\.js/);
 });

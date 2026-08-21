@@ -74,7 +74,9 @@ h2 { font-family: Georgia, "Times New Roman", serif; font-size: 22px; letter-spa
 .key-history { color: var(--coral); font-size: 14px; }.key-wildlife { color: var(--moss); font-size: 14px; margin-left: 5px; }
 .federal-boundaries-ready .map-key { left: auto; right: 64px; }
 .federal-boundary-control { background: transparent; border: 0; box-shadow: none; display: grid; gap: 5px; margin-bottom: 38px !important; max-width: min(230px, calc(100vw - 42px)); }
-.federal-current-region { background: rgba(255, 253, 250, .93); border: 1px solid rgba(69, 88, 75, .18); border-radius: 99px; box-shadow: 0 3px 12px rgba(23, 60, 53, .12); color: var(--pine); font-family: Georgia, "Times New Roman", serif; font-size: 11px; font-weight: 700; line-height: 1.2; max-width: 220px; overflow: hidden; padding: 6px 10px; text-overflow: ellipsis; white-space: nowrap; }
+.federal-region-status { background: rgba(255, 253, 250, .93); border: 1px solid rgba(69, 88, 75, .18); border-radius: 12px; box-shadow: 0 3px 12px rgba(23, 60, 53, .12); color: var(--pine); max-width: 220px; padding: 6px 10px; }
+.federal-current-region { font-family: Georgia, "Times New Roman", serif; font-size: 11px; font-weight: 700; line-height: 1.2; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.federal-region-progress { color: #52645a; font-size: 10px; line-height: 1.25; margin-top: 2px; }
 .federal-boundary-disclosure { align-items: center; background: rgba(255, 253, 250, .96); border: 1px solid rgba(69, 88, 75, .18); border-radius: 99px; box-shadow: 0 3px 12px rgba(23, 60, 53, .15); color: var(--pine); display: inline-flex; font-size: 11px; font-weight: 800; gap: 6px; justify-self: start; min-height: 34px; padding: 7px 11px; }
 .federal-boundary-disclosure > span { color: #806295; font-size: 16px; line-height: 1; }
 .federal-boundary-panel { background: rgba(255, 253, 250, .97); border: 1px solid rgba(69, 88, 75, .2); border-radius: 13px; box-shadow: 0 8px 22px rgba(23, 60, 53, .18); color: var(--ink); display: grid; gap: 10px; padding: 11px; width: 218px; }
