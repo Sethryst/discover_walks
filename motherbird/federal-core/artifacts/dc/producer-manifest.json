@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 2,
+  "artifactType": "federal-core-manifest",
+  "scope": "dc",
+  "generatedAt": "2026-08-20T20:08:46.710Z",
+  "reproducibility": {
+    "timestampInput": "--generated-at",
+    "deterministicOrdering": true,
+    "replay": "node tools/build-federal-core.mjs --generated-at 2026-08-20T20:08:46.710Z"
+  },
+  "sourcePolicy": {
+    "municipalSources": "plugins-only",
+    "runtimeNetworkAccess": false,
+    "artifactGranularity": "national source, regional install packages",
+    "femaStatus": "adaptive tiled ingestion with object-ID deduplication"
+  },
+  "artifacts": [
+    {
+      "id": "states",
+      "filename": "states.geojson",
+      "featureCount": 1,
+      "checksum": "sha256:0931054ca31d3709f610bc39d6695be1d3e95fbe6c373c870a733cc704dda077",
+      "vintage": "2025-01-01",
+      "sourceUrl": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/0",
+      "acquisition": {
+        "method": "object-id-batches",
+        "objectIdCount": 1,
+        "batchCount": 1,
+        "sourceMetadata": {
+          "layerName": "States",
+          "description": "States (or statistically equivalent entities); January 1, 2025 vintage",
+          "arcgisVersion": 11.5,
+          "maxRecordCount": 100000,
+          "supportsPagination": true,
+          "supportedQueryFormats": "JSON, geoJSON, PBF"
+        }
+      }
+    },
+    {
+      "id": "counties",
+      "filename": "counties.geojson",
+      "featureCount": 1,
+      "checksum": "sha256:9a58f232bbfc77fe5ca3c3f54ca122586871b93c249b7a657009df964e44e1a9",
+      "vintage": "2025-01-01",
+      "sourceUrl": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/1",
+      "acquisition": {
+        "method": "object-id-batches",
+        "objectIdCount": 1,
+        "batchCount": 1,
+        "sourceMetadata": {
+          "layerName": "Counties",
+          "description": "Counties (or statistically equivalent entities); January 1, 2025 vintage",
+          "arcgisVersion": 11.5,
+          "maxRecordCount": 100000,
+          "supportsPagination": true,
+          "supportedQueryFormats": "JSON, geoJSON, PBF"
+        }
+      }
+    },
+    {
+      "id": "congressional-districts",
+      "filename": "congressional-districts.geojson",
+      "featureCount": 1,
+      "checksum": "sha256:f0e27de01fdf27806134f4c64eb68dcaa98e32481bfd5506eed815096cf19ae5",
+      "vintage": "119th-congress-2025-01-01",
+      "sourceUrl": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Legislative/MapServer/0",
+      "acquisition": {
+        "method": "object-id-batches",
+        "objectIdCount": 1,
+        "batchCount": 1,
+        "sourceMetadata": {
+          "layerName": "119th Congressional Districts",
+          "description": "119th Congressional Districts; January 1, 2025 vintage",
+          "arcgisVersion": 11.5,
+          "maxRecordCount": 100000,
+          "supportsPagination": true,
+          "supportedQueryFormats": "JSON, geoJSON, PBF"
+        }
+      }
+    },
+    {
+      "id": "fema-nfhl",
+      "filename": "fema-nfhl.geojson",
+      "featureCount": 652,
+      "checksum": "sha256:3b9b94f9c1e0756bb83f29f632be63e1269380220eb340f20835d17c79d31bce",
+      "vintage": "NFHL-current",
+      "sourceUrl": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28",
+      "acquisition": {
+        "method": "adaptive-envelope-tiles-plus-object-id-batches",
+        "tileCount": 1,
+        "countQueries": 1,
+        "tileObjectIdCount": 652,
+        "uniqueObjectIdCount": 652,
+        "duplicateTileHitsRemoved": 0,
+        "batchCount": 4,
+        "envelope": [
+          -77.12,
+          38.79,
+          -76.9,
+          39
+        ],
+        "sourceMetadata": {
+          "layerName": "Flood Hazard Zones",
+          "description": null,
+          "arcgisVersion": 11.1,
+          "maxRecordCount": 2000,
+          "supportsPagination": true,
+          "supportedQueryFormats": "JSON, geoJSON, PBF"
+        }
+      }
+    }
+  ],
+  "unavailableLayers": [],
+  "aggregationKey": [
+    "poi_version",
+    "boundary_vintage",
+    "boundary_id"
+  ],
+  "completeness": "complete-for-declared-layers"
+}

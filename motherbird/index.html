@@ -30,7 +30,7 @@
 
       <div id="mapView" class="app-view">
         <div class="mode-intro"><p class="eyebrow">DISCOVER</p><strong>What’s worth your time outside?</strong><button class="text-button" id="browseDiscoverButton" type="button">See routes &amp; local finds →</button></div>
-        <section class="discovery-headline" aria-live="polite"><p class="eyebrow">A WALKING LENS</p><h1>A walk with a purpose</h1><p id="discoveryHeadline">History</p><p id="discoveryHeadlineDetail">Choose an experience, or shape a route of your own.</p></section>
+        <section class="discovery-headline" aria-live="polite"><p class="eyebrow">A WALKING LENS</p><h1><img id="headlineIcon" class="headline-icon" src="./icons/walk.svg" alt="" /> <span id="headlineTitle">A walk with a purpose</span></h1><p id="discoveryHeadline">History</p><p id="discoveryHeadlineDetail">Choose an experience, or shape a route of your own.</p></section>
         <section class="discover-ways" id="discoverWays" aria-label="Choose a Discover experience">
           <p>What feels right today?</p>
           <div><button type="button" data-discover-group="explore"><span>⌁</span>Places to Explore</button><button type="button" data-discover-group="heritage"><span>✦</span>History &amp; Heritage</button><button type="button" data-discover-group="culture"><span>◇</span>Art &amp; Culture</button><button type="button" data-discover-group="community"><span>●</span>Food &amp; Community</button></div>
@@ -374,6 +374,8 @@
         <li>Historic prompts use a small prototype dataset. Confirm accessibility, hours, and safety guidance before each visit.</li>
         <li id="norfolkAttribution" class="hidden">Norfolk places data: City of Norfolk Open Data.</li>
       </ul>
+      <details class="advanced-settings"><summary>Advanced appearance &amp; developer info</summary><form id="advancedAppearanceForm"><label>Header phrase <input id="advancedHeadlineTitle" maxlength="60" placeholder="A walk with a purpose" /></label><label>Header icon <select id="advancedHeadlineIcon"><option value="walk">Walking companion</option><option value="tree">Tree</option><option value="heart">Heart</option><option value="star">Star</option><option value="coffee">Coffee</option></select></label><label>Your name <input id="developerName" maxlength="60" placeholder="Your name or studio" /></label><label>Your link <input id="developerUrl" type="url" maxlength="240" placeholder="https://example.com" /></label><p class="sheet-intro">Shown locally in the footer. Nothing is published until you choose to deploy.</p><button class="secondary-button" type="submit">Save appearance</button></form></details>
+      <p class="developer-credit hidden" id="developerCredit"></p>
       <button class="secondary-button wide-button" id="clearDataButton">Clear this device's journal data</button>
     </section>
 

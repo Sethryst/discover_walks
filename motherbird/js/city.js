@@ -17,7 +17,7 @@ export async function loadCityData(cityId) {
   if (!response.ok) throw new Error(`${cityLabel(cityId)} places data could not be loaded.`);
   const seed = await response.json();
   let supplements = [];
-  const supplementFiles = [config.supplementalPoiFile, config.journeyFile].filter(Boolean);
+  const supplementFiles = [config.supplementalPoiFile, ...(config.supplementalPoiFiles || []), config.journeyFile].filter(Boolean);
   if (supplementFiles.length) {
     const packages = await Promise.all(supplementFiles.map(async (file) => {
       try {
@@ -26,9 +26,13 @@ export async function loadCityData(cityId) {
       } catch { return null; }
     }));
     supplements = packages.flatMap((pack) => {
-      if (pack?.journeys?.length) return pack.journeys.map((journey) => ({ ...journey, category: 'journey', type: 'journey' }));
+      if (pack?.journeys?.length) return pack.journeys.filter(validJourney).map((journey) => ({ ...journey, category: 'journey', type: 'journey' }));
       return pack?.pois || pack?.pointsOfInterest || [];
     });
+  }
+  function validJourney(journey) {
+    const coordinates = (journey.chapters || []).flatMap((chapter) => chapter.geometry?.coordinates || []);
+    return coordinates.length >= 2 && coordinates.every(([lng, lat]) => Number.isFinite(lat) && Number.isFinite(lng) && Math.abs(lat) <= 90 && Math.abs(lng) <= 180 && !(lat === 0 && lng === 0));
   }
   const mergeSupplements = (pois) => {
     const byId = new Map(pois.map((poi) => [poi.id, poi]));
@@ -39,13 +43,15 @@ export async function loadCityData(cityId) {
   const seedAttribution = seed.metadata?.attribution || seed.producer?.name || 'Gremlin Lab';
 
   if (!metadata || metadata.version !== seedVersion || !saved.length) {
-    const newPois = mergeSupplements(seed.pois || seed.pointsOfInterest || []).map((poi) => migratePoi(poi, cityId));
+    const newPois = mergeSupplements(seed.pois || seed.pointsOfInterest || []).filter((poi) => poi.category !== 'journey' || validJourney(poi)).map((poi) => migratePoi(poi, cityId));
     await Promise.all(newPois.map((item) => db.put('points_of_interest', item)));
     await db.put('poi_metadata', { id: `${cityId}-seed`, version: seedVersion, attribution: seedAttribution, trailSegments: seed.trailSegments || [] });
     state.cityPois[cityId] = newPois;
     state.trailSegments[cityId] = seed.trailSegments || [];
   } else {
-    const merged = mergeSupplements(saved).map((poi) => migratePoi(poi, cityId));
+    const invalidJourneyIds = saved.filter((poi) => poi.category === 'journey' && !validJourney(poi)).map((poi) => poi.id);
+    await Promise.all(invalidJourneyIds.map((id) => db.remove('points_of_interest', id)));
+    const merged = mergeSupplements(saved.filter((poi) => !invalidJourneyIds.includes(poi.id))).filter((poi) => poi.category !== 'journey' || validJourney(poi)).map((poi) => migratePoi(poi, cityId));
     const existing = new Set(saved.map((poi) => poi.id));
     const additions = merged.filter((poi) => !existing.has(poi.id));
     if (additions.length) await Promise.all(additions.map((poi) => db.put('points_of_interest', poi)));

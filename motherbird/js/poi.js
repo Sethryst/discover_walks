@@ -4,6 +4,8 @@ import { el, escapeHtml } from './utils.js';
 import { distanceMeters } from './geo.js';
 import { openSheet } from './ui.js';
 import db from './storage.js';
+import { canReportPoiClosure, isLocallyClosedPoi, reportPoiClosed } from './spatial-closure-reporting.js';
+import { isPoiVisited, markPoiVisited } from './poi-visit-tracking.js';
 
 export function renderPoiTagFilters() {
   const pois = state.cityPois[state.activeCity] || [];
@@ -90,7 +92,13 @@ export function renderCityPois() {
       const eventTiming = poi.startsAt || poi.endsAt ? `Event: ${poi.startsAt || 'date TBA'}${poi.endsAt ? ` – ${poi.endsAt}` : ''}` : null;
       const details = [poi.description, historyText(poi), poi.address, status, hours, eventTiming, relevance, seasonal, poi.review?.flags?.length ? 'Needs review' : null, tagLabels ? `Tags: ${tagLabels}` : null].filter(Boolean).map(escapeHtml).join('<br>');
       const links = [poi.link, poi.website, sourceUrl(poi), historyUrl(poi)].filter(Boolean).filter((url, index, all) => all.indexOf(url) === index).map((url, index) => `<a href="${escapeHtml(url)}" target="_blank" rel="noreferrer">${index === 0 && (poi.link || poi.website) ? 'Website' : 'Source'} ↗</a>`).join(' · ');
-      return L.marker([poi.lat, poi.lng], { icon, title: displayPoiName(poi), interactive: !state.planningMode, place: poi }).bindPopup(`<strong>${escapeHtml(displayPoiName(poi))}</strong>${details ? `<br><span>${details}</span>` : ''}${links ? `<br>${links}` : ''}`);
+      const closeControl = canReportPoiClosure() ? `<br><button type="button" class="text-button" data-close-poi="${escapeHtml(poi.id)}">Hide as closed for 90 days</button>` : '';
+      const visitControl = `<br><button type="button" class="text-button" data-visit-poi="${escapeHtml(poi.id)}"${isPoiVisited(poi) ? ' disabled' : ''}>${isPoiVisited(poi) ? 'Visited' : 'Mark visited'}</button>`;
+      const marker = L.marker([poi.lat, poi.lng], { icon, title: displayPoiName(poi), interactive: !state.planningMode, place: poi }).bindPopup(`<strong>${escapeHtml(displayPoiName(poi))}</strong>${details ? `<br><span>${details}</span>` : ''}${links ? `<br>${links}` : ''}${visitControl}${closeControl}`);
+      marker.on('popupopen', (event) => { const popup = event.popup.getElement(); popup?.querySelector('[data-close-poi]')?.addEventListener('click', async () => {
+        try { await reportPoiClosed(poi); state.map.closePopup(); renderCityPois(); } catch (error) { console.warn('Could not record local closure:', error.message); }
+      }, { once: true }); popup?.querySelector('[data-visit-poi]')?.addEventListener('click', async () => { await markPoiVisited(poi); state.map.closePopup(); renderCityPois(); }); });
+      return marker;
     });
   if (state.poiLayer.addLayers) state.poiLayer.addLayers(markers); else markers.forEach((marker) => marker.addTo(state.poiLayer));
   const segments = state.trailSegments[state.activeCity] || [];
@@ -281,6 +289,7 @@ export function activeSeasonalSignals(poi, now = Date.now()) {
   return (poi.seasonalSignals || []).filter((signal) => Number.isFinite(Date.parse(signal?.expiresAt)) && now < Date.parse(signal.expiresAt));
 }
 export function isVisiblePoi(poi, now = Date.now()) {
+  if (isLocallyClosedPoi(poi, state.activeCity, now)) return false;
   if (poi.review?.validationStatus === 'invalid') return false;
   // Producer route candidates are segment inputs, never visitor-facing POIs
   // or automatically curated / ranked walks.

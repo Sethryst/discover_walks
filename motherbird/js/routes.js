@@ -25,7 +25,8 @@ export const CURATED_ROUTES = [
 
 export function validateRoute(route) {
   if (route.isJourney) {
-    const valid = route.coordinates?.length >= 2;
+    const center = state.activeCity ? state.cityPois?.[state.activeCity]?.find((poi) => poi.category !== 'journey') : null;
+    const valid = route.coordinates?.length >= 2 && route.coordinates.every(([lat, lng]) => Number.isFinite(lat) && Number.isFinite(lng) && !(lat === 0 && lng === 0)) && (!center || Math.abs(route.coordinates[0][0] - center.lat) < 5 && Math.abs(route.coordinates[0][1] - center.lng) < 5);
     return { valid, reason: valid ? null : 'This journey does not include verified route geometry yet.' };
   }
   const points = route.coordinates || [];
@@ -59,7 +60,7 @@ export function routesForCity(cityId = state.activeCity) {
         coordinates,
         chapters
       };
-    });
+    }).filter((route) => validateRoute(route).valid);
 
   const staticRoutes = CURATED_ROUTES.filter((route) => route.city === cityId && validateRoute(route).valid);
   return [...journeys, ...staticRoutes];

@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "status": "research-grade",
+  "retrievedAt": "2026-08-20T19:03:00.306Z",
+  "policy": "Primary official source must be healthy or carry an explicit time-limited editor waiver. OSM is secondary; fallback success never clears a primary error.",
+  "sources": [
+    {
+      "name": "NPS/ATC centerline ArcGIS",
+      "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/ANST_Centerline/FeatureServer/0?f=pjson",
+      "status": 200,
+      "healthy": true,
+      "latencyMs": 11,
+      "freshnessSlaHours": 168,
+      "waiverRequiredWhenUnhealthy": true
+    },
+    {
+      "name": "NPS/ATC parking ArcGIS",
+      "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/ANST_Facilities/FeatureServer/2?f=pjson",
+      "status": 200,
+      "healthy": true,
+      "latencyMs": 121,
+      "freshnessSlaHours": 168,
+      "waiverRequiredWhenUnhealthy": true
+    },
+    {
+      "name": "OpenStreetMap Overpass primary",
+      "url": "https://overpass-api.de/api/interpreter?data=%5Bout%3Ajson%5D%3Bnode%5Bamenity%3Dparking%5D%2839.05%2C-78.08%2C39.20%2C-77.90%29%3Bout%201%3B",
+      "status": 406,
+      "healthy": false,
+      "latencyMs": 316,
+      "freshnessSlaHours": 24,
+      "waiverRequiredWhenUnhealthy": true
+    },
+    {
+      "name": "OpenStreetMap Nominatim fallback",
+      "url": "https://nominatim.openstreetmap.org/search?format=jsonv2&q=Bears%20Den%20Virginia&limit=1",
+      "status": 200,
+      "healthy": true,
+      "latencyMs": 422,
+      "freshnessSlaHours": 24,
+      "waiverRequiredWhenUnhealthy": true
+    },
+    {
+      "name": "ATC events",
+      "url": "https://appalachiantrail.org/events/",
+      "status": 200,
+      "healthy": true,
+      "latencyMs": 352,
+      "freshnessSlaHours": 24,
+      "waiverRequiredWhenUnhealthy": true
+    },
+    {
+      "name": "ATC volunteer",
+      "url": "https://appalachiantrail.org/home/volunteer",
+      "status": 200,
+      "healthy": true,
+      "latencyMs": 509,
+      "freshnessSlaHours": 24,
+      "waiverRequiredWhenUnhealthy": true
+    }
+  ]
+}

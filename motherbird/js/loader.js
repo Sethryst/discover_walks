@@ -4,6 +4,7 @@ import { DEFAULT_SETTINGS, CITIES, POINTS_PER_MILE, POINTS_PER_OBSERVATION, POIN
 import { normalizeProfile, sitesForProfile } from './utils.js';
 import { toast, openSheet } from './ui.js';
 import { initMap } from './map.js';
+import { applyStaticAppearance } from './ui.js';
 import { loadAllCityData, refreshCityMap } from './city.js';
 import { initEvents } from './events.js';
 import { renderArchive } from './archive.js';
@@ -12,6 +13,7 @@ import { initExplore } from './explore.js';
 import { startDiscoveryHeadline } from './discovery.js';
 import { normalizedEntitlements } from './entitlements.js';
 import { initNeighborhoodDiscovery } from './neighborhoods.js';
+import { restoreLocalPoiClosures } from './spatial-closure-reporting.js';
 
 export async function init() {
   try {
@@ -41,6 +43,7 @@ export async function init() {
   }
 
   await refreshCityMap(false);
+  applyStaticAppearance();
   startDiscoveryHeadline();
   await renderArchive();
   if (!state.settings.onboardingCompleted) {
@@ -94,5 +97,6 @@ export async function loadLocalState() {
   state.settings.entitlements = normalizedEntitlements(state.settings.entitlements);
   if (!CITIES[state.settings.activeCity]) state.settings.activeCity = 'vienna';
   state.activeCity = state.settings.activeCity;
+  await restoreLocalPoiClosures();
   await Promise.all([db.put('profile', state.profile), db.put('settings', state.settings)]);
 }

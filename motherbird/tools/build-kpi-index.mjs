@@ -181,6 +181,53 @@ export async function collectKpiInventory() {
     frontend: frontendFor(source)
   })));
 
+  const registrationRegistry = await readJson(resolve(repoRoot, 'app', 'endpoint-registrations.json'), { registrations: [] });
+  const endpointHealth = await readJson(resolve(motherbirdRoot, 'data', 'endpoint-health.json'), { registrations: [] });
+  const healthById = new Map((endpointHealth.registrations || []).map((entry) => [entry.id, entry.health]));
+  const configById = new Map(configs.map((config) => [config.id, config]));
+  const endpointRegistrations = [];
+  for (const registration of registrationRegistry.registrations || []) {
+    const binding = registration.binding || {};
+    const region = configById.get(binding.regionId);
+    const source = region?.sources?.find((candidate) => candidate.id === binding.sourceId);
+    let configured = false;
+    let configurationEvidence = 'No governed repository binding found';
+    if (binding.kind === 'region-source') {
+      configured = Boolean(source?.url && source?.provider);
+      if (configured) configurationEvidence = `app/regions/${binding.regionId}.json → ${binding.sourceId}`;
+    } else if (binding.kind === 'source-option') {
+      const option = source?.providerOptions?.[binding.option];
+      configured = Boolean(option?.provider && option?.url && option?.credentialEnv);
+      if (configured) configurationEvidence = `app/regions/${binding.regionId}.json → ${binding.sourceId}.providerOptions.${binding.option}`;
+    } else if (binding.kind === 'runtime') {
+      const configExists = binding.configPath && await exists(resolve(repoRoot, binding.configPath));
+      const workflowExists = binding.workflowPath && await exists(resolve(repoRoot, binding.workflowPath));
+      configured = Boolean(configExists && workflowExists);
+      if (configured) configurationEvidence = `${binding.configPath} + ${binding.workflowPath}`;
+    }
+    const health = healthById.get(registration.id) || registration.health || { status: 'not-checked' };
+    const healthStatus = health.status || 'not-checked';
+    const productionStatus = registration.production?.status || 'not-verified';
+    endpointRegistrations.push({
+      ...registration,
+      configured,
+      configurationEvidence,
+      credentialStatus: registration.credentialEnv ? 'named-not-verified' : 'not-required-or-browser-public',
+      healthStatus,
+      healthCheckedAt: health.checkedAt || endpointHealth.checkedAt || null,
+      productionStatus,
+      nextAction: !configured
+        ? 'Add a governed repository binding.'
+        : healthStatus === 'blocked' && registration.credentialEnv
+          ? `Provision ${registration.credentialEnv} in the runner, then execute a redacted health probe.`
+          : healthStatus !== 'verified'
+            ? 'Run and record a redacted health probe.'
+            : productionStatus !== 'verified'
+              ? 'Execute an import and record its manifest, row count, and freshness.'
+              : 'Monitor freshness and failures.'
+    });
+  }
+
   const cities = [];
   for (const [cityId, city] of Object.entries(CITIES)) {
     const data = await readJson(appPath(city.dataFile));
@@ -248,6 +295,14 @@ export async function collectKpiInventory() {
     ...cities.filter((city) => !configuredRegionIds.has(city.regionId)).map((city) => ({
       priority: 'P1', severity: 'Frontend only', region: city.name, detail: 'Selectable app package has no matching governed producer config.',
       action: 'Add a governed region config so future data can refresh reproducibly.'
+    })),
+    ...endpointRegistrations.filter((endpoint) => !endpoint.configured).map((endpoint) => ({
+      priority: 'P1', severity: 'Registered only', region: endpoint.service,
+      detail: 'Provider enrollment is verified, but no governed repository binding was found.', action: endpoint.nextAction
+    })),
+    ...endpointRegistrations.filter((endpoint) => endpoint.configured && endpoint.productionStatus !== 'verified').map((endpoint) => ({
+      priority: endpoint.healthStatus === 'failed' ? 'P1' : 'P2', severity: 'Pipeline not producing', region: endpoint.service,
+      detail: `Configured; credential ${endpoint.credentialStatus}; health ${endpoint.healthStatus}; production ${endpoint.productionStatus}.`, action: endpoint.nextAction
     }))
   ].sort((a, b) => a.priority.localeCompare(b.priority) || a.region.localeCompare(b.region));
 
@@ -266,17 +321,43 @@ export async function collectKpiInventory() {
     }
   }
 
+  const spatialConfig = await readJson(resolve(motherbirdRoot, 'regions', 'washington-dc', 'spatial-index.json'));
+  const spatialManifest = await readJson(resolve(motherbirdRoot, 'regions', 'washington-dc', 'spatial', 'spatial-index-manifest.json'));
+  const spatialSync = {
+    regionId: spatialManifest?.regionId || 'washington-dc',
+    poiVersion: spatialManifest?.syncIdentity?.poiVersion || null,
+    boundaryVintage: spatialManifest?.syncIdentity?.boundaryVintage || null,
+    poiCount: spatialManifest?.indexes?.pois?.featureCount || 0,
+    boundaryCount: spatialManifest?.indexes?.boundaries?.featureCount || 0,
+    packageVerified: Boolean(spatialManifest?.indexes?.pois?.recordFingerprint && spatialManifest?.inputs?.poi?.checksum),
+    deploymentReady: Boolean(spatialConfig?.syncIdentity?.poiVersion && spatialConfig?.syncIdentity?.boundaryVintage),
+    transport: 'disabled-local-outbox-only',
+    closurePolicy: 'authenticated solo operator · immediate hide · 90 days · self-review',
+    retentionVersions: 3
+  };
+  const federalPoiProgress = await readJson(resolve(motherbirdRoot, 'data', 'federal-region-poi-progress.json'));
+  const federalProgressRegions = Object.keys(federalPoiProgress?.regions || {}).length;
+  const federalTaggedPois = new Set(Object.values(federalPoiProgress?.regions || {}).flatMap((region) => region?.poiIds || [])).size;
+  const federalProgressReady = federalPoiProgress?.schemaVersion === 1 && federalPoiProgress?.artifactType === 'federal-region-poi-progress' && federalTaggedPois > 0;
+
   const productCapabilities = [
     { capability: 'Discover', status: 'Shipped', evidence: `${DISCOVER_GROUPS.length} experience categories · relevant view capped at 24 places`, frontend: 'Map + Discover browser', next: 'Add distance-aware ranking and saved collections' },
     { capability: 'Field Guide', status: 'Foundation shipped', evidence: `${FIELD_GUIDE_SUBJECTS.length} source-backed educational subjects`, frontend: 'Guide mode', next: 'Generate reviewed regional and seasonal guide packages' },
     { capability: 'Journal', status: 'Shipped', evidence: 'Personal walks · observations · reflections · remembered places', frontend: 'Journal mode + local IndexedDB', next: 'Add collections and subject references without syncing private content' },
     { capability: 'Regional source backlog', status: 'Automated', evidence: `${Number(backlog?.summary?.candidateCount || 0)} candidates across ${Number(backlog?.summary?.regionCount || 0)} regions`, frontend: 'KPI operator queue', next: 'Promote passing official structured sources through review gates' },
     { capability: 'Pages inventory', status: 'Automated', evidence: 'Rebuilt from CITIES, artifacts, configs, endpoints, workflows, and UI contracts', frontend: '/kpi/', next: 'Add live endpoint health and freshness history' },
+    { capability: 'Federal region progress', status: federalProgressReady ? 'Shipped · local-first' : 'Awaiting tagged POIs', evidence: federalProgressReady ? `${federalTaggedPois.toLocaleString()} tagged POIs · ${federalProgressRegions} federal regions · ${federalPoiProgress.congress}th Congress` : 'Canonical POI tag index is missing or empty', frontend: 'Map → Boundaries region readout', next: 'Re-run federal POI tagging after a POI refresh or Congress rollover' },
+    { capability: 'DC spatial solo pilot', status: spatialSync.deploymentReady ? 'Package ready · transport off' : 'Identity blocked', evidence: `${spatialSync.poiCount.toLocaleString()} POIs · ${spatialSync.boundaryCount} boundaries · ${spatialSync.poiVersion || 'missing POI version'}`, frontend: 'Authenticated DC map closure control', next: 'Enable county transport only after a separately approved tenant deployment' },
     { capability: 'Google sign-in', status: 'Code ready', evidence: 'Supabase OAuth redirect contains no password or client secret', frontend: 'Journal → Go Online', next: 'Enable Google provider in Supabase and Google Cloud' }
   ];
 
   return {
-    generatedAt: new Date().toISOString(), cities, configs: configs.map(({ id, name }) => ({ id, name })), sources, providers, gaps, automationJobs, productCapabilities,
+    generatedAt: new Date().toISOString(), cities, configs: configs.map(({ id, name }) => ({ id, name })), sources, providers, gaps, automationJobs, productCapabilities, spatialSync,
+    endpointRegistry: {
+      asOf: registrationRegistry.asOf,
+      evidencePolicy: registrationRegistry.evidencePolicy,
+      registrations: endpointRegistrations
+    },
     runtimeServices: [
       { service: 'NWS', endpoint: 'api.weather.gov', trigger: 'User requests live conditions', consumer: 'js/weather.js → weather brief', privacy: 'Uses selected region center; no user GPS sent' },
       { service: 'Open-Meteo', endpoint: 'api.open-meteo.com', trigger: 'User requests live conditions', consumer: 'js/weather.js → weather brief', privacy: 'Uses selected region center; no user GPS sent' },
@@ -287,6 +368,10 @@ export async function collectKpiInventory() {
       selectableRegions: cities.length,
       producerRegions: configs.length,
       configuredEndpoints: sources.length,
+      registeredAccounts: endpointRegistrations.length,
+      registeredConfigured: endpointRegistrations.filter((endpoint) => endpoint.configured).length,
+      registeredHealthy: endpointRegistrations.filter((endpoint) => endpoint.healthStatus === 'verified').length,
+      registeredProducing: endpointRegistrations.filter((endpoint) => endpoint.productionStatus === 'verified').length,
       credentialedEndpoints: sources.filter((source) => source.credential !== 'none').length,
       coreReadyRegions: cities.filter((city) => city.missingRequiredFiles.length === 0).length,
       fullyReferencedRegions: cities.filter((city) => city.missingRequiredFiles.length === 0 && city.missingOptionalFiles.length === 0).length,
@@ -299,11 +384,15 @@ export async function collectKpiInventory() {
       experienceModes: 3,
       discoverCategories: DISCOVER_GROUPS.length,
       fieldGuideSubjects: FIELD_GUIDE_SUBJECTS.length,
+      federalTaggedPois,
+      federalProgressRegions,
       workflowCount: automationJobs.length,
       scheduledWorkflowCount: automationJobs.filter((job) => job.scheduled).length,
       launchReadyRegions: cities.filter((city) => city.experience.launchStatus === 'Launch-ready').length,
       thinExperienceRegions: cities.filter((city) => city.experience.launchStatus === 'Thin').length,
       contentBlockedRegions: cities.filter((city) => city.experience.launchStatus === 'Content-blocked').length
+      ,spatialSyncReady: spatialSync.deploymentReady
+      ,spatialIndexedPois: spatialSync.poiCount
       ,averagePoiMetadata: Math.round(cities.reduce((sum, city) => sum + city.metadata.averageCompleteness * city.poiCount, 0) / Math.max(cities.reduce((sum, city) => sum + city.poiCount, 0), 1))
       ,narrativeReadyPois: cities.reduce((sum, city) => sum + city.metadata.narrativeReady, 0)
     }
@@ -322,6 +411,8 @@ export function renderKpiHtml(model) {
     ['Average readiness', `${summary.averageReadiness}%`, 'Places 30 · civic 20 · walks 20 · producer 20 · conditions 10'],
     ['Producer regions', summary.producerRegions, 'Governed region source configurations'],
     ['Configured endpoints', summary.configuredEndpoints, `${summary.credentialedEndpoints} require a named Actions secret`],
+    ['Registered accounts', summary.registeredAccounts, `${summary.registeredConfigured} configured · ${summary.registeredHealthy} health-verified · ${summary.registeredProducing} producing`],
+    ['DC spatial package', summary.spatialIndexedPois.toLocaleString(), summary.spatialSyncReady ? 'Identity approved · local-only sync transport' : 'Identity needs approval'],
     ['Review backlog', summary.backlogCandidates, `${summary.readyBacklog} classified READY`],
     ['Priority repairs', summary.p0Gaps + summary.p1Gaps, `${summary.p0Gaps} P0 · ${summary.p1Gaps} P1`]
   ];
@@ -347,6 +438,15 @@ export function renderKpiHtml(model) {
     { key: 'service', label: 'Service' }, { key: 'endpoint', label: 'Endpoint' }, { key: 'trigger', label: 'When called' },
     { key: 'consumer', label: 'Frontend consumer' }, { key: 'privacy', label: 'Privacy boundary' }
   ]);
+  const registrationRows = renderRows(model.endpointRegistry.registrations, [
+    { key: 'service', label: 'Registered product' },
+    { key: 'registeredAt', label: 'Registered' },
+    { key: 'configured', label: 'Configured', render: (r) => r.configured ? '<span class="pill good">Yes</span>' : '<span class="pill bad">No</span>' },
+    { key: 'credentialStatus', label: 'Credential' },
+    { key: 'healthStatus', label: 'Health' },
+    { key: 'productionStatus', label: 'Producing' },
+    { key: 'nextAction', label: 'Next evidence gate' }
+  ]);
   const capabilityRows = renderRows(model.productCapabilities, [
     { key: 'capability', label: 'Capability' }, { key: 'status', label: 'Status', render: (r) => `<span class="pill ${/shipped|automated/i.test(r.status) ? 'good' : 'warn'}">${escapeHtml(r.status)}</span>` },
     { key: 'evidence', label: 'Observable evidence' }, { key: 'frontend', label: 'User/operator surface' }, { key: 'next', label: 'Next automation step' }
@@ -362,14 +462,16 @@ export function renderKpiHtml(model) {
 <header><div class="eyebrow">Gremlin Labs · operator dashboard</div><h1>Data & capability index</h1><p>One repository-backed view of what Mother Bird can show, where the data originates, how it is transformed, and what is not connected yet.</p><p class="updated">Generated ${escapeHtml(model.generatedAt)} during the Pages build. Counts describe repository state—not a claim of geographic completeness.</p></header><main>
 <section class="cards">${cards.map(([label,value,note])=>`<article class="card"><span>${escapeHtml(label)}</span><b>${value}</b><small>${escapeHtml(note)}</small></article>`).join('')}</section>
 <section class="panel"><h2>How data reaches a walker</h2><p>Secrets stay in scheduled producer jobs. Published browser assets contain reviewed outputs, never credential values.</p><div class="flow"><div><b>Official source</b><br><small>ArcGIS, APIs, RSS/ICS, open data</small></div><div><b>Provider adapter</b><br><small>Fetch, normalize, validate</small></div><div><b>Governed artifact</b><br><small>Attribution, stable IDs, freshness</small></div><div><b>Mother Bird package</b><br><small>POIs, journeys, civic, conditions</small></div><div><b>Frontend view</b><br><small>Map, Walks, Vote, Volunteer, Events</small></div></div></section>
+<section class="panel"><h2>Account-to-data pipeline</h2><p>${escapeHtml(model.endpointRegistry.evidencePolicy)} Registry evidence is current through ${escapeHtml(model.endpointRegistry.asOf)}.</p><table><thead><tr><th>Registered product</th><th>Registered</th><th>Configured</th><th>Credential</th><th>Health</th><th>Producing</th><th>Next evidence gate</th></tr></thead><tbody>${registrationRows}</tbody></table></section>
 <section class="panel"><h2>Product delivery progress</h2><p>Observable UI behavior and automation foundations detected from the same code and repository contracts deployed to Pages.</p><table><thead><tr><th>Capability</th><th>Status</th><th>Observable evidence</th><th>User/operator surface</th><th>Next automation step</th></tr></thead><tbody>${capabilityRows}</tbody></table></section>
+<section class="panel"><h2>DC spatial solo-pilot KPI</h2><p>Package identity and local-closure operating policy. This is not a claim that county network sync is running.</p><table><tbody><tr><th>Package</th><td>${escapeHtml(model.spatialSync.poiVersion || 'Not approved')} · ${escapeHtml(model.spatialSync.boundaryVintage || 'Not approved')}</td></tr><tr><th>Indexed records</th><td>${model.spatialSync.poiCount.toLocaleString()} POIs · ${model.spatialSync.boundaryCount.toLocaleString()} boundaries</td></tr><tr><th>Verification</th><td>${model.spatialSync.packageVerified ? 'Checksummed package + runtime fingerprint' : 'Missing verification evidence'}</td></tr><tr><th>Closure policy</th><td>${escapeHtml(model.spatialSync.closurePolicy)}</td></tr><tr><th>Transport</th><td>${escapeHtml(model.spatialSync.transport)} · retain ${model.spatialSync.retentionVersions} canonical versions after a future deployment</td></tr></tbody></table></section>
 <section class="panel"><h2>Regional readiness</h2><p>Counts are records the deployed app can load through <code>CITIES</code>. Readiness is a transparent product score: places 30 points, civic package 20, plotted walks 20, governed producer 20, and private region-center conditions 10.</p><div class="table-wrap"><table><thead><tr><th>App region</th><th>Places</th><th>Walks/routes</th><th>Civic items</th><th>Conditions</th><th>Producer sources</th><th>Readiness</th><th>References</th></tr></thead><tbody>${cityRows}</tbody></table></div></section>
 <section class="panel"><h2>Prioritized repair queue</h2><p>P0 blocks a required app package. P1 is a stale enhancement reference or missing governed producer. P2 is usable producer work waiting for frontend packaging.</p><div class="toolbar"><select id="gapFilter"><option value="">All priorities</option><option>P0</option><option>P1</option><option>P2</option></select></div><table id="gapTable"><thead><tr><th>Priority</th><th>Type</th><th>Region</th><th>What is not connected</th><th>Next action</th></tr></thead><tbody>${gapRows || '<tr><td colspan="5" class="empty">No connection gaps detected.</td></tr>'}</tbody></table></section>
 <section class="panel"><h2>Provider mix</h2><p>Configured source endpoints by acquisition adapter.</p>${providerBars}</section>
 <section class="panel"><h2>Endpoint inventory</h2><p>Every governed geographic source in <code>app/regions</code>. Credential names identify the required GitHub Actions secret; values are never read or published.</p><div class="toolbar"><input id="sourceSearch" type="search" placeholder="Search region, source, endpoint, or frontend…"><select id="providerFilter"><option value="">All providers</option>${model.providers.map(({provider})=>`<option>${escapeHtml(provider)}</option>`).join('')}</select></div><table id="sourceTable"><thead><tr><th>Region</th><th>Source</th><th>Provider</th><th>Data</th><th>Endpoint</th><th>Credential</th><th>Frontend connection</th></tr></thead><tbody>${sourceRows}</tbody></table><p id="sourceEmpty" class="empty" hidden>No endpoints match those filters.</p></section>
 <section class="panel"><h2>Live browser services</h2><p>These calls are separate from scheduled producer endpoints. They are invoked by explicit app behavior and follow the listed privacy boundary.</p><table><thead><tr><th>Service</th><th>Endpoint</th><th>When called</th><th>Frontend consumer</th><th>Privacy boundary</th></tr></thead><tbody>${runtimeRows}</tbody></table></section>
 <section class="panel"><h2>Repository automation</h2><p>${summary.workflowCount} GitHub Actions workflows are declared; ${summary.scheduledWorkflowCount} currently have scheduled triggers. Manual dispatch remains available where the workflow declares it.</p><table><thead><tr><th>Workflow</th><th>File</th><th>Scheduled</th><th>Manual run</th></tr></thead><tbody>${workflowRows}</tbody></table></section>
-<section class="panel"><h2>How to read the KPIs</h2><p class="note"><b>Core-ready</b> means the required place and civic files exist. Optional supplement, journey, and cached-weather references are reported separately. <b>Configured endpoint</b> means a governed definition exists—not that it was fetched during this build. <b>Review backlog</b> is discovery-only and never publishes automatically. Record counts measure package depth, not geographic completeness.</p><p>Rebuild with <code>cd motherbird &amp;&amp; npm run build</code>. The generator re-reads regional configs, CITIES mappings, packaged artifacts, and the review backlog.</p></section>
+<section class="panel"><h2>How to read the KPIs</h2><p class="note"><b>Core-ready</b> means the required place and civic files exist. Optional supplement, journey, and cached-weather references are reported separately. <b>Registered</b> means an account or product receipt exists. <b>Configured</b> means a governed definition exists—not that credentials work or a fetch succeeded. <b>Healthy</b> requires a dated redacted probe. <b>Producing</b> requires an import manifest or equivalent output evidence. <b>Review backlog</b> is discovery-only and never publishes automatically. Record counts measure package depth, not geographic completeness.</p><p>Rebuild with <code>cd motherbird &amp;&amp; npm run build</code>. The generator re-reads regional configs, CITIES mappings, packaged artifacts, endpoint registrations, and the review backlog.</p></section>
 <footer><a href="../">← Mother Bird</a> · <a href="./enrichment.html">POI enrichment KPI →</a> · Generated from repository sources</footer></main><script>const q=document.querySelector('#sourceSearch'),p=document.querySelector('#providerFilter'),rows=[...document.querySelectorAll('#sourceTable tbody tr')],empty=document.querySelector('#sourceEmpty'),gapFilter=document.querySelector('#gapFilter'),gapRows=[...document.querySelectorAll('#gapTable tbody tr')];function filter(){const needle=q.value.trim().toLowerCase(),provider=p.value.toLowerCase();let shown=0;for(const row of rows){const ok=(!needle||row.textContent.toLowerCase().includes(needle))&&(!provider||row.children[2].textContent.toLowerCase()===provider);row.hidden=!ok;if(ok)shown++}empty.hidden=shown>0}function filterGaps(){for(const row of gapRows)row.hidden=Boolean(gapFilter.value)&&row.children[0].textContent.trim()!==gapFilter.value}q.addEventListener('input',filter);p.addEventListener('change',filter);gapFilter.addEventListener('change',filterGaps)</script></body></html>`;
 }
 

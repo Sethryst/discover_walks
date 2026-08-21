@@ -22,6 +22,8 @@ test('journal UI is writing-first while observation remains field capture', asyn
   assert.match(html, /id="journalHeading"/);
   assert.match(html, /id="journalPromptChoices"/);
   assert.match(html, /class="lined-journal"/);
+  assert.match(html, /advancedAppearanceForm/);
+  assert.match(html, /headlineIcon/);
   assert.match(css, /repeating-linear-gradient/);
   assert.match(html, /id="observationLocation"/);
   assert.match(html, /id="photoInput"/);

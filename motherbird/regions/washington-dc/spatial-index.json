@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "regionId": "washington-dc",
+  "syncIdentity": {
+    "poiVersion": "dc-pois-2026-08-20",
+    "boundaryVintage": "dc-municipal-boundaries-2026-08-20"
+  },
+  "poi": {
+    "file": "regions/washington-dc/washington-dc-poi.json"
+  },
+  "boundaries": [
+    { "layer": "neighborhoods", "file": "regions/washington-dc/geography/neighborhoods.geojson" },
+    { "layer": "wards", "file": "regions/washington-dc/geography/wards.geojson" },
+    { "layer": "ancs", "file": "regions/washington-dc/geography/ancs.geojson" },
+    { "layer": "police-districts", "file": "regions/washington-dc/geography/police-districts.geojson" }
+  ]
+}

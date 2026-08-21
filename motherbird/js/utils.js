@@ -38,7 +38,10 @@ export function normalizeProfile(raw = {}) {
     ...DEFAULT_PROFILE, ...raw, id: 'local-user', totalPoints: Number(raw.totalPoints) || 0,
     walksCompleted: Number(raw.walksCompleted) || 0, milesTotal: Number(raw.milesTotal) || 0,
     observationsLogged: Number(raw.observationsLogged) || 0, streakDays: Number(raw.streakDays) || 0,
-    sitesDiscovered: normalizedSites
+    sitesDiscovered: normalizedSites,
+    // Historical discoveries predate general POI progress; retain them as
+    // visits so a profile upgrade never makes past walking activity vanish.
+    visitedPoiIds: [...new Set([...(Array.isArray(raw.visitedPoiIds) ? raw.visitedPoiIds : []), ...Object.values(normalizedSites).flat()])].map(String)
   };
 }
 export function sitesForProfile(profile, cityId = state.activeCity) { return profile.sitesDiscovered[cityId] || []; }

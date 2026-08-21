@@ -1,5 +1,8 @@
 {
-  "metadata": { "version": "2026-07-29-v1", "attribution": "Town of Vienna, VA" },
+  "metadata": {
+    "version": "2026-08-20-v2",
+    "attribution": "Town of Vienna, VA; First Baptist Church of Vienna; OpenStreetMap contributors"
+  },
   "trailSegments": [],
   "pointsOfInterest": [
     {
@@ -13,7 +16,14 @@
       "source": "https://www.viennava.gov/About/History",
       "amenities": [],
       "link": null,
-      "unverified": false
+      "unverified": false,
+      "federalRegions": {
+        "state": "us-state:51",
+        "county": "us-county:51:059",
+        "congressionalDistrict": "us-cd:119:51:11",
+        "congress": 119,
+        "boundaryVintage": "119th-congress"
+      }
     },
     {
       "id": "vienna-depot",
@@ -26,7 +36,14 @@
       "source": "https://www.viennava.gov/About/History",
       "amenities": [],
       "link": null,
-      "unverified": false
+      "unverified": false,
+      "federalRegions": {
+        "state": "us-state:51",
+        "county": "us-county:51:059",
+        "congressionalDistrict": "us-cd:119:51:11",
+        "congress": 119,
+        "boundaryVintage": "119th-congress"
+      }
     },
     {
       "id": "vienna-little-library",
@@ -39,20 +56,34 @@
       "source": "https://www.fairfaxcounty.gov/library/branches/patrick-henry/",
       "amenities": [],
       "link": null,
-      "unverified": false
+      "unverified": false,
+      "federalRegions": {
+        "state": "us-state:51",
+        "county": "us-county:51:059",
+        "congressionalDistrict": "us-cd:119:51:11",
+        "congress": 119,
+        "boundaryVintage": "119th-congress"
+      }
     },
     {
       "id": "vienna-first-baptist",
       "name": "First Baptist Church of Vienna",
-      "lat": 38.90445,
-      "lng": -77.26592,
+      "lat": 38.899983,
+      "lng": -77.2768474,
       "category": "history",
       "radius": 85,
       "description": "The former First Baptist Church is among Vienna's recognized historic places. Its story is part of the town's enduring Black community and post-Civil War heritage.",
-      "source": "https://www.viennava.gov/About/History",
+      "source": "https://www.fbcv.org/about",
       "amenities": [],
       "link": null,
-      "unverified": false
+      "unverified": false,
+      "federalRegions": {
+        "state": "us-state:51",
+        "county": "us-county:51:059",
+        "congressionalDistrict": "us-cd:119:51:11",
+        "congress": 119,
+        "boundaryVintage": "119th-congress"
+      }
     }
   ]
 }

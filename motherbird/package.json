@@ -4,10 +4,13 @@
   "type": "module",
   "description": "A mobile-first, local-first walking journal that introduces historic places as a person moves through Vienna, VA or a Norfolk, VA prototype layer. It includes walk recording, geofenced historic prompts, personal reflections, geotagged nature observations, and a local points profile. The default experience has no account, server, analytics, or paid backend.",
   "main": "app.js",
-  "devDependencies": {},
   "scripts": {
     "build": "node tools/build-pages.mjs",
     "build:kpi": "node tools/build-kpi-index.mjs",
+    "build:vienna-osm": "node tools/build-vienna-osm-pois.mjs vienna",
+    "build:osm-city": "node tools/build-vienna-osm-pois.mjs",
+    "audit:endpoints": "node tools/audit-endpoint-registrations.mjs",
+    "audit:endpoints:live": "node tools/audit-endpoint-registrations.mjs --live --record",
     "test": "node --test tests/*.test.mjs",
     "audit:imports": "node tools/audit-imports.mjs",
     "sync:gremlin-geography": "node tools/sync-gremlin-geography.mjs",
@@ -19,8 +22,18 @@
     "fetch:dc-sources": "node tools/dc-sources/fetch-all.mjs",
     "refresh:dc-official-trails": "node tools/refresh-dc-official-trails.mjs",
     "refresh:appalachian-lab": "node tools/refresh-appalachian-corridor-lab.mjs",
+    "research:appalachian-lab": "node tools/build-appalachian-research-package.mjs",
+    "report:appalachian-research": "node tools/build-appalachian-research-report.mjs",
     "check:appalachian-lab": "node tools/region-build.mjs appalachian-corridor-lab --dry-run",
     "build:dc-pois": "node tools/build-dc-pois.mjs",
+    "build:dc-boundaries": "node tools/build-dc-boundary-artifacts.mjs",
+    "build:federal-core": "node tools/build-federal-core.mjs",
+    "build:federal-core:national": "node tools/build-federal-core.mjs --national",
+    "build:federal-regions": "node tools/build-federal-regions.mjs",
+    "tag:federal-pois": "node tools/tag-pois-with-federal-regions.mjs",
+    "publish:federal-regions": "node tools/export-federal-region-runtime.mjs",
+    "build:spatial-index": "node tools/build-spatial-index.mjs",
+    "check:spatial-sync": "node tools/check-spatial-sync-readiness.mjs",
     "validate:dc-pois": "node tools/validate-dc-pois.mjs",
     "inspect:dc-pois": "node tools/inspect-dc-pois.mjs",
     "dev:dc-region": "node tools/dev-dc-region.mjs",
@@ -57,5 +70,9 @@
   "bugs": {
     "url": "https://github.com/Sethryst/walk-wildlife/issues"
   },
-  "homepage": "https://github.com/Sethryst/walk-wildlife#readme"
+  "homepage": "https://github.com/Sethryst/walk-wildlife#readme",
+  "dependencies": {
+    "flatbush": "4.6.2",
+    "rbush": "4.0.1"
+  }
 }

@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "asOf": "2026-08-20",
+  "purpose": "Non-secret account and product enrollment evidence used to seed governed data pipelines.",
+  "evidencePolicy": "A mailbox receipt proves registration only. Configuration, credentials, health, and data production require separate repository or runtime evidence.",
+  "registrations": [
+    {
+      "id": "nyc-event-calendar",
+      "service": "NYC Event Calendar",
+      "provider": "NYC API Developers Portal",
+      "registeredAt": "2026-08-06",
+      "registrationEvidence": "Mailbox subscription receipt reviewed 2026-08-20",
+      "productUrl": "https://api-portal.nyc.gov/product#product=event-calendar",
+      "accountUrl": "https://api-portal.nyc.gov/profile",
+      "binding": {
+        "kind": "region-source",
+        "regionId": "nyc",
+        "sourceId": "nyc-city-events"
+      },
+      "credentialEnv": "NYC_API_SUBSCRIPTION_KEY",
+      "dataRole": "Official free public-event acquisition"
+    },
+    {
+      "id": "nyc-geoclient-v2",
+      "service": "NYC Geoclient V2",
+      "provider": "NYC API Developers Portal",
+      "registeredAt": "2026-08-06",
+      "registrationEvidence": "Mailbox subscription receipt reviewed 2026-08-20",
+      "productUrl": "https://api-portal.nyc.gov/product#product=geoclient-v2-user",
+      "accountUrl": "https://api-portal.nyc.gov/profile",
+      "binding": {
+        "kind": "source-option",
+        "regionId": "nyc",
+        "sourceId": "nyc-city-events",
+        "option": "geocoder"
+      },
+      "credentialEnv": "NYC_GEOCLIENT_SUBSCRIPTION_KEY",
+      "dataRole": "Exact-match geocoding for official NYC event addresses"
+    },
+    {
+      "id": "supabase-project",
+      "service": "Supabase project",
+      "provider": "Supabase",
+      "registeredAt": "2026-07-29",
+      "registrationEvidence": "Mailbox account/project receipts reviewed 2026-08-20",
+      "productUrl": "https://supabase.com/dashboard/projects",
+      "binding": {
+        "kind": "runtime",
+        "configPath": "motherbird/supabase-config.js",
+        "workflowPath": ".github/workflows/supabase-heartbeat.yml"
+      },
+      "dataRole": "Optional account authentication, profile synchronization, and minimal activity heartbeat",
+      "schemaStatus": "proposed-not-verified",
+      "schemaEvidence": "A 66-table migration design was found in the mailbox; no applied migration or table inventory was verified."
+    }
+  ]
+}

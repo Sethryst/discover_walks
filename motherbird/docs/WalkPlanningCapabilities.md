@@ -18,7 +18,7 @@ Every selected route lists nearby public POIs that influenced its explanation an
 
 ## On-device spatial API
 
-`js/spatial-index.js` uses a small dependency-free static geographic grid. `reindexSpatialData(cityId, pois, neighborhoodGeojson)` replaces the active index whenever a city package changes. `getPoisNearRoute(latlngs, radiusMeters)` first finds grid candidates and then applies exact point-to-segment distance. `getPoisInNeighborhood(neighborhoodId)` performs bbox filtering and Polygon/MultiPolygon point-in-polygon checks, including holes. All queries stay on-device.
+`js/spatial-index.js` exposes one on-device candidate-query boundary. It creates a small dependency-free grid first, then upgrades to a checksummed immutable Flatbush package when the package schema, binary, stable-ID sidecar, and runtime records agree. `getPoisNearRoute(latlngs, radiusMeters)` finds index candidates and then applies exact point-to-segment distance. `getPoisInNeighborhood(neighborhoodId)` performs index filtering and Polygon/MultiPolygon point-in-polygon checks, including holes. A missing or invalid package retains the grid; the index never replaces exact geometry.
 
 ## Text to local walk
 

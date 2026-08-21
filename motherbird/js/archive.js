@@ -6,6 +6,7 @@ import { updateProfile } from './profile.js';
 import { closeSheets, openSheet, toast, momentCard } from './ui.js';
 import { city } from './poi.js';
 import { buildReflectionMoment, wordCount } from './reflection.js';
+import { markPoiVisited } from './poi-visit-tracking.js';
 
 export async function saveHistoryMoment() {
   const site = state.currentSite; if (!site) return;
@@ -22,6 +23,7 @@ export async function saveHistoryMoment() {
     note: site.unverified ? 'Prototype historic-place prompt saved. Content is unverified.' : 'Historic-place prompt saved during a walk.',
     siteId: site.id, city: cityId, pointsAwarded: award.points, createdAt: new Date().toISOString(), location: { lat: site.lat, lng: site.lng }
   });
+  await markPoiVisited(site);
   closeSheets(); toast(award.firstDiscovery ? `New history site — +${award.points} points.` : 'History moment saved to your local archive.'); renderArchive();
 }
 export async function saveJournal(event) {

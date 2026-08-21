@@ -34,40 +34,23 @@ walk(jsDir);
 
 const exportMap = new Map();
 
-for (const file of files) {
+function exportedNames(file) {
+  if (exportMap.has(file)) return exportMap.get(file);
+  if (!fs.existsSync(file)) return null;
   const src = fs.readFileSync(file, 'utf8');
   const names = new Set();
-
-  // export function foo()
-  const declarationRegex =
-    /export\s+(?:async\s+)?(?:function|class|const|let|var)\s+([A-Za-z0-9_$]+)/g;
-
+  const declarationRegex = /export\s+(?:default\s+)?(?:async\s+)?(?:function|class|const|let|var)\s+([A-Za-z0-9_$]+)/g;
   let match;
-
-  while ((match = declarationRegex.exec(src))) {
-    names.add(match[1]);
-  }
-
-  // export { foo, bar as baz }
+  while ((match = declarationRegex.exec(src))) names.add(match[1]);
   const listRegex = /export\s+\{([^}]+)\}/g;
+  while ((match = listRegex.exec(src))) match[1].split(',').map((item) => item.trim()).filter(Boolean).forEach((item) => names.add(item.split(/\s+as\s+/).at(-1)));
+  if (/export\s+default\s+/.test(src)) names.add('default');
+  exportMap.set(file, names);
+  return names;
+}
 
-  while ((match = listRegex.exec(src))) {
-    match[1]
-      .split(',')
-      .map(x => x.trim())
-      .filter(Boolean)
-      .forEach(item => {
-        const [name] = item.split(/\s+as\s+/);
-        names.add(name);
-      });
-  }
-
-  // export default
-  if (/export\s+default\s+/.test(src)) {
-    names.add('default');
-  }
-
-  exportMap.set(path.basename(file), names);
+for (const file of files) {
+  exportedNames(file);
 }
 
 
@@ -91,22 +74,21 @@ for (const file of files) {
           .split(',')
           .map(x => x.trim().split(/\s+as\s+/)[0])
           .filter(Boolean)
-      : [match[2]];
+      : ['default'];
 
 
-    const targetFile =
-      path.basename(match[3].replace(/\.js$/, '')) + '.js';
+    const targetFile = path.resolve(path.dirname(file), match[3].endsWith('.js') ? match[3] : `${match[3]}.js`);
 
 
     for (const name of imported) {
 
       if (name === 'default') continue;
 
-      const exports = exportMap.get(targetFile);
+      const exports = exportedNames(targetFile);
 
       if (!exports || !exports.has(name)) {
         issues.push(
-          `${current} imports ${name} from ${match[3]} but ${targetFile} does not export it`
+          `${current} imports ${name} from ${match[3]} but ${path.basename(targetFile)} does not export it`
         );
       }
     }
