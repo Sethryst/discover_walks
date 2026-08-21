@@ -6,6 +6,9 @@ This is an intentionally compact index of files an AI is likely to need. Use `rg
 
 | File/group | Depends on | Used by / effect |
 | --- | --- | --- |
+| `tools/build-federal-regions.mjs` | Federal Core national artifacts, Flatbush | Streams nationwide sources into canonical and zoom-sharded display/index artifacts. |
+| `js/federal-region-loader.js` | Flatbush package provider, Web Crypto | Verifies and loads only federal shards required by a viewport. |
+| `docs/NationwideFederalRegions.md` | Federal Core contract | Identity, retention, zoom, acquisition, and update runbook. |
 | `index.html` | CDN Leaflet/Supabase, local CSS and app entry | Defines every DOM target and application shell. |
 | `app.js` | `loader.js` | Browser entry point. |
 | `js/loader.js` | storage, city, map, events, archive, online, region UI | Initializes all runtime subsystems. |

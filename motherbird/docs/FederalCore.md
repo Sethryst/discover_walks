@@ -2,6 +2,8 @@
 
 Federal Core is the replaceable plumbing between federal GIS providers and Walk Wildlife's stable boundary-artifact contract. It does not own POIs, municipal meanings, or presentation behavior.
 
+The derived nationwide runtime and its zoom-shard/Flatbush contract are documented in [NationwideFederalRegions.md](./NationwideFederalRegions.md). Acquisition remains separate from processing: sources can move from verified REST fallback to bulk cartographic files without changing the runtime loader.
+
 ## The house rule
 
 A boundary source is plumbing. POIs are electrical. The Walk Wildlife consumer is the room that uses both. Replacing a TIGER query strategy, updating FEMA flood geometry, or adding a Charlotte municipal plugin must not require rewiring the other systems.

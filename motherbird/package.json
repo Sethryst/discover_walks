@@ -29,6 +29,7 @@
     "build:dc-boundaries": "node tools/build-dc-boundary-artifacts.mjs",
     "build:federal-core": "node tools/build-federal-core.mjs",
     "build:federal-core:national": "node tools/build-federal-core.mjs --national",
+    "build:federal-regions": "node tools/build-federal-regions.mjs",
     "build:spatial-index": "node tools/build-spatial-index.mjs",
     "check:spatial-sync": "node tools/check-spatial-sync-readiness.mjs",
     "validate:dc-pois": "node tools/validate-dc-pois.mjs",
