@@ -1,7 +1,7 @@
 // Keep the whole module graph with the shell. Caching only app.js leaves an
 // offline (or briefly disconnected) reload with a blank app when any imported
 // module was not already in the runtime cache.
-const APP_CACHE = 'walk-wildlife-shell-v49'; // bump when shell assets change
+const APP_CACHE = 'walk-wildlife-shell-v50'; // bump when shell assets change
 const TILE_CACHE = 'walk-wildlife-osm-viewed-tiles-v1';
 const LIBRARY_CACHE = 'walk-wildlife-library-v2';
 const libraryPath = new URL('./vendor/', self.registration.scope).pathname;
@@ -14,8 +14,10 @@ const shell = [
   './js/quiet-places.js', './js/region-api.js', './js/region-installer.js', './js/region-manager.js', './js/region-package.js',
   './js/region-ui.js', './js/routes.js', './js/routing.js', './js/seasonal-awareness.js', './js/state.js', './js/storage.js',
   './js/ui.js', './js/utils.js', './js/walk.js', './js/weather.js',
-  './data/boise-meridian-idaho-poi.json', './data/dc-poi.json', './data/keystone-colorado-poi.json', './data/newyork-poi.json', './data/norfolk-poi.json',
-  './data/pgcounty-poi.json', './data/philadelphia-poi.json', './data/richmond-poi.json', './data/sedona-arizona-poi.json', './data/vienna-poi.json', './data/vienna-trails.json',
+  './data/anchorage-poi.json', './data/baltimore-poi.json', './data/boise-meridian-idaho-poi.json', './data/columbus-poi.json', './data/corpus-christi-poi.json',
+  './data/dc-poi.json', './data/detroit-poi.json', './data/fort-worth-poi.json', './data/keystone-colorado-poi.json', './data/los-angeles-poi.json',
+  './data/newyork-poi.json', './data/norfolk-poi.json', './data/pgcounty-poi.json', './data/philadelphia-poi.json', './data/pittsburgh-poi.json',
+  './data/richmond-poi.json', './data/seattle-poi.json', './data/sedona-arizona-poi.json', './data/tempe-poi.json', './data/vienna-poi.json', './data/vienna-trails.json',
   './regions/washington-dc/geography/neighborhoods.geojson', './regions/washington-dc/geography/source.json',
   './regions/washington-dc/spatial/spatial-index-manifest.json', './regions/washington-dc/spatial/pois.flatbush', './regions/washington-dc/spatial/pois.ids.json',
   './regions/washington-dc/spatial/boundaries.flatbush', './regions/washington-dc/spatial/boundaries.ids.json'

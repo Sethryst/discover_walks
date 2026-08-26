@@ -53,9 +53,61 @@
     center: { lat: 37.5407, lng: -77.4360 },
     zoom: 13,
     dataFile: './data/richmond-poi.json',
+    boundarySource: { name: 'City of Richmond Boundary', url: 'https://services1.arcgis.com/k3vhq11XkBNeeOfM/ArcGIS/rest/services/City_Boundary/FeatureServer/0' },
     supplementalPoiFiles: ['./data/richmond-osm-poi.json'],
     supplementalPoiFile: './regions/richmond/richmond-poi.json',
     civicFile: './regions/richmond/civic/index.json', weatherFile: './regions/richmond/weather.json'
+  },
+  anchorage: {
+    name: 'Anchorage', state: 'AK', center: { lat: 61.1085, lng: -149.4492 }, zoom: 9,
+    dataFile: './data/anchorage-poi.json',
+    boundarySource: { name: 'Municipality of Anchorage Boundary', url: 'https://services2.arcgis.com/Ce3DhLRthdwbHlfF/ArcGIS/rest/services/MOA_Boundary/FeatureServer/0' }
+  },
+  tempe: {
+    name: 'Tempe', state: 'AZ', center: { lat: 33.3927, lng: -111.9279 }, zoom: 12,
+    dataFile: './data/tempe-poi.json',
+    boundarySource: { name: 'City of Tempe Boundary', url: 'https://services.arcgis.com/lQySeXwbBg53XWDi/ArcGIS/rest/services/City_Boundary/FeatureServer/0' }
+  },
+  'los-angeles': {
+    name: 'Los Angeles', state: 'CA', center: { lat: 34.0522, lng: -118.4118 }, zoom: 10,
+    dataFile: './data/los-angeles-poi.json',
+    boundarySource: { name: 'Los Angeles City Boundary', url: 'https://services1.arcgis.com/tzwalEyxl2rpamKs/arcgis/rest/services/Los_Angeles_City_Boundary/FeatureServer/0' }
+  },
+  baltimore: {
+    name: 'Baltimore', state: 'MD', center: { lat: 39.2847, lng: -76.6205 }, zoom: 11,
+    dataFile: './data/baltimore-poi.json',
+    boundarySource: { name: 'Baltimore City Boundary', url: 'https://services5.arcgis.com/U5lRs16ODaohcqOy/ArcGIS/rest/services/City_Boundary/FeatureServer/0' }
+  },
+  detroit: {
+    name: 'Detroit', state: 'MI', center: { lat: 42.3527, lng: -83.0990 }, zoom: 11,
+    dataFile: './data/detroit-poi.json',
+    boundarySource: { name: 'City of Detroit Boundary', url: 'https://services2.arcgis.com/qvkbeam7Wirps6zC/ArcGIS/rest/services/City_of_Detroit_Boundary/FeatureServer/0' }
+  },
+  'corpus-christi': {
+    name: 'Corpus Christi', state: 'TX', center: { lat: 27.6985, lng: -97.3617 }, zoom: 10,
+    dataFile: './data/corpus-christi-poi.json',
+    boundarySource: { name: 'Corpus Christi City Limits', url: 'https://services.arcgis.com/0J4ZNc4NaTguvRy0/ArcGIS/rest/services/OpenData/FeatureServer/36' }
+  },
+  'fort-worth': {
+    name: 'Fort Worth', state: 'TX', center: { lat: 32.7998, lng: -97.3171 }, zoom: 10,
+    dataFile: './data/fort-worth-poi.json',
+    boundarySource: { name: 'Fort Worth Full Purpose City Limits', url: 'https://mapit.fortworthtexas.gov/ags/rest/services/Basemaps/Basemap/MapServer/112', where: "DESIGNATIO = 'Full Purpose'" }
+  },
+  seattle: {
+    name: 'Seattle', state: 'WA', center: { lat: 47.6141, lng: -122.3352 }, zoom: 11,
+    dataFile: './data/seattle-poi.json',
+    boundarySource: { name: 'Seattle Area Polygon', url: 'https://services.arcgis.com/ZOyb2t4B0UYuYNYH/ArcGIS/rest/services/Seattle_Area_Polygon/FeatureServer/0' },
+    civicFile: './regions/seattle/civic/index.json'
+  },
+  columbus: {
+    name: 'Columbus', state: 'OH', center: { lat: 39.9829, lng: -82.9911 }, zoom: 10,
+    dataFile: './data/columbus-poi.json',
+    boundarySource: { name: 'Columbus Corporate Boundary', url: 'https://maps.columbus.gov/arcgis/rest/services/CityServices/KeyLayers/MapServer/2' }
+  },
+  pittsburgh: {
+    name: 'Pittsburgh', state: 'PA', center: { lat: 40.4400, lng: -79.9850 }, zoom: 11,
+    dataFile: './data/pittsburgh-poi.json',
+    boundarySource: { name: 'City of Pittsburgh Boundary', url: 'https://services1.arcgis.com/YZCmUqbcsUpOKfj7/arcgis/rest/services/City_Boundary/FeatureServer/0' }
   },
   keystone: {
     name: 'Keystone & Summit County',

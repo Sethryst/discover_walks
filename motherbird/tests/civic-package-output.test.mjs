@@ -7,9 +7,10 @@ import { CITIES } from '../js/constants.js';
 
 const appRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
-test('each selectable civic region has a packaged, versioned local civic bundle', async () => {
-  for (const [cityId, city] of Object.entries(CITIES)) {
-    assert.ok(city.civicFile, `${cityId} needs a civicFile`);
+test('each selectable city that advertises civic content has a packaged, versioned local civic bundle', async () => {
+  const civicCities = Object.entries(CITIES).filter(([, city]) => city.civicFile);
+  assert.ok(civicCities.length > 0, 'at least one selector city should advertise civic content');
+  for (const [cityId, city] of civicCities) {
     const relativePath = city.civicFile.replace(/^\.\//, '');
     const civicPath = path.join(appRoot, relativePath);
     await access(civicPath);

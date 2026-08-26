@@ -17,7 +17,7 @@ class SourceBacklogTests(unittest.TestCase):
         runtime_path = root / "motherbird" / "data" / "favorites_tree.v1.json"
         before = runtime_path.read_bytes()
         result = build_backlog(root, "2026-08-20T12:00:00Z")
-        self.assertEqual(result["summary"]["regionCount"], 26)
+        self.assertEqual(result["summary"]["regionCount"], 35)
         wolf_trap = next(region for region in result["regions"] if region["id"] == "wolf-trap-va")
         self.assertGreaterEqual(len(wolf_trap["queue"]), 3)
         self.assertTrue(any(item["classification"] == "INVESTIGATE" for item in wolf_trap["queue"]))
