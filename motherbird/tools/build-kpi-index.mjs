@@ -10,7 +10,7 @@ const motherbirdRoot = resolve(here, '..');
 const repoRoot = resolve(motherbirdRoot, '..');
 
 const CITY_REGION_IDS = {
-  vienna: 'wolf-trap-va', norfolk: 'norfolk', newyork: 'nyc', philadelphia: 'philadelphia',
+  arlington: 'arlington-va', 'falls-church': 'falls-church-va', norfolk: 'norfolk', newyork: 'nyc', philadelphia: 'philadelphia',
   richmond: 'richmond', keystone: 'keystone-colorado', pgcounty: 'prince-georges-county-md',
   fairfax: 'fairfax-county-va', alexandria: 'alexandria-va', loudoun: 'loudoun-county-va',
   dc: 'washington-dc', sedona: 'sedona-arizona', boise: 'boise-meridian-idaho'
@@ -231,18 +231,19 @@ export async function collectKpiInventory() {
   const cities = [];
   for (const [cityId, city] of Object.entries(CITIES)) {
     const data = await readJson(appPath(city.dataFile));
-    const supplemental = await readJson(appPath(city.supplementalPoiFile));
+    const supplementalFiles = [city.supplementalPoiFile, ...(city.supplementalPoiFiles || [])].filter(Boolean);
+    const supplementals = await Promise.all(supplementalFiles.map((file) => readJson(appPath(file))));
     const journeys = await readJson(appPath(city.journeyFile));
     const civic = await readJson(appPath(city.civicFile));
     const requiredFiles = [city.dataFile, city.civicFile].filter(Boolean);
-    const optionalFiles = [city.supplementalPoiFile, city.journeyFile, city.weatherFile].filter(Boolean);
+    const optionalFiles = [...supplementalFiles, city.journeyFile, city.weatherFile].filter(Boolean);
     const missingRequiredFiles = [];
     const missingOptionalFiles = [];
     for (const file of requiredFiles) if (!(await exists(appPath(file)))) missingRequiredFiles.push(file);
     for (const file of optionalFiles) if (!(await exists(appPath(file)))) missingOptionalFiles.push(file);
     const regionId = CITY_REGION_IDS[cityId] || cityId;
     const configuredSources = sources.filter((source) => source.regionId === regionId).length;
-    const records = [...poiRecords(data), ...poiRecords(supplemental)];
+    const records = [poiRecords(data), ...supplementals.map(poiRecords)].flat();
     const poiCount = records.length;
     const journeyCount = countJourneyRecords(journeys);
     const civicExists = Boolean(city.civicFile && await exists(appPath(city.civicFile)));
@@ -263,7 +264,7 @@ export async function collectKpiInventory() {
     });
     cities[cities.length - 1].experience = buildExperienceMetrics(records);
     cities[cities.length - 1].metadata = summarizeMetadata(records);
-    cities[cities.length - 1].poiFiles = [city.dataFile, city.supplementalPoiFile].filter(Boolean);
+    cities[cities.length - 1].poiFiles = [city.dataFile, ...supplementalFiles].filter(Boolean);
   }
   cities.sort((a, b) => a.name.localeCompare(b.name));
 
