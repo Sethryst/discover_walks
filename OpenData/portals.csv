@@ -1,19 +1,35 @@
-State,City,Population,Portal_URL,Platform,Status,Notes,Last_Checked,Checkbox
+State,City,Population,Portal_URL,Platform,Status,Notes,Last_Checked,Checkbox,Query_Where,BBox_WGS84
 Alaska,Anchorage,290000,https://moa-muniorg.hub.arcgis.com,ArcGIS,Working,Updated Hub,2025-03,
 Arizona,Mesa,510000,https://data.mesaaz.gov,Socrata,Working,,2024-05,
 Arizona,Tempe,190000,https://data.tempe.gov,ArcGIS,Working,ArcGIS Hub catalog verified; added 2026-08-25,2026-08-25,
+Arizona,Sedona,10000,https://www.sedonaaz.gov/gis,Other,Manual only,Official GIS landing page and map-viewer entry point; retained as the discovery reference,2026-08-26,,,
+Arizona,Sedona,10000,https://gis.sedonaaz.gov/server/rest/services/GISVIEWERMAPS/SEDONA_PUBLIC_GIS_VIEWER6/MapServer/7,ArcGIS,Working,Official current citywide Trails & Pathways layer; excludes bike-only and under-construction records,2026-08-26,,"TYPE NOT IN ('BIKE LANE','BIKE ROUTE','UNDERCONSTRUCTION') AND (DESCRIPTION IS NULL OR DESCRIPTION NOT IN ('BIKES ONLY','BIKES; NO PEDESTRIANS; NO EQUESTRAIN'))",34.80|-111.86|34.93|-111.70
+Arizona,Sedona,10000,https://gis.sedonaaz.gov/server/rest/services/GISVIEWERMAPS/SEDONA_PUBLIC_GIS_VIEWER6/MapServer/69,ArcGIS,Working,Official current trailheads layer,2026-08-26,,1=1,34.80|-111.86|34.93|-111.70
+Arizona,Sedona,10000,https://gis.sedonaaz.gov/server/rest/services/GISVIEWERMAPS/SEDONA_PUBLIC_GIS_VIEWER6/MapServer/331,ArcGIS,Working,Official City Parks polygon layer,2026-08-26,,1=1,34.80|-111.86|34.93|-111.70
+Arizona,Sedona,10000,https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_TrailNFSPublishWithDataStatus_01/MapServer/0,ArcGIS,Working,Official USDA Forest Service trail layer spatially clipped to Sedona,2026-08-26,,trail_name IS NOT NULL,34.80|-111.86|34.93|-111.70
 California,Los Angeles,3900000,https://data.lacity.org,Socrata,Working,,2024-05,
 California,San Francisco,870000,https://data.sfgov.org,Socrata,Working,,2024-05,
 California,Sacramento,525000,https://data.cityofsacramento.org,ArcGIS,Working,ArcGIS Hub catalog verified; migrated from Socrata label,2026-08-25,
 California,Oakland,440000,https://data.oaklandca.gov,Socrata,Working,,2024-05,
 Colorado,Denver,715000,https://opendata-geospatialdenver.hub.arcgis.com,ArcGIS,Working,,2024-05,
 Colorado,Colorado Springs,480000,https://data.coloradosprings.gov,Socrata,Working,,2024-05,
+Colorado,Keystone,1500,https://trails.colorado.gov/,Other,Manual only,Official COTREX discovery portal; exact CPW ArcGIS layers below are crawler inputs,2026-08-26,,,
+Colorado,Keystone,1500,https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWAdminData/FeatureServer/15,ArcGIS,Working,Current official COTREX trails; hiking enabled and Keystone Resort-managed segments excluded,2026-08-26,,hiking = 'yes' AND manager <> 'Keystone Resort',39.53|-106.10|39.72|-105.82
+Colorado,Keystone,1500,https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWAdminData/FeatureServer/14,ArcGIS,Working,Current official COTREX trailheads; fee=yes trailheads excluded,2026-08-26,,fee IS NULL OR fee <> 'yes',39.53|-106.10|39.72|-105.82
+Colorado,Keystone,1500,https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_TrailNFSPublishWithDataStatus_01/MapServer/0,ArcGIS,Working,Official USDA Forest Service trail layer spatially clipped to Keystone and Summit County,2026-08-26,,trail_name IS NOT NULL,39.53|-106.10|39.72|-105.82
+Colorado,Keystone,1500,https://overpass-api.de/api/interpreter,Other,Manual only,OpenStreetMap fallback is acquired by the production osm_overpass adapter rather than this municipal scraper,2026-08-26,,,
 Connecticut,Hartford,120000,https://data.hartford.gov,ArcGIS,Working,ArcGIS Hub catalog verified; migrated from Socrata label,2026-08-25,
 District of Columbia,Washington,690000,https://opendata.dc.gov,ArcGIS,Working,ArcGIS Hub catalog verified; migrated from Socrata label,2026-08-25,
 Florida,Miami,450000,https://datahub-miamigis.opendata.arcgis.com,ArcGIS,Working,,2024-05,
 Florida,Tampa,380000,https://city-tampa.opendata.arcgis.com,ArcGIS,Working,,2024-05,
 Florida,Orlando,310000,https://data.cityoforlando.net,Socrata,Working,,2024-05,
 Hawaii,Honolulu,350000,https://data.honolulu.gov,Socrata,Working,,2024-05,
+Idaho,Boise,237000,https://opendata.cityofboise.org/,ArcGIS,Manual only,Official City of Boise ArcGIS Hub retained for discovery; exact walking layers below are the repeatable crawler inputs,2026-08-26,,,
+Idaho,Boise,237000,https://services1.arcgis.com/WHM6qC35aMtyAAlN/arcgis/rest/services/Boise_Parks_Managed_Property_Open_Data/FeatureServer/0,ArcGIS,Working,Official managed parks reserves and open space; free open properties only and road rights-of-way excluded,2026-08-26,,"Park_Status IN ('Open','Open_Restricted') AND Park_Type <> 'ROW'",43.48|-116.40|43.70|-116.10
+Idaho,Boise,237000,https://services1.arcgis.com/WHM6qC35aMtyAAlN/arcgis/rest/services/Boise_Parks_Facilities_Open_Data/FeatureServer/0,ArcGIS,Working,Official free public recreation facilities including trailheads nature centers and community facilities,2026-08-26,,"FacilityStatus = 'Open' AND FacilType IN ('Trailhead','Nature Center','Education Center','Recreation/Community - medium','Skateboard','Frisbee/Disc Golf','Off-leash Dog area','Memorial')",43.48|-116.40|43.70|-116.10
+Idaho,Boise,237000,https://services1.arcgis.com/WHM6qC35aMtyAAlN/arcgis/rest/services/Boise_Parks_Trails_Open_Data/FeatureServer/0,ArcGIS,Working,Official Greenbelt urban and Ridge to Rivers trail inventory; bike-only motorized and proposed records excluded,2026-08-26,,"(TrailStatus IS NULL OR TrailStatus = 'Open') AND (R2R_Use IS NULL OR R2R_Use IN ('Multi-use non-motorized','Pedestrian Only'))",43.48|-116.40|43.70|-116.10
+Idaho,Boise,237000,https://services1.arcgis.com/WHM6qC35aMtyAAlN/arcgis/rest/services/Pathways_Master_Plan/FeatureServer/0,ArcGIS,Working,Official Pathways Master Plan layer restricted to existing pathways for safe published walking data,2026-08-26,,Status = 'Existing',43.48|-116.40|43.70|-116.10
+Idaho,Boise,237000,https://services1.arcgis.com/WHM6qC35aMtyAAlN/arcgis/rest/services/GreenbeltDOTSMileMarkers/FeatureServer/0,ArcGIS,Working,Official Boise River Greenbelt milepost markers,2026-08-26,,1=1,43.48|-116.40|43.70|-116.10
 Illinois,Chicago,2700000,https://data.cityofchicago.org,Socrata,Working,,2024-05,
 Kentucky,Louisville,630000,https://data.louisvilleky.gov,ArcGIS,Working,ArcGIS Hub catalog verified; migrated from Socrata label,2026-08-25,
 Louisiana,New Orleans,380000,https://data.nola.gov,Socrata,Working,,2024-05,

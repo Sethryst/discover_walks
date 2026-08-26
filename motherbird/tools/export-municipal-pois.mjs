@@ -113,6 +113,47 @@ export const MUNICIPAL_REGIONS = {
       rule(/^parks_open_space_plan_/, 'park', ['Park_Name', 'UpdatePkNm', 'AlterntNam'], ['OBJECTID_1', 'OBJECTID']),
       rule(/^trails_/, 'trail', ['trail_name', 'altname', 'park', 'greenway'], ['OBJECTID', 'globalid'])
     ]
+  },
+  boise: {
+    state: 'Idaho', city: 'Boise', artifactName: 'boise-meridian-idaho', bbox: [43.48, -116.40, 43.70, -116.10],
+    boundary: {
+      name: 'Ada County City Limits — Boise',
+      url: 'https://services1.arcgis.com/WHM6qC35aMtyAAlN/arcgis/rest/services/CityLimitsAndImpactAreas/FeatureServer/1',
+      where: "CITY = 'Boise'"
+    },
+    rules: [
+      rule(/^parks_and_rec_managed_properties_/, 'park', ['Site_Name'], ['ParkID', 'OBJECTID']),
+      rule(/^parks_recreation_public_and_administrative_facilities_/, 'recreation_center', ['FacilityName'], ['FacilityID', 'OBJECTID'], {
+        categoryMap: { field: 'FacilType', values: { Trailhead: 'trail' } }
+      }),
+      rule(/^trails_/, 'trail', ['TrailName', 'Name', 'SystemName'], ['TrailID', 'OBJECTID']),
+      rule(/^boise_pathways_master_plan_/, 'trail', ['Name'], ['OBJECTID'])
+    ]
+  },
+  sedona: {
+    state: 'Arizona', city: 'Sedona', artifactName: 'sedona-arizona', bbox: [34.80, -111.86, 34.93, -111.70],
+    boundary: {
+      name: 'U.S. Census Bureau Sedona incorporated place boundary',
+      url: 'https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/4',
+      where: "STATE = '04' AND BASENAME = 'Sedona'"
+    },
+    rules: [
+      rule(/^city_parks_/, 'park', ['NAME', 'LABEL'], ['ID', 'OBJECTID']),
+      rule(/^trailhead_/, 'trail', ['NAME', 'TRAILNAME'], ['OBJECTID', 'GlobalID']),
+      rule(/^trails_pathways_/, 'trail', ['NAME', 'NAME_LABEL'], ['OBJECTID', 'GlobalID'])
+    ]
+  },
+  keystone: {
+    state: 'Colorado', city: 'Keystone', artifactName: 'keystone-colorado', bbox: [39.53, -106.10, 39.72, -105.82],
+    boundary: {
+      name: 'U.S. Census Bureau Keystone census-designated place boundary',
+      url: 'https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/5',
+      where: "STATE = '08' AND BASENAME = 'Keystone'"
+    },
+    rules: [
+      rule(/^cotrex_trailheads_/, 'trail', ['name', 'alt_name'], ['feature_id', 'FID']),
+      rule(/^cotrex_trails_/, 'trail', ['name', 'name_1', 'name_2'], ['feature_id', 'FID'])
+    ]
   }
 };
 
@@ -142,6 +183,13 @@ function featureName(properties, selectedRule) {
     return clean(`${subtype && subtype !== park ? `${subtype} ` : ''}${facility}${park ? ` at ${park}` : ''}`);
   }
   return values[0];
+}
+
+function featureCategory(properties, selectedRule) {
+  const mapping = selectedRule.categoryMap;
+  const category = mapping?.values?.[clean(properties[mapping.field])] || selectedRule.category;
+  if (!SAFE_CATEGORIES.has(category)) throw new Error(`Unsafe mapped POI category: ${category}`);
+  return category;
 }
 
 function coordinatesOf(geometry) {
@@ -216,7 +264,7 @@ function stableId(cityId, stem, feature, selectedRule) {
 }
 
 function addressOf(properties) {
-  return firstValue(properties, ['addressFull', 'ADDRESS', 'address', 'ParkAddress', 'Location_Street_Address', 'city_address', 'location_1_address', 'LOCATION_D']);
+  return firstValue(properties, ['addressFull', 'ADDRESS', 'Address', 'address', 'SITEADDRESS', 'ParkAddress', 'Location_Street_Address', 'city_address', 'location_1_address', 'LOCATION_D']);
 }
 
 export async function buildMunicipalSeed(cityId, config, registry = new Map()) {
@@ -242,9 +290,10 @@ export async function buildMunicipalSeed(cityId, config, registry = new Map()) {
       const name = featureName(feature.properties || {}, selectedRule);
       if (!point || !pointInBbox(point, config.bbox) || !name) { rejectedFeatures += 1; continue; }
       const { id, sourceId } = stableId(cityId, stem, feature, selectedRule);
+      const category = featureCategory(feature.properties || {}, selectedRule);
       const poi = {
         id, name, lat: Number(point.lat.toFixed(6)), lng: Number(point.lng.toFixed(6)),
-        category: selectedRule.category, tags: [selectedRule.category], unverified: false,
+        category, tags: [category], unverified: false,
         source: sourceUrl || undefined,
         provenance: { dataset: sourceName, sourceId, url: sourceUrl || undefined, localCapture: `OpenData/${localRelativePath}` }
       };
@@ -282,9 +331,10 @@ async function main() {
   if (unknown.length) throw new Error(`Unknown municipal region(s): ${unknown.join(', ')}`);
   const registry = await provenanceRegistry();
   for (const cityId of cityIds) {
-    const seed = await buildMunicipalSeed(cityId, MUNICIPAL_REGIONS[cityId], registry);
+    const config = MUNICIPAL_REGIONS[cityId];
+    const seed = await buildMunicipalSeed(cityId, config, registry);
     const content = `${JSON.stringify(seed)}\n`;
-    const outputPath = join(outputRoot, `${cityId}-poi.json`);
+    const outputPath = join(outputRoot, `${config.artifactName || cityId}-poi.json`);
     if (check) {
       const committed = await readFile(outputPath, 'utf8');
       if (committed !== content) throw new Error(`${relative(repositoryRoot, outputPath)} is stale; run npm run build:municipal-seeds.`);

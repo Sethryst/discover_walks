@@ -23,7 +23,7 @@ from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Sequence
-from urllib.parse import urlparse
+from urllib.parse import unquote, urlparse
 
 import requests
 from requests.adapters import HTTPAdapter
@@ -33,6 +33,7 @@ from urllib3.util.retry import Retry
 SCRIPT_DIR = Path(__file__).resolve().parent
 DEFAULT_PORTALS = SCRIPT_DIR / "portals.csv"
 DEFAULT_DATASETS = SCRIPT_DIR / "datasets.csv"
+DEFAULT_DATASET_SELECTORS = SCRIPT_DIR / "dataset_selectors.csv"
 DEFAULT_OUTPUT = SCRIPT_DIR
 GEOMETRY_TYPES = {
     "location", "point", "multipoint", "line", "multiline",
@@ -130,6 +131,8 @@ class Portal:
     url: str
     platform: str
     status: str = ""
+    query_where: str = "1=1"
+    bbox: tuple[float, float, float, float] | None = None
 
 
 @dataclass(frozen=True)
@@ -141,6 +144,7 @@ class Candidate:
     source_url: str
     tags: tuple[str, ...] = ()
     raw: dict[str, Any] | None = None
+    direct: bool = False
 
 
 @dataclass
@@ -181,6 +185,8 @@ class DatasetRecord:
     last_observed_feature_count: int | None = None
     last_checked: str = ""
     notes: str = ""
+    query_where: str = "1=1"
+    bbox: tuple[float, float, float, float] | None = None
 
 
 def utc_now() -> str:
@@ -202,6 +208,26 @@ def slug(value: str, limit: int = 70) -> str:
     value = plain_text(value).lower()
     value = re.sub(r"[^a-z0-9]+", "_", value).strip("_")
     return (value[:limit].rstrip("_") or "dataset")
+
+
+def parse_bbox(value: str) -> tuple[float, float, float, float] | None:
+    """Parse ``south|west|north|east`` and reject invalid WGS84 extents."""
+    value = value.strip()
+    if not value:
+        return None
+    try:
+        south, west, north, east = (float(part.strip()) for part in value.split("|"))
+    except (TypeError, ValueError) as exc:
+        raise ValueError(
+            f"BBox_WGS84 must be south|west|north|east, got {value!r}"
+        ) from exc
+    if not (-90 <= south < north <= 90 and -180 <= west < east <= 180):
+        raise ValueError(f"BBox_WGS84 is outside WGS84 limits or inverted: {value!r}")
+    return south, west, north, east
+
+
+def format_bbox(bbox: tuple[float, float, float, float] | None) -> str:
+    return "" if bbox is None else "|".join(f"{value:g}" for value in bbox)
 
 
 def phrase_pattern(phrase: str) -> str:
@@ -372,6 +398,7 @@ def dataset_key(state: str, city: str, platform: str, dataset_id: str) -> tuple[
 def load_datasets(path: Path) -> list[DatasetRecord]:
     if not path.exists():
         return []
+    selectors = load_dataset_selectors(path.with_name("dataset_selectors.csv"))
     with path.open("r", newline="", encoding="utf-8-sig") as handle:
         reader = csv.DictReader(handle)
         required = {"State", "City", "Platform", "Dataset_ID", "File", "Status"}
@@ -381,6 +408,10 @@ def load_datasets(path: Path) -> list[DatasetRecord]:
         records: list[DatasetRecord] = []
         for row in reader:
             raw_count = (row.get("Last_Observed_Feature_Count") or "").strip()
+            selector = selectors.get(dataset_key(
+                row.get("State") or "", row.get("City") or "",
+                row.get("Platform") or "", row.get("Dataset_ID") or "",
+            ), {})
             records.append(DatasetRecord(
                 state=(row.get("State") or "").strip(),
                 city=(row.get("City") or "").strip(),
@@ -393,8 +424,32 @@ def load_datasets(path: Path) -> list[DatasetRecord]:
                 last_observed_feature_count=int(raw_count) if raw_count.isdigit() else None,
                 last_checked=(row.get("Last_Checked") or "").strip(),
                 notes=(row.get("Notes") or "").strip(),
+                query_where=selector.get("query_where", "1=1"),
+                bbox=selector.get("bbox"),
             ))
     return records
+
+
+def load_dataset_selectors(path: Path) -> dict[tuple[str, str, str, str], dict[str, Any]]:
+    """Load optional query selectors without changing the legacy dataset CSV schema."""
+    if not path.exists():
+        return {}
+    with path.open("r", newline="", encoding="utf-8-sig") as handle:
+        reader = csv.DictReader(handle)
+        required = {"State", "City", "Platform", "Dataset_ID", "Query_Where", "BBox_WGS84"}
+        missing = required - set(reader.fieldnames or [])
+        if missing:
+            raise ValueError(f"dataset selector CSV is missing columns: {', '.join(sorted(missing))}")
+        return {
+            dataset_key(
+                row.get("State") or "", row.get("City") or "",
+                row.get("Platform") or "", row.get("Dataset_ID") or "",
+            ): {
+                "query_where": (row.get("Query_Where") or "1=1").strip() or "1=1",
+                "bbox": parse_bbox(row.get("BBox_WGS84") or ""),
+            }
+            for row in reader
+        }
 
 
 class HttpClient:
@@ -648,12 +703,24 @@ class ArcGISAdapter:
     def discover(self, portal: Portal) -> list[Candidate]:
         if re.search(r"/(?:FeatureServer|MapServer)(?:/\d+)?/?$", portal.url, re.I):
             digest = hashlib.sha1(portal.url.encode("utf-8")).hexdigest()[:16]
+            exact_layer = bool(re.search(r"/(?:FeatureServer|MapServer)/\d+/?$", portal.url, re.I))
+            service_path = [unquote(part) for part in urlparse(portal.url).path.split("/") if part]
+            service_title = next(
+                (service_path[index - 1] for index, part in enumerate(service_path)
+                 if part.casefold() in {"featureserver", "mapserver"} and index),
+                f"{portal.city} ArcGIS service",
+            )
+            metadata: dict[str, Any] | None = None
+            if exact_layer:
+                metadata, _ = self.http.json(portal.url.rstrip("/"), params={"f": "json"})
             return [Candidate(
                 platform=self.name,
                 dataset_id=digest,
-                title=f"{portal.city} ArcGIS service",
+                title=plain_text((metadata or {}).get("name")) or plain_text(service_title),
                 description="Direct service URL from portals.csv",
                 source_url=portal.url.rstrip("/"),
+                raw=metadata,
+                direct=exact_layer,
             )]
 
         try:
@@ -802,9 +869,9 @@ class ArcGISAdapter:
             tags=candidate.tags if layer_count == 1 else (),
         )
         # A relevant single-layer item can have an opaque internal layer name.
-        if layer_count > 1 and not is_relevant(layer_candidate):
+        if not candidate.direct and layer_count > 1 and not is_relevant(layer_candidate):
             raise CrawlError("irrelevant_layer", f"layer title={layer_name!r}")
-        if layer_count == 1 and not (is_relevant(layer_candidate) or is_relevant(candidate)):
+        if not candidate.direct and layer_count == 1 and not (is_relevant(layer_candidate) or is_relevant(candidate)):
             raise CrawlError("irrelevant_layer", f"layer title={layer_name!r}")
         return geometry_type
 
@@ -814,6 +881,8 @@ class ArcGISAdapter:
         layer_id: int,
         max_features: int,
         page_size: int,
+        query_where: str = "1=1",
+        bbox: tuple[float, float, float, float] | None = None,
     ) -> dict[str, Any]:
         service_url = candidate.source_url.rstrip("/")
         if re.search(r"/(?:FeatureServer|MapServer)/\d+$", service_url, re.I):
@@ -824,10 +893,11 @@ class ArcGISAdapter:
         layer_metadata, _ = self.http.json(layer_url, params={"f": "json"})
         advertised_page_size = int(layer_metadata.get("maxRecordCount") or page_size)
         effective_page_size = max(1, min(page_size, advertised_page_size))
-        ids_data, _ = self.http.json(
-            query_url,
-            params={"where": "1=1", "returnIdsOnly": "true", "f": "json"},
-        )
+        ids_data, _ = self.http.json(query_url, params={
+            **self.selection_params(query_where, bbox),
+            "returnIdsOnly": "true",
+            "f": "json",
+        })
         object_ids = ids_data.get("objectIds")
         if not isinstance(object_ids, list):
             raise CrawlError("object_ids_failed", "query did not return an objectIds array")
@@ -874,6 +944,49 @@ class ArcGISAdapter:
             "quality": coverage_quality(len(object_ids), len(features), invalid_count),
         }
 
+    def selected_count(
+        self,
+        candidate: Candidate,
+        layer_id: int,
+        query_where: str = "1=1",
+        bbox: tuple[float, float, float, float] | None = None,
+    ) -> int:
+        """Probe a configured ArcGIS selector without downloading its geometry."""
+        service_url = candidate.source_url.rstrip("/")
+        layer_url = (
+            service_url
+            if re.search(r"/(?:FeatureServer|MapServer)/\d+$", service_url, re.I)
+            else f"{service_url}/{layer_id}"
+        )
+        data, _ = self.http.json(f"{layer_url}/query", params={
+            **self.selection_params(query_where, bbox),
+            "returnCountOnly": "true",
+            "f": "json",
+        })
+        try:
+            count = int(data["count"])
+        except (KeyError, TypeError, ValueError) as exc:
+            raise CrawlError("selector_failed", f"unexpected count response: {data!r}") from exc
+        if count < 1:
+            raise CrawlError("empty_selector", "configured ArcGIS selector matched zero features")
+        return count
+
+    @staticmethod
+    def selection_params(
+        query_where: str,
+        bbox: tuple[float, float, float, float] | None,
+    ) -> dict[str, Any]:
+        params: dict[str, Any] = {"where": query_where or "1=1"}
+        if bbox is not None:
+            south, west, north, east = bbox
+            params.update({
+                "geometry": f"{west},{south},{east},{north}",
+                "geometryType": "esriGeometryEnvelope",
+                "inSR": "4326",
+                "spatialRel": "esriSpatialRelIntersects",
+            })
+        return params
+
 
 def load_portals(path: Path) -> list[Portal]:
     with path.open("r", newline="", encoding="utf-8-sig") as handle:
@@ -898,6 +1011,8 @@ def load_portals(path: Path) -> list[Portal]:
                 url=url,
                 platform=(row.get("Platform") or "Other").strip() or "Other",
                 status=(row.get("Status") or "").strip(),
+                query_where=(row.get("Query_Where") or "1=1").strip() or "1=1",
+                bbox=parse_bbox(row.get("BBox_WGS84") or ""),
             ))
     return portals
 
@@ -1067,6 +1182,7 @@ class Runner:
         return Portal(
             state=portal.state, city=portal.city, url=api_url,
             platform=detected, status=portal.status,
+            query_where=portal.query_where, bbox=portal.bbox,
         )
 
     def _detect_other(self, portal: Portal) -> SocrataAdapter | ArcGISAdapter:
@@ -1179,11 +1295,21 @@ class Runner:
             try:
                 adapter.validate_layer(candidate, layer_id, layer_name, metadata, len(layers))
                 if self.args.dry_run:
+                    selected_count = adapter.selected_count(
+                        candidate, layer_id, portal.query_where, portal.bbox
+                    )
+                    if selected_count > self.args.max_features:
+                        raise CrawlError(
+                            "too_many_features",
+                            f"{selected_count} exceeds --max-features={self.args.max_features}",
+                        )
                     self.record(portal, adapter.name, "validation", "success",
-                                detail="dry run; download not attempted", **common)
+                                feature_count=selected_count,
+                                detail="dry run; selector matched live features", **common)
                     continue
                 result = adapter.download_layer(
-                    candidate, layer_id, self.args.max_features, self.args.page_size
+                    candidate, layer_id, self.args.max_features, self.args.page_size,
+                    portal.query_where, portal.bbox,
                 )
                 write_geojson_exclusive(path, result["geojson"])
             except CrawlError as exc:

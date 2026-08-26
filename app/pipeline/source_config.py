@@ -85,7 +85,11 @@ def load_region(path: Path) -> dict[str, Any]:
 def _local_open_data_source(region: dict[str, Any], path: Path) -> list[dict[str, Any]]:
     """Attach a same-named municipal capture folder as an explicit local source."""
     city = str(region.get("name", "")).split(",")[0].strip()
-    aliases = {"New York City": "New York City", "Washington": "Washington"}
+    aliases = {
+        "New York City": "New York City",
+        "Washington": "Washington",
+        "Keystone & Summit County": "Keystone",
+    }
     city = aliases.get(city, city)
     root = path.parents[2] / "OpenData"
     matches = [folder for state in root.iterdir() if state.is_dir() for folder in state.iterdir() if folder.is_dir() and folder.name.casefold() == city.casefold()]

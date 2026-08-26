@@ -133,6 +133,23 @@ Treat the CSV as an actively maintained registry, not a permanent truth table:
 Large layers over `--max-features` are skipped rather than partially saved. Raise
 that limit deliberately after checking storage and memory needs.
 
+`portals.csv` is the crawler source of truth. Its optional `Query_Where` and
+`BBox_WGS84` columns make direct ArcGIS layers repeatable without downloading a
+statewide feed for one local region. `BBox_WGS84` uses
+`south|west|north|east`. The exact selectors for curated refreshes live in
+`dataset_selectors.csv`, keyed to `datasets.csv`, so the legacy acquisition
+registry remains backward compatible.
+
+Generate the complete searchable master list—including every catalog, exact
+layer, status, selector, check date, note, and current curated-dataset count:
+
+```powershell
+python OpenData/portal_registry.py
+python OpenData/portal_registry.py --check
+```
+
+The generated report is `docs/open-data-portal-registry.md`.
+
 ## Tree and streetlight derived products
 
 `tree_sources.csv` and `streetlight_sources.csv` are small curated registries for

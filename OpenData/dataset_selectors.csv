@@ -1,0 +1,13 @@
+State,City,Platform,Dataset_ID,Query_Where,BBox_WGS84
+Arizona,Sedona,ArcGIS,bd03feed25e2d52b_7,"TYPE NOT IN ('BIKE LANE','BIKE ROUTE','UNDERCONSTRUCTION') AND (DESCRIPTION IS NULL OR DESCRIPTION NOT IN ('BIKES ONLY','BIKES; NO PEDESTRIANS; NO EQUESTRAIN'))",34.80|-111.86|34.93|-111.70
+Arizona,Sedona,ArcGIS,7221f53401698f5e_69,1=1,34.80|-111.86|34.93|-111.70
+Arizona,Sedona,ArcGIS,f6190645dc6329c2_331,1=1,34.80|-111.86|34.93|-111.70
+Arizona,Sedona,ArcGIS,db907a8c8cb98bbe_0,trail_name IS NOT NULL,34.80|-111.86|34.93|-111.70
+Colorado,Keystone,ArcGIS,3760330296bb6373_15,hiking = 'yes' AND manager <> 'Keystone Resort',39.53|-106.10|39.72|-105.82
+Colorado,Keystone,ArcGIS,6f2a191fdbf5f994_14,fee IS NULL OR fee <> 'yes',39.53|-106.10|39.72|-105.82
+Colorado,Keystone,ArcGIS,db907a8c8cb98bbe_0,trail_name IS NOT NULL,39.53|-106.10|39.72|-105.82
+Idaho,Boise,ArcGIS,0bac76fcc2c99721_0,"Park_Status IN ('Open','Open_Restricted') AND Park_Type <> 'ROW'",43.48|-116.40|43.70|-116.10
+Idaho,Boise,ArcGIS,c3b8af3c94f52381_0,"FacilityStatus = 'Open' AND FacilType IN ('Trailhead','Nature Center','Education Center','Recreation/Community - medium','Skateboard','Frisbee/Disc Golf','Off-leash Dog area','Memorial')",43.48|-116.40|43.70|-116.10
+Idaho,Boise,ArcGIS,a04c31935f2cec3a_0,"(TrailStatus IS NULL OR TrailStatus = 'Open') AND (R2R_Use IS NULL OR R2R_Use IN ('Multi-use non-motorized','Pedestrian Only'))",43.48|-116.40|43.70|-116.10
+Idaho,Boise,ArcGIS,4fe3542bc4f3f90a_0,Status = 'Existing',43.48|-116.40|43.70|-116.10
+Idaho,Boise,ArcGIS,97bdd37c20f36703_0,1=1,43.48|-116.40|43.70|-116.10

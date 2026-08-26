@@ -17,6 +17,8 @@ from OpenData.scraper import (
     spatial_summary,
     valid_feature_collection,
     write_geojson_exclusive,
+    parse_bbox,
+    load_datasets,
 )
 
 
@@ -39,6 +41,28 @@ class QuietLogger:
 
 
 class ScraperTests(unittest.TestCase):
+
+    def test_portal_bbox_parser_enforces_wgs84_order(self):
+        self.assertEqual(parse_bbox("34.80|-111.86|34.93|-111.70"), (34.8, -111.86, 34.93, -111.7))
+        with self.assertRaisesRegex(ValueError, "inverted"):
+            parse_bbox("34.93|-111.86|34.80|-111.70")
+
+    def test_dataset_selector_registry_keeps_legacy_dataset_schema(self):
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "datasets.csv").write_text(
+                "State,City,Platform,Dataset_ID,Dataset_Name,Source_URL,File,Status,Last_Observed_Feature_Count,Last_Checked,Notes\n"
+                "Colorado,Keystone,ArcGIS,abc_15,Trails,https://example.test/FeatureServer/15,Colorado/Keystone/trails.geojson,curated,3,2026-08-26,Current\n",
+                encoding="utf-8",
+            )
+            (root / "dataset_selectors.csv").write_text(
+                "State,City,Platform,Dataset_ID,Query_Where,BBox_WGS84\n"
+                "Colorado,Keystone,ArcGIS,abc_15,hiking = 'yes',39.53|-106.10|39.72|-105.82\n",
+                encoding="utf-8",
+            )
+            record = load_datasets(root / "datasets.csv")[0]
+            self.assertEqual(record.query_where, "hiking = 'yes'")
+            self.assertEqual(record.bbox, (39.53, -106.1, 39.72, -105.82))
 
     def test_streetlight_product_is_explicit_proxy(self):
         from OpenData.streetlight_derivatives import build_one
@@ -175,6 +199,22 @@ class ScraperTests(unittest.TestCase):
             adapter.validate_layer(candidate, 0, "Parks", metadata, 1)
         self.assertEqual(error.exception.reason, "geojson_unsupported")
 
+    def test_exact_direct_layer_is_allowlisted_even_with_planning_title(self):
+        adapter = ArcGISAdapter(FakeHttp([]), QuietLogger())
+        candidate = Candidate(
+            "ArcGIS", "a" * 32, "Boise Pathways Master Plan", "", "https://example/FeatureServer/0",
+            direct=True,
+        )
+        metadata = {
+            "geometryType": "esriGeometryPolyline",
+            "capabilities": "Query",
+            "supportedQueryFormats": "JSON,geoJSON",
+        }
+        self.assertEqual(
+            adapter.validate_layer(candidate, 0, "Boise Pathways Master Plan", metadata, 1),
+            "esriGeometryPolyline",
+        )
+
     def test_multilayer_arcgis_service_does_not_inherit_parent_trail_tags(self):
         adapter = ArcGISAdapter(FakeHttp([]), QuietLogger())
         candidate = Candidate(
@@ -208,6 +248,21 @@ class ScraperTests(unittest.TestCase):
         self.assertEqual(http.calls[2][1]["method"], "POST")
         self.assertEqual(http.calls[2][1]["params"]["objectIds"], "10,11")
         self.assertEqual(result["quality"]["coverage_status"], "complete")
+
+    def test_arcgis_selector_applies_where_and_bbox_to_object_ids(self):
+        feature = {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-105.95, 39.61]}}
+        http = FakeHttp([
+            {"maxRecordCount": 2000},
+            {"objectIds": [10]},
+            {"type": "FeatureCollection", "features": [feature]},
+        ])
+        adapter = ArcGISAdapter(http, QuietLogger())
+        candidate = Candidate("ArcGIS", "a" * 32, "Trails", "", "https://example/FeatureServer/15")
+        adapter.download_layer(candidate, 15, 10, 10, "hiking = 'yes'", (39.53, -106.10, 39.72, -105.82))
+        params = http.calls[1][1]["params"]
+        self.assertEqual(params["where"], "hiking = 'yes'")
+        self.assertEqual(params["geometry"], "-106.1,39.53,-105.82,39.72")
+        self.assertEqual(params["geometryType"], "esriGeometryEnvelope")
 
     def test_socrata_retains_usable_geometry_and_reports_incomplete_coverage(self):
         valid = {"type": "Feature", "geometry": {"type": "Point", "coordinates": [0, 0]}}

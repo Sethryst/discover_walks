@@ -114,7 +114,8 @@
     zoom: 11,
     dataFile: './data/keystone-colorado-poi.json',
     supplementalPoiFile: './regions/keystone-colorado/keystone-colorado-poi.json',
-    civicFile: './regions/keystone-colorado/civic/index.json', weatherFile: './regions/keystone-colorado/weather.json'
+    civicFile: './regions/keystone-colorado/civic/index.json', weatherFile: './regions/keystone-colorado/weather.json',
+    boundarySource: { name: 'U.S. Census Bureau Keystone census-designated place boundary', url: 'https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/5', where: "STATE = '08' AND BASENAME = 'Keystone'" }
   },
   pgcounty: {
     name: "Prince George's County",
@@ -171,12 +172,14 @@
     dataFile: './data/sedona-arizona-poi.json',
     supplementalPoiFile: './regions/sedona-arizona/sedona-arizona-poi.json',
     civicFile: './regions/sedona-arizona/civic/index.json',
-    weatherFile: './regions/sedona-arizona/weather.json'
+    weatherFile: './regions/sedona-arizona/weather.json',
+    boundarySource: { name: 'U.S. Census Bureau Sedona incorporated place boundary', url: 'https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/4', where: "STATE = '04' AND BASENAME = 'Sedona'" }
   },
   boise: {
     name: 'Boise–Meridian–Old Town', state: 'ID', center: { lat: 43.599, lng: -116.252 }, zoom: 12,
     dataFile: './data/boise-meridian-idaho-poi.json', supplementalPoiFile: './regions/boise-meridian-idaho/boise-meridian-idaho-poi.json',
-    civicFile: './regions/boise-meridian-idaho/civic/index.json', weatherFile: './regions/boise-meridian-idaho/weather.json'
+    civicFile: './regions/boise-meridian-idaho/civic/index.json', weatherFile: './regions/boise-meridian-idaho/weather.json',
+    boundarySource: { name: 'Ada County City Limits — Boise', url: 'https://services1.arcgis.com/WHM6qC35aMtyAAlN/arcgis/rest/services/CityLimitsAndImpactAreas/FeatureServer/1', where: "CITY = 'Boise'" }
   }
 };
                   export const DEFAULT_PROFILE = {

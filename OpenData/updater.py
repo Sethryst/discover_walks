@@ -90,7 +90,7 @@ def refresh_record(record, args, http, logger: logging.Logger) -> tuple[Result, 
     path = destination(output_root, record.file)
     candidate = Candidate(
         record.platform, record.dataset_id, record.dataset_name,
-        record.notes, record.source_url,
+        record.notes, record.source_url, direct=True,
     )
     try:
         if record.platform.casefold() == "socrata":
@@ -109,8 +109,17 @@ def refresh_record(record, args, http, logger: logging.Logger) -> tuple[Result, 
             layer_id, layer_name, metadata = layers[0]
             adapter.validate_layer(candidate, layer_id, layer_name, metadata, 1)
             if args.dry_run:
-                return result_row(record, "validation", "success", detail="direct layer metadata valid"), False
-            refreshed = adapter.download_layer(candidate, layer_id, args.max_features, args.page_size)
+                count = adapter.selected_count(
+                    candidate, layer_id, record.query_where, record.bbox
+                )
+                return result_row(
+                    record, "validation", "success", feature_count=count,
+                    detail="direct layer metadata and selector valid",
+                ), False
+            refreshed = adapter.download_layer(
+                candidate, layer_id, args.max_features, args.page_size,
+                record.query_where, record.bbox,
+            )
         else:
             raise CrawlError("unsupported_platform", record.platform)
 
