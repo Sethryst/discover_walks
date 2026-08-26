@@ -61,7 +61,7 @@ Targets: at least 500 valid records, under 10 MiB, deterministic output for unch
 ## Pipeline Architecture
 
 ```text
-Official DCGIS endpoints → explicit snapshot refresh → data/dc-raw/*.geojson
+Official DCGIS endpoints → explicit snapshot refresh → data/open-data/dc/*.geojson
   → source-specific normalization to app POIs
   → point-in-polygon neighborhood assignment
   → conservative same-name/category/50m deduplication
@@ -93,3 +93,4 @@ Every non-server command exits nonzero on invalid input. `dev:dc-region` intenti
 ## Map and Geofence Configuration
 
 Map filters are data-driven and include every tag present in the active city, plus an explicit **OpenStreetMap places** source filter. Selecting one chip shows only that category/source; leaving every chip unselected shows all places. Geofence controls are separately data-driven and list every visible, non-OpenStreetMap category in the active city. For DC this is Parks, Public Art, Trails, History, and Free Wi-Fi. OpenStreetMap records remain map-filterable but are not geofence defaults.
+

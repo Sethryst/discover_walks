@@ -202,7 +202,7 @@ el('accountPasswordForm').addEventListener('submit', updateAccountPassword);
   el('clearDataButton').addEventListener('click', async () => {
     if (!confirm("Clear every locally saved walk, reflection, observation, and personal profile record on this device? This can't be undone.")) return;
     await db.clearAll();
-    state.profile = normalizeProfile(DEFAULT_PROFILE); state.settings = { ...DEFAULT_SETTINGS }; state.activeCity = 'vienna';
+    state.profile = normalizeProfile(DEFAULT_PROFILE); state.settings = { ...DEFAULT_SETTINGS }; state.activeCity = 'fairfax';
     await Promise.all([db.put('profile', state.profile), db.put('settings', state.settings)]);
     closeSheets(); await refreshCityMap(true); renderArchive(); toast('Local journal data cleared.');
   });

@@ -80,7 +80,7 @@ export async function createMigratedProfile() {
     totalPoints: walks.reduce((total, walk) => total + Math.round(((walk.distanceMeters || 0) / 1609.344) * POINTS_PER_MILE), 0) + observations.length * POINTS_PER_OBSERVATION
   });
   moments.filter((moment) => moment.type === 'history' && moment.siteId).forEach((moment) => {
-    const cityId = moment.city || 'vienna';
+    const cityId = moment.city || 'fairfax';
     const ids = sitesForProfile(profile, cityId);
     if (!ids.includes(moment.siteId)) {
       profile.sitesDiscovered[cityId] = [...ids, moment.siteId];
@@ -97,7 +97,7 @@ export async function loadLocalState() {
   // profile could not have deliberately disabled this then-unavailable option.
   if (Array.isArray(state.settings.geofenceCategories) && !state.settings.geofenceCategories.includes('trail')) state.settings.geofenceCategories.push('trail');
   state.settings.entitlements = normalizedEntitlements(state.settings.entitlements);
-  if (!CITIES[state.settings.activeCity]) state.settings.activeCity = 'vienna';
+  if (!CITIES[state.settings.activeCity] || state.settings.activeCity === 'vienna' || state.settings.activeCity === 'wolf-trap') state.settings.activeCity = 'fairfax';
   state.activeCity = state.settings.activeCity;
   await restoreLocalPoiClosures();
   await Promise.all([db.put('profile', state.profile), db.put('settings', state.settings)]);

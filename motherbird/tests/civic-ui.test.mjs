@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { eventFilterLabel, humanSourceLabel, renderCivicEventCard } from '../js/civic.js';
 
-assert.equal(eventFilterLabel('vienna'), 'All Vienna events');
+assert.equal(eventFilterLabel('fairfax'), 'All Fairfax County events');
 
 const pgCard = renderCivicEventCard({
   title: 'The African Odyssey Exhibition',

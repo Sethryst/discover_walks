@@ -22,7 +22,7 @@ export async function importJournal(event) {
     await db.clearAll();
     await Promise.all([...backup.walks.map((item) => db.put('walks', item)), ...backup.observations.map((item) => db.put('observations', item)), ...backup.moments.map((item) => db.put('moments', item))]);
     state.profile = normalizeProfile(backup.profile || await createMigratedProfile()); state.settings = { ...DEFAULT_SETTINGS, ...(backup.settings || {}) };
-    if (!CITIES[state.settings.activeCity]) state.settings.activeCity = 'vienna'; state.activeCity = state.settings.activeCity;
+    if (!CITIES[state.settings.activeCity]) state.settings.activeCity = 'fairfax'; state.activeCity = state.settings.activeCity;
     await Promise.all([db.put('profile', state.profile), db.put('settings', state.settings)]); closeSheets(); await refreshCityMap(true); await renderArchive(); toast('Journal backup restored.');
   } catch (error) { toast(error.message || 'That backup could not be restored.'); }
 }

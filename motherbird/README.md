@@ -65,7 +65,7 @@ Norfolk contains four clearly marked **unverified prototype stops**. They have g
 - library coordinates using the supplied EPSG:2284-to-WGS84 conversion; and
 - tree planting and light rail deliberately excluded from the v1 POI layer.
 
-Regenerate after replacing a raw export with `python scripts/normalize_norfolk_pois.py`. Elizabeth River Trail is supported as a featured line layer when an `Elizabeth_River_Trail*.geojson` export is placed in `data/norfolk-raw/`; it was not included in this source bundle.
+Regenerate after replacing a raw export with `python scripts/normalize_norfolk_pois.py`. Elizabeth River Trail is supported as a featured line layer when an `Elizabeth_River_Trail*.geojson` export is placed in `data/open-data/norfolk/`; it was not included in this source bundle.
 
 ## Offline region build workflow
 
@@ -109,3 +109,4 @@ Data added in JSON for 4 cities
 ## Suggested next build increment
 
 Replace the city config in `app.js` with a versioned GeoJSON dataset and an editor review/export workflow. It lets both cities use verified stories without changing the walking and journal engine.
+

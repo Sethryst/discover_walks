@@ -89,9 +89,9 @@ export async function initRegionAutomation() {
   chip.textContent = 'Preparing region automation…';
   try {
     const installedRegions = await regionApi.discoverRegions();
-    const region = installedRegions.some((entry) => entry.id === 'vienna')
-      ? await regionApi.loadRegion('vienna')
-      : await regionApi.installRegion('vienna');
+    const region = installedRegions.some((entry) => entry.id === 'fairfax')
+      ? await regionApi.loadRegion('fairfax')
+      : await regionApi.installRegion('fairfax');
 
     state.regionAutomation = {
       ...region,

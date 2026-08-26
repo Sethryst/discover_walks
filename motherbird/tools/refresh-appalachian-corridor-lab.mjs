@@ -296,7 +296,7 @@ export async function refreshAppalachianCorridorLab() {
   }
   const candidate = buildCandidate({ centerline, parking, vistas, previousHash: previous?.source?.sourceHash });
   const context = buildContextCandidate({ parking, supportParking, vistas, shelters, campsites, osm, sourceErrors, centerlineHash: candidate.source.sourceHash, routeWindowCount: candidate.routes.length, routeSections: candidate.routes });
-  const cacheDir = path.join(root, 'data', 'appalachian-corridor-lab');
+  const cacheDir = path.join(root, 'data', 'open-data', 'appalachian-corridor-lab');
   await mkdir(cacheDir, { recursive: true });
   await mkdir(path.dirname(candidateFile), { recursive: true });
   await Promise.all([
@@ -318,3 +318,4 @@ if (process.argv[1] && path.resolve(process.argv[1]) === import.meta.filename) {
   const candidate = await refreshAppalachianCorridorLab();
   console.log(`Appalachian Corridor Lab: ${candidate.routes.length} candidate windows; ${candidate.context.entryAreas.length} entry areas; ${candidate.context.discoveries.official.length}/${candidate.context.discoveries.osm.length} official/OSM discoveries; changed=${candidate.source.changed}.`);
 }
+

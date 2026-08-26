@@ -31,7 +31,9 @@ export function dayKey(date = new Date()) { const d = new Date(date); return `${
 export function previousDayKey(key) { const d = new Date(`${key}T12:00:00`); d.setDate(d.getDate() - 1); return dayKey(d); }
 export function escapeHtml(text) { return String(text || '').replace(/[&<>'"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#039;', '"': '&quot;' }[char])); }
 export function normalizeProfile(raw = {}) {
-  const sites = Array.isArray(raw.sitesDiscovered) ? { vienna: raw.sitesDiscovered } : (raw.sitesDiscovered || {});
+  const rawSites = Array.isArray(raw.sitesDiscovered) ? { fairfax: raw.sitesDiscovered } : (raw.sitesDiscovered || {});
+  const sites = { ...rawSites, ...(rawSites.vienna ? { fairfax: [...(rawSites.fairfax || []), ...rawSites.vienna] } : {}) };
+  delete sites.vienna;
   const normalizedSites = {};
   Object.entries(sites).forEach(([key, ids]) => { normalizedSites[key] = [...new Set(Array.isArray(ids) ? ids : [])]; });
   return {
@@ -46,4 +48,4 @@ export function normalizeProfile(raw = {}) {
 }
 export function sitesForProfile(profile, cityId = state.activeCity) { return profile.sitesDiscovered[cityId] || []; }
 export function totalSitesDiscovered(profile) { return Object.values(profile.sitesDiscovered).reduce((total, ids) => total + ids.length, 0); }
-export function localObservationCity(observation) { return observation.city || 'vienna'; }
+export function localObservationCity(observation) { return observation.city || 'fairfax'; }

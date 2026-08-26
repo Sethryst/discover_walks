@@ -6,7 +6,7 @@ import db from './storage.js';
 const cache = new Map();
 const voteScope = {
   newyork: 'New York City — citywide Board of Elections',
-  vienna: 'Virginia — statewide election lookup'
+  fairfax: 'Virginia — statewide election lookup'
 };
 const NYC_BOROUGHS = ['Bronx', 'Brooklyn', 'Manhattan', 'Queens', 'Staten Island'];
 let currentVote = null;

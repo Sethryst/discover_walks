@@ -7,7 +7,7 @@ export const state = {
   moments: [],
 
   // city / map data
-  activeCity: 'vienna',
+  activeCity: 'fairfax',
   cityPois: {},
   trailSegments: {},
   pois: [],
