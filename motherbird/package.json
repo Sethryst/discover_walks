@@ -8,6 +8,8 @@
     "build": "node tools/build-pages.mjs",
     "build:kpi": "node tools/build-kpi-index.mjs",
     "build:vienna-osm": "node tools/build-vienna-osm-pois.mjs vienna",
+    "build:municipal-seeds": "node tools/export-municipal-pois.mjs",
+    "check:municipal-seeds": "node tools/export-municipal-pois.mjs --check",
     "build:osm-city": "node tools/build-vienna-osm-pois.mjs",
     "audit:endpoints": "node tools/audit-endpoint-registrations.mjs",
     "audit:endpoints:live": "node tools/audit-endpoint-registrations.mjs --live --record",
