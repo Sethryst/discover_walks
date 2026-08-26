@@ -77,5 +77,18 @@ def load_region(path: Path) -> dict[str, Any]:
         if not profile_path.exists():
             raise ValueError(f"Unknown region profile: {profile}")
         profile_sources = json.loads(profile_path.read_text(encoding="utf-8")).get("sources", [])
-    region["sources"] = [SourceConfig.from_dict(source) for source in [*profile_sources, *region.get("sources", [])] if source.get("status", "active") == "active"]
+    local_sources = _local_open_data_source(region, path)
+    region["sources"] = [SourceConfig.from_dict(source) for source in [*profile_sources, *region.get("sources", []), *local_sources] if source.get("status", "active") == "active"]
     return region
+
+
+def _local_open_data_source(region: dict[str, Any], path: Path) -> list[dict[str, Any]]:
+    """Attach a same-named municipal capture folder as an explicit local source."""
+    city = str(region.get("name", "")).split(",")[0].strip()
+    aliases = {"New York City": "New York City", "Washington": "Washington"}
+    city = aliases.get(city, city)
+    root = path.parents[2] / "OpenData"
+    matches = [folder for state in root.iterdir() if state.is_dir() for folder in state.iterdir() if folder.is_dir() and folder.name.casefold() == city.casefold()]
+    if len(matches) != 1 or not any(matches[0].glob("*.geojson")):
+        return []
+    return [{"id": "local-open-data", "name": f"Local municipal OpenData capture — {city}", "provider": "local_open_data", "url": str(matches[0]), "domains": ["parks", "trails", "rest", "art", "history", "plant", "accessibility", "wildlife", "nature"], "licenseUrl": "local://OpenData", "authorityTier": "city_government", "confidence": 0.8, "status": "active"}]

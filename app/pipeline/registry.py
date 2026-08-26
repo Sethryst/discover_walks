@@ -5,6 +5,7 @@ from __future__ import annotations
 from app.pipeline.adapters.arcgis import ArcGisFeatureServiceProvider
 from app.pipeline.adapters.base import SourceAdapter
 from app.pipeline.adapters.geojson import GeoJsonProvider
+from app.pipeline.adapters.local_open_data import LocalOpenDataProvider
 from app.pipeline.adapters.osm import OsmOverpassProvider
 from app.pipeline.adapters.ebird import EbirdProvider
 from app.pipeline.adapters.nps import NpsEventsProvider
@@ -21,6 +22,7 @@ class ProviderRegistry:
     _providers: dict[str, type[SourceAdapter]] = {
         "arcgis_feature_service": ArcGisFeatureServiceProvider,
         "geojson": GeoJsonProvider,
+        "local_open_data": LocalOpenDataProvider,
         "osm_overpass": OsmOverpassProvider,
         "ebird_recent": EbirdProvider,
         "nps_events": NpsEventsProvider,

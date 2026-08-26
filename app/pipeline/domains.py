@@ -19,6 +19,9 @@ class DomainGremlin(ABC):
         """Filter source features and produce canonical records without losing provenance."""
         output: list[dict[str, Any]] = []
         for feature in features:
+            assigned = feature.metadata.get("sourceMetadata", {}).get("assignedDomains")
+            if assigned and self.domain not in assigned:
+                continue
             if self.accepts(feature):
                 output.append(self.map(feature))
         return output
