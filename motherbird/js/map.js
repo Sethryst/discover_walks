@@ -5,7 +5,6 @@ import { openObservation } from './observation.js';
 import { openPlaceCluster, renderCityPois } from './poi.js';
 import { fieldEditionLoader, regionInstaller } from './region-ui.js';
 import { toast } from './ui.js';
-import { initFederalBoundaries } from './federal-boundaries.js';
 
 export function initMap() {
   const active = city();
@@ -66,7 +65,8 @@ export function initMap() {
   if (state.currentPosition) renderUserLocation(state.currentPosition);
   window.addEventListener('field-edition-activated', ({ detail }) => activateFieldEdition(detail));
   void addFieldEditionEntry();
-  void initFederalBoundaries();
+  // Federal boundary geometry remains available for a future visual redesign,
+  // but the current borders, fills, and controls are intentionally not mounted.
 }
 
 async function activateFieldEdition(edition) {

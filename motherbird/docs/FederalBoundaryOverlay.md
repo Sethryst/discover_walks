@@ -1,5 +1,9 @@
 # Federal Boundary Overlay
 
+> Temporarily unmounted: the current borders, fills, and boundary control are
+> not initialized by `js/map.js`. The loader, artifacts, and implementation are
+> retained for a future visual redesign.
+
 The federal overlay is a session-only Leaflet presentation layer over the immutable nationwide region shards. It does not aggregate POIs, persist preferences, show statistics, or introduce municipal data.
 
 ## Runtime behavior

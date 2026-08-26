@@ -39,12 +39,12 @@ test('DC neighborhood identity wins over every federal layer', () => {
   assert.equal(resolveFederalRegionLabel([virginia, district], [-77.05, 38.9], { enabled, zoom: 7, neighborhoods }), 'Capitol Hill, DC');
 });
 
-test('map boot and offline shell include the federal overlay modules', async () => {
+test('federal overlay stays available offline but is temporarily unmounted from map boot', async () => {
   const [mapSource, worker] = await Promise.all([
     readFile(new URL('../js/map.js', import.meta.url), 'utf8'),
     readFile(new URL('../service-worker.js', import.meta.url), 'utf8')
   ]);
-  assert.match(mapSource, /initFederalBoundaries\(\)/);
+  assert.doesNotMatch(mapSource, /initFederalBoundaries\(\)/);
   assert.match(worker, /federal-boundaries\.js/);
   assert.match(worker, /federal-region-loader\.js/);
   assert.match(worker, /federal-region-progress\.js/);
