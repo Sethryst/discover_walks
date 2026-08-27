@@ -70,5 +70,6 @@ test('Guide is a season-and-place-aware companion, while Journal avoids collecti
   assert.doesNotMatch(html, /Your first walk earns a milestone/);
   assert.doesNotMatch(html, />Leaderboard</);
   assert.match(explore, /not enough reviewed local material/);
-  assert.match(planner, /Try a shorter loop/);
+  assert.doesNotMatch(planner, /Try a shorter loop/);
+  assert.match(planner, /Start when you’re ready/);
 });

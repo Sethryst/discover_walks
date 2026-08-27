@@ -15,7 +15,7 @@ import db from './storage.js';
 import { openDiscoverGroup, renderExplorePlaces, setExploreTab } from './explore.js';
 import { nearestCityFromCurrentLocation, renderDiscoveryHeadline } from './discovery.js';
 import { showCuratedRoute } from './routes.js';
-import { generateTimeBasedPlan, previewTimeBasedPlan, choosePlan, changePlan, setPlanningMode, lockSelectedPlanOnMap, togglePlanVisibility, draftWalkFromText } from './planner.js';
+import { generateTimeBasedPlan, choosePlan, setPlanningMode, lockSelectedPlanOnMap, togglePlanVisibility, draftWalkFromText } from './planner.js';
 import { wordCount } from './reflection.js';
 import { onboardingProgress, onboardingValue } from './onboarding.js';
 import { renderNearbyPlaces, setJournalSheetState } from './journal-pane.js';
@@ -26,30 +26,29 @@ export function initEvents() {
   el('archiveList').addEventListener('keydown', (event) => { const card = event.target.closest('[data-walk-id]'); if (card && (event.key === 'Enter' || event.key === ' ')) { event.preventDefault(); openWalkDetail(card.dataset.walkId); } });
   el('locateButton').addEventListener('click', getCurrentLocation);
   el('homeCityButton').addEventListener('click', () => openRegionChooser());
-  el('walkButton').addEventListener('click', () => state.activeWalk ? openSheet('routeSheet') : openSheet('startWalkSheet'));
+  el('walkButton').addEventListener('click', async () => {
+    if (state.activeWalk) { openSheet('routeSheet'); return; }
+    const mode = document.querySelector('input[name="routeMode"][value="round-trip"]');
+    const time = document.querySelector('input[name="walkTime"][value="30"]');
+    if (mode) mode.checked = true;
+    if (time) time.checked = true;
+    state.plannerEnd = null;
+    setPlanningMode(true); showView('map'); openSheet('planWalkSheet'); await generateTimeBasedPlan();
+  });
   el('activeRouteButton').addEventListener('click', () => { updateWalkDisplay(); openSheet('routeSheet'); });
   el('routePauseButton').addEventListener('click', togglePauseWalk);
   el('routeEndButton').addEventListener('click', () => { closeSheets(); stopWalk(); });
-  el('planWalkButton').addEventListener('click', async () => { setPlanningMode(true); openSheet('planWalkSheet'); await generateTimeBasedPlan(); });
-  el('startWalkSheet').addEventListener('click', async (event) => {
-    const choice = event.target.closest('[data-start-walk-mode]'); if (!choice) return;
-    state.plannerEnd = null;
-    const input = document.querySelector(`input[name="routeMode"][value="${choice.dataset.startWalkMode}"]`); if (input) input.checked = true;
-    closeSheets(); setPlanningMode(true); openSheet('planWalkSheet'); await generateTimeBasedPlan();
-  });
+  el('planWalkButton').addEventListener('click', async () => { setPlanningMode(true); showView('map'); openSheet('planWalkSheet'); await generateTimeBasedPlan(); });
   el('choosePlanStartButton').addEventListener('click', () => { state.plannerSelecting = 'Start'; toast('Planning mode: tap a starting point.'); closeSheets(); showView('map'); });
   el('choosePlanEndButton').addEventListener('click', () => { state.plannerSelecting = 'End'; toast('Planning mode: tap a destination.'); closeSheets(); showView('map'); });
   window.addEventListener('planner-point-selected', async () => { openSheet('planWalkSheet'); await generateTimeBasedPlan(); });
   window.addEventListener('planner-route-selected', () => openSheet('planWalkSheet'));
-  el('showPlanOptionsOnMap').addEventListener('click', () => { closeSheets(); showView('map'); previewTimeBasedPlan({ fit: true }); toast('Tap a colored route on the map to select it.'); });
   el('planOptions').addEventListener('click', (event) => {
     const toggle = event.target.closest('[data-route-toggle]'); if (toggle) { togglePlanVisibility(toggle.dataset.routeToggle, toggle.checked); return; }
     const option = event.target.closest('[data-plan-option]'); if (option) choosePlan(option.dataset.planOption);
-    if (event.target.closest('[data-change-plan]')) changePlan();
-    if (event.target.closest('[data-quick-retry="shorter"]')) { const time = document.querySelector('input[name="walkTime"][value="15"]'); const mode = document.querySelector('input[name="routeMode"][value="round-trip"]'); if (time) time.checked = true; if (mode) mode.checked = true; void generateTimeBasedPlan(); }
   });
   el('draftTextWalkButton').addEventListener('click', () => void draftWalkFromText(el('textWalkInput').value));
-  el('startPlannedWalkButton').addEventListener('click', async () => { if (!state.plannedRoute) { toast('Choose a route on the map before starting your walk.'); return; } if (!lockSelectedPlanOnMap()) { toast('A walkable road route could not be found.'); return; } setPlanningMode(false); closeSheets(); showView('map'); startWalk(); });
+  el('startPlannedWalkButton').addEventListener('click', async () => { if (state.plannedRoute) lockSelectedPlanOnMap(); setPlanningMode(false); closeSheets(); showView('map'); startWalk(); });
   el('planWalkSheet').addEventListener('change', (event) => { if (event.target.matches('input[name="walkTime"], input[name="routeMode"]')) void generateTimeBasedPlan(); });
   el('planWalkSheet').addEventListener('click', (event) => { const chip = event.target.closest('[data-planner-tag]'); if (!chip) return; chip.classList.toggle('active'); void generateTimeBasedPlan(); });
   el('curatedRoutesList').addEventListener('click', (event) => {

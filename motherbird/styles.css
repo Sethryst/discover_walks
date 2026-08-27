@@ -277,7 +277,7 @@ button:active { transform: translateY(1px); }.action-card:active, .primary-butto
 .walk-launch .start-walk-button { min-height: 52px; width: 100%; }
 .walk-recording-note { color: var(--muted); font-size: 9px; margin: 7px 2px 0; text-align: center; }
 
-.persistent-journal { background: var(--paper); border: 1px solid #dfe1d7; border-radius: 22px; box-shadow: var(--shadow); display: grid; grid-template-rows: auto auto 1fr; height: min(78vh, 790px); min-height: 620px; overflow: hidden; position: sticky; top: 18px; }
+.persistent-journal { background: var(--paper); border: 1px solid #dfe1d7; border-radius: 22px; box-shadow: var(--shadow); display: grid; grid-template-rows: auto auto 1fr; height: min(55vh, 560px); min-height: 430px; overflow: hidden; position: sticky; top: 18px; }
 .journal-drag-handle { background: transparent; border: 0; cursor: ns-resize; display: none; height: 22px; padding: 8px; width: 100%; }
 .journal-drag-handle span { background: #c8cec4; border-radius: 99px; display: block; height: 4px; margin: auto; width: 42px; }
 .journal-pane-header { align-items: center; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; padding: 20px 20px 14px; }
@@ -313,14 +313,7 @@ button:active { transform: translateY(1px); }.action-card:active, .primary-butto
 .composer-send img { filter: brightness(0) invert(1); height: 17px; width: 17px; }
 .journal-composer > small { color: var(--muted); display: block; font-size: 8px; margin: 5px 2px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-.walk-mode-choices, .nearby-list { display: grid; gap: 10px; }
-.walk-mode-choices > button { align-items: center; background: #f5f6ef; border: 1px solid #dce2d5; border-radius: 14px; color: var(--ink); display: grid; gap: 12px; grid-template-columns: 42px 1fr auto; min-height: 76px; padding: 13px; text-align: left; }
-.walk-mode-choices > button:hover { background: #e9f0dc; border-color: #b7c99b; }
-.walk-mode-choices img { background: #e0ead0; border-radius: 12px; height: 42px; padding: 10px; width: 42px; }
-.walk-mode-choices strong, .walk-mode-choices small { display: block; }
-.walk-mode-choices strong { color: var(--pine); font-family: Georgia, serif; font-size: 17px; }
-.walk-mode-choices small { color: var(--muted); font-size: 10px; margin-top: 3px; }
-.walk-mode-choices b { color: var(--moss); font-size: 18px; }
+.nearby-list { display: grid; gap: 10px; }
 .nearby-card { align-items: start; background: #f7f7f1; border: 1px solid var(--line); border-radius: 13px; display: grid; gap: 10px; grid-template-columns: 34px 1fr; padding: 11px; }
 .nearby-marker { align-items: center; background: #e7eed9; border-radius: 50%; color: var(--moss); display: flex; height: 34px; justify-content: center; width: 34px; }
 .nearby-card strong, .nearby-card small { display: block; }
@@ -385,4 +378,28 @@ button:active { transform: translateY(1px); }.action-card:active, .primary-butto
 @media (min-width: 761px) and (max-width: 1020px) {
   .walk-workspace { grid-template-columns: minmax(0, 2fr) minmax(290px, 1fr); }
   .walk-hero > p { display: none; }
+}
+
+/* Compact walk planning: defaults are visible, refinements stay optional. */
+.plan-walk-sheet h2 { margin-bottom: 8px; }
+.planner-toolbar { display: grid; gap: 12px; grid-template-columns: 1fr 1.35fr; margin: 12px 0; }
+.planner-toolbar .planner-options { margin: 0; }
+.planner-toolbar .planner-options legend { font-size: 11px; }
+.planner-toolbar .planner-choice-row { gap: 6px; margin-top: 7px; }
+.planner-toolbar .planner-choice-row label { align-items: center; padding: 9px; }
+.planner-time-row { grid-template-columns: repeat(4, 1fr); }
+.planner-time-row label { justify-content: center; padding-inline: 6px !important; }
+.planner-more { border-top: 1px solid var(--line); margin-top: 12px; padding-top: 10px; }
+.planner-more summary { color: var(--pine); cursor: pointer; font-size: 11px; font-weight: 800; }
+.planner-more .planner-options { margin: 10px 0; }
+.plan-walk-sheet .planner-endpoints { margin-top: 8px; }
+.plan-walk-sheet .plan-preview { margin-top: 12px; padding: 12px; }
+.plan-walk-sheet .plan-preview strong { font-size: 22px; }
+.plan-walk-sheet .plan-preview p { font-size: 11px; }
+.planner-start-button { margin-top: 12px; min-height: 50px; }
+.journal-pane-controls { display: flex; gap: 6px; justify-content: flex-end; min-height: 6px; padding: 3px 12px 0; }
+
+@media (max-width: 560px) {
+  .planner-toolbar { grid-template-columns: 1fr; }
+  .plan-walk-sheet .plan-stops, .plan-walk-sheet .plan-influences { display: none; }
 }

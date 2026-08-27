@@ -2,7 +2,7 @@ import { state } from './state.js';
 import { city, poiTags, isWalkablePoi, renderCityPois } from './poi.js';
 import { distanceMeters } from './geo.js';
 import { el, escapeHtml } from './utils.js';
-import { routeOnFoot, ROUTE_FAILURE_MESSAGES } from './routing.js';
+import { routeOnFoot } from './routing.js';
 import { quietPlacesNear } from './quiet-places.js';
 import { getPoisNearRoute } from './spatial-index.js';
 import { parseWalkDescription, saveWalkDraft } from './text-to-walk.js';
@@ -11,7 +11,7 @@ import { toast } from './ui.js';
 const MILES_PER_MINUTE = 0.05;
 const originForPlan = () => state.plannerStart || state.currentPosition || { lat: state.map?.getCenter().lat ?? city().center.lat, lng: state.map?.getCenter().lng ?? city().center.lng };
 const activePreferences = () => [...document.querySelectorAll('.planner-chip.active')].map((button) => button.dataset.plannerTag).filter(Boolean);
-const selectedMinutes = () => Number(document.querySelector('input[name="walkTime"]:checked')?.value || 15);
+const selectedMinutes = () => Number(document.querySelector('input[name="walkTime"]:checked')?.value || 30);
 const selectedRouteMode = () => document.querySelector('input[name="routeMode"]:checked')?.value || 'round-trip';
 const bearing = (from, point) => (Math.atan2(point.lng - from.lng, point.lat - from.lat) * 180 / Math.PI + 360) % 360;
 const ROUTE_THEMES = { park: 'Green Space', trail: 'Wildlife', history: 'History', quiet: 'Quiet' };
@@ -74,6 +74,7 @@ function endpointLabel(point, fallback) {
 
 function renderEndpointStatus(origin, routeMode) {
   el('pointToPointControls').classList.toggle('hidden', routeMode !== 'point-to-point');
+  el('walkTimeOptions').classList.toggle('hidden', routeMode === 'point-to-point');
   const start = state.plannerStart ? 'custom map point' : state.currentPosition ? 'current location' : 'map center';
   const end = state.plannerEnd ? `destination ${endpointLabel(state.plannerEnd, 'map point')}` : routeMode === 'point-to-point' ? 'destination: a nearby park or place' : 'returns to start';
   el('planEndpoints').textContent = `Start: ${start} · ${end}`;
@@ -194,7 +195,7 @@ export async function generateTimeBasedPlan() {
   renderEndpointStatus(origin, routeMode);
   // Vienna and newly added regions can have very little curated data at first.
   // Quiet OSM places are a private, cached planning fallback—not map clutter.
-  const maxStopDistance = Math.max(450, Math.min(2600, minutes * 42));
+  const maxStopDistance = routeMode === 'point-to-point' ? 2600 : Math.max(450, Math.min(2600, minutes * 42));
   if (candidateStops(origin, preferences, maxStopDistance).length < 6) state.quietFallbackPlaces = await quietPlacesNear(state.activeCity, origin);
   const poiSeeds = loopSeeds(origin, preferences, maxStopDistance);
   const parkAnchor = nearbyParkAnchor(origin, maxStopDistance);
@@ -216,16 +217,16 @@ export async function generateTimeBasedPlan() {
     const routed = await routeOnFoot(points, { city: state.activeCity, profile: 'ordinary_walking_beta' }).catch(() => ({ ok: false, status: 'GRAPH_VERSION_UNAVAILABLE' }));
     if (!routed.ok) { state.routePlanningFailures.push(routed.status || routed.failure?.type || 'GRAPH_VERSION_UNAVAILABLE'); return null; }
     const miles = routed.distanceMeters / 1609.344;
-    const timeFit = Math.max(0, 10 - Math.abs(minutes - routed.durationSeconds / 60) / 3);
+    const timeFit = routeMode === 'round-trip' ? Math.max(0, 10 - Math.abs(minutes - routed.durationSeconds / 60) / 3) : 0;
     return { id: `plan-${Date.now()}-${index}`, title: routeMode === 'round-trip' ? routeTitle(seed.stops, preferences, index) : `${city().name} point-to-point walk ${index + 1}`, city: state.activeCity, estimatedDurationMinutes: Math.round(routed.durationSeconds / 60), distanceMeters: routed.distanceMeters, distanceMiles: Number(miles.toFixed(2)), routeMode, preferences, stops: seed.stops, coordinates: routed.coordinates, source: 'mother-bird-runtime-graph', routingProfile: 'ordinary_walking_beta', graphVersion: routed.graphVersion, policyVersion: routed.policyVersion, sourceProvenanceIds: routed.sourceProvenanceIds, routeConfidence: routed.confidence, routeWarnings: routed.warnings, baseScore: timeFit + interestScore(seed.stops, preferences) - miles * .15 };
   }));
   state.planOptions = objectiveAlternatives(results.filter(Boolean));
   state.visiblePlanIds = new Set(state.planOptions.map((plan) => plan.id));
-  // Point-to-point has one clear route. Loops stay unselected until the
-  // walker taps the colored path directly on the map.
-  state.plannedRoute = routeMode === 'point-to-point' && state.planOptions.length === 1 ? state.planOptions[0] : null;
-  previewTimeBasedPlan();
+  // Keep the first ranked route ready so planning does not require a separate
+  // selection step. Alternatives remain tappable on the map and in the sheet.
+  state.plannedRoute = state.planOptions[0] || null;
   renderPlanPreview();
+  previewTimeBasedPlan({ fit: true });
   return state.plannedRoute;
 }
 
@@ -251,18 +252,18 @@ export async function draftWalkFromText(text) {
 
 export function renderPlanPreview() {
   const plan = state.plannedRoute;
-  const failureType = state.routePlanningFailures[0];
-  const failureMessage = ROUTE_FAILURE_MESSAGES[failureType] || 'No route matched this request.';
+  const alternatives = el('routeAlternatives');
   el('planOptions').innerHTML = state.planOptions.length
-    ? `<p class="planner-map-hint">${plan ? 'Selected route stays bright; the others remain softly visible.' : `${state.planOptions.length} named alternatives are shown together.`}</p>${state.planOptions.map((option) => `<article class="route-option ${option.id === plan?.id ? 'active' : ''}"><label class="route-visibility"><input type="checkbox" data-route-toggle="${escapeHtml(option.id)}" ${state.visiblePlanIds.has(option.id) ? 'checked' : ''} aria-label="Show ${escapeHtml(option.objective.label)}" /><span style="--route-swatch:${option.color}"></span></label><button type="button" data-plan-option="${escapeHtml(option.id)}"><strong>${escapeHtml(option.objective.label)}</strong><small>${option.distanceMiles} mi · ${option.estimatedDurationMinutes} min · ${escapeHtml(option.objective.note)}</small></button><b>${option.id === plan?.id ? 'Selected' : 'Choose'}</b></article>`).join('')}`
-    : `<div class="empty-state" data-route-failure="${escapeHtml(failureType || 'NO_ROUTE')}"><strong>${escapeHtml(failureType || 'No route came back')}</strong>${escapeHtml(failureMessage)}<div class="empty-state-actions"><button type="button" class="secondary-button" data-quick-retry="shorter">Try a shorter loop</button><button type="button" class="text-button" data-change-plan>Change my plan</button></div></div>`;
+    ? state.planOptions.map((option) => `<article class="route-option ${option.id === plan?.id ? 'active' : ''}"><label class="route-visibility"><input type="checkbox" data-route-toggle="${escapeHtml(option.id)}" ${state.visiblePlanIds.has(option.id) ? 'checked' : ''} aria-label="Show ${escapeHtml(option.objective.label)}" /><span style="--route-swatch:${option.color}"></span></label><button type="button" data-plan-option="${escapeHtml(option.id)}"><strong>${escapeHtml(option.objective.label)}</strong><small>${option.distanceMiles} mi${option.routeMode === 'round-trip' ? ` · ${option.estimatedDurationMinutes} min` : ''}</small></button><b>${option.id === plan?.id ? 'Selected' : 'Choose'}</b></article>`).join('')
+    : '';
+  alternatives.classList.toggle('hidden', !state.planOptions.length);
   const influencePanel = el('planInfluences');
-  if (!plan) { influencePanel.classList.add('hidden'); el('planDistance').textContent = state.planOptions.length ? `${state.planOptions.length} routes ready` : 'No route yet'; el('planSummary').textContent = state.planOptions.length ? 'Compare the named objectives, hide any you do not need, then choose a line or card.' : 'Adjust the time, route shape, or starting point and try again.'; el('planStops').innerHTML = ''; return; }
+  if (!plan) { influencePanel.classList.add('hidden'); el('planDistance').textContent = 'Start when you’re ready'; el('planSummary').textContent = 'Route suggestions are not available here, but your walk can still be recorded.'; el('planStops').innerHTML = ''; return; }
   el('planDistance').textContent = `${plan.distanceMiles} miles`;
   const discoveries = plan.stops.slice(0, 2).map((stop) => stop.name).join(' and ');
   el('planSummary').textContent = discoveries
-    ? `${plan.estimatedDurationMinutes}-minute ${plan.routeMode === 'round-trip' ? 'loop back to your start' : 'walk'} with ${discoveries}.`
-    : `${plan.estimatedDurationMinutes}-minute ${plan.routeMode === 'round-trip' ? 'loop back to your start' : 'walk'} ranked for time and distance.`;
+    ? `${plan.routeMode === 'round-trip' ? `${plan.estimatedDurationMinutes}-minute loop` : 'Point-to-point walk'} with ${discoveries}.`
+    : plan.routeMode === 'round-trip' ? `${plan.estimatedDurationMinutes}-minute loop back to your start.` : 'Point-to-point route to your destination.';
   el('planStops').innerHTML = plan.stops.map((stop, index) => `<li><span>${index + 1}</span><strong>${escapeHtml(stop.name)}</strong><small>${escapeHtml(stop.sourceType === 'osm-quiet-fallback' ? 'quiet place · OpenStreetMap' : poiTags(stop).find((tag) => !tag.startsWith('history_')) || 'place')}</small></li>`).join('');
   influencePanel.classList.remove('hidden');
   const reasons = routeExplanation(plan);

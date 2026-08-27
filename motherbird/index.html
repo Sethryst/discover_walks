@@ -32,10 +32,6 @@
         <div class="legacy-discovery-copy hidden" aria-hidden="true"><section class="discovery-headline"><h1><img id="headlineIcon" src="./icons/walk.svg" alt="" /><span id="headlineTitle">A walk with a purpose</span></h1><p id="discoveryHeadline">History</p><p id="discoveryHeadlineDetail">Choose an experience.</p></section><section id="discoverWays"><button data-discover-group="explore"></button></section><button id="browseDiscoverButton"></button></div>
         <div class="walk-workspace">
           <section class="walk-map-column" aria-label="Walk">
-            <div class="walk-hero">
-              <div><p class="eyebrow">WALK</p><h1>Go somewhere.<br />Notice what’s there.</h1></div>
-              <p>The map is where you are. Your journal keeps what the place means to you.</p>
-            </div>
             <p class="weather-brief hidden" id="weatherBrief" aria-live="polite"></p>
             <section class="map-panel" aria-label="Walking map">
               <div id="map" role="application" aria-label="Map of nearby places"></div>
@@ -58,8 +54,8 @@
 
           <aside class="persistent-journal" id="persistentJournal" data-sheet-state="half" aria-label="Journal">
             <button class="journal-drag-handle" id="journalDragHandle" type="button" aria-label="Resize journal" aria-expanded="true"><span></span></button>
-            <header class="journal-pane-header"><div><p class="eyebrow">JOURNAL</p><h2>What did you notice?</h2></div><div class="journal-pane-controls"><button id="journalCollapseButton" type="button" aria-label="Collapse journal">⌄</button><button id="journalExpandButton" type="button" aria-label="Expand journal">↗</button></div></header>
-            <div class="journal-collapsed-preview" id="journalCollapsedPreview">A place becomes a memory when you pause to notice it.</div>
+            <div class="journal-pane-controls"><button id="journalCollapseButton" type="button" aria-label="Collapse journal">⌄</button><button id="journalExpandButton" type="button" aria-label="Expand journal">↗</button></div>
+            <div class="journal-collapsed-preview" id="journalCollapsedPreview">No entries yet</div>
             <div class="journal-pane-body">
               <section class="journal-timeline" id="journalTimeline" aria-live="polite"></section>
               <form class="journal-composer" id="quickJournalForm">
@@ -344,16 +340,6 @@
       <button class="primary-button wide-button" id="applyQuickCityButton" type="button">Use this region</button>
     </section>
 
-    <section class="sheet start-walk-sheet hidden" id="startWalkSheet" role="dialog" aria-modal="true" aria-labelledby="startWalkTitle">
-      <button class="close-sheet" data-close-sheet aria-label="Close">×</button>
-      <span class="sheet-kicker">START WALK</span><h2 id="startWalkTitle">Where do you want to go?</h2>
-      <p class="sheet-intro">Choose the shape. We’ll help with the route and keep the map connected to your journal.</p>
-      <div class="walk-mode-choices">
-        <button type="button" data-start-walk-mode="round-trip"><img src="./icons/route.svg" alt="" /><span><strong>Round Trip</strong><small>Take me somewhere and bring me back.</small></span><b>→</b></button>
-        <button type="button" data-start-walk-mode="point-to-point"><img src="./icons/navigation.svg" alt="" /><span><strong>Point to Point</strong><small>I’m going somewhere.</small></span><b>→</b></button>
-      </div>
-    </section>
-
     <section class="sheet nearby-sheet hidden" id="nearbySheet" role="dialog" aria-modal="true" aria-labelledby="nearbyTitle">
       <button class="close-sheet" data-close-sheet aria-label="Close">×</button>
       <span class="sheet-kicker">NEARBY</span><h2 id="nearbyTitle">Find something nearby</h2>
@@ -375,23 +361,26 @@
       <div class="sheet-actions"><button class="secondary-button" id="routePauseButton" type="button">Pause</button><button class="primary-button" id="routeEndButton" type="button">End walk</button></div>
     </section>
 
-    <section class="sheet tall-sheet hidden" id="planWalkSheet" role="dialog" aria-modal="true" aria-labelledby="planWalkTitle">
-      <button class="close-sheet" data-close-sheet aria-label="Close">×</button><span class="sheet-kicker">TIME-BASED WALK</span><h2 id="planWalkTitle">Plan your walk</h2>
-      <fieldset class="planner-options"><legend>1. How much time do you have?</legend><div class="planner-choice-row"><label><input type="radio" name="walkTime" value="15" checked />15 min</label><label><input type="radio" name="walkTime" value="30" />30 min</label><label><input type="radio" name="walkTime" value="45" />45 min</label><label><input type="radio" name="walkTime" value="60" />60+ min</label></div></fieldset>
-      <fieldset class="planner-options"><legend>2. Route shape</legend><div class="planner-choice-row"><label><input type="radio" name="routeMode" value="round-trip" checked />Round trip</label><label><input type="radio" name="routeMode" value="point-to-point" />Point to point</label></div></fieldset>
+    <section class="sheet tall-sheet plan-walk-sheet hidden" id="planWalkSheet" role="dialog" aria-modal="true" aria-labelledby="planWalkTitle">
+      <button class="close-sheet" data-close-sheet aria-label="Close">×</button><h2 id="planWalkTitle">Choose a walk</h2>
+      <div class="planner-toolbar">
+        <fieldset class="planner-options"><legend>Route</legend><div class="planner-choice-row"><label><input type="radio" name="routeMode" value="round-trip" checked />Round trip</label><label><input type="radio" name="routeMode" value="point-to-point" />Point to point</label></div></fieldset>
+        <fieldset class="planner-options" id="walkTimeOptions"><legend>Time</legend><div class="planner-choice-row planner-time-row"><label><input type="radio" name="walkTime" value="15" />15</label><label><input type="radio" name="walkTime" value="30" checked />30</label><label><input type="radio" name="walkTime" value="45" />45</label><label><input type="radio" name="walkTime" value="60" />60+</label></div></fieldset>
+      </div>
       <div id="pointToPointControls">
         <p class="planner-endpoints" id="planEndpoints">Start: current location · End: choose a destination</p>
-        <div class="planner-choice-row"><button class="secondary-button" id="choosePlanStartButton" type="button">Change start</button><button class="secondary-button" id="choosePlanEndButton" type="button">Choose destination</button></div>
+        <div class="planner-choice-row"><button class="secondary-button" id="choosePlanStartButton" type="button">Start point</button><button class="secondary-button" id="choosePlanEndButton" type="button">Destination</button></div>
       </div>
-      <fieldset class="planner-options"><legend>3. What would feel good today?</legend><div class="poi-chips"><button type="button" class="poi-chip planner-chip" data-planner-tag="park">Green space</button><button type="button" class="poi-chip planner-chip" data-planner-tag="trail">Wildlife</button><button type="button" class="poi-chip planner-chip" data-planner-tag="history">Learn something local</button><button type="button" class="poi-chip planner-chip" data-planner-tag="quiet">Move gently</button></div></fieldset>
-      <label class="text-walk-helper"><span>Describe a walk</span><textarea id="textWalkInput" rows="2" maxlength="240" placeholder="A gentle 30 minute walk through Meridian Hill Park and local history"></textarea><small>Matched only against public places already on this device.</small></label>
-      <button class="secondary-button wide-button" id="draftTextWalkButton" type="button">Draft this local walk</button>
-      <div class="plan-preview"><span>YOUR STARTING PLAN</span><strong id="planDistance">~0.75 miles</strong><p id="planSummary">A gentle loop with nearby discoveries.</p></div>
+      <details class="planner-more"><summary>Preferences</summary>
+        <fieldset class="planner-options"><legend>What sounds good?</legend><div class="poi-chips"><button type="button" class="poi-chip planner-chip" data-planner-tag="park">Green space</button><button type="button" class="poi-chip planner-chip" data-planner-tag="trail">Wildlife</button><button type="button" class="poi-chip planner-chip" data-planner-tag="history">Local history</button><button type="button" class="poi-chip planner-chip" data-planner-tag="quiet">Gentle</button></div></fieldset>
+        <label class="text-walk-helper"><span>Or describe it</span><textarea id="textWalkInput" rows="2" maxlength="240" placeholder="A gentle walk through a park"></textarea></label>
+        <button class="secondary-button wide-button" id="draftTextWalkButton" type="button">Use description</button>
+      </details>
+      <div class="plan-preview"><strong id="planDistance">Finding a walk…</strong><p id="planSummary">Routes will appear on the map automatically.</p></div>
       <div class="plan-influences hidden" id="planInfluences" aria-live="polite"></div>
-      <div class="route-options" id="planOptions" aria-label="Suggested routes"></div>
-      <button class="secondary-button plan-map-button" id="showPlanOptionsOnMap" type="button">View route options on map</button>
+      <details class="planner-more route-alternatives" id="routeAlternatives"><summary>Route options</summary><div class="route-options" id="planOptions" aria-label="Suggested routes"></div></details>
       <ol class="plan-stops" id="planStops" aria-label="Two discoveries along this walk"></ol>
-      <div class="sheet-actions"><button class="secondary-button" type="button" data-close-sheet>Cancel</button><button class="primary-button" id="startPlannedWalkButton" type="button">Start walk</button></div>
+      <button class="primary-button wide-button planner-start-button" id="startPlannedWalkButton" type="button">Start walk</button>
     </section>
 
     <section class="sheet hidden" id="infoSheet" role="dialog" aria-modal="true" aria-labelledby="infoTitle">

@@ -80,10 +80,10 @@ export async function renderJournalTimeline() {
   moments.forEach((item) => events.push({ icon: item.type === 'history' ? '✦' : '“', label: item.type === 'history' ? 'Place remembered' : 'Thought', title: item.title || 'Field note', detail: item.note, createdAt: item.createdAt, photo: item.photo }));
   if (state.activeWalk) events.push({ icon: '●', label: 'Walk in progress', title: 'Walk started', detail: `${formatDistance(state.activeWalk.distanceMeters)} miles so far`, createdAt: state.activeWalk.startedAt, active: true });
   events.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
-  target.innerHTML = events.length ? events.slice(-12).map(timelineEvent).join('') : '<div class="journal-empty"><span>⌁</span><strong>Your walk begins here.</strong><p>Write a thought, add a photograph, or start walking. The timeline will grow with you.</p></div>';
+  target.innerHTML = events.length ? events.slice(-12).map(timelineEvent).join('') : '';
   const latest = events.at(-1);
   const preview = el('journalCollapsedPreview');
-  if (preview) preview.textContent = latest ? `${new Date(latest.createdAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })} · ${latest.title}` : 'A place becomes a memory when you pause to notice it.';
+  if (preview) preview.textContent = latest ? `${new Date(latest.createdAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })} · ${latest.title}` : 'No entries yet';
   requestAnimationFrame(() => { target.scrollTop = target.scrollHeight; });
 }
 export async function openWalkDetail(id) {

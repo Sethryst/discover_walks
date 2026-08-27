@@ -29,17 +29,16 @@ test('onboarding turns region and interests into an immediate first action', () 
   assert.equal(onboardingValue('Loudoun County', ['park', 'trail']), 'Your first Discover Walks view in Loudoun County will prioritize green space and wildlife and trails.');
 });
 
-test('onboarding asks only for region, while Start Walk owns the route-shape choice', async () => {
+test('onboarding asks only for region, while Start Walk opens a ready default plan', async () => {
   const events = await readFile(path.join(root, 'js/events.js'), 'utf8');
   assert.match(events, /openSheet\('planWalkSheet'\)/);
   assert.match(events, /await generateTimeBasedPlan\(\)/);
-  assert.match(events, /openSheet\('startWalkSheet'\)/);
-  assert.match(events, /data-start-walk-mode/);
+  assert.match(events, /routeMode.*round-trip/);
+  assert.match(events, /walkTime.*30/);
   assert.doesNotMatch(events, /onboardingRegionNextButton.*setOnboardingStep\('interests'\)/);
   const html = await readFile(path.join(root, 'index.html'), 'utf8');
   assert.match(html, /Use my location instead/);
-  assert.match(html, /Take me somewhere and bring me back/);
-  assert.match(html, /I’m going somewhere/);
+  assert.match(html, /name="walkTime" value="30" checked/);
 });
 
 test('first launch does not request GPS until the walker chooses it in onboarding', async () => {
