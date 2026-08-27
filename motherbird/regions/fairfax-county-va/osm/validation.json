@@ -1,0 +1,39 @@
+{
+  "accepted": 2000,
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "regionId": "fairfax-county-va",
+  "rejected": 0,
+  "schemaVersion": 1,
+  "warnings": [
+    {
+      "code": "max_records_reached",
+      "detail": "The bounded Overpass response reached maxRecords=2000.",
+      "source": "osm-fairfax-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12208941230 matched authoritative osm:node:12208941229; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-fairfax-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12208941231 matched authoritative osm:node:12208941229; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-fairfax-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2504835231 matched authoritative osm:node:2504835230; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-fairfax-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3340947357 matched authoritative osm:node:11378598549; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-fairfax-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9054745885 matched authoritative osm:node:358958405; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-fairfax-county-va"
+    }
+  ]
+}

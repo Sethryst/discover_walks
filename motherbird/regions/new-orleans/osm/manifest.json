@@ -1,0 +1,40 @@
+{
+  "artifacts": [
+    "pois.json",
+    "merged-pois.json",
+    "validation.json",
+    "spatial-index-delta.json",
+    "attribution.json"
+  ],
+  "checksums": {
+    "attribution.json": "sha256:4e02c2bfb2b0b00489c0ed41d0f3f196ae397618ea36048f37109b39f86fead3",
+    "merged-pois.json": "sha256:c25b0b2daf0f6f461fe994e0f505d06d9dc0cd07092afd26d76d8874a100e408",
+    "pois.json": "sha256:cb3461cbfba28b25673e8e37630b1151d1b3db10896cdb11e285f34ba599c224",
+    "spatial-index-delta.json": "sha256:a701e7baa3b1dca34b984f19d058540aa51c0a1edd591c9af07666811321de25",
+    "validation.json": "sha256:29e722b80405089e154be425e7d5dd5b6d75f40c455a5529eb762dd46438d135"
+  },
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "recordCountsByCategory": {
+    "coffee": 162,
+    "community": 4,
+    "garden": 3,
+    "history": 104,
+    "library": 28,
+    "park": 176,
+    "public_art": 55,
+    "rest": 4,
+    "trail": 98
+  },
+  "regionId": "new-orleans",
+  "schemaVersion": 1,
+  "source": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "name": "OpenStreetMap",
+    "rawResponseSha256": "sha256:58218dc028fd5680acc591549b4ff0c3f92551ea9b3040cd99cee2c873fba6e1",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "sourceConfigurationId": "osm-new-orleans",
+  "sourceVintage": "2026-08-27T03:16:50Z"
+}

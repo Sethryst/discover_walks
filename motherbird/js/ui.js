@@ -52,7 +52,8 @@ export function showView(view) {
   el('profileView').classList.toggle('hidden', view !== 'profile');
   el('voteView').classList.toggle('hidden', view !== 'vote');
   el('volunteerView').classList.toggle('hidden', view !== 'volunteer');
-  document.querySelectorAll('.nav-item').forEach((item) => item.classList.toggle('active', item.dataset.view === view || (view === 'explore' && item.dataset.view === 'map')));
+  const discoverViews = new Set(['explore', 'fieldGuide', 'vote', 'volunteer']);
+  document.querySelectorAll('.nav-item').forEach((item) => item.classList.toggle('active', item.dataset.view === view || (discoverViews.has(view) && item.dataset.view === 'explore')));
   if (view === 'profile') {
     renderProfile();
     renderArchive();

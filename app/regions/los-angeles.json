@@ -1,1 +1,55 @@
-{"id":"los-angeles","name":"Los Angeles, California","bbox":[33.70366,-118.66819,34.33731,-118.15537],"sources":[{"id":"los-angeles-boundary","name":"Los Angeles City Boundary","provider":"arcgis_feature_service","url":"https://services1.arcgis.com/tzwalEyxl2rpamKs/arcgis/rest/services/Los_Angeles_City_Boundary/FeatureServer/0","domains":[],"layerRole":"jurisdiction_boundary","artifactName":"boundary.geojson","propertyMapping":{"id":"OBJECTID_1","name":"NAME"},"licenseUrl":"https://data.lacity.org/","authorityTier":"city_government","confidence":0.98}]}
+{
+  "id": "los-angeles",
+  "name": "Los Angeles, California",
+  "bbox": [
+    33.70366,
+    -118.66819,
+    34.33731,
+    -118.15537
+  ],
+  "sources": [
+    {
+      "id": "los-angeles-boundary",
+      "name": "Los Angeles City Boundary",
+      "provider": "arcgis_feature_service",
+      "url": "https://services1.arcgis.com/tzwalEyxl2rpamKs/arcgis/rest/services/Los_Angeles_City_Boundary/FeatureServer/0",
+      "domains": [],
+      "layerRole": "jurisdiction_boundary",
+      "artifactName": "boundary.geojson",
+      "propertyMapping": {
+        "id": "OBJECTID_1",
+        "name": "NAME"
+      },
+      "licenseUrl": "https://data.lacity.org/",
+      "authorityTier": "city_government",
+      "confidence": 0.98
+    }
+  ],
+  "osm": {
+    "status": "enabled",
+    "enabled": true,
+    "bbox": [
+      33.70366,
+      -118.66819,
+      34.33731,
+      -118.15537
+    ],
+    "sourceId": "osm-los-angeles",
+    "endpoint": "https://overpass-api.de/api/interpreter",
+    "categories": [
+      "park",
+      "trail",
+      "water",
+      "history",
+      "public_art",
+      "library",
+      "community",
+      "garden",
+      "coffee",
+      "rest"
+    ],
+    "refreshPolicy": "monthly",
+    "maxRecords": 2000,
+    "packagePath": "motherbird/regions/los-angeles/osm/pois.json"
+  }
+}

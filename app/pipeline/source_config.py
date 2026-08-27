@@ -10,6 +10,8 @@ from typing import Any
 
 from dotenv import load_dotenv
 
+from app.pipeline.osm_config import normalize_osm_config, osm_source_dict
+
 
 @dataclass(frozen=True, slots=True)
 class SourceConfig:
@@ -77,8 +79,16 @@ def load_region(path: Path) -> dict[str, Any]:
         if not profile_path.exists():
             raise ValueError(f"Unknown region profile: {profile}")
         profile_sources = json.loads(profile_path.read_text(encoding="utf-8")).get("sources", [])
+    osm = normalize_osm_config(region)
+    region["osm"] = osm.as_public_dict()
     local_sources = _local_open_data_source(region, path)
-    region["sources"] = [SourceConfig.from_dict(source) for source in [*profile_sources, *region.get("sources", []), *local_sources] if source.get("status", "active") == "active"]
+    configured_sources = [*profile_sources, *region.get("sources", []), *local_sources]
+    # Legacy per-category OSM sources are represented by the canonical region
+    # block at runtime. Keeping both would duplicate queries and identities.
+    configured_sources = [source for source in configured_sources if source.get("provider") != "osm_overpass"]
+    if osm.enabled:
+        configured_sources.append(osm_source_dict(osm))
+    region["sources"] = [SourceConfig.from_dict(source) for source in configured_sources if source.get("status", "active") == "active"]
     return region
 
 

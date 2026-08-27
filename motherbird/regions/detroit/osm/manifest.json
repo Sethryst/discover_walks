@@ -1,0 +1,41 @@
+{
+  "artifacts": [
+    "pois.json",
+    "merged-pois.json",
+    "validation.json",
+    "spatial-index-delta.json",
+    "attribution.json"
+  ],
+  "checksums": {
+    "attribution.json": "sha256:ca501597a745b306abe58d583d7ac21ed901619a8c4b37cde0562cb629d5b304",
+    "merged-pois.json": "sha256:aabb496ad5e347ab1e4f93771e7a3616b146045aeeea1ea1398ea840cbdd7fed",
+    "pois.json": "sha256:972aea6211e621d24687f27848ee87282a463d2425de495118ddf31f8e15f99a",
+    "spatial-index-delta.json": "sha256:26f494ed4f15f0199402c7f2e2ec292772a5767a2f01658582b703fdd681ff1c",
+    "validation.json": "sha256:68238bf2c0bb9af21f7bf0890027561c1c1a56eda1c7aa71ad3b6c48b777a12c"
+  },
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "recordCountsByCategory": {
+    "coffee": 180,
+    "community": 15,
+    "garden": 25,
+    "history": 196,
+    "library": 53,
+    "park": 648,
+    "public_art": 140,
+    "rest": 51,
+    "trail": 346,
+    "water": 3
+  },
+  "regionId": "detroit",
+  "schemaVersion": 1,
+  "source": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "name": "OpenStreetMap",
+    "rawResponseSha256": "sha256:70ec18372691b1152477f646760d27728f06b177046858e6d83dfa43eb617856",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "sourceConfigurationId": "osm-detroit",
+  "sourceVintage": "2026-08-27T03:11:42Z"
+}

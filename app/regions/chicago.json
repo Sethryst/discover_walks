@@ -1,1 +1,43 @@
-{"id":"chicago","name":"Chicago, IL","bbox":[41.64,-87.94,42.05,-87.52],"profile":"urban-walklife","enrichment":{"wikimedia":{"enabled":true}}}
+{
+  "id": "chicago",
+  "name": "Chicago, IL",
+  "bbox": [
+    41.64,
+    -87.94,
+    42.05,
+    -87.52
+  ],
+  "profile": "urban-walklife",
+  "enrichment": {
+    "wikimedia": {
+      "enabled": true
+    }
+  },
+  "osm": {
+    "status": "enabled",
+    "enabled": true,
+    "bbox": [
+      41.64,
+      -87.94,
+      42.05,
+      -87.52
+    ],
+    "sourceId": "osm-chicago",
+    "endpoint": "https://overpass-api.de/api/interpreter",
+    "categories": [
+      "park",
+      "trail",
+      "water",
+      "history",
+      "public_art",
+      "library",
+      "community",
+      "garden",
+      "coffee",
+      "rest"
+    ],
+    "refreshPolicy": "monthly",
+    "maxRecords": 2000,
+    "packagePath": "motherbird/regions/chicago/osm/pois.json"
+  }
+}

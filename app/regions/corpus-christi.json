@@ -1,1 +1,55 @@
-{"id":"corpus-christi","name":"Corpus Christi, Texas","bbox":[27.46605,-97.75644,27.93104,-96.96704],"sources":[{"id":"corpus-christi-boundary","name":"Corpus Christi City Limits","provider":"arcgis_feature_service","url":"https://services.arcgis.com/0J4ZNc4NaTguvRy0/ArcGIS/rest/services/OpenData/FeatureServer/36","domains":[],"layerRole":"jurisdiction_boundary","artifactName":"boundary.geojson","propertyMapping":{"id":"OBJECTID","name":"CITY_LIMIT"},"licenseUrl":"https://www.corpuschristitx.gov/","authorityTier":"city_government","confidence":0.98}]}
+{
+  "id": "corpus-christi",
+  "name": "Corpus Christi, Texas",
+  "bbox": [
+    27.46605,
+    -97.75644,
+    27.93104,
+    -96.96704
+  ],
+  "sources": [
+    {
+      "id": "corpus-christi-boundary",
+      "name": "Corpus Christi City Limits",
+      "provider": "arcgis_feature_service",
+      "url": "https://services.arcgis.com/0J4ZNc4NaTguvRy0/ArcGIS/rest/services/OpenData/FeatureServer/36",
+      "domains": [],
+      "layerRole": "jurisdiction_boundary",
+      "artifactName": "boundary.geojson",
+      "propertyMapping": {
+        "id": "OBJECTID",
+        "name": "CITY_LIMIT"
+      },
+      "licenseUrl": "https://www.corpuschristitx.gov/",
+      "authorityTier": "city_government",
+      "confidence": 0.98
+    }
+  ],
+  "osm": {
+    "status": "enabled",
+    "enabled": true,
+    "bbox": [
+      27.46605,
+      -97.75644,
+      27.93104,
+      -96.96704
+    ],
+    "sourceId": "osm-corpus-christi",
+    "endpoint": "https://overpass-api.de/api/interpreter",
+    "categories": [
+      "park",
+      "trail",
+      "water",
+      "history",
+      "public_art",
+      "library",
+      "community",
+      "garden",
+      "coffee",
+      "rest"
+    ],
+    "refreshPolicy": "monthly",
+    "maxRecords": 2000,
+    "packagePath": "motherbird/regions/corpus-christi/osm/pois.json"
+  }
+}

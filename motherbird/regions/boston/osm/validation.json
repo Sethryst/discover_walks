@@ -1,0 +1,2584 @@
+{
+  "accepted": 1995,
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "regionId": "boston",
+  "rejected": 5,
+  "schemaVersion": 1,
+  "warnings": [
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 29690646 is outside the configured bbox.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 29690957 is outside the configured bbox.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 29743706 is outside the configured bbox.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 29830904 is outside the configured bbox.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 29863009 is outside the configured bbox.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "max_records_reached",
+      "detail": "The bounded Overpass response reached maxRecords=2000.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10019192017 matched authoritative coffee:osm-walk-coffee:10019192017; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10022964517 matched authoritative coffee:osm-walk-coffee:10022964517; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10080837268 matched authoritative coffee:osm-walk-coffee:10080837268; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10152452470 matched authoritative coffee:osm-walk-coffee:10152452470; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10178517924 matched authoritative coffee:osm-walk-coffee:10178517924; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10219943312 matched authoritative coffee:osm-walk-coffee:10219943312; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10650476609 matched authoritative coffee:osm-walk-coffee:10650476609; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10723720300 matched authoritative coffee:osm-walk-coffee:10723720300; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10756603186 matched authoritative coffee:osm-walk-coffee:10756603186; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10766381059 matched authoritative coffee:osm-walk-coffee:10766381059; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10787156993 matched authoritative coffee:osm-walk-coffee:10787156993; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10789054837 matched authoritative coffee:osm-walk-coffee:10789054837; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10856443908 matched authoritative coffee:osm-walk-coffee:10856443908; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10904459395 matched authoritative coffee:osm-walk-coffee:10904459395; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10916635282 matched authoritative coffee:osm-walk-coffee:10916635282; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10930424739 matched authoritative coffee:osm-walk-coffee:10930424739; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10930424746 matched authoritative coffee:osm-walk-coffee:10930424746; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10963939380 matched authoritative coffee:osm-walk-coffee:10963939380; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10963939393 matched authoritative coffee:osm-walk-coffee:10963939393; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10963944864 matched authoritative coffee:osm-walk-coffee:10963944864; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11011208190 matched authoritative coffee:osm-walk-coffee:11011208190; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11047489360 matched authoritative coffee:osm-walk-coffee:11047489360; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11072221904 matched authoritative coffee:osm-walk-coffee:11072221904; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11074318672 matched authoritative coffee:osm-walk-coffee:11074318672; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11100334007 matched authoritative coffee:osm-walk-coffee:11100334007; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11117788901 matched authoritative coffee:osm-walk-coffee:11117788901; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11164031225 matched authoritative coffee:osm-walk-coffee:11164031225; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11167422506 matched authoritative coffee:osm-walk-coffee:11167422506; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11173231405 matched authoritative coffee:osm-walk-coffee:11173231405; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11174651412 matched authoritative coffee:osm-walk-coffee:11174651412; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11177408080 matched authoritative coffee:osm-walk-coffee:11177408080; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11186871466 matched authoritative coffee:osm-walk-coffee:11186871466; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11190852970 matched authoritative coffee:osm-walk-coffee:11190852970; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11263300637 matched authoritative coffee:osm-walk-coffee:11263300637; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11280147424 matched authoritative coffee:osm-walk-coffee:11280147424; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11284275918 matched authoritative coffee:osm-walk-coffee:11284275918; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11308059845 matched authoritative coffee:osm-walk-coffee:11308059845; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11378587042 matched authoritative coffee:osm-walk-coffee:11378587042; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11429368232 matched authoritative coffee:osm-walk-coffee:11429368232; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11433391477 matched authoritative coffee:osm-walk-coffee:11433391477; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11460680156 matched authoritative coffee:osm-walk-coffee:11460680156; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11466782795 matched authoritative coffee:osm-walk-coffee:11466782795; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11507006006 matched authoritative coffee:osm-walk-coffee:11507006006; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11538149918 matched authoritative coffee:osm-walk-coffee:11538149918; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11538149920 matched authoritative coffee:osm-walk-coffee:11538149920; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11613555829 matched authoritative coffee:osm-walk-coffee:11613555829; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11627058483 matched authoritative coffee:osm-walk-coffee:11627058483; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11627058485 matched authoritative coffee:osm-walk-coffee:11627058485; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11800680732 matched authoritative coffee:osm-walk-coffee:11800680732; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11809242360 matched authoritative coffee:osm-walk-coffee:1174574246; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11835766851 matched authoritative coffee:osm-walk-coffee:11835766851; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11880142751 matched authoritative coffee:osm-walk-coffee:11880142751; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11887604551 matched authoritative coffee:osm-walk-coffee:11887604551; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11961259366 matched authoritative coffee:osm-walk-coffee:11961259366; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11974420431 matched authoritative coffee:osm-walk-coffee:11974420431; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12023030969 matched authoritative coffee:osm-walk-coffee:12023030969; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12032252694 matched authoritative coffee:osm-walk-coffee:12032252694; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12047779345 matched authoritative coffee:osm-walk-coffee:12047779345; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12052456535 matched authoritative coffee:osm-walk-coffee:12052456535; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12069985165 matched authoritative coffee:osm-walk-coffee:12069985165; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12079223523 matched authoritative coffee:osm-walk-coffee:12079223523; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12085299564 matched authoritative coffee:osm-walk-coffee:12085299564; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12096267845 matched authoritative coffee:osm-walk-coffee:12096267845; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12110527402 matched authoritative coffee:osm-walk-coffee:12110527402; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12116917387 matched authoritative coffee:osm-walk-coffee:12116917387; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12124745656 matched authoritative coffee:osm-walk-coffee:12124745656; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12136739125 matched authoritative coffee:osm-walk-coffee:12136739125; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12209833537 matched authoritative coffee:osm-walk-coffee:12209833537; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12211897799 matched authoritative coffee:osm-walk-coffee:12211897799; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12324903194 matched authoritative coffee:osm-walk-coffee:12324903194; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12445022418 matched authoritative coffee:osm-walk-coffee:12445022418; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1249775410 matched authoritative coffee:osm-walk-coffee:1249775410; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12551743044 matched authoritative coffee:osm-walk-coffee:12551743044; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12591781663 matched authoritative coffee:osm-walk-coffee:12591781663; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12591781667 matched authoritative coffee:osm-walk-coffee:12591781667; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12591781669 matched authoritative coffee:osm-walk-coffee:12591781669; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12624634815 matched authoritative coffee:osm-walk-coffee:12624634815; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12626686601 matched authoritative coffee:osm-walk-coffee:12626686601; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12636225025 matched authoritative coffee:osm-walk-coffee:12636225025; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12657895881 matched authoritative coffee:osm-walk-coffee:12657895881; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12657922611 matched authoritative coffee:osm-walk-coffee:12657922611; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12662014926 matched authoritative coffee:osm-walk-coffee:12662014926; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12663745805 matched authoritative coffee:osm-walk-coffee:12663745805; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12697598379 matched authoritative coffee:osm-walk-coffee:12697598379; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12752349640 matched authoritative coffee:osm-walk-coffee:12752349640; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12752701870 matched authoritative coffee:osm-walk-coffee:12752701870; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12812294701 matched authoritative coffee:osm-walk-coffee:12812294701; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12853977235 matched authoritative coffee:osm-walk-coffee:12853977235; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12857822230 matched authoritative coffee:osm-walk-coffee:12857822230; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12872133017 matched authoritative coffee:osm-walk-coffee:12872133017; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12874781010 matched authoritative coffee:osm-walk-coffee:12874781010; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12874781011 matched authoritative coffee:osm-walk-coffee:12874781011; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12874781012 matched authoritative coffee:osm-walk-coffee:12874781012; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12909335201 matched authoritative coffee:osm-walk-coffee:12909335201; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12926122227 matched authoritative coffee:osm-walk-coffee:12926122227; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12928132559 matched authoritative coffee:osm-walk-coffee:12928132559; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12931984310 matched authoritative coffee:osm-walk-coffee:12931984310; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12944729653 matched authoritative coffee:osm-walk-coffee:12944729653; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12961335470 matched authoritative coffee:osm-walk-coffee:12961335470; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13016526463 matched authoritative coffee:osm-walk-coffee:13016526463; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13102711101 matched authoritative coffee:osm-walk-coffee:13102711101; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13110406731 matched authoritative coffee:osm-walk-coffee:13110406731; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13121509253 matched authoritative coffee:osm-walk-coffee:13121509253; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13121712882 matched authoritative coffee:osm-walk-coffee:13121712882; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13123643671 matched authoritative coffee:osm-walk-coffee:13123643671; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13168837325 matched authoritative coffee:osm-walk-coffee:13168837325; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13172225901 matched authoritative coffee:osm-walk-coffee:13172225901; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13230989998 matched authoritative coffee:osm-walk-coffee:13230989998; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13230992088 matched authoritative coffee:osm-walk-coffee:13230992088; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13252662786 matched authoritative coffee:osm-walk-coffee:13252662786; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13271173725 matched authoritative coffee:osm-walk-coffee:13271173725; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13279781516 matched authoritative coffee:osm-walk-coffee:13279781516; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13283437790 matched authoritative coffee:osm-walk-coffee:13283437790; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13283455101 matched authoritative coffee:osm-walk-coffee:13283455101; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13298715458 matched authoritative coffee:osm-walk-coffee:13298715458; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13314944136 matched authoritative coffee:osm-walk-coffee:13314944136; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13338753451 matched authoritative coffee:osm-walk-coffee:13338753451; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13339197572 matched authoritative coffee:osm-walk-coffee:13339197572; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13379117697 matched authoritative coffee:osm-walk-coffee:13379117697; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13383751735 matched authoritative coffee:osm-walk-coffee:13383751735; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13384442803 matched authoritative coffee:osm-walk-coffee:13384442803; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13384442804 matched authoritative coffee:osm-walk-coffee:13384442804; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13399044469 matched authoritative coffee:osm-walk-coffee:13399044469; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13418849749 matched authoritative coffee:osm-walk-coffee:13418849749; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13440547762 matched authoritative coffee:osm-walk-coffee:13440547762; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13456562472 matched authoritative coffee:osm-walk-coffee:13456562472; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13464221376 matched authoritative coffee:osm-walk-coffee:13464221376; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1356510129 matched authoritative coffee:osm-walk-coffee:1356510129; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1356814953 matched authoritative coffee:osm-walk-coffee:1356814953; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13607594419 matched authoritative coffee:osm-walk-coffee:13607594419; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13653587552 matched authoritative coffee:osm-walk-coffee:13653587552; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13738942137 matched authoritative coffee:osm-walk-coffee:13738942137; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13758721724 matched authoritative coffee:osm-walk-coffee:13758721724; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13785483498 matched authoritative coffee:osm-walk-coffee:13785483498; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13807240601 matched authoritative coffee:osm-walk-coffee:13807240601; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13819369237 matched authoritative coffee:osm-walk-coffee:13819369237; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13879346299 matched authoritative coffee:osm-walk-coffee:13879346299; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13902189105 matched authoritative coffee:osm-walk-coffee:13902189105; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13906276038 matched authoritative coffee:osm-walk-coffee:13906276038; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13912921162 matched authoritative coffee:osm-walk-coffee:13912921162; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13912921163 matched authoritative coffee:osm-walk-coffee:13912921163; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13929598302 matched authoritative coffee:osm-walk-coffee:13906276038; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13945914562 matched authoritative coffee:osm-walk-coffee:13945914562; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13972752605 matched authoritative coffee:osm-walk-coffee:13972752605; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13972752606 matched authoritative coffee:osm-walk-coffee:13972752606; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13972752608 matched authoritative coffee:osm-walk-coffee:13972752608; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:14018413621 matched authoritative coffee:osm-walk-coffee:14018413621; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:14062815158 matched authoritative coffee:osm-walk-coffee:14062815158; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:14064216272 matched authoritative coffee:osm-walk-coffee:14064216272; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:14072937602 matched authoritative coffee:osm-walk-coffee:14072937602; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1437162941 matched authoritative coffee:osm-walk-coffee:1437162941; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1547870314 matched authoritative coffee:osm-walk-coffee:1547870314; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1631448721 matched authoritative coffee:osm-walk-coffee:1631448721; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1652921778 matched authoritative coffee:osm-walk-coffee:1652921778; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1707399374 matched authoritative coffee:osm-walk-coffee:1707399374; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1710116292 matched authoritative coffee:osm-walk-coffee:1710116292; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1718017588 matched authoritative coffee:osm-walk-coffee:1718017588; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1770588659 matched authoritative coffee:osm-walk-coffee:1770588659; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1815129048 matched authoritative coffee:osm-walk-coffee:1815129048; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1816988564 matched authoritative coffee:osm-walk-coffee:1816988564; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1884055322 matched authoritative coffee:osm-walk-coffee:1884055322; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1884056372 matched authoritative coffee:osm-walk-coffee:1884056372; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1907895893 matched authoritative coffee:osm-walk-coffee:1907895893; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1914291499 matched authoritative coffee:osm-walk-coffee:1914291499; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1914587762 matched authoritative coffee:osm-walk-coffee:1914587762; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1914710908 matched authoritative coffee:osm-walk-coffee:1914710908; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1914779406 matched authoritative coffee:osm-walk-coffee:1914779406; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1914868898 matched authoritative coffee:osm-walk-coffee:1914868898; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1952950080 matched authoritative coffee:osm-walk-coffee:1952950080; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1966000180 matched authoritative coffee:osm-walk-coffee:1966000180; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1975943681 matched authoritative coffee:osm-walk-coffee:1975943681; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1976832138 matched authoritative coffee:osm-walk-coffee:1976832138; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1976956078 matched authoritative coffee:osm-walk-coffee:1976956078; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1977409949 matched authoritative coffee:osm-walk-coffee:1977409949; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1977416124 matched authoritative coffee:osm-walk-coffee:1977416124; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1978839322 matched authoritative coffee:osm-walk-coffee:1978839322; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1978951495 matched authoritative coffee:osm-walk-coffee:1978951495; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1979412542 matched authoritative coffee:osm-walk-coffee:1979412542; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1979657115 matched authoritative coffee:osm-walk-coffee:1979657115; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2230915863 matched authoritative coffee:osm-walk-coffee:2230915863; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2295978172 matched authoritative coffee:osm-walk-coffee:2295978172; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2340900235 matched authoritative coffee:osm-walk-coffee:2340900235; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2346695313 matched authoritative coffee:osm-walk-coffee:2346695313; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2350127260 matched authoritative coffee:osm-walk-coffee:2350127260; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2350127265 matched authoritative coffee:osm-walk-coffee:2350127265; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2369837832 matched authoritative coffee:osm-walk-coffee:2369837832; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2375516562 matched authoritative coffee:osm-walk-coffee:2375516562; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2430572065 matched authoritative coffee:osm-walk-coffee:2430572065; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2430572066 matched authoritative coffee:osm-walk-coffee:2430572066; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2446018085 matched authoritative coffee:osm-walk-coffee:2446018085; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2446048048 matched authoritative coffee:osm-walk-coffee:2446048048; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2446048062 matched authoritative coffee:osm-walk-coffee:2446048062; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2449738479 matched authoritative coffee:osm-walk-coffee:2449738479; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2458204925 matched authoritative coffee:osm-walk-coffee:2458204925; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2458211527 matched authoritative coffee:osm-walk-coffee:2458211527; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2458343021 matched authoritative coffee:osm-walk-coffee:2458343021; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2458349920 matched authoritative coffee:osm-walk-coffee:2458349920; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2458364528 matched authoritative coffee:osm-walk-coffee:2458364528; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2458520457 matched authoritative coffee:osm-walk-coffee:2458520457; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2621587255 matched authoritative coffee:osm-walk-coffee:2621587255; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2687181596 matched authoritative coffee:osm-walk-coffee:2687181596; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2690368424 matched authoritative coffee:osm-walk-coffee:2690368424; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2700809522 matched authoritative coffee:osm-walk-coffee:2700809522; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2707992550 matched authoritative coffee:osm-walk-coffee:2707992550; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2708166063 matched authoritative coffee:osm-walk-coffee:2708166063; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2790754652 matched authoritative coffee:osm-walk-coffee:2790754652; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2802711904 matched authoritative coffee:osm-walk-coffee:2802711904; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2802711907 matched authoritative coffee:osm-walk-coffee:2802711907; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2819172974 matched authoritative coffee:osm-walk-coffee:2819172974; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2857103508 matched authoritative coffee:osm-walk-coffee:2857103508; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2908119874 matched authoritative coffee:osm-walk-coffee:2908119874; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3010280539 matched authoritative coffee:osm-walk-coffee:3010280539; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3010293413 matched authoritative coffee:osm-walk-coffee:3010293413; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3214091551 matched authoritative coffee:osm-walk-coffee:3214091551; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3214648820 matched authoritative coffee:osm-walk-coffee:3214648820; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3217389586 matched authoritative coffee:osm-walk-coffee:3217389586; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3220580402 matched authoritative coffee:osm-walk-coffee:3220580402; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3230804271 matched authoritative coffee:osm-walk-coffee:3230804271; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3487861640 matched authoritative coffee:osm-walk-coffee:3487861640; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3487861641 matched authoritative coffee:osm-walk-coffee:3487861641; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:354263117 matched authoritative coffee:osm-walk-coffee:354263117; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:356114066 matched authoritative coffee:osm-walk-coffee:356114066; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3577174750 matched authoritative coffee:osm-walk-coffee:3577174750; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3577728484 matched authoritative coffee:osm-walk-coffee:3577728484; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:358273156 matched authoritative water:osm-walk-water:358273156; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:358273376 matched authoritative water:osm-walk-water:358273376; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:358275215 matched authoritative water:osm-walk-water:358275215; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:358278304 matched authoritative coffee:osm-walk-coffee:358278304; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3624079992 matched authoritative coffee:osm-walk-coffee:3624079992; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3624083294 matched authoritative coffee:osm-walk-coffee:3624083294; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3624937834 matched authoritative coffee:osm-walk-coffee:3624937834; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3671129809 matched authoritative coffee:osm-walk-coffee:3671129809; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3727949455 matched authoritative coffee:osm-walk-coffee:3727949455; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3787902940 matched authoritative coffee:osm-walk-coffee:3787902940; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3788899983 matched authoritative coffee:osm-walk-coffee:3788899983; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3907291857 matched authoritative coffee:osm-walk-coffee:3907291857; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3937039206 matched authoritative coffee:osm-walk-coffee:3937039206; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3938369757 matched authoritative coffee:osm-walk-coffee:3938369757; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4033939476 matched authoritative coffee:osm-walk-coffee:4033939476; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4035864387 matched authoritative coffee:osm-walk-coffee:4035864387; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4037635226 matched authoritative coffee:osm-walk-coffee:4037635226; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4045929118 matched authoritative coffee:osm-walk-coffee:4045929118; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4045929121 matched authoritative coffee:osm-walk-coffee:4045929121; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4058896662 matched authoritative coffee:osm-walk-coffee:4058896662; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4065241709 matched authoritative coffee:osm-walk-coffee:4065241709; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4073622924 matched authoritative coffee:osm-walk-coffee:4073622924; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4074813886 matched authoritative coffee:osm-walk-coffee:4074813886; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4074813887 matched authoritative coffee:osm-walk-coffee:4074813887; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4106762063 matched authoritative coffee:osm-walk-coffee:4106762063; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4123603492 matched authoritative coffee:osm-walk-coffee:4123603492; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4123617192 matched authoritative coffee:osm-walk-coffee:4123617192; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4123660289 matched authoritative coffee:osm-walk-coffee:4123660289; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:417080191 matched authoritative coffee:osm-walk-coffee:417080191; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4190132060 matched authoritative coffee:osm-walk-coffee:4190132060; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4207915391 matched authoritative coffee:osm-walk-coffee:4207915391; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4207952002 matched authoritative coffee:osm-walk-coffee:4207952002; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4209170410 matched authoritative coffee:osm-walk-coffee:4209170410; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4267292079 matched authoritative coffee:osm-walk-coffee:4267292079; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4286763393 matched authoritative coffee:osm-walk-coffee:4286763393; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4296990590 matched authoritative coffee:osm-walk-coffee:4296990590; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4338735891 matched authoritative coffee:osm-walk-coffee:4338735891; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4338737591 matched authoritative coffee:osm-walk-coffee:4338737591; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4362109596 matched authoritative coffee:osm-walk-coffee:4362109596; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4376671991 matched authoritative coffee:osm-walk-coffee:4376671991; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4378381763 matched authoritative coffee:osm-walk-coffee:4378381763; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:439211089 matched authoritative coffee:osm-walk-coffee:439211089; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4406334871 matched authoritative coffee:osm-walk-coffee:4406334871; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:441291604 matched authoritative coffee:osm-walk-coffee:441291604; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4445019080 matched authoritative coffee:osm-walk-coffee:4445019080; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4454436306 matched authoritative coffee:osm-walk-coffee:4454436306; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4454893297 matched authoritative coffee:osm-walk-coffee:4454893297; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4483943925 matched authoritative coffee:osm-walk-coffee:4483943925; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4585813885 matched authoritative coffee:osm-walk-coffee:4585813885; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:460211002 matched authoritative coffee:osm-walk-coffee:460211002; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4622804589 matched authoritative coffee:osm-walk-coffee:4622804589; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4624387529 matched authoritative coffee:osm-walk-coffee:4624387529; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4630571055 matched authoritative coffee:osm-walk-coffee:4630571055; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:463165639 matched authoritative coffee:osm-walk-coffee:463165639; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4641352718 matched authoritative coffee:osm-walk-coffee:4641352718; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4704784090 matched authoritative coffee:osm-walk-coffee:4704784090; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4722603141 matched authoritative coffee:osm-walk-coffee:4722603141; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4722621051 matched authoritative coffee:osm-walk-coffee:4722621051; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4727366615 matched authoritative coffee:osm-walk-coffee:4727366615; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4727380451 matched authoritative coffee:osm-walk-coffee:4727380451; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4727567593 matched authoritative coffee:osm-walk-coffee:4727567593; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4727567610 matched authoritative coffee:osm-walk-coffee:4727567610; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4728935493 matched authoritative coffee:osm-walk-coffee:4728935493; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4757957508 matched authoritative coffee:osm-walk-coffee:4757957508; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4786793693 matched authoritative coffee:osm-walk-coffee:4786793693; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4786907864 matched authoritative coffee:osm-walk-coffee:4786907864; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4840076429 matched authoritative coffee:osm-walk-coffee:4840076429; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4840220304 matched authoritative coffee:osm-walk-coffee:4840220304; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4840220308 matched authoritative coffee:osm-walk-coffee:4840220308; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4840220309 matched authoritative coffee:osm-walk-coffee:4840220309; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4887036105 matched authoritative coffee:osm-walk-coffee:4887036105; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4888182876 matched authoritative coffee:osm-walk-coffee:4888182876; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4971417627 matched authoritative coffee:osm-walk-coffee:4971417627; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4971417653 matched authoritative coffee:osm-walk-coffee:4971417653; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4987429682 matched authoritative coffee:osm-walk-coffee:4987429682; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4996456161 matched authoritative coffee:osm-walk-coffee:4996456161; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5037446745 matched authoritative coffee:osm-walk-coffee:5037446745; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5037904282 matched authoritative coffee:osm-walk-coffee:5037904282; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5043922674 matched authoritative coffee:osm-walk-coffee:5043922674; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5054860219 matched authoritative coffee:osm-walk-coffee:5054860219; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5166136130 matched authoritative coffee:osm-walk-coffee:5166136130; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5217282180 matched authoritative coffee:osm-walk-coffee:5217282180; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5231581702 matched authoritative coffee:osm-walk-coffee:5231581702; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5284961911 matched authoritative coffee:osm-walk-coffee:5284961911; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5284961912 matched authoritative coffee:osm-walk-coffee:5284961912; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5294780618 matched authoritative coffee:osm-walk-coffee:5294780618; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:530790467 matched authoritative coffee:osm-walk-coffee:530790467; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:530872406 matched authoritative coffee:osm-walk-coffee:530872406; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5380551122 matched authoritative coffee:osm-walk-coffee:5380551122; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5380559021 matched authoritative coffee:osm-walk-coffee:5380559021; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5398657321 matched authoritative coffee:osm-walk-coffee:5398657321; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5576996777 matched authoritative coffee:osm-walk-coffee:5576996777; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5600422653 matched authoritative coffee:osm-walk-coffee:5600422653; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5638563110 matched authoritative coffee:osm-walk-coffee:5638563110; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:564531110 matched authoritative coffee:osm-walk-coffee:564531110; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5695456133 matched authoritative coffee:osm-walk-coffee:5695456133; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5695456135 matched authoritative coffee:osm-walk-coffee:5695456135; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:572615677 matched authoritative coffee:osm-walk-coffee:572615677; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5749774110 matched authoritative coffee:osm-walk-coffee:5749774110; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5749774112 matched authoritative coffee:osm-walk-coffee:5749774112; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5782065157 matched authoritative coffee:osm-walk-coffee:5782065157; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5808138653 matched authoritative coffee:osm-walk-coffee:5808138653; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5810390060 matched authoritative coffee:osm-walk-coffee:5810390060; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5827030423 matched authoritative coffee:osm-walk-coffee:5827030423; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5838646485 matched authoritative coffee:osm-walk-coffee:5838646485; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5861990478 matched authoritative coffee:osm-walk-coffee:5861990478; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5908965186 matched authoritative coffee:osm-walk-coffee:5908965186; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5913703287 matched authoritative coffee:osm-walk-coffee:5913703287; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5921721885 matched authoritative coffee:osm-walk-coffee:5921721885; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5972920982 matched authoritative coffee:osm-walk-coffee:5972920982; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6005267193 matched authoritative coffee:osm-walk-coffee:6005267193; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6020288488 matched authoritative coffee:osm-walk-coffee:6020288488; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6091711566 matched authoritative coffee:osm-walk-coffee:6091711566; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6110075568 matched authoritative coffee:osm-walk-coffee:6110075568; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6110093492 matched authoritative coffee:osm-walk-coffee:6110093492; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6114674644 matched authoritative coffee:osm-walk-coffee:6114674644; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6117409527 matched authoritative coffee:osm-walk-coffee:6117409527; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6117463841 matched authoritative coffee:osm-walk-coffee:6117463841; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6117463842 matched authoritative coffee:osm-walk-coffee:6117463842; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6121992846 matched authoritative coffee:osm-walk-coffee:6121992846; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6124468238 matched authoritative coffee:osm-walk-coffee:6124468238; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6124562866 matched authoritative coffee:osm-walk-coffee:6124562866; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6137948914 matched authoritative coffee:osm-walk-coffee:6137948914; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6175264545 matched authoritative coffee:osm-walk-coffee:6175264545; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6181692218 matched authoritative coffee:osm-walk-coffee:6181692218; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6230710706 matched authoritative coffee:osm-walk-coffee:6230710706; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6268416655 matched authoritative coffee:osm-walk-coffee:6268416655; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6276887276 matched authoritative coffee:osm-walk-coffee:6276887276; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6317471485 matched authoritative coffee:osm-walk-coffee:6317471485; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6381481731 matched authoritative coffee:osm-walk-coffee:6381481731; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6482887980 matched authoritative coffee:osm-walk-coffee:6482887980; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6496175255 matched authoritative coffee:osm-walk-coffee:406469861; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6496175256 matched authoritative coffee:osm-walk-coffee:6496175256; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6558505164 matched authoritative coffee:osm-walk-coffee:6558505164; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6598892685 matched authoritative coffee:osm-walk-coffee:6598892685; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6614693561 matched authoritative coffee:osm-walk-coffee:6614693561; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6622714485 matched authoritative coffee:osm-walk-coffee:6622714485; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6627696071 matched authoritative coffee:osm-walk-coffee:6627696071; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:665496462 matched authoritative coffee:osm-walk-coffee:665496462; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6662581985 matched authoritative coffee:osm-walk-coffee:6662581985; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6700615686 matched authoritative coffee:osm-walk-coffee:6700615686; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6754014985 matched authoritative coffee:osm-walk-coffee:6754014985; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6777712414 matched authoritative coffee:osm-walk-coffee:6777712414; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6793778385 matched authoritative coffee:osm-walk-coffee:6793778385; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6816271635 matched authoritative coffee:osm-walk-coffee:6816271635; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6821335613 matched authoritative coffee:osm-walk-coffee:6821335613; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6848661980 matched authoritative coffee:osm-walk-coffee:6848661980; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6906434226 matched authoritative coffee:osm-walk-coffee:6906434226; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6914216586 matched authoritative coffee:osm-walk-coffee:6914216586; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6959341019 matched authoritative coffee:osm-walk-coffee:6959341019; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6977540185 matched authoritative coffee:osm-walk-coffee:6977540185; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7082522277 matched authoritative coffee:osm-walk-coffee:7082522277; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7100193716 matched authoritative coffee:osm-walk-coffee:7100193716; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7100193739 matched authoritative coffee:osm-walk-coffee:7100193739; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7100193742 matched authoritative coffee:osm-walk-coffee:7100193742; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7100285259 matched authoritative coffee:osm-walk-coffee:7100285259; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7105847797 matched authoritative coffee:osm-walk-coffee:7105847797; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7105847798 matched authoritative coffee:osm-walk-coffee:7105847798; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7165142093 matched authoritative coffee:osm-walk-coffee:7165142093; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7185571085 matched authoritative coffee:osm-walk-coffee:7185571085; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7395929154 matched authoritative coffee:osm-walk-coffee:7395929154; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7483491317 matched authoritative coffee:osm-walk-coffee:7483491317; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7487603057 matched authoritative coffee:osm-walk-coffee:12663745805; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7487948393 matched authoritative coffee:osm-walk-coffee:7487948393; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7499693360 matched authoritative coffee:osm-walk-coffee:7499693360; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7530327279 matched authoritative coffee:osm-walk-coffee:7530327279; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7530327281 matched authoritative coffee:osm-walk-coffee:7530327281; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7535392534 matched authoritative coffee:osm-walk-coffee:7535392534; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7535642191 matched authoritative coffee:osm-walk-coffee:7535642191; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7594031048 matched authoritative coffee:osm-walk-coffee:7594031048; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7623598056 matched authoritative coffee:osm-walk-coffee:7623598056; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7625672556 matched authoritative coffee:osm-walk-coffee:7625672556; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7644472514 matched authoritative coffee:osm-walk-coffee:7644472514; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7686391038 matched authoritative coffee:osm-walk-coffee:7686391038; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7711794773 matched authoritative coffee:osm-walk-coffee:7711794773; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7711828643 matched authoritative coffee:osm-walk-coffee:7711828643; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7713962867 matched authoritative osm:node:7712296102; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7724868349 matched authoritative coffee:osm-walk-coffee:7724868349; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7744048494 matched authoritative coffee:osm-walk-coffee:7744048494; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:775407568 matched authoritative coffee:osm-walk-coffee:775407568; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7757187380 matched authoritative coffee:osm-walk-coffee:7757187380; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7757221187 matched authoritative coffee:osm-walk-coffee:7757221187; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7761545658 matched authoritative coffee:osm-walk-coffee:7761545658; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7766310059 matched authoritative coffee:osm-walk-coffee:7766310059; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7774760047 matched authoritative coffee:osm-walk-coffee:7774760047; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7779510068 matched authoritative coffee:osm-walk-coffee:7779510068; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7781917225 matched authoritative coffee:osm-walk-coffee:7781917225; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7791858718 matched authoritative coffee:osm-walk-coffee:7791858718; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7804553362 matched authoritative coffee:osm-walk-coffee:7804553362; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7804553363 matched authoritative coffee:osm-walk-coffee:7804553363; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7808903597 matched authoritative coffee:osm-walk-coffee:7808903597; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7818703230 matched authoritative coffee:osm-walk-coffee:7818703230; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7827896370 matched authoritative coffee:osm-walk-coffee:7827896370; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7828112574 matched authoritative coffee:osm-walk-coffee:7828112574; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7828112577 matched authoritative coffee:osm-walk-coffee:7828112577; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7828185888 matched authoritative coffee:osm-walk-coffee:7828185888; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7830837828 matched authoritative coffee:osm-walk-coffee:7830837828; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7837191232 matched authoritative coffee:osm-walk-coffee:7837191232; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7838172395 matched authoritative coffee:osm-walk-coffee:7838172395; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7838379090 matched authoritative coffee:osm-walk-coffee:7838379090; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7844922363 matched authoritative coffee:osm-walk-coffee:7844922363; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7855184466 matched authoritative coffee:osm-walk-coffee:7855184466; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7866671394 matched authoritative coffee:osm-walk-coffee:7866671394; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7870681717 matched authoritative coffee:osm-walk-coffee:7870681717; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7882332539 matched authoritative coffee:osm-walk-coffee:7882332539; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7888717564 matched authoritative coffee:osm-walk-coffee:7888717564; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7995658761 matched authoritative coffee:osm-walk-coffee:7995658761; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:8006948661 matched authoritative coffee:osm-walk-coffee:8006948661; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:8036410780 matched authoritative coffee:osm-walk-coffee:8036410780; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:8149220869 matched authoritative coffee:osm-walk-coffee:8149220869; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:8195359973 matched authoritative coffee:osm-walk-coffee:8195359973; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:8244317825 matched authoritative coffee:osm-walk-coffee:8244317825; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:8441344794 matched authoritative coffee:osm-walk-coffee:8441344794; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:8441559626 matched authoritative coffee:osm-walk-coffee:8441559626; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:8565707929 matched authoritative coffee:osm-walk-coffee:8565707929; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:8981460769 matched authoritative coffee:osm-walk-coffee:8981460769; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9060736541 matched authoritative coffee:osm-walk-coffee:9060736541; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9112013944 matched authoritative coffee:osm-walk-coffee:9112013944; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9112071531 matched authoritative coffee:osm-walk-coffee:9112071531; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9112192045 matched authoritative coffee:osm-walk-coffee:9112192045; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9124686617 matched authoritative coffee:osm-walk-coffee:9124686617; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9162362339 matched authoritative coffee:osm-walk-coffee:9162362339; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9235541035 matched authoritative coffee:osm-walk-coffee:9235541035; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9264712212 matched authoritative coffee:osm-walk-coffee:9264712212; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9278390256 matched authoritative coffee:osm-walk-coffee:9278390256; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9294521418 matched authoritative coffee:osm-walk-coffee:9294521418; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9296474824 matched authoritative coffee:osm-walk-coffee:9296474824; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9325753303 matched authoritative coffee:osm-walk-coffee:9325753303; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9349874899 matched authoritative coffee:osm-walk-coffee:9349874899; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9349901499 matched authoritative coffee:osm-walk-coffee:9349901499; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9349909552 matched authoritative coffee:osm-walk-coffee:9349909552; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9349922468 matched authoritative coffee:osm-walk-coffee:9349922468; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9349953002 matched authoritative coffee:osm-walk-coffee:9349953002; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9374596752 matched authoritative coffee:osm-walk-coffee:9374596752; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9379551014 matched authoritative coffee:osm-walk-coffee:9379551014; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9379806475 matched authoritative coffee:osm-walk-coffee:9379806475; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9382274419 matched authoritative coffee:osm-walk-coffee:9382274419; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9443261524 matched authoritative coffee:osm-walk-coffee:9443261524; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:945798668 matched authoritative coffee:osm-walk-coffee:945798668; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9505199763 matched authoritative coffee:osm-walk-coffee:9505199763; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:952384664 matched authoritative coffee:osm-walk-coffee:952384664; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9615103302 matched authoritative coffee:osm-walk-coffee:9615103302; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9619947153 matched authoritative coffee:osm-walk-coffee:9619947153; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:962173565 matched authoritative coffee:osm-walk-coffee:962173565; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9625552635 matched authoritative coffee:osm-walk-coffee:9625552635; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9627847824 matched authoritative coffee:osm-walk-coffee:9627847824; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9634597037 matched authoritative coffee:osm-walk-coffee:9634597037; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9683235802 matched authoritative coffee:osm-walk-coffee:9683235802; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9730732117 matched authoritative coffee:osm-walk-coffee:9730732117; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9738698500 matched authoritative coffee:osm-walk-coffee:9738698500; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9741839042 matched authoritative coffee:osm-walk-coffee:9741839042; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9796495996 matched authoritative coffee:osm-walk-coffee:9796495996; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9821576302 matched authoritative coffee:osm-walk-coffee:9821576302; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9826872523 matched authoritative coffee:osm-walk-coffee:9826872523; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9826872526 matched authoritative coffee:osm-walk-coffee:9826872526; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:984957223 matched authoritative coffee:osm-walk-coffee:984957223; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9877504242 matched authoritative coffee:osm-walk-coffee:9877504242; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9905119453 matched authoritative coffee:osm-walk-coffee:9905119453; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9905119459 matched authoritative coffee:osm-walk-coffee:9905119459; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9953296892 matched authoritative coffee:osm-walk-coffee:9953296892; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9957229718 matched authoritative coffee:osm-walk-coffee:9957229718; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9977301005 matched authoritative coffee:osm-walk-coffee:9977301005; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9980940012 matched authoritative coffee:osm-walk-coffee:9980940012; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9980973294 matched authoritative coffee:osm-walk-coffee:9980973294; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9982088276 matched authoritative coffee:osm-walk-coffee:9982088276; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9992931124 matched authoritative coffee:osm-walk-coffee:9992931124; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9994959795 matched authoritative coffee:osm-walk-coffee:9994959795; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:29609830 matched authoritative coffee:osm-walk-coffee:29609830; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:29610288 matched authoritative coffee:osm-walk-coffee:29610288; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:29631034 matched authoritative coffee:osm-walk-coffee:29631034; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:29634031 matched authoritative coffee:osm-walk-coffee:29634031; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:29691729 matched authoritative water:osm-walk-water:29691729; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:29692511 matched authoritative water:osm-walk-water:29692511; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:29694107 matched authoritative water:osm-walk-water:29694107; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:29726535 matched authoritative coffee:osm-walk-coffee:29726535; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:29774514 matched authoritative coffee:osm-walk-coffee:29774514; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:29781593 matched authoritative coffee:osm-walk-coffee:29781593; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:29821309 matched authoritative coffee:osm-walk-coffee:29821309; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:29832251 matched authoritative coffee:osm-walk-coffee:29832251; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:29907778 matched authoritative coffee:osm-walk-coffee:29907778; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:29916086 matched authoritative coffee:osm-walk-coffee:29916086; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:29924916 matched authoritative osm:node:367778026; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:29953927 matched authoritative coffee:osm-walk-coffee:29953927; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:29964670 matched authoritative coffee:osm-walk-coffee:29964670; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:34534159 matched authoritative coffee:osm-walk-coffee:34534159; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boston"
+    }
+  ]
+}

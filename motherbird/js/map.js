@@ -1,7 +1,6 @@
 import { state } from './state.js';
 import { city } from './poi.js';
 import { debounce } from './utils.js';
-import { openObservation } from './observation.js';
 import { openPlaceCluster, renderCityPois } from './poi.js';
 import { fieldEditionLoader, regionInstaller } from './region-ui.js';
 import { toast } from './ui.js';
@@ -41,7 +40,7 @@ export function initMap() {
       return;
     }
     if (state.planningMode) return;
-    openObservation({ lat: event.latlng.lat, lng: event.latlng.lng });
+    window.dispatchEvent(new CustomEvent('map-context-requested', { detail: { lat: event.latlng.lat, lng: event.latlng.lng } }));
   });
   // Viewport windowing: only build markers for what's on/near screen, recomputed
   // after panning/zooming settles. Stands in for server-side bbox filtering

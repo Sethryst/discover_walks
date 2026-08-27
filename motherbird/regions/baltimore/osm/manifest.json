@@ -1,0 +1,40 @@
+{
+  "artifacts": [
+    "pois.json",
+    "merged-pois.json",
+    "validation.json",
+    "spatial-index-delta.json",
+    "attribution.json"
+  ],
+  "checksums": {
+    "attribution.json": "sha256:951c99574e741722145484ff32efd64b10e1c30b1301b23c3ab0b060c206c335",
+    "merged-pois.json": "sha256:d0ed0bec32a074ac8e42b6a99974708003bc23206eeb0be84a94f7b86fb079f2",
+    "pois.json": "sha256:f3569ef0847146e348a7358d481179ba68fbc2e737545041dc491b0a8e213d40",
+    "spatial-index-delta.json": "sha256:dd7021010fb56cd1e9e5dd1ff601a38678665a0f5bd24ed50a9b86027be3dac2",
+    "validation.json": "sha256:9c8eeac492f74350d7e35a6feac1e86e163c60d1609f1cb2bc42be0047090778"
+  },
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "recordCountsByCategory": {
+    "coffee": 123,
+    "community": 17,
+    "garden": 62,
+    "history": 225,
+    "library": 42,
+    "park": 384,
+    "public_art": 256,
+    "rest": 26,
+    "trail": 718
+  },
+  "regionId": "baltimore",
+  "schemaVersion": 1,
+  "source": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "name": "OpenStreetMap",
+    "rawResponseSha256": "sha256:df4e6bc5e9cf247cbbb6b469f08a85ab34cc21ae7408e3f9675e84c103c0baf5",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "sourceConfigurationId": "osm-baltimore",
+  "sourceVintage": "2026-08-27T03:06:37Z"
+}

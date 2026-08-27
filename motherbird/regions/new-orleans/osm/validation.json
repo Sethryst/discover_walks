@@ -1,0 +1,619 @@
+{
+  "accepted": 634,
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "regionId": "new-orleans",
+  "rejected": 4,
+  "schemaVersion": 1,
+  "warnings": [
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 767385551 is outside the configured bbox.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 831384459 is outside the configured bbox.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM relation 7875213 is outside the configured bbox.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM relation 15896076 is outside the configured bbox.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10905645637 matched authoritative history:osm-walk-history:10905645637; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10905650397 matched authoritative history:osm-walk-history:10905650397; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10905720870 matched authoritative history:osm-walk-history:10905720870; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12437984456 matched authoritative history:osm-walk-history:12437984456; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12755681809 matched authoritative history:osm-walk-history:12755681809; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12755681822 matched authoritative history:osm-walk-history:12755681822; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13701703268 matched authoritative history:osm-walk-history:13701703268; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13719478101 matched authoritative history:osm-walk-history:13719478101; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:151385190 matched authoritative history:osm-walk-history:151385190; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2394594785 matched authoritative history:osm-walk-history:2394594785; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3362351792 matched authoritative history:osm-walk-history:3362351792; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3548092408 matched authoritative history:osm-walk-history:3548092408; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:358384420 matched authoritative history:osm-walk-history:358384420; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:358384429 matched authoritative history:osm-walk-history:358384429; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:358384438 matched authoritative history:osm-walk-history:358384438; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:358384452 matched authoritative history:osm-walk-history:358384452; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:358384526 matched authoritative history:osm-walk-history:358384526; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:358384568 matched authoritative history:osm-walk-history:358384568; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:358393938 matched authoritative history:osm-walk-history:358393938; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:358393963 matched authoritative history:osm-walk-history:358393963; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:358395630 matched authoritative history:osm-walk-history:358395630; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:358399481 matched authoritative history:osm-walk-history:358399481; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3854880375 matched authoritative history:osm-walk-history:3854880375; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4469421335 matched authoritative history:osm-walk-history:4469421335; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4576508176 matched authoritative history:osm-walk-history:4576508176; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4597136360 matched authoritative history:osm-walk-history:4597136360; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4716949798 matched authoritative history:osm-walk-history:4716949798; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4726558792 matched authoritative history:osm-walk-history:4726558792; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4732443421 matched authoritative history:osm-walk-history:4732443421; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4738464723 matched authoritative history:osm-walk-history:4738464723; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5371624121 matched authoritative history:osm-walk-history:5371624121; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5373731036 matched authoritative history:osm-walk-history:5373731036; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5373731052 matched authoritative history:osm-walk-history:5373731052; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6020844585 matched authoritative history:osm-walk-history:6020844585; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6568597287 matched authoritative history:osm-walk-history:6568597287; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6568597288 matched authoritative history:osm-walk-history:6568597288; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6568622287 matched authoritative history:osm-walk-history:6568622287; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6568622685 matched authoritative history:osm-walk-history:6568622685; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7164369687 matched authoritative history:osm-walk-history:7164369687; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7763443954 matched authoritative history:osm-walk-history:7763443954; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:850961733 matched authoritative history:osm-walk-history:850961733; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9165684423 matched authoritative history:osm-walk-history:9165684423; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:12340018 matched authoritative history:osm-walk-history:12340018; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:15727007 matched authoritative history:osm-walk-history:15727007; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:1809582 matched authoritative history:osm-walk-history:1809582; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:4610710 matched authoritative history:osm-walk-history:4610710; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:4610711 matched authoritative history:osm-walk-history:4610711; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:4610716 matched authoritative history:osm-walk-history:4610716; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1055950269 matched authoritative trails:osm-walk-trails:1055950269; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1162755335 matched authoritative history:osm-walk-history:1162755335; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1162780096 matched authoritative history:osm-walk-history:1162780096; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1162787079 matched authoritative history:osm-walk-history:1162787079; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1162796028 matched authoritative history:osm-walk-history:1162796028; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1173534419 matched authoritative history:osm-walk-history:1173534419; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1238227344 matched authoritative trails:osm-walk-trails:1238227344; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:12700706 matched authoritative trails:osm-walk-trails:12700706; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1426919795 matched authoritative trails:osm-walk-trails:1426919795; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1460053034 matched authoritative history:osm-walk-history:1460053034; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1481210630 matched authoritative trails:osm-walk-trails:1481210628; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1484471438 matched authoritative trails:osm-walk-trails:1481210628; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1511084010 matched authoritative trails:osm-walk-trails:1511084010; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1534776732 matched authoritative trails:osm-walk-trails:1534776732; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:208520459 matched authoritative history:osm-walk-history:208520459; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:231125317 matched authoritative trails:osm-walk-trails:231125317; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:261545544 matched authoritative history:osm-walk-history:261545544; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:27459603 matched authoritative trails:osm-walk-trails:27459603; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:27936018 matched authoritative history:osm-walk-history:27936018; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:28328713 matched authoritative history:osm-walk-history:28328713; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:325825528 matched authoritative history:osm-walk-history:325825528; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:325825601 matched authoritative history:osm-walk-history:325825601; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:327446448 matched authoritative history:osm-walk-history:327446448; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:328629140 matched authoritative history:osm-walk-history:328629140; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:328669296 matched authoritative history:osm-walk-history:328669296; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:329364483 matched authoritative history:osm-walk-history:329364483; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:329364492 matched authoritative history:osm-walk-history:329364492; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:342550936 matched authoritative history:osm-walk-history:342550936; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:342550983 matched authoritative history:osm-walk-history:342550983; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:342551496 matched authoritative history:osm-walk-history:342551496; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:342551502 matched authoritative history:osm-walk-history:342551502; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:342551503 matched authoritative history:osm-walk-history:342551503; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:342551506 matched authoritative history:osm-walk-history:342551506; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:342551509 matched authoritative history:osm-walk-history:342551509; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:342551534 matched authoritative history:osm-walk-history:342551534; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:342551549 matched authoritative history:osm-walk-history:342551549; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:342551555 matched authoritative history:osm-walk-history:342551555; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:342551561 matched authoritative history:osm-walk-history:342551561; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:342551574 matched authoritative history:osm-walk-history:342551574; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:342551575 matched authoritative history:osm-walk-history:342551575; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:342551578 matched authoritative history:osm-walk-history:342551578; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:342551584 matched authoritative history:osm-walk-history:342551584; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:342551613 matched authoritative history:osm-walk-history:342551613; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:342551650 matched authoritative history:osm-walk-history:342551650; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:342551701 matched authoritative history:osm-walk-history:342551701; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:342551706 matched authoritative history:osm-walk-history:342551706; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:342551720 matched authoritative history:osm-walk-history:342551720; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:342551742 matched authoritative history:osm-walk-history:342551742; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:342551774 matched authoritative history:osm-walk-history:342551774; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:342551820 matched authoritative history:osm-walk-history:342551820; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:342551886 matched authoritative history:osm-walk-history:342551886; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:342551962 matched authoritative history:osm-walk-history:342551962; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:342552007 matched authoritative history:osm-walk-history:342552007; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:342559331 matched authoritative history:osm-walk-history:342559331; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:342559421 matched authoritative history:osm-walk-history:342559421; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:342559433 matched authoritative history:osm-walk-history:342559433; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:342559473 matched authoritative history:osm-walk-history:342559473; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:342559580 matched authoritative history:osm-walk-history:342559580; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:342559607 matched authoritative history:osm-walk-history:342559607; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:367725783 matched authoritative history:osm-walk-history:367725783; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:473268014 matched authoritative history:osm-walk-history:473268014; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:478486804 matched authoritative trails:osm-walk-trails:478486804; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:478529697 matched authoritative history:osm-walk-history:478529697; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:480535469 matched authoritative history:osm-walk-history:480535469; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:496971031 matched authoritative trails:osm-walk-trails:496971031; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:608485395 matched authoritative history:osm-walk-history:608485395; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:608486555 matched authoritative history:osm-walk-history:608486555; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:627792952 matched authoritative history:osm-walk-history:627792952; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:730418423 matched authoritative trails:osm-walk-trails:730418423; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:730418424 matched authoritative trails:osm-walk-trails:730418424; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-new-orleans"
+    }
+  ]
+}

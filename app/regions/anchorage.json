@@ -1,1 +1,55 @@
-{"id":"anchorage","name":"Anchorage, Alaska","bbox":[60.73302,-150.43597,61.48395,-148.46243],"sources":[{"id":"anchorage-boundary","name":"Municipality of Anchorage Boundary","provider":"arcgis_feature_service","url":"https://services2.arcgis.com/Ce3DhLRthdwbHlfF/ArcGIS/rest/services/MOA_Boundary/FeatureServer/0","domains":[],"layerRole":"jurisdiction_boundary","artifactName":"boundary.geojson","propertyMapping":{"id":"OBJECTID","name":"PUBDATE"},"licenseUrl":"https://moa-muniorg.hub.arcgis.com/","authorityTier":"city_government","confidence":0.98}]}
+{
+  "id": "anchorage",
+  "name": "Anchorage, Alaska",
+  "bbox": [
+    60.73302,
+    -150.43597,
+    61.48395,
+    -148.46243
+  ],
+  "sources": [
+    {
+      "id": "anchorage-boundary",
+      "name": "Municipality of Anchorage Boundary",
+      "provider": "arcgis_feature_service",
+      "url": "https://services2.arcgis.com/Ce3DhLRthdwbHlfF/ArcGIS/rest/services/MOA_Boundary/FeatureServer/0",
+      "domains": [],
+      "layerRole": "jurisdiction_boundary",
+      "artifactName": "boundary.geojson",
+      "propertyMapping": {
+        "id": "OBJECTID",
+        "name": "PUBDATE"
+      },
+      "licenseUrl": "https://moa-muniorg.hub.arcgis.com/",
+      "authorityTier": "city_government",
+      "confidence": 0.98
+    }
+  ],
+  "osm": {
+    "status": "unavailable",
+    "enabled": false,
+    "bbox": [
+      60.73302,
+      -150.43597,
+      61.48395,
+      -148.46243
+    ],
+    "sourceId": "osm-anchorage",
+    "endpoint": "https://overpass-api.de/api/interpreter",
+    "categories": [
+      "park",
+      "trail",
+      "water",
+      "history",
+      "public_art",
+      "library",
+      "community",
+      "garden",
+      "coffee",
+      "rest"
+    ],
+    "refreshPolicy": "monthly",
+    "maxRecords": 2000,
+    "unavailableReason": "OSM build failed at 2026-08-27T04:00:00Z: configured Overpass query timed out after bounded retries; an incomplete empty response was rejected."
+  }
+}

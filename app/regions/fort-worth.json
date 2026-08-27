@@ -1,1 +1,58 @@
-{"id":"fort-worth","name":"Fort Worth, Texas","bbox":[32.55053,-97.60034,33.04916,-97.03383],"sources":[{"id":"fort-worth-boundary","name":"Fort Worth Full Purpose City Limits","provider":"arcgis_feature_service","url":"https://mapit.fortworthtexas.gov/ags/rest/services/Basemaps/Basemap/MapServer/112","domains":[],"queryParams":{"where":"DESIGNATIO = 'Full Purpose'"},"layerRole":"jurisdiction_boundary","artifactName":"boundary.geojson","propertyMapping":{"id":"OBJECTID","name":"DESIGNATIO"},"licenseUrl":"https://data.fortworthtexas.gov/","authorityTier":"city_government","confidence":0.98}]}
+{
+  "id": "fort-worth",
+  "name": "Fort Worth, Texas",
+  "bbox": [
+    32.55053,
+    -97.60034,
+    33.04916,
+    -97.03383
+  ],
+  "sources": [
+    {
+      "id": "fort-worth-boundary",
+      "name": "Fort Worth Full Purpose City Limits",
+      "provider": "arcgis_feature_service",
+      "url": "https://mapit.fortworthtexas.gov/ags/rest/services/Basemaps/Basemap/MapServer/112",
+      "domains": [],
+      "queryParams": {
+        "where": "DESIGNATIO = 'Full Purpose'"
+      },
+      "layerRole": "jurisdiction_boundary",
+      "artifactName": "boundary.geojson",
+      "propertyMapping": {
+        "id": "OBJECTID",
+        "name": "DESIGNATIO"
+      },
+      "licenseUrl": "https://data.fortworthtexas.gov/",
+      "authorityTier": "city_government",
+      "confidence": 0.98
+    }
+  ],
+  "osm": {
+    "status": "enabled",
+    "enabled": true,
+    "bbox": [
+      32.55053,
+      -97.60034,
+      33.04916,
+      -97.03383
+    ],
+    "sourceId": "osm-fort-worth",
+    "endpoint": "https://overpass-api.de/api/interpreter",
+    "categories": [
+      "park",
+      "trail",
+      "water",
+      "history",
+      "public_art",
+      "library",
+      "community",
+      "garden",
+      "coffee",
+      "rest"
+    ],
+    "refreshPolicy": "monthly",
+    "maxRecords": 2000,
+    "packagePath": "motherbird/regions/fort-worth/osm/pois.json"
+  }
+}

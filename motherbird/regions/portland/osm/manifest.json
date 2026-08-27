@@ -1,0 +1,41 @@
+{
+  "artifacts": [
+    "pois.json",
+    "merged-pois.json",
+    "validation.json",
+    "spatial-index-delta.json",
+    "attribution.json"
+  ],
+  "checksums": {
+    "attribution.json": "sha256:60c638d10338612bb313bc51778ef80e3b72c81c1e20460f5022c60f8add7b11",
+    "merged-pois.json": "sha256:f39b67756f86ad48dae75c4aaed97e45719de7a42a3e6e0ab88bdddf7d83b1b1",
+    "pois.json": "sha256:bbd21d8d61729d84bc9b18e6bf14dbbc45482aec087bef542a3ba279c92ba622",
+    "spatial-index-delta.json": "sha256:9adae1a830c936018a909b09e19f0b70466b1bf6089134df971665eadaca8132",
+    "validation.json": "sha256:ca5ac5a16cdf5d1443a229e629a905f5dc12e6526737b110bcfcfd9b77cf2ff4"
+  },
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "recordCountsByCategory": {
+    "coffee": 478,
+    "community": 12,
+    "garden": 40,
+    "history": 101,
+    "library": 23,
+    "park": 99,
+    "public_art": 204,
+    "rest": 20,
+    "trail": 1017,
+    "water": 1
+  },
+  "regionId": "portland",
+  "schemaVersion": 1,
+  "source": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "name": "OpenStreetMap",
+    "rawResponseSha256": "sha256:46b44e61b9961744e129bc126552bbaaa8ba69bb75cc9a861d35e6ee5b5a7fbe",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "sourceConfigurationId": "osm-portland",
+  "sourceVintage": "2026-08-27T03:17:49Z"
+}

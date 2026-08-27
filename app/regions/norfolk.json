@@ -1,14 +1,21 @@
 {
   "id": "norfolk",
   "name": "Norfolk, VA",
-  "bbox": [36.80, -76.35, 36.95, -76.17],
+  "bbox": [
+    36.8,
+    -76.35,
+    36.95,
+    -76.17
+  ],
   "sources": [
     {
       "id": "norfolk-rpos-parks",
       "name": "City of Norfolk Parks",
       "provider": "arcgis_feature_service",
       "url": "https://gisshare.norfolk.gov/pubserver/rest/services/OpenData/RPOS/FeatureServer/1",
-      "domains": ["parks"],
+      "domains": [
+        "parks"
+      ],
       "licenseUrl": "https://www.norfolk.gov/",
       "confidence": 0.95,
       "status": "active"
@@ -18,7 +25,9 @@
       "name": "City of Norfolk Recreation Centers",
       "provider": "arcgis_feature_service",
       "url": "https://gisshare.norfolk.gov/pubserver/rest/services/OpenData/RPOS/FeatureServer/0",
-      "domains": ["facilities"],
+      "domains": [
+        "facilities"
+      ],
       "licenseUrl": "https://www.norfolk.gov/",
       "confidence": 0.95,
       "status": "active"
@@ -28,7 +37,9 @@
       "name": "City of Norfolk Elizabeth River Trail",
       "provider": "arcgis_feature_service",
       "url": "https://gisshare.norfolk.gov/pubserver/rest/services/OpenData/RPOS/FeatureServer/4",
-      "domains": ["trails"],
+      "domains": [
+        "trails"
+      ],
       "licenseUrl": "https://www.norfolk.gov/",
       "confidence": 0.95,
       "status": "active"
@@ -38,13 +49,45 @@
       "name": "eBird Norfolk recent hotspot observations",
       "provider": "ebird_recent",
       "url": "https://api.ebird.org/v2/data/obs/geo/recent",
-      "domains": ["wildlife"],
+      "domains": [
+        "wildlife"
+      ],
       "licenseUrl": "https://science.ebird.org/en/status-and-trends/products-access-terms-of-use",
       "authorityTier": "community",
       "confidence": 0.7,
       "credentialEnv": "EBIRD_API_TOKEN",
-      "providerOptions": {"days": 7, "distanceKm": 25},
+      "providerOptions": {
+        "days": 7,
+        "distanceKm": 25
+      },
       "status": "active"
     }
-  ]
+  ],
+  "osm": {
+    "status": "enabled",
+    "enabled": true,
+    "bbox": [
+      36.8,
+      -76.35,
+      36.95,
+      -76.17
+    ],
+    "sourceId": "osm-norfolk",
+    "endpoint": "https://overpass-api.de/api/interpreter",
+    "categories": [
+      "park",
+      "trail",
+      "water",
+      "history",
+      "public_art",
+      "library",
+      "community",
+      "garden",
+      "coffee",
+      "rest"
+    ],
+    "refreshPolicy": "monthly",
+    "maxRecords": 2000,
+    "packagePath": "motherbird/regions/norfolk/osm/pois.json"
+  }
 }

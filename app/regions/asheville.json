@@ -1,1 +1,43 @@
-{"id":"asheville","name":"Asheville, NC","bbox":[35.47,-82.66,35.67,-82.42],"profile":"destination-walklife","enrichment":{"wikimedia":{"enabled":true}}}
+{
+  "id": "asheville",
+  "name": "Asheville, NC",
+  "bbox": [
+    35.47,
+    -82.66,
+    35.67,
+    -82.42
+  ],
+  "profile": "destination-walklife",
+  "enrichment": {
+    "wikimedia": {
+      "enabled": true
+    }
+  },
+  "osm": {
+    "status": "unavailable",
+    "enabled": false,
+    "bbox": [
+      35.47,
+      -82.66,
+      35.67,
+      -82.42
+    ],
+    "sourceId": "osm-asheville",
+    "endpoint": "https://overpass-api.de/api/interpreter",
+    "categories": [
+      "park",
+      "trail",
+      "water",
+      "history",
+      "public_art",
+      "library",
+      "community",
+      "garden",
+      "coffee",
+      "rest"
+    ],
+    "refreshPolicy": "monthly",
+    "maxRecords": 2000,
+    "unavailableReason": "OSM build failed at 2026-08-27T04:00:00Z: OSM acquisition failed for osm-asheville: HTTP Error 429: Too Many Requests"
+  }
+}

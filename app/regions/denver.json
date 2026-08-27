@@ -1,1 +1,43 @@
-{"id":"denver","name":"Denver, CO","bbox":[39.55,-105.16,39.91,-104.60],"profile":"destination-walklife","enrichment":{"wikimedia":{"enabled":true}}}
+{
+  "id": "denver",
+  "name": "Denver, CO",
+  "bbox": [
+    39.55,
+    -105.16,
+    39.91,
+    -104.6
+  ],
+  "profile": "destination-walklife",
+  "enrichment": {
+    "wikimedia": {
+      "enabled": true
+    }
+  },
+  "osm": {
+    "status": "enabled",
+    "enabled": true,
+    "bbox": [
+      39.55,
+      -105.16,
+      39.91,
+      -104.6
+    ],
+    "sourceId": "osm-denver",
+    "endpoint": "https://overpass-api.de/api/interpreter",
+    "categories": [
+      "park",
+      "trail",
+      "water",
+      "history",
+      "public_art",
+      "library",
+      "community",
+      "garden",
+      "coffee",
+      "rest"
+    ],
+    "refreshPolicy": "monthly",
+    "maxRecords": 2000,
+    "packagePath": "motherbird/regions/denver/osm/pois.json"
+  }
+}

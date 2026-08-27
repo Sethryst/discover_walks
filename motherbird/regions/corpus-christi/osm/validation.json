@@ -1,0 +1,34 @@
+{
+  "accepted": 497,
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "regionId": "corpus-christi",
+  "rejected": 2,
+  "schemaVersion": 1,
+  "warnings": [
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 614279786 is outside the configured bbox.",
+      "source": "osm-corpus-christi"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 618623636 is outside the configured bbox.",
+      "source": "osm-corpus-christi"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6203595682 matched authoritative osm:node:14004979720; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-corpus-christi"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:684702672 matched authoritative osm:way:1299914819; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-corpus-christi"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:684702673 matched authoritative osm:way:1299914819; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-corpus-christi"
+    }
+  ]
+}

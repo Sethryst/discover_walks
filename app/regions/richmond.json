@@ -1,1 +1,61 @@
-{"id":"richmond","name":"Richmond, VA","bbox":[37.42,-77.58,37.64,-77.35],"profile":"urban-walklife","enrichment":{"wikimedia":{"enabled":true}},"sources":[{"id":"richmond-boundary","name":"City of Richmond Boundary","provider":"arcgis_feature_service","url":"https://services1.arcgis.com/k3vhq11XkBNeeOfM/ArcGIS/rest/services/City_Boundary/FeatureServer/0","domains":[],"layerRole":"jurisdiction_boundary","artifactName":"boundary.geojson","propertyMapping":{"id":"OBJECTID","name":"Annexation"},"licenseUrl":"https://www.rva.gov/","authorityTier":"city_government","confidence":0.98}]}
+{
+  "id": "richmond",
+  "name": "Richmond, VA",
+  "bbox": [
+    37.42,
+    -77.58,
+    37.64,
+    -77.35
+  ],
+  "profile": "urban-walklife",
+  "enrichment": {
+    "wikimedia": {
+      "enabled": true
+    }
+  },
+  "sources": [
+    {
+      "id": "richmond-boundary",
+      "name": "City of Richmond Boundary",
+      "provider": "arcgis_feature_service",
+      "url": "https://services1.arcgis.com/k3vhq11XkBNeeOfM/ArcGIS/rest/services/City_Boundary/FeatureServer/0",
+      "domains": [],
+      "layerRole": "jurisdiction_boundary",
+      "artifactName": "boundary.geojson",
+      "propertyMapping": {
+        "id": "OBJECTID",
+        "name": "Annexation"
+      },
+      "licenseUrl": "https://www.rva.gov/",
+      "authorityTier": "city_government",
+      "confidence": 0.98
+    }
+  ],
+  "osm": {
+    "status": "enabled",
+    "enabled": true,
+    "bbox": [
+      37.42,
+      -77.58,
+      37.64,
+      -77.35
+    ],
+    "sourceId": "osm-richmond",
+    "endpoint": "https://overpass-api.de/api/interpreter",
+    "categories": [
+      "park",
+      "trail",
+      "water",
+      "history",
+      "public_art",
+      "library",
+      "community",
+      "garden",
+      "coffee",
+      "rest"
+    ],
+    "refreshPolicy": "monthly",
+    "maxRecords": 2000,
+    "packagePath": "motherbird/regions/richmond/osm/pois.json"
+  }
+}

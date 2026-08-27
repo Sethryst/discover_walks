@@ -15,6 +15,7 @@ import { normalizedEntitlements } from './entitlements.js';
 import { initNeighborhoodDiscovery } from './neighborhoods.js';
 import { restoreLocalPoiClosures } from './spatial-closure-reporting.js';
 import { initFieldGuideFilters } from './field-guide.js';
+import { initJournalPane } from './journal-pane.js';
 
 export async function init() {
   try {
@@ -37,6 +38,7 @@ export async function init() {
   initNeighborhoodDiscovery();
   initExplore();
   initFieldGuideFilters();
+  initJournalPane();
 
   try {
     initEvents();

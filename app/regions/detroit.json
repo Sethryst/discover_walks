@@ -1,1 +1,55 @@
-{"id":"detroit","name":"Detroit, Michigan","bbox":[42.25496,-83.28773,42.45037,-82.91034],"sources":[{"id":"detroit-boundary","name":"City of Detroit Boundary","provider":"arcgis_feature_service","url":"https://services2.arcgis.com/qvkbeam7Wirps6zC/ArcGIS/rest/services/City_of_Detroit_Boundary/FeatureServer/0","domains":[],"layerRole":"jurisdiction_boundary","artifactName":"boundary.geojson","propertyMapping":{"id":"FID","name":"name"},"licenseUrl":"https://data.detroitmi.gov/","authorityTier":"city_government","confidence":0.98}]}
+{
+  "id": "detroit",
+  "name": "Detroit, Michigan",
+  "bbox": [
+    42.25496,
+    -83.28773,
+    42.45037,
+    -82.91034
+  ],
+  "sources": [
+    {
+      "id": "detroit-boundary",
+      "name": "City of Detroit Boundary",
+      "provider": "arcgis_feature_service",
+      "url": "https://services2.arcgis.com/qvkbeam7Wirps6zC/ArcGIS/rest/services/City_of_Detroit_Boundary/FeatureServer/0",
+      "domains": [],
+      "layerRole": "jurisdiction_boundary",
+      "artifactName": "boundary.geojson",
+      "propertyMapping": {
+        "id": "FID",
+        "name": "name"
+      },
+      "licenseUrl": "https://data.detroitmi.gov/",
+      "authorityTier": "city_government",
+      "confidence": 0.98
+    }
+  ],
+  "osm": {
+    "status": "enabled",
+    "enabled": true,
+    "bbox": [
+      42.25496,
+      -83.28773,
+      42.45037,
+      -82.91034
+    ],
+    "sourceId": "osm-detroit",
+    "endpoint": "https://overpass-api.de/api/interpreter",
+    "categories": [
+      "park",
+      "trail",
+      "water",
+      "history",
+      "public_art",
+      "library",
+      "community",
+      "garden",
+      "coffee",
+      "rest"
+    ],
+    "refreshPolicy": "monthly",
+    "maxRecords": 2000,
+    "packagePath": "motherbird/regions/detroit/osm/pois.json"
+  }
+}

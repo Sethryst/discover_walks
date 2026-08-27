@@ -1,7 +1,43 @@
 {
   "id": "sedona-arizona",
   "name": "Sedona, Arizona",
-  "bbox": [34.80, -111.86, 34.93, -111.70],
+  "bbox": [
+    34.8,
+    -111.86,
+    34.93,
+    -111.7
+  ],
   "profile": "destination-walklife",
-  "enrichment": {"wikimedia": {"enabled": true}}
+  "enrichment": {
+    "wikimedia": {
+      "enabled": true
+    }
+  },
+  "osm": {
+    "status": "enabled",
+    "enabled": true,
+    "bbox": [
+      34.8,
+      -111.86,
+      34.93,
+      -111.7
+    ],
+    "sourceId": "osm-sedona-arizona",
+    "endpoint": "https://overpass-api.de/api/interpreter",
+    "categories": [
+      "park",
+      "trail",
+      "water",
+      "history",
+      "public_art",
+      "library",
+      "community",
+      "garden",
+      "coffee",
+      "rest"
+    ],
+    "refreshPolicy": "monthly",
+    "maxRecords": 2000,
+    "packagePath": "motherbird/regions/sedona-arizona/osm/pois.json"
+  }
 }

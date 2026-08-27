@@ -1,16 +1,27 @@
 {
   "id": "philadelphia",
   "name": "Philadelphia, PA",
-  "bbox": [39.84, -75.28, 40.14, -74.96],
+  "bbox": [
+    39.84,
+    -75.28,
+    40.14,
+    -74.96
+  ],
   "profile": "urban-walklife",
-  "enrichment": {"wikimedia": {"enabled": true}},
+  "enrichment": {
+    "wikimedia": {
+      "enabled": true
+    }
+  },
   "sources": [
     {
       "id": "phl-free-food-sites",
       "name": "Philadelphia Free Food and Meal Sites",
       "provider": "geojson",
       "url": "https://hub.arcgis.com/api/v3/datasets/5825a32bb8844bb097f7a16d4fbf4f23_0/downloads/data?format=geojson&spatialRefId=4326&where=1%3D1",
-      "domains": ["pantry"],
+      "domains": [
+        "pantry"
+      ],
       "licenseUrl": "https://metadata.phila.gov/#help/help-faqs/what-are-the-terms-of-use/",
       "authorityTier": "city_government",
       "confidence": 0.95,
@@ -21,11 +32,15 @@
       "name": "Philadelphia permitted special events",
       "provider": "phila_special_events",
       "url": "https://www.phila.gov/departments/office-of-special-events/events/special-events-calendar/",
-      "domains": ["event"],
+      "domains": [
+        "event"
+      ],
       "licenseUrl": "https://www.phila.gov/departments/office-of-special-events/events/special-events-calendar/",
       "authorityTier": "city_government",
       "confidence": 0.95,
-      "providerOptions": {"limit": 30},
+      "providerOptions": {
+        "limit": 30
+      },
       "status": "active"
     },
     {
@@ -33,11 +48,40 @@
       "name": "phila.gov calendars",
       "provider": "geojson",
       "url": "https://api.phila.gov/phila/calendars/v1",
-      "domains": ["event"],
+      "domains": [
+        "event"
+      ],
       "licenseUrl": "https://developer.phila.gov/api-docs/phila/calendars/v1",
       "authorityTier": "city_government",
       "confidence": 0.9,
       "status": "disabled"
     }
-  ]
+  ],
+  "osm": {
+    "status": "enabled",
+    "enabled": true,
+    "bbox": [
+      39.84,
+      -75.28,
+      40.14,
+      -74.96
+    ],
+    "sourceId": "osm-philadelphia",
+    "endpoint": "https://overpass-api.de/api/interpreter",
+    "categories": [
+      "park",
+      "trail",
+      "water",
+      "history",
+      "public_art",
+      "library",
+      "community",
+      "garden",
+      "coffee",
+      "rest"
+    ],
+    "refreshPolicy": "monthly",
+    "maxRecords": 2000,
+    "packagePath": "motherbird/regions/philadelphia/osm/pois.json"
+  }
 }

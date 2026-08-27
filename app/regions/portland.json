@@ -1,1 +1,43 @@
-{"id":"portland","name":"Portland, OR","bbox":[45.43,-122.82,45.68,-122.46],"profile":"urban-walklife","enrichment":{"wikimedia":{"enabled":true}}}
+{
+  "id": "portland",
+  "name": "Portland, OR",
+  "bbox": [
+    45.43,
+    -122.82,
+    45.68,
+    -122.46
+  ],
+  "profile": "urban-walklife",
+  "enrichment": {
+    "wikimedia": {
+      "enabled": true
+    }
+  },
+  "osm": {
+    "status": "enabled",
+    "enabled": true,
+    "bbox": [
+      45.43,
+      -122.82,
+      45.68,
+      -122.46
+    ],
+    "sourceId": "osm-portland",
+    "endpoint": "https://overpass-api.de/api/interpreter",
+    "categories": [
+      "park",
+      "trail",
+      "water",
+      "history",
+      "public_art",
+      "library",
+      "community",
+      "garden",
+      "coffee",
+      "rest"
+    ],
+    "refreshPolicy": "monthly",
+    "maxRecords": 2000,
+    "packagePath": "motherbird/regions/portland/osm/pois.json"
+  }
+}

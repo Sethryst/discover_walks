@@ -1,3 +1,5 @@
+                  import { runtimeOsmConfig } from './osm-regions.js';
+
                   export const POINTS_PER_MILE = 10;
                   export const POINTS_PER_NEW_HISTORY_SITE = 25;
                   export const POINTS_PER_OBSERVATION = 15;
@@ -180,8 +182,20 @@
     dataFile: './data/boise-meridian-idaho-poi.json', supplementalPoiFile: './regions/boise-meridian-idaho/boise-meridian-idaho-poi.json',
     civicFile: './regions/boise-meridian-idaho/civic/index.json', weatherFile: './regions/boise-meridian-idaho/weather.json',
     boundarySource: { name: 'Ada County City Limits — Boise', url: 'https://services1.arcgis.com/WHM6qC35aMtyAAlN/arcgis/rest/services/CityLimitsAndImpactAreas/FeatureServer/1', where: "CITY = 'Boise'" }
-  }
+  },
+  asheville: { name: 'Asheville', state: 'NC', center: { lat: 35.57, lng: -82.54 }, zoom: 11, dataFile: './regions/asheville/pois.json', civicFile: './regions/asheville/civic/index.json' },
+  boston: { name: 'Boston', state: 'MA', center: { lat: 42.325, lng: -71.075 }, zoom: 11, dataFile: './regions/boston/pois.json', civicFile: './regions/boston/civic/index.json' },
+  boulder: { name: 'Boulder', state: 'CO', center: { lat: 40.015, lng: -105.27 }, zoom: 11, dataFile: './regions/boulder/pois.json', civicFile: './regions/boulder/civic/index.json' },
+  chicago: { name: 'Chicago', state: 'IL', center: { lat: 41.845, lng: -87.73 }, zoom: 10, dataFile: './regions/chicago/pois.json', civicFile: './regions/chicago/civic/index.json' },
+  denver: { name: 'Denver', state: 'CO', center: { lat: 39.73, lng: -104.88 }, zoom: 10, dataFile: './regions/denver/pois.json', civicFile: './regions/denver/civic/index.json' },
+  'new-orleans': { name: 'New Orleans', state: 'LA', center: { lat: 29.97, lng: -90.055 }, zoom: 11, dataFile: './regions/new-orleans/pois.json', civicFile: './regions/new-orleans/civic/index.json' },
+  portland: { name: 'Portland', state: 'OR', center: { lat: 45.555, lng: -122.64 }, zoom: 10, dataFile: './regions/portland/pois.json', civicFile: './regions/portland/civic/index.json' },
+  'portland-maine': { name: 'Portland', state: 'ME', center: { lat: 43.675, lng: -70.245 }, zoom: 11, dataFile: './regions/portland-maine/pois.json', civicFile: './regions/portland-maine/civic/index.json' },
+  'san-francisco': { name: 'San Francisco', state: 'CA', center: { lat: 37.77, lng: -122.435 }, zoom: 11, dataFile: './regions/san-francisco/pois.json', civicFile: './regions/san-francisco/civic/index.json' },
+  'santa-fe': { name: 'Santa Fe', state: 'NM', center: { lat: 35.665, lng: -105.96 }, zoom: 11, dataFile: './regions/santa-fe/pois.json', civicFile: './regions/santa-fe/civic/index.json' },
+  'wolf-trap-va': { name: 'Wolf Trap', state: 'VA', center: { lat: 38.945, lng: -77.26 }, zoom: 13, dataFile: './regions/wolf-trap-va/pois.json' }
 };
+Object.entries(CITIES).forEach(([cityId, city]) => { city.osm = runtimeOsmConfig(cityId, city); });
                   export const DEFAULT_PROFILE = {
   id: 'local-user', totalPoints: 0, walksCompleted: 0, milesTotal: 0,
   sitesDiscovered: {}, visitedPoiIds: [], observationsLogged: 0, streakDays: 0, lastWalkDate: null

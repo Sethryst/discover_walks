@@ -1,1 +1,55 @@
-{"id":"columbus","name":"Columbus, Ohio","bbox":[39.80775,-83.21164,40.15796,-82.77056],"sources":[{"id":"columbus-boundary","name":"Columbus Corporate Boundary","provider":"arcgis_feature_service","url":"https://maps.columbus.gov/arcgis/rest/services/CityServices/KeyLayers/MapServer/2","domains":[],"layerRole":"jurisdiction_boundary","artifactName":"boundary.geojson","propertyMapping":{"id":"OBJECTID","name":"OBJECTID"},"licenseUrl":"https://www.columbus.gov/","authorityTier":"city_government","confidence":0.98}]}
+{
+  "id": "columbus",
+  "name": "Columbus, Ohio",
+  "bbox": [
+    39.80775,
+    -83.21164,
+    40.15796,
+    -82.77056
+  ],
+  "sources": [
+    {
+      "id": "columbus-boundary",
+      "name": "Columbus Corporate Boundary",
+      "provider": "arcgis_feature_service",
+      "url": "https://maps.columbus.gov/arcgis/rest/services/CityServices/KeyLayers/MapServer/2",
+      "domains": [],
+      "layerRole": "jurisdiction_boundary",
+      "artifactName": "boundary.geojson",
+      "propertyMapping": {
+        "id": "OBJECTID",
+        "name": "OBJECTID"
+      },
+      "licenseUrl": "https://www.columbus.gov/",
+      "authorityTier": "city_government",
+      "confidence": 0.98
+    }
+  ],
+  "osm": {
+    "status": "enabled",
+    "enabled": true,
+    "bbox": [
+      39.80775,
+      -83.21164,
+      40.15796,
+      -82.77056
+    ],
+    "sourceId": "osm-columbus",
+    "endpoint": "https://overpass-api.de/api/interpreter",
+    "categories": [
+      "park",
+      "trail",
+      "water",
+      "history",
+      "public_art",
+      "library",
+      "community",
+      "garden",
+      "coffee",
+      "rest"
+    ],
+    "refreshPolicy": "monthly",
+    "maxRecords": 2000,
+    "packagePath": "motherbird/regions/columbus/osm/pois.json"
+  }
+}

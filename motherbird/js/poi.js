@@ -79,6 +79,7 @@ export function renderCityPois() {
     .filter((poi) => poi.category !== 'journey')
     .filter((poi) => !poiTags(poi).includes('history'))
     .filter(isVisiblePoi)
+    .filter((poi) => !isOsmPoi(poi) || state.poiTags.has('osm'))
     .filter(poiMatchesFilters)
     .filter(withinRenderBounds)
     .map((poi) => {
@@ -90,7 +91,7 @@ export function renderCityPois() {
       const hours = poi.hours ? `Hours: ${typeof poi.hours === 'string' ? poi.hours : JSON.stringify(poi.hours)}` : null;
       const status = poi.status ? `Status: ${poi.status}` : null;
       const eventTiming = poi.startsAt || poi.endsAt ? `Event: ${poi.startsAt || 'date TBA'}${poi.endsAt ? ` – ${poi.endsAt}` : ''}` : null;
-      const details = [displayPoiDescription(poi), historyText(poi), poi.address, status, hours, eventTiming, relevance, seasonal, poi.review?.flags?.length ? 'Needs review' : null, tagLabels ? `Tags: ${tagLabels}` : null].filter(Boolean).map(escapeHtml).join('<br>');
+      const details = [displayPoiDescription(poi), historyText(poi), poi.address, status, hours, eventTiming, relevance, seasonal, isOsmPoi(poi) ? 'Map data © OpenStreetMap contributors (ODbL)' : null, poi.review?.flags?.length ? 'Needs review' : null, tagLabels ? `Tags: ${tagLabels}` : null].filter(Boolean).map(escapeHtml).join('<br>');
       const links = [poi.link, poi.website, sourceUrl(poi), historyUrl(poi)].filter(Boolean).filter((url, index, all) => all.indexOf(url) === index).map((url, index) => `<a href="${escapeHtml(url)}" target="_blank" rel="noreferrer">${index === 0 && (poi.link || poi.website) ? 'Website' : 'Source'} ↗</a>`).join(' · ');
       const closeControl = canReportPoiClosure() ? `<br><button type="button" class="text-button" data-close-poi="${escapeHtml(poi.id)}">Hide as closed for 90 days</button>` : '';
       const visitControl = `<br><button type="button" class="text-button" data-visit-poi="${escapeHtml(poi.id)}"${isPoiVisited(poi) ? ' disabled' : ''}>${isPoiVisited(poi) ? 'Visited' : 'Mark visited'}</button>`;
@@ -120,7 +121,7 @@ export function renderHistorySites() {
     const key = `${site.lat},${site.lng}`;
     coordinateCounts.set(key, (coordinateCounts.get(key) || 0) + 1);
   });
-  const sites = allSites.filter(isWalkablePoi).filter((site) => hasReliableMapCoordinate(site, coordinateCounts)).filter(poiMatchesFilters).filter(withinRenderBounds);
+  const sites = allSites.filter(isWalkablePoi).filter((site) => !isOsmPoi(site) || state.poiTags.has('osm')).filter((site) => hasReliableMapCoordinate(site, coordinateCounts)).filter(poiMatchesFilters).filter(withinRenderBounds);
   const markers = sites.map((site) => {
     const subtype = inferHistorySubtype(site);
     const glyph = HISTORY_SUBTYPES[subtype]?.icon || '🏛';
@@ -282,7 +283,11 @@ export async function searchOsm(query) {
     });
     if (!res.ok) return [];
     const results = await res.json();
-    return results.map((r) => ({ id: `osm:${r.place_id}`, name: r.display_name.split(',')[0], lat: parseFloat(r.lat), lng: parseFloat(r.lon), fromOsm: true }));
+    return results.map((r) => {
+      const elementType = r.osm_type || 'search';
+      const elementId = String(r.osm_id || r.place_id);
+      return { id: `osm:${elementType}:${elementId}`, name: r.display_name.split(',')[0], lat: parseFloat(r.lat), lng: parseFloat(r.lon), fromOsm: true, sourceType: 'osm_nominatim', osmElementType: elementType, osmElementId: elementId, source: [{ name: 'OpenStreetMap', id: 'osm-nominatim-search', elementId, url: /^node|way|relation$/.test(elementType) ? `https://www.openstreetmap.org/${elementType}/${elementId}` : 'https://www.openstreetmap.org/copyright', attribution: '© OpenStreetMap contributors', license: 'ODbL-1.0', licenseUrl: 'https://www.openstreetmap.org/copyright', retrievedAt: new Date().toISOString() }] };
+    });
   } catch {
     return [];
   }

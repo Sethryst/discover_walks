@@ -1,0 +1,40 @@
+{
+  "artifacts": [
+    "pois.json",
+    "merged-pois.json",
+    "validation.json",
+    "spatial-index-delta.json",
+    "attribution.json"
+  ],
+  "checksums": {
+    "attribution.json": "sha256:6782f4f04a56b2b610b5815fe2e713fb69da65e2914914809ad8f6d69005edea",
+    "merged-pois.json": "sha256:aca8292242e120eb75e6cada23a5aa01bc0a64ac2299541be9beb5d3f1581227",
+    "pois.json": "sha256:a947ebfb25e76f4cb05a32ce50b127892a760c586c3a97edf2edf80a533b2065",
+    "spatial-index-delta.json": "sha256:66ff7307c79a1ee95f53eec8a7fc10ee7d70cc4e11d98915d195c1d6aae491d1",
+    "validation.json": "sha256:5d1f1d2315e7a064be3f7e7e1670f156ba0403699802ddca8ab76f7b58f47024"
+  },
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "recordCountsByCategory": {
+    "coffee": 85,
+    "community": 2,
+    "garden": 32,
+    "history": 11,
+    "library": 9,
+    "park": 103,
+    "public_art": 29,
+    "rest": 47,
+    "trail": 170
+  },
+  "regionId": "tempe",
+  "schemaVersion": 1,
+  "source": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "name": "OpenStreetMap",
+    "rawResponseSha256": "sha256:20af2605e0386c069c41a4a6a975972ddc6101e06815cfb2ef39b4e037609836",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "sourceConfigurationId": "osm-tempe",
+  "sourceVintage": "2026-08-27T03:21:58Z"
+}

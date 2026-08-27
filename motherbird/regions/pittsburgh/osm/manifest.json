@@ -1,0 +1,41 @@
+{
+  "artifacts": [
+    "pois.json",
+    "merged-pois.json",
+    "validation.json",
+    "spatial-index-delta.json",
+    "attribution.json"
+  ],
+  "checksums": {
+    "attribution.json": "sha256:4e02c2bfb2b0b00489c0ed41d0f3f196ae397618ea36048f37109b39f86fead3",
+    "merged-pois.json": "sha256:a5644f0b7ab100988af4ebf7a0f4eeb6eac408bc55133e866dd99001da782075",
+    "pois.json": "sha256:c9c0fbd374a060b6101f313326592ca43edc1b4bece316b1c0da082a889dfe60",
+    "spatial-index-delta.json": "sha256:6ed04440b9cb3a2ccee1817af62f363b46f402a890fc2f9e7e31d7efcea33567",
+    "validation.json": "sha256:5f7dede35df8da071fc069b617fd313222437d2262b4bc8018271fe973ff624d"
+  },
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "recordCountsByCategory": {
+    "coffee": 179,
+    "community": 16,
+    "garden": 36,
+    "history": 93,
+    "library": 110,
+    "park": 285,
+    "public_art": 42,
+    "rest": 32,
+    "trail": 564,
+    "water": 2
+  },
+  "regionId": "pittsburgh",
+  "schemaVersion": 1,
+  "source": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "name": "OpenStreetMap",
+    "rawResponseSha256": "sha256:e981a044d3c56f6a777ca0afbef18599cb161e0445a1cb8a730aca6ab4bed5b3",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "sourceConfigurationId": "osm-pittsburgh",
+  "sourceVintage": "2026-08-27T03:16:50Z"
+}

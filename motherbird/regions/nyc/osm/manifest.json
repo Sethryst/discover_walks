@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "regionId": "nyc",
+  "generatedAt": "2026-08-20T19:41:00.497Z",
+  "sourceVintage": "2026-08-20T19:41:00.497Z",
+  "sourceConfigurationId": "osm-nyc",
+  "source": {
+    "name": "OpenStreetMap",
+    "url": "https://overpass-api.de/api/interpreter",
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright"
+  },
+  "recordCountsByCategory": {
+    "coffee": 300,
+    "library": 27,
+    "nature": 300,
+    "park": 300
+  },
+  "artifacts": [
+    "pois.json",
+    "validation.json",
+    "spatial-index-delta.json",
+    "attribution.json"
+  ],
+  "checksums": {
+    "pois.json": "sha256:9be18796075f171360e84c022f479e05b18aa5cf0d7afb9815e9bf129fa93d8e",
+    "validation.json": "sha256:7f2478758ba2259bcd7aaf913db8e26adfcbeddc6e34437159acd0c96378b5e9",
+    "spatial-index-delta.json": "sha256:1c661cdb08f57e37c2c8d2bd60c83c09d4750c8c9f66c4f63410e23b367785ca",
+    "attribution.json": "sha256:d6dfa7ab5b84347040fa607ae97acdae626ba133326768959de6c4047deff3a7"
+  }
+}

@@ -1,10 +1,104 @@
 {
   "id": "falls-church-va",
   "name": "City of Falls Church, Virginia",
-  "bbox": [38.87, -77.19, 38.90, -77.15],
+  "bbox": [
+    38.87,
+    -77.19,
+    38.9,
+    -77.15
+  ],
   "sources": [
-    {"id":"falls-church-boundary","name":"Falls Church Boundary","provider":"arcgis_feature_service","url":"https://services.arcgis.com/p5v98VHDX9Atv3l7/ArcGIS/rest/services/VA_Jurisdictions/FeatureServer/0","domains":[],"layerRole":"jurisdiction_boundary","artifactName":"boundary.geojson","queryParams":{"where":"NAME = 'Falls Church' AND JURISTYPE = 'CI'"},"propertyMapping":{"id":"STCOFIPS","name":"NAMELSAD","include":["GNIS","JURISTYPE"]},"licenseUrl":"https://www.vdot.virginia.gov/","attribution":"Virginia Department of Transportation / VGIN","authorityTier":"state_government","confidence":0.98},
-    {"id":"falls-church-parks","name":"Falls Church Parks","provider":"arcgis_feature_service","url":"https://services1.arcgis.com/9lDFdeC4JIBgML6L/ArcGIS/rest/services/Falls_Church_City/FeatureServer/18","domains":["parks"],"propertyMapping":{"id":"OBJECTID","name":"Name","include":["Link"]},"licenseUrl":"https://www.fallschurchva.gov/","attribution":"City of Falls Church","authorityTier":"city_government","confidence":0.96},
-    {"id":"falls-church-trails","name":"Falls Church Paths and Trails","provider":"arcgis_feature_service","url":"https://services1.arcgis.com/9lDFdeC4JIBgML6L/ArcGIS/rest/services/Falls_Church_City/FeatureServer/11","domains":["trails"],"propertyMapping":{"id":"OBJECTID","name":"NAME","include":["SURFTYPE","OWNEDBY"]},"licenseUrl":"https://www.fallschurchva.gov/","attribution":"City of Falls Church","authorityTier":"city_government","confidence":0.96}
-  ]
+    {
+      "id": "falls-church-boundary",
+      "name": "Falls Church Boundary",
+      "provider": "arcgis_feature_service",
+      "url": "https://services.arcgis.com/p5v98VHDX9Atv3l7/ArcGIS/rest/services/VA_Jurisdictions/FeatureServer/0",
+      "domains": [],
+      "layerRole": "jurisdiction_boundary",
+      "artifactName": "boundary.geojson",
+      "queryParams": {
+        "where": "NAME = 'Falls Church' AND JURISTYPE = 'CI'"
+      },
+      "propertyMapping": {
+        "id": "STCOFIPS",
+        "name": "NAMELSAD",
+        "include": [
+          "GNIS",
+          "JURISTYPE"
+        ]
+      },
+      "licenseUrl": "https://www.vdot.virginia.gov/",
+      "attribution": "Virginia Department of Transportation / VGIN",
+      "authorityTier": "state_government",
+      "confidence": 0.98
+    },
+    {
+      "id": "falls-church-parks",
+      "name": "Falls Church Parks",
+      "provider": "arcgis_feature_service",
+      "url": "https://services1.arcgis.com/9lDFdeC4JIBgML6L/ArcGIS/rest/services/Falls_Church_City/FeatureServer/18",
+      "domains": [
+        "parks"
+      ],
+      "propertyMapping": {
+        "id": "OBJECTID",
+        "name": "Name",
+        "include": [
+          "Link"
+        ]
+      },
+      "licenseUrl": "https://www.fallschurchva.gov/",
+      "attribution": "City of Falls Church",
+      "authorityTier": "city_government",
+      "confidence": 0.96
+    },
+    {
+      "id": "falls-church-trails",
+      "name": "Falls Church Paths and Trails",
+      "provider": "arcgis_feature_service",
+      "url": "https://services1.arcgis.com/9lDFdeC4JIBgML6L/ArcGIS/rest/services/Falls_Church_City/FeatureServer/11",
+      "domains": [
+        "trails"
+      ],
+      "propertyMapping": {
+        "id": "OBJECTID",
+        "name": "NAME",
+        "include": [
+          "SURFTYPE",
+          "OWNEDBY"
+        ]
+      },
+      "licenseUrl": "https://www.fallschurchva.gov/",
+      "attribution": "City of Falls Church",
+      "authorityTier": "city_government",
+      "confidence": 0.96
+    }
+  ],
+  "osm": {
+    "status": "enabled",
+    "enabled": true,
+    "bbox": [
+      38.87,
+      -77.19,
+      38.9,
+      -77.15
+    ],
+    "sourceId": "osm-falls-church-va",
+    "endpoint": "https://overpass-api.de/api/interpreter",
+    "categories": [
+      "park",
+      "trail",
+      "water",
+      "history",
+      "public_art",
+      "library",
+      "community",
+      "garden",
+      "coffee",
+      "rest"
+    ],
+    "refreshPolicy": "monthly",
+    "maxRecords": 2000,
+    "packagePath": "motherbird/regions/falls-church-va/osm/pois.json"
+  }
 }

@@ -1,0 +1,41 @@
+{
+  "artifacts": [
+    "pois.json",
+    "merged-pois.json",
+    "validation.json",
+    "spatial-index-delta.json",
+    "attribution.json"
+  ],
+  "checksums": {
+    "attribution.json": "sha256:d4a90952b1f3a9406dc6a5b164f057addc3b184782669ab9edf48bd95ea509d4",
+    "merged-pois.json": "sha256:287ed91b4844570b4aba1afad8e4ba1dd184dc195bcbafedd455303bc78c33ad",
+    "pois.json": "sha256:a019ff6db8227f6bbbc928f081bac6d81695802418be0f03bb30e8198dd0587a",
+    "spatial-index-delta.json": "sha256:22891ad376d3aecf3f285a49ab17a440126ac46da9fdbefa76f3d75252796dca",
+    "validation.json": "sha256:0120f40c87d789ba1ad04a93b8c617e6097adc592571c7573841cdd0ce2c63d3"
+  },
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "recordCountsByCategory": {
+    "coffee": 813,
+    "community": 12,
+    "garden": 21,
+    "history": 393,
+    "library": 24,
+    "park": 222,
+    "public_art": 465,
+    "rest": 13,
+    "trail": 26,
+    "water": 8
+  },
+  "regionId": "chicago",
+  "schemaVersion": 1,
+  "source": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "name": "OpenStreetMap",
+    "rawResponseSha256": "sha256:97d6bf49652224d081f16d52db19a68e0cd450d10fbe13aa2ac333f040f22ae5",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "sourceConfigurationId": "osm-chicago",
+  "sourceVintage": "2026-08-27T03:07:34Z"
+}

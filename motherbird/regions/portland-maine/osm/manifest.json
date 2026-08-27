@@ -1,0 +1,41 @@
+{
+  "artifacts": [
+    "pois.json",
+    "merged-pois.json",
+    "validation.json",
+    "spatial-index-delta.json",
+    "attribution.json"
+  ],
+  "checksums": {
+    "attribution.json": "sha256:60c638d10338612bb313bc51778ef80e3b72c81c1e20460f5022c60f8add7b11",
+    "merged-pois.json": "sha256:c9a44341325e63a9fad0c4f7160278a811845345a8181ca32d1213c812c00ab4",
+    "pois.json": "sha256:58f4092d02fc7e6e45a4a9ccf3408cf4086751bfaa2bbbfb8b3a895f5d5001b2",
+    "spatial-index-delta.json": "sha256:a9550705838aa78225cf31e44068361c8b535d88d5781d8bd304ee9558889cf8",
+    "validation.json": "sha256:f6c32ba962ed4f35f70775fa09c87eef5419e14a056f0c82766b4dff6e83c835"
+  },
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "recordCountsByCategory": {
+    "coffee": 59,
+    "community": 4,
+    "garden": 94,
+    "history": 74,
+    "library": 19,
+    "park": 199,
+    "public_art": 14,
+    "rest": 5,
+    "trail": 355,
+    "water": 20
+  },
+  "regionId": "portland-maine",
+  "schemaVersion": 1,
+  "source": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "name": "OpenStreetMap",
+    "rawResponseSha256": "sha256:07f1c21c09bdad77d13b77c2c011e831c34fd4f1daf4cb04f4fda9fed6713e87",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "sourceConfigurationId": "osm-portland-maine",
+  "sourceVintage": "2026-08-27T03:17:49Z"
+}

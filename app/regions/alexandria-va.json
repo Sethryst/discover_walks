@@ -1,7 +1,12 @@
 {
   "id": "alexandria-va",
   "name": "Alexandria, Virginia",
-  "bbox": [38.78585, -77.14433, 38.84496, -77.03727],
+  "bbox": [
+    38.78585,
+    -77.14433,
+    38.84496,
+    -77.03727
+  ],
   "sources": [
     {
       "id": "alexandria-boundary",
@@ -11,7 +16,13 @@
       "domains": [],
       "layerRole": "jurisdiction_boundary",
       "artifactName": "boundary.geojson",
-      "propertyMapping": {"id": "FID", "name": "NAME", "include": ["STATE"]},
+      "propertyMapping": {
+        "id": "FID",
+        "name": "NAME",
+        "include": [
+          "STATE"
+        ]
+      },
       "licenseUrl": "https://cityofalexandria-alexgis.opendata.arcgis.com/",
       "attribution": "City of Alexandria, Virginia GIS Division",
       "authorityTier": "city_government",
@@ -22,8 +33,17 @@
       "name": "City of Alexandria Parks",
       "provider": "arcgis_feature_service",
       "url": "https://services2.arcgis.com/ChYV69FhfjwkvRmy/ArcGIS/rest/services/Park/FeatureServer/0",
-      "domains": ["parks"],
-      "propertyMapping": {"id": "FID", "name": "LOCATION", "include": ["FACILITYID", "PARKID"]},
+      "domains": [
+        "parks"
+      ],
+      "propertyMapping": {
+        "id": "FID",
+        "name": "LOCATION",
+        "include": [
+          "FACILITYID",
+          "PARKID"
+        ]
+      },
       "licenseUrl": "https://cityofalexandria-alexgis.opendata.arcgis.com/",
       "attribution": "City of Alexandria GIS / Recreation, Parks and Cultural Activities",
       "authorityTier": "city_government",
@@ -34,12 +54,50 @@
       "name": "City of Alexandria Recreation and Park Trails",
       "provider": "arcgis_feature_service",
       "url": "https://services2.arcgis.com/ChYV69FhfjwkvRmy/ArcGIS/rest/services/Rec_Park_Trails/FeatureServer/0",
-      "domains": ["trails"],
-      "propertyMapping": {"id": "GlobalID", "name": "TRAIL_NAME", "include": ["PrimePark", "SurfaceType", "Owner", "Maintenance"]},
+      "domains": [
+        "trails"
+      ],
+      "propertyMapping": {
+        "id": "GlobalID",
+        "name": "TRAIL_NAME",
+        "include": [
+          "PrimePark",
+          "SurfaceType",
+          "Owner",
+          "Maintenance"
+        ]
+      },
       "licenseUrl": "https://cityofalexandria-alexgis.opendata.arcgis.com/",
       "attribution": "City of Alexandria GIS / Recreation, Parks and Cultural Activities",
       "authorityTier": "city_government",
       "confidence": 0.96
     }
-  ]
+  ],
+  "osm": {
+    "status": "enabled",
+    "enabled": true,
+    "bbox": [
+      38.78585,
+      -77.14433,
+      38.84496,
+      -77.03727
+    ],
+    "sourceId": "osm-alexandria-va",
+    "endpoint": "https://overpass-api.de/api/interpreter",
+    "categories": [
+      "park",
+      "trail",
+      "water",
+      "history",
+      "public_art",
+      "library",
+      "community",
+      "garden",
+      "coffee",
+      "rest"
+    ],
+    "refreshPolicy": "monthly",
+    "maxRecords": 2000,
+    "packagePath": "motherbird/regions/alexandria-va/osm/pois.json"
+  }
 }

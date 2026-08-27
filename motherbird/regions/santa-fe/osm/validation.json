@@ -1,0 +1,804 @@
+{
+  "accepted": 726,
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "regionId": "santa-fe",
+  "rejected": 5,
+  "schemaVersion": 1,
+  "warnings": [
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 426294036 is outside the configured bbox.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 722060782 is outside the configured bbox.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM relation 171053 is outside the configured bbox.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM relation 5939936 is outside the configured bbox.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM relation 18934145 is outside the configured bbox.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12165109920 matched authoritative osm:node:12165109919; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13744642274 matched authoritative rest:osm-destination-rest:13744642274; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357605718 matched authoritative parks:osm-destination-parks:357605718; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357606091 matched authoritative parks:osm-destination-parks:357606091; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357610863 matched authoritative parks:osm-destination-parks:357610863; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357622069 matched authoritative parks:osm-destination-parks:357622069; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3722271032 matched authoritative parks:osm-destination-parks:3722271032; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4933185784 matched authoritative rest:osm-destination-rest:4933185784; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6485115112 matched authoritative parks:osm-destination-parks:6485115112; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6486848846 matched authoritative parks:osm-destination-parks:6486848846; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6486860896 matched authoritative rest:osm-destination-rest:6486860896; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6594202399 matched authoritative parks:osm-destination-parks:6594202399; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9732218766 matched authoritative parks:osm-destination-parks:9732218766; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:15513197 matched authoritative parks:osm-destination-parks:15513197; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:16632284 matched authoritative parks:osm-destination-parks:16632284; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:6963309 matched authoritative parks:osm-destination-parks:6963309; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:6991590 matched authoritative parks:osm-destination-parks:6991590; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:6991591 matched authoritative parks:osm-destination-parks:6991591; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:7147455 matched authoritative parks:osm-destination-parks:7147455; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1002827464 matched authoritative parks:osm-destination-parks:1002827464; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1036704668 matched authoritative trails:osm-destination-trails:1036704668; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1036704671 matched authoritative trails:osm-destination-trails:1036704671; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1059169356 matched authoritative parks:osm-destination-parks:1059169356; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1092785471 matched authoritative parks:osm-destination-parks:1092785471; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1119414888 matched authoritative parks:osm-destination-parks:1119414888; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1119911751 matched authoritative parks:osm-destination-parks:1119911751; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1149674537 matched authoritative trails:osm-destination-trails:1149674537; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1179811565 matched authoritative parks:osm-destination-parks:1179811565; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1181898327 matched authoritative parks:osm-destination-parks:1181898327; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1224679318 matched authoritative trails:osm-destination-trails:1224679318; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1224679319 matched authoritative trails:osm-destination-trails:1224679319; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1224679321 matched authoritative trails:osm-destination-trails:1224679321; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1315498238 matched authoritative trails:osm-destination-trails:1315498237; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1340192324 matched authoritative parks:osm-destination-parks:1340192324; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1365888010 matched authoritative trails:osm-destination-trails:1224679321; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1365888012 matched authoritative trails:osm-destination-trails:1224679321; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1373998213 matched authoritative trails:osm-destination-trails:1373998213; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:141165187 matched authoritative parks:osm-destination-parks:141165187; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1422542866 matched authoritative trails:osm-destination-trails:1422542866; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1422542868 matched authoritative trails:osm-destination-trails:1422542867; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1422542870 matched authoritative trails:osm-destination-trails:1422542869; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:14611482 matched authoritative trails:osm-destination-trails:14611482; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:171227768 matched authoritative trails:osm-destination-trails:171227768; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:171227772 matched authoritative trails:osm-destination-trails:171227772; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:198486312 matched authoritative parks:osm-destination-parks:198486312; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:198486901 matched authoritative parks:osm-destination-parks:198486901; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:243067361 matched authoritative parks:osm-destination-parks:243067361; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:243075644 matched authoritative parks:osm-destination-parks:243075644; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:254945691 matched authoritative trails:osm-destination-trails:254945691; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:254945695 matched authoritative trails:osm-destination-trails:254945695; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:254945696 matched authoritative trails:osm-destination-trails:254945696; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:298980925 matched authoritative parks:osm-destination-parks:298980925; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:310167192 matched authoritative parks:osm-destination-parks:310167192; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:310660233 matched authoritative parks:osm-destination-parks:310660233; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:324120147 matched authoritative parks:osm-destination-parks:324120147; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:339787373 matched authoritative parks:osm-destination-parks:339787373; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:362335851 matched authoritative parks:osm-destination-parks:362335851; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:364725290 matched authoritative trails:osm-destination-trails:364725290; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:435625152 matched authoritative parks:osm-destination-parks:435625152; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:447499474 matched authoritative trails:osm-destination-trails:447499474; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:447499771 matched authoritative trails:osm-destination-trails:447499771; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:451583901 matched authoritative parks:osm-destination-parks:451583901; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:461791452 matched authoritative parks:osm-destination-parks:461791452; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:461965581 matched authoritative parks:osm-destination-parks:461965581; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:462166305 matched authoritative trails:osm-destination-trails:462166305; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:462166312 matched authoritative trails:osm-destination-trails:462166312; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:462166316 matched authoritative parks:osm-destination-parks:462166316; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:462198751 matched authoritative parks:osm-destination-parks:462198751; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:469236986 matched authoritative parks:osm-destination-parks:469236986; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:469239782 matched authoritative parks:osm-destination-parks:469239782; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:469248741 matched authoritative parks:osm-destination-parks:469248741; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:469251510 matched authoritative parks:osm-destination-parks:469251510; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:469252885 matched authoritative parks:osm-destination-parks:469252885; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:469253240 matched authoritative parks:osm-destination-parks:469253240; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:473591088 matched authoritative parks:osm-destination-parks:473591088; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:474074010 matched authoritative parks:osm-destination-parks:474074010; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:474088448 matched authoritative parks:osm-destination-parks:474088448; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:474731480 matched authoritative parks:osm-destination-parks:474731480; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:474846291 matched authoritative parks:osm-destination-parks:474846291; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:474923813 matched authoritative parks:osm-destination-parks:474923813; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:474927059 matched authoritative parks:osm-destination-parks:474927059; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:475154747 matched authoritative parks:osm-destination-parks:475154747; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:475920324 matched authoritative parks:osm-destination-parks:475920324; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:476272941 matched authoritative parks:osm-destination-parks:476272941; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:477371636 matched authoritative parks:osm-destination-parks:477371636; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:477371648 matched authoritative parks:osm-destination-parks:477371648; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:477377900 matched authoritative parks:osm-destination-parks:477377900; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:540879288 matched authoritative parks:osm-destination-parks:540879288; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:601405031 matched authoritative parks:osm-destination-parks:601405031; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:611738952 matched authoritative parks:osm-destination-parks:611738952; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:633578118 matched authoritative trails:osm-destination-trails:633578118; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:648326678 matched authoritative trails:osm-destination-trails:648326678; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:653884191 matched authoritative parks:osm-destination-parks:653884191; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:668190683 matched authoritative trails:osm-destination-trails:668190683; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:669051852 matched authoritative parks:osm-destination-parks:669051852; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:669248882 matched authoritative parks:osm-destination-parks:669248882; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:670079046 matched authoritative parks:osm-destination-parks:670079046; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:680550205 matched authoritative parks:osm-destination-parks:680550205; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:689398879 matched authoritative trails:osm-destination-trails:689398879; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:689623862 matched authoritative parks:osm-destination-parks:689623862; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:692356336 matched authoritative parks:osm-destination-parks:692356336; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:694192112 matched authoritative parks:osm-destination-parks:694192112; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:694204439 matched authoritative parks:osm-destination-parks:694204439; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:694204442 matched authoritative parks:osm-destination-parks:694204442; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:694204444 matched authoritative parks:osm-destination-parks:694204444; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:694204445 matched authoritative parks:osm-destination-parks:694204445; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:694204446 matched authoritative parks:osm-destination-parks:694204446; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:697651276 matched authoritative trails:osm-destination-trails:697651276; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:697651277 matched authoritative trails:osm-destination-trails:697651277; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:697651278 matched authoritative parks:osm-destination-parks:697651278; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:697652443 matched authoritative parks:osm-destination-parks:697652443; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:698380626 matched authoritative parks:osm-destination-parks:698380626; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:698380646 matched authoritative parks:osm-destination-parks:698380646; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:699967020 matched authoritative trails:osm-destination-trails:699967020; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:699967022 matched authoritative trails:osm-destination-trails:699967022; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:704426419 matched authoritative parks:osm-destination-parks:704426419; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:704426420 matched authoritative parks:osm-destination-parks:704426420; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:705607657 matched authoritative parks:osm-destination-parks:705607657; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:705632664 matched authoritative parks:osm-destination-parks:705632664; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:705808674 matched authoritative parks:osm-destination-parks:705808674; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:706863290 matched authoritative parks:osm-destination-parks:706863290; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:708155001 matched authoritative parks:osm-destination-parks:708155001; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:713477417 matched authoritative parks:osm-destination-parks:713477417; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:713496252 matched authoritative parks:osm-destination-parks:713496252; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:713496255 matched authoritative parks:osm-destination-parks:713496255; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:714342081 matched authoritative parks:osm-destination-parks:714342081; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:720343646 matched authoritative parks:osm-destination-parks:720343646; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:720403449 matched authoritative parks:osm-destination-parks:720403449; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:720443327 matched authoritative parks:osm-destination-parks:720443327; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:720447277 matched authoritative parks:osm-destination-parks:720447277; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:721134125 matched authoritative parks:osm-destination-parks:721134125; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:724457751 matched authoritative parks:osm-destination-parks:724457751; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:724457753 matched authoritative parks:osm-destination-parks:724457753; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:724457755 matched authoritative parks:osm-destination-parks:724457755; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:726024883 matched authoritative parks:osm-destination-parks:726024883; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:726040211 matched authoritative parks:osm-destination-parks:726040211; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:726056076 matched authoritative parks:osm-destination-parks:726056076; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:729362235 matched authoritative parks:osm-destination-parks:729362235; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:729415490 matched authoritative parks:osm-destination-parks:729415490; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:786004475 matched authoritative trails:osm-destination-trails:786004475; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:795466060 matched authoritative parks:osm-destination-parks:795466060; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:804740859 matched authoritative trails:osm-destination-trails:1373998213; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:805297803 matched authoritative parks:osm-destination-parks:805297803; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:808601370 matched authoritative trails:osm-destination-trails:808601370; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:808601371 matched authoritative trails:osm-destination-trails:14611482; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:829469776 matched authoritative trails:osm-destination-trails:829469776; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:830469699 matched authoritative parks:osm-destination-parks:830469699; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:831726320 matched authoritative parks:osm-destination-parks:831726320; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:886905635 matched authoritative parks:osm-destination-parks:886905635; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:886905636 matched authoritative parks:osm-destination-parks:886905636; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:886910974 matched authoritative parks:osm-destination-parks:886910974; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:947494187 matched authoritative parks:osm-destination-parks:947494187; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:969769244 matched authoritative parks:osm-destination-parks:969769244; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:987431411 matched authoritative trails:osm-destination-trails:786004475; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-santa-fe"
+    }
+  ]
+}

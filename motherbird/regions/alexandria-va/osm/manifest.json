@@ -1,0 +1,40 @@
+{
+  "artifacts": [
+    "pois.json",
+    "merged-pois.json",
+    "validation.json",
+    "spatial-index-delta.json",
+    "attribution.json"
+  ],
+  "checksums": {
+    "attribution.json": "sha256:1d1d6a59f506a550c59c582bcab95db5012fe98c77d3580fd34f8efe2b2c7b07",
+    "merged-pois.json": "sha256:661df8e1856e4dcd00923010b8bd097e53e0f6bb15344800326125ebdef43339",
+    "pois.json": "sha256:ae5bbeb603d0f123b6c05f14af0c787709546c395a23fd78cac2d351d99ddf35",
+    "spatial-index-delta.json": "sha256:f721188950e2b5002cd9a764981a2a4b0591ca40068f89c1bcdf3550d873a175",
+    "validation.json": "sha256:d826dd7920dc8b8cc69abcca9da6462d67ddcd776c978af8afa2d26018373b2d"
+  },
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "recordCountsByCategory": {
+    "coffee": 53,
+    "community": 5,
+    "garden": 5,
+    "history": 37,
+    "library": 7,
+    "park": 115,
+    "public_art": 13,
+    "rest": 3,
+    "trail": 74
+  },
+  "regionId": "alexandria-va",
+  "schemaVersion": 1,
+  "source": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "name": "OpenStreetMap",
+    "rawResponseSha256": "sha256:01f3c7a0e642df17b9381f797906e15659c154087fc3576e32f290a942a5d123",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "sourceConfigurationId": "osm-alexandria-va",
+  "sourceVintage": "2026-08-27T03:02:33Z"
+}

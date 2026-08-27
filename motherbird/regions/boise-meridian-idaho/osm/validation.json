@@ -1,0 +1,549 @@
+{
+  "accepted": 830,
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "regionId": "boise-meridian-idaho",
+  "rejected": 16,
+  "schemaVersion": 1,
+  "warnings": [
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 35061605 is outside the configured bbox.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 355767580 is outside the configured bbox.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 443598918 is outside the configured bbox.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 443600748 is outside the configured bbox.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 520426928 is outside the configured bbox.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 611915492 is outside the configured bbox.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 854392567 is outside the configured bbox.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 899971181 is outside the configured bbox.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 1062391062 is outside the configured bbox.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 1131947806 is outside the configured bbox.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 1334870756 is outside the configured bbox.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM relation 6023246 is outside the configured bbox.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM relation 12233354 is outside the configured bbox.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM relation 14099948 is outside the configured bbox.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM relation 18301766 is outside the configured bbox.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM relation 20133784 is outside the configured bbox.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9270839491 matched authoritative osm:node:9270839490; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:12233364 matched authoritative municipal:boise:48744255aff5c3bd13e0; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:12290381 matched authoritative municipal:boise:2c6d176acfa3739d0776; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:9241369 matched authoritative municipal:boise:99a250e0a715dfb0a309; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:9249392 matched authoritative municipal:boise:ac529023ef168f52eb17; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:9306542 matched authoritative municipal:boise:ca47420e822f2b84d2a0; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1034363219 matched authoritative municipal:boise:2b4da5f97b3018a25587; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1057690613 matched authoritative municipal:boise:a1cfc27e5836191becc9; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1251025296 matched authoritative osm:way:1251025274; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1346208078 matched authoritative municipal:boise:98dcc49f5ac2bbeeb197; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1391046065 matched authoritative osm:way:1391046064; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1411045402 matched authoritative osm:way:1411045401; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1449554511 matched authoritative municipal:boise:ee6e39a6280bf1caca09; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1473271789 matched authoritative osm:way:1473271788; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1473481425 matched authoritative osm:way:1473481424; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1473481426 matched authoritative municipal:boise:7de598633ef0a02842f8; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1492267219 matched authoritative osm:node:8331608848; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1524391682 matched authoritative osm:way:1524391681; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:219739106 matched authoritative municipal:boise:dc7ca6e72f61b5f7a109; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:225364833 matched authoritative osm:way:161883361; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:231645014 matched authoritative municipal:boise:6a71fd827d0f235ec876; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:24267206 matched authoritative municipal:boise:3155cb40c5c859d79219; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:247735511 matched authoritative municipal:boise:7e8ae2ae6a661d27b195; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:284111738 matched authoritative municipal:boise:c4f453c3b85054a0ec9c; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:288924193 matched authoritative municipal:boise:23eb334f2418375cec33; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:288924194 matched authoritative municipal:boise:9247097dd70e70898dac; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:288924196 matched authoritative municipal:boise:33a36e348d71a1adba59; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:313189743 matched authoritative municipal:boise:e53fd3d79271f71cfac8; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:349463047 matched authoritative municipal:boise:8e45969092d0b064f529; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:35394147 matched authoritative municipal:boise:a8379a7f9b4c602835be; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:35601283 matched authoritative municipal:boise:f5c3197094054498c966; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:36760176 matched authoritative municipal:boise:680b45c5b666d27e4db5; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:369531275 matched authoritative municipal:boise:58185bb29dbdcbba56f6; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:392883292 matched authoritative municipal:boise:e70ae9c5ed89a695aff6; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:445007659 matched authoritative municipal:boise:e4a10ad55cf9ca1b9462; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:445009259 matched authoritative municipal:boise:7da8e5a1fe61fc06e7f7; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:463465020 matched authoritative municipal:boise:df74120d6236d5d94654; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:468609563 matched authoritative municipal:boise:da04eae359991096570b; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:468612449 matched authoritative municipal:boise:b6a1a36f94f1f405cc0f; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:468614163 matched authoritative municipal:boise:dca83ba009ae8e711ff5; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:468624221 matched authoritative municipal:boise:8613afbef2c371cf6c8c; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:468624224 matched authoritative municipal:boise:8b83520df715fca11d10; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:468647088 matched authoritative municipal:boise:b13492d0dbdd2c26d054; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:469594797 matched authoritative municipal:boise:34e4ba87da8259fd9211; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:470450752 matched authoritative municipal:boise:e055d21e2210484d1a5e; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:489368504 matched authoritative municipal:boise:a4a468cde25b61b35b15; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:514594821 matched authoritative municipal:boise:7d16a2804b2016195fa5; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:514594822 matched authoritative municipal:boise:6b5b1e3ca91ef3ba99ba; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:546519669 matched authoritative municipal:boise:8fee4dd8598553089057; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:546522358 matched authoritative municipal:boise:0b0285413d162487730e; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:552467281 matched authoritative municipal:boise:058f96df0f11e7878e06; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:554946951 matched authoritative municipal:boise:3ea89b53565636a85653; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:554947052 matched authoritative municipal:boise:c5dcba1e382fe02b3b77; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:561104354 matched authoritative municipal:boise:38b26e9697d156529eb4; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:578318046 matched authoritative municipal:boise:8edc26f4d7bd94959a5e; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:582719902 matched authoritative municipal:boise:42e8743a1f3606a3f5f2; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:582722145 matched authoritative municipal:boise:52ac414fc61bb0f51a73; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:645719006 matched authoritative municipal:boise:831c529a01b1ad9081ea; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:661322001 matched authoritative municipal:boise:7cc0a8453b7c6ba78ed1; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:661322005 matched authoritative municipal:boise:4c0aa319d94829f84d57; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:661666539 matched authoritative municipal:boise:9b510767f5c71a9e4a22; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:661666544 matched authoritative municipal:boise:3f5169b4ae0ea81aef8f; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:661666545 matched authoritative municipal:boise:414dcfb8becbba7b33f9; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:661666546 matched authoritative municipal:boise:5324df4ce3ad681c682a; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:662828793 matched authoritative osm:way:284087162; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:662828794 matched authoritative osm:way:284087162; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:663584304 matched authoritative municipal:boise:1f8ef7c7a3c0d5f11158; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:665160504 matched authoritative municipal:boise:ea77fe385bf4652f2df8; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:665722574 matched authoritative municipal:boise:be41f0ad941ed7bb30f0; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:669870506 matched authoritative osm:way:1524391679; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:671185337 matched authoritative municipal:boise:c3c40d071005e2107527; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:671606673 matched authoritative osm:way:1089586723; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:734287174 matched authoritative municipal:boise:05df05c78bbcb288b746; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:736941239 matched authoritative municipal:boise:2463918016d6901b6f7c; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:759234924 matched authoritative municipal:boise:becb4efa5b7c9e2af2a1; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:766599917 matched authoritative osm:way:1057690629; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:766599918 matched authoritative osm:way:1057690630; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:766599920 matched authoritative osm:way:766599919; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:766599929 matched authoritative osm:way:671606668; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:83210275 matched authoritative municipal:boise:aca95894f40b6b56d218; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:858295666 matched authoritative osm:way:851951937; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:886319017 matched authoritative municipal:boise:c9d6be2a8a8fb6b16632; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:899342972 matched authoritative municipal:boise:65bc5b5ae79dbfd61f08; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:899971179 matched authoritative municipal:boise:fa76aced09a2b2befb38; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:899971180 matched authoritative municipal:boise:22ce22f9db1f85c30415; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:899971187 matched authoritative municipal:boise:e7cd57f81c43dfeaa2b7; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:899971188 matched authoritative municipal:boise:2d65663693d5b96ecbdf; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:905118712 matched authoritative municipal:boise:71a70e86309683f977ea; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:920233727 matched authoritative osm:way:920233726; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:940866869 matched authoritative municipal:boise:6073d6b537fbcf9f9b8d; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:960163525 matched authoritative municipal:boise:fa3d94bd968ade97f11d; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:960202757 matched authoritative municipal:boise:4c884ff3561e11fc1668; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boise-meridian-idaho"
+    }
+  ]
+}

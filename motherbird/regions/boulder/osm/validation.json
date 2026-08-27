@@ -1,0 +1,2079 @@
+{
+  "accepted": 1024,
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "regionId": "boulder",
+  "rejected": 13,
+  "schemaVersion": 1,
+  "warnings": [
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 42916677 is outside the configured bbox.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 371272071 is outside the configured bbox.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 388781783 is outside the configured bbox.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 474836618 is outside the configured bbox.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 474836623 is outside the configured bbox.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 487500582 is outside the configured bbox.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 937975409 is outside the configured bbox.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 952202863 is outside the configured bbox.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 1121151813 is outside the configured bbox.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 1328698850 is outside the configured bbox.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 1436261257 is outside the configured bbox.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 1436261258 is outside the configured bbox.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM relation 8890542 is outside the configured bbox.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10173983407 matched authoritative coffee:osm-destination-coffee:10173983407; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1087811656 matched authoritative coffee:osm-destination-coffee:1087811656; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1087811743 matched authoritative coffee:osm-destination-coffee:1087811743; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11023511772 matched authoritative coffee:osm-destination-coffee:11023511772; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11042715353 matched authoritative coffee:osm-destination-coffee:11042715353; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1109733242 matched authoritative coffee:osm-destination-coffee:1109733242; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1109735617 matched authoritative coffee:osm-destination-coffee:1109735617; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1185574416 matched authoritative coffee:osm-destination-coffee:1185574416; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1204448220 matched authoritative coffee:osm-destination-coffee:1204448220; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12542720786 matched authoritative coffee:osm-destination-coffee:12542720786; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12590295837 matched authoritative coffee:osm-destination-coffee:12590295837; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12606313821 matched authoritative coffee:osm-destination-coffee:12606313821; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12635011263 matched authoritative coffee:osm-destination-coffee:12635011263; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1305385014 matched authoritative coffee:osm-destination-coffee:1305385014; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1309667629 matched authoritative coffee:osm-destination-coffee:1309667629; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13289610621 matched authoritative coffee:osm-destination-coffee:13289610621; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13543761202 matched authoritative coffee:osm-destination-coffee:13543761202; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13728086601 matched authoritative coffee:osm-destination-coffee:13728086601; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13818678122 matched authoritative coffee:osm-destination-coffee:13818678122; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13826963840 matched authoritative coffee:osm-destination-coffee:13826963840; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13924681190 matched authoritative coffee:osm-destination-coffee:13924681190; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13924681192 matched authoritative coffee:osm-destination-coffee:13924681192; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13957577766 matched authoritative coffee:osm-destination-coffee:13957577766; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1403540019 matched authoritative coffee:osm-destination-coffee:1403540019; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1437412829 matched authoritative coffee:osm-destination-coffee:1437412829; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1930911750 matched authoritative coffee:osm-destination-coffee:1930911750; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2062343771 matched authoritative coffee:osm-destination-coffee:2062343771; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2096898867 matched authoritative coffee:osm-destination-coffee:2096898867; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2177939678 matched authoritative coffee:osm-destination-coffee:2177939678; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2203467796 matched authoritative coffee:osm-destination-coffee:2203467796; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2203467803 matched authoritative coffee:osm-destination-coffee:2203467803; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2213712823 matched authoritative coffee:osm-destination-coffee:2213712823; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2247077269 matched authoritative coffee:osm-destination-coffee:2247077269; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2247077271 matched authoritative coffee:osm-destination-coffee:2247077271; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2310482933 matched authoritative coffee:osm-destination-coffee:2310482933; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2310496207 matched authoritative coffee:osm-destination-coffee:2310496207; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2362000042 matched authoritative coffee:osm-destination-coffee:2362000042; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2662821333 matched authoritative coffee:osm-destination-coffee:2662821333; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2667851887 matched authoritative coffee:osm-destination-coffee:2667851887; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2681223497 matched authoritative coffee:osm-destination-coffee:2681223497; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2700650301 matched authoritative coffee:osm-destination-coffee:2700650301; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2700664448 matched authoritative coffee:osm-destination-coffee:2700664448; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2701899578 matched authoritative coffee:osm-destination-coffee:2701899578; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2703606305 matched authoritative coffee:osm-destination-coffee:2703606305; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2705164621 matched authoritative coffee:osm-destination-coffee:2705164621; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3454431280 matched authoritative coffee:osm-destination-coffee:3454431280; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:358943203 matched authoritative parks:osm-destination-parks:358943203; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3868122184 matched authoritative coffee:osm-destination-coffee:3868122184; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3906689275 matched authoritative coffee:osm-destination-coffee:3906689275; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3958347510 matched authoritative parks:osm-destination-parks:3958347510; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4350338528 matched authoritative coffee:osm-destination-coffee:4350338528; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4624124314 matched authoritative coffee:osm-destination-coffee:4624124314; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4624124315 matched authoritative coffee:osm-destination-coffee:4624124315; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4681194337 matched authoritative coffee:osm-destination-coffee:4681194337; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4687240389 matched authoritative coffee:osm-destination-coffee:4687240389; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4701852247 matched authoritative coffee:osm-destination-coffee:4701852247; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4717701275 matched authoritative coffee:osm-destination-coffee:4717701275; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4717701293 matched authoritative coffee:osm-destination-coffee:4717701293; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4717838028 matched authoritative coffee:osm-destination-coffee:4717838028; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4725333626 matched authoritative coffee:osm-destination-coffee:4725333626; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4725367149 matched authoritative coffee:osm-destination-coffee:4725367149; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5075476322 matched authoritative coffee:osm-destination-coffee:5075476322; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5097129577 matched authoritative coffee:osm-destination-coffee:5097129577; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5180687403 matched authoritative coffee:osm-destination-coffee:5180687403; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5182325486 matched authoritative coffee:osm-destination-coffee:5182325486; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:559697927 matched authoritative coffee:osm-destination-coffee:559697927; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:564844204 matched authoritative coffee:osm-destination-coffee:564844204; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:573692799 matched authoritative coffee:osm-destination-coffee:573692799; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5741678381 matched authoritative coffee:osm-destination-coffee:5741678381; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6089311274 matched authoritative coffee:osm-destination-coffee:6089311274; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6225910634 matched authoritative coffee:osm-destination-coffee:6225910634; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6397531243 matched authoritative coffee:osm-destination-coffee:6397531243; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6397687781 matched authoritative coffee:osm-destination-coffee:6397687781; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6418820387 matched authoritative coffee:osm-destination-coffee:6418820387; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6456034210 matched authoritative coffee:osm-destination-coffee:6456034210; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7953689030 matched authoritative coffee:osm-destination-coffee:7953689030; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:8436693760 matched authoritative coffee:osm-destination-coffee:8436693760; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9239139781 matched authoritative coffee:osm-destination-coffee:9239139781; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9239470134 matched authoritative parks:osm-destination-parks:9239470134; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9295236768 matched authoritative coffee:osm-destination-coffee:9295236768; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1000941236 matched authoritative parks:osm-destination-parks:1000941236; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1001204692 matched authoritative trails:osm-destination-trails:1001204692; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1006354060 matched authoritative trails:osm-destination-trails:1006354060; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1006354067 matched authoritative trails:osm-destination-trails:1006354069; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1006354068 matched authoritative trails:osm-destination-trails:1006354068; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1014924317 matched authoritative trails:osm-destination-trails:1014924317; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1014924318 matched authoritative trails:osm-destination-trails:1014924318; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:104103716 matched authoritative trails:osm-destination-trails:104103716; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:104332918 matched authoritative trails:osm-destination-trails:104332918; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:104332931 matched authoritative parks:osm-destination-parks:104332931; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:105068890 matched authoritative trails:osm-destination-trails:105068890; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:105107028 matched authoritative trails:osm-destination-trails:105107028; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:105107031 matched authoritative coffee:osm-destination-coffee:105107031; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:105682763 matched authoritative trails:osm-destination-trails:105682761; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:105682766 matched authoritative trails:osm-destination-trails:105682765; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1066135047 matched authoritative trails:osm-destination-trails:1066135047; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1067737562 matched authoritative trails:osm-destination-trails:1067737562; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1068712947 matched authoritative trails:osm-destination-trails:1068712947; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1068712954 matched authoritative trails:osm-destination-trails:1068712954; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1068712955 matched authoritative trails:osm-destination-trails:1068712954; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1068712956 matched authoritative trails:osm-destination-trails:1068712954; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1085231098 matched authoritative trails:osm-destination-trails:1085231098; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1085231112 matched authoritative trails:osm-destination-trails:1085231112; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1085231121 matched authoritative trails:osm-destination-trails:1085231121; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1085231125 matched authoritative trails:osm-destination-trails:1085231125; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1085231128 matched authoritative trails:osm-destination-trails:1085231128; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1085231131 matched authoritative trails:osm-destination-trails:1085231131; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1085231133 matched authoritative trails:osm-destination-trails:1085231133; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1085236317 matched authoritative trails:osm-destination-trails:1085236317; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1090888048 matched authoritative trails:osm-destination-trails:1090888048; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1090888050 matched authoritative trails:osm-destination-trails:1090888048; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1090888051 matched authoritative osm:node:9991870050; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1107383095 matched authoritative trails:osm-destination-trails:104332926; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1107391395 matched authoritative trails:osm-destination-trails:1107391396; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1107391396 matched authoritative trails:osm-destination-trails:1107391396; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:111073735 matched authoritative parks:osm-destination-parks:111073735; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:111081942 matched authoritative parks:osm-destination-parks:111081942; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1121152700 matched authoritative trails:osm-destination-trails:1121152700; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:113660806 matched authoritative trails:osm-destination-trails:113660806; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:116417123 matched authoritative trails:osm-destination-trails:116417123; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:116417124 matched authoritative trails:osm-destination-trails:116417124; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1190224885 matched authoritative trails:osm-destination-trails:1190224885; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:119709174 matched authoritative trails:osm-destination-trails:119709174; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:119860366 matched authoritative trails:osm-destination-trails:119860364; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:121242079 matched authoritative trails:osm-destination-trails:121242079; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:121242080 matched authoritative trails:osm-destination-trails:121242079; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1215188294 matched authoritative trails:osm-destination-trails:1215188294; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1215188296 matched authoritative trails:osm-destination-trails:1215188296; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1215188298 matched authoritative trails:osm-destination-trails:1215188298; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1246113788 matched authoritative parks:osm-destination-parks:1246113788; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:128468796 matched authoritative trails:osm-destination-trails:128468796; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:128468797 matched authoritative trails:osm-destination-trails:1060887045; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:129859886 matched authoritative trails:osm-destination-trails:129859886; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:129859887 matched authoritative trails:osm-destination-trails:129859887; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:130359285 matched authoritative parks:osm-destination-parks:130359285; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1305126247 matched authoritative trails:osm-destination-trails:1305126247; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1323476467 matched authoritative trails:osm-destination-trails:1323476467; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1352486328 matched authoritative trails:osm-destination-trails:1352486328; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:137682220 matched authoritative trails:osm-destination-trails:137682220; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1391646015 matched authoritative trails:osm-destination-trails:1391646015; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1391646016 matched authoritative trails:osm-destination-trails:1391646016; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1391646017 matched authoritative trails:osm-destination-trails:1391646015; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1391646020 matched authoritative trails:osm-destination-trails:1391646020; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1391646024 matched authoritative trails:osm-destination-trails:1391646024; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1391646025 matched authoritative trails:osm-destination-trails:1391646014; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1410611050 matched authoritative trails:osm-destination-trails:1391646020; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1413207908 matched authoritative trails:osm-destination-trails:1413207908; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1413207909 matched authoritative trails:osm-destination-trails:1413207908; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1415026380 matched authoritative trails:osm-destination-trails:1415026379; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1415026387 matched authoritative trails:osm-destination-trails:1415026387; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1415026388 matched authoritative trails:osm-destination-trails:1415026387; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1420242584 matched authoritative trails:osm-destination-trails:1105801856; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1420242585 matched authoritative trails:osm-destination-trails:1420242585; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1420272313 matched authoritative trails:osm-destination-trails:1420272313; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1420272314 matched authoritative trails:osm-destination-trails:1420272314; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1421051783 matched authoritative trails:osm-destination-trails:1421051783; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1421657494 matched authoritative trails:osm-destination-trails:1421657494; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1425201982 matched authoritative trails:osm-destination-trails:1425201982; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1425201983 matched authoritative trails:osm-destination-trails:1425201982; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1425205697 matched authoritative trails:osm-destination-trails:1420272313; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1425220418 matched authoritative trails:osm-destination-trails:1425220418; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1428450618 matched authoritative trails:osm-destination-trails:1428450618; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1431627711 matched authoritative trails:osm-destination-trails:1107391396; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1431710443 matched authoritative trails:osm-destination-trails:1431710443; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1431710444 matched authoritative trails:osm-destination-trails:1085231098; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1431713885 matched authoritative trails:osm-destination-trails:1431713885; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1431717339 matched authoritative trails:osm-destination-trails:1431717339; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1434865167 matched authoritative trails:osm-destination-trails:1434865167; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1435106648 matched authoritative trails:osm-destination-trails:1435106648; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1435191605 matched authoritative trails:osm-destination-trails:1435191605; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1435558266 matched authoritative trails:osm-destination-trails:1435558266; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1435558267 matched authoritative trails:osm-destination-trails:1435558267; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1435558268 matched authoritative trails:osm-destination-trails:1435558266; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1436261259 matched authoritative trails:osm-destination-trails:1436261259; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1436328153 matched authoritative trails:osm-destination-trails:1431713885; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1442513999 matched authoritative trails:osm-destination-trails:1434865167; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1443546042 matched authoritative trails:osm-destination-trails:1443546042; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1443546045 matched authoritative trails:osm-destination-trails:1443546045; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1443959970 matched authoritative trails:osm-destination-trails:1443959970; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1443959971 matched authoritative trails:osm-destination-trails:1443959971; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1443959973 matched authoritative trails:osm-destination-trails:1443959973; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1443959974 matched authoritative trails:osm-destination-trails:1443959974; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1446955901 matched authoritative trails:osm-destination-trails:1446955900; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:144846853 matched authoritative parks:osm-destination-parks:144846853; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1462232408 matched authoritative osm:way:1462232407; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1475527518 matched authoritative trails:osm-destination-trails:1475527518; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1475527519 matched authoritative trails:osm-destination-trails:1475527519; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1475979629 matched authoritative trails:osm-destination-trails:1475979629; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1494456054 matched authoritative trails:osm-destination-trails:1494456054; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1494456055 matched authoritative trails:osm-destination-trails:1494456054; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1504294428 matched authoritative trails:osm-destination-trails:116291290; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1506480041 matched authoritative trails:osm-destination-trails:108338059; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1528579913 matched authoritative trails:osm-destination-trails:1528579913; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1528579921 matched authoritative trails:osm-destination-trails:1528579913; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1538608762 matched authoritative trails:osm-destination-trails:1538608762; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1538608763 matched authoritative trails:osm-destination-trails:1305126246; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:167318485 matched authoritative parks:osm-destination-parks:167318485; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:17021884 matched authoritative trails:osm-destination-trails:17021884; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:17023011 matched authoritative trails:osm-destination-trails:17023011; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:17023037 matched authoritative trails:osm-destination-trails:17023037; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:183669346 matched authoritative parks:osm-destination-parks:183669346; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:191997295 matched authoritative trails:osm-destination-trails:191997295; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:198354149 matched authoritative trails:osm-destination-trails:198354149; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:199931296 matched authoritative coffee:osm-destination-coffee:199931296; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:200692453 matched authoritative parks:osm-destination-parks:200692453; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:201714165 matched authoritative parks:osm-destination-parks:201714165; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:205305289 matched authoritative trails:osm-destination-trails:205305289; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:207275903 matched authoritative parks:osm-destination-parks:207275903; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:220293675 matched authoritative trails:osm-destination-trails:220293674; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:220486827 matched authoritative parks:osm-destination-parks:220486827; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:230068767 matched authoritative parks:osm-destination-parks:230068767; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:230779711 matched authoritative parks:osm-destination-parks:230779711; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:260712396 matched authoritative parks:osm-destination-parks:260712396; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:260712933 matched authoritative parks:osm-destination-parks:260712933; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:260713834 matched authoritative parks:osm-destination-parks:260713834; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:263382371 matched authoritative parks:osm-destination-parks:263382371; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:263394698 matched authoritative parks:osm-destination-parks:263394698; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:264692211 matched authoritative parks:osm-destination-parks:264692211; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:273535067 matched authoritative parks:osm-destination-parks:273535067; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:28185579 matched authoritative trails:osm-destination-trails:28185579; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:28185637 matched authoritative trails:osm-destination-trails:28185637; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:284844752 matched authoritative parks:osm-destination-parks:284844752; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:302647195 matched authoritative trails:osm-destination-trails:302647195; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:32275315 matched authoritative trails:osm-destination-trails:32275315; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:33868746 matched authoritative trails:osm-destination-trails:33868746; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:33868756 matched authoritative trails:osm-destination-trails:33868756; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:33868757 matched authoritative trails:osm-destination-trails:33868756; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:33868758 matched authoritative trails:osm-destination-trails:33868754; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:33869626 matched authoritative trails:osm-destination-trails:33869625; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:33968989 matched authoritative trails:osm-destination-trails:128468796; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:340299254 matched authoritative parks:osm-destination-parks:340299254; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:34263886 matched authoritative parks:osm-destination-parks:34263886; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:34267230 matched authoritative parks:osm-destination-parks:34267230; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:34417991 matched authoritative parks:osm-destination-parks:34417991; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:358955534 matched authoritative parks:osm-destination-parks:358955534; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:359242729 matched authoritative trails:osm-destination-trails:359242729; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:366408777 matched authoritative trails:osm-destination-trails:366408777; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:366408779 matched authoritative trails:osm-destination-trails:366408777; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:366408783 matched authoritative trails:osm-destination-trails:366408777; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:366429606 matched authoritative trails:osm-destination-trails:1475527518; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:366435899 matched authoritative trails:osm-destination-trails:366435899; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:369951747 matched authoritative trails:osm-destination-trails:369951747; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:377019153 matched authoritative trails:osm-destination-trails:377019153; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:381171321 matched authoritative trails:osm-destination-trails:381171321; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:383959900 matched authoritative trails:osm-destination-trails:383959900; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:387787732 matched authoritative trails:osm-destination-trails:1358198203; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:390929036 matched authoritative parks:osm-destination-parks:390929036; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:397727295 matched authoritative parks:osm-destination-parks:397727295; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:401303959 matched authoritative trails:osm-destination-trails:401303959; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:403545996 matched authoritative parks:osm-destination-parks:403545996; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:41746755 matched authoritative trails:osm-destination-trails:41746755; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:41746759 matched authoritative trails:osm-destination-trails:33868746; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:41746760 matched authoritative trails:osm-destination-trails:33868760; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:41746763 matched authoritative trails:osm-destination-trails:41746763; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:41746768 matched authoritative trails:osm-destination-trails:41746760; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:41746781 matched authoritative trails:osm-destination-trails:41746781; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:42915379 matched authoritative trails:osm-destination-trails:42915379; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:42915389 matched authoritative trails:osm-destination-trails:42915387; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:43007679 matched authoritative trails:osm-destination-trails:43007679; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:43172561 matched authoritative trails:osm-destination-trails:43172561; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:43172565 matched authoritative trails:osm-destination-trails:43172565; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:43172631 matched authoritative trails:osm-destination-trails:1358184708; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:43172633 matched authoritative trails:osm-destination-trails:43172561; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:43172645 matched authoritative trails:osm-destination-trails:43172645; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:43172740 matched authoritative trails:osm-destination-trails:43172740; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:43172753 matched authoritative trails:osm-destination-trails:43172753; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:43172754 matched authoritative trails:osm-destination-trails:43172754; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:43172755 matched authoritative trails:osm-destination-trails:43172754; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:43172776 matched authoritative trails:osm-destination-trails:43172775; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:43172777 matched authoritative trails:osm-destination-trails:43172777; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:43172804 matched authoritative trails:osm-destination-trails:116291290; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:43172810 matched authoritative trails:osm-destination-trails:43172809; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:43176774 matched authoritative trails:osm-destination-trails:43176774; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:43182296 matched authoritative trails:osm-destination-trails:43182296; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:43196572 matched authoritative trails:osm-destination-trails:43196572; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:43196574 matched authoritative trails:osm-destination-trails:43196569; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:440859083 matched authoritative trails:osm-destination-trails:440859083; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:442967665 matched authoritative trails:osm-destination-trails:442967665; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:442967666 matched authoritative trails:osm-destination-trails:442967666; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:442967667 matched authoritative trails:osm-destination-trails:442967667; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:442967668 matched authoritative trails:osm-destination-trails:442967667; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:442967669 matched authoritative trails:osm-destination-trails:442967667; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:442967671 matched authoritative trails:osm-destination-trails:442967671; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:454560743 matched authoritative parks:osm-destination-parks:454560743; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:45979935 matched authoritative trails:osm-destination-trails:45979935; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:45979936 matched authoritative trails:osm-destination-trails:45979935; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:45979949 matched authoritative osm:way:45979948; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:45980595 matched authoritative trails:osm-destination-trails:45980595; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:46198142 matched authoritative trails:osm-destination-trails:46198142; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:46226170 matched authoritative trails:osm-destination-trails:46226170; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:471809985 matched authoritative parks:osm-destination-parks:471809985; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:473137375 matched authoritative parks:osm-destination-parks:473137375; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:475719157 matched authoritative trails:osm-destination-trails:475719156; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:478541181 matched authoritative trails:osm-destination-trails:478541181; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:48251838 matched authoritative parks:osm-destination-parks:48251838; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:48255446 matched authoritative parks:osm-destination-parks:48255446; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:48270630 matched authoritative parks:osm-destination-parks:48270630; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:48270788 matched authoritative parks:osm-destination-parks:48270788; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:48271032 matched authoritative parks:osm-destination-parks:48271032; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:486635232 matched authoritative parks:osm-destination-parks:486635232; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:500831439 matched authoritative trails:osm-destination-trails:500831439; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:506286996 matched authoritative trails:osm-destination-trails:506286996; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:506286997 matched authoritative trails:osm-destination-trails:506286996; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:506286999 matched authoritative trails:osm-destination-trails:506286999; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:506287006 matched authoritative trails:osm-destination-trails:506287006; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:507351040 matched authoritative trails:osm-destination-trails:507351040; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:521112010 matched authoritative parks:osm-destination-parks:521112010; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:521156561 matched authoritative trails:osm-destination-trails:45979933; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:521961223 matched authoritative parks:osm-destination-parks:521961223; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:52421476 matched authoritative trails:osm-destination-trails:52421476; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:52421477 matched authoritative trails:osm-destination-trails:52421476; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:52421479 matched authoritative trails:osm-destination-trails:52421478; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:533289100 matched authoritative parks:osm-destination-parks:533289100; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:533669963 matched authoritative trails:osm-destination-trails:533669963; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:533669964 matched authoritative trails:osm-destination-trails:533669964; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:533863100 matched authoritative parks:osm-destination-parks:533863100; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:534099489 matched authoritative parks:osm-destination-parks:534099489; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:535063767 matched authoritative coffee:osm-destination-coffee:535063767; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:544020092 matched authoritative parks:osm-destination-parks:544020092; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:544249614 matched authoritative parks:osm-destination-parks:544249614; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:544560799 matched authoritative parks:osm-destination-parks:544560799; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:548203096 matched authoritative trails:osm-destination-trails:548203096; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:548203098 matched authoritative trails:osm-destination-trails:548203096; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:608701124 matched authoritative parks:osm-destination-parks:608701124; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:608701125 matched authoritative parks:osm-destination-parks:608701125; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:608701126 matched authoritative parks:osm-destination-parks:608701126; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:608701128 matched authoritative parks:osm-destination-parks:608701128; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:608701129 matched authoritative parks:osm-destination-parks:608701129; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:608701130 matched authoritative parks:osm-destination-parks:608701130; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:608701132 matched authoritative parks:osm-destination-parks:608701132; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:608703520 matched authoritative parks:osm-destination-parks:608703520; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:608703523 matched authoritative parks:osm-destination-parks:608703523; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:608703524 matched authoritative parks:osm-destination-parks:608703524; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:608703525 matched authoritative parks:osm-destination-parks:608703525; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:608726036 matched authoritative parks:osm-destination-parks:608726036; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:608726037 matched authoritative parks:osm-destination-parks:608726037; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:608811885 matched authoritative parks:osm-destination-parks:608811885; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:608816319 matched authoritative parks:osm-destination-parks:608816319; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:608816320 matched authoritative parks:osm-destination-parks:608816320; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:608816332 matched authoritative parks:osm-destination-parks:608816332; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:608818947 matched authoritative parks:osm-destination-parks:608818947; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:608818949 matched authoritative parks:osm-destination-parks:608818949; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:608821746 matched authoritative parks:osm-destination-parks:608821746; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:608821747 matched authoritative parks:osm-destination-parks:608821747; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:620679950 matched authoritative parks:osm-destination-parks:620679950; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:667535544 matched authoritative trails:osm-destination-trails:667535544; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:682353581 matched authoritative trails:osm-destination-trails:43172640; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:694629870 matched authoritative trails:osm-destination-trails:1421051783; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:70080577 matched authoritative trails:osm-destination-trails:70080577; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:70080582 matched authoritative trails:osm-destination-trails:70080582; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:70080589 matched authoritative trails:osm-destination-trails:70080582; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:70080590 matched authoritative trails:osm-destination-trails:70080583; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:70080591 matched authoritative parks:osm-destination-parks:70080591; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:718753984 matched authoritative trails:osm-destination-trails:718753983; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:725212234 matched authoritative trails:osm-destination-trails:725212234; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:73572178 matched authoritative trails:osm-destination-trails:73572178; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:73572224 matched authoritative trails:osm-destination-trails:73572224; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:73579867 matched authoritative trails:osm-destination-trails:73579867; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:73579884 matched authoritative trails:osm-destination-trails:73579867; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:73579887 matched authoritative trails:osm-destination-trails:73579916; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:73579906 matched authoritative trails:osm-destination-trails:73579906; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:73579916 matched authoritative trails:osm-destination-trails:73579916; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:73579935 matched authoritative trails:osm-destination-trails:73579884; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:73589550 matched authoritative trails:osm-destination-trails:73589550; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:73591160 matched authoritative trails:osm-destination-trails:73591160; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:73591169 matched authoritative trails:osm-destination-trails:73591169; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:73616912 matched authoritative trails:osm-destination-trails:1161567482; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:73622148 matched authoritative trails:osm-destination-trails:73622148; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:73631416 matched authoritative trails:osm-destination-trails:73631416; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:73680911 matched authoritative trails:osm-destination-trails:73680911; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:73681048 matched authoritative trails:osm-destination-trails:73681048; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:74841907 matched authoritative trails:osm-destination-trails:74841907; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:74842066 matched authoritative trails:osm-destination-trails:74842066; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:75249928 matched authoritative trails:osm-destination-trails:70080577; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:75543552 matched authoritative parks:osm-destination-parks:75543552; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:762585113 matched authoritative trails:osm-destination-trails:762585113; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:765546917 matched authoritative parks:osm-destination-parks:765546917; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:77973062 matched authoritative parks:osm-destination-parks:77973062; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:807685315 matched authoritative trails:osm-destination-trails:506287005; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:807685316 matched authoritative trails:osm-destination-trails:807685316; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:807685317 matched authoritative trails:osm-destination-trails:807685315; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:807685318 matched authoritative trails:osm-destination-trails:807685318; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:807685319 matched authoritative trails:osm-destination-trails:807685316; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:84831268 matched authoritative parks:osm-destination-parks:84831268; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:868473517 matched authoritative parks:osm-destination-parks:868473517; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:868889892 matched authoritative parks:osm-destination-parks:868889892; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:87660800 matched authoritative trails:osm-destination-trails:33868757; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:87898502 matched authoritative trails:osm-destination-trails:87898502; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:87899630 matched authoritative trails:osm-destination-trails:87899630; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:883002574 matched authoritative trails:osm-destination-trails:883002573; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:891282791 matched authoritative trails:osm-destination-trails:116417125; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:896855307 matched authoritative trails:osm-destination-trails:1014924317; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:899980381 matched authoritative parks:osm-destination-parks:899980381; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:909412968 matched authoritative trails:osm-destination-trails:909412968; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:937982931 matched authoritative trails:osm-destination-trails:42477303; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:948274704 matched authoritative parks:osm-destination-parks:948274704; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:952202864 matched authoritative trails:osm-destination-trails:42915470; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:971140384 matched authoritative trails:osm-destination-trails:43172641; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:975782003 matched authoritative parks:osm-destination-parks:975782003; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:979896308 matched authoritative trails:osm-destination-trails:1068712947; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:98568528 matched authoritative parks:osm-destination-parks:98568528; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-boulder"
+    }
+  ]
+}

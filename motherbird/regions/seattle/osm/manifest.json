@@ -1,0 +1,41 @@
+{
+  "artifacts": [
+    "pois.json",
+    "merged-pois.json",
+    "validation.json",
+    "spatial-index-delta.json",
+    "attribution.json"
+  ],
+  "checksums": {
+    "attribution.json": "sha256:0a2ec69ac0f13dbc861789b71d385a0a52fbd59f31fdb0c74b8ea484ef237182",
+    "merged-pois.json": "sha256:f669dddb3d34aff5e252483ab926a37359d3b9997bd8b43a4dfb5f6a77c628cf",
+    "pois.json": "sha256:e35673ebdb944f7143b8521bf9ddb7d1bdcc65ad3a9fb97e616153307f173717",
+    "spatial-index-delta.json": "sha256:3ed8181a96cc4ef1d295af587407f0491116366f8ffca9c1a38e3e9f6d7fb316",
+    "validation.json": "sha256:eecdb244e4bb0e34864c781fe02e61d207c790700cb49bf68e4657f3a955d2dd"
+  },
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "recordCountsByCategory": {
+    "coffee": 701,
+    "community": 6,
+    "garden": 22,
+    "history": 105,
+    "library": 41,
+    "park": 264,
+    "public_art": 622,
+    "rest": 7,
+    "trail": 226,
+    "water": 2
+  },
+  "regionId": "seattle",
+  "schemaVersion": 1,
+  "source": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "name": "OpenStreetMap",
+    "rawResponseSha256": "sha256:b8acd2e96fd2b16f324ced3957076a2f50c21b258de5b7a1d3b7229f5e844a6e",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "sourceConfigurationId": "osm-seattle",
+  "sourceVintage": "2026-08-27T03:20:56Z"
+}

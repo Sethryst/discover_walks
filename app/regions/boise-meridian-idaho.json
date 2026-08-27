@@ -1,1 +1,43 @@
-{"id":"boise-meridian-idaho","name":"Boise, Meridian & Old Town, Idaho","bbox":[43.48,-116.40,43.70,-116.10],"profile":"urban-walklife","enrichment":{"wikimedia":{"enabled":true}}}
+{
+  "id": "boise-meridian-idaho",
+  "name": "Boise, Meridian & Old Town, Idaho",
+  "bbox": [
+    43.48,
+    -116.4,
+    43.7,
+    -116.1
+  ],
+  "profile": "urban-walklife",
+  "enrichment": {
+    "wikimedia": {
+      "enabled": true
+    }
+  },
+  "osm": {
+    "status": "enabled",
+    "enabled": true,
+    "bbox": [
+      43.48,
+      -116.4,
+      43.7,
+      -116.1
+    ],
+    "sourceId": "osm-boise-meridian-idaho",
+    "endpoint": "https://overpass-api.de/api/interpreter",
+    "categories": [
+      "park",
+      "trail",
+      "water",
+      "history",
+      "public_art",
+      "library",
+      "community",
+      "garden",
+      "coffee",
+      "rest"
+    ],
+    "refreshPolicy": "monthly",
+    "maxRecords": 2000,
+    "packagePath": "motherbird/regions/boise-meridian-idaho/osm/pois.json"
+  }
+}

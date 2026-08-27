@@ -1,9 +1,18 @@
 {
   "id": "washington-dc",
   "name": "Washington, DC",
-  "bbox": [38.79, -77.12, 39.02, -76.91],
+  "bbox": [
+    38.79,
+    -77.12,
+    39.02,
+    -76.91
+  ],
   "profile": "urban-walklife",
-  "enrichment": {"wikimedia": {"enabled": true}},
+  "enrichment": {
+    "wikimedia": {
+      "enabled": true
+    }
+  },
   "sources": [
     {
       "id": "dc-neighborhood-clusters",
@@ -13,12 +22,46 @@
       "domains": [],
       "layerRole": "neighborhood_boundaries",
       "artifactName": "neighborhoods.geojson",
-      "propertyMapping": {"id": "GIS_ID", "name": "NAME", "include": ["NBH_NAMES", "TYPE"]},
+      "propertyMapping": {
+        "id": "GIS_ID",
+        "name": "NAME",
+        "include": [
+          "NBH_NAMES",
+          "TYPE"
+        ]
+      },
       "licenseUrl": "https://opendata.dc.gov/datasets/DCGIS::neighborhood-clusters/about",
       "attribution": "District of Columbia, Office of the Chief Technology Officer, DC GIS",
       "authorityTier": "city_government",
       "confidence": 0.98,
       "status": "active"
     }
-  ]
+  ],
+  "osm": {
+    "status": "enabled",
+    "enabled": true,
+    "bbox": [
+      38.79,
+      -77.12,
+      39.02,
+      -76.91
+    ],
+    "sourceId": "osm-washington-dc",
+    "endpoint": "https://overpass-api.de/api/interpreter",
+    "categories": [
+      "park",
+      "trail",
+      "water",
+      "history",
+      "public_art",
+      "library",
+      "community",
+      "garden",
+      "coffee",
+      "rest"
+    ],
+    "refreshPolicy": "monthly",
+    "maxRecords": 2000,
+    "packagePath": "motherbird/regions/washington-dc/osm/pois.json"
+  }
 }

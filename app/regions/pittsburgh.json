@@ -1,1 +1,71 @@
-{"id":"pittsburgh","name":"Pittsburgh, Pennsylvania","bbox":[40.36,-80.10,40.50,-79.87],"sources":[{"id":"pittsburgh-boundary","name":"City of Pittsburgh Boundary","provider":"arcgis_feature_service","url":"https://services1.arcgis.com/YZCmUqbcsUpOKfj7/arcgis/rest/services/City_Boundary/FeatureServer/0","domains":[],"layerRole":"jurisdiction_boundary","artifactName":"boundary.geojson","propertyMapping":{"id":"OBJECTID","name":"OBJECTID"},"licenseUrl":"https://data.wprdc.org/","authorityTier":"city_government","confidence":0.98},{"id":"pittsburgh-parks","name":"City of Pittsburgh Parks","provider":"arcgis_feature_service","url":"https://services1.arcgis.com/vdNDkVykv9vEWFX4/arcgis/rest/services/Parks1/FeatureServer/0","domains":["parks"],"propertyMapping":{"id":"OBJECTID","name":"NAME"},"licenseUrl":"https://data.wprdc.org/","authorityTier":"city_government","confidence":0.95}]}
+{
+  "id": "pittsburgh",
+  "name": "Pittsburgh, Pennsylvania",
+  "bbox": [
+    40.36,
+    -80.1,
+    40.5,
+    -79.87
+  ],
+  "sources": [
+    {
+      "id": "pittsburgh-boundary",
+      "name": "City of Pittsburgh Boundary",
+      "provider": "arcgis_feature_service",
+      "url": "https://services1.arcgis.com/YZCmUqbcsUpOKfj7/arcgis/rest/services/City_Boundary/FeatureServer/0",
+      "domains": [],
+      "layerRole": "jurisdiction_boundary",
+      "artifactName": "boundary.geojson",
+      "propertyMapping": {
+        "id": "OBJECTID",
+        "name": "OBJECTID"
+      },
+      "licenseUrl": "https://data.wprdc.org/",
+      "authorityTier": "city_government",
+      "confidence": 0.98
+    },
+    {
+      "id": "pittsburgh-parks",
+      "name": "City of Pittsburgh Parks",
+      "provider": "arcgis_feature_service",
+      "url": "https://services1.arcgis.com/vdNDkVykv9vEWFX4/arcgis/rest/services/Parks1/FeatureServer/0",
+      "domains": [
+        "parks"
+      ],
+      "propertyMapping": {
+        "id": "OBJECTID",
+        "name": "NAME"
+      },
+      "licenseUrl": "https://data.wprdc.org/",
+      "authorityTier": "city_government",
+      "confidence": 0.95
+    }
+  ],
+  "osm": {
+    "status": "enabled",
+    "enabled": true,
+    "bbox": [
+      40.36,
+      -80.1,
+      40.5,
+      -79.87
+    ],
+    "sourceId": "osm-pittsburgh",
+    "endpoint": "https://overpass-api.de/api/interpreter",
+    "categories": [
+      "park",
+      "trail",
+      "water",
+      "history",
+      "public_art",
+      "library",
+      "community",
+      "garden",
+      "coffee",
+      "rest"
+    ],
+    "refreshPolicy": "monthly",
+    "maxRecords": 2000,
+    "packagePath": "motherbird/regions/pittsburgh/osm/pois.json"
+  }
+}

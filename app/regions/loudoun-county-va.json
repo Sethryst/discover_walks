@@ -1,7 +1,12 @@
 {
   "id": "loudoun-county-va",
   "name": "Loudoun County, Virginia",
-  "bbox": [38.846213, -77.962203, 39.324598, -77.32831],
+  "bbox": [
+    38.846213,
+    -77.962203,
+    39.324598,
+    -77.32831
+  ],
   "sources": [
     {
       "id": "loudoun-boundary",
@@ -11,8 +16,17 @@
       "domains": [],
       "layerRole": "jurisdiction_boundary",
       "artifactName": "boundary.geojson",
-      "queryParams": {"where": "NAME = 'Loudoun' AND JURISTYPE = 'CO'"},
-      "propertyMapping": {"id": "STCOFIPS", "name": "NAMELSAD", "include": ["GNIS", "JURISTYPE"]},
+      "queryParams": {
+        "where": "NAME = 'Loudoun' AND JURISTYPE = 'CO'"
+      },
+      "propertyMapping": {
+        "id": "STCOFIPS",
+        "name": "NAMELSAD",
+        "include": [
+          "GNIS",
+          "JURISTYPE"
+        ]
+      },
       "licenseUrl": "https://www.vdot.virginia.gov/doing-business/technical-guidance-and-support/technical-guidance-documents/virginia-roads/",
       "attribution": "Virginia Department of Transportation / Virginia Geographic Information Network",
       "authorityTier": "state_government",
@@ -23,9 +37,24 @@
       "name": "Loudoun County Named Trails",
       "provider": "arcgis_feature_service",
       "url": "https://logis.loudoun.gov/gis/rest/services/COL/CountywideSidewalksTrails/MapServer/4",
-      "domains": ["trails"],
-      "queryParams": {"where": "SI_TRAIL_NAME IS NOT NULL AND SI_TRAIL_NAME <> ' '"},
-      "propertyMapping": {"id": "OBJECTID", "name": "SI_TRAIL_NAME", "include": ["SI_TYPE", "SI_WIDTH", "SI_SURFACE", "SI_AREA_NAME", "SI_ACCESSIBILITY", "SI_UPD_DATE"]},
+      "domains": [
+        "trails"
+      ],
+      "queryParams": {
+        "where": "SI_TRAIL_NAME IS NOT NULL AND SI_TRAIL_NAME <> ' '"
+      },
+      "propertyMapping": {
+        "id": "OBJECTID",
+        "name": "SI_TRAIL_NAME",
+        "include": [
+          "SI_TYPE",
+          "SI_WIDTH",
+          "SI_SURFACE",
+          "SI_AREA_NAME",
+          "SI_ACCESSIBILITY",
+          "SI_UPD_DATE"
+        ]
+      },
       "licenseUrl": "https://www.loudoun.gov/87/GIS",
       "attribution": "Loudoun County Office of Mapping and Geographic Information",
       "authorityTier": "county_government",
@@ -36,13 +65,55 @@
       "name": "Loudoun County Washington & Old Dominion Trail",
       "provider": "arcgis_feature_service",
       "url": "https://logis.loudoun.gov/gis/rest/services/COL/CountywideSidewalksTrails/MapServer/5",
-      "domains": ["trails"],
-      "queryParams": {"where": "SI_TRAIL_NAME IS NOT NULL AND SI_TRAIL_NAME <> ' '"},
-      "propertyMapping": {"id": "OBJECTID", "name": "SI_TRAIL_NAME", "include": ["SI_TYPE", "SI_WIDTH", "SI_SURFACE", "SI_AREA_NAME", "SI_ACCESSIBILITY", "SI_UPD_DATE"]},
+      "domains": [
+        "trails"
+      ],
+      "queryParams": {
+        "where": "SI_TRAIL_NAME IS NOT NULL AND SI_TRAIL_NAME <> ' '"
+      },
+      "propertyMapping": {
+        "id": "OBJECTID",
+        "name": "SI_TRAIL_NAME",
+        "include": [
+          "SI_TYPE",
+          "SI_WIDTH",
+          "SI_SURFACE",
+          "SI_AREA_NAME",
+          "SI_ACCESSIBILITY",
+          "SI_UPD_DATE"
+        ]
+      },
       "licenseUrl": "https://www.loudoun.gov/87/GIS",
       "attribution": "Loudoun County Office of Mapping and Geographic Information",
       "authorityTier": "county_government",
       "confidence": 0.97
     }
-  ]
+  ],
+  "osm": {
+    "status": "enabled",
+    "enabled": true,
+    "bbox": [
+      38.846213,
+      -77.962203,
+      39.324598,
+      -77.32831
+    ],
+    "sourceId": "osm-loudoun-county-va",
+    "endpoint": "https://overpass-api.de/api/interpreter",
+    "categories": [
+      "park",
+      "trail",
+      "water",
+      "history",
+      "public_art",
+      "library",
+      "community",
+      "garden",
+      "coffee",
+      "rest"
+    ],
+    "refreshPolicy": "monthly",
+    "maxRecords": 2000,
+    "packagePath": "motherbird/regions/loudoun-county-va/osm/pois.json"
+  }
 }

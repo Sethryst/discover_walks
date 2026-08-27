@@ -1,29 +1,73 @@
 {
   "id": "prince-georges-county-md",
   "name": "Prince George's County, Maryland",
-  "bbox": [38.53, -77.15, 39.16, -76.68],
-  "sources": [{
-    "id": "pgparks-events",
-    "name": "M-NCPPC PG Parks events",
-    "provider": "tribe_events",
-    "url": "https://www.pgparks.com/wp-json/tribe/events/v1/events",
-    "domains": ["event"],
-    "licenseUrl": "https://www.pgparks.com/activities-events-events",
-    "authorityTier": "regional_partner",
-    "confidence": 0.95,
-    "providerOptions": {"perPage": 100},
-    "status": "active"
-  }, {
-    "id": "ebird-prince-georges-recent-hotspots",
-    "name": "eBird Prince George's County recent hotspot observations",
-    "provider": "ebird_recent",
-    "url": "https://api.ebird.org/v2/data/obs/geo/recent",
-    "domains": ["wildlife"],
-    "licenseUrl": "https://science.ebird.org/en/status-and-trends/products-access-terms-of-use",
-    "authorityTier": "community",
-    "confidence": 0.7,
-    "credentialEnv": "EBIRD_API_TOKEN",
-    "providerOptions": {"days": 7, "distanceKm": 25},
-    "status": "active"
-  }]
+  "bbox": [
+    38.53,
+    -77.15,
+    39.16,
+    -76.68
+  ],
+  "sources": [
+    {
+      "id": "pgparks-events",
+      "name": "M-NCPPC PG Parks events",
+      "provider": "tribe_events",
+      "url": "https://www.pgparks.com/wp-json/tribe/events/v1/events",
+      "domains": [
+        "event"
+      ],
+      "licenseUrl": "https://www.pgparks.com/activities-events-events",
+      "authorityTier": "regional_partner",
+      "confidence": 0.95,
+      "providerOptions": {
+        "perPage": 100
+      },
+      "status": "active"
+    },
+    {
+      "id": "ebird-prince-georges-recent-hotspots",
+      "name": "eBird Prince George's County recent hotspot observations",
+      "provider": "ebird_recent",
+      "url": "https://api.ebird.org/v2/data/obs/geo/recent",
+      "domains": [
+        "wildlife"
+      ],
+      "licenseUrl": "https://science.ebird.org/en/status-and-trends/products-access-terms-of-use",
+      "authorityTier": "community",
+      "confidence": 0.7,
+      "credentialEnv": "EBIRD_API_TOKEN",
+      "providerOptions": {
+        "days": 7,
+        "distanceKm": 25
+      },
+      "status": "active"
+    }
+  ],
+  "osm": {
+    "status": "enabled",
+    "enabled": true,
+    "bbox": [
+      38.53,
+      -77.15,
+      39.16,
+      -76.68
+    ],
+    "sourceId": "osm-prince-georges-county-md",
+    "endpoint": "https://overpass-api.de/api/interpreter",
+    "categories": [
+      "park",
+      "trail",
+      "water",
+      "history",
+      "public_art",
+      "library",
+      "community",
+      "garden",
+      "coffee",
+      "rest"
+    ],
+    "refreshPolicy": "monthly",
+    "maxRecords": 2000,
+    "packagePath": "motherbird/regions/prince-georges-county-md/osm/pois.json"
+  }
 }

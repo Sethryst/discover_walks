@@ -43,7 +43,7 @@ def main() -> int:
             args.save_fixture.parent.mkdir(parents=True, exist_ok=True)
             args.save_fixture.write_text(json.dumps({"elements": elements}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         logger.info("Acquired source records", extra={"region_id": args.region_id, "records": len(elements)})
-    pois, warnings = normalize_overpass(elements)
+    pois, warnings = normalize_overpass(elements, source_config_id=f"osm-{args.region_id}", retrieved_at=args.generated_at or "1970-01-01T00:00:00Z", bbox=region["bbox"])
     release, manifest = build_release(args.region_id, pois, warnings, args.producer_version, args.generated_at)
     destination = write_bundle(args.output, release, manifest, dry_run=args.dry_run)
     logger.info("Validated release bundle", extra={"region_id": args.region_id, "pois": len(pois), "warnings": len(warnings), "destination": str(destination), "dry_run": args.dry_run})

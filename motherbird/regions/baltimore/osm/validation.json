@@ -1,0 +1,1739 @@
+{
+  "accepted": 1853,
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "regionId": "baltimore",
+  "rejected": 15,
+  "schemaVersion": 1,
+  "warnings": [
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 31119359 is outside the configured bbox.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 32433087 is outside the configured bbox.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 117904773 is outside the configured bbox.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 125108097 is outside the configured bbox.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 263113984 is outside the configured bbox.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 286986819 is outside the configured bbox.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 314171536 is outside the configured bbox.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 580502357 is outside the configured bbox.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 627467381 is outside the configured bbox.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 746049949 is outside the configured bbox.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 850507678 is outside the configured bbox.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 864734087 is outside the configured bbox.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 1258589941 is outside the configured bbox.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM relation 12471679 is outside the configured bbox.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM relation 12804641 is outside the configured bbox.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5931490190 matched authoritative osm:node:11301272739; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7649757765 matched authoritative osm:node:7649757764; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7649757767 matched authoritative osm:node:7649757766; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7823645379 matched authoritative osm:node:7823645378; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:11096157 matched authoritative municipal:baltimore:fe5a140f4b789f577379; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:11096158 matched authoritative municipal:baltimore:0d0281767e8fec60fa6b; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:11096159 matched authoritative municipal:baltimore:39e29480409a7500da3d; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:11096160 matched authoritative municipal:baltimore:ee9d85c603cee5228c79; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:11096161 matched authoritative municipal:baltimore:a1a9c78aba6c0a04affa; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:11521309 matched authoritative municipal:baltimore:abf8ae35374788da0102; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:12474538 matched authoritative municipal:baltimore:5dae700ff462775db77e; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:12764420 matched authoritative municipal:baltimore:63c4a63eba308cf431e6; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:12764727 matched authoritative municipal:baltimore:8d1ba426afea498faaf2; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:12764728 matched authoritative municipal:baltimore:ef796aa61d6c4cc15698; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:12795355 matched authoritative municipal:baltimore:7d343478ce2c4106a289; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:12968819 matched authoritative municipal:baltimore:8043ea21c58bd301d607; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:12968820 matched authoritative municipal:baltimore:e943597a284f9aec0a24; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:13007353 matched authoritative municipal:baltimore:4955c68ec93300d43858; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:13007392 matched authoritative municipal:baltimore:5f838d9cbbb4114dd40d; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:13007397 matched authoritative municipal:baltimore:326d57dd4f4f63dd82be; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:13663638 matched authoritative municipal:baltimore:735547489e30f34eda6d; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:14012596 matched authoritative municipal:baltimore:e688e93186f147d733de; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:14133557 matched authoritative municipal:baltimore:8c1aeac3fedaf492c995; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:15054920 matched authoritative osm:node:7649757766; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:5771325 matched authoritative municipal:baltimore:0a4128fd6a35b40ebbbf; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:5936224 matched authoritative municipal:baltimore:1891ddf09a762ed502da; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:6649001 matched authoritative municipal:baltimore:3709d21a054b199dbe32; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:6766268 matched authoritative municipal:baltimore:658afe4b19350db6e103; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:9352298 matched authoritative municipal:baltimore:165b0aba1daa50da2740; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:9353384 matched authoritative municipal:baltimore:ded1a6a788ec7e290f03; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:9354773 matched authoritative municipal:baltimore:12f066af3226a2188ff0; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1007108014 matched authoritative municipal:baltimore:ccf93143d171d351e9f3; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1007113184 matched authoritative municipal:baltimore:06c4d1bdf6591a8659d9; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1007113186 matched authoritative municipal:baltimore:9834c0124c381414e7dd; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1007113188 matched authoritative municipal:baltimore:97216d889809515ccc9b; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1007113190 matched authoritative municipal:baltimore:a066c59868f38e7c5df9; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1007119195 matched authoritative municipal:baltimore:8176c3e2a5d2646f8226; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1007120720 matched authoritative municipal:baltimore:cb71e656df2bbd50cda1; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1007121026 matched authoritative municipal:baltimore:bb0ecd66c2b50b87cb2a; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1007122805 matched authoritative municipal:baltimore:6a01ae68b5771d63e04f; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1007202043 matched authoritative municipal:baltimore:abce35b1187bcd3ec3b1; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1014436479 matched authoritative municipal:baltimore:242a54d1c009c26595b3; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1014438201 matched authoritative municipal:baltimore:7e1fe225560774c20a6b; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1020465420 matched authoritative municipal:baltimore:7d503d263967fdfe8641; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1020465421 matched authoritative municipal:baltimore:a87a68f2fe23c95bf8d2; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1020465422 matched authoritative municipal:baltimore:a37702fa9bd570eaf6b5; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1020465423 matched authoritative municipal:baltimore:d17747dcd7563b82ba23; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1020465424 matched authoritative municipal:baltimore:88fb5fb9e7468724afef; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1020465428 matched authoritative municipal:baltimore:ff61fc7584021c233ded; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1020465429 matched authoritative municipal:baltimore:21d09b166b4763d653d4; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1020465430 matched authoritative municipal:baltimore:dfd855fb461a1a1a41de; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1020465431 matched authoritative municipal:baltimore:29fb8ff08f764e932fe8; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1020465740 matched authoritative municipal:baltimore:d9464b9ea586e3a63993; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:103285189 matched authoritative municipal:baltimore:40e67a920f8fc215af37; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1035465846 matched authoritative osm:way:1035465829; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1035465887 matched authoritative osm:way:1035465884; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1035889273 matched authoritative osm:way:1035566861; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1036506075 matched authoritative municipal:baltimore:48f3e28a31128a971ba5; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:103695706 matched authoritative municipal:baltimore:6246b4ef9fbb4482beea; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1042048397 matched authoritative osm:way:1035896670; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1042114887 matched authoritative osm:way:1042114886; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1042114899 matched authoritative osm:way:1042114897; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1042114900 matched authoritative osm:way:1042114898; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1042114911 matched authoritative osm:way:1042114910; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1042114915 matched authoritative osm:way:1042114913; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1042114916 matched authoritative osm:way:1042114914; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1042114923 matched authoritative osm:way:1042114921; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1042114926 matched authoritative osm:way:1042114925; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1046040916 matched authoritative osm:way:1042470603; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1046040917 matched authoritative osm:way:1042470603; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1046040918 matched authoritative osm:way:1042470604; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1046040919 matched authoritative osm:way:1042470603; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1046040920 matched authoritative osm:way:1042470606; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1046040924 matched authoritative osm:way:1042470603; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1046040925 matched authoritative osm:way:1042470603; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1049200778 matched authoritative osm:way:1035908394; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1064035558 matched authoritative osm:way:1064035557; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1064035559 matched authoritative osm:way:1064035557; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1064227093 matched authoritative osm:way:1064227092; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:106906035 matched authoritative municipal:baltimore:0fff71e88729c2b0995e; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1075781020 matched authoritative osm:way:1075781010; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1075781021 matched authoritative osm:way:1075781009; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1075792328 matched authoritative osm:way:107262194; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1075849081 matched authoritative osm:way:1075781009; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1075849082 matched authoritative osm:way:1075781009; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1075849084 matched authoritative osm:way:1075781010; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1075849086 matched authoritative osm:way:1075781010; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1075849088 matched authoritative osm:way:1075781009; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1081962109 matched authoritative municipal:baltimore:06f1a359443fdcc022fd; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1083025893 matched authoritative osm:way:10251112; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1090518935 matched authoritative osm:way:1090518933; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1091246978 matched authoritative osm:way:1090518933; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1091246979 matched authoritative osm:way:1090518933; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1091975584 matched authoritative osm:way:1091975173; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1092620578 matched authoritative osm:way:1092620576; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1092620579 matched authoritative osm:way:1092620576; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1092620581 matched authoritative osm:way:1092620580; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1092620584 matched authoritative osm:way:1092620583; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1092620585 matched authoritative osm:way:1092620583; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1092620586 matched authoritative osm:way:1092620582; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:109491653 matched authoritative municipal:baltimore:9da7f946c9fe1089069c; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:112910184 matched authoritative municipal:baltimore:2395094a80bda176d525; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:114570160 matched authoritative municipal:baltimore:12982223e594bc5eb9f8; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:114693975 matched authoritative municipal:baltimore:7a5b3f4e4e78c833996b; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:114693976 matched authoritative municipal:baltimore:e9e1a37b5bd8bafe3695; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:114693981 matched authoritative municipal:baltimore:9ae01a8d64fe91691044; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:114693984 matched authoritative municipal:baltimore:d034ed404f15bbce76f7; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:114693988 matched authoritative municipal:baltimore:01ceb7ee4c5f48464be6; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:114693991 matched authoritative municipal:baltimore:ab128d7848e995946c95; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:114694000 matched authoritative municipal:baltimore:219784203b02c68a3bc2; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1148263054 matched authoritative municipal:baltimore:f3fe4fb1dd61a44a0df7; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:115211504 matched authoritative municipal:baltimore:65168dd60d7d2a9e88db; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1155574861 matched authoritative osm:way:1155574860; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1160970649 matched authoritative municipal:baltimore:df92106268ee672aced2; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1165125345 matched authoritative osm:way:1165125344; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1165125346 matched authoritative osm:way:1165125344; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1165125347 matched authoritative osm:way:1165125344; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:116544669 matched authoritative osm:way:116544663; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1170367026 matched authoritative osm:way:1167739962; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1192238347 matched authoritative municipal:baltimore:cc517135cedcd4021dcf; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:119881364 matched authoritative municipal:baltimore:5f08ac0fbe3d412c73f7; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:120453739 matched authoritative municipal:baltimore:5152673d507bd316a8aa; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:120453745 matched authoritative municipal:baltimore:40cb1b9d4edf27dea3ff; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:125437852 matched authoritative osm:way:1042114896; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:125437854 matched authoritative osm:way:1042114892; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:126145341 matched authoritative municipal:baltimore:a7c586edd5a43792b5c5; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1264556650 matched authoritative osm:way:1264556649; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:127010721 matched authoritative municipal:baltimore:206685b7b8d335bb07d4; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:127011775 matched authoritative municipal:baltimore:d9b836ba92ed8c217677; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:138383768 matched authoritative municipal:baltimore:34dab248617eb526eb64; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:138384283 matched authoritative municipal:baltimore:7a9d2c40ab1b1a39e469; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:138384287 matched authoritative municipal:baltimore:ff7a95871132060b7eb3; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1458832216 matched authoritative municipal:baltimore:7c6df6c5c1830101cc08; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1465201170 matched authoritative municipal:baltimore:fc3682ee108456f72ca3; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1481184482 matched authoritative osm:way:1258589942; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1503372020 matched authoritative osm:way:1503372000; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1527983471 matched authoritative municipal:baltimore:0f1e552fad7109521210; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:165342612 matched authoritative municipal:baltimore:d6032f72e697e9d561f7; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:170231853 matched authoritative municipal:baltimore:522330488348fb17af74; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:176792219 matched authoritative municipal:baltimore:dfed147e84696ef71838; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:208600152 matched authoritative municipal:baltimore:45d1505f0e7271675b0e; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:220020871 matched authoritative municipal:baltimore:70b186941e00841d480c; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:220687245 matched authoritative municipal:baltimore:6830073c74fb14ee693b; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:220687246 matched authoritative municipal:baltimore:eec9046e859123566d7b; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:220687249 matched authoritative municipal:baltimore:733bea4047af1fc6e3ed; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:226908863 matched authoritative osm:way:226908862; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:228087171 matched authoritative municipal:baltimore:d547d85f51312d75b8bf; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:231095744 matched authoritative municipal:baltimore:c3666a85deb3544d85f9; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:239263166 matched authoritative municipal:baltimore:b4f8a2ceb2c5fd03ab6a; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:239873581 matched authoritative municipal:baltimore:aaadc3f9779f39e9a6c1; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:239937152 matched authoritative municipal:baltimore:749f8a326515a490eabe; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:239937153 matched authoritative municipal:baltimore:c04906528bd2aaea75a2; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:239937155 matched authoritative municipal:baltimore:17d059582635e191c1a1; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:240073153 matched authoritative municipal:baltimore:24fd7fee00dd096e699c; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:240073156 matched authoritative municipal:baltimore:56b470594a5e25bf806a; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:241114661 matched authoritative municipal:baltimore:e17c25b8612321065aea; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:241165762 matched authoritative municipal:baltimore:fc6e050169d7353ff278; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:242782254 matched authoritative municipal:baltimore:d9f4409ec3503db47fb1; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:242968646 matched authoritative municipal:baltimore:550a8cd5ca0139452ef2; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:251244538 matched authoritative municipal:baltimore:b8d2a8a395e46488d473; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:254025444 matched authoritative municipal:baltimore:b86bde83abb77ec91179; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:255161536 matched authoritative municipal:baltimore:698534170068d490fece; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:255481069 matched authoritative municipal:baltimore:b079bb970b41f7cbd7ab; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:262584394 matched authoritative municipal:baltimore:2cd3ba97c848c46534b1; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:262587660 matched authoritative municipal:baltimore:48d0a0da2952940c2fb7; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:262944616 matched authoritative municipal:baltimore:b7906482cf3b6feddd69; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:278446236 matched authoritative municipal:baltimore:66dd0371be97764f67ee; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:279621659 matched authoritative municipal:baltimore:ed055dd55c2678e49e42; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:282356601 matched authoritative municipal:baltimore:9b8d1ef0ec2208b4dead; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:282379943 matched authoritative municipal:baltimore:2e643159a4705e86ddd8; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:282379968 matched authoritative municipal:baltimore:ff8c9f20d8ba31aa49be; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:283033503 matched authoritative municipal:baltimore:8c60e83240d038d55ae4; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:283538339 matched authoritative municipal:baltimore:1dfcf09369538d618ef2; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:286822796 matched authoritative municipal:baltimore:a71ce7d527c3f80598cd; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:286930239 matched authoritative municipal:baltimore:af29351dc36ef5f805b4; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:289880924 matched authoritative municipal:baltimore:0e2b1fe60a3a7885fac6; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:292628813 matched authoritative municipal:baltimore:cec95fa80e1f25dc8198; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:292983554 matched authoritative municipal:baltimore:b52f22de2eb4243c0167; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:321874164 matched authoritative municipal:baltimore:274fd75c905e43382a23; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:322391440 matched authoritative municipal:baltimore:3154e2b0984b94ad8409; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:337111051 matched authoritative municipal:baltimore:0fcd3d0bbc2eb58d870e; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:339540454 matched authoritative municipal:baltimore:4fdc61de8867f04b9095; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:364599541 matched authoritative osm:way:364599540; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:370440537 matched authoritative municipal:baltimore:80ee274e385eb6c55556; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:376478044 matched authoritative municipal:baltimore:4a5c8e3a9f4a6d6dc0f0; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:376480342 matched authoritative municipal:baltimore:538c3e0b96aa7cbd85d2; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:380020456 matched authoritative municipal:baltimore:057a843ede1a38e65dea; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:401517061 matched authoritative osm:relation:6024126; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:401517064 matched authoritative osm:way:401516370; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:401517068 matched authoritative osm:relation:6024127; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:401517073 matched authoritative osm:way:401516375; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:401517074 matched authoritative osm:way:401516376; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:401517076 matched authoritative osm:relation:6024128; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:401517079 matched authoritative osm:way:401516378; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:401517080 matched authoritative osm:way:401516380; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:401517176 matched authoritative osm:relation:6024129; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:423129256 matched authoritative osm:way:1064035557; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:45091349 matched authoritative municipal:baltimore:db9d379abe2668ae4960; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:452160218 matched authoritative municipal:baltimore:c2b430187b51e35726ab; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:453392425 matched authoritative municipal:baltimore:1d6897734da06491f5c6; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:457811918 matched authoritative municipal:baltimore:49cbce98ca3aeb2147ff; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:457811964 matched authoritative municipal:baltimore:77defd57564c5b0fd200; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:469560426 matched authoritative osm:way:469560425; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:469560427 matched authoritative osm:way:469560425; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:469560434 matched authoritative osm:way:1108159224; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:469560435 matched authoritative osm:way:1108159224; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:469560438 matched authoritative osm:way:1091975173; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:492876240 matched authoritative municipal:baltimore:1e1fd328aba9e3095e06; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:493124534 matched authoritative osm:way:1092620580; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:493124538 matched authoritative osm:way:1091981325; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:503456424 matched authoritative municipal:baltimore:c73f28d6f50eb7cb67ba; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:507846033 matched authoritative municipal:baltimore:e56cef2b577eaa9a06cd; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:512067293 matched authoritative municipal:baltimore:24e8e70548bcd85b9bc2; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:51529143 matched authoritative municipal:baltimore:2b18220f4f4473298af2; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:524637577 matched authoritative municipal:baltimore:75d65ac9900366898ba7; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:544546985 matched authoritative municipal:baltimore:1685eec1e75cc70e7d64; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:546470988 matched authoritative municipal:baltimore:0a9096711f0d40925537; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:546958418 matched authoritative municipal:baltimore:b380e2fcc99c86c4aea1; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:547329308 matched authoritative municipal:baltimore:47828c75230ee921f9ba; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:547413734 matched authoritative municipal:baltimore:ad95fe06a5d01030a35c; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:554772666 matched authoritative municipal:baltimore:aaac5b95a51216db1232; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:587720102 matched authoritative municipal:baltimore:bbf820dcd9ca04daba38; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:6011202 matched authoritative osm:way:401517067; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:6012296 matched authoritative osm:way:1042114890; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:6013095 matched authoritative osm:way:1042114894; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:6013099 matched authoritative osm:way:1042114912; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:621838423 matched authoritative osm:way:1047549582; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:621838430 matched authoritative osm:way:1047549582; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:623558031 matched authoritative municipal:baltimore:e10e793d2db7b2d49ce2; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:627976489 matched authoritative osm:way:627976488; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:638334713 matched authoritative municipal:baltimore:c124244d7dd74ef63e9e; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:638334716 matched authoritative municipal:baltimore:cffaf19cb02497f21bad; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:638334719 matched authoritative municipal:baltimore:adde3a59cc1214f05370; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:638334720 matched authoritative municipal:baltimore:445c317dedcdc57e5b0a; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:647562276 matched authoritative municipal:baltimore:86e7d8fabf44f293f300; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:653662965 matched authoritative municipal:baltimore:f75ae6596829e427c317; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:681288692 matched authoritative municipal:baltimore:3f143d5a0de2bdce46a2; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:683061937 matched authoritative municipal:baltimore:f09043f0927647022a99; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:683467763 matched authoritative municipal:baltimore:b10871ebf3e00954db9f; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:696737351 matched authoritative municipal:baltimore:013be23a455098ed6fed; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:703993923 matched authoritative municipal:baltimore:e5c56287842c019bc09f; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:714438079 matched authoritative municipal:baltimore:cac7606fef954b5c40d5; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:71694392 matched authoritative municipal:baltimore:8bba2f98ca693c72bc5f; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:727358043 matched authoritative osm:way:727358041; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:72838180 matched authoritative municipal:baltimore:7d6f95786159a2199df4; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:736841642 matched authoritative municipal:baltimore:1664c5716b7fcf3df6d5; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:737182642 matched authoritative municipal:baltimore:24313964a52005fbcd36; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:740552334 matched authoritative municipal:baltimore:ea1c7fc9e6db31708939; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:743685506 matched authoritative municipal:baltimore:dfbdeae085a5f3973f83; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:75608958 matched authoritative municipal:baltimore:a4a517b9f502bf801e8a; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:75923271 matched authoritative osm:way:1042114891; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:75923272 matched authoritative osm:way:1042114895; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:75923274 matched authoritative osm:way:1042114920; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:764487228 matched authoritative municipal:baltimore:8862b9f9c380d1e1cbbe; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:765852411 matched authoritative municipal:baltimore:de2d46f0a05130933e58; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:765852714 matched authoritative municipal:baltimore:e3eddc4914bde517e8fd; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:765855527 matched authoritative municipal:baltimore:7c90dc0e9458babe974c; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:770731784 matched authoritative osm:way:293714862; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:770731811 matched authoritative osm:way:1155574860; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:770731813 matched authoritative osm:way:770731812; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:79235072 matched authoritative municipal:baltimore:eda24cd7417612f5a1a4; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:796546419 matched authoritative municipal:baltimore:cacd0ec4943707fb9c7b; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:796546437 matched authoritative municipal:baltimore:2a27ca75ee3a46cb887a; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:800814260 matched authoritative municipal:baltimore:0ca0c7b586bf3ec329ff; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:800814261 matched authoritative municipal:baltimore:5d64daa7e82ec3c82b01; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:803377606 matched authoritative municipal:baltimore:5ba131003d7ed3592bac; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:813758923 matched authoritative municipal:baltimore:66dd629cddc060682060; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:814613101 matched authoritative municipal:baltimore:d26cd7afcdf1bd5d4504; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:815430524 matched authoritative osm:way:815430523; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:815430529 matched authoritative osm:way:815430527; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:817865225 matched authoritative municipal:baltimore:aff70ce7e797c43f145a; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:817985922 matched authoritative osm:way:6010063; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:819596023 matched authoritative osm:way:819596022; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:819596031 matched authoritative osm:way:6004999; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:819596032 matched authoritative osm:way:819596026; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:834846228 matched authoritative municipal:baltimore:2013924201ddd4ca7b30; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:834846235 matched authoritative municipal:baltimore:70c13ff69fcc18f8f24a; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:83580878 matched authoritative municipal:baltimore:9ed260474902d7588d96; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:837297981 matched authoritative osm:way:837297980; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:837642375 matched authoritative osm:way:260672346; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:837642376 matched authoritative osm:way:260672346; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:837642378 matched authoritative osm:way:837642377; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:838853756 matched authoritative municipal:baltimore:8d8a90df9b4a4baa8ff7; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:838860561 matched authoritative osm:way:6003854; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:838860563 matched authoritative osm:way:107445212; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:838860568 matched authoritative osm:way:6007297; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:838860569 matched authoritative osm:way:6010441; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:838860572 matched authoritative osm:way:107445231; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:838860575 matched authoritative osm:way:6010440; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:838860576 matched authoritative osm:way:6007298; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:838860586 matched authoritative osm:way:6008799; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:838860589 matched authoritative osm:way:838860588; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:838860590 matched authoritative osm:way:6008802; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:838860595 matched authoritative osm:way:838860594; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:838874053 matched authoritative municipal:baltimore:9095a224c4370a4256a4; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:838874054 matched authoritative municipal:baltimore:ff8b3d99473ecd72b36b; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:838874055 matched authoritative municipal:baltimore:f7aba18cdab9ef4a4eb3; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:85609472 matched authoritative municipal:baltimore:6fa64ac742c3f5937c43; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:85688561 matched authoritative municipal:baltimore:b28695e0b047ab46d7e8; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:87902128 matched authoritative osm:way:10251112; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:89710022 matched authoritative municipal:baltimore:967fb1503e042d467c24; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:904831597 matched authoritative osm:way:904831596; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:904831599 matched authoritative osm:way:904831598; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:904831604 matched authoritative osm:way:904831603; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:904831606 matched authoritative osm:way:902131461; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:904871191 matched authoritative osm:way:904871190; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:904871193 matched authoritative osm:way:904871190; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:906617823 matched authoritative osm:way:906617822; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:906617827 matched authoritative osm:way:906617826; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:906617828 matched authoritative osm:way:906617826; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:90695247 matched authoritative osm:way:90694873; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:90695311 matched authoritative osm:way:90694969; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:90695315 matched authoritative osm:way:90695172; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:90695327 matched authoritative osm:way:90694873; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:910280834 matched authoritative osm:way:910280830; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:910888953 matched authoritative osm:way:910888952; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:924396013 matched authoritative osm:way:924396012; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:924396015 matched authoritative osm:way:924396014; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:924396028 matched authoritative osm:way:924396027; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:935844574 matched authoritative municipal:baltimore:b1a883bf66693ecfe2a8; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:935914363 matched authoritative osm:way:1091981325; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:946138737 matched authoritative osm:way:902131461; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:94669393 matched authoritative municipal:baltimore:b9ecd7124699a0d9d489; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:964093077 matched authoritative osm:way:157473137; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:964093078 matched authoritative osm:way:157473137; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:981601624 matched authoritative osm:way:1090518933; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:981601628 matched authoritative osm:way:1090518933; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:981601629 matched authoritative osm:way:1090518933; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:982062679 matched authoritative osm:way:1017984173; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:987256690 matched authoritative municipal:baltimore:40f1e03df07b3f8551a7; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:992081763 matched authoritative osm:way:992081762; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-baltimore"
+    }
+  ]
+}

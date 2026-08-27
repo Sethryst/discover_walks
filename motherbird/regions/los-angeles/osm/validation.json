@@ -1,0 +1,44 @@
+{
+  "accepted": 1999,
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "regionId": "los-angeles",
+  "rejected": 1,
+  "schemaVersion": 1,
+  "warnings": [
+    {
+      "code": "duplicate_osm_record",
+      "detail": "osm:node:10703310788 duplicates osm:node:10703310787; the stable first record was retained.",
+      "source": "osm-los-angeles"
+    },
+    {
+      "code": "max_records_reached",
+      "detail": "The bounded Overpass response reached maxRecords=2000.",
+      "source": "osm-los-angeles"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10848922033 matched authoritative osm:node:10848922032; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-los-angeles"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13417044027 matched authoritative osm:node:13417044026; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-los-angeles"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4077184467 matched authoritative municipal:los-angeles:67cb0b46ec35136030a8; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-los-angeles"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7468544020 matched authoritative osm:node:6023884939; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-los-angeles"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9643816475 matched authoritative osm:node:9643798787; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-los-angeles"
+    }
+  ]
+}

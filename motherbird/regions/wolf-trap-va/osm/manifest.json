@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "regionId": "wolf-trap-va",
+  "generatedAt": "1970-01-01T00:00:00.000Z",
+  "sourceVintage": "1970-01-01T00:00:00.000Z",
+  "sourceConfigurationId": "osm-wolf-trap-va",
+  "source": {
+    "name": "OpenStreetMap",
+    "url": "https://overpass-api.de/api/interpreter",
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright"
+  },
+  "recordCountsByCategory": {},
+  "artifacts": [
+    "pois.json",
+    "validation.json",
+    "spatial-index-delta.json",
+    "attribution.json"
+  ],
+  "checksums": {
+    "pois.json": "sha256:a850d9a99d93dd1354a1a84ddb8b7683455f24ab8927a7bc749d9c7b47a7f5cb",
+    "validation.json": "sha256:3f7c41dc84707d87ab229b29728f1d6f019b9eb65687e64f2a5197af817e20f5",
+    "spatial-index-delta.json": "sha256:a8f68068a276aed8a08e839da3197a121647460d63036956335eed0faac9b33c",
+    "attribution.json": "sha256:d6dfa7ab5b84347040fa607ae97acdae626ba133326768959de6c4047deff3a7"
+  }
+}

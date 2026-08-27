@@ -1,1 +1,43 @@
-{"id":"portland-maine","name":"Portland, ME","bbox":[43.59,-70.36,43.76,-70.13],"profile":"destination-walklife","enrichment":{"wikimedia":{"enabled":true}}}
+{
+  "id": "portland-maine",
+  "name": "Portland, ME",
+  "bbox": [
+    43.59,
+    -70.36,
+    43.76,
+    -70.13
+  ],
+  "profile": "destination-walklife",
+  "enrichment": {
+    "wikimedia": {
+      "enabled": true
+    }
+  },
+  "osm": {
+    "status": "enabled",
+    "enabled": true,
+    "bbox": [
+      43.59,
+      -70.36,
+      43.76,
+      -70.13
+    ],
+    "sourceId": "osm-portland-maine",
+    "endpoint": "https://overpass-api.de/api/interpreter",
+    "categories": [
+      "park",
+      "trail",
+      "water",
+      "history",
+      "public_art",
+      "library",
+      "community",
+      "garden",
+      "coffee",
+      "rest"
+    ],
+    "refreshPolicy": "monthly",
+    "maxRecords": 2000,
+    "packagePath": "motherbird/regions/portland-maine/osm/pois.json"
+  }
+}

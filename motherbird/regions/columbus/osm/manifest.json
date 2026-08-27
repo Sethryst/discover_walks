@@ -1,0 +1,40 @@
+{
+  "artifacts": [
+    "pois.json",
+    "merged-pois.json",
+    "validation.json",
+    "spatial-index-delta.json",
+    "attribution.json"
+  ],
+  "checksums": {
+    "attribution.json": "sha256:7cf0828949067d9c921b7fc4f7b8e924cd5cc8e6b38220b069e482c8b2b70df9",
+    "merged-pois.json": "sha256:9b4ff315a37362555667c29ecfb920228d99674685e47f3bf0b9df5e1861db92",
+    "pois.json": "sha256:bb356ca093346b66e760d6594a2bf3d54c7338011acbd381361f0553d235987c",
+    "spatial-index-delta.json": "sha256:7b47bd2547b30bb3a0e8dce8e8653bb8ff9369966ea804d5e601ebdb1e953f1e",
+    "validation.json": "sha256:67203e48e1eb85439b1093b2b8d12127a6579946497a4207d848025a16ef83b4"
+  },
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "recordCountsByCategory": {
+    "coffee": 301,
+    "community": 14,
+    "garden": 52,
+    "history": 141,
+    "library": 54,
+    "park": 698,
+    "public_art": 100,
+    "rest": 27,
+    "trail": 420
+  },
+  "regionId": "columbus",
+  "schemaVersion": 1,
+  "source": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "name": "OpenStreetMap",
+    "rawResponseSha256": "sha256:3174b31f875f8ddfa2d7d59729dce69b59d94b916bbbb5f7de7c60ff829c8641",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "sourceConfigurationId": "osm-columbus",
+  "sourceVintage": "2026-08-27T03:08:38Z"
+}

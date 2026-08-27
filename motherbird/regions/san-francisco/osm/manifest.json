@@ -1,0 +1,41 @@
+{
+  "artifacts": [
+    "pois.json",
+    "merged-pois.json",
+    "validation.json",
+    "spatial-index-delta.json",
+    "attribution.json"
+  ],
+  "checksums": {
+    "attribution.json": "sha256:6d8429fc54e07676b83c3db33455d4c0af0f2247e926fad56775b7f7fd238984",
+    "merged-pois.json": "sha256:0bd2b7f3f6a4c0674e645e077b2c0f04090cbe2cedfc8882498b1d0bb80f3da8",
+    "pois.json": "sha256:ddf04308593dd710fcbb5dc942b0f3b05b74bf90b1c8632799da05a0f205dff1",
+    "spatial-index-delta.json": "sha256:9dba184ff8284554c3407d9d690450e15199e9ed273377fc9da8bc588267358c",
+    "validation.json": "sha256:e233663a6d5002ca9baea17538d428bb92c78b41c400f24e4b98b5d600a058ca"
+  },
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "recordCountsByCategory": {
+    "coffee": 778,
+    "community": 19,
+    "garden": 73,
+    "history": 291,
+    "library": 48,
+    "park": 195,
+    "public_art": 226,
+    "rest": 12,
+    "trail": 345,
+    "water": 5
+  },
+  "regionId": "san-francisco",
+  "schemaVersion": 1,
+  "source": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "name": "OpenStreetMap",
+    "rawResponseSha256": "sha256:d06523bd65003fdfaef7fec5c3add37351cc31c6bdade2b0441efb6ef15968ae",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "sourceConfigurationId": "osm-san-francisco",
+  "sourceVintage": "2026-08-27T03:19:51Z"
+}

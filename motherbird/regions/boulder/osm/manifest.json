@@ -1,0 +1,40 @@
+{
+  "artifacts": [
+    "pois.json",
+    "merged-pois.json",
+    "validation.json",
+    "spatial-index-delta.json",
+    "attribution.json"
+  ],
+  "checksums": {
+    "attribution.json": "sha256:d4a90952b1f3a9406dc6a5b164f057addc3b184782669ab9edf48bd95ea509d4",
+    "merged-pois.json": "sha256:00b84e81e972a0f0da5700ae24b41e3857c909284a2d3d388e363d5abd3483fa",
+    "pois.json": "sha256:941a2cf284bb2c2d7cb0a90b4a2789644625f369d5e7e4d3847eb5d451f9c04f",
+    "spatial-index-delta.json": "sha256:6988e2bfe4e1de416c01bff88cfa959efd2e745dbf5e56f7958f50ae4362161d",
+    "validation.json": "sha256:a5b0b83272ff686f6d544b5d5e6c69be14a1e5a0b5b4135c86b73f784acd8f09"
+  },
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "recordCountsByCategory": {
+    "coffee": 81,
+    "community": 1,
+    "garden": 11,
+    "history": 29,
+    "library": 7,
+    "park": 86,
+    "public_art": 16,
+    "rest": 9,
+    "trail": 784
+  },
+  "regionId": "boulder",
+  "schemaVersion": 1,
+  "source": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "name": "OpenStreetMap",
+    "rawResponseSha256": "sha256:fa68d888a715c35c8fa177ce5f6f8ce792b90bff348463d0ef10ac4cfbbb243d",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "sourceConfigurationId": "osm-boulder",
+  "sourceVintage": "2026-08-27T03:07:34Z"
+}

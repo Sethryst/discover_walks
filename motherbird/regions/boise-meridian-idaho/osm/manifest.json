@@ -1,0 +1,40 @@
+{
+  "artifacts": [
+    "pois.json",
+    "merged-pois.json",
+    "validation.json",
+    "spatial-index-delta.json",
+    "attribution.json"
+  ],
+  "checksums": {
+    "attribution.json": "sha256:951c99574e741722145484ff32efd64b10e1c30b1301b23c3ab0b060c206c335",
+    "merged-pois.json": "sha256:4ffb62b5b70374615875930a0a504f52af2e226fceeb4e2f60f2630cc94b8cd8",
+    "pois.json": "sha256:9c98e27bbf3740a1d9a35f7e47adb1baa67e041fb06c5348fc25ef8fc598059a",
+    "spatial-index-delta.json": "sha256:9803e591acb3a81e7ec9623005150974241d751990d158beb2cf4674fdcb1b48",
+    "validation.json": "sha256:d446bcd5b0f3aa0604faf2d87d8fc8adf57a7d6e0b5c7ffae57300e5d2dc2551"
+  },
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "recordCountsByCategory": {
+    "coffee": 128,
+    "garden": 19,
+    "history": 36,
+    "library": 16,
+    "park": 167,
+    "public_art": 73,
+    "rest": 13,
+    "trail": 377,
+    "water": 1
+  },
+  "regionId": "boise-meridian-idaho",
+  "schemaVersion": 1,
+  "source": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "name": "OpenStreetMap",
+    "rawResponseSha256": "sha256:6c535fddab11c12dde0b2ea9cb20ee030402931df5029586402a730ddc475aef",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "sourceConfigurationId": "osm-boise-meridian-idaho",
+  "sourceVintage": "2026-08-27T03:06:37Z"
+}

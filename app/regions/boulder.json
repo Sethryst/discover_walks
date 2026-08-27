@@ -1,1 +1,43 @@
-{"id":"boulder","name":"Boulder, CO","bbox":[39.92,-105.37,40.11,-105.17],"profile":"destination-walklife","enrichment":{"wikimedia":{"enabled":true}}}
+{
+  "id": "boulder",
+  "name": "Boulder, CO",
+  "bbox": [
+    39.92,
+    -105.37,
+    40.11,
+    -105.17
+  ],
+  "profile": "destination-walklife",
+  "enrichment": {
+    "wikimedia": {
+      "enabled": true
+    }
+  },
+  "osm": {
+    "status": "enabled",
+    "enabled": true,
+    "bbox": [
+      39.92,
+      -105.37,
+      40.11,
+      -105.17
+    ],
+    "sourceId": "osm-boulder",
+    "endpoint": "https://overpass-api.de/api/interpreter",
+    "categories": [
+      "park",
+      "trail",
+      "water",
+      "history",
+      "public_art",
+      "library",
+      "community",
+      "garden",
+      "coffee",
+      "rest"
+    ],
+    "refreshPolicy": "monthly",
+    "maxRecords": 2000,
+    "packagePath": "motherbird/regions/boulder/osm/pois.json"
+  }
+}

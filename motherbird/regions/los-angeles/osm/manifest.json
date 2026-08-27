@@ -1,0 +1,41 @@
+{
+  "artifacts": [
+    "pois.json",
+    "merged-pois.json",
+    "validation.json",
+    "spatial-index-delta.json",
+    "attribution.json"
+  ],
+  "checksums": {
+    "attribution.json": "sha256:78edd7b84133bb71b2a5fb0b322311ac7fe7f93e7fcd6c191ac784dfaa67317c",
+    "merged-pois.json": "sha256:0a4ae855db361f41b2f9f5bde7525b8a51375bd67373248b17a4cbc1e03ceca7",
+    "pois.json": "sha256:22019cb7599c79e7ca1aa9f6cb557a7d1e430652f6981f3db07810125ebae6a2",
+    "spatial-index-delta.json": "sha256:06e7cd379b5ef925f201a1bb0b537422c7d0fb87663e4709424d76decb5d33a4",
+    "validation.json": "sha256:48906382eb1ee327bd83445c4316d7c0bf400aba4cdef2594fafa5b9da9dd13a"
+  },
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "recordCountsByCategory": {
+    "coffee": 1149,
+    "community": 30,
+    "garden": 52,
+    "history": 208,
+    "library": 94,
+    "park": 41,
+    "public_art": 415,
+    "rest": 3,
+    "trail": 5,
+    "water": 2
+  },
+  "regionId": "los-angeles",
+  "schemaVersion": 1,
+  "source": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "name": "OpenStreetMap",
+    "rawResponseSha256": "sha256:c7842ef86b62455474e702d7fa04635386979b0484ce90cbd07f8c8951074806",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "sourceConfigurationId": "osm-los-angeles",
+  "sourceVintage": "2026-08-27T03:14:48Z"
+}

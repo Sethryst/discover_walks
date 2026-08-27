@@ -1,0 +1,1404 @@
+{
+  "accepted": 843,
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "regionId": "portland-maine",
+  "rejected": 14,
+  "schemaVersion": 1,
+  "warnings": [
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 413713248 is outside the configured bbox.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 828908531 is outside the configured bbox.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 985571624 is outside the configured bbox.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 985571625 is outside the configured bbox.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 987152109 is outside the configured bbox.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 1301220389 is outside the configured bbox.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 1301332435 is outside the configured bbox.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 1304935356 is outside the configured bbox.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 1339241301 is outside the configured bbox.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM relation 6680037 is outside the configured bbox.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM relation 12311895 is outside the configured bbox.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM relation 17813415 is outside the configured bbox.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM relation 18510780 is outside the configured bbox.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_osm_record",
+      "detail": "osm:way:846209238 duplicates osm:relation:11605300; the stable first record was retained.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10057004712 matched authoritative history:osm-destination-history:10057004712; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10742576505 matched authoritative coffee:osm-destination-coffee:10742576505; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10875825783 matched authoritative coffee:osm-destination-coffee:10875825783; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10963871159 matched authoritative coffee:osm-destination-coffee:10963871159; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10963871185 matched authoritative coffee:osm-destination-coffee:10963871185; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11075679004 matched authoritative coffee:osm-destination-coffee:11075679004; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11154740463 matched authoritative coffee:osm-destination-coffee:11154740463; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11174322852 matched authoritative coffee:osm-destination-coffee:11174322852; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1167668711 matched authoritative coffee:osm-destination-coffee:1167668711; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12942431459 matched authoritative history:osm-destination-history:12942431459; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12942431479 matched authoritative history:osm-destination-history:12942431479; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12942431480 matched authoritative history:osm-destination-history:12942431480; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12942431481 matched authoritative history:osm-destination-history:12942431481; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12942431483 matched authoritative history:osm-destination-history:12942431483; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12942431484 matched authoritative history:osm-destination-history:12942431484; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12942431485 matched authoritative history:osm-destination-history:12942431485; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13093754745 matched authoritative history:osm-destination-history:13093754745; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13155834389 matched authoritative history:osm-destination-history:13155834389; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13283395067 matched authoritative coffee:osm-destination-coffee:13283395067; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13283503868 matched authoritative coffee:osm-destination-coffee:13283503868; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13283539657 matched authoritative coffee:osm-destination-coffee:13283539657; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13376669763 matched authoritative coffee:osm-destination-coffee:13376669763; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:14020930377 matched authoritative coffee:osm-destination-coffee:14020930377; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:14021191839 matched authoritative coffee:osm-destination-coffee:14021191839; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:14026618854 matched authoritative coffee:osm-destination-coffee:14026618854; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:14026686902 matched authoritative coffee:osm-destination-coffee:14026686902; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:14031974018 matched authoritative coffee:osm-destination-coffee:14031974018; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1940776625 matched authoritative coffee:osm-destination-coffee:1940776625; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2152030451 matched authoritative coffee:osm-destination-coffee:2152030451; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2152033822 matched authoritative coffee:osm-destination-coffee:2152033822; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2152036787 matched authoritative coffee:osm-destination-coffee:2152036787; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2626191069 matched authoritative coffee:osm-destination-coffee:2626191069; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:330118410 matched authoritative history:osm-destination-history:330118410; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:330122114 matched authoritative history:osm-destination-history:330122114; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:358231697 matched authoritative history:osm-destination-history:358231697; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:358231834 matched authoritative history:osm-destination-history:358231834; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:358231891 matched authoritative history:osm-destination-history:358231891; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:358231911 matched authoritative history:osm-destination-history:358231911; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:358231984 matched authoritative history:osm-destination-history:358231984; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:358234532 matched authoritative history:osm-destination-history:358234532; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:358234544 matched authoritative history:osm-destination-history:358234544; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:358234572 matched authoritative history:osm-destination-history:358234572; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3719450611 matched authoritative history:osm-destination-history:3719450611; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3743501390 matched authoritative coffee:osm-destination-coffee:3743501390; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3789802328 matched authoritative history:osm-destination-history:3789802328; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3789802338 matched authoritative history:osm-destination-history:3789802338; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4040574542 matched authoritative coffee:osm-destination-coffee:4040574542; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4203639672 matched authoritative coffee:osm-destination-coffee:4203639672; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5196897404 matched authoritative history:osm-destination-history:5196897404; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5260761612 matched authoritative coffee:osm-destination-coffee:5260761612; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5260907661 matched authoritative history:osm-destination-history:5260907661; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5260907662 matched authoritative history:osm-destination-history:5260907662; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5260982906 matched authoritative history:osm-destination-history:5260982906; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5352886211 matched authoritative history:osm-destination-history:5352886211; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5369265776 matched authoritative history:osm-destination-history:5369265776; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5411619859 matched authoritative coffee:osm-destination-coffee:5411619859; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6182624834 matched authoritative history:osm-destination-history:6182624834; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6184536652 matched authoritative history:osm-destination-history:6184536652; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6184536653 matched authoritative history:osm-destination-history:6184536653; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6184536654 matched authoritative history:osm-destination-history:6184536654; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6184536655 matched authoritative history:osm-destination-history:6184536655; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6184829348 matched authoritative history:osm-destination-history:6184829348; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6184830170 matched authoritative history:osm-destination-history:6184830170; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6184964976 matched authoritative history:osm-destination-history:6184964976; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6184979922 matched authoritative coffee:osm-destination-coffee:6184979922; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6595002050 matched authoritative coffee:osm-destination-coffee:6595002050; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7149535962 matched authoritative coffee:osm-destination-coffee:7149535962; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7170761508 matched authoritative coffee:osm-destination-coffee:7170761508; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7170762241 matched authoritative coffee:osm-destination-coffee:7170762241; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7171973316 matched authoritative coffee:osm-destination-coffee:7171973316; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7171974026 matched authoritative coffee:osm-destination-coffee:7171974026; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7171975272 matched authoritative coffee:osm-destination-coffee:7171975272; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7171975865 matched authoritative coffee:osm-destination-coffee:7171975865; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7188370158 matched authoritative parks:osm-destination-parks:7188370158; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7188492678 matched authoritative coffee:osm-destination-coffee:7188492678; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7197675165 matched authoritative coffee:osm-destination-coffee:7197675165; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7230903238 matched authoritative coffee:osm-destination-coffee:7230903238; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7862427358 matched authoritative coffee:osm-destination-coffee:7862427358; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7902716277 matched authoritative coffee:osm-destination-coffee:7902716277; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7954281775 matched authoritative history:osm-destination-history:7954281775; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7982942379 matched authoritative history:osm-destination-history:7982942379; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:8140278791 matched authoritative coffee:osm-destination-coffee:8140278791; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:8773821352 matched authoritative coffee:osm-destination-coffee:8773821352; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9576447231 matched authoritative parks:osm-destination-parks:9576447231; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:11321879 matched authoritative parks:osm-destination-parks:11321879; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:11516992 matched authoritative parks:osm-destination-parks:11516992; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:11558973 matched authoritative parks:osm-destination-parks:11558973; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:11605300 matched authoritative parks:osm-destination-parks:11605300; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:13111463 matched authoritative history:osm-destination-history:13111463; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:14610691 matched authoritative history:osm-destination-history:14610691; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:14610693 matched authoritative history:osm-destination-history:14610693; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:16811229 matched authoritative parks:osm-destination-parks:16811229; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:20302585 matched authoritative parks:osm-destination-parks:20302585; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1097029517 matched authoritative history:osm-destination-history:1097029517; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1097029537 matched authoritative osm:way:1097029513; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1124220459 matched authoritative coffee:osm-destination-coffee:1124220459; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1125397271 matched authoritative history:osm-destination-history:1125397271; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1127944905 matched authoritative parks:osm-destination-parks:1127944905; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1141528478 matched authoritative history:osm-destination-history:1141528478; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1194067207 matched authoritative parks:osm-destination-parks:1194067207; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1235845065 matched authoritative parks:osm-destination-parks:1235845065; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1268722890 matched authoritative history:osm-destination-history:1268722890; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1289265489 matched authoritative osm:way:1289265488; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1301352566 matched authoritative parks:osm-destination-parks:1301352566; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1301352995 matched authoritative parks:osm-destination-parks:1301352995; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1301402905 matched authoritative parks:osm-destination-parks:1301402905; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1301402906 matched authoritative parks:osm-destination-parks:1301402906; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1301402907 matched authoritative parks:osm-destination-parks:1301402907; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1301403046 matched authoritative parks:osm-destination-parks:1301403046; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1301405096 matched authoritative parks:osm-destination-parks:1301405096; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1301405097 matched authoritative parks:osm-destination-parks:1301405097; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1301888878 matched authoritative parks:osm-destination-parks:1301888878; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1301890395 matched authoritative parks:osm-destination-parks:1301890395; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1301890776 matched authoritative parks:osm-destination-parks:1301890776; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1302386871 matched authoritative parks:osm-destination-parks:1302386871; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1302387530 matched authoritative parks:osm-destination-parks:1302387530; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1302629991 matched authoritative parks:osm-destination-parks:1302629991; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1302726481 matched authoritative parks:osm-destination-parks:1302726481; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1304298758 matched authoritative parks:osm-destination-parks:1304298758; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1304932936 matched authoritative parks:osm-destination-parks:1304932936; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1304932941 matched authoritative parks:osm-destination-parks:1304932941; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1304932942 matched authoritative parks:osm-destination-parks:1304932942; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1304932944 matched authoritative parks:osm-destination-parks:1304932944; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1304933494 matched authoritative parks:osm-destination-parks:1304933494; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1304935355 matched authoritative parks:osm-destination-parks:1304935355; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1304935600 matched authoritative parks:osm-destination-parks:1304935600; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1304935965 matched authoritative parks:osm-destination-parks:1304935965; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1304938197 matched authoritative parks:osm-destination-parks:1304938197; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1305146949 matched authoritative parks:osm-destination-parks:1305146949; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:133132975 matched authoritative parks:osm-destination-parks:133132975; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1339237796 matched authoritative parks:osm-destination-parks:1339237796; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1339254711 matched authoritative parks:osm-destination-parks:1339254711; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1348099562 matched authoritative parks:osm-destination-parks:1348099562; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1349125772 matched authoritative parks:osm-destination-parks:1349125772; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1416556803 matched authoritative history:osm-destination-history:1416556803; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1424513924 matched authoritative parks:osm-destination-parks:1424513924; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1425373031 matched authoritative parks:osm-destination-parks:1425373031; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1428393619 matched authoritative parks:osm-destination-parks:1428393619; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:220488395 matched authoritative history:osm-destination-history:220488395; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:221648727 matched authoritative coffee:osm-destination-coffee:221648727; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:293116952 matched authoritative coffee:osm-destination-coffee:293116952; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:295128302 matched authoritative parks:osm-destination-parks:295128302; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:29986879 matched authoritative parks:osm-destination-parks:29986879; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:29986913 matched authoritative history:osm-destination-history:29986913; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:30753223 matched authoritative parks:osm-destination-parks:30753223; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:30753558 matched authoritative parks:osm-destination-parks:30753558; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:30763674 matched authoritative parks:osm-destination-parks:30763674; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:32790101 matched authoritative parks:osm-destination-parks:32790101; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:32792406 matched authoritative parks:osm-destination-parks:32792406; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:32792444 matched authoritative parks:osm-destination-parks:32792444; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:32792515 matched authoritative parks:osm-destination-parks:32792515; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:32792563 matched authoritative parks:osm-destination-parks:32792563; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:329793373 matched authoritative history:osm-destination-history:329793373; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:334261315 matched authoritative history:osm-destination-history:334261315; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:33777069 matched authoritative parks:osm-destination-parks:33777069; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:338648074 matched authoritative coffee:osm-destination-coffee:338648074; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:339824106 matched authoritative parks:osm-destination-parks:339824106; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:341943780 matched authoritative parks:osm-destination-parks:341943780; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:342989652 matched authoritative history:osm-destination-history:342989652; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:346578280 matched authoritative history:osm-destination-history:346578280; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:360641459 matched authoritative parks:osm-destination-parks:360641459; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:368382448 matched authoritative coffee:osm-destination-coffee:368382448; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:378227153 matched authoritative history:osm-destination-history:378227153; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:391476927 matched authoritative parks:osm-destination-parks:391476927; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:395442105 matched authoritative coffee:osm-destination-coffee:395442105; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:395700094 matched authoritative coffee:osm-destination-coffee:395700094; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:397379727 matched authoritative coffee:osm-destination-coffee:397379727; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:408853030 matched authoritative history:osm-destination-history:408853030; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:408860469 matched authoritative parks:osm-destination-parks:408860469; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:408896823 matched authoritative coffee:osm-destination-coffee:408896823; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:413045375 matched authoritative history:osm-destination-history:413045375; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:417949430 matched authoritative coffee:osm-destination-coffee:417949430; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:420406786 matched authoritative coffee:osm-destination-coffee:420406786; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:420434108 matched authoritative parks:osm-destination-parks:420434108; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:421324987 matched authoritative parks:osm-destination-parks:421324987; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:449801331 matched authoritative parks:osm-destination-parks:449801331; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:449918976 matched authoritative parks:osm-destination-parks:449918976; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:449993576 matched authoritative parks:osm-destination-parks:449993576; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:450248999 matched authoritative parks:osm-destination-parks:450248999; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:451991705 matched authoritative parks:osm-destination-parks:451991705; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:454118001 matched authoritative parks:osm-destination-parks:454118001; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:454427790 matched authoritative coffee:osm-destination-coffee:454427790; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:455398195 matched authoritative parks:osm-destination-parks:455398195; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:455443248 matched authoritative parks:osm-destination-parks:455443248; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:457736699 matched authoritative parks:osm-destination-parks:457736699; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:460913944 matched authoritative parks:osm-destination-parks:460913944; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:464839627 matched authoritative coffee:osm-destination-coffee:464839627; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:468422567 matched authoritative parks:osm-destination-parks:468422567; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:468987986 matched authoritative coffee:osm-destination-coffee:468987986; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:471663066 matched authoritative parks:osm-destination-parks:471663066; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:478447376 matched authoritative parks:osm-destination-parks:478447376; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:544052836 matched authoritative parks:osm-destination-parks:544052836; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:544229287 matched authoritative parks:osm-destination-parks:544229287; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:544275221 matched authoritative parks:osm-destination-parks:544275221; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:544275222 matched authoritative parks:osm-destination-parks:544275222; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:544275228 matched authoritative osm:way:544275226; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:544275231 matched authoritative osm:way:544275219; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:544275233 matched authoritative osm:way:544275232; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:544890136 matched authoritative parks:osm-destination-parks:544890136; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:554686188 matched authoritative parks:osm-destination-parks:554686188; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:556609152 matched authoritative parks:osm-destination-parks:556609152; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:556609153 matched authoritative parks:osm-destination-parks:556609153; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:556609154 matched authoritative parks:osm-destination-parks:556609154; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:556611602 matched authoritative parks:osm-destination-parks:556611602; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:556611604 matched authoritative parks:osm-destination-parks:556611604; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:556625525 matched authoritative parks:osm-destination-parks:556625525; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:559244988 matched authoritative parks:osm-destination-parks:559244988; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:559244989 matched authoritative parks:osm-destination-parks:559244989; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:559452558 matched authoritative parks:osm-destination-parks:559452558; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:559452559 matched authoritative parks:osm-destination-parks:559452559; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:560771268 matched authoritative parks:osm-destination-parks:560771268; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:560771270 matched authoritative parks:osm-destination-parks:560771270; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:560771272 matched authoritative parks:osm-destination-parks:560771272; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:565470758 matched authoritative parks:osm-destination-parks:565470758; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:570572112 matched authoritative parks:osm-destination-parks:570572112; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:571857803 matched authoritative parks:osm-destination-parks:571857803; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:60845639 matched authoritative parks:osm-destination-parks:60845639; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:643869798 matched authoritative parks:osm-destination-parks:643869798; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:660356296 matched authoritative history:osm-destination-history:660356296; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:660558097 matched authoritative history:osm-destination-history:660558097; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:660590064 matched authoritative history:osm-destination-history:660590064; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:660593676 matched authoritative history:osm-destination-history:660593676; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:660606481 matched authoritative history:osm-destination-history:660606481; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:666395203 matched authoritative parks:osm-destination-parks:666395203; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:684283862 matched authoritative history:osm-destination-history:684283862; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:684693926 matched authoritative parks:osm-destination-parks:684693926; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:684693946 matched authoritative parks:osm-destination-parks:684693946; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:698380880 matched authoritative coffee:osm-destination-coffee:698380880; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:698380881 matched authoritative coffee:osm-destination-coffee:698380881; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:699802402 matched authoritative osm:way:699802401; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:699802403 matched authoritative osm:way:699802401; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:699802408 matched authoritative osm:way:699802401; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:699802409 matched authoritative osm:way:699802401; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:699802425 matched authoritative osm:way:699802424; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:699802426 matched authoritative osm:way:699802424; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:699802477 matched authoritative osm:way:699802424; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:714453851 matched authoritative history:osm-destination-history:714453851; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:806190119 matched authoritative history:osm-destination-history:6184536652; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:819614434 matched authoritative history:osm-destination-history:819614434; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:842179313 matched authoritative parks:osm-destination-parks:842179313; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:848615562 matched authoritative parks:osm-destination-parks:848615562; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:854392586 matched authoritative parks:osm-destination-parks:854392586; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:864011604 matched authoritative osm:way:864011603; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:867005467 matched authoritative parks:osm-destination-parks:867005467; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:867574562 matched authoritative osm:way:867574561; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:891554105 matched authoritative parks:osm-destination-parks:891554105; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:891563140 matched authoritative parks:osm-destination-parks:891563140; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:902887601 matched authoritative osm:way:854351923; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:908244739 matched authoritative parks:osm-destination-parks:908244739; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:908503292 matched authoritative history:osm-destination-history:908503292; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:927163353 matched authoritative parks:osm-destination-parks:927163353; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:948416579 matched authoritative parks:osm-destination-parks:948416579; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:948416580 matched authoritative parks:osm-destination-parks:948416580; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:974665946 matched authoritative osm:way:874853563; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:975038805 matched authoritative osm:way:874853563; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:975096724 matched authoritative history:osm-destination-history:975096724; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:975096793 matched authoritative history:osm-destination-history:975096793; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:975096805 matched authoritative history:osm-destination-history:975096805; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:975103711 matched authoritative osm:way:975103710; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:975103712 matched authoritative osm:way:975103710; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:975106674 matched authoritative history:osm-destination-history:975106674; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:975124215 matched authoritative history:osm-destination-history:975124215; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:978578084 matched authoritative history:osm-destination-history:978578084; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:978872372 matched authoritative history:osm-destination-history:978872372; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:988200835 matched authoritative parks:osm-destination-parks:988200835; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-portland-maine"
+    }
+  ]
+}

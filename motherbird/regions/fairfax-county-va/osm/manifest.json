@@ -1,0 +1,40 @@
+{
+  "artifacts": [
+    "pois.json",
+    "merged-pois.json",
+    "validation.json",
+    "spatial-index-delta.json",
+    "attribution.json"
+  ],
+  "checksums": {
+    "attribution.json": "sha256:ca501597a745b306abe58d583d7ac21ed901619a8c4b37cde0562cb629d5b304",
+    "merged-pois.json": "sha256:82c76990e6122a792ddc02b5f2ca4297e99bbcb5f3379b9a4e6a97b7a4065851",
+    "pois.json": "sha256:66e6c9d0eff2b1db0ed657126d4ac42c409ab9604b62ddc8d0970944f250294d",
+    "spatial-index-delta.json": "sha256:2c1a34964db5b0a8936dd61ec0236a07a9fa4ed9e4ab47012b72c8a797e6c8ba",
+    "validation.json": "sha256:4981b7bd11f8ddfbab1484c1230a859d736a69e1d5ad6b46b7535c4236dd55d0"
+  },
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "recordCountsByCategory": {
+    "coffee": 754,
+    "community": 58,
+    "garden": 30,
+    "history": 501,
+    "library": 45,
+    "park": 146,
+    "public_art": 448,
+    "rest": 17,
+    "water": 1
+  },
+  "regionId": "fairfax-county-va",
+  "schemaVersion": 1,
+  "source": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "name": "OpenStreetMap",
+    "rawResponseSha256": "sha256:7791f5852dc079746e1f8239b5eaa1e1ef5e41ab6b56fb5e4538c5768249cda5",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "sourceConfigurationId": "osm-fairfax-county-va",
+  "sourceVintage": "2026-08-27T03:11:42Z"
+}

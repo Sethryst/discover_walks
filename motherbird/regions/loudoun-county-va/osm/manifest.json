@@ -1,0 +1,41 @@
+{
+  "artifacts": [
+    "pois.json",
+    "merged-pois.json",
+    "validation.json",
+    "spatial-index-delta.json",
+    "attribution.json"
+  ],
+  "checksums": {
+    "attribution.json": "sha256:8cbc488e316825040491e57b3d7d713f51bb6c5f91ae8aa15d1ab08151530d7d",
+    "merged-pois.json": "sha256:7e7b13570528abe717a4a22c88b08adee11948ed0ffe6611ad913be99e58c633",
+    "pois.json": "sha256:922a81fc1189a15125a1c8a615116900483c2996978d46c35ec04d8f8c175434",
+    "spatial-index-delta.json": "sha256:3c704741e66dda930fe7f1c6df46b5bc22236f45a80d10ba169d4e41491727a6",
+    "validation.json": "sha256:e30deab2eb3da2542262be70f8c839a5def20f19847cefbc079153bdc7776098"
+  },
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "recordCountsByCategory": {
+    "coffee": 120,
+    "community": 16,
+    "garden": 14,
+    "history": 122,
+    "library": 24,
+    "park": 340,
+    "public_art": 30,
+    "rest": 55,
+    "trail": 990,
+    "water": 3
+  },
+  "regionId": "loudoun-county-va",
+  "schemaVersion": 1,
+  "source": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "name": "OpenStreetMap",
+    "rawResponseSha256": "sha256:b41ca0b4467bea23ffb6dfb40b660319fd364cf58a6ef52ac26053f55d71280a",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "sourceConfigurationId": "osm-loudoun-county-va",
+  "sourceVintage": "2026-08-27T03:15:49Z"
+}

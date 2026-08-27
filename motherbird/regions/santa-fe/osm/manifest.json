@@ -1,0 +1,40 @@
+{
+  "artifacts": [
+    "pois.json",
+    "merged-pois.json",
+    "validation.json",
+    "spatial-index-delta.json",
+    "attribution.json"
+  ],
+  "checksums": {
+    "attribution.json": "sha256:0a2ec69ac0f13dbc861789b71d385a0a52fbd59f31fdb0c74b8ea484ef237182",
+    "merged-pois.json": "sha256:bcbad12176cfd2f5317f9c8bb7c8a7225ed605104755552caefda4a326d3bfc0",
+    "pois.json": "sha256:20b946f43527fb28d7b117886dbb1af66bf3e3eb4dea731f32467cdeb02ce08f",
+    "spatial-index-delta.json": "sha256:00b2cac6c486a6775a5d75b4150fdab9bd873f77345d053472aa4bf2ddacf224",
+    "validation.json": "sha256:7baf5347dc0d09593ee773e31f5bcd4595a653e7667abc1b255a5c477e4316fe"
+  },
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "recordCountsByCategory": {
+    "coffee": 75,
+    "community": 3,
+    "garden": 15,
+    "history": 120,
+    "library": 21,
+    "park": 115,
+    "public_art": 86,
+    "rest": 12,
+    "trail": 279
+  },
+  "regionId": "santa-fe",
+  "schemaVersion": 1,
+  "source": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "name": "OpenStreetMap",
+    "rawResponseSha256": "sha256:bbe23a8e72e98b4615cb0e72ba64fb843f17ea83aa1327dfc01b96bbfb1fb8a6",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "sourceConfigurationId": "osm-santa-fe",
+  "sourceVintage": "2026-08-27T03:20:56Z"
+}

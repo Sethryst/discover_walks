@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "regionId": "richmond",
+  "generatedAt": "2026-08-20T19:41:46.947Z",
+  "sourceVintage": "2026-08-20T19:41:46.947Z",
+  "sourceConfigurationId": "osm-richmond",
+  "source": {
+    "name": "OpenStreetMap",
+    "url": "https://overpass-api.de/api/interpreter",
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright"
+  },
+  "recordCountsByCategory": {
+    "coffee": 66,
+    "library": 14,
+    "nature": 78,
+    "park": 126
+  },
+  "artifacts": [
+    "pois.json",
+    "validation.json",
+    "spatial-index-delta.json",
+    "attribution.json"
+  ],
+  "checksums": {
+    "pois.json": "sha256:b0c844d805fdf53f5b652deeb62c004c9873c3857e137d0e3f80353a4af70786",
+    "validation.json": "sha256:e9c73027108282cf3996f94452a186723718af40af30035f6c7ac840ae0ef2d0",
+    "spatial-index-delta.json": "sha256:d11841f51be32654197a5eb47c398e23e70d182e005e66801ffdbb2f2c507119",
+    "attribution.json": "sha256:d6dfa7ab5b84347040fa607ae97acdae626ba133326768959de6c4047deff3a7"
+  }
+}

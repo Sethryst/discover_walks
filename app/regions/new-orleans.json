@@ -1,1 +1,43 @@
-{"id":"new-orleans","name":"New Orleans, LA","bbox":[29.84,-90.18,30.10,-89.93],"profile":"urban-walklife","enrichment":{"wikimedia":{"enabled":true}}}
+{
+  "id": "new-orleans",
+  "name": "New Orleans, LA",
+  "bbox": [
+    29.84,
+    -90.18,
+    30.1,
+    -89.93
+  ],
+  "profile": "urban-walklife",
+  "enrichment": {
+    "wikimedia": {
+      "enabled": true
+    }
+  },
+  "osm": {
+    "status": "enabled",
+    "enabled": true,
+    "bbox": [
+      29.84,
+      -90.18,
+      30.1,
+      -89.93
+    ],
+    "sourceId": "osm-new-orleans",
+    "endpoint": "https://overpass-api.de/api/interpreter",
+    "categories": [
+      "park",
+      "trail",
+      "water",
+      "history",
+      "public_art",
+      "library",
+      "community",
+      "garden",
+      "coffee",
+      "rest"
+    ],
+    "refreshPolicy": "monthly",
+    "maxRecords": 2000,
+    "packagePath": "motherbird/regions/new-orleans/osm/pois.json"
+  }
+}

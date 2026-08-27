@@ -1,0 +1,559 @@
+{
+  "accepted": 426,
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "regionId": "sedona-arizona",
+  "rejected": 18,
+  "schemaVersion": 1,
+  "warnings": [
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 164818505 is outside the configured bbox.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 205153661 is outside the configured bbox.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 205226966 is outside the configured bbox.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 205357678 is outside the configured bbox.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 205366733 is outside the configured bbox.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 205368974 is outside the configured bbox.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 205371009 is outside the configured bbox.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 276145842 is outside the configured bbox.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 313740641 is outside the configured bbox.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 320882634 is outside the configured bbox.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 806505747 is outside the configured bbox.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 812985585 is outside the configured bbox.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 1004503183 is outside the configured bbox.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 1289039579 is outside the configured bbox.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 1351698038 is outside the configured bbox.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM relation 2971214 is outside the configured bbox.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM relation 10956348 is outside the configured bbox.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_osm_record",
+      "detail": "osm:way:1014941051 duplicates osm:relation:11139676; the stable first record was retained.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1004503185 matched authoritative municipal:sedona:0174c433caa4d2d1b1d8; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1107200629 matched authoritative municipal:sedona:05250d2ad0ac30788f4b; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1318199868 matched authoritative municipal:sedona:51349b3506a8c96aa3c7; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1318199869 matched authoritative municipal:sedona:338b85b6404cd5965d19; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1318203814 matched authoritative osm:way:1318203812; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1318203816 matched authoritative osm:way:1318203815; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:141025164 matched authoritative municipal:sedona:c2fb7cc2c426ed7077d8; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:156032724 matched authoritative municipal:sedona:043f9d20c295ba3f0a55; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:164818506 matched authoritative municipal:sedona:ccca52a92f6aadb05f4b; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:164818507 matched authoritative municipal:sedona:50bd566526442189f786; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:164818511 matched authoritative municipal:sedona:7c52c31c9349267488c6; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:167366091 matched authoritative municipal:sedona:59f492a8fcb4388c2cfa; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:16975951 matched authoritative municipal:sedona:acd7468803e21974a8c8; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:170811084 matched authoritative municipal:sedona:185966be47857ed877cc; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:170811086 matched authoritative municipal:sedona:cb24e293252f748b8200; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:170811179 matched authoritative municipal:sedona:1cd0492b2522f92842e7; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:170820845 matched authoritative municipal:sedona:d38985f18880798f88a0; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:170938683 matched authoritative municipal:sedona:49b789988b0b96ecb40d; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:170938694 matched authoritative municipal:sedona:bad5e0abca0b2061cb23; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:174807740 matched authoritative municipal:sedona:81005b7f2cc902db2ae1; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:174854827 matched authoritative municipal:sedona:0cd280b0c4bb8b2d9505; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:174854829 matched authoritative municipal:sedona:c27240cf3c41cb140c36; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:175301082 matched authoritative municipal:sedona:d82dcdf7fb06d6d57bef; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:175307417 matched authoritative municipal:sedona:9e053fba6236b25a6cc0; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:175307420 matched authoritative municipal:sedona:be9c56d337015d2ac7bc; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:205231987 matched authoritative municipal:sedona:087d4e1a85e147da9a0a; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:205239305 matched authoritative municipal:sedona:c72c1ec5c0db9d4bb8bc; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:205239306 matched authoritative municipal:sedona:e28194dbaa0b3a585e7e; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:205273140 matched authoritative municipal:sedona:c10109ff648966a042de; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:205273142 matched authoritative municipal:sedona:0292b4030225d7beb31e; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:205282924 matched authoritative municipal:sedona:8f840a93edf7fca1b73a; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:205282926 matched authoritative municipal:sedona:4e5d7d80a318215be4a0; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:205282928 matched authoritative municipal:sedona:b8a914efe7c2f1a94019; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:205296900 matched authoritative municipal:sedona:5408981594fc67df1697; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:205297182 matched authoritative municipal:sedona:f07e0318049ec382a8f3; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:205366734 matched authoritative municipal:sedona:1a7200d7fcf42c6bc0d0; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:205368975 matched authoritative municipal:sedona:51cdae4e0af06f59fe45; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:205369385 matched authoritative municipal:sedona:226c78a76fcabd5ffe58; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:231871664 matched authoritative municipal:sedona:57a27684942d51ba2b18; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:317316730 matched authoritative municipal:sedona:ca8031d49ed1355fab6e; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:317316731 matched authoritative municipal:sedona:f41e9e57d3bcba9d0048; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:317318086 matched authoritative municipal:sedona:9531595befc929d35c08; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:317318088 matched authoritative municipal:sedona:1dec7140379a91350484; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:317371560 matched authoritative municipal:sedona:e2338fe19223bd70061e; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:320879296 matched authoritative municipal:sedona:e33e2606d8a358e79450; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:320880125 matched authoritative municipal:sedona:485d86ea7d66b8ff92d2; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:320993206 matched authoritative municipal:sedona:4b2f7e01caaddb731684; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:320993210 matched authoritative municipal:sedona:fb638e99e81959489776; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:320993214 matched authoritative municipal:sedona:b441435428aecce5e051; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:320993215 matched authoritative municipal:sedona:b93428f0de942d46f262; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:320993521 matched authoritative municipal:sedona:d4c289f25ca23ec02357; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:320994827 matched authoritative municipal:sedona:83b2a893207cffad1840; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:320994831 matched authoritative municipal:sedona:a5ac83834c7eb3eb78f8; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:320994835 matched authoritative municipal:sedona:f5f312667f42da556d22; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:320994852 matched authoritative municipal:sedona:5e9f3db0318d1679606a; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:320994879 matched authoritative municipal:sedona:c29922353949ba5b3029; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:320995726 matched authoritative municipal:sedona:b0af08d7c392c7bfb9ec; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:320995728 matched authoritative municipal:sedona:c1febc1df28a5bf74f6b; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:320996421 matched authoritative municipal:sedona:d5a70fdb952a78ad5d0a; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:320996428 matched authoritative municipal:sedona:a80632431bcd41224703; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:320997075 matched authoritative municipal:sedona:c52d18aa75e4f2f00417; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:320997076 matched authoritative municipal:sedona:a17777c6813f78c4dfe4; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:320997077 matched authoritative municipal:sedona:892e6ddd6c72a336525b; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:320997080 matched authoritative municipal:sedona:be9847fde42b76ba6074; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:320997082 matched authoritative municipal:sedona:004a8d6448a67bf15c90; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:320997087 matched authoritative municipal:sedona:0ce695d3c4f9156d0686; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:343595858 matched authoritative municipal:sedona:19718edcac25beef49b7; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:351974709 matched authoritative municipal:sedona:5f2e77df010f9e14b0ab; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:351993256 matched authoritative municipal:sedona:6e8a7bd3d5a2118ea978; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:403970898 matched authoritative municipal:sedona:b73592b8af8c61041012; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:403972786 matched authoritative municipal:sedona:1f97cf7d2ecae977d6a7; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:485752229 matched authoritative municipal:sedona:a16630a80b6e49603e5a; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:485754022 matched authoritative municipal:sedona:0d3755e6649017ccf65f; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:485754551 matched authoritative municipal:sedona:b2f5b716792bffab4d87; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:550387932 matched authoritative municipal:sedona:102ecef43727cb28a133; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:550577852 matched authoritative municipal:sedona:b6fce227ebf2f67ddc98; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:551489320 matched authoritative municipal:sedona:46d9a92ed23216d991c8; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:551560603 matched authoritative municipal:sedona:130902c1166298b0a512; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:603157834 matched authoritative municipal:sedona:bb46e4ba9ad32513aa92; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:603177789 matched authoritative municipal:sedona:8413e007646bcbbdbd44; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:672298206 matched authoritative municipal:sedona:f533fce0fa6577417d0c; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:672298212 matched authoritative municipal:sedona:41f41f06c8d953dbb6e0; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:772565377 matched authoritative municipal:sedona:3db2a73916f3835f7f11; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:779712593 matched authoritative municipal:sedona:04cbe0b57211c9db5b61; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:782542149 matched authoritative municipal:sedona:e4f8ecde94afec19b6e7; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:782542157 matched authoritative municipal:sedona:c9e03bfb542e8e5416e8; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:786409323 matched authoritative municipal:sedona:ac88685a13183bcb6dff; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:786409325 matched authoritative municipal:sedona:842ba324476ab778449e; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:806227230 matched authoritative municipal:sedona:bed3ea29bcf776b2ec7d; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:810029817 matched authoritative municipal:sedona:ba0364166be7e251a583; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:812985589 matched authoritative municipal:sedona:3fc4517e0a752c05c5af; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:875528432 matched authoritative municipal:sedona:5ed00c81f9321463a091; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-sedona-arizona"
+    }
+  ]
+}

@@ -27,17 +27,30 @@ test('Field Guide subjects are educational records with explicit HTTPS knowledge
   }
 });
 
-test('first-run modes make human Discover experiences visible and keep civic actions secondary', async () => {
+test('primary navigation keeps Walk, Discover, and Journal clear while Discover owns its three lenses', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
   assert.match(html, />Discover<\/button>/);
-  assert.match(html, />Field Guide<\/button>/);
   assert.match(html, />Journal<\/button>/);
-  assert.match(html, /Places to Explore/);
-  assert.match(html, /History &amp; Heritage/);
-  assert.match(html, /Art &amp; Culture/);
-  assert.match(html, /Food &amp; Community/);
+  assert.match(html, /data-view="map" title="Walk"/);
+  assert.match(html, /data-discover-lens="fieldGuide"/);
+  assert.match(html, /data-discover-lens="vote"/);
+  assert.match(html, /data-discover-lens="volunteer"/);
+  assert.match(html, /Notice wildlife, plants, history, architecture, and art/);
   assert.doesNotMatch(html, /data-view="vote"/);
   assert.doesNotMatch(html, /data-view="volunteer"/);
+});
+
+test('the active map keeps a persistent journal with embedded contextual tools', async () => {
+  const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  const styles = await readFile(new URL('../styles.css', import.meta.url), 'utf8');
+  assert.match(html, /id="persistentJournal" data-sheet-state="half"/);
+  assert.match(html, /id="quickJournalForm"/);
+  assert.match(html, /id="composerPhotoButton"/);
+  assert.match(html, /id="addObservationButton"/);
+  assert.match(html, /id="composerNearbyButton"/);
+  assert.match(styles, /grid-template-columns: minmax\(0, 7fr\) minmax\(310px, 3fr\)/);
+  assert.match(styles, /data-sheet-state="collapsed"/);
+  assert.match(styles, /data-sheet-state="expanded"/);
 });
 
 test('Guide is a season-and-place-aware companion, while Journal avoids collection language', async () => {

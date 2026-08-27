@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "regionId": "norfolk",
+  "generatedAt": "2026-08-20T19:40:57.231Z",
+  "sourceVintage": "2026-08-20T19:40:57.231Z",
+  "sourceConfigurationId": "osm-norfolk",
+  "source": {
+    "name": "OpenStreetMap",
+    "url": "https://overpass-api.de/api/interpreter",
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright"
+  },
+  "recordCountsByCategory": {
+    "coffee": 22,
+    "library": 14,
+    "nature": 29,
+    "park": 105
+  },
+  "artifacts": [
+    "pois.json",
+    "validation.json",
+    "spatial-index-delta.json",
+    "attribution.json"
+  ],
+  "checksums": {
+    "pois.json": "sha256:ef071d45cdac4456888fa9e0459dc9688e93dbbda006b5b072bed66647587713",
+    "validation.json": "sha256:a0dfd81a6f24c18305b84fb3720b9089f32ac64a55bfaaf75a4dd8da92515a06",
+    "spatial-index-delta.json": "sha256:b8a2f681131829e0d68f0219de66f9e13eb07205a9012aa04988f03a25a3ed59",
+    "attribution.json": "sha256:d6dfa7ab5b84347040fa607ae97acdae626ba133326768959de6c4047deff3a7"
+  }
+}

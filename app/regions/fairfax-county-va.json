@@ -1,7 +1,12 @@
 {
   "id": "fairfax-county-va",
   "name": "Fairfax County, Virginia",
-  "bbox": [38.52, -77.54, 39.07, -76.78],
+  "bbox": [
+    38.52,
+    -77.54,
+    39.07,
+    -76.78
+  ],
   "sources": [
     {
       "id": "fairfax-county-boundary",
@@ -11,7 +16,13 @@
       "domains": [],
       "layerRole": "jurisdiction_boundary",
       "artifactName": "boundary.geojson",
-      "propertyMapping": {"id": "OBJECTID", "name": "NAME", "include": ["GlobalID_1"]},
+      "propertyMapping": {
+        "id": "OBJECTID",
+        "name": "NAME",
+        "include": [
+          "GlobalID_1"
+        ]
+      },
       "licenseUrl": "https://data-fairfaxcountygis.opendata.arcgis.com/datasets/e6e10e55d29642238d4d03b1a4a11b09",
       "attribution": "Fairfax County, Virginia Department of Information Technology GIS Division",
       "authorityTier": "county_government",
@@ -22,8 +33,21 @@
       "name": "Fairfax County Park Authority Parks",
       "provider": "arcgis_feature_service",
       "url": "https://services1.arcgis.com/ioennV6PpG5Xodq0/ArcGIS/rest/services/OpenData_A1/FeatureServer/5",
-      "domains": ["parks"],
-      "propertyMapping": {"id": "OBJECTID", "name": "PARK_NAME", "include": ["PARK_CLASSIFICATION", "SUPERVISOR_DISTRICT", "PLANNING_DISTRICT", "GIS_ESTIMATED_ACREAGE", "MAINTENANCE_AREA", "MASTER_PLANNED"]},
+      "domains": [
+        "parks"
+      ],
+      "propertyMapping": {
+        "id": "OBJECTID",
+        "name": "PARK_NAME",
+        "include": [
+          "PARK_CLASSIFICATION",
+          "SUPERVISOR_DISTRICT",
+          "PLANNING_DISTRICT",
+          "GIS_ESTIMATED_ACREAGE",
+          "MAINTENANCE_AREA",
+          "MASTER_PLANNED"
+        ]
+      },
       "licenseUrl": "https://data-fairfaxcountygis.opendata.arcgis.com/",
       "attribution": "Fairfax County Park Authority / Fairfax County GIS",
       "authorityTier": "county_government",
@@ -34,8 +58,23 @@
       "name": "Fairfax County Park Authority Trails",
       "provider": "arcgis_feature_service",
       "url": "https://services1.arcgis.com/ioennV6PpG5Xodq0/ArcGIS/rest/services/OpenData_A1/FeatureServer/3",
-      "domains": ["trails"],
-      "propertyMapping": {"id": "OBJECTID", "name": "TRAIL_NAME", "include": ["SURFACE_MATERIAL", "MAINTENANCE_RESPONSIBILITY", "DIFFICULTY", "ADA", "STEPS", "PARK_NAME", "WIDTH", "RESTRICTION"]},
+      "domains": [
+        "trails"
+      ],
+      "propertyMapping": {
+        "id": "OBJECTID",
+        "name": "TRAIL_NAME",
+        "include": [
+          "SURFACE_MATERIAL",
+          "MAINTENANCE_RESPONSIBILITY",
+          "DIFFICULTY",
+          "ADA",
+          "STEPS",
+          "PARK_NAME",
+          "WIDTH",
+          "RESTRICTION"
+        ]
+      },
       "licenseUrl": "https://data-fairfaxcountygis.opendata.arcgis.com/",
       "attribution": "Fairfax County Park Authority / Fairfax County GIS",
       "authorityTier": "county_government",
@@ -46,8 +85,18 @@
       "name": "Fairfax County Sidewalk Centerlines",
       "provider": "arcgis_feature_service",
       "url": "https://services1.arcgis.com/ioennV6PpG5Xodq0/ArcGIS/rest/services/Sidewalks_Centerline/FeatureServer/0",
-      "domains": ["trails"],
-      "propertyMapping": {"id": "OBJECTID", "name": "TYPE", "include": ["WIDTH", "SURFACE_TYPE", "SOURCE"]},
+      "domains": [
+        "trails"
+      ],
+      "propertyMapping": {
+        "id": "OBJECTID",
+        "name": "TYPE",
+        "include": [
+          "WIDTH",
+          "SURFACE_TYPE",
+          "SOURCE"
+        ]
+      },
       "licenseUrl": "https://data-fairfaxcountygis.opendata.arcgis.com/",
       "attribution": "Fairfax County Department of Information Technology GIS Division",
       "authorityTier": "county_government",
@@ -58,8 +107,16 @@
       "name": "Fairfax County Park Authority Restrooms",
       "provider": "arcgis_feature_service",
       "url": "https://www.fairfaxcounty.gov/gispub2/rest/services/FCPA/TrailBuddy/FeatureServer/0",
-      "domains": ["facilities"],
-      "propertyMapping": {"id": "OBJECTID", "name": "PARK_NAME", "include": ["PARK_NAME"]},
+      "domains": [
+        "facilities"
+      ],
+      "propertyMapping": {
+        "id": "OBJECTID",
+        "name": "PARK_NAME",
+        "include": [
+          "PARK_NAME"
+        ]
+      },
       "licenseUrl": "https://www.fairfaxcounty.gov/parks/",
       "attribution": "Fairfax County Park Authority",
       "authorityTier": "county_government",
@@ -70,12 +127,52 @@
       "name": "Fairfax County Park Amenity Locator",
       "provider": "arcgis_feature_service",
       "url": "https://www.fairfaxcounty.gov/gispub2/rest/services/FCPA/ParkAmenityLocator/FeatureServer/0",
-      "domains": ["facilities"],
-      "propertyMapping": {"id": "OBJECTID", "name": "LOCATION_NAME", "include": ["PARK_NAME", "ADDRESS", "PARKING", "RESTROOMS", "TRAILS", "DRINKING_FOUNTAINS"]},
+      "domains": [
+        "facilities"
+      ],
+      "propertyMapping": {
+        "id": "OBJECTID",
+        "name": "LOCATION_NAME",
+        "include": [
+          "PARK_NAME",
+          "ADDRESS",
+          "PARKING",
+          "RESTROOMS",
+          "TRAILS",
+          "DRINKING_FOUNTAINS"
+        ]
+      },
       "licenseUrl": "https://www.fairfaxcounty.gov/parks/",
       "attribution": "Fairfax County Park Authority",
       "authorityTier": "county_government",
       "confidence": 0.96
     }
-  ]
+  ],
+  "osm": {
+    "status": "enabled",
+    "enabled": true,
+    "bbox": [
+      38.52,
+      -77.54,
+      39.07,
+      -76.78
+    ],
+    "sourceId": "osm-fairfax-county-va",
+    "endpoint": "https://overpass-api.de/api/interpreter",
+    "categories": [
+      "park",
+      "trail",
+      "water",
+      "history",
+      "public_art",
+      "library",
+      "community",
+      "garden",
+      "coffee",
+      "rest"
+    ],
+    "refreshPolicy": "monthly",
+    "maxRecords": 2000,
+    "packagePath": "motherbird/regions/fairfax-county-va/osm/pois.json"
+  }
 }

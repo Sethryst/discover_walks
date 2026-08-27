@@ -33,14 +33,40 @@ class DomainGremlin(ABC):
     def map(self, feature: IntermediateFeature) -> dict[str, Any]:
         """Create a canonical record with all original attributes kept under provenance."""
         properties = feature.properties
+        source_metadata = feature.metadata.get("sourceMetadata", {})
+        is_osm = feature.metadata.get("rawFormat") == "osm"
         name = _configured_property(feature, "name", "PARK_NAME", "PARKNAME", "NAME", "name", "FACILITY_NAME")
         return {
-            "id": f"{self.domain}:{feature.metadata['sourceMetadata']['sourceConfigId']}:{feature.source_id}",
+            "id": f"osm:{source_metadata.get('osmType')}:{feature.source_id}" if is_osm else f"{self.domain}:{source_metadata['sourceConfigId']}:{feature.source_id}",
             "domain": self.domain,
             "name": name or f"Unnamed {self.domain}",
             "geometry": feature.geometry,
-            "properties": self.attributes(properties),
-            "sources": [{"sourceId": feature.source_id, "sourceName": feature.source_name, "sourceUrl": feature.source_url, "confidence": feature.metadata["confidence"], "rawProperties": properties, "extractedAt": feature.acquisition_timestamp, "version": None}],
+            "properties": {
+                **self.attributes(properties),
+                **({
+                    "fromOsm": True,
+                    "sourceType": "osm_overpass",
+                    "osmElementType": source_metadata.get("osmType"),
+                    "osmElementId": feature.source_id,
+                    "osmTags": _observable_osm_tags(properties),
+                    "tags": sorted({self.domain.rstrip("s"), "osm"}),
+                } if is_osm else {}),
+            },
+            "sources": [{
+                "sourceId": source_metadata.get("sourceConfigId", feature.source_id),
+                "sourceElementId": feature.source_id,
+                "sourceName": feature.source_name,
+                "sourceUrl": feature.source_url,
+                "confidence": feature.metadata["confidence"],
+                "rawProperties": properties,
+                "retrievedAt": feature.acquisition_timestamp,
+                "extractedAt": feature.acquisition_timestamp,
+                "attribution": source_metadata.get("attribution"),
+                "license": source_metadata.get("license"),
+                "licenseUrl": source_metadata.get("licenseUrl"),
+                "authorityTier": feature.metadata.get("authorityTier", "community"),
+                "version": None,
+            }],
             "conflicts": [],
             "validationStatus": "valid",
             "validationFlags": [],
@@ -177,6 +203,16 @@ def _configured_property(feature: IntermediateFeature, logical_name: str, *fallb
 
 def _truthy(value: Any) -> bool:
     return str(value).strip().casefold() in {"yes", "true", "y", "1"}
+
+
+def _observable_osm_tags(properties: dict[str, Any]) -> dict[str, Any]:
+    """Keep observations as source tags; their presence is never promoted to a guarantee."""
+    allowed = {
+        "access", "amenity", "artwork_type", "drinking_water", "highway", "historic",
+        "leisure", "natural", "opening_hours", "outdoor_seating", "seasonal", "shop",
+        "surface", "tourism", "waterway", "wheelchair",
+    }
+    return {key: properties[key] for key in sorted(allowed) if properties.get(key) not in (None, "")}
 
 
 def _walk_relevance(properties: dict[str, Any]) -> tuple[int, list[str]]:

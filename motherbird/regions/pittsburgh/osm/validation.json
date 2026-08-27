@@ -1,0 +1,644 @@
+{
+  "accepted": 1359,
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "regionId": "pittsburgh",
+  "rejected": 5,
+  "schemaVersion": 1,
+  "warnings": [
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 256925074 is outside the configured bbox.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 257202561 is outside the configured bbox.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 259064776 is outside the configured bbox.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 373355142 is outside the configured bbox.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM relation 7518743 is outside the configured bbox.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10151497918 matched authoritative osm:node:10151497917; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:14127293428 matched authoritative osm:node:13650920191; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1055788260 matched authoritative municipal:pittsburgh:b1bdd2da744132686b07; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1107286711 matched authoritative municipal:pittsburgh:875c122ae53eb49149b2; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1107286712 matched authoritative municipal:pittsburgh:17833836cfa611d5d407; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1245172077 matched authoritative osm:way:1211966263; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1245172078 matched authoritative osm:way:1211966263; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1245172079 matched authoritative osm:way:1211966263; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1257053508 matched authoritative osm:way:1257053507; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1267154304 matched authoritative osm:node:3609778078; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1298254938 matched authoritative municipal:pittsburgh:5f326d39a11ef0c5528a; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1326407834 matched authoritative municipal:pittsburgh:a59509774e862461d4d7; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1364118678 matched authoritative osm:way:1364118677; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1364118688 matched authoritative osm:way:1364118670; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1364758078 matched authoritative municipal:pittsburgh:da4ec1dde8075bd6288b; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1369134305 matched authoritative osm:way:1369134304; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:137770257 matched authoritative osm:way:137770255; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1379217637 matched authoritative osm:way:1379217629; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1393100393 matched authoritative osm:way:1393100391; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1393100395 matched authoritative osm:way:1393100391; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1427458561 matched authoritative osm:way:1427426372; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1427458562 matched authoritative osm:way:1427426372; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1432614257 matched authoritative osm:way:1432614256; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:147272408 matched authoritative municipal:pittsburgh:dc824039bf9c093187d0; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1526208447 matched authoritative municipal:pittsburgh:de23a9604bd14f33c0a6; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1526258535 matched authoritative municipal:pittsburgh:69977556bbd15d49d446; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1526259791 matched authoritative municipal:pittsburgh:59f1fc1085db1f27ad68; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1526264970 matched authoritative municipal:pittsburgh:9b42e97150cf4a1daa58; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1526264971 matched authoritative municipal:pittsburgh:9917be883aaaa92954f5; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1527860224 matched authoritative municipal:pittsburgh:29688e6ea868dc5ee16f; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1551168500 matched authoritative municipal:pittsburgh:a4b016c7667d9175c8b0; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:161490438 matched authoritative municipal:pittsburgh:7795b2475e9f9afb6aa1; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:165248828 matched authoritative municipal:pittsburgh:600a44dba814085b3f52; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:202731623 matched authoritative osm:way:1458747877; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:222373249 matched authoritative municipal:pittsburgh:f3cdf062059d067d7e80; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:255367690 matched authoritative osm:way:1432614256; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:256631887 matched authoritative municipal:pittsburgh:08e554c458253fe6b365; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:257355253 matched authoritative municipal:pittsburgh:223b00cbdf1204af0708; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:257802731 matched authoritative municipal:pittsburgh:d9aa34aaf9e011618ede; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:258060756 matched authoritative municipal:pittsburgh:fa4c43ea2d2711614c93; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:258172015 matched authoritative municipal:pittsburgh:dce9d2bc6edbae687103; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:27611366 matched authoritative municipal:pittsburgh:ece95ca46d9855e15edf; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:28753407 matched authoritative municipal:pittsburgh:075f8da6154ae26615d2; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:299036505 matched authoritative municipal:pittsburgh:4f269bf6773136015856; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:299037821 matched authoritative municipal:pittsburgh:c0b415800aa387aa7e62; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:30010106 matched authoritative municipal:pittsburgh:65c919fc5d14224ef1fb; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:308433895 matched authoritative municipal:pittsburgh:e25f5ef840117cb61b74; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:31043281 matched authoritative municipal:pittsburgh:f51421165d5580f0c4c1; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:324501395 matched authoritative municipal:pittsburgh:9391480581cf84e5caf8; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:326475797 matched authoritative osm:way:256780371; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:328318924 matched authoritative municipal:pittsburgh:01468895555f1e7aa233; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:335702337 matched authoritative municipal:pittsburgh:418c9c1926b59cd67634; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:335710542 matched authoritative municipal:pittsburgh:fa5170a8254ee93c694c; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:348438433 matched authoritative osm:way:1107291511; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:351930323 matched authoritative municipal:pittsburgh:7c55ecf2fa4c2a0a0da1; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:351930457 matched authoritative osm:way:1364118682; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:351933981 matched authoritative osm:way:1364118682; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:353934783 matched authoritative municipal:pittsburgh:9935b4d2147b81cb1292; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:353934784 matched authoritative municipal:pittsburgh:c6d84bf54b88141f888c; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:359263741 matched authoritative municipal:pittsburgh:cb11681d952a21f10f7b; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:362636645 matched authoritative municipal:pittsburgh:3e5a2db0c37546dbc5cc; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:366376693 matched authoritative municipal:pittsburgh:d1765f0b158fb20ef603; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:366698830 matched authoritative municipal:pittsburgh:a1bb383afeb10f41f2df; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:366698855 matched authoritative municipal:pittsburgh:779c0f6d5f06a6d10734; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:366749496 matched authoritative municipal:pittsburgh:c8d65f4c0a8fbb3ce272; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:366749515 matched authoritative municipal:pittsburgh:4adf763ee362e1924180; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:371276224 matched authoritative municipal:pittsburgh:ed99f4bbd6f90dcbe3e0; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:378067794 matched authoritative municipal:pittsburgh:9fdade95562b58904277; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:392540776 matched authoritative osm:way:392540775; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:392540786 matched authoritative osm:way:392540781; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:423731558 matched authoritative municipal:pittsburgh:a94fd6f6355899020923; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:423731559 matched authoritative municipal:pittsburgh:4491d4091a0b8687f8ef; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:423731565 matched authoritative municipal:pittsburgh:3bb276f93b6ac0669ec3; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:423731569 matched authoritative municipal:pittsburgh:8c13f5aff98f24cafeac; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:42390279 matched authoritative municipal:pittsburgh:97614950982438754089; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:429780692 matched authoritative municipal:pittsburgh:3397a6e3fb8d7b131183; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:429780695 matched authoritative municipal:pittsburgh:281297313243b8f71dbd; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:429798476 matched authoritative municipal:pittsburgh:bbd0831a2c9286b7717f; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:429798481 matched authoritative municipal:pittsburgh:971e0c7451eea480a414; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:429798485 matched authoritative municipal:pittsburgh:284954ea8084c4157ea4; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:429798487 matched authoritative municipal:pittsburgh:4ac13f61cb041339df6e; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:429798493 matched authoritative municipal:pittsburgh:c1be0740f5af0f097e91; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:429798497 matched authoritative municipal:pittsburgh:d93cf0850cf61784fb22; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:443292182 matched authoritative municipal:pittsburgh:43deab667d04a0855741; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:446612729 matched authoritative municipal:pittsburgh:e987d67f23529e4aab02; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:446612730 matched authoritative municipal:pittsburgh:6ecbe7f85d203f7777c7; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:446615329 matched authoritative municipal:pittsburgh:5f7954956bc8607eb030; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:451801389 matched authoritative municipal:pittsburgh:4d6a3a13896c592af404; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:451801391 matched authoritative osm:way:451801388; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:458890535 matched authoritative municipal:pittsburgh:8955b2efb8735fbbf2c2; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:481075289 matched authoritative osm:way:189597795; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:491689937 matched authoritative municipal:pittsburgh:9cb77cd21e8c8172524f; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:499401146 matched authoritative municipal:pittsburgh:6c68de3f62370972825b; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:502923932 matched authoritative osm:node:12622317718; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:509223807 matched authoritative osm:node:6421098985; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:550018173 matched authoritative osm:way:308684519; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:550018175 matched authoritative osm:way:308684519; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:583824269 matched authoritative municipal:pittsburgh:da095f0147b36d7d2abc; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:59381729 matched authoritative municipal:pittsburgh:84f12259fb1fe61142dc; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:647490051 matched authoritative municipal:pittsburgh:ced03416917c9eff0284; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:698325590 matched authoritative municipal:pittsburgh:2716784c88f06809b0a0; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:700747730 matched authoritative municipal:pittsburgh:9ea9f88180a81f2364c6; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:700747735 matched authoritative municipal:pittsburgh:2532802dcc0285a6de38; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:700773476 matched authoritative municipal:pittsburgh:378a8d212446841d42f3; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:723912752 matched authoritative municipal:pittsburgh:f3485e58ea9aeb69b28c; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:731238433 matched authoritative osm:way:731238432; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:732003654 matched authoritative municipal:pittsburgh:445828679d08f926c46b; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:732003657 matched authoritative municipal:pittsburgh:e57e3ec5e02fd88cf900; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:754430236 matched authoritative municipal:pittsburgh:3a56f29fc960ed2d11f7; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:754435226 matched authoritative municipal:pittsburgh:efc5b274c606ea1d21ff; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:765275233 matched authoritative municipal:pittsburgh:8f5e62cbd41562be7c97; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:767412931 matched authoritative municipal:pittsburgh:6350f38edf6bcd22c890; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:780358462 matched authoritative osm:way:1368959719; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:797197959 matched authoritative osm:way:797197958; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:797197966 matched authoritative osm:way:797197958; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:797197967 matched authoritative osm:way:797197958; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:833629681 matched authoritative osm:way:54834750; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:833629682 matched authoritative osm:way:550018003; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:840001704 matched authoritative municipal:pittsburgh:98f30e5cf449a71de25e; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:893074992 matched authoritative municipal:pittsburgh:92d411a7c9455b04dfe4; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:893076276 matched authoritative municipal:pittsburgh:b1930403dc01ebd82abd; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:996639984 matched authoritative municipal:pittsburgh:2dade7367cb504219668; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-pittsburgh"
+    }
+  ]
+}

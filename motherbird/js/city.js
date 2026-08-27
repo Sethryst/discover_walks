@@ -8,16 +8,17 @@ import { setStatus, toast } from './ui.js';
 import { addObservationMarker } from './observation.js';
 import { renderWeatherBrief } from './weather.js';
 import { loadNeighborhoodsForCity } from './neighborhoods.js';
+import { normalizeRegionDataConfig } from './osm-regions.js';
 
 export async function loadCityData(cityId) {
-  const config = CITIES[cityId];
+  const config = normalizeRegionDataConfig(cityId, CITIES[cityId]);
   const saved = (await db.all('points_of_interest')).filter((poi) => poi.city === cityId);
   const metadata = await db.get('poi_metadata', `${cityId}-seed`);
   const response = await fetch(config.dataFile);
   if (!response.ok) throw new Error(`${cityLabel(cityId)} places data could not be loaded.`);
   const seed = await response.json();
   let supplements = [];
-  const supplementFiles = [config.supplementalPoiFile, ...(config.supplementalPoiFiles || []), config.journeyFile].filter(Boolean);
+  const supplementFiles = [...(config.supplementalPoiFiles || []), config.journeyFile, config.osm?.enabled ? config.osm.packageFile : null].filter(Boolean);
   if (supplementFiles.length) {
     const packages = await Promise.all(supplementFiles.map(async (file) => {
       try {

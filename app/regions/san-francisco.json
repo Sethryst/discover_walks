@@ -1,1 +1,43 @@
-{"id":"san-francisco","name":"San Francisco, CA","bbox":[37.70,-122.53,37.84,-122.34],"profile":"urban-walklife","enrichment":{"wikimedia":{"enabled":true}}}
+{
+  "id": "san-francisco",
+  "name": "San Francisco, CA",
+  "bbox": [
+    37.7,
+    -122.53,
+    37.84,
+    -122.34
+  ],
+  "profile": "urban-walklife",
+  "enrichment": {
+    "wikimedia": {
+      "enabled": true
+    }
+  },
+  "osm": {
+    "status": "enabled",
+    "enabled": true,
+    "bbox": [
+      37.7,
+      -122.53,
+      37.84,
+      -122.34
+    ],
+    "sourceId": "osm-san-francisco",
+    "endpoint": "https://overpass-api.de/api/interpreter",
+    "categories": [
+      "park",
+      "trail",
+      "water",
+      "history",
+      "public_art",
+      "library",
+      "community",
+      "garden",
+      "coffee",
+      "rest"
+    ],
+    "refreshPolicy": "monthly",
+    "maxRecords": 2000,
+    "packagePath": "motherbird/regions/san-francisco/osm/pois.json"
+  }
+}

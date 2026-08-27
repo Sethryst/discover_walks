@@ -78,8 +78,9 @@ export function startWalk() {
   if (!navigator.geolocation) { toast('Location is not supported in this browser.'); return; }
   state.activeWalk = { id: uid('walk'), city: state.activeCity, startedAt: new Date().toISOString(), endedAt: null, durationSeconds: 0, distanceMeters: 0, points: [], journal: null, paused: false, pausedAt: null, pausedMilliseconds: 0, lastRawPoint: null, discoveryCount: 0 };
   ensurePauseButton(); state.routeLine?.remove(); state.routeLine = L.polyline([], { color: '#245448', weight: 5, opacity: .85 }).addTo(state.map);
-  el('walkButton').textContent = 'End walk'; el('walkButton').classList.add('walking'); setStatus('Recording your walk', true);
+  el('walkButton').innerHTML = '<span aria-hidden="true">●</span> Walk details'; el('walkButton').classList.add('walking'); setStatus('Recording your walk', true);
   updateWalkDisplay();
+  void renderArchive();
   state.timerId = setInterval(updateWalkDisplay, 1000);
   state.watchId = navigator.geolocation.watchPosition((position) => handlePosition(position, state.activeWalk.points.length === 0), () => { setStatus('Location connection paused'); toast('Location connection paused - your current route is still saved.'); }, { enableHighAccuracy: true, maximumAge: 5000, timeout: 15000 });
   getCurrentLocation();
@@ -100,7 +101,7 @@ export async function stopWalk() {
   const finished = { ...state.activeWalk, endedAt: new Date().toISOString(), points: [...state.activeWalk.points] };
   const award = await updateProfile((profile) => { const score = calculateWalkAward(finished, profile); profile.totalPoints += score.total; profile.walksCompleted += 1; profile.milesTotal += score.miles; if (score.firstWalkToday) { profile.streakDays = score.nextStreak; profile.lastWalkDate = score.date; } return score; });
   finished.pointsAwarded = award.total; await db.put('walks', finished); state.activeWalk = null; updateWalkDisplay();
-  el('walkButton').textContent = 'Start walk'; el('walkButton').classList.remove('walking'); const pauseButton = el('pauseWalkButton'); if (pauseButton) pauseButton.classList.add('hidden');
+  el('walkButton').innerHTML = '<img class="ui-icon ui-icon--small" src="./icons/activity.svg" alt="" /> Start walk'; el('walkButton').classList.remove('walking'); const pauseButton = el('pauseWalkButton'); if (pauseButton) pauseButton.classList.add('hidden');
   setStatus('Walk saved locally'); toast(`Walk saved - +${award.total} points.`); renderArchive(); openJournal(finished.id);
 }
 

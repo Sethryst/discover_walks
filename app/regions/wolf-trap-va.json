@@ -1,19 +1,29 @@
 {
   "id": "wolf-trap-va",
   "name": "Wolf Trap, Virginia",
-  "bbox": [38.91, -77.30, 38.98, -77.22],
+  "bbox": [
+    38.91,
+    -77.3,
+    38.98,
+    -77.22
+  ],
   "sources": [
     {
       "id": "nps-wolf-trap",
       "name": "NPS Wolf Trap events",
       "provider": "nps_events",
       "url": "https://developer.nps.gov/api/v1/events",
-      "domains": ["event"],
+      "domains": [
+        "event"
+      ],
       "licenseUrl": "https://www.nps.gov/subjects/developer/guides.htm",
       "authorityTier": "federal_government",
       "confidence": 0.95,
       "credentialEnv": "NPS_API_KEY",
-      "providerOptions": {"parkCode": "wotr", "pageSize": 100},
+      "providerOptions": {
+        "parkCode": "wotr",
+        "pageSize": 100
+      },
       "status": "active"
     },
     {
@@ -21,12 +31,16 @@
       "name": "USGS water monitoring locations",
       "provider": "usgs_monitoring_locations",
       "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items",
-      "domains": ["water"],
+      "domains": [
+        "water"
+      ],
       "licenseUrl": "https://api.waterdata.usgs.gov/docs/",
       "authorityTier": "federal_government",
       "confidence": 0.95,
       "credentialEnv": "USGS_WATER_API_KEY",
-      "providerOptions": {"limit": 500},
+      "providerOptions": {
+        "limit": 500
+      },
       "status": "active"
     },
     {
@@ -34,13 +48,45 @@
       "name": "eBird Wolf Trap recent hotspot observations",
       "provider": "ebird_recent",
       "url": "https://api.ebird.org/v2/data/obs/geo/recent",
-      "domains": ["wildlife"],
+      "domains": [
+        "wildlife"
+      ],
       "licenseUrl": "https://science.ebird.org/en/status-and-trends/products-access-terms-of-use",
       "authorityTier": "community",
       "confidence": 0.7,
       "credentialEnv": "EBIRD_API_TOKEN",
-      "providerOptions": {"days": 7, "distanceKm": 25},
+      "providerOptions": {
+        "days": 7,
+        "distanceKm": 25
+      },
       "status": "active"
     }
-  ]
+  ],
+  "osm": {
+    "status": "enabled",
+    "enabled": true,
+    "bbox": [
+      38.91,
+      -77.3,
+      38.98,
+      -77.22
+    ],
+    "sourceId": "osm-wolf-trap-va",
+    "endpoint": "https://overpass-api.de/api/interpreter",
+    "categories": [
+      "park",
+      "trail",
+      "water",
+      "history",
+      "public_art",
+      "library",
+      "community",
+      "garden",
+      "coffee",
+      "rest"
+    ],
+    "refreshPolicy": "monthly",
+    "maxRecords": 2000,
+    "packagePath": "motherbird/regions/wolf-trap-va/osm/pois.json"
+  }
 }

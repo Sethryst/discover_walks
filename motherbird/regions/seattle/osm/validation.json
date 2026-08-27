@@ -1,0 +1,734 @@
+{
+  "accepted": 1996,
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "regionId": "seattle",
+  "rejected": 4,
+  "schemaVersion": 1,
+  "warnings": [
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 35157179 is outside the configured bbox.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 38705659 is outside the configured bbox.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 55329049 is outside the configured bbox.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 80061505 is outside the configured bbox.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "max_records_reached",
+      "detail": "The bounded Overpass response reached maxRecords=2000.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:14109170433 matched authoritative municipal:seattle:e17b713cba38734af9d0; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2035719674 matched authoritative osm:node:2035719673; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3211770134 matched authoritative osm:node:3211770126; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3211770136 matched authoritative osm:node:3211770135; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3211770138 matched authoritative osm:node:3211770135; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3211770139 matched authoritative osm:node:3211770135; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4359597089 matched authoritative osm:node:13141165534; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4424122605 matched authoritative osm:node:4424122604; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4424122606 matched authoritative osm:node:4424122604; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9846664113 matched authoritative osm:node:9846664112; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:101677291 matched authoritative municipal:seattle:464609c3d0b7c0e24401; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:12908403 matched authoritative municipal:seattle:d984fec1d0c794012189; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:13513921 matched authoritative municipal:seattle:c393c5be1af8d8502aed; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:13800188 matched authoritative municipal:seattle:0274604786d856e10ac2; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:13801411 matched authoritative municipal:seattle:f894986358ca8af11b82; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:14026690 matched authoritative municipal:seattle:650969a58b91f9bcefa5; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:25788265 matched authoritative municipal:seattle:2903c0e29926e417d0c0; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:25790355 matched authoritative municipal:seattle:fb622190e74ce8b6e196; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:29897483 matched authoritative municipal:seattle:06b232267e618ab75711; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:30199408 matched authoritative municipal:seattle:8759f29607d823fb7dd5; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:31652093 matched authoritative municipal:seattle:36230db3815bd2c0b14e; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:31658929 matched authoritative municipal:seattle:eb07aea24f5aef3b4068; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:31659491 matched authoritative municipal:seattle:f35a3a052ea623d2615d; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:31694025 matched authoritative osm:way:31694016; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:31696963 matched authoritative municipal:seattle:2174dba4434b5127cb77; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:31870424 matched authoritative municipal:seattle:9113072724ebfe1a6792; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:32123475 matched authoritative municipal:seattle:266bdbd9c42111d44bfc; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:32526883 matched authoritative municipal:seattle:7be4e354c9c8f7e53ec6; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:32527194 matched authoritative municipal:seattle:660ce5f0b8426597a480; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:34150701 matched authoritative municipal:seattle:6d665989c1f18ee01ded; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:35449707 matched authoritative osm:way:35449705; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:36413699 matched authoritative municipal:seattle:cc1614478a7027caa1e4; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:37623411 matched authoritative municipal:seattle:198c67a15843c892f182; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:37623649 matched authoritative municipal:seattle:3c288631a3a3855f673a; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:37860101 matched authoritative osm:way:37856384; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:38655779 matched authoritative municipal:seattle:259aa057a3667d92ce9a; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:40819484 matched authoritative municipal:seattle:eaa5074c29e4de3fc7df; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:41293170 matched authoritative municipal:seattle:cfa52c2c9517489e0f3d; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:41500680 matched authoritative osm:way:41500677; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:42512155 matched authoritative municipal:seattle:68cf478233f56697e910; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:48334012 matched authoritative osm:way:48334007; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:49232846 matched authoritative municipal:seattle:9ab26fd346194d76a10f; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:49321099 matched authoritative municipal:seattle:29d5382c25fb72b050e8; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:49668025 matched authoritative osm:way:49668021; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:49734706 matched authoritative municipal:seattle:07d3d54e5f15a2eece60; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:49749535 matched authoritative municipal:seattle:8b10557ab8f5b8babcb7; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:49749536 matched authoritative municipal:seattle:893d98e43345aa4dbca3; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50275550 matched authoritative municipal:seattle:fa025302e8f8bded74d7; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50275554 matched authoritative municipal:seattle:3eba6f140c0431b54ab4; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50275578 matched authoritative municipal:seattle:34a6ae39cc88df73ea54; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50275581 matched authoritative municipal:seattle:8eb8aa0725ecf2972044; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50321775 matched authoritative municipal:seattle:068edccfbf232dcd940f; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50321784 matched authoritative municipal:seattle:bc58062638a7e94382ed; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50321786 matched authoritative municipal:seattle:d8f245ae87dbceeb1267; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50321788 matched authoritative municipal:seattle:b014bb5f65d99b5e08df; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50329129 matched authoritative municipal:seattle:55f998cde3cffe7a9f5d; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50329137 matched authoritative municipal:seattle:fa770fd0230d3a4d004f; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50419095 matched authoritative municipal:seattle:4255e0f4794ef0f5ac4f; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50419096 matched authoritative municipal:seattle:34498c2a868700f1466c; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50419101 matched authoritative municipal:seattle:6187f7dc9558615c123e; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50536564 matched authoritative municipal:seattle:118669cd48ea86fb2a99; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50536573 matched authoritative municipal:seattle:cfcfb51703f24a826156; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50622236 matched authoritative municipal:seattle:392cf735cfac89c36f7f; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50622237 matched authoritative municipal:seattle:f75c35414c5aad9d2967; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50622242 matched authoritative municipal:seattle:a803833f31287d0635ec; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50622252 matched authoritative municipal:seattle:897418594fa3e0609153; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50786465 matched authoritative municipal:seattle:5954ec74aabe4b8813f5; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:51473916 matched authoritative municipal:seattle:a4c2fc4fec281f641d6d; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:51475862 matched authoritative municipal:seattle:cc378b096f2d573c38a7; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:51805184 matched authoritative municipal:seattle:62ea254ead2761188e17; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:51805194 matched authoritative municipal:seattle:867b6cd7d34953a98f1c; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:51805195 matched authoritative municipal:seattle:36fe7c52b121ec49bb07; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:51809145 matched authoritative municipal:seattle:108f9ae37cdeabc83248; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:51809148 matched authoritative municipal:seattle:eb564d058f8cf66213ed; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:51809157 matched authoritative municipal:seattle:01ef5be8e112d099b3ef; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:51870591 matched authoritative municipal:seattle:fae29fe652ef83bd18c3; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:52128531 matched authoritative municipal:seattle:862f80042e1524009630; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:52128532 matched authoritative municipal:seattle:72c65340f8ebebeb60a5; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:52128533 matched authoritative municipal:seattle:ee9f37ff95f4b8d522f1; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:52141605 matched authoritative municipal:seattle:390339397564a4cecb06; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:52201954 matched authoritative municipal:seattle:5e9ce2f6724a7791af3e; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:52324866 matched authoritative municipal:seattle:468e8edd5972bffe03f9; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:52324868 matched authoritative municipal:seattle:9f19cdac97f7793c2981; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:52324870 matched authoritative municipal:seattle:360a778cc292642907f5; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:52563647 matched authoritative municipal:seattle:5290bf51e117135419e3; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:52563649 matched authoritative municipal:seattle:6c8648200de1e9b2530d; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:52781879 matched authoritative municipal:seattle:7f43a84a019663af8b52; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:53371551 matched authoritative municipal:seattle:3b961243d5c35079e34e; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:53588536 matched authoritative municipal:seattle:7159db6be6f7e7de40a9; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:53589176 matched authoritative municipal:seattle:235a882a99c0434b40e8; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:53590572 matched authoritative municipal:seattle:badf73a98c6684333abc; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:53608260 matched authoritative municipal:seattle:fecbea1c514bfc6db4f4; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:53610784 matched authoritative municipal:seattle:fbad09a60cd34e3aa594; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:53615747 matched authoritative municipal:seattle:dfe9a255bdf5a5bd4be7; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:54394873 matched authoritative municipal:seattle:12f1da1c674b33afb9c2; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:54905008 matched authoritative municipal:seattle:fe0244c99bbd61547248; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:54905017 matched authoritative municipal:seattle:ad49b85d9e18423556b6; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:54905018 matched authoritative municipal:seattle:973b4ddf34311eeced98; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:56176610 matched authoritative municipal:seattle:cfcabc82b645bacb7e98; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:56178741 matched authoritative municipal:seattle:de95b4c39cd40bdcd264; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:56393779 matched authoritative municipal:seattle:7147b26506ea08ea28c8; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:56395160 matched authoritative municipal:seattle:a56e5e7e8ef1bfc58057; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:56395162 matched authoritative municipal:seattle:a9a3bb02e37b01d02dfc; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:56395176 matched authoritative municipal:seattle:44ac612454aab76f90dd; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:56395184 matched authoritative municipal:seattle:70285d0af2fa058c29e6; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:56629212 matched authoritative municipal:seattle:e17b713cba38734af9d0; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:56629389 matched authoritative municipal:seattle:14c584ff03a75bbfc725; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:57386820 matched authoritative municipal:seattle:225733ef770ea38964b3; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:57522839 matched authoritative municipal:seattle:c783f8409e5dae02ea21; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:57637326 matched authoritative municipal:seattle:b12932ed976ef50d9cc4; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:57637336 matched authoritative municipal:seattle:1bfd2b6c58082bbb8882; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:57850373 matched authoritative municipal:seattle:fba0025f7f10c59cd841; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:57883622 matched authoritative municipal:seattle:20c81e477bd2525259a7; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:57883627 matched authoritative municipal:seattle:48ed4bcbbcdde74cb3a8; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:57885588 matched authoritative municipal:seattle:a65589d5029419e47bd0; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:58363993 matched authoritative municipal:seattle:ee964917094222f37a60; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:59037675 matched authoritative municipal:seattle:3aa62d7d19fea3b13252; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:59877064 matched authoritative municipal:seattle:b8173425d12688fc02fa; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:59914507 matched authoritative municipal:seattle:d10dd11a20fa95a33d63; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:60007122 matched authoritative municipal:seattle:163ec753315991985c1a; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:60007123 matched authoritative municipal:seattle:096ccd4284108ef0bb00; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:60116525 matched authoritative municipal:seattle:786ea4e19dfc57deb594; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:60193646 matched authoritative municipal:seattle:a3b72be913db9116eddf; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:60517403 matched authoritative municipal:seattle:c161f9df104c747344e6; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:60713727 matched authoritative municipal:seattle:f810c3c7c89df1f0e39c; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:62207148 matched authoritative municipal:seattle:5e0c7770077dc130b3cd; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:66218128 matched authoritative municipal:seattle:e4ecb0801e40258471fb; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:66649038 matched authoritative municipal:seattle:8971e8747ecf89c7de0d; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:66649039 matched authoritative municipal:seattle:512d8ef6a1dafb5e5818; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:66649040 matched authoritative municipal:seattle:4d7b0322a413b901de72; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:66820434 matched authoritative municipal:seattle:6ddb3a0fc9205d705742; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:66984947 matched authoritative municipal:seattle:0cfae1e51ac354e27058; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:69153432 matched authoritative municipal:seattle:155f69893b60fe5073f0; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:69153438 matched authoritative municipal:seattle:42c5f3ed6eaf329265dd; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:69708554 matched authoritative municipal:seattle:f79d365638db76e5f637; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:69708562 matched authoritative municipal:seattle:8e034642b7dfaccbea98; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:75971720 matched authoritative municipal:seattle:1eb3e6098ed08cdfc5db; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:75978288 matched authoritative municipal:seattle:e45a218e3a651070a947; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:8097422 matched authoritative municipal:seattle:8e4df4d16c8bd5b7687c; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:88794169 matched authoritative municipal:seattle:9b94765c650bbebf197a; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-seattle"
+    }
+  ]
+}

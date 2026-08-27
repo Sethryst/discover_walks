@@ -1,0 +1,40 @@
+{
+  "artifacts": [
+    "pois.json",
+    "merged-pois.json",
+    "validation.json",
+    "spatial-index-delta.json",
+    "attribution.json"
+  ],
+  "checksums": {
+    "attribution.json": "sha256:154f6f698dd9d2f0d5b2787a4dbd76d019e4aa48d2ffcdfc4c2e0ef78e1a6f57",
+    "merged-pois.json": "sha256:1bfdac7f603cc285367410cc8a638969afb3bb108c6ec21968b2709aa687c12c",
+    "pois.json": "sha256:7d8526fa4e56d4b4bc430dcfb65d8652a0ad7bbf3e7efc620892a81d96637a97",
+    "spatial-index-delta.json": "sha256:eb4bec45c688453519e471bb765585ea69239b9cda18a5cda134f6e0e17d1cc6",
+    "validation.json": "sha256:cd80b18e00863bab0d579c8bf7cb3759b9257feb1a1251485b8dcd5adf4e15d9"
+  },
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "recordCountsByCategory": {
+    "coffee": 558,
+    "community": 13,
+    "garden": 6,
+    "history": 83,
+    "library": 39,
+    "park": 473,
+    "public_art": 258,
+    "rest": 23,
+    "trail": 531
+  },
+  "regionId": "denver",
+  "schemaVersion": 1,
+  "source": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "name": "OpenStreetMap",
+    "rawResponseSha256": "sha256:eb54a0e6a868f5a33664485cc5a14cbfb89b1903e55a754e7b95c8cc53528a6f",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "sourceConfigurationId": "osm-denver",
+  "sourceVintage": "2026-08-27T03:10:42Z"
+}

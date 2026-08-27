@@ -1,0 +1,314 @@
+{
+  "accepted": 1657,
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "regionId": "detroit",
+  "rejected": 10,
+  "schemaVersion": 1,
+  "warnings": [
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 444080418 is outside the configured bbox.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 461122528 is outside the configured bbox.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 562334707 is outside the configured bbox.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 563048134 is outside the configured bbox.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 648740998 is outside the configured bbox.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 751429899 is outside the configured bbox.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 1060056240 is outside the configured bbox.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 1265188710 is outside the configured bbox.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM relation 5964354 is outside the configured bbox.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM relation 6601938 is outside the configured bbox.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7632772813 matched authoritative municipal:detroit:3f2b32c7defd8c802a0b; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:10012029 matched authoritative municipal:detroit:a9bcde89a58d5a5581ff; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:14903749 matched authoritative municipal:detroit:7392bc3c8f5b8ba428f8; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1018663936 matched authoritative osm:way:1018663915; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1055769399 matched authoritative osm:way:1055769398; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:107483242 matched authoritative municipal:detroit:b895a12ce5d03f7bd8a3; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:114191363 matched authoritative municipal:detroit:690c51886aab6826893b; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:114285307 matched authoritative municipal:detroit:77627828867baac1cb69; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:114287254 matched authoritative municipal:detroit:ffea363dacd280298942; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1162672759 matched authoritative osm:way:1162672757; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1240659517 matched authoritative osm:way:1200036685; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1265207734 matched authoritative osm:way:1017418649; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1295748605 matched authoritative osm:node:10880880894; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:136541439 matched authoritative municipal:detroit:be23d60a23fc785f56fd; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1454503949 matched authoritative osm:node:13195700709; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1543125454 matched authoritative osm:way:1543125453; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1543140186 matched authoritative osm:way:1119933386; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1545431550 matched authoritative osm:way:1265188727; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:234893863 matched authoritative municipal:detroit:d9b31451f6c4d31147fa; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:312528662 matched authoritative osm:way:312528661; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:330839648 matched authoritative municipal:detroit:b0f0410773b14aa94656; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:382936966 matched authoritative osm:way:382931282; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:382936967 matched authoritative osm:way:382931282; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:382936968 matched authoritative osm:way:382931282; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:382936969 matched authoritative osm:way:382931282; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:382936971 matched authoritative osm:way:382936970; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:382936972 matched authoritative osm:way:382936970; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:382936973 matched authoritative osm:way:382936970; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:382936974 matched authoritative osm:way:382936970; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:458588850 matched authoritative municipal:detroit:4be97b8307ff04b41b4b; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:468981358 matched authoritative municipal:detroit:f0a0fedcc016248be902; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:475422238 matched authoritative osm:way:475422237; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:475422239 matched authoritative osm:way:475422232; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:497942919 matched authoritative osm:way:1543125453; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:557852359 matched authoritative osm:way:334624522; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:557852362 matched authoritative osm:way:334624522; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:577402485 matched authoritative municipal:detroit:e7be4bbf6e9cecbe27c0; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:622466479 matched authoritative municipal:detroit:6cf729425fec93d27ccb; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:658030494 matched authoritative osm:way:1543125453; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:660027629 matched authoritative osm:way:497942921; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:672180311 matched authoritative osm:node:2905653097; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:69706040 matched authoritative osm:way:1055769398; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:69706072 matched authoritative osm:way:1055769398; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:712151365 matched authoritative osm:node:6695922199; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:751170781 matched authoritative osm:node:11368809681; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:751756139 matched authoritative osm:node:7427201655; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:775056503 matched authoritative osm:way:334624526; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:784224232 matched authoritative municipal:detroit:99e88f29da4ffc20ddf4; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:812687064 matched authoritative municipal:detroit:53d8b67339c54ca058ad; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:912497816 matched authoritative osm:way:192755658; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:912497818 matched authoritative osm:way:192755658; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-detroit"
+    }
+  ]
+}

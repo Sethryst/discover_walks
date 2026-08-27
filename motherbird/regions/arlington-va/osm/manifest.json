@@ -1,0 +1,41 @@
+{
+  "artifacts": [
+    "pois.json",
+    "merged-pois.json",
+    "validation.json",
+    "spatial-index-delta.json",
+    "attribution.json"
+  ],
+  "checksums": {
+    "attribution.json": "sha256:c0e4b3757559b7ea1d111e83d9ce8480919d683ee1cd03585d16b7c72e15cdb1",
+    "merged-pois.json": "sha256:96199c1623c8fc25747df2c88ac547c39ce804117181c3dde3d85d92eb0f0d09",
+    "pois.json": "sha256:33a3ff22f51e44f91a685044844dd8a0c827d498b0ffa4f53c5d171cac7087cd",
+    "spatial-index-delta.json": "sha256:34e13edfa7090e247fdf3d2f1d557360a080c1a0a6fc950b57853fedf51fd960",
+    "validation.json": "sha256:3c2f9f801f328dd7883988c1262160def339941a246a6e8f09f2883bd182571b"
+  },
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "recordCountsByCategory": {
+    "coffee": 290,
+    "community": 12,
+    "garden": 28,
+    "history": 291,
+    "library": 31,
+    "park": 279,
+    "public_art": 170,
+    "rest": 14,
+    "trail": 362,
+    "water": 2
+  },
+  "regionId": "arlington-va",
+  "schemaVersion": 1,
+  "source": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "name": "OpenStreetMap",
+    "rawResponseSha256": "sha256:98ed5ded87d95608d3d9368436e1c238f27bcee52fa4cf134dde6ba74736485d",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "sourceConfigurationId": "osm-arlington-va",
+  "sourceVintage": "2026-08-27T03:04:35Z"
+}

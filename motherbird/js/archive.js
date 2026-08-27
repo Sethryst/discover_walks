@@ -35,11 +35,56 @@ export async function saveJournal(event) {
   await db.put('moments', moment);
   closeSheets(); toast(`Reflection saved locally · ${wordCount(note)} words.`); renderArchive();
 }
+export async function saveQuickJournal(event) {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const note = el('quickJournalNote').value.trim();
+  const file = el('quickJournalPhoto').files[0];
+  if (!note && !file) { toast('Write a thought or add a photo first.'); return; }
+  let photo = null;
+  if (file) photo = await new Promise((resolve) => { const reader = new FileReader(); reader.onload = () => resolve(reader.result); reader.readAsDataURL(file); });
+  await db.put('moments', {
+    id: uid('moment'), type: 'journal', title: note ? 'Field note' : 'Photograph', mood: 'Noticed',
+    note: note || 'A photograph from this place.', prompt: null, createdAt: new Date().toISOString(),
+    walkId: state.activeWalk?.id || null, city: state.activeCity, photo,
+    location: state.currentPosition || (state.map ? { lat: state.map.getCenter().lat, lng: state.map.getCenter().lng } : null)
+  });
+  form.reset();
+  el('quickJournalPhotoName').textContent = 'Private on this device';
+  toast('Added to your journal.');
+  await renderArchive();
+}
 export async function renderArchive() {
   let items = await allArchiveItems();
   if (state.archiveFilter === 'walk') items = items.filter((item) => item.type === 'walk' || item.type === 'journal');
   if (state.archiveFilter === 'observation') items = items.filter((item) => item.type === 'observation');
-  el('archiveList').innerHTML = items.length ? items.map(momentCard).join('') : '<div class="empty-state">No matching moments yet. Start a walk or add an observation from the map.</div>';
+  el('archiveList').innerHTML = items.length ? items.map(momentCard).join('') : '<div class="empty-state">No matching moments yet. Start a walk or write from the map.</div>';
+  await renderJournalTimeline();
+}
+
+function timelineEvent({ icon, label, title, detail, createdAt, photo = null, active = false }) {
+  const time = new Date(createdAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+  return `<article class="timeline-event ${active ? 'active' : ''}"><time>${escapeHtml(time)}</time><span class="timeline-dot">${icon}</span><div><small>${escapeHtml(label)}</small><strong>${escapeHtml(title)}</strong>${detail ? `<p>${escapeHtml(detail)}</p>` : ''}${photo ? `<img src="${photo}" alt="Journal photograph" />` : ''}</div></article>`;
+}
+
+export async function renderJournalTimeline() {
+  const target = el('journalTimeline');
+  if (!target) return;
+  const [walks, observations, moments] = await Promise.all([db.all('walks'), db.all('observations'), db.all('moments')]);
+  const events = [];
+  walks.forEach((walk) => {
+    events.push({ icon: '↝', label: 'Walk', title: 'Walk started', detail: `${formatDistance(walk.distanceMeters)} miles`, createdAt: walk.startedAt });
+    if (walk.endedAt) events.push({ icon: '✓', label: 'Walk', title: 'Walk ended', detail: formatDuration(walk.durationSeconds), createdAt: walk.endedAt });
+  });
+  observations.forEach((item) => events.push({ icon: '⌁', label: 'Observation', title: item.species || 'Observation', detail: item.note || (item.personalTags || []).join(', '), createdAt: item.createdAt, photo: item.photo }));
+  moments.forEach((item) => events.push({ icon: item.type === 'history' ? '✦' : '“', label: item.type === 'history' ? 'Place remembered' : 'Thought', title: item.title || 'Field note', detail: item.note, createdAt: item.createdAt, photo: item.photo }));
+  if (state.activeWalk) events.push({ icon: '●', label: 'Walk in progress', title: 'Walk started', detail: `${formatDistance(state.activeWalk.distanceMeters)} miles so far`, createdAt: state.activeWalk.startedAt, active: true });
+  events.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+  target.innerHTML = events.length ? events.slice(-12).map(timelineEvent).join('') : '<div class="journal-empty"><span>⌁</span><strong>Your walk begins here.</strong><p>Write a thought, add a photograph, or start walking. The timeline will grow with you.</p></div>';
+  const latest = events.at(-1);
+  const preview = el('journalCollapsedPreview');
+  if (preview) preview.textContent = latest ? `${new Date(latest.createdAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })} · ${latest.title}` : 'A place becomes a memory when you pause to notice it.';
+  requestAnimationFrame(() => { target.scrollTop = target.scrollHeight; });
 }
 export async function openWalkDetail(id) {
   const walk = await db.get('walks', id); if (!walk) return;

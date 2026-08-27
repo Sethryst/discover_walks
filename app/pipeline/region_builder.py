@@ -11,7 +11,7 @@ from typing import Any
 from app.pipeline.cache import cache_response, load_cached_response
 from app.pipeline.civic import load_civic_artifacts
 from app.pipeline.domains import AccessibilityGremlin, ArtGremlin, CoffeeGremlin, CommunityGremlin, DetourGremlin, EventGremlin, FacilitiesGremlin, HistoryGremlin, NatureGremlin, PantryGremlin, ParksGremlin, PlantGremlin, RestGremlin, RouteGremlin, ScenicGremlin, TrailsGremlin, WaterGremlin, WildlifeGremlin
-from app.pipeline.entity_resolution import find_duplicate_candidates
+from app.pipeline.entity_resolution import find_duplicate_candidates, reconcile_osm_records
 from app.pipeline.export import build_release, write_bundle
 from app.pipeline.geography import build_boundary_layer, verify_geographic_artifacts
 from app.pipeline.nws import build_weather_snapshot
@@ -50,6 +50,11 @@ def build_region(region_file: Path, output_root: Path, cache_root: Path, produce
             else:
                 features, raw_response = provider.acquire(source, region)
                 cache_path = cache_response(cache_root, region["id"], source.id, raw_response, timestamp)
+            if isinstance(provider, OsmOverpassProvider):
+                # The release timestamp, not wall-clock acquisition timing,
+                # controls derived bytes for a fixed raw snapshot.
+                features = provider.parse(raw_response, source, timestamp)
+                warnings.extend(getattr(provider, "warnings", []))
             if source.layer_role:
                 artifact, layer_warnings = build_boundary_layer(raw_response, source, region["id"], timestamp, cache_path)
                 artifact_name = source.artifact_name or f"{source.layer_role}.geojson"
@@ -84,17 +89,26 @@ def build_region(region_file: Path, output_root: Path, cache_root: Path, produce
         warnings.extend(WikimediaEnricher().enrich(records, cache_root, region["id"], timestamp))
     records, validation_report = validate_records(records, region["bbox"])
     dedup_groups = find_duplicate_candidates(records)
+    osm_records = [record for record in records if record["id"].startswith("osm:")]
+    records, reconciliation_warnings = reconcile_osm_records(records)
+    warnings.extend(reconciliation_warnings)
     public_pois = [_public_poi(record) for record in records if record["validationStatus"] != "rejected" and _representative_coordinate(record["geometry"]) is not None]
     release, manifest = build_release(region["id"], public_pois, warnings, producer_version, timestamp)
     manifest["sources"] = source_reports
     manifest["geography"] = geography_manifest
-    supplemental = {"canonical-records.json": _release_safe_records(records), "validation-report.json": validation_report, "dedup-groups.json": dedup_groups}
+    osm_pois = [_public_poi(record) for record in osm_records if record["validationStatus"] != "rejected" and _representative_coordinate(record["geometry"]) is not None]
+    supplemental = {
+        "canonical-records.json": _release_safe_records(records),
+        "osm-pois.json": {"schemaVersion": 1, "regionId": region["id"], "generatedAt": timestamp, "sourceVintage": timestamp, "attribution": "© OpenStreetMap contributors", "license": "ODbL-1.0", "sourceConfigurationId": region["osm"]["sourceId"], "pois": sorted(osm_pois, key=lambda poi: poi["id"])},
+        "validation-report.json": validation_report,
+        "dedup-groups.json": dedup_groups,
+    }
     if weather_snapshot is not None:
         supplemental["weather.json"] = weather_snapshot
     civic = load_civic_artifacts(region["id"], producer_version, timestamp)
     destination = write_bundle(output_root, release, manifest, dry_run=dry_run, supplemental=supplemental, civic=civic, geography=geography)
     verified_geography = {} if dry_run else verify_geographic_artifacts(destination, manifest)
-    return {"destination": str(destination), "records": len(records), "publicPois": len(public_pois), "geography": verified_geography, "warnings": warnings, "sources": source_reports}
+    return {"destination": str(destination), "records": len(records), "publicPois": len(public_pois), "osmPois": len(osm_pois), "geography": verified_geography, "warnings": warnings, "sources": source_reports}
 
 
 def _latest_cached_response(cache_root: Path, region_id: str, source_id: str) -> Path:
@@ -109,7 +123,7 @@ def _public_poi(record: dict[str, Any]) -> dict[str, Any]:
     lng, lat = _representative_coordinate(record["geometry"]) or (0.0, 0.0)
     properties = {key: value for key, value in record["properties"].items() if value not in (None, [], "")}
     category = {"parks": "park", "trails": "trail", "route": "route", "facilities": "facility", "coffee": "coffee", "nature": "nature", "water": "water", "community": "community", "art": "art", "wildlife": "wildlife", "plant": "plant", "rest": "rest", "history": "history", "scenic": "scenic", "accessibility": "accessibility", "pantry": "pantry", "event": "event", "detour": "detour"}[record["domain"]]
-    return {"id": record["id"], "name": record["name"], "lat": lat, "lng": lng, "category": category, **properties, "source": [{"name": source["sourceName"], "id": source["sourceId"], "url": source["sourceUrl"]} for source in record["sources"]], "review": {"validationStatus": record["validationStatus"], "flags": record["validationFlags"], "dedupGroupId": record.get("dedup_group_id")}}
+    return {"id": record["id"], "name": record["name"], "lat": lat, "lng": lng, "category": category, **properties, "source": [{"name": source["sourceName"], "id": source["sourceId"], "elementId": source.get("sourceElementId"), "url": source["sourceUrl"], "attribution": source.get("attribution"), "license": source.get("license"), "licenseUrl": source.get("licenseUrl"), "retrievedAt": source.get("retrievedAt")} for source in record["sources"]], "review": {"validationStatus": record["validationStatus"], "flags": record["validationFlags"], "dedupGroupId": record.get("dedup_group_id")}}
 
 
 def _release_safe_records(records: list[dict[str, Any]]) -> list[dict[str, Any]]:

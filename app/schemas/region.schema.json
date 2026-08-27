@@ -2,11 +2,27 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Gremlin Lab Region Configuration",
   "type": "object",
-  "required": ["id", "name", "bbox", "sources"],
+  "required": ["id", "name", "bbox", "osm"],
   "properties": {
     "id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
     "name": {"type": "string"},
     "bbox": {"type": "array", "items": {"type": "number"}, "minItems": 4, "maxItems": 4},
+    "osm": {
+      "type": "object",
+      "required": ["status", "enabled", "bbox", "sourceId", "categories", "refreshPolicy", "maxRecords"],
+      "properties": {
+        "status": {"enum": ["enabled", "unavailable"]},
+        "enabled": {"type": "boolean"},
+        "bbox": {"type": "array", "items": {"type": "number"}, "minItems": 4, "maxItems": 4},
+        "sourceId": {"type": "string", "pattern": "^osm-[a-z0-9-]+$"},
+        "endpoint": {"type": "string", "format": "uri"},
+        "categories": {"type": "array", "items": {"enum": ["park", "trail", "water", "history", "public_art", "library", "community", "garden", "coffee", "rest"]}},
+        "refreshPolicy": {"type": "string"},
+        "maxRecords": {"type": "integer", "minimum": 1, "maximum": 20000},
+        "packagePath": {"type": "string"},
+        "unavailableReason": {"type": "string", "minLength": 1}
+      }
+    },
     "sources": {
       "type": "array",
       "items": {

@@ -1,0 +1,41 @@
+{
+  "artifacts": [
+    "pois.json",
+    "merged-pois.json",
+    "validation.json",
+    "spatial-index-delta.json",
+    "attribution.json"
+  ],
+  "checksums": {
+    "attribution.json": "sha256:634f3ab863102f08e30f8c711d28a5d62f2e4725b0efd4a8219491f6d49be533",
+    "merged-pois.json": "sha256:f9578b96572901ced0bda3cca8302ac22bdf02e26415f1870555f2e49f452dca",
+    "pois.json": "sha256:a006b279eb5007fada9b76eedc1dc6be9389305b3d73bb2da786ded5bdbbaa07",
+    "spatial-index-delta.json": "sha256:619e30790c07d0bab87efc20a8ac55f436dceb7166173d78620fab2cefe87b49",
+    "validation.json": "sha256:5e1219f7a726014ead37dab2e176d1d54bad13bbbd00ab5b5f3493369c183aaa"
+  },
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "recordCountsByCategory": {
+    "coffee": 541,
+    "community": 27,
+    "garden": 50,
+    "history": 469,
+    "library": 62,
+    "park": 301,
+    "public_art": 422,
+    "rest": 13,
+    "trail": 110,
+    "water": 1
+  },
+  "regionId": "washington-dc",
+  "schemaVersion": 1,
+  "source": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "name": "OpenStreetMap",
+    "rawResponseSha256": "sha256:0003d686ea4edd4d9e44b23c701c3f6cf40944020671500297d98c648c70f2a2",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "sourceConfigurationId": "osm-washington-dc",
+  "sourceVintage": "2026-08-27T03:23:00Z"
+}

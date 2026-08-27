@@ -1,0 +1,1004 @@
+{
+  "accepted": 1807,
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "regionId": "columbus",
+  "rejected": 17,
+  "schemaVersion": 1,
+  "warnings": [
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 71466840 is outside the configured bbox.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 71469374 is outside the configured bbox.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 71470552 is outside the configured bbox.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 300661667 is outside the configured bbox.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 386816273 is outside the configured bbox.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 444332464 is outside the configured bbox.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 469514383 is outside the configured bbox.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 541111627 is outside the configured bbox.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 550348417 is outside the configured bbox.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 559892807 is outside the configured bbox.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 559915119 is outside the configured bbox.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 633118414 is outside the configured bbox.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 1106868266 is outside the configured bbox.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 1225328733 is outside the configured bbox.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM relation 8140988 is outside the configured bbox.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_osm_record",
+      "detail": "osm:way:465233662 duplicates osm:relation:20670584; the stable first record was retained.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_osm_record",
+      "detail": "osm:way:860410183 duplicates osm:way:299949659; the stable first record was retained.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10048374547 matched authoritative osm:node:10048374546; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:10708966 matched authoritative municipal:columbus:3eed1b4461d5d9a27e42; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:20251048 matched authoritative municipal:columbus:27ecb1b4a4de8c879677; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:7946203 matched authoritative municipal:columbus:044b022a1a40eca8f313; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:7946205 matched authoritative municipal:columbus:9c9e8fbf857afa447340; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:7946209 matched authoritative municipal:columbus:1ed543467b80458a4b1f; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:8367598 matched authoritative municipal:columbus:4d5d4c393b77a03e711f; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:8419564 matched authoritative municipal:columbus:efb4c5a0cc0186aea67b; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1173559864 matched authoritative municipal:columbus:a9436e3de4e9e19d8f24; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1197047905 matched authoritative osm:way:1101304405; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1197047906 matched authoritative osm:way:1101304405; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1207016600 matched authoritative osm:way:1207016599; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1207016601 matched authoritative osm:way:1207016599; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1257899452 matched authoritative osm:way:1257899451; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1288989120 matched authoritative municipal:columbus:744b347c47d41ccae35d; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1291899099 matched authoritative osm:way:1291899098; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1328041293 matched authoritative osm:way:1328041292; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1329639737 matched authoritative municipal:columbus:14b6d6fb58fffc111d14; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1329938690 matched authoritative municipal:columbus:4432ba3bca4458113c65; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1382814696 matched authoritative osm:way:1382814694; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:140471718 matched authoritative municipal:columbus:7e055b375e664b406003; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1442366672 matched authoritative municipal:columbus:e5b77a65290e6f1ff498; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1442366674 matched authoritative municipal:columbus:33e7c1668937ef2a334c; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1442366675 matched authoritative municipal:columbus:e4086708158dce16e33e; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1469674324 matched authoritative municipal:columbus:9b3b29e376c3731dbc49; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1473231951 matched authoritative municipal:columbus:e398b9f6376db0f38a62; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1483502466 matched authoritative municipal:columbus:6bccd36591f5003c8d3d; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1483702912 matched authoritative municipal:columbus:deccf647b749294f7cca; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1502545856 matched authoritative osm:way:1502545855; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:193869983 matched authoritative municipal:columbus:fe45df85a9dbd2f7b1a2; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:193869984 matched authoritative municipal:columbus:fed6bdfc2de3b6b0abd9; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:225240595 matched authoritative osm:node:13310123433; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:264055657 matched authoritative municipal:columbus:b308d43f93c6c44f5a11; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:264057149 matched authoritative municipal:columbus:bedabbaf86ee772cc34e; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:264057150 matched authoritative municipal:columbus:00ea115e9efeff8e3204; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:264058729 matched authoritative municipal:columbus:aa5fdf1dd7070330d861; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:290721011 matched authoritative municipal:columbus:318f5a699baa0b86ce92; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:30173167 matched authoritative municipal:columbus:90c15c539954c098dcb5; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:30272263 matched authoritative municipal:columbus:a9ee3cba2fa4b2450bad; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:320685615 matched authoritative municipal:columbus:f8e8ba8ff834c5eb800c; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:360742031 matched authoritative municipal:columbus:fd43968c1d3c1288a647; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:36370132 matched authoritative municipal:columbus:d3f63fbe446e3074deae; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:372854037 matched authoritative municipal:columbus:73cc6d53a529d5695172; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:374587306 matched authoritative municipal:columbus:9e68086dcaef722094e9; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:391601744 matched authoritative municipal:columbus:8d9d31e17b38c9ff82d8; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:393664346 matched authoritative municipal:columbus:438a1fc663eec14a152c; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:394247922 matched authoritative municipal:columbus:f7dd7b4649699daf33d7; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:394250148 matched authoritative municipal:columbus:bf49972f8f01b06cf122; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:431107795 matched authoritative municipal:columbus:6208d66a72600214aede; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:431223990 matched authoritative municipal:columbus:ead7664daead26e9e13a; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:431228186 matched authoritative municipal:columbus:6d103abb9cea9b172207; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:431228880 matched authoritative municipal:columbus:960368d4b1abbac8457e; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:431230248 matched authoritative municipal:columbus:5dab79ae72c6b94d0ca3; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:431230504 matched authoritative municipal:columbus:a8cca6ac6112875789e4; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:431230938 matched authoritative municipal:columbus:0c8501572d81e01a783a; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:431231504 matched authoritative municipal:columbus:99fd6c32c6eaa17aff51; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:431231505 matched authoritative municipal:columbus:a527a73e938cd2ace50b; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:431231577 matched authoritative municipal:columbus:45330146b7517b81fb7a; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:431231634 matched authoritative municipal:columbus:f8c7788f8ff4222696f1; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:440638031 matched authoritative municipal:columbus:3a01175be26f2ef488ef; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:444838501 matched authoritative municipal:columbus:33dcccd060ff05d6f9cd; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:463501257 matched authoritative municipal:columbus:54ac0905ad5d887c0cee; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:463502484 matched authoritative municipal:columbus:d867addc7ba621cc0f13; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:463503071 matched authoritative municipal:columbus:352a28fcada636a657f6; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:464020964 matched authoritative municipal:columbus:4bc0541603fa5c58b467; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:464020968 matched authoritative municipal:columbus:39d3ea2f1052cf362dba; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:464020977 matched authoritative municipal:columbus:1cc8dd6f7b37443940cd; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:465231386 matched authoritative municipal:columbus:716f1181c539b0057bae; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:465231680 matched authoritative municipal:columbus:e9d6ec89ed1d3811f1f0; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:465231908 matched authoritative municipal:columbus:f04c927aafc2269c686b; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:465233459 matched authoritative municipal:columbus:8ae3cc814c17185b8d8e; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:465236646 matched authoritative municipal:columbus:e9e0fff721ffe5f911e1; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:465236647 matched authoritative municipal:columbus:ccb66c6098902cc6167c; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:465248033 matched authoritative municipal:columbus:79b3793c7779cda43b20; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:465248514 matched authoritative municipal:columbus:7d27cbb53b956af5a61a; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:465249270 matched authoritative municipal:columbus:1040cc89e21e38182a36; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:465249275 matched authoritative municipal:columbus:0d64c65a34447d871c8e; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:465250165 matched authoritative municipal:columbus:e3dda73f65f079ece96e; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:465250559 matched authoritative municipal:columbus:ce41f6543cb04f88359a; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:465253056 matched authoritative municipal:columbus:87f693c6d883f5bc78d5; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:465254920 matched authoritative municipal:columbus:75fc70f2e3efe4cb85ff; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:465325829 matched authoritative municipal:columbus:964a80df59195bfb2a4a; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:465326189 matched authoritative municipal:columbus:434079d87e1f9085284c; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:465327276 matched authoritative municipal:columbus:1fb6f6d44ef6cf328dd4; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:465775665 matched authoritative municipal:columbus:0ccb8638f6399e66829c; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:465775667 matched authoritative municipal:columbus:1e3fec0fe770668f32df; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:465775812 matched authoritative municipal:columbus:16f29827d87b8fc23a8e; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:465776015 matched authoritative municipal:columbus:94546fcee4f0fc00508b; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:465937337 matched authoritative municipal:columbus:0891ac541664b07cd06f; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:465937542 matched authoritative municipal:columbus:8ebeb869c05733838f0d; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:465938876 matched authoritative municipal:columbus:aea07ea32fa56d04be5d; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:466144886 matched authoritative municipal:columbus:7fc01d49f094a47cbad8; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:466145210 matched authoritative municipal:columbus:8e20a20c7f863fbf4d86; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:466145796 matched authoritative municipal:columbus:098d9c9b47f45644f6c6; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:466223941 matched authoritative municipal:columbus:03117bf9b8a03944000d; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:466701880 matched authoritative municipal:columbus:8a1d8abe835c97996e32; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:466702775 matched authoritative municipal:columbus:9049797bfc013cb9971d; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:466703058 matched authoritative municipal:columbus:25d0c4aaea2bdd3d1b92; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:466703549 matched authoritative municipal:columbus:930bcdff31237f438057; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:466703551 matched authoritative municipal:columbus:83b21ecf32c48c133cfa; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:467554218 matched authoritative municipal:columbus:5eb5e9e8da35afcec7a6; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:467554423 matched authoritative municipal:columbus:5d5f9c8617f445f16230; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:468047411 matched authoritative municipal:columbus:70fab24c0ff853b91c75; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:468615432 matched authoritative municipal:columbus:c18fac579f21d9970179; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:468762657 matched authoritative municipal:columbus:762e4586ac6a179bc043; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:469106752 matched authoritative municipal:columbus:923b50cb677ae5969525; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:476104378 matched authoritative municipal:columbus:51a17e3cd13e26b8a591; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:480335663 matched authoritative municipal:columbus:27836d91403816fa66e2; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:490175560 matched authoritative municipal:columbus:dfa8c21bab9ad185abc4; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:490176912 matched authoritative municipal:columbus:61c439fddf8278cb5f28; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:491192954 matched authoritative municipal:columbus:bb365cf2295d8380d31d; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:500500235 matched authoritative municipal:columbus:1ab7f63b258dfbc8ab2a; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:512632872 matched authoritative municipal:columbus:5502e1971cbc97c2ab7b; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:515584562 matched authoritative municipal:columbus:cba415c444b984beefd5; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:515584565 matched authoritative municipal:columbus:79d8f09a8e43d29b650a; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:515586091 matched authoritative municipal:columbus:c7d7f8d513c0d38ae621; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:515589853 matched authoritative municipal:columbus:3e25db635b17d36d7c28; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:515589857 matched authoritative municipal:columbus:cf47bbeb95564831e376; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:515600608 matched authoritative municipal:columbus:8f3448ef89fd170c5f35; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:515600609 matched authoritative municipal:columbus:c1ab3136bc98726cfc4b; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:515606812 matched authoritative municipal:columbus:76a517a142ea02958f3d; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:515606820 matched authoritative municipal:columbus:f47a3e70df9876a8b295; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:515610543 matched authoritative municipal:columbus:2866f7769502a6afe711; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:515628145 matched authoritative municipal:columbus:3c7f298580708f318c11; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:515630043 matched authoritative municipal:columbus:90fad7350864c82e074a; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:515630044 matched authoritative municipal:columbus:f28d3ce165018bc527b2; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:515633462 matched authoritative municipal:columbus:5e048ef6f9f05d1c75bd; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:515645889 matched authoritative municipal:columbus:4fd13a773e477c1d11a6; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:515654480 matched authoritative municipal:columbus:2127c5fbef9645c5ed6c; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:515654486 matched authoritative municipal:columbus:b51c030845e78ea2097c; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:515658577 matched authoritative municipal:columbus:185e53d7ceb4323c951f; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:515658583 matched authoritative municipal:columbus:d0fb0d24a266a8c003d9; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:516171363 matched authoritative municipal:columbus:3ac45677fbdd9d256a46; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:516171391 matched authoritative municipal:columbus:3d83613c6db0f26f9d9f; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:516179995 matched authoritative municipal:columbus:d285c017618f8ab0a9e8; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:516180000 matched authoritative municipal:columbus:664c0a05294b11dce86e; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:516180295 matched authoritative municipal:columbus:9e05761ca43d0833431c; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:516180296 matched authoritative municipal:columbus:e41a34e0f6fb7aa064dd; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:516233787 matched authoritative municipal:columbus:1291cb7f3237e82810bd; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:516236643 matched authoritative municipal:columbus:a3475de21e2a03f85d15; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:516239565 matched authoritative municipal:columbus:36b70fde70ec15f946da; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:516442378 matched authoritative municipal:columbus:f815047137f1e8368533; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:516450540 matched authoritative municipal:columbus:12fabb302421a8cef734; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:516450542 matched authoritative municipal:columbus:d09df8ac67750cbadd5c; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:516464245 matched authoritative municipal:columbus:8124829c59143ce0d897; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:516471822 matched authoritative municipal:columbus:d8b38e8669980a0ff021; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:516478605 matched authoritative municipal:columbus:999e7a34bf278ed62e04; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:516478606 matched authoritative municipal:columbus:a1dfbceb131a25d863db; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:517458255 matched authoritative municipal:columbus:e8d2ff486935d4d3f2de; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:517458256 matched authoritative municipal:columbus:c8ffb040c6a13cdb6c33; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:517458258 matched authoritative municipal:columbus:402cb43a90313006e07c; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:517458259 matched authoritative municipal:columbus:7d3a4e0a3a78b06585e4; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:517787832 matched authoritative municipal:columbus:e941b1d34c25c20bc105; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:517787835 matched authoritative municipal:columbus:1801f6f4d12e4dcb2c79; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:518055928 matched authoritative municipal:columbus:5b747f1a0d77eae7154f; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:519728675 matched authoritative municipal:columbus:ae7219b00e12533f339d; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:519728677 matched authoritative municipal:columbus:46ed90c087de51779f51; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:519728678 matched authoritative municipal:columbus:30ee67788c23e7136e7d; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:519732557 matched authoritative municipal:columbus:e5ada96f1b5040bf7769; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:519739276 matched authoritative municipal:columbus:2ccd488d6db5ac9cc451; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:519740991 matched authoritative municipal:columbus:d2734b000c9420163aef; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:519743928 matched authoritative municipal:columbus:57734dcbf56f0971d681; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:519743932 matched authoritative municipal:columbus:a9e30400e89faddcb718; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:519752928 matched authoritative municipal:columbus:c2fa1c0af8b9479c1ee8; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:519752932 matched authoritative municipal:columbus:b05c3173f4a94f7a3f2e; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:520062678 matched authoritative municipal:columbus:e2f5291b2a902d169d25; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:520062679 matched authoritative municipal:columbus:48456e3bc4415d5d269f; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:520062680 matched authoritative municipal:columbus:852d18303d5c9b7bbe44; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:520062681 matched authoritative municipal:columbus:cb3d9557c0bf68026357; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:520103198 matched authoritative municipal:columbus:66e75365b115642b09e5; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:520103199 matched authoritative municipal:columbus:6b19fc68b51d340129d3; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:520103208 matched authoritative municipal:columbus:be3036309a67ddcd1da4; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:523821743 matched authoritative municipal:columbus:71a732f295a374b8ccfb; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:539153507 matched authoritative municipal:columbus:a191625b3773eb4bac15; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:547194498 matched authoritative municipal:columbus:6e637306f054365c5115; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:550348211 matched authoritative osm:way:550348209; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:555859067 matched authoritative municipal:columbus:a41af7795b18ad3603fb; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:555899056 matched authoritative osm:node:5715518624; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:555899117 matched authoritative municipal:columbus:0f64f4c38780bfe5e80c; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:584869143 matched authoritative municipal:columbus:bb0c3fced8c5cb7595a8; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:650842984 matched authoritative osm:way:386818374; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:763219956 matched authoritative municipal:columbus:645dcb8b7efc0bca0d24; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-columbus"
+    }
+  ]
+}

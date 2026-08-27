@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "regionId": "philadelphia",
+  "generatedAt": "2026-08-20T19:41:39.059Z",
+  "sourceVintage": "2026-08-20T19:41:39.059Z",
+  "sourceConfigurationId": "osm-philadelphia",
+  "source": {
+    "name": "OpenStreetMap",
+    "url": "https://overpass-api.de/api/interpreter",
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright"
+  },
+  "recordCountsByCategory": {
+    "coffee": 240,
+    "library": 37,
+    "nature": 300,
+    "park": 294
+  },
+  "artifacts": [
+    "pois.json",
+    "validation.json",
+    "spatial-index-delta.json",
+    "attribution.json"
+  ],
+  "checksums": {
+    "pois.json": "sha256:fdcb6b890d0ace4eb98fbde6cbb5f884e9bc0d60070eb5ce0f178e4e3ec5894f",
+    "validation.json": "sha256:b1b5cc17afdd6e8559725245610a0af381f25eabdb7839e981f55a50d08e08a6",
+    "spatial-index-delta.json": "sha256:bfc8575a93849688b7b36d5975a2904427cd94527e55af0e026e424aec8defd2",
+    "attribution.json": "sha256:d6dfa7ab5b84347040fa607ae97acdae626ba133326768959de6c4047deff3a7"
+  }
+}

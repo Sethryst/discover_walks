@@ -1,1 +1,43 @@
-{"id":"santa-fe","name":"Santa Fe, NM","bbox":[35.55,-106.10,35.78,-105.82],"profile":"destination-walklife","enrichment":{"wikimedia":{"enabled":true}}}
+{
+  "id": "santa-fe",
+  "name": "Santa Fe, NM",
+  "bbox": [
+    35.55,
+    -106.1,
+    35.78,
+    -105.82
+  ],
+  "profile": "destination-walklife",
+  "enrichment": {
+    "wikimedia": {
+      "enabled": true
+    }
+  },
+  "osm": {
+    "status": "enabled",
+    "enabled": true,
+    "bbox": [
+      35.55,
+      -106.1,
+      35.78,
+      -105.82
+    ],
+    "sourceId": "osm-santa-fe",
+    "endpoint": "https://overpass-api.de/api/interpreter",
+    "categories": [
+      "park",
+      "trail",
+      "water",
+      "history",
+      "public_art",
+      "library",
+      "community",
+      "garden",
+      "coffee",
+      "rest"
+    ],
+    "refreshPolicy": "monthly",
+    "maxRecords": 2000,
+    "packagePath": "motherbird/regions/santa-fe/osm/pois.json"
+  }
+}

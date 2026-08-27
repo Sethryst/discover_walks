@@ -1,8 +1,8 @@
 import { state } from './state.js';
 import { CITIES, DEFAULT_PROFILE, DEFAULT_SETTINGS, GEOFENCE_CATEGORIES } from './constants.js';
-import { el, normalizeProfile } from './utils.js';
+import { el, normalizeProfile, uid } from './utils.js';
 import { initBackupControls } from './backup.js';
-import { openWalkDetail, saveHistoryMoment, saveJournal, renderArchive } from './archive.js';
+import { openWalkDetail, saveHistoryMoment, saveJournal, saveQuickJournal, renderArchive } from './archive.js';
 import { getCurrentLocation, startWalk, stopWalk, togglePauseWalk, updateWalkDisplay } from './walk.js';
 import { openObservation, saveObservation, setDraftObservationIcon } from './observation.js';
 import { openJournal, closeSheets, openSheet, openAccountSettings, openFiltersSheet, openProfile, renderGeofenceCategoryChips, setArchiveFilter, showView, toast } from './ui.js';
@@ -18,6 +18,7 @@ import { showCuratedRoute } from './routes.js';
 import { generateTimeBasedPlan, previewTimeBasedPlan, choosePlan, changePlan, setPlanningMode, lockSelectedPlanOnMap, togglePlanVisibility, draftWalkFromText } from './planner.js';
 import { wordCount } from './reflection.js';
 import { onboardingProgress, onboardingValue } from './onboarding.js';
+import { renderNearbyPlaces, setJournalSheetState } from './journal-pane.js';
 
 export function initEvents() {
   initBackupControls();
@@ -25,11 +26,17 @@ export function initEvents() {
   el('archiveList').addEventListener('keydown', (event) => { const card = event.target.closest('[data-walk-id]'); if (card && (event.key === 'Enter' || event.key === ' ')) { event.preventDefault(); openWalkDetail(card.dataset.walkId); } });
   el('locateButton').addEventListener('click', getCurrentLocation);
   el('homeCityButton').addEventListener('click', () => openRegionChooser());
-  el('walkButton').addEventListener('click', () => state.activeWalk ? stopWalk() : startWalk());
+  el('walkButton').addEventListener('click', () => state.activeWalk ? openSheet('routeSheet') : openSheet('startWalkSheet'));
   el('activeRouteButton').addEventListener('click', () => { updateWalkDisplay(); openSheet('routeSheet'); });
   el('routePauseButton').addEventListener('click', togglePauseWalk);
   el('routeEndButton').addEventListener('click', () => { closeSheets(); stopWalk(); });
   el('planWalkButton').addEventListener('click', async () => { setPlanningMode(true); openSheet('planWalkSheet'); await generateTimeBasedPlan(); });
+  el('startWalkSheet').addEventListener('click', async (event) => {
+    const choice = event.target.closest('[data-start-walk-mode]'); if (!choice) return;
+    state.plannerEnd = null;
+    const input = document.querySelector(`input[name="routeMode"][value="${choice.dataset.startWalkMode}"]`); if (input) input.checked = true;
+    closeSheets(); setPlanningMode(true); openSheet('planWalkSheet'); await generateTimeBasedPlan();
+  });
   el('choosePlanStartButton').addEventListener('click', () => { state.plannerSelecting = 'Start'; toast('Planning mode: tap a starting point.'); closeSheets(); showView('map'); });
   el('choosePlanEndButton').addEventListener('click', () => { state.plannerSelecting = 'End'; toast('Planning mode: tap a destination.'); closeSheets(); showView('map'); });
   window.addEventListener('planner-point-selected', async () => { openSheet('planWalkSheet'); await generateTimeBasedPlan(); });
@@ -62,6 +69,29 @@ export function initEvents() {
     if (!poi) return; showView('map'); state.map.flyTo([poi.lat, poi.lng], Math.max(city().zoom + 2, 16));
   });
   el('addObservationButton').addEventListener('click', () => openObservation());
+  el('quickJournalForm').addEventListener('submit', saveQuickJournal);
+  el('composerPhotoButton').addEventListener('click', () => el('quickJournalPhoto').click());
+  el('quickJournalPhoto').addEventListener('change', (event) => { el('quickJournalPhotoName').textContent = event.target.files[0]?.name || 'Private on this device'; setJournalSheetState('half'); });
+  el('composerNearbyButton').addEventListener('click', () => { renderNearbyPlaces(); openSheet('nearbySheet'); });
+  el('nearbyList').addEventListener('click', async (event) => {
+    const viewButton = event.target.closest('[data-nearby-view]');
+    const routeButton = event.target.closest('[data-nearby-round-trip]');
+    const rememberButton = event.target.closest('[data-nearby-remember]');
+    const id = viewButton?.dataset.nearbyView || routeButton?.dataset.nearbyRoundTrip || rememberButton?.dataset.nearbyRemember;
+    if (!id) return;
+    const poi = (state.cityPois[state.activeCity] || []).find((place) => place.id === id); if (!poi) return;
+    if (rememberButton) {
+      await savePlaceMemory(poi.id);
+      await db.put('moments', { id: uid('moment'), type: 'place', title: displayPoiName(poi), note: 'Place remembered from Nearby.', siteId: poi.id, city: state.activeCity, createdAt: new Date().toISOString(), location: { lat: poi.lat, lng: poi.lng }, source: poi.source });
+      await renderArchive(); toast('Place remembered in your journal.'); return;
+    }
+    closeSheets(); showView('map'); state.map.flyTo([poi.lat, poi.lng], Math.max(city().zoom + 2, 16));
+    if (routeButton) {
+      state.plannerEnd = poi;
+      const input = document.querySelector('input[name="routeMode"][value="round-trip"]'); if (input) input.checked = true;
+      setPlanningMode(true); openSheet('planWalkSheet'); await generateTimeBasedPlan();
+    } else setJournalSheetState('collapsed');
+  });
   el('journalButton').addEventListener('click', () => openJournal());
   el('demoButton').addEventListener('click', () => { const site = citySites()[0]; state.map.flyTo([site.lat, site.lng], Math.max(city().zoom + 2, 16)); setTimeout(() => showHistory(site, 28), 350); });
   el('settingsButton').addEventListener('click', () => openSheet('infoSheet'));
@@ -157,21 +187,17 @@ el('poiSearchResults').addEventListener('click', (event) => {
     state.settings.onboardingCompleted = true;
     if (applyChoices) state.settings.favoriteCategories = onboardingInterests;
     await db.put('settings', state.settings);
-    if (applyChoices && CITIES[nextCity] && nextCity !== state.activeCity) await switchCity(nextCity);
+    if (CITIES[nextCity] && nextCity !== state.activeCity) await switchCity(nextCity);
     closeSheets(); renderProfile();
-    if (!applyChoices) { showView('map'); toast('Start with an experience above, or tap the region name whenever you want to change your starting point.'); return; }
     showView('map');
-    setPlanningMode(true);
-    openSheet('planWalkSheet');
-    await generateTimeBasedPlan();
-    toast('Your color-coded walk options are on the map. They are weighted toward your interests—choose a line to preview it.');
+    toast('You’re ready. Start a walk, or write something in your journal.');
   };
   const openRegionChooser = () => { quickCity.value = state.activeCity; openSheet('regionSheet'); };
   el('applyQuickCityButton').addEventListener('click', async () => { const nextCity = quickCity.value; if (CITIES[nextCity] && nextCity !== state.activeCity) await switchCity(nextCity); closeSheets(); toast(`${CITIES[state.activeCity].name} is now your starting region.`); });
   el('reopenOnboardingButton').addEventListener('click', () => { onboardingCity.value = state.activeCity; onboardingInterests = [...(state.settings.favoriteCategories || [])].slice(0, 3); setOnboardingStep('region'); openSheet('onboardingSheet'); });
   el('onboardingInterestChips').addEventListener('click', (event) => { const button = event.target.closest('[data-onboarding-interest]'); if (!button) return; const id = button.dataset.onboardingInterest; onboardingInterests = onboardingInterests.includes(id) ? onboardingInterests.filter((item) => item !== id) : onboardingInterests.length < 3 ? [...onboardingInterests, id] : onboardingInterests; if (onboardingInterests.length === 3 && !onboardingInterests.includes(id)) toast('Choose up to three for now. You can add more later in Journal.'); renderOnboardingValue(); });
   onboardingCity.addEventListener('change', renderOnboardingValue); renderOnboardingValue();
-  el('onboardingRegionNextButton').addEventListener('click', () => setOnboardingStep('interests'));
+  el('onboardingRegionNextButton').addEventListener('click', () => void finishOnboarding(false));
   el('onboardingInterestBackButton').addEventListener('click', () => setOnboardingStep('region'));
   el('onboardingInterestNextButton').addEventListener('click', () => setOnboardingStep('ready'));
   el('onboardingReadyBackButton').addEventListener('click', () => setOnboardingStep('interests'));
@@ -196,9 +222,12 @@ el('accountPasswordForm').addEventListener('submit', updateAccountPassword);
     closeSheets();
     if (button.dataset.view === 'profile') openProfile();
     else if (button.dataset.view === 'fieldGuide') showView('fieldGuide');
+    else if (button.dataset.view === 'explore') showView('explore');
     else if (button.dataset.view === 'vote' || button.dataset.view === 'volunteer') showView(button.dataset.view);
     else showView('map');
   }));
+  document.querySelectorAll('[data-discover-lens]').forEach((button) => button.addEventListener('click', () => showView(button.dataset.discoverLens)));
+  document.querySelectorAll('[data-back-discover]').forEach((button) => button.addEventListener('click', () => showView('explore')));
   el('clearDataButton').addEventListener('click', async () => {
     if (!confirm("Clear every locally saved walk, reflection, observation, and personal profile record on this device? This can't be undone.")) return;
     await db.clearAll();

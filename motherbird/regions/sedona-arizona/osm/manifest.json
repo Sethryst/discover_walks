@@ -1,0 +1,39 @@
+{
+  "artifacts": [
+    "pois.json",
+    "merged-pois.json",
+    "validation.json",
+    "spatial-index-delta.json",
+    "attribution.json"
+  ],
+  "checksums": {
+    "attribution.json": "sha256:6782f4f04a56b2b610b5815fe2e713fb69da65e2914914809ad8f6d69005edea",
+    "merged-pois.json": "sha256:b6d32610c78569f1d5f976d7f07c0b2f0d3c4ad3f068a2ce08ce4f63f3a202ac",
+    "pois.json": "sha256:8c1541c1c346fc0a26e4a4d54bf20ed9aa986ae2d4117125e4ab62497f59b34a",
+    "spatial-index-delta.json": "sha256:a90f93f0fa95e55a35d88f55ce6432bf26c65bf28277398ba607b67b24bcaa6b",
+    "validation.json": "sha256:1d06f36c6eee93176b4c4ac57b00716898f70e5f7a8dc7ca8a61adf372312f01"
+  },
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "recordCountsByCategory": {
+    "coffee": 12,
+    "garden": 1,
+    "history": 1,
+    "library": 1,
+    "park": 12,
+    "public_art": 2,
+    "rest": 12,
+    "trail": 385
+  },
+  "regionId": "sedona-arizona",
+  "schemaVersion": 1,
+  "source": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "name": "OpenStreetMap",
+    "rawResponseSha256": "sha256:bb8e8ad70ce9320c167297ddc04917fa6b37fbcf68dffd65e475e90c64db0a6b",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "sourceConfigurationId": "osm-sedona-arizona",
+  "sourceVintage": "2026-08-27T03:21:58Z"
+}

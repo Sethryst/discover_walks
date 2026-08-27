@@ -1,0 +1,41 @@
+{
+  "artifacts": [
+    "pois.json",
+    "merged-pois.json",
+    "validation.json",
+    "spatial-index-delta.json",
+    "attribution.json"
+  ],
+  "checksums": {
+    "attribution.json": "sha256:d4a90952b1f3a9406dc6a5b164f057addc3b184782669ab9edf48bd95ea509d4",
+    "merged-pois.json": "sha256:11f0634207910eb6134c2ff94186dacafb3917006e0e3662347d565fdb20a088",
+    "pois.json": "sha256:20074c835de778486ddbfb09f91bb5335b5a5c08b7af76edbae4f33ad0a2ed06",
+    "spatial-index-delta.json": "sha256:6aab7803818d0030d1c386afa0530c98f88a5654aecedb68b217089d17753329",
+    "validation.json": "sha256:8a3ae7cf7fbbecd616c3bb81112637ce5a33cd7c2e8261831238798ab751263a"
+  },
+  "generatedAt": "2026-08-27T04:00:00Z",
+  "recordCountsByCategory": {
+    "coffee": 504,
+    "community": 12,
+    "garden": 18,
+    "history": 404,
+    "library": 209,
+    "park": 521,
+    "public_art": 227,
+    "rest": 9,
+    "trail": 85,
+    "water": 6
+  },
+  "regionId": "boston",
+  "schemaVersion": 1,
+  "source": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "name": "OpenStreetMap",
+    "rawResponseSha256": "sha256:9bbe9e18c588ccda4239d05c63e7b55c0dd6526aa339509ce1e7384b1ca2dc96",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "sourceConfigurationId": "osm-boston",
+  "sourceVintage": "2026-08-27T03:07:34Z"
+}

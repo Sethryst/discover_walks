@@ -198,14 +198,18 @@ export async function generateTimeBasedPlan() {
   if (candidateStops(origin, preferences, maxStopDistance).length < 6) state.quietFallbackPlaces = await quietPlacesNear(state.activeCity, origin);
   const poiSeeds = loopSeeds(origin, preferences, maxStopDistance);
   const parkAnchor = nearbyParkAnchor(origin, maxStopDistance);
+  const requestedRoundTripDestination = routeMode === 'round-trip' ? state.plannerEnd : null;
   const pointDestination = state.plannerEnd || state.textWalkStops.at(-1) || parkAnchor || poiSeeds[0]?.[0];
   const seeds = routeMode === 'round-trip'
     ? (poiSeeds.length
       ? poiSeeds.map((stops) => {
-        const routeStops = uniqueStops(parkAnchor ? [parkAnchor, ...stops] : stops);
+        const routeStops = uniqueStops([...(requestedRoundTripDestination ? [requestedRoundTripDestination] : []), ...(parkAnchor ? [parkAnchor] : []), ...stops]);
         return { stops: routeStops, via: routeStops };
       })
-      : sparseAreaLoopSeeds(origin, minutes).map((seed) => parkAnchor ? { stops: [parkAnchor], via: [parkAnchor, ...seed.via] } : seed))
+      : sparseAreaLoopSeeds(origin, minutes).map((seed) => {
+        const anchors = uniqueStops([requestedRoundTripDestination, parkAnchor].filter(Boolean));
+        return anchors.length ? { stops: anchors, via: [...anchors, ...seed.via] } : seed;
+      }))
     : pointToPointSeeds(origin, pointDestination, candidateStops(origin, [], maxStopDistance * 1.5));
   const results = await Promise.all(seeds.map(async (seed, index) => {
     const points = routeMode === 'round-trip' ? [origin, ...seed.via, origin] : [origin, ...seed.via];
