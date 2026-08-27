@@ -51,6 +51,10 @@ test('the active map keeps a persistent journal with embedded contextual tools',
   assert.match(styles, /grid-template-columns: minmax\(0, 7fr\) minmax\(310px, 3fr\)/);
   assert.match(styles, /data-sheet-state="collapsed"/);
   assert.match(styles, /data-sheet-state="expanded"/);
+  assert.match(html, /id="selectAllPoiFiltersButton"/);
+  assert.match(html, /id="deselectAllPoiFiltersButton"/);
+  assert.doesNotMatch(html, /id="verifiedPlacesOnly"/);
+  assert.doesNotMatch(html, /id="fieldEditionStatus"/);
 });
 
 test('Guide is a season-and-place-aware companion, while Journal avoids collection language', async () => {

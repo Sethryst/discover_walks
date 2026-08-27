@@ -4,7 +4,6 @@ import { el, sitesForProfile, cityLabel, escapeHtml, shortDate, normalizeProfile
 import { syncProfile } from './online.js';
 import db from './storage.js';
 import { renderGeofenceCategoryChips } from './ui.js';
-import { fieldEditionStatus } from './entitlements.js';
 import { renderFavoriteRegions } from './region-favorites.js';
 
 export function renderProfile() {
@@ -36,8 +35,6 @@ export function renderProfile() {
   const onlineName = state.online.remoteProfile?.username;
   el('onlineTeaserTitle').textContent = onlineName ? `Optional profile: @${onlineName}` : 'Stay local by default';
   el('onlineTeaserText').textContent = onlineName ? `Last aggregate sync: ${state.settings.lastSyncedAt ? shortDate(state.settings.lastSyncedAt) : 'not yet'}. Routes, observations, photos, and notes remain local.` : 'Optional online mode maintains only a minimal aggregate profile. Routes, observations, photos, and notes never leave this device.';
-  el('fieldEditionStatus').textContent = fieldEditionStatus();
-  el('fieldEditionDetail').textContent = state.settings.entitlements?.fieldEdition || state.settings.entitlements?.partnerGrants?.length ? 'Offline Field Editions are available for the regions you can access.' : 'Your walks and reflections are always yours.';
   void renderFavoriteRegions(state.settings);
 }
 

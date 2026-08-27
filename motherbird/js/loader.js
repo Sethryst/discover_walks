@@ -99,7 +99,7 @@ export async function loadLocalState() {
   // profile could not have deliberately disabled this then-unavailable option.
   if (Array.isArray(state.settings.geofenceCategories) && !state.settings.geofenceCategories.includes('trail')) state.settings.geofenceCategories.push('trail');
   state.settings.entitlements = normalizedEntitlements(state.settings.entitlements);
-  if (!CITIES[state.settings.activeCity] || state.settings.activeCity === 'vienna' || state.settings.activeCity === 'wolf-trap') state.settings.activeCity = 'fairfax';
+  if (!CITIES[state.settings.activeCity] || state.settings.activeCity === 'vienna' || state.settings.activeCity === 'wolf-trap' || state.settings.activeCity === 'wolf-trap-va') state.settings.activeCity = 'fairfax';
   state.activeCity = state.settings.activeCity;
   await restoreLocalPoiClosures();
   await Promise.all([db.put('profile', state.profile), db.put('settings', state.settings)]);

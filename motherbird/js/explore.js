@@ -25,7 +25,6 @@ export function initExplore() {
     renderExplorePlaces();
   });
   el('exploreSearchInput').addEventListener('input', renderExplorePlaces);
-  el('verifiedPlacesOnly').addEventListener('change', renderExplorePlaces);
   document.querySelectorAll('.planner-chip').forEach((button) => button.addEventListener('click', () => { button.classList.toggle('active'); generateTimeBasedPlan(); }));
   document.querySelectorAll('input[name="walkTime"]').forEach((input) => input.addEventListener('change', updatePlanPreview));
   document.querySelectorAll('input[name="routeMode"]').forEach((input) => input.addEventListener('change', updatePlanPreview));
@@ -47,11 +46,10 @@ export function setExploreTab(tab) {
 export function renderExplorePlaces() {
   const all = state.cityPois[state.activeCity] || [];
   const query = el('exploreSearchInput').value.trim().toLowerCase();
-  const verifiedOnly = el('verifiedPlacesOnly').checked;
   const places = rankDiscoverPlaces(all.filter((poi) => {
     const matchesText = !query || `${poi.name || ''} ${displayPoiName(poi)}`.toLowerCase().includes(query);
     const matchesGroup = !activeDiscoverGroup || discoverGroupFor(poi).id === activeDiscoverGroup;
-    return matchesText && matchesGroup && (!verifiedOnly || isVerifiedPoi(poi)) && (publishingState(poi) !== 'candidate' || Boolean(query));
+    return matchesText && matchesGroup && (publishingState(poi) !== 'candidate' || Boolean(query));
   })).slice(0, 24);
   el('explorePlaceFilters').innerHTML = DISCOVER_GROUPS.map((group) => `<button type="button" class="poi-chip ${activeDiscoverGroup === group.id ? 'active' : ''}" aria-pressed="${activeDiscoverGroup === group.id}" data-explore-tag="${group.id}">${group.icon} ${group.label}</button>`).join('');
   const context = places.length ? '<p class="discover-context"><strong>A considered selection for this moment</strong><span>Start with one that feels right; the regional map remains there when you want more.</span></p>' : '';

@@ -11,7 +11,9 @@ import { contextualNearbyPlaces } from '../js/journal-pane.js';
 const built = ['alexandria-va', 'arlington-va', 'baltimore', 'boise-meridian-idaho', 'boston', 'boulder', 'chicago', 'columbus', 'corpus-christi', 'denver', 'detroit', 'fairfax-county-va', 'falls-church-va', 'fort-worth', 'keystone-colorado', 'los-angeles', 'loudoun-county-va', 'new-orleans', 'norfolk', 'nyc', 'philadelphia', 'pittsburgh', 'portland', 'portland-maine', 'prince-georges-county-md', 'richmond', 'san-francisco', 'santa-fe', 'seattle', 'sedona-arizona', 'tempe', 'washington-dc', 'wolf-trap-va'];
 
 test('every frontend region has explicit canonical OSM status', () => {
-  assert.equal(Object.keys(CITIES).length, 35);
+  assert.equal(Object.keys(CITIES).length, 34);
+  assert.equal(CITIES['wolf-trap-va'], undefined);
+  assert.ok(CITIES.fairfax.supplementalPoiFiles.includes('./regions/wolf-trap-va/pois.json'));
   for (const [id, city] of Object.entries(CITIES)) {
     const config = normalizeRegionDataConfig(id, city);
     assert.ok(['enabled', 'unavailable'].includes(config.osm.status));

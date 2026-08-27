@@ -35,8 +35,6 @@
             <p class="weather-brief hidden" id="weatherBrief" aria-live="polite"></p>
             <section class="map-panel" aria-label="Walking map">
               <div id="map" role="application" aria-label="Map of nearby places"></div>
-              <div id="fieldEditionMap" class="field-edition-map hidden" role="application" aria-label="Offline Field Edition map"></div>
-              <div id="fieldEditionMapHeader" class="field-edition-map-header hidden"><span>🌿 <strong id="fieldEditionMapTitle">Field Edition</strong></span><button id="exitFieldEditionButton" type="button" aria-label="Exit Field Edition map">×</button></div>
               <div class="poi-search" id="poiSearch"><input id="poiSearchInput" type="text" placeholder="Search the map" autocomplete="off" aria-label="Search places" /><div class="poi-search-results hidden" id="poiSearchResults"></div></div>
               <button class="filters-button" id="filtersButton" aria-label="Filter places on map" title="Filter places"><img class="ui-icon ui-icon--small" src="./icons/layers.svg" alt="" /> Layers<span class="filters-badge hidden" id="filtersBadge"></span></button>
               <button class="locate-button" id="locateButton" aria-label="Use my location" title="Use my location"><img class="ui-icon" src="./icons/navigation.svg" alt="" /></button>
@@ -111,7 +109,6 @@
         <section id="explorePlaces" class="explore-panel hidden" role="tabpanel">
           <p class="explore-category-intro">Choose an experience, then see a small selection for this moment.</p>
           <div class="poi-chips explore-place-filters" id="explorePlaceFilters" aria-label="Place categories"></div>
-          <label class="verification-filter"><input id="verifiedPlacesOnly" type="checkbox" /> Show verified places only</label>
           <div class="explore-list" id="explorePlacesList"></div>
           <button class="secondary-button wide-button" id="showPlacesOnMapButton" type="button">Show filtered places on map</button>
         </section>
@@ -156,11 +153,6 @@
           <label class="setting-label">Virginia place<select id="favoriteRegionSelect" aria-label="Choose a Virginia region"></select></label>
           <button class="secondary-button" id="toggleFavoriteRegionButton" type="button">Add favorite</button>
           <div class="poi-chips" id="favoriteRegionChips" aria-live="polite"></div>
-        </section>
-        <section class="field-edition-section">
-          <p class="sheet-kicker">FIELD EDITIONS</p><h2>Bring a region with you.</h2>
-          <p class="profile-section-intro">Optional downloadable regional bundles for times you want maps and guides available offline. Discover, Field Guide basics, and your Journal do not require one.</p>
-          <div class="field-edition-card"><span id="fieldEditionStatus">Optional offline edition</span><strong id="fieldEditionDetail">No purchase is required to walk, reflect, or keep your local records.</strong><button class="secondary-button" id="fieldEditionButton" type="button">See what an edition includes</button><button class="text-button" id="partnerAccessButton" type="button">I have partner access</button></div>
         </section>
         <section class="geofence-settings">
           <p class="sheet-kicker">PROXIMITY ALERTS &amp; GEOFENCING</p>
@@ -298,10 +290,10 @@
       <span class="sheet-kicker">MAP FILTERS</span>
       <div class="filters-sheet-heading">
         <h2 id="filtersTitle">Places to explore</h2>
-        <button class="text-button" id="clearPoiFiltersButton">Show all</button>
+        <div class="filter-bulk-actions"><button class="text-button" id="selectAllPoiFiltersButton" type="button">Select all</button><button class="text-button" id="deselectAllPoiFiltersButton" type="button">Deselect all</button></div>
       </div>
-      <p class="sheet-intro">Choose tags to show on the map. Leave all unselected to see everything.</p>
-      <div class="poi-chips" id="poiTagFilters" role="group" aria-label="Place tags"></div>
+      <p class="sheet-intro">Open a category to choose which kinds of places appear on the map.</p>
+      <div class="poi-filter-groups" id="poiTagFilters" aria-label="Place categories"></div>
       <p class="sheet-intro" id="poiFilterStatus" role="status"></p>
       <button class="primary-button wide-button" id="applyFiltersButton" type="button">Apply filters</button>
     </section>
@@ -345,13 +337,6 @@
       <span class="sheet-kicker">NEARBY</span><h2 id="nearbyTitle">Find something nearby</h2>
       <p class="sheet-intro">A few places near your current map position. Choose one to see it or make it the anchor for a round trip.</p>
       <div class="nearby-list" id="nearbyList" aria-live="polite"></div>
-    </section>
-
-    <section class="sheet hidden" id="fieldEditionSheet" role="dialog" aria-modal="true" aria-labelledby="fieldEditionTitle">
-      <button class="close-sheet" data-close-sheet aria-label="Close">×</button><span class="sheet-kicker">FIELD EDITIONS</span><h2 id="fieldEditionTitle">Offline, with care.</h2>
-      <p class="sheet-intro">An optional download for selected regions: offline maps, locally curated stories, and seasonal guide material. It never limits your Journal, privacy controls, exports, or data deletion.</p>
-      <div class="field-edition-benefits"><span>Offline map regions</span><span>Curated local stories</span><span>Seasonal field guides</span></div>
-      <p class="privacy-boundary">Nothing here is required to use Discover, Field Guide basics, or your personal Journal. Payment and partner verification are not connected in this prototype.</p>
     </section>
 
     <section class="sheet hidden" id="routeSheet" role="dialog" aria-modal="true" aria-labelledby="routeSheetTitle">

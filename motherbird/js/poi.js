@@ -7,6 +7,17 @@ import db from './storage.js';
 import { canReportPoiClosure, isLocallyClosedPoi, reportPoiClosed } from './spatial-closure-reporting.js';
 import { isPoiVisited, markPoiVisited } from './poi-visit-tracking.js';
 
+const POI_FILTER_GROUPS = [
+  { id: 'outdoors', label: 'Nature & outdoors', icon: '🌿', tags: ['park', 'trail', 'nature', 'wildlife', 'water', 'water_access', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad', 'rest'] },
+  { id: 'history-culture', label: 'History, art & culture', icon: '🏛', tags: ['history', 'history_landmark', 'history_monument', 'history_museum', 'history_cemetery', 'history_marker', 'art', 'public_art'] },
+  { id: 'community', label: 'Community & essentials', icon: '●', tags: ['community', 'facility', 'library', 'recreation_center', 'pantry', 'wifi', 'restrooms'] },
+  { id: 'activities', label: 'Sports & activities', icon: '◈', tags: ['basketball', 'tennis', 'disc_golf', 'skate_park'] },
+  { id: 'food', label: 'Food & drink', icon: '☕', tags: ['coffee', 'coffee_shop', 'cafe', 'tea'] },
+  { id: 'other', label: 'More map layers', icon: '◇', tags: ['event', 'osm'] }
+];
+const FOOD_FILTER_TAGS = new Set(['açaí', 'american', 'armenian', 'asian', 'bagel', 'bakery', 'beer', 'bistro', 'brazilian', 'breakfast', 'bubble_tea', 'burger', 'cake', 'caribbean', 'chinese', 'cookie', 'cuban', 'cupcake', 'deli', 'dessert', 'diner', 'donut', 'eclair', 'empanada', 'ethiopian', 'european', 'filipino', 'french', 'fusion', 'gelato', 'german', 'ice_cream', 'indian', 'italian', 'jamaican', 'japanese', 'juice', 'korean', 'lebanese', 'macaron', 'mediterranean', 'mexican', 'middle_eastern', 'nordic', 'pastry', 'peruvian', 'pie', 'pizza', 'pretzel', 'regional', 'salad', 'salvadoran', 'sandwich', 'shawarma', 'smoothie', 'swiss', 'tart', 'toast', 'vietnamese', 'wine']);
+const isFoodFilterTag = (id) => FOOD_FILTER_TAGS.has(String(id).toLocaleLowerCase());
+
 export function renderPoiTagFilters() {
   const pois = state.cityPois[state.activeCity] || [];
   const availableTags = availablePoiTags(pois.filter(isVisiblePoi));
@@ -18,17 +29,34 @@ export function renderPoiTagFilters() {
     updateFiltersBadge();
     return;
   }
-  filters.innerHTML = availableTags
-    .map(([id, label]) => `<button type="button" class="poi-chip ${state.poiTags.has(id) ? 'active' : ''}" aria-pressed="${state.poiTags.has(id)}" data-poi-tag="${id}">${label}</button>`)
-    .join('');
+  const available = new Map(availableTags);
+  const knownGroupedTags = new Set(POI_FILTER_GROUPS.flatMap((group) => group.tags));
+  const groups = POI_FILTER_GROUPS.map((group) => ({ ...group, options: group.tags.filter((id) => available.has(id)).map((id) => [id, available.get(id)]) }));
+  const extras = availableTags.filter(([id]) => !knownGroupedTags.has(id) && !isFoodFilterTag(id));
+  groups.find((group) => group.id === 'food').options.push(...availableTags.filter(([id]) => isFoodFilterTag(id)));
+  if (extras.length) groups.at(-1).options.push(...extras);
+  const allSelected = !state.poiTags.size;
+  filters.innerHTML = groups.filter((group) => group.options.length).map((group, index) => {
+    const selectedCount = group.options.filter(([id]) => allSelected || state.poiTags.has(id)).length;
+    return `<details class="poi-filter-group" ${index === 0 ? 'open' : ''}><summary><span>${group.icon} ${group.label}</span><small>${selectedCount}/${group.options.length}</small></summary><div class="poi-filter-options">${group.options.map(([id, label]) => { const selected = allSelected || state.poiTags.has(id); return `<button type="button" class="poi-chip ${selected ? 'active' : ''}" aria-pressed="${selected}" data-poi-tag="${id}">${label}</button>`; }).join('')}</div></details>`;
+  }).join('');
   const visible = pois.filter(isVisiblePoi).filter(poiMatchesFilters);
-  status.textContent = visible.length ? `${visible.length} imported place${visible.length === 1 ? '' : 's'} match${state.poiTags.size ? ' these filters' : ''}.` : 'No imported places match these filters. Change or clear a category to see other places.';
+  status.textContent = state.poiTags.has('__none__') ? 'No place categories selected.' : visible.length ? `${visible.length} imported place${visible.length === 1 ? '' : 's'} match${state.poiTags.size ? ' these filters' : ''}.` : 'No imported places match these filters.';
   updateFiltersBadge();
 }
+export function togglePoiTag(id) {
+  const availableIds = availablePoiTags((state.cityPois[state.activeCity] || []).filter(isVisiblePoi)).map(([tagId]) => tagId);
+  if (!state.poiTags.size) state.poiTags = new Set(availableIds);
+  if (state.poiTags.has('__none__')) state.poiTags.clear();
+  if (state.poiTags.has(id)) state.poiTags.delete(id); else state.poiTags.add(id);
+  if (!state.poiTags.size) state.poiTags.add('__none__');
+}
+export function setAllPoiTags(selected) { state.poiTags = selected ? new Set() : new Set(['__none__']); }
 export function updateFiltersBadge() {
   const badge = el('filtersBadge');
   if (!badge) return;
-  badge.textContent = state.poiTags.size ? String(state.poiTags.size) : '';
+  const activeCount = [...state.poiTags].filter((id) => id !== '__none__').length;
+  badge.textContent = state.poiTags.has('__none__') ? '0' : activeCount ? String(activeCount) : '';
   badge.classList.toggle('hidden', !state.poiTags.size);
 }
 export function poiMatchesFilters(poi) {
@@ -67,6 +95,7 @@ export function geofenceCategoriesForCity(cityId = state.activeCity) {
   return [...ordered, ...extras];
 }
 export function poiMatchesSelectedTags(poi, selectedTags = new Set()) {
+  if (selectedTags.has('__none__')) return false;
   if (!selectedTags.size) return true;
   const tags = poiTags(poi);
   return [...selectedTags].some((tag) => tag === 'osm' ? isOsmPoi(poi) : tags.includes(tag));
@@ -79,7 +108,7 @@ export function renderCityPois() {
     .filter((poi) => poi.category !== 'journey')
     .filter((poi) => !poiTags(poi).includes('history'))
     .filter(isVisiblePoi)
-    .filter((poi) => !isOsmPoi(poi) || state.poiTags.has('osm'))
+    .filter((poi) => !isOsmPoi(poi) || !state.poiTags.size || state.poiTags.has('osm'))
     .filter(poiMatchesFilters)
     .filter(withinRenderBounds)
     .map((poi) => {
@@ -121,7 +150,7 @@ export function renderHistorySites() {
     const key = `${site.lat},${site.lng}`;
     coordinateCounts.set(key, (coordinateCounts.get(key) || 0) + 1);
   });
-  const sites = allSites.filter(isWalkablePoi).filter((site) => !isOsmPoi(site) || state.poiTags.has('osm')).filter((site) => hasReliableMapCoordinate(site, coordinateCounts)).filter(poiMatchesFilters).filter(withinRenderBounds);
+  const sites = allSites.filter(isWalkablePoi).filter((site) => !isOsmPoi(site) || !state.poiTags.size || state.poiTags.has('osm')).filter((site) => hasReliableMapCoordinate(site, coordinateCounts)).filter(poiMatchesFilters).filter(withinRenderBounds);
   const markers = sites.map((site) => {
     const subtype = inferHistorySubtype(site);
     const glyph = HISTORY_SUBTYPES[subtype]?.icon || '🏛';

@@ -6,7 +6,7 @@ import { openWalkDetail, saveHistoryMoment, saveJournal, saveQuickJournal, rende
 import { getCurrentLocation, startWalk, stopWalk, togglePauseWalk, updateWalkDisplay } from './walk.js';
 import { openObservation, saveObservation, setDraftObservationIcon } from './observation.js';
 import { openJournal, closeSheets, openSheet, openAccountSettings, openFiltersSheet, openProfile, renderGeofenceCategoryChips, setArchiveFilter, showView, toast } from './ui.js';
-import { city, citySites, displayPoiName, geofenceCategoriesForCity, renderPoiTagFilters, renderCityPois, showHistory, savePlaceMemory, searchPois, searchOsm } from './poi.js';
+import { city, citySites, displayPoiName, geofenceCategoriesForCity, renderPoiTagFilters, renderCityPois, setAllPoiTags, showHistory, savePlaceMemory, searchPois, searchOsm, togglePoiTag } from './poi.js';
 import { syncProfile, renderOnline, openOnline, signIn, signUp, signInWithGoogle, createOnlineProfile, updateAccountUsername, updateAccountPhone, updateAccountEmail, updateAccountPassword } from './online.js';
 import { refreshCityMap, switchCity } from './city.js';
 import { renderProfile } from './profile.js';
@@ -95,8 +95,6 @@ export function initEvents() {
   el('demoButton').addEventListener('click', () => { const site = citySites()[0]; state.map.flyTo([site.lat, site.lng], Math.max(city().zoom + 2, 16)); setTimeout(() => showHistory(site, 28), 350); });
   el('settingsButton').addEventListener('click', () => openSheet('infoSheet'));
   el('advancedAppearanceForm').addEventListener('submit', async (event) => { event.preventDefault(); state.settings.staticAppearance = { headlineTitle: el('advancedHeadlineTitle').value.trim() || 'A walk with a purpose', headlineIcon: el('advancedHeadlineIcon').value, developerName: el('developerName').value.trim(), developerUrl: el('developerUrl').value.trim() }; await db.put('settings', state.settings); const { applyStaticAppearance } = await import('./ui.js'); applyStaticAppearance(); toast('Appearance saved on this device.'); });
-  el('fieldEditionButton').addEventListener('click', () => openSheet('fieldEditionSheet'));
-  el('partnerAccessButton').addEventListener('click', () => { openSheet('fieldEditionSheet'); toast('Partner access will be verified by your institution in a production release.'); });
   el('profileJournalButton').addEventListener('click', () => openJournal());
   el('filtersButton').addEventListener('click', openFiltersSheet);
   el('dismissHistoryButton').addEventListener('click', closeSheets); el('saveHistoryMomentButton').addEventListener('click', saveHistoryMoment);
@@ -236,11 +234,11 @@ el('accountPasswordForm').addEventListener('submit', updateAccountPassword);
   });
   el('poiTagFilters').addEventListener('click', (event) => {
     const button = event.target.closest('[data-poi-tag]'); if (!button) return;
-    const id = button.dataset.poiTag;
-    state.poiTags.has(id) ? state.poiTags.delete(id) : state.poiTags.add(id);
+    togglePoiTag(button.dataset.poiTag);
     renderPoiTagFilters();
   });
-  el('clearPoiFiltersButton').addEventListener('click', () => { state.poiTags.clear(); renderPoiTagFilters(); renderCityPois(); });
+  el('selectAllPoiFiltersButton').addEventListener('click', () => { setAllPoiTags(true); renderPoiTagFilters(); renderCityPois(); });
+  el('deselectAllPoiFiltersButton').addEventListener('click', () => { setAllPoiTags(false); renderPoiTagFilters(); renderCityPois(); });
   el('applyFiltersButton').addEventListener('click', () => { renderCityPois(); closeSheets(); });
   el('trailFeatureButton').addEventListener('click', () => {
     const bounds = state.trailLayer.getBounds();

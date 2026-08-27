@@ -2,7 +2,7 @@ import { state } from './state.js';
 import { city } from './poi.js';
 import { debounce } from './utils.js';
 import { openPlaceCluster, renderCityPois } from './poi.js';
-import { fieldEditionLoader, regionInstaller } from './region-ui.js';
+import { regionInstaller } from './region-ui.js';
 import { toast } from './ui.js';
 
 export function initMap() {
@@ -63,7 +63,6 @@ export function initMap() {
   });
   if (state.currentPosition) renderUserLocation(state.currentPosition);
   window.addEventListener('field-edition-activated', ({ detail }) => activateFieldEdition(detail));
-  void addFieldEditionEntry();
   // Federal boundary geometry remains available for a future visual redesign,
   // but the current borders, fills, and controls are intentionally not mounted.
 }
@@ -140,27 +139,6 @@ function exitFieldEdition() {
   state.map?.invalidateSize({ pan: false });
 }
 
-async function addFieldEditionEntry() {
-  const editions = await fieldEditionLoader.discoverAvailable().catch((error) => {
-    console.warn('Field Edition catalogue unavailable:', error);
-    return [];
-  });
-  if (!editions.length || !state.map) return;
-  state.fieldEditionEntryLayer?.clearLayers();
-  state.fieldEditionEntryLayer = L.layerGroup().addTo(state.map);
-  editions.filter((edition) => edition.bounds).forEach((edition) => {
-    const { west, south, east, north } = edition.bounds;
-    const marker = L.marker([(south + north) / 2, (west + east) / 2], {
-      icon: L.divIcon({ className: '', html: '<div class="field-edition-entry-marker">🌿</div>', iconSize: [42, 42], iconAnchor: [21, 21] }),
-      title: `Open ${edition.title || edition.id}`
-    }).bindTooltip(edition.title || edition.id, { direction: 'top', offset: [0, -20] });
-    marker.on('click', async () => {
-      try { await fieldEditionLoader.loadEdition(edition.id); toast(`${edition.title || edition.id} package installed.`); }
-      catch (error) { toast(error.message || 'Field Edition is not available yet.'); }
-    });
-    marker.addTo(state.fieldEditionEntryLayer);
-  });
-}
 export function renderUserLocation(point, pan = false) {
   state.currentPosition = point;
   window.dispatchEvent(new CustomEvent('field-edition-location'));

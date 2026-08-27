@@ -134,7 +134,7 @@
     zoom: 11,
     dataFile: './regions/fairfax-county-va/pois.json',
     civicFile: './regions/fairfax-county-va/civic/index.json',
-    supplementalPoiFiles: ['./data/osm/wolf-trap-va-poi.json']
+    supplementalPoiFiles: ['./regions/wolf-trap-va/pois.json']
   },
   alexandria: {
     name: 'Alexandria',
@@ -192,8 +192,7 @@
   portland: { name: 'Portland', state: 'OR', center: { lat: 45.555, lng: -122.64 }, zoom: 10, dataFile: './regions/portland/pois.json', civicFile: './regions/portland/civic/index.json' },
   'portland-maine': { name: 'Portland', state: 'ME', center: { lat: 43.675, lng: -70.245 }, zoom: 11, dataFile: './regions/portland-maine/pois.json', civicFile: './regions/portland-maine/civic/index.json' },
   'san-francisco': { name: 'San Francisco', state: 'CA', center: { lat: 37.77, lng: -122.435 }, zoom: 11, dataFile: './regions/san-francisco/pois.json', civicFile: './regions/san-francisco/civic/index.json' },
-  'santa-fe': { name: 'Santa Fe', state: 'NM', center: { lat: 35.665, lng: -105.96 }, zoom: 11, dataFile: './regions/santa-fe/pois.json', civicFile: './regions/santa-fe/civic/index.json' },
-  'wolf-trap-va': { name: 'Wolf Trap', state: 'VA', center: { lat: 38.945, lng: -77.26 }, zoom: 13, dataFile: './regions/wolf-trap-va/pois.json' }
+  'santa-fe': { name: 'Santa Fe', state: 'NM', center: { lat: 35.665, lng: -105.96 }, zoom: 11, dataFile: './regions/santa-fe/pois.json', civicFile: './regions/santa-fe/civic/index.json' }
 };
 Object.entries(CITIES).forEach(([cityId, city]) => { city.osm = runtimeOsmConfig(cityId, city); });
                   export const DEFAULT_PROFILE = {

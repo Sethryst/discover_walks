@@ -52,6 +52,16 @@ h2 { font-family: Georgia, "Times New Roman", serif; font-size: 22px; letter-spa
 .filters-badge { align-items: center; background: var(--coral); border-radius: 50%; color: #fff; display: inline-flex; font-size: 10px; height: 18px; justify-content: center; min-width: 18px; padding: 0 4px; }
 .filters-sheet-heading { align-items: end; display: flex; justify-content: space-between; }
 .filters-sheet-heading h2 { margin-bottom: 0; }
+.filter-bulk-actions { display: flex; gap: 10px; }
+.filter-bulk-actions .text-button { font-size: 11px; padding: 4px 0; }
+.poi-filter-groups { display: grid; gap: 8px; margin: 14px 0; }
+.poi-filter-group { background: var(--paper); border: 1px solid var(--line); border-radius: 11px; overflow: hidden; }
+.poi-filter-group summary { align-items: center; color: var(--pine); cursor: pointer; display: flex; font-size: 12px; font-weight: 800; justify-content: space-between; list-style: none; padding: 11px 12px; }
+.poi-filter-group summary::-webkit-details-marker { display: none; }
+.poi-filter-group summary::after { color: var(--moss); content: '⌄'; font-size: 15px; margin-left: 8px; order: 3; transition: transform .16s ease; }
+.poi-filter-group[open] summary::after { transform: rotate(180deg); }
+.poi-filter-group summary small { color: var(--muted); font-size: 10px; font-weight: 700; margin-left: auto; }
+.poi-filter-options { border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 7px; padding: 10px; }
 .app-view.hidden { display: none; }
 .profile-heading { font-family: Georgia, "Times New Roman", serif; font-size: 25px; letter-spacing: -.025em; margin: 0 0 14px; }
 .profile-journal-section, .profile-archive-section { border-top: 1px solid var(--line); margin-top: 22px; padding-top: 18px; }
