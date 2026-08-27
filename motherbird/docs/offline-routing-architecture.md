@@ -9,12 +9,16 @@ engine.
 
 ## Region package contract
 
-Each completed region package will include these additional artifacts:
+Each completed region package includes these runtime artifacts:
 
 ```text
-<region>-walk-graph.bin       compact pedestrian graph
-<region>-walk-graph-index.bin spatial index for point-to-network snapping
-<region>-walk-graph.meta.json graph version, source date, bounds, counts
+nodes.bin                     compact coordinates and node flags
+edges.bin                     endpoints, cost, type, profile, and geometry offsets
+adjacency.bin                 CSR-style directed traversal entries
+edge_geometry.bin             delta-encoded integer coordinate storage
+edge_spatial_index.bin        indexed point-to-network snapping
+edge_attributes.jsonl.gz      audit/provenance attributes
+manifest.json                 graph version, hashes, source date, bounds, counts
 ```
 
 `manifest.json` gains `artifacts.walkGraph`, `artifacts.walkGraphIndex`, and
@@ -43,11 +47,13 @@ routing coverage share the exact same polygon boundary.
 `js/offline-router-worker.js` receives:
 
 ```js
-{ type: 'route', regionId, start: { lat, lng }, end: { lat, lng }, mode: 'foot' }
+{ type: 'route', city, profile, origin: { lat, lon }, destination: { lat, lon }, avoid }
 ```
 
 It returns either a snapped road/path polyline and distance/duration estimate,
-or a typed failure (`NO_GRAPH`, `NO_NEARBY_PATH`, `NO_ROUTE`). It never returns
+or a typed failure (`NO_NEARBY_PEDESTRIAN_EDGE`, `NO_ROUTE_IN_COMPONENT`,
+`ACCESS_POLICY_BLOCKED`, `ACCESSIBILITY_DATA_INSUFFICIENT`, or
+`GRAPH_VERSION_UNAVAILABLE`). It never returns
 a straight-line substitute. A* uses geographic edge length plus an admissible
 walking-distance heuristic. The worker owns graph decoding and search so the
 map remains responsive.
@@ -69,12 +75,9 @@ not treated as road nodes.
 - Downloaded regional packages retain the graph with PMTiles and POIs, so
   routing works with the device offline after installation.
 
-## Rollout
+## Current rollout
 
-1. Add the artifact fields and graph validation to `region-build.mjs`.
-2. Build Norfolk first, inspect graph size/connectivity and test start/end
-   snapping around water boundaries.
-3. Build NYC and DC, with regression fixtures for waterfront, island, and
-   park-path cases.
-4. Replace the temporary network-router adapter with the worker. Only then
-   enable route-preview/start controls for a region.
+NYC and DVRPC corridor editions are installed first. Their source-backed route
+truth cases cover ordinary walks, arterial crossings, park/transit approaches,
+expected failures, accessibility insufficiency, and Philadelphia–Camden
+continuity. Further city adapters remain behind route review and graduation.

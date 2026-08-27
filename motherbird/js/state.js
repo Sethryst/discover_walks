@@ -47,6 +47,7 @@ export const state = {
   plannerStart: null,
   plannerEnd: null,
   planOptions: [],
+  routePlanningFailures: [],
   visiblePlanIds: new Set(),
   textWalkStops: [],
   quietFallbackPlaces: [],

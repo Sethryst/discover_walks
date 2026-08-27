@@ -1,0 +1,35 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "sidewalk-west",
+      "properties": { "TYPE": "Public Sidewalk" },
+      "geometry": { "type": "LineString", "coordinates": [[-71.10000, 42.37000], [-71.09999, 42.37000], [-71.09998, 42.37000]] }
+    },
+    {
+      "type": "Feature",
+      "id": "crossing-explicit",
+      "properties": { "TYPE": "Crosswalk" },
+      "geometry": { "type": "LineString", "coordinates": [[-71.09998, 42.37000], [-71.09998, 42.37002]] }
+    },
+    {
+      "type": "Feature",
+      "id": "sidewalk-east",
+      "properties": { "TYPE": "Public Sidewalk" },
+      "geometry": { "type": "LineString", "coordinates": [[-71.09998, 42.37002], [-71.09997, 42.37002]] }
+    },
+    {
+      "type": "Feature",
+      "id": "nearby-but-not-crossing",
+      "properties": { "TYPE": "Public Sidewalk" },
+      "geometry": { "type": "LineString", "coordinates": [[-71.09998, 42.37004], [-71.09997, 42.37004]] }
+    },
+    {
+      "type": "Feature",
+      "id": "not-a-line",
+      "properties": { "TYPE": "Public Sidewalk" },
+      "geometry": { "type": "Point", "coordinates": [-71.1, 42.37] }
+    }
+  ]
+}

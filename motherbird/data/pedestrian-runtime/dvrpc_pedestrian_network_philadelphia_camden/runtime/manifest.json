@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "city": "philadelphia",
+  "dataset_id": "dvrpc_pedestrian_network_philadelphia_camden",
+  "graph_version": "dvrpc_pedestrian_network_philadelphia_camden-79c7852e1d6a",
+  "source_versions": [
+    "dvrpc_pedestrian_network_philadelphia_camden"
+  ],
+  "policy_version": "2026-08-27.1",
+  "graph_hash": "79c7852e1d6a77302606747ac4035b5c3d089b73c8ed12aeb53be9732bbd6a52",
+  "built_at": "2026-08-27T15:41:40.969Z",
+  "bounding_box": [
+    -75.1714363,
+    39.9336425,
+    -75.1061196,
+    39.9671136
+  ],
+  "node_count": 8068,
+  "edge_count": 11411,
+  "artifacts": {
+    "nodes.bin": {
+      "bytes": 96824,
+      "sha256": "7a958db49cdb26b6d9f9497bb1461a17d8b7fed56b3f7bf45ee7cc6668ab633d"
+    },
+    "edges.bin": {
+      "bytes": 456448,
+      "sha256": "3b95bf350b525a07a70f2e64eeeec4ce0bddfc3fad3dc1e42e4b6923326586ec"
+    },
+    "adjacency.bin": {
+      "bytes": 214864,
+      "sha256": "2b94abc51220d845e73afef4d260717e85a4c1a61257cfc083da41928ec7c79f"
+    },
+    "edge_geometry.bin": {
+      "bytes": 253320,
+      "sha256": "e1cfb94a8219cc47c900589ab40b4261426ef61e6bd4e7a0db291407ad4d8147"
+    },
+    "edge_spatial_index.bin": {
+      "bytes": 65584,
+      "sha256": "1940b757ce983a02cd21cdbc412cd9ed8f41105968e0f5da2967a1cc5ae6fdf2"
+    },
+    "runtime-graph.json": {
+      "bytes": 3506506,
+      "sha256": "943ef1ffdfd0b43d5594e0ed56fd9fa95f8d1df47bf363a239a81e67ef7aa421"
+    },
+    "edge_attributes.jsonl.gz": {
+      "bytes": 486980,
+      "sha256": "60f8676799ffc3122851c668091e9d5b3024b935985b7e8af5d03a29f6c8d26d"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "city": "newyork",
+  "dataset_id": "nyc_pedestrian_network_estimates",
+  "graph_version": "nyc_pedestrian_network_estimates-a360fcf957b0",
+  "source_versions": [
+    "nyc_pedestrian_network_estimates"
+  ],
+  "policy_version": "2026-08-27.1",
+  "graph_hash": "a360fcf957b07c24d7c290642f14ed1673d22cde966a666cfc041368481b6ceb",
+  "built_at": "2026-08-27T15:41:40.968Z",
+  "bounding_box": [
+    -73.9925176,
+    40.7528716,
+    -73.973646,
+    40.7729572
+  ],
+  "node_count": 1075,
+  "edge_count": 1738,
+  "artifacts": {
+    "nodes.bin": {
+      "bytes": 12908,
+      "sha256": "6989fa387dd1f4a74499a52e4b748eccbc470b8a6972c92119bab2c057770b88"
+    },
+    "edges.bin": {
+      "bytes": 69528,
+      "sha256": "4f20eaf1c6abd67418d3ba35908cf5a18f531795fdfdeb77a76ec73608ea2d9d"
+    },
+    "adjacency.bin": {
+      "bytes": 32124,
+      "sha256": "c4f8552724f7a7f1e187049049b4dc4941ef7a6614f950a7ae8539a30ea3cb8d"
+    },
+    "edge_geometry.bin": {
+      "bytes": 62384,
+      "sha256": "b2f3a369d90f64b352d66d91340c8897f7399937c4ea9adf516425ea6cfe74a4"
+    },
+    "edge_spatial_index.bin": {
+      "bytes": 12360,
+      "sha256": "ca4b9f3a24d5c105275c2f6f1094a3f50a3ab9ec709557ed29d404b54f1d71fb"
+    },
+    "runtime-graph.json": {
+      "bytes": 433709,
+      "sha256": "3a3a08558c6c4867359fbdbe7fb3f539b6647c880d97e4420c853ab9721618aa"
+    },
+    "edge_attributes.jsonl.gz": {
+      "bytes": 108534,
+      "sha256": "acee0bf39ecf25e07a89e498aa1b1f246f2df40189420f8f1ff74dbd0d5e2fcf"
+    }
+  }
+}

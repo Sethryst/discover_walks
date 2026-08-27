@@ -1,0 +1,41 @@
+{
+  "city": "New York City, New York",
+  "dataset": "NYC Pedestrian Network Estimates",
+  "registry_id": "nyc_pedestrian_network_estimates",
+  "features": 1738,
+  "rejected_features_or_segments": 0,
+  "rejection_reasons": {},
+  "total_length_m": 103817.866,
+  "nodes": 1075,
+  "edges": 1738,
+  "components": 4,
+  "largest_component_percent": 99.83,
+  "isolated_segments": 3,
+  "explicit_crossings": 0,
+  "unclassified_pedestrian_links": 1738,
+  "crossing_classification_status": "not_present_in_source_schema",
+  "routable_edges": 1738,
+  "routable_edges_by_profile": {
+    "research": 1738,
+    "ordinary_walking_beta": 1738,
+    "verified_access": 0,
+    "accessible_verified": 0
+  },
+  "prohibited_edges": 0,
+  "unknown_access_edges": 1738,
+  "endpoint_gaps_under_2m": 0,
+  "duplicate_geometries": 0,
+  "missing_source_ids": 0,
+  "duplicate_source_ids": 0,
+  "source_id_stability": "unique_within_2025_release",
+  "source_last_edit": null,
+  "snap_tolerance_m": 0,
+  "ingest_status": "verified_geometry",
+  "route_ready": false,
+  "route_ready_reason": "Geometry and topology QA do not replace human route-truth validation.",
+  "route_test_summary": {
+    "total": 3,
+    "passed": 2,
+    "failed": 1
+  }
+}

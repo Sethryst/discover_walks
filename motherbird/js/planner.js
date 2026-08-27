@@ -2,7 +2,7 @@ import { state } from './state.js';
 import { city, poiTags, isWalkablePoi, renderCityPois } from './poi.js';
 import { distanceMeters } from './geo.js';
 import { el, escapeHtml } from './utils.js';
-import { routeOnFoot } from './routing.js';
+import { routeOnFoot, ROUTE_FAILURE_MESSAGES } from './routing.js';
 import { quietPlacesNear } from './quiet-places.js';
 import { getPoisNearRoute } from './spatial-index.js';
 import { parseWalkDescription, saveWalkDraft } from './text-to-walk.js';
@@ -173,7 +173,7 @@ function objectiveAlternatives(routes) {
     const route = assignments.get(objective.key);
     if (!route) return null;
     const influences = getPoisNearRoute(route.coordinates, 100).slice(0, 4).map(({ poi, distanceMeters }) => ({ id: poi.id, name: poi.name, distanceMeters: Math.round(distanceMeters), source: poi.source }));
-    return { ...route, title: `${objective.label} · ${route.title}`, objective, styleKey: objective.styleKey, color: objective.color, influences, evidence: routeEvidence(route, influences), objectiveCost: Math.round(objectiveCost(route, objective.key)), provenance: { routeGeometry: 'OSM pedestrian router', placeSignals: 'installed regional POI package', objectiveDataStatus: objective.dataStatus } };
+    return { ...route, title: `${objective.label} · ${route.title}`, objective, styleKey: objective.styleKey, color: objective.color, influences, evidence: routeEvidence(route, influences), objectiveCost: Math.round(objectiveCost(route, objective.key)), provenance: { routeGeometry: `Mother Bird ${route.routingProfile} graph ${route.graphVersion}`, policyVersion: route.policyVersion, sourceProvenanceIds: route.sourceProvenanceIds, placeSignals: 'installed regional POI package', objectiveDataStatus: objective.dataStatus } };
   }).filter(Boolean);
 }
 
@@ -185,7 +185,7 @@ function pointToPointSeeds(origin, destination, candidates) {
 }
 
 export async function generateTimeBasedPlan() {
-  state.plannedRoute = null; state.planOptions = [];
+  state.plannedRoute = null; state.planOptions = []; state.routePlanningFailures = [];
   el('planDistance').textContent = 'Finding routes…';
   el('planSummary').textContent = 'Looking for walkable options that fit your choices.';
   el('planStops').innerHTML = '';
@@ -213,11 +213,11 @@ export async function generateTimeBasedPlan() {
     : pointToPointSeeds(origin, pointDestination, candidateStops(origin, [], maxStopDistance * 1.5));
   const results = await Promise.all(seeds.map(async (seed, index) => {
     const points = routeMode === 'round-trip' ? [origin, ...seed.via, origin] : [origin, ...seed.via];
-    const routed = await routeOnFoot(points).catch(() => null);
-    if (!routed) return null;
+    const routed = await routeOnFoot(points, { city: state.activeCity, profile: 'ordinary_walking_beta' }).catch(() => ({ ok: false, status: 'GRAPH_VERSION_UNAVAILABLE' }));
+    if (!routed.ok) { state.routePlanningFailures.push(routed.status || routed.failure?.type || 'GRAPH_VERSION_UNAVAILABLE'); return null; }
     const miles = routed.distanceMeters / 1609.344;
     const timeFit = Math.max(0, 10 - Math.abs(minutes - routed.durationSeconds / 60) / 3);
-    return { id: `plan-${Date.now()}-${index}`, title: routeMode === 'round-trip' ? routeTitle(seed.stops, preferences, index) : `${city().name} point-to-point walk ${index + 1}`, city: state.activeCity, estimatedDurationMinutes: Math.round(routed.durationSeconds / 60), distanceMeters: routed.distanceMeters, distanceMiles: Number(miles.toFixed(2)), routeMode, preferences, stops: seed.stops, coordinates: routed.coordinates, source: 'pedestrian-road-route', baseScore: timeFit + interestScore(seed.stops, preferences) - miles * .15 };
+    return { id: `plan-${Date.now()}-${index}`, title: routeMode === 'round-trip' ? routeTitle(seed.stops, preferences, index) : `${city().name} point-to-point walk ${index + 1}`, city: state.activeCity, estimatedDurationMinutes: Math.round(routed.durationSeconds / 60), distanceMeters: routed.distanceMeters, distanceMiles: Number(miles.toFixed(2)), routeMode, preferences, stops: seed.stops, coordinates: routed.coordinates, source: 'mother-bird-runtime-graph', routingProfile: 'ordinary_walking_beta', graphVersion: routed.graphVersion, policyVersion: routed.policyVersion, sourceProvenanceIds: routed.sourceProvenanceIds, routeConfidence: routed.confidence, routeWarnings: routed.warnings, baseScore: timeFit + interestScore(seed.stops, preferences) - miles * .15 };
   }));
   state.planOptions = objectiveAlternatives(results.filter(Boolean));
   state.visiblePlanIds = new Set(state.planOptions.map((plan) => plan.id));
@@ -251,9 +251,11 @@ export async function draftWalkFromText(text) {
 
 export function renderPlanPreview() {
   const plan = state.plannedRoute;
+  const failureType = state.routePlanningFailures[0];
+  const failureMessage = ROUTE_FAILURE_MESSAGES[failureType] || 'No route matched this request.';
   el('planOptions').innerHTML = state.planOptions.length
     ? `<p class="planner-map-hint">${plan ? 'Selected route stays bright; the others remain softly visible.' : `${state.planOptions.length} named alternatives are shown together.`}</p>${state.planOptions.map((option) => `<article class="route-option ${option.id === plan?.id ? 'active' : ''}"><label class="route-visibility"><input type="checkbox" data-route-toggle="${escapeHtml(option.id)}" ${state.visiblePlanIds.has(option.id) ? 'checked' : ''} aria-label="Show ${escapeHtml(option.objective.label)}" /><span style="--route-swatch:${option.color}"></span></label><button type="button" data-plan-option="${escapeHtml(option.id)}"><strong>${escapeHtml(option.objective.label)}</strong><small>${option.distanceMiles} mi · ${option.estimatedDurationMinutes} min · ${escapeHtml(option.objective.note)}</small></button><b>${option.id === plan?.id ? 'Selected' : 'Choose'}</b></article>`).join('')}`
-    : '<div class="empty-state"><strong>No route came back for this combination.</strong>Try a shorter loop, choose a map point, or browse nearby places without directions.<div class="empty-state-actions"><button type="button" class="secondary-button" data-quick-retry="shorter">Try a shorter loop</button><button type="button" class="text-button" data-change-plan>Change my plan</button></div></div>';
+    : `<div class="empty-state" data-route-failure="${escapeHtml(failureType || 'NO_ROUTE')}"><strong>${escapeHtml(failureType || 'No route came back')}</strong>${escapeHtml(failureMessage)}<div class="empty-state-actions"><button type="button" class="secondary-button" data-quick-retry="shorter">Try a shorter loop</button><button type="button" class="text-button" data-change-plan>Change my plan</button></div></div>`;
   const influencePanel = el('planInfluences');
   if (!plan) { influencePanel.classList.add('hidden'); el('planDistance').textContent = state.planOptions.length ? `${state.planOptions.length} routes ready` : 'No route yet'; el('planSummary').textContent = state.planOptions.length ? 'Compare the named objectives, hide any you do not need, then choose a line or card.' : 'Adjust the time, route shape, or starting point and try again.'; el('planStops').innerHTML = ''; return; }
   el('planDistance').textContent = `${plan.distanceMiles} miles`;
@@ -264,7 +266,7 @@ export function renderPlanPreview() {
   el('planStops').innerHTML = plan.stops.map((stop, index) => `<li><span>${index + 1}</span><strong>${escapeHtml(stop.name)}</strong><small>${escapeHtml(stop.sourceType === 'osm-quiet-fallback' ? 'quiet place · OpenStreetMap' : poiTags(stop).find((tag) => !tag.startsWith('history_')) || 'place')}</small></li>`).join('');
   influencePanel.classList.remove('hidden');
   const reasons = routeExplanation(plan);
-  influencePanel.innerHTML = `${plan.influences.length ? plan.influences.map((item) => `<span class="influence-chip">${escapeHtml(item.name)} · ${item.distanceMeters}m</span>`).join('') : '<span class="influence-chip">No nearby public POI influenced this route</span>'}<small class="provenance-note"><strong>Why this route:</strong> ${escapeHtml(reasons.join(' · '))}.</small><small class="provenance-note">${escapeHtml(plan.objective.label)}: ${escapeHtml(plan.objective.note)} Geometry: ${escapeHtml(plan.provenance.routeGeometry)}.</small>`;
+  influencePanel.innerHTML = `${plan.influences.length ? plan.influences.map((item) => `<span class="influence-chip">${escapeHtml(item.name)} · ${item.distanceMeters}m</span>`).join('') : '<span class="influence-chip">No nearby public POI influenced this route</span>'}<small class="provenance-note"><strong>Why this route:</strong> ${escapeHtml(reasons.join(' · '))}.</small><small class="provenance-note">${escapeHtml(plan.objective.label)}: ${escapeHtml(plan.objective.note)} Geometry: ${escapeHtml(plan.provenance.routeGeometry)}. Confidence floor: ${Math.round((plan.routeConfidence?.minimum || 0) * 100)}%. ${escapeHtml(plan.routeWarnings?.join(' ') || '')}</small>`;
 }
 
 export function previewTimeBasedPlan({ fit = false } = {}) {

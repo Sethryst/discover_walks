@@ -91,8 +91,8 @@ export class ArcGisClient {
     return features;
   }
 
-  async completeQuery(service, { where = '1=1', outFields = '*', batchSize = 500, objectIdField = 'OBJECTID' } = {}, label = service) {
-    const objectIds = await this.objectIds(service, { where }, label);
+  async completeQuery(service, { where = '1=1', envelope, outFields = '*', batchSize = 500, objectIdField = 'OBJECTID' } = {}, label = service) {
+    const objectIds = await this.objectIds(service, { where, envelope }, label);
     const features = await this.featuresByIds(service, objectIds, { outFields, batchSize, objectIdField }, label);
     return { features, stats: { method: 'object-id-batches', objectIdCount: objectIds.length, batchCount: Math.ceil(objectIds.length / batchSize) } };
   }

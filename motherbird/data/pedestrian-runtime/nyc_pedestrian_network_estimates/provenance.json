@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "registry_id": "nyc_pedestrian_network_estimates",
+  "source_dataset_name": "NYC Pedestrian Network Estimates",
+  "source_owner": "MIT City Form Lab",
+  "source_url": "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs44284-025-00383-y/MediaObjects/44284_2025_383_MOESM3_ESM.zip",
+  "retrieved_at": "2026-08-27T15:41:40.968Z",
+  "source_sha256": "58f9f9749fd3898a0586d3787077f092b2f2205494343e80e6688b5ac5a58b7b",
+  "source_feature_count": 1738,
+  "derived_edge_count": 1738,
+  "target_crs": "EPSG:4326",
+  "source_where": "1=1",
+  "clip_method": null,
+  "acquisition": {
+    "method": "local_geojson",
+    "source_last_edit": null,
+    "service_crs": 4326
+  },
+  "policy": {
+    "raw_source_line_is_routable_edge": false,
+    "crossings_must_be_source_explicit": true,
+    "must_not_cross_unverified_roadways": true,
+    "raw_and_derived_layers_separate": true,
+    "access_policy_version": "2026-08-27.1",
+    "ordinary_walking_beta_allows_unknown_pedestrian_geometry_with_warning": true,
+    "verified_access_denies_unknown_access": true,
+    "topology_test_unknown_access_override": true,
+    "human_route_truth_validation_complete": false
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "registry_id": "dvrpc_pedestrian_network_philadelphia_camden",
+  "source_dataset_name": "DVRPC Pedestrian Network — Philadelphia/Camden Route-Test Extract",
+  "source_owner": "Delaware Valley Regional Planning Commission",
+  "source_url": "https://arcgis.dvrpc.org/portal/rest/services/transportation/pedestriannetwork_lines/FeatureServer/0",
+  "retrieved_at": "2026-08-27T15:41:40.969Z",
+  "source_sha256": "0d42490a98146b111e476c3627b657eadb51a9aa9ff76d270e537552e1c28fef",
+  "source_feature_count": 11411,
+  "derived_edge_count": 11411,
+  "target_crs": "EPSG:4326",
+  "source_where": "UPPER(county) IN ('PHILADELPHIA','CAMDEN')",
+  "clip_method": "source_county_attribute_case_normalized",
+  "acquisition": {
+    "method": "object-id-batches",
+    "object_id_field": "objectid",
+    "object_id_count": 11411,
+    "batch_count": 12,
+    "source_last_edit": "2025-05-02T17:44:44.000Z",
+    "where": "UPPER(county) IN ('PHILADELPHIA','CAMDEN')",
+    "envelope": [
+      -75.17,
+      39.935,
+      -75.11,
+      39.965
+    ],
+    "service_crs": 4326,
+    "geometry_type": "esriGeometryPolyline",
+    "max_record_count": 2000
+  },
+  "policy": {
+    "raw_source_line_is_routable_edge": false,
+    "crossings_must_be_source_explicit": true,
+    "must_not_cross_unverified_roadways": true,
+    "raw_and_derived_layers_separate": true,
+    "access_policy_version": "2026-08-27.1",
+    "ordinary_walking_beta_allows_unknown_pedestrian_geometry_with_warning": true,
+    "verified_access_denies_unknown_access": true,
+    "topology_test_unknown_access_override": true,
+    "human_route_truth_validation_complete": false
+  }
+}

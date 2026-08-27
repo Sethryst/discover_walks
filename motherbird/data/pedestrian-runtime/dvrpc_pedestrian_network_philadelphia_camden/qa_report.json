@@ -1,0 +1,41 @@
+{
+  "city": "Philadelphia, Pennsylvania and Camden, New Jersey",
+  "dataset": "DVRPC Pedestrian Network — Philadelphia/Camden Route-Test Extract",
+  "registry_id": "dvrpc_pedestrian_network_philadelphia_camden",
+  "features": 11411,
+  "rejected_features_or_segments": 0,
+  "rejection_reasons": {},
+  "total_length_m": 480156.909,
+  "nodes": 8068,
+  "edges": 11411,
+  "components": 16,
+  "largest_component_percent": 99.82,
+  "isolated_segments": 12,
+  "explicit_crossings": 4021,
+  "unclassified_pedestrian_links": 0,
+  "crossing_classification_status": "source_classified_when_available",
+  "routable_edges": 11411,
+  "routable_edges_by_profile": {
+    "research": 11411,
+    "ordinary_walking_beta": 11411,
+    "verified_access": 0,
+    "accessible_verified": 0
+  },
+  "prohibited_edges": 0,
+  "unknown_access_edges": 11411,
+  "endpoint_gaps_under_2m": 2,
+  "duplicate_geometries": 0,
+  "missing_source_ids": 0,
+  "duplicate_source_ids": 0,
+  "source_id_stability": "globalid",
+  "source_last_edit": "2025-05-02T17:44:44.000Z",
+  "snap_tolerance_m": 0.75,
+  "ingest_status": "verified_geometry",
+  "route_ready": false,
+  "route_ready_reason": "Geometry and topology QA do not replace human route-truth validation.",
+  "route_test_summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "registry_id": "dvrpc_pedestrian_network",
+  "observed_at": "2026-08-27",
+  "service_url": "https://arcgis.dvrpc.org/portal/rest/services/transportation/pedestriannetwork_lines/FeatureServer/0",
+  "feature_count": 521210,
+  "source_crs": "EPSG:4326",
+  "max_record_count": 2000,
+  "object_id_field": "objectid",
+  "stable_id_field": "globalid",
+  "line_type": {
+    "1": { "edge_type": "sidewalk", "regional_count": 353448, "observed_feat_type": ["GRADE_SEPARATED", "PATH", "UNMARKED"] },
+    "2": { "edge_type": "crossing", "regional_count": 164806, "observed_feat_type": ["BAR_PAIRS", "CONTINENTAL", "DASHED", "DECORATIVE", "DIAGONAL", "LADDER", "PARALLEL", "PATH", "SOLID", "UNKNOWN", "UNMARKED"] },
+    "3": { "edge_type": "trail", "regional_count": 2956, "observed_feat_type": ["", "PATH", "UNMARKED"] }
+  },
+  "observed_values": {
+    "ped_sig": [null, "", "No", "NO", "UNK", "YES"],
+    "raised": [null, "", "N/A", "NO", "YES"],
+    "material": ["", "ASPHALT", "BRICK", "CONCRETE", "MIXED", "N/A", "OTHER", "PAVER", "UNKNOWN"]
+  },
+  "normalization": {
+    "trim_strings": true,
+    "uppercase_enums": true,
+    "blank_means": "unknown",
+    "n_a_means": "not_applicable_or_unknown_requires_field_context",
+    "access_field_present": false,
+    "default_access": "unknown",
+    "production_routable": false
+  },
+  "philadelphia_extract": {
+    "where": "UPPER(county)='PHILADELPHIA'",
+    "feature_count": 130729,
+    "sidewalks": 85230,
+    "crossings": 45388,
+    "trails": 111
+  }
+}

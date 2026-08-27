@@ -31,7 +31,7 @@ test('online UI explains the password boundary', async () => {
 
 test('service worker versions the OAuth shell and caches every new module together', async () => {
   const worker = await readFile(new URL('../service-worker.js', import.meta.url), 'utf8');
-  assert.match(worker, /walk-wildlife-shell-v56/);
+  assert.match(worker, /walk-wildlife-shell-v57/);
   assert.match(worker, /\.\/js\/discovery-taxonomy\.js/);
   assert.match(worker, /\.\/js\/field-guide\.js/);
   assert.match(worker, /\.\/js\/online\.js/);
