@@ -5,6 +5,8 @@ import db from './storage.js';
 import { updateProfile } from './profile.js';
 import { openSheet, closeSheets, toast } from './ui.js';
 import { renderArchive } from './archive.js';
+import { buildObservationRecord } from './observation-model.js';
+import { attachWalkArtifact } from './walk-context.js';
 
 function observationIcon(iconName = 'camera') {
   return L.divIcon({ className: '', html: `<div class="wildlife-marker personal-observation-marker"><img src="./icons/${escapeHtml(iconName)}.svg" alt="" /></div>`, iconSize: [28, 28], iconAnchor: [14, 14] });
@@ -44,12 +46,30 @@ export async function saveObservation(event) {
   if (file) photo = await new Promise((resolve) => { const reader = new FileReader(); reader.onload = () => resolve(reader.result); reader.readAsDataURL(file); });
   const personalTags = [...new Set(el('observationTags').value.split(',').map((tag) => tag.trim().toLowerCase()).filter(Boolean))].slice(0, 5);
   const icon = state.draftObservationIcon || 'camera';
-  const observation = { id: uid('observation'), type: 'observation', city: state.activeCity, species: el('speciesInput').value.trim(), note: el('observationNote').value.trim(), personalTags, icon, photo, location: state.draftObservationLocation, createdAt: new Date().toISOString(), pointsAwarded: POINTS_PER_OBSERVATION };
+  const aspect = document.querySelector('input[name="observationAspect"]:checked')?.value || 'presence';
+  const observation = {
+    ...buildObservationRecord({
+      id: uid('observation'),
+      city: state.activeCity,
+      aspect,
+      category: el('observationCategory').value,
+      title: el('speciesInput').value.trim(),
+      note: el('observationNote').value.trim(),
+      personalTags,
+      icon,
+      photo,
+      location: state.draftObservationLocation,
+      walkId: state.activeWalk?.id || null,
+      coverage: el('observationCoverage').value.trim() || null
+    }),
+    pointsAwarded: POINTS_PER_OBSERVATION
+  };
   if (personalTags.length) {
     state.settings.customObservationTags = { ...(state.settings.customObservationTags || {}), ...Object.fromEntries(personalTags.map((tag) => [tag, icon])) };
     await db.put('settings', state.settings);
   }
   await db.put('observations', observation);
+  await attachWalkArtifact(observation, 'observation');
   await updateProfile((profile) => { profile.totalPoints += POINTS_PER_OBSERVATION; profile.observationsLogged += 1; return POINTS_PER_OBSERVATION; });
   addObservationMarker(observation); closeSheets(); toast(`Observation saved — +${POINTS_PER_OBSERVATION} points.`); renderArchive();
 }

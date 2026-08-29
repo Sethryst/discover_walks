@@ -35,6 +35,8 @@ export const state = {
   activeWalk: null,
   watchId: null,
   timerId: null,
+  knownTrackPoints: [],
+  speechRecognition: null,
 
   // UI / prompts
   currentSite: null,

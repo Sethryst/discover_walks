@@ -16,8 +16,12 @@ import { initNeighborhoodDiscovery } from './neighborhoods.js';
 import { restoreLocalPoiClosures } from './spatial-closure-reporting.js';
 import { initFieldGuideFilters } from './field-guide.js';
 import { initJournalPane } from './journal-pane.js';
+import { recoverWalkDraft } from './walk.js';
 
 export async function init() {
+  const splash = document.getElementById('appSplash');
+  const dismissSplash = () => splash?.classList.add('app-splash--done');
+  setTimeout(dismissSplash, 2500);
   try {
     await db.open();
     await loadLocalState();
@@ -47,12 +51,15 @@ export async function init() {
   }
 
   await refreshCityMap(false);
+  await recoverWalkDraft();
   applyStaticAppearance();
   startDiscoveryHeadline();
   await renderArchive();
-  if (!state.settings.onboardingCompleted) {
+  if (!state.settings.onboardingCompleted && !state.activeWalk) {
     setTimeout(() => openSheet('onboardingSheet'), 250);
   }
+
+  if (splash) requestAnimationFrame(dismissSplash);
 
   try {
     await setupOnline();
@@ -92,7 +99,7 @@ export async function createMigratedProfile() {
   return profile;
 }
 export async function loadLocalState() {
-  const [savedProfile, savedSettings] = await Promise.all([db.get('profile', 'local-user'), db.get('settings', 'app-settings')]);
+  const [savedProfile, savedSettings, savedWalks] = await Promise.all([db.get('profile', 'local-user'), db.get('settings', 'app-settings'), db.all('walks')]);
   state.profile = savedProfile ? normalizeProfile(savedProfile) : await createMigratedProfile();
   state.settings = { ...DEFAULT_SETTINGS, ...(savedSettings || {}) };
   // Trail geofences were added after the original persisted defaults. A saved
@@ -101,6 +108,8 @@ export async function loadLocalState() {
   state.settings.entitlements = normalizedEntitlements(state.settings.entitlements);
   if (!CITIES[state.settings.activeCity] || state.settings.activeCity === 'vienna' || state.settings.activeCity === 'wolf-trap' || state.settings.activeCity === 'wolf-trap-va') state.settings.activeCity = 'fairfax';
   state.activeCity = state.settings.activeCity;
+  state.walks = savedWalks;
+  state.knownTrackPoints = savedWalks.flatMap((walk) => (walk.points || []).filter((_, index) => index % 5 === 0));
   await restoreLocalPoiClosures();
   await Promise.all([db.put('profile', state.profile), db.put('settings', state.settings)]);
 }

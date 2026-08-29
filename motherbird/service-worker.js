@@ -1,12 +1,13 @@
 // Keep the whole module graph with the shell. Caching only app.js leaves an
 // offline (or briefly disconnected) reload with a blank app when any imported
 // module was not already in the runtime cache.
-const APP_CACHE = 'walk-wildlife-shell-v57'; // bump when shell assets change
+const APP_CACHE = 'walk-wildlife-shell-v58'; // bump when shell assets change
 const TILE_CACHE = 'walk-wildlife-osm-viewed-tiles-v1';
 const LIBRARY_CACHE = 'walk-wildlife-library-v2';
 const libraryPath = new URL('./vendor/', self.registration.scope).pathname;
 const shell = [
   './', './index.html', './styles.css', './legal.css', './privacy.html', './terms.html', './app.js', './manifest.webmanifest', './supabase-config.js', './assets/walk-companion.gif',
+  './assets/pwa-icon-192.png', './assets/pwa-icon-512.png', './assets/pwa-maskable-512.png', './assets/apple-touch-icon.png', './assets/splash-screen.jpeg', './assets/splash-1170x2532.png', './assets/splash-1290x2796.png', './assets/splash-2048x2732.png',
   './js/archive.js', './js/backup.js', './js/city.js', './js/civic.js', './js/constants.js', './js/discovery.js', './js/discovery-taxonomy.js',
   './js/entitlements.js', './js/events.js', './js/explore.js', './js/field-edition-loader.js', './js/field-guide.js', './js/geo.js', './js/geofence.js',
   './js/federal-boundaries.js', './js/federal-region-loader.js', './js/federal-region-progress.js', './js/poi-visit-tracking.js', './js/loader.js', './js/map.js', './js/observation.js', './js/online.js', './js/planner.js', './js/poi.js', './js/profile.js',
@@ -14,7 +15,7 @@ const shell = [
   './js/quiet-places.js', './js/region-api.js', './js/region-installer.js', './js/region-manager.js', './js/region-package.js',
   './js/osm-regions.js',
   './js/region-ui.js', './js/routes.js', './js/routing.js', './js/runtime-router.mjs', './js/offline-router-worker.js', './js/seasonal-awareness.js', './js/state.js', './js/storage.js',
-  './js/ui.js', './js/utils.js', './js/walk.js', './js/weather.js', './js/journal-pane.js',
+  './js/ui.js', './js/utils.js', './js/walk.js', './js/walk-artifact.js', './js/walk-context.js', './js/observation-model.js', './js/weather.js', './js/journal-pane.js', './icons/mic.svg',
   './data/anchorage-poi.json', './data/baltimore-poi.json', './data/boise-meridian-idaho-poi.json', './data/columbus-poi.json', './data/corpus-christi-poi.json',
   './data/dc-poi.json', './data/detroit-poi.json', './data/fort-worth-poi.json', './data/keystone-colorado-poi.json', './data/los-angeles-poi.json',
   './data/newyork-poi.json', './data/norfolk-poi.json', './data/pgcounty-poi.json', './data/philadelphia-poi.json', './data/pittsburgh-poi.json',
@@ -110,4 +111,30 @@ self.addEventListener('fetch', (event) => {
         .catch(() => caches.match(event.request))
     );
   }
+});
+
+self.addEventListener('push', (event) => {
+  let payload = {};
+  try { payload = event.data?.json() || {}; } catch (_) { payload = { body: event.data?.text() || '' }; }
+  const title = payload.title || 'Discover Walks';
+  const options = {
+    body: payload.body || 'There is a new update connected to your walking journal.',
+    icon: './assets/pwa-icon-192.png',
+    badge: './assets/pwa-icon-192.png',
+    tag: payload.tag || 'walk-journal-update',
+    renotify: false,
+    data: { url: payload.url || './' }
+  };
+  event.waitUntil(self.registration.showNotification(title, options));
+});
+
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  const requestedUrl = new URL(event.notification.data?.url || './', self.registration.scope).href;
+  const targetUrl = requestedUrl.startsWith(self.registration.scope) ? requestedUrl : self.registration.scope;
+  event.waitUntil(clients.matchAll({ type: 'window', includeUncontrolled: true }).then(async (windows) => {
+    const existing = windows.find((client) => client.url.startsWith(self.registration.scope));
+    if (existing) { await existing.focus(); existing.navigate(targetUrl); return; }
+    await clients.openWindow(targetUrl);
+  }));
 });

@@ -5,15 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#173c35" />
     <meta name="description" content="A local-first walking, history, and wildlife journal." />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Discover Walks" />
     <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./assets/pwa-icon-192.png" sizes="192x192" type="image/png" />
+    <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
+    <link rel="apple-touch-startup-image" href="./assets/splash-1170x2532.png" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)" />
+    <link rel="apple-touch-startup-image" href="./assets/splash-1290x2796.png" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3)" />
+    <link rel="apple-touch-startup-image" href="./assets/splash-2048x2732.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" />
     <link rel="stylesheet" href="./vendor/leaflet/leaflet.css" />
     <link rel="stylesheet" href="./vendor/leaflet-markercluster/MarkerCluster.css">
     <link rel="stylesheet" href="./vendor/leaflet-markercluster/MarkerCluster.Default.css">
     <link rel="stylesheet" href="./vendor/maplibre-gl.css" />
-    <link rel="stylesheet" href="./styles.css?v=54">
+    <link rel="stylesheet" href="./styles.css?v=55">
     <title>Walk &amp; Wildlife</title>
   </head>
   <body>
+    <div class="app-splash" id="appSplash" aria-hidden="true"><img src="./assets/splash-screen.jpeg" alt="" /></div>
     <main class="app-shell">
       <aside class="walking-topbar hidden" id="walkingTopbar" aria-live="polite">
         <img src="./assets/walk-companion.gif" alt="Animated walking companion" />
@@ -65,6 +74,7 @@
                     <button id="composerPhotoButton" type="button" title="Add photo"><img src="./icons/camera.svg" alt="" /><span>Photo</span></button>
                     <button id="addObservationButton" type="button" title="Add observation"><img src="./icons/eye.svg" alt="" /><span>Observe</span></button>
                     <button id="composerNearbyButton" type="button" title="Find something nearby"><img src="./icons/map-pin.svg" alt="" /><span>Nearby</span></button>
+                    <button id="composerMicButton" type="button" title="Transcribe a voice note" aria-pressed="false"><img src="./icons/mic.svg" alt="" /><span>Mic</span></button>
                   </div>
                   <button class="composer-send" type="submit" aria-label="Save journal note"><img src="./icons/arrow-right.svg" alt="" /></button>
                 </div>
@@ -253,7 +263,10 @@
       <h2 id="observationTitle">What did you notice?</h2>
       <p class="sheet-intro" id="observationLocation">Pin a moment to the map.</p>
       <form id="observationForm">
+        <fieldset class="observation-aspect-set"><legend>What kind of observation is this?</legend><div class="planner-choice-row"><label><input type="radio" name="observationAspect" value="presence" checked />Present</label><label><input type="radio" name="observationAspect" value="absence" />Not observed</label><label><input type="radio" name="observationAspect" value="need" />Needed</label></div></fieldset>
         <label>What did you notice? <input id="speciesInput" required maxlength="80" placeholder="e.g., a bright yellow butterfly by the bridge" /></label>
+        <label>Feature or resource <select id="observationCategory"><option value="other">Other</option><option value="trash">Trash can</option><option value="water">Water</option><option value="bench">Bench</option><option value="shade">Shade</option><option value="restroom">Restroom</option><option value="accessible-entrance">Accessible entrance</option><option value="bike-rack">Bike rack</option><option value="safe-crossing">Safe crossing</option><option value="lighting">Lighting</option><option value="signage">Signage</option><option value="trail-condition">Trail connection or condition</option></select></label>
+        <label id="observationCoverageLabel">Coverage or search context <input id="observationCoverage" maxlength="180" placeholder="Optional: the route stretch or places you checked" /></label>
         <label>Personal tags <input id="observationTags" maxlength="120" placeholder="e.g., birdsong, sketch spot (optional)" /></label>
         <fieldset class="observation-icon-set"><legend>Marker icon</legend><div class="observation-icon-picker" id="observationIconPicker" role="group" aria-label="Choose a marker icon"><button type="button" class="observation-icon-choice active" data-observation-icon="camera" aria-label="Camera"><img src="./icons/camera.svg" alt="" /></button><button type="button" class="observation-icon-choice" data-observation-icon="tree" aria-label="Tree"><img src="./icons/tree.svg" alt="" /></button><button type="button" class="observation-icon-choice" data-observation-icon="star" aria-label="Star"><img src="./icons/star.svg" alt="" /></button><button type="button" class="observation-icon-choice" data-observation-icon="heart" aria-label="Heart"><img src="./icons/heart.svg" alt="" /></button><button type="button" class="observation-icon-choice" data-observation-icon="coffee" aria-label="Coffee"><img src="./icons/coffee.svg" alt="" /></button><button type="button" class="observation-icon-choice" data-observation-icon="book-open" aria-label="Book"><img src="./icons/book-open.svg" alt="" /></button><button type="button" class="observation-icon-choice" data-observation-icon="music" aria-label="Music"><img src="./icons/music.svg" alt="" /></button><button type="button" class="observation-icon-choice" data-observation-icon="wind" aria-label="Wind"><img src="./icons/wind.svg" alt="" /></button></div></fieldset>
         <label>Note <textarea id="observationNote" rows="3" maxlength="500" placeholder="Color, behavior, weather, or a small detail…"></textarea></label>
@@ -343,7 +356,16 @@
       <button class="close-sheet" data-close-sheet aria-label="Close">×</button><span class="sheet-kicker">ACTIVE WALK</span><h2 id="routeSheetTitle">Your walk is underway</h2>
       <div class="route-progress"><strong id="routeSheetDistance">0.00 mi</strong><span id="routeSheetDuration">00:00 elapsed</span></div>
       <p class="sheet-intro">Keep the app open to record your route. Nearby places will appear as you explore.</p>
-      <div class="sheet-actions"><button class="secondary-button" id="routePauseButton" type="button">Pause</button><button class="primary-button" id="routeEndButton" type="button">End walk</button></div>
+      <div class="active-walk-actions"><button class="secondary-button" id="routePauseButton" type="button">Pause</button><label class="active-walk-mode">Mode<select id="activeWalkMode"><option value="tracking">Tracking</option><option value="round-trip">Round trip</option><option value="point-to-point">Point to point</option></select></label><button class="primary-button" id="routeEndButton" type="button">End walk</button></div>
+    </section>
+
+    <section class="sheet tall-sheet walk-review-sheet hidden" id="walkReviewSheet" role="dialog" aria-modal="true" aria-labelledby="walkReviewTitle">
+      <span class="sheet-kicker">REVIEW WALK</span><h2 id="walkReviewTitle">Keep the walk as a document.</h2>
+      <p class="sheet-intro">Your recorded route is the primary artifact. Review the facts, then save it to the journal or discard this unsaved recording.</p>
+      <div class="walk-review-stats"><div><strong id="walkReviewDistance">0.00 mi</strong><span>Distance</span></div><div><strong id="walkReviewElapsed">00:00</strong><span>Elapsed</span></div><div><strong id="walkReviewMoving">00:00</strong><span>Moving</span></div></div>
+      <section class="walk-review-route"><strong>Recorded route</strong><p id="walkReviewRouteStatus">GPS track retained</p></section>
+      <section class="walk-review-events"><div><strong>What happened</strong><span id="walkReviewContext">0 place encounters · 0 observations</span></div><ul id="walkReviewEvents"></ul></section>
+      <div class="walk-review-actions"><button class="secondary-button danger-button" id="discardWalkButton" type="button">Discard</button><button class="primary-button" id="saveWalkButton" type="button">Save walk</button></div>
     </section>
 
     <section class="sheet tall-sheet plan-walk-sheet hidden" id="planWalkSheet" role="dialog" aria-modal="true" aria-labelledby="planWalkTitle">

@@ -48,8 +48,10 @@ test('the active map keeps a persistent journal with embedded contextual tools',
   assert.match(html, /id="composerPhotoButton"/);
   assert.match(html, /id="addObservationButton"/);
   assert.match(html, /id="composerNearbyButton"/);
+  assert.match(html, /id="composerMicButton"/);
   assert.match(styles, /grid-template-columns: minmax\(0, 7fr\) minmax\(310px, 3fr\)/);
   assert.match(styles, /data-sheet-state="collapsed"/);
+  assert.match(styles, /data-sheet-state="collapsed"\] \.journal-composer/);
   assert.match(styles, /data-sheet-state="expanded"/);
   assert.match(html, /id="selectAllPoiFiltersButton"/);
   assert.match(html, /id="deselectAllPoiFiltersButton"/);

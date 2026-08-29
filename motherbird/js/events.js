@@ -3,7 +3,7 @@ import { CITIES, DEFAULT_PROFILE, DEFAULT_SETTINGS, GEOFENCE_CATEGORIES } from '
 import { el, normalizeProfile, uid } from './utils.js';
 import { initBackupControls } from './backup.js';
 import { openWalkDetail, saveHistoryMoment, saveJournal, saveQuickJournal, renderArchive } from './archive.js';
-import { getCurrentLocation, startWalk, stopWalk, togglePauseWalk, updateWalkDisplay } from './walk.js';
+import { discardWalk, getCurrentLocation, recordPoiEncounter, saveWalk, setActiveWalkMode, startWalk, stopWalk, togglePauseWalk, updateWalkDisplay } from './walk.js';
 import { openObservation, saveObservation, setDraftObservationIcon } from './observation.js';
 import { openJournal, closeSheets, openSheet, openAccountSettings, openFiltersSheet, openProfile, renderGeofenceCategoryChips, setArchiveFilter, showView, toast } from './ui.js';
 import { city, citySites, displayPoiName, geofenceCategoriesForCity, renderPoiTagFilters, renderCityPois, setAllPoiTags, showHistory, savePlaceMemory, searchPois, searchOsm, togglePoiTag } from './poi.js';
@@ -27,17 +27,17 @@ export function initEvents() {
   el('locateButton').addEventListener('click', getCurrentLocation);
   el('homeCityButton').addEventListener('click', () => openRegionChooser());
   el('walkButton').addEventListener('click', async () => {
-    if (state.activeWalk) { openSheet('routeSheet'); return; }
-    const mode = document.querySelector('input[name="routeMode"][value="round-trip"]');
-    const time = document.querySelector('input[name="walkTime"][value="30"]');
-    if (mode) mode.checked = true;
-    if (time) time.checked = true;
-    state.plannerEnd = null;
-    setPlanningMode(true); showView('map'); openSheet('planWalkSheet'); await generateTimeBasedPlan();
+    if (state.activeWalk) { openSheet(state.activeWalk.recordingStatus === 'stopped' ? 'walkReviewSheet' : 'routeSheet'); return; }
+    showView('map');
+    await startWalk({ routeMode: 'tracking' });
   });
-  el('activeRouteButton').addEventListener('click', () => { updateWalkDisplay(); openSheet('routeSheet'); });
+  el('activeRouteButton').addEventListener('click', () => { updateWalkDisplay(); openSheet(state.activeWalk?.recordingStatus === 'stopped' ? 'walkReviewSheet' : 'routeSheet'); });
   el('routePauseButton').addEventListener('click', togglePauseWalk);
   el('routeEndButton').addEventListener('click', () => { closeSheets(); stopWalk(); });
+  el('activeWalkMode').addEventListener('change', (event) => void setActiveWalkMode(event.target.value));
+  el('saveWalkButton').addEventListener('click', () => void saveWalk());
+  el('discardWalkButton').addEventListener('click', () => void discardWalk());
+  window.addEventListener('walk-poi-encounter', (event) => void recordPoiEncounter(event.detail?.poi, event.detail?.distance));
   el('planWalkButton').addEventListener('click', async () => { setPlanningMode(true); showView('map'); openSheet('planWalkSheet'); await generateTimeBasedPlan(); });
   el('choosePlanStartButton').addEventListener('click', () => { state.plannerSelecting = 'Start'; toast('Planning mode: tap a starting point.'); closeSheets(); showView('map'); });
   el('choosePlanEndButton').addEventListener('click', () => { state.plannerSelecting = 'End'; toast('Planning mode: tap a destination.'); closeSheets(); showView('map'); });
@@ -48,7 +48,7 @@ export function initEvents() {
     const option = event.target.closest('[data-plan-option]'); if (option) choosePlan(option.dataset.planOption);
   });
   el('draftTextWalkButton').addEventListener('click', () => void draftWalkFromText(el('textWalkInput').value));
-  el('startPlannedWalkButton').addEventListener('click', async () => { if (state.plannedRoute) lockSelectedPlanOnMap(); setPlanningMode(false); closeSheets(); showView('map'); startWalk(); });
+  el('startPlannedWalkButton').addEventListener('click', async () => { if (state.plannedRoute) lockSelectedPlanOnMap(); setPlanningMode(false); closeSheets(); showView('map'); await startWalk({ routeMode: document.querySelector('input[name="routeMode"]:checked')?.value || 'tracking' }); });
   el('planWalkSheet').addEventListener('change', (event) => { if (event.target.matches('input[name="walkTime"], input[name="routeMode"]')) void generateTimeBasedPlan(); });
   el('planWalkSheet').addEventListener('click', (event) => { const chip = event.target.closest('[data-planner-tag]'); if (!chip) return; chip.classList.toggle('active'); void generateTimeBasedPlan(); });
   el('curatedRoutesList').addEventListener('click', (event) => {
@@ -71,6 +71,26 @@ export function initEvents() {
   el('quickJournalForm').addEventListener('submit', saveQuickJournal);
   el('composerPhotoButton').addEventListener('click', () => el('quickJournalPhoto').click());
   el('quickJournalPhoto').addEventListener('change', (event) => { el('quickJournalPhotoName').textContent = event.target.files[0]?.name || 'Private on this device'; setJournalSheetState('half'); });
+  el('composerMicButton').addEventListener('click', () => {
+    if (state.speechRecognition) { state.speechRecognition.stop(); return; }
+    const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!Recognition) { toast('Voice transcription is not supported by this browser. You can still type a field note.'); return; }
+    const button = el('composerMicButton');
+    const recognition = new Recognition();
+    recognition.lang = navigator.language || 'en-US';
+    recognition.interimResults = true;
+    recognition.continuous = false;
+    const existing = el('quickJournalNote').value.trim();
+    recognition.onstart = () => { state.speechRecognition = recognition; button.classList.add('recording'); button.setAttribute('aria-pressed', 'true'); button.querySelector('span').textContent = 'Listening'; };
+    recognition.onresult = (event) => {
+      const transcript = [...event.results].map((result) => result[0].transcript).join(' ').trim();
+      el('quickJournalNote').value = [existing, transcript].filter(Boolean).join(existing ? ' ' : '');
+      el('quickJournalForm').dataset.voiceTranscript = 'true';
+    };
+    recognition.onerror = () => toast('Voice transcription stopped. Anything already transcribed is still in the note.');
+    recognition.onend = () => { state.speechRecognition = null; button.classList.remove('recording'); button.setAttribute('aria-pressed', 'false'); button.querySelector('span').textContent = 'Mic'; el('quickJournalNote').focus(); };
+    recognition.start();
+  });
   el('composerNearbyButton').addEventListener('click', () => { renderNearbyPlaces(); openSheet('nearbySheet'); });
   el('nearbyList').addEventListener('click', async (event) => {
     const viewButton = event.target.closest('[data-nearby-view]');

@@ -32,6 +32,9 @@ export function checkGeofences(point) {
       return { poi, distance, relevance };
     })
     .sort((a, b) => b.relevance - a.relevance)[0];
+  if (nearby && state.activeWalk) {
+    globalThis.window?.dispatchEvent(new CustomEvent('walk-poi-encounter', { detail: nearby }));
+  }
   if (nearby && !state.modalOpen) {
     if (state.activeWalk) state.activeWalk.discoveryCount = (state.activeWalk.discoveryCount || 0) + 1;
     showHistory(nearby.poi, nearby.distance);
