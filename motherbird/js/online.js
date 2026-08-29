@@ -12,13 +12,29 @@ import { openSheet, toast } from './ui.js';
 import { renderProfile } from './profile.js';
 import { readSupabaseHeartbeat } from './heartbeat.js';
 
+const PASSKEY_ENROLLED_KEY = 'walk-wildlife.passkey-enrolled';
+const APP_SESSION_KEY = 'walk-wildlife.app-session';
+
 export async function setupOnline() {
   if (state.online.client || !onlineConfigured()) return;
   const config = onlineConfig();
-  state.online.client = window.supabase.createClient(config.url, config.anonKey);
+  state.online.client = window.supabase.createClient(config.url, config.anonKey, {
+    auth: { experimental: { passkey: true } }
+  });
   const { data } = await state.online.client.auth.getSession();
   state.online.session = data.session;
-  if (state.online.session) await loadRemoteProfile();
+  const freshAppLaunch = !sessionStorage.getItem(APP_SESSION_KEY);
+  sessionStorage.setItem(APP_SESSION_KEY, '1');
+  if (state.online.session && freshAppLaunch && localStorage.getItem(PASSKEY_ENROLLED_KEY) === '1') {
+    // Supabase persists sessions across page reloads. On a new app session,
+    // require the enrolled passkey instead of silently restoring the session.
+    await state.online.client.auth.signOut();
+    state.online.session = null;
+    setTimeout(() => {
+      openSheet('onlineSheet');
+      void signInWithPasskey();
+    }, 0);
+  } else if (state.online.session) await loadRemoteProfile();
   try {
     await readSupabaseHeartbeat(state.online.client, state.settings, (settings) => db.put('settings', settings));
   } catch (error) {
@@ -81,6 +97,33 @@ export async function signIn() {
 
   await loadRemoteProfile();
   await renderOnline();
+}
+
+export async function signInWithPasskey() {
+  await setupOnline();
+  if (!state.online.client) { toast('Online sign-in is not configured yet.'); return false; }
+  if (!state.online.client.auth.signInWithPasskey) {
+    toast('Passkeys are unavailable in this Supabase client. Update the Supabase JavaScript library.');
+    return false;
+  }
+  const { error } = await state.online.client.auth.signInWithPasskey();
+  if (error) { toast(error.message || 'Face ID sign-in could not start.'); return false; }
+  await loadRemoteProfile();
+  await renderOnline();
+  return true;
+}
+
+export async function registerPasskey() {
+  await setupOnline();
+  if (!state.online.session || !state.online.client?.auth.registerPasskey) {
+    toast('Sign in with email or Google first, then add Face ID.');
+    return false;
+  }
+  const { error } = await state.online.client.auth.registerPasskey();
+  if (error) { toast(error.message || 'Could not add Face ID.'); return false; }
+  localStorage.setItem(PASSKEY_ENROLLED_KEY, '1');
+  toast('Face ID passkey added. You can use it next time you sign in.');
+  return true;
 }
 
 export async function signUp() {

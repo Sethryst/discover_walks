@@ -6,8 +6,8 @@ import { openWalkDetail, saveHistoryMoment, saveJournal, saveQuickJournal, rende
 import { discardWalk, getCurrentLocation, recordPoiEncounter, saveWalk, setActiveWalkMode, startWalk, stopWalk, togglePauseWalk, updateWalkDisplay } from './walk.js';
 import { openObservation, saveObservation, setDraftObservationIcon } from './observation.js';
 import { openJournal, closeSheets, openSheet, openAccountSettings, openFiltersSheet, openProfile, renderGeofenceCategoryChips, setArchiveFilter, showView, toast } from './ui.js';
-import { city, citySites, displayPoiName, geofenceCategoriesForCity, renderPoiTagFilters, renderCityPois, setAllPoiTags, showHistory, savePlaceMemory, searchPois, searchOsm, togglePoiTag } from './poi.js';
-import { syncProfile, renderOnline, openOnline, signIn, signUp, signInWithGoogle, createOnlineProfile, updateAccountUsername, updateAccountPhone, updateAccountEmail, updateAccountPassword } from './online.js';
+import { city, citySites, displayPoiName, geofenceCategoriesForCity, renderCityPois, showHistory, savePlaceMemory, searchPois, searchOsm } from './poi.js';
+import { syncProfile, renderOnline, openOnline, signIn, signUp, signInWithGoogle, signInWithPasskey, registerPasskey, createOnlineProfile, updateAccountUsername, updateAccountPhone, updateAccountEmail, updateAccountPassword } from './online.js';
 import { refreshCityMap, switchCity } from './city.js';
 import { renderProfile } from './profile.js';
 import { toggleFavoriteRegion } from './region-favorites.js';
@@ -117,6 +117,10 @@ export function initEvents() {
   el('advancedAppearanceForm').addEventListener('submit', async (event) => { event.preventDefault(); state.settings.staticAppearance = { headlineTitle: el('advancedHeadlineTitle').value.trim() || 'A walk with a purpose', headlineIcon: el('advancedHeadlineIcon').value, developerName: el('developerName').value.trim(), developerUrl: el('developerUrl').value.trim() }; await db.put('settings', state.settings); const { applyStaticAppearance } = await import('./ui.js'); applyStaticAppearance(); toast('Appearance saved on this device.'); });
   el('profileJournalButton').addEventListener('click', () => openJournal());
   el('filtersButton').addEventListener('click', openFiltersSheet);
+  el('savePlaceMapButton').addEventListener('click', () => {
+    const center = state.map.getCenter();
+    window.dispatchEvent(new CustomEvent('personal-place-create-requested', { detail: { location: { lat: center.lat, lng: center.lng } } }));
+  });
   el('dismissHistoryButton').addEventListener('click', closeSheets); el('saveHistoryMomentButton').addEventListener('click', saveHistoryMoment);
   el('saveHistoryMomentButton').addEventListener('click', () => {
   if (state.currentSite) savePlaceMemory(state.currentSite.id, el('historyNoteInput').value.trim());
@@ -227,11 +231,13 @@ el('poiSearchResults').addEventListener('click', (event) => {
   el('citySelect').addEventListener('change', (event) => switchCity(event.target.value));
   el('goOnlineButton').addEventListener('click', openOnline);
   el('signInButton').addEventListener('click', signIn);
+el('passkeySignInButton').addEventListener('click', signInWithPasskey);
 el('googleSignInButton').addEventListener('click', signInWithGoogle);
 el('signUpButton').addEventListener('click', signUp);
 el('usernameForm').addEventListener('submit', createOnlineProfile);
   el('syncNowButton').addEventListener('click', async () => { try { await syncProfile(); await renderOnline(); toast('Aggregate stats synced.'); } catch (error) { toast(error.message || 'Could not sync right now.'); } });
 el('accountSettingsButton').addEventListener('click', openAccountSettings);
+el('registerPasskeyButton').addEventListener('click', registerPasskey);
 el('accountUsernameForm').addEventListener('submit', updateAccountUsername);
 el('accountEmailForm').addEventListener('submit', updateAccountEmail);
 el('accountPasswordForm').addEventListener('submit', updateAccountPassword);
@@ -244,22 +250,16 @@ el('accountPasswordForm').addEventListener('submit', updateAccountPassword);
     else showView('map');
   }));
   document.querySelectorAll('[data-discover-lens]').forEach((button) => button.addEventListener('click', () => showView(button.dataset.discoverLens)));
+  document.querySelector('[data-discover-personal-places]')?.addEventListener('click', () => { showView('explore'); setExploreTab('personal'); });
   document.querySelectorAll('[data-back-discover]').forEach((button) => button.addEventListener('click', () => showView('explore')));
   el('clearDataButton').addEventListener('click', async () => {
     if (!confirm("Clear every locally saved walk, reflection, observation, and personal profile record on this device? This can't be undone.")) return;
     await db.clearAll();
     state.profile = normalizeProfile(DEFAULT_PROFILE); state.settings = { ...DEFAULT_SETTINGS }; state.activeCity = 'fairfax';
+    state.personalPlaces = []; state.personalPlaceCategories = []; state.layerFilters = { public: {}, personal: {} }; state.layerUiState = { expanded: {} };
     await Promise.all([db.put('profile', state.profile), db.put('settings', state.settings)]);
-    closeSheets(); await refreshCityMap(true); renderArchive(); toast('Local journal data cleared.');
+    closeSheets(); await refreshCityMap(true); renderArchive(); window.dispatchEvent(new CustomEvent('personal-places-changed')); toast('Local journal data cleared.');
   });
-  el('poiTagFilters').addEventListener('click', (event) => {
-    const button = event.target.closest('[data-poi-tag]'); if (!button) return;
-    togglePoiTag(button.dataset.poiTag);
-    renderPoiTagFilters();
-  });
-  el('selectAllPoiFiltersButton').addEventListener('click', () => { setAllPoiTags(true); renderPoiTagFilters(); renderCityPois(); });
-  el('deselectAllPoiFiltersButton').addEventListener('click', () => { setAllPoiTags(false); renderPoiTagFilters(); renderCityPois(); });
-  el('applyFiltersButton').addEventListener('click', () => { renderCityPois(); closeSheets(); });
   el('trailFeatureButton').addEventListener('click', () => {
     const bounds = state.trailLayer.getBounds();
     if (bounds.isValid()) state.map.fitBounds(bounds, { padding: [28, 28] });

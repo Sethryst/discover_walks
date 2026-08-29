@@ -243,9 +243,9 @@ export const POI_ICONS = { park: 'tree', public_art: 'star', recreation_center: 
 // History sites are split into subtypes so the filter sheet isn't one catch-all
 // "History" bucket — each gets its own chip and its own pin glyph.
                 export const HISTORY_SUBTYPES = {
-  landmark: { label: 'Landmarks', icon: '🏛' },
-  monument: { label: 'Monuments', icon: '🗿' },
-  museum: { label: 'Museums', icon: '🖼' },
-  cemetery: { label: 'Cemeteries', icon: '🪦' },
-  marker: { label: 'Historical Markers', icon: '📜' } // default/fallback subtype
+  landmark: { label: 'Landmarks', icon: 'building' },
+  monument: { label: 'Monuments', icon: 'bookmark' },
+  museum: { label: 'Museums', icon: 'book-open' },
+  cemetery: { label: 'Cemeteries', icon: 'map-pin' },
+  marker: { label: 'Historical Markers', icon: 'bookmark' } // default/fallback subtype
 };

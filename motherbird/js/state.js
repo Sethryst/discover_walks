@@ -15,6 +15,10 @@ export const state = {
   discoveredNeighborhoodIds: new Set(),
   spatialIndexCity: null,
   locallyClosedPoiIds: new Map(),
+  personalPlaces: [],
+  personalPlaceCategories: [],
+  layerFilters: { public: {}, personal: {} },
+  layerUiState: { expanded: {} },
 
   // map objects
   map: null,
@@ -25,6 +29,7 @@ export const state = {
   plannedRoute: null,
   observationLayer: null,
   poiLayer: null,
+  personalPlaceLayer: null,
   neighborhoodLayer: null,
   fieldEditionEntryLayer: null,
   fieldEditionMap: null,

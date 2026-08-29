@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="./vendor/leaflet-markercluster/MarkerCluster.css">
     <link rel="stylesheet" href="./vendor/leaflet-markercluster/MarkerCluster.Default.css">
     <link rel="stylesheet" href="./vendor/maplibre-gl.css" />
-    <link rel="stylesheet" href="./styles.css?v=55">
+    <link rel="stylesheet" href="./styles.css?v=56">
     <title>Walk &amp; Wildlife</title>
   </head>
   <body>
@@ -46,6 +46,7 @@
               <div id="map" role="application" aria-label="Map of nearby places"></div>
               <div class="poi-search" id="poiSearch"><input id="poiSearchInput" type="text" placeholder="Search the map" autocomplete="off" aria-label="Search places" /><div class="poi-search-results hidden" id="poiSearchResults"></div></div>
               <button class="filters-button" id="filtersButton" aria-label="Filter places on map" title="Filter places"><img class="ui-icon ui-icon--small" src="./icons/layers.svg" alt="" /> Layers<span class="filters-badge hidden" id="filtersBadge"></span></button>
+              <button class="save-place-button" id="savePlaceMapButton" type="button" aria-label="Save a personal place at the map center" title="Save a personal place"><img class="ui-icon ui-icon--small" src="./icons/plus.svg" alt="" /> Place</button>
               <button class="locate-button" id="locateButton" aria-label="Use my location" title="Use my location"><img class="ui-icon" src="./icons/navigation.svg" alt="" /></button>
               <div class="map-key" aria-label="Map legend"><span class="key-history">✦</span> Place <span class="key-wildlife">●</span> Your note</div>
               <aside class="neighborhood-discovery hidden" id="neighborhoodDiscoveryPanel" aria-live="polite"><strong>Neighborhood field notes</strong><span id="neighborhoodDiscoveryCount">0 discovered</span><small id="neighborhoodSource">Producer boundary package</small><button type="button" id="resetNeighborhoodsButton">Reset</button></aside>
@@ -98,11 +99,12 @@
       <div id="exploreView" class="app-view hidden inner-view" aria-label="Discover this place">
         <p class="eyebrow">DISCOVER</p>
         <h2 class="explore-heading">Know the place. Take part in it.</h2>
-        <p class="discover-lede">Three ways to understand what is around you. Anything interesting can become a future walk.</p>
+        <p class="discover-lede">Understand what is around you, then add the places that matter to your own map.</p>
         <section class="discover-lenses" aria-label="Discover lenses">
           <button type="button" data-discover-lens="fieldGuide"><span class="lens-icon">⌁</span><span><strong>Field Guide</strong><small>Notice wildlife, plants, history, architecture, and art.</small></span><b>→</b></button>
           <button type="button" data-discover-lens="vote"><span class="lens-icon">◇</span><span><strong>Civic</strong><small>Understand the public life and decisions shaping this place.</small></span><b>→</b></button>
           <button type="button" data-discover-lens="volunteer"><span class="lens-icon">✦</span><span><strong>Volunteer</strong><small>Find grounded ways to participate and help nearby.</small></span><b>→</b></button>
+          <button type="button" data-discover-personal-places><span class="lens-icon"><img src="./icons/map-pin.svg" alt="" /></span><span><strong>Personal Places</strong><small>Curate food, hidden trails, art, access points, or anything else you value.</small></span><b>→</b></button>
         </section>
         <div class="discover-to-walk"><p class="eyebrow">DISCOVER → WALK</p><strong>Find a place that calls to you.</strong><span>Preview it here, then choose “Walk there” when you’re ready.</span></div>
         <label class="explore-search"><img class="ui-icon ui-icon--small" src="./icons/search.svg" alt="" /><input id="exploreSearchInput" type="search" placeholder="Search routes, places, events" autocomplete="off" /></label>
@@ -110,6 +112,7 @@
           <button class="explore-tab active" type="button" role="tab" aria-selected="true" data-explore-tab="routes">Routes</button>
           <button class="explore-tab" type="button" role="tab" aria-selected="false" data-explore-tab="places">Places</button>
           <button class="explore-tab" type="button" role="tab" aria-selected="false" data-explore-tab="events">Events</button>
+          <button class="explore-tab" type="button" role="tab" aria-selected="false" data-explore-tab="personal">Personal Places</button>
         </div>
         <section id="exploreRoutes" class="explore-panel" role="tabpanel">
           <button class="time-walk-card" id="planWalkButton" type="button"><span class="time-walk-icon"><img class="ui-icon" src="./icons/route.svg" alt="" /></span><span><strong>See a walk shaped around your time</strong><small>Compare several color-coded pedestrian routes, weighted to what you want to notice.</small></span><img class="ui-icon ui-icon--small ui-icon--inverse" src="./icons/arrow-right.svg" alt="" /></button>
@@ -130,6 +133,9 @@
             <p>Official civic information lives separately from your walking profile and journal.</p>
             <div><button type="button" class="secondary-button" data-civic-view="vote">Voting information</button><button type="button" class="secondary-button" data-civic-view="volunteer">Volunteer locally</button></div>
           </section>
+        </section>
+        <section id="explorePersonal" class="explore-panel hidden" role="tabpanel">
+          <div id="personalPlacesPanel" aria-live="polite"></div>
         </section>
       </div>
 
@@ -298,17 +304,42 @@
       </form>
     </section>
 
-    <section class="sheet hidden" id="filtersSheet" role="dialog" aria-modal="true" aria-labelledby="filtersTitle">
+    <section class="sheet tall-sheet layer-sheet hidden" id="filtersSheet" role="dialog" aria-modal="false" aria-labelledby="filtersTitle">
       <button class="close-sheet" data-close-sheet aria-label="Close">×</button>
-      <span class="sheet-kicker">MAP FILTERS</span>
+      <span class="sheet-kicker">LAYERS</span>
       <div class="filters-sheet-heading">
-        <h2 id="filtersTitle">Places to explore</h2>
-        <div class="filter-bulk-actions"><button class="text-button" id="selectAllPoiFiltersButton" type="button">Select all</button><button class="text-button" id="deselectAllPoiFiltersButton" type="button">Deselect all</button></div>
+        <h2 id="filtersTitle">Choose what stays on your map</h2>
       </div>
-      <p class="sheet-intro">Open a category to choose which kinds of places appear on the map.</p>
+      <p class="sheet-intro">Categories stay open while you make changes. Nearby counts follow the current map view.</p>
+      <label class="layer-search"><img src="./icons/search.svg" alt="" /><input id="layerFilterSearch" type="search" placeholder="Search filters…" autocomplete="off" /></label>
       <div class="poi-filter-groups" id="poiTagFilters" aria-label="Place categories"></div>
       <p class="sheet-intro" id="poiFilterStatus" role="status"></p>
-      <button class="primary-button wide-button" id="applyFiltersButton" type="button">Apply filters</button>
+      <div class="layer-transfer-actions"><button class="secondary-button" id="exportCurrentFiltersButton" type="button">Export current filters</button><button class="secondary-button" id="importFilterSetButton" type="button">Import filter set</button></div>
+    </section>
+
+    <section class="sheet hidden" id="filterExportSheet" role="dialog" aria-modal="true" aria-labelledby="filterExportTitle">
+      <button class="close-sheet" data-close-sheet aria-label="Close">×</button><span class="sheet-kicker">SHARE LOCALLY</span><h2 id="filterExportTitle">Export this filter set</h2>
+      <p class="sheet-intro">The file can include your filter choices and personal places. Photos remain private on this device.</p>
+      <form id="filterExportForm"><label>Filter set name<input id="filterExportName" maxlength="80" required placeholder="My neighborhood food walk" /></label><label>Description<textarea id="filterExportDescription" rows="3" maxlength="300" placeholder="What this set is useful for"></textarea></label><label>Author (optional)<input id="filterExportAuthor" maxlength="60" placeholder="Your name" /></label><button class="primary-button wide-button" type="submit">Download .walkfilter</button></form>
+    </section>
+
+    <section class="sheet tall-sheet hidden" id="filterImportSheet" role="dialog" aria-modal="true" aria-labelledby="filterImportTitle">
+      <button class="close-sheet" data-close-sheet aria-label="Close">×</button><span class="sheet-kicker">IMPORT FILTER SET</span><h2 id="filterImportTitle">Preview before adding</h2>
+      <label class="filter-file-picker">Choose a .walkfilter, .walkplaces, or JSON file<input id="filterImportFile" type="file" accept=".walkfilter,.walkplaces,.json,application/json" /></label>
+      <details class="paste-filter-json"><summary>Or paste JSON</summary><textarea id="filterImportJson" rows="6" placeholder="Paste exported JSON here"></textarea><button class="secondary-button" id="previewFilterImportButton" type="button">Preview pasted JSON</button></details>
+      <section class="filter-import-preview hidden" id="filterImportPreview" aria-live="polite"><strong id="filterImportFilename"></strong><small id="filterImportMeta"></small><p id="filterImportDescription"></p><div id="filterImportIncludes"></div><fieldset><legend>Import options</legend><label><input id="filterImportApplyFilters" type="checkbox" checked /> Apply filter selections</label><label><input id="filterImportPersonalPlaces" type="checkbox" checked /> Import personal places</label><label><input id="filterImportReplace" type="checkbox" /> Replace current filters (default is merge)</label></fieldset><label class="hidden" id="filterDuplicateRow"><span id="filterDuplicateCount"></span><select id="filterDuplicateStrategy"><option value="skip">Skip existing locations</option><option value="merge">Merge notes into existing locations</option></select></label></section>
+      <div class="sheet-actions"><button class="secondary-button" data-close-sheet type="button">Cancel</button><button class="primary-button" id="confirmFilterImportButton" type="button" disabled>Import</button></div>
+    </section>
+
+    <section class="sheet tall-sheet hidden" id="personalPlaceSheet" role="dialog" aria-modal="true" aria-labelledby="personalPlaceFormTitle">
+      <button class="close-sheet" data-close-sheet aria-label="Close">×</button><span class="sheet-kicker">PERSONAL PLACES</span><h2 id="personalPlaceFormTitle">Add a personal place</h2>
+      <p class="sheet-intro">Saved in this browser and separate from public map data.</p>
+      <form id="personalPlaceForm"><label>Name<input id="personalPlaceName" maxlength="100" required /></label><label>Address or location note<input id="personalPlaceAddress" maxlength="240" placeholder="Optional address or landmark" /></label><div class="coordinate-fields"><label>Latitude<input id="personalPlaceLatitude" type="number" step="any" min="-90" max="90" required /></label><label>Longitude<input id="personalPlaceLongitude" type="number" step="any" min="-180" max="180" required /></label></div><label>Category<select id="personalPlaceCategory"></select></label><fieldset class="new-category-fields hidden" id="personalPlaceNewCategoryFields"><legend>Create a category</legend><label>Name<input id="personalPlaceNewCategoryName" maxlength="60" /></label><div class="coordinate-fields"><label>Icon<select id="personalPlaceNewCategoryIcon"><option value="utensils">Food</option><option value="coffee">Coffee</option><option value="map-pin">Place</option><option value="tree">Nature</option><option value="bench">Seating</option><option value="droplet">Water</option><option value="building">Building</option><option value="star">Favorite</option></select></label><label>Color<input id="personalPlaceNewCategoryColor" type="color" value="#E8740F" /></label></div></fieldset><label>Notes<textarea id="personalPlaceNotes" rows="4" maxlength="2000" placeholder="Hours, why it matters, what to look for…"></textarea></label><label class="photo-field">Photos<input id="personalPlacePhotos" type="file" accept="image/*" capture="environment" multiple /><span id="personalPlacePhotoStatus">Optional · private on this device</span></label><div class="sheet-actions"><button class="secondary-button" data-close-sheet type="button">Cancel</button><button class="primary-button" type="submit">Save place</button></div></form>
+    </section>
+
+    <section class="sheet hidden" id="personalCategorySheet" role="dialog" aria-modal="true" aria-labelledby="personalCategoryTitle">
+      <button class="close-sheet" data-close-sheet aria-label="Close">×</button><span class="sheet-kicker">PERSONAL PLACES</span><h2 id="personalCategoryTitle">Edit collection</h2>
+      <form id="personalCategoryForm"><label>Name<input id="personalCategoryName" maxlength="60" required /></label><label>Description<textarea id="personalCategoryDescription" rows="3" maxlength="240"></textarea></label><div class="coordinate-fields"><label>Icon<select id="personalCategoryIcon"><option value="utensils">Food</option><option value="coffee">Coffee</option><option value="map-pin">Place</option><option value="tree">Nature</option><option value="bench">Seating</option><option value="droplet">Water</option><option value="building">Building</option><option value="star">Favorite</option></select></label><label>Color<input id="personalCategoryColor" type="color" /></label></div><button class="primary-button wide-button" type="submit">Save collection</button></form>
     </section>
 
     <section class="sheet hidden" id="onboardingSheet" role="dialog" aria-modal="true" aria-labelledby="onboardingTitle">
@@ -416,6 +447,8 @@
         <p>Add your project URL and publishable/anon key to <code>supabase-config.js</code>, then run the included SQL schema. Until then, everything remains local.</p>
       </section>
       <form id="magicLinkForm" class="online-panel hidden">
+  <button class="primary-button wide-button" type="button" id="passkeySignInButton">Sign in with Face ID</button>
+  <p class="auth-privacy">Use a passkey stored on this device or in iCloud Keychain.</p>
   <button class="google-auth-button" type="button" id="googleSignInButton"><span aria-hidden="true">G</span> Continue with Google</button>
   <div class="auth-divider"><span>or use email</span></div>
   <label>Email
@@ -444,6 +477,7 @@
 </form>
       <section id="onlineDashboard" class="online-panel hidden">
         <div class="online-status"><span class="status-dot"></span><span id="onlineStatusText">Online</span><button class="text-button" id="syncNowButton">Sync aggregate profile</button><button class="text-button" id="accountSettingsButton">Account settings</button></div>
+        <button class="secondary-button wide-button" type="button" id="registerPasskeyButton">Add Face ID passkey</button>
         <p class="sheet-intro">There are no rankings, follower counts, shared maps, or shared journal entries here. Connecting an account should never turn walking into a competition.</p>
       </section>
     </section>
@@ -473,7 +507,7 @@
     <script src="./vendor/leaflet-markercluster/leaflet.markercluster.js"></script>
     <script src="./vendor/maplibre-gl.js"></script>
     <script src="./vendor/pmtiles.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.105.0"></script>
     <script src="./supabase-config.js"></script>
     <script type="module" src="./app.js?v=54"></script>
   </body>

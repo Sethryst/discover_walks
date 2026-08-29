@@ -17,6 +17,8 @@ import { restoreLocalPoiClosures } from './spatial-closure-reporting.js';
 import { initFieldGuideFilters } from './field-guide.js';
 import { initJournalPane } from './journal-pane.js';
 import { recoverWalkDraft } from './walk.js';
+import { initPersonalPlaces } from './personal-places.js';
+import { initLayerSystem } from './layer-system.js';
 
 export async function init() {
   const splash = document.getElementById('appSplash');
@@ -39,6 +41,8 @@ export async function init() {
   }
 
   initMap();
+  await initPersonalPlaces();
+  await initLayerSystem();
   initNeighborhoodDiscovery();
   initExplore();
   initFieldGuideFilters();

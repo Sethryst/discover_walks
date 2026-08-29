@@ -4,6 +4,7 @@ import { displayPoiName, isVerifiedPoi } from './poi.js';
 import { renderCuratedRoutes } from './routes.js';
 import { generateTimeBasedPlan } from './planner.js';
 import { renderCivicEvents } from './civic.js';
+import { renderPersonalPlacesPanel } from './personal-places.js';
 import { DISCOVER_GROUPS, discoverGroupFor, publishingState, rankDiscoverPlaces } from './discovery-taxonomy.js';
 
 let activeTab = 'routes';
@@ -37,10 +38,11 @@ export function setExploreTab(tab) {
     button.classList.toggle('active', selected);
     button.setAttribute('aria-selected', String(selected));
   });
-  ['routes', 'places', 'events'].forEach((name) => el(`explore${name[0].toUpperCase()}${name.slice(1)}`).classList.toggle('hidden', name !== tab));
+  ['routes', 'places', 'events', 'personal'].forEach((name) => el(`explore${name[0].toUpperCase()}${name.slice(1)}`).classList.toggle('hidden', name !== tab));
   if (tab === 'places') renderExplorePlaces();
   if (tab === 'routes') renderCuratedRoutes();
   if (tab === 'events') void renderCivicEvents();
+  if (tab === 'personal') renderPersonalPlacesPanel();
 }
 
 export function renderExplorePlaces() {

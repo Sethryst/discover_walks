@@ -33,6 +33,7 @@ export function renderProfile() {
   el('favoriteCategoryChips').innerHTML = GEOFENCE_CATEGORIES.map(([id, label]) => `<button type="button" class="poi-chip ${favorites.has(id) ? 'active' : ''}" data-favorite-category="${id}">${label}</button>`).join('');
   renderGeofenceCategoryChips();
   const onlineName = state.online.remoteProfile?.username;
+  el('goOnlineButton').textContent = onlineName ? 'Account & Face ID' : 'Sign in / add Face ID';
   el('onlineTeaserTitle').textContent = onlineName ? `Optional profile: @${onlineName}` : 'Stay local by default';
   el('onlineTeaserText').textContent = onlineName ? `Last aggregate sync: ${state.settings.lastSyncedAt ? shortDate(state.settings.lastSyncedAt) : 'not yet'}. Routes, observations, photos, and notes remain local.` : 'Optional online mode maintains only a minimal aggregate profile. Routes, observations, photos, and notes never leave this device.';
   void renderFavoriteRegions(state.settings);

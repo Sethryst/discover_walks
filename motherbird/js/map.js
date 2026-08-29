@@ -45,7 +45,10 @@ export function initMap() {
   // Viewport windowing: only build markers for what's on/near screen, recomputed
   // after panning/zooming settles. Stands in for server-side bbox filtering
   // until the backend described in the recommendations exists.
-  state.map.on('moveend zoomend', debounce(() => renderCityPois(), 200));
+  state.map.on('moveend zoomend', debounce(() => {
+    renderCityPois();
+    window.dispatchEvent(new CustomEvent('map-viewport-changed'));
+  }, 200));
 
   const refreshMapSize = () => {
     if (!state.map) return;

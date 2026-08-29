@@ -27,7 +27,7 @@ test('Field Guide subjects are educational records with explicit HTTPS knowledge
   }
 });
 
-test('primary navigation keeps Walk, Discover, and Journal clear while Discover owns its three lenses', async () => {
+test('primary navigation keeps Walk, Discover, and Journal clear while Discover owns its local lenses', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
   assert.match(html, />Discover<\/button>/);
   assert.match(html, />Journal<\/button>/);
@@ -35,6 +35,7 @@ test('primary navigation keeps Walk, Discover, and Journal clear while Discover 
   assert.match(html, /data-discover-lens="fieldGuide"/);
   assert.match(html, /data-discover-lens="vote"/);
   assert.match(html, /data-discover-lens="volunteer"/);
+  assert.match(html, /data-discover-personal-places/);
   assert.match(html, /Notice wildlife, plants, history, architecture, and art/);
   assert.doesNotMatch(html, /data-view="vote"/);
   assert.doesNotMatch(html, /data-view="volunteer"/);
@@ -53,8 +54,9 @@ test('the active map keeps a persistent journal with embedded contextual tools',
   assert.match(styles, /data-sheet-state="collapsed"/);
   assert.match(styles, /data-sheet-state="collapsed"\] \.journal-composer/);
   assert.match(styles, /data-sheet-state="expanded"/);
-  assert.match(html, /id="selectAllPoiFiltersButton"/);
-  assert.match(html, /id="deselectAllPoiFiltersButton"/);
+  assert.match(html, /id="layerFilterSearch"/);
+  assert.match(html, /id="exportCurrentFiltersButton"/);
+  assert.match(html, /id="importFilterSetButton"/);
   assert.doesNotMatch(html, /id="verifiedPlacesOnly"/);
   assert.doesNotMatch(html, /id="fieldEditionStatus"/);
 });

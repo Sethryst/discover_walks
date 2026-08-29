@@ -89,6 +89,7 @@ export async function switchCity(nextCity, recenter = true) {
   state.poiTags.clear();
   await db.put('settings', state.settings);
   await refreshCityMap(recenter);
+  window.dispatchEvent(new CustomEvent('city-layer-data-changed'));
   setStatus(`${cityLabel(nextCity)} ready for a walk`);
   toast(`Now exploring ${cityLabel(nextCity)}.`);
 }

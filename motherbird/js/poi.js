@@ -6,6 +6,7 @@ import { openSheet } from './ui.js';
 import db from './storage.js';
 import { canReportPoiClosure, isLocallyClosedPoi, reportPoiClosed } from './spatial-closure-reporting.js';
 import { isPoiVisited, markPoiVisited } from './poi-visit-tracking.js';
+import { hydrateInlineIcons } from './icon-loader.js';
 
 const POI_FILTER_GROUPS = [
   { id: 'outdoors', label: 'Nature & outdoors', icon: '🌿', tags: ['park', 'trail', 'nature', 'wildlife', 'water', 'water_access', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad', 'rest'] },
@@ -16,7 +17,7 @@ const POI_FILTER_GROUPS = [
   { id: 'other', label: 'More map layers', icon: '◇', tags: ['event', 'osm'] }
 ];
 const FOOD_FILTER_TAGS = new Set(['açaí', 'american', 'armenian', 'asian', 'bagel', 'bakery', 'beer', 'bistro', 'brazilian', 'breakfast', 'bubble_tea', 'burger', 'cake', 'caribbean', 'chinese', 'cookie', 'cuban', 'cupcake', 'deli', 'dessert', 'diner', 'donut', 'eclair', 'empanada', 'ethiopian', 'european', 'filipino', 'french', 'fusion', 'gelato', 'german', 'ice_cream', 'indian', 'italian', 'jamaican', 'japanese', 'juice', 'korean', 'lebanese', 'macaron', 'mediterranean', 'mexican', 'middle_eastern', 'nordic', 'pastry', 'peruvian', 'pie', 'pizza', 'pretzel', 'regional', 'salad', 'salvadoran', 'sandwich', 'shawarma', 'smoothie', 'swiss', 'tart', 'toast', 'vietnamese', 'wine']);
-const isFoodFilterTag = (id) => FOOD_FILTER_TAGS.has(String(id).toLocaleLowerCase());
+export const isFoodFilterTag = (id) => FOOD_FILTER_TAGS.has(String(id).toLocaleLowerCase());
 
 export function renderPoiTagFilters() {
   const pois = state.cityPois[state.activeCity] || [];
@@ -55,9 +56,11 @@ export function setAllPoiTags(selected) { state.poiTags = selected ? new Set() :
 export function updateFiltersBadge() {
   const badge = el('filtersBadge');
   if (!badge) return;
-  const activeCount = [...state.poiTags].filter((id) => id !== '__none__').length;
-  badge.textContent = state.poiTags.has('__none__') ? '0' : activeCount ? String(activeCount) : '';
-  badge.classList.toggle('hidden', !state.poiTags.size);
+  const publicIds = availablePoiTags((state.cityPois[state.activeCity] || []).filter(isVisiblePoi)).map(([id]) => id);
+  const disabled = publicIds.filter((id) => state.layerFilters?.public?.[id] === false).length
+    + (state.personalPlaceCategories || []).filter((category) => state.layerFilters?.personal?.[category.id] === false).length;
+  badge.textContent = disabled ? String(disabled) : '';
+  badge.classList.toggle('hidden', !disabled);
 }
 export function poiMatchesFilters(poi) {
   return poiMatchesSelectedTags(poi, state.poiTags);
@@ -113,7 +116,7 @@ export function renderCityPois() {
     .filter(withinRenderBounds)
     .map((poi) => {
       const markerTag = primaryPoiTag(poi);
-      const icon = L.divIcon({ className: '', html: `<div class="poi-marker ${markerTag}${poi.review?.flags?.length ? ' review-flagged' : ''}"><img src="./icons/${POI_ICONS[markerTag] || 'map-pin'}.svg" alt="" /></div>`, iconSize: [27, 27], iconAnchor: [13, 13] });
+      const icon = L.divIcon({ className: '', html: `<div class="poi-marker ${markerTag}${poi.review?.flags?.length ? ' review-flagged' : ''}"><img data-inline-svg data-icon-fallback="·" src="./icons/${POI_ICONS[markerTag] || 'map-pin'}.svg" alt="" /></div>`, iconSize: [27, 27], iconAnchor: [13, 13] });
       const tagLabels = poiTags(poi).map((tag) => TAG_LABELS[tag] || tag.replaceAll('_', ' ')).join(', ');
       const relevance = poi.walkRelevanceReasons?.length ? `Good walking stop: ${poi.walkRelevanceReasons.join(', ').replaceAll('_', ' ')}` : null;
       const seasonal = activeSeasonalSignals(poi).map((signal) => `Current ${signal.type?.replaceAll('_', ' ') || 'seasonal signal'} through ${new Date(signal.expiresAt).toLocaleDateString()}`).join('<br>');
@@ -124,13 +127,15 @@ export function renderCityPois() {
       const links = [poi.link, poi.website, sourceUrl(poi), historyUrl(poi)].filter(Boolean).filter((url, index, all) => all.indexOf(url) === index).map((url, index) => `<a href="${escapeHtml(url)}" target="_blank" rel="noreferrer">${index === 0 && (poi.link || poi.website) ? 'Website' : 'Source'} ↗</a>`).join(' · ');
       const closeControl = canReportPoiClosure() ? `<br><button type="button" class="text-button" data-close-poi="${escapeHtml(poi.id)}">Hide as closed for 90 days</button>` : '';
       const visitControl = `<br><button type="button" class="text-button" data-visit-poi="${escapeHtml(poi.id)}"${isPoiVisited(poi) ? ' disabled' : ''}>${isPoiVisited(poi) ? 'Visited' : 'Mark visited'}</button>`;
-      const marker = L.marker([poi.lat, poi.lng], { icon, title: displayPoiName(poi), interactive: !state.planningMode, place: poi }).bindPopup(`<strong>${escapeHtml(displayPoiName(poi))}</strong>${details ? `<br><span>${details}</span>` : ''}${links ? `<br>${links}` : ''}${visitControl}${closeControl}`);
+      const personalControl = `<br><button type="button" class="text-button" data-save-personal-poi="${escapeHtml(poi.id)}">Add to personal places</button>`;
+      const marker = L.marker([poi.lat, poi.lng], { icon, title: displayPoiName(poi), interactive: !state.planningMode, place: poi }).bindPopup(`<strong>${escapeHtml(displayPoiName(poi))}</strong>${details ? `<br><span>${details}</span>` : ''}${links ? `<br>${links}` : ''}${visitControl}${personalControl}${closeControl}`);
       marker.on('popupopen', (event) => { const popup = event.popup.getElement(); popup?.querySelector('[data-close-poi]')?.addEventListener('click', async () => {
         try { await reportPoiClosed(poi); state.map.closePopup(); renderCityPois(); } catch (error) { console.warn('Could not record local closure:', error.message); }
-      }, { once: true }); popup?.querySelector('[data-visit-poi]')?.addEventListener('click', async () => { await markPoiVisited(poi); state.map.closePopup(); renderCityPois(); }); });
+      }, { once: true }); popup?.querySelector('[data-visit-poi]')?.addEventListener('click', async () => { await markPoiVisited(poi); state.map.closePopup(); renderCityPois(); }); popup?.querySelector('[data-save-personal-poi]')?.addEventListener('click', () => { state.map.closePopup(); window.dispatchEvent(new CustomEvent('personal-place-create-requested', { detail: { sourcePoi: { ...poi, name: displayPoiName(poi) } } })); }, { once: true }); });
       return marker;
     });
   if (state.poiLayer.addLayers) state.poiLayer.addLayers(markers); else markers.forEach((marker) => marker.addTo(state.poiLayer));
+  void hydrateInlineIcons(state.map?.getContainer?.() || document);
   const segments = state.trailSegments[state.activeCity] || [];
   if (!state.poiTags.size || state.poiTags.has('trail')) {
     segments.forEach((segment) => segment.coordinates.forEach((coordinates) => L.polyline(coordinates.map(([lng, lat]) => [lat, lng]), { color: '#2d7259', weight: 5, opacity: .82 }).bindTooltip('Elizabeth River Trail').addTo(state.trailLayer)));
@@ -153,10 +158,10 @@ export function renderHistorySites() {
   const sites = allSites.filter(isWalkablePoi).filter((site) => !isOsmPoi(site) || !state.poiTags.size || state.poiTags.has('osm')).filter((site) => hasReliableMapCoordinate(site, coordinateCounts)).filter(poiMatchesFilters).filter(withinRenderBounds);
   const markers = sites.map((site) => {
     const subtype = inferHistorySubtype(site);
-    const glyph = HISTORY_SUBTYPES[subtype]?.icon || '🏛';
+    const iconName = HISTORY_SUBTYPES[subtype]?.icon || 'building';
     const historyIcon = L.divIcon({
       className: '',
-      html: `<div class="historic-pin${site.unverified ? ' unverified' : ''}"><span class="pin-body"><span class="pin-icon">${glyph}</span></span></div>`,
+      html: `<div class="historic-pin${site.unverified ? ' unverified' : ''}"><span class="pin-body"><span class="pin-icon"><img data-inline-svg data-icon-fallback="·" src="./icons/${iconName}.svg" alt="" /></span></span></div>`,
       iconSize: [32, 40], iconAnchor: [16, 38]
     });
     const marker = L.marker([site.lat, site.lng], { icon: historyIcon, title: site.name, interactive: !state.planningMode, place: site });
@@ -169,6 +174,7 @@ export function renderHistorySites() {
     return marker;
   });
   if (state.historyLayer.addLayers) state.historyLayer.addLayers(markers); else markers.forEach((marker) => marker.addTo(state.historyLayer));
+  void hydrateInlineIcons(state.map?.getContainer?.() || document);
 }
 export function renderCityExplorer() {
   el('norfolkAttribution').classList.toggle('hidden', state.activeCity !== 'norfolk');

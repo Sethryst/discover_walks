@@ -2,7 +2,7 @@ export const db = (() => {
   let database;
   function open() {
     return new Promise((resolve, reject) => {
-      const request = indexedDB.open('walk-wildlife-journal', 8);
+      const request = indexedDB.open('walk-wildlife-journal', 9);
       request.onupgradeneeded = () => {
         database = request.result;
         if (!database.objectStoreNames.contains('walks')) database.createObjectStore('walks', { keyPath: 'id' });
@@ -25,6 +25,10 @@ export const db = (() => {
         if (!database.objectStoreNames.contains('walk_drafts')) database.createObjectStore('walk_drafts', { keyPath: 'id' });
         if (!database.objectStoreNames.contains('walk_events')) database.createObjectStore('walk_events', { keyPath: 'id' });
         if (!database.objectStoreNames.contains('personal_places')) database.createObjectStore('personal_places', { keyPath: 'id' });
+        // Curated place metadata stays separate from automatically inferred
+        // pause/return candidates already stored in `personal_places`.
+        if (!database.objectStoreNames.contains('personal_place_categories')) database.createObjectStore('personal_place_categories', { keyPath: 'id' });
+        if (!database.objectStoreNames.contains('layer_settings')) database.createObjectStore('layer_settings', { keyPath: 'id' });
         if (!database.objectStoreNames.contains('voice_notes')) database.createObjectStore('voice_notes', { keyPath: 'id' });
         if (!database.objectStoreNames.contains('notification_state')) database.createObjectStore('notification_state', { keyPath: 'id' });
         // Durable local operation outbox for a future, explicitly enabled county sync.
@@ -41,7 +45,7 @@ export const db = (() => {
   function all(name) { return new Promise((resolve, reject) => {const r = store(name).getAll(); r.onsuccess = () => resolve(r.result); r.onerror = () => reject(r.error); }); }
   function remove(name, id) { return new Promise((resolve, reject) => {const r = store(name, 'readwrite').delete(id); r.onsuccess = () => resolve(); r.onerror = () => reject(r.error); }); }
   function clearAll() {
-    return Promise.all(['walks', 'observations', 'moments', 'profile', 'settings', 'neighborhood_discoveries', 'walk_drafts', 'walk_events', 'personal_places', 'voice_notes', 'notification_state', 'spatial_local_operations'].map((name) => new Promise((resolve, reject) => {
+    return Promise.all(['walks', 'observations', 'moments', 'profile', 'settings', 'neighborhood_discoveries', 'walk_drafts', 'walk_events', 'personal_places', 'personal_place_categories', 'layer_settings', 'voice_notes', 'notification_state', 'spatial_local_operations'].map((name) => new Promise((resolve, reject) => {
     const r = store(name, 'readwrite').clear(); r.onsuccess = resolve; r.onerror = () => reject(r.error);
     })));
   }

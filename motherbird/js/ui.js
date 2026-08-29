@@ -3,7 +3,7 @@ import { CITIES, GEOFENCE_CATEGORIES } from './constants.js';
 import { el, escapeHtml, formatDistance, formatDuration, shortDate } from './utils.js';
 import { renderArchive } from './archive.js';
 import { renderProfile } from './profile.js';
-import { geofenceCategoriesForCity, renderPoiTagFilters } from './poi.js';
+import { geofenceCategoriesForCity } from './poi.js';
 import { renderCivic } from './civic.js';
 import { promptForWalk, REFLECTION_PROMPTS, wordCount } from './reflection.js';
 import { renderFieldGuide } from './field-guide.js';
@@ -21,17 +21,17 @@ export function openAccountSettings() {
   openSheet('accountSheet');
 }
 export function openFiltersSheet() {
-  renderPoiTagFilters();
   openSheet('filtersSheet');
+  window.dispatchEvent(new CustomEvent('layers-sheet-opened'));
 }
 export function closeSheets() {
   state.modalOpen = null;
-  document.body.classList.remove('journal-open');
+  document.body.classList.remove('journal-open', 'layers-open');
   el('modalBackdrop').classList.add('hidden');
   document.querySelectorAll('.sheet').forEach((sheet) => sheet.classList.add('hidden'));
   if (state.draftMarker) { state.draftMarker.remove(); state.draftMarker = null; }
 }
-export function openSheet(id) { state.modalOpen = id; document.body.classList.toggle('journal-open', id === 'journalSheet'); el('modalBackdrop').classList.remove('hidden'); el(id).classList.remove('hidden'); }
+export function openSheet(id) { state.modalOpen = id; document.body.classList.toggle('journal-open', id === 'journalSheet'); document.body.classList.toggle('layers-open', id === 'filtersSheet'); el('modalBackdrop').classList.remove('hidden'); el(id).classList.remove('hidden'); }
 export function applyStaticAppearance() {
   const appearance = { headlineTitle: 'A walk with a purpose', headlineIcon: 'walk', developerName: '', developerUrl: '', ...(state.settings.staticAppearance || {}) };
   const allowedIcons = new Set(['walk', 'tree', 'heart', 'star', 'coffee']);
