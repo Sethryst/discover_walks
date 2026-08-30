@@ -4,8 +4,12 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from collections.abc import Iterable
+import json
 from math import asin, cos, radians, sin, sqrt
 from typing import Any
+
+from shapely.geometry import mapping, shape
+from shapely.ops import linemerge, unary_union
 
 from app.pipeline.intermediate import IntermediateFeature
 
@@ -35,7 +39,7 @@ class DomainGremlin(ABC):
         properties = feature.properties
         source_metadata = feature.metadata.get("sourceMetadata", {})
         is_osm = feature.metadata.get("rawFormat") == "osm"
-        name = _configured_property(feature, "name", "PARK_NAME", "PARKNAME", "NAME", "name", "FACILITY_NAME")
+        name = _configured_property(feature, "name", "PARK_NAME", "PARKNAME", "NAME", "name", "FACILITY_NAME", "DESCRIPTION", "SITE_NAME", "TRLNAME", "TRAIL_NAME", "ADDITION_TRAIL_NAME")
         return {
             "id": f"osm:{source_metadata.get('osmType')}:{feature.source_id}" if is_osm else f"{self.domain}:{source_metadata['sourceConfigId']}:{feature.source_id}",
             "domain": self.domain,
@@ -97,8 +101,47 @@ class TrailsGremlin(DomainGremlin):
     """Produces named path, line, and trail network records."""
     domain = "trails"
 
+    def process(self, features: Iterable[IntermediateFeature]) -> list[dict[str, Any]]:
+        """Normalize configured regional-route segments under one canonical identity."""
+        ordinary: list[IntermediateFeature] = []
+        canonical: dict[tuple[str, str], list[IntermediateFeature]] = {}
+        configs: dict[tuple[str, str], dict[str, Any]] = {}
+        for feature in features:
+            source_metadata = feature.metadata.get("sourceMetadata", {})
+            config = source_metadata.get("providerOptions", {}).get("canonicalRoute")
+            if config and _matches_canonical_route(feature.properties, config):
+                key = (str(source_metadata.get("sourceConfigId")), str(config["routeId"]))
+                canonical.setdefault(key, []).append(feature)
+                configs[key] = config
+            else:
+                ordinary.append(feature)
+        output = super().process(ordinary)
+        for (source_id, route_id), route_features in canonical.items():
+            accepted = [feature for feature in route_features if self.accepts(feature)]
+            if not accepted:
+                continue
+            record = self.map(accepted[0])
+            geometries = [shape(feature.geometry) for feature in accepted]
+            merged = linemerge(unary_union(geometries)) if len(geometries) > 1 else geometries[0]
+            config = configs[(source_id, route_id)]
+            record["id"] = f"{self.domain}:{source_id}:{route_id}"
+            record["name"] = str(config["routeName"])
+            record["geometry"] = json.loads(json.dumps(mapping(merged)))
+            record["properties"].update({
+                "routeId": route_id,
+                "routeName": str(config["routeName"]),
+                "routeType": config.get("routeType"),
+                "operator": config.get("operator"),
+                "officialHours": config.get("officialHours"),
+                "identityUrl": config.get("identityUrl"),
+                "sourceSegmentCount": len(accepted),
+                "sourceSegmentIds": sorted(feature.source_id for feature in accepted),
+            })
+            output.append(record)
+        return output
+
     def accepts(self, feature: IntermediateFeature) -> bool:
-        return feature.geometry.get("type") in {"LineString", "MultiLineString"} and bool(_configured_property(feature, "name", "NAME", "TRAIL_NAME", "name"))
+        return feature.geometry.get("type") in {"LineString", "MultiLineString"} and bool(_configured_property(feature, "name", "NAME", "TRAIL_NAME", "TRLNAME", "ADDITION_TRAIL_NAME", "name"))
 
     def attributes(self, properties: dict[str, Any]) -> dict[str, Any]:
         output = super().attributes(properties)
@@ -155,11 +198,12 @@ class FacilitiesGremlin(DomainGremlin):
     domain = "facilities"
 
     def accepts(self, feature: IntermediateFeature) -> bool:
-        return feature.geometry.get("type") in {"Point", "Polygon", "MultiPolygon"} and bool(_configured_property(feature, "name", "NAME", "FACILITY_NAME", "CENTER_NAME", "name"))
+        return feature.geometry.get("type") in {"Point", "Polygon", "MultiPolygon"} and bool(_configured_property(feature, "name", "NAME", "FACILITY_NAME", "CENTER_NAME", "DESCRIPTION", "name"))
 
     def attributes(self, properties: dict[str, Any]) -> dict[str, Any]:
         output = super().attributes(properties)
         output.update({
+            "type": _first(properties, "type", "TYPE", "FACILITY_TYPE") or "facility",
             "parking": _truthy(properties.get("PARKING")),
             "restrooms": _truthy(properties.get("RESTROOMS")),
             "drinkingWater": _truthy(properties.get("DRINKING_FOUNTAINS")),
@@ -273,11 +317,14 @@ class CommunityGremlin(DomainGremlin):
 
     def accepts(self, feature: IntermediateFeature) -> bool:
         tags = feature.properties
-        return bool(tags.get("name")) and tags.get("amenity") in {"library", "marketplace"}
+        name = _configured_property(feature, "name", "DESCRIPTION", "NAME", "name")
+        if feature.metadata.get("rawFormat") != "osm":
+            return feature.geometry.get("type") == "Point" and bool(name)
+        return bool(name) and tags.get("amenity") in {"library", "marketplace"}
 
     def attributes(self, properties: dict[str, Any]) -> dict[str, Any]:
         output = super().attributes(properties)
-        output["type"] = properties.get("amenity")
+        output["type"] = properties.get("amenity") or properties.get("type") or "library"
         return output
 
 
@@ -299,11 +346,25 @@ class WildlifeGremlin(DomainGremlin):
     domain = "wildlife"
 
     def accepts(self, feature: IntermediateFeature) -> bool:
-        return feature.geometry.get("type") == "Point" and bool(feature.properties.get("name")) and feature.properties.get("signalType") == "recent_hotspot_observations"
+        properties = feature.properties
+        name = _configured_property(feature, "name", "SITE_NAME", "locName", "name")
+        destination_type = properties.get("signalType") or properties.get("hotspotType") or properties.get("site_id")
+        return feature.geometry.get("type") == "Point" and bool(name) and bool(destination_type)
 
     def attributes(self, properties: dict[str, Any]) -> dict[str, Any]:
         output = super().attributes(properties)
-        output.update({"type": "birding_hotspot", "seasonalSignals": [{"type": "recent_bird_observations", "species": properties["recentSpecies"], "observedAt": properties["latestObservationAt"], "expiresAt": properties["signalExpiresAt"]}]})
+        seasonal = []
+        if properties.get("signalType") == "recent_hotspot_observations":
+            seasonal.append({"type": "recent_bird_observations", "species": properties.get("recentSpecies", []), "observedAt": properties.get("latestObservationAt"), "expiresAt": properties.get("signalExpiresAt")})
+        output.update({
+            "type": "vbwt_site" if properties.get("site_id") else "birding_hotspot",
+            "seasonalSignals": seasonal,
+            "ebirdLocationId": properties.get("locId") or properties.get("site_ebird_site_id"),
+            "access": properties.get("site_access"),
+            "directions": properties.get("site_directions"),
+            "description": properties.get("site_description"),
+            "amenities": [label for label, key in (("parking", "Parking"), ("restrooms", "Restrooms"), ("hiking_trails", "Hiking_Trails"), ("accessible", "Handicap_Accessible")) if _truthy(properties.get(key))],
+        })
         return output
 
 
@@ -369,12 +430,21 @@ class HistoryGremlin(DomainGremlin):
 
     def accepts(self, feature: IntermediateFeature) -> bool:
         tags = feature.properties
-        return bool(tags.get("name")) and bool(tags.get("historic") or tags.get("heritage"))
+        name = _configured_property(feature, "name", "DESCRIPTION", "NAME", "name")
+        if feature.metadata.get("rawFormat") != "osm":
+            return feature.geometry.get("type") == "Point" and bool(name)
+        return bool(name) and bool(tags.get("historic") or tags.get("heritage"))
 
     def attributes(self, properties: dict[str, Any]) -> dict[str, Any]:
         output = super().attributes(properties)
-        output.update({"type": properties.get("historic") or "heritage_site", "historicalContext": {"wikidataId": properties.get("wikidata"), "wikipedia": properties.get("wikipedia")} if properties.get("wikidata") or properties.get("wikipedia") else None})
+        output.update({"type": properties.get("type") or properties.get("historic") or "historic_site", "historicalContext": {"wikidataId": properties.get("wikidata"), "wikipedia": properties.get("wikipedia")} if properties.get("wikidata") or properties.get("wikipedia") else None})
         return output
+
+
+def _matches_canonical_route(properties: dict[str, Any], config: dict[str, Any]) -> bool:
+    """Match route identity using configured official source fields and labels."""
+    haystack = " ".join(str(properties.get(field) or "") for field in config.get("matchFields", ())).casefold()
+    return any(str(term).casefold() in haystack for term in config.get("matchTerms", ()))
 
 
 class PantryGremlin(DomainGremlin):

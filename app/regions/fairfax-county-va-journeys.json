@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "regionId": "fairfax-county-va",
+  "routes": [
+    {
+      "id": "wod-vienna-town-green",
+      "name": "W&OD: Vienna Town Green Section",
+      "description": "A paved Vienna section of the Washington & Old Dominion Trail assembled from the county's official non-county trail geometry, with the Town Green and a durable birding hotspot as reasons to pause and notice.",
+      "featured": true,
+      "access": {
+        "startLabel": "W&OD west of Vienna Town Green",
+        "destinationLabel": "W&OD east of Vienna Town Green",
+        "note": "NOVA Parks identifies the W&OD and publishes daily hours of 5 a.m. to 9 p.m. Use current NOVA Parks information for closures. Parking and a precise public start entrance have not been verified for this editorial section."
+      },
+      "sources": [
+        {"name": "NOVA Parks — Washington & Old Dominion Railroad Regional Park", "url": "https://www.novaparks.com/parks/washington-and-old-dominion-railroad-regional-park", "type": "official-identity-and-operations"}
+      ],
+      "chapters": [
+        {"id": "wod-vienna-west-1", "name": "W&OD Vienna west approach 1", "canonicalRecordId": "trails:fairfax-non-county-trails:wod", "geometryPart": 66, "amenities": [], "stops": []},
+        {"id": "wod-vienna-west-2", "name": "W&OD Vienna west approach 2", "canonicalRecordId": "trails:fairfax-non-county-trails:wod", "geometryPart": 67, "amenities": [], "stops": []},
+        {"id": "wod-vienna-town-green", "name": "Vienna Town Green pause", "canonicalRecordId": "trails:fairfax-non-county-trails:wod", "geometryPart": 68, "amenities": [], "stops": [
+          {"id": "parks:fairfax-non-county-parks:11745", "name": "Vienna Town Green", "category": "park"},
+          {"id": "wildlife:fairfax-ebird-hotspots:L4138121", "name": "W&OD Trail--Vienna Town Green birding hotspot", "category": "wildlife"}
+        ]},
+        {"id": "wod-vienna-east-1", "name": "W&OD Vienna east section 1", "canonicalRecordId": "trails:fairfax-non-county-trails:wod", "geometryPart": 69, "amenities": [], "stops": []},
+        {"id": "wod-vienna-east-2", "name": "W&OD Vienna east section 2", "canonicalRecordId": "trails:fairfax-non-county-trails:wod", "geometryPart": 70, "amenities": [], "stops": []}
+      ]
+    },
+    {
+      "id": "great-falls-river-and-matildaville",
+      "name": "Great Falls: River and Matildaville",
+      "description": "Two substantial named National Park Service-maintained trail lines from Fairfax's official non-county layer, centered on river scenery, the former Matildaville landscape, and a wildlife stop at Great Falls Park.",
+      "featured": true,
+      "access": {
+        "startLabel": "Great Falls Park trail area",
+        "destinationLabel": "Great Falls Park trail area",
+        "note": "This package proves the named trail geometry and nearby park and wildlife anchors. It does not assert that the two chapters form a closed loop. Confirm current NPS access, fees, closures, and trail conditions before walking; parking is not asserted here."
+      },
+      "sources": [
+        {"name": "National Park Service — Great Falls Park", "url": "https://www.nps.gov/grfa/index.htm", "type": "official-park-operations"}
+      ],
+      "chapters": [
+        {"id": "great-falls-matildaville", "name": "Matildaville Trail", "canonicalRecordId": "trails:fairfax-non-county-trails:4", "amenities": [], "stops": [
+          {"id": "parks:fairfax-non-county-parks:4057", "name": "Great Falls National Park", "category": "park"}
+        ]},
+        {"id": "great-falls-river", "name": "River Trail", "canonicalRecordId": "trails:fairfax-non-county-trails:15", "amenities": [], "stops": [
+          {"id": "wildlife:fairfax-ebird-hotspots:L718485", "name": "Great Falls Park birding hotspot", "category": "wildlife"}
+        ]}
+      ]
+    },
+    {
+      "id": "lake-accotink-cross-county",
+      "name": "Lake Accotink: Cross County Trail Pauses",
+      "description": "A set of official Cross County Trail segments beside Lake Accotink, anchored by the park, the marina and visitor-center area, and a durable wildlife stop. The chapters preserve the county's segmented source geometry rather than implying a generated loop.",
+      "featured": true,
+      "access": {
+        "startLabel": "Lake Accotink marina and visitor-center area",
+        "destinationLabel": "Cross County Trail at Lake Accotink",
+        "note": "The chapter lines are official mapped trail pieces, not a routed circuit. Use the map preview to choose a suitable public access point and verify current park conditions. Parking has not been verified."
+      },
+      "sources": [
+        {"name": "Fairfax County Park Authority — Lake Accotink Park", "url": "https://www.fairfaxcounty.gov/parks/lake-accotink", "type": "official-park-operations"}
+      ],
+      "chapters": [
+        {"id": "accotink-marina-segment-1", "name": "Cross County Trail by the marina 1", "canonicalRecordId": "trails:fairfax-county-trails:1531", "amenities": [
+          {"id": "facilities:fairfax-county-park-amenities:20", "name": "Lake Accotink Marina", "type": "facility-with-mapped-drinking-water"},
+          {"id": "facilities:fairfax-county-restrooms:13", "name": "Lake Accotink restroom record", "type": "restroom"}
+        ], "stops": [
+          {"id": "wildlife:fairfax-ebird-hotspots:L419600", "name": "Lake Accotink Park birding hotspot", "category": "wildlife"}
+        ]},
+        {"id": "accotink-marina-segment-2", "name": "Cross County Trail by the marina 2", "canonicalRecordId": "trails:fairfax-county-trails:3203", "amenities": [], "stops": []},
+        {"id": "accotink-marina-segment-3", "name": "Cross County Trail by the marina 3", "canonicalRecordId": "trails:fairfax-county-trails:2875", "amenities": [
+          {"id": "facilities:fairfax-county-park-amenities:50", "name": "Lake Accotink Visitor Center", "type": "visitor_center"}
+        ], "stops": [
+          {"id": "parks:fairfax-county-parks:135", "name": "Lake Accotink", "category": "park"}
+        ]},
+        {"id": "accotink-south-segment-1", "name": "Cross County Trail south section 1", "canonicalRecordId": "trails:fairfax-county-trails:2152", "amenities": [], "stops": []},
+        {"id": "accotink-south-segment-2", "name": "Cross County Trail south section 2", "canonicalRecordId": "trails:fairfax-county-trails:2132", "amenities": [], "stops": []}
+      ]
+    },
+    {
+      "id": "riverbend-potomac-heritage",
+      "name": "Riverbend: Potomac Heritage and Wildlife",
+      "description": "A Riverbend walk concept built from named FCPA Potomac Heritage Trail geometry, with the visitor-center area, an official restroom record, and the Riverbend wildlife destination already present in the county package.",
+      "featured": true,
+      "access": {
+        "startLabel": "Riverbend visitor-center area",
+        "destinationLabel": "Potomac Heritage Trail at Riverbend",
+        "note": "The mapped chapters are official trail segments rather than a generated route. Verify current river, trail, and park conditions before walking. Parking is not asserted by this Journey."
+      },
+      "sources": [
+        {"name": "Fairfax County Park Authority — Riverbend Park", "url": "https://www.fairfaxcounty.gov/parks/riverbend", "type": "official-park-operations"}
+      ],
+      "chapters": [
+        {"id": "riverbend-potomac-heritage-main", "name": "Potomac Heritage Trail main segment", "canonicalRecordId": "trails:fairfax-county-trails:4167", "amenities": [
+          {"id": "facilities:fairfax-county-park-amenities:302", "name": "Riverbend Visitor Center", "type": "facility-with-mapped-drinking-water"},
+          {"id": "facilities:fairfax-county-restrooms:32", "name": "Riverbend restroom record", "type": "restroom"}
+        ], "stops": [
+          {"id": "wildlife:fairfax-ebird-hotspots:L718694", "name": "Riverbend Park wildlife destination", "category": "wildlife"},
+          {"id": "parks:fairfax-county-parks:235", "name": "Riverbend", "category": "park"}
+        ]},
+        {"id": "riverbend-potomac-heritage-south", "name": "Potomac Heritage Trail south segment", "canonicalRecordId": "trails:fairfax-county-trails:4026", "amenities": [], "stops": []}
+      ]
+    }
+  ]
+}

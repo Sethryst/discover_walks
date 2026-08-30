@@ -1,12 +1,12 @@
 {
   "id": "fairfax-county-va",
   "name": "Fairfax County, Virginia",
-  "bbox": [
-    38.52,
-    -77.54,
-    39.07,
-    -76.78
-  ],
+  "bbox": [38.52, -77.54, 39.07, -76.78],
+  "scorecard": {
+    "packageKind": "county",
+    "swallowedTowns": ["Vienna", "Herndon", "Reston"],
+    "conflictWinner": "FCPA county-owned > non-county official (NVRPA/NPS/town via A1/4 and A1/6) > DWR VBWT / NPS trails / eBird hotspots (as named places, not geometry winners over official trails) > OSM fill"
+  },
   "sources": [
     {
       "id": "fairfax-county-boundary",
@@ -16,161 +16,228 @@
       "domains": [],
       "layerRole": "jurisdiction_boundary",
       "artifactName": "boundary.geojson",
-      "propertyMapping": {
-        "id": "OBJECTID",
-        "name": "NAME",
-        "include": [
-          "GlobalID_1"
-        ]
-      },
+      "propertyMapping": {"id": "OBJECTID", "name": "NAME", "include": ["GlobalID_1"]},
       "licenseUrl": "https://data-fairfaxcountygis.opendata.arcgis.com/datasets/e6e10e55d29642238d4d03b1a4a11b09",
       "attribution": "Fairfax County, Virginia Department of Information Technology GIS Division",
       "authorityTier": "county_government",
-      "confidence": 0.98
+      "confidence": 0.98,
+      "dataClass": "durable",
+      "visibleValue": "Keeps wildlife and federal trail destinations inside the Fairfax county package instead of leaking in nearby jurisdictions."
     },
     {
       "id": "fairfax-county-parks",
       "name": "Fairfax County Park Authority Parks",
       "provider": "arcgis_feature_service",
       "url": "https://services1.arcgis.com/ioennV6PpG5Xodq0/ArcGIS/rest/services/OpenData_A1/FeatureServer/5",
-      "domains": [
-        "parks"
-      ],
-      "propertyMapping": {
-        "id": "OBJECTID",
-        "name": "PARK_NAME",
-        "include": [
-          "PARK_CLASSIFICATION",
-          "SUPERVISOR_DISTRICT",
-          "PLANNING_DISTRICT",
-          "GIS_ESTIMATED_ACREAGE",
-          "MAINTENANCE_AREA",
-          "MASTER_PLANNED"
-        ]
-      },
+      "domains": ["parks"],
+      "propertyMapping": {"id": "OBJECTID", "name": "PARK_NAME", "include": ["PARK_CLASSIFICATION", "SUPERVISOR_DISTRICT", "PLANNING_DISTRICT", "GIS_ESTIMATED_ACREAGE", "MAINTENANCE_AREA", "MASTER_PLANNED"]},
       "licenseUrl": "https://data-fairfaxcountygis.opendata.arcgis.com/",
       "attribution": "Fairfax County Park Authority / Fairfax County GIS",
       "authorityTier": "county_government",
-      "confidence": 0.96
+      "confidence": 0.96,
+      "dataClass": "durable",
+      "visibleValue": "Makes FCPA parks named anchors a walker can choose as the intention for a walk."
     },
     {
       "id": "fairfax-county-trails",
       "name": "Fairfax County Park Authority Trails",
       "provider": "arcgis_feature_service",
       "url": "https://services1.arcgis.com/ioennV6PpG5Xodq0/ArcGIS/rest/services/OpenData_A1/FeatureServer/3",
-      "domains": [
-        "trails"
-      ],
-      "propertyMapping": {
-        "id": "OBJECTID",
-        "name": "TRAIL_NAME",
-        "include": [
-          "SURFACE_MATERIAL",
-          "MAINTENANCE_RESPONSIBILITY",
-          "DIFFICULTY",
-          "ADA",
-          "STEPS",
-          "PARK_NAME",
-          "WIDTH",
-          "RESTRICTION"
-        ]
-      },
+      "domains": ["trails"],
+      "queryParams": {"where": "TRAIL_NAME IS NOT NULL AND TRAIL_NAME <> ' '"},
+      "propertyMapping": {"id": "OBJECTID", "name": "TRAIL_NAME", "include": ["SURFACE_MATERIAL", "MAINTENANCE_RESPONSIBILITY", "DIFFICULTY", "ADA", "STEPS", "PARK_NAME", "WIDTH", "RESTRICTION"]},
       "licenseUrl": "https://data-fairfaxcountygis.opendata.arcgis.com/",
       "attribution": "Fairfax County Park Authority / Fairfax County GIS",
       "authorityTier": "county_government",
-      "confidence": 0.96
+      "confidence": 0.96,
+      "dataClass": "durable",
+      "visibleValue": "Provides official FCPA trail polylines that can become real Journey chapters."
+    },
+    {
+      "id": "fairfax-non-county-trails",
+      "name": "Fairfax Non-County Trails",
+      "provider": "arcgis_feature_service",
+      "url": "https://www.fairfaxcounty.gov/gisopen/rest/services/OpenData_A1/FeatureServer/4",
+      "domains": ["trails"],
+      "propertyMapping": {"id": "OBJECTID", "name": "TRAIL_NAME", "nameFallbacks": ["ADDITION_TRAIL_NAME"], "include": ["MAINTENANCE_RESPONSIBILITY", "SURFACE_MATERIAL", "WIDTH", "ADDITION_TRAIL_NAME"]},
+      "providerOptions": {
+        "acquisitionUrl": "https://services1.arcgis.com/ioennV6PpG5Xodq0/ArcGIS/rest/services/OpenData_A1/FeatureServer/4",
+        "canonicalRoute": {
+          "routeId": "wod",
+          "routeName": "Washington & Old Dominion Trail",
+          "routeType": "regional_rail_trail",
+          "operator": "NOVA Parks",
+          "officialHours": "5 a.m. to 9 p.m. daily",
+          "identityUrl": "https://www.novaparks.com/parks/washington-and-old-dominion-railroad-regional-park",
+          "matchFields": ["TRAIL_NAME", "ADDITION_TRAIL_NAME", "MAINTENANCE_RESPONSIBILITY"],
+          "matchTerms": ["W&OD", "Washington & Old Dominion", "Northern Virginia Regional Park Authority", "NOVA Parks", "NVRPA"]
+        }
+      },
+      "licenseUrl": "https://data-fairfaxcountygis.opendata.arcgis.com/",
+      "attribution": "Fairfax County GIS / maintaining jurisdictions and NOVA Parks",
+      "authorityTier": "county_government",
+      "confidence": 0.96,
+      "dataClass": "durable",
+      "visibleValue": "Adds town and NOVA Parks corridors, including one canonical W&OD route instead of disconnected crumbs."
+    },
+    {
+      "id": "fairfax-non-county-parks",
+      "name": "Fairfax Non-County Parks",
+      "provider": "arcgis_feature_service",
+      "url": "https://www.fairfaxcounty.gov/gisopen/rest/services/OpenData_A1/FeatureServer/6",
+      "domains": ["parks"],
+      "propertyMapping": {"id": "OBJECTID", "name": "NAME", "include": ["JURISDICTION", "SUPERVISOR_DISTRICT"]},
+      "providerOptions": {"acquisitionUrl": "https://services1.arcgis.com/ioennV6PpG5Xodq0/ArcGIS/rest/services/OpenData_A1/FeatureServer/6"},
+      "licenseUrl": "https://data-fairfaxcountygis.opendata.arcgis.com/",
+      "attribution": "Fairfax County GIS / maintaining jurisdictions",
+      "authorityTier": "county_government",
+      "confidence": 0.95,
+      "dataClass": "durable",
+      "visibleValue": "Makes NVRPA and town parks in Vienna, Herndon, and Reston visible within the county package."
+    },
+    {
+      "id": "fairfax-historic-sites",
+      "name": "Fairfax County Historic Sites",
+      "provider": "arcgis_feature_service",
+      "url": "https://www.fairfaxcounty.gov/gisopen/rest/services/OpenData_S1/FeatureServer/1",
+      "domains": ["history"],
+      "propertyMapping": {"id": "OBJECTID", "name": "DESCRIPTION", "constants": {"type": "historic_site"}, "include": ["STREET_NUMBER", "STREET_NAME", "CITY", "ZIP"]},
+      "providerOptions": {"acquisitionUrl": "https://services1.arcgis.com/ioennV6PpG5Xodq0/ArcGIS/rest/services/OpenData_S1/FeatureServer/1"},
+      "licenseUrl": "https://data-fairfaxcountygis.opendata.arcgis.com/",
+      "attribution": "Fairfax County GIS",
+      "authorityTier": "county_government",
+      "confidence": 0.95,
+      "dataClass": "durable",
+      "visibleValue": "Adds named historic stops that can turn a trail segment into a remembered walk."
+    },
+    {
+      "id": "fairfax-libraries",
+      "name": "Fairfax County Libraries",
+      "provider": "arcgis_feature_service",
+      "url": "https://www.fairfaxcounty.gov/gisopen/rest/services/OpenData_S1/FeatureServer/2",
+      "domains": ["community"],
+      "propertyMapping": {"id": "OBJECTID", "name": "DESCRIPTION", "constants": {"type": "library"}, "include": ["JURISDICTION", "WEB_ADDRESS", "STREET_NUMBER", "STREET_NAME", "CITY", "ZIP"]},
+      "providerOptions": {"acquisitionUrl": "https://services1.arcgis.com/ioennV6PpG5Xodq0/ArcGIS/rest/services/OpenData_S1/FeatureServer/2"},
+      "licenseUrl": "https://data-fairfaxcountygis.opendata.arcgis.com/",
+      "attribution": "Fairfax County GIS",
+      "authorityTier": "county_government",
+      "confidence": 0.95,
+      "dataClass": "durable",
+      "visibleValue": "Adds libraries as dependable neighborhood walk anchors and Journey stops."
+    },
+    {
+      "id": "fairfax-community-centers",
+      "name": "Fairfax County Community Centers",
+      "provider": "arcgis_feature_service",
+      "url": "https://www.fairfaxcounty.gov/gisopen/rest/services/OpenData_S1/FeatureServer/9",
+      "domains": ["facilities"],
+      "propertyMapping": {"id": "OBJECTID_1", "name": "DESCRIPTION", "include": ["TYPE", "JURISDICTION", "WEB_ADDRESS", "AGENCY", "STREET_NUMBER", "STREET_NAME", "CITY", "ZIP"]},
+      "providerOptions": {"acquisitionUrl": "https://services1.arcgis.com/ioennV6PpG5Xodq0/ArcGIS/rest/services/OpenData_S1/FeatureServer/9"},
+      "licenseUrl": "https://data-fairfaxcountygis.opendata.arcgis.com/",
+      "attribution": "Fairfax County GIS",
+      "authorityTier": "county_government",
+      "confidence": 0.95,
+      "dataClass": "durable",
+      "visibleValue": "Adds recreation, senior, teen, and community centers as named places to walk toward."
     },
     {
       "id": "fairfax-county-sidewalks",
       "name": "Fairfax County Sidewalk Centerlines",
       "provider": "arcgis_feature_service",
       "url": "https://services1.arcgis.com/ioennV6PpG5Xodq0/ArcGIS/rest/services/Sidewalks_Centerline/FeatureServer/0",
-      "domains": [
-        "trails"
-      ],
-      "propertyMapping": {
-        "id": "OBJECTID",
-        "name": "TYPE",
-        "include": [
-          "WIDTH",
-          "SURFACE_TYPE",
-          "SOURCE"
-        ]
-      },
+      "domains": ["trails"],
+      "propertyMapping": {"id": "OBJECTID", "name": "TYPE", "include": ["WIDTH", "SURFACE_TYPE", "SOURCE"]},
+      "providerOptions": {"maxRecords": 1000},
       "licenseUrl": "https://data-fairfaxcountygis.opendata.arcgis.com/",
       "attribution": "Fairfax County Department of Information Technology GIS Division",
       "authorityTier": "county_government",
-      "confidence": 0.94
+      "confidence": 0.94,
+      "dataClass": "durable",
+      "visibleValue": "Preserves official linear walking context where a named destination needs a local approach."
     },
     {
       "id": "fairfax-county-restrooms",
       "name": "Fairfax County Park Authority Restrooms",
       "provider": "arcgis_feature_service",
       "url": "https://www.fairfaxcounty.gov/gispub2/rest/services/FCPA/TrailBuddy/FeatureServer/0",
-      "domains": [
-        "facilities"
-      ],
-      "propertyMapping": {
-        "id": "OBJECTID",
-        "name": "PARK_NAME",
-        "include": [
-          "PARK_NAME"
-        ]
-      },
+      "domains": ["facilities"],
+      "propertyMapping": {"id": "OBJECTID", "name": "PARK_NAME", "constants": {"type": "restroom", "RESTROOMS": "Yes"}, "include": ["PARK_NAME"]},
       "licenseUrl": "https://www.fairfaxcounty.gov/parks/",
       "attribution": "Fairfax County Park Authority",
       "authorityTier": "county_government",
-      "confidence": 0.96
+      "confidence": 0.96,
+      "dataClass": "durable",
+      "visibleValue": "Lets Journeys cite known restroom access already maintained by the Park Authority."
     },
     {
       "id": "fairfax-county-park-amenities",
       "name": "Fairfax County Park Amenity Locator",
       "provider": "arcgis_feature_service",
       "url": "https://www.fairfaxcounty.gov/gispub2/rest/services/FCPA/ParkAmenityLocator/FeatureServer/0",
-      "domains": [
-        "facilities"
-      ],
-      "propertyMapping": {
-        "id": "OBJECTID",
-        "name": "LOCATION_NAME",
-        "include": [
-          "PARK_NAME",
-          "ADDRESS",
-          "PARKING",
-          "RESTROOMS",
-          "TRAILS",
-          "DRINKING_FOUNTAINS"
-        ]
-      },
+      "domains": ["facilities"],
+      "propertyMapping": {"id": "OBJECTID", "name": "LOCATION_NAME", "include": ["PARK_NAME", "ADDRESS", "PARKING", "RESTROOMS", "TRAILS", "DRINKING_FOUNTAINS"]},
       "licenseUrl": "https://www.fairfaxcounty.gov/parks/",
       "attribution": "Fairfax County Park Authority",
       "authorityTier": "county_government",
-      "confidence": 0.96
+      "confidence": 0.96,
+      "dataClass": "durable",
+      "visibleValue": "Adds verified parking, restroom, trail, and drinking-water facts to walk access notes."
+    },
+    {
+      "id": "fairfax-vbwt-sites",
+      "name": "Virginia Birding and Wildlife Trail Sites",
+      "provider": "arcgis_feature_service",
+      "url": "https://services.dwr.virginia.gov/arcgis/rest/services/Public/BirdingWildlifeTrail/FeatureServer/0",
+      "domains": ["wildlife"],
+      "propertyMapping": {"id": "OBJECTID", "name": "SITE_NAME", "include": ["LOOP_NAME", "site_id", "site_description", "site_directions", "site_access", "site_ebird_site_id", "Parking", "Restrooms", "Hiking_Trails", "Only_by_boat", "Handicap_Accessible"]},
+      "providerOptions": {"clipToBoundarySourceId": "fairfax-county-boundary", "excludeValues": {"Only_by_boat": ["Yes"]}},
+      "licenseUrl": "https://dwr.virginia.gov/wildlife/birding/",
+      "attribution": "Virginia Department of Wildlife Resources",
+      "authorityTier": "state_government",
+      "confidence": 0.96,
+      "dataClass": "durable",
+      "visibleValue": "Adds named public birding destinations such as Huntley Meadows as intentions for wildlife walks."
+    },
+    {
+      "id": "fairfax-ebird-hotspots",
+      "name": "eBird Virginia Hotspots",
+      "provider": "ebird_hotspots",
+      "url": "https://api.ebird.org/v2/ref/hotspot/US-VA?fmt=csv",
+      "domains": ["wildlife"],
+      "credentialEnv": "EBIRD_API_TOKEN",
+      "propertyMapping": {"id": "locId", "name": "locName"},
+      "providerOptions": {"clipToBoundarySourceId": "fairfax-county-boundary", "excludeNamePatterns": ["private", "restricted"]},
+      "licenseUrl": "https://science.ebird.org/en/status-and-trends/products-access-terms-of-use",
+      "attribution": "eBird / Cornell Lab of Ornithology",
+      "authorityTier": "community",
+      "confidence": 0.85,
+      "dataClass": "durable",
+      "visibleValue": "Adds stable named birding hotspots without making seven-day sightings the place itself."
+    },
+    {
+      "id": "fairfax-nps-public-trails",
+      "name": "NPS Public Trails serving Fairfax",
+      "provider": "arcgis_feature_service",
+      "url": "https://mapservices.nps.gov/arcgis/rest/services/NationalDatasets/NPS_Public_Trails_Geographic/FeatureServer/0",
+      "domains": ["trails"],
+      "queryParams": {"where": "UNITNAME IN ('Great Falls Park','George Washington Memorial Parkway','Wolf Trap National Park for the Performing Arts')"},
+      "propertyMapping": {"id": "OBJECTID", "name": "TRLNAME", "include": ["UNITNAME", "TRLSTATUS", "TRLSURFACE", "TRLTYPE", "TRLUSE"]},
+      "providerOptions": {"clipToBoundarySourceId": "fairfax-county-boundary"},
+      "licenseUrl": "https://www.nps.gov/aboutus/disclaimer.htm",
+      "attribution": "National Park Service",
+      "authorityTier": "federal_government",
+      "confidence": 0.97,
+      "dataClass": "durable",
+      "visibleValue": "Adds clipped GWMP and Wolf Trap federal trail polylines; Great Falls rows with null live-service geometry are rejected, while A1/4 still supplies named Great Falls segments."
     }
   ],
   "osm": {
     "status": "enabled",
     "enabled": true,
-    "bbox": [
-      38.52,
-      -77.54,
-      39.07,
-      -76.78
-    ],
+    "bbox": [38.52, -77.54, 39.07, -76.78],
     "sourceId": "osm-fairfax-county-va",
     "endpoint": "https://overpass-api.de/api/interpreter",
-    "categories": [
-      "park",
-      "trail",
-      "water",
-      "history",
-      "public_art",
-      "library",
-      "community",
-      "garden",
-      "coffee",
-      "rest"
-    ],
+    "categories": ["water", "public_art", "garden", "coffee", "rest"],
     "refreshPolicy": "monthly",
     "maxRecords": 2000,
     "packagePath": "motherbird/regions/fairfax-county-va/osm/pois.json"

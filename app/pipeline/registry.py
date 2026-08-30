@@ -7,7 +7,7 @@ from app.pipeline.adapters.base import SourceAdapter
 from app.pipeline.adapters.geojson import GeoJsonProvider
 from app.pipeline.adapters.local_open_data import LocalOpenDataProvider
 from app.pipeline.adapters.osm import OsmOverpassProvider
-from app.pipeline.adapters.ebird import EbirdProvider
+from app.pipeline.adapters.ebird import EbirdHotspotsProvider, EbirdProvider
 from app.pipeline.adapters.nps import NpsEventsProvider
 from app.pipeline.adapters.usgs_water import UsgsMonitoringLocationsProvider
 from app.pipeline.adapters.tribe_events import TribeEventsProvider
@@ -25,6 +25,7 @@ class ProviderRegistry:
         "local_open_data": LocalOpenDataProvider,
         "osm_overpass": OsmOverpassProvider,
         "ebird_recent": EbirdProvider,
+        "ebird_hotspots": EbirdHotspotsProvider,
         "nps_events": NpsEventsProvider,
         "usgs_monitoring_locations": UsgsMonitoringLocationsProvider,
         "tribe_events": TribeEventsProvider,

@@ -50,8 +50,8 @@ def build_journeys(
             if record is None:
                 warnings.append(_warning("journey_geometry_missing", route, part, f"Canonical record not found: {source_record_id}"))
                 continue
-            geometry = record.get("geometry")
             try:
+                geometry = _chapter_geometry(record.get("geometry"), part)
                 validate_linestring(geometry)
             except ContractError as exc:
                 warnings.append(_warning("journey_geometry_invalid", route, part, str(exc)))
@@ -84,6 +84,7 @@ def build_journeys(
                     "sourceUrl": source.get("sourceUrl"),
                     "confidence": source.get("confidence", "source_geometry"),
                     "method": "canonical-record-reference",
+                    "geometryPart": part.get("geometryPart"),
                     "generatedEstimate": False,
                 },
                 "sources": sources,
@@ -121,12 +122,28 @@ def build_journeys(
     package_bytes = _json_bytes(package)
     manifest = _read_object(manifest_path)
     manifest.setdefault("checksums", {})["supplemental/journeys.json"] = _checksum(package_bytes)
+    scorecard_path = bundle_dir / "source-scorecard.json"
+    scorecard_bytes: bytes | None = None
+    if scorecard_path.exists():
+        scorecard = _read_object(scorecard_path)
+        readiness = scorecard.setdefault("walkCreationReadiness", {})
+        readiness["journeys"] = {
+            "status": "built",
+            "featuredWalkCount": sum(1 for journey in journeys if journey.get("featured")),
+            "journeyCount": len(journeys),
+            "chapterCount": sum(len(journey["chapters"]) for journey in journeys),
+        }
+        readiness["assembledByJourneys"] = bool(journeys)
+        scorecard_bytes = _json_bytes(scorecard)
+        manifest["checksums"]["source-scorecard.json"] = _checksum(scorecard_bytes)
     existing_warnings = [warning for warning in manifest.setdefault("warnings", []) if warning.get("stage") != "journey"]
     manifest["warnings"] = [*existing_warnings, *warnings]
     if not dry_run:
         supplemental_dir = bundle_dir / "supplemental"
         supplemental_dir.mkdir(parents=True, exist_ok=True)
         (supplemental_dir / "journeys.json").write_bytes(package_bytes)
+        if scorecard_bytes is not None:
+            scorecard_path.write_bytes(scorecard_bytes)
         manifest_path.write_bytes(_json_bytes(manifest))
     return {
         "destination": str(bundle_dir / "supplemental" / "journeys.json"),
@@ -161,6 +178,23 @@ def _line_distance_meters(coordinates: list[list[float]]) -> float:
     from app.pipeline.domains import _line_distance_meters as distance
 
     return distance(coordinates)
+
+
+def _chapter_geometry(geometry: Any, part: dict[str, Any]) -> Any:
+    """Select a declared or longest line from canonical multi-part trail geometry."""
+    if not isinstance(geometry, dict) or geometry.get("type") != "MultiLineString":
+        return geometry
+    lines = geometry.get("coordinates") or []
+    if not lines:
+        return geometry
+    requested = part.get("geometryPart")
+    if requested is not None:
+        if not isinstance(requested, int) or requested < 0 or requested >= len(lines):
+            raise ContractError(f"Journey geometryPart {requested!r} is outside canonical MultiLineString bounds.")
+        coordinates = lines[requested]
+    else:
+        coordinates = max(lines, key=_line_distance_meters)
+    return {"type": "LineString", "coordinates": coordinates}
 
 
 def _read_object(path: Path) -> dict[str, Any]:

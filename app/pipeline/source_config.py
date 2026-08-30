@@ -31,6 +31,8 @@ class SourceConfig:
     property_mapping: dict[str, Any] = field(default_factory=dict)
     attribution: str | None = None
     artifact_name: str | None = None
+    data_class: str = "durable"
+    visible_value: str | None = None
 
     @classmethod
     def from_dict(cls, raw: dict[str, Any]) -> "SourceConfig":
@@ -62,6 +64,8 @@ class SourceConfig:
             property_mapping=mapping,
             attribution=raw.get("attribution"),
             artifact_name=raw.get("artifactName"),
+            data_class=raw.get("dataClass", "durable"),
+            visible_value=raw.get("visibleValue"),
         )
 
     def credential(self) -> str | None:
@@ -102,6 +106,8 @@ def _local_open_data_source(region: dict[str, Any], path: Path) -> list[dict[str
     }
     city = aliases.get(city, city)
     root = path.parents[2] / "OpenData"
+    if not root.exists():
+        return []
     matches = [folder for state in root.iterdir() if state.is_dir() for folder in state.iterdir() if folder.is_dir() and folder.name.casefold() == city.casefold()]
     if len(matches) != 1 or not any(matches[0].glob("*.geojson")):
         return []

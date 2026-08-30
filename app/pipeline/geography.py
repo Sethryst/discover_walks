@@ -4,9 +4,14 @@ from __future__ import annotations
 
 import hashlib
 import json
+from dataclasses import replace
 from pathlib import Path
 from typing import Any, Iterable
 
+from shapely.geometry import GeometryCollection, MultiLineString, MultiPoint, MultiPolygon, mapping, shape
+from shapely.ops import unary_union
+
+from app.pipeline.intermediate import IntermediateFeature
 from app.pipeline.source_config import SourceConfig
 
 
@@ -91,6 +96,57 @@ def verify_geographic_artifacts(bundle_dir: Path, manifest: dict[str, Any]) -> d
             raise ValueError(f"Geographic artifact feature count mismatch: {relative_path}")
         verified[relative_path] = len(features)
     return verified
+
+
+def apply_geographic_source_rules(
+    features: Iterable[IntermediateFeature],
+    source: SourceConfig,
+    boundary_artifacts: dict[str, dict[str, Any]],
+) -> tuple[list[IntermediateFeature], list[dict[str, str]]]:
+    """Apply configured value filters and exact county-boundary clipping."""
+    warnings: list[dict[str, str]] = []
+    selected: list[IntermediateFeature] = []
+    include_values = source.provider_options.get("includeValues", {})
+    exclude_values = source.provider_options.get("excludeValues", {})
+    for feature in features:
+        if any(str(feature.properties.get(field)) not in {str(value) for value in values} for field, values in include_values.items()):
+            continue
+        if any(str(feature.properties.get(field)).casefold() in {str(value).casefold() for value in values} for field, values in exclude_values.items()):
+            continue
+        selected.append(feature)
+    boundary_source_id = source.provider_options.get("clipToBoundarySourceId")
+    if not boundary_source_id:
+        return selected, warnings
+    artifact = boundary_artifacts.get(str(boundary_source_id))
+    if artifact is None:
+        raise ValueError(f"source_unavailable: {source.id} requires boundary source {boundary_source_id}")
+    boundary = unary_union([shape(feature["geometry"]) for feature in artifact.get("features", [])])
+    if boundary.is_empty:
+        raise ValueError(f"source_unavailable: boundary source {boundary_source_id} has no usable geometry")
+    clipped: list[IntermediateFeature] = []
+    for feature in selected:
+        geometry = shape(feature.geometry)
+        intersection = geometry.intersection(boundary)
+        intersection = _same_dimension(intersection, geometry.geom_type)
+        if intersection is None or intersection.is_empty:
+            continue
+        clipped.append(replace(feature, geometry=json.loads(json.dumps(mapping(intersection)))))
+    warnings.append({"code": "boundary_clip_applied", "source": source.id, "detail": f"Retained {len(clipped)} of {len(selected)} features inside {boundary_source_id}."})
+    return clipped, warnings
+
+
+def _same_dimension(geometry: Any, original_type: str) -> Any | None:
+    """Remove lower-dimensional boundary-touch artifacts from intersections."""
+    if not isinstance(geometry, GeometryCollection):
+        return geometry
+    family = "Point" if "Point" in original_type else "LineString" if "LineString" in original_type else "Polygon"
+    parts = [part for part in geometry.geoms if family in part.geom_type and not part.is_empty]
+    if not parts:
+        return None
+    if len(parts) == 1:
+        return parts[0]
+    constructors = {"Point": MultiPoint, "LineString": MultiLineString, "Polygon": MultiPolygon}
+    return constructors[family](parts)
 
 
 def _validate_wgs84(coordinates: Any, source_id: str, feature_index: int) -> None:

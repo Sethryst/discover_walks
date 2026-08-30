@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import csv
+import io
 import json
 from collections import defaultdict
 from datetime import datetime, timedelta, timezone
@@ -54,3 +56,88 @@ class EbirdProvider(SourceAdapter):
                 return json.loads(response.read().decode("utf-8"))
         except OSError as exc:
             raise RetryableGremlinError(f"eBird acquisition failed for {source_id}: {exc}") from exc
+
+
+class EbirdHotspotsProvider(SourceAdapter):
+    """Acquire durable named eBird hotspot destinations without observation data."""
+
+    required_fields = {"locId", "locName", "lat", "lng"}
+
+    def acquire(self, source: SourceConfig, region: dict[str, Any]) -> tuple[list[IntermediateFeature], dict[str, Any]]:
+        """Fetch a regional hotspot CSV and retain stable public-place fields only."""
+        token = source.credential()
+        if not token:
+            raise ValueError(f"eBird source {source.id} requires {source.credential_env}")
+        try:
+            request = Request(source.url, headers={"x-ebirdapitoken": token, "Accept": "text/csv", "User-Agent": "Gremlin-Lab/1.0"})
+            with urlopen(request, timeout=75) as response:
+                body = response.read().decode("utf-8-sig")
+        except OSError as exc:
+            raise RetryableGremlinError(f"eBird hotspot acquisition failed for {source.id}: {exc}") from exc
+        raw = _parse_hotspot_csv(body)
+        timestamp = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+        return self.parse(raw, source, timestamp, region), raw
+
+    def parse(self, raw: dict[str, Any], source: SourceConfig, timestamp: str, region: dict[str, Any] | None = None) -> list[IntermediateFeature]:
+        """Rebuild privacy-safe hotspot features from a cached CSV representation."""
+        headers = set(raw.get("headers") or [])
+        missing = self.required_fields - headers
+        if missing:
+            raise ValueError(f"schema_changed: {source.id} is missing hotspot CSV fields {sorted(missing)}")
+        self.warnings: list[dict[str, str]] = []
+        bbox = (region or {}).get("bbox")
+        output: list[IntermediateFeature] = []
+        excluded_patterns = tuple(str(value).casefold() for value in source.provider_options.get("excludeNamePatterns", ("private", "restricted")))
+        for index, row in enumerate(raw.get("rows") or []):
+            location_id = str(row.get("locId") or "").strip()
+            name = str(row.get("locName") or "").removeprefix("**").strip()
+            try:
+                lat = float(row.get("lat", ""))
+                lng = float(row.get("lng", ""))
+            except (TypeError, ValueError):
+                self.warnings.append({"code": "unusable_source_record", "source": source.id, "detail": f"Hotspot row {index} rejected: invalid coordinates."})
+                continue
+            if not location_id or not name:
+                self.warnings.append({"code": "unusable_source_record", "source": source.id, "detail": f"Hotspot row {index} rejected: missing locId or locName."})
+                continue
+            if any(pattern in name.casefold() for pattern in excluded_patterns):
+                self.warnings.append({"code": "restricted_destination_omitted", "source": source.id, "detail": f"Hotspot {location_id} omitted because its label is private or restricted."})
+                continue
+            if bbox:
+                south, west, north, east = bbox
+                if not (south <= lat <= north and west <= lng <= east):
+                    continue
+            properties = {
+                "name": name,
+                "locId": location_id,
+                "countryCode": row.get("countryCode"),
+                "subnational1Code": row.get("subnational1Code"),
+                "subnational2Code": row.get("subnational2Code"),
+                "latestObservationDate": row.get("latestObsDt"),
+                "allTimeSpeciesCount": row.get("numSpeciesAllTime"),
+                "hotspotType": "durable_ebird_hotspot",
+            }
+            metadata = {
+                "rawFormat": "ebird_hotspot_csv",
+                "sourceMetadata": {
+                    "sourceConfigId": source.id,
+                    "assignedDomains": list(source.domains),
+                    "attribution": source.attribution or source.name,
+                    "licenseUrl": source.license_url,
+                },
+                "confidence": source.confidence,
+                "authorityTier": source.authority_tier,
+            }
+            output.append(IntermediateFeature(location_id, source.name, source.url, {"type": "Point", "coordinates": [lng, lat]}, properties, timestamp, metadata))
+        return output
+
+
+def _parse_hotspot_csv(body: str) -> dict[str, Any]:
+    """Normalize both documented headerless eBird CSV and defensive headered fixtures."""
+    rows = list(csv.reader(io.StringIO(body)))
+    if rows and rows[0] and rows[0][0] == "locId":
+        headers, values = rows[0], rows[1:]
+    else:
+        headers = ["locId", "countryCode", "subnational1Code", "subnational2Code", "lat", "lng", "locName", "latestObsDt", "numSpeciesAllTime", "supplementalCount"]
+        values = rows
+    return {"headers": headers, "rows": [dict(zip(headers, row)) for row in values]}

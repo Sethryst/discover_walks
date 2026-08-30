@@ -20,27 +20,32 @@ def build_release(region_id: str, pois: list[dict[str, Any]], warnings: list[dic
     return release, manifest
 
 
-def write_bundle(output_root: Path, release: dict[str, Any], manifest: dict[str, Any], dry_run: bool = False, supplemental: dict[str, Any] | None = None, civic: dict[str, dict[str, Any]] | None = None, geography: dict[str, Any] | None = None) -> Path:
+def write_bundle(output_root: Path, release: dict[str, Any], manifest: dict[str, Any], dry_run: bool = False, supplemental: dict[str, Any] | None = None, civic: dict[str, dict[str, Any]] | None = None, geography: dict[str, Any] | None = None, artifacts: dict[str, Any] | None = None) -> Path:
     """Write a region bundle deterministically, including a checksum for every public file."""
     bundle_dir = output_root / release["regionId"]
     pois_bytes = _json_bytes(release)
     supplemental = supplemental or {}
     civic = civic or {}
     geography = geography or {}
+    artifacts = artifacts or {}
     supplemental_bytes = {name: _json_bytes(value) for name, value in supplemental.items()}
     civic_bytes = {name: _json_bytes(value) for name, value in civic.items()}
     geography_bytes = {name: _json_bytes(value) for name, value in geography.items()}
+    artifact_bytes = {name: _json_bytes(value) for name, value in artifacts.items()}
     manifest["checksums"] = {
         "pois.json": _checksum(pois_bytes),
         **{f"supplemental/{name}": _checksum(value) for name, value in supplemental_bytes.items()},
         **{f"civic/{name}": _checksum(value) for name, value in civic_bytes.items()},
         **{f"geography/{name}": _checksum(value) for name, value in geography_bytes.items()},
+        **{name: _checksum(value) for name, value in artifact_bytes.items()},
     }
     manifest_bytes = _json_bytes(manifest)
     if not dry_run:
         bundle_dir.mkdir(parents=True, exist_ok=True)
         (bundle_dir / "pois.json").write_bytes(pois_bytes)
         (bundle_dir / "producer-manifest.json").write_bytes(manifest_bytes)
+        for name, content in artifact_bytes.items():
+            (bundle_dir / name).write_bytes(content)
         if supplemental_bytes:
             supplemental_dir = bundle_dir / "supplemental"
             supplemental_dir.mkdir(exist_ok=True)

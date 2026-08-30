@@ -108,6 +108,8 @@ def osm_source_dict(config: OsmConfig) -> dict[str, Any]:
         "attribution": OSM_ATTRIBUTION,
         "authorityTier": "community",
         "confidence": 0.7,
+        "dataClass": "durable",
+        "visibleValue": "Fills remaining named coffee, rest, garden, art, or water gaps without overriding official geometry.",
         "providerOptions": {
             "categories": list(config.categories),
             "maxRecords": config.max_records,

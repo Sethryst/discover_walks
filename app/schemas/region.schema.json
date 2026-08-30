@@ -31,7 +31,7 @@
         "properties": {
           "id": {"type": "string"},
           "name": {"type": "string"},
-          "provider": {"enum": ["arcgis_feature_service", "geojson", "osm_overpass", "ebird_recent", "nps_events", "usgs_monitoring_locations", "tribe_events", "phila_special_events", "nyc_events"]},
+          "provider": {"enum": ["arcgis_feature_service", "geojson", "osm_overpass", "ebird_recent", "ebird_hotspots", "nps_events", "usgs_monitoring_locations", "tribe_events", "phila_special_events", "nyc_events"]},
           "url": {"type": "string", "format": "uri"},
           "domains": {"type": "array", "items": {"enum": ["parks", "trails", "route", "facilities", "coffee", "nature", "water", "community", "art", "wildlife", "plant", "rest", "history", "scenic", "accessibility", "pantry", "event", "detour"]}},
           "licenseUrl": {"type": "string", "format": "uri"},
