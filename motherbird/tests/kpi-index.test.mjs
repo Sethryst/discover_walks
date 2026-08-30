@@ -57,7 +57,7 @@ test('KPI page exposes operator paths without publishing credential values', asy
   assert.match(html, /Prioritized repair queue/);
   assert.match(html, /Product delivery progress/);
   assert.match(html, /Repository automation/);
-  assert.match(html, /Google sign-in/);
+  assert.match(html, /Passkey sign-in/);
   assert.match(html, /DC spatial solo-pilot KPI/);
   assert.match(html, /local-only sync transport/);
   assert.match(html, /Readiness is a transparent product score/);

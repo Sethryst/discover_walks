@@ -63,7 +63,9 @@ export const state = {
   online: {
     client: null,
     session: null,
-    remoteProfile: null
+    remoteProfile: null,
+    fieldEditionVerified: false,
+    cloudBackupCreatedAt: null
   },
 
   // region automation

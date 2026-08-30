@@ -139,8 +139,7 @@ export async function saveWatchCapture(kind, { location, walk = null, city = 'fa
       createdAt: now
     }),
     captureSource: 'watch',
-    needsRefinement: true,
-    pointsAwarded: 0
+    needsRefinement: true
   };
   await db.put('observations', observation);
   if (walk) {

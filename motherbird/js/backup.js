@@ -14,6 +14,13 @@ import {
   normalizeJournalBackup,
   previewJournalImport
 } from './journal-transfer.js';
+import {
+  CLOUD_JOURNAL_SCHEMA_VERSION,
+  decryptJournalBackup,
+  encryptJournalBackup,
+  journalPayloadFromBytea,
+  journalPayloadToBytea
+} from './cloud-journal.js';
 
 let pendingImport = null;
 
@@ -100,18 +107,96 @@ export async function importJournal(event) {
   const file = event.target.files[0]; event.target.value = ''; if (!file) return;
   try {
     const backup = normalizeJournalBackup(JSON.parse(await file.text()));
-    const local = await readLocalTransferData();
-    const preview = previewJournalImport(local, backup.data);
-    pendingImport = { backup, preview, fileName: file.name };
-    renderImportPreview(file.name, preview);
+    await stageJournalImport(backup, file.name);
   } catch (error) { toast(error.message || 'That backup could not be previewed.'); }
+}
+
+async function stageJournalImport(backup, fileName) {
+  const local = await readLocalTransferData();
+  const preview = previewJournalImport(local, backup.data);
+  pendingImport = { backup, preview, fileName };
+  renderImportPreview(fileName, preview);
+}
+
+function cloudBackupReady() {
+  return Boolean(state.online.client && state.online.session && state.online.fieldEditionVerified && state.settings?.entitlements?.cloudJournalBackup);
+}
+
+function cloudPassphrase() {
+  const value = el('cloudBackupPassphrase')?.value || '';
+  if (value.length < 8) throw new Error('Enter your cloud backup passphrase (at least 8 characters).');
+  return value;
+}
+
+function setCloudBackupBusy(busy) {
+  for (const id of ['saveCloudBackupButton', 'restoreCloudBackupButton']) {
+    const button = el(id); if (button) button.disabled = busy || !cloudBackupReady();
+  }
+}
+
+export function renderCloudBackupControls() {
+  const status = el('cloudBackupStatus'); if (!status) return;
+  const ready = cloudBackupReady();
+  status.textContent = ready
+    ? (state.online.cloudBackupCreatedAt ? `Field Edition active · backup saved ${new Date(state.online.cloudBackupCreatedAt).toLocaleString()}` : 'Field Edition active · ready for an encrypted backup')
+    : 'Sign in with an active Field Edition subscription to use encrypted cloud backup.';
+  setCloudBackupBusy(false);
+}
+
+export async function saveCloudJournalBackup() {
+  if (!cloudBackupReady()) throw new Error('Cloud backup requires a signed-in Field Edition subscription.');
+  const passphrase = cloudPassphrase();
+  setCloudBackupBusy(true);
+  try {
+    const backup = createJournalBackup(await readLocalTransferData());
+    const payload = await encryptJournalBackup(backup, passphrase);
+    const client = state.online.client; const userId = state.online.session.user.id;
+    const { error: deleteError } = await client.from('journal_backups').delete().eq('user_id', userId);
+    if (deleteError) throw deleteError;
+    const { data, error } = await client.from('journal_backups').insert({
+      user_id: userId,
+      schema_version: CLOUD_JOURNAL_SCHEMA_VERSION,
+      byte_size: payload.byteLength,
+      payload: journalPayloadToBytea(payload)
+    }).select('created_at').single();
+    if (error) throw error;
+    state.online.cloudBackupCreatedAt = data?.created_at || new Date().toISOString();
+    renderCloudBackupControls();
+    toast('Encrypted Field Edition backup saved.');
+  } finally { setCloudBackupBusy(false); }
+}
+
+export async function restoreCloudJournalBackup() {
+  if (!cloudBackupReady()) throw new Error('Cloud backup requires a signed-in Field Edition subscription.');
+  const passphrase = cloudPassphrase();
+  setCloudBackupBusy(true);
+  try {
+    const userId = state.online.session.user.id;
+    const { data, error } = await state.online.client.from('journal_backups')
+      .select('created_at,schema_version,byte_size,payload')
+      .eq('user_id', userId).order('created_at', { ascending: false }).limit(1).maybeSingle();
+    if (error) throw error;
+    if (!data) throw new Error('No cloud journal backup is available yet.');
+    if (data.schema_version !== CLOUD_JOURNAL_SCHEMA_VERSION) throw new Error('This cloud backup uses an unsupported schema version.');
+    const packed = journalPayloadFromBytea(data.payload);
+    if (Number(data.byte_size) !== packed.byteLength) throw new Error('Cloud backup size verification failed.');
+    const backup = await decryptJournalBackup(packed, passphrase);
+    state.online.cloudBackupCreatedAt = data.created_at;
+    await stageJournalImport(backup, `Encrypted cloud backup · ${new Date(data.created_at).toLocaleString()}`);
+    renderCloudBackupControls();
+    toast('Cloud backup decrypted. Review it before merging.');
+  } finally { setCloudBackupBusy(false); }
 }
 
 export function initBackupControls() {
   const panel = document.createElement('div'); panel.className = 'backup-controls';
-  panel.innerHTML = '<p class="sheet-kicker">YOUR BACKUP</p><p>Export a complete private backup or a readable CSV. Import starts with a preview; Merge preserves this device by default.</p><div class="backup-actions"><button class="secondary-button" id="exportDataButton" type="button">Export JSON</button><button class="secondary-button" id="exportCsvButton" type="button">Export CSV</button><label class="secondary-button import-label">Preview import<input id="importDataInput" type="file" accept="application/json,.json" /></label></div><section class="journal-import-preview hidden" id="journalImportPreview" aria-live="polite"></section>';
+  panel.innerHTML = '<p class="sheet-kicker">YOUR BACKUP</p><p>Export a complete private backup or a readable CSV. Import starts with a preview; Merge preserves this device by default.</p><div class="backup-actions"><button class="secondary-button" id="exportDataButton" type="button">Export JSON</button><button class="secondary-button" id="exportCsvButton" type="button">Export CSV</button><label class="secondary-button import-label">Preview import<input id="importDataInput" type="file" accept="application/json,.json" /></label></div><section class="cloud-backup-controls" aria-labelledby="cloudBackupTitle"><strong id="cloudBackupTitle">Field Edition cloud backup</strong><p id="cloudBackupStatus">Checking Field Edition access…</p><label>Backup passphrase <input id="cloudBackupPassphrase" type="password" autocomplete="off" minlength="8" placeholder="Not sent to the server" /></label><small>One encrypted snapshot is stored. The server cannot read it, and the passphrase cannot be recovered.</small><div class="backup-actions"><button class="secondary-button" id="saveCloudBackupButton" type="button">Replace cloud backup</button><button class="secondary-button" id="restoreCloudBackupButton" type="button">Preview cloud restore</button></div></section><section class="journal-import-preview hidden" id="journalImportPreview" aria-live="polite"></section>';
   el('clearDataButton').before(panel);
   el('exportDataButton').addEventListener('click', () => void exportJournal('json'));
   el('exportCsvButton').addEventListener('click', () => void exportJournal('csv'));
   el('importDataInput').addEventListener('change', importJournal);
+  el('saveCloudBackupButton').addEventListener('click', () => void saveCloudJournalBackup().catch((error) => toast(error.message || 'Could not save the cloud backup.')));
+  el('restoreCloudBackupButton').addEventListener('click', () => void restoreCloudJournalBackup().catch((error) => toast(error.message || 'Could not restore the cloud backup.')));
+  window.addEventListener('cloud-journal-entitlement-changed', renderCloudBackupControls);
+  renderCloudBackupControls();
 }

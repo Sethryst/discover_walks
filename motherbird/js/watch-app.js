@@ -17,7 +17,9 @@ const view = {
   settings: null,
   position: null,
   watchId: null,
-  busy: false
+  busy: false,
+  authClient: null,
+  session: null
 };
 
 const el = (id) => document.getElementById(id);
@@ -31,6 +33,25 @@ function announce(message) {
 
 function currentLocation() {
   return view.position || view.walk?.endLocation || view.walk?.points?.at(-1) || null;
+}
+
+function renderAuth() {
+  const configured = Boolean(window.WALK_WILDLIFE_SUPABASE?.url && window.WALK_WILDLIFE_SUPABASE?.anonKey && window.supabase?.createClient);
+  el('watchAuthStatus').textContent = !configured ? 'Account sign-in is unavailable.' : view.session ? 'Signed in.' : 'Use the passkey already added from the full app.';
+  el('watchPasskeySignIn').hidden = !configured || Boolean(view.session);
+  el('watchSignOut').hidden = !view.session;
+}
+
+function showHistoryArt() {
+  const target = el('watchContextArt');
+  const image = target.querySelector('img[data-src]');
+  if (image) {
+    image.src = image.dataset.src;
+    image.removeAttribute('data-src');
+  }
+  target.hidden = false;
+  clearTimeout(showHistoryArt.timer);
+  showHistoryArt.timer = setTimeout(() => { target.hidden = true; }, 4800);
 }
 
 function render() {
@@ -57,6 +78,7 @@ function render() {
     : '<li class="empty-watch-row">No saved places within a mile yet.</li>';
   const pendingCount = [...view.observations, ...view.places].filter((item) => item.needsRefinement).length;
   el('watchPendingCount').textContent = `${pendingCount} quick capture${pendingCount === 1 ? '' : 's'} to refine`;
+  renderAuth();
 }
 
 function escapeText(value) {
@@ -130,6 +152,7 @@ async function handleCapture(kind) {
     const point = currentLocation() || await positionOnce();
     const saved = await saveWatchCapture(kind, { location: point, walk: view.walk, city: view.settings?.activeCity || 'fairfax' });
     if (kind === 'place') view.places.push(saved); else view.observations.push(saved);
+    if (kind === 'history') showHistoryArt();
     announce(kind === 'place' ? 'Place saved. Name it later in the full app.' : kind === 'history' ? 'History moment saved to revisit.' : 'Observation saved to refine later.');
   } catch (error) {
     announce(error.message);
@@ -139,10 +162,40 @@ async function handleCapture(kind) {
   }
 }
 
+async function initWatchAuth() {
+  const config = window.WALK_WILDLIFE_SUPABASE || {};
+  if (!config.url || !config.anonKey || !window.supabase?.createClient) { renderAuth(); return; }
+  view.authClient = window.supabase.createClient(config.url, config.anonKey, { auth: { experimental: { passkey: true } } });
+  const { data, error } = await view.authClient.auth.getSession();
+  if (error) announce('Account session could not be checked.');
+  view.session = data?.session || null;
+  view.authClient.auth.onAuthStateChange((_event, session) => { view.session = session; renderAuth(); });
+  renderAuth();
+}
+
+async function handleWatchPasskeySignIn() {
+  if (!view.authClient?.auth?.signInWithPasskey) { announce('Face ID sign-in is unavailable in this browser.'); return; }
+  const { data, error } = await view.authClient.auth.signInWithPasskey();
+  if (error) { announce(error.message || 'Face ID sign-in could not start.'); return; }
+  view.session = data?.session || view.session;
+  renderAuth();
+  announce('Signed in.');
+}
+
+async function handleWatchSignOut() {
+  if (!view.authClient) return;
+  const { error } = await view.authClient.auth.signOut();
+  if (error) { announce(error.message || 'Could not sign out.'); return; }
+  view.session = null;
+  renderAuth();
+  announce('Signed out.');
+}
+
 async function init() {
   try {
     await db.open();
     Object.assign(view, await readWatchSession());
+    await initWatchAuth();
     render();
     if (view.walk?.recordingStatus === 'recording' && !view.walk.paused) startPositionWatch();
   } catch (error) {
@@ -151,6 +204,8 @@ async function init() {
   }
   el('watchWalkPrimary').addEventListener('click', handleWalkPrimary);
   el('watchWalkFinish').addEventListener('click', handleFinish);
+  el('watchPasskeySignIn').addEventListener('click', handleWatchPasskeySignIn);
+  el('watchSignOut').addEventListener('click', handleWatchSignOut);
   document.querySelectorAll('[data-quick-capture]').forEach((button) => button.addEventListener('click', () => handleCapture(button.dataset.quickCapture)));
   setInterval(render, 1000);
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('./service-worker.js').catch(() => {});

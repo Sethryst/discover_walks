@@ -4,6 +4,7 @@ import db from './storage.js';
 export function normalizedEntitlements(raw = {}) {
   return {
     fieldEdition: raw.fieldEdition === true,
+    cloudJournalBackup: raw.cloudJournalBackup === true,
     offlineRegions: [...new Set(Array.isArray(raw.offlineRegions) ? raw.offlineRegions : [])],
     partnerGrants: Array.isArray(raw.partnerGrants) ? raw.partnerGrants : []
   };

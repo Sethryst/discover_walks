@@ -17,8 +17,7 @@ body { background: radial-gradient(circle at 70% -10%, #315c4f 0, #122d27 40%, #
 button, a { font: inherit; }
 button { cursor: pointer; }
 .watch-shell { display: grid; gap: 8px; margin: 0 auto; max-width: 396px; padding: max(10px, env(safe-area-inset-top)) 8px max(18px, env(safe-area-inset-bottom)); }
-.watch-hero { align-items: center; display: grid; gap: 4px; grid-template-columns: minmax(0, 1fr) 88px; min-height: 108px; overflow: hidden; padding: 4px 8px 0 12px; }
-.watch-hero img { align-self: end; filter: sepia(.15) contrast(1.1); height: 104px; mix-blend-mode: screen; object-fit: cover; object-position: center 26%; width: 88px; }
+.watch-hero { align-items: center; display: grid; min-height: 88px; overflow: hidden; padding: 8px 12px 0; }
 .watch-kicker, .card-kicker { color: var(--moss); display: block; font-size: 10px; font-weight: 800; letter-spacing: .12em; }
 .watch-hero h1 { font-size: clamp(20px, 7vw, 28px); line-height: 1.02; margin: 5px 0 7px; }
 .watch-hero p { align-items: center; color: var(--muted); display: flex; font-size: 12px; gap: 6px; margin: 0; }
@@ -46,14 +45,16 @@ button { cursor: pointer; }
 .watch-list strong { font-size: 12px; }
 .watch-list small, .empty-watch-row { color: var(--muted); font-size: 10px; }
 .handoff-card small { color: var(--muted); font-size: 9px; line-height: 1.4; }
+.auth-card small { color: var(--muted); font-size: 9px; line-height: 1.4; }
+.watch-context-art { background: #fff; border-radius: 18px; height: 112px; overflow: hidden; }
+.watch-context-art img { height: 100%; object-fit: cover; object-position: center 26%; width: 100%; }
 .watch-toast { background: #f8f3e8; border-radius: 14px; bottom: max(10px, env(safe-area-inset-bottom)); box-shadow: 0 10px 32px rgba(0,0,0,.45); color: #122d27; font-size: 11px; font-weight: 700; left: 50%; max-width: calc(100% - 24px); opacity: 0; padding: 11px 14px; pointer-events: none; position: fixed; transform: translate(-50%, 16px); transition: opacity .18s ease, transform .18s ease; width: max-content; z-index: 5; }
 .watch-toast.show { opacity: 1; transform: translate(-50%, 0); }
 @keyframes pulse { 50% { box-shadow: 0 0 0 5px rgba(127,226,164,.14); opacity: .72; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; scroll-behavior: auto !important; transition: none !important; } }
 @media (max-width: 300px) {
   .watch-shell { padding-left: 5px; padding-right: 5px; }
-  .watch-hero { grid-template-columns: minmax(0, 1fr) 72px; min-height: 92px; }
-  .watch-hero img { height: 86px; width: 72px; }
+  .watch-hero { min-height: 76px; }
   .watch-card { border-radius: 16px; padding: 12px; }
   .quick-grid { grid-template-columns: 1fr; }
   .quick-grid button { flex-direction: row; }

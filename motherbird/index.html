@@ -26,7 +26,7 @@
     <div class="app-splash" id="appSplash" aria-hidden="true"><img src="./assets/splash-screen.jpeg" alt="" /></div>
     <main class="app-shell">
       <aside class="walking-topbar hidden" id="walkingTopbar" aria-live="polite">
-        <img id="walkCompanionImage" alt="Inky standing still" data-companion="inky" data-companion-state="idle" />
+        <img id="walkCompanionImage" alt="" data-companion="inky" data-companion-state="idle" />
         <span><strong>Walk in progress</strong><small id="walkingTopbarStatus">Recording your route</small></span>
         <span class="walking-topbar-dot" aria-hidden="true"></span>
       </aside>
@@ -252,7 +252,7 @@
     <section class="sheet hidden" id="historySheet" role="dialog" aria-modal="true" aria-labelledby="historyTitle">
   <button class="close-sheet" data-close-sheet aria-label="Close">×</button>
   <span class="sheet-kicker">YOU'RE NEAR</span>
-  <figure class="history-inky"><img data-lazy-src="./assets/historyinky.gif" alt="Inky dressed as a history explorer with a magnifying glass" /><figcaption>Inky found a story nearby.</figcaption></figure>
+  <figure class="history-inky" aria-hidden="true"><img data-lazy-src="./assets/inky-history.gif" alt="" /></figure>
   <h2 id="historyTitle">A historic place</h2>
   <p class="distance-pill" id="historyDistance">Within your walking radius</p>
   <p class="return-banner hidden" id="historyReturnBanner"></p>
@@ -447,10 +447,9 @@
       </ul>
       <section class="companion-settings" aria-labelledby="companionSettingsTitle">
         <div>
-          <span class="sheet-kicker">WALKING COMPANION</span>
-          <h3 id="companionSettingsTitle">Who walks with you?</h3>
-          <p id="companionDescription">The original ink-bottle field companion.</p>
-          <label for="companionWalker">Companion</label>
+          <span class="sheet-kicker">DISPLAY</span>
+          <h3 id="companionSettingsTitle">Walking animation</h3>
+          <label for="companionWalker">Animation</label>
           <select id="companionWalker">
             <option value="inky">Inky</option>
             <option value="fox">Fox</option>
@@ -458,11 +457,10 @@
             <option value="compass">Compass</option>
           </select>
         </div>
-        <img id="companionPreviewImage" alt="Inky standing still" />
+        <img id="companionPreviewImage" alt="" />
       </section>
       <section class="watch-entry-card" aria-labelledby="watchEntryTitle">
-        <div><span class="sheet-kicker">SEPARATE WATCH ENTRANCE</span><h3 id="watchEntryTitle">Inky at your wrist</h3><p>Start or pause a walk and save quick observations, history moments, or places. Refine the details in the full app.</p></div>
-        <img data-lazy-src="./assets/historyinky.gif" alt="Inky dressed as a history explorer" />
+        <div><span class="sheet-kicker">WATCH</span><h3 id="watchEntryTitle">Watch controls</h3><p>Start or pause a walk and save a quick observation or place.</p></div>
         <a class="secondary-button" href="./watch.html">Open watch version</a>
       </section>
       <details class="advanced-settings"><summary>Advanced appearance &amp; developer info</summary><form id="advancedAppearanceForm"><label>Header phrase <input id="advancedHeadlineTitle" maxlength="60" placeholder="A walk with a purpose" /></label><label>Header icon <select id="advancedHeadlineIcon"><option value="walk">Walking companion</option><option value="tree">Tree</option><option value="heart">Heart</option><option value="star">Star</option><option value="coffee">Coffee</option></select></label><label>Your name <input id="developerName" maxlength="60" placeholder="Your name or studio" /></label><label>Your link <input id="developerUrl" type="url" maxlength="240" placeholder="https://example.com" /></label><p class="sheet-intro">Shown locally in the footer. Nothing is published until you choose to deploy.</p><button class="secondary-button" type="submit">Save appearance</button></form></details>
@@ -474,7 +472,7 @@
       <button class="close-sheet" data-close-sheet aria-label="Close">×</button>
       <span class="sheet-kicker">OPTIONAL ONLINE MODE</span>
       <h2 id="onlineTitle">Your choice to connect.</h2>
-      <p class="privacy-boundary">An account is optional. Your routes, journal, nature notes, and photos stay on this device. This prototype’s online feature only maintains a minimal aggregate profile.</p>
+      <p class="privacy-boundary">An account is optional. Your routes, journal, nature notes, and photos stay on this device unless a Field Edition subscriber explicitly saves one passphrase-encrypted journal backup. Profile sync remains aggregate-only.</p>
       <section id="onlineSetupPanel" class="online-panel hidden">
         <strong>Connect a Supabase project first</strong>
         <p>Add your project URL and publishable/anon key to <code>supabase-config.js</code>, then run the included SQL schema. Until then, everything remains local.</p>
@@ -482,7 +480,6 @@
       <form id="magicLinkForm" class="online-panel hidden">
   <button class="primary-button wide-button" type="button" id="passkeySignInButton">Sign in with Face ID</button>
   <p class="auth-privacy">Use a passkey stored on this device or in iCloud Keychain.</p>
-  <button class="google-auth-button" type="button" id="googleSignInButton"><span aria-hidden="true">G</span> Continue with Google</button>
   <div class="auth-divider"><span>or use email</span></div>
   <label>Email
     <input id="onlineEmail" type="email" autocomplete="email" required placeholder="you@example.com" />
@@ -500,7 +497,6 @@
       Create account
     </button>
   </div>
-  <p class="auth-privacy">Google authenticates your account. Discover Walks never receives or stores your Google password.</p>
   <p class="auth-privacy">By continuing, you agree to the <a href="./terms.html" target="_blank" rel="noreferrer">Terms of Service</a> and acknowledge the <a href="./privacy.html" target="_blank" rel="noreferrer">Privacy Policy</a>.</p>
 </form>
       <form id="usernameForm" class="online-panel hidden">

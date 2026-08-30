@@ -15,10 +15,9 @@
     <header class="watch-hero">
       <div class="watch-hero-copy">
         <span class="watch-kicker">DISCOVER WALKS</span>
-        <h1>Inky at your wrist</h1>
+        <h1>Watch</h1>
         <p><span class="state-dot" id="watchStateDot" data-state="ready" aria-hidden="true"></span><span id="watchState">Ready</span></p>
       </div>
-      <img src="./assets/historyinky.gif" alt="Inky dressed as a history explorer with a magnifying glass" />
     </header>
 
     <section class="watch-card walk-card" aria-labelledby="walkCardTitle">
@@ -43,6 +42,7 @@
         <button type="button" data-quick-capture="place"><span aria-hidden="true">⌖</span>Save here</button>
       </div>
     </section>
+    <div class="watch-context-art" id="watchContextArt" hidden aria-hidden="true"><img data-src="./assets/inky-history.gif" alt="" /></div>
 
     <section class="watch-card" aria-labelledby="nearbyCardTitle">
       <span class="card-kicker">NEARBY</span>
@@ -57,8 +57,18 @@
       <a class="watch-primary" href="./index.html?view=phone">Open full app</a>
       <small>Watch and full views share this browser’s private local journal. Cross-device sync is not claimed.</small>
     </section>
+    <section class="watch-card auth-card" aria-labelledby="authCardTitle">
+      <span class="card-kicker">ACCOUNT</span>
+      <h2 id="authCardTitle">Sign in</h2>
+      <p id="watchAuthStatus">Checking account…</p>
+      <button class="watch-primary" id="watchPasskeySignIn" type="button">Sign in with Face ID</button>
+      <button class="watch-secondary" id="watchSignOut" type="button" hidden>Sign out</button>
+      <small>Sign-in restores your account session. Watch captures remain local and are not uploaded.</small>
+    </section>
   </main>
   <div class="watch-toast" id="watchToast" role="status" aria-live="polite"></div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.105.0"></script>
+  <script src="./supabase-config.js"></script>
   <script type="module" src="./js/watch-app.js"></script>
 </body>
 </html>

@@ -349,7 +349,7 @@ export async function collectKpiInventory() {
     { capability: 'Pages inventory', status: 'Automated', evidence: 'Rebuilt from CITIES, artifacts, configs, endpoints, workflows, and UI contracts', frontend: '/kpi/', next: 'Add live endpoint health and freshness history' },
     { capability: 'Federal region progress', status: federalProgressReady ? 'Shipped · local-first' : 'Awaiting tagged POIs', evidence: federalProgressReady ? `${federalTaggedPois.toLocaleString()} tagged POIs · ${federalProgressRegions} federal regions · ${federalPoiProgress.congress}th Congress` : 'Canonical POI tag index is missing or empty', frontend: 'Map → Boundaries region readout', next: 'Re-run federal POI tagging after a POI refresh or Congress rollover' },
     { capability: 'DC spatial solo pilot', status: spatialSync.deploymentReady ? 'Package ready · transport off' : 'Identity blocked', evidence: `${spatialSync.poiCount.toLocaleString()} POIs · ${spatialSync.boundaryCount} boundaries · ${spatialSync.poiVersion || 'missing POI version'}`, frontend: 'Authenticated DC map closure control', next: 'Enable county transport only after a separately approved tenant deployment' },
-    { capability: 'Google sign-in', status: 'Code ready', evidence: 'Supabase OAuth redirect contains no password or client secret', frontend: 'Journal → Go Online', next: 'Enable Google provider in Supabase and Google Cloud' }
+    { capability: 'Passkey sign-in', status: 'Shipped', evidence: 'Supabase passkey flow supports device authentication without exposing biometric data', frontend: 'Phone and Watch account entry', next: 'Monitor Supabase passkey browser compatibility' }
   ];
 
   return {

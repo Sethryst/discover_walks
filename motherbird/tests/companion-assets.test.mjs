@@ -28,15 +28,15 @@ test('Inky, fox, cloud, and compass each resolve standing and walking assets', a
 
 test('all supplied Inky contextual assets exist, including the history explorer', async () => {
   for (const [stateName, asset] of Object.entries(COMPANIONS.inky.states)) assert.ok((await stat(localAssetPath(asset))).size > 0, `${stateName} should exist`);
-  assert.equal(companionAsset('inky', 'historic', { fallback: false }), './assets/historyinky.gif');
+  assert.equal(companionAsset('inky', 'historic', { fallback: false }), './assets/inky-history.gif');
   assert.equal(resolvedCompanionState('inky', 'historic'), 'historic');
   assert.equal(resolvedCompanionState('fox', 'night'), 'walk');
 });
 
 test('critical preload policy contains only the selected companion idle and normal walk', () => {
-  assert.deepEqual(criticalCompanionAssets('inky'), ['./assets/standing.gif', './assets/walk2.gif']);
-  assert.deepEqual(criticalCompanionAssets('cloud'), ['./assets/cloudstand.gif', './assets/cloudwalk.gif']);
-  assert.deepEqual(criticalCompanionAssets('compass'), ['./assets/compasswalk.gif']);
+  assert.deepEqual(criticalCompanionAssets('inky'), ['./assets/inky-idle.gif', './assets/inky-walk.gif']);
+  assert.deepEqual(criticalCompanionAssets('cloud'), ['./assets/cloud-idle.gif', './assets/cloud-walk.gif']);
+  assert.deepEqual(criticalCompanionAssets('compass'), ['./assets/compass.gif']);
 });
 
 test('context priority is finish, active special, pace, stationary, then passive idle', () => {
@@ -53,11 +53,12 @@ test('context priority is finish, active special, pace, stationary, then passive
 
 test('the shell does not eagerly download any companion GIF', async () => {
   const [html, worker] = await Promise.all([readFile(path.join(appRoot, 'index.html'), 'utf8'), readFile(path.join(appRoot, 'service-worker.js'), 'utf8')]);
-  assert.doesNotMatch(html, /rel="preload"[^>]+assets\/(?:standing|walk2)\.gif/);
-  for (const asset of ['standing.gif', 'walk2.gif', 'autumnwalk.gif', 'discover.gif', 'journalgif.gif', 'rainwalk.gif']) assert.doesNotMatch(worker, new RegExp(`assets/${asset.replace('.', '\\.')}`));
+  assert.doesNotMatch(html, /rel="preload"[^>]+assets\/(?:inky-idle|inky-walk)\.gif/);
+  for (const asset of ['inky-idle.gif', 'inky-walk.gif', 'inky-autumn-walk.gif', 'inky-discover.gif', 'inky-journal.gif', 'inky-rain-walk.gif']) assert.doesNotMatch(worker, new RegExp(`assets/${asset.replace('.', '\\.')}`));
   assert.match(worker, /'\.\/js\/companion\.js'/);
   assert.match(worker, /'\.\/js\/revisit\.js'/);
   assert.match(worker, /'\.\/js\/journal-transfer\.js'/);
-  assert.match(worker, /'\.\/js\/watch-companion\.js'/);
-  assert.match(worker, /walk-wildlife-companion-media-v1/);
+  assert.doesNotMatch(worker, /watch-companion\.js/);
+  assert.match(worker, /walk-wildlife-companion-media-v2/);
+  assert.match(worker, /key\.startsWith\('walk-wildlife-companion-media-'\)/);
 });

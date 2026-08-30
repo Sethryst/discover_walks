@@ -7,7 +7,7 @@ import { discardWalk, getCurrentLocation, recordPoiEncounter, saveWalk, setActiv
 import { openObservation, saveObservation, setDraftObservationIcon } from './observation.js';
 import { openJournal, closeSheets, openSheet, openAccountSettings, openFiltersSheet, openProfile, renderGeofenceCategoryChips, setArchiveFilter, showView, toast } from './ui.js';
 import { city, citySites, displayPoiName, geofenceCategoriesForCity, renderCityPois, showHistory, savePlaceMemory, searchPois, searchOsm } from './poi.js';
-import { syncProfile, renderOnline, openOnline, signIn, signUp, signInWithGoogle, signInWithPasskey, registerPasskey, createOnlineProfile, updateAccountUsername, updateAccountPhone, updateAccountEmail, updateAccountPassword } from './online.js';
+import { syncProfile, renderOnline, openOnline, signIn, signUp, signInWithPasskey, registerPasskey, createOnlineProfile, updateAccountUsername, updateAccountPhone, updateAccountEmail, updateAccountPassword } from './online.js';
 import { refreshCityMap, switchCity } from './city.js';
 import { renderProfile } from './profile.js';
 import { toggleFavoriteRegion } from './region-favorites.js';
@@ -119,7 +119,7 @@ export function initEvents() {
     state.settings.companionWalker = normalizeCompanionId(event.target.value);
     await db.put('settings', state.settings);
     applyCompanionSettings();
-    toast(`${event.target.selectedOptions[0]?.textContent || 'Companion'} will walk with you.`);
+    toast('Animation updated.');
   });
   el('advancedAppearanceForm').addEventListener('submit', async (event) => { event.preventDefault(); state.settings.staticAppearance = { headlineTitle: el('advancedHeadlineTitle').value.trim() || 'A walk with a purpose', headlineIcon: el('advancedHeadlineIcon').value, developerName: el('developerName').value.trim(), developerUrl: el('developerUrl').value.trim() }; await db.put('settings', state.settings); const { applyStaticAppearance } = await import('./ui.js'); applyStaticAppearance(); toast('Appearance saved on this device.'); });
   el('profileJournalButton').addEventListener('click', () => openJournal());
@@ -128,10 +128,13 @@ export function initEvents() {
     const center = state.map.getCenter();
     window.dispatchEvent(new CustomEvent('personal-place-create-requested', { detail: { location: { lat: center.lat, lng: center.lng } } }));
   });
-  el('dismissHistoryButton').addEventListener('click', closeSheets); el('saveHistoryMomentButton').addEventListener('click', saveHistoryMoment);
-  el('saveHistoryMomentButton').addEventListener('click', () => {
-  if (state.currentSite) savePlaceMemory(state.currentSite, el('historyNoteInput').value.trim());
-});
+  el('dismissHistoryButton').addEventListener('click', closeSheets);
+  el('saveHistoryMomentButton').addEventListener('click', async () => {
+    const site = state.currentSite;
+    const note = el('historyNoteInput').value.trim();
+    await saveHistoryMoment();
+    if (site) await savePlaceMemory(site, note);
+  });
 
 let osmSearchTimer = null;
 el('poiSearchInput').addEventListener('input', (event) => {
@@ -159,19 +162,6 @@ el('poiSearchInput').addEventListener('input', (event) => {
   }, 400);
 });
 
-el('poiSearchResults').addEventListener('click', (event) => {
-  const button = event.target.closest('button'); if (!button) return;
-  if (button.dataset.poiId) {
-    const poi = (state.cityPois[state.activeCity] || []).find((p) => p.id === button.dataset.poiId);
-    if (!poi) return;
-    state.map.flyTo([poi.lat, poi.lng], Math.max(city().zoom + 2, 16));
-    if ((poi.tags || []).includes('history')) setTimeout(() => showHistory(poi, 0), 350);
-  } else if (button.dataset.osmLat) {
-    state.map.flyTo([parseFloat(button.dataset.osmLat), parseFloat(button.dataset.osmLng)], 17);
-  }
-  el('poiSearchResults').classList.add('hidden');
-  el('poiSearchInput').value = '';
-});
 el('poiSearchResults').addEventListener('click', (event) => {
   const button = event.target.closest('button'); if (!button) return;
   if (button.dataset.poiId) {
@@ -239,7 +229,6 @@ el('poiSearchResults').addEventListener('click', (event) => {
   el('goOnlineButton').addEventListener('click', openOnline);
   el('signInButton').addEventListener('click', signIn);
 el('passkeySignInButton').addEventListener('click', signInWithPasskey);
-el('googleSignInButton').addEventListener('click', signInWithGoogle);
 el('signUpButton').addEventListener('click', signUp);
 el('usernameForm').addEventListener('submit', createOnlineProfile);
   el('syncNowButton').addEventListener('click', async () => { try { await syncProfile(); await renderOnline(); toast('Aggregate stats synced.'); } catch (error) { toast(error.message || 'Could not sync right now.'); } });

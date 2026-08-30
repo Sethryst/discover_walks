@@ -11,6 +11,8 @@ import db from './storage.js';
 import { openSheet, toast } from './ui.js';
 import { renderProfile } from './profile.js';
 import { readSupabaseHeartbeat } from './heartbeat.js';
+import { normalizedEntitlements } from './entitlements.js';
+import { activeFieldEditionSubscription } from './cloud-journal.js';
 
 const PASSKEY_ENROLLED_KEY = 'walk-wildlife.passkey-enrolled';
 const APP_SESSION_KEY = 'walk-wildlife.app-session';
@@ -43,7 +45,7 @@ export async function setupOnline() {
   }
   state.online.client.auth.onAuthStateChange((_event, session) => {
     state.online.session = session;
-    setTimeout(() => { if (session) void loadRemoteProfile(); else { state.online.remoteProfile = null; renderProfile(); } }, 0);
+    setTimeout(() => { if (session) void loadRemoteProfile(); else { state.online.remoteProfile = null; void setCloudJournalEntitlement(false); renderProfile(); } }, 0);
   });
 }
   export async function openOnline() {
@@ -59,8 +61,31 @@ export async function loadRemoteProfile() {
     throw error;
   }
   state.online.remoteProfile = data || null;
+  await refreshCloudJournalEntitlement();
   renderProfile();
   return data;
+}
+
+async function setCloudJournalEntitlement(active) {
+  state.online.fieldEditionVerified = active;
+  if (!state.settings) return;
+  const current = normalizedEntitlements(state.settings.entitlements);
+  state.settings.entitlements = { ...current, fieldEdition: current.fieldEdition || active, cloudJournalBackup: active };
+  await db.put('settings', state.settings);
+  if (globalThis.window?.CustomEvent) window.dispatchEvent(new window.CustomEvent('cloud-journal-entitlement-changed'));
+}
+
+export async function refreshCloudJournalEntitlement() {
+  if (!state.online.client || !state.online.session) { await setCloudJournalEntitlement(false); return false; }
+  const { data, error } = await state.online.client.from('subscriptions').select('subscription_tier,started_at,ends_at').eq('user_id', state.online.session.user.id);
+  if (error) {
+    await setCloudJournalEntitlement(false);
+    console.warn('Field Edition entitlement unavailable:', error.message);
+    return false;
+  }
+  const active = activeFieldEditionSubscription(data);
+  await setCloudJournalEntitlement(active);
+  return active;
 }
 export async function syncProfile() {
   if (!state.online.client || !state.online.session || !state.online.remoteProfile?.username) return false;
@@ -116,7 +141,7 @@ export async function signInWithPasskey() {
 export async function registerPasskey() {
   await setupOnline();
   if (!state.online.session || !state.online.client?.auth.registerPasskey) {
-    toast('Sign in with email or Google first, then add Face ID.');
+    toast('Sign in with email first, then add Face ID.');
     return false;
   }
   const { error } = await state.online.client.auth.registerPasskey();
@@ -138,25 +163,6 @@ export async function signUp() {
 
   await loadRemoteProfile();
   await renderOnline();
-}
-
-export function oauthReturnUrl(href = globalThis.location?.href || 'https://sethryst.github.io/gremlin_labs/') {
-  const url = new URL(href);
-  url.search = '';
-  url.hash = '';
-  url.pathname = url.pathname.endsWith('/') ? url.pathname : url.pathname.replace(/[^/]*$/, '');
-  return url.toString();
-}
-
-export async function signInWithGoogle() {
-  await setupOnline();
-  if (!state.online.client) { toast('Online sign-in is not configured yet.'); return false; }
-  const { error } = await state.online.client.auth.signInWithOAuth({
-    provider: 'google',
-    options: { redirectTo: oauthReturnUrl() }
-  });
-  if (error) { toast(error.message || 'Google sign-in could not start.'); return false; }
-  return true;
 }
 
 export async function createOnlineProfile(event) {

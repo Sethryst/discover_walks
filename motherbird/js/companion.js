@@ -12,54 +12,41 @@ export const CRITICAL_COMPANION_STATES = Object.freeze(['idle', 'walk']);
 export const COMPANIONS = Object.freeze({
   inky: Object.freeze({
     label: 'Inky',
-    description: 'The original ink-bottle field companion.',
     states: Object.freeze({
-      idle: './assets/standing.gif',
-      stationary: './assets/standing%20rotate.gif',
-      walk: './assets/walk2.gif',
-      slow: './assets/slowwalk.gif',
-      run: './assets/run.gif',
-      sprint: './assets/run2.gif',
-      rainSlow: './assets/rainwalk.gif',
-      rainWalk: './assets/rainwalk.gif',
-      rainRun: './assets/rainjog.gif',
-      rainSprint: './assets/rainsprint.gif',
-      sunny: './assets/sun%20walk.gif',
-      autumn: './assets/autumnwalk.gif',
-      map: './assets/maptime-ezgif.com-speed.gif',
-      discover: './assets/discover.gif',
-      observe: './assets/observe.gif',
-      journal: './assets/journalgif.gif',
-      water: './assets/inkyfishing.gif',
-      night: './assets/flashlightinky.gif',
-      finish: './assets/inkyjournalwalkfinish%20-%20Copy.gif',
-      historic: './assets/historyinky.gif'
+      idle: './assets/inky-idle.gif',
+      stationary: './assets/inky-stationary.gif',
+      walk: './assets/inky-walk.gif',
+      slow: './assets/inky-walk-slow.gif',
+      run: './assets/inky-run.gif',
+      sprint: './assets/inky-sprint.gif',
+      rainSlow: './assets/inky-rain-walk.gif',
+      rainWalk: './assets/inky-rain-walk.gif',
+      rainRun: './assets/inky-rain-run.gif',
+      rainSprint: './assets/inky-rain-sprint.gif',
+      sunny: './assets/inky-sun-walk.gif',
+      autumn: './assets/inky-autumn-walk.gif',
+      map: './assets/inky-map.gif',
+      discover: './assets/inky-discover.gif',
+      observe: './assets/inky-observe.gif',
+      journal: './assets/inky-journal.gif',
+      water: './assets/inky-fishing.gif',
+      night: './assets/inky-night.gif',
+      finish: './assets/inky-walk-finish.gif',
+      historic: './assets/inky-history.gif'
     })
   }),
   fox: Object.freeze({
     label: 'Fox',
-    description: 'A bright trail fox with a map-pack.',
-    states: Object.freeze({ idle: './assets/foxwalk2.gif', walk: './assets/foxwalk1.gif' })
+    states: Object.freeze({ idle: './assets/fox-idle.gif', walk: './assets/fox-walk.gif' })
   }),
   cloud: Object.freeze({
     label: 'Cloud',
-    description: 'A soft, buoyant walking cloud.',
-    states: Object.freeze({ idle: './assets/cloudstand.gif', walk: './assets/cloudwalk.gif' })
+    states: Object.freeze({ idle: './assets/cloud-idle.gif', walk: './assets/cloud-walk.gif' })
   }),
   compass: Object.freeze({
     label: 'Compass',
-    description: 'A small compass that always wants to wander.',
-    states: Object.freeze({ idle: './assets/compasswalk.gif', walk: './assets/compasswalk.gif' })
+    states: Object.freeze({ idle: './assets/compass.gif', walk: './assets/compass.gif' })
   })
-});
-
-const STATE_ALT = Object.freeze({
-  idle: 'standing still', stationary: 'pausing and looking around', walk: 'walking', slow: 'walking slowly',
-  run: 'jogging', sprint: 'running quickly', rainSlow: 'walking slowly in the rain', rainWalk: 'walking in the rain',
-  rainRun: 'jogging in the rain', rainSprint: 'running in the rain', sunny: 'walking in sunshine', autumn: 'walking in autumn',
-  map: 'checking the route map', discover: 'celebrating a discovery', observe: 'making an observation',
-  journal: 'writing in a journal', water: 'pausing by the water with a fishing rod', night: 'walking at night with a flashlight',
-  finish: 'resting with a journal after the walk', historic: 'exploring local history with a magnifying glass'
 });
 
 const preloadedAssets = new Map();
@@ -174,7 +161,7 @@ export function setCompanionState(companionState = 'idle') {
   const image = el('walkCompanionImage');
   if (image && asset) {
     if (image.getAttribute('src') !== asset) image.setAttribute('src', asset);
-    image.alt = `${companion.label} ${STATE_ALT[resolvedState] || 'walking companion'}`;
+    image.alt = '';
     image.dataset.companion = companionId;
     image.dataset.companionState = resolvedState;
   }
@@ -203,13 +190,11 @@ export function applyCompanionSettings() {
   const companion = COMPANIONS[companionId];
   const select = el('companionWalker');
   const preview = el('companionPreviewImage');
-  const description = el('companionDescription');
   if (select) select.value = companionId;
   if (preview) {
     preview.src = companion.states.idle || companion.states.walk;
-    preview.alt = `${companion.label} ${companion.states.idle ? 'standing still' : 'walking'}`;
+    preview.alt = '';
   }
-  if (description) description.textContent = companion.description;
   void preloadCompanionCritical(companionId);
   refreshCompanionState();
 }
