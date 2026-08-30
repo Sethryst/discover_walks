@@ -23,6 +23,8 @@ import {
   updateWalkDurations,
   walkReviewSummary
 } from './walk-artifact.js';
+import { companionStateForWalk, setCompanionState } from './companion.js';
+import { refreshNearbyRevisit } from './revisit.js';
 
 const DRAFT_ID = 'active-walk';
 
@@ -88,6 +90,8 @@ export function updateWalkDisplay() {
     el('walkPoints')?.replaceChildren();
     el('activeRouteButton').classList.add('hidden');
     el('walkingTopbar').classList.add('hidden');
+    setCompanionState('idle');
+    globalThis.window?.dispatchEvent(new CustomEvent('walk-display-updated'));
     return;
   }
   updateWalkDurations(walk);
@@ -102,13 +106,16 @@ export function updateWalkDisplay() {
   if (el('routePauseButton')) el('routePauseButton').textContent = walk.paused ? 'Resume' : 'Pause';
   if (el('activeWalkMode')) el('activeWalkMode').value = walk.routeMode || 'tracking';
   el('walkingTopbar').classList.remove('hidden');
+  setCompanionState(companionStateForWalk(walk));
   const status = walk.recordingStatus === 'stopped' ? 'Ready to review and save' : walk.paused ? 'Walk paused — your route is saved' : `Recording · ${distance} mi · ${duration}`;
   el('walkingTopbarStatus').textContent = status;
+  globalThis.window?.dispatchEvent(new CustomEvent('walk-display-updated'));
 }
 
 export function handlePosition(position, shouldPan = false) {
   const point = { lat: position.coords.latitude, lng: position.coords.longitude, accuracy: position.coords.accuracy, capturedAtMs: position.timestamp || Date.now() };
   renderUserLocation(point, shouldPan);
+  void refreshNearbyRevisit(point);
   const weakSignal = !Number.isFinite(point.accuracy) || point.accuracy > MAX_GPS_ACCURACY_METERS;
   if (weakSignal) { setStatus(`GPS signal weak (${Math.round(point.accuracy || 0)} m) - route not updated`); return; }
   setStatus(state.activeWalk ? (state.activeWalk.paused ? 'Walk paused' : 'Recording your walk') : 'Location found', Boolean(state.activeWalk && !state.activeWalk.paused));
@@ -249,6 +256,7 @@ export async function saveWalk() {
     db.remove('walk_drafts', DRAFT_ID)
   ]);
   await updatePersonalPlaceCandidates(finished);
+  state.walks = [...state.walks.filter((item) => item.id !== finished.id), finished];
   state.knownTrackPoints.push(...finished.points.filter((_, index) => index % 5 === 0));
   resetActiveWalk();
   closeSheets();

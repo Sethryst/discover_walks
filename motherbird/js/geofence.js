@@ -2,6 +2,7 @@ import { distanceMeters } from './geo.js';
 import { state } from './state.js';
 import { GEOFENCE_CATEGORIES } from './constants.js';
 import { geofenceCategoriesForCity, isWalkablePoi, poiTags, showHistory } from './poi.js';
+import { requestCompanionContext } from './companion.js';
 
 export function checkGeofences(point) {
   const settings = state.settings || {};
@@ -33,6 +34,8 @@ export function checkGeofences(point) {
     })
     .sort((a, b) => b.relevance - a.relevance)[0];
   if (nearby && state.activeWalk) {
+    const tags = poiTags(nearby.poi);
+    requestCompanionContext(tags.some((tag) => ['water', 'water_access', 'river', 'lake'].includes(tag)) ? 'water' : tags.some((tag) => tag === 'history' || tag.startsWith('history_')) ? 'historic' : tags.some((tag) => ['wildlife', 'nature'].includes(tag)) ? 'observe' : 'discover');
     globalThis.window?.dispatchEvent(new CustomEvent('walk-poi-encounter', { detail: nearby }));
   }
   if (nearby && !state.modalOpen) {

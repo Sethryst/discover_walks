@@ -45,7 +45,7 @@ export const db = (() => {
   function all(name) { return new Promise((resolve, reject) => {const r = store(name).getAll(); r.onsuccess = () => resolve(r.result); r.onerror = () => reject(r.error); }); }
   function remove(name, id) { return new Promise((resolve, reject) => {const r = store(name, 'readwrite').delete(id); r.onsuccess = () => resolve(); r.onerror = () => reject(r.error); }); }
   function clearAll() {
-    return Promise.all(['walks', 'observations', 'moments', 'profile', 'settings', 'neighborhood_discoveries', 'walk_drafts', 'walk_events', 'personal_places', 'personal_place_categories', 'layer_settings', 'voice_notes', 'notification_state', 'spatial_local_operations'].map((name) => new Promise((resolve, reject) => {
+    return Promise.all(['walks', 'observations', 'moments', 'profile', 'settings', 'poi_metadata', 'neighborhood_discoveries', 'walk_drafts', 'walk_events', 'personal_places', 'personal_place_categories', 'layer_settings', 'voice_notes', 'notification_state', 'spatial_local_operations'].map((name) => new Promise((resolve, reject) => {
     const r = store(name, 'readwrite').clear(); r.onsuccess = resolve; r.onerror = () => reject(r.error);
     })));
   }

@@ -39,6 +39,9 @@ const publishEntries = [
   'styles.css',
   'supabase-config.js',
   'terms.html',
+  'watch.css',
+  'watch.html',
+  'watch.webmanifest',
   'vendor'
 ];
 

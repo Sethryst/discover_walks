@@ -7,6 +7,7 @@ import { geofenceCategoriesForCity } from './poi.js';
 import { renderCivic } from './civic.js';
 import { promptForWalk, REFLECTION_PROMPTS, wordCount } from './reflection.js';
 import { renderFieldGuide } from './field-guide.js';
+import { applyCompanionSettings } from './companion.js';
 
 export function setArchiveFilter(filter = 'all') {
   state.archiveFilter = filter;
@@ -31,7 +32,20 @@ export function closeSheets() {
   document.querySelectorAll('.sheet').forEach((sheet) => sheet.classList.add('hidden'));
   if (state.draftMarker) { state.draftMarker.remove(); state.draftMarker = null; }
 }
-export function openSheet(id) { state.modalOpen = id; document.body.classList.toggle('journal-open', id === 'journalSheet'); document.body.classList.toggle('layers-open', id === 'filtersSheet'); el('modalBackdrop').classList.remove('hidden'); el(id).classList.remove('hidden'); }
+export function openSheet(id) {
+  state.modalOpen = id;
+  document.body.classList.toggle('journal-open', id === 'journalSheet');
+  document.body.classList.toggle('layers-open', id === 'filtersSheet');
+  el('modalBackdrop').classList.remove('hidden');
+  const sheet = el(id);
+  sheet.classList.remove('hidden');
+  // Large contextual companion GIFs should load only when their sheet is
+  // actually opened, then remain available through the runtime media cache.
+  sheet.querySelectorAll('img[data-lazy-src]').forEach((image) => {
+    image.src = image.dataset.lazySrc;
+    image.removeAttribute('data-lazy-src');
+  });
+}
 export function applyStaticAppearance() {
   const appearance = { headlineTitle: 'A walk with a purpose', headlineIcon: 'walk', developerName: '', developerUrl: '', ...(state.settings.staticAppearance || {}) };
   const allowedIcons = new Set(['walk', 'tree', 'heart', 'star', 'coffee']);
@@ -42,6 +56,7 @@ export function applyStaticAppearance() {
   credit.classList.toggle('hidden', !appearance.developerName);
   credit.innerHTML = appearance.developerName ? `Built by ${escapeHtml(appearance.developerName)}${/^https:\/\//.test(appearance.developerUrl || '') ? ` · <a href="${escapeHtml(appearance.developerUrl)}" target="_blank" rel="noreferrer">visit ↗</a>` : ''}` : '';
   ['advancedHeadlineTitle', 'advancedHeadlineIcon', 'developerName', 'developerUrl'].forEach((id) => { if (el(id)) el(id).value = appearance[{ advancedHeadlineTitle: 'headlineTitle', advancedHeadlineIcon: 'headlineIcon', developerName: 'developerName', developerUrl: 'developerUrl' }[id]] || ''; });
+  applyCompanionSettings();
 }
 export function openProfile() { showView('profile'); }
 export function showView(view) {

@@ -8,6 +8,7 @@ import { city } from './poi.js';
 import { buildReflectionMoment, wordCount } from './reflection.js';
 import { markPoiVisited } from './poi-visit-tracking.js';
 import { attachWalkArtifact } from './walk-context.js';
+import { requestCompanionContext } from './companion.js';
 
 export async function saveHistoryMoment() {
   const site = state.currentSite; if (!site) return;
@@ -25,6 +26,7 @@ export async function saveHistoryMoment() {
     siteId: site.id, city: cityId, pointsAwarded: award.points, createdAt: new Date().toISOString(), location: { lat: site.lat, lng: site.lng }
   });
   await markPoiVisited(site);
+  requestCompanionContext('discover');
   closeSheets(); toast(award.firstDiscovery ? `New history site — +${award.points} points.` : 'History moment saved to your local archive.'); renderArchive();
 }
 export async function saveJournal(event) {
@@ -34,6 +36,7 @@ export async function saveJournal(event) {
   const walkId = event.currentTarget.dataset.walkId;
   const moment = buildReflectionMoment({ id: uid('moment'), city: state.activeCity, heading: el('journalHeading').value, mood, note, prompt: event.currentTarget.dataset.prompt, walkId, createdAt: new Date().toISOString() });
   await db.put('moments', moment);
+  requestCompanionContext('journal');
   closeSheets(); toast(`Reflection saved locally · ${wordCount(note)} words.`); renderArchive();
 }
 export async function saveQuickJournal(event) {
@@ -57,6 +60,7 @@ export async function saveQuickJournal(event) {
     await db.put('voice_notes', { id: `voice-${moment.id}`, momentId: moment.id, walkId: moment.walkId, transcript: moment.note, createdAt, location: moment.location, private: true });
   }
   await attachWalkArtifact(moment, photo ? 'photo' : form.dataset.voiceTranscript === 'true' ? 'voice-note' : 'moment');
+  requestCompanionContext('journal');
   form.reset();
   form.dataset.voiceTranscript = 'false';
   el('quickJournalPhotoName').textContent = 'Private on this device';

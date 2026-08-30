@@ -1,6 +1,7 @@
 import { CITIES } from './constants.js';
 import { state } from './state.js';
 import { el, escapeHtml } from './utils.js';
+import { setCompanionEnvironment } from './companion.js';
 
 export function liveConditionsText(weather, sun, nwsPeriod = null) {
   const current = weather?.current || {};
@@ -37,6 +38,8 @@ export async function refreshLiveConditions() {
     const [weatherResponse, sunResponse, nwsPeriod] = await Promise.all([fetch(weatherUrl), fetch(sunUrl), loadNwsPeriod(lat, lng)]);
     const weather = weatherResponse.ok ? await weatherResponse.json() : null;
     const sun = sunResponse.ok ? await sunResponse.json() : null;
+    const forecastText = String(nwsPeriod?.shortForecast || '');
+    setCompanionEnvironment({ rain: Number(weather?.current?.precipitation) > 0 || /rain|shower|storm/i.test(forecastText), sunny: /sunny|clear/i.test(forecastText) });
     target.innerHTML = `${escapeHtml(liveConditionsText(weather, sun, nwsPeriod))} <small>Uses ${escapeHtml(city.name)}’s map center; your location is not sent.</small> <button class="text-button" id="refreshConditionsButton" type="button">Refresh</button>`;
     el('refreshConditionsButton')?.addEventListener('click', () => void refreshLiveConditions());
   } catch {
@@ -57,6 +60,7 @@ export async function renderWeatherBrief() {
     const period = weather.forecast?.[0];
     const alert = weather.activeAlerts?.[0];
     const text = alert?.headline || alert?.event || (period ? `${period.name}: ${period.shortForecast}${period.temperature != null ? ` · ${period.temperature}°${period.temperatureUnit || ''}` : ''}` : 'Forecast available');
+    setCompanionEnvironment({ rain: /rain|shower|storm/i.test(`${alert?.event || ''} ${period?.shortForecast || ''}`), sunny: /sunny|clear/i.test(period?.shortForecast || '') });
     target.innerHTML = `${escapeHtml(text)} <a href="${escapeHtml(weather.source?.url || 'https://www.weather.gov')}" target="_blank" rel="noreferrer">NWS ↗</a> <button class="text-button" id="refreshConditionsButton" type="button">Live conditions</button>`;
     target.classList.remove('hidden');
     el('refreshConditionsButton')?.addEventListener('click', () => void refreshLiveConditions());

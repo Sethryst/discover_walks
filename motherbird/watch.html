@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no" />
+  <meta name="theme-color" content="#122d27" />
+  <meta name="description" content="A compact Discover Walks entrance for watches and wrist-sized screens." />
+  <link rel="manifest" href="./watch.webmanifest" />
+  <link rel="icon" href="./assets/pwa-icon-192.png" />
+  <link rel="stylesheet" href="./watch.css" />
+  <title>Discover Walks · Watch</title>
+</head>
+<body>
+  <main class="watch-shell">
+    <header class="watch-hero">
+      <div class="watch-hero-copy">
+        <span class="watch-kicker">DISCOVER WALKS</span>
+        <h1>Inky at your wrist</h1>
+        <p><span class="state-dot" id="watchStateDot" data-state="ready" aria-hidden="true"></span><span id="watchState">Ready</span></p>
+      </div>
+      <img src="./assets/historyinky.gif" alt="Inky dressed as a history explorer with a magnifying glass" />
+    </header>
+
+    <section class="watch-card walk-card" aria-labelledby="walkCardTitle">
+      <span class="card-kicker">WALK</span>
+      <h2 id="walkCardTitle">Keep the essentials close</h2>
+      <div class="watch-metrics" aria-live="polite">
+        <span><strong id="watchTimer">00:00</strong><small>time</small></span>
+        <span><strong id="watchDistance">0.00 mi</strong><small>distance</small></span>
+      </div>
+      <p id="watchWalkHint">Start a simple open walk. Choose route details later.</p>
+      <button class="watch-primary" id="watchWalkPrimary" type="button">Start walk</button>
+      <button class="watch-secondary" id="watchWalkFinish" type="button" hidden>Finish walk</button>
+    </section>
+
+    <section class="watch-card" aria-labelledby="captureCardTitle">
+      <span class="card-kicker">CAPTURE NOW</span>
+      <h2 id="captureCardTitle">Refine it later</h2>
+      <p>Save the location and intent. Add names, notes, and details in the full app.</p>
+      <div class="quick-grid">
+        <button type="button" data-quick-capture="observation"><span aria-hidden="true">✦</span>Observe</button>
+        <button type="button" data-quick-capture="history"><span aria-hidden="true">⌕</span>History</button>
+        <button type="button" data-quick-capture="place"><span aria-hidden="true">⌖</span>Save here</button>
+      </div>
+    </section>
+
+    <section class="watch-card" aria-labelledby="nearbyCardTitle">
+      <span class="card-kicker">NEARBY</span>
+      <h2 id="nearbyCardTitle">Your saved places</h2>
+      <ul class="watch-list" id="watchNearby"><li class="empty-watch-row">Finding nearby places…</li></ul>
+    </section>
+
+    <section class="watch-card handoff-card" aria-labelledby="handoffCardTitle">
+      <span class="card-kicker">HAND OFF</span>
+      <h2 id="handoffCardTitle">Continue in the full app</h2>
+      <p id="watchPendingCount">0 quick captures to refine</p>
+      <a class="watch-primary" href="./index.html?view=phone">Open full app</a>
+      <small>Watch and full views share this browser’s private local journal. Cross-device sync is not claimed.</small>
+    </section>
+  </main>
+  <div class="watch-toast" id="watchToast" role="status" aria-live="polite"></div>
+  <script type="module" src="./js/watch-app.js"></script>
+</body>
+</html>

@@ -7,6 +7,7 @@ import { quietPlacesNear } from './quiet-places.js';
 import { getPoisNearRoute } from './spatial-index.js';
 import { parseWalkDescription, saveWalkDraft } from './text-to-walk.js';
 import { toast } from './ui.js';
+import { requestCompanionContext } from './companion.js';
 
 const MILES_PER_MINUTE = 0.05;
 const originForPlan = () => state.plannerStart || state.currentPosition || { lat: state.map?.getCenter().lat ?? city().center.lat, lng: state.map?.getCenter().lng ?? city().center.lng };
@@ -186,6 +187,7 @@ function pointToPointSeeds(origin, destination, candidates) {
 }
 
 export async function generateTimeBasedPlan() {
+  requestCompanionContext('map', { durationMs: 8000 });
   state.plannedRoute = null; state.planOptions = []; state.routePlanningFailures = [];
   el('planDistance').textContent = 'Finding routes…';
   el('planSummary').textContent = 'Looking for walkable options that fit your choices.';

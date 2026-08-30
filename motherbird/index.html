@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#173c35" />
+    <script type="module" src="./js/device-entry.js"></script>
     <meta name="description" content="A local-first walking, history, and wildlife journal." />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -25,7 +26,7 @@
     <div class="app-splash" id="appSplash" aria-hidden="true"><img src="./assets/splash-screen.jpeg" alt="" /></div>
     <main class="app-shell">
       <aside class="walking-topbar hidden" id="walkingTopbar" aria-live="polite">
-        <img src="./assets/walk-companion.gif" alt="Animated walking companion" />
+        <img id="walkCompanionImage" alt="Inky standing still" data-companion="inky" data-companion-state="idle" />
         <span><strong>Walk in progress</strong><small id="walkingTopbarStatus">Recording your route</small></span>
         <span class="walking-topbar-dot" aria-hidden="true"></span>
       </aside>
@@ -42,6 +43,7 @@
         <div class="walk-workspace">
           <section class="walk-map-column" aria-label="Walk">
             <p class="weather-brief hidden" id="weatherBrief" aria-live="polite"></p>
+            <aside class="revisit-prompt-card hidden" id="revisitPromptCard" aria-live="polite"></aside>
             <section class="map-panel" aria-label="Walking map">
               <div id="map" role="application" aria-label="Map of nearby places"></div>
               <div class="poi-search" id="poiSearch"><input id="poiSearchInput" type="text" placeholder="Search the map" autocomplete="off" aria-label="Search places" /><div class="poi-search-results hidden" id="poiSearchResults"></div></div>
@@ -250,9 +252,11 @@
     <section class="sheet hidden" id="historySheet" role="dialog" aria-modal="true" aria-labelledby="historyTitle">
   <button class="close-sheet" data-close-sheet aria-label="Close">×</button>
   <span class="sheet-kicker">YOU'RE NEAR</span>
+  <figure class="history-inky"><img data-lazy-src="./assets/historyinky.gif" alt="Inky dressed as a history explorer with a magnifying glass" /><figcaption>Inky found a story nearby.</figcaption></figure>
   <h2 id="historyTitle">A historic place</h2>
   <p class="distance-pill" id="historyDistance">Within your walking radius</p>
   <p class="return-banner hidden" id="historyReturnBanner"></p>
+  <details class="history-visit-details hidden" id="historyVisitDetails"><summary>Earlier visits</summary><ol id="historyVisitList"></ol></details>
   <p class="verification-warning hidden" id="historyWarning">Prototype stop — its location and story still need verification before public use.</p>
   <p id="historyDescription"></p>
   <a class="source-link" id="historySource" href="https://www.viennava.gov/About/History" target="_blank" rel="noreferrer">Read the local history ↗</a>
@@ -383,6 +387,13 @@
       <div class="nearby-list" id="nearbyList" aria-live="polite"></div>
     </section>
 
+    <section class="sheet hidden" id="revisitHistorySheet" role="dialog" aria-modal="true" aria-labelledby="revisitHistoryTitle">
+      <button class="close-sheet" data-close-sheet aria-label="Close">×</button>
+      <span class="sheet-kicker">A PLACE OVER TIME</span><h2 id="revisitHistoryTitle">A place from your journal</h2>
+      <p class="sheet-intro">A quiet record of returns, shown only on this device.</p>
+      <div class="revisit-history-content" id="revisitHistoryContent"></div>
+    </section>
+
     <section class="sheet hidden" id="routeSheet" role="dialog" aria-modal="true" aria-labelledby="routeSheetTitle">
       <button class="close-sheet" data-close-sheet aria-label="Close">×</button><span class="sheet-kicker">ACTIVE WALK</span><h2 id="routeSheetTitle">Your walk is underway</h2>
       <div class="route-progress"><strong id="routeSheetDistance">0.00 mi</strong><span id="routeSheetDuration">00:00 elapsed</span></div>
@@ -415,6 +426,7 @@
         <button class="secondary-button wide-button" id="draftTextWalkButton" type="button">Use description</button>
       </details>
       <div class="plan-preview"><strong id="planDistance">Finding a walk…</strong><p id="planSummary">Routes will appear on the map automatically.</p></div>
+      <p class="planner-offline-boundary"><strong>Offline route boundary:</strong> saved routes and journal records remain available offline. A new route can be calculated only where an installed pedestrian graph covers both points; the app never substitutes a straight line.</p>
       <div class="plan-influences hidden" id="planInfluences" aria-live="polite"></div>
       <details class="planner-more route-alternatives" id="routeAlternatives"><summary>Route options</summary><div class="route-options" id="planOptions" aria-label="Suggested routes"></div></details>
       <ol class="plan-stops" id="planStops" aria-label="Two discoveries along this walk"></ol>
@@ -428,10 +440,31 @@
       <ul class="info-list">
         <li>Walks, reflections, and observations are stored in this browser using IndexedDB.</li>
         <li>Location is only requested while you choose to use it. This web demo does not track in the background.</li>
-        <li>Map tiles are cached as you view them; open the app once while online before relying on a route offline.</li>
+        <li>Recorded and saved routes, journal entries, observations, and personal places remain available offline on this device.</li>
+        <li>Viewed map tiles are cached. New offline route generation works only inside the installed NYC or Philadelphia–Camden pedestrian graph; elsewhere you can record a walk but cannot generate a new route offline.</li>
         <li>Historic prompts use a small prototype dataset. Confirm accessibility, hours, and safety guidance before each visit.</li>
         <li id="norfolkAttribution" class="hidden">Norfolk places data: City of Norfolk Open Data.</li>
       </ul>
+      <section class="companion-settings" aria-labelledby="companionSettingsTitle">
+        <div>
+          <span class="sheet-kicker">WALKING COMPANION</span>
+          <h3 id="companionSettingsTitle">Who walks with you?</h3>
+          <p id="companionDescription">The original ink-bottle field companion.</p>
+          <label for="companionWalker">Companion</label>
+          <select id="companionWalker">
+            <option value="inky">Inky</option>
+            <option value="fox">Fox</option>
+            <option value="cloud">Cloud</option>
+            <option value="compass">Compass</option>
+          </select>
+        </div>
+        <img id="companionPreviewImage" alt="Inky standing still" />
+      </section>
+      <section class="watch-entry-card" aria-labelledby="watchEntryTitle">
+        <div><span class="sheet-kicker">SEPARATE WATCH ENTRANCE</span><h3 id="watchEntryTitle">Inky at your wrist</h3><p>Start or pause a walk and save quick observations, history moments, or places. Refine the details in the full app.</p></div>
+        <img data-lazy-src="./assets/historyinky.gif" alt="Inky dressed as a history explorer" />
+        <a class="secondary-button" href="./watch.html">Open watch version</a>
+      </section>
       <details class="advanced-settings"><summary>Advanced appearance &amp; developer info</summary><form id="advancedAppearanceForm"><label>Header phrase <input id="advancedHeadlineTitle" maxlength="60" placeholder="A walk with a purpose" /></label><label>Header icon <select id="advancedHeadlineIcon"><option value="walk">Walking companion</option><option value="tree">Tree</option><option value="heart">Heart</option><option value="star">Star</option><option value="coffee">Coffee</option></select></label><label>Your name <input id="developerName" maxlength="60" placeholder="Your name or studio" /></label><label>Your link <input id="developerUrl" type="url" maxlength="240" placeholder="https://example.com" /></label><p class="sheet-intro">Shown locally in the footer. Nothing is published until you choose to deploy.</p><button class="secondary-button" type="submit">Save appearance</button></form></details>
       <p class="developer-credit hidden" id="developerCredit"></p>
       <button class="secondary-button wide-button" id="clearDataButton">Clear this device's journal data</button>

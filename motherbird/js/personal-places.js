@@ -4,6 +4,7 @@ import { distanceMeters } from './geo.js';
 import { el, escapeHtml, uid } from './utils.js';
 import { closeSheets, openSheet, showView, toast } from './ui.js';
 import { hydrateInlineIcons } from './icon-loader.js';
+import { requestCompanionContext } from './companion.js';
 
 export const PERSONAL_PLACE_ICONS = [
   ['utensils', 'Food'], ['coffee', 'Coffee'], ['map-pin', 'Place'], ['tree', 'Nature'],
@@ -166,6 +167,7 @@ async function savePersonalPlace(event) {
     sourcePoiId: event.currentTarget.dataset.sourcePoiId || existing?.sourcePoiId || null
   });
   await db.put('personal_places', place);
+  requestCompanionContext('journal');
   state.personalPlaces = [...state.personalPlaces.filter((candidate) => candidate.id !== place.id), place];
   if (!(categoryId in state.layerFilters.personal)) state.layerFilters.personal[categoryId] = true;
   personalDataChanged();

@@ -19,6 +19,7 @@ import { generateTimeBasedPlan, choosePlan, setPlanningMode, lockSelectedPlanOnM
 import { wordCount } from './reflection.js';
 import { onboardingProgress, onboardingValue } from './onboarding.js';
 import { renderNearbyPlaces, setJournalSheetState } from './journal-pane.js';
+import { applyCompanionSettings, normalizeCompanionId } from './companion.js';
 
 export function initEvents() {
   initBackupControls();
@@ -100,7 +101,7 @@ export function initEvents() {
     if (!id) return;
     const poi = (state.cityPois[state.activeCity] || []).find((place) => place.id === id); if (!poi) return;
     if (rememberButton) {
-      await savePlaceMemory(poi.id);
+      await savePlaceMemory(poi);
       await db.put('moments', { id: uid('moment'), type: 'place', title: displayPoiName(poi), note: 'Place remembered from Nearby.', siteId: poi.id, city: state.activeCity, createdAt: new Date().toISOString(), location: { lat: poi.lat, lng: poi.lng }, source: poi.source });
       await renderArchive(); toast('Place remembered in your journal.'); return;
     }
@@ -114,6 +115,12 @@ export function initEvents() {
   el('journalButton').addEventListener('click', () => openJournal());
   el('demoButton').addEventListener('click', () => { const site = citySites()[0]; state.map.flyTo([site.lat, site.lng], Math.max(city().zoom + 2, 16)); setTimeout(() => showHistory(site, 28), 350); });
   el('settingsButton').addEventListener('click', () => openSheet('infoSheet'));
+  el('companionWalker').addEventListener('change', async (event) => {
+    state.settings.companionWalker = normalizeCompanionId(event.target.value);
+    await db.put('settings', state.settings);
+    applyCompanionSettings();
+    toast(`${event.target.selectedOptions[0]?.textContent || 'Companion'} will walk with you.`);
+  });
   el('advancedAppearanceForm').addEventListener('submit', async (event) => { event.preventDefault(); state.settings.staticAppearance = { headlineTitle: el('advancedHeadlineTitle').value.trim() || 'A walk with a purpose', headlineIcon: el('advancedHeadlineIcon').value, developerName: el('developerName').value.trim(), developerUrl: el('developerUrl').value.trim() }; await db.put('settings', state.settings); const { applyStaticAppearance } = await import('./ui.js'); applyStaticAppearance(); toast('Appearance saved on this device.'); });
   el('profileJournalButton').addEventListener('click', () => openJournal());
   el('filtersButton').addEventListener('click', openFiltersSheet);
@@ -123,7 +130,7 @@ export function initEvents() {
   });
   el('dismissHistoryButton').addEventListener('click', closeSheets); el('saveHistoryMomentButton').addEventListener('click', saveHistoryMoment);
   el('saveHistoryMomentButton').addEventListener('click', () => {
-  if (state.currentSite) savePlaceMemory(state.currentSite.id, el('historyNoteInput').value.trim());
+  if (state.currentSite) savePlaceMemory(state.currentSite, el('historyNoteInput').value.trim());
 });
 
 let osmSearchTimer = null;

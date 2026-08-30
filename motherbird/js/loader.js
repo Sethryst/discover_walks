@@ -19,6 +19,7 @@ import { initJournalPane } from './journal-pane.js';
 import { recoverWalkDraft } from './walk.js';
 import { initPersonalPlaces } from './personal-places.js';
 import { initLayerSystem } from './layer-system.js';
+import { initRevisitExperience } from './revisit.js';
 
 export async function init() {
   const splash = document.getElementById('appSplash');
@@ -47,6 +48,7 @@ export async function init() {
   initExplore();
   initFieldGuideFilters();
   initJournalPane();
+  initRevisitExperience();
 
   try {
     initEvents();

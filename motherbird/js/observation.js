@@ -7,6 +7,7 @@ import { openSheet, closeSheets, toast } from './ui.js';
 import { renderArchive } from './archive.js';
 import { buildObservationRecord } from './observation-model.js';
 import { attachWalkArtifact } from './walk-context.js';
+import { requestCompanionContext } from './companion.js';
 
 function observationIcon(iconName = 'camera') {
   return L.divIcon({ className: '', html: `<div class="wildlife-marker personal-observation-marker"><img src="./icons/${escapeHtml(iconName)}.svg" alt="" /></div>`, iconSize: [28, 28], iconAnchor: [14, 14] });
@@ -70,6 +71,7 @@ export async function saveObservation(event) {
   }
   await db.put('observations', observation);
   await attachWalkArtifact(observation, 'observation');
+  requestCompanionContext('observe');
   await updateProfile((profile) => { profile.totalPoints += POINTS_PER_OBSERVATION; profile.observationsLogged += 1; return POINTS_PER_OBSERVATION; });
   addObservationMarker(observation); closeSheets(); toast(`Observation saved — +${POINTS_PER_OBSERVATION} points.`); renderArchive();
 }

@@ -7,6 +7,7 @@ import db from './storage.js';
 import { canReportPoiClosure, isLocallyClosedPoi, reportPoiClosed } from './spatial-closure-reporting.js';
 import { isPoiVisited, markPoiVisited } from './poi-visit-tracking.js';
 import { hydrateInlineIcons } from './icon-loader.js';
+import { seasonalComparison, standoutObservation } from './revisit.js';
 
 const POI_FILTER_GROUPS = [
   { id: 'outdoors', label: 'Nature & outdoors', icon: '🌿', tags: ['park', 'trail', 'nature', 'wildlife', 'water', 'water_access', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad', 'rest'] },
@@ -277,8 +278,18 @@ export async function showHistory(site, distance) {
 
   const memory = await getPlaceMemory(site.id);
   el('historyReturnBanner').classList.toggle('hidden', !memory);
+  const details = el('historyVisitDetails');
   if (memory) {
-    el('historyReturnBanner').textContent = `You've been here ${memory.visitCount} time${memory.visitCount > 1 ? 's' : ''}. Last note: "${memory.lastNote || 'none yet'}"`;
+    const observations = await db.all('observations');
+    const observation = standoutObservation({ location: { lat: site.lat, lng: site.lng } }, observations);
+    const lastVisit = memory.lastVisitDate ? new Date(memory.lastVisitDate).toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' }) : 'an earlier walk';
+    el('historyReturnBanner').innerHTML = `<strong>Welcome back.</strong> Last here ${escapeHtml(lastVisit)}.${observation ? ` You noticed ${escapeHtml(observation.species || observation.title || observation.note || 'something worth keeping')}.` : ''}${memory.futureSelfNote ? `<small>A note you left for yourself: “${escapeHtml(memory.futureSelfNote)}”</small>` : ''}<small>${escapeHtml(seasonalComparison(memory.lastVisitDate) || '')}</small>`;
+    const visits = [...(memory.visits || [])].reverse();
+    details.classList.toggle('hidden', visits.length < 2);
+    el('historyVisitList').innerHTML = visits.map((visit) => `<li><time>${escapeHtml(new Date(visit.visitedAt).toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' }))}</time>${visit.note ? `<p>${escapeHtml(visit.note)}</p>` : ''}</li>`).join('');
+  } else {
+    details.classList.add('hidden');
+    el('historyVisitList').replaceChildren();
   }
   el('historyNoteInput').value = '';
 
@@ -288,14 +299,22 @@ export async function getPlaceMemory(poiId) {
   return (await db.get('poi_metadata', poiId)) || null;
 }
 
-export async function savePlaceMemory(poiId, note = '') {
+export async function savePlaceMemory(poiOrId, note = '') {
+  const poiId = typeof poiOrId === 'object' ? poiOrId.id : poiOrId;
+  const poi = typeof poiOrId === 'object' ? poiOrId : (state.cityPois[state.activeCity] || []).find((item) => String(item.id) === String(poiId));
   const existing = await getPlaceMemory(poiId);
+  const visitedAt = new Date().toISOString();
+  const visits = [...(existing?.visits || []), { visitedAt, note: String(note || '').trim() }].slice(-24);
   const record = {
     id: poiId,
-    firstVisitDate: existing?.firstVisitDate || new Date().toISOString(),
+    name: poi?.name || existing?.name || 'Remembered place',
+    location: Number.isFinite(poi?.lat) && Number.isFinite(poi?.lng) ? { lat: poi.lat, lng: poi.lng } : existing?.location,
+    firstVisitDate: existing?.firstVisitDate || visitedAt,
     visitCount: (existing?.visitCount || 0) + 1,
     lastNote: note || existing?.lastNote || '',
-    lastVisitDate: new Date().toISOString()
+    futureSelfNote: note || existing?.futureSelfNote || '',
+    lastVisitDate: visitedAt,
+    visits
   };
   await db.put('poi_metadata', record);
   return record;
