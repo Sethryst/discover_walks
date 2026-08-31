@@ -19,12 +19,15 @@ test('reflection saves a titled, prompted, local journal entry distinct from an 
 
 test('journal UI is writing-first while observation remains field capture', async () => {
   const [html, css] = await Promise.all([readFile(path.join(root, 'index.html'), 'utf8'), readFile(path.join(root, 'styles.css'), 'utf8')]);
-  assert.match(html, /id="journalHeading"/);
-  assert.match(html, /id="journalPromptChoices"/);
+  assert.doesNotMatch(html, /id="journalHeading"/);
+  assert.doesNotMatch(html, /id="journalPromptChoices"/);
+  assert.match(html, /August 31, 2026 · Fairfax County · private on this device/);
   assert.match(html, /class="lined-journal"/);
   assert.match(html, /advancedAppearanceForm/);
-  assert.match(html, /headlineIcon/);
+  assert.doesNotMatch(html, /id="headlineIcon"/);
   assert.match(css, /repeating-linear-gradient/);
   assert.match(html, /id="observationLocation"/);
   assert.match(html, /id="photoInput"/);
+  assert.doesNotMatch(html, /name="observationAspect"/);
+  assert.doesNotMatch(html, /id="observationIconPicker"/);
 });

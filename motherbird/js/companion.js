@@ -34,18 +34,6 @@ export const COMPANIONS = Object.freeze({
       finish: './assets/inky-walk-finish.gif',
       historic: './assets/inky-history.gif'
     })
-  }),
-  fox: Object.freeze({
-    label: 'Fox',
-    states: Object.freeze({ idle: './assets/fox-idle.gif', walk: './assets/fox-walk.gif' })
-  }),
-  cloud: Object.freeze({
-    label: 'Cloud',
-    states: Object.freeze({ idle: './assets/cloud-idle.gif', walk: './assets/cloud-walk.gif' })
-  }),
-  compass: Object.freeze({
-    label: 'Compass',
-    states: Object.freeze({ idle: './assets/compass.gif', walk: './assets/compass.gif' })
   })
 });
 
@@ -55,7 +43,7 @@ let transientTimer = null;
 let environment = { rain: false, sunny: false };
 
 export function normalizeCompanionId(value) {
-  return Object.hasOwn(COMPANIONS, value) ? value : DEFAULT_COMPANION_ID;
+  return DEFAULT_COMPANION_ID;
 }
 
 export function selectedCompanionId() {

@@ -179,8 +179,6 @@ export function renderHistorySites() {
   void hydrateInlineIcons(state.map?.getContainer?.() || document);
 }
 export function renderCityExplorer() {
-  el('norfolkAttribution').classList.toggle('hidden', state.activeCity !== 'norfolk');
-  el('trailFeatureButton').classList.toggle('hidden', !(state.trailSegments[state.activeCity] || []).length);
   updateFiltersBadge();
 }
 

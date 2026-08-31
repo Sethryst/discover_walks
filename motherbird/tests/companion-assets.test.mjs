@@ -14,8 +14,8 @@ import {
 const appRoot = path.resolve(import.meta.dirname, '..');
 const localAssetPath = (assetUrl) => path.join(appRoot, decodeURIComponent(assetUrl.replace(/^\.\//, '')));
 
-test('Inky, fox, cloud, and compass each resolve standing and walking assets', async () => {
-  assert.deepEqual(Object.keys(COMPANIONS), ['inky', 'fox', 'cloud', 'compass']);
+test('Inky is the only walking companion', async () => {
+  assert.deepEqual(Object.keys(COMPANIONS), ['inky']);
   for (const id of Object.keys(COMPANIONS)) {
     for (const stateName of ['idle', 'walk']) {
       const asset = companionAsset(id, stateName);
@@ -30,13 +30,12 @@ test('all supplied Inky contextual assets exist, including the history explorer'
   for (const [stateName, asset] of Object.entries(COMPANIONS.inky.states)) assert.ok((await stat(localAssetPath(asset))).size > 0, `${stateName} should exist`);
   assert.equal(companionAsset('inky', 'historic', { fallback: false }), './assets/inky-history.gif');
   assert.equal(resolvedCompanionState('inky', 'historic'), 'historic');
-  assert.equal(resolvedCompanionState('fox', 'night'), 'walk');
+  assert.equal(resolvedCompanionState('fox', 'night'), 'night');
 });
 
 test('critical preload policy contains only the selected companion idle and normal walk', () => {
   assert.deepEqual(criticalCompanionAssets('inky'), ['./assets/inky-idle.gif', './assets/inky-walk.gif']);
-  assert.deepEqual(criticalCompanionAssets('cloud'), ['./assets/cloud-idle.gif', './assets/cloud-walk.gif']);
-  assert.deepEqual(criticalCompanionAssets('compass'), ['./assets/compass.gif']);
+  assert.deepEqual(criticalCompanionAssets('cloud'), ['./assets/inky-idle.gif', './assets/inky-walk.gif']);
 });
 
 test('context priority is finish, active special, pace, stationary, then passive idle', () => {

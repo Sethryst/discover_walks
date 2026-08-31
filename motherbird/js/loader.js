@@ -9,10 +9,7 @@ import { loadAllCityData, refreshCityMap } from './city.js';
 import { initEvents } from './events.js';
 import { renderArchive } from './archive.js';
 import { setupOnline, openOnline } from './online.js';
-import { initExplore } from './explore.js';
-import { startDiscoveryHeadline } from './discovery.js';
 import { normalizedEntitlements } from './entitlements.js';
-import { initNeighborhoodDiscovery } from './neighborhoods.js';
 import { restoreLocalPoiClosures } from './spatial-closure-reporting.js';
 import { initFieldGuideFilters } from './field-guide.js';
 import { initJournalPane } from './journal-pane.js';
@@ -44,8 +41,6 @@ export async function init() {
   initMap();
   await initPersonalPlaces();
   await initLayerSystem();
-  initNeighborhoodDiscovery();
-  initExplore();
   initFieldGuideFilters();
   initJournalPane();
   initRevisitExperience();
@@ -59,7 +54,6 @@ export async function init() {
   await refreshCityMap(false);
   await recoverWalkDraft();
   applyStaticAppearance();
-  startDiscoveryHeadline();
   await renderArchive();
   if (!state.settings.onboardingCompleted && !state.activeWalk) {
     setTimeout(() => openSheet('onboardingSheet'), 250);

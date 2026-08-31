@@ -72,7 +72,7 @@ export async function refreshCityMap(recenter = false) {
   const observations = await db.all('observations');
   observations.filter((observation) => localObservationCity(observation) === state.activeCity).forEach(addObservationMarker);
   if (recenter) state.map.setView([active.center.lat, active.center.lng], active.zoom);
-  el('activeCityLabel').textContent = cityLabel(state.activeCity);
+  el('activeCityLabel').textContent = CITIES[state.activeCity]?.name || cityLabel(state.activeCity);
   el('map').setAttribute('aria-label', `Map of ${cityLabel(state.activeCity)} historical places`);
   renderCityExplorer(); renderCityPois();
   await loadNeighborhoodsForCity(state.activeCity);
@@ -81,7 +81,7 @@ export async function refreshCityMap(recenter = false) {
 }
 export async function switchCity(nextCity, recenter = true) {
   if (!CITIES[nextCity]) return;
-  if (state.activeWalk) { el('citySelect').value = state.activeCity; toast('Finish the current walk before switching cities.'); return; }
+  if (state.activeWalk) { toast('Finish the current walk before switching regions.'); return; }
   state.activeCity = nextCity; state.settings.activeCity = nextCity;
   if (!state.cityPois[nextCity]) await loadCityData(nextCity);
   state.curatedRouteLine?.remove(); state.curatedRouteLine = null;

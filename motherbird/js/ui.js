@@ -5,7 +5,7 @@ import { renderArchive } from './archive.js';
 import { renderProfile } from './profile.js';
 import { geofenceCategoriesForCity } from './poi.js';
 import { renderCivic } from './civic.js';
-import { promptForWalk, REFLECTION_PROMPTS, wordCount } from './reflection.js';
+import { wordCount } from './reflection.js';
 import { renderFieldGuide } from './field-guide.js';
 import { applyCompanionSettings } from './companion.js';
 
@@ -26,6 +26,10 @@ export function openFiltersSheet() {
   window.dispatchEvent(new CustomEvent('layers-sheet-opened'));
 }
 export function closeSheets() {
+  if (state.modalOpen === 'journalSheet') {
+    window.dispatchEvent(new CustomEvent('journal-close-requested', { detail: { note: el('journalNote')?.value || '', walkId: el('journalForm')?.dataset.walkId || '' } }));
+    if (el('journalNote')) el('journalNote').value = '';
+  }
   state.modalOpen = null;
   document.body.classList.remove('journal-open', 'layers-open', 'backpack-open');
   el('journalButton')?.setAttribute('aria-pressed', 'false');
@@ -36,6 +40,10 @@ export function closeSheets() {
   window.dispatchEvent(new CustomEvent('map-overlay-changed', { detail: { open: false } }));
 }
 export function openSheet(id) {
+  if (state.modalOpen === 'journalSheet' && id !== 'journalSheet') {
+    window.dispatchEvent(new CustomEvent('journal-close-requested', { detail: { note: el('journalNote')?.value || '', walkId: el('journalForm')?.dataset.walkId || '' } }));
+    if (el('journalNote')) el('journalNote').value = '';
+  }
   state.modalOpen = id;
   document.body.classList.toggle('journal-open', id === 'journalSheet');
   document.body.classList.toggle('layers-open', id === 'filtersSheet');
@@ -55,22 +63,17 @@ export function openSheet(id) {
   window.dispatchEvent(new CustomEvent('map-overlay-changed', { detail: { open: true, id } }));
 }
 export function applyStaticAppearance() {
-  const appearance = { headlineTitle: 'A walk with a purpose', headlineIcon: 'walk', developerName: '', developerUrl: '', ...(state.settings.staticAppearance || {}) };
-  const allowedIcons = new Set(['walk', 'tree', 'heart', 'star', 'coffee']);
-  if (!allowedIcons.has(appearance.headlineIcon)) appearance.headlineIcon = 'walk';
-  el('headlineTitle').textContent = appearance.headlineTitle || 'A walk with a purpose';
-  el('headlineIcon').src = `./icons/${appearance.headlineIcon}.svg`;
+  const appearance = { developerName: '', developerUrl: '', ...(state.settings.staticAppearance || {}) };
   const credit = el('developerCredit');
-  credit.classList.toggle('hidden', !appearance.developerName);
-  credit.innerHTML = appearance.developerName ? `Built by ${escapeHtml(appearance.developerName)}${/^https:\/\//.test(appearance.developerUrl || '') ? ` · <a href="${escapeHtml(appearance.developerUrl)}" target="_blank" rel="noreferrer">visit ↗</a>` : ''}` : '';
+  credit?.classList.toggle('hidden', !appearance.developerName);
+  if (credit) credit.innerHTML = appearance.developerName ? `Built by ${escapeHtml(appearance.developerName)}${/^https:\/\//.test(appearance.developerUrl || '') ? ` · <a href="${escapeHtml(appearance.developerUrl)}" target="_blank" rel="noreferrer">visit ↗</a>` : ''}` : '';
   ['advancedHeadlineTitle', 'advancedHeadlineIcon', 'developerName', 'developerUrl'].forEach((id) => { if (el(id)) el(id).value = appearance[{ advancedHeadlineTitle: 'headlineTitle', advancedHeadlineIcon: 'headlineIcon', developerName: 'developerName', developerUrl: 'developerUrl' }[id]] || ''; });
   applyCompanionSettings();
 }
-export function openProfile() { showView('profile'); }
+export function openProfile() { openBackpack(); }
 export function showView(view) {
   state.activeView = 'map';
   el('mapView').classList.remove('hidden');
-  ['exploreView', 'profileView', 'voteView', 'volunteerView'].forEach((id) => el(id)?.classList.add('hidden'));
   if (view === 'fieldGuide') {
     openBackpack();
   } else if (state.map) {
@@ -95,14 +98,9 @@ export function toast(message) { const node = el('toast'); node.textContent = me
 export function setStatus() { /* Map status copy is intentionally omitted. */ }
 export function openJournal(walkId = null) {
   if (state.modalOpen === 'journalSheet') { closeSheets(); return; }
-  const prompt = promptForWalk(walkId || '');
   el('journalForm').reset();
   el('journalForm').dataset.walkId = walkId || '';
-  el('journalForm').dataset.prompt = prompt;
-  el('journalTitle').textContent = walkId ? 'Tell it back, in your own words.' : 'Hold onto this feeling.';
-  el('journalPrompt').textContent = prompt;
-  el('journalContext').textContent = `${new Date().toLocaleDateString([], { month: 'long', day: 'numeric', year: 'numeric' })} · ${CITIES[state.activeCity].name} · private on this device`;
-  el('journalPromptChoices').innerHTML = REFLECTION_PROMPTS.map((item) => `<button class="poi-chip ${item === prompt ? 'active' : ''}" type="button" data-journal-prompt="${escapeHtml(item)}" aria-pressed="${item === prompt}">${escapeHtml(item)}</button>`).join('');
+  el('journalTitle').textContent = `${new Date().toLocaleDateString([], { month: 'long', day: 'numeric', year: 'numeric' })} · Fairfax County · private on this device`;
   el('journalWordCount').textContent = `${wordCount(el('journalNote').value)} words`;
   el('journalNote').placeholder = 'Write across the lines. A sentence is enough; a whole page is welcome.';
   openSheet('journalSheet');

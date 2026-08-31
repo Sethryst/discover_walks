@@ -2,7 +2,6 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { DISCOVER_GROUPS, discoverGroupFor, publishingState, rankDiscoverPlaces } from '../js/discovery-taxonomy.js';
-import { FIELD_GUIDE_SUBJECTS } from '../js/field-guide.js';
 
 test('Discover turns source tags into four human experience categories', () => {
   assert.deepEqual(DISCOVER_GROUPS.map(({ label }) => label), ['Places to Explore', 'History & Heritage', 'Art & Culture', 'Food & Community']);
@@ -17,14 +16,12 @@ test('Discover prioritizes curated records without rejecting useful OSM places',
   assert.deepEqual(rankDiscoverPlaces([osmCoffee, featuredPark]).map(({ id }) => id), ['park', 'osm-cafe']);
 });
 
-test('Field Guide subjects are educational records with explicit HTTPS knowledge sources', () => {
-  assert.ok(FIELD_GUIDE_SUBJECTS.length >= 6);
-  for (const subject of FIELD_GUIDE_SUBJECTS) {
-    assert.ok(subject.cue.length > 30);
-    assert.match(subject.sourceUrl, /^https:\/\//);
-    assert.ok(subject.sourceName);
-    assert.ok(!('lat' in subject) && !('lng' in subject));
-  }
+test('Field Guide uses only pack-authored notices joined to viewport pins', async () => {
+  const guide = await readFile(new URL('../js/field-guide.js', import.meta.url), 'utf8');
+  assert.doesNotMatch(guide, /FIELD_GUIDE_SUBJECTS/);
+  assert.match(guide, /poi\.notices/);
+  assert.match(guide, /getBounds\(\)\.contains/);
+  assert.match(guide, /classList\.toggle\('hidden', !visible\)/);
 });
 
 test('the idle map replaces primary tabs with Journal, Backpack, Places +, and map lights', async () => {
@@ -73,10 +70,10 @@ test('Backpack opens the viewport Field Guide first and keeps quieter tools in t
   assert.match(html, /<h2 id="backpackTitle">Field Guide<\/h2>/);
   assert.match(html, /In this pack/);
   assert.match(html, /Advanced filters/);
-  assert.match(guide, /seasonNote/);
+  assert.doesNotMatch(guide, /seasonNote/);
   assert.match(guide, /getBounds\(\)\.contains/);
-  assert.match(guide, /In this guide:/);
-  assert.match(profile, /observations.*walks.*places remembered/);
+  assert.doesNotMatch(guide, /In this guide:/);
+  assert.match(guide, /poi\.notices/);
   assert.doesNotMatch(profile, /cityDiscoveries.*\/.*totalCitySites/);
   assert.doesNotMatch(profile, /Discover every stop/);
   assert.doesNotMatch(html, /Total trail points/);

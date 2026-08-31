@@ -460,6 +460,137 @@ button:active { transform: translateY(1px); }.action-card:active, .primary-butto
   body.journal-sheet-expanded .walk-map-column .map-panel { height: calc(100dvh - 90px); }
 }
 
+/* Viewfinder layout: the viewport is the product surface at every width. */
+html, body, .app-shell {
+  height: 100dvh;
+  min-height: 0;
+  width: 100%;
+  overflow: hidden;
+}
+body { background: #d9e4ce; }
+.app-shell { margin: 0; max-width: none; padding: 0; position: relative; }
+.walk-map-view, .walk-workspace, .walk-map-column, .map-panel {
+  height: 100%;
+  inset: 0;
+  margin: 0;
+  max-height: none;
+  min-height: 0;
+  position: fixed;
+  width: 100%;
+}
+.map-panel { border-radius: 0; box-shadow: none; overflow: hidden; }
+#map { height: 100dvh; inset: 0; position: absolute; width: 100%; }
+.app-header {
+  align-items: flex-start;
+  display: flex;
+  inset: 0 0 auto;
+  justify-content: flex-end;
+  padding: max(10px, env(safe-area-inset-top)) 12px 0;
+  pointer-events: none;
+  position: fixed;
+  z-index: 820;
+}
+.app-header .backpack-button { pointer-events: auto; }
+.journal-sticker { top: max(10px, env(safe-area-inset-top)); }
+.map-region-control {
+  background: rgba(255,253,250,.94);
+  border: 1px solid rgba(69,88,75,.2);
+  border-radius: 99px;
+  box-shadow: 0 3px 12px rgba(23,60,53,.14);
+  color: var(--pine);
+  font-size: 11px;
+  font-weight: 850;
+  left: 50%;
+  max-width: calc(100vw - 230px);
+  min-height: 36px;
+  overflow: hidden;
+  padding: 7px 12px;
+  position: absolute;
+  text-overflow: ellipsis;
+  top: max(14px, env(safe-area-inset-top));
+  transform: translateX(-50%);
+  white-space: nowrap;
+  z-index: 720;
+}
+.walk-active .map-region-control { display: none; }
+.save-place-button { top: calc(max(10px, env(safe-area-inset-top)) + 58px); }
+.walk-launch {
+  background: transparent;
+  bottom: calc(14px + env(safe-area-inset-bottom));
+  box-shadow: none;
+  display: block;
+  left: 50%;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+  position: fixed;
+  transform: translateX(-50%);
+  width: min(320px, calc(100vw - 32px));
+  z-index: 760;
+}
+.walk-launch .walk-stats { display: none; }
+.walk-launch .start-walk-button { box-shadow: 0 8px 24px rgba(23,60,53,.28); min-height: 52px; pointer-events: auto; }
+.map-lights { bottom: calc(80px + env(safe-area-inset-bottom)); }
+.locate-button { bottom: calc(142px + env(safe-area-inset-bottom)); }
+.active-route-fab { bottom: calc(82px + env(safe-area-inset-bottom)); position: fixed; }
+.journal-open .map-lights, .backpack-open .map-lights, .layers-open .map-lights { display: none; }
+.journal-open #journalSheet {
+  border-radius: 22px 22px 0 0;
+  bottom: 0;
+  left: 50%;
+  max-height: min(78dvh, 720px);
+  max-width: 720px;
+  padding: 0 18px calc(18px + env(safe-area-inset-bottom));
+  right: auto;
+  top: auto;
+  transform: translateX(-50%);
+  width: min(100%, 720px);
+}
+#journalSheet .journal-context {
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  color: var(--pine);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 800;
+  margin: 0 -18px;
+  padding: 20px 56px 13px 18px;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+#journalSheet .close-sheet { position: fixed; z-index: 3; }
+#journalForm { margin-top: 0; }
+#journalForm .lined-journal { border-top: 0; min-height: 330px; resize: none; }
+#journalForm .journal-writing-meta { margin: 7px 2px 0; }
+.journal-archive-disclosure { margin-top: 10px; }
+.backpack-open #backpackSheet { max-height: min(82dvh, 760px); }
+.pack-links a {
+  align-items: center;
+  border-radius: 9px;
+  color: var(--pine);
+  display: flex;
+  font-size: 11px;
+  font-weight: 800;
+  min-height: 40px;
+  padding: 8px;
+  text-decoration: none;
+}
+.pack-links a:hover { background: #eef1e7; }
+.walk-active .persistent-journal { bottom: calc(14px + env(safe-area-inset-bottom)); }
+.walk-active .active-route-fab { bottom: calc(224px + env(safe-area-inset-bottom)); }
+.walk-active .walk-launch { display: none; }
+
+@media (max-width: 520px) {
+  .map-region-control { max-width: 128px; }
+  .map-lights { bottom: calc(79px + env(safe-area-inset-bottom)); left: 7px; right: 7px; }
+  .map-light { font-size: 8px; min-height: 44px; padding: 0 8px; }
+  .map-light-chevron { min-height: 44px; padding: 0 6px; }
+  .locate-button { bottom: calc(137px + env(safe-area-inset-bottom)); }
+  .walk-map-column .map-panel { height: 100dvh; min-height: 0; }
+  .journal-open #journalSheet { max-height: 82dvh; }
+}
+
 @media (min-width: 900px) {
   body.journal-open .app-shell { margin: auto; max-width: 1320px; min-height: 100vh; padding-right: 18px; width: auto; }
   body.journal-open #journalSheet { border-radius: 24px 24px 0 0; bottom: 0; left: 50%; max-height: min(58dvh, 660px); max-width: 720px; right: auto; top: auto; transform: translateX(-50%); width: 100%; }
@@ -623,5 +754,49 @@ button:active { transform: translateY(1px); }.action-card:active, .primary-butto
   body.walk-active .persistent-journal .journal-composer > label,
   body.walk-active .persistent-journal .journal-composer > small { display: block; }
   body.walk-active .walk-launch,
-  body:has(.persistent-journal[data-sheet-state="collapsed"]) .walk-launch { bottom: calc(70px + env(safe-area-inset-bottom)); }
+body:has(.persistent-journal[data-sheet-state="collapsed"]) .walk-launch { bottom: calc(70px + env(safe-area-inset-bottom)); }
+}
+
+/* Final cascade lock for the full-bleed viewfinder. */
+html, body, .app-shell { height: 100dvh; min-height: 0; width: 100%; overflow: hidden; }
+.app-shell { margin: 0; max-width: none; padding: 0; position: relative; }
+.walk-map-view, .walk-workspace, .walk-map-column, .map-panel { height: 100%; inset: 0; margin: 0; max-height: none; min-height: 0; position: fixed; width: 100%; }
+.walk-map-column .map-panel, body.journal-open .map-panel { height: 100dvh; max-height: none; min-height: 0; }
+.map-panel { border-radius: 0; box-shadow: none; }
+#map { height: 100dvh; inset: 0; position: absolute; width: 100%; }
+.app-header { align-items: flex-start; display: flex; inset: 0 0 auto; justify-content: flex-end; padding: max(10px, env(safe-area-inset-top)) 12px 0; pointer-events: none; position: fixed; z-index: 820; }
+.app-header .backpack-button { pointer-events: auto; }
+.journal-sticker { top: max(10px, env(safe-area-inset-top)); }
+.map-region-control { background: rgba(255,253,250,.94); border: 1px solid rgba(69,88,75,.2); border-radius: 99px; box-shadow: 0 3px 12px rgba(23,60,53,.14); color: var(--pine); font-size: 11px; font-weight: 850; left: 50%; max-width: calc(100vw - 230px); min-height: 36px; overflow: hidden; padding: 7px 12px; position: absolute; text-overflow: ellipsis; top: max(14px, env(safe-area-inset-top)); transform: translateX(-50%); white-space: nowrap; z-index: 720; }
+.walk-active .map-region-control { display: none; }
+.save-place-button { top: calc(max(10px, env(safe-area-inset-top)) + 58px); }
+.walk-launch { background: transparent; bottom: calc(14px + env(safe-area-inset-bottom)); box-shadow: none; display: block; left: 50%; margin: 0; padding: 0; pointer-events: none; position: fixed; transform: translateX(-50%); width: min(320px, calc(100vw - 32px)); z-index: 760; }
+.walk-launch .walk-stats { display: none; }
+.walk-launch .start-walk-button { box-shadow: 0 8px 24px rgba(23,60,53,.28); min-height: 52px; pointer-events: auto; }
+.map-lights { bottom: calc(80px + env(safe-area-inset-bottom)); }
+.locate-button { bottom: calc(142px + env(safe-area-inset-bottom)); }
+.active-route-fab { bottom: calc(82px + env(safe-area-inset-bottom)); position: fixed; }
+.journal-open #journalSheet { border-radius: 22px 22px 0 0; bottom: 0; left: 50%; max-height: min(78dvh, 720px); max-width: 720px; padding: 0 18px calc(18px + env(safe-area-inset-bottom)); right: auto; top: auto; transform: translateX(-50%); width: min(100%, 720px); }
+#journalSheet .journal-context { background: var(--paper); border-bottom: 1px solid var(--line); color: var(--pine); font-family: inherit; font-size: 11px; font-weight: 800; margin: 0 -18px; padding: 20px 56px 13px 18px; position: sticky; top: 0; z-index: 2; }
+#journalSheet .close-sheet { position: fixed; z-index: 3; }
+#journalForm { margin-top: 0; }
+#journalForm .lined-journal { border-top: 0; min-height: 330px; resize: none; }
+#journalForm .journal-writing-meta { margin: 7px 2px 0; }
+.journal-archive-disclosure { margin-top: 10px; }
+.backpack-open #backpackSheet { max-height: min(82dvh, 760px); }
+.pack-links a { align-items: center; border-radius: 9px; color: var(--pine); display: flex; font-size: 11px; font-weight: 800; min-height: 40px; padding: 8px; text-decoration: none; }
+.walk-active .persistent-journal { bottom: calc(14px + env(safe-area-inset-bottom)); }
+.walk-active .active-route-fab { bottom: calc(224px + env(safe-area-inset-bottom)); }
+.walk-active .walk-launch { display: none; }
+body:not(.walk-active) .walk-launch,
+body:not(.walk-active):has(.persistent-journal[data-sheet-state="collapsed"]) .walk-launch { bottom: calc(14px + env(safe-area-inset-bottom)); }
+@media (max-width: 520px) {
+  .app-shell { padding: 0; }
+  .map-region-control { max-width: 128px; }
+  .walk-map-column .map-panel { height: 100dvh; min-height: 0; }
+  .map-lights { bottom: calc(79px + env(safe-area-inset-bottom)); left: 7px; right: 7px; }
+  .map-light { font-size: 8px; min-height: 44px; padding: 0 8px; }
+  .map-light-chevron { min-height: 44px; padding: 0 6px; }
+  .locate-button { bottom: calc(137px + env(safe-area-inset-bottom)); }
+  .journal-open #journalSheet { max-height: 82dvh; }
 }

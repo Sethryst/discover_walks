@@ -45,15 +45,15 @@ export async function saveObservation(event) {
   const file = el('photoInput').files[0];
   let photo = null;
   if (file) photo = await new Promise((resolve) => { const reader = new FileReader(); reader.onload = () => resolve(reader.result); reader.readAsDataURL(file); });
-  const personalTags = [...new Set(el('observationTags').value.split(',').map((tag) => tag.trim().toLowerCase()).filter(Boolean))].slice(0, 5);
+  const personalTags = [];
   const icon = state.draftObservationIcon || 'camera';
-  const aspect = document.querySelector('input[name="observationAspect"]:checked')?.value || 'presence';
+  const aspect = 'presence';
   const observation = {
     ...buildObservationRecord({
       id: uid('observation'),
       city: state.activeCity,
       aspect,
-      category: el('observationCategory').value,
+      category: 'other',
       title: el('speciesInput').value.trim(),
       note: el('observationNote').value.trim(),
       personalTags,
@@ -61,7 +61,7 @@ export async function saveObservation(event) {
       photo,
       location: state.draftObservationLocation,
       walkId: state.activeWalk?.id || null,
-      coverage: el('observationCoverage').value.trim() || null
+      coverage: null
     }),
     pointsAwarded: POINTS_PER_OBSERVATION
   };

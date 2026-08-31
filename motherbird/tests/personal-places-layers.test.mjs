@@ -44,7 +44,8 @@ test('the PWA exposes persistent layers, personal places, and non-destructive im
     readFile(new URL('../js/storage.js', import.meta.url), 'utf8'),
     readFile(new URL('../service-worker.js', import.meta.url), 'utf8')
   ]);
-  assert.match(html, /data-explore-tab="personal"/);
+  assert.doesNotMatch(html, /data-explore-tab="personal"/);
+  assert.match(html, /id="savePlaceMapButton"/);
   assert.match(html, /id="personalPlaceForm"/);
   assert.match(html, /id="filterDuplicateStrategy"/);
   assert.match(html, /Replace current filters \(default is merge\)/);

@@ -31,13 +31,23 @@ export async function saveHistoryMoment() {
 }
 export async function saveJournal(event) {
   event.preventDefault();
-  const mood = document.querySelector('input[name="mood"]:checked').value;
+  const mood = 'Noticed';
   const note = el('journalNote').value.trim();
   const walkId = event.currentTarget.dataset.walkId;
-  const moment = buildReflectionMoment({ id: uid('moment'), city: state.activeCity, heading: el('journalHeading').value, mood, note, prompt: event.currentTarget.dataset.prompt, walkId, createdAt: new Date().toISOString() });
+  if (!note) { closeSheets(); return; }
+  const moment = buildReflectionMoment({ id: uid('moment'), city: state.activeCity, heading: '', mood, note, prompt: null, walkId, createdAt: new Date().toISOString() });
   await db.put('moments', moment);
   requestCompanionContext('journal');
   closeSheets(); toast(`Reflection saved locally · ${wordCount(note)} words.`); renderArchive();
+}
+
+export async function saveJournalOnClose({ note = '', walkId = '' } = {}) {
+  const cleanNote = note.trim();
+  if (!cleanNote) return;
+  const moment = buildReflectionMoment({ id: uid('moment'), city: state.activeCity, heading: '', mood: 'Noticed', note: cleanNote, prompt: null, walkId: walkId || null, createdAt: new Date().toISOString() });
+  await db.put('moments', moment);
+  requestCompanionContext('journal');
+  await renderArchive();
 }
 export async function saveQuickJournal(event) {
   event.preventDefault();

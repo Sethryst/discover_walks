@@ -231,8 +231,7 @@ export async function stopWalk() {
   updateWalkDurations(walk, new Date(endedAt).getTime());
   await persistWalkDraft();
   updateWalkDisplay();
-  renderWalkReview();
-  openSheet('walkReviewSheet');
+  await saveWalk();
 }
 
 export async function saveWalk() {

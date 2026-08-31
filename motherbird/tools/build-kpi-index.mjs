@@ -3,7 +3,6 @@ import { dirname, extname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { CITIES } from '../js/constants.js';
 import { DISCOVER_GROUPS, discoverGroupFor, publishingState } from '../js/discovery-taxonomy.js';
-import { FIELD_GUIDE_SUBJECTS } from '../js/field-guide.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const motherbirdRoot = resolve(here, '..');
@@ -269,11 +268,10 @@ export async function collectKpiInventory() {
   cities.sort((a, b) => a.name.localeCompare(b.name));
 
   for (const city of cities) {
-    const localTags = new Set(city.experience.tags);
-    city.experience.guideSubjects = FIELD_GUIDE_SUBJECTS.filter((subject) => subject.relatedTags.some((tag) => localTags.has(tag))).map(({ id, group, name, sourceName }) => ({ id, group, name, sourceName }));
-    city.experience.guideSubjectCount = city.experience.guideSubjects.length;
+    const records = (await Promise.all(city.poiFiles.map((file) => readJson(appPath(file))))).flatMap(poiRecords);
+    city.experience.guideSubjectCount = records.reduce((count, poi) => count + (Array.isArray(poi.notices) ? poi.notices.length : poi.notice ? 1 : 0), 0);
     city.experience.discoverReady = city.experience.publishedCount >= 24 && city.experience.nonemptyCategoryCount >= 2;
-    city.experience.guideReady = city.experience.guideSubjectCount >= 3;
+    city.experience.guideReady = city.experience.guideSubjectCount > 0;
     city.experience.launchStatus = city.experience.discoverReady && city.experience.guideReady ? 'Launch-ready' : city.experience.total > 0 ? 'Thin' : 'Content-blocked';
   }
 
@@ -343,7 +341,7 @@ export async function collectKpiInventory() {
 
   const productCapabilities = [
     { capability: 'Discover', status: 'Shipped', evidence: `${DISCOVER_GROUPS.length} experience categories · relevant view capped at 24 places`, frontend: 'Map + Discover browser', next: 'Add distance-aware ranking and saved collections' },
-    { capability: 'Field Guide', status: 'Foundation shipped', evidence: `${FIELD_GUIDE_SUBJECTS.length} source-backed educational subjects`, frontend: 'Guide mode', next: 'Generate reviewed regional and seasonal guide packages' },
+    { capability: 'Field Guide', status: 'Pack-authored only', evidence: `${cities.reduce((count, city) => count + city.experience.guideSubjectCount, 0)} notices joined to packaged map pins`, frontend: 'Backpack · current viewport', next: 'Add reviewed notices to regional POI packages' },
     { capability: 'Journal', status: 'Shipped', evidence: 'Personal walks · observations · reflections · remembered places', frontend: 'Journal mode + local IndexedDB', next: 'Add collections and subject references without syncing private content' },
     { capability: 'Regional source backlog', status: 'Automated', evidence: `${Number(backlog?.summary?.candidateCount || 0)} candidates across ${Number(backlog?.summary?.regionCount || 0)} regions`, frontend: 'KPI operator queue', next: 'Promote passing official structured sources through review gates' },
     { capability: 'Pages inventory', status: 'Automated', evidence: 'Rebuilt from CITIES, artifacts, configs, endpoints, workflows, and UI contracts', frontend: '/kpi/', next: 'Add live endpoint health and freshness history' },
@@ -384,7 +382,7 @@ export async function collectKpiInventory() {
       p1Gaps: gaps.filter((gap) => gap.priority === 'P1').length,
       experienceModes: 3,
       discoverCategories: DISCOVER_GROUPS.length,
-      fieldGuideSubjects: FIELD_GUIDE_SUBJECTS.length,
+      fieldGuideSubjects: cities.reduce((count, city) => count + city.experience.guideSubjectCount, 0),
       federalTaggedPois,
       federalProgressRegions,
       workflowCount: automationJobs.length,
