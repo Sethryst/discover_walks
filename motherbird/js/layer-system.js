@@ -5,6 +5,8 @@ import { curatedPersonalPlaces, renderPersonalPlacesOnMap, upsertImportedPersona
 import { el, escapeHtml } from './utils.js';
 import { closeSheets, openSheet, toast } from './ui.js';
 import { hydrateInlineIcons } from './icon-loader.js';
+import { CITIES } from './constants.js';
+import { routesForCity } from './routes.js';
 
 export const LAYER_GROUPS = [
   { id: 'park_infrastructure', label: 'Park infrastructure', description: 'Comfort and access while you walk', tags: ['drinking_water', 'water_fountain', 'water', 'waste_basket', 'trash', 'bench', 'shelter', 'shade', 'restrooms', 'accessible_parking'] },
@@ -27,20 +29,49 @@ const ICONS = {
 
 let searchQuery = '';
 let pendingImport = null;
+let civicAvailability = { news: false, volunteer: false };
+
+const LIGHT_CHIPS = {
+  recreation: [
+    { id: 'routes', label: 'routes', tags: ['__routes'] },
+    { id: 'nature', label: 'nature', tags: ['park', 'nature', 'wildlife', 'water_access', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad'] },
+    { id: 'trails', label: 'trails', tags: ['trail'] },
+    { id: 'historic', label: 'historic', prefix: 'history' },
+    { id: 'volunteer', label: 'volunteer', tags: ['__volunteer'] }
+  ],
+  cuisine: [
+    { id: 'cafes', label: 'cafés', tags: ['coffee', 'coffee_shop', 'cafe'] },
+    { id: 'markets', label: 'markets', tags: ['market', 'farmers_market', 'grocery', 'supermarket', 'convenience'] },
+    { id: 'restaurants', label: 'restaurants', tags: ['restaurant', 'fast_food'] }
+  ]
+};
+
+const MAP_TAGS = new Set([
+  'event', '__routes', '__volunteer',
+  ...LIGHT_CHIPS.recreation.flatMap((chip) => chip.tags || []),
+  ...LIGHT_CHIPS.cuisine.flatMap((chip) => chip.tags || [])
+]);
+
+function isMapTag(id) { return MAP_TAGS.has(id) || String(id).startsWith('history'); }
 
 export async function initLayerSystem() {
   const [savedFilters, savedUi] = await Promise.all([
     db.get('layer_settings', 'current-filters'), db.get('layer_settings', 'layer-ui-state')
   ]);
   state.layerFilters = { public: { ...(savedFilters?.public || {}) }, personal: { ...(savedFilters?.personal || {}) } };
+  state.layerLights = { news: false, recreation: true, cuisine: false, personal: false, ...(savedFilters?.lights || {}) };
   state.layerUiState = { expanded: { ...(savedUi?.expanded || {}) } };
+  civicAvailability = await loadCivicAvailability();
+  if (savedFilters?.lights?.news == null) state.layerLights.news = newsAvailable();
   ensureLayerDefaults();
   syncLegacyPoiTags();
   bindLayerControls();
   renderLayerFilters();
+  renderMapLights();
+  renderRouteLights();
 }
 
-export function buildLayerGroups() {
+function buildAllLayerGroups() {
   const pois = (state.cityPois[state.activeCity] || []).filter(isVisiblePoi);
   const available = new Map(availablePoiTags(pois));
   const claimed = new Set();
@@ -62,6 +93,13 @@ export function buildLayerGroups() {
     }))
   });
   return groups.filter((group) => group.options.length || group.id === 'personal_places');
+}
+
+export function buildLayerGroups() {
+  return buildAllLayerGroups().map((group) => ({
+    ...group,
+    options: group.options.filter((option) => option.kind === 'public' && !isMapTag(option.id))
+  })).filter((group) => group.options.length);
 }
 
 function shouldShowEmptyStandard(id) {
@@ -98,13 +136,18 @@ function personalNearbyCount(categoryId) {
 }
 
 function ensureLayerDefaults() {
-  for (const group of buildLayerGroups()) {
+  for (const group of buildAllLayerGroups()) {
     if (!(group.id in state.layerUiState.expanded)) state.layerUiState.expanded[group.id] = true;
     for (const option of group.options) {
       const bucket = state.layerFilters[option.kind];
-      if (!(option.id in bucket)) bucket[option.id] = true;
+      if (!(option.id in bucket)) bucket[option.id] = option.kind === 'public' ? (option.id === 'event' ? state.layerLights.news : recreationTag(option.id)) : false;
     }
   }
+  for (const id of ['__routes', '__volunteer']) if (!(id in state.layerFilters.public)) state.layerFilters.public[id] = id === '__routes';
+}
+
+function recreationTag(id) {
+  return LIGHT_CHIPS.recreation.some((chip) => chip.prefix ? String(id).startsWith(chip.prefix) : chip.tags?.includes(id));
 }
 
 export function renderLayerFilters() {
@@ -131,22 +174,28 @@ function renderLayerOption(option) {
 
 function syncLegacyPoiTags() {
   const available = availablePoiTags((state.cityPois[state.activeCity] || []).filter(isVisiblePoi)).map(([id]) => id);
-  state.poiTags = new Set(available.filter((id) => state.layerFilters.public[id] !== false));
+  state.poiTags = new Set(available.filter((id) => {
+    if (id === 'event') return state.layerLights.news && state.layerFilters.public[id] !== false;
+    if (recreationTag(id)) return state.layerLights.recreation && state.layerFilters.public[id] !== false;
+    if (LIGHT_CHIPS.cuisine.some((chip) => chip.tags.includes(id))) return state.layerLights.cuisine && state.layerFilters.public[id] !== false;
+    return state.layerFilters.public[id] !== false;
+  }));
   if (!state.poiTags.size) state.poiTags.add('__none__');
 }
 
 async function persistLayerState() {
   const updatedAt = new Date().toISOString();
   await Promise.all([
-    db.put('layer_settings', { id: 'current-filters', version: 1, public: { ...state.layerFilters.public }, personal: { ...state.layerFilters.personal }, updatedAt }),
+    db.put('layer_settings', { id: 'current-filters', version: 2, public: { ...state.layerFilters.public }, personal: { ...state.layerFilters.personal }, lights: { ...state.layerLights }, updatedAt }),
     db.put('layer_settings', { id: 'layer-ui-state', version: 1, expanded: { ...state.layerUiState.expanded }, updatedAt })
   ]);
 }
 
 function applyLayerChanges({ rerenderFilters = true } = {}) {
   syncLegacyPoiTags();
-  renderCityPois(); renderPersonalPlacesOnMap(); updateLayerBadge();
+  renderCityPois(); renderPersonalPlacesOnMap(); renderRouteLights(); updateLayerBadge();
   if (rerenderFilters) renderLayerFilters();
+  renderMapLights();
   void persistLayerState();
 }
 
@@ -167,9 +216,115 @@ function updateLayerBadge() {
   badge.classList.toggle('hidden', !disabled);
 }
 
+async function loadCivicAvailability() {
+  const file = CITIES[state.activeCity]?.civicFile;
+  if (!file) return { news: false, volunteer: false };
+  try {
+    const response = await fetch(file);
+    if (!response.ok) return { news: false, volunteer: false };
+    const payload = await response.json();
+    const data = payload?.artifacts || payload || {};
+    const current = (item) => !item?.expiresAt || (Number.isFinite(Date.parse(item.expiresAt)) && Date.now() < Date.parse(item.expiresAt));
+    const activeEvents = (data.events?.items || []).some((item) => item?.title && item?.officialUrl && current(item));
+    const activeMeetings = (data.meetings?.items || []).some((item) => item?.title && item?.officialUrl && current(item));
+    const vote = data.vote || {};
+    const activeVote = (vote.items || []).some((item) => item?.officialUrl && current(item)) || (vote.nextElection?.date && Date.parse(vote.nextElection.date) >= Date.now());
+    const volunteers = data.volunteer?.items || data.volunteer || [];
+    return { news: activeEvents || activeMeetings || activeVote, volunteer: volunteers.some((item) => item?.officialUrl && current(item)) };
+  } catch { return { news: false, volunteer: false }; }
+}
+
+function availableMapChips(kind) {
+  const pois = (state.cityPois[state.activeCity] || []).filter(isVisiblePoi).filter((poi) => inViewport(poi));
+  const availableTags = new Set(pois.flatMap(poiTags));
+  return LIGHT_CHIPS[kind].map((chip) => {
+    const tags = chip.prefix ? [...availableTags].filter((id) => id.startsWith(chip.prefix)) : chip.tags;
+    let available = tags.some((id) => availableTags.has(id));
+    if (chip.id === 'routes') available = routesInViewport().length > 0;
+    if (chip.id === 'volunteer') available = civicAvailability.volunteer;
+    return { ...chip, tags, available };
+  }).filter((chip) => chip.available);
+}
+
+function routesInViewport() {
+  const packaged = routesForCity(state.activeCity).filter((route) => routeInViewport(route.coordinates));
+  const saved = (state.walks || []).filter((walk) => routeInViewport((walk.points || []).map((point) => [point.lat, point.lng])));
+  return [...packaged.map((route) => ({ ...route, saved: false })), ...saved.map((walk) => ({ ...walk, coordinates: (walk.points || []).map((point) => [point.lat, point.lng]), saved: true }))];
+}
+
+function routeInViewport(coordinates = []) {
+  if (!coordinates.length || !state.map) return coordinates.length > 0;
+  try { return state.map.getBounds().intersects(L.latLngBounds(coordinates)); } catch { return false; }
+}
+
+function lightModel() {
+  const recreation = availableMapChips('recreation');
+  const cuisine = availableMapChips('cuisine');
+  return [
+    { id: 'news', label: 'NEWS', available: newsAvailable(), chips: [] },
+    { id: 'recreation', label: 'RECREATION', available: recreation.length > 0, chips: recreation },
+    { id: 'cuisine', label: 'CUISINE', available: cuisine.length > 0, chips: cuisine },
+    { id: 'personal', label: 'PERSONAL', available: curatedPersonalPlaces().length > 0, chips: [] }
+  ].filter((light) => light.available);
+}
+
+function newsAvailable() {
+  return civicAvailability.news || (state.cityPois[state.activeCity] || []).filter(isVisiblePoi).some((poi) => inViewport(poi) && poiTags(poi).includes('event'));
+}
+
+export function renderMapLights() {
+  const root = el('mapLights');
+  if (!root) return;
+  const expanded = state.layerUiState.lightExpanded || '';
+  root.innerHTML = lightModel().map((light) => {
+    const on = state.layerLights[light.id] === true;
+    const chips = light.chips.length && expanded === light.id
+      ? `<div class="map-light-chips" data-light-chips="${light.id}">${light.chips.map((chip) => {
+          const selected = chip.tags.some((id) => state.layerFilters.public[id] !== false);
+          return `<button type="button" class="map-light-chip ${selected ? 'on' : ''}" data-light-chip="${light.id}:${chip.id}" aria-pressed="${selected}">${escapeHtml(chip.label)}</button>`;
+        }).join('')}</div>` : '';
+    return `<div class="map-light-wrap" data-map-light="${light.id}">${chips}<div class="map-light-row"><button type="button" class="map-light ${on ? 'on' : 'off'}" data-light="${light.id}" aria-pressed="${on}">${escapeHtml(light.label)}</button>${light.chips.length ? `<button type="button" class="map-light-chevron" data-light-expand="${light.id}" aria-label="Show ${escapeHtml(light.label.toLowerCase())} choices" aria-expanded="${expanded === light.id}"><span aria-hidden="true">▲</span></button>` : ''}</div></div>`;
+  }).join('');
+}
+
+function setChip(chip, enabled) {
+  chip.tags.forEach((id) => { state.layerFilters.public[id] = enabled; });
+}
+
+function toggleLight(id) {
+  const model = lightModel().find((light) => light.id === id);
+  if (!model) return;
+  const enabled = !state.layerLights[id];
+  state.layerLights[id] = enabled;
+  if (id === 'news') state.layerFilters.public.event = enabled;
+  model.chips.forEach((chip) => setChip(chip, enabled));
+  applyLayerChanges();
+}
+
+function toggleChip(lightId, chipId) {
+  const chip = availableMapChips(lightId).find((candidate) => candidate.id === chipId);
+  if (!chip) return;
+  const enabled = !chip.tags.some((id) => state.layerFilters.public[id] !== false);
+  setChip(chip, enabled);
+  state.layerLights[lightId] = true;
+  applyLayerChanges();
+}
+
+function renderRouteLights() {
+  if (!state.map) return;
+  if (!state.routeLightLayer) state.routeLightLayer = L.layerGroup().addTo(state.map);
+  state.routeLightLayer.clearLayers();
+  if (!state.layerLights.recreation || state.layerFilters.public.__routes === false) return;
+  routesInViewport().forEach((route) => {
+    const line = L.polyline(route.coordinates, { color: route.saved ? '#8b5e3c' : '#173c35', weight: route.saved ? 4 : 5, opacity: .82, dashArray: route.saved ? null : '9 6' });
+    line.bindTooltip(escapeHtml(route.title || route.name || 'Saved walk'));
+    line.addTo(state.routeLightLayer);
+  });
+}
+
 export function createWalkFilterPayload({ name = 'My walk filters', description = '', author = '', now = new Date().toISOString() } = {}) {
   const filters = {};
-  for (const group of buildLayerGroups()) {
+  for (const group of buildAllLayerGroups()) {
     filters[group.id] = Object.fromEntries(group.options.map((option) => [option.id, { enabled: state.layerFilters[option.kind][option.id] !== false, icon: option.icon, color: option.color, label: option.label }]));
   }
   return {
@@ -274,6 +429,18 @@ function openImportSheet() {
 }
 
 function bindLayerControls() {
+  el('mapLights')?.addEventListener('click', (event) => {
+    const light = event.target.closest('[data-light]');
+    if (light) { toggleLight(light.dataset.light); return; }
+    const expand = event.target.closest('[data-light-expand]');
+    if (expand) {
+      state.layerUiState.lightExpanded = state.layerUiState.lightExpanded === expand.dataset.lightExpand ? '' : expand.dataset.lightExpand;
+      renderMapLights(); void persistLayerState(); return;
+    }
+    const chip = event.target.closest('[data-light-chip]');
+    if (chip) { const [lightId, chipId] = chip.dataset.lightChip.split(':'); toggleChip(lightId, chipId); }
+  });
+  el('mapLights')?.addEventListener('dblclick', (event) => event.stopPropagation());
   el('poiTagFilters')?.addEventListener('change', (event) => {
     const filter = event.target.closest('[data-layer-filter]');
     if (filter) {
@@ -304,6 +471,6 @@ function bindLayerControls() {
   window.addEventListener('filter-import-requested', openImportSheet);
   window.addEventListener('personal-places-changed', () => { ensureLayerDefaults(); renderLayerFilters(); applyLayerChanges({ rerenderFilters: false }); });
   window.addEventListener('layer-state-dirty', () => applyLayerChanges());
-  window.addEventListener('map-viewport-changed', () => { if (state.modalOpen === 'filtersSheet') renderLayerFilters(); });
-  window.addEventListener('city-layer-data-changed', () => { ensureLayerDefaults(); applyLayerChanges(); });
+  window.addEventListener('map-viewport-changed', () => { if (state.modalOpen === 'filtersSheet') renderLayerFilters(); renderMapLights(); renderRouteLights(); });
+  window.addEventListener('city-layer-data-changed', async () => { civicAvailability = await loadCivicAvailability(); ensureLayerDefaults(); state.layerLights.news = newsAvailable(); applyLayerChanges(); });
 }

@@ -71,7 +71,14 @@ export async function renderArchive() {
   let items = await allArchiveItems();
   if (state.archiveFilter === 'walk') items = items.filter((item) => item.type === 'walk' || item.type === 'journal');
   if (state.archiveFilter === 'observation') items = items.filter((item) => item.type === 'observation');
-  el('archiveList').innerHTML = items.length ? items.map(momentCard).join('') : '<div class="empty-state">No matching moments yet. Start a walk or write from the map.</div>';
+  const html = items.length ? items.map(momentCard).join('') : '<div class="empty-state">No matching moments yet. Start a walk or write from the map.</div>';
+  if (el('archiveList')) el('archiveList').innerHTML = html;
+  if (el('journalOverlayArchiveList')) el('journalOverlayArchiveList').innerHTML = html;
+  const all = await allArchiveItems();
+  const walks = all.filter((item) => item.type === 'walk');
+  const notes = all.filter((item) => item.type === 'journal' || item.type === 'observation');
+  const miles = walks.reduce((sum, walk) => sum + Number(walk.distanceMeters || 0) / 1609.344, 0);
+  if (el('journalArchiveSummary')) el('journalArchiveSummary').textContent = `${walks.length} walk${walks.length === 1 ? '' : 's'} · ${miles.toFixed(1)} mi · ${notes.length} note${notes.length === 1 ? '' : 's'}`;
   await renderJournalTimeline();
 }
 

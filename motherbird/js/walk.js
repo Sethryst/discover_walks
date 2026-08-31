@@ -91,9 +91,11 @@ export function updateWalkDisplay() {
     el('activeRouteButton').classList.add('hidden');
     el('walkingTopbar').classList.add('hidden');
     setCompanionState('idle');
+    document.body.classList.remove('walk-active');
     globalThis.window?.dispatchEvent(new CustomEvent('walk-display-updated'));
     return;
   }
+  document.body.classList.add('walk-active');
   updateWalkDurations(walk);
   const distance = formatDistance(walk.distanceMeters);
   const duration = formatDuration(walk.elapsedDurationSeconds);

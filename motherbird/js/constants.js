@@ -133,6 +133,7 @@
     center: { lat: 38.8462, lng: -77.3064 },
     zoom: 11,
     dataFile: './regions/fairfax-county-va/pois.json',
+    journeyFile: './regions/fairfax-county-va/journeys.json',
     civicFile: './regions/fairfax-county-va/civic/index.json',
     supplementalPoiFiles: ['./regions/wolf-trap-va/pois.json']
   },

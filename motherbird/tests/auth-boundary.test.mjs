@@ -21,7 +21,7 @@ test('Watch authentication uses passkeys without app-data writes', async () => {
 
 test('service worker versions the updated shell and caches app modules together', async () => {
   const worker = await readFile(new URL('../service-worker.js', import.meta.url), 'utf8');
-  assert.match(worker, /walk-wildlife-shell-v64/);
+  assert.match(worker, /walk-wildlife-shell-v65/);
   assert.match(worker, /walk-wildlife-companion-media-v2/);
   for (const moduleName of ['discovery-taxonomy', 'field-guide', 'online', 'cloud-journal', 'journal-pane', 'layer-system', 'personal-places', 'companion']) {
     assert.match(worker, new RegExp(`\\.\\/js\\/${moduleName}\\.js`));

@@ -50,6 +50,7 @@ export async function refreshLiveConditions() {
 
 export async function renderWeatherBrief() {
   const target = el('weatherBrief');
+  if (!target) return;
   const file = CITIES[state.activeCity]?.weatherFile;
   target.classList.add('hidden');
   if (!file) { target.innerHTML = 'Live conditions are available for this region. <button class="text-button" id="refreshConditionsButton" type="button">Refresh conditions</button>'; target.classList.remove('hidden'); el('refreshConditionsButton')?.addEventListener('click', () => void refreshLiveConditions()); return; }

@@ -8,7 +8,7 @@
     <meta name="description" content="A local-first walking, history, and wildlife journal." />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="Discover Walks" />
+    <meta name="apple-mobile-web-app-title" content="Walk &amp; Wildlife" />
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" href="./assets/pwa-icon-192.png" sizes="192x192" type="image/png" />
     <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="./vendor/leaflet-markercluster/MarkerCluster.css">
     <link rel="stylesheet" href="./vendor/leaflet-markercluster/MarkerCluster.Default.css">
     <link rel="stylesheet" href="./vendor/maplibre-gl.css" />
-    <link rel="stylesheet" href="./styles.css?v=56">
+    <link rel="stylesheet" href="./styles.css?v=57">
     <title>Walk &amp; Wildlife</title>
   </head>
   <body>
@@ -32,25 +32,24 @@
       </aside>
       <header class="app-header">
         <div>
-          <p class="eyebrow">WALK &amp; WILDLIFE</p>
           <button class="city-badge" id="homeCityButton" type="button"><span id="activeCityLabel">Fairfax County, VA</span> <span aria-hidden="true">⌄</span></button>
         </div>
-        <button class="icon-button" id="settingsButton" aria-label="Open privacy and offline information" title="Privacy and offline information"><img class="ui-icon" src="./icons/info.svg" alt="" /></button>
+        <button class="icon-button backpack-button" id="settingsButton" type="button" aria-label="Backpack" title="Backpack"><span aria-hidden="true">🎒</span></button>
       </header>
 
       <div id="mapView" class="app-view walk-map-view">
         <div class="legacy-discovery-copy hidden" aria-hidden="true"><section class="discovery-headline"><h1><img id="headlineIcon" src="./icons/walk.svg" alt="" /><span id="headlineTitle">A walk with a purpose</span></h1><p id="discoveryHeadline">History</p><p id="discoveryHeadlineDetail">Choose an experience.</p></section><section id="discoverWays"><button data-discover-group="explore"></button></section><button id="browseDiscoverButton"></button></div>
         <div class="walk-workspace">
           <section class="walk-map-column" aria-label="Walk">
-            <p class="weather-brief hidden" id="weatherBrief" aria-live="polite"></p>
             <aside class="revisit-prompt-card hidden" id="revisitPromptCard" aria-live="polite"></aside>
             <section class="map-panel" aria-label="Walking map">
               <div id="map" role="application" aria-label="Map of nearby places"></div>
+              <button class="journal-sticker" id="journalButton" type="button" aria-label="Open journal" aria-pressed="false"><span aria-hidden="true">▤</span> Journal</button>
               <div class="poi-search" id="poiSearch"><input id="poiSearchInput" type="text" placeholder="Search the map" autocomplete="off" aria-label="Search places" /><div class="poi-search-results hidden" id="poiSearchResults"></div></div>
-              <button class="filters-button" id="filtersButton" aria-label="Filter places on map" title="Filter places"><img class="ui-icon ui-icon--small" src="./icons/layers.svg" alt="" /> Layers<span class="filters-badge hidden" id="filtersBadge"></span></button>
-              <button class="save-place-button" id="savePlaceMapButton" type="button" aria-label="Save a personal place at the map center" title="Save a personal place"><img class="ui-icon ui-icon--small" src="./icons/plus.svg" alt="" /> Place</button>
+              <button class="save-place-button" id="savePlaceMapButton" type="button" aria-label="Place a personal pin on the map" title="Place a personal pin"><img class="ui-icon ui-icon--small" src="./icons/plus.svg" alt="" /> Places +</button>
               <button class="locate-button" id="locateButton" aria-label="Use my location" title="Use my location"><img class="ui-icon" src="./icons/navigation.svg" alt="" /></button>
-              <div class="map-key" aria-label="Map legend"><span class="key-history">✦</span> Place <span class="key-wildlife">●</span> Your note</div>
+              <div class="place-crosshair" id="placeCrosshair" aria-hidden="true"><span></span></div>
+              <div class="map-lights" id="mapLights" aria-label="Map lights"></div>
               <aside class="neighborhood-discovery hidden" id="neighborhoodDiscoveryPanel" aria-live="polite"><strong>Neighborhood field notes</strong><span id="neighborhoodDiscoveryCount">0 discovered</span><small id="neighborhoodSource">Producer boundary package</small><button type="button" id="resetNeighborhoodsButton">Reset</button></aside>
             </section>
             <button class="active-route-fab hidden" id="activeRouteButton" type="button" aria-label="Open active walk details"><span>●</span><strong id="activeRouteSummary">0.00 mi · 00:00</strong></button>
@@ -62,7 +61,7 @@
             <p class="walk-recording-note">Route recording works while Walk &amp; Wildlife stays open.</p>
           </section>
 
-          <aside class="persistent-journal" id="persistentJournal" data-sheet-state="half" aria-label="Journal">
+          <aside class="persistent-journal" id="persistentJournal" data-sheet-state="collapsed" aria-label="Walk notice composer">
             <button class="journal-drag-handle" id="journalDragHandle" type="button" aria-label="Resize journal" aria-expanded="true"><span></span></button>
             <div class="journal-pane-controls"><button id="journalCollapseButton" type="button" aria-label="Collapse journal">⌄</button><button id="journalExpandButton" type="button" aria-label="Expand journal">↗</button></div>
             <div class="journal-collapsed-preview" id="journalCollapsedPreview">No entries yet</div>
@@ -86,16 +85,7 @@
             </div>
           </aside>
         </div>
-        <button class="hidden" id="journalButton" type="button">Open journal</button><button class="hidden" id="demoButton" type="button">History preview</button>
-      </div>
-
-      <div id="fieldGuideView" class="app-view hidden inner-view" aria-label="Field Guide">
-        <button class="back-to-discover" type="button" data-back-discover>← Discover</button><p class="eyebrow">DISCOVER · FIELD GUIDE</p>
-        <h2 class="explore-heading">What are you looking at?</h2>
-        <p class="profile-section-intro">A source-backed companion for things you may encounter here—not another directory of places.</p>
-        <div class="guide-summary"><strong id="fieldGuideCount">Things to notice near here</strong><span id="fieldGuideSeason">Loading this season’s field note…</span></div>
-        <div class="poi-chips" id="fieldGuideFilters" aria-label="Field Guide categories"></div>
-        <section class="guide-list" id="fieldGuideList" aria-live="polite"></section>
+        <button class="hidden" id="demoButton" type="button">History preview</button>
       </div>
 
       <div id="exploreView" class="app-view hidden inner-view" aria-label="Discover this place">
@@ -204,7 +194,6 @@
               <p class="eyebrow">WALK REFLECTIONS</p>
               <h2>Journal</h2>
             </div>
-            <button class="text-button" id="profileJournalButton">New reflection</button>
           </div>
           <p class="profile-section-intro">Save how a walk felt — mood and a few words stay on this device.</p>
         </section>
@@ -241,12 +230,6 @@
         <div id="volunteerCivicContent" class="civic-card-list" aria-live="polite"></div>
       </div>
     </main>
-
-    <nav class="bottom-nav" aria-label="Primary navigation">
-      <button class="nav-item active" data-view="map" title="Walk"><img class="ui-icon" src="./icons/walk.svg" alt="" />Walk</button>
-      <button class="nav-item" data-view="explore" title="Discover"><img class="ui-icon" src="./icons/compass.svg" alt="" />Discover</button>
-      <button class="nav-item" data-view="profile"><img class="ui-icon" src="./icons/book-open.svg" alt="" />Journal</button>
-    </nav>
 
     <div class="modal-backdrop hidden" id="modalBackdrop" role="presentation"></div>
     <section class="sheet hidden" id="historySheet" role="dialog" aria-modal="true" aria-labelledby="historyTitle">
@@ -306,15 +289,48 @@
         <div class="journal-writing-meta"><small id="journalWordCount" aria-live="polite">0 words</small><small>Saved only on this device</small></div>
         <button class="primary-button wide-button" type="submit">Save reflection</button>
       </form>
+      <details class="journal-archive-disclosure" id="journalArchiveDisclosure">
+        <summary id="journalArchiveSummary">0 walks · 0.0 mi · 0 notes</summary>
+        <div class="archive-filter" role="group" aria-label="Archive filter">
+          <button class="filter-button active" data-filter="all" type="button">All</button>
+          <button class="filter-button" data-filter="walk" type="button">Walks</button>
+          <button class="filter-button" data-filter="observation" type="button">Observations</button>
+        </div>
+        <section class="archive-list" id="journalOverlayArchiveList" aria-live="polite"></section>
+      </details>
+    </section>
+
+    <section class="sheet tall-sheet backpack-sheet hidden" id="backpackSheet" role="dialog" aria-modal="false" aria-labelledby="backpackTitle">
+      <button class="close-sheet" data-close-sheet aria-label="Close Backpack">×</button>
+      <span class="sheet-kicker">BACKPACK</span>
+      <h2 id="backpackTitle">Field Guide</h2>
+      <div id="fieldGuideView" class="pack-field-guide" aria-label="Field Guide">
+        <p class="profile-section-intro">A source-backed companion for things you may encounter in this map view.</p>
+        <div class="guide-summary"><strong id="fieldGuideCount">Things to notice near here</strong><span id="fieldGuideSeason">Loading this season’s field note…</span></div>
+        <div class="poi-chips" id="fieldGuideFilters" aria-label="Field Guide categories"></div>
+        <section class="guide-list" id="fieldGuideList" aria-live="polite"></section>
+      </div>
+      <nav class="pack-links" aria-label="In this pack">
+        <strong>In this pack</strong>
+        <button type="button" data-pack-sheet="infoSheet">Privacy &amp; Offline</button>
+        <button type="button" data-pack-section="backup">Backup</button>
+        <button type="button" data-pack-sheet="onlineSheet">Account</button>
+        <button type="button" data-pack-section="favorite">Favorite regions</button>
+        <button type="button" data-pack-section="preferences">Walking preferences</button>
+        <button type="button" data-pack-section="geofence">Geofence</button>
+        <button type="button" data-pack-sheet="infoSheet">Display / Inky / Watch</button>
+        <button type="button" id="advancedFiltersButton">Advanced filters</button>
+      </nav>
+      <div class="pack-settings-content" id="packSettingsContent"></div>
     </section>
 
     <section class="sheet tall-sheet layer-sheet hidden" id="filtersSheet" role="dialog" aria-modal="false" aria-labelledby="filtersTitle">
       <button class="close-sheet" data-close-sheet aria-label="Close">×</button>
-      <span class="sheet-kicker">LAYERS</span>
+      <span class="sheet-kicker">ADVANCED FILTERS</span>
       <div class="filters-sheet-heading">
-        <h2 id="filtersTitle">Choose what stays on your map</h2>
+        <h2 id="filtersTitle">What else is in the pack?</h2>
       </div>
-      <p class="sheet-intro">Categories stay open while you make changes. Nearby counts follow the current map view.</p>
+      <p class="sheet-intro">These quieter package layers are not duplicated in the map lights. Nearby counts follow the current map view.</p>
       <label class="layer-search"><img src="./icons/search.svg" alt="" /><input id="layerFilterSearch" type="search" placeholder="Search filters…" autocomplete="off" /></label>
       <div class="poi-filter-groups" id="poiTagFilters" aria-label="Place categories"></div>
       <p class="sheet-intro" id="poiFilterStatus" role="status"></p>

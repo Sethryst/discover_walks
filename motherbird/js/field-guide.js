@@ -3,6 +3,7 @@ import { el, escapeHtml } from './utils.js';
 import { poiTags } from './poi.js';
 
 let activeGuideGroup = '';
+let activeGuideSubject = '';
 
 // Educational subjects are separate from POIs. A future reviewed Gremlin guide
 // package can extend this contract with regional and seasonal subjects.
@@ -17,7 +18,11 @@ export const FIELD_GUIDE_SUBJECTS = [
 ];
 
 function relevance(subject) {
-  const localTags = new Set((state.cityPois[state.activeCity] || []).flatMap(poiTags));
+  const localPois = (state.cityPois[state.activeCity] || []).filter((poi) => {
+    if (!state.map) return true;
+    try { return state.map.getBounds().contains([poi.lat, poi.lng]); } catch { return true; }
+  });
+  const localTags = new Set(localPois.flatMap(poiTags));
   const interests = new Set(state.settings?.favoriteCategories || []);
   return subject.relatedTags.reduce((score, tag) => score + (localTags.has(tag) ? 2 : 0) + (interests.has(tag) ? 3 : 0), 0);
 }
@@ -35,14 +40,24 @@ export function renderFieldGuide() {
   const target = el('fieldGuideList');
   if (!target) return;
   const allSubjects = FIELD_GUIDE_SUBJECTS.map((subject) => ({ ...subject, relevance: relevance(subject) })).filter((subject) => subject.relevance > 0).sort((a, b) => b.relevance - a.relevance || a.name.localeCompare(b.name));
-  const subjects = allSubjects.filter((subject) => !activeGuideGroup || subject.group === activeGuideGroup);
+  const subjects = allSubjects.filter((subject) => (!activeGuideGroup || subject.group === activeGuideGroup) && (!activeGuideSubject || subject.id === activeGuideSubject));
   const filterTarget = el('fieldGuideFilters');
   const groups = [...new Set(allSubjects.map((subject) => subject.group))];
   if (filterTarget) filterTarget.innerHTML = groups.map((group) => `<button type="button" class="poi-chip ${activeGuideGroup === group ? 'active' : ''}" aria-pressed="${activeGuideGroup === group}" data-guide-group="${escapeHtml(group)}">${escapeHtml(group)}</button>`).join('');
-  el('fieldGuideCount').textContent = subjects.length ? 'Things to notice near here' : 'Your local guide is taking shape';
+  el('fieldGuideCount').textContent = subjects.length ? 'Things to notice in this view' : 'Field Guide';
   el('fieldGuideSeason').textContent = seasonNote();
   const available = subjects.length ? `<p class="guide-availability"><strong>In this guide:</strong> ${[...new Set(subjects.map((subject) => subject.group))].map(escapeHtml).join(' · ')}<span>Ordered for this region${state.settings?.favoriteCategories?.length ? ' and what you chose to notice' : ''}.</span></p>` : '';
-  target.innerHTML = subjects.length ? available + subjects.map((subject) => `<article class="guide-card"><span class="guide-group">${escapeHtml(subject.group)}</span><h3>${escapeHtml(subject.name)}</h3><p>${escapeHtml(subject.cue)}</p><a href="${escapeHtml(subject.sourceUrl)}" target="_blank" rel="noreferrer">Learn with ${escapeHtml(subject.sourceName)} ↗</a></article>`).join('') : '<div class="empty-state"><strong>Your local guide is taking shape.</strong>Explore the map now; educational subjects will appear when a reviewed guide package matches this region.</div>';
+  target.innerHTML = subjects.length ? available + subjects.map((subject) => `<article class="guide-card"><span class="guide-group">${escapeHtml(subject.group)}</span><h3>${escapeHtml(subject.name)}</h3><p>${escapeHtml(subject.cue)}</p><a href="${escapeHtml(subject.sourceUrl)}" target="_blank" rel="noreferrer">Learn with ${escapeHtml(subject.sourceName)} ↗</a></article>`).join('') : '';
 }
 
-export function initFieldGuideFilters() { el('fieldGuideFilters')?.addEventListener('click', (event) => { const button = event.target.closest('[data-guide-group]'); if (!button) return; activeGuideGroup = activeGuideGroup === button.dataset.guideGroup ? '' : button.dataset.guideGroup; renderFieldGuide(); }); }
+export function initFieldGuideFilters() {
+  el('fieldGuideFilters')?.addEventListener('click', (event) => { const button = event.target.closest('[data-guide-group]'); if (!button) return; activeGuideSubject = ''; activeGuideGroup = activeGuideGroup === button.dataset.guideGroup ? '' : button.dataset.guideGroup; renderFieldGuide(); });
+  window.addEventListener('field-guide-entry-requested', ({ detail }) => {
+    const tags = new Set(poiTags(detail?.poi || {}));
+    const subject = FIELD_GUIDE_SUBJECTS.find((item) => item.relatedTags.some((tag) => tags.has(tag)));
+    activeGuideSubject = subject?.id || '';
+    activeGuideGroup = '';
+    window.dispatchEvent(new CustomEvent('backpack-open-requested'));
+  });
+  window.addEventListener('map-viewport-changed', () => { if (state.modalOpen === 'backpackSheet') renderFieldGuide(); });
+}

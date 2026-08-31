@@ -5,7 +5,7 @@ import { initBackupControls } from './backup.js';
 import { openWalkDetail, saveHistoryMoment, saveJournal, saveQuickJournal, renderArchive } from './archive.js';
 import { discardWalk, getCurrentLocation, recordPoiEncounter, saveWalk, setActiveWalkMode, startWalk, stopWalk, togglePauseWalk, updateWalkDisplay } from './walk.js';
 import { openObservation, saveObservation, setDraftObservationIcon } from './observation.js';
-import { openJournal, closeSheets, openSheet, openAccountSettings, openFiltersSheet, openProfile, renderGeofenceCategoryChips, setArchiveFilter, showView, toast } from './ui.js';
+import { openBackpack, openJournal, closeSheets, openSheet, openAccountSettings, openFiltersSheet, openProfile, renderGeofenceCategoryChips, setArchiveFilter, showView, toast } from './ui.js';
 import { city, citySites, displayPoiName, geofenceCategoriesForCity, renderCityPois, showHistory, savePlaceMemory, searchPois, searchOsm } from './poi.js';
 import { syncProfile, renderOnline, openOnline, signIn, signUp, signInWithPasskey, registerPasskey, createOnlineProfile, updateAccountUsername, updateAccountPhone, updateAccountEmail, updateAccountPassword } from './online.js';
 import { refreshCityMap, switchCity } from './city.js';
@@ -23,8 +23,10 @@ import { applyCompanionSettings, normalizeCompanionId } from './companion.js';
 
 export function initEvents() {
   initBackupControls();
+  prepareBackpackSections();
   el('archiveList').addEventListener('click', (event) => { const card = event.target.closest('[data-walk-id]'); if (card) openWalkDetail(card.dataset.walkId); });
   el('archiveList').addEventListener('keydown', (event) => { const card = event.target.closest('[data-walk-id]'); if (card && (event.key === 'Enter' || event.key === ' ')) { event.preventDefault(); openWalkDetail(card.dataset.walkId); } });
+  el('journalOverlayArchiveList')?.addEventListener('click', (event) => { const card = event.target.closest('[data-walk-id]'); if (card) openWalkDetail(card.dataset.walkId); });
   el('locateButton').addEventListener('click', getCurrentLocation);
   el('homeCityButton').addEventListener('click', () => openRegionChooser());
   el('walkButton').addEventListener('click', async () => {
@@ -114,7 +116,8 @@ export function initEvents() {
   });
   el('journalButton').addEventListener('click', () => openJournal());
   el('demoButton').addEventListener('click', () => { const site = citySites()[0]; state.map.flyTo([site.lat, site.lng], Math.max(city().zoom + 2, 16)); setTimeout(() => showHistory(site, 28), 350); });
-  el('settingsButton').addEventListener('click', () => openSheet('infoSheet'));
+  el('settingsButton').addEventListener('click', openBackpack);
+  window.addEventListener('backpack-open-requested', openBackpack);
   el('companionWalker').addEventListener('change', async (event) => {
     state.settings.companionWalker = normalizeCompanionId(event.target.value);
     await db.put('settings', state.settings);
@@ -122,10 +125,31 @@ export function initEvents() {
     toast('Animation updated.');
   });
   el('advancedAppearanceForm').addEventListener('submit', async (event) => { event.preventDefault(); state.settings.staticAppearance = { headlineTitle: el('advancedHeadlineTitle').value.trim() || 'A walk with a purpose', headlineIcon: el('advancedHeadlineIcon').value, developerName: el('developerName').value.trim(), developerUrl: el('developerUrl').value.trim() }; await db.put('settings', state.settings); const { applyStaticAppearance } = await import('./ui.js'); applyStaticAppearance(); toast('Appearance saved on this device.'); });
-  el('profileJournalButton').addEventListener('click', () => openJournal());
-  el('filtersButton').addEventListener('click', openFiltersSheet);
+  el('profileJournalButton')?.addEventListener('click', () => openJournal());
+  el('advancedFiltersButton')?.addEventListener('click', openFiltersSheet);
+  document.querySelectorAll('[data-pack-sheet]').forEach((button) => button.addEventListener('click', () => openSheet(button.dataset.packSheet)));
+  document.querySelectorAll('[data-pack-section]').forEach((button) => button.addEventListener('click', () => {
+    const section = document.querySelector(`[data-pack-settings="${button.dataset.packSection}"]`);
+    if (!section) return;
+    const opening = section.classList.contains('hidden');
+    document.querySelectorAll('[data-pack-settings]').forEach((node) => node.classList.add('hidden'));
+    section.classList.toggle('hidden', !opening);
+    if (opening) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }));
   el('savePlaceMapButton').addEventListener('click', () => {
+    if (!state.personalPlaceSelecting) {
+      state.personalPlaceSelecting = true;
+      document.body.classList.add('placing-personal-place');
+      el('savePlaceMapButton').innerHTML = '<img class="ui-icon ui-icon--small" src="./icons/map-pin.svg" alt="" /> Use this spot';
+      el('savePlaceMapButton').setAttribute('aria-label', 'Use the crosshair position for this personal place');
+      toast('Move the map under the crosshair, then choose “Use this spot.”');
+      return;
+    }
     const center = state.map.getCenter();
+    state.personalPlaceSelecting = false;
+    document.body.classList.remove('placing-personal-place');
+    el('savePlaceMapButton').innerHTML = '<img class="ui-icon ui-icon--small" src="./icons/plus.svg" alt="" /> Places +';
+    el('savePlaceMapButton').setAttribute('aria-label', 'Place a personal pin on the map');
     window.dispatchEvent(new CustomEvent('personal-place-create-requested', { detail: { location: { lat: center.lat, lng: center.lng } } }));
   });
   el('dismissHistoryButton').addEventListener('click', closeSheets);
@@ -304,4 +328,25 @@ el('accountPasswordForm').addEventListener('submit', updateAccountPassword);
     const button = event.target.closest('[data-favorite-region]'); if (!button) return;
     if (await toggleFavoriteRegion(state.settings, button.dataset.favoriteRegion)) { await db.put('settings', state.settings); renderProfile(); }
   });
+}
+
+function prepareBackpackSections() {
+  const content = el('packSettingsContent');
+  const profile = el('profileView');
+  if (!content || !profile) return;
+  const preferenceSections = [...profile.querySelectorAll('.favorite-categories')];
+  const sources = {
+    preferences: preferenceSections[0],
+    favorite: preferenceSections[1],
+    geofence: profile.querySelector('.geofence-settings'),
+    backup: document.querySelector('.backup-controls')
+  };
+  for (const [id, source] of Object.entries(sources)) {
+    if (!source) continue;
+    const section = document.createElement('section');
+    section.className = 'pack-settings-panel hidden';
+    section.dataset.packSettings = id;
+    section.append(source);
+    content.append(section);
+  }
 }

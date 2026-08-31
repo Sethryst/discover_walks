@@ -27,33 +27,35 @@ test('Field Guide subjects are educational records with explicit HTTPS knowledge
   }
 });
 
-test('primary navigation keeps Walk, Discover, and Journal clear while Discover owns its local lenses', async () => {
+test('the idle map replaces primary tabs with Journal, Backpack, Places +, and map lights', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
-  assert.match(html, />Discover<\/button>/);
-  assert.match(html, />Journal<\/button>/);
-  assert.match(html, /data-view="map" title="Walk"/);
-  assert.match(html, /data-discover-lens="fieldGuide"/);
-  assert.match(html, /data-discover-lens="vote"/);
-  assert.match(html, /data-discover-lens="volunteer"/);
-  assert.match(html, /data-discover-personal-places/);
-  assert.match(html, /Notice wildlife, plants, history, architecture, and art/);
-  assert.doesNotMatch(html, /data-view="vote"/);
-  assert.doesNotMatch(html, /data-view="volunteer"/);
+  assert.match(html, /id="journalButton"[^>]*aria-label="Open journal"/);
+  assert.match(html, /id="settingsButton"[^>]*aria-label="Backpack"/);
+  assert.match(html, /id="savePlaceMapButton"[^>]*>.*Places \+/);
+  assert.match(html, /id="mapLights" aria-label="Map lights"/);
+  assert.match(html, /id="homeCityButton"/);
+  assert.match(html, /id="locateButton"/);
+  assert.match(html, /id="walkButton"/);
+  assert.doesNotMatch(html, /<nav class="bottom-nav"/);
+  assert.doesNotMatch(html, /id="filtersButton"/);
+  assert.doesNotMatch(html, /class="map-key"/);
+  assert.doesNotMatch(html, /id="weatherBrief"/);
 });
 
-test('the active map keeps a persistent journal with embedded contextual tools', async () => {
+test('the active map owns the notice composer while idle Journal is a writing-first split', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
   const styles = await readFile(new URL('../styles.css', import.meta.url), 'utf8');
-  assert.match(html, /id="persistentJournal" data-sheet-state="half"/);
+  assert.match(html, /id="persistentJournal" data-sheet-state="collapsed" aria-label="Walk notice composer"/);
   assert.match(html, /id="quickJournalForm"/);
   assert.match(html, /id="composerPhotoButton"/);
   assert.match(html, /id="addObservationButton"/);
   assert.match(html, /id="composerNearbyButton"/);
   assert.match(html, /id="composerMicButton"/);
-  assert.match(styles, /grid-template-columns: minmax\(0, 7fr\) minmax\(310px, 3fr\)/);
-  assert.match(styles, /data-sheet-state="collapsed"/);
-  assert.match(styles, /data-sheet-state="collapsed"\] \.journal-composer/);
-  assert.match(styles, /data-sheet-state="expanded"/);
+  assert.match(styles, /\.persistent-journal \{ display: none; \}/);
+  assert.match(styles, /\.walk-active \.persistent-journal/);
+  assert.match(html, /id="journalSheet"/);
+  assert.match(html, /id="journalArchiveSummary"/);
+  assert.match(html, /id="journalOverlayArchiveList"/);
   assert.match(html, /id="layerFilterSearch"/);
   assert.match(html, /id="exportCurrentFiltersButton"/);
   assert.match(html, /id="importFilterSetButton"/);
@@ -61,14 +63,18 @@ test('the active map keeps a persistent journal with embedded contextual tools',
   assert.doesNotMatch(html, /id="fieldEditionStatus"/);
 });
 
-test('Guide is a season-and-place-aware companion, while Journal avoids collection language', async () => {
+test('Backpack opens the viewport Field Guide first and keeps quieter tools in the pack', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
   const profile = await readFile(new URL('../js/profile.js', import.meta.url), 'utf8');
   const guide = await readFile(new URL('../js/field-guide.js', import.meta.url), 'utf8');
   const explore = await readFile(new URL('../js/explore.js', import.meta.url), 'utf8');
   const planner = await readFile(new URL('../js/planner.js', import.meta.url), 'utf8');
-  assert.match(html, /What are you looking at\?/);
+  assert.match(html, /id="backpackSheet"/);
+  assert.match(html, /<h2 id="backpackTitle">Field Guide<\/h2>/);
+  assert.match(html, /In this pack/);
+  assert.match(html, /Advanced filters/);
   assert.match(guide, /seasonNote/);
+  assert.match(guide, /getBounds\(\)\.contains/);
   assert.match(guide, /In this guide:/);
   assert.match(profile, /observations.*walks.*places remembered/);
   assert.doesNotMatch(profile, /cityDiscoveries.*\/.*totalCitySites/);

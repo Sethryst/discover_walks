@@ -76,6 +76,7 @@ export async function initPersonalPlaces() {
 export function renderPersonalPlacesOnMap() {
   if (!state.personalPlaceLayer) return;
   state.personalPlaceLayer.clearLayers();
+  if (!state.layerLights.personal) return;
   const categories = new Map(state.personalPlaceCategories.map((category) => [category.id, category]));
   curatedPersonalPlaces().filter((place) => {
     const categoryId = place.categoryId || place.category_id;

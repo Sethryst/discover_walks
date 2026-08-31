@@ -19,6 +19,7 @@ export const state = {
   personalPlaceCategories: [],
   layerFilters: { public: {}, personal: {} },
   layerUiState: { expanded: {} },
+  layerLights: { news: false, recreation: true, cuisine: false, personal: false },
 
   // map objects
   map: null,
@@ -51,6 +52,7 @@ export const state = {
   poiTags: new Set(),
   archiveFilter: 'all',
   planningMode: false,
+  personalPlaceSelecting: false,
   plannerStart: null,
   plannerEnd: null,
   planOptions: [],

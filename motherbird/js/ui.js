@@ -27,15 +27,22 @@ export function openFiltersSheet() {
 }
 export function closeSheets() {
   state.modalOpen = null;
-  document.body.classList.remove('journal-open', 'layers-open');
+  document.body.classList.remove('journal-open', 'layers-open', 'backpack-open');
+  el('journalButton')?.setAttribute('aria-pressed', 'false');
+  el('settingsButton')?.setAttribute('aria-pressed', 'false');
   el('modalBackdrop').classList.add('hidden');
   document.querySelectorAll('.sheet').forEach((sheet) => sheet.classList.add('hidden'));
   if (state.draftMarker) { state.draftMarker.remove(); state.draftMarker = null; }
+  window.dispatchEvent(new CustomEvent('map-overlay-changed', { detail: { open: false } }));
 }
 export function openSheet(id) {
   state.modalOpen = id;
   document.body.classList.toggle('journal-open', id === 'journalSheet');
   document.body.classList.toggle('layers-open', id === 'filtersSheet');
+  document.body.classList.toggle('backpack-open', id === 'backpackSheet');
+  el('journalButton')?.setAttribute('aria-pressed', String(id === 'journalSheet'));
+  el('settingsButton')?.setAttribute('aria-pressed', String(id === 'backpackSheet'));
+  document.querySelectorAll('.sheet').forEach((sheet) => sheet.classList.add('hidden'));
   el('modalBackdrop').classList.remove('hidden');
   const sheet = el(id);
   sheet.classList.remove('hidden');
@@ -45,6 +52,7 @@ export function openSheet(id) {
     image.src = image.dataset.lazySrc;
     image.removeAttribute('data-lazy-src');
   });
+  window.dispatchEvent(new CustomEvent('map-overlay-changed', { detail: { open: true, id } }));
 }
 export function applyStaticAppearance() {
   const appearance = { headlineTitle: 'A walk with a purpose', headlineIcon: 'walk', developerName: '', developerUrl: '', ...(state.settings.staticAppearance || {}) };
@@ -60,26 +68,15 @@ export function applyStaticAppearance() {
 }
 export function openProfile() { showView('profile'); }
 export function showView(view) {
-  state.activeView = view;
-  el('mapView').classList.toggle('hidden', view !== 'map');
-  el('exploreView').classList.toggle('hidden', view !== 'explore');
-  el('fieldGuideView').classList.toggle('hidden', view !== 'fieldGuide');
-  el('profileView').classList.toggle('hidden', view !== 'profile');
-  el('voteView').classList.toggle('hidden', view !== 'vote');
-  el('volunteerView').classList.toggle('hidden', view !== 'volunteer');
-  const discoverViews = new Set(['explore', 'fieldGuide', 'vote', 'volunteer']);
-  document.querySelectorAll('.nav-item').forEach((item) => item.classList.toggle('active', item.dataset.view === view || (discoverViews.has(view) && item.dataset.view === 'explore')));
-  if (view === 'profile') {
-    renderProfile();
-    renderArchive();
-  } else if (view === 'fieldGuide') {
-    renderFieldGuide();
-  } else if (view === 'vote' || view === 'volunteer') {
-    renderCivic(view);
-  } else if (view === 'map' && state.map) {
+  state.activeView = 'map';
+  el('mapView').classList.remove('hidden');
+  ['exploreView', 'profileView', 'voteView', 'volunteerView'].forEach((id) => el(id)?.classList.add('hidden'));
+  if (view === 'fieldGuide') {
+    openBackpack();
+  } else if (state.map) {
     state.map.invalidateSize();
     window.scrollTo({ top: 0, behavior: 'smooth' });
- }
+  }
 }
 export function renderLeaderboard() {
   const rows = state.online.leaderboard || [];
@@ -97,6 +94,7 @@ export function renderIncomingRequests() {
 export function toast(message) { const node = el('toast'); node.textContent = message; node.classList.remove('hidden'); clearTimeout(toast.timeout); toast.timeout = setTimeout(() => node.classList.add('hidden'), 3200); }
 export function setStatus() { /* Map status copy is intentionally omitted. */ }
 export function openJournal(walkId = null) {
+  if (state.modalOpen === 'journalSheet') { closeSheets(); return; }
   const prompt = promptForWalk(walkId || '');
   el('journalForm').reset();
   el('journalForm').dataset.walkId = walkId || '';
@@ -108,6 +106,13 @@ export function openJournal(walkId = null) {
   el('journalWordCount').textContent = `${wordCount(el('journalNote').value)} words`;
   el('journalNote').placeholder = 'Write across the lines. A sentence is enough; a whole page is welcome.';
   openSheet('journalSheet');
+  void renderArchive();
+}
+
+export function openBackpack() {
+  if (state.modalOpen === 'backpackSheet') { closeSheets(); return; }
+  openSheet('backpackSheet');
+  renderFieldGuide();
 }
 export function momentCard(item) {
   const kind = item.type === 'observation' ? 'observation' : item.type === 'history' ? 'history' : item.type === 'walk' ? 'walk' : 'journal';
