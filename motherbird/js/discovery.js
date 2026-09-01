@@ -1,8 +1,9 @@
-import { CITIES, GEOFENCE_CATEGORIES } from './constants.js';
+import { CITIES, GEOFENCE_CATEGORIES, chosenPackIds } from './constants.js';
 import { state } from './state.js';
 import { el } from './utils.js';
 import { distanceMeters } from './geo.js';
 import { switchCity } from './city.js';
+import { walkIsActive } from './walk-state.js';
 
 const defaultHeadlines = [
   ['History', 'Read the landscape at an unhurried pace.'], ['A gentle walk', 'Choose a little time outside, without making it a project.'], ['Nature to notice', 'Look for small signs of life in the places you already pass.'], ['Your next landmark', 'Let one place change how you see a familiar block.']
@@ -39,12 +40,16 @@ export function startDiscoveryHeadline() {
 }
 
 export async function chooseClosestCityIfPermitted() {
+  if (!walkIsActive(state)) return null;
   const closest = await nearestCityFromCurrentLocation();
-  if (closest && closest.id !== state.activeCity) await switchCity(closest.id, true);
+  if (closest && closest.id !== state.activeCity) await switchCity(closest.id, true, { source: 'gps' });
+  return closest;
 }
 
 export function nearestCityFor(point) {
-  return Object.entries(CITIES).filter(([, config]) => config?.dataFile && config?.center).reduce((best, [id, config]) => {
+  const allowed = new Set(chosenPackIds(state.settings));
+  if (state.activeCity) allowed.add(state.activeCity);
+  return [...allowed].map((id) => [id, CITIES[id]]).filter(([, config]) => config?.dataFile && config?.center).reduce((best, [id, config]) => {
     const distance = distanceMeters(point, config.center);
     return !best || distance < best.distance ? { id, distance, point } : best;
   }, null);

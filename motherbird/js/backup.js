@@ -1,5 +1,5 @@
 import { state } from './state.js';
-import { CITIES, DEFAULT_SETTINGS } from './constants.js';
+import { CITIES, DEFAULT_SETTINGS, DEFAULT_CITY_ID } from './constants.js';
 import { dayKey, normalizeProfile, el, escapeHtml } from './utils.js';
 import db from './storage.js';
 import { createMigratedProfile } from './loader.js';
@@ -78,7 +78,7 @@ async function writeTransferData(data, { replace = false } = {}) {
   }
   state.profile = normalizeProfile(data.profile?.[0] || await createMigratedProfile());
   state.settings = { ...DEFAULT_SETTINGS, ...(data.settings?.[0] || {}) };
-  if (!CITIES[state.settings.activeCity]) state.settings.activeCity = 'fairfax';
+  if (!CITIES[state.settings.activeCity]?.dataFile) state.settings.activeCity = DEFAULT_CITY_ID;
   state.activeCity = state.settings.activeCity;
   state.walks = data.walks || [];
   state.observations = data.observations || [];
@@ -192,6 +192,12 @@ export function initBackupControls() {
   const panel = document.createElement('div'); panel.className = 'backup-controls';
   panel.innerHTML = '<p class="sheet-kicker">YOUR BACKUP</p><p>Export a complete private backup or a readable CSV. Import starts with a preview; Merge preserves this device by default.</p><div class="backup-actions"><button class="secondary-button" id="exportDataButton" type="button">Export JSON</button><button class="secondary-button" id="exportCsvButton" type="button">Export CSV</button><label class="secondary-button import-label">Preview import<input id="importDataInput" type="file" accept="application/json,.json" /></label></div><section class="cloud-backup-controls" aria-labelledby="cloudBackupTitle"><strong id="cloudBackupTitle">Field Edition cloud backup</strong><p id="cloudBackupStatus">Checking Field Edition access…</p><label>Backup passphrase <input id="cloudBackupPassphrase" type="password" autocomplete="off" minlength="8" placeholder="Not sent to the server" /></label><small>One encrypted snapshot is stored. The server cannot read it, and the passphrase cannot be recovered.</small><div class="backup-actions"><button class="secondary-button" id="saveCloudBackupButton" type="button">Replace cloud backup</button><button class="secondary-button" id="restoreCloudBackupButton" type="button">Preview cloud restore</button></div></section><section class="journal-import-preview hidden" id="journalImportPreview" aria-live="polite"></section>';
   el('clearDataButton').before(panel);
+  el('exportDataButton').textContent = 'Export journal (JSON)';
+  el('exportCsvButton').textContent = 'Export journal (CSV)';
+  el('importDataInput').closest('.import-label').childNodes[0].textContent = 'Import journal';
+  el('cloudBackupTitle').textContent = 'Encrypted backup';
+  el('saveCloudBackupButton').textContent = 'Replace encrypted backup';
+  el('restoreCloudBackupButton').textContent = 'Preview encrypted restore';
   el('exportDataButton').addEventListener('click', () => void exportJournal('json'));
   el('exportCsvButton').addEventListener('click', () => void exportJournal('csv'));
   el('importDataInput').addEventListener('change', importJournal);

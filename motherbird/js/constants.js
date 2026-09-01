@@ -200,6 +200,16 @@
   'santa-fe': { name: 'Santa Fe', state: 'NM', center: { lat: 35.665, lng: -105.96 }, zoom: 11, dataFile: './regions/santa-fe/pois.json', civicFile: './regions/santa-fe/civic/index.json' }
 };
 Object.entries(CITIES).forEach(([cityId, city]) => { city.osm = runtimeOsmConfig(cityId, city); });
+// This is the first pack shown by onboarding, not a boot-time active city.
+// Keeping the choice explicit avoids deriving identity from every data file.
+export const DEFAULT_CITY_ID = 'fairfax';
+export function chosenPackIds(settings = {}) {
+  const ids = [];
+  const add = (id) => { if (CITIES[id]?.dataFile && !ids.includes(id)) ids.push(id); };
+  add(settings.activeCity);
+  (settings.favoriteRegionIds || []).forEach(add);
+  return ids;
+}
                   export const DEFAULT_PROFILE = {
   id: 'local-user', totalPoints: 0, walksCompleted: 0, milesTotal: 0,
   sitesDiscovered: {}, visitedPoiIds: [], observationsLogged: 0, streakDays: 0, lastWalkDate: null
@@ -220,7 +230,7 @@ export const OBSERVATION_ICONS = ['camera', 'tree', 'star', 'heart', 'coffee', '
                   export const state = {
   map: null, userMarker: null, routeLine: null, draftMarker: null, currentPosition: null,
   activeWalk: null, watchId: null, timerId: null, prompted: new Set(), currentSite: null,
-  draftObservationLocation: null, archiveFilter: 'all', activeView: 'map', modalOpen: null, activeCity: 'fairfax',
+  draftObservationLocation: null, archiveFilter: 'all', activeView: 'map', modalOpen: null, activeCity: null,
   profile: { ...DEFAULT_PROFILE }, settings: { ...DEFAULT_SETTINGS }, historyLayer: null, observationLayer: null, poiLayer: null, trailLayer: null,
   cityPois: {}, trailSegments: {}, poiTags: new Set(),
   online: { client: null, session: null, remoteProfile: null, candidate: null, leaderboard: [], incoming: [] }

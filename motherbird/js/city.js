@@ -95,9 +95,20 @@ export async function refreshCityMap(recenter = false) {
   void renderWeatherBrief();
   renderProfile();
 }
-export async function switchCity(nextCity, recenter = true) {
+export async function switchCity(nextCity, recenter = true, { source = 'user' } = {}) {
   if (!CITIES[nextCity]) return;
-  if (state.activeWalk) { toast('Finish the current walk before switching regions.'); return; }
+  const recordingWalk = state.activeWalk?.recordingStatus === 'recording';
+  if (state.activeWalk && !recordingWalk) { toast('Finish the current walk before switching regions.'); return; }
+  if (recordingWalk && source === 'gps' && state.activeWalk.packOverride) return;
+  if (nextCity === state.activeCity) {
+    if (recordingWalk && source === 'user') {
+      state.activeWalk.packOverride = nextCity;
+      toast(`${cityLabel(nextCity)} is locked for this walk.`);
+    }
+    return;
+  }
+  const manuallyLocked = recordingWalk && source === 'user';
+  if (manuallyLocked) state.activeWalk.packOverride = nextCity;
   state.activeCity = nextCity; state.settings.activeCity = nextCity;
   if (!state.cityPois[nextCity]) await loadCityData(nextCity);
   state.curatedRouteLine?.remove(); state.curatedRouteLine = null;
@@ -106,6 +117,6 @@ export async function switchCity(nextCity, recenter = true) {
   await db.put('settings', state.settings);
   await refreshCityMap(recenter);
   window.dispatchEvent(new CustomEvent('city-layer-data-changed'));
-  setStatus(`${cityLabel(nextCity)} ready for a walk`);
-  toast(`Now exploring ${cityLabel(nextCity)}.`);
+  setStatus(manuallyLocked ? `${cityLabel(nextCity)} locked for this walk` : `${cityLabel(nextCity)} ready for a walk`);
+  toast(manuallyLocked ? `Now exploring ${cityLabel(nextCity)}. GPS pack switching is locked for this walk.` : `Now exploring ${cityLabel(nextCity)}.`);
 }

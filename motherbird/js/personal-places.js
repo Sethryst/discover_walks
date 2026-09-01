@@ -145,7 +145,7 @@ function visiblePublicMarker(marker) {
 }
 
 function markerCategoryLabel(marker) {
-  if (marker.light === 'personal') return marker.personal_category_label || 'MY PLACES';
+  if (marker.light === 'personal') return `MY PLACES · ${marker.personal_category_label || 'places'}`;
   if (marker.light === 'news') return 'NEWS';
   const label = CHIP_OPTIONS[marker.light]?.find(([id]) => id === marker.chip_id)?.[1] || marker.chip_id || marker.light;
   return `${marker.light === 'recreation' ? 'RECREATION' : 'CUISINE'} · ${label}`;
@@ -328,7 +328,7 @@ export function openPersonalPlaceForm({ editId = null, publicMarkerId = null, ca
   populateCategorySelect(place?.categoryId || categoryId || saved.categoryId);
   el('personalPlaceNewCategoryName').value = saved.newCategoryName || '';
   el('personalPlaceVisibility').value = place?.visibility || marker?.status || saved.visibility || state.settings.defaultPinVisibility || 'private';
-  el('personalPlaceName').value = marker?.name || place?.name || sourcePoi?.name || saved.name || '';
+  el('personalPlaceName').value = marker?.name || place?.name || saved.name || '';
   el('personalPlaceNotes').value = marker?.description || place?.notes || saved.notes || '';
   el('personalPlaceLatitude').value = Number.isFinite(Number(point?.lat)) ? Number(point.lat).toFixed(6) : '';
   el('personalPlaceLongitude').value = Number.isFinite(Number(point?.lng)) ? Number(point.lng).toFixed(6) : '';
@@ -352,7 +352,7 @@ function armPersonalPlaceCrosshair() {
 function finishPersonalPlaceCrosshair(location) {
   state.personalPlaceSelecting = false;
   document.body.classList.remove('placing-personal-place');
-  el('savePlaceMapButton').innerHTML = '<img class="ui-icon ui-icon--small" src="./icons/plus.svg" alt="" /> Places +';
+  el('savePlaceMapButton').innerHTML = '<img class="ui-icon ui-icon--small" src="./icons/plus.svg" alt="" /> Add Location';
   el('savePlaceMapButton').setAttribute('aria-label', 'Add a location');
   const draft = { ...(state.personalPlaceDraft || {}), location };
   state.personalPlaceDraft = null;

@@ -331,7 +331,7 @@ export async function createOnlineProfile(event) {
 }
 export async function updateAccountUsername(event) {
   event.preventDefault();
-  const username = el('accountUsernameInput').value.trim();
+  const username = event.currentTarget.querySelector('input')?.value.trim() || el('accountUsernameInput')?.value.trim();
   if (!username) { toast('Enter a username.'); return; }
   const { data, error } = await state.online.client.from('profiles').update({ username, updated_at: new Date().toISOString() }).eq('id', state.online.session.user.id).select().single();
   if (error) { toast(error.message.includes('unique') ? 'That username is already in use.' : error.message); return; }
@@ -346,18 +346,19 @@ export async function updateAccountPhone(event) {
 }
 export async function updateAccountEmail(event) {
   event.preventDefault();
-  const email = el('accountEmailInput').value.trim();
+  const email = event.currentTarget.querySelector('input')?.value.trim() || el('accountEmailInput')?.value.trim();
   const { error } = await state.online.client.auth.updateUser({ email });
   if (error) { toast(error.message); return; }
   toast('Check your new email inbox to confirm the change.');
 }
 export async function updateAccountPassword(event) {
   event.preventDefault();
-  const password = el('accountPasswordInput').value;
+  const password = event.currentTarget.querySelector('input')?.value || el('accountPasswordInput')?.value;
   if (!password || password.length < 6) { toast('Password must be at least 6 characters.'); return; }
   const { error } = await state.online.client.auth.updateUser({ password });
   if (error) { toast(error.message); return; }
-  el('accountPasswordInput').value = '';
+  const input = event.currentTarget.querySelector('input') || el('accountPasswordInput');
+  if (input) input.value = '';
   toast('Password updated.');
 }
 export async function acceptFriend(friendId) {

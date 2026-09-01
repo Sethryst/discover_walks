@@ -28,10 +28,6 @@ const STATIC_LABELS = {
 let searchQuery = '';
 let pendingImport = null;
 let civicAvailability = { news: false, volunteer: false, capability: 'none', notices: [] };
-const CIVIC_VENUES = [
-  { match: /fairfax county government center/i, lat: 38.8530, lng: -77.3574 },
-  { match: /reston community center hunters woods/i, lat: 38.9367, lng: -77.3607 }
-];
 
 const LIGHT_CHIPS = {
   recreation: [
@@ -243,11 +239,12 @@ function locateNotice(item) {
   const lat = Number(item.latitude ?? item.lat ?? item.location?.lat);
   const lng = Number(item.longitude ?? item.lng ?? item.location?.lng);
   if (Number.isFinite(lat) && Number.isFinite(lng)) return { lat, lng };
+  const candidates = (state.cityPois[state.activeCity] || []).filter((poi) => Number.isFinite(poi.lat) && Number.isFinite(poi.lng));
+  const referencedId = item.poiId || item.placeId || item.locationId;
+  const referenced = candidates.find((poi) => referencedId && String(poi.id) === String(referencedId));
+  if (referenced) return { lat: referenced.lat, lng: referenced.lng };
   const venue = `${item.locationLabel || ''} ${item.venueAddress || ''}`.toLocaleLowerCase();
   if (!venue.trim()) return null;
-  const knownVenue = CIVIC_VENUES.find(({ match }) => match.test(venue));
-  if (knownVenue) return { lat: knownVenue.lat, lng: knownVenue.lng };
-  const candidates = (state.cityPois[state.activeCity] || []).filter((poi) => Number.isFinite(poi.lat) && Number.isFinite(poi.lng));
   const scored = candidates.map((poi) => {
     const words = String(poi.name || '').toLocaleLowerCase().split(/\W+/).filter((word) => word.length > 3);
     return { poi, score: words.filter((word) => venue.includes(word)).length };
@@ -307,7 +304,7 @@ function routeInViewport(coordinates = []) {
 function lightModel() {
   const recreation = availableMapChips('recreation');
   const cuisine = availableMapChips('cuisine');
-  const newsEntries = [...civicAvailability.notices, ...packPublicMarkers('news')];
+  const newsEntries = [...civicAvailability.notices.filter((notice) => notice.location), ...packPublicMarkers('news')];
   const personalPins = curatedPersonalPlaces().filter((place) => !place.packId || place.packId === state.activeCity);
   const personal = state.personalPlaceCategories.map((category) => ({ id: category.id, label: category.name, tags: [], kind: 'personal' }));
   return [
@@ -321,7 +318,8 @@ function lightModel() {
 function newsAvailable() {
   const userNews = packPublicMarkers('news').length > 0;
   if (['empty-by-design', 'none'].includes(civicAvailability.capability)) return userNews;
-  return userNews || civicAvailability.news || (civicAvailability.capability === 'stale' && civicAvailability.notices.length > 0);
+  const locatedNews = civicAvailability.notices.some((notice) => notice.location);
+  return userNews || locatedNews || (civicAvailability.capability === 'stale' && locatedNews);
 }
 
 function chipSelected(lightId, chip) {

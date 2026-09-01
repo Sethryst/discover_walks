@@ -44,7 +44,10 @@ export function createWalkArtifact({ id, city, startedAt = new Date().toISOStrin
     lastRawPoint: null,
     lastMovementAt: startedAt,
     discoveryCount: 0,
-    detectionState: {}
+    detectionState: {},
+    // A user-selected pack during a walk suppresses GPS auto-switching for
+    // the rest of that walk.
+    packOverride: null
   };
 }
 

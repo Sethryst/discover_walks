@@ -42,6 +42,6 @@ export function checkGeofences(point) {
   }
   if (nearby && !state.modalOpen) {
     if (state.activeWalk) state.activeWalk.discoveryCount = (state.activeWalk.discoveryCount || 0) + 1;
-    showHistory(nearby.poi, nearby.distance);
+    void showHistory(nearby.poi, nearby.distance);
   }
 }

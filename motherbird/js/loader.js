@@ -1,6 +1,6 @@
 import db from './storage.js';
 import { state } from './state.js';
-import { DEFAULT_SETTINGS, CITIES } from './constants.js';
+import { DEFAULT_SETTINGS, CITIES, DEFAULT_CITY_ID } from './constants.js';
 import { normalizeProfile, sitesForProfile } from './utils.js';
 import { toast, openSheet } from './ui.js';
 import { initMap } from './map.js';
@@ -15,7 +15,6 @@ import { initFieldGuideFilters } from './field-guide.js';
 import { recoverWalkDraft } from './walk.js';
 import { initPersonalPlaces } from './personal-places.js';
 import { initLayerSystem } from './layer-system.js';
-import { chooseClosestCityIfPermitted } from './discovery.js';
 
 export async function init() {
   const splash = document.getElementById('appSplash');
@@ -49,7 +48,6 @@ export async function init() {
   }
 
   await refreshCityMap(false);
-  await chooseClosestCityIfPermitted();
   await recoverWalkDraft();
   applyStaticAppearance();
   await renderArchive();
@@ -87,7 +85,7 @@ export async function createMigratedProfile() {
     totalPoints: 0
   });
   moments.filter((moment) => moment.type === 'history' && moment.siteId).forEach((moment) => {
-    const cityId = moment.city || state.activeCity || Object.keys(CITIES).find((id) => CITIES[id]?.dataFile);
+    const cityId = moment.city || state.activeCity || DEFAULT_CITY_ID;
     const ids = sitesForProfile(profile, cityId);
     if (!ids.includes(moment.siteId)) {
       profile.sitesDiscovered[cityId] = [...ids, moment.siteId];
@@ -101,7 +99,9 @@ export async function loadLocalState() {
   state.settings = { ...DEFAULT_SETTINGS, ...(savedSettings || {}) };
   if (!Array.isArray(state.settings.geofenceCategories) || !state.settings.geofenceCategories.some((id) => ['recreation', 'cuisine'].includes(id))) state.settings.geofenceCategories = ['recreation', 'cuisine'];
   state.settings.entitlements = normalizedEntitlements(state.settings.entitlements);
-  if (!CITIES[state.settings.activeCity] || !CITIES[state.settings.activeCity]?.dataFile) state.settings.activeCity = Object.keys(CITIES).find((cityId) => CITIES[cityId]?.dataFile);
+  if (!CITIES[state.settings.activeCity]?.dataFile) {
+    state.settings.activeCity = state.settings.favoriteRegionIds?.find((id) => CITIES[id]?.dataFile) || DEFAULT_CITY_ID;
+  }
   state.activeCity = state.settings.activeCity;
   state.walks = savedWalks;
   state.knownTrackPoints = savedWalks.flatMap((walk) => (walk.points || []).filter((_, index) => index % 5 === 0));

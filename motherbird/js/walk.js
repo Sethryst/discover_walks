@@ -3,6 +3,7 @@ import { distanceMeters } from './geo.js';
 import { state } from './state.js';
 import {
   CITIES,
+  chosenPackIds,
   MAX_GPS_ACCURACY_METERS,
   MAX_WALK_SPEED_MPS
 } from './constants.js';
@@ -22,6 +23,7 @@ import {
   updateWalkDurations
 } from './walk-artifact.js';
 import { companionStateForWalk, setCompanionState } from './companion.js';
+import { walkIsActive } from './walk-state.js';
 
 const DRAFT_ID = 'active-walk';
 
@@ -107,11 +109,16 @@ export function handlePosition(position, shouldPan = false) {
   checkGeofences(point);
 }
 
+async function handleGpsPosition(position, shouldPan = false) {
+  await refineInstalledPack(position);
+  handlePosition(position, shouldPan);
+}
+
 export function getCurrentLocation() {
   if (!navigator.geolocation) { toast('This browser does not support location.'); return; }
   setStatus('Finding your location...', true);
   navigator.geolocation.getCurrentPosition(
-    (position) => void refineInstalledPack(position).then(() => handlePosition(position, true)),
+    (position) => void handleGpsPosition(position, true),
     (error) => { setStatus('Location unavailable'); toast(error.code === 1 ? 'Location permission is needed to record a walk.' : 'Could not get a location. Your draft remains safe; check your signal and try again.'); },
     { enableHighAccuracy: true, timeout: 12000, maximumAge: 10000 }
   );
@@ -155,7 +162,6 @@ export function togglePauseWalk() {
 export async function startWalk({ routeMode = 'tracking' } = {}) {
   if (state.activeWalk) return state.activeWalk;
   if (!navigator.geolocation) { toast('Location is not supported in this browser.'); return null; }
-  await snapToClosestInstalledPack();
   state.activeWalk = createWalkArtifact({
     id: uid('walk'),
     city: state.activeCity,
@@ -313,7 +319,7 @@ function beginGpsWatch() {
   stopGpsWatch();
   state.timerId = setInterval(() => { updateWalkDisplay(); void persistWalkDraft(); }, 1000);
   state.watchId = navigator.geolocation.watchPosition(
-    (position) => handlePosition(position, state.activeWalk?.points.length === 0),
+    (position) => void handleGpsPosition(position, state.activeWalk?.points.length === 0),
     () => { setStatus('Location connection paused'); toast('Location connection paused — your current route is still saved.'); },
     { enableHighAccuracy: true, maximumAge: 5000, timeout: 15000 }
   );
@@ -344,28 +350,17 @@ function resetActiveWalk() {
   if (pauseButton) pauseButton.classList.add('hidden');
 }
 
-async function snapToClosestInstalledPack() {
-  const position = await new Promise((resolve) => {
-    navigator.geolocation.getCurrentPosition(resolve, () => resolve(null), {
-      enableHighAccuracy: true,
-      timeout: 8000,
-      maximumAge: 15000
-    });
-  });
-  if (!position) return;
-  await refineInstalledPack(position);
-  handlePosition(position, true);
-}
-
-async function refineInstalledPack(position) {
-  if (!position || state.activeWalk) return;
+export async function refineInstalledPack(position) {
+  if (!position || !walkIsActive(state) || state.activeWalk.packOverride) return;
   const point = { lat: position.coords.latitude, lng: position.coords.longitude };
-  const closest = Object.entries(CITIES)
+  const allowed = new Set(chosenPackIds(state.settings));
+  if (state.activeCity) allowed.add(state.activeCity);
+  const closest = [...allowed].map((id) => [id, CITIES[id]])
     .filter(([, city]) => city?.dataFile && city?.center)
     .sort(([, left], [, right]) => distanceMeters(point, left.center) - distanceMeters(point, right.center))[0];
   if (!closest || closest[0] === state.activeCity) return;
   const { switchCity } = await import('./city.js');
-  await switchCity(closest[0], false);
+  await switchCity(closest[0], false, { source: 'gps' });
 }
 
 async function updatePersonalPlaceCandidates(walk) {

@@ -298,30 +298,30 @@ export function withinRenderBounds(poi) {
   try { return state.map.getBounds().pad(0.6).contains([poi.lat, poi.lng]); } catch { return true; }
 }
 export async function showHistory(site, distance) {
+  if (!el('historySheet')) return;
   state.currentSite = site; state.prompted.add(`${state.activeCity}:${site.id}`);
-  el('historyTitle').textContent = site.name;
-  el('historyDescription').textContent = site.description;
-  el('historySource').href = site.source || '#';
-  el('historySource').classList.toggle('hidden', !site.source);
-  el('historyWarning').classList.toggle('hidden', !site.unverified);
-  el('historyDistance').textContent = Number.isFinite(distance) ? `${Math.round(distance)} m from your location` : 'Within your walking radius';
+  el('historyTitle')?.replaceChildren(document.createTextNode(site.name || 'Nearby place'));
+  if (el('historyDescription')) el('historyDescription').textContent = site.description || '';
+  if (el('historySource')) { el('historySource').href = site.source || '#'; el('historySource').classList.toggle('hidden', !site.source); }
+  el('historyWarning')?.classList.toggle('hidden', !site.unverified);
+  if (el('historyDistance')) el('historyDistance').textContent = Number.isFinite(distance) ? `${Math.round(distance)} m from your location` : 'Within your walking radius';
 
   const memory = await getPlaceMemory(site.id);
-  el('historyReturnBanner').classList.toggle('hidden', !memory);
+  el('historyReturnBanner')?.classList.toggle('hidden', !memory);
   const details = el('historyVisitDetails');
   if (memory) {
     const observations = await db.all('observations');
     const observation = standoutObservation({ location: { lat: site.lat, lng: site.lng } }, observations);
     const lastVisit = memory.lastVisitDate ? new Date(memory.lastVisitDate).toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' }) : 'an earlier walk';
-    el('historyReturnBanner').innerHTML = `<strong>Welcome back.</strong> Last here ${escapeHtml(lastVisit)}.${observation ? ` You noticed ${escapeHtml(observation.species || observation.title || observation.note || 'something worth keeping')}.` : ''}${memory.futureSelfNote ? `<small>A note you left for yourself: “${escapeHtml(memory.futureSelfNote)}”</small>` : ''}<small>${escapeHtml(seasonalComparison(memory.lastVisitDate) || '')}</small>`;
+    if (el('historyReturnBanner')) el('historyReturnBanner').innerHTML = `<strong>Welcome back.</strong> Last here ${escapeHtml(lastVisit)}.${observation ? ` You noticed ${escapeHtml(observation.species || observation.title || observation.note || 'something worth keeping')}.` : ''}${memory.futureSelfNote ? `<small>A note you left for yourself: “${escapeHtml(memory.futureSelfNote)}”</small>` : ''}<small>${escapeHtml(seasonalComparison(memory.lastVisitDate) || '')}</small>`;
     const visits = [...(memory.visits || [])].reverse();
-    details.classList.toggle('hidden', visits.length < 2);
-    el('historyVisitList').innerHTML = visits.map((visit) => `<li><time>${escapeHtml(new Date(visit.visitedAt).toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' }))}</time>${visit.note ? `<p>${escapeHtml(visit.note)}</p>` : ''}</li>`).join('');
+    details?.classList.toggle('hidden', visits.length < 2);
+    if (el('historyVisitList')) el('historyVisitList').innerHTML = visits.map((visit) => `<li><time>${escapeHtml(new Date(visit.visitedAt).toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' }))}</time>${visit.note ? `<p>${escapeHtml(visit.note)}</p>` : ''}</li>`).join('');
   } else {
-    details.classList.add('hidden');
-    el('historyVisitList').replaceChildren();
+    details?.classList.add('hidden');
+    el('historyVisitList')?.replaceChildren();
   }
-  el('historyNoteInput').value = '';
+  if (el('historyNoteInput')) el('historyNoteInput').value = '';
 
   openSheet('historySheet');
 }

@@ -160,6 +160,32 @@ function bindShareSettings() {
   el('downloadWalkPlanButton')?.addEventListener('click', downloadCurrentWalkPlan);
   const friends = (state.online.leaderboard || []).map((friend) => friend.username).filter(Boolean);
   el('friendSharePicker').innerHTML = friends.map((name) => `<span class="poi-chip">@${escapeHtml(name)}</span>`).join('');
+  renderShareAccount();
+  window.addEventListener('share-panel-render-requested', renderShareAccount);
+  window.addEventListener('online-profile-changed', renderShareAccount);
+}
+
+function renderShareAccount() {
+  const button = el('openOnlineButton');
+  if (!button) return;
+  let panel = el('shareAccountPanel');
+  if (!panel) {
+    panel = document.createElement('section');
+    panel.id = 'shareAccountPanel';
+    panel.className = 'share-account-panel';
+    panel.setAttribute('aria-live', 'polite');
+    button.closest('.share-actions')?.after(panel);
+  }
+  const signedIn = Boolean(state.online.session);
+  button.textContent = signedIn ? 'Account' : 'Sign in';
+  if (!signedIn) {
+    panel.innerHTML = '<p class="sheet-intro">Sign in to add a username, sync aggregate stats, or use encrypted backup.</p>';
+    return;
+  }
+  panel.innerHTML = `<p class="sheet-kicker">ACCOUNT</p><form data-share-account="username"><label>Username<input maxlength="24" value="${escapeHtml(state.online.remoteProfile?.username || '')}" /></label><button class="secondary-button" type="submit">Update username</button></form><form data-share-account="email"><label>Email<input type="email" value="${escapeHtml(state.online.session.user?.email || '')}" /></label><button class="secondary-button" type="submit">Update email</button></form><form data-share-account="password"><label>Password<input type="password" minlength="6" autocomplete="new-password" /></label><button class="secondary-button" type="submit">Update password</button></form>`;
+  panel.querySelector('[data-share-account="username"]')?.addEventListener('submit', updateAccountUsername);
+  panel.querySelector('[data-share-account="email"]')?.addEventListener('submit', updateAccountEmail);
+  panel.querySelector('[data-share-account="password"]')?.addEventListener('submit', updateAccountPassword);
 }
 
 function bindOnlineControls() {

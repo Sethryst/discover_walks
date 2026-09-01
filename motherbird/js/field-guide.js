@@ -4,7 +4,6 @@ import { el, escapeHtml } from './utils.js';
 import { routesForCity, showCuratedRoute } from './routes.js';
 import { closeSheets, openBackpack, openSheet, toast } from './ui.js';
 import { paintWalkConcept } from './planner.js';
-import { distanceMeters } from './geo.js';
 
 const FORMAT = 'walk-wildlife-plan-v1';
 let selectedPlaceId = null;
@@ -20,22 +19,29 @@ async function guideData() {
   const [discover, learn] = await Promise.all([loadJson(city.discoverFile, { cards: [] }), loadJson(city.learnFile, { cards: [] })]);
   const pois = (state.cityPois[state.activeCity] || []).filter((poi) => poi.category !== 'journey');
   const poiById = new Map(pois.map((poi) => [String(poi.id), poi]));
-  const authoredJourneys = new Map((discover.cards || []).filter((card) => card.kind === 'journey').map((card) => [card.id, card]));
-  const journeyCards = routesForCity(state.activeCity).slice(0, 4).map((route) => {
-    const authored = authoredJourneys.get(`journey:${route.id}`) || {};
-    const ids = [...new Set((authored.stopPlaceIds || route.chapters.flatMap((chapter) => [...(chapter.stops || []), ...(chapter.amenities || [])].map((stop) => stop.id))).map(String))].filter((id) => poiById.has(id));
-    return { ...authored, id: `journey:${route.id}`, kind: 'journey', journeyId: route.id, title: authored.title || route.title, reason: authored.reason || route.description || 'A sourced journey through named places.', stopPlaceIds: ids };
-  });
-  const nearbyCards = nearbyUnlikeCards(pois);
-  const discoverCards = [...journeyCards, ...nearbyCards];
-  const discoverIds = new Set(discoverCards.flatMap((card) => card.stopPlaceIds || []));
-  const authoredLearn = new Map((learn.cards || []).map((card) => [String(card.placeId), card]));
-  const learnCards = [...discoverIds].map((placeId) => {
+  const routeById = new Map(routesForCity(state.activeCity).map((route) => [String(route.id), route]));
+  const discoverCards = (discover.cards || []).map((card) => {
+    const stopPlaceIds = [...new Set((card.stopPlaceIds || []).map(String))].filter((id) => poiById.has(id));
+    if (!stopPlaceIds.length) return null;
+    const route = card.journeyId ? routeById.get(String(card.journeyId)) : null;
+    return {
+      ...card,
+      id: String(card.id),
+      kind: card.kind || (card.journeyId ? 'journey' : 'walk'),
+      title: card.title || 'A walk from this pack',
+      reason: card.reason || '',
+      stopPlaceIds,
+      ...(route?.coordinates?.length > 1 ? { coordinates: route.coordinates } : {})
+    };
+  }).filter(Boolean);
+  const authoredLearn = [learn.whyCards, learn.cards, discover.whyCards].find(Array.isArray) || [];
+  const learnCards = authoredLearn.map((card) => {
+    const placeId = String(card.placeId || card.stopPlaceId || '');
     const poi = poiById.get(placeId);
-    const source = publicSourceForPoi(poi, authoredLearn.get(placeId));
-    if (!poi || !source) return null;
-    const kind = String(poi.type || poi.category || 'place').replaceAll('_', ' ');
-    return { id: `learn:${placeId}`, placeId, question: poi.name, short: `${poi.name} is a sourced ${kind} stop for walkers in this installed pack.`, officialUrl: source.url, provenance: { name: source.name } };
+    const source = publicSourceForPoi(poi, card);
+    const why = card.why || card.whyText || card.reason || card.short;
+    if (!poi || !source || !why) return null;
+    return { ...card, id: String(card.id || `learn:${placeId}`), placeId, question: card.question || poi.name, short: why, officialUrl: card.officialUrl || source.url, provenance: card.provenance || { name: source.name } };
   }).filter(Boolean);
   state.fieldGuideData = { city: state.activeCity, discover: discoverCards, learn: learnCards };
   return state.fieldGuideData;
@@ -61,30 +67,6 @@ function publicSourceForPoi(poi, authored) {
   return null;
 }
 
-function nearbyUnlikeCards(pois) {
-  const located = pois.filter((poi) => Number.isFinite(poi.lat) && Number.isFinite(poi.lng));
-  const family = (poi) => {
-    const tags = [...new Set([...(poi.tags || []), poi.category, poi.type].filter(Boolean))];
-    if (tags.includes('park')) return 'park';
-    if (tags.some((tag) => ['coffee', 'coffee_shop', 'cafe'].includes(tag))) return 'cafe';
-    if (tags.some((tag) => ['rest', 'restrooms', 'water', 'drinking_water', 'water_fountain'].includes(tag))) return 'rest';
-    return null;
-  };
-  const groups = Object.groupBy ? Object.groupBy(located, family) : located.reduce((all, poi) => { const key = family(poi); if (key) (all[key] ||= []).push(poi); return all; }, {});
-  const usedNames = new Set();
-  const cards = [];
-  for (const park of groups.park || []) {
-    const nearestUnused = (items = []) => items.filter((poi) => !usedNames.has(String(poi.name).toLocaleLowerCase())).sort((left, right) => distanceMeters(park, left) - distanceMeters(park, right))[0];
-    const cafe = nearestUnused(groups.cafe);
-    const rest = nearestUnused(groups.rest);
-    if (!cafe || !rest || distanceMeters(park, cafe) > 2400 || distanceMeters(park, rest) > 2400) continue;
-    const stops = [park, cafe, rest];
-    stops.forEach((poi) => usedNames.add(String(poi.name).toLocaleLowerCase()));
-    cards.push({ id: `nearby:${park.id}`, kind: 'park+cafe+rest', title: stops.map((poi) => poi.name).join(' + '), reason: 'A nearby park, café, and rest or water stop from this installed pack.', stopPlaceIds: stops.map((poi) => String(poi.id)) });
-  }
-  return cards;
-}
-
 function discoverCard(card) {
   const selected = selectedPlaceId && card.stopPlaceIds?.includes(selectedPlaceId);
   return `<article class="guide-card ${selected ? 'selected' : ''}" data-guide-card="${escapeHtml(card.id)}"><small>${card.kind === 'journey' ? 'JOURNEY' : escapeHtml(card.kind.replaceAll('+', ' + '))}</small><h3>${escapeHtml(card.title)}</h3><p>${escapeHtml(card.reason)}</p><button class="primary-button" type="button" data-guide-walk="${escapeHtml(card.id)}">Walk this</button></article>`;
@@ -103,6 +85,7 @@ export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') 
   if (tab === 'share') {
     const friends = (state.online.leaderboard || []).map((friend) => friend.username).filter(Boolean);
     if (el('friendSharePicker')) el('friendSharePicker').innerHTML = friends.map((name) => `<span class="poi-chip">@${escapeHtml(name)}</span>`).join('');
+    window.dispatchEvent(new CustomEvent('share-panel-render-requested'));
     return;
   }
   const data = await guideData();
@@ -187,11 +170,17 @@ async function paintCard(cardId) {
 export function initFieldGuideFilters() {
   document.querySelector('.guide-tabs')?.addEventListener('click', (event) => { const button = event.target.closest('[data-guide-tab]'); if (button) void renderFieldGuide(button.dataset.guideTab); });
   el('fieldGuideList')?.addEventListener('click', (event) => {
+    const cardElement = event.target.closest('[data-guide-card]');
+    if (cardElement && !event.target.closest('a,button')) { void paintCard(cardElement.dataset.guideCard); return; }
     const walk = event.target.closest('[data-guide-walk]'); if (walk) { void paintCard(walk.dataset.guideWalk); return; }
     const learnWalk = event.target.closest('[data-learn-walk]');
     if (learnWalk) {
-      const poi = (state.cityPois[state.activeCity] || []).find((item) => String(item.id) === learnWalk.dataset.learnWalk);
-      if (poi) paintWalkPlan({ format: FORMAT, pack_id: state.activeCity, title: `Walk to ${poi.name}`, reason: `A sourced place from the ${CITIES[state.activeCity]?.name || 'installed'} pack.`, stop_place_ids: [poi.id] });
+      void (async () => {
+        const data = await guideData();
+        const card = data.learn.find((item) => String(item.placeId) === learnWalk.dataset.learnWalk);
+        const poi = (state.cityPois[state.activeCity] || []).find((item) => String(item.id) === learnWalk.dataset.learnWalk);
+        if (poi) paintWalkPlan({ format: FORMAT, pack_id: state.activeCity, title: `Walk to ${poi.name}`, reason: card?.short || '', stop_place_ids: [poi.id] });
+      })();
       return;
     }
     const learnPlace = event.target.closest('[data-learn-place]');
