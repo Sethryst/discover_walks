@@ -1,14 +1,12 @@
 import { state } from './state.js';
-import { CITIES, GEOFENCE_CATEGORIES } from './constants.js';
+import { CITIES } from './constants.js';
 import { el, escapeHtml, formatDistance, formatDuration, shortDate } from './utils.js';
 import { renderArchive } from './archive.js';
 import { renderProfile } from './profile.js';
-import { geofenceCategoriesForCity } from './poi.js';
 import { renderCivic } from './civic.js';
 import { wordCount } from './reflection.js';
 import { renderFieldGuide } from './field-guide.js';
 import { applyCompanionSettings } from './companion.js';
-import { REFLECTION_PROMPTS } from './reflection.js';
 import db from './storage.js';
 
 export function setArchiveFilter(filter = 'all') {
@@ -98,12 +96,9 @@ export async function openJournal(walkId = null) {
   const existing = walkId ? moments.find((item) => item.type === 'journal' && item.walkId === walkId) : null;
   if (existing) { el('journalNote').value = existing.note || ''; form.dataset.momentId = existing.id; }
   else if (walkId && walkId !== previousWalkId) { el('journalNote').value = ''; delete form.dataset.momentId; }
-  const prompts = el('journalPrompts');
-  prompts.innerHTML = REFLECTION_PROMPTS.map((prompt) => `<button type="button" data-reflection-prompt>${escapeHtml(prompt)}</button>`).join('');
-  prompts.classList.toggle('hidden', Boolean(el('journalNote').value.trim()));
   const walks = state.walks?.length || 0;
   const notes = moments.filter((item) => item.type === 'journal').length;
-  el('journalTitle').textContent = `${new Date().toLocaleDateString([], { month: 'long', day: 'numeric', year: 'numeric' })} · ${CITIES[state.activeCity]?.name || 'Fairfax County'} · private on this device · ${walks} walk${walks === 1 ? '' : 's'} · ${notes} note${notes === 1 ? '' : 's'}`;
+  el('journalTitle').textContent = `${new Date().toLocaleDateString([], { month: 'long', day: 'numeric', year: 'numeric' })} · ${CITIES[state.activeCity]?.name || 'Installed region'} · private on this device · ${walks} walk${walks === 1 ? '' : 's'} · ${notes} note${notes === 1 ? '' : 's'}`;
   el('journalWordCount').textContent = `${wordCount(el('journalNote').value)} words`;
   openSheet('journalSheet');
   void renderArchive();
@@ -125,10 +120,10 @@ export function momentCard(item) {
 }
 export function badge(name, earned, detail) { return `<span class="badge ${earned ? 'earned' : ''}" title="${escapeHtml(detail)}">${earned ? '✓ ' : ''}${escapeHtml(name)}</span>`; }
 export function renderGeofenceCategoryChips() {
-  const categories = geofenceCategoriesForCity();
-  const selected = new Set(state.settings.geofenceCategories || (categories.length ? categories : GEOFENCE_CATEGORIES).map(([id]) => id));
+  const categories = [['recreation', '★ Rec'], ['cuisine', '★ Cuisine']];
+  const selected = new Set(state.settings.geofenceCategories || categories.map(([id]) => id));
   const chipsEl = el('geofenceCategoryChips');
   if (chipsEl) {
-    chipsEl.innerHTML = categories.map(([id, label]) => `<button type="button" class="poi-chip ${selected.has(id) ? 'active' : ''}" aria-pressed="${selected.has(id)}" data-geofence-category="${id}">${label}</button>`).join('') || '<p class="sheet-intro">No local, non-OpenStreetMap place categories are available for geofencing in this region.</p>';
+    chipsEl.innerHTML = categories.map(([id, label]) => `<button type="button" class="poi-chip ${selected.has(id) ? 'active' : ''}" aria-pressed="${selected.has(id)}" data-geofence-category="${id}">${label}</button>`).join('');
   }
 }

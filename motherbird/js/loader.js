@@ -85,7 +85,7 @@ export async function createMigratedProfile() {
     totalPoints: 0
   });
   moments.filter((moment) => moment.type === 'history' && moment.siteId).forEach((moment) => {
-    const cityId = moment.city || 'fairfax';
+    const cityId = moment.city || state.activeCity || Object.keys(CITIES).find((id) => CITIES[id]?.dataFile);
     const ids = sitesForProfile(profile, cityId);
     if (!ids.includes(moment.siteId)) {
       profile.sitesDiscovered[cityId] = [...ids, moment.siteId];
@@ -97,11 +97,9 @@ export async function loadLocalState() {
   const [savedProfile, savedSettings, savedWalks] = await Promise.all([db.get('profile', 'local-user'), db.get('settings', 'app-settings'), db.all('walks')]);
   state.profile = savedProfile ? normalizeProfile(savedProfile) : await createMigratedProfile();
   state.settings = { ...DEFAULT_SETTINGS, ...(savedSettings || {}) };
-  // Trail geofences were added after the original persisted defaults. A saved
-  // profile could not have deliberately disabled this then-unavailable option.
-  if (Array.isArray(state.settings.geofenceCategories) && !state.settings.geofenceCategories.includes('trail')) state.settings.geofenceCategories.push('trail');
+  if (!Array.isArray(state.settings.geofenceCategories) || !state.settings.geofenceCategories.some((id) => ['recreation', 'cuisine'].includes(id))) state.settings.geofenceCategories = ['recreation', 'cuisine'];
   state.settings.entitlements = normalizedEntitlements(state.settings.entitlements);
-  if (!CITIES[state.settings.activeCity] || state.settings.activeCity === 'vienna' || state.settings.activeCity === 'wolf-trap' || state.settings.activeCity === 'wolf-trap-va') state.settings.activeCity = 'fairfax';
+  if (!CITIES[state.settings.activeCity] || !CITIES[state.settings.activeCity]?.dataFile) state.settings.activeCity = Object.keys(CITIES).find((cityId) => CITIES[cityId]?.dataFile);
   state.activeCity = state.settings.activeCity;
   state.walks = savedWalks;
   state.knownTrackPoints = savedWalks.flatMap((walk) => (walk.points || []).filter((_, index) => index % 5 === 0));

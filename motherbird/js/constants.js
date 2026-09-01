@@ -211,8 +211,8 @@ Object.entries(CITIES).forEach(([cityId, city]) => { city.osm = runtimeOsmConfig
   ['trail', '🥾 Trails'], ['wifi', '📶 Free Wi-Fi']
 ];
 export const DEFAULT_SETTINGS = {
-  id: 'app-settings', activeCity: 'fairfax', lastSyncedAt: null, lastSupabaseHeartbeatAt: null,
-  enableGeofencing: true, geofenceCategories: ['library', 'park', 'public_art', 'recreation_center', 'water_access', 'history', 'community_garden', 'trail', 'wifi'], favoriteCategories: [], favoriteRegionIds: [], defaultGeofenceRadiusMeters: 50, defaultPinVisibility: 'private', shareAttribution: '', customObservationTags: {}, companionWalker: 'inky', onboardingCompleted: false, entitlements: { fieldEdition: false, cloudJournalBackup: false, offlineRegions: [], partnerGrants: [] }
+  id: 'app-settings', activeCity: null, lastSyncedAt: null, lastSupabaseHeartbeatAt: null,
+  enableGeofencing: true, geofenceCategories: ['recreation', 'cuisine'], favoriteCategories: [], favoriteRegionIds: [], defaultGeofenceRadiusMeters: 50, defaultPinVisibility: 'private', shareAttribution: '', customObservationTags: {}, companionWalker: 'inky', onboardingCompleted: false, entitlements: { fieldEdition: false, cloudJournalBackup: false, offlineRegions: [], partnerGrants: [] }
 };
 
 export const OBSERVATION_ICONS = ['camera', 'tree', 'star', 'heart', 'coffee', 'book-open', 'music', 'wind'];
@@ -242,9 +242,9 @@ export const POI_TAGS = [
   ['disc_golf', 'Disc golf'], ['skate_park', 'Skate park'], ['restrooms', 'Restrooms']
 ];
                   export const TAG_LABELS = Object.fromEntries(POI_TAGS);
-export const POI_TAG_PRIORITY = ['history', 'event', 'wildlife', 'pantry', 'art', 'nature', 'water', 'community', 'park', 'public_art', 'recreation_center', 'water_access', 'trail', 'library', 'community_garden', 'coffee', 'wifi'];
+export const POI_TAG_PRIORITY = ['history', 'event', 'wildlife', 'pantry', 'art', 'nature', 'water', 'community', 'park', 'public_art', 'recreation_center', 'water_access', 'trail', 'library', 'community_garden', 'coffee', 'cafe', 'market', 'farmers_market', 'grocery', 'supermarket', 'restaurant', 'fast_food', 'wifi'];
 // Keep map symbols literal: Wi-Fi must never fall back to a navigation arrow.
-export const POI_ICONS = { park: 'tree', public_art: 'star', recreation_center: 'activity', water_access: 'anchor', trail: 'walk', library: 'book-open', community_garden: 'tree', history: 'bookmark', coffee: 'coffee', pantry: 'home', event: 'star', nature: 'tree', community: 'home', water: 'droplet', art: 'star', wildlife: 'eye', wifi: 'wifi' };
+export const POI_ICONS = { park: 'tree', public_art: 'star', recreation_center: 'activity', water_access: 'anchor', trail: 'walk', library: 'book-open', community_garden: 'tree', history: 'bookmark', coffee: 'coffee', cafe: 'coffee', coffee_shop: 'coffee', market: 'utensils', farmers_market: 'utensils', grocery: 'utensils', supermarket: 'utensils', restaurant: 'utensils', fast_food: 'utensils', pantry: 'home', event: 'star', nature: 'tree', community: 'home', water: 'droplet', art: 'star', wildlife: 'eye', wifi: 'wifi' };
 // History sites are split into subtypes so the filter sheet isn't one catch-all
 // "History" bucket — each gets its own chip and its own pin glyph.
                 export const HISTORY_SUBTYPES = {

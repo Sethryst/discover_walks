@@ -1,7 +1,6 @@
 import { distanceMeters } from './geo.js';
 import { state } from './state.js';
-import { GEOFENCE_CATEGORIES } from './constants.js';
-import { geofenceCategoriesForCity, isWalkablePoi, poiTags, showHistory } from './poi.js';
+import { isWalkablePoi, poiTags, showHistory } from './poi.js';
 import { requestCompanionContext } from './companion.js';
 
 export function checkGeofences(point) {
@@ -10,8 +9,7 @@ export function checkGeofences(point) {
   // A walk is a chance to notice, not a scavenger hunt.  Keep the live
   // experience intentionally small; direct map exploration remains unlimited.
   if (state.activeWalk && (state.activeWalk.discoveryCount || 0) >= 2) return;
-  const configuredCategories = geofenceCategoriesForCity();
-  const enabledCategories = new Set(settings.geofenceCategories || (configuredCategories.length ? configuredCategories : GEOFENCE_CATEGORIES).map(([id]) => id));
+  const enabledStars = new Set(settings.geofenceCategories || ['recreation', 'cuisine']);
   const favorites = new Set(settings.favoriteCategories || []);
   const defaultRadius = settings.defaultGeofenceRadiusMeters || 50;
   const pois = state.cityPois[state.activeCity] || [];
@@ -19,7 +17,11 @@ export function checkGeofences(point) {
     .filter((poi) => {
     if (!isWalkablePoi(poi)) return false;
     const tags = poiTags(poi);
-    if (!tags.some((tag) => enabledCategories.has(tag))) return false;
+    const recreation = tags.some((tag) => ['park', 'trail', 'nature', 'wildlife', 'water', 'water_access', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad', 'history', 'rest'].includes(tag) || tag.startsWith('history_'));
+    const cuisine = tags.some((tag) => ['coffee', 'coffee_shop', 'cafe', 'market', 'farmers_market', 'grocery', 'supermarket', 'convenience', 'restaurant', 'fast_food'].includes(tag));
+    const allowed = (recreation && enabledStars.has('recreation') && state.layerLights.recreation)
+      || (cuisine && enabledStars.has('cuisine') && state.layerLights.cuisine);
+    if (!allowed) return false;
     if (state.prompted.has(`${state.activeCity}:${poi.id}`)) return false;
     const effectiveRadius = poi.radius || defaultRadius;
     return distanceMeters(point, poi) <= effectiveRadius;

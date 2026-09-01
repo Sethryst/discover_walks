@@ -64,7 +64,27 @@ export function updateFiltersBadge() {
   badge.classList.toggle('hidden', !disabled);
 }
 export function poiMatchesFilters(poi) {
-  return poiMatchesSelectedTags(poi, state.poiTags);
+  return poiObeysMapLights(poi) && poiMatchesSelectedTags(poi, state.poiTags);
+}
+
+const CAFE_TAGS = ['coffee', 'coffee_shop', 'cafe'];
+const MARKET_TAGS = ['market', 'farmers_market', 'grocery', 'supermarket', 'convenience'];
+const RESTAURANT_TAGS = ['restaurant', 'fast_food'];
+
+function anyEnabled(tags) { return tags.some((tag) => state.layerFilters?.public?.[tag] !== false); }
+
+export function poiObeysMapLights(poi) {
+  const tags = poiTags(poi);
+  if (tags.some((tag) => tag === 'history' || tag.startsWith('history_'))) {
+    const historyFilters = Object.keys(state.layerFilters?.public || {}).filter((tag) => tag === 'history' || tag.startsWith('history_'));
+    if (!state.layerLights?.recreation || (historyFilters.length && !anyEnabled(historyFilters))) return false;
+  }
+  if (tags.includes('trail') && (!state.layerLights?.recreation || state.layerFilters?.public?.trail === false)) return false;
+  const foodFamily = tags.some((tag) => CAFE_TAGS.includes(tag)) ? CAFE_TAGS
+    : tags.some((tag) => MARKET_TAGS.includes(tag)) ? MARKET_TAGS
+      : tags.some((tag) => RESTAURANT_TAGS.includes(tag)) ? RESTAURANT_TAGS : null;
+  if (foodFamily && (!state.layerLights?.cuisine || !anyEnabled(foodFamily))) return false;
+  return true;
 }
 // Filter choices come from the imported POI set, never the currently visible
 // result set. That keeps a selected category reversible even when it produces
@@ -110,9 +130,8 @@ export function renderCityPois() {
   const pois = state.cityPois[state.activeCity] || [];
   const markers = pois
     .filter((poi) => poi.category !== 'journey')
-    .filter((poi) => !poiTags(poi).includes('history'))
+    .filter((poi) => !hasPackTrailGeometry(poi))
     .filter(isVisiblePoi)
-    .filter((poi) => !isOsmPoi(poi) || !state.poiTags.size || state.poiTags.has('osm'))
     .filter(poiMatchesFilters)
     .filter(withinRenderBounds)
     .map((poi) => {
@@ -139,44 +158,17 @@ export function renderCityPois() {
   if (state.poiLayer.addLayers) state.poiLayer.addLayers(markers); else markers.forEach((marker) => marker.addTo(state.poiLayer));
   void hydrateInlineIcons(state.map?.getContainer?.() || document);
   const segments = state.trailSegments[state.activeCity] || [];
-  if (!state.poiTags.size || state.poiTags.has('trail')) {
+  if (state.layerLights?.recreation && state.layerFilters?.public?.trail !== false && state.poiTags.has('trail')) {
     segments.forEach((segment) => segment.coordinates.forEach((coordinates) => L.polyline(coordinates.map(([lng, lat]) => [lat, lng]), { color: '#2d7259', weight: 5, opacity: .82 }).bindTooltip(segment.name || 'Named trail').addTo(state.trailLayer)));
   }
-  renderHistorySites();
+  state.historyLayer?.clearLayers();
+  state.historyRadiusLayer?.clearLayers();
 }
-export function renderHistorySites() {
-  if (!state.historyLayer) return;
-  state.historyLayer.clearLayers();
-  if (state.historyRadiusLayer) state.historyRadiusLayer.clearLayers();
-  const active = city();
-  const allSites = citySites();
-  // Build collision counts once. The former per-marker scan made rendering a
-  // large city quadratic, which made pan/zoom noticeably sluggish.
-  const coordinateCounts = new Map();
-  allSites.forEach((site) => {
-    const key = `${site.lat},${site.lng}`;
-    coordinateCounts.set(key, (coordinateCounts.get(key) || 0) + 1);
-  });
-  const sites = allSites.filter(isWalkablePoi).filter((site) => !isOsmPoi(site) || !state.poiTags.size || state.poiTags.has('osm')).filter((site) => hasReliableMapCoordinate(site, coordinateCounts)).filter(poiMatchesFilters).filter(withinRenderBounds);
-  const markers = sites.map((site) => {
-    const subtype = inferHistorySubtype(site);
-    const iconName = HISTORY_SUBTYPES[subtype]?.icon || 'building';
-    const historyIcon = L.divIcon({
-      className: '',
-      html: `<div class="historic-pin${site.unverified ? ' unverified' : ''}"><span class="pin-body"><span class="pin-icon"><img data-inline-svg data-icon-fallback="·" src="./icons/${iconName}.svg" alt="" /></span></span></div>`,
-      iconSize: [32, 40], iconAnchor: [16, 38]
-    });
-    const marker = L.marker([site.lat, site.lng], { icon: historyIcon, title: site.name, interactive: !state.planningMode, place: site });
-    const subtypeLabel = HISTORY_SUBTYPES[subtype]?.label;
-    marker.bindTooltip(site.unverified ? `${site.name} — unverified` : `${site.name}${subtypeLabel ? ` · ${subtypeLabel}` : ''}`, { direction: 'top', offset: [0, -32] });
-    marker.on('click', () => { if (!state.planningMode) showHistory(site, distanceMeters(state.currentPosition || active.center, site)); });
-    if (state.historyRadiusLayer) {
-      L.circle([site.lat, site.lng], { radius: site.radius, stroke: true, weight: 1, color: site.unverified ? '#d4932f' : '#2d7259', opacity: .38, fillColor: site.unverified ? '#d4932f' : '#2d7259', fillOpacity: .06, interactive: false }).addTo(state.historyRadiusLayer);
-    }
-    return marker;
-  });
-  if (state.historyLayer.addLayers) state.historyLayer.addLayers(markers); else markers.forEach((marker) => marker.addTo(state.historyLayer));
-  void hydrateInlineIcons(state.map?.getContainer?.() || document);
+
+function hasPackTrailGeometry(poi) {
+  if (!poiTags(poi).includes('trail')) return false;
+  if (['LineString', 'MultiLineString'].includes(poi.geometry?.type)) return true;
+  return (state.trailSegments[state.activeCity] || []).some((segment) => String(segment.id) === String(poi.id));
 }
 export function renderCityExplorer() {
   updateFiltersBadge();
@@ -191,6 +183,7 @@ export function renderCityExplorer() {
 export function normalizePoiTags(poi) {
   const tags = [...(poi.tags || [])];
   if (poi.category && !tags.includes(poi.category)) tags.push(poi.category);
+  if (poi.type && !tags.includes(poi.type)) tags.push(poi.type);
   if (poi.amenities) poi.amenities.forEach((amenity) => { if (!tags.includes(amenity)) tags.push(amenity); });
   // Source data sometimes marks a site historic only in `subcategory` (e.g.
   // Norfolk's "HISTORICAL" library subcategory) without a top-level `history`
@@ -259,8 +252,13 @@ export function citySites() { return (state.cityPois[state.activeCity] || []).fi
 // eligibility check so the denominator always matches what's collectible.
 export function cityDiscoverableSites() {
   const pois = state.cityPois[state.activeCity] || [];
-  const enabledCategories = new Set(state.settings?.geofenceCategories || GEOFENCE_CATEGORIES.map(([id]) => id));
-  return pois.filter((poi) => poiTags(poi).some((tag) => enabledCategories.has(tag)));
+  const enabledStars = new Set(state.settings?.geofenceCategories || ['recreation', 'cuisine']);
+  return pois.filter((poi) => {
+    const tags = poiTags(poi);
+    const recreation = tags.some((tag) => ['park', 'trail', 'nature', 'wildlife', 'water', 'water_access', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad', 'history', 'rest'].includes(tag) || tag.startsWith('history_'));
+    const cuisine = tags.some((tag) => [...CAFE_TAGS, ...MARKET_TAGS, ...RESTAURANT_TAGS].includes(tag));
+    return (recreation && enabledStars.has('recreation')) || (cuisine && enabledStars.has('cuisine'));
+  });
 }
 export function withinRenderBounds(poi) {
   if (!state.map) return true;

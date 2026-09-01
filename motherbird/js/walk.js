@@ -111,7 +111,7 @@ export function getCurrentLocation() {
   if (!navigator.geolocation) { toast('This browser does not support location.'); return; }
   setStatus('Finding your location...', true);
   navigator.geolocation.getCurrentPosition(
-    (position) => handlePosition(position, true),
+    (position) => void refineInstalledPack(position).then(() => handlePosition(position, true)),
     (error) => { setStatus('Location unavailable'); toast(error.code === 1 ? 'Location permission is needed to record a walk.' : 'Could not get a location. Your draft remains safe; check your signal and try again.'); },
     { enableHighAccuracy: true, timeout: 12000, maximumAge: 10000 }
   );
@@ -353,14 +353,19 @@ async function snapToClosestInstalledPack() {
     });
   });
   if (!position) return;
+  await refineInstalledPack(position);
   handlePosition(position, true);
+}
+
+async function refineInstalledPack(position) {
+  if (!position || state.activeWalk) return;
   const point = { lat: position.coords.latitude, lng: position.coords.longitude };
   const closest = Object.entries(CITIES)
     .filter(([, city]) => city?.dataFile && city?.center)
     .sort(([, left], [, right]) => distanceMeters(point, left.center) - distanceMeters(point, right.center))[0];
   if (!closest || closest[0] === state.activeCity) return;
   const { switchCity } = await import('./city.js');
-  await switchCity(closest[0]);
+  await switchCity(closest[0], false);
 }
 
 async function updatePersonalPlaceCandidates(walk) {

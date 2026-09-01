@@ -81,11 +81,6 @@ function bindWalkControls() {
     const chip = event.target.closest('[data-start-interest]'); if (!chip) return;
     const active = chip.getAttribute('aria-pressed') !== 'true'; chip.setAttribute('aria-pressed', String(active)); chip.classList.toggle('active', active);
   });
-  el('surpriseWalkButton')?.addEventListener('click', () => {
-    const chips = [...document.querySelectorAll('[data-start-interest]')];
-    chips.forEach((chip) => { chip.setAttribute('aria-pressed', 'false'); chip.classList.remove('active'); });
-    const pick = chips[Math.floor(Math.random() * chips.length)]; pick?.setAttribute('aria-pressed', 'true'); pick?.classList.add('active');
-  });
   el('generateWalkButton')?.addEventListener('click', () => void generateTimeBasedPlan());
   window.addEventListener('walk-sketch-painted', (event) => renderWalkSketch(event.detail));
   el('dismissWalkSketch')?.addEventListener('click', () => { changePlan(); el('walkSketch').classList.add('hidden'); });
@@ -125,13 +120,8 @@ function bindJournal() {
     }
   })());
   el('journalForm')?.addEventListener('submit', saveJournal);
-  el('journalPrompts')?.addEventListener('click', (event) => {
-    const prompt = event.target.closest('[data-reflection-prompt]'); if (!prompt) return;
-    const note = el('journalNote'); note.value = `${prompt.textContent}\n`; el('journalPrompts').classList.add('hidden'); note.focus(); note.dispatchEvent(new Event('input'));
-  });
   el('journalNote')?.addEventListener('input', (event) => {
     const count = wordCount(event.target.value); el('journalWordCount').textContent = `${count} word${count === 1 ? '' : 's'}`;
-    el('journalPrompts').classList.toggle('hidden', Boolean(event.target.value.trim()));
   });
   el('journalTitle')?.addEventListener('click', () => {
     const history = el('journalHistory'); const opening = history.classList.contains('hidden'); history.classList.toggle('hidden', !opening); el('journalTitle').setAttribute('aria-expanded', String(opening));

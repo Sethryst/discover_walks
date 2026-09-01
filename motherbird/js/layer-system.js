@@ -69,6 +69,7 @@ export async function initLayerSystem() {
   bindLayerControls();
   renderLayerFilters();
   renderMapLights();
+  renderNewsMarkers();
   renderRouteLights();
 }
 
@@ -194,7 +195,7 @@ async function persistLayerState() {
 
 function applyLayerChanges({ rerenderFilters = true } = {}) {
   syncLegacyPoiTags();
-  renderCityPois(); renderPersonalPlacesOnMap(); renderRouteLights(); updateLayerBadge();
+  renderCityPois(); renderPersonalPlacesOnMap(); renderNewsMarkers(); renderRouteLights(); updateLayerBadge();
   if (rerenderFilters) renderLayerFilters();
   renderMapLights();
   void persistLayerState();
@@ -226,7 +227,11 @@ async function loadCivicAvailability() {
     const payload = await response.json();
     const data = payload?.artifacts || payload || {};
     const current = (item) => !item?.expiresAt || (Number.isFinite(Date.parse(item.expiresAt)) && Date.now() < Date.parse(item.expiresAt));
-    const notice = (item, kind) => item?.title && /^https:\/\//i.test(item.officialUrl || '') && current(item) ? { ...item, kind, artifact_type: 'temporal_event' } : null;
+    const notice = (item, kind) => {
+      const venueText = `${item?.locationLabel || ''} ${item?.venueAddress || ''}`;
+      if (!item?.title || !/^https:\/\//i.test(item.officialUrl || '') || !current(item) || /\bvirtual\b|\bonline\b|\bteams\b|\bzoom\b/i.test(venueText)) return null;
+      return { ...item, kind, artifact_type: 'temporal_event', location: locateNotice(item) };
+    };
     const notices = [
       ...(data.meetings?.items || []).map((item) => notice(item, 'Meeting')),
       ...(data.events?.items || []).map((item) => notice(item, 'Event')),
@@ -242,6 +247,40 @@ async function loadCivicAvailability() {
   } catch {
     return { ...civicAvailability, capability: civicAvailability.notices?.length ? 'stale' : 'none' };
   }
+}
+
+function locateNotice(item) {
+  const lat = Number(item.latitude ?? item.lat ?? item.location?.lat);
+  const lng = Number(item.longitude ?? item.lng ?? item.location?.lng);
+  if (Number.isFinite(lat) && Number.isFinite(lng)) return { lat, lng };
+  const venue = `${item.locationLabel || ''} ${item.venueAddress || ''}`.toLocaleLowerCase();
+  if (!venue.trim()) return null;
+  const candidates = (state.cityPois[state.activeCity] || []).filter((poi) => Number.isFinite(poi.lat) && Number.isFinite(poi.lng));
+  const scored = candidates.map((poi) => {
+    const words = String(poi.name || '').toLocaleLowerCase().split(/\W+/).filter((word) => word.length > 3);
+    return { poi, score: words.filter((word) => venue.includes(word)).length };
+  }).filter(({ score }) => score > 0).sort((left, right) => right.score - left.score);
+  return scored[0] && scored[0].score >= 2 ? { lat: scored[0].poi.lat, lng: scored[0].poi.lng } : null;
+}
+
+function renderNewsMarkers() {
+  if (!state.map) return;
+  if (!state.newsLayer) state.newsLayer = L.layerGroup().addTo(state.map);
+  state.newsLayer.clearLayers();
+  if (!state.layerLights.news) return;
+  const located = civicAvailability.notices.filter((notice) => notice.location);
+  const venues = new Map();
+  located.forEach((notice) => {
+    const key = `${notice.location.lat.toFixed(5)}:${notice.location.lng.toFixed(5)}`;
+    if (!venues.has(key)) venues.set(key, { location: notice.location, notices: [] });
+    venues.get(key).notices.push(notice);
+  });
+  venues.forEach(({ location, notices }) => {
+    const icon = L.divIcon({ className: '', html: '<div class="poi-marker event"><img data-inline-svg data-icon-fallback="·" src="./icons/star.svg" alt="" /></div>', iconSize: [27, 27], iconAnchor: [13, 13] });
+    const links = notices.map((notice) => `<a href="${escapeHtml(notice.officialUrl)}" target="_blank" rel="noreferrer">${escapeHtml(notice.title)} ↗</a>`).join('<br>');
+    L.marker([location.lat, location.lng], { icon, title: notices[0].locationLabel || notices[0].title }).bindPopup(links).addTo(state.newsLayer);
+  });
+  void hydrateInlineIcons(state.map.getContainer());
 }
 
 function packPublicMarkers(light, chipId = null) {
@@ -514,5 +553,15 @@ function bindLayerControls() {
   window.addEventListener('public-markers-changed', () => { ensureLayerDefaults(); applyLayerChanges({ rerenderFilters: false }); });
   window.addEventListener('layer-state-dirty', () => applyLayerChanges());
   window.addEventListener('map-viewport-changed', () => { renderMapLights(); renderRouteLights(); });
-  window.addEventListener('city-layer-data-changed', async () => { civicAvailability = await loadCivicAvailability(); await refreshPublicMarkers(state.activeCity); ensureLayerDefaults(); state.layerLights.news = newsAvailable(); applyLayerChanges(); });
+  window.addEventListener('city-layer-data-changed', async () => {
+    civicAvailability = await loadCivicAvailability();
+    await refreshPublicMarkers(state.activeCity);
+    ensureLayerDefaults();
+    state.layerLights.news = newsAvailable();
+    state.layerLights.recreation = availableMapChips('recreation').length > 0;
+    state.layerLights.cuisine = false;
+    availableMapChips('recreation').forEach((chip) => setChip(chip, true));
+    availableMapChips('cuisine').forEach((chip) => setChip(chip, false));
+    applyLayerChanges();
+  });
 }

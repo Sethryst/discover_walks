@@ -4,6 +4,7 @@ import { el, escapeHtml } from './utils.js';
 import { routesForCity, showCuratedRoute } from './routes.js';
 import { closeSheets, openBackpack, openSheet, toast } from './ui.js';
 import { paintWalkConcept } from './planner.js';
+import { distanceMeters } from './geo.js';
 
 const FORMAT = 'walk-wildlife-plan-v1';
 let selectedPlaceId = null;
@@ -17,14 +18,52 @@ async function guideData() {
   const city = CITIES[state.activeCity] || {};
   if (state.fieldGuideData?.city === state.activeCity) return state.fieldGuideData;
   const [discover, learn] = await Promise.all([loadJson(city.discoverFile, { cards: [] }), loadJson(city.learnFile, { cards: [] })]);
-  const journeyCards = routesForCity(state.activeCity).map((route) => ({
-    id: `journey:${route.id}`, kind: 'journey', journeyId: route.id, title: route.title,
-    reason: route.description || 'A sourced journey through named places.',
-    stopPlaceIds: [...new Set(route.chapters.flatMap((chapter) => [...(chapter.stops || []), ...(chapter.amenities || [])].map((stop) => stop.id)).filter(Boolean))]
-  }));
-  const byId = new Map([...(discover.cards || []), ...journeyCards].map((card) => [card.id, card]));
-  state.fieldGuideData = { city: state.activeCity, discover: [...byId.values()], learn: learn.cards || [] };
+  const pois = (state.cityPois[state.activeCity] || []).filter((poi) => poi.category !== 'journey');
+  const poiById = new Map(pois.map((poi) => [String(poi.id), poi]));
+  const authoredJourneys = new Map((discover.cards || []).filter((card) => card.kind === 'journey').map((card) => [card.id, card]));
+  const journeyCards = routesForCity(state.activeCity).slice(0, 4).map((route) => {
+    const authored = authoredJourneys.get(`journey:${route.id}`) || {};
+    const ids = [...new Set((authored.stopPlaceIds || route.chapters.flatMap((chapter) => [...(chapter.stops || []), ...(chapter.amenities || [])].map((stop) => stop.id))).map(String))].filter((id) => poiById.has(id));
+    return { ...authored, id: `journey:${route.id}`, kind: 'journey', journeyId: route.id, title: authored.title || route.title, reason: authored.reason || route.description || 'A sourced journey through named places.', stopPlaceIds: ids };
+  });
+  const nearbyCards = nearbyUnlikeCards(pois);
+  const discoverCards = [...journeyCards, ...nearbyCards];
+  const discoverIds = new Set(discoverCards.flatMap((card) => card.stopPlaceIds || []));
+  const learnCards = (learn.cards || []).filter((card) => discoverIds.has(String(card.placeId)) && isPublicPage(card.officialUrl)).map((card) => {
+    const poi = poiById.get(String(card.placeId));
+    return { ...card, question: poi?.name || card.question, short: `A sourced walker note for ${poi?.name || 'this installed place'}.` };
+  });
+  state.fieldGuideData = { city: state.activeCity, discover: discoverCards, learn: learnCards };
   return state.fieldGuideData;
+}
+
+function isPublicPage(url) {
+  return /^https:\/\//i.test(url || '') && !/\/rest\/services\/|\/(?:Feature|Map)Server\b|openstreetmap\.org\//i.test(url);
+}
+
+function nearbyUnlikeCards(pois) {
+  const located = pois.filter((poi) => Number.isFinite(poi.lat) && Number.isFinite(poi.lng));
+  const family = (poi) => {
+    const tags = [...new Set([...(poi.tags || []), poi.category, poi.type].filter(Boolean))];
+    if (tags.includes('park')) return 'park';
+    if (tags.some((tag) => ['coffee', 'coffee_shop', 'cafe'].includes(tag))) return 'cafe';
+    if (tags.some((tag) => ['rest', 'restrooms', 'water', 'drinking_water', 'water_fountain'].includes(tag))) return 'rest';
+    return null;
+  };
+  const groups = Object.groupBy ? Object.groupBy(located, family) : located.reduce((all, poi) => { const key = family(poi); if (key) (all[key] ||= []).push(poi); return all; }, {});
+  const usedNames = new Set();
+  const cards = [];
+  for (const park of groups.park || []) {
+    const nearestUnused = (items = []) => items.filter((poi) => !usedNames.has(String(poi.name).toLocaleLowerCase())).sort((left, right) => distanceMeters(park, left) - distanceMeters(park, right))[0];
+    const cafe = nearestUnused(groups.cafe);
+    const rest = nearestUnused(groups.rest);
+    if (!cafe || !rest || distanceMeters(park, cafe) > 2400 || distanceMeters(park, rest) > 2400) continue;
+    const stops = [park, cafe, rest];
+    stops.forEach((poi) => usedNames.add(String(poi.name).toLocaleLowerCase()));
+    cards.push({ id: `nearby:${park.id}`, kind: 'park+cafe+rest', title: stops.map((poi) => poi.name).join(' + '), reason: 'A nearby park, café, and rest or water stop from this installed pack.', stopPlaceIds: stops.map((poi) => String(poi.id)) });
+    if (cards.length === 4) break;
+  }
+  return cards;
 }
 
 function discoverCard(card) {
@@ -49,8 +88,8 @@ export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') 
   }
   const data = await guideData();
   const cards = tab === 'learn' ? data.learn : data.discover;
-  const ordered = selectedPlaceId ? [...cards].sort((left, right) => Number((right.placeId === selectedPlaceId) || right.stopPlaceIds?.includes(selectedPlaceId)) - Number((left.placeId === selectedPlaceId) || left.stopPlaceIds?.includes(selectedPlaceId))) : cards;
-  target.innerHTML = ordered.length ? ordered.slice(0, 6).map(tab === 'learn' ? learnCard : discoverCard).join('') : '';
+  const ordered = tab === 'learn' && selectedPlaceId ? [...cards].sort((left, right) => Number(right.placeId === selectedPlaceId) - Number(left.placeId === selectedPlaceId)) : cards;
+  target.innerHTML = ordered.length ? ordered.slice(0, 8).map(tab === 'learn' ? learnCard : discoverCard).join('') : '';
 }
 
 function planForCard(card) {

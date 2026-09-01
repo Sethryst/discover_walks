@@ -6,6 +6,7 @@ import { RegionAPI } from './region-api.js';
 import { RegionPackage } from './region-package.js';
 import { canUseOfflineRegion } from './entitlements.js';
 import { FieldEditionLoader } from './field-edition-loader.js';
+import { CITIES } from './constants.js';
 
 export const regionInstaller = new RegionInstaller({ db });
 
@@ -89,16 +90,17 @@ export async function initRegionAutomation() {
   chip.textContent = 'Preparing region automation…';
   try {
     const installedRegions = await regionApi.discoverRegions();
-    const region = installedRegions.some((entry) => entry.id === 'fairfax')
-      ? await regionApi.loadRegion('fairfax')
-      : await regionApi.installRegion('fairfax');
+    const activeRegionId = CITIES[state.activeCity]?.packId || state.activeCity;
+    const region = installedRegions.some((entry) => entry.id === activeRegionId)
+      ? await regionApi.loadRegion(activeRegionId)
+      : null;
 
     state.regionAutomation = {
       ...region,
       installedRegions,
       installer: regionInstaller
     };
-    chip.textContent = region?.ready ? 'Region automation ready' : 'Region automation pending';
+    chip.textContent = region?.ready ? 'Region automation ready' : 'No installed offline region selected';
   } catch (error) {
     chip.textContent = 'Region automation unavailable';
     console.warn('Region automation init failed:', error);
