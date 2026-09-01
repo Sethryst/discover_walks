@@ -91,6 +91,10 @@ def _build_runtime_package(region: dict[str, Any], osm: Any, runtime_root: Path,
     if raw.get("remark"):
         raise RuntimeError(f"Cached Overpass response is incomplete: {raw['remark']}")
     pois, warnings = normalize_overpass(raw.get("elements", []), source.id, source_vintage, list(active_osm.bbox))
+    if "trail" not in active_osm.categories:
+        # A historic object can also carry a highway tag.  Do not let the
+        # runtime normalizer resurrect a point marker for an edge-only layer.
+        pois = [poi for poi in pois if poi.get("category") != "trail"]
     boundary = _json(output_root / region["id"] / "geography" / "boundary.geojson")
     if boundary:
         before = len(pois)

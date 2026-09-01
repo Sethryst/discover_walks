@@ -44,7 +44,7 @@ export async function chooseClosestCityIfPermitted() {
 }
 
 export function nearestCityFor(point) {
-  return Object.entries(CITIES).reduce((best, [id, config]) => {
+  return Object.entries(CITIES).filter(([, config]) => config?.dataFile && config?.center).reduce((best, [id, config]) => {
     const distance = distanceMeters(point, config.center);
     return !best || distance < best.distance ? { id, distance, point } : best;
   }, null);

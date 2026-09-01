@@ -29,7 +29,7 @@ const CHIP_OPTIONS = {
 };
 const CHIP_FILTERS = {
   recreation: {
-    routes: ['__routes'], nature: ['park', 'nature', 'wildlife', 'water_access', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad'],
+    routes: ['__routes'], nature: ['park', 'nature', 'wildlife', 'water', 'water_access', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad', 'rest', 'restrooms', 'drinking_water', 'water_fountain', 'shelter'],
     trails: ['trail'], historic: ['history'], volunteer: ['__volunteer']
   },
   cuisine: {
@@ -44,7 +44,7 @@ export function slugifyCategory(value = '') {
 }
 
 export function normalizePersonalCategory(category = {}, now = new Date().toISOString()) {
-  const name = String(category.name || category.id || 'My POIs').trim().slice(0, 60);
+  const name = String(category.name || category.id || 'My Places').trim().slice(0, 60);
   return {
     id: slugifyCategory(category.id || name),
     name,
@@ -96,7 +96,7 @@ export function curatedPersonalPlaces(places = state.personalPlaces) {
 
 export function defaultPersonalCategoryLabel() {
   const username = String(state.online.remoteProfile?.username || '').trim();
-  return username ? `${username} POIs` : 'My POIs';
+  return username ? `${username}'s places` : 'My Places';
 }
 
 export async function ensureDefaultPersonalCategory() {
@@ -153,7 +153,7 @@ function markerCategoryLabel(marker) {
 function publicMarkerIcon() {
   return L.divIcon({
     className: '',
-    html: '<div class="poi-marker park"><img data-inline-svg data-icon-fallback="·" src="./icons/tree.svg" alt="" /></div>',
+    html: '<div class="poi-marker"><img data-inline-svg data-icon-fallback="·" src="./icons/map-pin.svg" alt="" /></div>',
     iconSize: [27, 27], iconAnchor: [13, 13]
   });
 }

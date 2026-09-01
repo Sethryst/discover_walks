@@ -39,7 +39,7 @@ const CIVIC_VENUES = [
 const LIGHT_CHIPS = {
   recreation: [
     { id: 'routes', label: 'routes', tags: ['__routes'] },
-    { id: 'nature', label: 'nature', tags: ['park', 'nature', 'wildlife', 'water_access', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad'] },
+    { id: 'nature', label: 'nature', tags: ['park', 'nature', 'wildlife', 'water', 'water_access', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad', 'rest', 'restrooms', 'drinking_water', 'water_fountain', 'shelter'] },
     { id: 'trails', label: 'trails', tags: ['trail'] },
     { id: 'historic', label: 'historic', prefix: 'history' },
     { id: 'volunteer', label: 'volunteer', tags: ['__volunteer'] }
@@ -298,6 +298,7 @@ function availableMapChips(kind) {
     if (!tags.length && chip.prefix) tags = [chip.prefix];
     let available = tags.some((id) => availableTags.has(id));
     if (chip.id === 'routes') available = routesForCity(state.activeCity).length > 0;
+    if (chip.id === 'trails') available = (state.trailSegments[state.activeCity] || []).length > 0;
     if (chip.id === 'volunteer') available = civicAvailability.volunteer;
     if (packPublicMarkers(kind, chip.id).length) available = true;
     return { ...chip, tags, available };

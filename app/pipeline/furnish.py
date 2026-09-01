@@ -119,9 +119,11 @@ def _edge_artifact(region_id: str, generated_at: str, records: list[dict[str, An
 
 
 def _discover_artifact(region_id: str, generated_at: str, pois: list[dict[str, Any]], journeys: dict[str, Any]) -> dict[str, Any]:
+    """Lead with the four authored Journeys, then offer only park+cafe+comfort walks."""
     cards: list[dict[str, Any]] = []
+    installed_ids = {str(poi.get("id")) for poi in pois}
     for journey in journeys.get("journeys", []):
-        stop_ids = list(dict.fromkeys(stop.get("id") for chapter in journey.get("chapters", []) for stop in [*chapter.get("stops", []), *chapter.get("amenities", [])] if stop.get("id")))
+        stop_ids = list(dict.fromkeys(str(stop["id"]) for chapter in journey.get("chapters", []) for stop in [*chapter.get("stops", []), *chapter.get("amenities", [])] if stop.get("id") and str(stop["id"]) in installed_ids))
         cards.append({
             "id": f"journey:{journey['id']}", "artifact_type": "enrichment", "kind": "journey",
             "journeyId": journey["id"], "title": journey["name"],
@@ -129,40 +131,29 @@ def _discover_artifact(region_id: str, generated_at: str, pois: list[dict[str, A
             "stopPlaceIds": stop_ids,
         })
 
-    usable = [poi for poi in pois if poi.get("category") in DISCOVER_KINDS and isinstance(poi.get("lat"), (int, float)) and isinstance(poi.get("lng"), (int, float))]
-    cells: dict[tuple[int, int], list[dict[str, Any]]] = {}
-    for poi in usable:
-        cells.setdefault((int(poi["lat"] * 500), int(poi["lng"] * 500)), []).append(poi)
-    seen: set[tuple[str, ...]] = set()
-    anchors = sorted(usable, key=lambda poi: (DISCOVER_KINDS[poi["category"]] not in {"park", "heritage", "trail"}, poi["name"], poi["id"]))
-    for anchor in anchors:
-        key = (int(anchor["lat"] * 500), int(anchor["lng"] * 500))
-        nearby = [candidate for row in range(key[0] - 2, key[0] + 3) for column in range(key[1] - 2, key[1] + 3) for candidate in cells.get((row, column), []) if candidate["id"] != anchor["id"] and _distance(anchor, candidate) <= 250]
-        chosen = [anchor]
-        kinds = {DISCOVER_KINDS[anchor["category"]]}
-        for candidate in sorted(nearby, key=lambda poi: (_distance(anchor, poi), poi["id"])):
-            kind = DISCOVER_KINDS[candidate["category"]]
-            if kind in kinds:
-                continue
-            chosen.append(candidate)
-            kinds.add(kind)
-            if len(chosen) == 3:
-                break
-        if len(chosen) < 2:
+    located = [poi for poi in pois if isinstance(poi.get("lat"), (int, float)) and isinstance(poi.get("lng"), (int, float))]
+    parks = [poi for poi in located if poi.get("category") in {"park", "nature"}]
+    cafes = [poi for poi in located if poi.get("category") in {"coffee", "cafe"}]
+    comfort = [poi for poi in located if poi.get("category") in {"rest", "water"}]
+    used_names: set[str] = set()
+    for park in sorted(parks, key=lambda poi: (str(poi.get("name", "")), str(poi.get("id", "")))):
+        def nearest(candidates: list[dict[str, Any]]) -> dict[str, Any] | None:
+            available = [poi for poi in candidates if str(poi.get("name", "")).casefold() not in used_names]
+            return min(available, key=lambda poi: (_distance(park, poi), str(poi.get("id", ""))), default=None)
+        cafe, rest = nearest(cafes), nearest(comfort)
+        if cafe is None or rest is None or _distance(park, cafe) > 2400 or _distance(park, rest) > 2400:
             continue
-        ids = tuple(sorted(poi["id"] for poi in chosen))
-        if ids in seen:
-            continue
-        seen.add(ids)
-        ordered_kinds = [DISCOVER_KINDS[poi["category"]] for poi in chosen]
+        chosen = [park, cafe, rest]
+        used_names.update(str(poi.get("name", "")).casefold() for poi in chosen)
+        ids = tuple(str(poi["id"]) for poi in chosen)
         cards.append({
             "id": "cluster:" + hashlib.sha256("|".join(ids).encode()).hexdigest()[:16],
-            "artifact_type": "enrichment", "kind": "+".join(ordered_kinds),
+            "artifact_type": "enrichment", "kind": "park+cafe+rest",
             "title": " + ".join(poi["name"] for poi in chosen),
-            "reason": _cluster_reason(ordered_kinds),
+            "reason": "A nearby park, café, and rest or water stop from this installed pack.",
             "stopPlaceIds": [poi["id"] for poi in chosen],
         })
-        if len(cards) >= len(journeys.get("journeys", [])) + 24:
+        if len(cards) >= len(journeys.get("journeys", [])) + 12:
             break
     return {"schemaVersion": 1, "regionId": region_id, "generatedAt": generated_at, "artifact_type": "enrichment", "cards": cards}
 
@@ -178,16 +169,10 @@ def _learn_artifact(region_id: str, generated_at: str, pois: list[dict[str, Any]
         if not url:
             continue
         category = poi.get("category")
-        question = {
-            "wildlife": f"What birds make {poi['name']} a place to pause?",
-            "park": f"What kind of ground does {poi['name']} protect?",
-            "history": f"What happened around {poi['name']}?",
-            "trail": f"Where does {poi['name']} carry a walker?",
-        }.get(category, f"What is worth noticing at {poi['name']}?")
         source = next((source for source in poi.get("source", []) if isinstance(source, dict) and source.get("url")), {})
         cards.append({
             "id": f"learn:{poi['id']}", "artifact_type": "enrichment", "placeId": poi["id"],
-            "question": question, "short": poi.get("description") or f"A sourced {str(category or 'place').replace('_', ' ')} in this installed pack.",
+            "question": poi["name"], "short": poi.get("description") or f"{poi['name']} is a sourced {str(category or 'place').replace('_', ' ')} stop for walkers in this installed pack.",
             "officialUrl": url, "provenance": {"name": source.get("name") or ("eBird" if poi.get("ebirdLocationId") else "Official source"), "url": url},
         })
         if len(cards) >= 24:
@@ -204,11 +189,21 @@ def _cluster_reason(kinds: list[str]) -> str:
 
 
 def _poi_url(poi: dict[str, Any]) -> str | None:
+    def public_page(value: Any) -> bool:
+        text = str(value or "")
+        return text.startswith("https://") and "/rest/services/" not in text and "/FeatureServer" not in text and "/MapServer" not in text and "openstreetmap.org/node/" not in text and "openstreetmap.org/way/" not in text and "openstreetmap.org/relation/" not in text
     for key in ("officialUrl", "website", "link"):
         value = poi.get(key)
-        if isinstance(value, str) and value.startswith("https://"):
+        if public_page(value):
             return value
-    return next((source.get("url") for source in poi.get("source", []) if isinstance(source, dict) and str(source.get("url", "")).startswith("https://")), None)
+    for source in poi.get("source", []):
+        if not isinstance(source, dict):
+            continue
+        if public_page(source.get("url")):
+            return source["url"]
+        if public_page(source.get("licenseUrl")):
+            return source["licenseUrl"]
+    return None
 
 
 def _news_capability(bundle: Path, manifest: dict[str, Any]) -> str:

@@ -69,11 +69,13 @@ export function poiMatchesFilters(poi) {
 const CAFE_TAGS = ['coffee', 'coffee_shop', 'cafe'];
 const MARKET_TAGS = ['market', 'farmers_market', 'grocery', 'supermarket', 'convenience'];
 const RESTAURANT_TAGS = ['restaurant', 'fast_food'];
+const NATURE_TAGS = ['park', 'nature', 'wildlife', 'water', 'water_access', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad', 'rest', 'restrooms', 'drinking_water', 'water_fountain', 'shelter'];
 
 function anyEnabled(tags) { return tags.some((tag) => state.layerFilters?.public?.[tag] !== false); }
 
 export function poiObeysMapLights(poi) {
   const tags = poiTags(poi);
+  if (tags.some((tag) => NATURE_TAGS.includes(tag)) && (!state.layerLights?.recreation || !anyEnabled(NATURE_TAGS))) return false;
   if (tags.some((tag) => tag === 'history' || tag.startsWith('history_'))) {
     const historyFilters = Object.keys(state.layerFilters?.public || {}).filter((tag) => tag === 'history' || tag.startsWith('history_'));
     if (!state.layerLights?.recreation || (historyFilters.length && !anyEnabled(historyFilters))) return false;
@@ -134,14 +136,14 @@ export function renderCityPois() {
     .filter(poiMatchesFilters)
     .filter(withinRenderBounds)
     .map((poi) => {
-      const icon = L.divIcon({ className: '', html: '<div class="poi-marker park"><img data-inline-svg data-icon-fallback="·" src="./icons/tree.svg" alt="" /></div>', iconSize: [27, 27], iconAnchor: [13, 13] });
+      const icon = L.divIcon({ className: '', html: '<div class="poi-marker"><img data-inline-svg data-icon-fallback="·" src="./icons/map-pin.svg" alt="" /></div>', iconSize: [27, 27], iconAnchor: [13, 13] });
       const marker = L.marker([poi.lat, poi.lng], { icon, title: displayPoiName(poi), interactive: !state.planningMode, place: poi }).bindPopup(`<strong>${escapeHtml(displayPoiName(poi))}</strong><br><small>${escapeHtml(packAttribution(poi))}</small>`);
       return marker;
     });
   if (state.poiLayer.addLayers) state.poiLayer.addLayers(markers); else markers.forEach((marker) => marker.addTo(state.poiLayer));
   void hydrateInlineIcons(state.map?.getContainer?.() || document);
   const segments = state.trailSegments[state.activeCity] || [];
-  if (state.layerLights?.recreation && state.layerFilters?.public?.trail !== false && state.poiTags.has('trail')) {
+  if (state.layerLights?.recreation && state.layerFilters?.public?.trail !== false) {
     segments.forEach((segment) => segment.coordinates.forEach((coordinates) => L.polyline(coordinates.map(([lng, lat]) => [lat, lng]), { color: '#2d7259', weight: 5, opacity: .82 }).bindTooltip(segment.name || 'Named trail').addTo(state.trailLayer)));
   }
   state.historyRadiusLayer?.clearLayers();
@@ -348,7 +350,7 @@ export function isVisiblePoi(poi, now = Date.now()) {
   // future verified, expiring water signal can describe why it matters today.
   if (isWaterMonitoringAnchor(poi)) return false;
   // Wildlife is an expiring observation, never a permanent species/location claim.
-  if (poi.category === 'wildlife') return activeSeasonalSignals(poi, now).length > 0;
+  if (poi.category === 'wildlife') return Boolean(poi.ebirdLocationId) || activeSeasonalSignals(poi, now).length > 0;
   // Events are strict temporary context: producer records without an explicit
   // freshness cutoff never surface, and an event disappears at that cutoff.
   // `endsAt` is not a substitute because it is not the review/freshness gate.

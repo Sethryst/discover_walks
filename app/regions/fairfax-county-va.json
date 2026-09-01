@@ -1,7 +1,7 @@
 {
   "id": "fairfax-county-va",
   "name": "Fairfax County, Virginia",
-  "bbox": [38.52, -77.54, 39.07, -76.78],
+  "bbox": [38.6039, -77.5371, 39.0577, -77.0413],
   "scorecard": {
     "packageKind": "county",
     "swallowedTowns": ["Vienna", "Herndon", "Reston"],
@@ -234,12 +234,12 @@
   "osm": {
     "status": "enabled",
     "enabled": true,
-    "bbox": [38.52, -77.54, 39.07, -76.78],
+    "bbox": [38.6039, -77.5371, 39.0577, -77.0413],
     "sourceId": "osm-fairfax-county-va",
     "endpoint": "https://overpass-api.de/api/interpreter",
-    "categories": ["water", "public_art", "garden", "coffee", "markets", "restaurants", "rest"],
+    "categories": ["water", "public_art", "nature", "coffee", "markets", "restaurants", "rest", "history"],
     "refreshPolicy": "monthly",
-    "maxRecords": 2000,
+    "maxRecords": 12000,
     "packagePath": "motherbird/regions/fairfax-county-va/osm/pois.json"
   }
 }

@@ -138,8 +138,20 @@ def _selectors(categories: list[str]) -> list[str]:
         "library": '["amenity"="library"]["name"]',
         "community": '["amenity"="marketplace"]["name"]',
         "garden": '["leisure"="garden"]["name"]',
-        "coffee": '["amenity"="cafe"]["name"]',
-        "markets": ('["amenity"="marketplace"]["name"]', '["shop"~"^(grocery|supermarket|convenience)$"]["name"]'),
+        "nature": (
+            '["leisure"~"^(garden|playground|dog_park|splash_pad)$"]["name"]',
+            '["leisure"="slipway"]["name"]',
+        ),
+        "coffee": (
+            '["amenity"="cafe"]["name"]',
+            '["shop"="coffee"]["name"]',
+            '["amenity"="fast_food"]["cuisine"~"(^|;)(coffee_shop|coffee|donut)(;|$)"]["name"]',
+            '["amenity"="fast_food"]["name"~"^(Dunkin|Tim Hortons|Krispy Kreme)",i]',
+        ),
+        "markets": (
+            '["amenity"="marketplace"]["name"]',
+            '["shop"~"^(grocery|supermarket|convenience|greengrocer|farm|food)$"]["name"]',
+        ),
         "restaurants": '["amenity"~"^(restaurant|fast_food)$"]["name"]',
         "rest": '["amenity"~"^(drinking_water|shelter|toilets)$"]["name"]',
     }
@@ -157,8 +169,10 @@ def _domain(tags: dict[str, Any], geometry: dict[str, Any] | None) -> str | None
         return "trails"
     if tags.get("leisure") in {"park", "nature_reserve"}:
         return "parks"
-    if tags.get("leisure") == "garden":
+    if tags.get("leisure") in {"garden", "playground", "dog_park", "splash_pad"}:
         return "nature"
+    if tags.get("leisure") == "slipway":
+        return "water"
     if tags.get("natural") == "beach":
         return "water"
     if tags.get("historic"):
@@ -167,10 +181,21 @@ def _domain(tags: dict[str, Any], geometry: dict[str, Any] | None) -> str | None
         return "art"
     if tags.get("amenity") == "library":
         return "community"
-    if tags.get("amenity") == "cafe":
+    if _is_coffee_stop(tags):
         return "coffee"
-    if tags.get("amenity") in {"marketplace", "restaurant", "fast_food"} or tags.get("shop") in {"grocery", "supermarket", "convenience"}:
+    if tags.get("amenity") in {"marketplace", "restaurant", "fast_food"} or tags.get("shop") in {"grocery", "supermarket", "convenience", "greengrocer", "farm", "food"}:
         return "cuisine"
     if tags.get("amenity") in {"drinking_water", "shelter", "toilets"}:
         return "rest"
     return None
+
+
+def _is_coffee_stop(tags: dict[str, Any]) -> bool:
+    """Recognize a coffee-seeking stop before the general fast-food bucket."""
+    if tags.get("amenity") == "cafe" or tags.get("shop") == "coffee":
+        return True
+    cuisines = {value.strip().casefold() for value in str(tags.get("cuisine", "")).split(";")}
+    if tags.get("amenity") == "fast_food" and cuisines & {"coffee", "coffee_shop", "donut"}:
+        return True
+    name = str(tags.get("name", "")).casefold()
+    return tags.get("amenity") == "fast_food" and any(brand in name for brand in ("dunkin", "tim hortons", "krispy kreme"))

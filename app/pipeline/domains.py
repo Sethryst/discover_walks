@@ -219,12 +219,12 @@ class CoffeeGremlin(DomainGremlin):
 
     def accepts(self, feature: IntermediateFeature) -> bool:
         tags = feature.properties
-        return feature.geometry.get("type") == "Point" and bool(tags.get("name")) and (tags.get("amenity") == "cafe" or tags.get("shop") == "bakery")
+        return feature.geometry.get("type") == "Point" and bool(tags.get("name")) and _is_coffee_stop(tags)
 
     def attributes(self, properties: dict[str, Any]) -> dict[str, Any]:
         output = super().attributes(properties)
         score, reasons = _walk_relevance(properties)
-        output.update({"type": "cafe" if properties.get("amenity") == "cafe" else "bakery", "walkRelevanceScore": score, "walkRelevanceReasons": reasons, "accessibility": {"wheelchair": properties.get("wheelchair")} if properties.get("wheelchair") else None, "outdoorSeating": properties.get("outdoor_seating")})
+        output.update({"type": "cafe", "walkRelevanceScore": score, "walkRelevanceReasons": reasons, "accessibility": {"wheelchair": properties.get("wheelchair")} if properties.get("wheelchair") else None, "outdoorSeating": properties.get("outdoor_seating")})
         return output
 
 
@@ -234,16 +234,25 @@ class CuisineGremlin(DomainGremlin):
 
     def accepts(self, feature: IntermediateFeature) -> bool:
         tags = feature.properties
-        return feature.geometry.get("type") == "Point" and bool(tags.get("name")) and (tags.get("amenity") in {"marketplace", "restaurant", "fast_food"} or tags.get("shop") in {"grocery", "supermarket", "convenience"})
+        return feature.geometry.get("type") == "Point" and bool(tags.get("name")) and not _is_coffee_stop(tags) and (tags.get("amenity") in {"marketplace", "restaurant", "fast_food"} or tags.get("shop") in {"grocery", "supermarket", "convenience", "greengrocer", "farm", "food"})
 
     def attributes(self, properties: dict[str, Any]) -> dict[str, Any]:
         output = super().attributes(properties)
         output.update({
-            "type": "market" if properties.get("amenity") == "marketplace" or properties.get("shop") in {"grocery", "supermarket", "convenience"} else "restaurant",
-            "cuisineChip": "markets" if properties.get("amenity") == "marketplace" or properties.get("shop") in {"grocery", "supermarket", "convenience"} else "restaurants",
+            "type": "market" if properties.get("amenity") == "marketplace" or properties.get("shop") in {"grocery", "supermarket", "convenience", "greengrocer", "farm", "food"} else "restaurant",
+            "cuisineChip": "markets" if properties.get("amenity") == "marketplace" or properties.get("shop") in {"grocery", "supermarket", "convenience", "greengrocer", "farm", "food"} else "restaurants",
             "accessibility": {"wheelchair": properties.get("wheelchair")} if properties.get("wheelchair") else None,
         })
         return output
+
+
+def _is_coffee_stop(tags: dict[str, Any]) -> bool:
+    """Keep coffee-counter fast food in Cafés, never duplicated in Restaurants."""
+    if tags.get("amenity") == "cafe" or tags.get("shop") == "coffee":
+        return True
+    cuisines = {value.strip().casefold() for value in str(tags.get("cuisine", "")).split(";")}
+    name = str(tags.get("name", "")).casefold()
+    return tags.get("amenity") == "fast_food" and (bool(cuisines & {"coffee", "coffee_shop", "donut"}) or any(brand in name for brand in ("dunkin", "tim hortons", "krispy kreme")))
 
 
 def _first(properties: dict[str, Any], *names: str) -> str | None:
@@ -302,7 +311,7 @@ class NatureGremlin(DomainGremlin):
 
     def accepts(self, feature: IntermediateFeature) -> bool:
         tags = feature.properties
-        return bool(tags.get("name")) and tags.get("leisure") in {"nature_reserve", "garden"}
+        return bool(tags.get("name")) and tags.get("leisure") in {"nature_reserve", "garden", "playground", "dog_park", "splash_pad"}
 
     def attributes(self, properties: dict[str, Any]) -> dict[str, Any]:
         output = super().attributes(properties)

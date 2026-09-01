@@ -16,6 +16,7 @@ DEFAULT_CATEGORIES = (
     "library",
     "community",
     "garden",
+    "nature",
     "coffee",
     "markets",
     "restaurants",
@@ -115,7 +116,7 @@ def osm_source_dict(config: OsmConfig) -> dict[str, Any]:
         "authorityTier": "community",
         "confidence": 0.7,
         "dataClass": "durable",
-        "visibleValue": "Fills named cafes, markets, restaurants, rest, garden, art, or water gaps without overriding official geometry.",
+        "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry.",
         "providerOptions": {
             "categories": list(config.categories),
             "maxRecords": config.max_records,

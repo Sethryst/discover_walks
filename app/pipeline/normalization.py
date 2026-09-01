@@ -78,15 +78,15 @@ def _category(tags: dict[str, str]) -> str:
         return "park"
     if tags.get("highway") in {"path", "footway", "pedestrian"}:
         return "trail"
-    if tags.get("amenity") == "cafe":
+    if _is_coffee_stop(tags):
         return "coffee"
     if tags.get("amenity") == "library":
         return "library"
-    if tags.get("amenity") == "marketplace" or tags.get("shop") in {"grocery", "supermarket", "convenience"}:
+    if tags.get("amenity") == "marketplace" or tags.get("shop") in {"grocery", "supermarket", "convenience", "greengrocer", "farm", "food"}:
         return "market"
     if tags.get("amenity") in {"restaurant", "fast_food"}:
         return "restaurant"
-    if tags.get("leisure") == "garden":
+    if tags.get("leisure") in {"garden", "playground", "dog_park", "splash_pad"}:
         return "garden"
     if tags.get("tourism") == "artwork":
         return "public_art"
@@ -97,3 +97,11 @@ def _category(tags: dict[str, str]) -> str:
     if tags.get("amenity") in {"drinking_water", "shelter", "toilets"}:
         return "rest"
     return "community"
+
+
+def _is_coffee_stop(tags: dict[str, str]) -> bool:
+    if tags.get("amenity") == "cafe" or tags.get("shop") == "coffee":
+        return True
+    cuisines = {value.strip().casefold() for value in str(tags.get("cuisine", "")).split(";")}
+    name = str(tags.get("name", "")).casefold()
+    return tags.get("amenity") == "fast_food" and (bool(cuisines & {"coffee", "coffee_shop", "donut"}) or any(brand in name for brand in ("dunkin", "tim hortons", "krispy kreme")))

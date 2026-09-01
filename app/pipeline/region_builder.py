@@ -101,7 +101,7 @@ def build_region(region_file: Path, output_root: Path, cache_root: Path, produce
     osm_records = [record for record in records if record["id"].startswith("osm:")]
     records, reconciliation_warnings = reconcile_osm_records(records)
     warnings.extend(reconciliation_warnings)
-    public_pois = [_public_poi(record) for record in records if record["validationStatus"] != "rejected" and _representative_coordinate(record["geometry"]) is not None]
+    public_pois = [_public_poi(record) for record in records if _is_public_pin(record)]
     civic: dict[str, dict[str, Any]] = {}
     if not only_sources:
         try:
@@ -116,7 +116,7 @@ def build_region(region_file: Path, output_root: Path, cache_root: Path, produce
     release, manifest = build_release(region["id"], public_pois, warnings, producer_version, timestamp)
     manifest["sources"] = source_reports
     manifest["geography"] = geography_manifest
-    osm_pois = [_public_poi(record) for record in osm_records if record["validationStatus"] != "rejected" and _representative_coordinate(record["geometry"]) is not None]
+    osm_pois = [_public_poi(record) for record in osm_records if _is_public_pin(record)]
     supplemental = {
         "canonical-records.json": _release_safe_records(records),
         "osm-pois.json": {"schemaVersion": 1, "regionId": region["id"], "generatedAt": timestamp, "sourceVintage": timestamp, "attribution": "© OpenStreetMap contributors", "license": "ODbL-1.0", "sourceConfigurationId": region["osm"]["sourceId"], "pois": sorted(osm_pois, key=lambda poi: poi["id"])},
@@ -254,8 +254,19 @@ def _latest_cached_response(cache_root: Path, region_id: str, source_id: str) ->
 def _public_poi(record: dict[str, Any]) -> dict[str, Any]:
     lng, lat = _representative_coordinate(record["geometry"]) or (0.0, 0.0)
     properties = {key: value for key, value in record["properties"].items() if value not in (None, [], "")}
-    category = properties.get("type") if record["domain"] == "cuisine" else {"parks": "park", "trails": "trail", "route": "route", "facilities": "facility", "coffee": "coffee", "nature": "nature", "water": "water", "community": "community", "art": "art", "wildlife": "wildlife", "plant": "plant", "rest": "rest", "history": "history", "scenic": "scenic", "accessibility": "accessibility", "pantry": "pantry", "event": "event", "detour": "detour"}[record["domain"]]
+    if record["domain"] == "cuisine":
+        category = properties.get("type")
+    elif record["domain"] == "facilities":
+        source_ids = {str(source.get("sourceId", "")) for source in record.get("sources", [])}
+        category = "rest" if properties.get("type") == "restroom" or properties.get("restrooms") or properties.get("drinkingWater") else "nature" if "fairfax-county-park-amenities" in source_ids else "facility"
+    else:
+        category = {"parks": "park", "trails": "trail", "route": "route", "coffee": "coffee", "nature": "nature", "water": "water", "community": "community", "art": "art", "wildlife": "wildlife", "plant": "plant", "rest": "rest", "history": "history", "scenic": "scenic", "accessibility": "accessibility", "pantry": "pantry", "event": "event", "detour": "detour"}[record["domain"]]
     return {"id": record["id"], "name": record["name"], "lat": lat, "lng": lng, "artifact_type": "pin", "category": category, **properties, "source": [{"name": source["sourceName"], "id": source["sourceId"], "elementId": source.get("sourceElementId"), "url": source["sourceUrl"], "attribution": source.get("attribution"), "license": source.get("license"), "licenseUrl": source.get("licenseUrl"), "retrievedAt": source.get("retrievedAt")} for source in record["sources"]], "review": {"validationStatus": record["validationStatus"], "flags": record["validationFlags"], "dedupGroupId": record.get("dedup_group_id")}}
+
+
+def _is_public_pin(record: dict[str, Any]) -> bool:
+    """Trail geometry is an edge artifact, never a second centroid pin."""
+    return record.get("validationStatus") != "rejected" and record.get("domain") not in {"trails", "route"} and _representative_coordinate(record.get("geometry", {})) is not None
 
 
 def _release_safe_records(records: list[dict[str, Any]]) -> list[dict[str, Any]]:

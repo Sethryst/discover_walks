@@ -15,6 +15,7 @@ import { initFieldGuideFilters } from './field-guide.js';
 import { recoverWalkDraft } from './walk.js';
 import { initPersonalPlaces } from './personal-places.js';
 import { initLayerSystem } from './layer-system.js';
+import { chooseClosestCityIfPermitted } from './discovery.js';
 
 export async function init() {
   const splash = document.getElementById('appSplash');
@@ -48,6 +49,7 @@ export async function init() {
   }
 
   await refreshCityMap(false);
+  await chooseClosestCityIfPermitted();
   await recoverWalkDraft();
   applyStaticAppearance();
   await renderArchive();
