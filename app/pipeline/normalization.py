@@ -35,14 +35,13 @@ def normalize_overpass(elements: Iterable[dict[str, Any]], source_config_id: str
             "sourceType": "osm_overpass",
             "osmElementType": element["type"],
             "osmElementId": str(element["id"]),
-            "osmTags": {key: tags[key] for key in ("surface", "wheelchair", "opening_hours", "outdoor_seating", "access", "seasonal", "drinking_water") if tags.get(key)},
+            "osmTags": {key: tags[key] for key in ("amenity", "shop", "cuisine", "surface", "wheelchair", "opening_hours", "outdoor_seating", "access", "seasonal", "drinking_water") if tags.get(key)},
             "source": [{"name": "OpenStreetMap", "id": source_config_id, "elementId": str(element["id"]), "url": f"https://www.openstreetmap.org/{element['type']}/{element['id']}", "attribution": "© OpenStreetMap contributors", "license": "ODbL-1.0", "licenseUrl": "https://www.openstreetmap.org/copyright", "retrievedAt": retrieved_at}],
         }
         for source_key, output_key in (("description", "description"),):
             if tags.get(source_key):
                 poi[output_key] = tags[source_key]
-        if tags.get("cuisine"):
-            poi["tags"] = sorted(set(tags["cuisine"].split(";")))
+        poi["tags"] = sorted({category, "osm", *tags.get("cuisine", "").split(";")} - {""})
         pois.append(poi)
     deduplicated, duplicate_warnings = deduplicate_with_warnings(pois, source_config_id)
     return deduplicated, [*warnings, *duplicate_warnings]
@@ -83,7 +82,7 @@ def _category(tags: dict[str, str]) -> str:
         return "coffee"
     if tags.get("amenity") == "library":
         return "library"
-    if tags.get("amenity") == "marketplace":
+    if tags.get("amenity") == "marketplace" or tags.get("shop") in {"grocery", "supermarket", "convenience"}:
         return "market"
     if tags.get("amenity") in {"restaurant", "fast_food"}:
         return "restaurant"

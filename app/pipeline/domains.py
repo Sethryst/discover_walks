@@ -234,13 +234,13 @@ class CuisineGremlin(DomainGremlin):
 
     def accepts(self, feature: IntermediateFeature) -> bool:
         tags = feature.properties
-        return feature.geometry.get("type") == "Point" and bool(tags.get("name")) and tags.get("amenity") in {"marketplace", "restaurant", "fast_food"}
+        return feature.geometry.get("type") == "Point" and bool(tags.get("name")) and (tags.get("amenity") in {"marketplace", "restaurant", "fast_food"} or tags.get("shop") in {"grocery", "supermarket", "convenience"})
 
     def attributes(self, properties: dict[str, Any]) -> dict[str, Any]:
         output = super().attributes(properties)
         output.update({
-            "type": "market" if properties.get("amenity") == "marketplace" else "restaurant",
-            "cuisineChip": "markets" if properties.get("amenity") == "marketplace" else "restaurants",
+            "type": "market" if properties.get("amenity") == "marketplace" or properties.get("shop") in {"grocery", "supermarket", "convenience"} else "restaurant",
+            "cuisineChip": "markets" if properties.get("amenity") == "marketplace" or properties.get("shop") in {"grocery", "supermarket", "convenience"} else "restaurants",
             "accessibility": {"wheelchair": properties.get("wheelchair")} if properties.get("wheelchair") else None,
         })
         return output

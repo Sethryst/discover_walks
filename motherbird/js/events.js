@@ -68,7 +68,8 @@ function renderWalkSketch(plan) {
 }
 
 function bindWalkControls() {
-  el('walkButton')?.addEventListener('click', async () => { if (state.activeWalk) await stopWalk(); else await startWalk({ routeMode: 'tracking' }); });
+  el('walkButton')?.addEventListener('click', async () => { if (!state.activeWalk) await startWalk({ routeMode: 'tracking' }); });
+  el('endWalkButton')?.addEventListener('click', () => void stopWalk());
   el('startChevron')?.addEventListener('click', () => togglePanel('startChevron', 'startPanel'));
   el('generateWalkButton')?.addEventListener('click', () => void generateTimeBasedPlan());
   window.addEventListener('walk-sketch-painted', (event) => renderWalkSketch(event.detail));

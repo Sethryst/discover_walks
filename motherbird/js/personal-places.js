@@ -9,7 +9,6 @@ import {
   postPublicMarker,
   publicMarkerIdentityReady,
   requestPublicMarkerSignIn,
-  togglePublicMarkerVote,
   updatePublicMarker,
   withdrawPublicMarker
 } from './online.js';
@@ -66,7 +65,7 @@ export function normalizePersonalPlace(place = {}, now = new Date().toISOString(
   return {
     ...place,
     id: String(place.id || uid('personal-place')),
-    name: String(place.name || 'Saved place').trim().slice(0, 80) || 'Saved place',
+    name: String(place.name || '').trim().slice(0, 80),
     location: { lat, lng },
     packId: String(place.packId || place.pack_id || state.activeCity),
     light: LIGHTS.has(place.light) ? place.light : 'personal',
@@ -151,33 +150,37 @@ function markerCategoryLabel(marker) {
   return `${marker.light === 'recreation' ? 'RECREATION' : 'CUISINE'} · ${label}`;
 }
 
-function publicMarkerIcon(marker) {
-  const iconName = marker.light === 'cuisine' ? 'utensils' : marker.light === 'recreation' ? 'tree' : marker.light === 'news' ? 'star' : 'map-pin';
+function publicMarkerIcon() {
   return L.divIcon({
     className: '',
-    html: `<div class="public-place-marker public-place-marker--${escapeHtml(marker.light)}"><img data-inline-svg data-icon-fallback="·" src="./icons/${iconName}.svg" alt="" /></div>`,
-    iconSize: [34, 40], iconAnchor: [17, 37]
+    html: '<div class="poi-marker park"><img data-inline-svg data-icon-fallback="·" src="./icons/tree.svg" alt="" /></div>',
+    iconSize: [27, 27], iconAnchor: [13, 13]
   });
 }
 
 function publicMarkerPopup(marker) {
   const mine = marker.creator_id === state.online.session?.user?.id;
-  const voted = state.publicMarkerVotes.has(marker.id);
-  return `<strong>${escapeHtml(marker.name)}</strong><br><small>${escapeHtml(markerCategoryLabel(marker))} · Posted by @${escapeHtml(marker.creator_username)}</small>${marker.description ? `<br><span>${escapeHtml(marker.description)}</span>` : ''}<div class="public-marker-actions"><button class="text-button" type="button" data-public-marker-vote="${escapeHtml(marker.id)}" aria-pressed="${voted}">${voted ? 'Remove upvote' : 'Upvote'} · ${Number(marker.upvote_count || 0)}</button>${mine ? `<button class="text-button" type="button" data-edit-public-marker="${escapeHtml(marker.id)}">Edit</button><button class="text-button danger-button" type="button" data-withdraw-public-marker="${escapeHtml(marker.id)}">Withdraw</button>` : ''}</div>`;
+  const name = marker.name ? `<strong>${escapeHtml(marker.name)}</strong><br>` : '';
+  const attribution = mine ? `You — ${relativeAge(marker.created_at)}` : `@${marker.creator_username}`;
+  return `${name}<small>${escapeHtml(attribution)}<br>${escapeHtml(markerCategoryLabel(marker))}</small>${mine ? `<br><button class="text-button" type="button" data-edit-public-marker="${escapeHtml(marker.id)}">Edit</button>` : ''}`;
+}
+
+function relativeAge(value) {
+  const elapsed = Math.max(0, Date.now() - Date.parse(value || ''));
+  if (!Number.isFinite(elapsed)) return 'now';
+  const days = Math.floor(elapsed / 86400000);
+  if (days) return `${days} day${days === 1 ? '' : 's'} ago`;
+  const hours = Math.floor(elapsed / 3600000);
+  return hours ? `${hours} hour${hours === 1 ? '' : 's'} ago` : 'now';
 }
 
 function bindPublicMarkerPopup(leafletMarker, marker) {
   leafletMarker.on('popupopen', (event) => {
     const popup = event.popup.getElement();
-    popup?.querySelector('[data-public-marker-vote]')?.addEventListener('click', async () => {
-      try { await togglePublicMarkerVote(marker.id); }
-      catch (error) { toast(error.message || 'That upvote could not be saved.'); }
-    });
     popup?.querySelector('[data-edit-public-marker]')?.addEventListener('click', () => {
       const local = curatedPersonalPlaces().find((place) => place.publicMarkerId === marker.id);
       openPersonalPlaceForm({ editId: local?.id || null, publicMarkerId: marker.id });
     });
-    popup?.querySelector('[data-withdraw-public-marker]')?.addEventListener('click', () => void withdrawOwnedMarker(marker.id));
   });
 }
 
@@ -189,26 +192,23 @@ export function renderPersonalPlacesOnMap() {
   state.publicMarkerLayer.clearLayers();
   publicLeafletMarkers.clear();
 
-  if (state.layerLights.personal) {
-    const categories = new Map(state.personalPlaceCategories.map((category) => [category.id, category]));
-    curatedPersonalPlaces().filter((place) => {
+  const categories = new Map(state.personalPlaceCategories.map((category) => [category.id, category]));
+  curatedPersonalPlaces().filter((place) => {
       const categoryId = place.categoryId || place.category_id;
-      const localPersonal = (place.light || 'personal') === 'personal' && !place.publicMarkerId;
-      return localPersonal && (!place.packId || place.packId === state.activeCity) && categoryId && categories.has(categoryId) && state.layerFilters.personal[categoryId] !== false && withinMapBounds(place.location);
+      if (place.publicMarkerId || (place.packId && place.packId !== state.activeCity) || !withinMapBounds(place.location)) return false;
+      if ((place.light || 'personal') === 'personal') return categoryId && categories.has(categoryId) && state.layerLights.personal && state.layerFilters.personal[categoryId] !== false;
+      if (place.light === 'news') return state.layerLights.news;
+      return state.layerLights[place.light] && markerChipEnabled({ light: place.light, chip_id: place.chipId });
     }).forEach((place) => {
       const category = categories.get(place.categoryId || place.category_id);
-      const iconName = ICON_IDS.has(category.icon) ? category.icon : 'map-pin';
-      const icon = L.divIcon({
-        className: '',
-        html: `<div class="personal-place-marker" style="--marker-color:${escapeHtml(category.color)}"><img data-inline-svg data-icon-fallback="·" src="./icons/${iconName}.svg" alt="" /></div>`,
-        iconSize: [34, 40], iconAnchor: [17, 37]
-      });
-      const marker = L.marker([place.location.lat, place.location.lng], { icon, title: place.name });
-      marker.bindPopup(`<strong>${escapeHtml(place.name)}</strong><br><small>${escapeHtml(category.name)} · Private on this device</small>${place.notes ? `<br><span>${escapeHtml(place.notes)}</span>` : ''}<br><button class="text-button" type="button" data-edit-personal-place="${escapeHtml(place.id)}">Edit</button>`);
+      const icon = publicMarkerIcon();
+      const marker = L.marker([place.location.lat, place.location.lng], { icon, title: place.name || '' });
+      const name = place.name ? `<strong>${escapeHtml(place.name)}</strong><br>` : '';
+      const chip = (place.light || 'personal') === 'personal' ? (category?.name || 'MY PLACES') : markerCategoryLabel({ light: place.light, chip_id: place.chipId });
+      marker.bindPopup(`${name}<small>You — ${escapeHtml(relativeAge(place.added))}<br>${escapeHtml(chip)}</small><br><button class="text-button" type="button" data-edit-personal-place="${escapeHtml(place.id)}">Edit</button>`);
       marker.on('popupopen', (event) => event.popup.getElement()?.querySelector('[data-edit-personal-place]')?.addEventListener('click', () => openPersonalPlaceForm({ editId: place.id }), { once: true }));
       marker.addTo(state.personalPlaceLayer);
-    });
-  }
+  });
 
   state.publicMarkers.filter(visiblePublicMarker).forEach((marker) => {
     const leafletMarker = L.marker([marker.latitude, marker.longitude], { icon: publicMarkerIcon(marker), title: marker.name });
@@ -264,7 +264,7 @@ function readFormDraft() {
     chipId: ['recreation', 'cuisine'].includes(light) ? el('personalPlaceChip').value : null,
     categoryId: light === 'personal' ? el('personalPlaceCategory').value : (el('personalPlaceForm').dataset.managementCategoryId || null),
     newCategoryName: el('personalPlaceNewCategoryName').value,
-    visibility: light === 'personal' ? el('personalPlaceVisibility').value : 'public',
+    visibility: el('personalPlaceVisibility').value,
     name: el('personalPlaceName').value,
     notes: el('personalPlaceNotes').value,
     location: locationFromForm()
@@ -299,7 +299,7 @@ function renderPersonalPlaceFormState() {
   const hasLocation = Boolean(locationFromForm());
   el('personalPlaceChipRow').classList.toggle('hidden', !['recreation', 'cuisine'].includes(light));
   el('personalPlaceCategoryRow').classList.toggle('hidden', light !== 'personal');
-  el('personalPlaceVisibilityRow').classList.toggle('hidden', light !== 'personal');
+  el('personalPlaceVisibilityRow').classList.remove('hidden');
   el('personalPlaceNewCategoryFields').classList.toggle('hidden', light !== 'personal' || el('personalPlaceCategory').value !== '__new__');
   document.querySelector('.personal-place-destination-step')?.classList.toggle('hidden', editingPublic);
   el('personalPlaceChooseLocation').classList.toggle('hidden', editingPublic);
@@ -372,12 +372,6 @@ async function categoryForDraft(draft) {
   return category;
 }
 
-function defaultPlaceName(light, chipId, category) {
-  if (light === 'news') return 'Community notice';
-  if (light === 'recreation' || light === 'cuisine') return `Shared ${CHIP_OPTIONS[light]?.find(([id]) => id === chipId)?.[1] || 'location'}`;
-  return category?.name || 'Saved place';
-}
-
 async function savePersonalPlace(event) {
   event.preventDefault();
   const form = event.currentTarget;
@@ -388,22 +382,22 @@ async function savePersonalPlace(event) {
   let managementCategory;
   try { managementCategory = await categoryForDraft({ ...draft, categoryId: draft.light === 'personal' ? draft.categoryId : (existing?.categoryId || draft.categoryId) }); }
   catch (error) { toast(error.message); return; }
-  const name = String(draft.name || '').trim().slice(0, 80) || defaultPlaceName(draft.light, draft.chipId, managementCategory);
+  const name = String(draft.name || '').trim().slice(0, 80);
   const notes = String(draft.notes || '').trim().slice(0, 500);
 
   let publicRecord = marker;
   if (draft.publicMarkerId) {
-    try { publicRecord = await updatePublicMarker(draft.publicMarkerId, { name, description: notes }); }
+    try { publicRecord = draft.visibility === 'private' ? (await withdrawPublicMarker(draft.publicMarkerId), null) : await updatePublicMarker(draft.publicMarkerId, { name, description: notes, status: draft.visibility }); }
     catch (error) { toast(error.message || 'That Post could not be updated.'); return; }
   }
 
   let savedLight = draft.light;
   let savedChip = draft.chipId;
-  let savedVisibility = draft.light === 'personal' ? draft.visibility : 'public';
+  let savedVisibility = draft.visibility;
   let savedCategory = managementCategory;
   let downgradedToPrivate = false;
 
-  if (!draft.publicMarkerId && (draft.light !== 'personal' || draft.visibility !== 'private')) {
+  if (!draft.publicMarkerId && draft.visibility !== 'private') {
     if (!publicMarkerIdentityReady() || globalThis.navigator?.onLine === false) downgradedToPrivate = true;
     else {
       try {
@@ -416,7 +410,7 @@ async function savePersonalPlace(event) {
           light: draft.light,
           chip_id: ['recreation', 'cuisine'].includes(draft.light) ? draft.chipId : null,
           personal_category_label: draft.light === 'personal' ? managementCategory.name : null,
-          status: draft.light === 'personal' ? draft.visibility : 'public'
+          status: draft.visibility
         });
       } catch (error) {
         if (!['MARKER_AUTH_REQUIRED', 'MARKER_OFFLINE'].includes(error.code)) console.warn('Post failed:', error.message);
@@ -443,8 +437,8 @@ async function savePersonalPlace(event) {
     personalCategoryLabel: savedLight === 'personal' ? savedCategory.name : null,
     notes,
     visibility: savedVisibility,
-    publicMarkerId: publicRecord?.id || existing?.publicMarkerId || null,
-    publicMarkerStatus: publicRecord?.status || existing?.publicMarkerStatus || null,
+    publicMarkerId: draft.publicMarkerId && !publicRecord ? null : (publicRecord?.id || existing?.publicMarkerId || null),
+    publicMarkerStatus: draft.publicMarkerId && !publicRecord ? 'withdrawn' : (publicRecord?.status || existing?.publicMarkerStatus || null),
     source: form.dataset.sourcePoiId ? 'pack_place' : existing?.source,
     sourcePoiId: form.dataset.sourcePoiId || existing?.sourcePoiId || null
   });
@@ -459,7 +453,7 @@ async function savePersonalPlace(event) {
   if (downgradedToPrivate) {
     toast(publicMarkerIdentityReady() ? 'Post needs a network connection. The pin stayed private on this device.' : 'Post needs sign-in and a username. The pin stayed private on this device.');
     if (!publicMarkerIdentityReady()) void requestPublicMarkerSignIn();
-  } else toast(publicRecord ? `${name} posted.` : `${name} saved on this device.`);
+  } else toast(publicRecord ? (name ? `${name} posted.` : 'Pin posted.') : (name ? `${name} saved on this device.` : 'Pin saved on this device.'));
 }
 
 function uniqueCategoryId(base) {

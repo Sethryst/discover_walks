@@ -84,15 +84,15 @@ export function updateWalkDisplay() {
   if (!walk) {
     setCompanionState('idle');
     document.body.classList.remove('walk-active');
-    el('walkButton')?.classList.remove('walking');
-    if (el('walkButton')) el('walkButton').textContent = 'Start walk';
+    el('walkButton')?.removeAttribute('disabled');
+    el('endWalkButton')?.classList.add('hidden');
     globalThis.window?.dispatchEvent(new CustomEvent('walk-display-updated'));
     return;
   }
   document.body.classList.add('walk-active');
   updateWalkDurations(walk);
-  if (el('walkButton')) el('walkButton').textContent = 'End walk';
-  el('walkButton')?.classList.add('walking');
+  el('walkButton')?.setAttribute('disabled', '');
+  el('endWalkButton')?.classList.remove('hidden');
   setCompanionState(companionStateForWalk(walk));
   globalThis.window?.dispatchEvent(new CustomEvent('walk-display-updated'));
 }
@@ -165,8 +165,8 @@ export async function startWalk({ routeMode = 'tracking' } = {}) {
   ensurePauseButton();
   state.routeLine?.remove();
   state.routeLine = L.polyline([], { color: '#245448', weight: 5, opacity: .85 }).addTo(state.map);
-  el('walkButton').textContent = 'End walk';
-  el('walkButton').classList.add('walking');
+  el('walkButton').setAttribute('disabled', '');
+  el('endWalkButton').classList.remove('hidden');
   setStatus('Recording your walk', true);
   updateWalkDisplay();
   await persistWalkDraft();
@@ -250,8 +250,8 @@ export async function recoverWalkDraft() {
   state.routeLine?.remove();
   state.routeLine = L.polyline(state.activeWalk.points.map((point) => [point.lat, point.lng]), { color: '#245448', weight: 5, opacity: .85 }).addTo(state.map);
   ensurePauseButton();
-  el('walkButton').textContent = 'End walk';
-  el('walkButton').classList.add('walking');
+  el('walkButton').setAttribute('disabled', '');
+  el('endWalkButton').classList.remove('hidden');
   updateWalkDisplay();
   if (state.activeWalk.recordingStatus === 'recording') {
     // Treat time while the page was unavailable as a GPS gap, not as proof
@@ -338,8 +338,8 @@ function resetActiveWalk() {
   state.routeLine?.remove();
   state.routeLine = null;
   updateWalkDisplay();
-  el('walkButton').textContent = 'Start walk';
-  el('walkButton').classList.remove('walking');
+  el('walkButton').removeAttribute('disabled');
+  el('endWalkButton')?.classList.add('hidden');
   const pauseButton = el('pauseWalkButton');
   if (pauseButton) pauseButton.classList.add('hidden');
 }

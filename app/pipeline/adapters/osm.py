@@ -139,11 +139,15 @@ def _selectors(categories: list[str]) -> list[str]:
         "community": '["amenity"="marketplace"]["name"]',
         "garden": '["leisure"="garden"]["name"]',
         "coffee": '["amenity"="cafe"]["name"]',
-        "markets": '["amenity"="marketplace"]["name"]',
+        "markets": ('["amenity"="marketplace"]["name"]', '["shop"~"^(grocery|supermarket|convenience)$"]["name"]'),
         "restaurants": '["amenity"~"^(restaurant|fast_food)$"]["name"]',
         "rest": '["amenity"~"^(drinking_water|shelter|toilets)$"]["name"]',
     }
-    return list(dict.fromkeys(mapping[category] for category in categories if category in mapping))
+    selectors: list[str] = []
+    for category in categories:
+        value = mapping.get(category, ())
+        selectors.extend(value if isinstance(value, tuple) else (value,))
+    return list(dict.fromkeys(selectors))
 
 
 def _domain(tags: dict[str, Any], geometry: dict[str, Any] | None) -> str | None:
@@ -165,7 +169,7 @@ def _domain(tags: dict[str, Any], geometry: dict[str, Any] | None) -> str | None
         return "community"
     if tags.get("amenity") == "cafe":
         return "coffee"
-    if tags.get("amenity") in {"marketplace", "restaurant", "fast_food"}:
+    if tags.get("amenity") in {"marketplace", "restaurant", "fast_food"} or tags.get("shop") in {"grocery", "supermarket", "convenience"}:
         return "cuisine"
     if tags.get("amenity") in {"drinking_water", "shelter", "toilets"}:
         return "rest"

@@ -1,11 +1,10 @@
 import { state } from './state.js';
-import { CITIES, GEOFENCE_CATEGORIES, HISTORY_SUBTYPES, POI_ICONS, POI_TAGS, POI_TAG_PRIORITY, TAG_LABELS } from './constants.js';
+import { CITIES, GEOFENCE_CATEGORIES, HISTORY_SUBTYPES, POI_TAGS, POI_TAG_PRIORITY } from './constants.js';
 import { el, escapeHtml } from './utils.js';
 import { distanceMeters } from './geo.js';
 import { openSheet } from './ui.js';
 import db from './storage.js';
-import { canReportPoiClosure, isLocallyClosedPoi, reportPoiClosed } from './spatial-closure-reporting.js';
-import { isPoiVisited, markPoiVisited } from './poi-visit-tracking.js';
+import { isLocallyClosedPoi } from './spatial-closure-reporting.js';
 import { hydrateInlineIcons } from './icon-loader.js';
 import { seasonalComparison, standoutObservation } from './revisit.js';
 
@@ -135,24 +134,8 @@ export function renderCityPois() {
     .filter(poiMatchesFilters)
     .filter(withinRenderBounds)
     .map((poi) => {
-      const markerTag = primaryPoiTag(poi);
-      const icon = L.divIcon({ className: '', html: `<div class="poi-marker ${markerTag}${poi.review?.flags?.length ? ' review-flagged' : ''}"><img data-inline-svg data-icon-fallback="·" src="./icons/${POI_ICONS[markerTag] || 'map-pin'}.svg" alt="" /></div>`, iconSize: [27, 27], iconAnchor: [13, 13] });
-      const tagLabels = poiTags(poi).map((tag) => TAG_LABELS[tag] || tag.replaceAll('_', ' ')).join(', ');
-      const relevance = poi.walkRelevanceReasons?.length ? `Good walking stop: ${poi.walkRelevanceReasons.join(', ').replaceAll('_', ' ')}` : null;
-      const seasonal = activeSeasonalSignals(poi).map((signal) => `Current ${signal.type?.replaceAll('_', ' ') || 'seasonal signal'} through ${new Date(signal.expiresAt).toLocaleDateString()}`).join('<br>');
-      const hours = poi.hours ? `Hours: ${typeof poi.hours === 'string' ? poi.hours : JSON.stringify(poi.hours)}` : null;
-      const status = poi.status ? `Status: ${poi.status}` : null;
-      const eventTiming = poi.startsAt || poi.endsAt ? `Event: ${poi.startsAt || 'date TBA'}${poi.endsAt ? ` – ${poi.endsAt}` : ''}` : null;
-      const details = [displayPoiDescription(poi), historyText(poi), poi.address, status, hours, eventTiming, relevance, seasonal, isOsmPoi(poi) ? 'Map data © OpenStreetMap contributors (ODbL)' : null, poi.review?.flags?.length ? 'Needs review' : null, tagLabels ? `Tags: ${tagLabels}` : null].filter(Boolean).map(escapeHtml).join('<br>');
-      const links = [poi.link, poi.website, sourceUrl(poi), historyUrl(poi)].filter(Boolean).filter((url, index, all) => all.indexOf(url) === index).map((url, index) => `<a href="${escapeHtml(url)}" target="_blank" rel="noreferrer">${index === 0 && (poi.link || poi.website) ? 'Website' : 'Source'} ↗</a>`).join(' · ');
-      const closeControl = canReportPoiClosure() ? `<br><button type="button" class="text-button" data-close-poi="${escapeHtml(poi.id)}">Hide as closed for 90 days</button>` : '';
-      const visitControl = `<br><button type="button" class="text-button" data-visit-poi="${escapeHtml(poi.id)}"${isPoiVisited(poi) ? ' disabled' : ''}>${isPoiVisited(poi) ? 'Visited' : 'Mark visited'}</button>`;
-      const personalControl = `<br><button type="button" class="text-button" data-save-personal-poi="${escapeHtml(poi.id)}">Add to personal places</button>`;
-      const guideControl = `<br><button type="button" class="text-button" data-field-guide-poi="${escapeHtml(poi.id)}">Open Field Guide</button>`;
-      const marker = L.marker([poi.lat, poi.lng], { icon, title: displayPoiName(poi), interactive: !state.planningMode, place: poi }).bindPopup(`<strong>${escapeHtml(displayPoiName(poi))}</strong>${details ? `<br><span>${details}</span>` : ''}${links ? `<br>${links}` : ''}${visitControl}${personalControl}${guideControl}${closeControl}`);
-      marker.on('popupopen', (event) => { const popup = event.popup.getElement(); popup?.querySelector('[data-close-poi]')?.addEventListener('click', async () => {
-        try { await reportPoiClosed(poi); state.map.closePopup(); renderCityPois(); } catch (error) { console.warn('Could not record local closure:', error.message); }
-      }, { once: true }); popup?.querySelector('[data-visit-poi]')?.addEventListener('click', async () => { await markPoiVisited(poi); state.map.closePopup(); renderCityPois(); }); popup?.querySelector('[data-save-personal-poi]')?.addEventListener('click', () => { state.map.closePopup(); window.dispatchEvent(new CustomEvent('personal-place-create-requested', { detail: { sourcePoi: { ...poi, name: displayPoiName(poi) } } })); }, { once: true }); popup?.querySelector('[data-field-guide-poi]')?.addEventListener('click', () => { state.map.closePopup(); window.dispatchEvent(new CustomEvent('field-guide-entry-requested', { detail: { poi } })); }, { once: true }); });
+      const icon = L.divIcon({ className: '', html: '<div class="poi-marker park"><img data-inline-svg data-icon-fallback="·" src="./icons/tree.svg" alt="" /></div>', iconSize: [27, 27], iconAnchor: [13, 13] });
+      const marker = L.marker([poi.lat, poi.lng], { icon, title: displayPoiName(poi), interactive: !state.planningMode, place: poi }).bindPopup(`<strong>${escapeHtml(displayPoiName(poi))}</strong><br><small>${escapeHtml(packAttribution(poi))}</small>`);
       return marker;
     });
   if (state.poiLayer.addLayers) state.poiLayer.addLayers(markers); else markers.forEach((marker) => marker.addTo(state.poiLayer));
@@ -162,6 +145,12 @@ export function renderCityPois() {
     segments.forEach((segment) => segment.coordinates.forEach((coordinates) => L.polyline(coordinates.map(([lng, lat]) => [lat, lng]), { color: '#2d7259', weight: 5, opacity: .82 }).bindTooltip(segment.name || 'Named trail').addTo(state.trailLayer)));
   }
   state.historyRadiusLayer?.clearLayers();
+}
+
+function packAttribution(poi) {
+  const sources = Array.isArray(poi?.source) ? poi.source : [poi?.source];
+  const named = sources.find((source) => typeof source === 'object' && source?.name)?.name;
+  return named || poi?.provenance?.dataset || `${CITIES[state.activeCity]?.name || 'Installed'} pack`;
 }
 
 function hasPackTrailGeometry(poi) {

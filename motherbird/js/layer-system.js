@@ -31,6 +31,10 @@ const ICONS = {
 let searchQuery = '';
 let pendingImport = null;
 let civicAvailability = { news: false, volunteer: false, capability: 'none', notices: [] };
+const CIVIC_VENUES = [
+  { match: /fairfax county government center/i, lat: 38.8530, lng: -77.3574 },
+  { match: /reston community center hunters woods/i, lat: 38.9367, lng: -77.3607 }
+];
 
 const LIGHT_CHIPS = {
   recreation: [
@@ -100,12 +104,12 @@ function buildAllLayerGroups() {
 export function buildLayerGroups() {
   return buildAllLayerGroups().map((group) => ({
     ...group,
-    options: group.options.filter((option) => option.kind === 'public' && !isMapTag(option.id))
+    options: group.options.filter((option) => option.kind === 'public' && !isMapTag(option.id) && !isFoodFilterTag(option.id))
   })).filter((group) => group.options.length);
 }
 
 function shouldShowEmptyStandard(id) {
-  return ['drinking_water', 'waste_basket', 'bench', 'shelter', 'restrooms', 'accessible_parking', 'restaurant', 'mexican', 'filipino', 'coffee', 'food_cart', 'trail', 'parking', 'bicycle_parking'].includes(id);
+  return false;
 }
 
 function publicOption(id, sourceLabel, pois) {
@@ -230,15 +234,12 @@ async function loadCivicAvailability() {
     const notice = (item, kind) => {
       const venueText = `${item?.locationLabel || ''} ${item?.venueAddress || ''}`;
       if (!item?.title || !/^https:\/\//i.test(item.officialUrl || '') || !current(item) || /\bvirtual\b|\bonline\b|\bteams\b|\bzoom\b/i.test(venueText)) return null;
+      if (kind !== 'Meeting' || !/\b(meeting|forum|hearing|town hall|work session)\b/i.test(item.title)) return null;
       return { ...item, kind, artifact_type: 'temporal_event', location: locateNotice(item) };
     };
     const notices = [
-      ...(data.meetings?.items || []).map((item) => notice(item, 'Meeting')),
-      ...(data.events?.items || []).map((item) => notice(item, 'Event')),
-      ...(data.vote?.items || []).map((item) => notice(item, 'Vote'))
+      ...(data.meetings?.items || []).map((item) => notice(item, 'Meeting'))
     ].filter(Boolean);
-    const vote = data.vote || {};
-    if (vote.nextElection?.date && Date.parse(vote.nextElection.date) >= Date.now() && /^https:\/\//i.test(vote.nextElection.url || '')) notices.push({ id: `${state.activeCity}:next-election`, title: vote.nextElection.type || 'Next election', summary: vote.jurisdiction || 'Official election information', date: vote.nextElection.date, officialUrl: vote.nextElection.url, source: { name: vote.jurisdiction || 'Official election source', url: vote.nextElection.url }, kind: 'Vote', artifact_type: 'temporal_event' });
     const volunteers = data.volunteer?.items || data.volunteer || [];
     notices.sort((a, b) => String(a.startsAt || a.date || '').localeCompare(String(b.startsAt || b.date || '')) || a.title.localeCompare(b.title));
     const declared = payload?.capabilities?.news;
@@ -255,6 +256,8 @@ function locateNotice(item) {
   if (Number.isFinite(lat) && Number.isFinite(lng)) return { lat, lng };
   const venue = `${item.locationLabel || ''} ${item.venueAddress || ''}`.toLocaleLowerCase();
   if (!venue.trim()) return null;
+  const knownVenue = CIVIC_VENUES.find(({ match }) => match.test(venue));
+  if (knownVenue) return { lat: knownVenue.lat, lng: knownVenue.lng };
   const candidates = (state.cityPois[state.activeCity] || []).filter((poi) => Number.isFinite(poi.lat) && Number.isFinite(poi.lng));
   const scored = candidates.map((poi) => {
     const words = String(poi.name || '').toLocaleLowerCase().split(/\W+/).filter((word) => word.length > 3);
@@ -338,7 +341,7 @@ function chipSelected(lightId, chip) {
 }
 
 function newsEntry(entry) {
-  if (entry.light === 'news') return `<button type="button" class="map-news-entry map-news-entry--post" data-news-marker="${escapeHtml(entry.id)}"><strong>${escapeHtml(entry.name)}</strong><small>Posted by @${escapeHtml(entry.creator_username)}</small></button>`;
+  if (entry.light === 'news') return `<button type="button" class="map-news-entry map-news-entry--post" data-news-marker="${escapeHtml(entry.id)}">${entry.name ? `<strong>${escapeHtml(entry.name)}</strong>` : ''}<small>@${escapeHtml(entry.creator_username)}</small></button>`;
   const source = entry.source?.name || 'Official source';
   return `<a class="map-news-entry map-news-entry--pack" href="${escapeHtml(entry.officialUrl)}" target="_blank" rel="noreferrer"><strong>${escapeHtml(entry.title)}</strong><small>${escapeHtml([entry.kind, entry.date, source].filter(Boolean).join(' · '))}</small></a>`;
 }
