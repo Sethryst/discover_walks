@@ -34,7 +34,7 @@ def _validate(record: dict[str, Any], bbox: list[float]) -> list[ValidationFindi
         findings.append(ValidationFinding("error", "name", "A human-readable name is required.", "high"))
     geometry = record.get("geometry", {})
     geometry_type = geometry.get("type")
-    permitted = {"parks": {"Point", "Polygon", "MultiPolygon"}, "trails": {"LineString", "MultiLineString"}, "route": {"LineString", "MultiLineString"}, "facilities": {"Point", "Polygon", "MultiPolygon"}, "coffee": {"Point"}, "nature": {"Point"}, "water": {"Point"}, "community": {"Point"}, "art": {"Point"}, "wildlife": {"Point"}, "plant": {"Point"}, "rest": {"Point"}, "history": {"Point"}, "scenic": {"Point"}, "accessibility": {"Point"}, "pantry": {"Point"}, "event": {"Point"}, "detour": {"Point"}}
+    permitted = {"parks": {"Point", "Polygon", "MultiPolygon"}, "trails": {"LineString", "MultiLineString"}, "route": {"LineString", "MultiLineString"}, "facilities": {"Point", "Polygon", "MultiPolygon"}, "coffee": {"Point"}, "cuisine": {"Point"}, "nature": {"Point"}, "water": {"Point"}, "community": {"Point"}, "art": {"Point"}, "wildlife": {"Point"}, "plant": {"Point"}, "rest": {"Point"}, "history": {"Point"}, "scenic": {"Point"}, "accessibility": {"Point"}, "pantry": {"Point"}, "event": {"Point"}, "detour": {"Point"}}
     if geometry_type not in permitted.get(record["domain"], set()):
         findings.append(ValidationFinding("error", "geometry", f"{record['domain']} does not accept {geometry_type} geometry.", "critical"))
     coordinate = _representative_coordinate(geometry)

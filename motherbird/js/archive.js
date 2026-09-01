@@ -1,5 +1,4 @@
 import { state } from './state.js';
-import { POINTS_PER_NEW_HISTORY_SITE } from './constants.js';
 import { el, escapeHtml, formatDistance, formatDuration, shortDate, uid, sitesForProfile } from './utils.js';
 import db from './storage.js';
 import { updateProfile } from './profile.js';
@@ -17,35 +16,36 @@ export async function saveHistoryMoment() {
     const discovered = sitesForProfile(profile, cityId);
     if (discovered.includes(site.id)) return { points: 0, firstDiscovery: false };
     profile.sitesDiscovered[cityId] = [...discovered, site.id];
-    profile.totalPoints += POINTS_PER_NEW_HISTORY_SITE;
-    return { points: POINTS_PER_NEW_HISTORY_SITE, firstDiscovery: true };
+    return { points: 0, firstDiscovery: true };
   });
   await db.put('moments', {
     id: uid('moment'), type: 'history', title: `Visited ${site.name}`,
     note: site.unverified ? 'Prototype historic-place prompt saved. Content is unverified.' : 'Historic-place prompt saved during a walk.',
-    siteId: site.id, city: cityId, pointsAwarded: award.points, createdAt: new Date().toISOString(), location: { lat: site.lat, lng: site.lng }
+    siteId: site.id, city: cityId, pointsAwarded: 0, createdAt: new Date().toISOString(), location: { lat: site.lat, lng: site.lng }
   });
   await markPoiVisited(site);
   requestCompanionContext('discover');
-  closeSheets(); toast(award.firstDiscovery ? `New history site — +${award.points} points.` : 'History moment saved to your local archive.'); renderArchive();
+  closeSheets(); toast(award.firstDiscovery ? 'New history site saved locally.' : 'History moment saved to your local archive.'); renderArchive();
 }
 export async function saveJournal(event) {
   event.preventDefault();
-  const mood = 'Noticed';
   const note = el('journalNote').value.trim();
   const walkId = event.currentTarget.dataset.walkId;
   if (!note) { closeSheets(); return; }
-  const moment = buildReflectionMoment({ id: uid('moment'), city: state.activeCity, heading: '', mood, note, prompt: null, walkId, createdAt: new Date().toISOString() });
+  const moment = buildReflectionMoment({ id: event.currentTarget.dataset.momentId || uid('moment'), city: state.activeCity, heading: '', note, prompt: null, walkId, createdAt: new Date().toISOString() });
   await db.put('moments', moment);
   requestCompanionContext('journal');
-  closeSheets(); toast(`Reflection saved locally · ${wordCount(note)} words.`); renderArchive();
+  closeSheets(); renderArchive();
 }
 
 export async function saveJournalOnClose({ note = '', walkId = '' } = {}) {
   const cleanNote = note.trim();
   if (!cleanNote) return;
-  const moment = buildReflectionMoment({ id: uid('moment'), city: state.activeCity, heading: '', mood: 'Noticed', note: cleanNote, prompt: null, walkId: walkId || null, createdAt: new Date().toISOString() });
+  const form = el('journalForm');
+  const existing = form?.dataset.momentId || (walkId ? `journal-${walkId}` : uid('moment'));
+  const moment = buildReflectionMoment({ id: existing, city: state.activeCity, heading: '', note: cleanNote, prompt: null, walkId: walkId || null, createdAt: new Date().toISOString() });
   await db.put('moments', moment);
+  if (form) form.dataset.momentId = moment.id;
   requestCompanionContext('journal');
   await renderArchive();
 }

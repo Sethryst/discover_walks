@@ -1,6 +1,6 @@
 import db from './storage.js';
 import { state } from './state.js';
-import { DEFAULT_SETTINGS, CITIES, POINTS_PER_MILE, POINTS_PER_OBSERVATION, POINTS_PER_NEW_HISTORY_SITE } from './constants.js';
+import { DEFAULT_SETTINGS, CITIES } from './constants.js';
 import { normalizeProfile, sitesForProfile } from './utils.js';
 import { toast, openSheet } from './ui.js';
 import { initMap } from './map.js';
@@ -12,11 +12,9 @@ import { setupOnline, openOnline } from './online.js';
 import { normalizedEntitlements } from './entitlements.js';
 import { restoreLocalPoiClosures } from './spatial-closure-reporting.js';
 import { initFieldGuideFilters } from './field-guide.js';
-import { initJournalPane } from './journal-pane.js';
 import { recoverWalkDraft } from './walk.js';
 import { initPersonalPlaces } from './personal-places.js';
 import { initLayerSystem } from './layer-system.js';
-import { initRevisitExperience } from './revisit.js';
 
 export async function init() {
   const splash = document.getElementById('appSplash');
@@ -42,8 +40,6 @@ export async function init() {
   await initPersonalPlaces();
   await initLayerSystem();
   initFieldGuideFilters();
-  initJournalPane();
-  initRevisitExperience();
 
   try {
     initEvents();
@@ -86,14 +82,13 @@ export async function createMigratedProfile() {
     milesTotal: walks.reduce((total, walk) => total + ((walk.distanceMeters || 0) / 1609.344), 0),
     observationsLogged: observations.length,
     sitesDiscovered: {},
-    totalPoints: walks.reduce((total, walk) => total + Math.round(((walk.distanceMeters || 0) / 1609.344) * POINTS_PER_MILE), 0) + observations.length * POINTS_PER_OBSERVATION
+    totalPoints: 0
   });
   moments.filter((moment) => moment.type === 'history' && moment.siteId).forEach((moment) => {
     const cityId = moment.city || 'fairfax';
     const ids = sitesForProfile(profile, cityId);
     if (!ids.includes(moment.siteId)) {
       profile.sitesDiscovered[cityId] = [...ids, moment.siteId];
-      profile.totalPoints += POINTS_PER_NEW_HISTORY_SITE;
     }
   });
   return profile;

@@ -17,6 +17,8 @@ DEFAULT_CATEGORIES = (
     "community",
     "garden",
     "coffee",
+    "markets",
+    "restaurants",
     "rest",
 )
 OSM_ATTRIBUTION = "© OpenStreetMap contributors"
@@ -36,6 +38,7 @@ class OsmConfig:
     categories: tuple[str, ...]
     refresh_policy: str
     max_records: int
+    clip_to_boundary_source_id: str | None = None
     unavailable_reason: str | None = None
     package_path: str | None = None
 
@@ -50,6 +53,7 @@ class OsmConfig:
             "categories": list(output["categories"]),
             "refreshPolicy": output["refresh_policy"],
             "maxRecords": output["max_records"],
+            **({"clipToBoundarySourceId": output["clip_to_boundary_source_id"]} if output["clip_to_boundary_source_id"] else {}),
             **({"unavailableReason": output["unavailable_reason"]} if output["unavailable_reason"] else {}),
             **({"packagePath": output["package_path"]} if output["package_path"] else {}),
         }
@@ -82,6 +86,7 @@ def normalize_osm_config(region: dict[str, Any]) -> OsmConfig:
     max_records = int(raw.get("maxRecords", 2000))
     if not 1 <= max_records <= 20_000:
         raise ValueError("osm.maxRecords must be between 1 and 20000.")
+    boundary_source_id = raw.get("clipToBoundarySourceId") or next((source.get("id") for source in region.get("sources", []) if "boundary" in str(source.get("layerRole", ""))), None)
     return OsmConfig(
         status=status,
         enabled=enabled,
@@ -91,6 +96,7 @@ def normalize_osm_config(region: dict[str, Any]) -> OsmConfig:
         categories=categories,
         refresh_policy=str(raw.get("refreshPolicy") or "monthly"),
         max_records=max_records,
+        clip_to_boundary_source_id=str(boundary_source_id) if boundary_source_id else None,
         unavailable_reason=reason.strip() if isinstance(reason, str) else None,
         package_path=raw.get("packagePath"),
     )
@@ -103,17 +109,18 @@ def osm_source_dict(config: OsmConfig) -> dict[str, Any]:
         "name": "OpenStreetMap contributors",
         "provider": "osm_overpass",
         "url": config.endpoint,
-        "domains": ["parks", "trails", "water", "history", "art", "community", "nature", "coffee", "rest"],
+        "domains": ["parks", "trails", "water", "history", "art", "community", "nature", "coffee", "cuisine", "rest"],
         "licenseUrl": OSM_LICENSE_URL,
         "attribution": OSM_ATTRIBUTION,
         "authorityTier": "community",
         "confidence": 0.7,
         "dataClass": "durable",
-        "visibleValue": "Fills remaining named coffee, rest, garden, art, or water gaps without overriding official geometry.",
+        "visibleValue": "Fills named cafes, markets, restaurants, rest, garden, art, or water gaps without overriding official geometry.",
         "providerOptions": {
             "categories": list(config.categories),
             "maxRecords": config.max_records,
             "fullGeometry": True,
+            **({"clipToBoundarySourceId": config.clip_to_boundary_source_id} if config.clip_to_boundary_source_id else {}),
         },
         "status": "active",
     }

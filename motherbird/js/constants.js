@@ -134,8 +134,12 @@
     zoom: 11,
     dataFile: './regions/fairfax-county-va/pois.json',
     journeyFile: './regions/fairfax-county-va/journeys.json',
+    edgeFile: './regions/fairfax-county-va/edges.json',
+    discoverFile: './regions/fairfax-county-va/discover.json',
+    learnFile: './regions/fairfax-county-va/learn.json',
+    capabilitiesFile: './regions/fairfax-county-va/capabilities.json',
     civicFile: './regions/fairfax-county-va/civic/index.json',
-    supplementalPoiFiles: ['./regions/wolf-trap-va/pois.json']
+    packId: 'fairfax'
   },
   alexandria: {
     name: 'Alexandria',
@@ -208,7 +212,7 @@ Object.entries(CITIES).forEach(([cityId, city]) => { city.osm = runtimeOsmConfig
 ];
 export const DEFAULT_SETTINGS = {
   id: 'app-settings', activeCity: 'fairfax', lastSyncedAt: null, lastSupabaseHeartbeatAt: null,
-  enableGeofencing: true, geofenceCategories: ['library', 'park', 'public_art', 'recreation_center', 'water_access', 'history', 'community_garden', 'trail', 'wifi'], favoriteCategories: [], favoriteRegionIds: [], defaultGeofenceRadiusMeters: 50, customObservationTags: {}, companionWalker: 'inky', staticAppearance: { headlineTitle: 'A walk with a purpose', headlineIcon: 'walk', developerName: '', developerUrl: '' }, onboardingCompleted: false, entitlements: { fieldEdition: false, cloudJournalBackup: false, offlineRegions: [], partnerGrants: [] }
+  enableGeofencing: true, geofenceCategories: ['library', 'park', 'public_art', 'recreation_center', 'water_access', 'history', 'community_garden', 'trail', 'wifi'], favoriteCategories: [], favoriteRegionIds: [], defaultGeofenceRadiusMeters: 50, defaultPinVisibility: 'private', shareAttribution: '', customObservationTags: {}, companionWalker: 'inky', onboardingCompleted: false, entitlements: { fieldEdition: false, cloudJournalBackup: false, offlineRegions: [], partnerGrants: [] }
 };
 
 export const OBSERVATION_ICONS = ['camera', 'tree', 'star', 'heart', 'coffee', 'book-open', 'music', 'wind'];

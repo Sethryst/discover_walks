@@ -53,7 +53,7 @@ def build_all(
         try:
             osm = normalize_osm_config(raw)
             if runtime_root is not None:
-                built = _build_runtime_package(raw, osm, runtime_root, cache_root, generated_at, use_cache)
+                built = _build_runtime_package(raw, osm, runtime_root, output_root, cache_root, generated_at, use_cache)
                 if activate_after_build:
                     _set_region_state(path, raw, enabled=True)
                 result["completed"][raw["id"]] = built
@@ -72,7 +72,7 @@ def build_all(
     return result
 
 
-def _build_runtime_package(region: dict[str, Any], osm: Any, runtime_root: Path, cache_root: Path, generated_at: str, use_cache: bool) -> dict[str, Any]:
+def _build_runtime_package(region: dict[str, Any], osm: Any, runtime_root: Path, output_root: Path, cache_root: Path, generated_at: str, use_cache: bool) -> dict[str, Any]:
     """Acquire/replay one bounded source and publish the complete runtime contract."""
     active_osm = replace(osm, status="enabled", enabled=True, unavailable_reason=None, package_path=f"motherbird/regions/{region['id']}/osm/pois.json")
     source = SourceConfig.from_dict(osm_source_dict(active_osm))
@@ -91,6 +91,11 @@ def _build_runtime_package(region: dict[str, Any], osm: Any, runtime_root: Path,
     if raw.get("remark"):
         raise RuntimeError(f"Cached Overpass response is incomplete: {raw['remark']}")
     pois, warnings = normalize_overpass(raw.get("elements", []), source.id, source_vintage, list(active_osm.bbox))
+    boundary = _json(output_root / region["id"] / "geography" / "boundary.geojson")
+    if boundary:
+        before = len(pois)
+        pois = [poi for poi in pois if _inside_geojson(poi["lng"], poi["lat"], boundary)]
+        warnings.append({"code": "boundary_clip_applied", "source": source.id, "detail": f"Excluded {before - len(pois)} named OSM records outside the installed regional boundary."})
     if len(raw.get("elements", [])) >= active_osm.max_records:
         warnings.append({"code": "max_records_reached", "source": source.id, "detail": f"The bounded Overpass response reached maxRecords={active_osm.max_records}."})
     pois = sorted(pois, key=lambda poi: poi["id"])[:active_osm.max_records]
@@ -118,6 +123,30 @@ def _build_runtime_package(region: dict[str, Any], osm: Any, runtime_root: Path,
     if _checksum_status(output, manifest) is not True:
         raise RuntimeError("Published OSM runtime checksum verification failed.")
     return {"osmPois": len(pois), "mergedPois": len(merged), "packagePath": str(output).replace("\\", "/"), "warnings": warnings, "sourceVintage": source_vintage}
+
+
+def _inside_geojson(lng: float, lat: float, payload: dict[str, Any]) -> bool:
+    """Return whether a point lies in a Polygon/MultiPolygon FeatureCollection."""
+    geometries = [feature.get("geometry", {}) for feature in payload.get("features", [])] if payload.get("type") == "FeatureCollection" else [payload.get("geometry", payload)]
+    for geometry in geometries:
+        coordinates = geometry.get("coordinates", [])
+        polygons = [coordinates] if geometry.get("type") == "Polygon" else coordinates if geometry.get("type") == "MultiPolygon" else []
+        for polygon in polygons:
+            if polygon and _inside_ring(lng, lat, polygon[0]) and not any(_inside_ring(lng, lat, hole) for hole in polygon[1:]):
+                return True
+    return False
+
+
+def _inside_ring(lng: float, lat: float, ring: list[list[float]]) -> bool:
+    inside = False
+    previous = ring[-1] if ring else [0.0, 0.0]
+    for current in ring:
+        x1, y1 = previous[:2]
+        x2, y2 = current[:2]
+        if (y1 > lat) != (y2 > lat) and lng < (x2 - x1) * (lat - y1) / (y2 - y1) + x1:
+            inside = not inside
+        previous = current
+    return inside
 
 
 def _latest_cache(cache_root: Path, region_id: str, source_id: str) -> Path:

@@ -1,282 +1,197 @@
 import { state } from './state.js';
-import { CITIES, DEFAULT_PROFILE, DEFAULT_SETTINGS, GEOFENCE_CATEGORIES } from './constants.js';
-import { el, normalizeProfile, uid } from './utils.js';
-import { initBackupControls } from './backup.js';
-import { openWalkDetail, saveHistoryMoment, saveJournal, saveJournalOnClose, saveQuickJournal, renderArchive } from './archive.js';
-import { discardWalk, getCurrentLocation, recordPoiEncounter, saveWalk, setActiveWalkMode, startWalk, stopWalk, togglePauseWalk, updateWalkDisplay } from './walk.js';
-import { openObservation, saveObservation, setDraftObservationIcon } from './observation.js';
-import { openBackpack, openJournal, closeSheets, openSheet, openAccountSettings, openFiltersSheet, openProfile, renderGeofenceCategoryChips, setArchiveFilter, showView, toast } from './ui.js';
-import { city, citySites, displayPoiName, geofenceCategoriesForCity, renderCityPois, showHistory, savePlaceMemory, searchPois, searchOsm } from './poi.js';
-import { syncProfile, renderOnline, openOnline, signIn, signUp, signInWithPasskey, registerPasskey, createOnlineProfile, updateAccountUsername, updateAccountPhone, updateAccountEmail, updateAccountPassword } from './online.js';
-import { refreshCityMap, switchCity } from './city.js';
-import { renderProfile } from './profile.js';
-import { toggleFavoriteRegion } from './region-favorites.js';
-import db from './storage.js';
-import { openDiscoverGroup, renderExplorePlaces, setExploreTab } from './explore.js';
-import { nearestCityFromCurrentLocation, renderDiscoveryHeadline } from './discovery.js';
-import { showCuratedRoute } from './routes.js';
-import { generateTimeBasedPlan, choosePlan, setPlanningMode, lockSelectedPlanOnMap, togglePlanVisibility, draftWalkFromText } from './planner.js';
+import { CITIES } from './constants.js';
+import { el, escapeHtml } from './utils.js';
+import { saveJournal, saveJournalOnClose, renderArchive } from './archive.js';
+import { getCurrentLocation, startWalk, stopWalk } from './walk.js';
+import { openBackpack, openJournal, closeSheets, openSheet, openAccountSettings, renderGeofenceCategoryChips, setArchiveFilter, toast } from './ui.js';
+import { city, searchPois } from './poi.js';
+import { switchCity } from './city.js';
+import { generateTimeBasedPlan, lockSelectedPlanOnMap, changePlan } from './planner.js';
+import { downloadCurrentWalkPlan, normalizeWalkPlan, paintWalkPlan, sendCurrentWalkPlan } from './field-guide.js';
 import { wordCount } from './reflection.js';
-import { onboardingProgress, onboardingValue } from './onboarding.js';
-import { renderNearbyPlaces, setJournalSheetState } from './journal-pane.js';
-import { applyCompanionSettings, normalizeCompanionId } from './companion.js';
+import { refreshCompanionState } from './companion.js';
+import { initBackupControls } from './backup.js';
+import { openOnline, renderOnline, signIn, signUp, signInWithPasskey, registerPasskey, syncProfile, createOnlineProfile, updateAccountUsername, updateAccountEmail, updateAccountPassword } from './online.js';
+import db from './storage.js';
+
+const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];
 
 export function initEvents() {
   initBackupControls();
-  prepareBackpackSections();
-  el('archiveList')?.addEventListener('click', (event) => { const card = event.target.closest('[data-walk-id]'); if (card) openWalkDetail(card.dataset.walkId); });
-  el('archiveList')?.addEventListener('keydown', (event) => { const card = event.target.closest('[data-walk-id]'); if (card && (event.key === 'Enter' || event.key === ' ')) { event.preventDefault(); openWalkDetail(card.dataset.walkId); } });
-  window.addEventListener('journal-close-requested', (event) => void saveJournalOnClose(event.detail));
-  el('journalOverlayArchiveList')?.addEventListener('click', (event) => { const card = event.target.closest('[data-walk-id]'); if (card) openWalkDetail(card.dataset.walkId); });
-  el('locateButton').addEventListener('click', getCurrentLocation);
-  el('homeCityButton').addEventListener('click', () => openRegionChooser());
-  el('walkButton').addEventListener('click', async () => {
-    if (state.activeWalk) { openSheet(state.activeWalk.recordingStatus === 'stopped' ? 'walkReviewSheet' : 'routeSheet'); return; }
-    showView('map');
-    await startWalk({ routeMode: 'tracking' });
-  });
-  el('activeRouteButton').addEventListener('click', () => { updateWalkDisplay(); openSheet(state.activeWalk?.recordingStatus === 'stopped' ? 'walkReviewSheet' : 'routeSheet'); });
-  el('routePauseButton').addEventListener('click', togglePauseWalk);
-  el('routeEndButton').addEventListener('click', () => { closeSheets(); stopWalk(); });
-  el('activeWalkMode').addEventListener('change', (event) => void setActiveWalkMode(event.target.value));
-  el('saveWalkButton').addEventListener('click', () => void saveWalk());
-  el('discardWalkButton').addEventListener('click', () => void discardWalk());
-  window.addEventListener('walk-poi-encounter', (event) => void recordPoiEncounter(event.detail?.poi, event.detail?.distance));
-  el('planWalkButton')?.addEventListener('click', async () => { setPlanningMode(true); showView('map'); openSheet('planWalkSheet'); await generateTimeBasedPlan(); });
-  el('choosePlanStartButton').addEventListener('click', () => { state.plannerSelecting = 'Start'; toast('Planning mode: tap a starting point.'); closeSheets(); showView('map'); });
-  el('choosePlanEndButton').addEventListener('click', () => { state.plannerSelecting = 'End'; toast('Planning mode: tap a destination.'); closeSheets(); showView('map'); });
-  window.addEventListener('planner-point-selected', async () => { openSheet('planWalkSheet'); await generateTimeBasedPlan(); });
-  window.addEventListener('planner-route-selected', () => openSheet('planWalkSheet'));
-  el('planOptions').addEventListener('click', (event) => {
-    const toggle = event.target.closest('[data-route-toggle]'); if (toggle) { togglePlanVisibility(toggle.dataset.routeToggle, toggle.checked); return; }
-    const option = event.target.closest('[data-plan-option]'); if (option) choosePlan(option.dataset.planOption);
-  });
-  el('draftTextWalkButton').addEventListener('click', () => void draftWalkFromText(el('textWalkInput').value));
-  el('startPlannedWalkButton').addEventListener('click', async () => { if (state.plannedRoute) lockSelectedPlanOnMap(); setPlanningMode(false); closeSheets(); showView('map'); await startWalk({ routeMode: document.querySelector('input[name="routeMode"]:checked')?.value || 'tracking' }); });
-  el('planWalkSheet').addEventListener('change', (event) => { if (event.target.matches('input[name="walkTime"], input[name="routeMode"]')) void generateTimeBasedPlan(); });
-  el('planWalkSheet').addEventListener('click', (event) => { const chip = event.target.closest('[data-planner-tag]'); if (!chip) return; chip.classList.toggle('active'); void generateTimeBasedPlan(); });
-  el('curatedRoutesList')?.addEventListener('click', (event) => {
-    const button = event.target.closest('[data-curated-route]'); if (!button) return;
-    const route = showCuratedRoute(button.dataset.curatedRoute);
-    if (!route) return;
-    showView('map');
-    toast(`${route.title} previewed. Check the official route page before you go.`);
-  });
-  el('showPlacesOnMapButton')?.addEventListener('click', () => { showView('map'); renderCityPois(); });
-  el('browseDiscoverButton')?.addEventListener('click', () => { showView('explore'); setExploreTab('routes'); renderExplorePlaces(); });
-  el('discoverWays')?.addEventListener('click', (event) => { const button = event.target.closest('[data-discover-group]'); if (!button) return; showView('explore'); openDiscoverGroup(button.dataset.discoverGroup); });
-  el('exploreEvents')?.addEventListener('click', (event) => { const button = event.target.closest('[data-civic-view]'); if (button) showView(button.dataset.civicView); });
-  el('explorePlacesList')?.addEventListener('click', (event) => {
-    const item = event.target.closest('[data-place-id]'); if (!item) return;
-    const poi = (state.cityPois[state.activeCity] || []).find((place) => place.id === item.dataset.placeId);
-    if (!poi) return; showView('map'); state.map.flyTo([poi.lat, poi.lng], Math.max(city().zoom + 2, 16));
-  });
-  el('addObservationButton').addEventListener('click', () => openObservation());
-  el('quickJournalForm').addEventListener('submit', saveQuickJournal);
-  el('composerPhotoButton').addEventListener('click', () => el('quickJournalPhoto').click());
-  el('quickJournalPhoto').addEventListener('change', (event) => { el('quickJournalPhotoName').textContent = event.target.files[0]?.name || 'Private on this device'; setJournalSheetState('half'); });
-  el('composerMicButton').addEventListener('click', () => {
-    if (state.speechRecognition) { state.speechRecognition.stop(); return; }
-    const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!Recognition) { toast('Voice transcription is not supported by this browser. You can still type a field note.'); return; }
-    const button = el('composerMicButton');
-    const recognition = new Recognition();
-    recognition.lang = navigator.language || 'en-US';
-    recognition.interimResults = true;
-    recognition.continuous = false;
-    const existing = el('quickJournalNote').value.trim();
-    recognition.onstart = () => { state.speechRecognition = recognition; button.classList.add('recording'); button.setAttribute('aria-pressed', 'true'); button.querySelector('span').textContent = 'Listening'; };
-    recognition.onresult = (event) => {
-      const transcript = [...event.results].map((result) => result[0].transcript).join(' ').trim();
-      el('quickJournalNote').value = [existing, transcript].filter(Boolean).join(existing ? ' ' : '');
-      el('quickJournalForm').dataset.voiceTranscript = 'true';
-    };
-    recognition.onerror = () => toast('Voice transcription stopped. Anything already transcribed is still in the note.');
-    recognition.onend = () => { state.speechRecognition = null; button.classList.remove('recording'); button.setAttribute('aria-pressed', 'false'); button.querySelector('span').textContent = 'Mic'; el('quickJournalNote').focus(); };
-    recognition.start();
-  });
-  el('composerNearbyButton').addEventListener('click', () => { renderNearbyPlaces(); openSheet('nearbySheet'); });
-  el('nearbyList').addEventListener('click', async (event) => {
-    const viewButton = event.target.closest('[data-nearby-view]');
-    const routeButton = event.target.closest('[data-nearby-round-trip]');
-    const rememberButton = event.target.closest('[data-nearby-remember]');
-    const id = viewButton?.dataset.nearbyView || routeButton?.dataset.nearbyRoundTrip || rememberButton?.dataset.nearbyRemember;
-    if (!id) return;
-    const poi = (state.cityPois[state.activeCity] || []).find((place) => place.id === id); if (!poi) return;
-    if (rememberButton) {
-      await savePlaceMemory(poi);
-      await db.put('moments', { id: uid('moment'), type: 'place', title: displayPoiName(poi), note: 'Place remembered from Nearby.', siteId: poi.id, city: state.activeCity, createdAt: new Date().toISOString(), location: { lat: poi.lat, lng: poi.lng }, source: poi.source });
-      await renderArchive(); toast('Place remembered in your journal.'); return;
-    }
-    closeSheets(); showView('map'); state.map.flyTo([poi.lat, poi.lng], Math.max(city().zoom + 2, 16));
-    if (routeButton) {
-      state.plannerEnd = poi;
-      const input = document.querySelector('input[name="routeMode"][value="round-trip"]'); if (input) input.checked = true;
-      setPlanningMode(true); openSheet('planWalkSheet'); await generateTimeBasedPlan();
-    } else setJournalSheetState('collapsed');
-  });
-  el('journalButton').addEventListener('click', () => openJournal());
-  el('settingsButton').addEventListener('click', openBackpack);
-  window.addEventListener('backpack-open-requested', openBackpack);
-  el('advancedAppearanceForm').addEventListener('submit', async (event) => { event.preventDefault(); state.settings.staticAppearance = { headlineTitle: el('advancedHeadlineTitle').value.trim() || 'A walk with a purpose', headlineIcon: el('advancedHeadlineIcon').value, developerName: el('developerName').value.trim(), developerUrl: el('developerUrl').value.trim() }; await db.put('settings', state.settings); const { applyStaticAppearance } = await import('./ui.js'); applyStaticAppearance(); toast('Appearance saved on this device.'); });
-  el('profileJournalButton')?.addEventListener('click', () => openJournal());
-  el('advancedFiltersButton')?.addEventListener('click', openFiltersSheet);
-  document.querySelectorAll('[data-pack-sheet]').forEach((button) => button.addEventListener('click', () => openSheet(button.dataset.packSheet)));
-  document.querySelectorAll('[data-pack-section]').forEach((button) => button.addEventListener('click', () => {
-    const section = document.querySelector(`[data-pack-settings="${button.dataset.packSection}"]`);
-    if (!section) return;
-    const opening = section.classList.contains('hidden');
-    document.querySelectorAll('[data-pack-settings]').forEach((node) => node.classList.add('hidden'));
-    section.classList.toggle('hidden', !opening);
-    if (opening) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }));
-  el('savePlaceMapButton').addEventListener('click', () => {
-    if (!state.personalPlaceSelecting) {
-      state.personalPlaceSelecting = true;
-      document.body.classList.add('placing-personal-place');
-      el('savePlaceMapButton').innerHTML = '<img class="ui-icon ui-icon--small" src="./icons/map-pin.svg" alt="" /> Use this spot';
-      el('savePlaceMapButton').setAttribute('aria-label', 'Use the crosshair position for this personal place');
-      toast('Move the map under the crosshair, then choose “Use this spot.”');
-      return;
-    }
+  bindSheets(); bindLocationControls(); bindWalkControls(); bindSearch(); bindJournal(); bindRegions(); bindShareSettings(); bindOnlineControls(); bindDeviceControls();
+  el('settingsButton')?.addEventListener('click', openBackpack);
+  el('journalButton')?.addEventListener('click', () => void openJournal());
+  el('savePlaceMapButton')?.addEventListener('click', () => {
+    if (!state.personalPlaceSelecting) { window.dispatchEvent(new CustomEvent('personal-place-create-requested')); return; }
     const center = state.map.getCenter();
-    state.personalPlaceSelecting = false;
-    document.body.classList.remove('placing-personal-place');
-    el('savePlaceMapButton').innerHTML = '<img class="ui-icon ui-icon--small" src="./icons/plus.svg" alt="" /> Places +';
-    el('savePlaceMapButton').setAttribute('aria-label', 'Place a personal pin on the map');
-    window.dispatchEvent(new CustomEvent('personal-place-create-requested', { detail: { location: { lat: center.lat, lng: center.lng } } }));
+    window.dispatchEvent(new CustomEvent('personal-place-location-selected', { detail: { lat: center.lat, lng: center.lng } }));
   });
-  el('dismissHistoryButton').addEventListener('click', closeSheets);
-  el('saveHistoryMomentButton').addEventListener('click', async () => {
-    const site = state.currentSite;
-    const note = el('historyNoteInput').value.trim();
-    await saveHistoryMoment();
-    if (site) await savePlaceMemory(site, note);
-  });
+  window.addEventListener('walk-poi-encounter', (event) => void import('./walk.js').then(({ recordPoiEncounter }) => recordPoiEncounter(event.detail?.poi, event.detail?.distance)));
+  window.addEventListener('backpack-open-requested', openBackpack);
+}
 
-  el('observationForm').addEventListener('submit', saveObservation); el('journalForm').addEventListener('submit', saveJournal);
-  el('journalNote').addEventListener('input', (event) => { const count = wordCount(event.target.value); el('journalWordCount').textContent = `${count} word${count === 1 ? '' : 's'}`; });
-  el('photoInput').addEventListener('change', (event) => { el('photoName').textContent = event.target.files[0]?.name || 'Optional, stored only on this device'; });
-  const onboardingCity = el('onboardingCitySelect');
-  const cityOptions = () => Object.entries(CITIES).sort(([, a], [, b]) => a.name.localeCompare(b.name)).map(([id, item]) => `<option value="${id}">${item.name}, ${item.state}</option>`).join('');
-  onboardingCity.innerHTML = cityOptions(); onboardingCity.value = state.activeCity;
-  const quickCity = el('quickCitySelect'); quickCity.innerHTML = cityOptions(); quickCity.value = state.activeCity;
-  let onboardingInterests = [];
-  let onboardingStep = 'region';
-  const setOnboardingStep = (step) => {
-    onboardingStep = step;
-    document.querySelectorAll('[data-onboarding-step]').forEach((section) => section.classList.toggle('hidden', section.dataset.onboardingStep !== step));
-    renderOnboardingValue();
-  };
-  const renderOnboardingValue = () => {
-    const id = onboardingCity.value;
-    const progress = onboardingProgress(onboardingInterests, onboardingStep);
-    el('onboardingValuePreview').querySelector('span').textContent = onboardingValue(CITIES[id]?.name || 'your region', onboardingInterests);
-    el('onboardingProgressText').textContent = `${progress} of 3 ready`;
-    el('onboardingProgressBar').style.width = `${(progress / 3) * 100}%`;
-    el('onboardingInterestCount').textContent = `${onboardingInterests.length} of 3 chosen`;
-    document.querySelectorAll('[data-onboarding-interest]').forEach((button) => button.classList.toggle('active', onboardingInterests.includes(button.dataset.onboardingInterest)));
-  };
-  const finishOnboarding = async (applyChoices = false) => {
-    const nextCity = onboardingCity.value;
-    state.settings.onboardingCompleted = true;
-    if (applyChoices) state.settings.favoriteCategories = onboardingInterests;
-    await db.put('settings', state.settings);
-    if (CITIES[nextCity] && nextCity !== state.activeCity) await switchCity(nextCity);
-    closeSheets(); renderProfile();
-    showView('map');
-    toast('You’re ready. Start a walk, or write something in your journal.');
-  };
-  const openRegionChooser = () => { quickCity.value = state.activeCity; openSheet('regionSheet'); };
-  el('applyQuickCityButton').addEventListener('click', async () => { const nextCity = quickCity.value; if (CITIES[nextCity] && nextCity !== state.activeCity) await switchCity(nextCity); closeSheets(); toast(`${CITIES[state.activeCity].name} is now your starting region.`); });
-  el('onboardingInterestChips').addEventListener('click', (event) => { const button = event.target.closest('[data-onboarding-interest]'); if (!button) return; const id = button.dataset.onboardingInterest; onboardingInterests = onboardingInterests.includes(id) ? onboardingInterests.filter((item) => item !== id) : onboardingInterests.length < 3 ? [...onboardingInterests, id] : onboardingInterests; if (onboardingInterests.length === 3 && !onboardingInterests.includes(id)) toast('Choose up to three for now. You can add more later in Journal.'); renderOnboardingValue(); });
-  onboardingCity.addEventListener('change', renderOnboardingValue); renderOnboardingValue();
-  el('onboardingRegionNextButton').addEventListener('click', () => void finishOnboarding(false));
-  el('onboardingInterestBackButton').addEventListener('click', () => setOnboardingStep('region'));
-  el('onboardingInterestNextButton').addEventListener('click', () => setOnboardingStep('ready'));
-  el('onboardingReadyBackButton').addEventListener('click', () => setOnboardingStep('interests'));
-  el('useOnboardingLocationButton').addEventListener('click', async () => { const button = el('useOnboardingLocationButton'); button.disabled = true; el('onboardingLocationNote').textContent = 'Finding the nearest available regional center…'; const closest = await nearestCityFromCurrentLocation(); button.disabled = false; if (!closest) { el('onboardingLocationNote').textContent = 'Location was not available. Your selected regional center still works without it.'; return; } onboardingCity.value = closest.id; el('onboardingLocationNote').textContent = `${CITIES[closest.id].name} is the nearest available regional center. You can change it any time.`; renderOnboardingValue(); });
-  el('skipOnboardingButton').addEventListener('click', () => void finishOnboarding(false));
-  el('saveOnboardingButton').addEventListener('click', () => void finishOnboarding(true));
-  document.querySelectorAll('[data-close-sheet]').forEach((button) => button.addEventListener('click', () => { const wasPlanner = button.closest('#planWalkSheet'); closeSheets(); if (wasPlanner) setPlanningMode(false); }));
-  el('modalBackdrop').addEventListener('click', closeSheets);
-  document.querySelectorAll('.archive-filter .filter-button').forEach((button) => button.addEventListener('click', () => setArchiveFilter(button.dataset.filter)));
-  el('signInButton').addEventListener('click', signIn);
-el('passkeySignInButton').addEventListener('click', signInWithPasskey);
-el('signUpButton').addEventListener('click', signUp);
-el('usernameForm').addEventListener('submit', createOnlineProfile);
-  el('syncNowButton').addEventListener('click', async () => { try { await syncProfile(); await renderOnline(); toast('Aggregate stats synced.'); } catch (error) { toast(error.message || 'Could not sync right now.'); } });
-el('accountSettingsButton').addEventListener('click', openAccountSettings);
-el('registerPasskeyButton').addEventListener('click', registerPasskey);
-el('accountUsernameForm').addEventListener('submit', updateAccountUsername);
-el('accountEmailForm').addEventListener('submit', updateAccountEmail);
-el('accountPasswordForm').addEventListener('submit', updateAccountPassword);
-  document.querySelectorAll('.nav-item').forEach((button) => button.addEventListener('click', () => {
-    closeSheets();
-    if (button.dataset.view === 'profile') openProfile();
-    else if (button.dataset.view === 'fieldGuide') showView('fieldGuide');
-    else if (button.dataset.view === 'explore') showView('explore');
-    else if (button.dataset.view === 'vote' || button.dataset.view === 'volunteer') showView(button.dataset.view);
-    else showView('map');
-  }));
-  document.querySelectorAll('[data-discover-lens]').forEach((button) => button.addEventListener('click', () => showView(button.dataset.discoverLens)));
-  document.querySelector('[data-discover-personal-places]')?.addEventListener('click', () => { showView('explore'); setExploreTab('personal'); });
-  document.querySelectorAll('[data-back-discover]').forEach((button) => button.addEventListener('click', () => showView('explore')));
-  el('clearDataButton').addEventListener('click', async () => {
-    if (!confirm("Clear every locally saved walk, reflection, observation, and personal profile record on this device? This can't be undone.")) return;
-    await db.clearAll();
-    state.profile = normalizeProfile(DEFAULT_PROFILE); state.settings = { ...DEFAULT_SETTINGS }; state.activeCity = 'fairfax';
-    state.personalPlaces = []; state.personalPlaceCategories = []; state.layerFilters = { public: {}, personal: {} }; state.layerUiState = { expanded: {} };
-    await Promise.all([db.put('profile', state.profile), db.put('settings', state.settings)]);
-    closeSheets(); await refreshCityMap(true); renderArchive(); window.dispatchEvent(new CustomEvent('personal-places-changed')); toast('Local journal data cleared.');
-  });
-  if (el('geofenceToggle')) {
-    el('geofenceToggle').addEventListener('change', async (event) => {
-      state.settings.enableGeofencing = event.target.checked;
-      await db.put('settings', state.settings);
-      renderProfile();
-    });
-  }
-  if (el('geofenceRadiusSelect')) {
-    el('geofenceRadiusSelect').addEventListener('change', async (event) => {
-      state.settings.defaultGeofenceRadiusMeters = Number(event.target.value) || 50;
-      await db.put('settings', state.settings);
-    });
-  }
-  if (el('geofenceCategoryChips')) {
-    el('geofenceCategoryChips').addEventListener('click', async (event) => {
-      const button = event.target.closest('[data-geofence-category]'); if (!button) return;
-      const id = button.dataset.geofenceCategory;
-      const available = geofenceCategoriesForCity();
-      const categories = new Set(state.settings.geofenceCategories || (available.length ? available : GEOFENCE_CATEGORIES).map(([c]) => c));
-      categories.has(id) ? categories.delete(id) : categories.add(id);
-      state.settings.geofenceCategories = [...categories];
-      await db.put('settings', state.settings);
-      renderGeofenceCategoryChips();
-    });
-  }
-  el('favoriteCategoryChips').addEventListener('click', async (event) => {
-    const button = event.target.closest('[data-favorite-category]'); if (!button) return;
-    const favorites = new Set(state.settings.favoriteCategories || []);
-    const id = button.dataset.favoriteCategory;
-    favorites.has(id) ? favorites.delete(id) : favorites.add(id);
-    state.settings.favoriteCategories = [...favorites];
-    await db.put('settings', state.settings);
-    el('preferenceSaveStatus').textContent = 'Saved on this device';
-    renderProfile();
-    renderDiscoveryHeadline();
-  });
-  el('toggleFavoriteRegionButton').addEventListener('click', async () => {
-    const id = el('favoriteRegionSelect').value; if (!id) return;
-    if (await toggleFavoriteRegion(state.settings, id)) { await db.put('settings', state.settings); renderProfile(); }
-  });
-  el('favoriteRegionChips').addEventListener('click', async (event) => {
-    const button = event.target.closest('[data-favorite-region]'); if (!button) return;
-    if (await toggleFavoriteRegion(state.settings, button.dataset.favoriteRegion)) { await db.put('settings', state.settings); renderProfile(); }
+function bindSheets() {
+  document.querySelectorAll('[data-close-sheet]').forEach((button) => button.addEventListener('click', closeSheets));
+  el('modalBackdrop')?.addEventListener('click', closeSheets);
+}
+
+function togglePanel(buttonId, panelId) {
+  const button = el(buttonId); const panel = el(panelId); if (!button || !panel) return;
+  const opening = panel.classList.contains('hidden');
+  document.querySelectorAll('.drop-panel').forEach((item) => item.classList.add('hidden'));
+  document.querySelectorAll('.ink-chevron').forEach((item) => item.setAttribute('aria-expanded', 'false'));
+  panel.classList.toggle('hidden', !opening); button.setAttribute('aria-expanded', String(opening));
+}
+
+function bindLocationControls() {
+  el('locateButton')?.addEventListener('click', getCurrentLocation);
+  el('locateChevron')?.addEventListener('click', () => togglePanel('locateChevron', 'locatePanel'));
+  el('geofenceToggle').checked = state.settings.enableGeofencing !== false;
+  el('geofenceRadiusSelect').value = String(state.settings.defaultGeofenceRadiusMeters || 50);
+  renderGeofenceCategoryChips();
+  el('geofenceToggle')?.addEventListener('change', async (event) => { state.settings.enableGeofencing = event.target.checked; await db.put('settings', state.settings); });
+  el('geofenceRadiusSelect')?.addEventListener('change', async (event) => { state.settings.defaultGeofenceRadiusMeters = Number(event.target.value); await db.put('settings', state.settings); });
+  el('geofenceCategoryChips')?.addEventListener('click', async (event) => {
+    const chip = event.target.closest('[data-geofence-category]'); if (!chip) return;
+    const selected = new Set(state.settings.geofenceCategories || []);
+    selected.has(chip.dataset.geofenceCategory) ? selected.delete(chip.dataset.geofenceCategory) : selected.add(chip.dataset.geofenceCategory);
+    state.settings.geofenceCategories = [...selected]; await db.put('settings', state.settings); renderGeofenceCategoryChips();
   });
 }
 
-function prepareBackpackSections() {
-  const backup = document.querySelector('.backup-controls');
-  if (backup) el('backupSettingsPanel')?.append(backup);
+function renderInterests() {
+  const tags = [['trail', 'trails'], ['park', 'parks'], ['wildlife', 'wildlife'], ['history', 'history'], ['coffee', 'cafés'], ['market', 'markets'], ['restaurant', 'restaurants']];
+  const selected = new Set(state.settings.favoriteCategories || []);
+  el('startInterestChips').innerHTML = tags.map(([id, label]) => `<button class="poi-chip ${selected.has(id) ? 'active' : ''}" type="button" data-start-interest="${id}" aria-pressed="${selected.has(id)}">${label}</button>`).join('');
+}
+
+function renderWalkSketch(plan) {
+  if (!plan) return;
+  el('sketchTitle').textContent = plan.title || 'Walk sketch';
+  el('sketchReason').textContent = plan.reason || 'A concept from named places in this installed pack.';
+  el('sketchStops').innerHTML = (plan.stops || []).map((stop) => `<li>${escapeHtml(stop.name || 'Named stop')}</li>`).join('');
+  el('walkSketch').classList.remove('hidden'); el('startPanel').classList.add('hidden'); el('startChevron').setAttribute('aria-expanded', 'false');
+}
+
+function bindWalkControls() {
+  renderInterests();
+  el('walkButton')?.addEventListener('click', async () => { if (state.activeWalk) await stopWalk(); else await startWalk({ routeMode: 'tracking' }); });
+  el('startChevron')?.addEventListener('click', () => togglePanel('startChevron', 'startPanel'));
+  el('startInterestChips')?.addEventListener('click', (event) => {
+    const chip = event.target.closest('[data-start-interest]'); if (!chip) return;
+    const active = chip.getAttribute('aria-pressed') !== 'true'; chip.setAttribute('aria-pressed', String(active)); chip.classList.toggle('active', active);
+  });
+  el('surpriseWalkButton')?.addEventListener('click', () => {
+    const chips = [...document.querySelectorAll('[data-start-interest]')];
+    chips.forEach((chip) => { chip.setAttribute('aria-pressed', 'false'); chip.classList.remove('active'); });
+    const pick = chips[Math.floor(Math.random() * chips.length)]; pick?.setAttribute('aria-pressed', 'true'); pick?.classList.add('active');
+  });
+  el('generateWalkButton')?.addEventListener('click', () => void generateTimeBasedPlan());
+  window.addEventListener('walk-sketch-painted', (event) => renderWalkSketch(event.detail));
+  el('dismissWalkSketch')?.addEventListener('click', () => { changePlan(); el('walkSketch').classList.add('hidden'); });
+  el('startPlannedWalkButton')?.addEventListener('click', async () => {
+    if (!state.plannedRoute) return; lockSelectedPlanOnMap(); el('walkSketch').classList.add('hidden');
+    await startWalk({ routeMode: state.plannedRoute.routeMode || 'tracking' });
+  });
+  el('sendWalkPlanButton')?.addEventListener('click', () => void sendCurrentWalkPlan());
+  el('companionButton')?.addEventListener('click', async () => {
+    const current = COSTUMES.map((name) => name.toLowerCase()).indexOf(state.settings.companionWalker || 'inky'); const next = COSTUMES[(current + 1) % COSTUMES.length];
+    state.settings.companionWalker = next.toLowerCase(); await db.put('settings', state.settings); refreshCompanionState();
+    el('companionButton').setAttribute('aria-label', `${next} costume; tap to change`); el('companionButton').title = next; toast(next);
+  });
+}
+
+function bindSearch() {
+  const input = el('mapSearchInput'); const results = el('mapSearchResults');
+  input?.addEventListener('input', () => {
+    const matches = input.value.trim() ? searchPois(input.value).slice(0, 7) : [];
+    results.innerHTML = matches.map((poi) => `<button type="button" data-search-poi="${escapeHtml(String(poi.id))}">${escapeHtml(poi.name || 'Named place')}</button>`).join('');
+    results.classList.toggle('hidden', !matches.length);
+  });
+  results?.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-search-poi]'); if (!button) return;
+    const poi = (state.cityPois[state.activeCity] || []).find((item) => String(item.id) === button.dataset.searchPoi);
+    if (poi) state.map.flyTo([poi.lat, poi.lng], Math.max(city().zoom + 2, 16));
+    results.classList.add('hidden'); input.value = poi?.name || '';
+  });
+}
+
+function bindJournal() {
+  window.addEventListener('journal-close-requested', (event) => void (async () => {
+    await saveJournalOnClose(event.detail);
+    if (!state.activeWalk && state.pendingWalkPlan?.pack_id === state.activeCity) {
+      const pending = state.pendingWalkPlan; state.pendingWalkPlan = null;
+      setTimeout(() => paintWalkPlan(pending), 0);
+    }
+  })());
+  el('journalForm')?.addEventListener('submit', saveJournal);
+  el('journalPrompts')?.addEventListener('click', (event) => {
+    const prompt = event.target.closest('[data-reflection-prompt]'); if (!prompt) return;
+    const note = el('journalNote'); note.value = `${prompt.textContent}\n`; el('journalPrompts').classList.add('hidden'); note.focus(); note.dispatchEvent(new Event('input'));
+  });
+  el('journalNote')?.addEventListener('input', (event) => {
+    const count = wordCount(event.target.value); el('journalWordCount').textContent = `${count} word${count === 1 ? '' : 's'}`;
+    el('journalPrompts').classList.toggle('hidden', Boolean(event.target.value.trim()));
+  });
+  el('journalTitle')?.addEventListener('click', () => {
+    const history = el('journalHistory'); const opening = history.classList.contains('hidden'); history.classList.toggle('hidden', !opening); el('journalTitle').setAttribute('aria-expanded', String(opening));
+  });
+  document.querySelectorAll('.archive-filter .filter-button').forEach((button) => button.addEventListener('click', () => setArchiveFilter(button.dataset.filter)));
+}
+
+function regionCards() {
+  const favorites = new Set(state.settings.favoriteRegionIds || []);
+  return Object.entries(CITIES).filter(([, pack]) => pack.dataFile).sort(([leftId, left], [rightId, right]) => Number(favorites.has(rightId)) - Number(favorites.has(leftId)) || left.name.localeCompare(right.name));
+}
+
+function renderRegions() {
+  const favorites = new Set(state.settings.favoriteRegionIds || []);
+  el('regionList').innerHTML = regionCards().map(([id, pack]) => `<article class="region-row ${id === state.activeCity ? 'active' : ''}"><button type="button" data-region="${id}"><strong>${escapeHtml(pack.name)}</strong><small>${escapeHtml(pack.state || '')}</small></button><button class="region-star" type="button" data-region-star="${id}" aria-label="${favorites.has(id) ? 'Remove favorite' : 'Favorite'} ${escapeHtml(pack.name)}">${favorites.has(id) ? '★' : '☆'}</button></article>`).join('');
+}
+
+function bindRegions() {
+  el('homeCityButton')?.addEventListener('click', () => { renderRegions(); openSheet('regionSheet'); });
+  el('regionList')?.addEventListener('click', async (event) => {
+    const star = event.target.closest('[data-region-star]');
+    if (star) {
+      const favorites = new Set(state.settings.favoriteRegionIds || []); favorites.has(star.dataset.regionStar) ? favorites.delete(star.dataset.regionStar) : favorites.add(star.dataset.regionStar);
+      state.settings.favoriteRegionIds = [...favorites]; await db.put('settings', state.settings); renderRegions(); return;
+    }
+    const choice = event.target.closest('[data-region]'); if (!choice) return;
+    await switchCity(choice.dataset.region); closeSheets();
+    if (state.pendingWalkPlan?.pack_id === state.activeCity && !state.activeWalk) { const pending = state.pendingWalkPlan; state.pendingWalkPlan = null; paintWalkPlan(pending); }
+  });
+  el('onboardingCitySelect').innerHTML = regionCards().map(([id, pack]) => `<option value="${id}">${escapeHtml(pack.name)}, ${escapeHtml(pack.state || '')}</option>`).join('');
+  el('onboardingCitySelect').value = state.activeCity;
+  el('saveOnboardingButton')?.addEventListener('click', async () => { state.settings.onboardingCompleted = true; await db.put('settings', state.settings); await switchCity(el('onboardingCitySelect').value); closeSheets(); });
+  window.addEventListener('city-layer-data-changed', () => { el('activeCityLabel').textContent = CITIES[state.activeCity]?.name || 'Installed region'; renderInterests(); });
+}
+
+function bindShareSettings() {
+  el('defaultPinVisibility').value = state.settings.defaultPinVisibility || 'private'; el('shareAttribution').value = state.settings.shareAttribution || '';
+  el('defaultPinVisibility')?.addEventListener('change', async (event) => { state.settings.defaultPinVisibility = event.target.value; await db.put('settings', state.settings); });
+  el('shareAttribution')?.addEventListener('change', async (event) => { state.settings.shareAttribution = event.target.value.trim(); await db.put('settings', state.settings); });
+  el('walkPlanImportInput')?.addEventListener('change', async (event) => {
+    const file = event.target.files?.[0]; if (!file) return;
+    try { const plan = normalizeWalkPlan(await file.text()); if (state.activeWalk) { state.pendingWalkPlan = plan; toast('Walk plan queued until this walk ends.'); } else paintWalkPlan(plan); }
+    catch (error) { toast(error.message || 'That walk plan could not be opened.'); }
+    event.target.value = '';
+  });
+  el('downloadWalkPlanButton')?.addEventListener('click', downloadCurrentWalkPlan);
+  const friends = (state.online.leaderboard || []).map((friend) => friend.username).filter(Boolean);
+  el('friendSharePicker').innerHTML = friends.map((name) => `<span class="poi-chip">@${escapeHtml(name)}</span>`).join('');
+}
+
+function bindOnlineControls() {
+  el('openOnlineButton')?.addEventListener('click', () => void openOnline()); el('signInButton')?.addEventListener('click', signIn); el('passkeySignInButton')?.addEventListener('click', signInWithPasskey); el('signUpButton')?.addEventListener('click', signUp);
+  el('usernameForm')?.addEventListener('submit', createOnlineProfile); el('syncNowButton')?.addEventListener('click', async () => { await syncProfile(); await renderOnline(); }); el('accountSettingsButton')?.addEventListener('click', openAccountSettings); el('registerPasskeyButton')?.addEventListener('click', registerPasskey);
+  el('accountUsernameForm')?.addEventListener('submit', updateAccountUsername); el('accountEmailForm')?.addEventListener('submit', updateAccountEmail); el('accountPasswordForm')?.addEventListener('submit', updateAccountPassword);
+}
+
+function bindDeviceControls() {
+  el('clearDataButton')?.addEventListener('click', async () => {
+    if (!confirm('Clear walks, journal notes, settings, and private places from this device?')) return;
+    await db.clearAll(); localStorage.clear(); sessionStorage.clear(); location.reload();
+  });
+  window.addEventListener('walk-ended', () => void renderArchive());
 }

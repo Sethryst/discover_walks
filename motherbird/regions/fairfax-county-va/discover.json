@@ -1,0 +1,337 @@
+{
+  "artifact_type": "enrichment",
+  "cards": [
+    {
+      "artifact_type": "enrichment",
+      "id": "journey:wod-vienna-town-green",
+      "journeyId": "wod-vienna-town-green",
+      "kind": "journey",
+      "reason": "A paved Vienna section of the Washington & Old Dominion Trail assembled from the county's official non-county trail geometry, with the Town Green and a durable birding hotspot as reasons to pause and notice.",
+      "stopPlaceIds": [
+        "parks:fairfax-non-county-parks:11745",
+        "wildlife:fairfax-ebird-hotspots:L4138121"
+      ],
+      "title": "W&OD: Vienna Town Green Section"
+    },
+    {
+      "artifact_type": "enrichment",
+      "id": "journey:great-falls-river-and-matildaville",
+      "journeyId": "great-falls-river-and-matildaville",
+      "kind": "journey",
+      "reason": "Two substantial named National Park Service-maintained trail lines from Fairfax's official non-county layer, centered on river scenery, the former Matildaville landscape, and a wildlife stop at Great Falls Park.",
+      "stopPlaceIds": [
+        "parks:fairfax-non-county-parks:4057",
+        "wildlife:fairfax-ebird-hotspots:L718485"
+      ],
+      "title": "Great Falls: River and Matildaville"
+    },
+    {
+      "artifact_type": "enrichment",
+      "id": "journey:lake-accotink-cross-county",
+      "journeyId": "lake-accotink-cross-county",
+      "kind": "journey",
+      "reason": "A set of official Cross County Trail segments beside Lake Accotink, anchored by the park, the marina and visitor-center area, and a durable wildlife stop. The chapters preserve the county's segmented source geometry rather than implying a generated loop.",
+      "stopPlaceIds": [
+        "wildlife:fairfax-ebird-hotspots:L419600",
+        "facilities:fairfax-county-park-amenities:20",
+        "facilities:fairfax-county-restrooms:13",
+        "parks:fairfax-county-parks:135",
+        "facilities:fairfax-county-park-amenities:50"
+      ],
+      "title": "Lake Accotink: Cross County Trail Pauses"
+    },
+    {
+      "artifact_type": "enrichment",
+      "id": "journey:riverbend-potomac-heritage",
+      "journeyId": "riverbend-potomac-heritage",
+      "kind": "journey",
+      "reason": "A Riverbend walk concept built from named FCPA Potomac Heritage Trail geometry, with the visitor-center area, an official restroom record, and the Riverbend wildlife destination already present in the county package.",
+      "stopPlaceIds": [
+        "wildlife:fairfax-ebird-hotspots:L718694",
+        "parks:fairfax-county-parks:235",
+        "facilities:fairfax-county-park-amenities:302",
+        "facilities:fairfax-county-restrooms:32"
+      ],
+      "title": "Riverbend: Potomac Heritage and Wildlife"
+    },
+    {
+      "artifact_type": "enrichment",
+      "id": "cluster:e98117c1729648ff",
+      "kind": "park+facility+restaurant",
+      "reason": "A park, facility, and restaurant sit within a short walk of one another.",
+      "stopPlaceIds": [
+        "parks:fairfax-county-parks:257",
+        "facilities:fairfax-county-park-amenities:314",
+        "osm:node:655228376"
+      ],
+      "title": "Alabama Drive + Alabama Drive + Luciano's"
+    },
+    {
+      "artifact_type": "enrichment",
+      "id": "cluster:b6fc607ec64a0f10",
+      "kind": "park+trail+facility",
+      "reason": "A park, trail, and facility sit within a short walk of one another.",
+      "stopPlaceIds": [
+        "parks:fairfax-county-parks:25",
+        "trails:fairfax-county-trails:4976",
+        "facilities:fairfax-county-park-amenities:54"
+      ],
+      "title": "Americana + Cross County Trail + Americana"
+    },
+    {
+      "artifact_type": "enrichment",
+      "id": "cluster:85a114ee83caaa49",
+      "kind": "trail+facility",
+      "reason": "A trail and facility are within a few minutes on foot.",
+      "stopPlaceIds": [
+        "trails:fairfax-county-trails:2568",
+        "facilities:fairfax-county-park-amenities:332"
+      ],
+      "title": "Amphitheater Trail + Lake Fairfax Skatepark"
+    },
+    {
+      "artifact_type": "enrichment",
+      "id": "cluster:355863898d1be98c",
+      "kind": "trail+restaurant+park",
+      "reason": "A trail, restaurant, and park sit within a short walk of one another.",
+      "stopPlaceIds": [
+        "trails:fairfax-non-county-trails:816",
+        "osm:node:2525180244",
+        "parks:fairfax-non-county-parks:9833"
+      ],
+      "title": "Ancc + Artie's + Wilcoxon Park"
+    },
+    {
+      "artifact_type": "enrichment",
+      "id": "cluster:91a6041fb6d782d5",
+      "kind": "trail+wildlife",
+      "reason": "A trail and wildlife are within a few minutes on foot.",
+      "stopPlaceIds": [
+        "trails:fairfax-non-county-trails:958",
+        "wildlife:fairfax-ebird-hotspots:L4721624"
+      ],
+      "title": "Ancc + Historic Blenheim"
+    },
+    {
+      "artifact_type": "enrichment",
+      "id": "cluster:bbcffeb6135793e1",
+      "kind": "trail+wildlife",
+      "reason": "A trail and wildlife are within a few minutes on foot.",
+      "stopPlaceIds": [
+        "trails:fairfax-non-county-trails:959",
+        "wildlife:fairfax-ebird-hotspots:L1675579"
+      ],
+      "title": "Ancc + Daniels Run Trail West"
+    },
+    {
+      "artifact_type": "enrichment",
+      "id": "cluster:836ec453baa45f96",
+      "kind": "park+restaurant+wildlife",
+      "reason": "A park, restaurant, and wildlife sit within a short walk of one another.",
+      "stopPlaceIds": [
+        "parks:fairfax-county-parks:23472",
+        "osm:node:2717370312",
+        "wildlife:fairfax-ebird-hotspots:L2490811"
+      ],
+      "title": "Arrowbrook + Spice Village + Arrowbrook Park"
+    },
+    {
+      "artifact_type": "enrichment",
+      "id": "cluster:3ac6174864ee5ca8",
+      "kind": "park+wildlife+facility",
+      "reason": "A park, wildlife, and facility sit within a short walk of one another.",
+      "stopPlaceIds": [
+        "parks:fairfax-county-parks:281",
+        "wildlife:fairfax-ebird-hotspots:L5179564",
+        "facilities:fairfax-county-park-amenities:215"
+      ],
+      "title": "Arrowhead + Arrowhead Park + Arrowhead"
+    },
+    {
+      "artifact_type": "enrichment",
+      "id": "cluster:bf9633f23ea9a44b",
+      "kind": "park+wildlife",
+      "reason": "A park and wildlife are within a few minutes on foot.",
+      "stopPlaceIds": [
+        "parks:fairfax-non-county-parks:9812",
+        "wildlife:fairfax-ebird-hotspots:L3871973"
+      ],
+      "title": "Ashby Pond Conservatory Site + Ashby Pond Conservancy Site"
+    },
+    {
+      "artifact_type": "enrichment",
+      "id": "cluster:a2f734fae1feb13d",
+      "kind": "park+facility+trail",
+      "reason": "A park, facility, and trail sit within a short walk of one another.",
+      "stopPlaceIds": [
+        "parks:fairfax-county-parks:157",
+        "facilities:fairfax-county-park-amenities:295",
+        "trails:fairfax-non-county-trails:10289"
+      ],
+      "title": "Ashgrove Historic Site + Ashgrove Historic Site Trailhead + Connector"
+    },
+    {
+      "artifact_type": "enrichment",
+      "id": "cluster:63e52fc5125ee0ec",
+      "kind": "park+facility",
+      "reason": "A park and facility are within a few minutes on foot.",
+      "stopPlaceIds": [
+        "parks:fairfax-county-parks:50",
+        "facilities:fairfax-county-park-amenities:368"
+      ],
+      "title": "Ashlawn + Ashlawn"
+    },
+    {
+      "artifact_type": "enrichment",
+      "id": "cluster:38f8747b7570261f",
+      "kind": "park+facility",
+      "reason": "A park and facility are within a few minutes on foot.",
+      "stopPlaceIds": [
+        "parks:fairfax-county-parks:3",
+        "facilities:fairfax-county-park-amenities:415"
+      ],
+      "title": "Azalea + Azalea"
+    },
+    {
+      "artifact_type": "enrichment",
+      "id": "cluster:36a62448835162d9",
+      "kind": "trail+restaurant",
+      "reason": "A trail and restaurant are within a few minutes on foot.",
+      "stopPlaceIds": [
+        "trails:fairfax-non-county-trails:7094",
+        "osm:node:258062657"
+      ],
+      "title": "BCT + Dunkin'"
+    },
+    {
+      "artifact_type": "enrichment",
+      "id": "cluster:6e87fec70b6d4f94",
+      "kind": "trail+restaurant+cafe",
+      "reason": "A trail, restaurant, and cafe sit within a short walk of one another.",
+      "stopPlaceIds": [
+        "trails:fairfax-non-county-trails:7095",
+        "osm:node:258062657",
+        "osm:node:601513200"
+      ],
+      "title": "BCT + Dunkin' + Starbucks"
+    },
+    {
+      "artifact_type": "enrichment",
+      "id": "cluster:0130933217e3a60e",
+      "kind": "trail+restaurant",
+      "reason": "A trail and restaurant are within a few minutes on foot.",
+      "stopPlaceIds": [
+        "trails:fairfax-non-county-trails:7096",
+        "osm:node:258062657"
+      ],
+      "title": "BCT + Dunkin'"
+    },
+    {
+      "artifact_type": "enrichment",
+      "id": "cluster:19737cc90ba8457b",
+      "kind": "trail+restaurant",
+      "reason": "A trail and restaurant are within a few minutes on foot.",
+      "stopPlaceIds": [
+        "trails:fairfax-non-county-trails:7097",
+        "osm:node:258062657"
+      ],
+      "title": "BCT + Dunkin'"
+    },
+    {
+      "artifact_type": "enrichment",
+      "id": "cluster:e4093f49ecf9e6f2",
+      "kind": "trail+restaurant",
+      "reason": "A trail and restaurant are within a few minutes on foot.",
+      "stopPlaceIds": [
+        "trails:fairfax-non-county-trails:7099",
+        "osm:node:258062657"
+      ],
+      "title": "BCT + Dunkin'"
+    },
+    {
+      "artifact_type": "enrichment",
+      "id": "cluster:4af30ed87753ae7e",
+      "kind": "trail+restaurant+cafe",
+      "reason": "A trail, restaurant, and cafe sit within a short walk of one another.",
+      "stopPlaceIds": [
+        "trails:fairfax-non-county-trails:7101",
+        "osm:node:258062907",
+        "osm:node:601513200"
+      ],
+      "title": "BCT + Cafe Rio + Starbucks"
+    },
+    {
+      "artifact_type": "enrichment",
+      "id": "cluster:627c5ab57313e309",
+      "kind": "trail+restaurant+cafe",
+      "reason": "A trail, restaurant, and cafe sit within a short walk of one another.",
+      "stopPlaceIds": [
+        "trails:fairfax-non-county-trails:7104",
+        "osm:node:258062907",
+        "osm:node:601513200"
+      ],
+      "title": "BCT + Cafe Rio + Starbucks"
+    },
+    {
+      "artifact_type": "enrichment",
+      "id": "cluster:55e927feaaa0bb8e",
+      "kind": "trail+restaurant+cafe",
+      "reason": "A trail, restaurant, and cafe sit within a short walk of one another.",
+      "stopPlaceIds": [
+        "trails:fairfax-non-county-trails:7105",
+        "osm:node:258062907",
+        "osm:node:601513200"
+      ],
+      "title": "BCT + Cafe Rio + Starbucks"
+    },
+    {
+      "artifact_type": "enrichment",
+      "id": "cluster:2d13084842ca2853",
+      "kind": "trail+facility",
+      "reason": "A trail and facility are within a few minutes on foot.",
+      "stopPlaceIds": [
+        "trails:fairfax-non-county-trails:7118",
+        "facilities:fairfax-county-park-amenities:25"
+      ],
+      "title": "BCT + Pohick Stream Valley Basketball Court"
+    },
+    {
+      "artifact_type": "enrichment",
+      "id": "cluster:8799c2c24bbc524f",
+      "kind": "trail+facility",
+      "reason": "A trail and facility are within a few minutes on foot.",
+      "stopPlaceIds": [
+        "trails:fairfax-non-county-trails:7119",
+        "facilities:fairfax-county-park-amenities:25"
+      ],
+      "title": "BCT + Pohick Stream Valley Basketball Court"
+    },
+    {
+      "artifact_type": "enrichment",
+      "id": "cluster:72c6e0ec2f8f6d8c",
+      "kind": "trail+restaurant+cafe",
+      "reason": "A trail, restaurant, and cafe sit within a short walk of one another.",
+      "stopPlaceIds": [
+        "trails:fairfax-non-county-trails:7414",
+        "osm:node:258062907",
+        "osm:node:601513200"
+      ],
+      "title": "BCT + Cafe Rio + Starbucks"
+    },
+    {
+      "artifact_type": "enrichment",
+      "id": "cluster:66717414c8badb01",
+      "kind": "trail+restaurant+cafe",
+      "reason": "A trail, restaurant, and cafe sit within a short walk of one another.",
+      "stopPlaceIds": [
+        "trails:fairfax-non-county-trails:7415",
+        "osm:node:258062907",
+        "osm:node:601513200"
+      ],
+      "title": "BCT + Cafe Rio + Starbucks"
+    }
+  ],
+  "generatedAt": "2026-09-01T09:15:14.077999Z",
+  "regionId": "fairfax-county-va",
+  "schemaVersion": 1
+}

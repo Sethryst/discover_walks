@@ -29,6 +29,7 @@ def normalize_overpass(elements: Iterable[dict[str, Any]], source_config_id: str
             "name": name,
             "lat": lat,
             "lng": lng,
+            "artifact_type": "pin",
             "category": category,
             "fromOsm": True,
             "sourceType": "osm_overpass",
@@ -83,7 +84,9 @@ def _category(tags: dict[str, str]) -> str:
     if tags.get("amenity") == "library":
         return "library"
     if tags.get("amenity") == "marketplace":
-        return "community"
+        return "market"
+    if tags.get("amenity") in {"restaurant", "fast_food"}:
+        return "restaurant"
     if tags.get("leisure") == "garden":
         return "garden"
     if tags.get("tourism") == "artwork":

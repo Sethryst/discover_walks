@@ -1,5 +1,4 @@
 import { state } from './state.js';
-import { POINTS_PER_OBSERVATION } from './constants.js';
 import { el, cityLabel, escapeHtml, uid } from './utils.js';
 import db from './storage.js';
 import { updateProfile } from './profile.js';
@@ -63,7 +62,7 @@ export async function saveObservation(event) {
       walkId: state.activeWalk?.id || null,
       coverage: null
     }),
-    pointsAwarded: POINTS_PER_OBSERVATION
+    pointsAwarded: 0
   };
   if (personalTags.length) {
     state.settings.customObservationTags = { ...(state.settings.customObservationTags || {}), ...Object.fromEntries(personalTags.map((tag) => [tag, icon])) };
@@ -72,6 +71,6 @@ export async function saveObservation(event) {
   await db.put('observations', observation);
   await attachWalkArtifact(observation, 'observation');
   requestCompanionContext('observe');
-  await updateProfile((profile) => { profile.totalPoints += POINTS_PER_OBSERVATION; profile.observationsLogged += 1; return POINTS_PER_OBSERVATION; });
-  addObservationMarker(observation); closeSheets(); toast(`Observation saved — +${POINTS_PER_OBSERVATION} points.`); renderArchive();
+  await updateProfile((profile) => { profile.observationsLogged += 1; return 0; });
+  addObservationMarker(observation); closeSheets(); toast('Observation saved locally.'); renderArchive();
 }

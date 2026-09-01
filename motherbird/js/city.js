@@ -17,6 +17,20 @@ export async function loadCityData(cityId) {
   const response = await fetch(config.dataFile);
   if (!response.ok) throw new Error(`${cityLabel(cityId)} places data could not be loaded.`);
   const seed = await response.json();
+  let edgeSegments = [];
+  if (config.edgeFile) {
+    try {
+      const edgeResponse = await fetch(config.edgeFile);
+      if (edgeResponse.ok) {
+        const edgePackage = await edgeResponse.json();
+        edgeSegments = (edgePackage.edges || []).flatMap((edge) => {
+          const geometry = edge.geometry || {};
+          const coordinates = geometry.type === 'LineString' ? [geometry.coordinates] : geometry.type === 'MultiLineString' ? geometry.coordinates : [];
+          return coordinates.length ? [{ id: edge.id, name: edge.name || 'Named trail', coordinates, source: edge.source || [] }] : [];
+        });
+      }
+    } catch { edgeSegments = []; }
+  }
   let supplements = [];
   const supplementFiles = [...(config.supplementalPoiFiles || []), config.journeyFile, config.osm?.enabled ? config.osm.packageFile : null].filter(Boolean);
   if (supplementFiles.length) {
@@ -40,15 +54,17 @@ export async function loadCityData(cityId) {
     supplements.forEach((poi) => byId.set(poi.id, poi));
     return [...byId.values()];
   };
-  const seedVersion = seed.metadata?.version || seed.schemaVersion || 1;
+  const seedVersion = seed.generatedAt || seed.metadata?.generatedAt || seed.metadata?.version || seed.schemaVersion || 1;
   const seedAttribution = seed.metadata?.attribution || seed.producer?.name || 'Gremlin Lab';
 
   if (!metadata || metadata.version !== seedVersion || !saved.length) {
     const newPois = mergeSupplements(seed.pois || seed.pointsOfInterest || []).filter((poi) => poi.category !== 'journey' || validJourney(poi)).map((poi) => migratePoi(poi, cityId));
     await Promise.all(newPois.map((item) => db.put('points_of_interest', item)));
-    await db.put('poi_metadata', { id: `${cityId}-seed`, version: seedVersion, attribution: seedAttribution, trailSegments: seed.trailSegments || [] });
+    const nextIds = new Set(newPois.map((poi) => poi.id));
+    await Promise.all(saved.filter((poi) => !nextIds.has(poi.id)).map((poi) => db.remove('points_of_interest', poi.id)));
+    await db.put('poi_metadata', { id: `${cityId}-seed`, version: seedVersion, attribution: seedAttribution, trailSegments: edgeSegments.length ? edgeSegments : (seed.trailSegments || []) });
     state.cityPois[cityId] = newPois;
-    state.trailSegments[cityId] = seed.trailSegments || [];
+    state.trailSegments[cityId] = edgeSegments.length ? edgeSegments : (seed.trailSegments || []);
   } else {
     const invalidJourneyIds = saved.filter((poi) => poi.category === 'journey' && !validJourney(poi)).map((poi) => poi.id);
     await Promise.all(invalidJourneyIds.map((id) => db.remove('points_of_interest', id)));
@@ -57,7 +73,7 @@ export async function loadCityData(cityId) {
     const additions = merged.filter((poi) => !existing.has(poi.id));
     if (additions.length) await Promise.all(additions.map((poi) => db.put('points_of_interest', poi)));
     state.cityPois[cityId] = merged;
-    state.trailSegments[cityId] = metadata.trailSegments || [];
+    state.trailSegments[cityId] = edgeSegments.length ? edgeSegments : (metadata.trailSegments || []);
   }
 }
 export async function loadAllCityData() {

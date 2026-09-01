@@ -139,6 +139,8 @@ def _selectors(categories: list[str]) -> list[str]:
         "community": '["amenity"="marketplace"]["name"]',
         "garden": '["leisure"="garden"]["name"]',
         "coffee": '["amenity"="cafe"]["name"]',
+        "markets": '["amenity"="marketplace"]["name"]',
+        "restaurants": '["amenity"~"^(restaurant|fast_food)$"]["name"]',
         "rest": '["amenity"~"^(drinking_water|shelter|toilets)$"]["name"]',
     }
     return list(dict.fromkeys(mapping[category] for category in categories if category in mapping))
@@ -159,10 +161,12 @@ def _domain(tags: dict[str, Any], geometry: dict[str, Any] | None) -> str | None
         return "history"
     if tags.get("tourism") == "artwork":
         return "art"
-    if tags.get("amenity") in {"library", "marketplace"}:
+    if tags.get("amenity") == "library":
         return "community"
     if tags.get("amenity") == "cafe":
         return "coffee"
+    if tags.get("amenity") in {"marketplace", "restaurant", "fast_food"}:
+        return "cuisine"
     if tags.get("amenity") in {"drinking_water", "shelter", "toilets"}:
         return "rest"
     return None

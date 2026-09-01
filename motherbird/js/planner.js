@@ -1,308 +1,80 @@
 import { state } from './state.js';
-import { city, poiTags, isWalkablePoi, renderCityPois } from './poi.js';
-import { distanceMeters } from './geo.js';
-import { el, escapeHtml } from './utils.js';
+import { CITIES } from './constants.js';
+import { poiTags } from './poi.js';
 import { routeOnFoot } from './routing.js';
-import { quietPlacesNear } from './quiet-places.js';
-import { getPoisNearRoute } from './spatial-index.js';
-import { parseWalkDescription, saveWalkDraft } from './text-to-walk.js';
-import { toast } from './ui.js';
-import { requestCompanionContext } from './companion.js';
+import { escapeHtml } from './utils.js';
 
-const MILES_PER_MINUTE = 0.05;
-const originForPlan = () => state.plannerStart || state.currentPosition || { lat: state.map?.getCenter().lat ?? city().center.lat, lng: state.map?.getCenter().lng ?? city().center.lng };
-const activePreferences = () => [...document.querySelectorAll('.planner-chip.active')].map((button) => button.dataset.plannerTag).filter(Boolean);
-const selectedMinutes = () => Number(document.querySelector('input[name="walkTime"]:checked')?.value || 30);
-const selectedRouteMode = () => document.querySelector('input[name="routeMode"]:checked')?.value || 'round-trip';
-const bearing = (from, point) => (Math.atan2(point.lng - from.lng, point.lat - from.lat) * 180 / Math.PI + 360) % 360;
-const ROUTE_THEMES = { park: 'Green Space', trail: 'Wildlife', history: 'History', quiet: 'Quiet' };
-export const ROUTE_OBJECTIVES = [
-  { key: 'balanced', label: 'Balanced discovery', styleKey: 'balanced', color: '#2f766d', dashArray: null, dataStatus: 'real', note: 'Time, distance, and public place signals.' },
-  { key: 'shortest', label: 'Shortest', styleKey: 'shortest', color: '#a85f4a', dashArray: '3 7', dataStatus: 'real', note: 'Pedestrian route distance.' },
-  { key: 'green', label: 'Greener', styleKey: 'green', color: '#6f8f54', dashArray: '12 6', dataStatus: 'real', note: 'Public park, trail, garden, and nature tags.' },
-  { key: 'accessible', label: 'Gentler estimate', styleKey: 'accessible', color: '#657ca8', dashArray: '2 5', dataStatus: 'placeholder', note: 'Accessibility tags and route simplicity; grade data is not installed.' },
-  { key: 'shade', label: 'Shadier estimate', styleKey: 'shade', color: '#9a729e', dashArray: '9 4 2 4', dataStatus: 'placeholder', note: 'Green-place proxy; tree-canopy and time-of-day shade are not installed.' }
-];
+function selectedMinutes() { return Number(document.querySelector('input[name="walkTime"]:checked')?.value || 30); }
+function selectedRouteMode() { return document.querySelector('input[name="routeMode"]:checked')?.value || 'round-trip'; }
 
-function routeTitle(stops, preferences, index) {
-  const selectedTheme = preferences.find((tag) => ROUTE_THEMES[tag]);
-  const discoveredTheme = stops.flatMap(poiTags).find((tag) => ROUTE_THEMES[tag]);
-  const theme = ROUTE_THEMES[selectedTheme || discoveredTheme] || 'Local Discovery';
-  const cityName = city().name;
-  return `${cityName} ${theme} Loop${index ? ` ${index + 1}` : ''}`;
+function interests() {
+  const pressed = [...document.querySelectorAll('[data-start-interest][aria-pressed="true"]')].map((button) => button.dataset.startInterest);
+  return pressed.length ? pressed : (state.settings.favoriteCategories || []);
 }
 
-export function setPlanningMode(active) {
-  state.planningMode = active;
-  document.body.classList.toggle('planning-mode', active);
-  if (!active) state.plannerSelecting = null;
-  renderCityPois();
-}
-
-function candidateStops(origin, preferences, maxDistance = 2600) {
-  return [...(state.cityPois[state.activeCity] || []), ...(state.quietFallbackPlaces || [])].filter(isWalkablePoi)
-    .filter((poi) => !preferences.length || preferences.includes('quiet') || preferences.some((tag) => poiTags(poi).includes(tag)))
-    .map((poi) => ({ poi, distance: distanceMeters(origin, poi), heading: bearing(origin, poi) }))
-    .filter(({ distance }) => distance > 80 && distance < maxDistance)
-    .sort((a, b) => a.distance - b.distance);
-}
-
-function nearbyParkAnchor(origin, maxDistance = 2600) {
-  // A large park beside the walker must be a routing constraint, not just one
-  // possible discovery among many. The NYC historical-sign import represents
-  // Central Park with several records at a shared, in-park coordinate, so use
-  // that reliable access point when the walker is nearby.
-  const parks = [...(state.cityPois[state.activeCity] || []), ...(state.quietFallbackPlaces || [])]
-    .filter(isWalkablePoi)
-    .filter((poi) => poiTags(poi).includes('park'))
-    .map((poi) => ({ poi, distance: distanceMeters(origin, poi) }))
-    .filter(({ distance }) => distance <= maxDistance)
-    .sort((a, b) => {
-      const centralPark = (item) => /\bcentral park\b/i.test(item.poi.name || '') ? 0 : 1;
-      return centralPark(a) - centralPark(b) || a.distance - b.distance;
-    });
-  return parks[0]?.poi || null;
-}
-
-function uniqueStops(stops) {
-  return stops.filter((stop, index, all) => all.findIndex((other) => other.id === stop.id || (Math.abs(other.lat - stop.lat) < .00005 && Math.abs(other.lng - stop.lng) < .00005)) === index);
-}
-
-function endpointLabel(point, fallback) {
-  if (!point) return fallback;
-  return `${point.lat.toFixed(4)}, ${point.lng.toFixed(4)}`;
-}
-
-function renderEndpointStatus(origin, routeMode) {
-  el('pointToPointControls').classList.toggle('hidden', routeMode !== 'point-to-point');
-  el('walkTimeOptions').classList.toggle('hidden', routeMode === 'point-to-point');
-  const start = state.plannerStart ? 'custom map point' : state.currentPosition ? 'current location' : 'map center';
-  const end = state.plannerEnd ? `destination ${endpointLabel(state.plannerEnd, 'map point')}` : routeMode === 'point-to-point' ? 'destination: a nearby park or place' : 'returns to start';
-  el('planEndpoints').textContent = `Start: ${start} · ${end}`;
-}
-
-function loopSeeds(origin, preferences, maxDistance) {
-  const candidates = candidateStops(origin, preferences, maxDistance);
-  // One nearby stop per compass sector produces genuinely different loop shapes.
-  return [0, 72, 144, 216, 288].map((heading) => {
-    const first = candidates.slice().sort((a, b) => Math.abs((((a.heading - heading) + 540) % 360) - 180) - Math.abs((((b.heading - heading) + 540) % 360) - 180))[0];
-    if (!first) return [];
-    const second = candidates.filter((item) => item.poi.id !== first.poi.id).sort((a, b) => Math.abs((((a.heading - (first.heading + 70)) + 540) % 360) - 180) - Math.abs((((b.heading - (first.heading + 70)) + 540) % 360) - 180))[0];
-    return [first.poi, second?.poi].filter(Boolean);
-  }).filter((stops, index, all) => stops.length && all.findIndex((other) => other[0].id === stops[0].id) === index);
-}
-function sparseAreaLoopSeeds(origin, minutes) {
-  // POI availability must never determine whether a person can take a walk.
-  // These are route waypoints only; they deliberately create no fake stops.
-  const radiusMeters = Math.max(140, Math.min(700, (minutes * MILES_PER_MINUTE * 1609.344) / 4));
-  const pointAt = (degrees) => {
-    const radians = degrees * Math.PI / 180;
-    return { lat: origin.lat + (Math.cos(radians) * radiusMeters) / 111320, lng: origin.lng + (Math.sin(radians) * radiusMeters) / (111320 * Math.cos(origin.lat * Math.PI / 180)) };
+function candidateStops(origin, tags) {
+  const candidates = (state.cityPois[state.activeCity] || []).filter((poi) => Number.isFinite(poi.lat) && Number.isFinite(poi.lng) && poi.category !== 'journey');
+  const score = (poi) => {
+    const poiTagSet = new Set(poiTags(poi));
+    const interest = tags.filter((tag) => poiTagSet.has(tag)).length * 8;
+    const distance = Math.hypot((poi.lat - origin.lat) * 111, (poi.lng - origin.lng) * 88);
+    return interest + Number(poi.walkRelevanceScore || 0) - distance;
   };
-  return [0, 120, 240].map((heading) => ({ stops: [], via: [pointAt(heading), pointAt(heading + 90)] }));
+  return candidates.sort((a, b) => score(b) - score(a) || a.name.localeCompare(b.name));
 }
 
-function interestScore(stops, preferences) {
-  const tags = stops.flatMap(poiTags);
-  return (preferences.length ? preferences.filter((tag) => tags.includes(tag)).length * 3 : 0) + new Set(tags).size + stops.filter((p) => poiTags(p).includes('history')).length * 2 + stops.reduce((score, stop) => score + (Number(stop.walkRelevanceScore) || 0), 0);
+function conceptReason(stops) {
+  const tags = [...new Set(stops.flatMap(poiTags))];
+  const ground = tags.includes('trail') ? 'trail and named-place ground' : tags.some((tag) => ['park', 'nature', 'wildlife'].includes(tag)) ? 'green and wildlife ground' : 'neighborhood place ground';
+  return `${ground[0].toUpperCase()}${ground.slice(1)} · ${stops.length} stop${stops.length === 1 ? '' : 's'} · ${stops.map((stop) => stop.name).slice(0, 2).join(' and ')}`;
 }
 
-function tagsForStops(stops) { return stops.flatMap(poiTags); }
-const smoothSurface = (value) => /asphalt|concrete|paved/i.test(String(value || ''));
-const noStairs = (value) => !value || /^(0|false|no|none)$/i.test(String(value));
-const adaTagged = (value) => /^(yes|true|y|1)$/i.test(String(value || ''));
-export function routeEvidence(route, nearby = []) {
-  const places = [...(route.stops || []), ...nearby.map((entry) => entry.poi || entry)];
-  const accessibleSegments = places.filter((place) => smoothSurface(place.surface) && noStairs(place.stairs)).length;
-  const adaPlaces = places.filter((place) => adaTagged(place.accessibility?.ada) || adaTagged(place.wheelchair)).length;
-  const restrooms = places.filter((place) => place.restrooms === true || poiTags(place).includes('restrooms')).length;
-  const drinkingWater = places.filter((place) => place.drinkingWater === true).length;
-  return { accessibleSegments, adaPlaces, restrooms, drinkingWater };
-}
-export function routeExplanation(route) {
-  const evidence = route.evidence || routeEvidence(route, route.influences || []);
-  const reasons = [];
-  if (route.objective?.key === 'accessible') {
-    if (evidence.accessibleSegments) reasons.push(`${evidence.accessibleSegments} paved or stair-free local segments`);
-    if (evidence.adaPlaces) reasons.push(`${evidence.adaPlaces} ADA-tagged places`);
-    if (!reasons.length) reasons.push('fewer turns and the available accessibility signals');
-  } else if (route.objective?.key === 'green') {
-    const greenStops = (route.stops || []).filter((stop) => poiTags(stop).some((tag) => ['park', 'trail', 'nature', 'garden', 'water_access'].includes(tag))).length;
-    reasons.push(greenStops ? `${greenStops} nearby green-space stops` : 'available public green-space signals');
-  } else if (route.objective?.key === 'shortest') reasons.push('the shortest available pedestrian distance');
-  else if (route.objective?.key === 'shade') reasons.push('green-place proximity only; canopy coverage is not installed yet');
-  else reasons.push('time fit, distance, and public-place signals');
-  if (evidence.restrooms) reasons.push(`${evidence.restrooms} restroom locations nearby`);
-  if (evidence.drinkingWater) reasons.push(`${evidence.drinkingWater} water locations nearby`);
-  return reasons;
-}
-function routeComplexity(coordinates = []) {
-  let turns = 0;
-  for (let index = 2; index < coordinates.length; index += 1) {
-    const [aLat, aLng] = coordinates[index - 2]; const [bLat, bLng] = coordinates[index - 1]; const [cLat, cLng] = coordinates[index];
-    const first = Math.atan2(bLng - aLng, bLat - aLat); const second = Math.atan2(cLng - bLng, cLat - bLat);
-    if (Math.abs(Math.atan2(Math.sin(second - first), Math.cos(second - first))) > 0.65) turns += 1;
-  }
-  return turns;
-}
-
-export function objectiveCost(route, objectiveKey) {
-  const tags = tagsForStops(route.stops || []);
-  const greenSignals = tags.filter((tag) => ['park', 'trail', 'nature', 'garden', 'water_access'].includes(tag)).length;
-  const evidence = routeEvidence(route);
-  const accessSignals = evidence.accessibleSegments + evidence.adaPlaces;
-  const distance = Number(route.distanceMeters) || Number(route.distanceMiles || 0) * 1609.344;
-  const complexity = routeComplexity(route.coordinates);
-  if (objectiveKey === 'shortest') return distance;
-  if (objectiveKey === 'green') return distance - greenSignals * 700;
-  if (objectiveKey === 'accessible') return distance + complexity * 18 - accessSignals * 350;
-  if (objectiveKey === 'shade') return distance - greenSignals * 420;
-  return distance - Number(route.baseScore || route.score || 0) * 60;
-}
-
-function objectiveAlternatives(routes) {
-  const unused = new Set(routes);
-  const objectives = ROUTE_OBJECTIVES.slice(0, routes.length);
-  const assignments = new Map();
-  ['shortest', 'balanced', 'green', 'accessible', 'shade'].map((key) => objectives.find((objective) => objective.key === key)).filter(Boolean).forEach((objective) => {
-    const pool = unused.size ? [...unused] : routes;
-    const route = pool.slice().sort((a, b) => objectiveCost(a, objective.key) - objectiveCost(b, objective.key))[0];
-    if (!route) return;
-    unused.delete(route);
-    assignments.set(objective.key, route);
-  });
-  return objectives.map((objective) => {
-    const route = assignments.get(objective.key);
-    if (!route) return null;
-    const influences = getPoisNearRoute(route.coordinates, 100).slice(0, 4).map(({ poi, distanceMeters }) => ({ id: poi.id, name: poi.name, distanceMeters: Math.round(distanceMeters), source: poi.source }));
-    return { ...route, title: `${objective.label} · ${route.title}`, objective, styleKey: objective.styleKey, color: objective.color, influences, evidence: routeEvidence(route, influences), objectiveCost: Math.round(objectiveCost(route, objective.key)), provenance: { routeGeometry: `Mother Bird ${route.routingProfile} graph ${route.graphVersion}`, policyVersion: route.policyVersion, sourceProvenanceIds: route.sourceProvenanceIds, placeSignals: 'installed regional POI package', objectiveDataStatus: objective.dataStatus } };
-  }).filter(Boolean);
-}
-
-function pointToPointSeeds(origin, destination, candidates) {
-  if (!destination) return [];
-  const choose = (tags) => candidates.find(({ poi }) => tags.some((tag) => poiTags(poi).includes(tag)))?.poi;
-  const anchors = [null, choose(['history']), choose(['park', 'trail', 'nature']), choose(['accessibility', 'community']), choose(['park', 'nature', 'water_access'])];
-  return anchors.map((anchor) => ({ stops: uniqueStops([...(anchor ? [anchor] : []), ...(destination.id ? [destination] : [])]), via: uniqueStops([...(anchor ? [anchor] : []), destination]) }));
-}
-
-export async function generateTimeBasedPlan() {
-  requestCompanionContext('map', { durationMs: 8000 });
-  state.plannedRoute = null; state.planOptions = []; state.routePlanningFailures = [];
-  el('planDistance').textContent = 'Finding routes…';
-  el('planSummary').textContent = 'Looking for walkable options that fit your choices.';
-  el('planStops').innerHTML = '';
-  el('planOptions').innerHTML = '<p class="empty-state">Finding walkable routes…</p>';
-  const minutes = selectedMinutes(); const preferences = activePreferences(); const routeMode = selectedRouteMode(); const origin = routeMode === 'point-to-point' ? originForPlan() : (state.currentPosition || { lat: state.map?.getCenter().lat ?? city().center.lat, lng: state.map?.getCenter().lng ?? city().center.lng });
-  renderEndpointStatus(origin, routeMode);
-  // Vienna and newly added regions can have very little curated data at first.
-  // Quiet OSM places are a private, cached planning fallback—not map clutter.
-  const maxStopDistance = routeMode === 'point-to-point' ? 2600 : Math.max(450, Math.min(2600, minutes * 42));
-  if (candidateStops(origin, preferences, maxStopDistance).length < 6) state.quietFallbackPlaces = await quietPlacesNear(state.activeCity, origin);
-  const poiSeeds = loopSeeds(origin, preferences, maxStopDistance);
-  const parkAnchor = nearbyParkAnchor(origin, maxStopDistance);
-  const requestedRoundTripDestination = routeMode === 'round-trip' ? state.plannerEnd : null;
-  const pointDestination = state.plannerEnd || state.textWalkStops.at(-1) || parkAnchor || poiSeeds[0]?.[0];
-  const seeds = routeMode === 'round-trip'
-    ? (poiSeeds.length
-      ? poiSeeds.map((stops) => {
-        const routeStops = uniqueStops([...(requestedRoundTripDestination ? [requestedRoundTripDestination] : []), ...(parkAnchor ? [parkAnchor] : []), ...stops]);
-        return { stops: routeStops, via: routeStops };
-      })
-      : sparseAreaLoopSeeds(origin, minutes).map((seed) => {
-        const anchors = uniqueStops([requestedRoundTripDestination, parkAnchor].filter(Boolean));
-        return anchors.length ? { stops: anchors, via: [...anchors, ...seed.via] } : seed;
-      }))
-    : pointToPointSeeds(origin, pointDestination, candidateStops(origin, [], maxStopDistance * 1.5));
-  const results = await Promise.all(seeds.map(async (seed, index) => {
-    const points = routeMode === 'round-trip' ? [origin, ...seed.via, origin] : [origin, ...seed.via];
-    const routed = await routeOnFoot(points, { city: state.activeCity, profile: 'ordinary_walking_beta' }).catch(() => ({ ok: false, status: 'GRAPH_VERSION_UNAVAILABLE' }));
-    if (!routed.ok) { state.routePlanningFailures.push(routed.status || routed.failure?.type || 'GRAPH_VERSION_UNAVAILABLE'); return null; }
-    const miles = routed.distanceMeters / 1609.344;
-    const timeFit = routeMode === 'round-trip' ? Math.max(0, 10 - Math.abs(minutes - routed.durationSeconds / 60) / 3) : 0;
-    return { id: `plan-${Date.now()}-${index}`, title: routeMode === 'round-trip' ? routeTitle(seed.stops, preferences, index) : `${city().name} point-to-point walk ${index + 1}`, city: state.activeCity, estimatedDurationMinutes: Math.round(routed.durationSeconds / 60), distanceMeters: routed.distanceMeters, distanceMiles: Number(miles.toFixed(2)), routeMode, preferences, stops: seed.stops, coordinates: routed.coordinates, source: 'mother-bird-runtime-graph', routingProfile: 'ordinary_walking_beta', graphVersion: routed.graphVersion, policyVersion: routed.policyVersion, sourceProvenanceIds: routed.sourceProvenanceIds, routeConfidence: routed.confidence, routeWarnings: routed.warnings, baseScore: timeFit + interestScore(seed.stops, preferences) - miles * .15 };
-  }));
-  state.planOptions = objectiveAlternatives(results.filter(Boolean));
-  state.visiblePlanIds = new Set(state.planOptions.map((plan) => plan.id));
-  // Keep the first ranked route ready so planning does not require a separate
-  // selection step. Alternatives remain tappable on the map and in the sheet.
-  state.plannedRoute = state.planOptions[0] || null;
-  renderPlanPreview();
-  previewTimeBasedPlan({ fit: true });
-  return state.plannedRoute;
-}
-
-export function choosePlan(id) { state.plannedRoute = state.planOptions.find((plan) => plan.id === id) || state.plannedRoute; renderPlanPreview(); previewTimeBasedPlan(); }
-export function changePlan() { state.plannedRoute = null; renderPlanPreview(); previewTimeBasedPlan(); }
-export function togglePlanVisibility(id, visible) { if (visible) state.visiblePlanIds.add(id); else state.visiblePlanIds.delete(id); previewTimeBasedPlan(); renderPlanPreview(); }
-
-export async function draftWalkFromText(text) {
-  const parsed = parseWalkDescription(text, state.cityPois[state.activeCity] || []);
-  if (!parsed.description) { toast('Describe the walk you want to take first.'); return null; }
-  const timeValues = [15, 30, 45, 60]; const closestTime = timeValues.slice().sort((a, b) => Math.abs(a - parsed.durationMinutes) - Math.abs(b - parsed.durationMinutes))[0];
-  const timeInput = document.querySelector(`input[name="walkTime"][value="${closestTime}"]`); if (timeInput) timeInput.checked = true;
-  document.querySelectorAll('.planner-chip').forEach((button) => button.classList.toggle('active', parsed.preferences.includes(button.dataset.plannerTag)));
-  state.textWalkStops = parsed.matchedPois;
-  if (parsed.matchedPois.length) {
-    const routeInput = document.querySelector('input[name="routeMode"][value="point-to-point"]'); if (routeInput) routeInput.checked = true;
-    state.plannerStart = parsed.matchedPois.length > 1 ? parsed.matchedPois[0] : null; state.plannerEnd = parsed.matchedPois.at(-1);
-  }
-  await saveWalkDraft(state.activeCity, parsed);
-  toast(parsed.matchedPois.length ? `Drafted from ${parsed.matchedPois.map((poi) => poi.name).join(' and ')}. You can still edit every choice.` : 'Drafted from your themes. You can still edit every choice.');
-  return generateTimeBasedPlan();
-}
-
-export function renderPlanPreview() {
-  const plan = state.plannedRoute;
-  const alternatives = el('routeAlternatives');
-  el('planOptions').innerHTML = state.planOptions.length
-    ? state.planOptions.map((option) => `<article class="route-option ${option.id === plan?.id ? 'active' : ''}"><label class="route-visibility"><input type="checkbox" data-route-toggle="${escapeHtml(option.id)}" ${state.visiblePlanIds.has(option.id) ? 'checked' : ''} aria-label="Show ${escapeHtml(option.objective.label)}" /><span style="--route-swatch:${option.color}"></span></label><button type="button" data-plan-option="${escapeHtml(option.id)}"><strong>${escapeHtml(option.objective.label)}</strong><small>${option.distanceMiles} mi${option.routeMode === 'round-trip' ? ` · ${option.estimatedDurationMinutes} min` : ''}</small></button><b>${option.id === plan?.id ? 'Selected' : 'Choose'}</b></article>`).join('')
-    : '';
-  alternatives.classList.toggle('hidden', !state.planOptions.length);
-  const influencePanel = el('planInfluences');
-  if (!plan) { influencePanel.classList.add('hidden'); el('planDistance').textContent = 'Start when you’re ready'; el('planSummary').textContent = 'Route suggestions are not available here, but your walk can still be recorded.'; el('planStops').innerHTML = ''; return; }
-  el('planDistance').textContent = `${plan.distanceMiles} miles`;
-  const discoveries = plan.stops.slice(0, 2).map((stop) => stop.name).join(' and ');
-  el('planSummary').textContent = discoveries
-    ? `${plan.routeMode === 'round-trip' ? `${plan.estimatedDurationMinutes}-minute loop` : 'Point-to-point walk'} with ${discoveries}.`
-    : plan.routeMode === 'round-trip' ? `${plan.estimatedDurationMinutes}-minute loop back to your start.` : 'Point-to-point route to your destination.';
-  el('planStops').innerHTML = plan.stops.map((stop, index) => `<li><span>${index + 1}</span><strong>${escapeHtml(stop.name)}</strong><small>${escapeHtml(stop.sourceType === 'osm-quiet-fallback' ? 'quiet place · OpenStreetMap' : poiTags(stop).find((tag) => !tag.startsWith('history_')) || 'place')}</small></li>`).join('');
-  influencePanel.classList.remove('hidden');
-  const reasons = routeExplanation(plan);
-  influencePanel.innerHTML = `${plan.influences.length ? plan.influences.map((item) => `<span class="influence-chip">${escapeHtml(item.name)} · ${item.distanceMeters}m</span>`).join('') : '<span class="influence-chip">No nearby public POI influenced this route</span>'}<small class="provenance-note"><strong>Why this route:</strong> ${escapeHtml(reasons.join(' · '))}.</small><small class="provenance-note">${escapeHtml(plan.objective.label)}: ${escapeHtml(plan.objective.note)} Geometry: ${escapeHtml(plan.provenance.routeGeometry)}. Confidence floor: ${Math.round((plan.routeConfidence?.minimum || 0) * 100)}%. ${escapeHtml(plan.routeWarnings?.join(' ') || '')}</small>`;
-}
-
-export function previewTimeBasedPlan({ fit = false } = {}) {
-  if (!state.map) return null;
+export function paintWalkConcept(plan = state.plannedRoute, { fit = true } = {}) {
+  if (!plan || !state.map) return null;
+  state.planSketchLayer?.remove();
   state.plannedRouteLine?.remove();
-  state.plannedRouteLines?.forEach((line) => line.remove());
-  state.plannedRouteLine = null;
-  const visibleOptions = state.planOptions.filter((plan) => plan.coordinates?.length && state.visiblePlanIds.has(plan.id));
-  state.plannedRouteLines = visibleOptions.map((option) => {
-    const selected = option.id === state.plannedRoute?.id;
-    const line = L.polyline(option.coordinates, routeLineStyle(option, selected)).addTo(state.map); line.routeId = option.id;
-    line.on('click', () => { choosePlan(option.id); window.dispatchEvent(new CustomEvent('planner-route-selected')); });
-    line.on('mouseover', () => { line.setStyle({ ...routeLineStyle(option, selected), weight: selected ? 9 : 7, opacity: 1 }); line.bringToFront(); });
-    line.on('mouseout', () => line.setStyle(routeLineStyle(option, option.id === state.plannedRoute?.id)));
-    line.bindTooltip(`${option.objective.label} · ${option.distanceMiles} mi${selected ? ' · selected' : ' · tap to select'}`, { sticky: true });
-    return line;
-  });
-  state.plannedRouteLine = state.plannedRoute ? state.plannedRouteLines.find((line) => line.routeId === state.plannedRoute.id) || null : null;
-  if (fit && state.plannedRouteLines.length) {
-    const bounds = L.featureGroup(state.plannedRouteLines).getBounds();
-    if (bounds.isValid()) state.map.fitBounds(bounds, { padding: [28, 28], maxZoom: 15 });
-  }
-  return state.plannedRoute;
-}
-
-function routeLineStyle(option, selected) { return { color: option.color, weight: selected ? 8 : 4.5, opacity: selected ? 0.98 : 0.62, dashArray: selected ? null : option.objective.dashArray, lineCap: 'round', lineJoin: 'round' }; }
-
-export function lockSelectedPlanOnMap() {
-  const plan = state.plannedRoute;
-  if (!state.map || !plan?.coordinates?.length) return null;
-  state.plannedRouteLine?.remove();
-  state.plannedRouteLines?.forEach((line) => line.remove());
-  state.plannedRouteLines = [];
-  state.plannedRouteLine = L.polyline(plan.coordinates, { color: plan.color || '#1b8b7e', weight: 7, opacity: .95 }).addTo(state.map);
+  state.planSketchLayer = L.layerGroup().addTo(state.map);
+  plan.stops.forEach((stop, index) => L.marker([stop.lat, stop.lng], { icon: L.divIcon({ className: 'sketch-stop', html: `<span>${index + 1}</span>`, iconSize: [30, 30], iconAnchor: [15, 15] }), title: stop.name }).bindTooltip(stop.name).addTo(state.planSketchLayer));
+  if (plan.coordinates?.length > 1) state.plannedRouteLine = L.polyline(plan.coordinates, { color: '#173c35', weight: 6, opacity: .9 }).addTo(state.map);
+  const layers = [...state.planSketchLayer.getLayers(), ...(state.plannedRouteLine ? [state.plannedRouteLine] : [])];
+  if (fit && layers.length) { const bounds = L.featureGroup(layers).getBounds(); if (bounds.isValid()) state.map.fitBounds(bounds, { padding: [42, 42], maxZoom: 16 }); }
+  window.dispatchEvent(new CustomEvent('walk-sketch-painted', { detail: plan }));
   return plan;
 }
+
+export async function generateTimeBasedPlan({ stops: seededStops = null, title = null, reason = null, journeyId = null } = {}) {
+  const minutes = selectedMinutes();
+  const routeMode = selectedRouteMode();
+  const center = state.currentPosition || state.map?.getCenter() || CITIES[state.activeCity].center;
+  const count = minutes <= 20 ? 2 : minutes >= 60 ? 4 : 3;
+  const stops = seededStops?.length ? seededStops : candidateStops(center, interests()).slice(0, count);
+  if (!stops.length) return null;
+  const points = routeMode === 'round-trip' ? [center, ...stops, center] : [center, ...stops];
+  const routed = await routeOnFoot(points, { city: state.activeCity, profile: 'ordinary_walking_beta' }).catch(() => ({ ok: false, status: 'GRAPH_VERSION_UNAVAILABLE' }));
+  const plan = {
+    id: `concept-${Date.now()}`, title: title || `${CITIES[state.activeCity]?.name || 'Local'} ${minutes}-minute sketch`,
+    reason: reason || conceptReason(stops), city: state.activeCity, routeMode, estimatedDurationMinutes: minutes,
+    stops, coordinates: routed.ok ? routed.coordinates : [], journeyId,
+    ...(routed.ok ? { distanceMeters: routed.distanceMeters, distanceMiles: Number((routed.distanceMeters / 1609.344).toFixed(2)), graphVersion: routed.graphVersion } : { graphStatus: routed.status || 'GRAPH_VERSION_UNAVAILABLE' })
+  };
+  state.plannedRoute = plan; state.planOptions = [plan];
+  paintWalkConcept(plan);
+  return plan;
+}
+
+export function choosePlan(id) { return state.planOptions.find((plan) => plan.id === id) || state.plannedRoute; }
+export function changePlan() { state.plannedRoute = null; state.planSketchLayer?.remove(); state.plannedRouteLine?.remove(); }
+export function togglePlanVisibility() { /* A single painted sketch replaces graph alternatives. */ }
+export function setPlanningMode(active) { state.planningMode = Boolean(active); }
+export function lockSelectedPlanOnMap() { return paintWalkConcept(state.plannedRoute, { fit: false }); }
+export function previewTimeBasedPlan(options) { return paintWalkConcept(state.plannedRoute, options); }
+export function renderPlanPreview() { return state.plannedRoute; }
+export async function draftWalkFromText(text) {
+  const query = String(text || '').trim().toLocaleLowerCase();
+  const stops = (state.cityPois[state.activeCity] || []).filter((poi) => query && poi.name.toLocaleLowerCase().includes(query)).slice(0, 4);
+  return generateTimeBasedPlan({ stops, title: query ? `Walk to ${stops[0]?.name || query}` : null });
+}
+
+export function routeEvidence(route) { return { restrooms: (route.stops || []).filter((stop) => poiTags(stop).includes('restrooms')).length, drinkingWater: (route.stops || []).filter((stop) => stop.drinkingWater).length }; }
+export function routeExplanation(route) { return [route.reason || 'Installed pack places and the selected time']; }
+export function objectiveCost(route) { return Number(route.distanceMeters || 0); }

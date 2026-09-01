@@ -7,10 +7,11 @@ import { closeSheets, openSheet, toast } from './ui.js';
 import { hydrateInlineIcons } from './icon-loader.js';
 import { CITIES } from './constants.js';
 import { routesForCity } from './routes.js';
+import { refreshPublicMarkers } from './online.js';
 
 export const LAYER_GROUPS = [
   { id: 'park_infrastructure', label: 'Park infrastructure', description: 'Comfort and access while you walk', tags: ['drinking_water', 'water_fountain', 'water', 'waste_basket', 'trash', 'bench', 'shelter', 'shade', 'restrooms', 'accessible_parking'] },
-  { id: 'dining', label: 'Dining & food', description: 'Restaurants, cuisines, and quick stops', tags: ['restaurant', 'fast_food', 'mexican', 'filipino', 'coffee', 'coffee_shop', 'cafe', 'food_cart', 'bakery'] },
+  { id: 'dining', label: 'Cuisine', description: 'Markets, restaurants, cafés, and quick stops', tags: ['market', 'farmers_market', 'restaurant', 'fast_food', 'mexican', 'filipino', 'coffee', 'coffee_shop', 'cafe', 'food_cart', 'bakery'] },
   { id: 'navigation', label: 'Navigation', description: 'Routes and ways to arrive', tags: ['trail', 'parking', 'bicycle_parking', 'bike_rack'] },
   { id: 'outdoors', label: 'Nature & outdoors', description: 'Green space, wildlife, and water access', tags: ['park', 'nature', 'wildlife', 'water_access', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad'] },
   { id: 'culture', label: 'History, art & culture', description: 'Public stories and creative places', tags: ['history', 'history_landmark', 'history_monument', 'history_museum', 'history_cemetery', 'history_marker', 'art', 'public_art'] },
@@ -29,7 +30,7 @@ const ICONS = {
 
 let searchQuery = '';
 let pendingImport = null;
-let civicAvailability = { news: false, volunteer: false };
+let civicAvailability = { news: false, volunteer: false, capability: 'none', notices: [] };
 
 const LIGHT_CHIPS = {
   recreation: [
@@ -218,30 +219,45 @@ function updateLayerBadge() {
 
 async function loadCivicAvailability() {
   const file = CITIES[state.activeCity]?.civicFile;
-  if (!file) return { news: false, volunteer: false };
+  if (!file) return { news: false, volunteer: false, capability: 'none', notices: [] };
   try {
     const response = await fetch(file);
-    if (!response.ok) return { news: false, volunteer: false };
+    if (!response.ok) throw new Error(`Civic pack returned ${response.status}`);
     const payload = await response.json();
     const data = payload?.artifacts || payload || {};
     const current = (item) => !item?.expiresAt || (Number.isFinite(Date.parse(item.expiresAt)) && Date.now() < Date.parse(item.expiresAt));
-    const activeEvents = (data.events?.items || []).some((item) => item?.title && item?.officialUrl && current(item));
-    const activeMeetings = (data.meetings?.items || []).some((item) => item?.title && item?.officialUrl && current(item));
+    const notice = (item, kind) => item?.title && /^https:\/\//i.test(item.officialUrl || '') && current(item) ? { ...item, kind, artifact_type: 'temporal_event' } : null;
+    const notices = [
+      ...(data.meetings?.items || []).map((item) => notice(item, 'Meeting')),
+      ...(data.events?.items || []).map((item) => notice(item, 'Event')),
+      ...(data.vote?.items || []).map((item) => notice(item, 'Vote'))
+    ].filter(Boolean);
     const vote = data.vote || {};
-    const activeVote = (vote.items || []).some((item) => item?.officialUrl && current(item)) || (vote.nextElection?.date && Date.parse(vote.nextElection.date) >= Date.now());
+    if (vote.nextElection?.date && Date.parse(vote.nextElection.date) >= Date.now() && /^https:\/\//i.test(vote.nextElection.url || '')) notices.push({ id: `${state.activeCity}:next-election`, title: vote.nextElection.type || 'Next election', summary: vote.jurisdiction || 'Official election information', date: vote.nextElection.date, officialUrl: vote.nextElection.url, source: { name: vote.jurisdiction || 'Official election source', url: vote.nextElection.url }, kind: 'Vote', artifact_type: 'temporal_event' });
     const volunteers = data.volunteer?.items || data.volunteer || [];
-    return { news: activeEvents || activeMeetings || activeVote, volunteer: volunteers.some((item) => item?.officialUrl && current(item)) };
-  } catch { return { news: false, volunteer: false }; }
+    notices.sort((a, b) => String(a.startsAt || a.date || '').localeCompare(String(b.startsAt || b.date || '')) || a.title.localeCompare(b.title));
+    const declared = payload?.capabilities?.news;
+    const capability = ['furnished', 'empty-by-design', 'stale', 'none'].includes(declared) ? declared : (notices.length ? 'furnished' : 'empty-by-design');
+    return { news: notices.length > 0, volunteer: volunteers.some((item) => item?.officialUrl && current(item)), capability, notices };
+  } catch {
+    return { ...civicAvailability, capability: civicAvailability.notices?.length ? 'stale' : 'none' };
+  }
+}
+
+function packPublicMarkers(light, chipId = null) {
+  return state.publicMarkers.filter((marker) => marker.pack_id === state.activeCity && marker.status !== 'withdrawn' && marker.light === light && (chipId == null || marker.chip_id === chipId));
 }
 
 function availableMapChips(kind) {
-  const pois = (state.cityPois[state.activeCity] || []).filter(isVisiblePoi).filter((poi) => inViewport(poi));
+  const pois = (state.cityPois[state.activeCity] || []).filter(isVisiblePoi);
   const availableTags = new Set(pois.flatMap(poiTags));
   return LIGHT_CHIPS[kind].map((chip) => {
-    const tags = chip.prefix ? [...availableTags].filter((id) => id.startsWith(chip.prefix)) : chip.tags;
+    let tags = chip.prefix ? [...availableTags].filter((id) => id.startsWith(chip.prefix)) : chip.tags;
+    if (!tags.length && chip.prefix) tags = [chip.prefix];
     let available = tags.some((id) => availableTags.has(id));
-    if (chip.id === 'routes') available = routesInViewport().length > 0;
+    if (chip.id === 'routes') available = routesForCity(state.activeCity).length > 0;
     if (chip.id === 'volunteer') available = civicAvailability.volunteer;
+    if (packPublicMarkers(kind, chip.id).length) available = true;
     return { ...chip, tags, available };
   }).filter((chip) => chip.available);
 }
@@ -260,16 +276,42 @@ function routeInViewport(coordinates = []) {
 function lightModel() {
   const recreation = availableMapChips('recreation');
   const cuisine = availableMapChips('cuisine');
+  const newsEntries = [...civicAvailability.notices, ...packPublicMarkers('news')];
+  const personalPins = curatedPersonalPlaces().filter((place) => !place.packId || place.packId === state.activeCity);
+  const personal = state.personalPlaceCategories.map((category) => ({ id: category.id, label: category.name, tags: [], kind: 'personal' }));
   return [
-    { id: 'news', label: 'NEWS', available: newsAvailable(), chips: [] },
+    { id: 'news', label: 'NEWS', available: newsAvailable(), chips: [], entries: newsEntries, hasChevron: newsEntries.length > 0 },
     { id: 'recreation', label: 'RECREATION', available: recreation.length > 0, chips: recreation },
     { id: 'cuisine', label: 'CUISINE', available: cuisine.length > 0, chips: cuisine },
-    { id: 'personal', label: 'PERSONAL', available: curatedPersonalPlaces().length > 0, chips: [] }
+    { id: 'personal', label: 'MY PLACES', available: personalPins.length > 0 || packPublicMarkers('personal').length > 0, chips: personal, hasChevron: personal.length > 0 }
   ].filter((light) => light.available);
 }
 
 function newsAvailable() {
-  return civicAvailability.news || (state.cityPois[state.activeCity] || []).filter(isVisiblePoi).some((poi) => inViewport(poi) && poiTags(poi).includes('event'));
+  const userNews = packPublicMarkers('news').length > 0;
+  if (['empty-by-design', 'none'].includes(civicAvailability.capability)) return userNews;
+  return userNews || civicAvailability.news || (civicAvailability.capability === 'stale' && civicAvailability.notices.length > 0);
+}
+
+function chipSelected(lightId, chip) {
+  if (chip.kind === 'personal') return state.layerFilters.personal[chip.id] !== false;
+  return chip.tags.some((id) => state.layerFilters.public[id] !== false);
+}
+
+function newsEntry(entry) {
+  if (entry.light === 'news') return `<button type="button" class="map-news-entry map-news-entry--post" data-news-marker="${escapeHtml(entry.id)}"><strong>${escapeHtml(entry.name)}</strong><small>Posted by @${escapeHtml(entry.creator_username)}</small></button>`;
+  const source = entry.source?.name || 'Official source';
+  return `<a class="map-news-entry map-news-entry--pack" href="${escapeHtml(entry.officialUrl)}" target="_blank" rel="noreferrer"><strong>${escapeHtml(entry.title)}</strong><small>${escapeHtml([entry.kind, entry.date, source].filter(Boolean).join(' · '))}</small></a>`;
+}
+
+function expandedLightContent(light, expanded) {
+  if (expanded !== light.id) return '';
+  if (light.id === 'news') return `<div class="map-light-chips map-news-list" data-light-chips="news">${light.entries.map(newsEntry).join('')}</div>`;
+  if (!light.chips.length) return '';
+  return `<div class="map-light-chips" data-light-chips="${light.id}">${light.chips.map((chip) => {
+    const selected = chipSelected(light.id, chip);
+    return `<button type="button" class="map-light-chip ${selected ? 'on' : ''}" data-light-chip="${light.id}:${chip.id}" aria-pressed="${selected}">${escapeHtml(chip.label)}</button>`;
+  }).join('')}</div>`;
 }
 
 export function renderMapLights() {
@@ -278,17 +320,14 @@ export function renderMapLights() {
   const expanded = state.layerUiState.lightExpanded || '';
   root.innerHTML = lightModel().map((light) => {
     const on = state.layerLights[light.id] === true;
-    const chips = light.chips.length && expanded === light.id
-      ? `<div class="map-light-chips" data-light-chips="${light.id}">${light.chips.map((chip) => {
-          const selected = chip.tags.some((id) => state.layerFilters.public[id] !== false);
-          return `<button type="button" class="map-light-chip ${selected ? 'on' : ''}" data-light-chip="${light.id}:${chip.id}" aria-pressed="${selected}">${escapeHtml(chip.label)}</button>`;
-        }).join('')}</div>` : '';
-    return `<div class="map-light-wrap" data-map-light="${light.id}">${chips}<div class="map-light-row"><button type="button" class="map-light ${on ? 'on' : 'off'}" data-light="${light.id}" aria-pressed="${on}">${escapeHtml(light.label)}</button>${light.chips.length ? `<button type="button" class="map-light-chevron" data-light-expand="${light.id}" aria-label="Show ${escapeHtml(light.label.toLowerCase())} choices" aria-expanded="${expanded === light.id}"><span aria-hidden="true">▲</span></button>` : ''}</div></div>`;
+    const hasChevron = light.hasChevron ?? light.chips.length > 0;
+    return `<div class="map-light-wrap" data-map-light="${light.id}">${expandedLightContent(light, expanded)}<div class="map-light-row"><button type="button" class="map-light ${on ? 'on' : 'off'}" data-light="${light.id}" aria-pressed="${on}">${escapeHtml(light.label)}</button>${hasChevron ? `<button type="button" class="map-light-chevron" data-light-expand="${light.id}" aria-label="Show ${escapeHtml(light.label.toLowerCase())} choices" aria-expanded="${expanded === light.id}"><span aria-hidden="true">▲</span></button>` : ''}</div></div>`;
   }).join('');
 }
 
 function setChip(chip, enabled) {
-  chip.tags.forEach((id) => { state.layerFilters.public[id] = enabled; });
+  if (chip.kind === 'personal') state.layerFilters.personal[chip.id] = enabled;
+  else chip.tags.forEach((id) => { state.layerFilters.public[id] = enabled; });
 }
 
 function toggleLight(id) {
@@ -302,9 +341,9 @@ function toggleLight(id) {
 }
 
 function toggleChip(lightId, chipId) {
-  const chip = availableMapChips(lightId).find((candidate) => candidate.id === chipId);
+  const chip = lightModel().find((light) => light.id === lightId)?.chips.find((candidate) => candidate.id === chipId);
   if (!chip) return;
-  const enabled = !chip.tags.some((id) => state.layerFilters.public[id] !== false);
+  const enabled = !chipSelected(lightId, chip);
   setChip(chip, enabled);
   state.layerLights[lightId] = true;
   applyLayerChanges();
@@ -430,6 +469,8 @@ function openImportSheet() {
 
 function bindLayerControls() {
   el('mapLights')?.addEventListener('click', (event) => {
+    const newsMarker = event.target.closest('[data-news-marker]');
+    if (newsMarker) { window.dispatchEvent(new CustomEvent('public-marker-focus-requested', { detail: { markerId: newsMarker.dataset.newsMarker } })); return; }
     const light = event.target.closest('[data-light]');
     if (light) { toggleLight(light.dataset.light); return; }
     const expand = event.target.closest('[data-light-expand]');
@@ -470,7 +511,8 @@ function bindLayerControls() {
   window.addEventListener('layers-sheet-opened', () => { searchQuery = ''; el('layerFilterSearch').value = ''; renderLayerFilters(); });
   window.addEventListener('filter-import-requested', openImportSheet);
   window.addEventListener('personal-places-changed', () => { ensureLayerDefaults(); renderLayerFilters(); applyLayerChanges({ rerenderFilters: false }); });
+  window.addEventListener('public-markers-changed', () => { ensureLayerDefaults(); applyLayerChanges({ rerenderFilters: false }); });
   window.addEventListener('layer-state-dirty', () => applyLayerChanges());
-  window.addEventListener('map-viewport-changed', () => { if (state.modalOpen === 'filtersSheet') renderLayerFilters(); renderMapLights(); renderRouteLights(); });
-  window.addEventListener('city-layer-data-changed', async () => { civicAvailability = await loadCivicAvailability(); ensureLayerDefaults(); state.layerLights.news = newsAvailable(); applyLayerChanges(); });
+  window.addEventListener('map-viewport-changed', () => { renderMapLights(); renderRouteLights(); });
+  window.addEventListener('city-layer-data-changed', async () => { civicAvailability = await loadCivicAvailability(); await refreshPublicMarkers(state.activeCity); ensureLayerDefaults(); state.layerLights.news = newsAvailable(); applyLayerChanges(); });
 }

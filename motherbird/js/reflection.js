@@ -19,8 +19,7 @@ export function buildReflectionMoment({ id, city, heading, mood, note, prompt, w
   return {
     id,
     type: 'journal',
-    title: String(heading || '').trim() || mood,
-    mood,
+    title: String(heading || '').trim() || 'Journal note',
     note: cleanNote || 'A reflection saved after a walk.',
     prompt: String(prompt || '').trim() || null,
     createdAt,

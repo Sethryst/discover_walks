@@ -53,7 +53,7 @@ class DomainGremlin(ABC):
                     "osmElementType": source_metadata.get("osmType"),
                     "osmElementId": feature.source_id,
                     "osmTags": _observable_osm_tags(properties),
-                    "tags": sorted({self.domain.rstrip("s"), "osm"}),
+                    "tags": sorted({self.domain.rstrip("s"), "osm", *[value.strip() for value in str(properties.get("cuisine", "")).split(";") if value.strip()]}),
                 } if is_osm else {}),
             },
             "sources": [{
@@ -225,6 +225,24 @@ class CoffeeGremlin(DomainGremlin):
         output = super().attributes(properties)
         score, reasons = _walk_relevance(properties)
         output.update({"type": "cafe" if properties.get("amenity") == "cafe" else "bakery", "walkRelevanceScore": score, "walkRelevanceReasons": reasons, "accessibility": {"wheelchair": properties.get("wheelchair")} if properties.get("wheelchair") else None, "outdoorSeating": properties.get("outdoor_seating")})
+        return output
+
+
+class CuisineGremlin(DomainGremlin):
+    """Publish OSM markets and restaurants under existing Cuisine chips."""
+    domain = "cuisine"
+
+    def accepts(self, feature: IntermediateFeature) -> bool:
+        tags = feature.properties
+        return feature.geometry.get("type") == "Point" and bool(tags.get("name")) and tags.get("amenity") in {"marketplace", "restaurant", "fast_food"}
+
+    def attributes(self, properties: dict[str, Any]) -> dict[str, Any]:
+        output = super().attributes(properties)
+        output.update({
+            "type": "market" if properties.get("amenity") == "marketplace" else "restaurant",
+            "cuisineChip": "markets" if properties.get("amenity") == "marketplace" else "restaurants",
+            "accessibility": {"wheelchair": properties.get("wheelchair")} if properties.get("wheelchair") else None,
+        })
         return output
 
 

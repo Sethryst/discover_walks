@@ -2,14 +2,13 @@ import { renderUserLocation } from './map.js';
 import { distanceMeters } from './geo.js';
 import { state } from './state.js';
 import {
+  CITIES,
   MAX_GPS_ACCURACY_METERS,
-  MAX_WALK_SPEED_MPS,
-  POINTS_PER_MILE,
-  STREAK_BONUS_PER_DAY
+  MAX_WALK_SPEED_MPS
 } from './constants.js';
-import { el, uid, formatDuration, formatDistance, dayKey, previousDayKey, escapeHtml } from './utils.js';
+import { el, uid } from './utils.js';
 import { checkGeofences } from './geofence.js';
-import { toast, setStatus, openJournal, openSheet, closeSheets } from './ui.js';
+import { toast, setStatus, openJournal, closeSheets } from './ui.js';
 import db from './storage.js';
 import { updateProfile } from './profile.js';
 import { renderArchive } from './archive.js';
@@ -20,11 +19,9 @@ import {
   createWalkEvent,
   detectTrackEvents,
   normalizeWalkArtifact,
-  updateWalkDurations,
-  walkReviewSummary
+  updateWalkDurations
 } from './walk-artifact.js';
 import { companionStateForWalk, setCompanionState } from './companion.js';
-import { refreshNearbyRevisit } from './revisit.js';
 
 const DRAFT_ID = 'active-walk';
 
@@ -85,39 +82,24 @@ export function addWalkPoint(point) {
 export function updateWalkDisplay() {
   const walk = state.activeWalk;
   if (!walk) {
-    el('walkDuration').textContent = '00:00';
-    el('walkDistance').textContent = '0.00';
-    el('walkPoints')?.replaceChildren();
-    el('activeRouteButton').classList.add('hidden');
-    el('walkingTopbar').classList.add('hidden');
     setCompanionState('idle');
     document.body.classList.remove('walk-active');
+    el('walkButton')?.classList.remove('walking');
+    if (el('walkButton')) el('walkButton').textContent = 'Start walk';
     globalThis.window?.dispatchEvent(new CustomEvent('walk-display-updated'));
     return;
   }
   document.body.classList.add('walk-active');
   updateWalkDurations(walk);
-  const distance = formatDistance(walk.distanceMeters);
-  const duration = formatDuration(walk.elapsedDurationSeconds);
-  el('walkDuration').textContent = duration;
-  el('walkDistance').textContent = distance;
-  el('activeRouteButton').classList.remove('hidden');
-  el('activeRouteSummary').textContent = `${distance} mi · ${duration}`;
-  el('routeSheetDistance').textContent = `${distance} mi`;
-  el('routeSheetDuration').textContent = `${duration} elapsed · ${formatDuration(walk.movingDurationSeconds)} moving`;
-  if (el('routePauseButton')) el('routePauseButton').textContent = walk.paused ? 'Resume' : 'Pause';
-  if (el('activeWalkMode')) el('activeWalkMode').value = walk.routeMode || 'tracking';
-  el('walkingTopbar').classList.remove('hidden');
+  if (el('walkButton')) el('walkButton').textContent = 'End walk';
+  el('walkButton')?.classList.add('walking');
   setCompanionState(companionStateForWalk(walk));
-  const status = walk.recordingStatus === 'stopped' ? 'Ready to review and save' : walk.paused ? 'Walk paused — your route is saved' : `Recording · ${distance} mi · ${duration}`;
-  el('walkingTopbarStatus').textContent = status;
   globalThis.window?.dispatchEvent(new CustomEvent('walk-display-updated'));
 }
 
 export function handlePosition(position, shouldPan = false) {
   const point = { lat: position.coords.latitude, lng: position.coords.longitude, accuracy: position.coords.accuracy, capturedAtMs: position.timestamp || Date.now() };
   renderUserLocation(point, shouldPan);
-  void refreshNearbyRevisit(point);
   const weakSignal = !Number.isFinite(point.accuracy) || point.accuracy > MAX_GPS_ACCURACY_METERS;
   if (weakSignal) { setStatus(`GPS signal weak (${Math.round(point.accuracy || 0)} m) - route not updated`); return; }
   setStatus(state.activeWalk ? (state.activeWalk.paused ? 'Walk paused' : 'Recording your walk') : 'Location found', Boolean(state.activeWalk && !state.activeWalk.paused));
@@ -126,7 +108,7 @@ export function handlePosition(position, shouldPan = false) {
 }
 
 export function getCurrentLocation() {
-  if (!navigator.geolocation) { toast('This browser does not support location. Try the history preview instead.'); return; }
+  if (!navigator.geolocation) { toast('This browser does not support location.'); return; }
   setStatus('Finding your location...', true);
   navigator.geolocation.getCurrentPosition(
     (position) => handlePosition(position, true),
@@ -136,17 +118,7 @@ export function getCurrentLocation() {
 }
 
 export function ensurePauseButton() {
-  let button = el('pauseWalkButton');
-  if (!button) {
-    button = document.createElement('button');
-    button.id = 'pauseWalkButton';
-    button.type = 'button';
-    button.className = 'secondary-button';
-    el('walkButton').before(button);
-    button.addEventListener('click', togglePauseWalk);
-  }
-  button.classList.remove('hidden');
-  button.textContent = state.activeWalk?.paused ? 'Resume' : 'Pause';
+  // Pause/resume remains available to the recording engine, but has no mounted chrome.
 }
 
 export async function pauseWalk() {
@@ -156,7 +128,6 @@ export async function pauseWalk() {
   walk.pausedAt = new Date().toISOString();
   const event = await recordWalkEvent('pause', walk.endLocation || state.currentPosition, { automatic: false, reason: 'user-paused-recording' }, walk.pausedAt, 'active');
   walk.detectionState.manualPauseEventId = event?.id || null;
-  el('pauseWalkButton').textContent = 'Resume';
   setStatus('Walk paused');
   updateWalkDisplay();
   await persistWalkDraft();
@@ -172,7 +143,6 @@ export async function resumeWalk() {
   walk.lastRawPoint = null;
   if (walk.detectionState?.manualPauseEventId) await completeEventById(walk.detectionState.manualPauseEventId, resumedAt, { resumedByUser: true });
   walk.detectionState.manualPauseEventId = null;
-  el('pauseWalkButton').textContent = 'Pause';
   setStatus('Recording your walk', true);
   updateWalkDisplay();
   await persistWalkDraft();
@@ -185,6 +155,7 @@ export function togglePauseWalk() {
 export async function startWalk({ routeMode = 'tracking' } = {}) {
   if (state.activeWalk) return state.activeWalk;
   if (!navigator.geolocation) { toast('Location is not supported in this browser.'); return null; }
+  await snapToClosestInstalledPack();
   state.activeWalk = createWalkArtifact({
     id: uid('walk'),
     city: state.activeCity,
@@ -194,7 +165,7 @@ export async function startWalk({ routeMode = 'tracking' } = {}) {
   ensurePauseButton();
   state.routeLine?.remove();
   state.routeLine = L.polyline([], { color: '#245448', weight: 5, opacity: .85 }).addTo(state.map);
-  el('walkButton').innerHTML = '<span aria-hidden="true">●</span> Walk details';
+  el('walkButton').textContent = 'End walk';
   el('walkButton').classList.add('walking');
   setStatus('Recording your walk', true);
   updateWalkDisplay();
@@ -208,12 +179,7 @@ export async function startWalk({ routeMode = 'tracking' } = {}) {
 
 export function calculateWalkAward(walk, profile = state.profile) {
   const miles = (walk.distanceMeters || 0) / 1609.344;
-  const today = dayKey();
-  const firstWalkToday = profile.lastWalkDate !== today;
-  const nextStreak = !firstWalkToday ? profile.streakDays : (profile.lastWalkDate === previousDayKey(today) ? profile.streakDays + 1 : 1);
-  const distancePoints = Math.round(miles * POINTS_PER_MILE);
-  const streakPoints = firstWalkToday ? STREAK_BONUS_PER_DAY : 0;
-  return { miles, date: today, firstWalkToday, nextStreak, distancePoints, streakPoints, total: distancePoints + streakPoints };
+  return { miles, distancePoints: 0, streakPoints: 0, total: 0 };
 }
 
 export async function stopWalk() {
@@ -243,13 +209,11 @@ export async function saveWalk() {
   finished.savedAt = new Date().toISOString();
   const award = await updateProfile((profile) => {
     const score = calculateWalkAward(finished, profile);
-    profile.totalPoints += score.total;
     profile.walksCompleted += 1;
     profile.milesTotal += score.miles;
-    if (score.firstWalkToday) { profile.streakDays = score.nextStreak; profile.lastWalkDate = score.date; }
     return score;
   });
-  finished.pointsAwarded = award.total;
+  finished.pointsAwarded = 0;
   finished.events = finished.events.map((event) => ({ ...event, state: 'historical', immutable: true, metadata: { ...(event.metadata || {}), priorState: event.state } }));
   await Promise.all([
     db.put('walks', finished),
@@ -262,7 +226,6 @@ export async function saveWalk() {
   resetActiveWalk();
   closeSheets();
   setStatus('Walk saved locally');
-  toast(`Walk saved with its route and ${finished.events.length} event${finished.events.length === 1 ? '' : 's'}.`);
   await renderArchive();
   openJournal(finished.id);
 }
@@ -287,7 +250,7 @@ export async function recoverWalkDraft() {
   state.routeLine?.remove();
   state.routeLine = L.polyline(state.activeWalk.points.map((point) => [point.lat, point.lng]), { color: '#245448', weight: 5, opacity: .85 }).addTo(state.map);
   ensurePauseButton();
-  el('walkButton').innerHTML = '<span aria-hidden="true">●</span> Walk details';
+  el('walkButton').textContent = 'End walk';
   el('walkButton').classList.add('walking');
   updateWalkDisplay();
   if (state.activeWalk.recordingStatus === 'recording') {
@@ -298,9 +261,7 @@ export async function recoverWalkDraft() {
     beginGpsWatch();
     toast('Recovered your in-progress walk and its recorded route.');
   } else {
-    renderWalkReview();
-    openSheet('walkReviewSheet');
-    toast('Recovered an unsaved walk for review.');
+    await saveWalk();
   }
   void renderArchive();
   return state.activeWalk;
@@ -311,7 +272,6 @@ export async function setActiveWalkMode(mode = 'tracking') {
   if (!walk || !['tracking', 'round-trip', 'point-to-point'].includes(mode)) return;
   walk.routeMode = mode;
   await persistWalkDraft();
-  toast(mode === 'tracking' ? 'Continuing as an open tracking walk.' : `${mode === 'round-trip' ? 'Round trip' : 'Point-to-point'} mode noted for this walk.`);
 }
 
 export async function recordPoiEncounter(poi, distance = null) {
@@ -372,31 +332,35 @@ async function persistWalkDraft() {
   await db.put('walk_drafts', { id: DRAFT_ID, updatedAt: new Date().toISOString(), walk: normalizeWalkArtifact(state.activeWalk) });
 }
 
-function renderWalkReview() {
-  const walk = state.activeWalk;
-  if (!walk) return;
-  const summary = walkReviewSummary(walk);
-  el('walkReviewDistance').textContent = `${formatDistance(summary.distanceMeters)} mi`;
-  el('walkReviewElapsed').textContent = formatDuration(summary.elapsedDurationSeconds);
-  el('walkReviewMoving').textContent = formatDuration(summary.movingDurationSeconds);
-  el('walkReviewRouteStatus').textContent = summary.hasTrack ? `${summary.pointCount} recorded GPS points retained` : 'No accurate GPS points were available; the time and journal context are still retained.';
-  const labels = { pause: 'Pause', return: 'Return', 'new-area': 'New area', slowdown: 'Slowdown', 'repeated-segment': 'Repeated segment', 'photo-stop': 'Photo stop', 'poi-encounter': 'POI encounter' };
-  el('walkReviewEvents').innerHTML = summary.eventCount
-    ? walk.events.map((event) => `<li><strong>${escapeHtml(labels[event.type] || event.type)}</strong><span>${escapeHtml(new Date(event.timestamp).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }))}${event.durationSeconds ? ` · ${escapeHtml(formatDuration(event.durationSeconds))}` : ''}</span></li>`).join('')
-    : '<li><span>No automatic events — the recorded route is still the primary artifact.</span></li>';
-  el('walkReviewContext').textContent = `${summary.poiEncounterCount} place encounter${summary.poiEncounterCount === 1 ? '' : 's'} · ${summary.observationCount} observation${summary.observationCount === 1 ? '' : 's'}`;
-}
-
 function resetActiveWalk() {
   stopGpsWatch();
   state.activeWalk = null;
   state.routeLine?.remove();
   state.routeLine = null;
   updateWalkDisplay();
-  el('walkButton').innerHTML = '<img class="ui-icon ui-icon--small" src="./icons/activity.svg" alt="" /> Start walk';
+  el('walkButton').textContent = 'Start walk';
   el('walkButton').classList.remove('walking');
   const pauseButton = el('pauseWalkButton');
   if (pauseButton) pauseButton.classList.add('hidden');
+}
+
+async function snapToClosestInstalledPack() {
+  const position = await new Promise((resolve) => {
+    navigator.geolocation.getCurrentPosition(resolve, () => resolve(null), {
+      enableHighAccuracy: true,
+      timeout: 8000,
+      maximumAge: 15000
+    });
+  });
+  if (!position) return;
+  handlePosition(position, true);
+  const point = { lat: position.coords.latitude, lng: position.coords.longitude };
+  const closest = Object.entries(CITIES)
+    .filter(([, city]) => city?.dataFile && city?.center)
+    .sort(([, left], [, right]) => distanceMeters(point, left.center) - distanceMeters(point, right.center))[0];
+  if (!closest || closest[0] === state.activeCity) return;
+  const { switchCity } = await import('./city.js');
+  await switchCity(closest[0]);
 }
 
 async function updatePersonalPlaceCandidates(walk) {

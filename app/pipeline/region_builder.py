@@ -10,7 +10,7 @@ from typing import Any
 
 from app.pipeline.cache import cache_response, load_cached_response
 from app.pipeline.civic import load_civic_artifacts
-from app.pipeline.domains import AccessibilityGremlin, ArtGremlin, CoffeeGremlin, CommunityGremlin, DetourGremlin, EventGremlin, FacilitiesGremlin, HistoryGremlin, NatureGremlin, PantryGremlin, ParksGremlin, PlantGremlin, RestGremlin, RouteGremlin, ScenicGremlin, TrailsGremlin, WaterGremlin, WildlifeGremlin
+from app.pipeline.domains import AccessibilityGremlin, ArtGremlin, CoffeeGremlin, CommunityGremlin, CuisineGremlin, DetourGremlin, EventGremlin, FacilitiesGremlin, HistoryGremlin, NatureGremlin, PantryGremlin, ParksGremlin, PlantGremlin, RestGremlin, RouteGremlin, ScenicGremlin, TrailsGremlin, WaterGremlin, WildlifeGremlin
 from app.pipeline.entity_resolution import find_duplicate_candidates, reconcile_osm_records
 from app.pipeline.export import build_release, write_bundle
 from app.pipeline.geography import apply_geographic_source_rules, build_boundary_layer, verify_geographic_artifacts
@@ -22,7 +22,7 @@ from app.pipeline.validation import _representative_coordinate, validate_records
 from app.pipeline.wikimedia import WikimediaEnricher
 
 
-GREMLINS = {"parks": ParksGremlin(), "trails": TrailsGremlin(), "route": RouteGremlin(), "facilities": FacilitiesGremlin(), "coffee": CoffeeGremlin(), "nature": NatureGremlin(), "water": WaterGremlin(), "community": CommunityGremlin(), "art": ArtGremlin(), "wildlife": WildlifeGremlin(), "plant": PlantGremlin(), "rest": RestGremlin(), "history": HistoryGremlin(), "scenic": ScenicGremlin(), "accessibility": AccessibilityGremlin(), "pantry": PantryGremlin(), "event": EventGremlin(), "detour": DetourGremlin()}
+GREMLINS = {"parks": ParksGremlin(), "trails": TrailsGremlin(), "route": RouteGremlin(), "facilities": FacilitiesGremlin(), "coffee": CoffeeGremlin(), "cuisine": CuisineGremlin(), "nature": NatureGremlin(), "water": WaterGremlin(), "community": CommunityGremlin(), "art": ArtGremlin(), "wildlife": WildlifeGremlin(), "plant": PlantGremlin(), "rest": RestGremlin(), "history": HistoryGremlin(), "scenic": ScenicGremlin(), "accessibility": AccessibilityGremlin(), "pantry": PantryGremlin(), "event": EventGremlin(), "detour": DetourGremlin()}
 
 
 def build_region(region_file: Path, output_root: Path, cache_root: Path, producer_version: str, generated_at: str | None = None, dry_run: bool = False, use_cache: bool = False, only_sources: set[str] | None = None) -> dict[str, Any]:
@@ -254,8 +254,8 @@ def _latest_cached_response(cache_root: Path, region_id: str, source_id: str) ->
 def _public_poi(record: dict[str, Any]) -> dict[str, Any]:
     lng, lat = _representative_coordinate(record["geometry"]) or (0.0, 0.0)
     properties = {key: value for key, value in record["properties"].items() if value not in (None, [], "")}
-    category = {"parks": "park", "trails": "trail", "route": "route", "facilities": "facility", "coffee": "coffee", "nature": "nature", "water": "water", "community": "community", "art": "art", "wildlife": "wildlife", "plant": "plant", "rest": "rest", "history": "history", "scenic": "scenic", "accessibility": "accessibility", "pantry": "pantry", "event": "event", "detour": "detour"}[record["domain"]]
-    return {"id": record["id"], "name": record["name"], "lat": lat, "lng": lng, "category": category, **properties, "source": [{"name": source["sourceName"], "id": source["sourceId"], "elementId": source.get("sourceElementId"), "url": source["sourceUrl"], "attribution": source.get("attribution"), "license": source.get("license"), "licenseUrl": source.get("licenseUrl"), "retrievedAt": source.get("retrievedAt")} for source in record["sources"]], "review": {"validationStatus": record["validationStatus"], "flags": record["validationFlags"], "dedupGroupId": record.get("dedup_group_id")}}
+    category = properties.get("type") if record["domain"] == "cuisine" else {"parks": "park", "trails": "trail", "route": "route", "facilities": "facility", "coffee": "coffee", "nature": "nature", "water": "water", "community": "community", "art": "art", "wildlife": "wildlife", "plant": "plant", "rest": "rest", "history": "history", "scenic": "scenic", "accessibility": "accessibility", "pantry": "pantry", "event": "event", "detour": "detour"}[record["domain"]]
+    return {"id": record["id"], "name": record["name"], "lat": lat, "lng": lng, "artifact_type": "pin", "category": category, **properties, "source": [{"name": source["sourceName"], "id": source["sourceId"], "elementId": source.get("sourceElementId"), "url": source["sourceUrl"], "attribution": source.get("attribution"), "license": source.get("license"), "licenseUrl": source.get("licenseUrl"), "retrievedAt": source.get("retrievedAt")} for source in record["sources"]], "review": {"validationStatus": record["validationStatus"], "flags": record["validationFlags"], "dedupGroupId": record.get("dedup_group_id")}}
 
 
 def _release_safe_records(records: list[dict[str, Any]]) -> list[dict[str, Any]]:

@@ -16,6 +16,8 @@ import { activeFieldEditionSubscription } from './cloud-journal.js';
 
 const PASSKEY_ENROLLED_KEY = 'walk-wildlife.passkey-enrolled';
 const APP_SESSION_KEY = 'walk-wildlife.app-session';
+const PUBLIC_MARKER_FIELDS = 'id,creator_id,creator_username,pack_id,name,description,latitude,longitude,light,chip_id,personal_category_label,status,upvote_count,created_at,updated_at';
+let publicMarkerEventsBound = false;
 
 export async function setupOnline() {
   if (state.online.client || !onlineConfigured()) return;
@@ -45,8 +47,19 @@ export async function setupOnline() {
   }
   state.online.client.auth.onAuthStateChange((_event, session) => {
     state.online.session = session;
-    setTimeout(() => { if (session) void loadRemoteProfile(); else { state.online.remoteProfile = null; void setCloudJournalEntitlement(false); renderProfile(); } }, 0);
+    setTimeout(async () => {
+      if (session) await loadRemoteProfile();
+      else {
+        state.online.remoteProfile = null;
+        await setCloudJournalEntitlement(false);
+        renderProfile();
+        window.dispatchEvent(new CustomEvent('online-profile-changed'));
+      }
+      await refreshPublicMarkers();
+    }, 0);
   });
+  bindPublicMarkerEvents();
+  await refreshPublicMarkers();
 }
   export async function openOnline() {
   await setupOnline();
@@ -63,7 +76,134 @@ export async function loadRemoteProfile() {
   state.online.remoteProfile = data || null;
   await refreshCloudJournalEntitlement();
   renderProfile();
+  window.dispatchEvent(new CustomEvent('online-profile-changed'));
   return data;
+}
+
+function bindPublicMarkerEvents() {
+  if (publicMarkerEventsBound) return;
+  publicMarkerEventsBound = true;
+  window.addEventListener('online', () => void refreshPublicMarkers());
+}
+
+function publishPublicMarkerState() {
+  window.dispatchEvent(new CustomEvent('public-markers-changed', { detail: { packId: state.activeCity } }));
+}
+
+function markerError(message, code) {
+  const error = new Error(message);
+  error.code = code;
+  return error;
+}
+
+export function publicMarkerIdentityReady() {
+  return Boolean(state.online.client && state.online.session && state.online.remoteProfile?.username);
+}
+
+export async function requestPublicMarkerSignIn() {
+  toast('Sign in with a username to Post or upvote.');
+  await openOnline();
+}
+
+export async function refreshPublicMarkers(packId = state.activeCity) {
+  if (!state.online.client) return state.publicMarkers;
+  const { data, error } = await state.online.client
+    .from('public_markers')
+    .select(PUBLIC_MARKER_FIELDS)
+    .eq('pack_id', packId)
+    .in('status', ['public', 'friends'])
+    .order('created_at', { ascending: false });
+  if (error) {
+    console.warn('Public markers unavailable:', error.message);
+    return state.publicMarkers;
+  }
+  if (packId !== state.activeCity) return data || [];
+  state.publicMarkers = data || [];
+  state.publicMarkerVotes = new Set();
+  if (state.online.session && state.publicMarkers.length) {
+    const ids = state.publicMarkers.map((marker) => marker.id);
+    const { data: votes, error: voteError } = await state.online.client.from('public_marker_votes').select('marker_id').in('marker_id', ids);
+    if (!voteError) state.publicMarkerVotes = new Set((votes || []).map((vote) => vote.marker_id));
+  }
+  publishPublicMarkerState();
+  return state.publicMarkers;
+}
+
+function publicMarkerInsertPayload(input = {}) {
+  return {
+    pack_id: String(input.pack_id || state.activeCity),
+    name: String(input.name || '').trim().slice(0, 80),
+    description: String(input.description || '').trim().slice(0, 500) || null,
+    latitude: Number(input.latitude),
+    longitude: Number(input.longitude),
+    light: input.light,
+    chip_id: input.chip_id || null,
+    personal_category_label: input.personal_category_label || null,
+    status: input.status
+  };
+}
+
+export async function postPublicMarker(input) {
+  if (!publicMarkerIdentityReady()) throw markerError('Post needs a signed-in account with a username.', 'MARKER_AUTH_REQUIRED');
+  if (globalThis.navigator?.onLine === false) throw markerError('Post needs a network connection.', 'MARKER_OFFLINE');
+  const payload = publicMarkerInsertPayload(input);
+  const { data, error } = await state.online.client.from('public_markers').insert(payload).select(PUBLIC_MARKER_FIELDS).single();
+  if (error) throw error;
+  if (data.pack_id === state.activeCity) {
+    state.publicMarkers = [data, ...state.publicMarkers.filter((marker) => marker.id !== data.id)];
+    publishPublicMarkerState();
+  }
+  return data;
+}
+
+export async function updatePublicMarker(markerId, changes = {}) {
+  if (!publicMarkerIdentityReady()) throw markerError('Sign in to edit this Post.', 'MARKER_AUTH_REQUIRED');
+  const payload = {};
+  if ('name' in changes) payload.name = String(changes.name || '').trim().slice(0, 80);
+  if ('description' in changes) payload.description = String(changes.description || '').trim().slice(0, 500) || null;
+  if ('status' in changes) payload.status = changes.status;
+  const { data, error } = await state.online.client.from('public_markers').update(payload).eq('id', markerId).select(PUBLIC_MARKER_FIELDS).single();
+  if (error) throw error;
+  state.publicMarkers = data.status === 'withdrawn'
+    ? state.publicMarkers.filter((marker) => marker.id !== markerId)
+    : state.publicMarkers.map((marker) => marker.id === markerId ? data : marker);
+  publishPublicMarkerState();
+  return data;
+}
+
+export async function withdrawPublicMarker(markerId) {
+  return updatePublicMarker(markerId, { status: 'withdrawn' });
+}
+
+async function refreshOnePublicMarker(markerId) {
+  const { data, error } = await state.online.client.from('public_markers').select(PUBLIC_MARKER_FIELDS).eq('id', markerId).maybeSingle();
+  if (error) throw error;
+  if (data) state.publicMarkers = state.publicMarkers.map((marker) => marker.id === markerId ? data : marker);
+  publishPublicMarkerState();
+  return data;
+}
+
+export async function togglePublicMarkerVote(markerId) {
+  if (!publicMarkerIdentityReady()) {
+    await requestPublicMarkerSignIn();
+    return null;
+  }
+  const userId = state.online.session.user.id;
+  const voted = state.publicMarkerVotes.has(markerId);
+  if (voted) {
+    const { error } = await state.online.client.from('public_marker_votes').delete().eq('marker_id', markerId).eq('user_id', userId);
+    if (error) throw error;
+    state.publicMarkerVotes.delete(markerId);
+  } else {
+    const { error } = await state.online.client.from('public_marker_votes').insert({ marker_id: markerId, user_id: userId });
+    if (error?.code === '23505') {
+      const { error: deleteError } = await state.online.client.from('public_marker_votes').delete().eq('marker_id', markerId).eq('user_id', userId);
+      if (deleteError) throw deleteError;
+      state.publicMarkerVotes.delete(markerId);
+    } else if (error) throw error;
+    else state.publicMarkerVotes.add(markerId);
+  }
+  return refreshOnePublicMarker(markerId);
 }
 
 async function setCloudJournalEntitlement(active) {
@@ -100,6 +240,7 @@ export async function syncProfile() {
   state.settings.lastSyncedAt = new Date().toISOString();
   await db.put('settings', state.settings);
   renderProfile();
+  window.dispatchEvent(new CustomEvent('online-profile-changed'));
   return true;
 }
 export async function renderOnline() {
@@ -184,6 +325,7 @@ export async function createOnlineProfile(event) {
   state.settings.lastSyncedAt = new Date().toISOString();
   await db.put('settings', state.settings);
   renderProfile();
+  window.dispatchEvent(new CustomEvent('online-profile-changed'));
   await renderOnline();
   toast('Online profile created. Only aggregate stats can sync.');
 }
@@ -195,6 +337,7 @@ export async function updateAccountUsername(event) {
   if (error) { toast(error.message.includes('unique') ? 'That username is already in use.' : error.message); return; }
   state.online.remoteProfile = data;
   renderProfile();
+  window.dispatchEvent(new CustomEvent('online-profile-changed'));
   toast('Username updated.');
 }
 export async function updateAccountPhone(event) {
@@ -220,7 +363,7 @@ export async function updateAccountPassword(event) {
 export async function acceptFriend(friendId) {
   const { error } = await state.online.client.from('friendships').update({ status: 'accepted' }).eq('user_id', friendId).eq('friend_id', state.online.session.user.id);
   if (error) { toast(error.message); return; }
-  toast('Friend added to your leaderboard.'); await refreshFriends();
+  toast('Friend request accepted.'); await refreshFriends();
 }
 export async function refreshFriends() {
   if (!state.online.client || !state.online.session || !state.online.remoteProfile) return;
