@@ -1,7 +1,7 @@
 import { state } from './state.js';
 import { city } from './poi.js';
 import { debounce } from './utils.js';
-import { openPlaceCluster, renderCityPois } from './poi.js';
+import { renderCityPois } from './poi.js';
 import { regionInstaller } from './region-ui.js';
 import { toast } from './ui.js';
 
@@ -14,22 +14,9 @@ export function initMap() {
   state.map = L.map('map', { zoomControl: false, attributionControl: true }).setView([initialPosition.lat, initialPosition.lng], initialZoom);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap contributors', crossOrigin: true }).addTo(state.map);
   state.historyRadiusLayer = L.layerGroup().addTo(state.map);
-  const clusterOptions = (badgeClass) => ({
-    chunkedLoading: true, // progressive loading: adds markers in batches off the main thread
-    maxClusterRadius: 55,
-    // A cluster opens a readable list instead of MarkerCluster's radial
-    // spiderfy clock. Exact-coordinate records stay usable at every zoom.
-    spiderfyOnMaxZoom: false,
-    zoomToBoundsOnClick: false,
-    iconCreateFunction: (cluster) => L.divIcon({ className: '', html: `<div class="cluster-badge ${badgeClass}">${cluster.getChildCount()}</div>`, iconSize: [36, 36] })
-  });
-  state.historyLayer = (typeof L.markerClusterGroup === 'function' ? L.markerClusterGroup(clusterOptions('history-cluster')) : L.layerGroup()).addTo(state.map);
   state.observationLayer = L.layerGroup().addTo(state.map);
-  state.poiLayer = (typeof L.markerClusterGroup === 'function' ? L.markerClusterGroup(clusterOptions('poi-cluster')) : L.layerGroup()).addTo(state.map);
-  [state.historyLayer, state.poiLayer].forEach((layer) => layer.on?.('clusterclick', (event) => {
-    if (event.originalEvent) L.DomEvent.stop(event.originalEvent);
-    openPlaceCluster(event.layer, event.latlng);
-  }));
+  state.poiLayer = L.layerGroup().addTo(state.map);
+  state.historyLayer = state.poiLayer;
   state.trailLayer = L.featureGroup().addTo(state.map);
   state.map.on('click', (event) => {
     if (state.plannerSelecting) {

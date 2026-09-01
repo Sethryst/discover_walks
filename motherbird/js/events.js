@@ -59,12 +59,6 @@ function bindLocationControls() {
   });
 }
 
-function renderInterests() {
-  const tags = [['trail', 'trails'], ['park', 'parks'], ['wildlife', 'wildlife'], ['history', 'history'], ['coffee', 'cafés'], ['market', 'markets'], ['restaurant', 'restaurants']];
-  const selected = new Set(state.settings.favoriteCategories || []);
-  el('startInterestChips').innerHTML = tags.map(([id, label]) => `<button class="poi-chip ${selected.has(id) ? 'active' : ''}" type="button" data-start-interest="${id}" aria-pressed="${selected.has(id)}">${label}</button>`).join('');
-}
-
 function renderWalkSketch(plan) {
   if (!plan) return;
   el('sketchTitle').textContent = plan.title || 'Walk sketch';
@@ -74,13 +68,8 @@ function renderWalkSketch(plan) {
 }
 
 function bindWalkControls() {
-  renderInterests();
   el('walkButton')?.addEventListener('click', async () => { if (state.activeWalk) await stopWalk(); else await startWalk({ routeMode: 'tracking' }); });
   el('startChevron')?.addEventListener('click', () => togglePanel('startChevron', 'startPanel'));
-  el('startInterestChips')?.addEventListener('click', (event) => {
-    const chip = event.target.closest('[data-start-interest]'); if (!chip) return;
-    const active = chip.getAttribute('aria-pressed') !== 'true'; chip.setAttribute('aria-pressed', String(active)); chip.classList.toggle('active', active);
-  });
   el('generateWalkButton')?.addEventListener('click', () => void generateTimeBasedPlan());
   window.addEventListener('walk-sketch-painted', (event) => renderWalkSketch(event.detail));
   el('dismissWalkSketch')?.addEventListener('click', () => { changePlan(); el('walkSketch').classList.add('hidden'); });
@@ -154,7 +143,7 @@ function bindRegions() {
   el('onboardingCitySelect').innerHTML = regionCards().map(([id, pack]) => `<option value="${id}">${escapeHtml(pack.name)}, ${escapeHtml(pack.state || '')}</option>`).join('');
   el('onboardingCitySelect').value = state.activeCity;
   el('saveOnboardingButton')?.addEventListener('click', async () => { state.settings.onboardingCompleted = true; await db.put('settings', state.settings); await switchCity(el('onboardingCitySelect').value); closeSheets(); });
-  window.addEventListener('city-layer-data-changed', () => { el('activeCityLabel').textContent = CITIES[state.activeCity]?.name || 'Installed region'; renderInterests(); });
+  window.addEventListener('city-layer-data-changed', () => { el('activeCityLabel').textContent = CITIES[state.activeCity]?.name || 'Installed region'; });
 }
 
 function bindShareSettings() {

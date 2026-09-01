@@ -161,7 +161,6 @@ export function renderCityPois() {
   if (state.layerLights?.recreation && state.layerFilters?.public?.trail !== false && state.poiTags.has('trail')) {
     segments.forEach((segment) => segment.coordinates.forEach((coordinates) => L.polyline(coordinates.map(([lng, lat]) => [lat, lng]), { color: '#2d7259', weight: 5, opacity: .82 }).bindTooltip(segment.name || 'Named trail').addTo(state.trailLayer)));
   }
-  state.historyLayer?.clearLayers();
   state.historyRadiusLayer?.clearLayers();
 }
 

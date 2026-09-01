@@ -29,16 +29,36 @@ async function guideData() {
   const nearbyCards = nearbyUnlikeCards(pois);
   const discoverCards = [...journeyCards, ...nearbyCards];
   const discoverIds = new Set(discoverCards.flatMap((card) => card.stopPlaceIds || []));
-  const learnCards = (learn.cards || []).filter((card) => discoverIds.has(String(card.placeId)) && isPublicPage(card.officialUrl)).map((card) => {
-    const poi = poiById.get(String(card.placeId));
-    return { ...card, question: poi?.name || card.question, short: `A sourced walker note for ${poi?.name || 'this installed place'}.` };
-  });
+  const authoredLearn = new Map((learn.cards || []).map((card) => [String(card.placeId), card]));
+  const learnCards = [...discoverIds].map((placeId) => {
+    const poi = poiById.get(placeId);
+    const source = publicSourceForPoi(poi, authoredLearn.get(placeId));
+    if (!poi || !source) return null;
+    const kind = String(poi.type || poi.category || 'place').replaceAll('_', ' ');
+    return { id: `learn:${placeId}`, placeId, question: poi.name, short: `${poi.name} is a sourced ${kind} stop for walkers in this installed pack.`, officialUrl: source.url, provenance: { name: source.name } };
+  }).filter(Boolean);
   state.fieldGuideData = { city: state.activeCity, discover: discoverCards, learn: learnCards };
   return state.fieldGuideData;
 }
 
 function isPublicPage(url) {
   return /^https:\/\//i.test(url || '') && !/\/rest\/services\/|\/(?:Feature|Map)Server\b|openstreetmap\.org\//i.test(url);
+}
+
+function publicSourceForPoi(poi, authored) {
+  const sources = Array.isArray(poi?.source) ? poi.source : [poi?.source];
+  const candidates = [
+    authored?.officialUrl && { url: authored.officialUrl, name: authored.provenance?.name },
+    poi?.website && { url: poi.website, name: poi.name },
+    poi?.link && { url: poi.link, name: poi.name },
+    ...sources.flatMap((source) => typeof source === 'object' ? [
+      source.url && { url: source.url, name: source.name },
+      source.licenseUrl && { url: source.licenseUrl, name: source.name }
+    ] : [{ url: source, name: 'Public source' }])
+  ].filter((candidate) => candidate?.url && isPublicPage(candidate.url));
+  if (candidates[0]) return candidates[0];
+  if (String(poi?.id || '').startsWith('osm:')) return { url: 'https://www.openstreetmap.org/copyright', name: 'OpenStreetMap contributors' };
+  return null;
 }
 
 function nearbyUnlikeCards(pois) {
@@ -61,7 +81,6 @@ function nearbyUnlikeCards(pois) {
     const stops = [park, cafe, rest];
     stops.forEach((poi) => usedNames.add(String(poi.name).toLocaleLowerCase()));
     cards.push({ id: `nearby:${park.id}`, kind: 'park+cafe+rest', title: stops.map((poi) => poi.name).join(' + '), reason: 'A nearby park, café, and rest or water stop from this installed pack.', stopPlaceIds: stops.map((poi) => String(poi.id)) });
-    if (cards.length === 4) break;
   }
   return cards;
 }
@@ -89,7 +108,7 @@ export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') 
   const data = await guideData();
   const cards = tab === 'learn' ? data.learn : data.discover;
   const ordered = tab === 'learn' && selectedPlaceId ? [...cards].sort((left, right) => Number(right.placeId === selectedPlaceId) - Number(left.placeId === selectedPlaceId)) : cards;
-  target.innerHTML = ordered.length ? ordered.slice(0, 8).map(tab === 'learn' ? learnCard : discoverCard).join('') : '';
+  target.innerHTML = ordered.length ? ordered.map(tab === 'learn' ? learnCard : discoverCard).join('') : '';
 }
 
 function planForCard(card) {
