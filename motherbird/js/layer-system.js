@@ -8,6 +8,7 @@ import { hydrateInlineIcons } from './icon-loader.js';
 import { CITIES } from './constants.js';
 import { routesForCity } from './routes.js';
 import { refreshPublicMarkers } from './online.js';
+import { ICONS, markerPinHtml, markerVisual } from './poi-icons.js';
 
 export const LAYER_GROUPS = [
   { id: 'park_infrastructure', label: 'Park infrastructure', description: 'Comfort and access while you walk', tags: ['drinking_water', 'water_fountain', 'water', 'waste_basket', 'trash', 'bench', 'shelter', 'shade', 'restrooms', 'accessible_parking'] },
@@ -22,10 +23,6 @@ export const LAYER_GROUPS = [
 
 const STATIC_LABELS = {
   drinking_water: 'Water fountains', water_fountain: 'Water fountains', water: 'Water', waste_basket: 'Trash receptacles', trash: 'Trash receptacles', bench: 'Benches', shelter: 'Shade shelters', shade: 'Shade', restrooms: 'Restrooms', accessible_parking: 'Accessible parking', restaurant: 'Restaurants', fast_food: 'Quick-service food', mexican: 'Mexican food', filipino: 'Filipino food', coffee: 'Coffee shops', coffee_shop: 'Coffee shops', cafe: 'Cafés', food_cart: 'Food carts', bakery: 'Bakeries', trail: 'Trail markers', parking: 'Parking', bicycle_parking: 'Bike racks', bike_rack: 'Bike racks', osm: 'OpenStreetMap places'
-};
-
-const ICONS = {
-  drinking_water: 'water-fountain', water_fountain: 'water-fountain', water: 'droplet', waste_basket: 'trash-2', trash: 'trash-2', bench: 'bench', shelter: 'tree', shade: 'tree', restrooms: 'building', accessible_parking: 'parking', restaurant: 'utensils', fast_food: 'utensils', mexican: 'utensils', filipino: 'utensils', coffee: 'coffee', coffee_shop: 'coffee', cafe: 'coffee', food_cart: 'utensils', bakery: 'utensils', trail: 'route', parking: 'parking', bicycle_parking: 'bike', bike_rack: 'bike', park: 'tree', nature: 'tree', wildlife: 'eye', water_access: 'anchor', community_garden: 'tree', history: 'bookmark', library: 'book-open', public_art: 'star', art: 'star', wifi: 'wifi', event: 'star', osm: 'map'
 };
 
 let searchQuery = '';
@@ -113,25 +110,17 @@ function shouldShowEmptyStandard(id) {
 }
 
 function publicOption(id, sourceLabel, pois) {
+  const visual = markerVisual({ tags: [id] });
   return {
     id, kind: 'public', label: cleanLabel(sourceLabel || STATIC_LABELS[id] || titleCase(id)),
     description: `Public map places tagged ${titleCase(id)}`,
-    icon: ICONS[id] || 'map-pin', color: publicColor(id),
+    icon: ICONS[id] || 'map-pin', color: visual.color,
     count: pois.filter((poi) => (id === 'osm' ? isOsmPoi(poi) : poiTags(poi).includes(id)) && inViewport(poi)).length
   };
 }
 
 function cleanLabel(label) { return String(label).replace(/^[^\p{L}\p{N}]+\s*/u, ''); }
 function titleCase(value) { return String(value || '').replace(/[_-]+/g, ' ').replace(/\b\w/g, (letter) => letter.toUpperCase()); }
-function publicColor(id) {
-  if (/water/.test(id)) return '#0e7490';
-  if (/trash|waste/.test(id)) return '#6b7280';
-  if (/food|restaurant|mexican|filipino|coffee|cafe|bakery/.test(id)) return '#c65d0e';
-  if (/history|art|museum|monument/.test(id)) return '#8b5cf6';
-  if (/parking|bike|trail/.test(id)) return '#2563eb';
-  return '#2d7259';
-}
-
 function inViewport(point) {
   if (!state.map) return true;
   try { return state.map.getBounds().contains([point.lat ?? point.location?.lat, point.lng ?? point.location?.lng]); } catch { return true; }
@@ -279,11 +268,10 @@ function renderNewsMarkers() {
     venues.get(key).notices.push(notice);
   });
   venues.forEach(({ location, notices }) => {
-    const icon = L.divIcon({ className: '', html: '<div class="poi-marker event"><img data-inline-svg data-icon-fallback="·" src="./icons/star.svg" alt="" /></div>', iconSize: [27, 27], iconAnchor: [13, 13] });
+    const icon = L.divIcon({ className: '', html: markerPinHtml(markerVisual({ light: 'news' })), iconSize: [27, 27], iconAnchor: [13, 13] });
     const links = notices.map((notice) => `<a href="${escapeHtml(notice.officialUrl)}" target="_blank" rel="noreferrer">${escapeHtml(notice.title)} ↗</a>`).join('<br>');
     L.marker([location.lat, location.lng], { icon, title: notices[0].locationLabel || notices[0].title }).bindPopup(links).addTo(state.newsLayer);
   });
-  void hydrateInlineIcons(state.map.getContainer());
 }
 
 function packPublicMarkers(light, chipId = null) {

@@ -5,8 +5,8 @@ import { distanceMeters } from './geo.js';
 import { openSheet } from './ui.js';
 import db from './storage.js';
 import { isLocallyClosedPoi } from './spatial-closure-reporting.js';
-import { hydrateInlineIcons } from './icon-loader.js';
 import { seasonalComparison, standoutObservation } from './revisit.js';
+import { markerPinHtml, markerVisual } from './poi-icons.js';
 
 const POI_FILTER_GROUPS = [
   { id: 'outdoors', label: 'Nature & outdoors', icon: '🌿', tags: ['park', 'trail', 'nature', 'wildlife', 'water', 'water_access', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad', 'rest'] },
@@ -70,22 +70,29 @@ const CAFE_TAGS = ['coffee', 'coffee_shop', 'cafe'];
 const MARKET_TAGS = ['market', 'farmers_market', 'grocery', 'supermarket', 'convenience'];
 const RESTAURANT_TAGS = ['restaurant', 'fast_food'];
 const NATURE_TAGS = ['park', 'nature', 'wildlife', 'water', 'water_access', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad', 'rest', 'restrooms', 'drinking_water', 'water_fountain', 'shelter'];
+const NATURE_TREE_TAGS = new Set(['park', 'nature', 'garden', 'community_garden', 'playground', 'dog_park', 'shelter']);
+const NATURE_WATER_TAGS = new Set(['drinking_water', 'water_fountain', 'water', 'water_access']);
+const NATURE_WILDLIFE_TAGS = new Set(['wildlife']);
+const NATURE_REST_TAGS = new Set(['rest', 'restrooms']);
+export const NATURE_COUNTY_CAP = 120;
+export const WALK_ZOOM = 14;
 
 function anyEnabled(tags) { return tags.some((tag) => state.layerFilters?.public?.[tag] !== false); }
 
 export function poiObeysMapLights(poi) {
   const tags = poiTags(poi);
-  if (tags.some((tag) => NATURE_TAGS.includes(tag)) && (!state.layerLights?.recreation || !anyEnabled(NATURE_TAGS))) return false;
-  if (tags.some((tag) => tag === 'history' || tag.startsWith('history_'))) {
-    const historyFilters = Object.keys(state.layerFilters?.public || {}).filter((tag) => tag === 'history' || tag.startsWith('history_'));
-    if (!state.layerLights?.recreation || (historyFilters.length && !anyEnabled(historyFilters))) return false;
-  }
-  if (tags.includes('trail') && (!state.layerLights?.recreation || state.layerFilters?.public?.trail === false)) return false;
+  const matches = [];
+  const nature = tags.filter((tag) => NATURE_TAGS.includes(tag));
+  if (nature.length) matches.push(state.layerLights?.recreation && anyEnabled(nature));
+  const history = tags.filter((tag) => tag === 'history' || tag.startsWith('history_'));
+  if (history.length) matches.push(state.layerLights?.recreation && anyEnabled(history));
+  if (tags.includes('trail')) matches.push(state.layerLights?.recreation && state.layerFilters?.public?.trail !== false);
   const foodFamily = tags.some((tag) => CAFE_TAGS.includes(tag)) ? CAFE_TAGS
     : tags.some((tag) => MARKET_TAGS.includes(tag)) ? MARKET_TAGS
       : tags.some((tag) => RESTAURANT_TAGS.includes(tag)) ? RESTAURANT_TAGS : null;
-  if (foodFamily && (!state.layerLights?.cuisine || !anyEnabled(foodFamily))) return false;
-  return true;
+  if (foodFamily) matches.push(state.layerLights?.cuisine && anyEnabled(foodFamily));
+  if (tags.includes('event')) matches.push(state.layerLights?.news && state.layerFilters?.public?.event !== false);
+  return matches.length ? matches.some(Boolean) : true;
 }
 // Filter choices come from the imported POI set, never the currently visible
 // result set. That keeps a selected category reversible even when it produces
@@ -129,24 +136,60 @@ export function renderCityPois() {
   if (!state.poiLayer) return;
   state.poiLayer.clearLayers(); state.trailLayer.clearLayers();
   const pois = state.cityPois[state.activeCity] || [];
-  const markers = pois
+  const visiblePois = pois
     .filter((poi) => poi.category !== 'journey')
     .filter((poi) => !hasPackTrailGeometry(poi))
     .filter(isVisiblePoi)
     .filter(poiMatchesFilters)
-    .filter(withinRenderBounds)
+    .filter(withinRenderBounds);
+  const markers = paintOrder(visiblePois)
     .map((poi) => {
-      const icon = L.divIcon({ className: '', html: '<div class="poi-marker"><img data-inline-svg data-icon-fallback="·" src="./icons/map-pin.svg" alt="" /></div>', iconSize: [27, 27], iconAnchor: [13, 13] });
+      const tags = poiTags(poi);
+      const visual = markerVisual({ poi, tags });
+      const icon = L.divIcon({ className: '', html: markerPinHtml(visual), iconSize: [27, 27], iconAnchor: [13, 13] });
       const marker = L.marker([poi.lat, poi.lng], { icon, title: displayPoiName(poi), interactive: !state.planningMode, place: poi }).bindPopup(`<strong>${escapeHtml(displayPoiName(poi))}</strong><br><small>${escapeHtml(packAttribution(poi))}</small>`);
       return marker;
     });
   if (state.poiLayer.addLayers) state.poiLayer.addLayers(markers); else markers.forEach((marker) => marker.addTo(state.poiLayer));
-  void hydrateInlineIcons(state.map?.getContainer?.() || document);
   const segments = state.trailSegments[state.activeCity] || [];
   if (state.layerLights?.recreation && state.layerFilters?.public?.trail !== false) {
     segments.forEach((segment) => segment.coordinates.forEach((coordinates) => L.polyline(coordinates.map(([lng, lat]) => [lat, lng]), { color: '#2d7259', weight: 5, opacity: .82 }).bindTooltip(segment.name || 'Named trail').addTo(state.trailLayer)));
   }
   state.historyRadiusLayer?.clearLayers();
+}
+
+function paintGroup(poi) {
+  const tags = poiTags(poi);
+  if (tags.some((tag) => tag === 'history' || tag.startsWith('history_'))) return 'historic';
+  if (tags.includes('trail')) return 'trails';
+  if (tags.some((tag) => [...CAFE_TAGS, ...MARKET_TAGS, ...RESTAURANT_TAGS].includes(tag))) return 'cuisine';
+  if (tags.some((tag) => NATURE_TAGS.includes(tag))) return 'nature';
+  if (tags.includes('event')) return 'news';
+  return 'other';
+}
+
+function naturePriority(poi) {
+  const tags = poiTags(poi);
+  if (tags.some((tag) => NATURE_TREE_TAGS.has(tag))) return 0;
+  if (tags.some((tag) => NATURE_WATER_TAGS.has(tag))) return 1;
+  if (tags.some((tag) => NATURE_WILDLIFE_TAGS.has(tag))) return 2;
+  if (tags.some((tag) => NATURE_REST_TAGS.has(tag))) return 3;
+  return 4;
+}
+
+function paintOrder(pois) {
+  const indexed = pois.map((poi, index) => ({ poi, index, group: paintGroup(poi) }));
+  const nature = indexed.filter((entry) => entry.group === 'nature')
+    .sort((left, right) => naturePriority(left.poi) - naturePriority(right.poi) || left.index - right.index);
+  const zoom = Number(state.map?.getZoom?.());
+  const countyNature = !Number.isFinite(zoom) || zoom < WALK_ZOOM;
+  const allowedNature = countyNature ? nature.slice(0, NATURE_COUNTY_CAP) : nature;
+  const allowed = new Set(allowedNature);
+  return indexed.filter((entry) => entry.group !== 'nature' || allowed.has(entry))
+    .sort((left, right) => {
+      if (left.group === 'nature' && right.group === 'nature') return naturePriority(left.poi) - naturePriority(right.poi) || left.index - right.index;
+      return left.index - right.index;
+    }).map((entry) => entry.poi);
 }
 
 function packAttribution(poi) {

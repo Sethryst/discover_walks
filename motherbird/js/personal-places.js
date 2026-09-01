@@ -4,6 +4,7 @@ import { distanceMeters } from './geo.js';
 import { el, escapeHtml, uid } from './utils.js';
 import { closeSheets, openSheet, toast } from './ui.js';
 import { hydrateInlineIcons } from './icon-loader.js';
+import { markerPinHtml, markerVisual } from './poi-icons.js';
 import { requestCompanionContext } from './companion.js';
 import {
   postPublicMarker,
@@ -150,10 +151,11 @@ function markerCategoryLabel(marker) {
   return `${marker.light === 'recreation' ? 'RECREATION' : 'CUISINE'} · ${label}`;
 }
 
-function publicMarkerIcon() {
+function publicMarkerIcon(marker = {}) {
+  const collection = state.personalPlaceCategories.find((category) => category.name === marker.personal_category_label);
   return L.divIcon({
     className: '',
-    html: '<div class="poi-marker"><img data-inline-svg data-icon-fallback="·" src="./icons/map-pin.svg" alt="" /></div>',
+    html: markerPinHtml(markerVisual({ light: marker.light || 'personal', chipId: marker.chip_id || marker.chipId, collectionIcon: marker.collectionIcon || collection?.icon })),
     iconSize: [27, 27], iconAnchor: [13, 13]
   });
 }
@@ -201,7 +203,7 @@ export function renderPersonalPlacesOnMap() {
       return state.layerLights[place.light] && markerChipEnabled({ light: place.light, chip_id: place.chipId });
     }).forEach((place) => {
       const category = categories.get(place.categoryId || place.category_id);
-      const icon = publicMarkerIcon();
+      const icon = publicMarkerIcon({ light: place.light || 'personal', chipId: place.chipId, collectionIcon: category?.icon });
       const marker = L.marker([place.location.lat, place.location.lng], { icon, title: place.name || '' });
       const name = place.name ? `<strong>${escapeHtml(place.name)}</strong><br>` : '';
       const chip = (place.light || 'personal') === 'personal' ? (category?.name || 'MY PLACES') : markerCategoryLabel({ light: place.light, chip_id: place.chipId });
@@ -217,7 +219,6 @@ export function renderPersonalPlacesOnMap() {
     leafletMarker.addTo(state.publicMarkerLayer);
     publicLeafletMarkers.set(marker.id, leafletMarker);
   });
-  void hydrateInlineIcons(state.map.getContainer());
 }
 
 function withinMapBounds(location) {
