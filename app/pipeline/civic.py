@@ -11,6 +11,7 @@ from datetime import datetime
 
 
 ARTIFACTS = ("vote", "meetings", "volunteer", "organizers", "events")
+NEWS_ARTIFACTS = {"vote", "meetings", "events"}
 SOURCE_LINK_ARTIFACTS = {"eventSources": ("event-sources.json", "events", "Event calendar"), "volunteerSources": ("volunteer-sources.json", "volunteer", "Volunteer opportunities")}
 
 
@@ -30,10 +31,13 @@ def load_civic_artifacts(region_id: str, producer_version: str, generated_at: st
             items = _merge_items(items, automated_items)
         if not items:
             continue
+        if artifact in NEWS_ARTIFACTS:
+            items = [{**item, "artifact_type": "temporal_event"} for item in items]
         _validate_items(artifact, items)
         artifacts[f"{artifact}.json"] = {
             "schemaVersion": 1,
             "regionId": region_id,
+            **({"artifact_type": "temporal_event"} if artifact in NEWS_ARTIFACTS else {}),
             "generatedAt": generated_at,
             "producer": {"name": "Gremlin Lab", "version": producer_version},
             "items": sorted(items, key=lambda item: (item.get("date", ""), item.get("name", item.get("title", "")), item["id"])),
@@ -96,6 +100,7 @@ def _validate_items(artifact: str, items: Any) -> None:
     required = {"id", "name", "summary", "officialUrl", "source"} if artifact == "organizers" else {"id", "title", "summary", "officialUrl", "source"}
     if artifact in {"vote", "meetings", "events"}:
         required.add("date")
+        required.add("artifact_type")
     if artifact == "events":
         required.add("locationLabel")
     if artifact == "volunteer":
@@ -137,18 +142,38 @@ def attach_civic_artifacts(bundle_dir: Path, civic: dict[str, dict[str, Any]], d
     if not manifest_path.exists() or not (bundle_dir / "pois.json").exists():
         raise FileNotFoundError(f"No existing release bundle at {bundle_dir}")
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-    if not civic:
-        return
     civic_bytes = {name: _json_bytes(payload) for name, payload in civic.items()}
     checksums = dict(manifest.get("checksums", {}))
     checksums.update({f"civic/{name}": _checksum(content) for name, content in civic_bytes.items()})
+    for name in (f"{artifact}.json" for artifact in NEWS_ARTIFACTS):
+        if name not in civic:
+            checksums.pop(f"civic/{name}", None)
     manifest["checksums"] = checksums
+    capabilities = dict(manifest.get("capabilities", {}))
+    notice_count = sum(len(civic.get(f"{artifact}.json", {}).get("items", [])) for artifact in NEWS_ARTIFACTS)
+    capabilities["news"] = "furnished" if notice_count else ("empty-by-design" if civic else "none")
+    manifest["capabilities"] = capabilities
     if dry_run:
         return
     civic_dir = bundle_dir / "civic"
     civic_dir.mkdir(exist_ok=True)
+    for name in (f"{artifact}.json" for artifact in NEWS_ARTIFACTS):
+        if name not in civic:
+            (civic_dir / name).unlink(missing_ok=True)
     for name, content in civic_bytes.items():
         (civic_dir / name).write_bytes(content)
+    manifest_path.write_bytes(_json_bytes(manifest))
+
+
+def mark_civic_news_stale(bundle_dir: Path) -> None:
+    """Preserve the last good civic files while exposing refresh failure to consumers."""
+    manifest_path = bundle_dir / "producer-manifest.json"
+    if not manifest_path.exists():
+        return
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    capabilities = dict(manifest.get("capabilities", {}))
+    capabilities["news"] = "stale"
+    manifest["capabilities"] = capabilities
     manifest_path.write_bytes(_json_bytes(manifest))
 
 

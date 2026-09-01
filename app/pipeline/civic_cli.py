@@ -6,7 +6,7 @@ import argparse
 from datetime import datetime, timezone
 from pathlib import Path
 
-from app.pipeline.civic import attach_civic_artifacts, load_civic_artifacts
+from app.pipeline.civic import attach_civic_artifacts, load_civic_artifacts, mark_civic_news_stale
 
 
 def main() -> int:
@@ -18,8 +18,13 @@ def main() -> int:
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
     timestamp = args.generated_at or datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
-    civic = load_civic_artifacts(args.region_id, args.producer_version, timestamp)
-    attach_civic_artifacts(args.output / args.region_id, civic, args.dry_run)
+    try:
+        civic = load_civic_artifacts(args.region_id, args.producer_version, timestamp)
+        attach_civic_artifacts(args.output / args.region_id, civic, args.dry_run)
+    except Exception:
+        if not args.dry_run:
+            mark_civic_news_stale(args.output / args.region_id)
+        raise
     return 0
 
 

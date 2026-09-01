@@ -45,7 +45,7 @@ def cards_from_feed(feed: bytes | str, now: datetime, detail_loader: Callable[[s
             "date": start.date().isoformat(),
             "startsAt": start.isoformat(),
             "endsAt": start.isoformat(),
-            "locationLabel": location or "Fairfax County — see official event page",
+            "locationLabel": location or None,
             "venueAddress": location or None,
             "summary": summary or "A public meeting listed by Fairfax County.",
             "officialUrl": url,

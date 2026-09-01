@@ -16,6 +16,8 @@ const option = (name, fallback) => {
 };
 const releases = option('--releases', path.join(workspaceRoot, 'releases'));
 const output = option('--output', path.join(appRoot, 'regions'));
+const onlyIndex = args.indexOf('--only');
+const onlyRegion = onlyIndex >= 0 ? args[onlyIndex + 1] : null;
 const aliases = { nyc: 'new-york-city', 'prince-georges-county-md': 'prince-georges-county', 'wolf-trap-va': 'vienna' };
 const civicNames = ['vote', 'meetings', 'volunteer', 'organizers', 'events', 'event-sources', 'volunteer-sources'];
 const packaged = [];
@@ -23,6 +25,7 @@ const packaged = [];
 await access(releases, constants.R_OK);
 for (const entry of await readdir(releases, { withFileTypes: true })) {
   if (!entry.isDirectory()) continue;
+  if (onlyRegion && entry.name !== onlyRegion) continue;
   const sourceDir = path.join(releases, entry.name);
   const manifestPath = path.join(sourceDir, 'producer-manifest.json');
   try { await access(manifestPath, constants.R_OK); } catch { continue; }
@@ -44,7 +47,10 @@ for (const entry of await readdir(releases, { withFileTypes: true })) {
   const destination = path.join(output, appId, 'civic');
   await rm(destination, { recursive: true, force: true });
   await mkdir(destination, { recursive: true });
-  await writeFile(path.join(destination, 'index.json'), JSON.stringify({ schemaVersion: 1, regionId: manifest.regionId, generatedAt: manifest.generatedAt, artifacts: civic }, null, 2) + '\n');
+  const noticeCount = ['vote', 'meetings', 'events'].reduce((count, name) => count + (civic[name]?.items?.length || 0), 0);
+  const newsCapability = manifest.capabilities?.news || (noticeCount ? 'furnished' : 'empty-by-design');
+  const generatedAt = Object.values(civic).map((artifact) => artifact.generatedAt).filter(Boolean).sort().at(-1) || manifest.generatedAt;
+  await writeFile(path.join(destination, 'index.json'), JSON.stringify({ schemaVersion: 1, regionId: manifest.regionId, generatedAt, capabilities: { news: newsCapability }, artifacts: civic }, null, 2) + '\n');
   packaged.push({ appId, regionId: manifest.regionId, artifacts: Object.keys(civic) });
   console.log(`✓ ${entry.name}: ${Object.keys(civic).join(', ') || 'no civic artifacts'}`);
 }

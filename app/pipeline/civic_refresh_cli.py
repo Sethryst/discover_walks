@@ -8,7 +8,7 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
-from app.pipeline.civic import attach_civic_artifacts, load_civic_artifacts
+from app.pipeline.civic import attach_civic_artifacts, load_civic_artifacts, mark_civic_news_stale
 
 
 def _verify(bundle: Path) -> list[str]:
@@ -39,6 +39,7 @@ def main() -> int:
             events = len(json.loads(events_path.read_text(encoding="utf-8")).get("items", [])) if events_path.exists() else 0
             report["completed"][region_id] = {"events": events, "coverage": "ready" if events >= 25 else "needs_expansion"}
         except Exception as exc:
+            mark_civic_news_stale(args.output / region_id)
             report["failed"][region_id] = str(exc)
     report_path = args.output / "civic-refresh-report.json"
     report_path.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
