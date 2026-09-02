@@ -43,6 +43,22 @@ class OsmEnrichmentTests(unittest.TestCase):
         self.assertEqual(records[0]["sources"][0]["attribution"], "© OpenStreetMap contributors")
         self.assertEqual(records[0]["properties"]["osmTags"]["wheelchair"], "limited")
 
+    def test_category_limit_caps_restaurants_deterministically(self):
+        source = SourceConfig.from_dict({
+            "id": "osm-capped", "name": "OSM", "provider": "osm_overpass",
+            "url": "https://overpass-api.de/api/interpreter", "domains": ["cuisine"],
+            "licenseUrl": "https://www.openstreetmap.org/copyright",
+            "providerOptions": {"categories": ["restaurants"], "maxRecords": 10, "categoryLimits": {"restaurants": 2}},
+        })
+        raw = {"elements": [
+            {"type": "node", "id": value, "lat": 38.9, "lon": -77.0, "tags": {"name": f"Restaurant {value}", "amenity": "restaurant"}}
+            for value in (3, 1, 2)
+        ]}
+        provider = OsmOverpassProvider()
+        features = provider.parse(raw, source, "2026-08-06T00:00:00Z")
+        self.assertEqual([feature.source_id for feature in features], ["1", "2"])
+        self.assertTrue(any("restaurants limit of 2" in warning["detail"] for warning in provider.warnings))
+
     def test_curated_record_wins_but_osm_provenance_is_preserved(self) -> None:
         curated = _record("parks:city:1", "city-parks", False)
         osm = _record("osm:node:1", "osm-test", True)

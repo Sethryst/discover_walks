@@ -14,6 +14,20 @@
   },
   "sources": [
     {
+      "id": "nyc-parks-properties",
+      "name": "NYC Parks Properties",
+      "provider": "geojson",
+      "url": "https://data.cityofnewyork.us/resource/enfh-gkve.geojson?$limit=5000&$where=retired=false%20AND%20signname%20IS%20NOT%20NULL",
+      "domains": ["parks"],
+      "propertyMapping": {"id": "objectid", "name": "signname", "include": ["gispropnum", "name311", "address", "location", "borough", "typecategory", "subcategory", "jurisdiction", "acres"]},
+      "licenseUrl": "https://opendata.cityofnewyork.us/overview/#termsofuse",
+      "attribution": "New York City Department of Parks and Recreation / NYC Open Data",
+      "authorityTier": "city_government",
+      "confidence": 0.97,
+      "dataClass": "durable",
+      "visibleValue": "Adds active named NYC Parks properties as official walking destinations."
+    },
+    {
       "id": "osm-nyc-walk-coffee",
       "name": "OpenStreetMap NYC cafés and bakeries",
       "provider": "osm_overpass",

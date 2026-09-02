@@ -48,8 +48,8 @@ test('the PWA exposes persistent layers, personal places, and non-destructive im
   assert.match(html, /id="savePlaceMapButton"/);
   assert.match(html, /id="personalPlaceForm"/);
   assert.match(html, /id="filterDuplicateStrategy"/);
-  assert.match(html, /Replace current filters \(default is merge\)/);
-  assert.match(storage, /indexedDB\.open\('walk-wildlife-journal', 9\)/);
+  assert.match(html, /id="filterImportReplace"/);
+  assert.match(storage, /indexedDB\.open\('walk-wildlife-journal', 11\)/);
   assert.match(storage, /personal_place_categories/);
   assert.match(storage, /layer_settings/);
   assert.match(worker, /\.\/js\/layer-system\.js/);

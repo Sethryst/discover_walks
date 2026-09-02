@@ -141,6 +141,20 @@
       "visibleValue": "Adds recreation, senior, teen, and community centers as named places to walk toward."
     },
     {
+      "id": "fairfax-government-centers",
+      "name": "Fairfax County Government Centers",
+      "provider": "arcgis_feature_service",
+      "url": "https://services1.arcgis.com/ioennV6PpG5Xodq0/ArcGIS/rest/services/OpenData_S1/FeatureServer/7",
+      "domains": ["community"],
+      "propertyMapping": {"id": "OBJECTID", "name": "DESCRIPTION", "constants": {"type": "government_center"}, "include": ["STREET_NUMBER", "STREET_NAME", "CITY", "ZIP"]},
+      "licenseUrl": "https://data-fairfaxcountygis.opendata.arcgis.com/",
+      "attribution": "Fairfax County GIS",
+      "authorityTier": "county_government",
+      "confidence": 0.95,
+      "dataClass": "durable",
+      "visibleValue": "Adds named government centers as official venue anchors for public meetings."
+    },
+    {
       "id": "fairfax-county-sidewalks",
       "name": "Fairfax County Sidewalk Centerlines",
       "provider": "arcgis_feature_service",
@@ -240,6 +254,7 @@
     "categories": ["water", "public_art", "nature", "coffee", "markets", "restaurants", "rest", "history"],
     "refreshPolicy": "monthly",
     "maxRecords": 12000,
+    "categoryLimits": {"restaurants": 200},
     "packagePath": "motherbird/regions/fairfax-county-va/osm/pois.json"
   }
 }

@@ -1,0 +1,27 @@
+{
+  "id": "fairfax-county-va",
+  "name": "Fairfax County, Virginia",
+  "boundary": {
+    "source": "cache-file",
+    "file": "regions/fairfax-county-va/geography/boundary.geojson"
+  },
+  "osm": {
+    "pbfUrl": "https://download.geofabrik.de/north-america/us/virginia-latest.osm.pbf"
+  },
+  "imports": {
+    "poi": "regions/fairfax-county-va/pois.json",
+    "buildTimePoiSource": "../releases/fairfax-county-va/pois.json",
+    "producerManifest": "../releases/fairfax-county-va/producer-manifest.json",
+    "civicReleaseRoot": "../releases/fairfax-county-va/civic",
+    "weatherReleaseFile": "../releases/fairfax-county-va/supplemental/weather.json"
+  },
+  "status": "official",
+  "sourcePolicy": {
+    "coverage": "Fairfax County jurisdiction polygon",
+    "publishRequires": [
+      "PMTiles v3 header",
+      "artifact checksum validation",
+      "producer checksum validation"
+    ]
+  }
+}

@@ -40,7 +40,8 @@ const LIGHT_CHIPS = {
   cuisine: [
     { id: 'cafes', label: 'cafés', tags: ['coffee', 'coffee_shop', 'cafe'] },
     { id: 'markets', label: 'markets', tags: ['market', 'farmers_market', 'grocery', 'supermarket', 'convenience'] },
-    { id: 'restaurants', label: 'restaurants', tags: ['restaurant', 'fast_food'] }
+    { id: 'restaurants', label: 'restaurants', tags: ['restaurant', 'fast_food'] },
+    { id: 'more', label: 'more places', tags: ['__low_importance_cuisine'], importanceToggle: true }
   ]
 };
 
@@ -135,6 +136,7 @@ function ensureLayerDefaults() {
     }
   }
   for (const id of ['__routes', '__volunteer']) if (!(id in state.layerFilters.public)) state.layerFilters.public[id] = id === '__routes';
+  for (const id of ['__low_importance_news', '__low_importance_cuisine']) if (!(id in state.layerFilters.public)) state.layerFilters.public[id] = false;
 }
 
 function recreationTag(id) {
@@ -285,6 +287,7 @@ function availableMapChips(kind) {
     if (chip.id === 'routes') available = routesForCity(state.activeCity).length > 0;
     if (chip.id === 'trails') available = (state.trailSegments[state.activeCity] || []).length > 0;
     if (chip.id === 'volunteer') available = civicAvailability.volunteer;
+    if (chip.importanceToggle) available = LIGHT_CHIPS.cuisine.slice(0, 3).some((item) => item.tags.some((id) => availableTags.has(id)));
     if (packPublicMarkers(kind, chip.id).length) available = true;
     return { ...chip, tags, available };
   }).filter((chip) => chip.available);
@@ -304,7 +307,8 @@ function routeInViewport(coordinates = []) {
 function lightModel() {
   const recreation = availableMapChips('recreation');
   const cuisine = availableMapChips('cuisine');
-  const newsEntries = [...civicAvailability.notices.filter((notice) => notice.location), ...packPublicMarkers('news')];
+  const showMoreNews = state.layerFilters.public.__low_importance_news === true;
+  const newsEntries = [...civicAvailability.notices.filter((notice) => notice.location), ...(showMoreNews ? packPublicMarkers('news') : [])];
   const personalPins = curatedPersonalPlaces().filter((place) => !place.packId || place.packId === state.activeCity);
   const personal = state.personalPlaceCategories.map((category) => ({ id: category.id, label: category.name, tags: [], kind: 'personal' }));
   return [
@@ -335,7 +339,10 @@ function newsEntry(entry) {
 
 function expandedLightContent(light, expanded) {
   if (expanded !== light.id) return '';
-  if (light.id === 'news') return `<div class="map-light-chips map-news-list" data-light-chips="news">${light.entries.map(newsEntry).join('')}</div>`;
+  if (light.id === 'news') {
+    const more = state.layerFilters.public.__low_importance_news === true;
+    return `<div class="map-light-chips map-news-list" data-light-chips="news">${light.entries.map(newsEntry).join('')}<button type="button" class="map-light-chip ${more ? 'on' : ''}" data-importance-low="news" aria-pressed="${more}">${more ? 'hide community posts' : 'show community posts'}</button></div>`;
+  }
   if (!light.chips.length) return '';
   return `<div class="map-light-chips" data-light-chips="${light.id}">${light.chips.map((chip) => {
     const selected = chipSelected(light.id, chip);
@@ -365,7 +372,7 @@ function toggleLight(id) {
   const enabled = !state.layerLights[id];
   state.layerLights[id] = enabled;
   if (id === 'news') state.layerFilters.public.event = enabled;
-  model.chips.forEach((chip) => setChip(chip, enabled));
+  model.chips.filter((chip) => !chip.importanceToggle).forEach((chip) => setChip(chip, enabled));
   applyLayerChanges();
 }
 
@@ -498,6 +505,13 @@ function openImportSheet() {
 
 function bindLayerControls() {
   el('mapLights')?.addEventListener('click', (event) => {
+    const importance = event.target.closest('[data-importance-low]');
+    if (importance) {
+      const id = `__low_importance_${importance.dataset.importanceLow}`;
+      state.layerFilters.public[id] = state.layerFilters.public[id] !== true;
+      applyLayerChanges();
+      return;
+    }
     const newsMarker = event.target.closest('[data-news-marker]');
     if (newsMarker) { window.dispatchEvent(new CustomEvent('public-marker-focus-requested', { detail: { markerId: newsMarker.dataset.newsMarker } })); return; }
     const light = event.target.closest('[data-light]');

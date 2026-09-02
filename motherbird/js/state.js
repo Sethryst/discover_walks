@@ -26,6 +26,7 @@ export const state = {
   // map objects
   map: null,
   currentPosition: null,
+  lastPosition: null,
   curatedRouteLine: null,
   plannedRouteLine: null,
   plannedRouteLines: [],
@@ -38,6 +39,11 @@ export const state = {
   fieldEditionEntryLayer: null,
   fieldEditionMap: null,
   fieldEditionProtocol: null,
+  installedBasemapMap: null,
+  installedBasemapProtocol: null,
+  onlineBasemapLayer: null,
+  mapPaintLayer: null,
+  mapPaintActive: false,
   federalBoundaryOverlay: null,
 
   // walking session

@@ -55,6 +55,7 @@
           "SI_UPD_DATE"
         ]
       },
+      "providerOptions": {"clipToBoundarySourceId": "loudoun-boundary"},
       "licenseUrl": "https://www.loudoun.gov/87/GIS",
       "attribution": "Loudoun County Office of Mapping and Geographic Information",
       "authorityTier": "county_government",
@@ -83,10 +84,27 @@
           "SI_UPD_DATE"
         ]
       },
+      "providerOptions": {"clipToBoundarySourceId": "loudoun-boundary"},
       "licenseUrl": "https://www.loudoun.gov/87/GIS",
       "attribution": "Loudoun County Office of Mapping and Geographic Information",
       "authorityTier": "county_government",
       "confidence": 0.97
+    },
+    {
+      "id": "loudoun-prcs-parks",
+      "name": "Loudoun County Parks and Nature Preserves",
+      "provider": "arcgis_feature_service",
+      "url": "https://services1.arcgis.com/MxjRokvPm7bjslyR/arcgis/rest/services/Parks2025New/FeatureServer/0",
+      "domains": ["parks"],
+      "queryParams": {"where": "PR_STATUS = 'OPN' AND PR_TYPE IN ('Park','Nature Preserve')", "orderByFields": "OBJECTID_1 ASC"},
+      "propertyMapping": {"id": "OBJECTID_1", "name": "PR_FACNAM", "include": ["PR_ADDRESS", "PR_TYPE", "PR_GIS_ACR", "PR_STATUS", "Facilities_Webpage"]},
+      "providerOptions": {"clipToBoundarySourceId": "loudoun-boundary"},
+      "licenseUrl": "https://www.loudoun.gov/87/GIS",
+      "attribution": "Loudoun County Parks, Recreation and Community Services / Loudoun County GIS",
+      "authorityTier": "county_government",
+      "confidence": 0.97,
+      "dataClass": "durable",
+      "visibleValue": "Adds unique named open county parks and nature preserves as official walking destinations."
     }
   ],
   "osm": {

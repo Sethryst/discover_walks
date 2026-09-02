@@ -93,9 +93,20 @@ async function osmPbfIsPlausible(file) {
 async function validatePackage(directory, manifest) {
   for (const artifact of [manifest.artifacts.pmtiles, manifest.artifacts.poi, manifest.artifacts.buckets, ...manifest.artifacts.supplemental]) {
     if (!artifact || path.isAbsolute(artifact) || artifact.includes('..')) throw new Error(`Invalid manifest artifact path: ${artifact}`);
-    await stat(path.join(directory, artifact));
+    const bytes = await readFile(path.join(directory, artifact));
+    const expected = String(manifest.checksums?.[artifact] || '').replace(/^sha256:/, '');
+    const actual = createHash('sha256').update(bytes).digest('hex');
+    if (!expected || expected !== actual) throw new Error(`Package checksum validation failed for ${artifact}`);
   }
   if (!await pmtilesIsValid(path.join(directory, manifest.artifacts.pmtiles))) throw new Error('Package PMTiles header validation failed');
+}
+
+async function artifactChecksums(directory, artifacts) {
+  const entries = await Promise.all(artifacts.map(async (artifact) => {
+    const bytes = await readFile(path.join(directory, artifact));
+    return [artifact, `sha256:${createHash('sha256').update(bytes).digest('hex')}`];
+  }));
+  return Object.fromEntries(entries);
 }
 function dockerArgs(image, command) {
   // Docker receives a stable POSIX mount even when the host is Windows.
@@ -254,10 +265,12 @@ try {
     await cp(source, path.join(staging, name));
     supplemental.push(name);
   }
+  const artifacts = { pmtiles: `${regionId}.pmtiles`, poi: `${regionId}-poi.json`, buckets: `${regionId}-buckets.json`, supplemental };
   const manifest = {
     id: regionId, name: config.name, version: 1, generatedAt: new Date().toISOString(),
     boundary: { source: config.boundary.source, geometry: boundary.geometry, bbox: boundary.bbox }, source: { provider: 'OpenStreetMap', pbfUrl: config.osm.pbfUrl },
-    artifacts: { pmtiles: `${regionId}.pmtiles`, poi: `${regionId}-poi.json`, buckets: `${regionId}-buckets.json`, supplemental },
+    artifacts,
+    checksums: await artifactChecksums(staging, [artifacts.pmtiles, artifacts.poi, artifacts.buckets, ...artifacts.supplemental]),
     stats: { poiCount: pois.length }
   };
   await writeFile(path.join(staging, 'manifest.json'), JSON.stringify(manifest, null, 2));

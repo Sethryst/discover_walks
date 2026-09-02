@@ -6,14 +6,14 @@
 | --- | --- | --- | --- |
 | Data structure | Plain objects with stable `id`, `name`, numeric `lat`/`lng`, `tags`/`category`, geofence `radius`, and optional provenance/editorial fields | `js/poi.js`, `data/dc-poi.json` | The browser contract is not GeoJSON; source geometry is normalized to a routable/displayable point. |
 | Loading | Active city seed plus optional supplemental package, merged by ID | `js/city.js`, `js/constants.js` | Only the active city loads at boot; seed version controls IndexedDB refresh. |
-| Storage | `points_of_interest` IndexedDB store keyed by `id`; installed packages use `region_pois` keyed by region ID | `js/storage.js`, `js/region-installer.js` | Installed region POIs remain separate from the ordinary city map path. |
+| Storage | `points_of_interest` IndexedDB store keyed by `id`; installed packages use `region_pois` keyed by region ID | `js/storage.js`, `js/region-installer.js` | The active installed region is joined into the ordinary map at runtime. |
 | Rendering | Leaflet marker clusters plus viewport filtering and debounced pan/zoom rerender | `js/map.js`, `js/poi.js` | Automated data-preparation benchmark covers all DC records; visual browser QA remains a release check. |
 
 Region loading works as follows:
 
 1. `CITIES.dc.dataFile` loads `data/dc-poi.json` into the app's `points_of_interest` store.
 2. `CITIES.dc.supplementalPoiFile` loads the region POI package and merges it by stable ID.
-3. The offline installer independently stores `{pois: [...]}` in `region_pois` and PMTiles in OPFS.
+3. The offline installer stores `{pois: [...]}` in `region_pois` and PMTiles in OPFS; the active package then supplies both POIs and the ordinary map's basemap.
 
 The pipeline therefore emits both native contracts from one validated array: `{metadata, pointsOfInterest}` for the city and `{pois}` for the region. This avoids a third `pois.geojson` runtime contract.
 

@@ -48,4 +48,6 @@ A pilot may instead let a person create a self-described neighborhood label thro
 
 ## Region automation flow
 
-`loader.init()` calls `initRegionAutomation()` → `RegionAPI` resolves `regions/<id>/manifest.json` (or `metadata.json`) and artifact files → `RegionInstaller` persists package material to the region IndexedDB stores. This currently runs alongside city loading; region POIs are not fed into `state.cityPois`.
+`loader.init()` calls `initRegionAutomation()` → `RegionAPI` resolves `regions/<id>/manifest.json` (or `metadata.json`) and artifact files → `RegionInstaller` persists package material to the region IndexedDB stores and PMTiles to OPFS. `activateInstalledRegion()` then joins the active package POIs into `state.cityPois`, switches the ordinary map to that installed PMTiles archive, and loads any verified county-addition sidecars. If exactly one package is installed, startup enters it without the region chooser.
+
+PMTiles provides the offline basemap only. Pedestrian routing still requires the separately packaged graph; the runtime does not draw a straight-line substitute.

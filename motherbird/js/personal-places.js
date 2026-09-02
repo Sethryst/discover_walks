@@ -136,7 +136,7 @@ function markerChipEnabled(marker) {
 function visiblePublicMarker(marker) {
   if (marker.pack_id !== state.activeCity || marker.status === 'withdrawn') return false;
   if (!withinMapBounds({ lat: marker.latitude, lng: marker.longitude })) return false;
-  if (marker.light === 'news') return state.layerLights.news;
+  if (marker.light === 'news') return state.layerLights.news && state.layerFilters.public.__low_importance_news === true;
   if (marker.light === 'recreation' || marker.light === 'cuisine') return state.layerLights[marker.light] && markerChipEnabled(marker);
   if (marker.light !== 'personal' || !state.layerLights.personal) return false;
   if (marker.creator_id !== state.online.session?.user?.id) return true;
@@ -199,7 +199,7 @@ export function renderPersonalPlacesOnMap() {
       const categoryId = place.categoryId || place.category_id;
       if (place.publicMarkerId || (place.packId && place.packId !== state.activeCity) || !withinMapBounds(place.location)) return false;
       if ((place.light || 'personal') === 'personal') return categoryId && categories.has(categoryId) && state.layerLights.personal && state.layerFilters.personal[categoryId] !== false;
-      if (place.light === 'news') return state.layerLights.news;
+      if (place.light === 'news') return state.layerLights.news && state.layerFilters.public.__low_importance_news === true;
       return state.layerLights[place.light] && markerChipEnabled({ light: place.light, chip_id: place.chipId });
     }).forEach((place) => {
       const category = categories.get(place.categoryId || place.category_id);

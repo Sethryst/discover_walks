@@ -15,7 +15,7 @@ NEWS_ARTIFACTS = {"vote", "meetings", "events"}
 SOURCE_LINK_ARTIFACTS = {"eventSources": ("event-sources.json", "events", "Event calendar"), "volunteerSources": ("volunteer-sources.json", "volunteer", "Volunteer opportunities")}
 
 
-def load_civic_artifacts(region_id: str, producer_version: str, generated_at: str) -> dict[str, dict[str, Any]]:
+def load_civic_artifacts(region_id: str, producer_version: str, generated_at: str, venue_pins: list[dict[str, Any]] | None = None) -> dict[str, dict[str, Any]]:
     """Load reviewed official civic facts; omit artifact types with no approved facts."""
     source = Path(__file__).parents[1] / "regions" / "civic" / f"{region_id}.json"
     if not source.exists():
@@ -26,10 +26,10 @@ def load_civic_artifacts(region_id: str, producer_version: str, generated_at: st
     artifacts: dict[str, dict[str, Any]] = {}
     for artifact in ARTIFACTS:
         items = document.get(artifact, [])
-        automated_items = _automated_items(region_id, artifact, generated_at)
+        automated_items = _automated_items(region_id, artifact, generated_at, venue_pins)
         if automated_items:
             items = _merge_items(items, automated_items)
-        if not items:
+        if not items and not _automated_provider_configured(region_id, artifact):
             continue
         if artifact in NEWS_ARTIFACTS:
             items = [{**item, "artifact_type": "temporal_event"} for item in items]
@@ -55,7 +55,14 @@ def load_civic_artifacts(region_id: str, producer_version: str, generated_at: st
     return artifacts
 
 
-def _automated_items(region_id: str, artifact: str, generated_at: str) -> list[dict[str, Any]]:
+def _automated_provider_configured(region_id: str, artifact: str) -> bool:
+    registry_path = Path(__file__).parents[1] / "regions" / "civic-providers.json"
+    registry = json.loads(registry_path.read_text(encoding="utf-8"))
+    provider = registry.get("providers", {}).get(region_id)
+    return provider is not None and provider.get("artifact", "events") == artifact
+
+
+def _automated_items(region_id: str, artifact: str, generated_at: str, venue_pins: list[dict[str, Any]] | None = None) -> list[dict[str, Any]]:
     registry_path = Path(__file__).parents[1] / "regions" / "civic-providers.json"
     registry = json.loads(registry_path.read_text(encoding="utf-8"))
     provider = registry.get("providers", {}).get(region_id)
@@ -64,7 +71,10 @@ def _automated_items(region_id: str, artifact: str, generated_at: str) -> list[d
     try:
         module_name = str(provider["module"])
         fetch_cards = getattr(importlib.import_module(module_name), "fetch_cards")
-        return fetch_cards(datetime.fromisoformat(generated_at.replace("Z", "+00:00")))
+        now = datetime.fromisoformat(generated_at.replace("Z", "+00:00"))
+        if provider.get("venueJoin"):
+            return fetch_cards(now, venue_pins or [])
+        return fetch_cards(now)
     except Exception as exc:
         # Scheduled production must report a failed civic acquisition rather
         # than quietly replacing useful event data with an empty artifact.

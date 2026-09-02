@@ -30,9 +30,9 @@ export const ICONS = {
 };
 
 export const MARKER_COLORS = {
-  nature: '#2d7259', water: '#0e7490', trail: '#2563eb',
-  historic: '#8b5cf6', cuisine: '#c65d0e', news: '#173c35',
-  personal: '#E8740F', fallback: '#2d7259'
+  nature: '#2d7259', water: '#287a78', trail: '#4b7f44',
+  historic: '#65783b', cuisine: '#c65d0e', cuisineMarket: '#d47b19', cuisineRestaurant: '#a94710', news: '#8b3a4a',
+  personal: '#76558b', fallback: '#2d7259'
 };
 
 const CHIP_ICON_IDS = {
@@ -43,8 +43,8 @@ const CHIP_ICON_IDS = {
 const CHIP_COLORS = {
   routes: MARKER_COLORS.trail, nature: MARKER_COLORS.nature,
   trails: MARKER_COLORS.trail, historic: MARKER_COLORS.historic,
-  cafes: MARKER_COLORS.cuisine, markets: MARKER_COLORS.cuisine,
-  restaurants: MARKER_COLORS.cuisine
+  cafes: MARKER_COLORS.cuisine, markets: MARKER_COLORS.cuisineMarket,
+  restaurants: MARKER_COLORS.cuisineRestaurant
 };
 
 const MARKER_TAGS = new Set([
@@ -88,7 +88,9 @@ function colorForIcon(iconId) {
 function colorForTags(tags, poi) {
   if (tags.includes('event') || tags.includes('news')) return MARKER_COLORS.news;
   if (historySubtypeFrom(poi, tags) || tags.some((tag) => ['monument', 'marker', 'landmark', 'museum', 'cemetery', 'art', 'public_art'].includes(tag))) return MARKER_COLORS.historic;
-  if (tags.some((tag) => ['coffee', 'cafe', 'coffee_shop', 'market', 'farmers_market', 'grocery', 'supermarket', 'restaurant', 'fast_food'].includes(tag))) return MARKER_COLORS.cuisine;
+  if (tags.some((tag) => ['coffee', 'cafe', 'coffee_shop'].includes(tag))) return MARKER_COLORS.cuisine;
+  if (tags.some((tag) => ['market', 'farmers_market', 'grocery', 'supermarket'].includes(tag))) return MARKER_COLORS.cuisineMarket;
+  if (tags.some((tag) => ['restaurant', 'fast_food'].includes(tag))) return MARKER_COLORS.cuisineRestaurant;
   if (tags.some((tag) => ['drinking_water', 'water_fountain', 'water', 'water_access'].includes(tag))) return MARKER_COLORS.water;
   if (tags.includes('trail')) return MARKER_COLORS.trail;
   if (tags.some((tag) => ['rest', 'restrooms'].includes(tag))) return MARKER_COLORS.nature;

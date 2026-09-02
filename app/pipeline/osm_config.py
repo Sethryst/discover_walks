@@ -39,6 +39,7 @@ class OsmConfig:
     categories: tuple[str, ...]
     refresh_policy: str
     max_records: int
+    category_limits: dict[str, int]
     clip_to_boundary_source_id: str | None = None
     unavailable_reason: str | None = None
     package_path: str | None = None
@@ -54,6 +55,7 @@ class OsmConfig:
             "categories": list(output["categories"]),
             "refreshPolicy": output["refresh_policy"],
             "maxRecords": output["max_records"],
+            **({"categoryLimits": output["category_limits"]} if output["category_limits"] else {}),
             **({"clipToBoundarySourceId": output["clip_to_boundary_source_id"]} if output["clip_to_boundary_source_id"] else {}),
             **({"unavailableReason": output["unavailable_reason"]} if output["unavailable_reason"] else {}),
             **({"packagePath": output["package_path"]} if output["package_path"] else {}),
@@ -87,6 +89,12 @@ def normalize_osm_config(region: dict[str, Any]) -> OsmConfig:
     max_records = int(raw.get("maxRecords", 2000))
     if not 1 <= max_records <= 20_000:
         raise ValueError("osm.maxRecords must be between 1 and 20000.")
+    category_limits = {str(key): int(value) for key, value in raw.get("categoryLimits", {}).items()}
+    unknown_limits = set(category_limits) - set(categories)
+    if unknown_limits:
+        raise ValueError(f"OSM category limits require enabled categories: {', '.join(sorted(unknown_limits))}")
+    if any(value < 1 or value > max_records for value in category_limits.values()):
+        raise ValueError("OSM category limits must be between 1 and maxRecords.")
     boundary_source_id = raw.get("clipToBoundarySourceId") or next((source.get("id") for source in region.get("sources", []) if "boundary" in str(source.get("layerRole", ""))), None)
     return OsmConfig(
         status=status,
@@ -97,6 +105,7 @@ def normalize_osm_config(region: dict[str, Any]) -> OsmConfig:
         categories=categories,
         refresh_policy=str(raw.get("refreshPolicy") or "monthly"),
         max_records=max_records,
+        category_limits=category_limits,
         clip_to_boundary_source_id=str(boundary_source_id) if boundary_source_id else None,
         unavailable_reason=reason.strip() if isinstance(reason, str) else None,
         package_path=raw.get("packagePath"),
@@ -120,6 +129,7 @@ def osm_source_dict(config: OsmConfig) -> dict[str, Any]:
         "providerOptions": {
             "categories": list(config.categories),
             "maxRecords": config.max_records,
+            **({"categoryLimits": config.category_limits} if config.category_limits else {}),
             "fullGeometry": True,
             **({"clipToBoundarySourceId": config.clip_to_boundary_source_id} if config.clip_to_boundary_source_id else {}),
         },

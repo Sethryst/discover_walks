@@ -13,6 +13,8 @@ import { refreshCompanionState } from './companion.js';
 import { initBackupControls } from './backup.js';
 import { openOnline, renderOnline, signIn, signUp, signInWithPasskey, registerPasskey, syncProfile, createOnlineProfile, updateAccountUsername, updateAccountEmail, updateAccountPassword } from './online.js';
 import db from './storage.js';
+import { openObservation, saveObservation, setDraftObservationIcon } from './observation.js';
+import { checkJournalNearby, shareJournalNotes, toggleJournalMicrophone } from './journal-capture.js';
 
 const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];
 
@@ -117,6 +119,13 @@ function bindJournal() {
     const history = el('journalHistory'); const opening = history.classList.contains('hidden'); history.classList.toggle('hidden', !opening); el('journalTitle').setAttribute('aria-expanded', String(opening));
   });
   document.querySelectorAll('.archive-filter .filter-button').forEach((button) => button.addEventListener('click', () => setArchiveFilter(button.dataset.filter)));
+  el('addObservationButton')?.addEventListener('click', () => openObservation());
+  el('journalNearbyButton')?.addEventListener('click', checkJournalNearby);
+  el('journalMicButton')?.addEventListener('click', () => void toggleJournalMicrophone());
+  el('shareJournalButton')?.addEventListener('click', () => void shareJournalNotes());
+  el('observationForm')?.addEventListener('submit', saveObservation);
+  el('photoInput')?.addEventListener('change', (event) => { if (el('photoName')) el('photoName').textContent = event.target.files?.[0]?.name || 'Optional, stored only on this device'; });
+  document.querySelectorAll('[data-observation-icon]').forEach((button) => button.addEventListener('click', () => setDraftObservationIcon(button.dataset.observationIcon)));
 }
 
 function regionCards() {

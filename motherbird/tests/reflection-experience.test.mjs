@@ -21,9 +21,9 @@ test('journal UI is writing-first while observation remains field capture', asyn
   const [html, css] = await Promise.all([readFile(path.join(root, 'index.html'), 'utf8'), readFile(path.join(root, 'styles.css'), 'utf8')]);
   assert.doesNotMatch(html, /id="journalHeading"/);
   assert.doesNotMatch(html, /id="journalPromptChoices"/);
-  assert.match(html, /August 31, 2026 · Fairfax County · private on this device/);
+  assert.match(html, /id="journalTitle"[^>]*>Today · private on this device/);
   assert.match(html, /class="lined-journal"/);
-  assert.match(html, /advancedAppearanceForm/);
+  assert.match(html, /id="shareJournalButton"/);
   assert.doesNotMatch(html, /id="headlineIcon"/);
   assert.match(css, /repeating-linear-gradient/);
   assert.match(html, /id="observationLocation"/);

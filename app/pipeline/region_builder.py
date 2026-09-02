@@ -36,8 +36,13 @@ def build_region(region_file: Path, output_root: Path, cache_root: Path, produce
     boundary_artifacts: dict[str, dict[str, Any]] = {}
     geography_manifest: list[dict[str, Any]] = []
     successful_sources = 0
+    dependency_sources = {
+        str(source.provider_options["clipToBoundarySourceId"])
+        for source in region["sources"]
+        if only_sources and source.id in only_sources and source.provider_options.get("clipToBoundarySourceId")
+    }
     for source in region["sources"]:
-        if only_sources and source.id not in only_sources:
+        if only_sources and source.id not in only_sources and source.id not in dependency_sources:
             continue
         try:
             provider = ProviderRegistry.create(source)
@@ -105,7 +110,7 @@ def build_region(region_file: Path, output_root: Path, cache_root: Path, produce
     civic: dict[str, dict[str, Any]] = {}
     if not only_sources:
         try:
-            civic = load_civic_artifacts(region["id"], producer_version, timestamp)
+            civic = load_civic_artifacts(region["id"], producer_version, timestamp, public_pois)
             civic_count = sum(len(artifact.get("items", [])) for artifact in civic.values())
             source_reports.append({"id": "fairfax_civic" if region["id"] == "fairfax-county-va" else f"{region['id']}-civic", "name": f"{region['name']} civic events", "url": "https://www.fairfaxcounty.gov/calendar/RssFeed.aspx?cal=1" if region["id"] == "fairfax-county-va" else "configured civic provider", "provider": "civic_rss", "acquireStatus": "success", "recordCount": civic_count, "namedCount": civic_count, "unnamedCount": 0, "geometryTypesAcquired": [], "geometryTypesSurvived": [], "dataClass": "temporal", "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry.", "acquiredAt": timestamp})
         except Exception as exc:

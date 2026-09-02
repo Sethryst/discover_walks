@@ -15,6 +15,9 @@ import { initFieldGuideFilters } from './field-guide.js';
 import { recoverWalkDraft } from './walk.js';
 import { initPersonalPlaces } from './personal-places.js';
 import { initLayerSystem } from './layer-system.js';
+import { initMapPaint } from './map-paint.js';
+import { activateInstalledRegionRuntime } from './installed-region-runtime.js';
+import { initCountyAdditions } from './county-additions.js';
 
 export async function init() {
   const splash = document.getElementById('appSplash');
@@ -23,6 +26,7 @@ export async function init() {
   try {
     await db.open();
     await loadLocalState();
+    await enterSingleInstalledRegion();
     const requestedCity = new URLSearchParams(globalThis.location?.search || '').get('city');
     if (requestedCity && CITIES[requestedCity]) {
       state.activeCity = requestedCity;
@@ -37,6 +41,9 @@ export async function init() {
   }
 
   initMap();
+  await activateInstalledRegionRuntime();
+  await initCountyAdditions();
+  initMapPaint();
   await initPersonalPlaces();
   await initLayerSystem();
   initFieldGuideFilters();
@@ -53,6 +60,13 @@ export async function init() {
   await renderArchive();
   if (!state.settings.onboardingCompleted && !state.activeWalk) {
     setTimeout(() => openSheet('onboardingSheet'), 250);
+  } else if (state.autoEnteredInstalledPack && !state.settings.mapToolsHintSeen) {
+    const hint = document.getElementById('mapIntroHint');
+    state.settings.mapToolsHintSeen = true;
+    await db.put('settings', state.settings);
+    hint?.classList.remove('hidden');
+    setTimeout(() => hint?.classList.add('dissolving'), 8800);
+    setTimeout(() => hint?.classList.add('hidden'), 10000);
   }
 
   if (splash) requestAnimationFrame(dismissSplash);
@@ -103,8 +117,33 @@ export async function loadLocalState() {
     state.settings.activeCity = state.settings.favoriteRegionIds?.find((id) => CITIES[id]?.dataFile) || DEFAULT_CITY_ID;
   }
   state.activeCity = state.settings.activeCity;
+  state.lastPosition = validSavedPosition(state.settings.lastPosition) ? { ...state.settings.lastPosition } : null;
   state.walks = savedWalks;
   state.knownTrackPoints = savedWalks.flatMap((walk) => (walk.points || []).filter((_, index) => index % 5 === 0));
   await restoreLocalPoiClosures();
   await Promise.all([db.put('profile', state.profile), db.put('settings', state.settings)]);
+}
+
+function validSavedPosition(value) {
+  return Number.isFinite(value?.lat) && Number.isFinite(value?.lng) && Math.abs(value.lat) <= 90 && Math.abs(value.lng) <= 180;
+}
+
+export function cityIdForInstalledRegion(regionId) {
+  const normalized = String(regionId || '');
+  return Object.entries(CITIES).find(([cityId, pack]) => cityId === normalized
+    || pack.packId === normalized
+    || JSON.stringify(pack).includes(`./regions/${normalized}/`))?.[0] || null;
+}
+
+export async function enterSingleInstalledRegion() {
+  const installed = (await db.all('regions')).filter((entry) => entry?.status === 'installed' && entry.id);
+  if (installed.length !== 1) return null;
+  const cityId = cityIdForInstalledRegion(installed[0].id);
+  if (!cityId) return null;
+  state.activeCity = cityId;
+  state.settings.activeCity = cityId;
+  state.settings.onboardingCompleted = true;
+  state.autoEnteredInstalledPack = true;
+  await db.put('settings', state.settings);
+  return { ...installed[0], cityId };
 }

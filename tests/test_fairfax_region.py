@@ -32,13 +32,15 @@ class FairfaxRegionTests(unittest.TestCase):
             "fairfax-historic-sites": ("https://www.fairfaxcounty.gov/gisopen/rest/services/OpenData_S1/FeatureServer/1", "DESCRIPTION"),
             "fairfax-libraries": ("https://www.fairfaxcounty.gov/gisopen/rest/services/OpenData_S1/FeatureServer/2", "DESCRIPTION"),
             "fairfax-community-centers": ("https://www.fairfaxcounty.gov/gisopen/rest/services/OpenData_S1/FeatureServer/9", "DESCRIPTION"),
+            "fairfax-government-centers": ("https://services1.arcgis.com/ioennV6PpG5Xodq0/ArcGIS/rest/services/OpenData_S1/FeatureServer/7", "DESCRIPTION"),
         }
         for source_id, (url, name_field) in locked.items():
             self.assertEqual(sources[source_id].url, url)
             self.assertEqual(sources[source_id].property_mapping["name"], name_field)
         self.assertEqual(sources["fairfax-community-centers"].property_mapping["id"], "OBJECTID_1")
         self.assertEqual(sources["fairfax-ebird-hotspots"].provider, "ebird_hotspots")
-        self.assertEqual(set(self.region["osm"]["categories"]), {"water", "public_art", "garden", "coffee", "rest"})
+        self.assertEqual(set(self.region["osm"]["categories"]), {"water", "public_art", "nature", "coffee", "markets", "restaurants", "rest", "history"})
+        self.assertEqual(self.region["osm"]["categoryLimits"], {"restaurants": 200})
         self.assertEqual(self.region["scorecard"]["swallowedTowns"], ["Vienna", "Herndon", "Reston"])
 
     def test_official_named_points_survive_without_osm_tags(self) -> None:

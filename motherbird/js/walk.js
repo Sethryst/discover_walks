@@ -102,6 +102,12 @@ export function updateWalkDisplay() {
 export function handlePosition(position, shouldPan = false) {
   const point = { lat: position.coords.latitude, lng: position.coords.longitude, accuracy: position.coords.accuracy, capturedAtMs: position.timestamp || Date.now() };
   renderUserLocation(point, shouldPan);
+  state.lastPosition = { lat: point.lat, lng: point.lng, accuracy: point.accuracy, capturedAt: new Date(point.capturedAtMs).toISOString() };
+  state.settings.lastPosition = state.lastPosition;
+  if (!handlePosition.lastFixWriteAt || Date.now() - handlePosition.lastFixWriteAt > 15000) {
+    handlePosition.lastFixWriteAt = Date.now();
+    void db.put('settings', state.settings);
+  }
   const weakSignal = !Number.isFinite(point.accuracy) || point.accuracy > MAX_GPS_ACCURACY_METERS;
   if (weakSignal) { setStatus(`GPS signal weak (${Math.round(point.accuracy || 0)} m) - route not updated`); return; }
   setStatus(state.activeWalk ? (state.activeWalk.paused ? 'Walk paused' : 'Recording your walk') : 'Location found', Boolean(state.activeWalk && !state.activeWalk.paused));

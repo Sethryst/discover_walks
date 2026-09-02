@@ -9,6 +9,8 @@ import { addObservationMarker } from './observation.js';
 import { renderWeatherBrief } from './weather.js';
 import { loadNeighborhoodsForCity } from './neighborhoods.js';
 import { normalizeRegionDataConfig } from './osm-regions.js';
+import { activateInstalledRegionRuntime } from './installed-region-runtime.js';
+import { activateCountyAdditions } from './county-additions.js';
 
 export async function loadCityData(cityId) {
   const config = normalizeRegionDataConfig(cityId, CITIES[cityId]);
@@ -111,6 +113,8 @@ export async function switchCity(nextCity, recenter = true, { source = 'user' } 
   if (manuallyLocked) state.activeWalk.packOverride = nextCity;
   state.activeCity = nextCity; state.settings.activeCity = nextCity;
   if (!state.cityPois[nextCity]) await loadCityData(nextCity);
+  await activateInstalledRegionRuntime(nextCity);
+  await activateCountyAdditions(nextCity);
   state.curatedRouteLine?.remove(); state.curatedRouteLine = null;
   state.plannedRouteLine?.remove(); state.plannedRouteLines?.forEach((line) => line.remove()); state.plannedRouteLine = null; state.plannedRouteLines = []; state.plannedRoute = null;
   state.poiTags.clear();

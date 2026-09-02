@@ -7,12 +7,12 @@ import { toast } from './ui.js';
 
 export function initMap() {
   const active = city();
-  const initialPosition = state.currentPosition || active.center;
+  const initialPosition = state.currentPosition || state.lastPosition || active.center;
   // When location permission is granted at startup, begin at the actual
   // location—not the regional centroid—and keep enough zoom for a walk.
-  const initialZoom = state.currentPosition ? Math.max(active.zoom, 14) : active.zoom;
+  const initialZoom = (state.currentPosition || state.lastPosition) ? Math.max(active.zoom, 15) : active.zoom;
   state.map = L.map('map', { zoomControl: false, attributionControl: true }).setView([initialPosition.lat, initialPosition.lng], initialZoom);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap contributors', crossOrigin: true }).addTo(state.map);
+  state.onlineBasemapLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap contributors', crossOrigin: true }).addTo(state.map);
   state.historyRadiusLayer = L.layerGroup().addTo(state.map);
   state.observationLayer = L.layerGroup().addTo(state.map);
   state.poiLayer = L.layerGroup().addTo(state.map);
@@ -53,8 +53,65 @@ export function initMap() {
   });
   if (state.currentPosition) renderUserLocation(state.currentPosition);
   window.addEventListener('field-edition-activated', ({ detail }) => activateFieldEdition(detail));
+  window.addEventListener('installed-region-activated', ({ detail }) => void activateInstalledBasemap(detail));
   // Federal boundary geometry remains available for a future visual redesign,
   // but the current borders, fills, and controls are intentionally not mounted.
+}
+
+export async function activateInstalledBasemap(region) {
+  const container = document.getElementById('installedBasemap');
+  if (!container || !state.map) return false;
+  if (state.installedBasemapSync) {
+    state.map.off('move zoom', state.installedBasemapSync);
+    state.installedBasemapSync = null;
+  }
+  state.installedBasemapMap?.remove();
+  state.installedBasemapMap = null;
+  container.replaceChildren();
+  container.classList.add('hidden');
+  document.querySelector('.app-shell')?.classList.remove('installed-map-active');
+  if (!region?.ready || region.mapSource?.type !== 'opfs') {
+    if (state.onlineBasemapLayer && !state.map.hasLayer(state.onlineBasemapLayer)) state.onlineBasemapLayer.addTo(state.map);
+    return false;
+  }
+  if (!globalThis.maplibregl || !globalThis.pmtiles) return false;
+  try {
+    const file = await regionInstaller.opfs.readFile(region.mapSource.path);
+    if (!file) throw new Error('Installed PMTiles file is missing.');
+    if (!state.installedBasemapProtocol) {
+      state.installedBasemapProtocol = new globalThis.pmtiles.Protocol();
+      globalThis.maplibregl.addProtocol('pmtiles', state.installedBasemapProtocol.tile);
+    }
+    const archive = new globalThis.pmtiles.PMTiles(new globalThis.pmtiles.FileSource(file));
+    state.installedBasemapProtocol.add(archive);
+    state.map.removeLayer(state.onlineBasemapLayer);
+    container.classList.remove('hidden');
+    document.querySelector('.app-shell')?.classList.add('installed-map-active');
+    const center = state.map.getCenter();
+    state.installedBasemapMap = new globalThis.maplibregl.Map({
+      container,
+      style: fieldEditionStyle(`pmtiles://${file.name}`),
+      center: [center.lng, center.lat],
+      zoom: state.map.getZoom(),
+      attributionControl: false,
+      interactive: false,
+      fadeDuration: 0
+    });
+    state.installedBasemapSync = () => {
+      if (!state.installedBasemapMap) return;
+      const next = state.map.getCenter();
+      state.installedBasemapMap.jumpTo({ center: [next.lng, next.lat], zoom: state.map.getZoom(), bearing: 0, pitch: 0 });
+    };
+    state.map.on('move zoom', state.installedBasemapSync);
+    state.installedBasemapMap.once('load', state.installedBasemapSync);
+    return true;
+  } catch (error) {
+    console.warn('Installed PMTiles basemap unavailable:', error);
+    container.classList.add('hidden');
+    document.querySelector('.app-shell')?.classList.remove('installed-map-active');
+    if (state.onlineBasemapLayer && !state.map.hasLayer(state.onlineBasemapLayer)) state.onlineBasemapLayer.addTo(state.map);
+    return false;
+  }
 }
 
 async function activateFieldEdition(edition) {

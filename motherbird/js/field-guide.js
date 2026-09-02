@@ -4,6 +4,8 @@ import { el, escapeHtml } from './utils.js';
 import { routesForCity, showCuratedRoute } from './routes.js';
 import { closeSheets, openBackpack, openSheet, toast } from './ui.js';
 import { paintWalkConcept } from './planner.js';
+import { distanceMeters } from './geo.js';
+import db from './storage.js';
 
 const FORMAT = 'walk-wildlife-plan-v1';
 let selectedPlaceId = null;
@@ -69,11 +71,29 @@ function publicSourceForPoi(poi, authored) {
 
 function discoverCard(card) {
   const selected = selectedPlaceId && card.stopPlaceIds?.includes(selectedPlaceId);
-  return `<article class="guide-card ${selected ? 'selected' : ''}" data-guide-card="${escapeHtml(card.id)}"><small>${card.kind === 'journey' ? 'JOURNEY' : escapeHtml(card.kind.replaceAll('+', ' + '))}</small><h3>${escapeHtml(card.title)}</h3><p>${escapeHtml(card.reason)}</p><button class="primary-button" type="button" data-guide-walk="${escapeHtml(card.id)}">Walk this</button></article>`;
+  return `<article class="guide-card ${selected ? 'selected' : ''}" data-guide-card="${escapeHtml(card.id)}"><small>${card.kind === 'journey' ? 'JOURNEY' : escapeHtml(card.kind.replaceAll('+', ' + '))}${distanceLabel(card.distance)}</small><h3>${escapeHtml(card.title)}</h3><p>${escapeHtml(card.reason)}</p><button class="primary-button" type="button" data-guide-walk="${escapeHtml(card.id)}">Walk this</button></article>`;
 }
 
 function learnCard(card) {
-  return `<article class="guide-card" data-learn-place="${escapeHtml(card.placeId)}"><h3>${escapeHtml(card.question)}</h3><p>${escapeHtml(card.short)}</p><a href="${escapeHtml(card.officialUrl)}" target="_blank" rel="noreferrer">${escapeHtml(card.provenance?.name || 'Official source')} ↗</a><button class="secondary-button" type="button" data-learn-walk="${escapeHtml(card.placeId)}">Walk there</button></article>`;
+  return `<article class="guide-card" data-learn-place="${escapeHtml(card.placeId)}"><small>LEARN${distanceLabel(card.distance)}</small><h3>${escapeHtml(card.question)}</h3><p>${escapeHtml(card.short)}</p><a href="${escapeHtml(card.officialUrl)}" target="_blank" rel="noreferrer">${escapeHtml(card.provenance?.name || 'Official source')} ↗</a><button class="secondary-button" type="button" data-learn-walk="${escapeHtml(card.placeId)}">Walk there</button></article>`;
+}
+
+function distanceLabel(distance) {
+  if (!Number.isFinite(distance)) return '';
+  return distance < 1000 ? ` · ${Math.round(distance)} m` : ` · ${(distance / 1609.344).toFixed(1)} mi`;
+}
+
+export function sortGuideCardsByDistance(cards, point, coordinateFor) {
+  if (!point) return cards.map((card) => ({ ...card, distance: null }));
+  return cards.map((card, index) => {
+    const coordinates = coordinateFor(card).filter((candidate) => Number.isFinite(candidate?.lat) && Number.isFinite(candidate?.lng));
+    const distance = coordinates.length ? Math.min(...coordinates.map((candidate) => distanceMeters(point, candidate))) : Infinity;
+    return { ...card, distance, packIndex: index };
+  }).sort((left, right) => left.distance - right.distance || left.packIndex - right.packIndex);
+}
+
+function observationCard(item) {
+  return `<article class="guide-card"><small>OBSERVATION${distanceLabel(item.distance)}</small><h3>${escapeHtml(item.title || item.species || 'Observation')}</h3><p>${escapeHtml(item.note || 'Saved privately in your journal.')}</p></article>`;
 }
 
 export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') {
@@ -83,14 +103,30 @@ export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') 
   target.classList.toggle('hidden', tab === 'share');
   el('sharePanel')?.classList.toggle('hidden', tab !== 'share');
   if (tab === 'share') {
+    el('fieldGuideOrderNote')?.classList.add('hidden');
     const friends = (state.online.leaderboard || []).map((friend) => friend.username).filter(Boolean);
     if (el('friendSharePicker')) el('friendSharePicker').innerHTML = friends.map((name) => `<span class="poi-chip">@${escapeHtml(name)}</span>`).join('');
     window.dispatchEvent(new CustomEvent('share-panel-render-requested'));
     return;
   }
   const data = await guideData();
+  const point = state.currentPosition || state.lastPosition;
+  const note = el('fieldGuideOrderNote');
+  if (note) {
+    note.textContent = point ? `Nearest first from your ${state.currentPosition ? 'current' : 'last'} fix.` : 'Location is off, so this stays in pack order.';
+    note.classList.remove('hidden');
+  }
+  const poiById = new Map((state.cityPois[state.activeCity] || []).map((poi) => [String(poi.id), poi]));
+  if (tab === 'journal') {
+    const observations = (await db.all('observations')).filter((item) => item.city === state.activeCity || !item.city);
+    const ordered = sortGuideCardsByDistance(observations, point, (item) => [item.location]);
+    target.innerHTML = ordered.length ? ordered.map(observationCard).join('') : '<p class="empty-state">No observations in this pack yet.</p>';
+    return;
+  }
   const cards = tab === 'learn' ? data.learn : data.discover;
-  const ordered = tab === 'learn' && selectedPlaceId ? [...cards].sort((left, right) => Number(right.placeId === selectedPlaceId) - Number(left.placeId === selectedPlaceId)) : cards;
+  const ordered = sortGuideCardsByDistance(cards, point, (card) => tab === 'learn'
+    ? [poiById.get(String(card.placeId))]
+    : (card.stopPlaceIds || []).map((id) => poiById.get(String(id))));
   target.innerHTML = ordered.length ? ordered.map(tab === 'learn' ? learnCard : discoverCard).join('') : '';
 }
 

@@ -65,7 +65,7 @@ const packageData = new RegionPackage({
       buckets: 'regions/vienna/vienna-buckets.json'
     }
   },
-  pmtilesBlob: new Blob(['pmtiles-data'], { type: 'application/x-pmtiles' }),
+  pmtilesBlob: new Blob(['PMTiles', new Uint8Array(121)], { type: 'application/x-pmtiles' }),
   poiData: { pois: [{ id: 'poi-1', name: 'Museum' }] },
   bucketsData: { universalBuckets: [{ name: 'history' }] }
 });

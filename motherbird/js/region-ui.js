@@ -74,8 +74,9 @@ export async function loadFieldEdition(id) {
   return fieldEditionLoader.loadEdition(id);
 }
 
-// PMTiles packages are a Field Edition delivery concern. The ordinary map,
-// personal journal, and curated online experience remain outside this gate.
+// Entitlement controls installation. Once installed, the region package is
+// also the ordinary map's local POI and PMTiles source; the journal remains
+// a separate private store.
 export async function installFieldEditionRegion(regionId) {
   if (!canUseOfflineRegion(regionId)) {
     throw new Error('This offline region needs a Field Edition purchase or partner grant.');

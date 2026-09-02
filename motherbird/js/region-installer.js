@@ -12,6 +12,7 @@ export class RegionInstaller {
     const installDir = `regions/${regionId}`;
 
     try {
+      await validatePmtiles(regionPackage);
       await this.opfs.ensureDirectory(installDir.split("/"));
       await this.opfs.writeFile(`${installDir}/${regionId}.pmtiles`, regionPackage.pmtilesBlob);
       await this.db.put('regions', {
@@ -89,6 +90,22 @@ export class RegionInstaller {
       async remove() {}
     };
   }
+}
+
+async function validatePmtiles(regionPackage) {
+  const blob = regionPackage.pmtilesBlob;
+  if (!blob?.arrayBuffer) throw new Error('Region package PMTiles is missing.');
+  const bytes = new Uint8Array(await blob.arrayBuffer());
+  const magic = new TextDecoder('ascii').decode(bytes.subarray(0, 7));
+  if (bytes.length <= 127 || magic !== 'PMTiles') throw new Error('Region package PMTiles header is invalid.');
+  const checksums = regionPackage.manifest?.checksums || {};
+  const artifact = regionPackage.manifest?.artifacts?.pmtiles || `${regionPackage.id}.pmtiles`;
+  const declared = checksums[artifact] || Object.entries(checksums).find(([name]) => name.endsWith('.pmtiles'))?.[1];
+  if (!declared) return;
+  if (!globalThis.crypto?.subtle) throw new Error('This browser cannot verify the PMTiles checksum.');
+  const digest = await globalThis.crypto.subtle.digest('SHA-256', bytes);
+  const actual = `sha256:${[...new Uint8Array(digest)].map((byte) => byte.toString(16).padStart(2, '0')).join('')}`;
+  if (String(declared).toLocaleLowerCase() !== actual) throw new Error('Region package PMTiles checksum does not match.');
 }
 
 class BrowserOpfsStorage {

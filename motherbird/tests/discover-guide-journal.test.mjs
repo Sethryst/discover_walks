@@ -16,12 +16,12 @@ test('Discover prioritizes curated records without rejecting useful OSM places',
   assert.deepEqual(rankDiscoverPlaces([osmCoffee, featuredPark]).map(({ id }) => id), ['park', 'osm-cafe']);
 });
 
-test('Field Guide uses only pack-authored notices joined to viewport pins', async () => {
+test('Field Guide joins pack-authored cards to real pins and orders from a fix', async () => {
   const guide = await readFile(new URL('../js/field-guide.js', import.meta.url), 'utf8');
   assert.doesNotMatch(guide, /FIELD_GUIDE_SUBJECTS/);
-  assert.match(guide, /poi\.notices/);
-  assert.match(guide, /getBounds\(\)\.contains/);
-  assert.match(guide, /classList\.toggle\('hidden', !visible\)/);
+  assert.match(guide, /poiById\.has/);
+  assert.match(guide, /sortGuideCardsByDistance/);
+  assert.match(guide, /Location is off, so this stays in pack order/);
 });
 
 test('the idle map replaces primary tabs with Journal, Backpack, Places +, and map lights', async () => {
@@ -39,21 +39,15 @@ test('the idle map replaces primary tabs with Journal, Backpack, Places +, and m
   assert.doesNotMatch(html, /id="weatherBrief"/);
 });
 
-test('the active map owns the notice composer while idle Journal is a writing-first split', async () => {
+test('the Journal restores local observation, nearby, microphone, and share controls', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
-  const styles = await readFile(new URL('../styles.css', import.meta.url), 'utf8');
-  assert.match(html, /id="persistentJournal" data-sheet-state="collapsed" aria-label="Walk notice composer"/);
-  assert.match(html, /id="quickJournalForm"/);
-  assert.match(html, /id="composerPhotoButton"/);
   assert.match(html, /id="addObservationButton"/);
-  assert.match(html, /id="composerNearbyButton"/);
-  assert.match(html, /id="composerMicButton"/);
-  assert.match(styles, /\.persistent-journal \{ display: none; \}/);
-  assert.match(styles, /\.walk-active \.persistent-journal/);
+  assert.match(html, /id="journalNearbyButton"/);
+  assert.match(html, /id="journalMicButton"/);
+  assert.match(html, /id="shareJournalButton"/);
   assert.match(html, /id="journalSheet"/);
   assert.match(html, /id="journalArchiveSummary"/);
   assert.match(html, /id="journalOverlayArchiveList"/);
-  assert.match(html, /id="layerFilterSearch"/);
   assert.match(html, /id="exportCurrentFiltersButton"/);
   assert.match(html, /id="importFilterSetButton"/);
   assert.doesNotMatch(html, /id="verifiedPlacesOnly"/);
@@ -71,9 +65,10 @@ test('Backpack opens the viewport Field Guide first and keeps quieter tools in t
   assert.match(html, /In this pack/);
   assert.match(html, /Advanced filters/);
   assert.doesNotMatch(guide, /seasonNote/);
-  assert.match(guide, /getBounds\(\)\.contains/);
+  assert.match(guide, /sortGuideCardsByDistance/);
+  assert.match(guide, /state\.currentPosition \|\| state\.lastPosition/);
   assert.doesNotMatch(guide, /In this guide:/);
-  assert.match(guide, /poi\.notices/);
+  assert.match(guide, /stopPlaceIds/);
   assert.doesNotMatch(profile, /cityDiscoveries.*\/.*totalCitySites/);
   assert.doesNotMatch(profile, /Discover every stop/);
   assert.doesNotMatch(html, /Total trail points/);
@@ -82,5 +77,6 @@ test('Backpack opens the viewport Field Guide first and keeps quieter tools in t
   assert.doesNotMatch(html, />Leaderboard</);
   assert.match(explore, /not enough reviewed local material/);
   assert.doesNotMatch(planner, /Try a shorter loop/);
-  assert.match(planner, /Start when you’re ready/);
+  assert.match(planner, /routeOnFoot/);
+  assert.match(planner, /coordinates: routed\.ok \? routed\.coordinates : \[\]/);
 });

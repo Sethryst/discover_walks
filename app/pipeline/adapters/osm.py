@@ -78,6 +78,9 @@ class OsmOverpassProvider(SourceAdapter):
         features: list[IntermediateFeature] = []
         self.warnings: list[dict[str, str]] = []
         maximum = int(source.provider_options.get("maxRecords", 2000))
+        category_limits = {str(key): int(value) for key, value in source.provider_options.get("categoryLimits", {}).items()}
+        category_counts: dict[str, int] = {}
+        limited_categories: set[str] = set()
         elements = sorted(raw.get("elements", []), key=lambda item: (str(item.get("type", "")), int(item.get("id", 0))))
         for element in elements:
             geometry = _geometry(element)
@@ -87,6 +90,12 @@ class OsmOverpassProvider(SourceAdapter):
                 reason = "invalid geometry" if geometry is None else "missing name" if not tags.get("name") else "ambiguous category"
                 self.warnings.append({"code": "unusable_source_record", "source": source.id, "detail": f"OSM {element.get('type')} {element.get('id')} rejected: {reason}."})
                 continue
+            category = _category(tags)
+            category_count = category_counts.get(category, 0)
+            if category in category_limits and category_count >= category_limits[category]:
+                limited_categories.add(category)
+                continue
+            category_counts[category] = category_count + 1
             element_type = str(element["type"])
             element_id = str(element["id"])
             features.append(IntermediateFeature(element_id, source.name, f"https://www.openstreetmap.org/{element_type}/{element_id}", geometry, tags, timestamp, {"rawFormat": "osm", "sourceMetadata": {"sourceConfigId": source.id, "osmType": element_type, "assignedDomains": [assigned_domain], "attribution": source.attribution or "© OpenStreetMap contributors", "license": "ODbL-1.0", "licenseUrl": source.license_url}, "confidence": source.confidence, "authorityTier": source.authority_tier}))
@@ -94,6 +103,8 @@ class OsmOverpassProvider(SourceAdapter):
                 if len(elements) > maximum:
                     self.warnings.append({"code": "max_records_applied", "source": source.id, "detail": f"Deterministic regional limit of {maximum} records applied."})
                 break
+        for category in sorted(limited_categories):
+            self.warnings.append({"code": "max_records_applied", "source": source.id, "detail": f"Deterministic {category} limit of {category_limits[category]} records applied."})
         return features
 
 
@@ -188,6 +199,22 @@ def _domain(tags: dict[str, Any], geometry: dict[str, Any] | None) -> str | None
     if tags.get("amenity") in {"drinking_water", "shelter", "toilets"}:
         return "rest"
     return None
+
+
+def _category(tags: dict[str, Any]) -> str:
+    if _is_coffee_stop(tags):
+        return "coffee"
+    if tags.get("amenity") in {"restaurant", "fast_food"}:
+        return "restaurants"
+    if tags.get("amenity") == "marketplace" or tags.get("shop") in {"grocery", "supermarket", "convenience", "greengrocer", "farm", "food"}:
+        return "markets"
+    if tags.get("highway") in {"path", "footway", "pedestrian"}:
+        return "trail"
+    if tags.get("leisure") in {"park", "nature_reserve"}:
+        return "park"
+    if tags.get("historic"):
+        return "history"
+    return "other"
 
 
 def _is_coffee_stop(tags: dict[str, Any]) -> bool:

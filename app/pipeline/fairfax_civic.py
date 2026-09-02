@@ -16,14 +16,17 @@ SOURCE_NAME = "Fairfax County, Virginia"
 LOCAL_TIME = ZoneInfo("America/New_York")
 
 
-def fetch_cards(now: datetime | None = None) -> list[dict]:
+VIRTUAL_VENUE_TERMS = ("zoom", "teams", "virtual", "tbd", "to be determined")
+
+
+def fetch_cards(now: datetime | None = None, venue_pins: list[dict] | None = None) -> list[dict]:
     current = now or datetime.now(timezone.utc)
     with urlopen(Request(SOURCE_URL, headers={"User-Agent": "Gremlin-Lab/1.0"}), timeout=45) as response:
         feed = response.read()
-    return cards_from_feed(feed, current, _fetch_detail)
+    return cards_from_feed(feed, current, _fetch_detail, venue_pins)
 
 
-def cards_from_feed(feed: bytes | str, now: datetime, detail_loader: Callable[[str], str | None]) -> list[dict]:
+def cards_from_feed(feed: bytes | str, now: datetime, detail_loader: Callable[[str], str | None], venue_pins: list[dict] | None = None) -> list[dict]:
     """Use event detail pages for date/time/location; RSS itself omits dates."""
     root = ET.fromstring(feed)
     cards = []
@@ -37,9 +40,15 @@ def cards_from_feed(feed: bytes | str, now: datetime, detail_loader: Callable[[s
         if not parsed:
             continue
         start, location, summary = parsed
-        if start.date() < now.date() or start.date() > now.date() + timedelta(days=90):
+        local_today = now.astimezone(LOCAL_TIME).date()
+        if start.date() < local_today or start.date() > local_today + timedelta(days=90):
             continue
-        cards.append({
+        if any(term in location.casefold() for term in VIRTUAL_VENUE_TERMS):
+            continue
+        venue = _join_venue(location, venue_pins) if venue_pins is not None else None
+        if venue_pins is not None and venue is None:
+            continue
+        card = {
             "id": f"fairfax-county-va:{hashlib.sha256(url.encode()).hexdigest()[:16]}:{start.date().isoformat()}",
             "title": title,
             "date": start.date().isoformat(),
@@ -51,7 +60,10 @@ def cards_from_feed(feed: bytes | str, now: datetime, detail_loader: Callable[[s
             "officialUrl": url,
             "expiresAt": (start.astimezone(timezone.utc) + timedelta(days=1)).isoformat().replace("+00:00", "Z"),
             "source": {"name": SOURCE_NAME, "url": url, "authorityTier": "county_government", "reviewStatus": "verified"},
-        })
+        }
+        if venue is not None:
+            card.update({"venuePlaceId": venue["id"], "lat": venue["lat"], "lng": venue["lng"]})
+        cards.append(card)
     return sorted({card["id"]: card for card in cards}.values(), key=lambda card: (card["date"], card["title"]))
 
 
@@ -89,3 +101,28 @@ def _plain(value: str) -> str:
 
 def _text(node: ET.Element | None) -> str:
     return (node.text or "").strip() if node is not None else ""
+
+
+def _join_venue(location: str, venue_pins: list[dict]) -> dict | None:
+    venue_label = re.split(r"\b\d{2,}\w?\b", location, maxsplit=1)[0]
+    location_key = _key(venue_label)
+    location_tokens = set(location_key.split())
+    matches: list[tuple[int, str, dict]] = []
+    for pin in venue_pins:
+        if not all(key in pin for key in ("id", "name", "lat", "lng")):
+            continue
+        if pin.get("category") not in {"park", "community", "facility", "history"}:
+            continue
+        name_key = _key(str(pin["name"]))
+        name_tokens = {token for token in name_key.split() if token not in {"at", "the", "of"}}
+        if not name_key or not name_tokens:
+            continue
+        exact_phrase = name_key in location_key
+        same_named_tokens = len(name_tokens) >= 2 and name_tokens.issubset(location_tokens)
+        if exact_phrase or same_named_tokens:
+            matches.append((len(name_tokens) * 100 + len(name_key), str(pin["id"]), pin))
+    return max(matches, default=(0, "", None))[2]
+
+
+def _key(value: str) -> str:
+    return re.sub(r"\s+", " ", re.sub(r"[^a-z0-9]+", " ", value.casefold())).strip()

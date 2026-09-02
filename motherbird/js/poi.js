@@ -75,6 +75,7 @@ const NATURE_WATER_TAGS = new Set(['drinking_water', 'water_fountain', 'water', 
 const NATURE_WILDLIFE_TAGS = new Set(['wildlife']);
 const NATURE_REST_TAGS = new Set(['rest', 'restrooms']);
 export const NATURE_COUNTY_CAP = 120;
+export const CUISINE_COUNTY_CAP = 24;
 export const WALK_ZOOM = 14;
 
 function anyEnabled(tags) { return tags.some((tag) => state.layerFilters?.public?.[tag] !== false); }
@@ -177,6 +178,31 @@ function naturePriority(poi) {
   return 4;
 }
 
+function cuisinePriority(poi) {
+  const tags = poiTags(poi);
+  if (tags.some((tag) => CAFE_TAGS.includes(tag))) return 0;
+  if (tags.some((tag) => MARKET_TAGS.includes(tag))) return 1;
+  if (tags.some((tag) => RESTAURANT_TAGS.includes(tag))) return 2;
+  return 3;
+}
+
+function namedCuisinePlace(poi) {
+  const name = String(poi?.name || '').trim();
+  return Boolean(name) && !/^(unnamed|unknown|restaurant|cafe|café|food service)$/i.test(name);
+}
+
+function diverseCuisine(pois, limit) {
+  const operators = new Set();
+  return [...pois].sort((left, right) => cuisinePriority(left.poi) - cuisinePriority(right.poi) || left.index - right.index)
+    .filter(({ poi }) => {
+      if (!namedCuisinePlace(poi)) return false;
+      const operator = String(poi.operator || poi.brand || poi.name).trim().toLocaleLowerCase();
+      if (operators.has(operator)) return false;
+      operators.add(operator);
+      return true;
+    }).slice(0, limit);
+}
+
 function paintOrder(pois) {
   const indexed = pois.map((poi, index) => ({ poi, index, group: paintGroup(poi) }));
   const nature = indexed.filter((entry) => entry.group === 'nature')
@@ -184,10 +210,14 @@ function paintOrder(pois) {
   const zoom = Number(state.map?.getZoom?.());
   const countyNature = !Number.isFinite(zoom) || zoom < WALK_ZOOM;
   const allowedNature = countyNature ? nature.slice(0, NATURE_COUNTY_CAP) : nature;
-  const allowed = new Set(allowedNature);
-  return indexed.filter((entry) => entry.group !== 'nature' || allowed.has(entry))
+  const cuisine = indexed.filter((entry) => entry.group === 'cuisine');
+  const showLowCuisine = state.layerFilters?.public?.__low_importance_cuisine === true;
+  const allowedCuisine = showLowCuisine ? cuisine : diverseCuisine(cuisine, countyNature ? CUISINE_COUNTY_CAP : CUISINE_COUNTY_CAP * 2);
+  const allowed = new Set([...allowedNature, ...allowedCuisine]);
+  return indexed.filter((entry) => (entry.group !== 'nature' && entry.group !== 'cuisine') || allowed.has(entry))
     .sort((left, right) => {
       if (left.group === 'nature' && right.group === 'nature') return naturePriority(left.poi) - naturePriority(right.poi) || left.index - right.index;
+      if (left.group === 'cuisine' && right.group === 'cuisine') return cuisinePriority(left.poi) - cuisinePriority(right.poi) || left.index - right.index;
       return left.index - right.index;
     }).map((entry) => entry.poi);
 }
