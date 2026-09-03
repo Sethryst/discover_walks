@@ -25,23 +25,21 @@ export async function init() {
   if (!document.querySelector('link[href*="splash-fix.css"]')) {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = './splash-fix.css?v=64';
+    link.href = './splash-fix.css?v=66';
     document.head.appendChild(link);
   }
   const splash = document.getElementById('appSplash');
   const pinSplashToVisibleViewport = () => {
     if (!splash || splash.classList.contains('app-splash--done')) return;
-    const viewport = globalThis.visualViewport;
-    const height = Math.round(viewport?.height || globalThis.innerHeight || 0);
-    const width = Math.round(viewport?.width || globalThis.innerWidth || 0);
-    const top = Math.round(viewport?.offsetTop || 0);
-    const left = Math.round(viewport?.offsetLeft || 0);
-    if (height > 0) splash.style.height = `${height}px`;
-    if (width > 0) splash.style.width = `${width}px`;
-    splash.style.top = `${top}px`;
-    splash.style.left = `${left}px`;
-    splash.style.right = 'auto';
-    splash.style.bottom = 'auto';
+    splash.style.position = 'fixed';
+    splash.style.top = '0';
+    splash.style.left = '0';
+    splash.style.right = '0';
+    splash.style.bottom = '0';
+    splash.style.width = '100%';
+    splash.style.height = '100%';
+    splash.style.height = '-webkit-fill-available';
+    splash.style.minHeight = '100dvh';
   };
   pinSplashToVisibleViewport();
   globalThis.visualViewport?.addEventListener('resize', pinSplashToVisibleViewport);
