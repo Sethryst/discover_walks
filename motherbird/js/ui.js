@@ -98,7 +98,9 @@ export async function openJournal(walkId = null) {
   else if (walkId && walkId !== previousWalkId) { el('journalNote').value = ''; delete form.dataset.momentId; }
   const walks = state.walks?.length || 0;
   const notes = moments.filter((item) => item.type === 'journal').length;
-  el('journalTitle').textContent = `${new Date().toLocaleDateString([], { month: 'long', day: 'numeric', year: 'numeric' })} · ${CITIES[state.activeCity]?.name || 'Installed region'} · private on this device · ${walks} walk${walks === 1 ? '' : 's'} · ${notes} note${notes === 1 ? '' : 's'}`;
+  el('journalTitle').textContent = `${new Date().toLocaleDateString([], { month: 'short', day: 'numeric' })} · private on this device ⌄`;
+  el('journalNavDropdown')?.classList.add('hidden');
+  el('journalTitle').setAttribute('aria-expanded', 'false');
   el('journalWordCount').textContent = `${wordCount(el('journalNote').value)} words`;
   openSheet('journalSheet');
   void renderArchive();
@@ -116,7 +118,11 @@ export function momentCard(item) {
   let detail = item.note || '';
   if (item.type === 'walk') detail = `${formatDistance(item.distanceMeters)} miles · ${formatDuration(item.durationSeconds)}`;
   if (!detail) detail = item.type === 'observation' ? 'Nature observation' : 'Journal reflection';
-  return `<article class="moment-card ${item.type === 'walk' ? 'walk-card' : ''}" ${item.type === 'walk' ? `data-walk-id="${escapeHtml(item.id)}" role="button" tabindex="0"` : ''}><span class="moment-symbol ${kind === 'history' ? 'history' : kind === 'walk' ? 'walk' : ''}">${icons[kind]}</span><div class="moment-copy"><strong>${escapeHtml(title)}</strong><p>${escapeHtml(detail)}</p></div><time class="moment-date">${shortDate(item.createdAt || item.startedAt)}</time></article>`;
+  return `<article class="moment-card ${item.type === 'walk' ? 'walk-card' : ''}" ${item.type === 'walk' ? `data-walk-id="${escapeHtml(item.id)}" role="button" tabindex="0"` : ''}><span class="moment-symbol ${kind === 'history' ? 'history' : kind === 'walk' ? 'walk' : ''}">${icons[kind]}</span><div class="moment-copy"><strong>${escapeHtml(title)}</strong><p>${escapeHtml(detail)}</p>${journalPhoto(item.photo)}</div><time class="moment-date">${shortDate(item.createdAt || item.startedAt)}</time></article>`;
+}
+export function journalPhoto(value) {
+  // Imported pages must not inject HTML or cause remote photo requests.
+  return typeof value === 'string' && /^data:image\/(?:png|jpeg|jpg|gif|webp|avif);base64,[a-z0-9+/=\s]+$/i.test(value) ? `<img class="journal-photo" src="${escapeHtml(value)}" alt="Journal photograph" loading="lazy" />` : '';
 }
 export function badge(name, earned, detail) { return `<span class="badge ${earned ? 'earned' : ''}" title="${escapeHtml(detail)}">${earned ? '✓ ' : ''}${escapeHtml(name)}</span>`; }
 export function renderGeofenceCategoryChips() {

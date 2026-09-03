@@ -77,7 +77,7 @@ for (const file of files) {
       : ['default'];
 
 
-    const targetFile = path.resolve(path.dirname(file), match[3].endsWith('.js') ? match[3] : `${match[3]}.js`);
+    const targetFile = path.resolve(path.dirname(file), /\.m?js$/.test(match[3]) ? match[3] : `${match[3]}.js`);
 
 
     for (const name of imported) {

@@ -7,7 +7,7 @@ test('phone and Watch expose passkeys without Google sign-in', async () => {
     readFile(new URL('../index.html', import.meta.url), 'utf8'),
     readFile(new URL('../watch.html', import.meta.url), 'utf8')
   ]);
-  assert.match(phone, /id="passkeySignInButton"/);
+  assert.match(phone, /id="goOnlineButton"/);
   assert.match(watch, /id="watchPasskeySignIn"/);
   assert.doesNotMatch(`${phone}\n${watch}`, /googleSignInButton|Continue with Google|Google password/i);
 });
@@ -21,7 +21,7 @@ test('Watch authentication uses passkeys without app-data writes', async () => {
 
 test('service worker versions the updated shell and caches app modules together', async () => {
   const worker = await readFile(new URL('../service-worker.js', import.meta.url), 'utf8');
-  assert.match(worker, /walk-wildlife-shell-v74/);
+  assert.match(worker, /walk-wildlife-shell-v75/);
   assert.match(worker, /walk-wildlife-companion-media-v2/);
   for (const moduleName of ['discovery-taxonomy', 'field-guide', 'online', 'cloud-journal', 'journal-pane', 'layer-system', 'personal-places', 'companion', 'journal-capture', 'county-additions', 'installed-region-runtime', 'map-paint']) {
     assert.match(worker, new RegExp(`\\.\\/js\\/${moduleName}\\.js`));

@@ -29,17 +29,16 @@ test('onboarding turns region and interests into an immediate first action', () 
   assert.equal(onboardingValue('Loudoun County', ['park', 'trail']), 'Your first Discover Walks view in Loudoun County will prioritize green space and wildlife and trails.');
 });
 
-test('an uninstalled first launch asks only for region, while Start Walk begins tracking immediately', async () => {
+test('first launch goes straight to the map, while Start Walk begins tracking immediately', async () => {
   const events = await readFile(path.join(root, 'js/events.js'), 'utf8');
   assert.match(events, /await startWalk\(\{ routeMode: 'tracking' \}\)/);
   assert.doesNotMatch(events, /onboardingRegionNextButton.*setOnboardingStep\('interests'\)/);
   const html = await readFile(path.join(root, 'index.html'), 'utf8');
-  assert.match(html, /id="onboardingCitySelect"/);
-  assert.match(html, /id="saveOnboardingButton"/);
+  assert.doesNotMatch(html, /id="onboardingCitySelect"|id="onboardingSheet"/);
   assert.match(html, /id="mapIntroHint"/);
 });
 
-test('first launch does not request GPS until the walker chooses it in onboarding', async () => {
+test('first launch does not request GPS before the walker chooses Locate or Start', async () => {
   const loader = await readFile(path.join(root, 'js/loader.js'), 'utf8');
   assert.doesNotMatch(loader, /nearestCityFromCurrentLocation/);
 });

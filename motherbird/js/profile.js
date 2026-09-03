@@ -1,7 +1,6 @@
 import { state } from './state.js';
 import { CITIES, GEOFENCE_CATEGORIES } from './constants.js';
 import { el, sitesForProfile, cityLabel, escapeHtml, shortDate, normalizeProfile } from './utils.js';
-import { syncProfile } from './online.js';
 import db from './storage.js';
 import { renderGeofenceCategoryChips } from './ui.js';
 import { renderFavoriteRegions } from './region-favorites.js';
@@ -22,6 +21,7 @@ export async function updateProfile(mutator) {
   state.profile = normalizeProfile(state.profile);
   await db.put('profile', state.profile);
   renderProfile();
-  void syncProfile().catch((error) => console.warn('Aggregate profile sync deferred:', error.message));
+  // Go online uploads selected, encrypted classes only. Updating a local walk
+  // or observation must not separately upload unencrypted activity totals.
   return result;
 }

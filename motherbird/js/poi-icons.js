@@ -97,8 +97,8 @@ function colorForTags(tags, poi) {
   return colorForIcon(markerIconId({ poi, tags }));
 }
 
-export function markerVisual({ poi = null, tags = [], light = null, chipId = null, collectionIcon = null } = {}) {
-  if (light === 'personal') return { iconId: validIconId(collectionIcon) || 'map-pin', color: MARKER_COLORS.personal };
+export function markerVisual({ poi = null, tags = [], light = null, chipId = null, collectionIcon = null, collectionColor = null } = {}) {
+  if (light === 'personal') return { iconId: validIconId(collectionIcon) || 'map-pin', color: /^#[0-9a-f]{6}$/i.test(collectionColor || '') ? collectionColor : MARKER_COLORS.personal };
   if (light === 'news') return { iconId: 'star', color: MARKER_COLORS.news };
 
   // User-posted recreation/cuisine pins have only a chip, not POI tags.

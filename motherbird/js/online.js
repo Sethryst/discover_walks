@@ -27,18 +27,7 @@ export async function setupOnline() {
   });
   const { data } = await state.online.client.auth.getSession();
   state.online.session = data.session;
-  const freshAppLaunch = !sessionStorage.getItem(APP_SESSION_KEY);
-  sessionStorage.setItem(APP_SESSION_KEY, '1');
-  if (state.online.session && freshAppLaunch && localStorage.getItem(PASSKEY_ENROLLED_KEY) === '1') {
-    // Supabase persists sessions across page reloads. On a new app session,
-    // require the enrolled passkey instead of silently restoring the session.
-    await state.online.client.auth.signOut();
-    state.online.session = null;
-    setTimeout(() => {
-      openSheet('onlineSheet');
-      void signInWithPasskey();
-    }, 0);
-  } else if (state.online.session) await loadRemoteProfile();
+  if (state.online.session) { try { await loadRemoteProfile(); } catch (error) { console.warn('Profile unavailable:', error.message); } }
   try {
     await readSupabaseHeartbeat(state.online.client, state.settings, (settings) => db.put('settings', settings));
   } catch (error) {
@@ -48,7 +37,10 @@ export async function setupOnline() {
   state.online.client.auth.onAuthStateChange((_event, session) => {
     state.online.session = session;
     setTimeout(async () => {
-      if (session) await loadRemoteProfile();
+      if (session) {
+        try { await loadRemoteProfile(); } catch (error) { console.warn('Profile unavailable:', error.message); }
+        window.dispatchEvent(new CustomEvent('online-profile-changed'));
+      }
       else {
         state.online.remoteProfile = null;
         await setCloudJournalEntitlement(false);
@@ -63,8 +55,9 @@ export async function setupOnline() {
 }
   export async function openOnline() {
   await setupOnline();
-  openSheet('onlineSheet');
-  await renderOnline();
+  const { renderFieldGuide } = await import('./field-guide.js');
+  openSheet('backpackSheet');
+  await renderFieldGuide('online');
 }
 export async function loadRemoteProfile() {
   if (!state.online.client || !state.online.session) return null;
@@ -210,7 +203,7 @@ async function setCloudJournalEntitlement(active) {
   state.online.fieldEditionVerified = active;
   if (!state.settings) return;
   const current = normalizedEntitlements(state.settings.entitlements);
-  state.settings.entitlements = { ...current, fieldEdition: current.fieldEdition || active, cloudJournalBackup: active };
+  state.settings.entitlements = { ...current, fieldEdition: current.fieldEdition || active, cloudJournalBackup: Boolean(state.online.session) };
   await db.put('settings', state.settings);
   if (globalThis.window?.CustomEvent) window.dispatchEvent(new window.CustomEvent('cloud-journal-entitlement-changed'));
 }
@@ -244,13 +237,7 @@ export async function syncProfile() {
   return true;
 }
 export async function renderOnline() {
-  const setup = el('onlineSetupPanel'), magic = el('magicLinkForm'), username = el('usernameForm'), dashboard = el('onlineDashboard');
-  [setup, magic, username, dashboard].forEach((panel) => panel.classList.add('hidden'));
-  if (!onlineConfigured()) { setup.classList.remove('hidden'); return; }
-  if (!state.online.session) { magic.classList.remove('hidden'); return; }
-  if (!state.online.remoteProfile?.username) { username.classList.remove('hidden'); return; }
-  dashboard.classList.remove('hidden');
-  el('onlineStatusText').textContent = state.settings.lastSyncedAt ? `Last synced ${shortDate(state.settings.lastSyncedAt)}` : 'Online — aggregate stats ready to sync';
+  window.dispatchEvent(new CustomEvent('online-panel-render-requested'));
 }
 export async function signIn() {
   if (!onlineConfigured()) return;
@@ -272,9 +259,11 @@ export async function signInWithPasskey() {
     toast('Passkeys are unavailable in this Supabase client. Update the Supabase JavaScript library.');
     return false;
   }
-  const { error } = await state.online.client.auth.signInWithPasskey();
+  const { data, error } = await state.online.client.auth.signInWithPasskey();
   if (error) { toast(error.message || 'Face ID sign-in could not start.'); return false; }
-  await loadRemoteProfile();
+  state.online.session = data?.session || (await state.online.client.auth.getSession()).data?.session || null;
+  if (!state.online.session) return false;
+  try { await loadRemoteProfile(); } catch (error) { console.warn('Profile unavailable:', error.message); }
   await renderOnline();
   return true;
 }

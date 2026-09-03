@@ -2,7 +2,7 @@ import { state } from './state.js';
 import { el, escapeHtml, formatDistance, formatDuration, shortDate, uid, sitesForProfile } from './utils.js';
 import db from './storage.js';
 import { updateProfile } from './profile.js';
-import { closeSheets, openSheet, toast, momentCard } from './ui.js';
+import { closeSheets, openSheet, toast, momentCard, journalPhoto } from './ui.js';
 import { city } from './poi.js';
 import { buildReflectionMoment, wordCount } from './reflection.js';
 import { markPoiVisited } from './poi-visit-tracking.js';
@@ -43,11 +43,22 @@ export async function saveJournalOnClose({ note = '', walkId = '' } = {}) {
   if (!cleanNote) return;
   const form = el('journalForm');
   const existing = form?.dataset.momentId || (walkId ? `journal-${walkId}` : uid('moment'));
-  const moment = buildReflectionMoment({ id: existing, city: state.activeCity, heading: '', note: cleanNote, prompt: null, walkId: walkId || null, createdAt: new Date().toISOString() });
+  if (form) form.dataset.momentId = existing;
+  const previous = await db.get('moments', existing);
+  const moment = { ...previous, ...buildReflectionMoment({ id: existing, city: state.activeCity, heading: '', note: cleanNote, prompt: null, walkId: walkId || null, createdAt: previous?.createdAt || new Date().toISOString() }), updatedAt: new Date().toISOString() };
   await db.put('moments', moment);
-  if (form) form.dataset.momentId = moment.id;
   requestCompanionContext('journal');
   await renderArchive();
+}
+
+export async function ensureCurrentJournalNote() {
+  const form = el('journalForm');
+  if (!form.dataset.momentId) form.dataset.momentId = uid('moment');
+  const id = form.dataset.momentId;
+  const previous = await db.get('moments', id);
+  const note = { ...previous, id, type: 'journal', city: state.activeCity, title: previous?.title || 'Field note', note: el('journalNote')?.value || '', walkId: form.dataset.walkId || state.activeWalk?.id || null, createdAt: previous?.createdAt || new Date().toISOString(), updatedAt: new Date().toISOString() };
+  await db.put('moments', note);
+  return note;
 }
 export async function saveQuickJournal(event) {
   event.preventDefault();
@@ -90,12 +101,32 @@ export async function renderArchive() {
   const miles = walks.reduce((sum, walk) => sum + Number(walk.distanceMeters || 0) / 1609.344, 0);
   if (el('journalArchiveSummary')) el('journalArchiveSummary').textContent = `${walks.length} walk${walks.length === 1 ? '' : 's'} · ${miles.toFixed(1)} mi · ${notes.length} note${notes.length === 1 ? '' : 's'}`;
   await renderJournalTimeline();
+  await renderJournalHistory();
+}
+
+let voiceObjectUrls = [];
+export async function renderJournalHistory() {
+  const target = el('journalHistoryList');
+  if (!target) return;
+  const [items, voices] = await Promise.all([allArchiveItems(), db.all('voice_notes')]);
+  voiceObjectUrls.forEach((url) => URL.revokeObjectURL(url));
+  voiceObjectUrls = [];
+  const currentId = el('journalForm')?.dataset.momentId;
+  const rows = [...items.filter((item) => item.id !== currentId), ...voices.filter((item) => item.audio instanceof Blob).map((item) => ({ ...item, type: 'voice' }))].sort((a, b) => Date.parse(b.createdAt || 0) - Date.parse(a.createdAt || 0));
+  target.innerHTML = rows.map((item) => {
+    const kind = item.type === 'walk' ? 'walks' : item.type === 'voice' ? 'voice' : item.type === 'observation' ? 'observations' : 'notes';
+    if (kind !== 'voice') return `<div data-journal-kind="${kind}">${momentCard(item)}</div>`;
+    const url = URL.createObjectURL(item.audio); voiceObjectUrls.push(url);
+    return `<article class="moment-card voice-card" data-journal-kind="voice"><strong>Voice file</strong><small>${escapeHtml(shortDate(item.createdAt))} · attached to ${escapeHtml(item.momentId || 'journal')}</small><audio controls preload="none" src="${url}"></audio></article>`;
+  }).join('') || '<p class="empty-state">Your earlier pages appear here, newest first.</p>';
+  const counts = { notes: items.filter((item) => !['walk', 'observation'].includes(item.type)).length, observations: items.filter((item) => item.type === 'observation').length, voice: voices.filter((item) => item.audio instanceof Blob).length, walks: items.filter((item) => item.type === 'walk').length };
+  if (el('journalNavDropdown')) el('journalNavDropdown').innerHTML = Object.entries(counts).map(([kind, count]) => `<button type="button" data-journal-jump="${kind}">${kind === 'voice' ? 'voice files' : kind} <b>${count}</b></button>`).join('');
 }
 
 function timelineEvent({ icon, label, title, detail, createdAt, photo = null, active = false }) {
   const date = new Date(createdAt);
   const stamp = `${date.toLocaleDateString([], { month: 'short', day: 'numeric' })} · ${date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`;
-  return `<article class="timeline-event ${active ? 'active' : ''}"><time>${escapeHtml(stamp)}</time><span class="timeline-dot">${icon}</span><div><small>${escapeHtml(label)}</small><strong>${escapeHtml(title)}</strong>${detail ? `<p>${escapeHtml(detail)}</p>` : ''}${photo ? `<img src="${photo}" alt="Journal photograph" />` : ''}</div></article>`;
+  return `<article class="timeline-event ${active ? 'active' : ''}"><time>${escapeHtml(stamp)}</time><span class="timeline-dot">${icon}</span><div><small>${escapeHtml(label)}</small><strong>${escapeHtml(title)}</strong>${detail ? `<p>${escapeHtml(detail)}</p>` : ''}${journalPhoto(photo)}</div></article>`;
 }
 
 export async function renderJournalTimeline() {

@@ -16,6 +16,11 @@ export async function loadCityData(cityId) {
   const config = normalizeRegionDataConfig(cityId, CITIES[cityId]);
   const saved = (await db.all('points_of_interest')).filter((poi) => poi.city === cityId);
   const metadata = await db.get('poi_metadata', `${cityId}-seed`);
+  if (globalThis.navigator?.onLine === false) {
+    state.cityPois[cityId] = saved.map((poi) => migratePoi(poi, cityId));
+    state.trailSegments[cityId] = metadata?.trailSegments || [];
+    return;
+  }
   const response = await fetch(config.dataFile);
   if (!response.ok) throw new Error(`${cityLabel(cityId)} places data could not be loaded.`);
   const seed = await response.json();

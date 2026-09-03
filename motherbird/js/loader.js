@@ -2,13 +2,12 @@ import db from './storage.js';
 import { state } from './state.js';
 import { DEFAULT_SETTINGS, CITIES, DEFAULT_CITY_ID } from './constants.js';
 import { normalizeProfile, sitesForProfile } from './utils.js';
-import { toast, openSheet } from './ui.js';
+import { toast } from './ui.js';
 import { initMap } from './map.js';
 import { applyStaticAppearance } from './ui.js';
 import { loadAllCityData, refreshCityMap } from './city.js';
 import { initEvents } from './events.js';
 import { renderArchive } from './archive.js';
-import { setupOnline, openOnline } from './online.js';
 import { normalizedEntitlements } from './entitlements.js';
 import { restoreLocalPoiClosures } from './spatial-closure-reporting.js';
 import { initFieldGuideFilters } from './field-guide.js';
@@ -18,6 +17,9 @@ import { initLayerSystem } from './layer-system.js';
 import { initMapPaint } from './map-paint.js';
 import { activateInstalledRegionRuntime } from './installed-region-runtime.js';
 import { initCountyAdditions } from './county-additions.js';
+import { applyOfflineBootConditions } from './offline-view.js';
+import { migrateLegacyJournalAudio } from './journal-capture.js';
+import { initOnlinePane } from './online-pane.js';
 
 export async function init() {
   const splash = document.getElementById('appSplash');
@@ -27,12 +29,14 @@ export async function init() {
     await db.open();
     await loadLocalState();
     await enterSingleInstalledRegion();
+    await migrateLegacyJournalAudio();
     const requestedCity = new URLSearchParams(globalThis.location?.search || '').get('city');
-    if (requestedCity && CITIES[requestedCity]) {
+    if (requestedCity && CITIES[requestedCity] && navigator.onLine !== false) {
       state.activeCity = requestedCity;
       state.settings.activeCity = requestedCity;
       await db.put('settings', state.settings);
     }
+    await applyOfflineBootConditions();
     await loadAllCityData();
   } catch (error) {
     console.error(error);
@@ -43,7 +47,7 @@ export async function init() {
   initMap();
   await activateInstalledRegionRuntime();
   await initCountyAdditions();
-  initMapPaint();
+  await initMapPaint();
   await initPersonalPlaces();
   await initLayerSystem();
   initFieldGuideFilters();
@@ -58,11 +62,9 @@ export async function init() {
   await recoverWalkDraft();
   applyStaticAppearance();
   await renderArchive();
-  if (!state.settings.onboardingCompleted && !state.activeWalk) {
-    setTimeout(() => openSheet('onboardingSheet'), 250);
-  } else if (state.autoEnteredInstalledPack && !state.settings.mapToolsHintSeen) {
+  if (!state.settings.mapToolsHintSeenV2) {
     const hint = document.getElementById('mapIntroHint');
-    state.settings.mapToolsHintSeen = true;
+    state.settings.mapToolsHintSeenV2 = true;
     await db.put('settings', state.settings);
     hint?.classList.remove('hidden');
     setTimeout(() => hint?.classList.add('dissolving'), 8800);
@@ -72,12 +74,8 @@ export async function init() {
   if (splash) requestAnimationFrame(dismissSplash);
 
   try {
-    await setupOnline();
-
-    if (state.online.session && !state.online.remoteProfile?.username) {
-      await openOnline();
-      toast('Signed in! Choose a username to finish setup.');
-    }
+    // No auth/onboarding sheet at launch. Only Go online starts a ceremony.
+    await initOnlinePane();
   } catch (error) {
     console.warn('Online mode unavailable:', error.message);
   }

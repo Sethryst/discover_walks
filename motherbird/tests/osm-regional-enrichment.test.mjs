@@ -13,7 +13,7 @@ const built = ['alexandria-va', 'arlington-va', 'baltimore', 'boise-meridian-ida
 test('every frontend region has explicit canonical OSM status', () => {
   assert.equal(Object.keys(CITIES).length, 34);
   assert.equal(CITIES['wolf-trap-va'], undefined);
-  assert.ok(CITIES.fairfax.supplementalPoiFiles.includes('./regions/wolf-trap-va/pois.json'));
+  assert.equal(CITIES.fairfax.dataFile, './regions/fairfax-county-va/pois.json');
   for (const [id, city] of Object.entries(CITIES)) {
     const config = normalizeRegionDataConfig(id, city);
     assert.ok(['enabled', 'unavailable'].includes(config.osm.status));

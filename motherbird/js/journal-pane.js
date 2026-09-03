@@ -1,7 +1,7 @@
 import { state } from './state.js';
 import { distanceMeters } from './geo.js';
 import { el, escapeHtml } from './utils.js';
-import { displayPoiName, isOsmPoi } from './poi.js';
+import { displayPoiName, isOsmPoi, isVisiblePoi, poiObeysMapLights } from './poi.js';
 
 const SHEET_STATES = ['collapsed', 'half', 'expanded'];
 
@@ -21,13 +21,17 @@ export function collapseJournalSheet() {
 export function renderNearbyPlaces() {
   const target = el('nearbyList');
   if (!target) return [];
-  const center = state.currentPosition || (state.map ? { lat: state.map.getCenter().lat, lng: state.map.getCenter().lng } : null);
+  const center = state.currentPosition || state.lastPosition || (state.map ? { lat: state.map.getCenter().lat, lng: state.map.getCenter().lng } : null);
   const candidates = center ? (state.cityPois[state.activeCity] || [])
-    .filter((poi) => Number.isFinite(poi.lat) && Number.isFinite(poi.lng))
+    .filter((poi) => isVisiblePoi(poi) && poiObeysMapLights(poi) && Number.isFinite(poi.lat) && Number.isFinite(poi.lng))
     .map((poi) => ({ poi, distance: distanceMeters(center, poi) }))
     .sort((a, b) => a.distance - b.distance) : [];
   const places = contextualNearbyPlaces(candidates);
-  target.innerHTML = places.length ? places.map(({ poi, distance }) => `<article class="nearby-card"><span class="nearby-marker">${(poi.tags || []).includes('history') ? '✦' : '⌁'}</span><div><strong>${escapeHtml(displayPoiName(poi))}</strong><small>${distance < 1000 ? `${Math.round(distance)} m away` : `${(distance / 1609.344).toFixed(1)} mi away`}${isOsmPoi(poi) ? ' · OpenStreetMap' : ''}</small><div><button type="button" data-nearby-view="${escapeHtml(poi.id)}">View on map</button><button type="button" data-nearby-round-trip="${escapeHtml(poi.id)}">Create round trip</button><button type="button" data-nearby-remember="${escapeHtml(poi.id)}">Remember</button></div></div></article>`).join('') : '<div class="empty-state"><strong>No nearby places loaded.</strong>Try another region or move the map to a place you want to explore.</div>';
+  const radius = Number(state.settings.defaultGeofenceRadiusMeters || 50);
+  const nearby = candidates.filter(({ distance }) => distance <= radius).length;
+  const origin = state.currentPosition ? 'current fix' : state.lastPosition ? 'last fix' : 'map center; GPS is off';
+  const check = `<p class="nearby-radius-check">${nearby} places within your ${radius} m Locate radius · ${origin}.</p>`;
+  target.innerHTML = check + (places.length ? places.map(({ poi, distance }) => `<article class="nearby-card"><span class="nearby-marker">${(poi.tags || []).includes('history') ? '✦' : '⌁'}</span><div><strong>${escapeHtml(displayPoiName(poi))}</strong><small>${distance < 1000 ? `${Math.round(distance)} m away` : `${(distance / 1609.344).toFixed(1)} mi away`}${isOsmPoi(poi) ? ' · OpenStreetMap' : ''}</small><div><button type="button" data-nearby-view="${escapeHtml(poi.id)}">View on map</button><button type="button" data-nearby-round-trip="${escapeHtml(poi.id)}">Create round trip</button><button type="button" data-nearby-remember="${escapeHtml(poi.id)}">Remember</button></div></div></article>`).join('') : '<div class="empty-state"><strong>No nearby places loaded.</strong>Try another region or move the map to a place you want to explore.</div>');
   return places;
 }
 
@@ -77,6 +81,6 @@ export function initJournalPane() {
   });
 
   window.addEventListener('map-context-requested', collapseJournalSheet);
-  el('journalCollapseButton').addEventListener('click', () => setJournalSheetState('collapsed'));
-  el('journalExpandButton').addEventListener('click', () => setJournalSheetState('expanded'));
+  el('journalCollapseButton')?.addEventListener('click', () => setJournalSheetState('collapsed'));
+  el('journalExpandButton')?.addEventListener('click', () => setJournalSheetState('expanded'));
 }

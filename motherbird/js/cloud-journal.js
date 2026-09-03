@@ -76,3 +76,70 @@ export function activeFieldEditionSubscription(rows, now = new Date()) {
 }
 
 export const CLOUD_JOURNAL_SCHEMA_VERSION = 'walk-wildlife-journal/2+a256gcm/1';
+
+export function base64url(value) {
+  const array = new Uint8Array(value); let binary = '';
+  for (let i = 0; i < array.length; i += 8192) binary += String.fromCharCode(...array.subarray(i, i + 8192));
+  return btoa(binary).replaceAll('+', '-').replaceAll('/', '_').replaceAll('=', '');
+}
+export function unbase64url(value) {
+  if (typeof value !== 'string' || !/^[A-Za-z0-9_-]+$/.test(value)) throw new Error('Invalid sealed bytes.');
+  return Uint8Array.from(atob(value.replaceAll('-', '+').replaceAll('_', '/')), (char) => char.charCodeAt(0));
+}
+export async function importSealKey(raw, cryptoImpl = globalThis.crypto) {
+  return cryptoImpl.subtle.importKey('raw', raw, { name: 'AES-GCM' }, false, ['encrypt', 'decrypt']);
+}
+export async function sealJson(value, key, context, cryptoImpl = globalThis.crypto) {
+  const iv = cryptoImpl.getRandomValues(new Uint8Array(12));
+  const encrypted = await cryptoImpl.subtle.encrypt({ name: 'AES-GCM', iv, additionalData: new TextEncoder().encode(context) }, key, new TextEncoder().encode(JSON.stringify(value)));
+  return { algorithm: 'A256GCM', context, iv: base64url(iv), ciphertext: base64url(encrypted) };
+}
+export async function openSealedJson(envelope, key, context, cryptoImpl = globalThis.crypto) {
+  if (envelope?.algorithm !== 'A256GCM' || envelope.context !== context) throw new Error('Wrong sealed payload context.');
+  const plaintext = await cryptoImpl.subtle.decrypt({ name: 'AES-GCM', iv: unbase64url(envelope.iv), additionalData: new TextEncoder().encode(context) }, key, unbase64url(envelope.ciphertext));
+  return JSON.parse(new TextDecoder().decode(plaintext));
+}
+
+async function prfWrappingKey(output, salt) {
+  const material = await crypto.subtle.importKey('raw', output, 'HKDF', false, ['deriveKey']);
+  return crypto.subtle.deriveKey({ name: 'HKDF', hash: 'SHA-256', salt, info: new TextEncoder().encode('walk-wildlife/passkey-wrap/v1') }, material, { name: 'AES-GCM', length: 256 }, false, ['encrypt', 'decrypt']);
+}
+
+export async function unlockPasskeyWrap(wrap) {
+  if (!navigator.credentials?.get) throw new Error('Passkey key wrapping is unavailable. Your data stays on this device.');
+  const salt = unbase64url(wrap.salt);
+  const credential = await navigator.credentials.get({ publicKey: {
+    challenge: crypto.getRandomValues(new Uint8Array(32)), rpId: location.hostname,
+    allowCredentials: [{ type: 'public-key', id: unbase64url(wrap.credentialId) }],
+    userVerification: 'required', extensions: { prf: { eval: { first: salt } } }
+  } });
+  const output = credential?.getClientExtensionResults()?.prf?.results?.first;
+  if (!output) throw new Error('This passkey cannot unwrap encrypted data here (PRF unavailable). Nothing was uploaded.');
+  const key = await prfWrappingKey(output, salt);
+  const raw = await openSealedJson(wrap.sealedKey, key, `key:${wrap.ownerId}`);
+  return importSealKey(unbase64url(raw.key));
+}
+
+export async function createPasskeyWrap(ownerId) {
+  if (!navigator.credentials?.create) throw new Error('Passkey key wrapping is unavailable.');
+  const salt = crypto.getRandomValues(new Uint8Array(32));
+  const credential = await navigator.credentials.create({ publicKey: {
+    challenge: crypto.getRandomValues(new Uint8Array(32)),
+    rp: { name: 'Walk & Wildlife encrypted journal', id: location.hostname },
+    user: { id: crypto.getRandomValues(new Uint8Array(32)), name: ownerId, displayName: 'Private journal key' },
+    pubKeyCredParams: [{ type: 'public-key', alg: -7 }, { type: 'public-key', alg: -257 }],
+    authenticatorSelection: { residentKey: 'required', userVerification: 'required' },
+    attestation: 'none', extensions: { prf: { eval: { first: salt } } }
+  } });
+  if (!credential?.getClientExtensionResults()?.prf?.enabled && !credential?.getClientExtensionResults()?.prf?.results?.first) throw new Error('This passkey does not support PRF key wrapping. Nothing was uploaded.');
+  const wrap = { ownerId, credentialId: base64url(credential.rawId), salt: base64url(salt), version: 1 };
+  let output = credential.getClientExtensionResults()?.prf?.results?.first;
+  if (!output) {
+    const assertion = await navigator.credentials.get({ publicKey: { challenge: crypto.getRandomValues(new Uint8Array(32)), rpId: location.hostname, allowCredentials: [{ type: 'public-key', id: credential.rawId }], userVerification: 'required', extensions: { prf: { eval: { first: salt } } } } });
+    output = assertion?.getClientExtensionResults()?.prf?.results?.first;
+  }
+  if (!output) throw new Error('Passkey PRF is unavailable. Nothing was uploaded.');
+  const raw = crypto.getRandomValues(new Uint8Array(32));
+  wrap.sealedKey = await sealJson({ key: base64url(raw) }, await prfWrappingKey(output, salt), `key:${ownerId}`);
+  return { key: await importSealKey(raw), wrap };
+}

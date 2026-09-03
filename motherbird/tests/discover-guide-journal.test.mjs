@@ -39,17 +39,17 @@ test('the idle map replaces primary tabs with Journal, Backpack, Places +, and m
   assert.doesNotMatch(html, /id="weatherBrief"/);
 });
 
-test('the Journal restores local observation, nearby, microphone, and share controls', async () => {
+test('the Journal has local capture and a scrollable history without export chrome', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
-  assert.match(html, /id="addObservationButton"/);
+  assert.match(html, /id="observeButton"/);
   assert.match(html, /id="journalNearbyButton"/);
-  assert.match(html, /id="journalMicButton"/);
-  assert.match(html, /id="shareJournalButton"/);
+  assert.match(html, /id="journalTranscribeButton"/);
+  assert.match(html, /id="journalRecordButton"/);
+  assert.doesNotMatch(html, /id="shareJournalButton"/);
   assert.match(html, /id="journalSheet"/);
-  assert.match(html, /id="journalArchiveSummary"/);
-  assert.match(html, /id="journalOverlayArchiveList"/);
-  assert.match(html, /id="exportCurrentFiltersButton"/);
-  assert.match(html, /id="importFilterSetButton"/);
+  assert.match(html, /id="journalNavDropdown"/);
+  assert.match(html, /id="journalHistoryList"/);
+  assert.match(html, /id="openFileInput"/);
   assert.doesNotMatch(html, /id="verifiedPlacesOnly"/);
   assert.doesNotMatch(html, /id="fieldEditionStatus"/);
 });
@@ -62,7 +62,7 @@ test('Backpack opens the viewport Field Guide first and keeps quieter tools in t
   const planner = await readFile(new URL('../js/planner.js', import.meta.url), 'utf8');
   assert.match(html, /id="backpackSheet"/);
   assert.match(html, /<h2 id="backpackTitle">Field Guide<\/h2>/);
-  assert.match(html, /In this pack/);
+  assert.match(html, /data-guide-tab="maps"/);
   assert.match(html, /Advanced filters/);
   assert.doesNotMatch(guide, /seasonNote/);
   assert.match(guide, /sortGuideCardsByDistance/);

@@ -3,24 +3,23 @@ import { CITIES } from './constants.js';
 import { el, escapeHtml } from './utils.js';
 import { saveJournal, saveJournalOnClose, renderArchive } from './archive.js';
 import { getCurrentLocation, startWalk, stopWalk } from './walk.js';
-import { openBackpack, openJournal, closeSheets, openSheet, openAccountSettings, renderGeofenceCategoryChips, setArchiveFilter, toast } from './ui.js';
+import { openBackpack, openJournal, closeSheets, openSheet, renderGeofenceCategoryChips, setArchiveFilter, toast } from './ui.js';
 import { city, searchPois } from './poi.js';
 import { switchCity } from './city.js';
 import { generateTimeBasedPlan, lockSelectedPlanOnMap, changePlan } from './planner.js';
-import { downloadCurrentWalkPlan, normalizeWalkPlan, paintWalkPlan, sendCurrentWalkPlan } from './field-guide.js';
+import { paintWalkPlan, sendCurrentWalkPlan } from './field-guide.js';
 import { wordCount } from './reflection.js';
 import { refreshCompanionState } from './companion.js';
-import { initBackupControls } from './backup.js';
-import { openOnline, renderOnline, signIn, signUp, signInWithPasskey, registerPasskey, syncProfile, createOnlineProfile, updateAccountUsername, updateAccountEmail, updateAccountPassword } from './online.js';
 import db from './storage.js';
 import { openObservation, saveObservation, setDraftObservationIcon } from './observation.js';
-import { checkJournalNearby, shareJournalNotes, toggleJournalMicrophone } from './journal-capture.js';
+import { transcribeJournal, toggleJournalRecording, stopJournalCapture } from './journal-capture.js';
+import { renderNearbyPlaces, initJournalPane } from './journal-pane.js';
 
 const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];
 
 export function initEvents() {
-  initBackupControls();
-  bindSheets(); bindLocationControls(); bindWalkControls(); bindSearch(); bindJournal(); bindRegions(); bindShareSettings(); bindOnlineControls(); bindDeviceControls();
+  initJournalPane();
+  bindSheets(); bindLocationControls(); bindWalkControls(); bindSearch(); bindJournal(); bindRegions(); bindDeviceControls();
   el('settingsButton')?.addEventListener('click', openBackpack);
   el('journalButton')?.addEventListener('click', () => void openJournal());
   el('savePlaceMapButton')?.addEventListener('click', () => {
@@ -104,7 +103,11 @@ function bindSearch() {
 }
 
 function bindJournal() {
+  let saveTimer;
+  window.addEventListener('map-overlay-changed', ({ detail }) => { if (!detail.open || detail.id !== 'journalSheet') stopJournalCapture(); });
+  el('journalNote')?.addEventListener('input', () => { clearTimeout(saveTimer); saveTimer = setTimeout(() => void saveJournalOnClose({ note: el('journalNote').value, walkId: el('journalForm').dataset.walkId }), 700); });
   window.addEventListener('journal-close-requested', (event) => void (async () => {
+    clearTimeout(saveTimer);
     await saveJournalOnClose(event.detail);
     if (!state.activeWalk && state.pendingWalkPlan?.pack_id === state.activeCity) {
       const pending = state.pendingWalkPlan; state.pendingWalkPlan = null;
@@ -116,13 +119,33 @@ function bindJournal() {
     const count = wordCount(event.target.value); el('journalWordCount').textContent = `${count} word${count === 1 ? '' : 's'}`;
   });
   el('journalTitle')?.addEventListener('click', () => {
-    const history = el('journalHistory'); const opening = history.classList.contains('hidden'); history.classList.toggle('hidden', !opening); el('journalTitle').setAttribute('aria-expanded', String(opening));
+    const menu = el('journalNavDropdown'); const opening = menu.classList.contains('hidden'); menu.classList.toggle('hidden', !opening); el('journalTitle').setAttribute('aria-expanded', String(opening));
   });
   document.querySelectorAll('.archive-filter .filter-button').forEach((button) => button.addEventListener('click', () => setArchiveFilter(button.dataset.filter)));
-  el('addObservationButton')?.addEventListener('click', () => openObservation());
-  el('journalNearbyButton')?.addEventListener('click', checkJournalNearby);
-  el('journalMicButton')?.addEventListener('click', () => void toggleJournalMicrophone());
-  el('shareJournalButton')?.addEventListener('click', () => void shareJournalNotes());
+  el('observeButton')?.addEventListener('click', () => openObservation());
+  el('journalNearbyButton')?.addEventListener('click', () => {
+    const target = el('nearbyList'); const opening = target.classList.contains('hidden');
+    if (opening) renderNearbyPlaces();
+    target.classList.toggle('hidden', !opening);
+    el('journalNearbyButton').setAttribute('aria-expanded', String(opening));
+  });
+  el('journalTranscribeButton')?.addEventListener('click', transcribeJournal);
+  el('journalRecordButton')?.addEventListener('click', () => void toggleJournalRecording());
+  el('journalNavDropdown')?.addEventListener('click', (event) => {
+    const kind = event.target.closest('[data-journal-jump]')?.dataset.journalJump;
+    if (!kind) return;
+    const target = document.querySelector(`[data-journal-kind="${kind}"]`) || (kind === 'notes' ? el('journalForm') : null);
+    target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    el('journalNavDropdown').classList.add('hidden'); el('journalTitle').setAttribute('aria-expanded', 'false');
+  });
+  el('nearbyList')?.addEventListener('click', (event) => {
+    const button = event.target.closest('button'); if (!button) return;
+    const id = button.dataset.nearbyView || button.dataset.nearbyRoundTrip || button.dataset.nearbyRemember;
+    const poi = (state.cityPois[state.activeCity] || []).find((p) => String(p.id) === id); if (!poi) return;
+    if (button.dataset.nearbyRemember) window.dispatchEvent(new CustomEvent('personal-place-create-requested', { detail: { sourcePoi: poi } }));
+    else if (button.dataset.nearbyRoundTrip) paintWalkPlan({ format: 'walk-wildlife-plan-v1', pack_id: state.activeCity, title: `Walk to ${poi.name}`, stop_place_ids: [poi.id] });
+    else { closeSheets(); state.map.flyTo([poi.lat, poi.lng], Math.max(16, state.map.getZoom())); }
+  });
   el('observationForm')?.addEventListener('submit', saveObservation);
   el('photoInput')?.addEventListener('change', (event) => { if (el('photoName')) el('photoName').textContent = event.target.files?.[0]?.name || 'Optional, stored only on this device'; });
   document.querySelectorAll('[data-observation-icon]').forEach((button) => button.addEventListener('click', () => setDraftObservationIcon(button.dataset.observationIcon)));
@@ -150,57 +173,7 @@ function bindRegions() {
     await switchCity(choice.dataset.region); closeSheets();
     if (state.pendingWalkPlan?.pack_id === state.activeCity && !state.activeWalk) { const pending = state.pendingWalkPlan; state.pendingWalkPlan = null; paintWalkPlan(pending); }
   });
-  el('onboardingCitySelect').innerHTML = regionCards().map(([id, pack]) => `<option value="${id}">${escapeHtml(pack.name)}, ${escapeHtml(pack.state || '')}</option>`).join('');
-  el('onboardingCitySelect').value = state.activeCity;
-  el('saveOnboardingButton')?.addEventListener('click', async () => { state.settings.onboardingCompleted = true; await db.put('settings', state.settings); await switchCity(el('onboardingCitySelect').value); closeSheets(); });
   window.addEventListener('city-layer-data-changed', () => { el('activeCityLabel').textContent = CITIES[state.activeCity]?.name || 'Installed region'; });
-}
-
-function bindShareSettings() {
-  el('defaultPinVisibility').value = state.settings.defaultPinVisibility || 'private'; el('shareAttribution').value = state.settings.shareAttribution || '';
-  el('defaultPinVisibility')?.addEventListener('change', async (event) => { state.settings.defaultPinVisibility = event.target.value; await db.put('settings', state.settings); });
-  el('shareAttribution')?.addEventListener('change', async (event) => { state.settings.shareAttribution = event.target.value.trim(); await db.put('settings', state.settings); });
-  el('walkPlanImportInput')?.addEventListener('change', async (event) => {
-    const file = event.target.files?.[0]; if (!file) return;
-    try { const plan = normalizeWalkPlan(await file.text()); if (state.activeWalk) { state.pendingWalkPlan = plan; toast('Walk plan queued until this walk ends.'); } else paintWalkPlan(plan); }
-    catch (error) { toast(error.message || 'That walk plan could not be opened.'); }
-    event.target.value = '';
-  });
-  el('downloadWalkPlanButton')?.addEventListener('click', downloadCurrentWalkPlan);
-  const friends = (state.online.leaderboard || []).map((friend) => friend.username).filter(Boolean);
-  el('friendSharePicker').innerHTML = friends.map((name) => `<span class="poi-chip">@${escapeHtml(name)}</span>`).join('');
-  renderShareAccount();
-  window.addEventListener('share-panel-render-requested', renderShareAccount);
-  window.addEventListener('online-profile-changed', renderShareAccount);
-}
-
-function renderShareAccount() {
-  const button = el('openOnlineButton');
-  if (!button) return;
-  let panel = el('shareAccountPanel');
-  if (!panel) {
-    panel = document.createElement('section');
-    panel.id = 'shareAccountPanel';
-    panel.className = 'share-account-panel';
-    panel.setAttribute('aria-live', 'polite');
-    button.closest('.share-actions')?.after(panel);
-  }
-  const signedIn = Boolean(state.online.session);
-  button.textContent = signedIn ? 'Account' : 'Sign in';
-  if (!signedIn) {
-    panel.innerHTML = '<p class="sheet-intro">Sign in to add a username, sync aggregate stats, or use encrypted backup.</p>';
-    return;
-  }
-  panel.innerHTML = `<p class="sheet-kicker">ACCOUNT</p><form data-share-account="username"><label>Username<input maxlength="24" value="${escapeHtml(state.online.remoteProfile?.username || '')}" /></label><button class="secondary-button" type="submit">Update username</button></form><form data-share-account="email"><label>Email<input type="email" value="${escapeHtml(state.online.session.user?.email || '')}" /></label><button class="secondary-button" type="submit">Update email</button></form><form data-share-account="password"><label>Password<input type="password" minlength="6" autocomplete="new-password" /></label><button class="secondary-button" type="submit">Update password</button></form>`;
-  panel.querySelector('[data-share-account="username"]')?.addEventListener('submit', updateAccountUsername);
-  panel.querySelector('[data-share-account="email"]')?.addEventListener('submit', updateAccountEmail);
-  panel.querySelector('[data-share-account="password"]')?.addEventListener('submit', updateAccountPassword);
-}
-
-function bindOnlineControls() {
-  el('openOnlineButton')?.addEventListener('click', () => void openOnline()); el('signInButton')?.addEventListener('click', signIn); el('passkeySignInButton')?.addEventListener('click', signInWithPasskey); el('signUpButton')?.addEventListener('click', signUp);
-  el('usernameForm')?.addEventListener('submit', createOnlineProfile); el('syncNowButton')?.addEventListener('click', async () => { await syncProfile(); await renderOnline(); }); el('accountSettingsButton')?.addEventListener('click', openAccountSettings); el('registerPasskeyButton')?.addEventListener('click', registerPasskey);
-  el('accountUsernameForm')?.addEventListener('submit', updateAccountUsername); el('accountEmailForm')?.addEventListener('submit', updateAccountEmail); el('accountPasswordForm')?.addEventListener('submit', updateAccountPassword);
 }
 
 function bindDeviceControls() {

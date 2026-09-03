@@ -52,6 +52,8 @@ function normalizeLine(line) {
   if (!line.id || !String(line.name || '').trim() || !['LineString', 'MultiLineString'].includes(geometry.type) || !Array.isArray(geometry.coordinates) || !validSource(line.source)) {
     throw new Error('Every county line needs an id, public name, LineString geometry, official source URL, and license.');
   }
+  const paths = geometry.type === 'LineString' ? [geometry.coordinates] : geometry.coordinates;
+  if (!paths.length || paths.some((path) => !Array.isArray(path) || path.length < 2 || path.some((p) => !Array.isArray(p) || !Number.isFinite(p[0]) || !Number.isFinite(p[1]) || Math.abs(p[0]) > 180 || Math.abs(p[1]) > 90))) throw new Error('County line coordinates are invalid.');
   return { id: String(line.id), name: String(line.name).trim(), category: String(line.category || 'trail'), geometry: { type: geometry.type, coordinates: geometry.coordinates }, source: { name: String(line.source.name), officialUrl: String(line.source.officialUrl || line.source.url), license: String(line.source.license) } };
 }
 
@@ -96,10 +98,18 @@ export async function activateCountyAdditions(cityId = state.activeCity) {
   return active;
 }
 
-export async function installCountyAddition(input) {
+export async function installCountyAddition(input, { mode = 'add' } = {}) {
   if (!state.regionAutomation?.activeRegionId) throw new Error('Install and select the matching official region pack first.');
-  const addition = await normalizeCountyAddition(input);
+  let addition = await normalizeCountyAddition(input);
   if (![state.activeCity, activeRuntimeRegionId()].includes(addition.region_id)) throw new Error(`This addition is for ${addition.region_id}, not the selected installed pack.`);
+  const existing = await db.get('county_additions', addition.id);
+  if (existing && existing.region_id !== addition.region_id) throw new Error('That addition id already belongs to another pack.');
+  if (existing && mode === 'add') return existing;
+  if (existing && mode === 'join') {
+    for (const kind of ['points', 'lines']) addition.additions[kind] = [...new Map([...addition.additions[kind], ...existing.additions[kind]].map((item) => [item.id, item])).values()];
+    addition = await normalizeCountyAddition(addition, { verifyChecksum: false });
+  }
+  if (mode === 'replace-extras') for (const old of await db.all('county_additions')) if (old.region_id === addition.region_id) await db.remove('county_additions', old.id);
   await db.put('county_additions', { ...addition, installedAt: new Date().toISOString() });
   await activateCountyAdditions();
   window.dispatchEvent(new CustomEvent('city-layer-data-changed'));
@@ -132,4 +142,3 @@ export async function initCountyAdditions() {
     await shareAddition(additions.sort((a, b) => String(b.installedAt).localeCompare(String(a.installedAt)))[0]);
   });
 }
-

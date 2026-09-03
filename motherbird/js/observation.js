@@ -2,7 +2,7 @@ import { state } from './state.js';
 import { el, cityLabel, escapeHtml, uid } from './utils.js';
 import db from './storage.js';
 import { updateProfile } from './profile.js';
-import { openSheet, closeSheets, toast } from './ui.js';
+import { openSheet, closeSheets, openJournal, toast } from './ui.js';
 import { renderArchive } from './archive.js';
 import { buildObservationRecord } from './observation-model.js';
 import { attachWalkArtifact } from './walk-context.js';
@@ -19,6 +19,7 @@ function renderDraftMarker() {
 }
 
 export function openObservation(location) {
+  state.observationReturnToJournal = state.modalOpen === 'journalSheet';
   const loc = location || state.currentPosition || { lat: state.map.getCenter().lat, lng: state.map.getCenter().lng };
   state.draftObservationLocation = loc;
   state.draftObservationIcon = 'camera';
@@ -72,5 +73,6 @@ export async function saveObservation(event) {
   await attachWalkArtifact(observation, 'observation');
   requestCompanionContext('observe');
   await updateProfile((profile) => { profile.observationsLogged += 1; return 0; });
-  addObservationMarker(observation); closeSheets(); toast('Observation saved locally.'); renderArchive();
+  addObservationMarker(observation); closeSheets(); toast('Observation saved locally.'); await renderArchive();
+  if (state.observationReturnToJournal) { state.observationReturnToJournal = false; await openJournal(); }
 }

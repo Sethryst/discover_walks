@@ -236,6 +236,7 @@ export async function saveWalk() {
   state.walks = [...state.walks.filter((item) => item.id !== finished.id), finished];
   state.knownTrackPoints.push(...finished.points.filter((_, index) => index % 5 === 0));
   resetActiveWalk();
+  window.dispatchEvent(new CustomEvent('walk-ended', { detail: { id: finished.id } }));
   closeSheets();
   setStatus('Walk saved locally');
   await renderArchive();

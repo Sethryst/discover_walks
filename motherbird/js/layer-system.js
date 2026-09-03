@@ -58,10 +58,14 @@ export async function initLayerSystem() {
     db.get('layer_settings', 'current-filters'), db.get('layer_settings', 'layer-ui-state')
   ]);
   state.layerFilters = { public: { ...(savedFilters?.public || {}) }, personal: { ...(savedFilters?.personal || {}) } };
-  state.layerLights = { news: false, recreation: true, cuisine: false, personal: false, ...(savedFilters?.lights || {}) };
+  state.layerLights = { news: false, recreation: true, cuisine: true, personal: true, ...(savedFilters?.lights || {}) };
+  if (state.offlineView?.layers) {
+    state.layerFilters = { public: { ...state.offlineView.layers.public }, personal: { ...state.offlineView.layers.personal } };
+    state.layerLights = { ...state.layerLights, ...state.offlineView.layers.lights };
+  }
   state.layerUiState = { expanded: { ...(savedUi?.expanded || {}) } };
   civicAvailability = await loadCivicAvailability();
-  if (savedFilters?.lights?.news == null) state.layerLights.news = newsAvailable();
+  if (!state.offlineView && savedFilters?.lights?.news == null) state.layerLights.news = newsAvailable();
   ensureLayerDefaults();
   syncLegacyPoiTags();
   bindLayerControls();
@@ -98,7 +102,7 @@ function buildAllLayerGroups() {
 export function buildLayerGroups() {
   return buildAllLayerGroups().map((group) => ({
     ...group,
-    options: group.options.filter((option) => option.kind === 'public' && !isMapTag(option.id) && !isFoodFilterTag(option.id))
+    options: group.options.filter((option) => option.kind === 'personal' || (option.kind === 'public' && !isMapTag(option.id) && !isFoodFilterTag(option.id)))
   })).filter((group) => group.options.length);
 }
 
@@ -132,11 +136,11 @@ function ensureLayerDefaults() {
     if (!(group.id in state.layerUiState.expanded)) state.layerUiState.expanded[group.id] = true;
     for (const option of group.options) {
       const bucket = state.layerFilters[option.kind];
-      if (!(option.id in bucket)) bucket[option.id] = option.kind === 'public' ? (option.id === 'event' ? state.layerLights.news : recreationTag(option.id)) : false;
+      if (!(option.id in bucket)) bucket[option.id] = option.kind === 'public' ? (option.id === 'event' ? state.layerLights.news : recreationTag(option.id) || isFoodFilterTag(option.id)) : true;
     }
   }
   for (const id of ['__routes', '__volunteer']) if (!(id in state.layerFilters.public)) state.layerFilters.public[id] = id === '__routes';
-  for (const id of ['__low_importance_news', '__low_importance_cuisine']) if (!(id in state.layerFilters.public)) state.layerFilters.public[id] = false;
+  for (const id of ['__low_importance_news', '__low_importance_cuisine', '__low_importance_recreation']) if (!(id in state.layerFilters.public)) state.layerFilters.public[id] = false;
 }
 
 function recreationTag(id) {
@@ -227,6 +231,9 @@ async function loadCivicAvailability() {
     const notices = [
       ...(data.meetings?.items || []).map((item) => notice(item, 'Meeting'))
     ].filter(Boolean);
+    // Mapped official notices join the same real-pin contract used by Learn.
+    const base = (state.cityPois[state.activeCity] || []).filter((poi) => !poi.civicNotice);
+    state.cityPois[state.activeCity] = [...base, ...notices.filter((item) => item.location).map((item) => ({ id: `news:${item.id || item.title + ':' + (item.startsAt || item.date || '')}`, name: item.title, ...item.location, category: 'event', tags: ['event'], officialUrl: item.officialUrl, startsAt: item.startsAt, freshnessExpiresAt: item.freshnessExpiresAt || item.expiresAt, locationLabel: item.locationLabel, civicNotice: true, city: state.activeCity, source: [{ name: 'Official meeting', url: item.officialUrl }] }))];
     const volunteers = data.volunteer?.items || data.volunteer || [];
     notices.sort((a, b) => String(a.startsAt || a.date || '').localeCompare(String(b.startsAt || b.date || '')) || a.title.localeCompare(b.title));
     const declared = payload?.capabilities?.news;
@@ -258,6 +265,7 @@ function renderNewsMarkers() {
   if (!state.map) return;
   if (!state.newsLayer) state.newsLayer = L.layerGroup().addTo(state.map);
   state.newsLayer.clearLayers();
+  if ((state.cityPois[state.activeCity] || []).some((poi) => poi.civicNotice)) return;
   if (!state.layerLights.news) return;
   const located = civicAvailability.notices.filter((notice) => notice.location);
   const venues = new Map();
@@ -315,7 +323,7 @@ function lightModel() {
     { id: 'news', label: 'NEWS', available: newsAvailable(), chips: [], entries: newsEntries, hasChevron: newsEntries.length > 0 },
     { id: 'recreation', label: 'RECREATION', available: recreation.length > 0, chips: recreation },
     { id: 'cuisine', label: 'CUISINE', available: cuisine.length > 0, chips: cuisine },
-    { id: 'personal', label: 'MY PLACES', available: personalPins.length > 0 || packPublicMarkers('personal').length > 0, chips: personal, hasChevron: personal.length > 0 }
+    { id: 'personal', label: 'MY PLACES', available: true, chips: personal, hasChevron: true }
   ].filter((light) => light.available);
 }
 
@@ -341,13 +349,20 @@ function expandedLightContent(light, expanded) {
   if (expanded !== light.id) return '';
   if (light.id === 'news') {
     const more = state.layerFilters.public.__low_importance_news === true;
-    return `<div class="map-light-chips map-news-list" data-light-chips="news">${light.entries.map(newsEntry).join('')}<button type="button" class="map-light-chip ${more ? 'on' : ''}" data-importance-low="news" aria-pressed="${more}">${more ? 'hide community posts' : 'show community posts'}</button></div>`;
+    return `<div class="map-light-chips map-news-list" data-light-chips="news">${importanceControl('news')}${light.entries.map(newsEntry).join('')}</div>`;
   }
-  if (!light.chips.length) return '';
-  return `<div class="map-light-chips" data-light-chips="${light.id}">${light.chips.map((chip) => {
+  if (!light.chips.length && light.id !== 'personal') return '';
+  return `<div class="map-light-chips" data-light-chips="${light.id}">${light.id === 'personal' ? '<button type="button" data-open-my-maps>My maps · categories & advanced ⌄</button><button type="button" data-add-my-place>Add location</button>' : importanceControl(light.id)}${light.chips.filter((chip) => !chip.importanceToggle).map((chip) => {
     const selected = chipSelected(light.id, chip);
-    return `<button type="button" class="map-light-chip ${selected ? 'on' : ''}" data-light-chip="${light.id}:${chip.id}" aria-pressed="${selected}">${escapeHtml(chip.label)}</button>`;
+    const category = state.personalPlaceCategories.find((category) => category.id === chip.id);
+    const color = category?.color || markerVisual({ light: light.id, chipId: chip.id }).color;
+    return `<button type="button" style="--chip-color:${escapeHtml(color)}" class="map-light-chip ${selected ? 'on' : ''}" data-light-chip="${light.id}:${chip.id}" aria-pressed="${selected}">${escapeHtml(chip.label)}</button>`;
   }).join('')}</div>`;
+}
+
+function importanceControl(light) {
+  const more = state.layerFilters.public[`__low_importance_${light}`] === true;
+  return `<button type="button" class="map-light-chip importance-control ${more ? 'on' : ''}" data-importance-low="${light}" aria-pressed="${more}">${more ? 'All importance · show less' : 'High importance · show more'}</button>`;
 }
 
 export function renderMapLights() {
@@ -505,6 +520,8 @@ function openImportSheet() {
 
 function bindLayerControls() {
   el('mapLights')?.addEventListener('click', (event) => {
+    if (event.target.closest('[data-open-my-maps]')) { openSheet('backpackSheet'); void import('./field-guide.js').then(({ renderFieldGuide }) => renderFieldGuide('maps')); return; }
+    if (event.target.closest('[data-add-my-place]')) { window.dispatchEvent(new CustomEvent('personal-place-create-requested')); return; }
     const importance = event.target.closest('[data-importance-low]');
     if (importance) {
       const id = `__low_importance_${importance.dataset.importanceLow}`;
@@ -561,11 +578,8 @@ function bindLayerControls() {
     civicAvailability = await loadCivicAvailability();
     await refreshPublicMarkers(state.activeCity);
     ensureLayerDefaults();
-    state.layerLights.news = newsAvailable();
-    state.layerLights.recreation = availableMapChips('recreation').length > 0;
-    state.layerLights.cuisine = false;
-    availableMapChips('recreation').forEach((chip) => setChip(chip, true));
-    availableMapChips('cuisine').forEach((chip) => setChip(chip, false));
+    // Data refreshes and sidecar imports must not reset the walker's lights.
+    // ensureLayerDefaults adds new options without overwriting saved selections.
     applyLayerChanges();
   });
 }

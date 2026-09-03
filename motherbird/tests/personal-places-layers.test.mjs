@@ -7,7 +7,7 @@ import { normalizePersonalCategory, normalizePersonalPlace, samePersonalPlace, s
 test('personal place records normalize to a small, local, category-linked contract', () => {
   assert.equal(slugifyCategory('  Filipino Spots!  '), 'filipino-spots');
   assert.deepEqual(normalizePersonalCategory({ name: 'Mexican Food', icon: 'utensils', color: '#E8740F' }, '2026-08-29T12:00:00.000Z'), {
-    id: 'mexican-food', name: 'Mexican Food', description: '', icon: 'utensils', color: '#E8740F', created: '2026-08-29T12:00:00.000Z', updatedAt: '2026-08-29T12:00:00.000Z'
+    id: 'mexican-food', name: 'Mexican Food', description: '', icon: 'utensils', color: '#E8740F', parentId: null, created: '2026-08-29T12:00:00.000Z', updatedAt: '2026-08-29T12:00:00.000Z'
   });
   const place = normalizePersonalPlace({ id: 'one', name: 'Maria\'s Tacos', category: 'mexican-food', location: { lat: 38.9072, lng: -77.0369 }, notes: 'Al pastor' }, '2026-08-29T12:00:00.000Z');
   assert.equal(place.categoryId, 'mexican-food');
@@ -47,8 +47,8 @@ test('the PWA exposes persistent layers, personal places, and non-destructive im
   assert.doesNotMatch(html, /data-explore-tab="personal"/);
   assert.match(html, /id="savePlaceMapButton"/);
   assert.match(html, /id="personalPlaceForm"/);
-  assert.match(html, /id="filterDuplicateStrategy"/);
-  assert.match(html, /id="filterImportReplace"/);
+  assert.match(html, /id="joinModeSelect"/);
+  assert.match(html, /Replace pack extras \(never private journal\)/);
   assert.match(storage, /indexedDB\.open\('walk-wildlife-journal', 11\)/);
   assert.match(storage, /personal_place_categories/);
   assert.match(storage, /layer_settings/);

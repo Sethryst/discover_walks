@@ -23,7 +23,8 @@ test('journal UI is writing-first while observation remains field capture', asyn
   assert.doesNotMatch(html, /id="journalPromptChoices"/);
   assert.match(html, /id="journalTitle"[^>]*>Today · private on this device/);
   assert.match(html, /class="lined-journal"/);
-  assert.match(html, /id="shareJournalButton"/);
+  assert.doesNotMatch(html, /id="shareJournalButton"/);
+  assert.match(html, /id="journalHistoryList"/);
   assert.doesNotMatch(html, /id="headlineIcon"/);
   assert.match(css, /repeating-linear-gradient/);
   assert.match(html, /id="observationLocation"/);

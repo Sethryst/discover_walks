@@ -1,4 +1,5 @@
 import { state } from './state.js';
+import { walkerDetails, publicPlaceSource } from './place-details.js';
 import { CITIES, GEOFENCE_CATEGORIES, HISTORY_SUBTYPES, POI_TAGS, POI_TAG_PRIORITY } from './constants.js';
 import { el, escapeHtml } from './utils.js';
 import { distanceMeters } from './geo.js';
@@ -143,12 +144,12 @@ export function renderCityPois() {
     .filter(isVisiblePoi)
     .filter(poiMatchesFilters)
     .filter(withinRenderBounds);
-  const markers = paintOrder(visiblePois)
+  const markers = selectImportantPois(visiblePois)
     .map((poi) => {
       const tags = poiTags(poi);
       const visual = markerVisual({ poi, tags });
       const icon = L.divIcon({ className: '', html: markerPinHtml(visual), iconSize: [27, 27], iconAnchor: [13, 13] });
-      const marker = L.marker([poi.lat, poi.lng], { icon, title: displayPoiName(poi), interactive: !state.planningMode, place: poi }).bindPopup(`<strong>${escapeHtml(displayPoiName(poi))}</strong><br><small>${escapeHtml(packAttribution(poi))}</small>`);
+      const marker = L.marker([poi.lat, poi.lng], { icon, title: displayPoiName(poi), interactive: !state.planningMode, place: poi }).bindPopup(poiPopup(poi));
       return marker;
     });
   if (state.poiLayer.addLayers) state.poiLayer.addLayers(markers); else markers.forEach((marker) => marker.addTo(state.poiLayer));
@@ -203,18 +204,23 @@ function diverseCuisine(pois, limit) {
     }).slice(0, limit);
 }
 
-function paintOrder(pois) {
+export function selectImportantPois(pois) {
   const indexed = pois.map((poi, index) => ({ poi, index, group: paintGroup(poi) }));
   const nature = indexed.filter((entry) => entry.group === 'nature')
     .sort((left, right) => naturePriority(left.poi) - naturePriority(right.poi) || left.index - right.index);
   const zoom = Number(state.map?.getZoom?.());
   const countyNature = !Number.isFinite(zoom) || zoom < WALK_ZOOM;
-  const allowedNature = countyNature ? nature.slice(0, NATURE_COUNTY_CAP) : nature;
+  const allowedNature = countyNature && state.layerFilters?.public?.__low_importance_recreation !== true ? nature.slice(0, NATURE_COUNTY_CAP) : nature;
   const cuisine = indexed.filter((entry) => entry.group === 'cuisine');
   const showLowCuisine = state.layerFilters?.public?.__low_importance_cuisine === true;
   const allowedCuisine = showLowCuisine ? cuisine : diverseCuisine(cuisine, countyNature ? CUISINE_COUNTY_CAP : CUISINE_COUNTY_CAP * 2);
   const allowed = new Set([...allowedNature, ...allowedCuisine]);
-  return indexed.filter((entry) => (entry.group !== 'nature' && entry.group !== 'cuisine') || allowed.has(entry))
+  const highNews = indexed.filter((entry) => entry.group === 'news' && entry.poi.name && Number.isFinite(entry.poi.lat) && Number.isFinite(entry.poi.lng) && publicPlaceSource(entry.poi) && !entry.poi.virtual);
+  const allowedNews = new Set((countyNature ? highNews.slice(0, NATURE_COUNTY_CAP) : highNews).map((entry) => entry.poi.id));
+  return indexed.filter((entry) => {
+    if (entry.group === 'news' && state.layerFilters?.public?.__low_importance_news !== true) return allowedNews.has(entry.poi.id);
+    return (entry.group !== 'nature' && entry.group !== 'cuisine') || allowed.has(entry);
+  })
     .sort((left, right) => {
       if (left.group === 'nature' && right.group === 'nature') return naturePriority(left.poi) - naturePriority(right.poi) || left.index - right.index;
       if (left.group === 'cuisine' && right.group === 'cuisine') return cuisinePriority(left.poi) - cuisinePriority(right.poi) || left.index - right.index;
@@ -226,6 +232,12 @@ function packAttribution(poi) {
   const sources = Array.isArray(poi?.source) ? poi.source : [poi?.source];
   const named = sources.find((source) => typeof source === 'object' && source?.name)?.name;
   return named || poi?.provenance?.dataset || `${CITIES[state.activeCity]?.name || 'Installed'} pack`;
+}
+
+function poiPopup(poi) {
+  const source = publicPlaceSource(poi);
+  const details = walkerDetails(poi).map((row) => `<p><small>${escapeHtml(row.group)}</small><br>${escapeHtml(row.text)}</p>`).join('');
+  return `<strong>${escapeHtml(displayPoiName(poi))}</strong>${details}<small>${escapeHtml(packAttribution(poi))}</small>${source ? `<br><a href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer">Public source ↗</a>` : ''}`;
 }
 
 function hasPackTrailGeometry(poi) {

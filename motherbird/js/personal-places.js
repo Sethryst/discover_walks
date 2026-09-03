@@ -52,6 +52,7 @@ export function normalizePersonalCategory(category = {}, now = new Date().toISOS
     description: String(category.description || '').trim().slice(0, 240),
     icon: ICON_IDS.has(category.icon) ? category.icon : 'map-pin',
     color: /^#[0-9a-f]{6}$/i.test(category.color || '') ? category.color : DEFAULT_COLOR,
+    parentId: category.parentId ? slugifyCategory(category.parentId) : null,
     created: category.created || now,
     updatedAt: now
   };
@@ -74,6 +75,13 @@ export function normalizePersonalPlace(place = {}, now = new Date().toISOString(
     categoryId: place.categoryId || place.category_id || place.category || null,
     personalCategoryLabel: place.personalCategoryLabel || place.personal_category_label || null,
     notes: String(place.notes || place.description || '').trim().slice(0, 2000),
+    tags: [...new Set((Array.isArray(place.tags) ? place.tags : String(place.tags || '').split(',')).map((tag) => String(tag).trim()).filter(Boolean))].slice(0, 20),
+    importance: ['high', 'normal', 'low'].includes(place.importance) ? place.importance : 'normal',
+    advancedOnly: Boolean(place.advancedOnly || ['bar', 'city-incident'].includes(place.dataKind)),
+    dataKind: ['place', 'bar', 'city-incident'].includes(place.dataKind) ? place.dataKind : 'place',
+    sourceUrl: /^https:\/\//i.test(place.sourceUrl || '') ? place.sourceUrl : '',
+    license: String(place.license || '').slice(0, 180),
+    reportedAt: String(place.reportedAt || '').slice(0, 10),
     photos: Array.isArray(place.photos) ? place.photos : [],
     visibility,
     publicMarkerId: place.publicMarkerId || place.public_marker_id || null,
@@ -89,6 +97,15 @@ export function normalizePersonalPlace(place = {}, now = new Date().toISOString(
 export function samePersonalPlace(first, second, thresholdMeters = 18) {
   if (!first?.location || !second?.location) return false;
   return distanceMeters(first.location, second.location) <= thresholdMeters;
+}
+export function personalCategoryEnabled(id, categories = state.personalPlaceCategories, filters = state.layerFilters.personal) {
+  const byId = new Map(categories.map((category) => [category.id, category]));
+  const visited = new Set();
+  while (id && byId.has(id)) {
+    if (visited.has(id) || filters[id] === false) return false;
+    visited.add(id); id = byId.get(id).parentId;
+  }
+  return true;
 }
 
 export function curatedPersonalPlaces(places = state.personalPlaces) {
@@ -155,7 +172,7 @@ function publicMarkerIcon(marker = {}) {
   const collection = state.personalPlaceCategories.find((category) => category.name === marker.personal_category_label);
   return L.divIcon({
     className: '',
-    html: markerPinHtml(markerVisual({ light: marker.light || 'personal', chipId: marker.chip_id || marker.chipId, collectionIcon: marker.collectionIcon || collection?.icon })),
+    html: markerPinHtml(markerVisual({ light: marker.light || 'personal', chipId: marker.chip_id || marker.chipId, collectionIcon: marker.collectionIcon || collection?.icon, collectionColor: marker.collectionColor || collection?.color })),
     iconSize: [27, 27], iconAnchor: [13, 13]
   });
 }
@@ -196,18 +213,19 @@ export function renderPersonalPlacesOnMap() {
 
   const categories = new Map(state.personalPlaceCategories.map((category) => [category.id, category]));
   curatedPersonalPlaces().filter((place) => {
+      if (place.advancedOnly && !state.settings.showAdvancedPlaces) return false;
       const categoryId = place.categoryId || place.category_id;
       if (place.publicMarkerId || (place.packId && place.packId !== state.activeCity) || !withinMapBounds(place.location)) return false;
-      if ((place.light || 'personal') === 'personal') return categoryId && categories.has(categoryId) && state.layerLights.personal && state.layerFilters.personal[categoryId] !== false;
+      if ((place.light || 'personal') === 'personal') return categoryId && categories.has(categoryId) && state.layerLights.personal && personalCategoryEnabled(categoryId);
       if (place.light === 'news') return state.layerLights.news && state.layerFilters.public.__low_importance_news === true;
       return state.layerLights[place.light] && markerChipEnabled({ light: place.light, chip_id: place.chipId });
     }).forEach((place) => {
       const category = categories.get(place.categoryId || place.category_id);
-      const icon = publicMarkerIcon({ light: place.light || 'personal', chipId: place.chipId, collectionIcon: category?.icon });
+      const icon = publicMarkerIcon({ light: place.light || 'personal', chipId: place.chipId, collectionIcon: category?.icon, collectionColor: category?.color });
       const marker = L.marker([place.location.lat, place.location.lng], { icon, title: place.name || '' });
       const name = place.name ? `<strong>${escapeHtml(place.name)}</strong><br>` : '';
       const chip = (place.light || 'personal') === 'personal' ? (category?.name || 'MY PLACES') : markerCategoryLabel({ light: place.light, chip_id: place.chipId });
-      marker.bindPopup(`${name}<small>You — ${escapeHtml(relativeAge(place.added))}<br>${escapeHtml(chip)}</small><br><button class="text-button" type="button" data-edit-personal-place="${escapeHtml(place.id)}">Edit</button>`);
+      marker.bindPopup(`${name}<small>You — ${escapeHtml(relativeAge(place.added))}<br>${escapeHtml(chip)}</small>${place.notes ? `<p>${escapeHtml(place.notes)}</p>` : ''}${place.tags?.length ? `<small>${escapeHtml(place.tags.join(' · '))}</small>` : ''}${place.reportedAt ? `<p>Reported ${escapeHtml(place.reportedAt)}</p>` : ''}${place.sourceUrl ? `<br><a href="${escapeHtml(place.sourceUrl)}" target="_blank" rel="noreferrer">Public source ↗</a>` : ''}<br><button class="text-button" type="button" data-edit-personal-place="${escapeHtml(place.id)}">Edit</button>`);
       marker.on('popupopen', (event) => event.popup.getElement()?.querySelector('[data-edit-personal-place]')?.addEventListener('click', () => openPersonalPlaceForm({ editId: place.id }), { once: true }));
       marker.addTo(state.personalPlaceLayer);
   });
@@ -233,7 +251,14 @@ function localCategory(place) {
 export function renderPersonalPlacesPanel() {
   const panel = el('personalPlacesPanel');
   if (!panel) return;
-  const places = curatedPersonalPlaces();
+  const point = state.currentPosition || state.lastPosition || state.map?.getCenter?.();
+  const places = curatedPersonalPlaces().filter((place) => !place.advancedOnly || state.settings.showAdvancedPlaces).sort((a, b) => {
+    const sort = state.settings.personalPlaceSort || 'nearest';
+    if (sort === 'name') return a.name.localeCompare(b.name);
+    if (sort === 'importance') return ({ high: 0, normal: 1, low: 2 }[a.importance] ?? 1) - ({ high: 0, normal: 1, low: 2 }[b.importance] ?? 1);
+    if (sort === 'nearest' && point) return distanceMeters(point, a.location) - distanceMeters(point, b.location);
+    return String(b.added).localeCompare(String(a.added));
+  });
   const cards = state.personalPlaceCategories.map((category) => {
     const inCategory = places.filter((place) => (place.categoryId || place.category_id) === category.id);
     const visible = state.layerFilters.personal[category.id] !== false;
@@ -244,7 +269,8 @@ export function renderPersonalPlacesPanel() {
     }).join('') : '<li class="personal-place-empty">No locations in this category yet.</li>';
     return `<article class="personal-category-card" style="--category-color:${escapeHtml(category.color)}"><header><span class="category-icon"><img data-inline-svg data-icon-fallback="" src="./icons/${escapeHtml(category.icon)}.svg" alt="" /></span><span><h3>${escapeHtml(category.name)}</h3><small>${inCategory.length} place${inCategory.length === 1 ? '' : 's'} · ${visible ? 'shown on map' : 'hidden on map'}</small></span></header>${category.description ? `<p>${escapeHtml(category.description)}</p>` : ''}<label class="personal-map-toggle"><input type="checkbox" data-personal-category-visible="${escapeHtml(category.id)}" ${visible ? 'checked' : ''} /> Show this category on the map</label><ul>${rows}</ul><button class="secondary-button" type="button" data-add-to-personal-category="${escapeHtml(category.id)}">Add location</button></article>`;
   }).join('');
-  panel.innerHTML = `<div class="personal-places-intro"><div><p class="eyebrow">MY PLACES</p><h2>Your places</h2><p>Private pins stay on this device. Posted pins keep their attribution.</p></div><button class="primary-button" id="addPersonalPlaceButton" type="button"><img src="./icons/plus.svg" alt="" /> Add location</button></div>${cards}<div class="personal-place-transfer"><button class="secondary-button" id="exportPersonalPlacesButton" type="button">Export all personal places</button><button class="secondary-button" id="importPersonalPlacesButton" type="button">Import from file</button></div>`;
+  panel.innerHTML = `<div class="personal-places-intro"><div><p class="eyebrow">MY PLACES</p><h2>Your places</h2><p>Private pins stay on this device. Posted pins keep their attribution.</p></div><button class="primary-button" id="addPersonalPlaceButton" type="button"><img src="./icons/plus.svg" alt="" /> Add location</button></div>${cards}<label>Sort<select id="personalPlaceSort"><option value="nearest">Nearest</option><option value="name">Name</option><option value="importance">Importance</option><option value="newest">Newest</option></select></label>`;
+  if (el('personalPlaceSort')) el('personalPlaceSort').value = state.settings.personalPlaceSort || 'nearest';
   void hydrateInlineIcons(panel);
 }
 
@@ -265,6 +291,16 @@ function readFormDraft() {
     chipId: ['recreation', 'cuisine'].includes(light) ? el('personalPlaceChip').value : null,
     categoryId: light === 'personal' ? el('personalPlaceCategory').value : (el('personalPlaceForm').dataset.managementCategoryId || null),
     newCategoryName: el('personalPlaceNewCategoryName').value,
+    parentId: el('personalPlaceParentCategory').value,
+    categoryColor: el('personalPlaceCategoryColor').value,
+    categoryIcon: el('personalPlaceCategoryIcon').value,
+    tags: el('personalPlaceTags').value,
+    importance: el('personalPlaceImportance').value,
+    advancedOnly: el('personalPlaceSensitive').checked,
+    dataKind: el('personalPlaceDataKind').value,
+    sourceUrl: el('personalPlaceSourceUrl').value,
+    license: el('personalPlaceLicense').value,
+    reportedAt: el('personalPlaceReportedAt').value,
     visibility: el('personalPlaceVisibility').value,
     name: el('personalPlaceName').value,
     notes: el('personalPlaceNotes').value,
@@ -283,8 +319,20 @@ function locationFromForm() {
 
 function populateCategorySelect(selectedId) {
   const select = el('personalPlaceCategory');
-  select.innerHTML = `${state.personalPlaceCategories.map((category) => `<option value="${escapeHtml(category.id)}">${escapeHtml(category.name)}</option>`).join('')}<option value="__new__">+ New category</option>`;
   select.value = state.personalPlaceCategories.some((category) => category.id === selectedId) ? selectedId : (state.personalPlaceCategories.at(-1)?.id || '__new__');
+  el('personalCategoryTree').innerHTML = categoryTreeMarkup(state.personalPlaceCategories, select.value);
+  el('personalPlaceParentCategory').innerHTML = '<option value="">Top level</option>' + state.personalPlaceCategories.map((category) => `<option value="${escapeHtml(category.id)}">${escapeHtml(category.name)}</option>`).join('');
+}
+
+export function categoryTreeMarkup(categories, selectedId) {
+  const ids = new Set(categories.map((category) => category.id));
+  const render = (parentId, seen = new Set()) => categories.filter((category) => (ids.has(category.parentId) ? category.parentId : null) === parentId && !seen.has(category.id)).map((category) => {
+    const next = new Set([...seen, category.id]);
+    const child = render(category.id, next);
+    const row = `<label style="--category-color:${escapeHtml(category.color)}"><input type="radio" name="categoryTreeChoice" value="${escapeHtml(category.id)}" ${selectedId === category.id ? 'checked' : ''} />${escapeHtml(category.name)}</label>`;
+    return child ? `<details open><summary>${row}</summary><div>${child}</div></details>` : row;
+  }).join('');
+  return render(null) + '<label><input type="radio" name="categoryTreeChoice" value="__new__" /> New category…</label>';
 }
 
 function populateChipSelect(light, selectedId) {
@@ -302,9 +350,10 @@ function renderPersonalPlaceFormState() {
   el('personalPlaceCategoryRow').classList.toggle('hidden', light !== 'personal');
   el('personalPlaceVisibilityRow').classList.remove('hidden');
   el('personalPlaceNewCategoryFields').classList.toggle('hidden', light !== 'personal' || el('personalPlaceCategory').value !== '__new__');
+  el('selectedCategoryName').textContent = state.personalPlaceCategories.find((category) => category.id === el('personalPlaceCategory').value)?.name || 'New category';
   document.querySelector('.personal-place-destination-step')?.classList.toggle('hidden', editingPublic);
   el('personalPlaceChooseLocation').classList.toggle('hidden', editingPublic);
-  el('personalPlaceDetails').classList.toggle('hidden', !hasLocation && !editingPublic);
+  el('personalPlaceDetails').classList.remove('hidden');
   el('personalPlaceLocationStatus').textContent = hasLocation ? 'Location ready' : 'Choose a destination, then drop the crosshair.';
   el('personalPlaceSubmit').disabled = !hasLocation;
   el('personalPlaceSubmit').textContent = editingPublic ? 'Save Post' : (light === 'personal' && el('personalPlaceVisibility').value === 'private' ? 'Save' : 'Post');
@@ -330,6 +379,18 @@ export function openPersonalPlaceForm({ editId = null, publicMarkerId = null, ca
   el('personalPlaceVisibility').value = place?.visibility || marker?.status || saved.visibility || state.settings.defaultPinVisibility || 'private';
   el('personalPlaceName').value = marker?.name || place?.name || saved.name || '';
   el('personalPlaceNotes').value = marker?.description || place?.notes || saved.notes || '';
+  const extra = place || saved;
+  el('personalPlaceTags').value = Array.isArray(extra.tags) ? extra.tags.join(', ') : extra.tags || '';
+  el('personalPlaceImportance').value = extra.importance || 'normal';
+  el('personalPlaceSensitive').checked = Boolean(extra.advancedOnly);
+  el('personalPlaceDataKind').value = extra.dataKind || 'place';
+  el('personalPlaceSourceUrl').value = extra.sourceUrl || '';
+  el('personalPlaceLicense').value = extra.license || '';
+  el('personalPlaceReportedAt').value = extra.reportedAt || '';
+  el('personalPlaceAdvanced').open = Boolean(extra.advancedOnly);
+  el('personalPlaceParentCategory').value = saved.parentId || '';
+  el('personalPlaceCategoryColor').value = saved.categoryColor || '#76558b';
+  el('personalPlaceCategoryIcon').value = saved.categoryIcon || 'map-pin';
   el('personalPlaceLatitude').value = Number.isFinite(Number(point?.lat)) ? Number(point.lat).toFixed(6) : '';
   el('personalPlaceLongitude').value = Number.isFinite(Number(point?.lng)) ? Number(point.lng).toFixed(6) : '';
   state.personalPlaceDraft = null;
@@ -363,7 +424,7 @@ async function categoryForDraft(draft) {
   let categoryId = draft.categoryId;
   if (categoryId === '__new__') {
     if (!draft.newCategoryName.trim()) throw new Error('Name the new category first.');
-    const category = normalizePersonalCategory({ name: draft.newCategoryName });
+    const category = normalizePersonalCategory({ name: draft.newCategoryName, parentId: draft.parentId, color: draft.categoryColor, icon: draft.categoryIcon });
     category.id = uniqueCategoryId(category.id);
     await db.put('personal_place_categories', category);
     state.personalPlaceCategories.push(category);
@@ -377,6 +438,11 @@ async function savePersonalPlace(event) {
   event.preventDefault();
   const form = event.currentTarget;
   const draft = readFormDraft();
+  // A new cohort pin belongs only to the sealed session, even if the last
+  // ordinary pin used public visibility. Never post it to the public marker API.
+  if (state.friendWalk && !draft.editId) { draft.visibility = 'private'; draft.publicMarkerId = null; }
+  if (draft.dataKind === 'city-incident' && (!/^https:\/\//i.test(draft.sourceUrl) || !draft.reportedAt)) { toast('City-reported incidents need a public source URL and reported date.'); return; }
+  if (draft.advancedOnly || draft.dataKind !== 'place') { draft.advancedOnly = true; draft.visibility = 'private'; draft.light = 'personal'; }
   if (!draft.location) { toast('Drop the crosshair before saving.'); return; }
   const existing = curatedPersonalPlaces().find((place) => place.id === draft.editId);
   const marker = draft.publicMarkerId ? state.publicMarkers.find((candidate) => candidate.id === draft.publicMarkerId) : null;
@@ -384,7 +450,7 @@ async function savePersonalPlace(event) {
   try { managementCategory = await categoryForDraft({ ...draft, categoryId: draft.light === 'personal' ? draft.categoryId : (existing?.categoryId || draft.categoryId) }); }
   catch (error) { toast(error.message); return; }
   const name = String(draft.name || '').trim().slice(0, 80);
-  const notes = String(draft.notes || '').trim().slice(0, 500);
+  const notes = String(draft.notes || '').trim().slice(0, 2000);
 
   let publicRecord = marker;
   if (draft.publicMarkerId) {
@@ -437,12 +503,18 @@ async function savePersonalPlace(event) {
     categoryId: savedCategory.id,
     personalCategoryLabel: savedLight === 'personal' ? savedCategory.name : null,
     notes,
+    tags: draft.tags, importance: draft.importance, advancedOnly: draft.advancedOnly, dataKind: draft.dataKind, sourceUrl: draft.sourceUrl, license: draft.license, reportedAt: draft.reportedAt,
     visibility: savedVisibility,
     publicMarkerId: draft.publicMarkerId && !publicRecord ? null : (publicRecord?.id || existing?.publicMarkerId || null),
     publicMarkerStatus: draft.publicMarkerId && !publicRecord ? 'withdrawn' : (publicRecord?.status || existing?.publicMarkerStatus || null),
     source: form.dataset.sourcePoiId ? 'pack_place' : existing?.source,
     sourcePoiId: form.dataset.sourcePoiId || existing?.sourcePoiId || null
   });
+  if (state.friendWalk && !place.advancedOnly && !draft.editId) {
+    try { const { addFriendTicket } = await import('./friend-walk.js'); await addFriendTicket('pin', { name: place.name, location: place.location, category: savedCategory.name }); }
+    catch (error) { toast(error.message || 'Friend pin could not be sealed.'); return; }
+    closeSheets(); toast('Pin added to the sealed friend walk. It joins your journal when the walk ends.'); return;
+  }
   await db.put('personal_places', place);
   state.personalPlaces = [...state.personalPlaces.filter((candidate) => candidate.id !== place.id), place];
   state.layerFilters.personal[savedCategory.id] = true;
@@ -546,16 +618,21 @@ function bindPersonalPlaceControls() {
     const remove = event.target.closest('[data-uncategorize-personal-place]'); if (remove) void uncategorize(remove.dataset.uncategorizePersonalPlace);
   });
   el('personalPlacesPanel')?.addEventListener('change', (event) => {
+    if (event.target.id === 'personalPlaceSort') { state.settings.personalPlaceSort = event.target.value; void db.put('settings', state.settings); renderPersonalPlacesPanel(); return; }
     const input = event.target.closest('[data-personal-category-visible]'); if (!input) return;
     state.layerFilters.personal[input.dataset.personalCategoryVisible] = input.checked;
     personalDataChanged(); window.dispatchEvent(new CustomEvent('layer-state-dirty'));
   });
   el('personalPlaceForm')?.addEventListener('submit', (event) => void savePersonalPlace(event));
   el('personalPlaceForm')?.addEventListener('change', (event) => {
+    if (event.target.name === 'categoryTreeChoice') el('personalPlaceCategory').value = event.target.value;
     if (event.target.matches('input[name="personalPlaceDestination"]')) populateChipSelect(event.target.value, defaultChip(event.target.value));
     renderPersonalPlaceFormState();
   });
   el('personalPlaceChooseLocation')?.addEventListener('click', armPersonalPlaceCrosshair);
+  el('addAdvancedPlaceButton')?.addEventListener('click', () => openPersonalPlaceForm({ draft: { advancedOnly: true, visibility: 'private', light: 'personal' } }));
+  if (el('advancedPlacesToggle')) el('advancedPlacesToggle').checked = Boolean(state.settings.showAdvancedPlaces);
+  el('advancedPlacesToggle')?.addEventListener('change', async (event) => { state.settings.showAdvancedPlaces = event.target.checked; await db.put('settings', state.settings); renderPersonalPlacesOnMap(); renderPersonalPlacesPanel(); window.dispatchEvent(new CustomEvent('layer-state-dirty')); });
   window.addEventListener('personal-place-create-requested', (event) => openPersonalPlaceForm(event.detail || {}));
   window.addEventListener('personal-place-location-selected', (event) => finishPersonalPlaceCrosshair(event.detail));
   window.addEventListener('public-marker-focus-requested', (event) => {

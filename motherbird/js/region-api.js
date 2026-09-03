@@ -11,6 +11,7 @@ export class RegionAPI {
   async loadRegion(regionId) {
     const installed = await this.installer.load(regionId);
     if (installed) return installed;
+    if (globalThis.navigator?.onLine === false) return null;
 
     const packageData = await this.packageResolver(regionId);
     if (!packageData) return null;
@@ -18,6 +19,7 @@ export class RegionAPI {
   }
 
   async installRegion(regionId, packageData = null) {
+    if (!packageData && globalThis.navigator?.onLine === false) throw new Error('Install requires a connection. The current pack stays open.');
     const regionPackage = packageData || (await this.packageResolver(regionId));
     if (!regionPackage) return null;
     const installed = await this.installer.install(regionPackage);

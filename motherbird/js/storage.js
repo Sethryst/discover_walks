@@ -53,6 +53,23 @@ export const db = (() => {
     const r = store(name, 'readwrite').clear(); r.onsuccess = resolve; r.onerror = () => reject(r.error);
     })));
   }
-  return { open, put, get, all, remove, clearAll };
+  function putMany(recordsByStore, removals = {}) {
+    const names = [...new Set([...Object.keys(recordsByStore), ...Object.keys(removals)])];
+    if (!names.length) return Promise.resolve();
+    return new Promise((resolve, reject) => {
+      const transaction = database.transaction(names, 'readwrite');
+      transaction.oncomplete = () => resolve();
+      transaction.onabort = () => reject(transaction.error || new Error('Import was not saved.'));
+      transaction.onerror = () => reject(transaction.error);
+      try {
+        for (const name of names) {
+          for (const id of removals[name] || []) transaction.objectStore(name).delete(id);
+          for (const record of recordsByStore[name] || []) transaction.objectStore(name).put(record);
+        }
+      }
+      catch (error) { transaction.abort(); reject(error); }
+    });
+  }
+  return { open, put, putMany, get, all, remove, clearAll };
 })();
 export default db;

@@ -4,18 +4,28 @@ import { debounce } from './utils.js';
 import { renderCityPois } from './poi.js';
 import { regionInstaller } from './region-ui.js';
 import { toast } from './ui.js';
+import { placeLight } from './place-details.js';
 
 export function initMap() {
   const active = city();
-  const initialPosition = state.currentPosition || state.lastPosition || active.center;
+  const view = state.offlineView;
+  const offlineCenter = view?.range?.type === 'radius' ? view.range.center : view?.range?.bbox ? { lat: (view.range.bbox.south + view.range.bbox.north) / 2, lng: (view.range.bbox.west + view.range.bbox.east) / 2 } : null;
+  const initialPosition = offlineCenter || state.currentPosition || state.lastPosition || active.center;
   // When location permission is granted at startup, begin at the actual
   // location—not the regional centroid—and keep enough zoom for a walk.
-  const initialZoom = (state.currentPosition || state.lastPosition) ? Math.max(active.zoom, 15) : active.zoom;
+  const initialZoom = view?.zoom ?? ((state.currentPosition || state.lastPosition) ? Math.max(active.zoom, 15) : active.zoom);
   state.map = L.map('map', { zoomControl: false, attributionControl: true }).setView([initialPosition.lat, initialPosition.lng], initialZoom);
-  state.onlineBasemapLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap contributors', crossOrigin: true }).addTo(state.map);
+  state.onlineBasemapLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap contributors', crossOrigin: true });
+  if (navigator.onLine !== false) state.onlineBasemapLayer.addTo(state.map);
   state.historyRadiusLayer = L.layerGroup().addTo(state.map);
   state.observationLayer = L.layerGroup().addTo(state.map);
-  state.poiLayer = L.layerGroup().addTo(state.map);
+  state.poiLayer = (L.markerClusterGroup ? L.markerClusterGroup({ maxClusterRadius: 42, disableClusteringAtZoom: 17, showCoverageOnHover: false, iconCreateFunction: (cluster) => {
+    const counts = { news: 0, recreation: 0, cuisine: 0 };
+    cluster.getAllChildMarkers().forEach((marker) => { counts[placeLight(marker.options.place || {})] += 1; });
+    const light = Object.keys(counts).sort((a,b) => counts[b] - counts[a])[0];
+    const color = { news: '#8b3a4a', recreation: '#2d7259', cuisine: '#c65d0e' }[light];
+    return L.divIcon({ className: 'place-cluster', html: `<span style="--cluster-color:${color}">${cluster.getChildCount()}</span>`, iconSize: [36,36] });
+  } }) : L.layerGroup()).addTo(state.map);
   state.historyLayer = state.poiLayer;
   state.trailLayer = L.featureGroup().addTo(state.map);
   state.map.on('click', (event) => {
@@ -71,7 +81,7 @@ export async function activateInstalledBasemap(region) {
   container.classList.add('hidden');
   document.querySelector('.app-shell')?.classList.remove('installed-map-active');
   if (!region?.ready || region.mapSource?.type !== 'opfs') {
-    if (state.onlineBasemapLayer && !state.map.hasLayer(state.onlineBasemapLayer)) state.onlineBasemapLayer.addTo(state.map);
+    if (navigator.onLine !== false && state.onlineBasemapLayer && !state.map.hasLayer(state.onlineBasemapLayer)) state.onlineBasemapLayer.addTo(state.map);
     return false;
   }
   if (!globalThis.maplibregl || !globalThis.pmtiles) return false;
@@ -109,7 +119,8 @@ export async function activateInstalledBasemap(region) {
     console.warn('Installed PMTiles basemap unavailable:', error);
     container.classList.add('hidden');
     document.querySelector('.app-shell')?.classList.remove('installed-map-active');
-    if (state.onlineBasemapLayer && !state.map.hasLayer(state.onlineBasemapLayer)) state.onlineBasemapLayer.addTo(state.map);
+    if (navigator.onLine !== false && state.onlineBasemapLayer && !state.map.hasLayer(state.onlineBasemapLayer)) state.onlineBasemapLayer.addTo(state.map);
+    if (navigator.onLine === false) toast('Installed streets are unavailable. Pack pins remain; no new area will be fetched.');
     return false;
   }
 }
