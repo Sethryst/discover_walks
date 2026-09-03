@@ -1,7 +1,26 @@
-/* Splash and App tab only. Do not set html, body, .app-shell, or #map height. */
-.app-shell,#map{position:fixed;inset:0;width:100%;height:100%;min-height:0;max-height:none}
-.app-splash{position:fixed;inset:0;width:auto;height:auto;min-height:0;max-height:none;z-index:5000;background:#d9d9d7;overflow:hidden;transition:opacity .35s ease,visibility .35s}
-.app-splash img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
+/* Splash and App tab only. Do not set .app-shell or #map size. */
+.app-splash{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  height:100dvh;
+  height:-webkit-fill-available;
+  min-height:100%;
+  max-height:none;
+  z-index:5000;
+  background:#d9d9d7;
+  overflow:hidden;
+  transition:opacity .35s ease,visibility .35s;
+}
+.app-splash img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+}
 .app-splash--done{opacity:0;visibility:hidden;pointer-events:none}
 .app-entry{display:flex;flex-direction:column;gap:8px;grid-column:1/-1;border-bottom:1px solid var(--line);padding-bottom:10px}
 #offlinePicker{display:flex;flex-direction:column;gap:8px}
@@ -9,3 +28,5 @@
 #sharePanel{display:flex;flex-direction:column;gap:12px;overflow-y:auto;font-size:.85rem;padding-bottom:max(12px,env(safe-area-inset-bottom))}
 #shareQrPanel{display:grid;justify-items:center;gap:8px;padding:8px 0}
 #shareQrPanel svg,#shareQrPanel img{width:min(220px,70vw);height:auto;background:#fff;padding:8px;border:1px solid var(--line)}
+#backupControls,.backup-controls{display:flex;flex-direction:column;gap:8px;grid-column:1/-1}
+#backupControls .backup-actions{display:flex;gap:6px;flex-wrap:wrap}
