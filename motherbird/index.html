@@ -6,26 +6,39 @@
   <meta name="theme-color" content="#173c35" />
   <meta name="description" content="A local-first walking, history, and wildlife journal." />
   <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="icon" href="./assets/pwa-icon-192.png" sizes="192x192" type="image/png" />
   <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
-  <link rel="apple-touch-startup-image" href="./assets/splash-1170x2532.png" media="(device-width: 390px)" />
+  <link rel="apple-touch-startup-image" href="./assets/splash-1170x2532.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" />
+  <link rel="apple-touch-startup-image" href="./assets/splash-1170x2532.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" />
+  <link rel="apple-touch-startup-image" href="./assets/splash-1170x2532.png" media="(device-width: 360px) and (device-height: 780px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+  <link rel="apple-touch-startup-image" href="./assets/splash-1170x2532.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+  <link rel="apple-touch-startup-image" href="./assets/splash-1170x2532.png" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+  <link rel="apple-touch-startup-image" href="./assets/splash-1170x2532.png" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)" />
+  <link rel="apple-touch-startup-image" href="./assets/splash-1170x2532.png" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+  <link rel="apple-touch-startup-image" href="./assets/splash-1290x2796.png" media="(device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+  <link rel="apple-touch-startup-image" href="./assets/splash-1290x2796.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+  <link rel="apple-touch-startup-image" href="./assets/splash-1290x2796.png" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+  <link rel="apple-touch-startup-image" href="./assets/splash-1290x2796.png" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+  <link rel="apple-touch-startup-image" href="./assets/splash-1290x2796.png" media="(device-width: 440px) and (device-height: 956px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
   <link rel="apple-touch-startup-image" href="./assets/splash-1290x2796.png" media="(device-width: 430px)" />
+  <link rel="apple-touch-startup-image" href="./assets/splash-1170x2532.png" media="(device-width: 390px)" />
   <link rel="apple-touch-startup-image" href="./assets/splash-2048x2732.png" media="(min-device-width: 768px)" />
   <link rel="stylesheet" href="./vendor/leaflet/leaflet.css" />
   <link rel="stylesheet" href="./vendor/leaflet-markercluster/MarkerCluster.css" />
   <link rel="stylesheet" href="./vendor/leaflet-markercluster/MarkerCluster.Default.css" />
   <link rel="stylesheet" href="./vendor/maplibre-gl.css" />
-  <link rel="stylesheet" href="./styles.css?v=62" />
-  <title>Walk &amp; Wildlife</title>
+  <link rel="stylesheet" href="./styles.css?v=64" />
+  <title>Walk & Wildlife</title>
 </head>
 <body>
   <div class="app-splash" id="appSplash" aria-hidden="true"><img src="./assets/splash-screen.jpeg" alt="" /></div>
   <main class="app-shell">
     <div id="installedBasemap" class="installed-basemap hidden" aria-hidden="true"></div>
     <div id="map" role="application" aria-label="Map of installed-pack places"></div>
-    <aside class="map-intro-hint hidden" id="mapIntroHint" aria-live="polite"><span>Locate centers your fix; its chevron sets alert range.</span><span>Region changes packs. Search finds a named place.</span><span>Start records your walk. End remains its own button.</span><span>Field Guide opens stories, Online, and My maps.</span><span>Journal keeps pages, observations, and voice. Draw sketches; Places + drops a pin.</span><span>Colored lights match pins; chevrons refine categories.</span></aside>
+    <aside class="map-intro-hint hidden" id="mapIntroHint" aria-live="polite"><span>Locate centers your fix; its chevron sets alert range.</span><span>Region changes packs. Search finds a named place.</span><span>Start records your walk. End remains its own button.</span><span>Field Guide opens stories, App, and My maps.</span><span>Journal keeps pages, observations, and voice. Draw sketches; Places + drops a pin.</span><span>Colored lights match pins; chevrons refine categories.</span></aside>
     <div class="viewfinder-frame" aria-label="Walk controls">
       <div class="top-cluster">
         <div class="control-stack"><div class="control-row"><button class="ink-control" id="locateButton" type="button" aria-label="Use my location"><img src="./icons/navigation.svg" alt="" /></button><button class="ink-chevron" id="locateChevron" type="button" aria-label="Location alerts" aria-expanded="false">⌄</button></div><div class="drop-panel hidden" id="locatePanel"><label><input id="geofenceToggle" type="checkbox" checked /> Alerts</label><label>Radius <select id="geofenceRadiusSelect"><option value="30">30 m</option><option value="50" selected>50 m</option><option value="75">75 m</option><option value="100">100 m</option></select></label><div id="geofenceCategoryChips" class="mini-chips"></div></div></div>
@@ -56,29 +69,40 @@
 
   <section class="sheet split-sheet hidden" id="backpackSheet" role="dialog" aria-modal="false" aria-labelledby="backpackTitle">
     <button class="close-sheet" data-close-sheet aria-label="Close">×</button><h2 id="backpackTitle">Field Guide</h2>
-    <nav class="guide-tabs"><button class="active" data-guide-tab="discover" type="button">Discover</button><button data-guide-tab="learn" type="button">Learn</button><button data-guide-tab="online" type="button">Online</button><button data-guide-tab="maps" type="button">My maps</button></nav>
+    <nav class="guide-tabs"><button class="active" data-guide-tab="discover" type="button">Discover</button><button data-guide-tab="learn" type="button">Learn</button><button data-guide-tab="online" type="button">App</button><button data-guide-tab="maps" type="button">My maps</button></nav>
     <p class="guide-order-note hidden" id="fieldGuideOrderNote"></p><section class="guide-list" id="fieldGuideList" aria-live="polite"></section>
     <section id="myMapsPanel" class="hidden"><div id="personalPlacesPanel"></div><details class="advanced-filters"><summary>Advanced filters</summary><p>Optional adult places and city-reported incidents stay out of the main lights until you enable them.</p><label><input id="advancedPlacesToggle" type="checkbox" /> Show advanced places</label><button id="addAdvancedPlaceButton" type="button">Add advanced place</button><div id="poiTagFilters"></div></details></section>
     <section class="share-panel hidden" id="sharePanel">
-      <button class="primary-button" id="goOnlineButton" type="button">Go online</button>
-      <small>Store checked data encrypted every 10 minutes while this app is open and online.</small>
-      <button id="offlineMenuButton" type="button" aria-expanded="false" aria-controls="offlineClassList">Share and Offline mode ⌄</button>
-      <fieldset id="offlineClassList" class="sealed-class-list hidden"><legend>What goes into your sealed copy</legend>
-        <label class="lit"><input type="checkbox" data-seal-class="walks" checked /> Walks</label>
-        <label class="lit"><input type="checkbox" data-seal-class="journal" checked /> Journal</label>
-        <label class="lit"><input type="checkbox" data-seal-class="pins" checked /> Pins and drawings</label>
-        <label><input type="checkbox" data-seal-class="offline" /> Offline mode</label>
-        <label><input type="checkbox" data-seal-class="voice" /> Voice</label>
-      </fieldset>
-      <output id="sealedCopyStatus" aria-live="polite">Sealed copy: not saved</output>
-      <section id="offlineModePreview" class="hidden"><h3>Offline view preview</h3><div id="offlineTilePreview"></div><div id="offlineLayerNames"></div><label>Range<select id="offlineRangeSelect"><option value="radius">Geofence radius</option><option value="bbox">Installed pack bounds</option></select></label><label>Zoom<input id="offlineZoomInput" type="number" min="0" max="22" /></label><button id="saveOfflineViewButton" type="button">Save view</button><small>Only installed tiles. No new county downloads.</small></section>
-      <section class="open-controls"><h3>OPEN</h3><form id="openPhraseForm" class="inline-form"><input id="openPhraseInput" aria-label="Phrase or invite" autocomplete="off" placeholder="Phrase, pointer, or JSON" /><button type="submit">Go</button></form>
-        <button id="openQrButton" type="button">Scan QR</button><label class="secondary-button import-label">Open file<input id="openFileInput" type="file" accept=".json,.walkplan,.walkfilter,.walkplaces,.walkseal,application/json" /></label>
-        <div id="qrScanPanel" class="hidden"><video id="qrScanVideo" muted playsinline></video><button id="stopQrButton" type="button">Stop camera</button></div>
-        <label>Join<select id="joinModeSelect"><option value="add">Add new only</option><option value="join">Join same ids</option><option value="replace-extras">Replace pack extras (never private journal)</option></select></label>
-        <output id="openPayloadStatus" aria-live="polite"></output><button id="installOpenAreaButton" class="hidden" type="button">Install from region catalogue</button>
-      </section>
-      <section class="friend-walk-controls"><h3>Friend walk</h3><button id="startFriendWalkButton" type="button">Start friend walk</button><form id="joinFriendWalkForm"><input id="joinFriendWalkInput" aria-label="Friend walk invite token" placeholder="Invite token" /><button type="submit">Join</button></form><output id="friendWalkStatus" aria-live="polite"></output><textarea id="friendWalkInvite" class="hidden" readonly aria-label="Friend walk invite — share privately"></textarea><div id="friendWalkActiveControls" class="hidden"><form id="friendWalkNoteForm"><input id="friendWalkNoteInput" maxlength="2000" placeholder="A note for this walk" aria-label="Friend walk note" /><button type="submit">Add note</button></form><button id="endFriendWalkButton" type="button">End friend walk</button></div><section id="friendWalkTickets"></section></section>
+      <div class="app-entry" data-app-entry="online">
+        <button class="primary-button" id="goOnlineButton" type="button">Online</button>
+        <small id="onlineGateNote">Sign in with a passkey to seal a private copy.</small>
+        <div id="onlineSealPanel" class="hidden">
+          <fieldset id="offlineClassList" class="sealed-class-list"><legend>What goes into your sealed copy</legend>
+            <label class="lit"><input type="checkbox" data-seal-class="walks" checked /> Walks</label>
+            <label class="lit"><input type="checkbox" data-seal-class="journal" checked /> Journal</label>
+            <label class="lit"><input type="checkbox" data-seal-class="pins" checked /> Pins and drawings</label>
+            <label><input type="checkbox" data-seal-class="offline" /> Include offline view</label>
+            <label><input type="checkbox" data-seal-class="voice" /> Voice</label>
+          </fieldset>
+          <output id="sealedCopyStatus" aria-live="polite">Sealed copy: not saved</output>
+        </div>
+      </div>
+      <div class="app-entry" data-app-entry="offline">
+        <button id="offlineMenuButton" type="button" aria-expanded="false" aria-controls="offlinePicker">Offline ⌄</button>
+        <div id="offlinePicker" class="hidden">
+          <section id="offlineModePreview"><h3>Offline tiles</h3><div id="offlineTilePreview"></div><div id="offlineLayerNames"></div><label>Range<select id="offlineRangeSelect"><option value="radius">Geofence radius</option><option value="bbox">Installed pack bounds</option></select></label><label>Zoom<input id="offlineZoomInput" type="number" min="0" max="22" /></label><button id="saveOfflineViewButton" type="button">Confirm offline view</button><small>Only installed tiles. No new county downloads. No sign-in required.</small></section>
+        </div>
+      </div>
+      <div class="app-entry" data-app-entry="share">
+        <h3>Share</h3>
+        <section class="open-controls"><form id="openPhraseForm" class="inline-form"><input id="openPhraseInput" aria-label="Phrase, invite, or file pointer" autocomplete="off" placeholder="Phrase, invite, or JSON" /><button type="submit">Open</button></form>
+          <button id="openQrButton" type="button">Scan QR</button><label class="secondary-button import-label">Open file<input id="openFileInput" type="file" accept=".json,.walkplan,.walkfilter,.walkplaces,.walkseal,application/json" /></label>
+          <div id="qrScanPanel" class="hidden"><video id="qrScanVideo" muted playsinline></video><button id="stopQrButton" type="button">Stop camera</button></div>
+          <label>Join<select id="joinModeSelect"><option value="add">Add new only</option><option value="join">Join same ids</option><option value="replace-extras">Replace pack extras (never private journal)</option></select></label>
+          <output id="openPayloadStatus" aria-live="polite"></output><button id="installOpenAreaButton" class="hidden" type="button">Install from region catalogue</button>
+        </section>
+        <section class="friend-walk-controls"><button id="startFriendWalkButton" type="button">Start friend walk</button><form id="joinFriendWalkForm"><input id="joinFriendWalkInput" aria-label="Friend walk invite token" placeholder="Invite token" /><button type="submit">Join</button></form><output id="friendWalkStatus" aria-live="polite"></output><textarea id="friendWalkInvite" class="hidden" readonly aria-label="Friend walk invite — share privately"></textarea><div id="friendWalkActiveControls" class="hidden"><form id="friendWalkNoteForm"><input id="friendWalkNoteInput" maxlength="2000" placeholder="A note for this walk" aria-label="Friend walk note" /><button type="submit">Add note</button></form><button id="endFriendWalkButton" type="button">End friend walk</button></div><section id="friendWalkTickets"></section></section>
+      </div>
       <footer class="online-legal"><button class="danger-button" id="clearDataButton" type="button">Clear this device</button><a href="./privacy.html">Privacy</a><a href="./terms.html">Terms</a><a href="./watch.html">Watch</a></footer>
     </section>
   </section>
@@ -103,6 +127,6 @@
   <section class="sheet hidden" id="regionSheet" role="dialog" aria-modal="true" aria-labelledby="regionSheetTitle"><button class="close-sheet" data-close-sheet aria-label="Close">×</button><h2 id="regionSheetTitle">Installed regions</h2><div class="region-list" id="regionList"></div></section>
 
   <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
-  <script src="./vendor/leaflet/leaflet.js"></script><script src="./vendor/leaflet-markercluster/leaflet.markercluster.js"></script><script src="./vendor/maplibre-gl.js"></script><script src="./vendor/pmtiles.js"></script><script async src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.105.0"></script><script src="./supabase-config.js"></script><script type="module" src="./app.js?v=62"></script>
+  <script src="./vendor/leaflet/leaflet.js"></script><script src="./vendor/leaflet-markercluster/leaflet.markercluster.js"></script><script src="./vendor/maplibre-gl.js"></script><script src="./vendor/pmtiles.js"></script><script async src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.105.0"></script><script src="./supabase-config.js"></script><script type="module" src="./app.js?v=64"></script>
 </body>
 </html>
