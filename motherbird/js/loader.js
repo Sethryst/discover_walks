@@ -23,7 +23,30 @@ import { initOnlinePane } from './online-pane.js';
 
 export async function init() {
   const splash = document.getElementById('appSplash');
-  const dismissSplash = () => splash?.classList.add('app-splash--done');
+  const pinSplashToVisibleViewport = () => {
+    if (!splash || splash.classList.contains('app-splash--done')) return;
+    const viewport = globalThis.visualViewport;
+    const height = Math.round(viewport?.height || globalThis.innerHeight || 0);
+    const width = Math.round(viewport?.width || globalThis.innerWidth || 0);
+    const top = Math.round(viewport?.offsetTop || 0);
+    const left = Math.round(viewport?.offsetLeft || 0);
+    if (height > 0) splash.style.height = `${height}px`;
+    if (width > 0) splash.style.width = `${width}px`;
+    splash.style.top = `${top}px`;
+    splash.style.left = `${left}px`;
+    splash.style.right = 'auto';
+    splash.style.bottom = 'auto';
+  };
+  pinSplashToVisibleViewport();
+  globalThis.visualViewport?.addEventListener('resize', pinSplashToVisibleViewport);
+  globalThis.visualViewport?.addEventListener('scroll', pinSplashToVisibleViewport);
+  globalThis.addEventListener('resize', pinSplashToVisibleViewport);
+  const dismissSplash = () => {
+    splash?.classList.add('app-splash--done');
+    globalThis.visualViewport?.removeEventListener('resize', pinSplashToVisibleViewport);
+    globalThis.visualViewport?.removeEventListener('scroll', pinSplashToVisibleViewport);
+    globalThis.removeEventListener('resize', pinSplashToVisibleViewport);
+  };
   setTimeout(dismissSplash, 2500);
   try {
     await db.open();
