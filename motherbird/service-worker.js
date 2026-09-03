@@ -1,14 +1,14 @@
 // Keep the whole module graph with the shell. Caching only app.js leaves an
 // offline (or briefly disconnected) reload with a blank app when any imported
 // module was not already in the runtime cache.
-const APP_CACHE = 'walk-wildlife-shell-v78'; // bump when shell assets change
+const APP_CACHE = 'walk-wildlife-shell-v80'; // bump when shell assets change
 const TILE_CACHE = 'walk-wildlife-osm-viewed-tiles-v1';
 const LIBRARY_CACHE = 'walk-wildlife-library-v2';
 const COMPANION_CACHE = 'walk-wildlife-companion-media-v2';
 const libraryPath = new URL('./vendor/', self.registration.scope).pathname;
 const shell = [
   ...['anchor', 'book-open', 'bookmark', 'coffee', 'droplet', 'eye', 'star', 'tree', 'walk', 'navigation', 'search'].map((icon) => `./icons/${icon}.svg`),
-  './js/online-pane.js', './js/open-payload.js', './js/sealed-data.js', './js/offline-view.js', './js/friend-walk.js', './js/place-details.js',
+  './js/online-pane.js', './js/qr-share.js', './js/open-payload.js', './js/sealed-data.js', './js/offline-view.js', './js/friend-walk.js', './js/place-details.js',
   './', './index.html', './watch.html', './styles.css', './splash-fix.css', './watch.css', './legal.css', './privacy.html', './terms.html', './app.js', './manifest.webmanifest', './watch.webmanifest', './supabase-config.js',
   './assets/pwa-icon-192.png', './assets/pwa-icon-512.png', './assets/pwa-maskable-512.png', './assets/apple-touch-icon.png', './assets/splash-screen.jpeg', './assets/splash-1170x2532.png', './assets/splash-1290x2796.png', './assets/splash-2048x2732.png',
   './js/archive.js', './js/backup.js', './js/city.js', './js/civic.js', './js/civic-news.js', './js/constants.js', './js/discovery.js', './js/discovery-taxonomy.js',
@@ -40,7 +40,7 @@ const shell = [
   './regions/washington-dc/spatial/boundaries.flatbush', './regions/washington-dc/spatial/boundaries.ids.json'
 ];
 const libraryAssets = [
-  './vendor/leaflet/leaflet.css',
+  './vendor/qrcode.js', './vendor/leaflet/leaflet.css',
   './vendor/leaflet/leaflet.js',
   './vendor/leaflet-markercluster/MarkerCluster.css',
   './vendor/leaflet-markercluster/MarkerCluster.Default.css',
