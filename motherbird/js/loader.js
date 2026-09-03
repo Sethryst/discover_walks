@@ -20,12 +20,13 @@ import { initCountyAdditions } from './county-additions.js';
 import { applyOfflineBootConditions } from './offline-view.js';
 import { migrateLegacyJournalAudio } from './journal-capture.js';
 import { initOnlinePane } from './online-pane.js';
+import { startCoachMarks } from './coach.js';
 
 export async function init() {
   if (!document.querySelector('link[href*="splash-fix.css"]')) {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = './splash-fix.css?v=66';
+    link.href = './splash-fix.css?v=67';
     document.head.appendChild(link);
   }
   const splash = document.getElementById('appSplash');
@@ -89,14 +90,7 @@ export async function init() {
   await recoverWalkDraft();
   applyStaticAppearance();
   await renderArchive();
-  if (!state.settings.mapToolsHintSeenV2) {
-    const hint = document.getElementById('mapIntroHint');
-    state.settings.mapToolsHintSeenV2 = true;
-    await db.put('settings', state.settings);
-    hint?.classList.remove('hidden');
-    setTimeout(() => hint?.classList.add('dissolving'), 8800);
-    setTimeout(() => hint?.classList.add('hidden'), 10000);
-  }
+  startCoachMarks();
 
   if (splash) requestAnimationFrame(dismissSplash);
 
