@@ -1,0 +1,9 @@
+html,body{min-height:100dvh;min-height:-webkit-fill-available}
+.app-shell,#map{min-height:-webkit-fill-available}
+.app-splash{position:fixed;inset:0;width:100%;height:100%;height:100dvh;height:-webkit-fill-available;min-height:100dvh;min-height:-webkit-fill-available;max-height:100dvh;max-height:-webkit-fill-available;z-index:5000;background:#d9d9d7;overflow:hidden;transition:opacity .35s ease,visibility .35s}
+.app-splash img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center}
+.app-splash--done{opacity:0;visibility:hidden;pointer-events:none}
+.app-entry{display:flex;flex-direction:column;gap:8px;grid-column:1/-1;border-bottom:1px solid var(--line);padding-bottom:10px}
+#offlinePicker{display:flex;flex-direction:column;gap:8px}
+#offlineModePreview{display:block}
+#sharePanel{display:flex;flex-direction:column;gap:12px;overflow-y:auto;font-size:.85rem;padding-bottom:max(12px,env(safe-area-inset-bottom))}
