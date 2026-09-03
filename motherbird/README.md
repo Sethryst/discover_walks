@@ -8,7 +8,9 @@ Walk & Wildlife is a vanilla JavaScript, local-first PWA. It is a viewfinder ove
 - The lights are **NEWS**, **RECREATION**, **CUISINE**, and **MY PLACES**.
 - Recreation chips are **nature**, **trails**, **historic**, **routes**, and **volunteer**.
 - Cuisine chips are **cafés**, **markets**, and **restaurants**. Cuisine starts off. Empty lights stay hidden.
-- Controls include **Locate** (GPS), **Start walk**, **End walk** as its own control, **Add Location**, the **Journal** overlay, and the **Field Guide** with **Discover**, **Learn**, and **Share**.
+- Controls include **Locate** (GPS), **Start walk**, **End walk** as its own control, **Add Location**, the **Journal** overlay, and the **Field Guide** with **Discover**, **Learn**, **App**, and **My maps**.
+- The App tab has three entries: **Online**, **Offline**, and **Share**. Export, legal links, and Clear stay in the footer.
+- The splash screen fills the iPhone view. Use `100dvh` and `-webkit-fill-available`. Do not use `100lvh` for splash height.
 
 Discover paints numbered **1**, **2**, and **3** from pack stop IDs. It does not invent a crow-flies route. Journeys may use official GIS lines.
 
