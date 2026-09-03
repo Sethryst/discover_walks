@@ -39,11 +39,18 @@ function placeHint(hint, target) {
   }
 }
 
+function ensureMarkup(hint) {
+  if (el('mapIntroText') && el('mapIntroNext') && el('mapIntroSkip')) return;
+  hint.innerHTML = '<p id="mapIntroText"></p><div class="coach-actions"><button type="button" id="mapIntroNext">Next</button><button type="button" id="mapIntroSkip" class="text-button">Skip</button></div>';
+}
+
 function showStep() {
   const hint = el('mapIntroHint');
+  if (!hint) return;
+  ensureMarkup(hint);
   const text = el('mapIntroText');
   const next = el('mapIntroNext');
-  if (!hint || !text) return;
+  if (!text) return;
   const step = COACH_STEPS[stepIndex];
   if (!step) {
     finishCoach();
