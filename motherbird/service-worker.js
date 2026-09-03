@@ -1,7 +1,7 @@
 // Keep the whole module graph with the shell. Caching only app.js leaves an
 // offline (or briefly disconnected) reload with a blank app when any imported
 // module was not already in the runtime cache.
-const APP_CACHE = 'walk-wildlife-shell-v80'; // bump when shell assets change
+const APP_CACHE = 'walk-wildlife-shell-v81'; // bump when shell assets change
 const TILE_CACHE = 'walk-wildlife-osm-viewed-tiles-v1';
 const LIBRARY_CACHE = 'walk-wildlife-library-v2';
 const COMPANION_CACHE = 'walk-wildlife-companion-media-v2';
@@ -13,7 +13,7 @@ const shell = [
   './assets/pwa-icon-192.png', './assets/pwa-icon-512.png', './assets/pwa-maskable-512.png', './assets/apple-touch-icon.png', './assets/splash-screen.jpeg', './assets/splash-1170x2532.png', './assets/splash-1290x2796.png', './assets/splash-2048x2732.png',
   './js/archive.js', './js/backup.js', './js/city.js', './js/civic.js', './js/civic-news.js', './js/constants.js', './js/discovery.js', './js/discovery-taxonomy.js',
   './js/entitlements.js', './js/cloud-journal.js', './js/events.js', './js/explore.js', './js/field-edition-loader.js', './js/field-guide.js', './js/geo.js', './js/geofence.js',
-  './js/federal-boundaries.js', './js/federal-region-loader.js', './js/federal-region-progress.js', './js/poi-visit-tracking.js', './js/loader.js', './js/map.js', './js/observation.js', './js/online.js', './js/planner.js', './js/poi.js', './js/profile.js',
+  './js/federal-boundaries.js', './js/federal-region-loader.js', './js/federal-region-progress.js', './js/poi-visit-tracking.js', './js/loader.js', './js/coach.js', './js/map.js', './js/observation.js', './js/online.js', './js/planner.js', './js/poi.js', './js/profile.js',
   './js/neighborhoods.js', './js/spatial-index.js', './js/spatial-index-providers.js', './js/spatial-overlay.js', './js/spatial-package-loader.js', './js/spatial-closure-reporting.js', './js/text-to-walk.js',
   './js/quiet-places.js', './js/region-api.js', './js/region-installer.js', './js/region-manager.js', './js/region-package.js',
   './js/osm-regions.js',
