@@ -30,7 +30,8 @@
   <link rel="stylesheet" href="./vendor/leaflet-markercluster/MarkerCluster.css" />
   <link rel="stylesheet" href="./vendor/leaflet-markercluster/MarkerCluster.Default.css" />
   <link rel="stylesheet" href="./vendor/maplibre-gl.css" />
-  <link rel="stylesheet" href="./styles.css?v=64" />
+  <link rel="stylesheet" href="./styles.css?v=66" />
+  <link rel="stylesheet" href="./splash-fix.css?v=66" />
   <title>Walk & Wildlife</title>
 </head>
 <body>
@@ -47,7 +48,7 @@
         <div class="control-stack start-stack"><div class="control-row"><button class="ink-control" id="walkButton" type="button">Start walk</button><button class="ink-control hidden" id="endWalkButton" type="button">End walk</button><button class="ink-chevron" id="startChevron" type="button" aria-label="Sketch a walk" aria-expanded="false">⌄</button></div><div class="drop-panel start-panel hidden" id="startPanel"><button class="primary-button" id="generateWalkButton" type="button">Sketch this walk</button></div></div>
         <label class="map-search"><img src="./icons/search.svg" alt="" /><input id="mapSearchInput" type="search" placeholder="Find a place" autocomplete="off" /></label><div class="map-search-results hidden" id="mapSearchResults"></div>
       </div>
-      <div class="middle-tools"><button class="ink-control" id="settingsButton" type="button" aria-label="Backpack">🎒 <span>Field Guide</span></button><button class="ink-control" id="journalButton" type="button" aria-label="Open journal" aria-pressed="false">▤ <span>Journal</span></button><button class="ink-control" id="mapPencilButton" type="button" aria-label="Draw on map" aria-pressed="false"><img src="./icons/pencil.svg" alt="" /> <span>Draw</span></button><button class="ink-control" id="savePlaceMapButton" type="button"><img src="./icons/plus.svg" alt="" /> Places +</button></div>
+      <div class="middle-tools"><button class="ink-control" id="settingsButton" type="button" aria-label="Backpack">🎒 <span>Field Guide</span></button><button class="ink-control" id="journalButton" type="button" aria-label="Open journal" aria-pressed="false">▦ <span>Journal</span></button><button class="ink-control" id="mapPencilButton" type="button" aria-label="Draw on map" aria-pressed="false"><img src="./icons/pencil.svg" alt="" /> <span>Draw</span></button><button class="ink-control" id="savePlaceMapButton" type="button"><img src="./icons/plus.svg" alt="" /> Places +</button></div>
       <aside class="walk-sketch hidden" id="walkSketch" aria-live="polite"><button class="plain-close" id="dismissWalkSketch" type="button" aria-label="Dismiss walk sketch">×</button><strong id="sketchTitle">A walk</strong><p id="sketchReason"></p><ol id="sketchStops"></ol><div class="sketch-actions"><button class="primary-button" id="startPlannedWalkButton" type="button">Start this one</button><button class="secondary-button" id="sendWalkPlanButton" type="button">Send this</button></div></aside>
       <div class="place-crosshair" id="placeCrosshair" aria-hidden="true"><span></span></div><div class="map-lights" id="mapLights" aria-label="Map lights"></div>
     </div>
@@ -93,13 +94,33 @@
           <section id="offlineModePreview"><h3>Offline tiles</h3><div id="offlineTilePreview"></div><div id="offlineLayerNames"></div><label>Range<select id="offlineRangeSelect"><option value="radius">Geofence radius</option><option value="bbox">Installed pack bounds</option></select></label><label>Zoom<input id="offlineZoomInput" type="number" min="0" max="22" /></label><button id="saveOfflineViewButton" type="button">Confirm offline view</button><small>Only installed tiles. No new county downloads. No sign-in required.</small></section>
         </div>
       </div>
+      <div class="app-entry" data-app-entry="backup">
+        <h3>Export</h3>
+        <div class="backup-controls" id="backupControls">
+          <div class="backup-actions">
+            <button class="secondary-button" id="exportDataButton" type="button">Export journal (JSON)</button>
+            <button class="secondary-button" id="exportCsvButton" type="button">Export journal (CSV)</button>
+            <label class="secondary-button import-label">Import journal<input id="importDataInput" type="file" accept="application/json,.json" /></label>
+          </div>
+          <section class="cloud-backup-controls" aria-labelledby="cloudBackupTitle">
+            <strong id="cloudBackupTitle">Encrypted backup</strong>
+            <p id="cloudBackupStatus">Checking Field Edition access…</p>
+            <label>Backup passphrase <input id="cloudBackupPassphrase" type="password" autocomplete="off" minlength="8" placeholder="Not sent to the server" /></label>
+            <div class="backup-actions">
+              <button class="secondary-button" id="saveCloudBackupButton" type="button">Replace encrypted backup</button>
+              <button class="secondary-button" id="restoreCloudBackupButton" type="button">Preview encrypted restore</button>
+            </div>
+          </section>
+          <section class="journal-import-preview hidden" id="journalImportPreview" aria-live="polite"></section>
+        </div>
+      </div>
       <div class="app-entry" data-app-entry="share">
         <h3>Share</h3>
         <section class="open-controls"><form id="openPhraseForm" class="inline-form"><input id="openPhraseInput" aria-label="Phrase, invite, or file pointer" autocomplete="off" placeholder="Phrase, invite, or JSON" /><button type="submit">Open</button></form>
-          <button id="openQrButton" type="button">Scan QR</button><label class="secondary-button import-label">Open file<input id="openFileInput" type="file" accept=".json,.walkplan,.walkfilter,.walkplaces,.walkseal,application/json" /></label>
+          <button id="openQrButton" type="button">Scan QR</button><button id="shareQrButton" type="button">Share QR</button><label class="secondary-button import-label">Open file<input id="openFileInput" type="file" accept=".json,.walkplan,.walkfilter,.walkplaces,.walkseal,application/json" /></label>
           <div id="qrScanPanel" class="hidden"><video id="qrScanVideo" muted playsinline></video><button id="stopQrButton" type="button">Stop camera</button></div>
           <label>Join<select id="joinModeSelect"><option value="add">Add new only</option><option value="join">Join same ids</option><option value="replace-extras">Replace pack extras (never private journal)</option></select></label>
-          <output id="openPayloadStatus" aria-live="polite"></output><button id="installOpenAreaButton" class="hidden" type="button">Install from region catalogue</button>
+          <output id="openPayloadStatus" aria-live="polite"></output><div id="shareQrPanel" class="hidden" aria-live="polite"></div><button id="installOpenAreaButton" class="hidden" type="button">Install from region catalogue</button>
         </section>
         <section class="friend-walk-controls"><button id="startFriendWalkButton" type="button">Start friend walk</button><form id="joinFriendWalkForm"><input id="joinFriendWalkInput" aria-label="Friend walk invite token" placeholder="Invite token" /><button type="submit">Join</button></form><output id="friendWalkStatus" aria-live="polite"></output><textarea id="friendWalkInvite" class="hidden" readonly aria-label="Friend walk invite — share privately"></textarea><div id="friendWalkActiveControls" class="hidden"><form id="friendWalkNoteForm"><input id="friendWalkNoteInput" maxlength="2000" placeholder="A note for this walk" aria-label="Friend walk note" /><button type="submit">Add note</button></form><button id="endFriendWalkButton" type="button">End friend walk</button></div><section id="friendWalkTickets"></section></section>
       </div>
@@ -127,6 +148,6 @@
   <section class="sheet hidden" id="regionSheet" role="dialog" aria-modal="true" aria-labelledby="regionSheetTitle"><button class="close-sheet" data-close-sheet aria-label="Close">×</button><h2 id="regionSheetTitle">Installed regions</h2><div class="region-list" id="regionList"></div></section>
 
   <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
-  <script src="./vendor/leaflet/leaflet.js"></script><script src="./vendor/leaflet-markercluster/leaflet.markercluster.js"></script><script src="./vendor/maplibre-gl.js"></script><script src="./vendor/pmtiles.js"></script><script async src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.105.0"></script><script src="./supabase-config.js"></script><script type="module" src="./app.js?v=64"></script>
+  <script src="./vendor/qrcode.js"></script><script src="./vendor/leaflet/leaflet.js"></script><script src="./vendor/leaflet-markercluster/leaflet.markercluster.js"></script><script src="./vendor/maplibre-gl.js"></script><script src="./vendor/pmtiles.js"></script><script async src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.105.0"></script><script src="./supabase-config.js"></script><script type="module" src="./app.js?v=66"></script>
 </body>
 </html>
