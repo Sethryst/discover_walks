@@ -9,7 +9,7 @@ const libraryPath = new URL('./vendor/', self.registration.scope).pathname;
 const shell = [
   ...['anchor', 'book-open', 'bookmark', 'coffee', 'droplet', 'eye', 'star', 'tree', 'walk', 'navigation', 'search'].map((icon) => `./icons/${icon}.svg`),
   './js/online-pane.js', './js/open-payload.js', './js/sealed-data.js', './js/offline-view.js', './js/friend-walk.js', './js/place-details.js',
-  './', './index.html', './watch.html', './styles.css', './watch.css', './legal.css', './privacy.html', './terms.html', './app.js', './manifest.webmanifest', './watch.webmanifest', './supabase-config.js',
+  './', './index.html', './watch.html', './styles.css', './splash-fix.css', './watch.css', './legal.css', './privacy.html', './terms.html', './app.js', './manifest.webmanifest', './watch.webmanifest', './supabase-config.js',
   './assets/pwa-icon-192.png', './assets/pwa-icon-512.png', './assets/pwa-maskable-512.png', './assets/apple-touch-icon.png', './assets/splash-screen.jpeg', './assets/splash-1170x2532.png', './assets/splash-1290x2796.png', './assets/splash-2048x2732.png',
   './js/archive.js', './js/backup.js', './js/city.js', './js/civic.js', './js/civic-news.js', './js/constants.js', './js/discovery.js', './js/discovery-taxonomy.js',
   './js/entitlements.js', './js/cloud-journal.js', './js/events.js', './js/explore.js', './js/field-edition-loader.js', './js/field-guide.js', './js/geo.js', './js/geofence.js',
@@ -69,7 +69,6 @@ self.addEventListener('install', (event) => event.waitUntil(Promise.all([
 
 self.addEventListener('activate', (event) => event.waitUntil(
   Promise.all([
-    // Clean up any old versioned caches so they don't linger and don't get matched by accident.
     caches.keys().then((keys) => Promise.all(
       keys
         .filter((key) => (
@@ -98,8 +97,6 @@ self.addEventListener('fetch', (event) => {
   }
 
   if (url.origin === self.location.origin && /\/assets\/[^/]+\.gif$/i.test(url.pathname)) {
-    // GIFs enter this persistent cache only after the selected companion or a
-    // real contextual state requests them. Nothing here preloads rare media.
     event.respondWith(caches.open(COMPANION_CACHE).then(async (cache) => {
       const saved = await cache.match(event.request);
       if (saved) return saved;
@@ -122,8 +119,6 @@ self.addEventListener('fetch', (event) => {
   }
 
   if (url.origin === self.location.origin) {
-    // Network-first for the app shell: always try to get the latest deploy.
-    // Only fall back to cache when the network is unavailable (offline support).
     event.respondWith(
       fetch(event.request)
         .then((response) => {
