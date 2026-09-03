@@ -22,6 +22,12 @@ import { migrateLegacyJournalAudio } from './journal-capture.js';
 import { initOnlinePane } from './online-pane.js';
 
 export async function init() {
+  if (!document.querySelector('link[href*="splash-fix.css"]')) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = './splash-fix.css?v=64';
+    document.head.appendChild(link);
+  }
   const splash = document.getElementById('appSplash');
   const pinSplashToVisibleViewport = () => {
     if (!splash || splash.classList.contains('app-splash--done')) return;
@@ -108,8 +114,6 @@ export async function init() {
   }
 }
 
-// Kept local to boot so an older cached discovery module cannot prevent the
-// whole application from starting during a service-worker rollout.
 export async function createMigratedProfile() {
   const [walks, observations, moments] = await Promise.all([db.all('walks'), db.all('observations'), db.all('moments')]);
   const profile = normalizeProfile({
