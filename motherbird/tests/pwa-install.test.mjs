@@ -22,7 +22,9 @@ test('the page includes iOS startup images and an in-app splash fallback', async
   assert.match(html, /splash-1290x2796\.png/);
   assert.match(html, /device-height: 874px/);
   assert.match(html, /splash-fix\.css/);
-  assert.match(css, /height:-webkit-fill-available/);
-  assert.doesNotMatch(css, /\.app-splash\{[^}]*100lvh/);
+  assert.match(css, /inset:0/);
+  assert.match(css, /-webkit-fill-available/);
+  assert.doesNotMatch(css, /html,body\{min-height:100dvh/);
+  assert.doesNotMatch(css, /\.app-shell,#map/);
   assert.match(loader, /visualViewport/);
 });
