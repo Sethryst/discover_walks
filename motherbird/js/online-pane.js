@@ -111,7 +111,9 @@ export async function savePersonalSeal({ interactive = false } = {}) {
 }
 export function renderOnlinePane() {
   if (el('sealedCopyStatus')) el('sealedCopyStatus').textContent = state.settings.sealedCopyAt ? `Sealed copy: ${new Date(state.settings.sealedCopyAt).toLocaleString()}` : 'Sealed copy: not saved';
-  if (el('goOnlineButton')) el('goOnlineButton').textContent = unlocked ? 'Seal now' : 'Go online';
+  if (el('goOnlineButton')) el('goOnlineButton').textContent = unlocked ? 'Seal now' : 'Online';
+  el('onlineSealPanel')?.classList.toggle('hidden', !unlocked);
+  el('onlineGateNote')?.classList.toggle('hidden', Boolean(unlocked));
 }
 export function reportOnlineError(error) {
   const message = error?.message || 'Online action could not finish. Local data is safe.';
@@ -132,8 +134,12 @@ export async function initOnlinePane() {
     });
   });
   el('offlineMenuButton')?.addEventListener('click', () => {
-    const opening = el('offlineClassList').classList.contains('hidden');
-    el('offlineClassList').classList.toggle('hidden', !opening); el('offlineMenuButton').setAttribute('aria-expanded', String(opening));
+    const picker = el('offlinePicker');
+    const opening = picker?.classList.contains('hidden');
+    picker?.classList.toggle('hidden', !opening);
+    el('offlineMenuButton').setAttribute('aria-expanded', String(opening));
+    if (opening) openOfflinePreview();
+    else if (state.settings.sealClasses?.offline !== true) closeOfflinePreview();
   });
   el('saveOfflineViewButton')?.addEventListener('click', () => void saveOfflineView().catch(reportOnlineError));
   el('goOnlineButton')?.addEventListener('click', () => void savePersonalSeal({ interactive: true }).catch(reportOnlineError));
