@@ -9,6 +9,7 @@ import { CITIES } from './constants.js';
 import { routesForCity } from './routes.js';
 import { refreshPublicMarkers } from './online.js';
 import { ICONS, markerPinHtml, markerVisual } from './poi-icons.js';
+import { civicNoticesFromPack, newsIsAvailable } from './civic-news.js';
 
 export const LAYER_GROUPS = [
   { id: 'park_infrastructure', label: 'Park infrastructure', description: 'Comfort and access while you walk', tags: ['drinking_water', 'water_fountain', 'water', 'waste_basket', 'trash', 'bench', 'shelter', 'shade', 'restrooms', 'accessible_parking'] },
@@ -40,8 +41,7 @@ const LIGHT_CHIPS = {
   cuisine: [
     { id: 'cafes', label: 'cafés', tags: ['coffee', 'coffee_shop', 'cafe'] },
     { id: 'markets', label: 'markets', tags: ['market', 'farmers_market', 'grocery', 'supermarket', 'convenience'] },
-    { id: 'restaurants', label: 'restaurants', tags: ['restaurant', 'fast_food'] },
-    { id: 'more', label: 'more places', tags: ['__low_importance_cuisine'], importanceToggle: true }
+    { id: 'restaurants', label: 'restaurants', tags: ['restaurant', 'fast_food'] }
   ]
 };
 
@@ -140,7 +140,6 @@ function ensureLayerDefaults() {
     }
   }
   for (const id of ['__routes', '__volunteer']) if (!(id in state.layerFilters.public)) state.layerFilters.public[id] = id === '__routes';
-  for (const id of ['__low_importance_news', '__low_importance_cuisine', '__low_importance_recreation']) if (!(id in state.layerFilters.public)) state.layerFilters.public[id] = false;
 }
 
 function recreationTag(id) {
@@ -214,51 +213,40 @@ function updateLayerBadge() {
 }
 
 async function loadCivicAvailability() {
-  const file = CITIES[state.activeCity]?.civicFile;
+  const city = CITIES[state.activeCity] || {};
+  const file = city.civicFile;
   if (!file) return { news: false, volunteer: false, capability: 'none', notices: [] };
   try {
     const response = await fetch(file);
     if (!response.ok) throw new Error(`Civic pack returned ${response.status}`);
     const payload = await response.json();
     const data = payload?.artifacts || payload || {};
-    const current = (item) => !item?.expiresAt || (Number.isFinite(Date.parse(item.expiresAt)) && Date.now() < Date.parse(item.expiresAt));
-    const notice = (item, kind) => {
-      const venueText = `${item?.locationLabel || ''} ${item?.venueAddress || ''}`;
-      if (!item?.title || !/^https:\/\//i.test(item.officialUrl || '') || !current(item) || /\bvirtual\b|\bonline\b|\bteams\b|\bzoom\b/i.test(venueText)) return null;
-      if (kind !== 'Meeting' || !/\b(meeting|forum|hearing|town hall|work session)\b/i.test(item.title)) return null;
-      return { ...item, kind, artifact_type: 'temporal_event', location: locateNotice(item) };
-    };
-    const notices = [
-      ...(data.meetings?.items || []).map((item) => notice(item, 'Meeting'))
-    ].filter(Boolean);
-    // Mapped official notices join the same real-pin contract used by Learn.
+    let declared = payload?.capabilities?.news;
+    if (!declared && city.capabilitiesFile) {
+      try {
+        const caps = await fetch(city.capabilitiesFile).then((res) => res.ok ? res.json() : null);
+        declared = caps?.capabilities?.news;
+      } catch { /* keep pack-derived capability */ }
+    }
+    const notices = civicNoticesFromPack(data, state.cityPois[state.activeCity] || []);
     const base = (state.cityPois[state.activeCity] || []).filter((poi) => !poi.civicNotice);
-    state.cityPois[state.activeCity] = [...base, ...notices.filter((item) => item.location).map((item) => ({ id: `news:${item.id || item.title + ':' + (item.startsAt || item.date || '')}`, name: item.title, ...item.location, category: 'event', tags: ['event'], officialUrl: item.officialUrl, startsAt: item.startsAt, freshnessExpiresAt: item.freshnessExpiresAt || item.expiresAt, locationLabel: item.locationLabel, civicNotice: true, city: state.activeCity, source: [{ name: 'Official meeting', url: item.officialUrl }] }))];
+    state.cityPois[state.activeCity] = [...base, ...notices.filter((item) => item.location).map((item) => ({
+      id: `news:${item.id || item.title + ':' + (item.startsAt || item.date || '')}`,
+      name: item.title, ...item.location, category: 'event', tags: ['event'],
+      officialUrl: item.officialUrl, startsAt: item.startsAt,
+      freshnessExpiresAt: item.freshnessExpiresAt || item.expiresAt,
+      locationLabel: item.locationLabel, civicNotice: true, city: state.activeCity,
+      source: [{ name: `Official ${String(item.kind || 'notice').toLowerCase()}`, url: item.officialUrl }]
+    }))];
     const volunteers = data.volunteer?.items || data.volunteer || [];
-    notices.sort((a, b) => String(a.startsAt || a.date || '').localeCompare(String(b.startsAt || b.date || '')) || a.title.localeCompare(b.title));
-    const declared = payload?.capabilities?.news;
-    const capability = ['furnished', 'empty-by-design', 'stale', 'none'].includes(declared) ? declared : (notices.length ? 'furnished' : 'empty-by-design');
+    const current = (item) => !item?.expiresAt || (Number.isFinite(Date.parse(item.expiresAt)) && Date.now() < Date.parse(item.expiresAt));
+    const capability = ['furnished', 'empty-by-design', 'stale', 'none'].includes(declared)
+      ? declared
+      : (notices.length ? 'furnished' : 'empty-by-design');
     return { news: notices.length > 0, volunteer: volunteers.some((item) => item?.officialUrl && current(item)), capability, notices };
   } catch {
     return { ...civicAvailability, capability: civicAvailability.notices?.length ? 'stale' : 'none' };
   }
-}
-
-function locateNotice(item) {
-  const lat = Number(item.latitude ?? item.lat ?? item.location?.lat);
-  const lng = Number(item.longitude ?? item.lng ?? item.location?.lng);
-  if (Number.isFinite(lat) && Number.isFinite(lng)) return { lat, lng };
-  const candidates = (state.cityPois[state.activeCity] || []).filter((poi) => Number.isFinite(poi.lat) && Number.isFinite(poi.lng));
-  const referencedId = item.poiId || item.placeId || item.locationId;
-  const referenced = candidates.find((poi) => referencedId && String(poi.id) === String(referencedId));
-  if (referenced) return { lat: referenced.lat, lng: referenced.lng };
-  const venue = `${item.locationLabel || ''} ${item.venueAddress || ''}`.toLocaleLowerCase();
-  if (!venue.trim()) return null;
-  const scored = candidates.map((poi) => {
-    const words = String(poi.name || '').toLocaleLowerCase().split(/\W+/).filter((word) => word.length > 3);
-    return { poi, score: words.filter((word) => venue.includes(word)).length };
-  }).filter(({ score }) => score > 0).sort((left, right) => right.score - left.score);
-  return scored[0] && scored[0].score >= 2 ? { lat: scored[0].poi.lat, lng: scored[0].poi.lng } : null;
 }
 
 function renderNewsMarkers() {
@@ -295,7 +283,6 @@ function availableMapChips(kind) {
     if (chip.id === 'routes') available = routesForCity(state.activeCity).length > 0;
     if (chip.id === 'trails') available = (state.trailSegments[state.activeCity] || []).length > 0;
     if (chip.id === 'volunteer') available = civicAvailability.volunteer;
-    if (chip.importanceToggle) available = LIGHT_CHIPS.cuisine.slice(0, 3).some((item) => item.tags.some((id) => availableTags.has(id)));
     if (packPublicMarkers(kind, chip.id).length) available = true;
     return { ...chip, tags, available };
   }).filter((chip) => chip.available);
@@ -315,8 +302,7 @@ function routeInViewport(coordinates = []) {
 function lightModel() {
   const recreation = availableMapChips('recreation');
   const cuisine = availableMapChips('cuisine');
-  const showMoreNews = state.layerFilters.public.__low_importance_news === true;
-  const newsEntries = [...civicAvailability.notices.filter((notice) => notice.location), ...(showMoreNews ? packPublicMarkers('news') : [])];
+  const newsEntries = [...civicAvailability.notices, ...packPublicMarkers('news')];
   const personalPins = curatedPersonalPlaces().filter((place) => !place.packId || place.packId === state.activeCity);
   const personal = state.personalPlaceCategories.map((category) => ({ id: category.id, label: category.name, tags: [], kind: 'personal' }));
   return [
@@ -328,10 +314,7 @@ function lightModel() {
 }
 
 function newsAvailable() {
-  const userNews = packPublicMarkers('news').length > 0;
-  if (['empty-by-design', 'none'].includes(civicAvailability.capability)) return userNews;
-  const locatedNews = civicAvailability.notices.some((notice) => notice.location);
-  return userNews || locatedNews || (civicAvailability.capability === 'stale' && locatedNews);
+  return newsIsAvailable(civicAvailability, packPublicMarkers('news').length);
 }
 
 function chipSelected(lightId, chip) {
@@ -348,21 +331,15 @@ function newsEntry(entry) {
 function expandedLightContent(light, expanded) {
   if (expanded !== light.id) return '';
   if (light.id === 'news') {
-    const more = state.layerFilters.public.__low_importance_news === true;
-    return `<div class="map-light-chips map-news-list" data-light-chips="news">${importanceControl('news')}${light.entries.map(newsEntry).join('')}</div>`;
+    return `<div class="map-light-chips map-news-list" data-light-chips="news">${light.entries.map(newsEntry).join('')}</div>`;
   }
   if (!light.chips.length && light.id !== 'personal') return '';
-  return `<div class="map-light-chips" data-light-chips="${light.id}">${light.id === 'personal' ? '<button type="button" data-open-my-maps>My maps · categories & advanced ⌄</button><button type="button" data-add-my-place>Add location</button>' : importanceControl(light.id)}${light.chips.filter((chip) => !chip.importanceToggle).map((chip) => {
+  return `<div class="map-light-chips" data-light-chips="${light.id}">${light.id === 'personal' ? '<button type="button" data-open-my-maps>My maps · categories & advanced ⌄</button><button type="button" data-add-my-place>Add location</button>' : ''}${light.chips.map((chip) => {
     const selected = chipSelected(light.id, chip);
     const category = state.personalPlaceCategories.find((category) => category.id === chip.id);
     const color = category?.color || markerVisual({ light: light.id, chipId: chip.id }).color;
     return `<button type="button" style="--chip-color:${escapeHtml(color)}" class="map-light-chip ${selected ? 'on' : ''}" data-light-chip="${light.id}:${chip.id}" aria-pressed="${selected}">${escapeHtml(chip.label)}</button>`;
   }).join('')}</div>`;
-}
-
-function importanceControl(light) {
-  const more = state.layerFilters.public[`__low_importance_${light}`] === true;
-  return `<button type="button" class="map-light-chip importance-control ${more ? 'on' : ''}" data-importance-low="${light}" aria-pressed="${more}">${more ? 'All importance · show less' : 'High importance · show more'}</button>`;
 }
 
 export function renderMapLights() {
@@ -387,7 +364,7 @@ function toggleLight(id) {
   const enabled = !state.layerLights[id];
   state.layerLights[id] = enabled;
   if (id === 'news') state.layerFilters.public.event = enabled;
-  model.chips.filter((chip) => !chip.importanceToggle).forEach((chip) => setChip(chip, enabled));
+  model.chips.forEach((chip) => setChip(chip, enabled));
   applyLayerChanges();
 }
 
@@ -522,13 +499,6 @@ function bindLayerControls() {
   el('mapLights')?.addEventListener('click', (event) => {
     if (event.target.closest('[data-open-my-maps]')) { openSheet('backpackSheet'); void import('./field-guide.js').then(({ renderFieldGuide }) => renderFieldGuide('maps')); return; }
     if (event.target.closest('[data-add-my-place]')) { window.dispatchEvent(new CustomEvent('personal-place-create-requested')); return; }
-    const importance = event.target.closest('[data-importance-low]');
-    if (importance) {
-      const id = `__low_importance_${importance.dataset.importanceLow}`;
-      state.layerFilters.public[id] = state.layerFilters.public[id] !== true;
-      applyLayerChanges();
-      return;
-    }
     const newsMarker = event.target.closest('[data-news-marker]');
     if (newsMarker) { window.dispatchEvent(new CustomEvent('public-marker-focus-requested', { detail: { markerId: newsMarker.dataset.newsMarker } })); return; }
     const light = event.target.closest('[data-light]');

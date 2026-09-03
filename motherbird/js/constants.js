@@ -169,6 +169,7 @@
     spatialIndexPath: './regions/washington-dc/spatial',
     geographySourceFile: './regions/washington-dc/geography/source.json',
     civicFile: './regions/washington-dc/civic/index.json',
+    capabilitiesFile: './regions/washington-dc/capabilities.json',
     weatherFile: './regions/washington-dc/weather.json'
   },
   sedona: {
