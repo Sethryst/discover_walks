@@ -57,3 +57,64 @@ const MARKER_TAGS = new Set([
   'supermarket', 'restaurant', 'fast_food', 'event', 'news',
   'community', 'facility', 'library', 'recreation_center', 'pantry', 'wifi'
 ]);
+
+function validIconId(id) { return ICON_IDS.has(id) ? id : null; }
+
+function historySubtypeFrom(poi, tags = []) {
+  const taggedSubtype = tags.find((tag) => String(tag).startsWith('history_'))?.slice('history_'.length);
+  return poi?.historySubtype || taggedSubtype || null;
+}
+
+// This is deliberately ordered: history subtype, then the shared tag
+// priority, then a collection icon for MY PLACES, then the pin fallback.
+export function markerIconId({ poi = null, tags = [], collectionIcon = null } = {}) {
+  const subtype = historySubtypeFrom(poi, tags);
+  const historyIcon = validIconId(HISTORY_SUBTYPES[subtype]?.icon);
+  if (historyIcon) return historyIcon;
+
+  const tag = POI_TAG_PRIORITY.find((candidate) => MARKER_TAGS.has(candidate) && tags.includes(candidate));
+  const tagIcon = validIconId(POI_ICONS[tag]) || validIconId(ICONS[tag]);
+  if (tagIcon) return tagIcon;
+
+  return validIconId(collectionIcon) || 'map-pin';
+}
+
+function colorForIcon(iconId) {
+  if (['anchor', 'droplet'].includes(iconId)) return MARKER_COLORS.water;
+  if (iconId === 'walk') return MARKER_COLORS.trail;
+  if (['bookmark', 'building', 'book-open'].includes(iconId)) return MARKER_COLORS.historic;
+  if (['coffee', 'utensils'].includes(iconId)) return MARKER_COLORS.cuisine;
+  if (iconId === 'eye' || iconId === 'tree' || iconId === 'bench') return MARKER_COLORS.nature;
+  if (iconId === 'home') return MARKER_COLORS.personal;
+  return MARKER_COLORS.fallback;
+}
+
+function colorForTags(tags, poi) {
+  if (tags.includes('event') || tags.includes('news')) return MARKER_COLORS.news;
+  if (historySubtypeFrom(poi, tags) || tags.some((tag) => ['monument', 'marker', 'landmark', 'museum', 'cemetery', 'art', 'public_art'].includes(tag))) return MARKER_COLORS.historic;
+  if (tags.some((tag) => ['coffee', 'cafe', 'coffee_shop'].includes(tag))) return MARKER_COLORS.cuisine;
+  if (tags.some((tag) => ['market', 'farmers_market', 'grocery', 'supermarket'].includes(tag))) return MARKER_COLORS.cuisineMarket;
+  if (tags.some((tag) => ['restaurant', 'fast_food'].includes(tag))) return MARKER_COLORS.cuisineRestaurant;
+  if (tags.some((tag) => ['drinking_water', 'water_fountain', 'water', 'water_access'].includes(tag))) return MARKER_COLORS.water;
+  if (tags.includes('trail')) return MARKER_COLORS.trail;
+  if (tags.some((tag) => ['rest', 'restrooms'].includes(tag))) return MARKER_COLORS.nature;
+  return colorForIcon(markerIconId({ poi, tags }));
+}
+
+export function markerVisual({ poi = null, tags = [], light = null, chipId = null, collectionIcon = null, collectionColor = null } = {}) {
+  if (light === 'personal') return { iconId: validIconId(collectionIcon) || 'map-pin', color: /^#[0-9a-f]{6}$/i.test(collectionColor || '') ? collectionColor : MARKER_COLORS.personal };
+  if (light === 'news') return { iconId: 'star', color: MARKER_COLORS.news };
+
+  // User-posted recreation/cuisine pins have only a chip, not POI tags.
+  const chipIcon = validIconId(CHIP_ICON_IDS[chipId]);
+  if (chipIcon) return { iconId: chipIcon, color: CHIP_COLORS[chipId] || colorForIcon(chipIcon) };
+
+  const iconId = markerIconId({ poi, tags, collectionIcon });
+  return { iconId, color: colorForTags(tags, poi) };
+}
+
+export function markerPinHtml(visual) {
+  const iconId = validIconId(visual?.iconId) || 'map-pin';
+  const color = visual?.color || MARKER_COLORS.fallback;
+  return `<div class="poi-marker" style="--marker-color:${color}"><span class="poi-marker-glyph poi-icon-${iconId}" aria-hidden="true"></span></div>`;
+}
