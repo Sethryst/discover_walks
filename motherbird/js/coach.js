@@ -6,7 +6,7 @@ export const COACH_STEPS = [
   { target: 'locateButton', text: 'Tap the compass to center on you.' },
   { target: 'homeCityButton', text: 'Tap the region name to change packs.' },
   { target: 'walkButton', text: 'Tap Start walk to record your route.' },
-  { target: 'mapSearchInput', text: 'Type a place name to find it.' },
+  { target: 'mapSearchInput', text: 'Search a place, trail, or wildlife name.' },
   { target: 'settingsButton', text: 'Tap the backpack to open stories.' },
   { target: 'journalButton', text: 'Tap the grid to write notes.' },
   { target: 'mapPencilButton', text: 'Tap the pencil to sketch the map.' },
