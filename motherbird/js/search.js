@@ -3,6 +3,7 @@ import { isVisiblePoi, searchPois, searchOsm } from './poi.js';
 import { escapeHtml } from './utils.js';
 import { mergeExplorePois } from './learn-explore.js';
 import './learn-folders.js';
+import './news-map.js';
 
 void mergeExplorePois();
 
