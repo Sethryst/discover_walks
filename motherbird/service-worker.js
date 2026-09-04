@@ -1,7 +1,7 @@
 // Keep the whole module graph with the shell. Caching only app.js leaves an
 // offline (or briefly disconnected) reload with a blank app when any imported
 // module was not already in the runtime cache.
-const APP_CACHE = 'walk-wildlife-shell-v75'; // bump when shell assets change
+const APP_CACHE = 'walk-wildlife-shell-v76'; // bump when shell assets change
 const TILE_CACHE = 'walk-wildlife-osm-viewed-tiles-v1';
 const LIBRARY_CACHE = 'walk-wildlife-library-v2';
 const COMPANION_CACHE = 'walk-wildlife-companion-media-v2';
@@ -9,6 +9,9 @@ const libraryPath = new URL('./vendor/', self.registration.scope).pathname;
 const shell = [
   ...['anchor', 'book-open', 'bookmark', 'coffee', 'droplet', 'eye', 'star', 'tree', 'walk', 'navigation', 'search'].map((icon) => `./icons/${icon}.svg`),
   './js/online-pane.js', './js/open-payload.js', './js/sealed-data.js', './js/offline-view.js', './js/friend-walk.js', './js/place-details.js',
+  './js/offline-map-style.js', './js/installed-tiles.js',
+  './js/heartbeat.js', './js/onboarding.js', './js/reflection.js', './js/region-favorites.js', './js/spatial-sync-outbox.js', './js/spatial-sync-policy.js',
+  './data/dc-official-trails.js', './icons/plus.svg',
   './', './index.html', './watch.html', './styles.css', './watch.css', './legal.css', './privacy.html', './terms.html', './app.js', './manifest.webmanifest', './watch.webmanifest', './supabase-config.js',
   './assets/pwa-icon-192.png', './assets/pwa-icon-512.png', './assets/pwa-maskable-512.png', './assets/apple-touch-icon.png', './assets/splash-screen.jpeg', './assets/splash-1170x2532.png', './assets/splash-1290x2796.png', './assets/splash-2048x2732.png',
   './js/archive.js', './js/backup.js', './js/city.js', './js/civic.js', './js/constants.js', './js/discovery.js', './js/discovery-taxonomy.js',
@@ -53,6 +56,7 @@ const libraryAssets = [
   './vendor/rbush/rbush.js',
   './vendor/rbush/quickselect.js'
 ];
+const shellPaths = new Set(shell.map((asset) => new URL(asset, self.registration.scope).pathname));
 
 
 self.addEventListener('install', (event) => event.waitUntil(Promise.all([
@@ -127,11 +131,17 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       fetch(event.request)
         .then((response) => {
-          const copy = response.clone();
-          caches.open(APP_CACHE).then((cache) => cache.put(event.request, copy));
+          if (response.ok) {
+            const copy = response.clone();
+            event.waitUntil(caches.open(APP_CACHE).then((cache) => cache.put(event.request, copy)));
+          }
           return response;
         })
-        .catch(() => caches.match(event.request))
+        .catch(async () => (await caches.match(event.request))
+          // The first visit loads app.js?v=... before the worker controls it.
+          // Only known shell paths may fall back to their unversioned pre-cache.
+          || (shellPaths.has(url.pathname) ? await caches.match(`${url.origin}${url.pathname}`) : null)
+          || Response.error())
     );
   }
 });

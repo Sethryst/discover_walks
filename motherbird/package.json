@@ -16,6 +16,7 @@
     "audit:endpoints": "node tools/audit-endpoint-registrations.mjs",
     "audit:endpoints:live": "node tools/audit-endpoint-registrations.mjs --live --record",
     "test": "node --test tests/*.test.mjs",
+    "test:sealed-offline": "node --test tests/sealed-online.test.mjs tests/offline-tiles-proof.test.mjs tests/cloud-journal.test.mjs",
     "audit:imports": "node tools/audit-imports.mjs",
     "sync:gremlin-geography": "node tools/sync-gremlin-geography.mjs",
     "sync:gremlin-pois": "node tools/sync-gremlin-pois.mjs",

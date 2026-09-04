@@ -6,7 +6,6 @@
   <meta name="theme-color" content="#173c35" />
   <meta name="description" content="A local-first walking, history, and wildlife journal." />
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="icon" href="./assets/pwa-icon-192.png" sizes="192x192" type="image/png" />
   <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
@@ -17,7 +16,7 @@
   <link rel="stylesheet" href="./vendor/leaflet-markercluster/MarkerCluster.css" />
   <link rel="stylesheet" href="./vendor/leaflet-markercluster/MarkerCluster.Default.css" />
   <link rel="stylesheet" href="./vendor/maplibre-gl.css" />
-  <link rel="stylesheet" href="./styles.css?v=62" />
+  <link rel="stylesheet" href="./styles.css?v=63" />
   <title>Walk &amp; Wildlife</title>
 </head>
 <body>
@@ -71,7 +70,17 @@
         <label><input type="checkbox" data-seal-class="voice" /> Voice</label>
       </fieldset>
       <output id="sealedCopyStatus" aria-live="polite">Sealed copy: not saved</output>
-      <section id="offlineModePreview" class="hidden"><h3>Offline view preview</h3><div id="offlineTilePreview"></div><div id="offlineLayerNames"></div><label>Range<select id="offlineRangeSelect"><option value="radius">Geofence radius</option><option value="bbox">Installed pack bounds</option></select></label><label>Zoom<input id="offlineZoomInput" type="number" min="0" max="22" /></label><button id="saveOfflineViewButton" type="button">Save view</button><small>Only installed tiles. No new county downloads.</small></section>
+      <section id="offlineModePreview" class="hidden">
+        <h3>Offline view</h3>
+        <fieldset class="offline-presets"><legend>SVG style presets</legend><div id="offlinePresetChoices"></div></fieldset>
+        <small>Illustrative style samples, not satellite imagery or installed coverage.</small>
+        <h4>Installed PMTiles preview</h4><div id="offlineTilePreview"></div><div id="offlineLayerNames"></div>
+        <label>Range<select id="offlineRangeSelect"><option value="radius">Geofence radius</option><option value="bbox">Installed pack bounds</option></select></label>
+        <label>Zoom<input id="offlineZoomInput" type="number" min="0" max="22" /></label>
+        <button id="verifyOfflineTilesButton" type="button">Verify installed tile</button><output id="offlineTileStatus" aria-live="polite"></output>
+        <button id="saveOfflineViewButton" type="button">Save view</button>
+        <small>Tiles stay on-device. Only this view's settings enter the sealed copy when Offline mode is checked. No new county downloads.</small>
+      </section>
       <section class="open-controls"><h3>OPEN</h3><form id="openPhraseForm" class="inline-form"><input id="openPhraseInput" aria-label="Phrase or invite" autocomplete="off" placeholder="Phrase, pointer, or JSON" /><button type="submit">Go</button></form>
         <button id="openQrButton" type="button">Scan QR</button><label class="secondary-button import-label">Open file<input id="openFileInput" type="file" accept=".json,.walkplan,.walkfilter,.walkplaces,.walkseal,application/json" /></label>
         <div id="qrScanPanel" class="hidden"><video id="qrScanVideo" muted playsinline></video><button id="stopQrButton" type="button">Stop camera</button></div>

@@ -134,6 +134,8 @@ export async function initOnlinePane() {
   el('offlineMenuButton')?.addEventListener('click', () => {
     const opening = el('offlineClassList').classList.contains('hidden');
     el('offlineClassList').classList.toggle('hidden', !opening); el('offlineMenuButton').setAttribute('aria-expanded', String(opening));
+    if (opening && state.settings.sealClasses.offline) openOfflinePreview();
+    else closeOfflinePreview();
   });
   el('saveOfflineViewButton')?.addEventListener('click', () => void saveOfflineView().catch(reportOnlineError));
   el('goOnlineButton')?.addEventListener('click', () => void savePersonalSeal({ interactive: true }).catch(reportOnlineError));
