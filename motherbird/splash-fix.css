@@ -125,3 +125,11 @@
 .journal-open .map-intro-hint,.backpack-open .map-intro-hint,
 .journal-open .coach-spotlight,.backpack-open .coach-spotlight,
 .journal-open .coach-pointer,.backpack-open .coach-pointer{display:none !important}
+.learn-history{display:grid;gap:8px}
+.learn-progress{margin:0;font:600 .78rem/1.35 system-ui,sans-serif;color:#173c35}
+.learn-views{display:flex;gap:6px}
+.learn-views button{border:1px solid rgba(23,60,53,.24);background:#fff;border-radius:8px;padding:6px 8px;font-size:.72rem;font-weight:800}
+.learn-views button.active{background:#173c35;color:#fff}
+.learn-site{display:grid;gap:6px}
+.learn-check{display:flex;gap:6px;align-items:center;font-size:.68rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.learn-site-actions{display:flex;gap:6px}
