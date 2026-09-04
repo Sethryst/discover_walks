@@ -16,6 +16,13 @@ test('historic and park categories keep their own filter tags', () => {
   assert.equal(park.includes('community'), false);
 });
 
+test('region route and water types map to known filter tags', () => {
+  const route = applyRegionFilterTags({ category: 'route', type: 'footway' }, []);
+  assert.ok(route.includes('trail'));
+  const well = applyRegionFilterTags({ type: 'Well' }, []);
+  assert.ok(well.includes('water'));
+});
+
 test('every migrated place gets a home pack id', () => {
   assert.equal(assignPoiHome({ id: 'x' }, 'boston'), 'boston');
   assert.equal(assignPoiHome({ home: 'fairfax' }, 'boston'), 'fairfax');
