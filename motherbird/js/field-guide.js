@@ -9,7 +9,7 @@ import db from './storage.js';
 import { isVisiblePoi, selectImportantPois } from './poi.js';
 import { placeLight, publicPlaceSource, walkerDetails } from './place-details.js';
 import { installedPackBounds } from './offline-view.js';
-import { isHistorySite, renderLearnHistory, setLearnView, setLearnScreen, setActiveWatershed } from './learn-history.js';
+import { isHistorySite, renderLearnHistory, setLearnView, setLearnScreen, setActiveWatershed, setBattlefieldEra, setBattlefieldYear, setBattlefieldSite, stepBattlefieldBack } from './learn-history.js';
 import { setPoiVisited } from './poi-visit-tracking.js';
 
 const FORMAT = 'walk-wildlife-plan-v1';
@@ -120,7 +120,7 @@ export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') 
   const point = state.currentPosition || state.lastPosition || (tab === 'learn' ? state.map?.getCenter?.() : null);
   const note = el('fieldGuideOrderNote');
   if (note) {
-    note.textContent = tab === 'learn' ? 'Choose Track VA history sites or View watersheds.' : (point ? `Nearest first from your ${state.currentPosition ? 'current' : state.lastPosition ? 'last' : 'map-center'} fix.` : 'Location is off, so this stays in pack order.');
+    note.textContent = tab === 'learn' ? 'Choose a Learn view.' : (point ? `Nearest first from your ${state.currentPosition ? 'current' : state.lastPosition ? 'last' : 'map-center'} fix.` : 'Location is off, so this stays in pack order.');
     note.classList.remove('hidden');
   }
   const poiById = new Map((state.cityPois[state.activeCity] || []).map((poi) => [String(poi.id), poi]));
@@ -207,6 +207,19 @@ export function initFieldGuideFilters() {
     if (home) { setLearnScreen('home'); void renderFieldGuide('learn'); return; }
     const basinBack = event.target.closest('[data-learn-watershed-back]');
     if (basinBack) { setLearnScreen('watersheds'); setActiveWatershed(null); void renderFieldGuide('learn'); return; }
+    const battleBack = event.target.closest('[data-learn-battle-back]');
+    if (battleBack) {
+      const level = stepBattlefieldBack();
+      setLearnScreen(level === 'home' ? 'home' : 'battlefields');
+      void renderFieldGuide('learn');
+      return;
+    }
+    const era = event.target.closest('[data-learn-era]');
+    if (era) { setLearnScreen('battlefields'); setBattlefieldEra(era.dataset.learnEra); void renderFieldGuide('learn'); return; }
+    const year = event.target.closest('[data-learn-year]');
+    if (year) { setLearnScreen('battlefields'); setBattlefieldYear(year.dataset.learnYear); void renderFieldGuide('learn'); return; }
+    const battle = event.target.closest('[data-learn-battle]');
+    if (battle) { setLearnScreen('battlefields'); setBattlefieldSite(battle.dataset.learnBattle); void renderFieldGuide('learn'); return; }
     const openLearn = event.target.closest('[data-learn-open]');
     if (openLearn) { setLearnScreen(openLearn.dataset.learnOpen); void renderFieldGuide('learn'); return; }
     const basin = event.target.closest('[data-learn-watershed]');
