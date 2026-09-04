@@ -15,12 +15,14 @@ export const LEARN_FOLDERS = Object.freeze([
 let splitsCache = null;
 let watershedCache = null;
 let battlefieldCache = null;
+let lensCache = null;
 let learnView = 'discover';
 let learnScreen = 'home';
 let activeWatershedId = null;
 let activeEraId = null;
 let activeYear = null;
 let activeBattleId = null;
+let activeLensItemId = null;
 
 function idsFromProfile(profile) {
   return new Set(profile?.visitedPoiIds || []);
@@ -150,13 +152,15 @@ export function setLearnView(view) { learnView = LEARN_VIEWS.includes(view) ? vi
 export function currentLearnView() { return learnView; }
 export function isCheckedSite(poi, profile) { return idsFromProfile(profile).has(String(poi?.id || '')); }
 export function setLearnScreen(screen) {
-  learnScreen = ['home', 'history', 'watersheds', 'battlefields'].includes(screen) ? screen : 'home';
+  learnScreen = ['home', 'history', 'watersheds', 'battlefields', 'names', 'protected', 'wildlife'].includes(screen) ? screen : 'home';
   if (screen !== 'battlefields') { activeEraId = null; activeYear = null; activeBattleId = null; }
+  if (!['names', 'protected', 'wildlife'].includes(screen)) activeLensItemId = null;
   return learnScreen;
 }
 export function setLearnSheetMin(on) { document.getElementById('backpackSheet')?.classList.toggle('learn-min', !!on); }
 export function currentLearnScreen() { return learnScreen; }
 export function setActiveWatershed(id) { activeWatershedId = id || null; return activeWatershedId; }
+export function setActiveLensItem(id) { activeLensItemId = id || null; return activeLensItemId; }
 export function setBattlefieldEra(id) { activeEraId = id || null; activeYear = null; activeBattleId = null; return activeEraId; }
 export function setBattlefieldYear(year) { activeYear = year == null ? null : Number(year); activeBattleId = null; return activeYear; }
 export function setBattlefieldSite(id) { activeBattleId = id || null; return activeBattleId; }
@@ -191,7 +195,7 @@ export function placesInWatershed(pois, feature) {
   return (pois || []).filter((poi) => Number.isFinite(Number(poi.lat)) && Number.isFinite(Number(poi.lng)) && pointInFeature(Number(poi.lng), Number(poi.lat), feature));
 }
 export function learnHomeHtml() {
-  return `<section class="learn-history"><button type="button" class="guide-card learn-entry" data-learn-open="history"><h3>Track VA history sites</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="watersheds"><h3>View watersheds</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="battlefields"><h3>View historic battlefields</h3></button></section>`;
+  return `<section class="learn-history"><button type="button" class="guide-card learn-entry" data-learn-open="history"><h3>Track VA history sites</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="watersheds"><h3>View watersheds</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="battlefields"><h3>View historic battlefields</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="names"><h3>Name this landscape</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="protected"><h3>Who protects this land</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="wildlife"><h3>Wildlife recorded here</h3></button></section>`;
 }
 export function watershedListHtml(features, selectedId, places) {
   const selected = (features || []).find((feature) => feature.properties?.id === selectedId);
@@ -262,6 +266,44 @@ export function paintBattlefield({ map, leaflet, battle }) {
   map.setView([battle.lat, battle.lng], 12);
   return layer;
 }
+export async function loadLearnLenses() {
+  if (lensCache) return lensCache;
+  try {
+    const response = await fetch('./data/learn/discover/lenses.json');
+    lensCache = response.ok ? await response.json() : { lenses: [] };
+  } catch { lensCache = { lenses: [] }; }
+  return lensCache;
+}
+function countWildlifeNotes() {
+  return (state.cityPois[state.activeCity] || []).filter((poi) => /wildlife|wetland|marsh|refuge/.test(`${poi.category || ''} ${(poi.tags || []).join(' ')}`.toLowerCase())).length;
+}
+export function lensHtml(lens, selected, seenWildlife = 0) {
+  if (!lens) return `<section class="learn-history"><button type="button" class="secondary-button" data-learn-home="1">Back</button><p class="empty-state">This source is not loaded.</p></section>`;
+  if (selected) {
+    const extra = lens.id === 'wildlife' ? `<p>${seenWildlife} wildlife sites sit in this pack.</p>` : '';
+    const manager = selected.manager ? `<p>${escapeHtml(selected.manager)}</p>` : '';
+    return `<section class="learn-history learn-region"><button type="button" class="secondary-button" data-learn-lens-back="1">Select another</button><h3>${escapeHtml(selected.name)}</h3><p>${escapeHtml(selected.kind || '')}. ${escapeHtml(selected.note || '')}</p>${manager}${extra}<a href="${escapeHtml(lens.sourceUrl)}" target="_blank" rel="noreferrer">${escapeHtml(lens.sourceName)}</a></section>`;
+  }
+  const lead = lens.id === 'wildlife' ? `<p class="learn-progress">You are in the ${escapeHtml(lens.region || 'Piedmont')}. ${seenWildlife} wildlife sites sit in this pack.</p>` : `<p class="learn-progress">${escapeHtml(lens.question || '')}</p>`;
+  const list = (lens.items || []).map((item) => `<button type="button" class="guide-card" data-learn-lens-item="${escapeHtml(item.id)}"><h3>${escapeHtml(item.name)}</h3></button>`).join('');
+  return `<section class="learn-history"><button type="button" class="secondary-button" data-learn-home="1">Back</button>${lead}${list}</section>`;
+}
+export function paintLensItem({ map, leaflet, lens, selected }) {
+  state.learnLensLayer?.remove(); state.learnLensLayer = null;
+  if (!map || !leaflet) return null;
+  const items = selected ? [selected] : (lens?.items || []);
+  const layer = leaflet.layerGroup();
+  const points = [];
+  for (const item of items) {
+    if (!Number.isFinite(Number(item.lat))) continue;
+    points.push([item.lat, item.lng]);
+    leaflet.circleMarker([item.lat, item.lng], { radius: selected ? 10 : 6, color: selected ? '#7a2d1d' : '#2d7259', weight: 2, fillColor: selected ? 'rgba(122,45,29,0.28)' : 'rgba(45,114,89,0.22)', fillOpacity: 1 }).addTo(layer);
+  }
+  layer.addTo(map); state.learnLensLayer = layer;
+  if (selected) map.setView([selected.lat, selected.lng], 13);
+  else if (points.length > 1 && map.fitBounds) map.fitBounds(points, { padding: [24, 24], maxZoom: 12 });
+  return layer;
+}
 export async function renderLearnHistory(target, point) {
   if (learnScreen === 'home') {
     setLearnSheetMin(false);
@@ -289,6 +331,15 @@ export async function renderLearnHistory(target, point) {
     setLearnSheetMin(!!battle);
     target.innerHTML = battlefieldHtml({ eras, era, year, battle });
     paintBattlefield({ map: state.map, leaflet: globalThis.L, battle });
+    return;
+  }
+  if (['names', 'protected', 'wildlife'].includes(learnScreen)) {
+    const catalog = await loadLearnLenses();
+    const lens = (catalog.lenses || []).find((item) => item.id === learnScreen) || null;
+    const selected = (lens?.items || []).find((item) => item.id === activeLensItemId) || null;
+    setLearnSheetMin(!!selected);
+    target.innerHTML = lensHtml(lens, selected, countWildlifeNotes());
+    paintLensItem({ map: state.map, leaflet: globalThis.L, lens, selected });
     return;
   }
   setLearnSheetMin(false);
