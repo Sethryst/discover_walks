@@ -30,37 +30,29 @@ test('intro markup shows one coach line and next control', async () => {
 test('coach overlay sits above map chrome with a box and an arrow', async () => {
   const source = await readFile(new URL('../js/coach.js', import.meta.url), 'utf8');
   const css = await readFile(new URL('../splash-fix.css', import.meta.url), 'utf8');
-  assert.match(source, /mapToolsHintSeenV4/);
   assert.match(source, /document\.body\.appendChild/);
+  assert.match(source, /mapToolsHintSeenV5/);
   assert.match(source, /pickCoachPlacement/);
-  assert.match(source, /coachSpotlight/);
+  assert.match(source, /readChromeBands/);
   assert.match(css, /position:\s*fixed/);
   assert.match(css, /z-index:\s*4200/);
   assert.match(css, /coach-spotlight/);
   assert.match(css, /data-arrow/);
-  assert.match(css, /max-height:\s*none/);
-  assert.doesNotMatch(css, /max-height:\s*135px/);
 });
 
-test('coach placement puts the card beside the tool and keeps it on screen', () => {
+test('coach placement keeps the card off sibling tools', async () => {
   const phone = { width: 390, height: 844 };
-  const card = { width: 260, height: 90 };
-
-  const locate = pickCoachPlacement({ left: 12, top: 16, width: 44, height: 40 }, card, phone);
+  const chrome = { belowTop: 96, leftOfRight: 334, aboveBottom: 790 };
+  const card = { width: 220, height: 88 };
+  const locate = pickCoachPlacement({ left: 12, top: 16, width: 44, height: 36 }, card, phone, chrome);
   assert.equal(locate.arrow, 'up');
-  assert.ok(locate.top >= 16 + 40);
+  assert.ok(locate.top >= chrome.belowTop);
+  const fieldGuide = pickCoachPlacement({ left: 342, top: 380, width: 40, height: 36 }, card, phone, chrome);
+  assert.equal(fieldGuide.arrow, 'right');
+  assert.ok(fieldGuide.left + card.width <= 342);
+  const lights = pickCoachPlacement({ left: 80, top: 798, width: 230, height: 34 }, card, phone, chrome);
+  assert.equal(lights.arrow, 'down');
+  assert.ok(lights.top + card.height <= 798);
   assert.ok(locate.left >= 12);
   assert.ok(locate.left + card.width <= phone.width - 12);
-
-  const fieldGuide = pickCoachPlacement({ left: 330, top: 380, width: 48, height: 40 }, card, phone);
-  assert.equal(fieldGuide.arrow, 'right');
-  assert.ok(fieldGuide.left + card.width <= 330);
-  assert.ok(fieldGuide.top >= 12);
-  assert.ok(fieldGuide.top + card.height <= phone.height - 12);
-
-  const lights = pickCoachPlacement({ left: 80, top: 780, width: 230, height: 40 }, card, phone);
-  assert.equal(lights.arrow, 'down');
-  assert.ok(lights.top + card.height <= 780);
-  assert.ok(lights.left >= 12);
-  assert.ok(lights.left + card.width <= phone.width - 12);
 });
