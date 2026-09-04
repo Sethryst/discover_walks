@@ -2,6 +2,7 @@ import { state } from './state.js';
 import { isVisiblePoi, searchPois, searchOsm } from './poi.js';
 import { escapeHtml } from './utils.js';
 import { mergeExplorePois } from './learn-explore.js';
+import './learn-folders.js';
 
 void mergeExplorePois();
 
