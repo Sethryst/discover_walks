@@ -11,6 +11,7 @@ import { placeLight, publicPlaceSource, walkerDetails } from './place-details.js
 import { installedPackBounds } from './offline-view.js';
 import { isHistorySite, renderLearnHistory, setLearnView, setLearnScreen, setActiveWatershed, setBattlefieldEra, setBattlefieldYear, setBattlefieldSite, stepBattlefieldBack, setActiveLensItem } from './learn-history.js';
 import { setPoiVisited } from './poi-visit-tracking.js';
+import { initMapsFolders, renderMapsLibrary } from './maps-folders.js';
 
 const FORMAT = 'walk-wildlife-plan-v1';
 let selectedPlaceId = null;
@@ -100,16 +101,21 @@ export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') 
   window.dispatchEvent(new CustomEvent('guide-tab-changed', { detail: { tab } }));
   const target = el('fieldGuideList'); if (!target) return;
   document.querySelectorAll('[data-guide-tab]').forEach((button) => button.classList.toggle('active', button.dataset.guideTab === tab));
-  target.classList.toggle('hidden', ['online','maps'].includes(tab));
+  target.classList.toggle('hidden', tab === 'online');
   el('sharePanel')?.classList.toggle('hidden', tab !== 'online');
   el('myMapsPanel')?.classList.toggle('hidden', tab !== 'maps');
+  if (tab === 'maps') {
+    el('fieldGuideOrderNote')?.classList.add('hidden');
+    renderMapsLibrary(target);
+    return;
+  }
   if (tab !== 'learn') {
     shadeLearnBounds(false);
     document.getElementById('backpackSheet')?.classList.remove('learn-min');
   }
-  if (['online','maps'].includes(tab)) {
+  if (tab === 'online') {
     el('fieldGuideOrderNote')?.classList.add('hidden');
-    if (tab === 'online') window.dispatchEvent(new CustomEvent('online-panel-render-requested'));
+    window.dispatchEvent(new CustomEvent('online-panel-render-requested'));
     return;
   }
   const data = await guideData();
@@ -191,13 +197,14 @@ async function paintCard(cardId) {
   paintWalkPlan({ format: FORMAT, ...planForCard(card) });
 }
 export function initFieldGuideFilters() {
+  initMapsFolders();
   window.addEventListener('map-overlay-changed', ({ detail }) => { if (!detail.open || detail.id !== 'backpackSheet') shadeLearnBounds(false); });
   window.addEventListener('layer-state-dirty', () => { if (state.modalOpen === 'backpackSheet' && state.fieldGuideTab === 'learn') void renderFieldGuide('learn'); });
   window.addEventListener('poi-visit-state-changed', () => { if (state.fieldGuideTab === 'learn') void renderFieldGuide('learn'); });
   document.querySelector('.guide-tabs')?.addEventListener('click', (event) => { const button = event.target.closest('[data-guide-tab]'); if (button) void renderFieldGuide(button.dataset.guideTab); });
   el('fieldGuideList')?.addEventListener('click', (event) => {
     const cardElement = event.target.closest('[data-guide-card]');
-    if (cardElement && !event.target.closest('a,button')) { void paintCard(cardElement.dataset.guideCard); return; }
+    if (cardElement && cardElement.dataset.guideCard && !event.target.closest('a,button')) { void paintCard(cardElement.dataset.guideCard); return; }
     const walk = event.target.closest('[data-guide-walk]'); if (walk) { void paintCard(walk.dataset.guideWalk); return; }
     const home = event.target.closest('[data-learn-home]');
     if (home) { setLearnScreen('home'); void renderFieldGuide('learn'); return; }
