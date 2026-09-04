@@ -9,7 +9,7 @@ import db from './storage.js';
 import { isVisiblePoi, selectImportantPois } from './poi.js';
 import { placeLight, publicPlaceSource, walkerDetails } from './place-details.js';
 import { installedPackBounds } from './offline-view.js';
-import { isHistorySite, renderLearnHistory, setLearnView, setLearnScreen, setActiveWatershed, setBattlefieldEra, setBattlefieldYear, setBattlefieldSite, stepBattlefieldBack } from './learn-history.js';
+import { isHistorySite, renderLearnHistory, setLearnView, setLearnScreen, setActiveWatershed, setBattlefieldEra, setBattlefieldYear, setBattlefieldSite, stepBattlefieldBack, setActiveLensItem } from './learn-history.js';
 import { setPoiVisited } from './poi-visit-tracking.js';
 
 const FORMAT = 'walk-wildlife-plan-v1';
@@ -48,7 +48,7 @@ async function guideData() {
     const source = publicPlaceSource(poi, authored);
     if (!source) return [];
     const details = walkerDetails(poi);
-    return [{ ...authored, id: authored?.id || `learn:${poi.id}`, placeId: String(poi.id), place_id: String(poi.id), light: placeLight(poi), question: authored?.question || poi.name, short: authored?.short || details.map((row) => row.text).join(' · ') || `${poi.name} is a named stop in this pack. Open the public source for its local story and visiting details.`, officialUrl: source.url, provenance: { name: source.name || 'Public source' } }];
+    return [{ ...authored, id: authored?.id || `learn:${poi.id}`, placeId: String(poi.id), place_id: String(poi.id), light: placeLight(poi), question: authored?.question || poi.name, short: authored?.short || details.map((row) => row.text).join(' \u00b7 ') || `${poi.name} is a named stop in this pack. Open the public source for its local story and visiting details.`, officialUrl: source.url, provenance: { name: source.name || 'Public source' } }];
   });
   state.fieldGuideData = { city: state.activeCity, discover: discoverCards, learn: combined };
   return state.fieldGuideData;
@@ -66,10 +66,6 @@ function walkingDirection(card) {
   const edge = (state.trailSegments[state.activeCity] || []).find((edge) => edge.placeIds?.includes(card.placeId));
   return edge ? `Follow the packaged ${edge.name} line to this stop.` : 'No packaged walking direction for this stop yet.';
 }
-function learnCard(card, intro = false) {
-  const direction = walkingDirection(card);
-  return `<article class="guide-card learn-story ${intro ? 'intro-story' : ''}" data-learn-place="${escapeHtml(card.placeId)}" data-story-light="${card.light}"><small>${card.light.toUpperCase()}${intro ? ' · NEAREST STORY' : ''}${distanceLabel(card.distance)}</small><h3>${escapeHtml(card.question)}</h3><p>${escapeHtml(card.short)}</p><a href="${escapeHtml(card.officialUrl)}" target="_blank" rel="noreferrer">${escapeHtml(card.provenance?.name || 'Official source')} ↗</a>${direction ? `<p class="walking-direction">${escapeHtml(direction)}</p>` : ''}<button class="secondary-button" type="button" data-learn-walk="${escapeHtml(card.placeId)}">Walk there</button></article>`;
-}
 export function nearestLearnStories(cards, pois, point) {
   const byId = new Map(pois.map((poi) => [String(poi.id), poi]));
   const ordered = sortGuideCardsByDistance(cards, point, (card) => [byId.get(card.placeId)]);
@@ -86,7 +82,7 @@ function shadeLearnBounds(enabled) {
 }
 function distanceLabel(distance) {
   if (!Number.isFinite(distance)) return '';
-  return distance < 1000 ? ` · ${Math.round(distance)} m` : ` · ${(distance / 1609.344).toFixed(1)} mi`;
+  return distance < 1000 ? ` \u00b7 ${Math.round(distance)} m` : ` \u00b7 ${(distance / 1609.344).toFixed(1)} mi`;
 }
 export function sortGuideCardsByDistance(cards, point, coordinateFor) {
   if (!point) return cards.map((card) => ({ ...card, distance: null }));
@@ -167,7 +163,7 @@ export function downloadCurrentWalkPlan() {
 export async function sendCurrentWalkPlan() {
   const plan = currentWalkPlan();
   if (!plan) { toast('Paint a walk before sending it.'); return; }
-  const names = (state.plannedRoute.stops || []).map((stop) => stop.name).filter(Boolean).join(' → ');
+  const names = (state.plannedRoute.stops || []).map((stop) => stop.name).filter(Boolean).join(' \u2192 ');
   const text = [plan.title, plan.reason, names].filter(Boolean).join('\n');
   if (navigator.share) {
     const file = new File([JSON.stringify(plan, null, 2)], `${plan.title.replace(/[^a-z0-9]+/gi, '-')}.walkplan`, { type: 'application/json' });
@@ -220,6 +216,10 @@ export function initFieldGuideFilters() {
     if (year) { setLearnScreen('battlefields'); setBattlefieldYear(year.dataset.learnYear); void renderFieldGuide('learn'); return; }
     const battle = event.target.closest('[data-learn-battle]');
     if (battle) { setLearnScreen('battlefields'); setBattlefieldSite(battle.dataset.learnBattle); void renderFieldGuide('learn'); return; }
+    const lensBack = event.target.closest('[data-learn-lens-back]');
+    if (lensBack) { setActiveLensItem(null); void renderFieldGuide('learn'); return; }
+    const lensItem = event.target.closest('[data-learn-lens-item]');
+    if (lensItem) { setActiveLensItem(lensItem.dataset.learnLensItem); void renderFieldGuide('learn'); return; }
     const openLearn = event.target.closest('[data-learn-open]');
     if (openLearn) { setLearnScreen(openLearn.dataset.learnOpen); void renderFieldGuide('learn'); return; }
     const basin = event.target.closest('[data-learn-watershed]');
