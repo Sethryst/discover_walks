@@ -26,7 +26,7 @@ export async function init() {
   if (!document.querySelector('link[href*="splash-fix.css"]')) {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = './splash-fix.css?v=69';
+    link.href = './splash-fix.css?v=70';
     document.head.appendChild(link);
   }
   const splash = document.getElementById('appSplash');
