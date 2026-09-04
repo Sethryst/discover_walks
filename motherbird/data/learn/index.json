@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "artifactType": "learn-folder-index",
+  "folders": [
+    {
+      "id": "discover",
+      "label": "Still to discover",
+      "path": "./data/learn/discover",
+      "children": [
+        { "id": "sites", "label": "History sites", "status": "live", "source": "pack" },
+        { "id": "watersheds", "label": "Watersheds", "status": "research", "file": "watersheds.json" },
+        { "id": "streams", "label": "Streams", "status": "research", "file": "streams.json" }
+      ]
+    },
+    {
+      "id": "history",
+      "label": "History",
+      "path": "./data/learn/history",
+      "children": [
+        { "id": "sites", "label": "Checked sites", "status": "live", "source": "pack" },
+        { "id": "eras", "label": "Historic eras", "status": "research", "file": "eras.json" },
+        { "id": "splits", "label": "Virginia pack splits", "status": "live", "file": "pack-splits.json" }
+      ]
+    }
+  ]
+}
