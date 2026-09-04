@@ -60,3 +60,9 @@
 .learn-art-wave{background:radial-gradient(circle at 20% 70%,#8ec5e8 0 8px,transparent 9px),linear-gradient(180deg,#1d4f7a,#7eb0d4)}
 .learn-art-ridge{background:linear-gradient(135deg,transparent 40%,#1f5a46 41% 60%,transparent 61%),linear-gradient(#2d7259,#8fbfa8)}
 .learn-art-leaf{background:radial-gradient(circle at 30% 40%,#c5dd8a 0 10px,transparent 11px),linear-gradient(#4a6b2f,#87a85a)}
+#myMapsPanel .learn-library{padding-bottom:12px}
+#myMapsPanel .maps-folder small{font-size:.68rem}
+#myMapsPanel .maps-place{cursor:pointer}
+#myMapsPanel .maps-folder-form,.maps-library-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+#myMapsPanel .maps-folder-form input{min-width:0;flex:1;border:1px solid var(--line);border-radius:9px;background:#fffdf6;padding:8px}
+#myMapsPanel .learn-groups{margin:4px 0 8px}
