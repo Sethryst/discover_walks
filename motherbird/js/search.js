@@ -1,6 +1,9 @@
 import { state } from './state.js';
 import { isVisiblePoi, searchPois, searchOsm } from './poi.js';
 import { escapeHtml } from './utils.js';
+import { mergeExplorePois } from './learn-explore.js';
+
+void mergeExplorePois();
 
 export const SEARCH_HINT = 'Place, trail, tree, marker, or wildlife';
 
@@ -36,6 +39,7 @@ function blob(poi) {
 export function localSearchHits(query, observations = []) {
   const q = query.trim().toLowerCase();
   if (!q) return [];
+  void mergeExplorePois();
   const hits = [];
   const seen = new Set();
   const add = (item) => {
@@ -60,26 +64,12 @@ export function localSearchHits(query, observations = []) {
     const name = String(edge.name || '');
     if (name && name.toLowerCase().includes(q)) {
       const point = edge.coordinates?.[0] || edge;
-      add({
-        id: `trail:${edge.id || name}`,
-        name,
-        lat: Number(point.lat ?? point[0]),
-        lng: Number(point.lng ?? point[1]),
-        searchKind: 'Trail'
-      });
+      add({ id: `trail:${edge.id || name}`, name, lat: Number(point.lat ?? point[0]), lng: Number(point.lng ?? point[1]), searchKind: 'Trail' });
     }
   }
   for (const item of observations) {
     const text = `${item.species || ''} ${item.title || ''} ${item.note || ''}`.toLowerCase();
-    if (text.includes(q)) {
-      add({
-        id: `obs:${item.id}`,
-        name: item.species || item.title || 'Wildlife note',
-        lat: Number(item.location?.lat ?? item.lat),
-        lng: Number(item.location?.lng ?? item.lng),
-        searchKind: 'Wildlife'
-      });
-    }
+    if (text.includes(q)) add({ id: `obs:${item.id}`, name: item.species || item.title || 'Wildlife note', lat: Number(item.location?.lat ?? item.lat), lng: Number(item.location?.lng ?? item.lng), searchKind: 'Wildlife' });
   }
   return hits.filter((hit) => Number.isFinite(Number(hit.lat)) && Number.isFinite(Number(hit.lng))).slice(0, 12);
 }

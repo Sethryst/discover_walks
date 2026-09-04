@@ -2,12 +2,15 @@ import { distanceMeters } from './geo.js';
 import { state } from './state.js';
 import { isWalkablePoi, poiTags, showHistory } from './poi.js';
 import { requestCompanionContext } from './companion.js';
+import { mergeExplorePois } from './learn-explore.js';
 
 export function checkGeofences(point) {
+  void mergeExplorePois().then(() => checkGeofencesNow(point));
+}
+
+function checkGeofencesNow(point) {
   const settings = state.settings || {};
   if (settings.enableGeofencing === false) return;
-  // A walk is a chance to notice, not a scavenger hunt.  Keep the live
-  // experience intentionally small; direct map exploration remains unlimited.
   if (state.activeWalk && (state.activeWalk.discoveryCount || 0) >= 2) return;
   const enabledStars = new Set(settings.geofenceCategories || ['recreation', 'cuisine']);
   const favorites = new Set(settings.favoriteCategories || []);
@@ -29,8 +32,6 @@ export function checkGeofences(point) {
     .map((poi) => {
       const tags = poiTags(poi);
       const distance = distanceMeters(point, poi);
-      // Personal interests provide a gentle nudge, while distance prevents a
-      // less relevant place from winning merely because it has many tags.
       const relevance = tags.filter((tag) => favorites.has(tag)).length * 100 + (tags.includes('history') ? 20 : 0) - distance;
       return { poi, distance, relevance };
     })
