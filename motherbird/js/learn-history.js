@@ -145,7 +145,8 @@ export function learnHistoryHtml({ progress, folders, remaining = [], seen = [] 
 export function setLearnView(view) { learnView = LEARN_VIEWS.includes(view) ? view : 'discover'; return learnView; }
 export function currentLearnView() { return learnView; }
 export function isCheckedSite(poi, profile) { return idsFromProfile(profile).has(String(poi?.id || '')); }
-export function setLearnScreen(screen) { learnScreen = ['home', 'history', 'watersheds'].includes(screen) ? screen : 'home'; if (screen !== 'watersheds') activeWatershedId = null; return learnScreen; }
+export function setLearnScreen(screen) { learnScreen = ['home', 'history', 'watersheds'].includes(screen) ? screen : 'home'; return learnScreen; }
+export function setLearnSheetMin(on) { document.getElementById('backpackSheet')?.classList.toggle('learn-min', !!on); }
 export function currentLearnScreen() { return learnScreen; }
 export function setActiveWatershed(id) { activeWatershedId = id || null; return activeWatershedId; }
 
@@ -173,17 +174,21 @@ export function placesInWatershed(pois, feature) {
   return (pois || []).filter((poi) => Number.isFinite(Number(poi.lat)) && Number.isFinite(Number(poi.lng)) && pointInFeature(Number(poi.lng), Number(poi.lat), feature));
 }
 export function learnHomeHtml() {
-  return `<section class="learn-history"><button type="button" class="guide-card learn-entry" data-learn-open="history"><small>TRACK</small><h3>Track VA history sites</h3><p>Open Still to discover and History.</p></button><button type="button" class="guide-card learn-entry" data-learn-open="watersheds"><small>VIEW</small><h3>View watersheds</h3><p>See basin polygons. Then walk inside one basin.</p></button></section>`;
+  return `<section class="learn-history"><button type="button" class="guide-card learn-entry" data-learn-open="history"><h3>Track VA history sites</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="watersheds"><h3>View watersheds</h3></button></section>`;
 }
 export function watershedListHtml(features, selectedId, places) {
+  const selected = (features || []).find((feature) => feature.properties?.id === selectedId);
+  if (selected) {
+    const item = selected.properties || {};
+    const walk = (places || [])[0];
+    const walkHtml = walk ? `<button class="secondary-button" type="button" data-learn-walk="${escapeHtml(String(walk.id))}">Walk inside</button>` : '';
+    return `<section class="learn-history learn-region"><button type="button" class="secondary-button" data-learn-watershed-back="1">Select another</button><h3>${escapeHtml(item.name || 'Watershed')}</h3><p>${escapeHtml(item.protect || '')}</p>${walkHtml}</section>`;
+  }
   const list = (features || []).map((feature) => {
     const item = feature.properties || {};
-    const active = item.id === selectedId ? 'selected' : '';
-    return `<button type="button" class="guide-card ${active}" data-learn-watershed="${escapeHtml(item.id)}"><h3>${escapeHtml(item.name)}</h3><p>${escapeHtml(item.protect || '')}</p></button>`;
+    return `<button type="button" class="guide-card" data-learn-watershed="${escapeHtml(item.id)}"><h3>${escapeHtml(item.name)}</h3></button>`;
   }).join('');
-  const walks = (places || []).slice(0, 8).map((poi) => `<article class="guide-card learn-site" data-learn-place="${escapeHtml(String(poi.id))}"><small>WALK INSIDE</small><h3>${escapeHtml(poi.name || 'Unnamed place')}</h3><button class="secondary-button" type="button" data-learn-walk="${escapeHtml(String(poi.id))}">Walk there</button></article>`).join('');
-  const detail = selectedId ? (walks || '<p class="empty-state">No pack walks sit inside this watershed yet.</p>') : '<p class="empty-state">Tap a watershed to see walks and protection notes.</p>';
-  return `<section class="learn-history"><button type="button" class="secondary-button" data-learn-home="1">Back</button><p class="learn-progress">View a watershed polygon. Then walk inside it.</p>${list}${detail}</section>`;
+  return `<section class="learn-history"><button type="button" class="secondary-button" data-learn-home="1">Back</button>${list}</section>`;
 }
 export async function loadWatersheds() {
   if (watershedCache) return watershedCache;
@@ -194,30 +199,39 @@ export async function loadWatersheds() {
   return watershedCache;
 }
 export function paintWatersheds({ map, leaflet, features, selectedId }) {
-  state.learnBoundsLayer?.remove(); state.learnBoundsLayer = null;
+  state.learnWatershedLayer?.remove(); state.learnWatershedLayer = null;
   if (!map || !leaflet) return null;
+  const shown = selectedId ? (features || []).filter((feature) => feature.properties?.id === selectedId) : (features || []);
   const layer = leaflet.layerGroup();
-  for (const feature of features || []) {
+  let selectedLayer = null;
+  for (const feature of shown) {
     const active = feature.properties?.id === selectedId;
-    leaflet.geoJSON(feature, { style: { color: active ? '#1d4f7a' : '#4f7f9a', weight: active ? 2 : 1, fillColor: active ? 'rgba(45,114,89,0.28)' : 'rgba(79,127,154,0.14)', fillOpacity: 1 } }).addTo(layer);
+    const painted = leaflet.geoJSON(feature, { style: { color: active ? '#1d4f7a' : '#4f7f9a', weight: active ? 2 : 1, fillColor: active ? 'rgba(45,114,89,0.28)' : 'rgba(79,127,154,0.12)', fillOpacity: 1 } }).addTo(layer);
+    if (active) selectedLayer = painted;
   }
-  layer.addTo(map); state.learnBoundsLayer = layer; return layer;
+  layer.addTo(map); state.learnWatershedLayer = layer;
+  if (selectedLayer?.getBounds && map.fitBounds) map.fitBounds(selectedLayer.getBounds().pad(0.08), { maxZoom: 13 });
+  return layer;
 }
 export async function renderLearnHistory(target, point) {
   if (learnScreen === 'home') {
+    setLearnSheetMin(false);
     target.innerHTML = learnHomeHtml();
-    state.learnBoundsLayer?.remove(); state.learnBoundsLayer = null; return;
+    state.learnBoundsLayer?.remove(); state.learnBoundsLayer = null;
+    return;
   }
   const pois = state.cityPois[state.activeCity] || [];
   if (learnScreen === 'watersheds') {
     const catalog = await loadWatersheds();
     const features = catalog.features || [];
     const selected = features.find((feature) => feature.properties?.id === activeWatershedId) || null;
+    setLearnSheetMin(!!selected);
     const inside = selected ? placesInWatershed(pois, selected).filter(isWalkNatureSite) : [];
     target.innerHTML = watershedListHtml(features, activeWatershedId, sortSitesByDistance(inside, point));
     paintWatersheds({ map: state.map, leaflet: globalThis.L, features, selectedId: activeWatershedId });
     return;
   }
+  setLearnSheetMin(false);
   const progress = packProgress(pois, state.profile);
   const split = splitHistorySites(pois, state.profile);
   let folders = LEARN_FOLDERS.map((folder) => ({ ...folder, children: folder.children.map((id) => ({ id, label: id, status: 'live' })) }));
