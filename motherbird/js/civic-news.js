@@ -10,12 +10,24 @@ export function civicNoticesFromPack(data = {}, pois = [], now = Date.now()) {
     if (kind === 'Meeting' && !MEETING_TITLE.test(item.title)) return null;
     return { ...item, kind, artifact_type: 'temporal_event', location: locateOfficialVenue(item, pois) };
   };
+  const changeItem = (item) => {
+    if (!item?.title || !/^https:\/\//i.test(item.officialUrl || '')) return null;
+    const lat = Number(item.latitude ?? item.lat);
+    const lng = Number(item.longitude ?? item.lng);
+    return {
+      ...item,
+      kind: 'Change',
+      artifact_type: 'place_change',
+      location: Number.isFinite(lat) && Number.isFinite(lng) ? { lat, lng } : locateOfficialVenue(item, pois)
+    };
+  };
   const notices = [
+    ...(data.changes?.items || data.news?.items || []).map(changeItem),
     ...(data.meetings?.items || []).map((item) => notice(item, 'Meeting')),
     ...(data.events?.items || []).map((item) => notice(item, 'Event')),
     ...(data.vote?.items || []).map((item) => notice(item, 'Vote'))
   ].filter(Boolean);
-  notices.sort((a, b) => String(a.startsAt || a.date || '').localeCompare(String(b.startsAt || b.date || '')) || a.title.localeCompare(b.title));
+  notices.sort((a, b) => Number(b.kind === 'Change') - Number(a.kind === 'Change') || String(a.startsAt || a.date || '').localeCompare(String(b.startsAt || b.date || '')) || a.title.localeCompare(b.title));
   return notices;
 }
 
