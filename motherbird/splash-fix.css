@@ -66,3 +66,6 @@
 #myMapsPanel .maps-folder-form,.maps-library-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 #myMapsPanel .maps-folder-form input{min-width:0;flex:1;border:1px solid var(--line);border-radius:9px;background:#fffdf6;padding:8px}
 #myMapsPanel .learn-groups{margin:4px 0 8px}
+#personalPlacesPanel{display:none}
+#myMapsPanel .advanced-filters{margin-top:8px}
+.guide-list:has(.maps-library){grid-template-columns:1fr}
