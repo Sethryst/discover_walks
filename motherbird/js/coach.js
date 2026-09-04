@@ -3,20 +3,21 @@ import { state } from './state.js';
 import { el } from './utils.js';
 
 export const COACH_STEPS = [
-  { target: 'locateButton', text: 'Tap Locate to center the map on you.' },
-  { target: 'homeCityButton', text: 'Tap the region name to change the pack.' },
+  { target: 'locateButton', text: 'Tap the compass to center on you.' },
+  { target: 'homeCityButton', text: 'Tap the region name to change packs.' },
   { target: 'walkButton', text: 'Tap Start walk to record your route.' },
   { target: 'mapSearchInput', text: 'Type a place name to find it.' },
-  { target: 'settingsButton', text: 'Tap Field Guide to open stories.' },
-  { target: 'journalButton', text: 'Tap Journal to write what you notice.' },
-  { target: 'mapPencilButton', text: 'Tap Draw to sketch on the map.' },
-  { target: 'savePlaceMapButton', text: 'Tap Places + to drop a pin.' },
+  { target: 'settingsButton', text: 'Tap the backpack to open stories.' },
+  { target: 'journalButton', text: 'Tap the grid to write notes.' },
+  { target: 'mapPencilButton', text: 'Tap the pencil to sketch the map.' },
+  { target: 'savePlaceMapButton', text: 'Tap the plus to drop a pin.' },
   { target: 'mapLights', text: 'Tap a colored light to filter places.' },
 ];
 
-const HINT_FLAG = 'mapToolsHintSeenV6';
-const GAP = 12;
-const MARGIN = 12;
+const HINT_FLAG = 'mapToolsHintSeenV7';
+const GAP = 10;
+const MARGIN = 10;
+const STEP_MS = 8000;
 let stepIndex = 0;
 let timer = null;
 let bound = false;
@@ -80,7 +81,7 @@ export function pickCoachPlacement(target, card, viewport, chrome = {}, gap = GA
   } else if (inTop) {
     arrow = 'up';
     top = voidBox.top;
-    left = cx - cw * 0.35;
+    left = cx - cw / 2;
   } else {
     arrow = 'up';
     top = Math.min(targetBottom + gap, voidBox.bottom - ch);
@@ -90,10 +91,50 @@ export function pickCoachPlacement(target, card, viewport, chrome = {}, gap = GA
   top = clamp(top, voidBox.top, voidBox.bottom - ch);
   left = clamp(left, margin, vw - cw - margin);
   top = clamp(top, margin, vh - ch - margin);
-  const maxOffset = arrow === 'up' || arrow === 'down' ? Math.max(16, cw - 20) : Math.max(16, ch - 20);
-  const raw = arrow === 'up' || arrow === 'down' ? cx - left - 6 : cy - top - 6;
-  const arrowOffset = clamp(raw, 12, maxOffset);
+  const maxOffset = arrow === 'up' || arrow === 'down' ? Math.max(16, cw - 18) : Math.max(16, ch - 18);
+  const raw = arrow === 'up' || arrow === 'down' ? cx - left - 5 : cy - top - 5;
+  const arrowOffset = clamp(raw, 10, maxOffset);
   return { top, left, arrow, arrowOffset };
+}
+
+export function pickCoachPointer(card, target) {
+  const tx = target.left + target.width / 2;
+  const ty = target.top + target.height / 2;
+  const right = card.left + card.width;
+  const bottom = card.top + card.height;
+  const inset = 8;
+  let x1;
+  let y1;
+  if (ty < card.top) {
+    x1 = clamp(tx, card.left + inset, right - inset);
+    y1 = card.top;
+  } else if (ty > bottom) {
+    x1 = clamp(tx, card.left + inset, right - inset);
+    y1 = bottom;
+  } else if (tx >= right) {
+    x1 = right;
+    y1 = clamp(ty, card.top + inset, bottom - inset);
+  } else if (tx <= card.left) {
+    x1 = card.left;
+    y1 = clamp(ty, card.top + inset, bottom - inset);
+  } else {
+    x1 = card.left + card.width / 2;
+    y1 = card.top + card.height / 2;
+  }
+  const dx = tx - x1;
+  const dy = ty - y1;
+  const len = Math.hypot(dx, dy) || 1;
+  const endPad = Math.min(target.width, target.height) / 2 + 5;
+  const x2 = tx - (dx / len) * endPad;
+  const y2 = ty - (dy / len) * endPad;
+  return {
+    x1,
+    y1,
+    x2,
+    y2,
+    length: Math.hypot(x2 - x1, y2 - y1),
+    angle: Math.atan2(y2 - y1, x2 - x1),
+  };
 }
 
 function placeSpotlight(spotlight, target) {
@@ -103,34 +144,75 @@ function placeSpotlight(spotlight, target) {
     return;
   }
   const box = target.getBoundingClientRect();
-  const pad = 4;
+  const pad = 3;
   spotlight.classList.remove('hidden');
+  spotlight.classList.toggle('coach-round', Math.min(box.width, box.height) <= 48);
   spotlight.style.top = `${Math.round(box.top - pad)}px`;
   spotlight.style.left = `${Math.round(box.left - pad)}px`;
   spotlight.style.width = `${Math.round(box.width + pad * 2)}px`;
   spotlight.style.height = `${Math.round(box.height + pad * 2)}px`;
 }
 
-function placeHint(hint, spotlight, target) {
+function placePointer(pointer, cardBox, targetBox) {
+  if (!pointer) return;
+  if (!cardBox || !targetBox) {
+    pointer.classList.add('hidden');
+    return;
+  }
+  const line = pickCoachPointer(cardBox, targetBox);
+  if (line.length < 8) {
+    pointer.classList.add('hidden');
+    return;
+  }
+  pointer.classList.remove('hidden');
+  pointer.style.left = `${Math.round(line.x1)}px`;
+  pointer.style.top = `${Math.round(line.y1)}px`;
+  pointer.style.width = `${Math.round(line.length)}px`;
+  pointer.style.transform = `rotate(${line.angle}rad)`;
+}
+
+function placeHint(hint, spotlight, pointer, target) {
   hint.style.top = '';
   hint.style.bottom = '';
   hint.style.left = '';
   hint.style.right = '';
   placeSpotlight(spotlight, target);
-  if (!target) return;
+  if (!target) {
+    pointer?.classList.add('hidden');
+    return;
+  }
   const box = target.getBoundingClientRect();
-  const card = { width: hint.offsetWidth || 196, height: hint.offsetHeight || 86 };
+  const card = { width: hint.offsetWidth || 168, height: hint.offsetHeight || 78 };
   const viewport = { width: window.innerWidth, height: window.innerHeight };
   const place = pickCoachPlacement(box, card, viewport, readChromeBands(document, viewport));
   hint.style.top = `${place.top}px`;
   hint.style.left = `${place.left}px`;
   hint.dataset.arrow = place.arrow;
   hint.style.setProperty('--arrow-offset', `${place.arrowOffset}px`);
+  const cardBox = {
+    left: place.left,
+    top: place.top,
+    width: hint.offsetWidth || card.width,
+    height: hint.offsetHeight || card.height,
+  };
+  placePointer(pointer, cardBox, box);
 }
 
 function ensureMarkup(hint) {
   if (el('mapIntroText') && el('mapIntroNext') && el('mapIntroSkip')) return;
   hint.innerHTML = '<p id="mapIntroText"></p><div class="coach-actions"><button type="button" id="mapIntroNext">Next</button><button type="button" id="mapIntroSkip" class="text-button">Skip</button></div>';
+}
+
+function mountNode(id, className) {
+  let node = el(id);
+  if (!node) {
+    node = document.createElement('div');
+    node.id = id;
+    node.className = className;
+    node.setAttribute('aria-hidden', 'true');
+  }
+  if (node.parentElement !== document.body) document.body.appendChild(node);
+  return node;
 }
 
 function mountOverlay() {
@@ -143,15 +225,9 @@ function mountOverlay() {
   }
   if (hint.parentElement !== document.body) document.body.appendChild(hint);
   ensureMarkup(hint);
-  let spotlight = el('coachSpotlight');
-  if (!spotlight) {
-    spotlight = document.createElement('div');
-    spotlight.id = 'coachSpotlight';
-    spotlight.className = 'coach-spotlight hidden';
-    spotlight.setAttribute('aria-hidden', 'true');
-  }
-  if (spotlight.parentElement !== document.body) document.body.appendChild(spotlight);
-  return { hint, spotlight };
+  const spotlight = mountNode('coachSpotlight', 'coach-spotlight hidden');
+  const pointer = mountNode('coachPointer', 'coach-pointer hidden');
+  return { hint, spotlight, pointer };
 }
 
 function currentTarget() {
@@ -162,11 +238,16 @@ function currentTarget() {
 function relayout() {
   const hint = el('mapIntroHint');
   if (!hint || hint.classList.contains('hidden')) return;
-  placeHint(hint, el('coachSpotlight'), currentTarget());
+  placeHint(hint, el('coachSpotlight'), el('coachPointer'), currentTarget());
+}
+
+function armTimer() {
+  clearTimeout(timer);
+  timer = window.setTimeout(() => nextStep(), STEP_MS);
 }
 
 function showStep() {
-  const { hint, spotlight } = mountOverlay();
+  const { hint, spotlight, pointer } = mountOverlay();
   const text = el('mapIntroText');
   const next = el('mapIntroNext');
   if (!text) return;
@@ -180,7 +261,8 @@ function showStep() {
   const target = resolveCoachTarget(step.target);
   hint.classList.remove('hidden', 'dissolving');
   if (next) next.textContent = stepIndex === COACH_STEPS.length - 1 ? 'Done' : 'Next';
-  window.requestAnimationFrame(() => placeHint(hint, spotlight, target));
+  window.requestAnimationFrame(() => placeHint(hint, spotlight, pointer, target));
+  armTimer();
 }
 
 function nextStep() {
@@ -195,8 +277,10 @@ export async function finishCoach() {
   clearHighlight();
   const hint = el('mapIntroHint');
   const spotlight = el('coachSpotlight');
+  const pointer = el('coachPointer');
   hint?.classList.add('dissolving');
   spotlight?.classList.add('hidden');
+  pointer?.classList.add('hidden');
   window.setTimeout(() => hint?.classList.add('hidden'), 400);
   state.settings[HINT_FLAG] = true;
   await db.put('settings', state.settings);
@@ -210,7 +294,6 @@ export function startCoachMarks() {
     bound = true;
     el('mapIntroNext')?.addEventListener('click', (event) => {
       event.preventDefault();
-      clearTimeout(timer);
       nextStep();
     });
     el('mapIntroSkip')?.addEventListener('click', (event) => {
@@ -221,11 +304,4 @@ export function startCoachMarks() {
     globalThis.visualViewport?.addEventListener('resize', relayout);
     globalThis.visualViewport?.addEventListener('scroll', relayout);
   }
-  const tick = () => {
-    timer = window.setTimeout(() => {
-      nextStep();
-      if (stepIndex < COACH_STEPS.length) tick();
-    }, 4000);
-  };
-  tick();
 }
