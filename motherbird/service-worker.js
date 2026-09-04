@@ -1,7 +1,7 @@
 // Keep the whole module graph with the shell. Caching only app.js leaves an
 // offline (or briefly disconnected) reload with a blank app when any imported
 // module was not already in the runtime cache.
-const APP_CACHE = 'walk-wildlife-shell-v88'; // bump when shell assets change
+const APP_CACHE = 'walk-wildlife-shell-v91'; // bump when shell assets change
 const TILE_CACHE = 'walk-wildlife-osm-viewed-tiles-v1';
 const LIBRARY_CACHE = 'walk-wildlife-library-v2';
 const COMPANION_CACHE = 'walk-wildlife-companion-media-v2';
@@ -12,14 +12,14 @@ const shell = [
   './', './index.html', './watch.html', './styles.css', './splash-fix.css', './watch.css', './legal.css', './privacy.html', './terms.html', './app.js', './manifest.webmanifest', './watch.webmanifest', './supabase-config.js',
   './assets/pwa-icon-192.png', './assets/pwa-icon-512.png', './assets/pwa-maskable-512.png', './assets/apple-touch-icon.png', './assets/splash-screen.jpeg', './assets/splash-1170x2532.png', './assets/splash-1290x2796.png', './assets/splash-2048x2732.png',
   './js/archive.js', './js/backup.js', './js/city.js', './js/civic.js', './js/civic-news.js', './js/constants.js', './js/discovery.js', './js/discovery-taxonomy.js',
-  './js/entitlements.js', './js/cloud-journal.js', './js/events.js', './js/explore.js', './js/field-edition-loader.js', './js/field-guide.js', './js/learn-history.js', './js/geo.js', './js/geofence.js',
+  './js/entitlements.js', './js/cloud-journal.js', './js/events.js', './js/explore.js', './js/field-edition-loader.js', './js/field-guide.js', './js/maps-folders.js', './js/learn-history.js', './js/geo.js', './js/geofence.js',
   './js/federal-boundaries.js', './js/federal-region-loader.js', './js/federal-region-progress.js', './js/poi-visit-tracking.js', './js/loader.js', './js/coach.js', './js/map.js', './js/observation.js', './js/online.js', './js/planner.js', './js/poi.js', './js/profile.js',
   './js/neighborhoods.js', './js/spatial-index.js', './js/spatial-index-providers.js', './js/spatial-overlay.js', './js/spatial-package-loader.js', './js/spatial-closure-reporting.js', './js/text-to-walk.js',
   './js/quiet-places.js', './js/region-api.js', './js/region-installer.js', './js/region-manager.js', './js/region-package.js',
   './js/osm-regions.js',
   './js/region-ui.js', './js/routes.js', './js/routing.js', './js/runtime-router.mjs', './js/offline-router-worker.js', './js/seasonal-awareness.js', './js/state.js', './js/storage.js',
-  './js/ui.js', './js/utils.js', './js/walk.js', './js/walk-artifact.js', './js/walk-context.js', './js/walk-state.js', './js/companion.js', './js/revisit.js', './js/journal-transfer.js', './js/journal-capture.js', './js/map-paint.js', './js/county-additions.js', './js/installed-region-runtime.js', './js/watch-session.js', './js/watch-app.js', './js/device-entry.js', './js/observation-model.js', './js/weather.js', './js/journal-pane.js', './js/icon-loader.js', './js/poi-icons.js', './js/layer-system.js', './js/personal-places.js',
-  './icons/mic.svg', './icons/pencil.svg', './icons/camera.svg', './icons/target.svg', './icons/share-2.svg', './icons/map-pin.svg', './icons/trash-2.svg', './icons/water-fountain.svg', './icons/bench.svg', './icons/parking.svg', './icons/bike.svg', './icons/building.svg', './icons/utensils.svg',
+  './js/ui.js', './js/utils.js', './js/walk.js', './js/walk-artifact.js', './js/walk-context.js', './js/walk-state.js', './js/companion.js', './js/revisit.js', './js/journal-transfer.js', './js/journal-capture.js', './js/map-paint.js', './js/county-additions.js', './js/installed-region-runtime.js', './js/watch-session.js', './js/watch-app.js', './js/device-entry.js', './js/observation-model.js', './js/weather.js', './js/journal-pane.js', './js/icon-loader.js', './js/poi-icons.js', './js/poi-filter-rules.js', './js/layer-system.js', './js/personal-places.js',
+  './icons/mic.svg', './icons/pencil.svg', './icons/camera.svg', './icons/target.svg', './icons/share-2.svg', './icons/map-pin.svg', './icons/trash-2.svg', './icons/water-fountain.svg', './icons/bench.svg', './icons/parking.svg', './icons/bike.svg', './icons/building.svg', './icons/utensils.svg', './icons/home.svg',
   './data/anchorage-poi.json', './data/baltimore-poi.json', './data/boise-meridian-idaho-poi.json', './data/columbus-poi.json', './data/corpus-christi-poi.json',
   './data/dc-poi.json', './data/detroit-poi.json', './data/fort-worth-poi.json', './data/keystone-colorado-poi.json', './data/los-angeles-poi.json',
   './data/newyork-poi.json', './data/norfolk-poi.json', './data/pgcounty-poi.json', './data/philadelphia-poi.json', './data/pittsburgh-poi.json',
