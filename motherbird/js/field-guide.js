@@ -107,7 +107,10 @@ export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') 
   target.classList.toggle('hidden', ['online','maps'].includes(tab));
   el('sharePanel')?.classList.toggle('hidden', tab !== 'online');
   el('myMapsPanel')?.classList.toggle('hidden', tab !== 'maps');
-  if (tab !== 'learn') shadeLearnBounds(false);
+  if (tab !== 'learn') {
+    shadeLearnBounds(false);
+    document.getElementById('backpackSheet')?.classList.remove('learn-min');
+  }
   if (['online','maps'].includes(tab)) {
     el('fieldGuideOrderNote')?.classList.add('hidden');
     if (tab === 'online') window.dispatchEvent(new CustomEvent('online-panel-render-requested'));
@@ -202,6 +205,8 @@ export function initFieldGuideFilters() {
     const walk = event.target.closest('[data-guide-walk]'); if (walk) { void paintCard(walk.dataset.guideWalk); return; }
     const home = event.target.closest('[data-learn-home]');
     if (home) { setLearnScreen('home'); void renderFieldGuide('learn'); return; }
+    const basinBack = event.target.closest('[data-learn-watershed-back]');
+    if (basinBack) { setLearnScreen('watersheds'); setActiveWatershed(null); void renderFieldGuide('learn'); return; }
     const openLearn = event.target.closest('[data-learn-open]');
     if (openLearn) { setLearnScreen(openLearn.dataset.learnOpen); void renderFieldGuide('learn'); return; }
     const basin = event.target.closest('[data-learn-watershed]');
