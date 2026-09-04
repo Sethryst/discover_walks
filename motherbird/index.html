@@ -30,8 +30,8 @@
   <link rel="stylesheet" href="./vendor/leaflet-markercluster/MarkerCluster.css" />
   <link rel="stylesheet" href="./vendor/leaflet-markercluster/MarkerCluster.Default.css" />
   <link rel="stylesheet" href="./vendor/maplibre-gl.css" />
-  <link rel="stylesheet" href="./styles.css?v=66" />
-  <link rel="stylesheet" href="./splash-fix.css?v=66" />
+  <link rel="stylesheet" href="./styles.css?v=67" />
+  <link rel="stylesheet" href="./splash-fix.css?v=68" />
   <title>Walk & Wildlife</title>
 </head>
 <body>
@@ -39,7 +39,8 @@
   <main class="app-shell">
     <div id="installedBasemap" class="installed-basemap hidden" aria-hidden="true"></div>
     <div id="map" role="application" aria-label="Map of installed-pack places"></div>
-    <aside class="map-intro-hint hidden" id="mapIntroHint" aria-live="polite"><span>Locate centers your fix; its chevron sets alert range.</span><span>Region changes packs. Search finds a named place.</span><span>Start records your walk. End remains its own button.</span><span>Field Guide opens stories, App, and My maps.</span><span>Journal keeps pages, observations, and voice. Draw sketches; Places + drops a pin.</span><span>Colored lights match pins; chevrons refine categories.</span></aside>
+    <aside class="map-intro-hint hidden" id="mapIntroHint" aria-live="polite"><p id="mapIntroText"></p><div class="coach-actions"><button type="button" id="mapIntroNext">Next</button><button type="button" id="mapIntroSkip" class="text-button">Skip</button></div></aside>
+    <div id="coachSpotlight" class="coach-spotlight hidden" aria-hidden="true"></div>
     <div class="viewfinder-frame" aria-label="Walk controls">
       <div class="top-cluster">
         <div class="control-stack"><div class="control-row"><button class="ink-control" id="locateButton" type="button" aria-label="Use my location"><img src="./icons/navigation.svg" alt="" /></button><button class="ink-chevron" id="locateChevron" type="button" aria-label="Location alerts" aria-expanded="false">⌄</button></div><div class="drop-panel hidden" id="locatePanel"><label><input id="geofenceToggle" type="checkbox" checked /> Alerts</label><label>Radius <select id="geofenceRadiusSelect"><option value="30">30 m</option><option value="50" selected>50 m</option><option value="75">75 m</option><option value="100">100 m</option></select></label><div id="geofenceCategoryChips" class="mini-chips"></div></div></div>
