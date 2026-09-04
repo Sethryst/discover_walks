@@ -31,7 +31,7 @@ test('coach overlay sits above map chrome with a box and an arrow', async () => 
   const source = await readFile(new URL('../js/coach.js', import.meta.url), 'utf8');
   const css = await readFile(new URL('../splash-fix.css', import.meta.url), 'utf8');
   assert.match(source, /document\.body\.appendChild/);
-  assert.match(source, /mapToolsHintSeenV5/);
+  assert.match(source, /mapToolsHintSeenV6/);
   assert.match(source, /pickCoachPlacement/);
   assert.match(source, /readChromeBands/);
   assert.match(css, /position:\s*fixed/);
@@ -43,16 +43,18 @@ test('coach overlay sits above map chrome with a box and an arrow', async () => 
 test('coach placement keeps the card off sibling tools', async () => {
   const phone = { width: 390, height: 844 };
   const chrome = { belowTop: 96, leftOfRight: 334, aboveBottom: 790 };
-  const card = { width: 220, height: 88 };
+  const card = { width: 196, height: 86 };
   const locate = pickCoachPlacement({ left: 12, top: 16, width: 44, height: 36 }, card, phone, chrome);
   assert.equal(locate.arrow, 'up');
   assert.ok(locate.top >= chrome.belowTop);
+  assert.ok(locate.left + card.width <= chrome.leftOfRight);
   const fieldGuide = pickCoachPlacement({ left: 342, top: 380, width: 40, height: 36 }, card, phone, chrome);
   assert.equal(fieldGuide.arrow, 'right');
-  assert.ok(fieldGuide.left + card.width <= 342);
+  assert.ok(fieldGuide.left + card.width <= chrome.leftOfRight);
+  assert.ok(fieldGuide.top >= chrome.belowTop);
   const lights = pickCoachPlacement({ left: 80, top: 798, width: 230, height: 34 }, card, phone, chrome);
   assert.equal(lights.arrow, 'down');
-  assert.ok(lights.top + card.height <= 798);
+  assert.ok(lights.top + card.height <= chrome.aboveBottom);
   assert.ok(locate.left >= 12);
   assert.ok(locate.left + card.width <= phone.width - 12);
 });

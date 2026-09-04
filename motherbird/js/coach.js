@@ -14,8 +14,8 @@ export const COACH_STEPS = [
   { target: 'mapLights', text: 'Tap a colored light to filter places.' },
 ];
 
-const HINT_FLAG = 'mapToolsHintSeenV5';
-const GAP = 14;
+const HINT_FLAG = 'mapToolsHintSeenV6';
+const GAP = 12;
 const MARGIN = 12;
 let stepIndex = 0;
 let timer = null;
@@ -37,10 +37,14 @@ export function readChromeBands(doc = document, viewport = { width: 390, height:
   const mid = doc.querySelector('.middle-tools')?.getBoundingClientRect();
   const lights = doc.querySelector('.map-lights')?.getBoundingClientRect();
   return {
-    belowTop: top ? Math.round(top.bottom + 10) : 72,
-    leftOfRight: mid ? Math.round(mid.left - 10) : viewport.width - 56,
-    aboveBottom: lights ? Math.round(lights.top - 10) : viewport.height - 64,
+    belowTop: top ? Math.round(top.bottom + 8) : 72,
+    leftOfRight: mid ? Math.round(mid.left - 8) : viewport.width - 56,
+    aboveBottom: lights ? Math.round(lights.top - 8) : viewport.height - 64,
   };
+}
+
+function clamp(value, min, max) {
+  return Math.round(Math.max(min, Math.min(value, max)));
 }
 
 export function pickCoachPlacement(target, card, viewport, chrome = {}, gap = GAP, margin = MARGIN) {
@@ -48,34 +52,47 @@ export function pickCoachPlacement(target, card, viewport, chrome = {}, gap = GA
   const vh = viewport.height;
   const cw = card.width;
   const ch = card.height;
+  const targetBottom = target.bottom ?? target.top + target.height;
   const cx = target.left + target.width / 2;
   const cy = target.top + target.height / 2;
-  const belowTop = chrome.belowTop ?? 72;
-  const leftOfRight = chrome.leftOfRight ?? vw - 56;
-  const aboveBottom = chrome.aboveBottom ?? vh - 64;
-  const inRight = target.left >= leftOfRight - 4;
-  const inBottom = target.top >= aboveBottom - 8;
+  const voidBox = {
+    left: margin,
+    top: chrome.belowTop ?? 72,
+    right: chrome.leftOfRight ?? vw - 56,
+    bottom: chrome.aboveBottom ?? vh - 64,
+  };
+  if (voidBox.right - voidBox.left < cw) voidBox.right = Math.min(vw - margin, voidBox.left + cw);
+  if (voidBox.bottom - voidBox.top < ch) voidBox.bottom = Math.min(vh - margin, voidBox.top + ch);
+  const inTop = targetBottom <= voidBox.top + 28;
+  const inRight = target.left >= voidBox.right - 6;
+  const inBottom = target.top >= voidBox.bottom - 10;
   let arrow;
   let top;
   let left;
   if (inBottom) {
     arrow = 'down';
-    top = target.top - gap - ch;
+    top = voidBox.bottom - ch;
     left = cx - cw / 2;
   } else if (inRight) {
     arrow = 'right';
     top = cy - ch / 2;
-    left = Math.min(target.left, leftOfRight) - gap - cw;
+    left = voidBox.right - cw;
+  } else if (inTop) {
+    arrow = 'up';
+    top = voidBox.top;
+    left = cx - cw * 0.35;
   } else {
     arrow = 'up';
-    top = Math.max(target.bottom + gap, belowTop);
-    left = cx - cw * 0.42;
+    top = Math.min(targetBottom + gap, voidBox.bottom - ch);
+    left = cx - cw / 2;
   }
-  left = Math.round(Math.max(margin, Math.min(left, vw - cw - margin)));
-  top = Math.round(Math.max(margin, Math.min(top, vh - ch - margin)));
-  const maxOffset = arrow === 'up' || arrow === 'down' ? cw - 22 : ch - 22;
+  left = clamp(left, voidBox.left, voidBox.right - cw);
+  top = clamp(top, voidBox.top, voidBox.bottom - ch);
+  left = clamp(left, margin, vw - cw - margin);
+  top = clamp(top, margin, vh - ch - margin);
+  const maxOffset = arrow === 'up' || arrow === 'down' ? Math.max(16, cw - 20) : Math.max(16, ch - 20);
   const raw = arrow === 'up' || arrow === 'down' ? cx - left - 6 : cy - top - 6;
-  const arrowOffset = Math.round(Math.max(12, Math.min(maxOffset, raw)));
+  const arrowOffset = clamp(raw, 12, maxOffset);
   return { top, left, arrow, arrowOffset };
 }
 
@@ -86,7 +103,7 @@ function placeSpotlight(spotlight, target) {
     return;
   }
   const box = target.getBoundingClientRect();
-  const pad = 5;
+  const pad = 4;
   spotlight.classList.remove('hidden');
   spotlight.style.top = `${Math.round(box.top - pad)}px`;
   spotlight.style.left = `${Math.round(box.left - pad)}px`;
@@ -102,7 +119,7 @@ function placeHint(hint, spotlight, target) {
   placeSpotlight(spotlight, target);
   if (!target) return;
   const box = target.getBoundingClientRect();
-  const card = { width: hint.offsetWidth || 220, height: hint.offsetHeight || 92 };
+  const card = { width: hint.offsetWidth || 196, height: hint.offsetHeight || 86 };
   const viewport = { width: window.innerWidth, height: window.innerHeight };
   const place = pickCoachPlacement(box, card, viewport, readChromeBands(document, viewport));
   hint.style.top = `${place.top}px`;
