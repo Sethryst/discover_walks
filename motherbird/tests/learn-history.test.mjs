@@ -48,14 +48,21 @@ test('Learn fill gets darker when more sites remain', () => {
   assert.match(full, /rgba\(45, 114, 89, 0\.3/);
 });
 
-test('Learn HTML names the two views', () => {
+test('Learn HTML names the two parent folders', () => {
   const html = learnHistoryHtml({
     progress: { visited: 1, remaining: 1, total: 2 },
-    view: 'discover',
-    sites: [marker]
+    folders: [
+      { id: 'discover', label: 'Still to discover', children: [{ id: 'watersheds', label: 'Watersheds', status: 'research', file: 'watersheds.json' }] },
+      { id: 'history', label: 'History', children: [{ id: 'eras', label: 'Historic eras', status: 'research', file: 'eras.json' }] }
+    ],
+    remaining: [marker],
+    seen: [museum]
   });
   assert.match(html, /Still to discover/);
   assert.match(html, /History/);
   assert.match(html, /A historic marker/);
+  assert.match(html, /Fairfax Museum/);
+  assert.match(html, /Watersheds/);
+  assert.match(html, /Historic eras/);
   assert.doesNotMatch(html, /NEAREST STORY/);
 });

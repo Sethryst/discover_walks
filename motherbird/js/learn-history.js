@@ -3,8 +3,14 @@ import { CITIES } from './constants.js';
 import { escapeHtml } from './utils.js';
 import { distanceMeters } from './geo.js';
 
-export const LEARN_SPLITS_URL = './data/virginia-pack-splits.json';
+export const LEARN_INDEX_URL = './data/learn/index.json';
+export const LEARN_SPLITS_URL = './data/learn/history/pack-splits.json';
+export const LEARN_SPLITS_FALLBACK_URL = './data/virginia-pack-splits.json';
 export const LEARN_VIEWS = Object.freeze(['discover', 'history']);
+export const LEARN_FOLDERS = Object.freeze([
+  { id: 'discover', label: 'Still to discover', children: ['sites', 'watersheds', 'streams'] },
+  { id: 'history', label: 'History', children: ['sites', 'eras', 'splits'] }
+]);
 
 let splitsCache = null;
 let learnView = 'discover';
@@ -91,7 +97,11 @@ export async function loadVirginiaSplits() {
   if (splitsCache) return splitsCache;
   try {
     const response = await fetch(LEARN_SPLITS_URL);
-    splitsCache = response.ok ? await response.json() : { packs: [] };
+    if (response.ok) splitsCache = await response.json();
+    else {
+      const fallback = await fetch(LEARN_SPLITS_FALLBACK_URL);
+      splitsCache = fallback.ok ? await fallback.json() : { packs: [] };
+    }
   } catch {
     splitsCache = { packs: [] };
   }
@@ -142,19 +152,32 @@ function siteCard(poi, visited) {
   </article>`;
 }
 
-export function learnHistoryHtml({ progress, view, sites }) {
-  const viewName = LEARN_VIEWS.includes(view) ? view : 'discover';
-  const empty = viewName === 'history'
+function childSlot(folderId, child) {
+  if (child.status === 'live') return '';
+  return `<article class="learn-slot" data-learn-slot="${escapeHtml(folderId)}:${escapeHtml(child.id)}"><small>NEXT</small><h3>${escapeHtml(child.label)}</h3><p>This layer waits in ${escapeHtml(child.file || child.id)}.</p></article>`;
+}
+
+export function learnFolderHtml(folder, sites) {
+  const open = folder.id === 'discover' ? 'open' : '';
+  const empty = folder.id === 'history'
     ? 'No checked history sites in this pack yet.'
     : 'No unchecked history sites remain in this pack.';
-  const list = sites.length ? sites.map((poi) => siteCard(poi, viewName === 'history')).join('') : `<p class="empty-state">${empty}</p>`;
+  const visited = folder.id === 'history';
+  const list = sites.length ? sites.map((poi) => siteCard(poi, visited)).join('') : `<p class="empty-state">${empty}</p>`;
+  const slots = (folder.children || []).filter((child) => child.id !== 'sites' && child.status !== 'live').map((child) => childSlot(folder.id, child)).join('');
+  return `<details class="learn-folder" data-learn-folder="${escapeHtml(folder.id)}" ${open}>
+    <summary>${escapeHtml(folder.label)}</summary>
+    <div class="learn-folder-body">${list}${slots}</div>
+  </details>`;
+}
+
+export function learnHistoryHtml({ progress, folders, remaining = [], seen = [] }) {
+  const discover = folders?.find((folder) => folder.id === 'discover') || { id: 'discover', label: 'Still to discover', children: [] };
+  const history = folders?.find((folder) => folder.id === 'history') || { id: 'history', label: 'History', children: [] };
   return `<section class="learn-history">
     <p class="learn-progress">${progress.visited} of ${progress.total} history sites checked. ${progress.remaining} still to discover.</p>
-    <div class="learn-views" role="tablist">
-      <button type="button" data-learn-view="discover" class="${viewName === 'discover' ? 'active' : ''}">Still to discover</button>
-      <button type="button" data-learn-view="history" class="${viewName === 'history' ? 'active' : ''}">History</button>
-    </div>
-    ${list}
+    ${learnFolderHtml(discover, remaining)}
+    ${learnFolderHtml(history, seen)}
   </section>`;
 }
 
@@ -162,9 +185,14 @@ export async function renderLearnHistory(target, point) {
   const pois = state.cityPois[state.activeCity] || [];
   const progress = packProgress(pois, state.profile);
   const split = splitHistorySites(pois, state.profile);
-  const raw = learnView === 'history' ? split.seen : split.remaining;
-  const sites = sortSitesByDistance(raw, point).slice(0, 40);
-  target.innerHTML = learnHistoryHtml({ progress, view: learnView, sites });
+  const remaining = sortSitesByDistance(split.remaining, point).slice(0, 40);
+  const seen = sortSitesByDistance(split.seen, point).slice(0, 40);
+  let folders = LEARN_FOLDERS.map((folder) => ({ ...folder, children: folder.children.map((id) => ({ id, label: id, status: 'live' })) }));
+  try {
+    const index = await fetch(LEARN_INDEX_URL).then((response) => response.ok ? response.json() : null);
+    if (index?.folders?.length) folders = index.folders;
+  } catch { /* Pack sites still render if the folder index is missing. */ }
+  target.innerHTML = learnHistoryHtml({ progress, folders, remaining, seen });
   const catalog = await loadVirginiaSplits();
   paintVirginiaSplits({
     map: state.map,
