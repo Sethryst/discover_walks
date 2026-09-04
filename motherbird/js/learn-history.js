@@ -14,9 +14,13 @@ export const LEARN_FOLDERS = Object.freeze([
 
 let splitsCache = null;
 let watershedCache = null;
+let battlefieldCache = null;
 let learnView = 'discover';
 let learnScreen = 'home';
 let activeWatershedId = null;
+let activeEraId = null;
+let activeYear = null;
+let activeBattleId = null;
 
 function idsFromProfile(profile) {
   return new Set(profile?.visitedPoiIds || []);
@@ -145,10 +149,23 @@ export function learnHistoryHtml({ progress, folders, remaining = [], seen = [] 
 export function setLearnView(view) { learnView = LEARN_VIEWS.includes(view) ? view : 'discover'; return learnView; }
 export function currentLearnView() { return learnView; }
 export function isCheckedSite(poi, profile) { return idsFromProfile(profile).has(String(poi?.id || '')); }
-export function setLearnScreen(screen) { learnScreen = ['home', 'history', 'watersheds'].includes(screen) ? screen : 'home'; return learnScreen; }
+export function setLearnScreen(screen) {
+  learnScreen = ['home', 'history', 'watersheds', 'battlefields'].includes(screen) ? screen : 'home';
+  if (screen !== 'battlefields') { activeEraId = null; activeYear = null; activeBattleId = null; }
+  return learnScreen;
+}
 export function setLearnSheetMin(on) { document.getElementById('backpackSheet')?.classList.toggle('learn-min', !!on); }
 export function currentLearnScreen() { return learnScreen; }
 export function setActiveWatershed(id) { activeWatershedId = id || null; return activeWatershedId; }
+export function setBattlefieldEra(id) { activeEraId = id || null; activeYear = null; activeBattleId = null; return activeEraId; }
+export function setBattlefieldYear(year) { activeYear = year == null ? null : Number(year); activeBattleId = null; return activeYear; }
+export function setBattlefieldSite(id) { activeBattleId = id || null; return activeBattleId; }
+export function stepBattlefieldBack() {
+  if (activeBattleId) { activeBattleId = null; return 'year'; }
+  if (activeYear != null) { activeYear = null; return 'era'; }
+  if (activeEraId) { activeEraId = null; return 'eras'; }
+  return 'home';
+}
 
 export function pointInRing(lng, lat, ring) {
   let inside = false;
@@ -174,7 +191,7 @@ export function placesInWatershed(pois, feature) {
   return (pois || []).filter((poi) => Number.isFinite(Number(poi.lat)) && Number.isFinite(Number(poi.lng)) && pointInFeature(Number(poi.lng), Number(poi.lat), feature));
 }
 export function learnHomeHtml() {
-  return `<section class="learn-history"><button type="button" class="guide-card learn-entry" data-learn-open="history"><h3>Track VA history sites</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="watersheds"><h3>View watersheds</h3></button></section>`;
+  return `<section class="learn-history"><button type="button" class="guide-card learn-entry" data-learn-open="history"><h3>Track VA history sites</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="watersheds"><h3>View watersheds</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="battlefields"><h3>View historic battlefields</h3></button></section>`;
 }
 export function watershedListHtml(features, selectedId, places) {
   const selected = (features || []).find((feature) => feature.properties?.id === selectedId);
@@ -213,6 +230,38 @@ export function paintWatersheds({ map, leaflet, features, selectedId }) {
   if (selectedLayer?.getBounds && map.fitBounds) map.fitBounds(selectedLayer.getBounds().pad(0.08), { maxZoom: 13 });
   return layer;
 }
+export async function loadBattlefields() {
+  if (battlefieldCache) return battlefieldCache;
+  try {
+    const response = await fetch('./data/learn/history/battlefields.json');
+    battlefieldCache = response.ok ? await response.json() : { eras: [] };
+  } catch { battlefieldCache = { eras: [] }; }
+  return battlefieldCache;
+}
+export function battlefieldHtml({ eras, era, year, battle }) {
+  if (battle) {
+    return `<section class="learn-history learn-region"><button type="button" class="secondary-button" data-learn-battle-back="1">Select another</button><h3>${escapeHtml(battle.name)}</h3><p>${escapeHtml(String(year?.year || ''))}. ${escapeHtml(battle.note || '')}</p></section>`;
+  }
+  if (year) {
+    const list = (year.battles || []).map((item) => `<button type="button" class="guide-card" data-learn-battle="${escapeHtml(item.id)}"><h3>${escapeHtml(item.name)}</h3></button>`).join('');
+    return `<section class="learn-history"><button type="button" class="secondary-button" data-learn-battle-back="1">Back</button>${list}</section>`;
+  }
+  if (era) {
+    const list = (era.years || []).map((item) => `<button type="button" class="guide-card" data-learn-year="${escapeHtml(String(item.year))}"><h3>${escapeHtml(item.label || String(item.year))}</h3></button>`).join('');
+    return `<section class="learn-history"><button type="button" class="secondary-button" data-learn-battle-back="1">Back</button>${list}</section>`;
+  }
+  const list = (eras || []).map((item) => `<button type="button" class="guide-card" data-learn-era="${escapeHtml(item.id)}"><h3>${escapeHtml(item.label)}</h3></button>`).join('');
+  return `<section class="learn-history"><button type="button" class="secondary-button" data-learn-home="1">Back</button>${list}</section>`;
+}
+export function paintBattlefield({ map, leaflet, battle }) {
+  state.learnBattlefieldLayer?.remove(); state.learnBattlefieldLayer = null;
+  if (!map || !leaflet || !battle || !Number.isFinite(Number(battle.lat))) return null;
+  const layer = leaflet.layerGroup();
+  leaflet.circleMarker([battle.lat, battle.lng], { radius: 10, color: '#7a2d1d', weight: 2, fillColor: 'rgba(122,45,29,0.28)', fillOpacity: 1 }).addTo(layer);
+  layer.addTo(map); state.learnBattlefieldLayer = layer;
+  map.setView([battle.lat, battle.lng], 12);
+  return layer;
+}
 export async function renderLearnHistory(target, point) {
   if (learnScreen === 'home') {
     setLearnSheetMin(false);
@@ -229,6 +278,17 @@ export async function renderLearnHistory(target, point) {
     const inside = selected ? placesInWatershed(pois, selected).filter(isWalkNatureSite) : [];
     target.innerHTML = watershedListHtml(features, activeWatershedId, sortSitesByDistance(inside, point));
     paintWatersheds({ map: state.map, leaflet: globalThis.L, features, selectedId: activeWatershedId });
+    return;
+  }
+  if (learnScreen === 'battlefields') {
+    const catalog = await loadBattlefields();
+    const eras = catalog.eras || [];
+    const era = eras.find((item) => item.id === activeEraId) || null;
+    const year = era?.years?.find((item) => Number(item.year) === Number(activeYear)) || null;
+    const battle = year?.battles?.find((item) => item.id === activeBattleId) || null;
+    setLearnSheetMin(!!battle);
+    target.innerHTML = battlefieldHtml({ eras, era, year, battle });
+    paintBattlefield({ map: state.map, leaflet: globalThis.L, battle });
     return;
   }
   setLearnSheetMin(false);
