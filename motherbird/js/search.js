@@ -2,7 +2,7 @@ import { state } from './state.js';
 import { isVisiblePoi, searchPois, searchOsm } from './poi.js';
 import { escapeHtml } from './utils.js';
 
-export const SEARCH_HINT = 'Place, trail, or wildlife';
+export const SEARCH_HINT = 'Place, trail, tree, marker, or wildlife';
 
 const WILDLIFE_WORDS = {
   heron: ['wildlife', 'wetland', 'marsh', 'pond', 'creek', 'river'],
@@ -16,7 +16,17 @@ const WILDLIFE_WORDS = {
   owl: ['wildlife', 'woods'],
   eagle: ['wildlife', 'river', 'reservoir'],
   bird: ['wildlife', 'park'],
-  wildlife: ['wildlife', 'nature', 'refuge']
+  wildlife: ['wildlife', 'nature', 'refuge'],
+  oak: ['nature', 'park', 'tree'],
+  elm: ['nature', 'park', 'tree'],
+  tree: ['nature', 'park'],
+  champion: ['nature', 'park'],
+  marker: ['history', 'history_marker'],
+  historic: ['history', 'history_marker'],
+  benchmark: ['history', 'history_landmark'],
+  survey: ['history', 'history_landmark'],
+  creek: ['water', 'trail', 'nature'],
+  stream: ['water', 'trail']
 };
 
 function blob(poi) {
@@ -41,8 +51,9 @@ export function localSearchHits(query, observations = []) {
     const tagHit = aliases.some((tag) => text.includes(tag));
     const trailHit = /trail|path|loop|greenway|boardwalk/.test(text) && (q.includes('trail') || text.includes(q));
     const wildHit = /wildlife|refuge|marsh|pond/.test(text) && (aliases.length || /wildlife|refuge|heron|marsh|pond/.test(q));
-    if (text.includes(q) || tagHit || trailHit || wildHit) {
-      add({ ...poi, searchKind: wildHit || aliases.length ? 'Wildlife' : trailHit ? 'Trail' : 'Place' });
+    const markHit = /survey|benchmark|marker|champion|oak|elm|tree/.test(q) && /history|nature|marker|tree|survey/.test(text);
+    if (text.includes(q) || tagHit || trailHit || wildHit || markHit) {
+      add({ ...poi, searchKind: /marker|survey|benchmark/.test(q) ? 'Marker' : /tree|oak|elm|champion/.test(q) ? 'Tree' : wildHit || aliases.length ? 'Wildlife' : trailHit ? 'Trail' : 'Place' });
     }
   }
   for (const edge of state.trailSegments?.[state.activeCity] || []) {
@@ -79,7 +90,7 @@ export function searchRowHtml(hit) {
 
 export function emptySearchHtml(query, pending) {
   if (pending) return `<p class="map-search-empty">No pack match for “${escapeHtml(query)}”. Searching the wider map.</p>`;
-  return `<p class="map-search-empty">No place, trail, or wildlife name matched “${escapeHtml(query)}”.</p>`;
+  return `<p class="map-search-empty">No place, trail, tree, marker, or wildlife name matched “${escapeHtml(query)}”.</p>`;
 }
 
 export async function widenSearch(query) {
