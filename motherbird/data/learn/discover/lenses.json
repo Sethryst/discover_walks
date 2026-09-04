@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "artifactType": "learn-source-lenses",
+  "lenses": [
+    {
+      "id": "names",
+      "title": "Name this landscape",
+      "sourceName": "USGS Geographic Names Information System",
+      "sourceUrl": "https://www.usgs.gov/tools/geographic-names-information-system-gnis",
+      "question": "What official names sit in this pack?",
+      "items": [
+        { "id": "difficult-run", "name": "Difficult Run", "kind": "Stream", "lat": 38.9355, "lng": -77.3352, "note": "GNIS records this as a named stream draining to the Potomac." },
+        { "id": "wolf-trap", "name": "Wolf Trap", "kind": "Populated place", "lat": 38.9343, "lng": -77.2650, "note": "GNIS records Wolf Trap as a named place in Fairfax County." },
+        { "id": "accotink-creek", "name": "Accotink Creek", "kind": "Stream", "lat": 38.7930, "lng": -77.2280, "note": "GNIS records Accotink Creek as a named tributary to the Potomac." },
+        { "id": "scotts-run", "name": "Scotts Run", "kind": "Stream", "lat": 38.9593, "lng": -77.2028, "note": "GNIS records Scotts Run as a named stream in the Potomac gorge." },
+        { "id": "pimmit-run", "name": "Pimmit Run", "kind": "Stream", "lat": 38.9340, "lng": -77.1850, "note": "GNIS records Pimmit Run as a named stream east of Difficult Run." },
+        { "id": "four-mile-run", "name": "Four Mile Run", "kind": "Stream", "lat": 38.8432, "lng": -77.0478, "note": "GNIS records Four Mile Run as a named stream to the Potomac." },
+        { "id": "hains-point", "name": "Hains Point", "kind": "Cape", "lat": 38.8572, "lng": -77.0215, "note": "GNIS records Hains Point as the named cape at East Potomac Park." },
+        { "id": "great-falls", "name": "Great Falls", "kind": "Falls", "lat": 38.9978, "lng": -77.2542, "note": "GNIS records Great Falls as the named drop of the Potomac." }
+      ]
+    },
+    {
+      "id": "protected",
+      "title": "Who protects this land",
+      "sourceName": "USGS Protected Areas Database of the United States",
+      "sourceUrl": "https://www.usgs.gov/programs/gap-analysis-project/science/protected-areas",
+      "question": "Who manages the land you can walk?",
+      "items": [
+        { "id": "fcpa-ox-hill", "name": "Ox Hill Battlefield Park", "kind": "County park", "manager": "Fairfax County Park Authority", "lat": 38.8647, "lng": -77.3693, "note": "County land holds the remaining Fairfax ground of the 1862 fight." },
+        { "id": "fcpa-scotts-run", "name": "Scotts Run Nature Preserve", "kind": "County park", "manager": "Fairfax County Park Authority", "lat": 38.9593, "lng": -77.2028, "note": "County land keeps the gorge trail and stream banks open." },
+        { "id": "nps-mana", "name": "Manassas National Battlefield Park", "kind": "National park", "manager": "National Park Service", "lat": 38.8126, "lng": -77.5214, "note": "Federal land holds the core of First and Second Manassas." },
+        { "id": "nps-gwmp", "name": "George Washington Memorial Parkway", "kind": "National parkway", "manager": "National Park Service", "lat": 38.9340, "lng": -77.1350, "note": "Federal parkway land follows the Potomac shore." },
+        { "id": "nps-east-potomac", "name": "East Potomac Park", "kind": "National park", "manager": "National Park Service", "lat": 38.8702, "lng": -77.0261, "note": "Federal filled land holds public golf, the loop trail, and cherry plantings." },
+        { "id": "fcpa-huntley", "name": "Huntley Meadows Park", "kind": "County park", "manager": "Fairfax County Park Authority", "lat": 38.7536, "lng": -77.0986, "note": "County wetland park is a main wildlife record site in the pack." }
+      ]
+    },
+    {
+      "id": "wildlife",
+      "title": "Wildlife recorded here",
+      "sourceName": "EPA Level III Ecoregions and pack wildlife sites",
+      "sourceUrl": "https://www.epa.gov/eco-research/ecoregions",
+      "question": "What ecological region is this pack, and what has been recorded?",
+      "region": "Piedmont",
+      "items": [
+        { "id": "great-blue-heron", "name": "Great Blue Heron", "kind": "Bird", "lat": 38.7536, "lng": -77.0986, "note": "Wetland parks in this pack hold heron records. Huntley Meadows is a usual site." },
+        { "id": "white-tailed-deer", "name": "White-tailed Deer", "kind": "Mammal", "lat": 38.9593, "lng": -77.2028, "note": "Wooded county parks in the Piedmont hold regular deer records." },
+        { "id": "beaver", "name": "Beaver", "kind": "Mammal", "lat": 38.7930, "lng": -77.2280, "note": "Accotink and other Piedmont streams hold beaver sign." },
+        { "id": "eastern-box-turtle", "name": "Eastern Box Turtle", "kind": "Reptile", "lat": 38.8647, "lng": -77.3693, "note": "Forest floor in Fairfax parks holds box turtle records." },
+        { "id": "red-fox", "name": "Red Fox", "kind": "Mammal", "lat": 38.9343, "lng": -77.2650, "note": "Edge habitat around Wolf Trap and county parks holds fox records." }
+      ]
+    }
+  ]
+}
