@@ -9,7 +9,7 @@ import db from './storage.js';
 import { isVisiblePoi, selectImportantPois } from './poi.js';
 import { placeLight, publicPlaceSource, walkerDetails } from './place-details.js';
 import { installedPackBounds } from './offline-view.js';
-import { isHistorySite, renderLearnHistory, setLearnView } from './learn-history.js';
+import { isHistorySite, renderLearnHistory, setLearnView, setLearnScreen, setActiveWatershed } from './learn-history.js';
 import { setPoiVisited } from './poi-visit-tracking.js';
 
 const FORMAT = 'walk-wildlife-plan-v1';
@@ -31,15 +31,7 @@ async function guideData() {
     const stopPlaceIds = [...new Set((card.stopPlaceIds || []).map(String))].filter((id) => poiById.has(id));
     if (!stopPlaceIds.length) return null;
     const route = card.journeyId ? routeById.get(String(card.journeyId)) : null;
-    return {
-      ...card,
-      id: String(card.id),
-      kind: card.kind || (card.journeyId ? 'journey' : 'walk'),
-      title: card.title || 'A walk from this pack',
-      reason: card.reason || '',
-      stopPlaceIds,
-      ...(route?.coordinates?.length > 1 ? { coordinates: route.coordinates } : {})
-    };
+    return { ...card, id: String(card.id), kind: card.kind || (card.journeyId ? 'journey' : 'walk'), title: card.title || 'A walk from this pack', reason: card.reason || '', stopPlaceIds, ...(route?.coordinates?.length > 1 ? { coordinates: route.coordinates } : {}) };
   }).filter(Boolean);
   const authoredLearn = [learn.whyCards, learn.cards, discover.whyCards].find(Array.isArray) || [];
   const learnCards = authoredLearn.map((card) => {
@@ -63,12 +55,10 @@ async function guideData() {
 }
 
 function publicSourceForPoi(poi, authored) { return publicPlaceSource(poi, authored); }
-
 function discoverCard(card) {
   const selected = selectedPlaceId && card.stopPlaceIds?.includes(selectedPlaceId);
   return `<article class="guide-card ${selected ? 'selected' : ''}" data-guide-card="${escapeHtml(card.id)}"><small>${card.kind === 'journey' ? 'JOURNEY' : escapeHtml(card.kind.replaceAll('+', ' + '))}${distanceLabel(card.distance)}</small><h3>${escapeHtml(card.title)}</h3><p>${escapeHtml(card.reason)}</p><button class="primary-button" type="button" data-guide-walk="${escapeHtml(card.id)}">Walk this</button></article>`;
 }
-
 function walkingDirection(card) {
   if (!state.activeWalk) return '';
   const route = state.plannedRoute;
@@ -94,12 +84,10 @@ function shadeLearnBounds(enabled) {
   const bbox = enabled ? installedPackBounds() : null;
   if (bbox && state.map && globalThis.L) state.learnBoundsLayer = L.rectangle([[bbox.south,bbox.west],[bbox.north,bbox.east]], { color: '#2d7259', weight: 1, fillOpacity: .06, interactive: false }).addTo(state.map);
 }
-
 function distanceLabel(distance) {
   if (!Number.isFinite(distance)) return '';
   return distance < 1000 ? ` · ${Math.round(distance)} m` : ` · ${(distance / 1609.344).toFixed(1)} mi`;
 }
-
 export function sortGuideCardsByDistance(cards, point, coordinateFor) {
   if (!point) return cards.map((card) => ({ ...card, distance: null }));
   return cards.map((card, index) => {
@@ -108,11 +96,9 @@ export function sortGuideCardsByDistance(cards, point, coordinateFor) {
     return { ...card, distance, packIndex: index };
   }).sort((left, right) => left.distance - right.distance || left.packIndex - right.packIndex);
 }
-
 function observationCard(item) {
   return `<article class="guide-card"><small>OBSERVATION${distanceLabel(item.distance)}</small><h3>${escapeHtml(item.title || item.species || 'Observation')}</h3><p>${escapeHtml(item.note || 'Saved privately in your journal.')}</p></article>`;
 }
-
 export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') {
   state.fieldGuideTab = tab;
   window.dispatchEvent(new CustomEvent('guide-tab-changed', { detail: { tab } }));
@@ -131,7 +117,7 @@ export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') 
   const point = state.currentPosition || state.lastPosition || (tab === 'learn' ? state.map?.getCenter?.() : null);
   const note = el('fieldGuideOrderNote');
   if (note) {
-    note.textContent = point ? `Nearest first from your ${state.currentPosition ? 'current' : state.lastPosition ? 'last' : 'map-center'} fix.` : 'Location is off, so this stays in pack order.';
+    note.textContent = tab === 'learn' ? 'Choose Track VA history sites or View watersheds.' : (point ? `Nearest first from your ${state.currentPosition ? 'current' : state.lastPosition ? 'last' : 'map-center'} fix.` : 'Location is off, so this stays in pack order.');
     note.classList.remove('hidden');
   }
   const poiById = new Map((state.cityPois[state.activeCity] || []).map((poi) => [String(poi.id), poi]));
@@ -142,50 +128,39 @@ export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') 
     return;
   }
   if (tab === 'learn') {
-    if (note) note.textContent = 'Check a history site. The pack split fill shows sites still to discover.';
     await renderLearnHistory(target, point);
     return;
   }
-  const cards = tab === 'learn' ? data.learn : data.discover;
-  const ordered = sortGuideCardsByDistance(cards, point, (card) => tab === 'learn'
-    ? [poiById.get(String(card.placeId))]
-    : (card.stopPlaceIds || []).map((id) => poiById.get(String(id))));
-  target.innerHTML = ordered.length ? ordered.map(tab === 'learn' ? learnCard : discoverCard).join('') : '';
+  const cards = data.discover;
+  const ordered = sortGuideCardsByDistance(cards, point, (card) => (card.stopPlaceIds || []).map((id) => poiById.get(String(id))));
+  target.innerHTML = ordered.length ? ordered.map(discoverCard).join('') : '';
 }
-
 function planForCard(card) {
   return { pack_id: state.activeCity, title: card.title, reason: card.reason, stop_place_ids: card.stopPlaceIds || [], ...(card.journeyId ? { journeyId: card.journeyId } : {}) };
 }
-
 export function normalizeWalkPlan(value) {
   const plan = typeof value === 'string' ? JSON.parse(value) : value;
   if (!plan || plan.format !== FORMAT || !plan.pack_id || !plan.title || !Array.isArray(plan.stop_place_ids)) throw new Error('Choose a valid .walkplan file.');
   return { format: FORMAT, pack_id: String(plan.pack_id), title: String(plan.title), reason: String(plan.reason || ''), stop_place_ids: plan.stop_place_ids.map(String), ...(plan.journeyId ? { journeyId: String(plan.journeyId) } : {}) };
 }
-
 export function currentWalkPlan() {
   const route = state.plannedRoute;
   if (!route) return null;
   return normalizeWalkPlan({ format: FORMAT, pack_id: state.activeCity, title: route.title, reason: route.reason || route.description || 'A walk sketched from this installed pack.', stop_place_ids: (route.stops || []).map((stop) => stop.id).filter(Boolean), ...(route.journeyId ? { journeyId: route.journeyId } : {}) });
 }
-
 function downloadPlan(plan) {
   const url = URL.createObjectURL(new Blob([JSON.stringify(plan, null, 2)], { type: 'application/json' }));
   const link = document.createElement('a');
   link.href = url;
   link.download = `${plan.title.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '').toLowerCase() || 'walk'}.walkplan`;
-  document.body.append(link);
-  link.click();
-  link.remove();
+  document.body.append(link); link.click(); link.remove();
   window.setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
-
 export function downloadCurrentWalkPlan() {
   const plan = currentWalkPlan();
   if (!plan) { toast('Paint a walk before downloading it.'); return; }
   downloadPlan(plan);
 }
-
 export async function sendCurrentWalkPlan() {
   const plan = currentWalkPlan();
   if (!plan) { toast('Paint a walk before sending it.'); return; }
@@ -197,35 +172,25 @@ export async function sendCurrentWalkPlan() {
   }
   downloadPlan(plan);
 }
-
 export function paintWalkPlan(plan) {
   const normalized = normalizeWalkPlan(plan);
-  if (state.activeWalk) {
-    state.pendingWalkPlan = normalized;
-    toast('Walk plan queued until this walk ends.');
-    return null;
-  }
+  if (state.activeWalk) { state.pendingWalkPlan = normalized; toast('Walk plan queued until this walk ends.'); return null; }
   if (normalized.pack_id !== state.activeCity) {
     state.pendingWalkPlan = normalized;
     toast(`This plan is for ${CITIES[normalized.pack_id]?.name || normalized.pack_id}. Choose that installed region first.`);
-    openSheet('regionSheet');
-    return null;
+    openSheet('regionSheet'); return null;
   }
   const pois = state.cityPois[state.activeCity] || [];
   const stops = normalized.stop_place_ids.map((id) => pois.find((poi) => String(poi.id) === id)).filter(Boolean);
   state.plannedRoute = { ...normalized, id: `imported-${Date.now()}`, title: normalized.title, reason: normalized.reason, routeMode: 'concept', stops, coordinates: [], journeyId: normalized.journeyId || null };
   if (normalized.journeyId) showCuratedRoute(normalized.journeyId);
-  paintWalkConcept(state.plannedRoute);
-  closeSheets();
-  return state.plannedRoute;
+  paintWalkConcept(state.plannedRoute); closeSheets(); return state.plannedRoute;
 }
-
 async function paintCard(cardId) {
   const data = await guideData();
   const card = data.discover.find((item) => item.id === cardId); if (!card) return;
   paintWalkPlan({ format: FORMAT, ...planForCard(card) });
 }
-
 export function initFieldGuideFilters() {
   window.addEventListener('map-overlay-changed', ({ detail }) => { if (!detail.open || detail.id !== 'backpackSheet') shadeLearnBounds(false); });
   window.addEventListener('layer-state-dirty', () => { if (state.modalOpen === 'backpackSheet' && state.fieldGuideTab === 'learn') void renderFieldGuide('learn'); });
@@ -235,12 +200,14 @@ export function initFieldGuideFilters() {
     const cardElement = event.target.closest('[data-guide-card]');
     if (cardElement && !event.target.closest('a,button')) { void paintCard(cardElement.dataset.guideCard); return; }
     const walk = event.target.closest('[data-guide-walk]'); if (walk) { void paintCard(walk.dataset.guideWalk); return; }
+    const home = event.target.closest('[data-learn-home]');
+    if (home) { setLearnScreen('home'); void renderFieldGuide('learn'); return; }
+    const openLearn = event.target.closest('[data-learn-open]');
+    if (openLearn) { setLearnScreen(openLearn.dataset.learnOpen); void renderFieldGuide('learn'); return; }
+    const basin = event.target.closest('[data-learn-watershed]');
+    if (basin) { setLearnScreen('watersheds'); setActiveWatershed(basin.dataset.learnWatershed); void renderFieldGuide('learn'); return; }
     const viewButton = event.target.closest('[data-learn-view]');
-    if (viewButton) {
-      setLearnView(viewButton.dataset.learnView);
-      void renderFieldGuide('learn');
-      return;
-    }
+    if (viewButton) { setLearnView(viewButton.dataset.learnView); void renderFieldGuide('learn'); return; }
     const check = event.target.closest('[data-learn-check]');
     if (check) {
       const poi = (state.cityPois[state.activeCity] || []).find((item) => String(item.id) === check.dataset.learnCheck);
@@ -250,7 +217,7 @@ export function initFieldGuideFilters() {
     const learnWalk = event.target.closest('[data-learn-walk]');
     if (learnWalk) {
       const poi = (state.cityPois[state.activeCity] || []).find((item) => String(item.id) === learnWalk.dataset.learnWalk);
-      if (poi) paintWalkPlan({ format: FORMAT, pack_id: state.activeCity, title: `Walk to ${poi.name}`, reason: 'A history site in this pack.', stop_place_ids: [poi.id] });
+      if (poi) paintWalkPlan({ format: FORMAT, pack_id: state.activeCity, title: `Walk to ${poi.name}`, reason: 'A walk from Learn.', stop_place_ids: [poi.id] });
       return;
     }
     const learnPlace = event.target.closest('[data-learn-place]');
@@ -261,8 +228,8 @@ export function initFieldGuideFilters() {
   });
   window.addEventListener('field-guide-entry-requested', (event) => { void (async () => {
     selectedPlaceId = event.detail?.poi?.id || null;
-    const data = await guideData();
     const tab = isHistorySite(event.detail?.poi) ? 'learn' : 'discover';
+    if (tab === 'learn') setLearnScreen('history');
     openSheet('backpackSheet'); await renderFieldGuide(tab);
   })(); });
   window.addEventListener('city-layer-data-changed', () => { state.fieldGuideData = null; });
