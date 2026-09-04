@@ -9,6 +9,8 @@ import db from './storage.js';
 import { isVisiblePoi, selectImportantPois } from './poi.js';
 import { placeLight, publicPlaceSource, walkerDetails } from './place-details.js';
 import { installedPackBounds } from './offline-view.js';
+import { isHistorySite, renderLearnHistory, setLearnView } from './learn-history.js';
+import { setPoiVisited } from './poi-visit-tracking.js';
 
 const FORMAT = 'walk-wildlife-plan-v1';
 let selectedPlaceId = null;
@@ -119,7 +121,7 @@ export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') 
   target.classList.toggle('hidden', ['online','maps'].includes(tab));
   el('sharePanel')?.classList.toggle('hidden', tab !== 'online');
   el('myMapsPanel')?.classList.toggle('hidden', tab !== 'maps');
-  shadeLearnBounds(tab === 'learn');
+  if (tab !== 'learn') shadeLearnBounds(false);
   if (['online','maps'].includes(tab)) {
     el('fieldGuideOrderNote')?.classList.add('hidden');
     if (tab === 'online') window.dispatchEvent(new CustomEvent('online-panel-render-requested'));
@@ -140,11 +142,8 @@ export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') 
     return;
   }
   if (tab === 'learn') {
-    const stories = nearestLearnStories(data.learn, [...poiById.values()], point);
-    const missing = ['news', 'recreation', 'cuisine'].filter((light) => !stories.intros.some((card) => card.light === light));
-    if (note && missing.length) note.textContent += ` No current mapped, public-source ${missing.map((light) => light.toUpperCase()).join(' / ')} point is available.`;
-    target.innerHTML = stories.intros.map((card) => learnCard(card, true)).join('') + stories.remaining.map((card) => learnCard(card)).join('');
-    if (!stories.intros.length) target.innerHTML = '<p class="empty-state">No mapped, public-source stories are available in this pack.</p>';
+    if (note) note.textContent = 'Check a history site. The pack split fill shows sites still to discover.';
+    await renderLearnHistory(target, point);
     return;
   }
   const cards = tab === 'learn' ? data.learn : data.discover;
@@ -230,19 +229,28 @@ async function paintCard(cardId) {
 export function initFieldGuideFilters() {
   window.addEventListener('map-overlay-changed', ({ detail }) => { if (!detail.open || detail.id !== 'backpackSheet') shadeLearnBounds(false); });
   window.addEventListener('layer-state-dirty', () => { if (state.modalOpen === 'backpackSheet' && state.fieldGuideTab === 'learn') void renderFieldGuide('learn'); });
+  window.addEventListener('poi-visit-state-changed', () => { if (state.fieldGuideTab === 'learn') void renderFieldGuide('learn'); });
   document.querySelector('.guide-tabs')?.addEventListener('click', (event) => { const button = event.target.closest('[data-guide-tab]'); if (button) void renderFieldGuide(button.dataset.guideTab); });
   el('fieldGuideList')?.addEventListener('click', (event) => {
     const cardElement = event.target.closest('[data-guide-card]');
     if (cardElement && !event.target.closest('a,button')) { void paintCard(cardElement.dataset.guideCard); return; }
     const walk = event.target.closest('[data-guide-walk]'); if (walk) { void paintCard(walk.dataset.guideWalk); return; }
+    const viewButton = event.target.closest('[data-learn-view]');
+    if (viewButton) {
+      setLearnView(viewButton.dataset.learnView);
+      void renderFieldGuide('learn');
+      return;
+    }
+    const check = event.target.closest('[data-learn-check]');
+    if (check) {
+      const poi = (state.cityPois[state.activeCity] || []).find((item) => String(item.id) === check.dataset.learnCheck);
+      if (poi) void setPoiVisited(poi, check.checked);
+      return;
+    }
     const learnWalk = event.target.closest('[data-learn-walk]');
     if (learnWalk) {
-      void (async () => {
-        const data = await guideData();
-        const card = data.learn.find((item) => String(item.placeId) === learnWalk.dataset.learnWalk);
-        const poi = (state.cityPois[state.activeCity] || []).find((item) => String(item.id) === learnWalk.dataset.learnWalk);
-        if (poi) paintWalkPlan({ format: FORMAT, pack_id: state.activeCity, title: `Walk to ${poi.name}`, reason: card?.short || '', stop_place_ids: [poi.id] });
-      })();
+      const poi = (state.cityPois[state.activeCity] || []).find((item) => String(item.id) === learnWalk.dataset.learnWalk);
+      if (poi) paintWalkPlan({ format: FORMAT, pack_id: state.activeCity, title: `Walk to ${poi.name}`, reason: 'A history site in this pack.', stop_place_ids: [poi.id] });
       return;
     }
     const learnPlace = event.target.closest('[data-learn-place]');
@@ -254,7 +262,7 @@ export function initFieldGuideFilters() {
   window.addEventListener('field-guide-entry-requested', (event) => { void (async () => {
     selectedPlaceId = event.detail?.poi?.id || null;
     const data = await guideData();
-    const tab = data.learn.some((card) => card.placeId === selectedPlaceId) ? 'learn' : 'discover';
+    const tab = isHistorySite(event.detail?.poi) ? 'learn' : 'discover';
     openSheet('backpackSheet'); await renderFieldGuide(tab);
   })(); });
   window.addEventListener('city-layer-data-changed', () => { state.fieldGuideData = null; });
