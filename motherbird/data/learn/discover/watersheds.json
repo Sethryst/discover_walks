@@ -1,13 +1,20 @@
 {
+  "type": "FeatureCollection",
+  "artifactType": "learn-watersheds",
   "schemaVersion": 1,
-  "artifactType": "learn-layer",
   "folder": "discover",
-  "id": "watersheds",
-  "status": "research",
-  "label": "Watersheds",
-  "sourceName": "USGS Watershed Boundary Dataset",
-  "sourceUrl": "https://www.usgs.gov/national-hydrography/watershed-boundary-dataset",
-  "joinField": "HUC12",
-  "action": "Walk somewhere in this watershed.",
-  "features": []
+  "sourceName": "Fairfax County GIS Watersheds",
+  "sourceUrl": "https://data-fairfaxcountygis.opendata.arcgis.com/datasets/d602e8004fb4496392259217e71d1921",
+  "features": [
+    {"type":"Feature","properties":{"id":"pimmit-run","name":"Pimmit Run","officialUrl":"https://www.fairfaxcounty.gov/publicworks/stormwater/middle-potomac-watersheds","protect":"Keep dogs on a lead near the stream. Do not dump soil or leaves into the water."},"geometry":{"type":"Polygon","coordinates":[[[-77.2229,38.8946],[-77.1166,38.8946],[-77.1166,38.9538],[-77.2229,38.9538],[-77.2229,38.8946]]]}}
+    ,{"type":"Feature","properties":{"id":"difficult-run","name":"Difficult Run","officialUrl":"https://www.fairfaxcounty.gov/publicworks/stormwater/difficult-run-watershed","protect":"Keep trees on the banks. Do not pick rare plants. Watch birds from the trail."},"geometry":{"type":"Polygon","coordinates":[[[-77.3838,38.8428],[-77.2204,38.8428],[-77.2204,39.0086],[-77.3838,39.0086],[-77.3838,38.8428]]]}}
+    ,{"type":"Feature","properties":{"id":"accotink-creek","name":"Accotink Creek","officialUrl":"https://www.fairfaxcounty.gov/publicworks/stormwater/accotink-creek-watershed","protect":"Stay on marked paths. Do not feed wildlife. Leave native plants in place."},"geometry":{"type":"Polygon","coordinates":[[[-77.3351,38.6834],[-77.1390,38.6834],[-77.1390,38.9018],[-77.3351,38.9018],[-77.3351,38.6834]]]}}
+    ,{"type":"Feature","properties":{"id":"cameron-run","name":"Cameron Run","officialUrl":"https://www.fairfaxcounty.gov/publicworks/stormwater/watersheds","protect":"Use the trail. Do not enter restoration plantings. Report trash near the water."},"geometry":{"type":"Polygon","coordinates":[[[-77.2305,38.7711],[-77.0481,38.7711],[-77.0481,38.9041],[-77.2305,38.9041],[-77.2305,38.7711]]]}}
+    ,{"type":"Feature","properties":{"id":"four-mile-run","name":"Four Mile Run","officialUrl":"https://www.fairfaxcounty.gov/publicworks/stormwater/watersheds","protect":"Protect stream buffers. Do not cut native shrubs. Watch for nesting birds."},"geometry":{"type":"Polygon","coordinates":[[[-77.1804,38.7900],[-77.0319,38.7900],[-77.0319,38.9290],[-77.1804,38.9290],[-77.1804,38.7900]]]}}
+    ,{"type":"Feature","properties":{"id":"pohick-creek","name":"Pohick Creek","officialUrl":"https://www.fairfaxcounty.gov/publicworks/pohick-creek-watershed","protect":"Stay out of wet meadows. Do not collect frogs or plants. Pack out all trash."},"geometry":{"type":"Polygon","coordinates":[[[-77.3319,38.6679],[-77.1672,38.6679],[-77.1672,38.8412],[-77.3319,38.8412],[-77.3319,38.6679]]]}}
+    ,{"type":"Feature","properties":{"id":"cub-run","name":"Cub Run","officialUrl":"https://www.fairfaxcounty.gov/publicworks/stormwater/cub-run-and-bull-run-watersheds","protect":"Keep to the path in parks. Do not mow or clear stream banks. Leave snags for wildlife."},"geometry":{"type":"Polygon","coordinates":[[[-77.5107,38.7933],[-77.3629,38.7933],[-77.3629,38.9446],[-77.5107,38.9446],[-77.5107,38.7933]]]}}
+    ,{"type":"Feature","properties":{"id":"scotts-run","name":"Scotts Run","officialUrl":"https://www.fairfaxcounty.gov/publicworks/stormwater/middle-potomac-watersheds","protect":"Stay on the gorge trail. Do not climb rare rock plants. Keep noise low for wildlife."},"geometry":{"type":"Polygon","coordinates":[[[-77.2351,38.9081],[-77.1719,38.9081],[-77.1719,38.9688],[-77.2351,38.9688],[-77.2351,38.9081]]]}}
+    ,{"type":"Feature","properties":{"id":"dogue-creek","name":"Dogue Creek","officialUrl":"https://www.fairfaxcounty.gov/publicworks/stormwater/watersheds","protect":"Do not walk through wetlands. Leave turtles and herons alone. Keep the banks planted."},"geometry":{"type":"Polygon","coordinates":[[[-77.1678,38.6729],[-77.0875,38.6729],[-77.0875,38.7848],[-77.1678,38.7848],[-77.1678,38.6729]]]}}
+    ,{"type":"Feature","properties":{"id":"sugarland-run","name":"Sugarland Run","officialUrl":"https://www.fairfaxcounty.gov/publicworks/stormwater/watersheds","protect":"Protect the floodplain woods. Do not plant invasive species. Keep pets out of nests."},"geometry":{"type":"Polygon","coordinates":[[[-77.4056,38.9330],[-77.3330,38.9330],[-77.3330,39.0530],[-77.4056,39.0530],[-77.4056,38.9330]]]}}
+  ]
 }
