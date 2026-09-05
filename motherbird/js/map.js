@@ -5,8 +5,6 @@ import { renderCityPois } from './poi.js';
 import { regionInstaller } from './region-ui.js';
 import { toast } from './ui.js';
 import { placeLight } from './place-details.js';
-import { installedTileStyle, DEFAULT_OFFLINE_PRESET } from './offline-map-style.js';
-import { openInstalledTileArchive } from './installed-tiles.js';
 
 export function initMap() {
   const active = city();
@@ -16,9 +14,7 @@ export function initMap() {
   // When location permission is granted at startup, begin at the actual
   // location—not the regional centroid—and keep enough zoom for a walk.
   const initialZoom = view?.zoom ?? ((state.currentPosition || state.lastPosition) ? Math.max(active.zoom, 15) : active.zoom);
-  // MarkerCluster needs a finite map zoom even when no online tile layer is
-  // mounted. Without this, a genuinely offline boot aborts before OPFS loads.
-  state.map = L.map('map', { zoomControl: false, attributionControl: true, minZoom: 0, maxZoom: 22 }).setView([initialPosition.lat, initialPosition.lng], initialZoom);
+  state.map = L.map('map', { zoomControl: false, attributionControl: true }).setView([initialPosition.lat, initialPosition.lng], initialZoom);
   state.onlineBasemapLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap contributors', crossOrigin: true });
   if (navigator.onLine !== false) state.onlineBasemapLayer.addTo(state.map);
   state.historyRadiusLayer = L.layerGroup().addTo(state.map);
@@ -68,9 +64,6 @@ export function initMap() {
   if (state.currentPosition) renderUserLocation(state.currentPosition);
   window.addEventListener('field-edition-activated', ({ detail }) => activateFieldEdition(detail));
   window.addEventListener('installed-region-activated', ({ detail }) => void activateInstalledBasemap(detail));
-  window.addEventListener('offline-view-saved', () => {
-    if (state.installedBasemapMap && state.installedBasemapSource) state.installedBasemapMap.setStyle(installedTileStyle(state.installedBasemapSource, state.settings.viewConditions?.preset || DEFAULT_OFFLINE_PRESET));
-  });
   // Federal boundary geometry remains available for a future visual redesign,
   // but the current borders, fills, and controls are intentionally not mounted.
 }
@@ -84,7 +77,6 @@ export async function activateInstalledBasemap(region) {
   }
   state.installedBasemapMap?.remove();
   state.installedBasemapMap = null;
-  state.installedBasemapSource = null;
   container.replaceChildren();
   container.classList.add('hidden');
   document.querySelector('.app-shell')?.classList.remove('installed-map-active');
@@ -100,19 +92,17 @@ export async function activateInstalledBasemap(region) {
       state.installedBasemapProtocol = new globalThis.pmtiles.Protocol();
       globalThis.maplibregl.addProtocol('pmtiles', state.installedBasemapProtocol.tile);
     }
-    const { archive } = await openInstalledTileArchive(file);
+    const archive = new globalThis.pmtiles.PMTiles(new globalThis.pmtiles.FileSource(file));
     state.installedBasemapProtocol.add(archive);
-    state.installedBasemapSource = `pmtiles://${file.name}`;
     state.map.removeLayer(state.onlineBasemapLayer);
     container.classList.remove('hidden');
     document.querySelector('.app-shell')?.classList.add('installed-map-active');
     const center = state.map.getCenter();
     state.installedBasemapMap = new globalThis.maplibregl.Map({
       container,
-      style: installedTileStyle(state.installedBasemapSource, state.settings.viewConditions?.preset || DEFAULT_OFFLINE_PRESET),
+      style: fieldEditionStyle(`pmtiles://${file.name}`),
       center: [center.lng, center.lat],
-      // Leaflet uses 256px tiles, MapLibre uses a 512px world at zoom zero.
-      zoom: Math.max(0, state.map.getZoom() - 1),
+      zoom: state.map.getZoom(),
       attributionControl: false,
       interactive: false,
       fadeDuration: 0
@@ -120,7 +110,7 @@ export async function activateInstalledBasemap(region) {
     state.installedBasemapSync = () => {
       if (!state.installedBasemapMap) return;
       const next = state.map.getCenter();
-      state.installedBasemapMap.jumpTo({ center: [next.lng, next.lat], zoom: Math.max(0, state.map.getZoom() - 1), bearing: 0, pitch: 0 });
+      state.installedBasemapMap.jumpTo({ center: [next.lng, next.lat], zoom: state.map.getZoom(), bearing: 0, pitch: 0 });
     };
     state.map.on('move zoom', state.installedBasemapSync);
     state.installedBasemapMap.once('load', state.installedBasemapSync);
@@ -160,7 +150,7 @@ async function activateFieldEdition(edition) {
 
     state.fieldEditionMap = new globalThis.maplibregl.Map({
       container,
-      style: installedTileStyle(sourceUrl, state.settings.viewConditions?.preset || DEFAULT_OFFLINE_PRESET),
+      style: fieldEditionStyle(sourceUrl),
       bounds: [[bounds.west, bounds.south], [bounds.east, bounds.north]],
       fitBoundsOptions: { padding: 28, maxZoom: 17 },
       attributionControl: false,
@@ -176,9 +166,27 @@ async function activateFieldEdition(edition) {
 async function fieldEditionSource(edition) {
   const file = await regionInstaller.opfs.readFile(edition.mapSource.path);
   if (!file) throw new Error('Installed PMTiles file is missing.');
-  const { archive } = await openInstalledTileArchive(file);
+  const archive = new globalThis.pmtiles.PMTiles(new globalThis.pmtiles.FileSource(file));
   state.fieldEditionProtocol.add(archive);
   return `pmtiles://${file.name}`;
+}
+
+function fieldEditionStyle(sourceUrl) {
+  const source = { type: 'vector', url: sourceUrl };
+  return {
+    version: 8,
+    sources: { field: source },
+    layers: [
+      { id: 'paper', type: 'background', paint: { 'background-color': '#edf1e4' } },
+      { id: 'landuse', type: 'fill', source: 'field', 'source-layer': 'landuse', paint: { 'fill-color': '#e1ead6', 'fill-opacity': 0.9 } },
+      { id: 'park', type: 'fill', source: 'field', 'source-layer': 'park', paint: { 'fill-color': '#cde0b9', 'fill-opacity': 0.92 } },
+      { id: 'water', type: 'fill', source: 'field', 'source-layer': 'water', paint: { 'fill-color': '#a9d0df', 'fill-opacity': 0.95 } },
+      { id: 'waterway', type: 'line', source: 'field', 'source-layer': 'waterway', paint: { 'line-color': '#80b9cf', 'line-width': 1.4 } },
+      { id: 'building', type: 'fill', source: 'field', 'source-layer': 'building', minzoom: 15, paint: { 'fill-color': '#e4d8c4', 'fill-outline-color': '#cfbea6' } },
+      { id: 'roads-casing', type: 'line', source: 'field', 'source-layer': 'transportation', paint: { 'line-color': '#f7f3ea', 'line-width': ['interpolate', ['linear'], ['zoom'], 12, 1, 18, 6] } },
+      { id: 'roads', type: 'line', source: 'field', 'source-layer': 'transportation', paint: { 'line-color': '#b39f7d', 'line-width': ['interpolate', ['linear'], ['zoom'], 12, 0.55, 18, 3.2] } }
+    ]
+  };
 }
 
 function exitFieldEdition() {

@@ -104,6 +104,10 @@ export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') 
   target.classList.toggle('hidden', tab === 'online');
   el('sharePanel')?.classList.toggle('hidden', tab !== 'online');
   el('myMapsPanel')?.classList.toggle('hidden', tab !== 'maps');
+  if (tab !== 'learn') {
+    shadeLearnBounds(false);
+    document.getElementById('backpackSheet')?.classList.remove('learn-min');
+  }
   if (tab === 'maps') {
     el('fieldGuideOrderNote')?.classList.add('hidden');
     renderMapsLibrary(target);

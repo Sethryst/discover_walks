@@ -57,7 +57,6 @@ const libraryAssets = [
   './vendor/rbush/rbush.js',
   './vendor/rbush/quickselect.js'
 ];
-const shellPaths = new Set(shell.map((asset) => new URL(asset, self.registration.scope).pathname));
 
 
 self.addEventListener('install', (event) => event.waitUntil(Promise.all([
@@ -127,17 +126,11 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       fetch(event.request)
         .then((response) => {
-          if (response.ok) {
-            const copy = response.clone();
-            event.waitUntil(caches.open(APP_CACHE).then((cache) => cache.put(event.request, copy)));
-          }
+          const copy = response.clone();
+          caches.open(APP_CACHE).then((cache) => cache.put(event.request, copy));
           return response;
         })
-        .catch(async () => (await caches.match(event.request))
-          // The first visit loads app.js?v=... before the worker controls it.
-          // Only known shell paths may fall back to their unversioned pre-cache.
-          || (shellPaths.has(url.pathname) ? await caches.match(`${url.origin}${url.pathname}`) : null)
-          || Response.error())
+        .catch(() => caches.match(event.request))
     );
   }
 });
