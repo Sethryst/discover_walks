@@ -13,8 +13,18 @@ test('manifest provides installable any-purpose and maskable phone icons', async
 
 test('the page includes iOS startup images and an in-app splash fallback', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  const css = await readFile(new URL('../splash-fix.css', import.meta.url), 'utf8');
+  const loader = await readFile(new URL('../js/loader.js', import.meta.url), 'utf8');
   assert.match(html, /rel="apple-touch-icon"/);
   assert.match(html, /rel="apple-touch-startup-image"/);
   assert.match(html, /id="appSplash"/);
   assert.match(html, /splash-screen\.jpeg/);
+  assert.match(html, /splash-1290x2796\.png/);
+  assert.match(html, /device-height: 874px/);
+  assert.match(html, /splash-fix\.css/);
+  assert.match(css, /inset:0/);
+  assert.match(css, /-webkit-fill-available/);
+  assert.doesNotMatch(css, /html,body\{min-height:100dvh/);
+  assert.doesNotMatch(css, /\.app-shell,#map/);
+  assert.match(loader, /visualViewport/);
 });

@@ -5,6 +5,7 @@ import { saveJournal, saveJournalOnClose, renderArchive } from './archive.js';
 import { getCurrentLocation, startWalk, stopWalk } from './walk.js';
 import { openBackpack, openJournal, closeSheets, openSheet, renderGeofenceCategoryChips, setArchiveFilter, toast } from './ui.js';
 import { city, searchPois } from './poi.js';
+import { localSearchHits, searchRowHtml, emptySearchHtml, widenSearch } from './search.js';
 import { switchCity } from './city.js';
 import { generateTimeBasedPlan, lockSelectedPlanOnMap, changePlan } from './planner.js';
 import { paintWalkPlan, sendCurrentWalkPlan } from './field-guide.js';
@@ -89,16 +90,34 @@ function bindWalkControls() {
 
 function bindSearch() {
   const input = el('mapSearchInput'); const results = el('mapSearchResults');
+  if (input) input.placeholder = 'Place, trail, or wildlife';
+  let searchToken = 0;
   input?.addEventListener('input', () => {
-    const matches = input.value.trim() ? searchPois(input.value).slice(0, 7) : [];
-    results.innerHTML = matches.map((poi) => `<button type="button" data-search-poi="${escapeHtml(String(poi.id))}">${escapeHtml(poi.name || 'Named place')}</button>`).join('');
-    results.classList.toggle('hidden', !matches.length);
+    const query = input.value.trim();
+    const token = ++searchToken;
+    if (!query) { results.innerHTML = ''; results.classList.add('hidden'); return; }
+    void (async () => {
+      const observations = await db.all('observations').catch(() => []);
+      if (token !== searchToken) return;
+      let matches = localSearchHits(query, observations);
+      results.innerHTML = matches.length ? matches.map(searchRowHtml).join('') : emptySearchHtml(query, true);
+      results.classList.remove('hidden');
+      if (matches.length >= 5) return;
+      const remote = await widenSearch(query);
+      if (token !== searchToken) return;
+      const seen = new Set(matches.map((item) => String(item.id)));
+      remote.forEach((item) => { if (!seen.has(String(item.id))) matches.push(item); });
+      results.innerHTML = matches.length ? matches.slice(0, 8).map(searchRowHtml).join('') : emptySearchHtml(query, false);
+    })();
   });
   results?.addEventListener('click', (event) => {
     const button = event.target.closest('[data-search-poi]'); if (!button) return;
+    const lat = Number(button.dataset.searchLat);
+    const lng = Number(button.dataset.searchLng);
     const poi = (state.cityPois[state.activeCity] || []).find((item) => String(item.id) === button.dataset.searchPoi);
-    if (poi) state.map.flyTo([poi.lat, poi.lng], Math.max(city().zoom + 2, 16));
-    results.classList.add('hidden'); input.value = poi?.name || '';
+    if (Number.isFinite(lat) && Number.isFinite(lng)) state.map.flyTo([lat, lng], Math.max(city().zoom + 2, 16));
+    else if (poi) state.map.flyTo([poi.lat, poi.lng], Math.max(city().zoom + 2, 16));
+    results.classList.add('hidden'); input.value = poi?.name || button.textContent.trim();
   });
 }
 

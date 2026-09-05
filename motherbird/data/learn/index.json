@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "artifactType": "learn-folder-index",
+  "folders": [
+    {
+      "id": "discover",
+      "label": "Still to discover",
+      "path": "./data/learn/discover",
+      "children": [
+        { "id": "sites", "label": "History sites", "status": "live", "source": "pack" },
+        { "id": "watersheds", "label": "Watersheds", "status": "live", "file": "watersheds.json" },
+        { "id": "names", "label": "Named landscape", "status": "live", "file": "lenses.json", "source": "USGS GNIS" },
+        { "id": "protected", "label": "Protected land", "status": "live", "file": "lenses.json", "source": "PAD-US" },
+        { "id": "wildlife", "label": "Recorded wildlife", "status": "live", "file": "lenses.json", "source": "EPA ecoregions" },
+        { "id": "streams", "label": "Streams", "status": "research", "file": "streams.json" }
+      ]
+    },
+    {
+      "id": "history",
+      "label": "History",
+      "path": "./data/learn/history",
+      "children": [
+        { "id": "sites", "label": "Checked sites", "status": "live", "source": "pack" },
+        { "id": "eras", "label": "Historic eras", "status": "research", "file": "eras.json" },
+        { "id": "battlefields", "label": "Historic battlefields", "status": "live", "file": "battlefields.json" },
+        { "id": "splits", "label": "Virginia pack splits", "status": "live", "file": "pack-splits.json" }
+      ]
+    }
+  ]
+}

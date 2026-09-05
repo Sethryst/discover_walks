@@ -210,15 +210,14 @@ export function selectImportantPois(pois) {
     .sort((left, right) => naturePriority(left.poi) - naturePriority(right.poi) || left.index - right.index);
   const zoom = Number(state.map?.getZoom?.());
   const countyNature = !Number.isFinite(zoom) || zoom < WALK_ZOOM;
-  const allowedNature = countyNature && state.layerFilters?.public?.__low_importance_recreation !== true ? nature.slice(0, NATURE_COUNTY_CAP) : nature;
+  const allowedNature = countyNature ? nature.slice(0, NATURE_COUNTY_CAP) : nature;
   const cuisine = indexed.filter((entry) => entry.group === 'cuisine');
-  const showLowCuisine = state.layerFilters?.public?.__low_importance_cuisine === true;
-  const allowedCuisine = showLowCuisine ? cuisine : diverseCuisine(cuisine, countyNature ? CUISINE_COUNTY_CAP : CUISINE_COUNTY_CAP * 2);
+  const allowedCuisine = diverseCuisine(cuisine, countyNature ? CUISINE_COUNTY_CAP : CUISINE_COUNTY_CAP * 2);
   const allowed = new Set([...allowedNature, ...allowedCuisine]);
   const highNews = indexed.filter((entry) => entry.group === 'news' && entry.poi.name && Number.isFinite(entry.poi.lat) && Number.isFinite(entry.poi.lng) && publicPlaceSource(entry.poi) && !entry.poi.virtual);
   const allowedNews = new Set((countyNature ? highNews.slice(0, NATURE_COUNTY_CAP) : highNews).map((entry) => entry.poi.id));
   return indexed.filter((entry) => {
-    if (entry.group === 'news' && state.layerFilters?.public?.__low_importance_news !== true) return allowedNews.has(entry.poi.id);
+    if (entry.group === 'news') return allowedNews.has(entry.poi.id);
     return (entry.group !== 'nature' && entry.group !== 'cuisine') || allowed.has(entry);
   })
     .sort((left, right) => {

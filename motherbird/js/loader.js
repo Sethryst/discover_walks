@@ -20,10 +20,38 @@ import { initCountyAdditions } from './county-additions.js';
 import { applyOfflineBootConditions } from './offline-view.js';
 import { migrateLegacyJournalAudio } from './journal-capture.js';
 import { initOnlinePane } from './online-pane.js';
+import { startCoachMarks } from './coach.js';
 
 export async function init() {
+  if (!document.querySelector('link[href*="splash-fix.css"]')) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = './splash-fix.css?v=72';
+    document.head.appendChild(link);
+  }
   const splash = document.getElementById('appSplash');
-  const dismissSplash = () => splash?.classList.add('app-splash--done');
+  const pinSplashToVisibleViewport = () => {
+    if (!splash || splash.classList.contains('app-splash--done')) return;
+    splash.style.position = 'fixed';
+    splash.style.top = '0';
+    splash.style.left = '0';
+    splash.style.right = '0';
+    splash.style.bottom = '0';
+    splash.style.width = '100%';
+    splash.style.height = '100%';
+    splash.style.height = '-webkit-fill-available';
+    splash.style.minHeight = '100dvh';
+  };
+  pinSplashToVisibleViewport();
+  globalThis.visualViewport?.addEventListener('resize', pinSplashToVisibleViewport);
+  globalThis.visualViewport?.addEventListener('scroll', pinSplashToVisibleViewport);
+  globalThis.addEventListener('resize', pinSplashToVisibleViewport);
+  const dismissSplash = () => {
+    splash?.classList.add('app-splash--done');
+    globalThis.visualViewport?.removeEventListener('resize', pinSplashToVisibleViewport);
+    globalThis.visualViewport?.removeEventListener('scroll', pinSplashToVisibleViewport);
+    globalThis.removeEventListener('resize', pinSplashToVisibleViewport);
+  };
   setTimeout(dismissSplash, 2500);
   try {
     await db.open();
@@ -62,14 +90,7 @@ export async function init() {
   await recoverWalkDraft();
   applyStaticAppearance();
   await renderArchive();
-  if (!state.settings.mapToolsHintSeenV2) {
-    const hint = document.getElementById('mapIntroHint');
-    state.settings.mapToolsHintSeenV2 = true;
-    await db.put('settings', state.settings);
-    hint?.classList.remove('hidden');
-    setTimeout(() => hint?.classList.add('dissolving'), 8800);
-    setTimeout(() => hint?.classList.add('hidden'), 10000);
-  }
+  startCoachMarks();
 
   if (splash) requestAnimationFrame(dismissSplash);
 
@@ -85,8 +106,6 @@ export async function init() {
   }
 }
 
-// Kept local to boot so an older cached discovery module cannot prevent the
-// whole application from starting during a service-worker rollout.
 export async function createMigratedProfile() {
   const [walks, observations, moments] = await Promise.all([db.all('walks'), db.all('observations'), db.all('moments')]);
   const profile = normalizeProfile({

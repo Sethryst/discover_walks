@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { flattenImportedFilters, parseFilterImport } from '../js/layer-system.js';
-import { normalizePersonalCategory, normalizePersonalPlace, samePersonalPlace, slugifyCategory } from '../js/personal-places.js';
+import { normalizePersonalCategory, normalizePersonalPlace, samePersonalPlace, slugifyCategory, childMapFolders, countMapFolderPlaces, mapsLibraryHtml } from '../js/personal-places.js';
 
 test('personal place records normalize to a small, local, category-linked contract', () => {
   assert.equal(slugifyCategory('  Filipino Spots!  '), 'filipino-spots');
@@ -35,7 +35,28 @@ test('walkfilter parsing validates the version and preserves mergeable selection
     public: { bench: false, drinking_water: true },
     personal: { 'mexican-food': true }
   });
-  assert.throws(() => parseFilterImport('{"export_format":"unknown"}'), /compatible JSON export/);
+  assert.throws(() => parseFilterImport('{\"export_format\":\"unknown\"}'), /compatible JSON export/);
+});
+
+test('My maps folders nest like Learn parent folders', () => {
+  const parks = normalizePersonalCategory({ name: 'Parks', color: '#2d7259' }, '2026-09-04T00:00:00.000Z');
+  const trails = normalizePersonalCategory({ name: 'Trails', parentId: parks.id, color: '#2d7259' }, '2026-09-04T00:00:00.000Z');
+  const categories = [parks, trails];
+  const places = [
+    normalizePersonalPlace({ id: 'p1', name: 'Meadowlark', categoryId: parks.id, location: { lat: 38.9, lng: -77.2 } }, '2026-09-04T00:00:00.000Z'),
+    normalizePersonalPlace({ id: 'p2', name: 'W&OD', categoryId: trails.id, location: { lat: 38.91, lng: -77.21 } }, '2026-09-04T00:00:00.000Z')
+  ];
+  assert.deepEqual(childMapFolders(null, categories).map((item) => item.id), ['parks']);
+  assert.deepEqual(childMapFolders('parks', categories).map((item) => item.id), ['trails']);
+  assert.equal(countMapFolderPlaces('parks', categories, places), 2);
+  const home = mapsLibraryHtml({ categories, places, openFolderId: null, visibleFilters: {} });
+  assert.match(home, /data-maps-folder="parks"/);
+  assert.match(home, /learn-kicker">Folders/);
+  assert.doesNotMatch(home, /data-maps-folder="trails"/);
+  const open = mapsLibraryHtml({ categories, places, openFolderId: 'parks', visibleFilters: { parks: true } });
+  assert.match(open, /data-maps-back="1"/);
+  assert.match(open, /data-maps-folder="trails"/);
+  assert.match(open, /Meadowlark/);
 });
 
 test('the PWA exposes persistent layers, personal places, and non-destructive import controls', async () => {
@@ -44,15 +65,15 @@ test('the PWA exposes persistent layers, personal places, and non-destructive im
     readFile(new URL('../js/storage.js', import.meta.url), 'utf8'),
     readFile(new URL('../service-worker.js', import.meta.url), 'utf8')
   ]);
-  assert.doesNotMatch(html, /data-explore-tab="personal"/);
-  assert.match(html, /id="savePlaceMapButton"/);
-  assert.match(html, /id="personalPlaceForm"/);
-  assert.match(html, /id="joinModeSelect"/);
-  assert.match(html, /Replace pack extras \(never private journal\)/);
-  assert.match(storage, /indexedDB\.open\('walk-wildlife-journal', 11\)/);
+  assert.doesNotMatch(html, /data-explore-tab=\"personal\"/);
+  assert.match(html, /id=\"savePlaceMapButton\"/);
+  assert.match(html, /id=\"personalPlaceForm\"/);
+  assert.match(html, /id=\"joinModeSelect\"/);
+  assert.match(html, /Replace pack extras \\(never private journal\\)/);
+  assert.match(storage, /indexedDB\\.open\\('walk-wildlife-journal', 11\\)/);
   assert.match(storage, /personal_place_categories/);
   assert.match(storage, /layer_settings/);
-  assert.match(worker, /\.\/js\/layer-system\.js/);
-  assert.match(worker, /\.\/js\/icon-loader\.js/);
-  assert.match(worker, /\.\/icons\/water-fountain\.svg/);
+  assert.match(worker, /\\.\\/js\\/layer-system\\.js/);
+  assert.match(worker, /\\.\\/js\\/icon-loader\\.js/);
+  assert.match(worker, /\\.\\/icons\\/water-fountain\\.svg/);
 });

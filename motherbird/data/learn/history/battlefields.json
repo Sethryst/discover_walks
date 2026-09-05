@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "artifactType": "learn-battlefields",
+  "folder": "history",
+  "sourceName": "American Battlefield Trust and National Park Service",
+  "eras": [
+    {
+      "id": "revolutionary",
+      "label": "Revolutionary War",
+      "years": [
+        { "year": 1775, "label": "1775", "battles": [{ "id": "great-bridge", "name": "Great Bridge", "lat": 36.7206, "lng": -76.2383, "note": "Virginia militia stop a British advance near Norfolk." }] },
+        { "year": 1781, "label": "1781", "battles": [{ "id": "yorktown", "name": "Yorktown", "lat": 37.2388, "lng": -76.5097, "note": "The siege ends major fighting in the Revolutionary War." }] }
+      ]
+    },
+    {
+      "id": "civil-war",
+      "label": "Civil War",
+      "years": [
+        { "year": 1861, "label": "1861", "battles": [
+          { "id": "first-manassas", "name": "First Manassas", "lat": 38.8126, "lng": -77.5214, "note": "The first large battle of the war is fought at Bull Run." },
+          { "id": "balls-bluff", "name": "Ball's Bluff", "lat": 39.1315, "lng": -77.5277, "note": "Union troops are driven down the bluff into the Potomac." }
+        ]},
+        { "year": 1862, "label": "1862", "battles": [
+          { "id": "hampton-roads", "name": "Hampton Roads", "lat": 36.9822, "lng": -76.3006, "note": "Ironclads fight in the harbor that guards Norfolk." },
+          { "id": "second-manassas", "name": "Second Manassas", "lat": 38.8142, "lng": -77.5219, "note": "A second battle returns to the same Bull Run ground." },
+          { "id": "ox-hill", "name": "Ox Hill / Chantilly", "lat": 38.8647, "lng": -77.3693, "note": "A short fight in Fairfax covers the Union move toward Washington." },
+          { "id": "fredericksburg", "name": "Fredericksburg", "lat": 38.2935, "lng": -77.4695, "note": "Union assaults fail against the heights above the Rappahannock." }
+        ]},
+        { "year": 1863, "label": "1863", "battles": [
+          { "id": "chancellorsville", "name": "Chancellorsville", "lat": 38.3084, "lng": -77.6484, "note": "Lee divides his army in the woods west of Fredericksburg." },
+          { "id": "brandy-station", "name": "Brandy Station", "lat": 38.5031, "lng": -77.8814, "note": "The largest cavalry battle in North America is fought here." },
+          { "id": "bristoe-station", "name": "Bristoe Station", "lat": 38.7229, "lng": -77.5453, "note": "A railroad fight in Prince William cuts a Confederate advance." }
+        ]},
+        { "year": 1864, "label": "1864", "battles": [
+          { "id": "wilderness", "name": "The Wilderness", "lat": 38.3172, "lng": -77.7263, "note": "Grant and Lee meet in dense woods south of the Rapidan." },
+          { "id": "spotsylvania", "name": "Spotsylvania", "lat": 38.2242, "lng": -77.5981, "note": "Fighting lasts for days along the Mule Shoe line." },
+          { "id": "cold-harbor", "name": "Cold Harbor", "lat": 37.5897, "lng": -77.2856, "note": "A costly Union assault occurs east of Richmond." },
+          { "id": "petersburg", "name": "Petersburg", "lat": 37.2193, "lng": -77.3783, "note": "The long siege begins against the rail lines into Richmond." }
+        ]},
+        { "year": 1865, "label": "1865", "battles": [
+          { "id": "five-forks", "name": "Five Forks", "lat": 37.1394, "lng": -77.6228, "note": "The last rail line west of Petersburg is cut." },
+          { "id": "appomattox", "name": "Appomattox Court House", "lat": 37.3774, "lng": -78.7961, "note": "Lee surrenders the Army of Northern Virginia." }
+        ]}
+      ]
+    }
+  ]
+}

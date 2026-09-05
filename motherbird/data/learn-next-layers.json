@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "artifactType": "learn-next-layers-research",
+  "status": "research-only",
+  "layers": [
+    {
+      "id": "watersheds",
+      "purpose": "Show which USGS watershed contains each pack place.",
+      "sourceName": "USGS Watershed Boundary Dataset",
+      "sourceUrl": "https://www.usgs.gov/national-hydrography/watershed-boundary-dataset",
+      "downloadHint": "Use HUC10 or HUC12 polygons clipped to the installed pack bounds.",
+      "joinField": "HUC12",
+      "action": "Walk somewhere in this watershed.",
+      "packReady": false
+    },
+    {
+      "id": "historic-eras",
+      "purpose": "Group history sites by era instead of one list.",
+      "eras": ["Colonial", "Civil War", "Industrial", "Civil Rights", "Modern"],
+      "sourceName": "National Register of Historic Places",
+      "sourceUrl": "https://www.nps.gov/subjects/nationalregister/data-downloads.htm",
+      "downloadHint": "Join NRHP year built or period of significance to pack history sites by name and point.",
+      "action": "Visit one site from each era.",
+      "packReady": false
+    },
+    {
+      "id": "streams",
+      "purpose": "Draw official stream lines under the watershed fill.",
+      "sourceName": "USGS National Hydrography Dataset",
+      "sourceUrl": "https://www.usgs.gov/national-hydrography/national-hydrography-dataset",
+      "packReady": false
+    }
+  ]
+}

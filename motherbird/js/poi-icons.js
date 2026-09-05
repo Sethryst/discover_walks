@@ -4,7 +4,7 @@ import { HISTORY_SUBTYPES, POI_ICONS, POI_TAG_PRIORITY } from './constants.js';
 // masks, so an invalid id would otherwise silently produce a blank pin.
 export const ICON_IDS = new Set([
   'anchor', 'bench', 'book-open', 'bookmark', 'building', 'coffee', 'droplet',
-  'eye', 'map-pin', 'star', 'tree', 'utensils', 'walk'
+  'eye', 'home', 'map-pin', 'star', 'tree', 'utensils', 'walk'
 ]);
 
 // Shared tag-to-icon map for the map layer and the filter sheet. POI_ICONS is
@@ -26,7 +26,9 @@ export const ICONS = {
   event: 'star', news: 'star',
   waste_basket: 'trash-2', trash: 'trash-2', accessible_parking: 'parking',
   mexican: 'utensils', filipino: 'utensils', food_cart: 'utensils', bakery: 'utensils',
-  parking: 'parking', bicycle_parking: 'bike', bike_rack: 'bike', osm: 'map'
+  parking: 'parking', bicycle_parking: 'bike', bike_rack: 'bike', osm: 'map',
+  community: 'home', facility: 'home', pantry: 'home', library: 'book-open',
+  recreation_center: 'building', wifi: 'home'
 };
 
 export const MARKER_COLORS = {
@@ -52,7 +54,8 @@ const MARKER_TAGS = new Set([
   'wildlife', 'rest', 'restrooms', 'bench', 'drinking_water', 'water_fountain', 'water',
   'water_access', 'trail', 'history', 'monument', 'marker', 'landmark', 'museum', 'cemetery',
   'art', 'public_art', 'coffee', 'cafe', 'coffee_shop', 'market', 'farmers_market', 'grocery',
-  'supermarket', 'restaurant', 'fast_food', 'event', 'news'
+  'supermarket', 'restaurant', 'fast_food', 'event', 'news',
+  'community', 'facility', 'library', 'recreation_center', 'pantry', 'wifi'
 ]);
 
 function validIconId(id) { return ICON_IDS.has(id) ? id : null; }
@@ -82,6 +85,7 @@ function colorForIcon(iconId) {
   if (['bookmark', 'building', 'book-open'].includes(iconId)) return MARKER_COLORS.historic;
   if (['coffee', 'utensils'].includes(iconId)) return MARKER_COLORS.cuisine;
   if (iconId === 'eye' || iconId === 'tree' || iconId === 'bench') return MARKER_COLORS.nature;
+  if (iconId === 'home') return MARKER_COLORS.personal;
   return MARKER_COLORS.fallback;
 }
 

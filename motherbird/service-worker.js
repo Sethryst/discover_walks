@@ -1,32 +1,33 @@
 // Keep the whole module graph with the shell. Caching only app.js leaves an
 // offline (or briefly disconnected) reload with a blank app when any imported
 // module was not already in the runtime cache.
-const APP_CACHE = 'walk-wildlife-shell-v76'; // bump when shell assets change
+const APP_CACHE = 'walk-wildlife-shell-v91'; // bump when shell assets change
 const TILE_CACHE = 'walk-wildlife-osm-viewed-tiles-v1';
 const LIBRARY_CACHE = 'walk-wildlife-library-v2';
 const COMPANION_CACHE = 'walk-wildlife-companion-media-v2';
 const libraryPath = new URL('./vendor/', self.registration.scope).pathname;
 const shell = [
   ...['anchor', 'book-open', 'bookmark', 'coffee', 'droplet', 'eye', 'star', 'tree', 'walk', 'navigation', 'search'].map((icon) => `./icons/${icon}.svg`),
-  './js/online-pane.js', './js/open-payload.js', './js/sealed-data.js', './js/offline-view.js', './js/friend-walk.js', './js/place-details.js',
+  './js/online-pane.js', './js/qr-share.js', './js/open-payload.js', './js/sealed-data.js', './js/offline-view.js', './js/friend-walk.js', './js/place-details.js',
   './js/offline-map-style.js', './js/installed-tiles.js',
   './js/heartbeat.js', './js/onboarding.js', './js/reflection.js', './js/region-favorites.js', './js/spatial-sync-outbox.js', './js/spatial-sync-policy.js',
   './data/dc-official-trails.js', './icons/plus.svg',
-  './', './index.html', './watch.html', './styles.css', './watch.css', './legal.css', './privacy.html', './terms.html', './app.js', './manifest.webmanifest', './watch.webmanifest', './supabase-config.js',
+  './', './index.html', './watch.html', './styles.css', './splash-fix.css', './watch.css', './legal.css', './privacy.html', './terms.html', './app.js', './manifest.webmanifest', './watch.webmanifest', './supabase-config.js',
   './assets/pwa-icon-192.png', './assets/pwa-icon-512.png', './assets/pwa-maskable-512.png', './assets/apple-touch-icon.png', './assets/splash-screen.jpeg', './assets/splash-1170x2532.png', './assets/splash-1290x2796.png', './assets/splash-2048x2732.png',
-  './js/archive.js', './js/backup.js', './js/city.js', './js/civic.js', './js/constants.js', './js/discovery.js', './js/discovery-taxonomy.js',
-  './js/entitlements.js', './js/cloud-journal.js', './js/events.js', './js/explore.js', './js/field-edition-loader.js', './js/field-guide.js', './js/geo.js', './js/geofence.js',
-  './js/federal-boundaries.js', './js/federal-region-loader.js', './js/federal-region-progress.js', './js/poi-visit-tracking.js', './js/loader.js', './js/map.js', './js/observation.js', './js/online.js', './js/planner.js', './js/poi.js', './js/profile.js',
+  './js/archive.js', './js/backup.js', './js/city.js', './js/civic.js', './js/civic-news.js', './js/constants.js', './js/discovery.js', './js/discovery-taxonomy.js',
+  './js/entitlements.js', './js/cloud-journal.js', './js/events.js', './js/explore.js', './js/field-edition-loader.js', './js/field-guide.js', './js/maps-folders.js', './js/learn-history.js', './js/geo.js', './js/geofence.js',
+  './js/federal-boundaries.js', './js/federal-region-loader.js', './js/federal-region-progress.js', './js/poi-visit-tracking.js', './js/loader.js', './js/coach.js', './js/map.js', './js/observation.js', './js/online.js', './js/planner.js', './js/poi.js', './js/profile.js',
   './js/neighborhoods.js', './js/spatial-index.js', './js/spatial-index-providers.js', './js/spatial-overlay.js', './js/spatial-package-loader.js', './js/spatial-closure-reporting.js', './js/text-to-walk.js',
   './js/quiet-places.js', './js/region-api.js', './js/region-installer.js', './js/region-manager.js', './js/region-package.js',
   './js/osm-regions.js',
   './js/region-ui.js', './js/routes.js', './js/routing.js', './js/runtime-router.mjs', './js/offline-router-worker.js', './js/seasonal-awareness.js', './js/state.js', './js/storage.js',
-  './js/ui.js', './js/utils.js', './js/walk.js', './js/walk-artifact.js', './js/walk-context.js', './js/walk-state.js', './js/companion.js', './js/revisit.js', './js/journal-transfer.js', './js/journal-capture.js', './js/map-paint.js', './js/county-additions.js', './js/installed-region-runtime.js', './js/watch-session.js', './js/watch-app.js', './js/device-entry.js', './js/observation-model.js', './js/weather.js', './js/journal-pane.js', './js/icon-loader.js', './js/poi-icons.js', './js/layer-system.js', './js/personal-places.js',
-  './icons/mic.svg', './icons/pencil.svg', './icons/camera.svg', './icons/target.svg', './icons/share-2.svg', './icons/map-pin.svg', './icons/trash-2.svg', './icons/water-fountain.svg', './icons/bench.svg', './icons/parking.svg', './icons/bike.svg', './icons/building.svg', './icons/utensils.svg',
+  './js/ui.js', './js/utils.js', './js/walk.js', './js/walk-artifact.js', './js/walk-context.js', './js/walk-state.js', './js/companion.js', './js/revisit.js', './js/journal-transfer.js', './js/journal-capture.js', './js/map-paint.js', './js/county-additions.js', './js/installed-region-runtime.js', './js/watch-session.js', './js/watch-app.js', './js/device-entry.js', './js/observation-model.js', './js/weather.js', './js/journal-pane.js', './js/icon-loader.js', './js/poi-icons.js', './js/poi-filter-rules.js', './js/layer-system.js', './js/personal-places.js',
+  './icons/mic.svg', './icons/pencil.svg', './icons/camera.svg', './icons/target.svg', './icons/share-2.svg', './icons/map-pin.svg', './icons/trash-2.svg', './icons/water-fountain.svg', './icons/bench.svg', './icons/parking.svg', './icons/bike.svg', './icons/building.svg', './icons/utensils.svg', './icons/home.svg',
   './data/anchorage-poi.json', './data/baltimore-poi.json', './data/boise-meridian-idaho-poi.json', './data/columbus-poi.json', './data/corpus-christi-poi.json',
   './data/dc-poi.json', './data/detroit-poi.json', './data/fort-worth-poi.json', './data/keystone-colorado-poi.json', './data/los-angeles-poi.json',
   './data/newyork-poi.json', './data/norfolk-poi.json', './data/pgcounty-poi.json', './data/philadelphia-poi.json', './data/pittsburgh-poi.json',
   './data/richmond-poi.json', './data/seattle-poi.json', './data/sedona-arizona-poi.json', './data/tempe-poi.json', './data/vienna-poi.json', './data/vienna-trails.json',
+  './data/virginia-pack-splits.json', './data/learn-next-layers.json', './data/learn/index.json', './data/learn/discover/watersheds.json', './data/learn/history/pack-splits.json', './data/learn/history/battlefields.json',
   './data/pedestrian-runtime/nyc_pedestrian_network_estimates/runtime/runtime-graph.json',
   './data/pedestrian-runtime/dvrpc_pedestrian_network_philadelphia_camden/runtime/runtime-graph.json',
   ...['asheville', 'boston', 'boulder', 'chicago', 'denver', 'new-orleans', 'portland', 'portland-maine', 'san-francisco', 'santa-fe', 'wolf-trap-va'].map((region) => `./regions/${region}/pois.json`),
@@ -43,7 +44,7 @@ const shell = [
   './regions/washington-dc/spatial/boundaries.flatbush', './regions/washington-dc/spatial/boundaries.ids.json'
 ];
 const libraryAssets = [
-  './vendor/leaflet/leaflet.css',
+  './vendor/qrcode.js', './vendor/leaflet/leaflet.css',
   './vendor/leaflet/leaflet.js',
   './vendor/leaflet-markercluster/MarkerCluster.css',
   './vendor/leaflet-markercluster/MarkerCluster.Default.css',
@@ -73,7 +74,6 @@ self.addEventListener('install', (event) => event.waitUntil(Promise.all([
 
 self.addEventListener('activate', (event) => event.waitUntil(
   Promise.all([
-    // Clean up any old versioned caches so they don't linger and don't get matched by accident.
     caches.keys().then((keys) => Promise.all(
       keys
         .filter((key) => (
@@ -102,8 +102,6 @@ self.addEventListener('fetch', (event) => {
   }
 
   if (url.origin === self.location.origin && /\/assets\/[^/]+\.gif$/i.test(url.pathname)) {
-    // GIFs enter this persistent cache only after the selected companion or a
-    // real contextual state requests them. Nothing here preloads rare media.
     event.respondWith(caches.open(COMPANION_CACHE).then(async (cache) => {
       const saved = await cache.match(event.request);
       if (saved) return saved;
@@ -126,8 +124,6 @@ self.addEventListener('fetch', (event) => {
   }
 
   if (url.origin === self.location.origin) {
-    // Network-first for the app shell: always try to get the latest deploy.
-    // Only fall back to cache when the network is unavailable (offline support).
     event.respondWith(
       fetch(event.request)
         .then((response) => {
