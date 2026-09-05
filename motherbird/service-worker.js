@@ -15,7 +15,7 @@ const shell = [
   './', './index.html', './watch.html', './styles.css', './splash-fix.css', './watch.css', './legal.css', './privacy.html', './terms.html', './app.js', './manifest.webmanifest', './watch.webmanifest', './supabase-config.js',
   './assets/pwa-icon-192.png', './assets/pwa-icon-512.png', './assets/pwa-maskable-512.png', './assets/apple-touch-icon.png', './assets/splash-screen.jpeg', './assets/splash-1170x2532.png', './assets/splash-1290x2796.png', './assets/splash-2048x2732.png',
   './js/archive.js', './js/backup.js', './js/city.js', './js/civic.js', './js/civic-news.js', './js/constants.js', './js/discovery.js', './js/discovery-taxonomy.js',
-  './js/entitlements.js', './js/cloud-journal.js', './js/events.js', './js/explore.js', './js/field-edition-loader.js', './js/field-guide.js', './js/maps-folders.js', './js/learn-history.js', './js/geo.js', './js/geofence.js',
+  './js/entitlements.js', './js/cloud-journal.js', './js/events.js', './js/explore.js', './js/field-edition-loader.js', './js/field-guide.js', './js/maps-folders.js', './js/learn-change.js', './js/learn-explore.js', './js/learn-folders.js', './js/learn-history.js', './js/news-map.js', './js/search.js', './js/geo.js', './js/geofence.js',
   './js/federal-boundaries.js', './js/federal-region-loader.js', './js/federal-region-progress.js', './js/poi-visit-tracking.js', './js/loader.js', './js/coach.js', './js/map.js', './js/observation.js', './js/online.js', './js/planner.js', './js/poi.js', './js/profile.js',
   './js/neighborhoods.js', './js/spatial-index.js', './js/spatial-index-providers.js', './js/spatial-overlay.js', './js/spatial-package-loader.js', './js/spatial-closure-reporting.js', './js/text-to-walk.js',
   './js/quiet-places.js', './js/region-api.js', './js/region-installer.js', './js/region-manager.js', './js/region-package.js',
@@ -42,7 +42,8 @@ const shell = [
   './assets/fox-idle.gif', './assets/fox-walk.gif', './assets/cloud-idle.gif', './assets/cloud-walk.gif', './assets/compass.gif',
   './regions/washington-dc/spatial/spatial-index-manifest.json', './regions/washington-dc/spatial/pois.flatbush', './regions/washington-dc/spatial/pois.ids.json',
   './regions/washington-dc/spatial/boundaries.flatbush', './regions/washington-dc/spatial/boundaries.ids.json'
-];
+ ];
+const shellPaths = new Set(shell.map((asset) => new URL(asset, self.registration.scope).pathname));
 const libraryAssets = [
   './vendor/qrcode.js', './vendor/leaflet/leaflet.css',
   './vendor/leaflet/leaflet.js',
@@ -126,11 +127,15 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       fetch(event.request)
         .then((response) => {
-          const copy = response.clone();
-          caches.open(APP_CACHE).then((cache) => cache.put(event.request, copy));
+          if (response.ok) {
+            const copy = response.clone();
+            event.waitUntil(caches.open(APP_CACHE).then((cache) => cache.put(event.request, copy)));
+          }
           return response;
         })
-        .catch(() => caches.match(event.request))
+        .catch(async () => (await caches.match(event.request))
+          || (shellPaths.has(url.pathname) ? await caches.match(`${url.origin}${url.pathname}`) : null)
+          || Response.error())
     );
   }
 });

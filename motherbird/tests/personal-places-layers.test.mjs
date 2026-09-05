@@ -2,7 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { flattenImportedFilters, parseFilterImport } from '../js/layer-system.js';
-import { normalizePersonalCategory, normalizePersonalPlace, samePersonalPlace, slugifyCategory, childMapFolders, countMapFolderPlaces, mapsLibraryHtml } from '../js/personal-places.js';
+import { normalizePersonalCategory, normalizePersonalPlace, samePersonalPlace, slugifyCategory } from '../js/personal-places.js';
+import { childMapFolders, countMapFolderPlaces, mapsLibraryHtml } from '../js/maps-folders.js';
 
 test('personal place records normalize to a small, local, category-linked contract', () => {
   assert.equal(slugifyCategory('  Filipino Spots!  '), 'filipino-spots');
@@ -69,11 +70,11 @@ test('the PWA exposes persistent layers, personal places, and non-destructive im
   assert.match(html, /id=\"savePlaceMapButton\"/);
   assert.match(html, /id=\"personalPlaceForm\"/);
   assert.match(html, /id=\"joinModeSelect\"/);
-  assert.match(html, /Replace pack extras \\(never private journal\\)/);
-  assert.match(storage, /indexedDB\\.open\\('walk-wildlife-journal', 11\\)/);
+  assert.match(html, /Replace pack extras \(never private journal\)/);
+  assert.match(storage, /indexedDB\.open\('walk-wildlife-journal', 11\)/);
   assert.match(storage, /personal_place_categories/);
   assert.match(storage, /layer_settings/);
-  assert.match(worker, /\\.\\/js\\/layer-system\\.js/);
-  assert.match(worker, /\\.\\/js\\/icon-loader\\.js/);
-  assert.match(worker, /\\.\\/icons\\/water-fountain\\.svg/);
+  assert.match(worker, /\.\/js\/layer-system\.js/);
+  assert.match(worker, /\.\/js\/icon-loader\.js/);
+  assert.match(worker, /\.\/icons\/water-fountain\.svg/);
 });
