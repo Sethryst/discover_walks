@@ -7,6 +7,7 @@ import { RegionPackage } from './region-package.js';
 import { canUseOfflineRegion } from './entitlements.js';
 import { FieldEditionLoader } from './field-edition-loader.js';
 import { CITIES } from './constants.js';
+import { downloadPublishedStateProduct, fetchOsmReleaseManifest } from './osm-release.js';
 
 export const regionInstaller = new RegionInstaller({ db });
 
@@ -69,6 +70,17 @@ export function createRegionRuntimeApi() {
 
 export const regionApi = createRegionRuntimeApi();
 export const fieldEditionLoader = new FieldEditionLoader({ installer: regionInstaller });
+
+export async function installPublishedOsmProduct(stateId, product) {
+  const release = await fetchOsmReleaseManifest();
+  const artifact = await downloadPublishedStateProduct(release, stateId, product);
+  return regionInstaller.installOsmProduct({
+    state: artifact.state,
+    product,
+    blob: artifact.blob,
+    manifest: artifact.manifest
+  });
+}
 
 export async function loadFieldEdition(id) {
   return fieldEditionLoader.loadEdition(id);

@@ -55,6 +55,27 @@ export class RegionInstaller {
       .map((entry) => ({ id: entry.id, name: entry.name || entry.id, installed: true }));
   }
 
+  async installOsmProduct({ state, product, blob, manifest }) {
+    if (!state?.id || !['roadway', 'poi'].includes(product)) throw new Error('A valid state and OSM product are required.');
+    await validateArtifactBlob(blob, manifest?.sha256);
+    const installDir = `regions/${state.id}`;
+    const path = `${installDir}/${product}.pmtiles`;
+    await this.opfs.ensureDirectory(installDir.split('/'));
+    await this.opfs.writeFile(path, blob);
+    const existing = await this.db.get('regions', state.id) || { id: state.id, name: state.name || state.id };
+    const osmProducts = { ...(existing.osmProducts || {}) };
+    osmProducts[product] = {
+      status: 'installed', path, installedAt: new Date().toISOString(),
+      bytes: manifest?.bytes, sha256: manifest?.sha256, featureCount: manifest?.featureCount
+    };
+    await this.db.put('regions', { ...existing, osmProducts });
+    return osmProducts[product];
+  }
+
+  async osmProductStatus(stateId) {
+    return (await this.db.get('regions', stateId))?.osmProducts || {};
+  }
+
   async load(regionId) {
     const metadata = await this.db.get('regions', regionId);
     const poiEntry = await this.db.get('region_pois', regionId);
@@ -75,6 +96,7 @@ export class RegionInstaller {
         stories: fieldEditionEntry.stories || { stories: [] },
         sources: fieldEditionEntry.sources || { sources: [] }
       } : null,
+      osmProducts: metadata.osmProducts || {},
       ready: true
     };
   }
@@ -89,6 +111,20 @@ export class RegionInstaller {
       async readFile() { return null; },
       async remove() {}
     };
+  }
+}
+
+async function validateArtifactBlob(blob, declaredSha256) {
+  if (!blob?.arrayBuffer) throw new Error('OSM product PMTiles is missing.');
+  const bytes = new Uint8Array(await blob.arrayBuffer());
+  const magic = new TextDecoder('ascii').decode(bytes.subarray(0, 7));
+  if (bytes.length <= 127 || magic !== 'PMTiles') throw new Error('OSM product PMTiles header is invalid.');
+  if (!declaredSha256) return;
+  if (!globalThis.crypto?.subtle) throw new Error('This browser cannot verify the PMTiles checksum.');
+  const digest = await globalThis.crypto.subtle.digest('SHA-256', bytes);
+  const actual = [...new Uint8Array(digest)].map((byte) => byte.toString(16).padStart(2, '0')).join('');
+  if (String(declaredSha256).replace(/^sha256:/i, '').toLowerCase() !== actual) {
+    throw new Error('OSM product PMTiles checksum does not match.');
   }
 }
 

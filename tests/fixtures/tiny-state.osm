@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="gremlin-test" osmosis_replication_timestamp="2026-09-07T00:00:00Z">
+  <node id="1" version="1" timestamp="2026-09-07T00:00:00Z" lat="38.9000" lon="-77.1000" />
+  <node id="2" version="1" timestamp="2026-09-07T00:00:00Z" lat="38.9010" lon="-77.1010" />
+  <node id="3" version="1" timestamp="2026-09-07T00:00:00Z" lat="38.9020" lon="-77.1020">
+    <tag k="amenity" v="library" />
+    <tag k="name" v="Synthetic Library" />
+  </node>
+  <node id="4" version="1" timestamp="2026-09-07T00:00:00Z" lat="38.9120" lon="-77.1120">
+    <tag k="tourism" v="viewpoint" />
+    <tag k="name" v="Synthetic Viewpoint" />
+  </node>
+  <way id="10" version="1" timestamp="2026-09-07T00:00:00Z">
+    <nd ref="1" />
+    <nd ref="2" />
+    <tag k="highway" v="footway" />
+    <tag k="name" v="Synthetic Walk" />
+  </way>
+</osm>
