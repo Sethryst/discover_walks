@@ -77,7 +77,7 @@ export function nationalPoiStyle(sourceUrl) {
       { id: 'osm-basemap', type: 'raster', source: 'osmBasemap', paint: { 'raster-fade-duration': 0 } },
       { id: 'national-poi-area', type: 'fill', source: 'nationalPoi', 'source-layer': 'poi', minzoom: 8, filter: ['==', ['geometry-type'], 'Polygon'], paint: { 'fill-color': categoryColor, 'fill-opacity': 0.16, 'fill-outline-color': categoryColor } },
       { id: 'national-poi-line', type: 'line', source: 'nationalPoi', 'source-layer': 'poi', minzoom: 8, filter: ['==', ['geometry-type'], 'LineString'], paint: { 'line-color': categoryColor, 'line-width': ['interpolate', ['linear'], ['zoom'], 8, 1, 16, 3], 'line-opacity': 0.76 } },
-      { id: 'national-poi-point', type: 'circle', source: 'nationalPoi', 'source-layer': 'poi', minzoom: 7, filter: ['==', ['geometry-type'], 'Point'], paint: { 'circle-color': categoryColor, 'circle-radius': ['interpolate', ['linear'], ['zoom'], 7, 2, 11, 4.5, 16, 8], 'circle-stroke-color': '#fffaf0', 'circle-stroke-width': ['interpolate', ['linear'], ['zoom'], 7, 0.7, 14, 1.5], 'circle-opacity': 0.92 } }
+      { id: 'national-poi-point', type: 'circle', source: 'nationalPoi', 'source-layer': 'poi', minzoom: 14, filter: ['==', ['geometry-type'], 'Point'], paint: { 'circle-color': categoryColor, 'circle-radius': ['interpolate', ['linear'], ['zoom'], 14, 6, 17, 9], 'circle-stroke-color': '#fffaf0', 'circle-stroke-width': 1.5, 'circle-opacity': 0.9 } }
     ]
   };
 }
@@ -90,7 +90,7 @@ export function nationalPoiSymbolLayers() {
       filter: ['==', ['geometry-type'], 'Point'],
       layout: {
         'icon-image': iconExpression,
-        'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 0.48, 16, 0.72],
+        'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 0.78, 16, 1.05],
         'icon-allow-overlap': false,
         'icon-ignore-placement': false,
         'icon-padding': 2
@@ -146,8 +146,25 @@ async function loadSvgImage(url) {
   }
 }
 
+function markerImage(icon, color) {
+  const size = 48;
+  const canvas = document.createElement('canvas');
+  canvas.width = size;
+  canvas.height = size;
+  const context = canvas.getContext('2d');
+  context.fillStyle = color;
+  context.strokeStyle = '#fffaf0';
+  context.lineWidth = 3;
+  context.beginPath();
+  context.arc(size / 2, size / 2, 20, 0, Math.PI * 2);
+  context.fill();
+  context.stroke();
+  context.drawImage(icon, 12, 12, 24, 24);
+  return context.getImageData(0, 0, size, size);
+}
+
 export async function registerNationalPoiIcons(map) {
-  const categories = [...NATIONAL_POI_CATEGORIES, { id: 'map-pin', icon: 'map-pin' }];
+  const categories = [...NATIONAL_POI_CATEGORIES, { id: 'map-pin', icon: 'map-pin', color: '#57645f' }];
   for (let attempt = 0; attempt < 100; attempt += 1) {
     try {
       map.hasImage('national-poi-registry-check');
@@ -160,8 +177,8 @@ export async function registerNationalPoiIcons(map) {
   await Promise.all(categories.map(async (category) => {
     const id = `national-poi-${category.id}`;
     if (map.hasImage(id)) return;
-    const image = await loadSvgImage(nationalPoiIconUrl(category));
-    if (!map.hasImage(id)) map.addImage(id, image, { pixelRatio: 1 });
+    const icon = await loadSvgImage(nationalPoiIconUrl(category));
+    if (!map.hasImage(id)) map.addImage(id, markerImage(icon, category.color), { pixelRatio: 2 });
   }));
 }
 
