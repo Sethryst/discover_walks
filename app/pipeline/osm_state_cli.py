@@ -9,6 +9,9 @@ from pathlib import Path
 from typing import Any
 
 from app.pipeline.osm_feedback import build_prompt
+from app.pipeline.osm_national_poi import (
+    NATIONAL_SOURCE_URL, build_national_poi, measure_national_poi, national_plan, validate_national_poi,
+)
 from app.pipeline.osm_state import (
     STATES, BuildError, build_state, cleanup_state_inputs, preflight_report, regenerate_manifest, resolve_state,
     state_plan, validate_pmtiles, validate_release,
@@ -70,6 +73,20 @@ def parser() -> argparse.ArgumentParser:
     feedback.add_argument("feedback", type=Path)
     feedback.add_argument("--selectors", default="strict-v1")
     feedback.add_argument("--metrics", default="not measured")
+    national_plan_parser = commands.add_parser("plan-national-poi")
+    national_plan_parser.add_argument("--source-url")
+    _common(national_plan_parser)
+    for name in ("measure-national-poi", "build-national-poi"):
+        national = commands.add_parser(name)
+        national.add_argument("--source-url")
+        national.add_argument("--source-sha256")
+        national.add_argument("--max-candidates", type=int, default=8_000_000)
+        if name == "build-national-poi":
+            national.add_argument("--max-artifact-bytes", type=int, default=2 * 1024**3)
+            national.add_argument("--accept-report-sha256", required=True)
+        _common(national)
+    validate_national = commands.add_parser("validate-national-poi")
+    _common(validate_national)
     return root
 
 
@@ -116,6 +133,14 @@ def main(argv: list[str] | None = None) -> int:
             release = events[0].get("release", "unknown") if events else "unknown"
             prompt = build_prompt(events, release=str(release), selectors=args.selectors, metrics=args.metrics)
             _emit({"status": "corroborated" if prompt else "review", "prompt": prompt}); return 0
+        if args.command == "plan-national-poi":
+            _emit(national_plan(args.release, args.root, source_url=args.source_url or NATIONAL_SOURCE_URL)); return 0
+        if args.command == "measure-national-poi":
+            _emit(measure_national_poi(args.release, args.root, source_url=args.source_url or NATIONAL_SOURCE_URL, source_sha256=args.source_sha256, max_candidates=args.max_candidates)); return 0
+        if args.command == "build-national-poi":
+            _emit(build_national_poi(args.release, args.root, source_url=args.source_url or NATIONAL_SOURCE_URL, source_sha256=args.source_sha256, max_candidates=args.max_candidates, max_artifact_bytes=args.max_artifact_bytes, accepted_report_sha256=args.accept_report_sha256)); return 0
+        if args.command == "validate-national-poi":
+            result = validate_national_poi(args.root, args.release); _emit(result); return 0 if result["valid"] else 1
     except (BuildError, OSError, ValueError) as exc:
         _emit({"status": "failed", "error": str(exc)})
         return 2

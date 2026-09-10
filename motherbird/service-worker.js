@@ -1,7 +1,7 @@
 // Keep the whole module graph with the shell. Caching only app.js leaves an
 // offline (or briefly disconnected) reload with a blank app when any imported
 // module was not already in the runtime cache.
-const APP_CACHE = 'walk-wildlife-shell-v91'; // bump when shell assets change
+const APP_CACHE = 'walk-wildlife-shell-v92'; // bump when shell assets change
 const TILE_CACHE = 'walk-wildlife-osm-viewed-tiles-v1';
 const LIBRARY_CACHE = 'walk-wildlife-library-v2';
 const COMPANION_CACHE = 'walk-wildlife-companion-media-v2';
@@ -89,6 +89,13 @@ self.addEventListener('activate', (event) => event.waitUntil(
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
   const isMapTile = /(^|\.)tile\.openstreetmap\.org$/.test(url.hostname);
+
+  // PMTiles manages its own bounded byte-range reads. Never place an archive
+  // response (partial or complete) in a service-worker cache.
+  if (/\.pmtiles$/i.test(url.pathname)) {
+    event.respondWith(fetch(event.request));
+    return;
+  }
 
   if (isMapTile) {
     event.respondWith(caches.open(TILE_CACHE).then(async (cache) => {

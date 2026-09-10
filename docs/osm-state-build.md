@@ -19,7 +19,15 @@ root, use the wrapper so paths and executables stay in the same environment:
 .\scripts\osm-state.ps1 validate-state VA
 .\scripts\osm-state.ps1 validate-release
 .\scripts\osm-state.ps1 generate-manifest
+.\scripts\osm-state.ps1 plan-national-poi
+.\scripts\osm-state.ps1 measure-national-poi
+.\scripts\osm-state.ps1 build-national-poi --source-sha256 <pinned-sha256> --accept-report-sha256 <reviewed-report-sha256>
+.\scripts\osm-state.ps1 validate-national-poi
 ```
+
+National POIs are a separate measured product, not another state batch. See
+`docs/osm-national-poi-build.md`. Clients range-read that object and must not
+offer it as a complete offline download.
 
 Builds default to `.gremlin-osm/`, which is ignored by Git. Use `--release` to
 pin a release identifier and `--root` to move the factory workspace. A source

@@ -27,6 +27,38 @@ export function publishedStateProduct(manifest, stateId, product) {
   };
 }
 
+export function publishedNationalPoi(manifest) {
+  const artifact = manifest?.national?.poi;
+  if (!artifact?.cloudAvailable || !artifact?.url) return null;
+  const delivery = artifact.delivery || {};
+  if (delivery.mode !== 'http_range'
+      || delivery.fullDownloadAllowed !== false
+      || delivery.offlineInstallable !== false
+      || delivery.requiresAcceptRangesBytes !== true) {
+    throw new Error('National POI manifest does not enforce range-only delivery.');
+  }
+  return {
+    product: 'national-poi',
+    url: artifact.url,
+    bytes: artifact.bytes,
+    sha256: artifact.sha256,
+    featureCount: artifact.featureCount,
+    manifest: artifact
+  };
+}
+
+export function createNationalPoiArchive(manifest, { pmtilesImpl = globalThis.pmtiles } = {}) {
+  const published = publishedNationalPoi(manifest);
+  if (!published) return null;
+  if (!pmtilesImpl?.FetchSource || !pmtilesImpl?.PMTiles) {
+    throw new Error('The PMTiles range reader is unavailable.');
+  }
+  // FetchSource issues bounded HTTP Range requests. There is deliberately no
+  // Blob/full-fetch fallback for the national archive.
+  const source = new pmtilesImpl.FetchSource(published.url);
+  return { ...published, archive: new pmtilesImpl.PMTiles(source) };
+}
+
 export async function downloadPublishedStateProduct(manifest, stateId, product, { fetchImpl = globalThis.fetch } = {}) {
   const published = publishedStateProduct(manifest, stateId, product);
   if (!published) throw new Error(`${stateId} ${product} is not available in the published release.`);

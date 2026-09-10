@@ -330,6 +330,39 @@ def publish_release(root: Path, release: str, config: SupabaseConfig, *, state_c
                 results.append({"state": state_id, "product": product, "status": "failed", "error": str(exc)})
             atomic_json(manifest_path, manifest)
 
+    # A state-filtered retry intentionally touches only those states. A full
+    # release publication also includes the independently built national POI
+    # archive at its own immutable object path.
+    national = manifest.get("national", {}).get("poi") or {}
+    if selected is None and national.get("localAvailable"):
+        artifact = manifest_path.parent / national["path"]
+        validation = validate_pmtiles(artifact)
+        object_path = f"{prefix}/national/poi.pmtiles"
+        if not validation.get("valid") or validation.get("sha256") != national.get("sha256"):
+            national.update({"cloudAvailable": False, "upload": {"status": "failed", "error": "local validation/checksum failed"}})
+            results.append({"state": "national", "product": "poi", "status": "failed", "error": "local validation/checksum failed"})
+        else:
+            try:
+                uploaded = publisher.upload_immutable(
+                    artifact,
+                    object_path,
+                    content_type="application/vnd.pmtiles",
+                    resume_path=upload_dir / "national-poi.json",
+                )
+                national.update({
+                    "cloudAvailable": True,
+                    "available": True,
+                    "url": uploaded["url"],
+                    "objectPath": object_path,
+                    "upload": {"status": "verified", **uploaded},
+                    "uploadVerifiedAt": uploaded["verifiedAt"],
+                })
+                results.append({"state": "national", "product": "poi", "status": "verified", **uploaded})
+            except (BuildError, OSError) as exc:
+                national.update({"cloudAvailable": False, "url": None, "objectPath": object_path, "upload": {"status": "failed", "error": str(exc)}})
+                results.append({"state": "national", "product": "poi", "status": "failed", "error": str(exc)})
+        atomic_json(manifest_path, manifest)
+
     atomic_json(manifest_path, manifest)
     manifest_checksum = sha256_file(manifest_path)
     manifest_object_path = f"{prefix}/manifests/{manifest_checksum}.json"

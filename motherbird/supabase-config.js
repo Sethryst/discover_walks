@@ -7,5 +7,5 @@ window.WALK_WILDLIFE_SUPABASE = {
   anonKey: 'sb_publishable_Eh2S_d2z06SohqsIbo3Hmg_ZNH16tDi',
   // Set this to the immutable public URL reported by `publish-release`.
   // Artifact uploads always happen in the build environment, never here.
-  osmReleaseManifestUrl: ''
+  osmReleaseManifestUrl: 'https://huggingface.co/datasets/sethryst/osm-us-2026-09-07/resolve/main/manifest.json'
 };

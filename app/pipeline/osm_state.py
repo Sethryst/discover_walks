@@ -223,8 +223,16 @@ def download_file(url: str, destination: Path) -> dict[str, Any]:
     with urllib.request.urlopen(request, timeout=120) as response, temporary.open("wb") as stream:
         shutil.copyfileobj(response, stream, length=1024 * 1024)
         headers = dict(response.headers.items())
+        resolved_url = response.geturl()
     os.replace(temporary, destination)
-    return {"url": url, "bytes": destination.stat().st_size, "sha256": sha256_file(destination), "lastModified": headers.get("Last-Modified")}
+    return {
+        "url": resolved_url,
+        "requestedUrl": url,
+        "bytes": destination.stat().st_size,
+        "sha256": sha256_file(destination),
+        "lastModified": headers.get("Last-Modified"),
+        "etag": headers.get("ETag"),
+    }
 
 
 def prepare_boundary(state: StateMetadata, root: Path, *, allow_download: bool = True) -> StateMetadata:
@@ -354,7 +362,8 @@ def build_state(
     if source_sha256 and actual_source_hash.casefold() != source_sha256.casefold():
         raise BuildError(f"Source checksum mismatch: expected {source_sha256}, got {actual_source_hash}.")
     if url.startswith(GEOFABRIK_ROOT):
-        checksum_request = urllib.request.Request(url + ".md5", headers={"User-Agent": "Gremlin-Lab-OSM-Builder/1.0"})
+        checksum_url = str(source_meta.get("url") or url) + ".md5"
+        checksum_request = urllib.request.Request(checksum_url, headers={"User-Agent": "Gremlin-Lab-OSM-Builder/1.0"})
         try:
             with urllib.request.urlopen(checksum_request, timeout=60) as response:
                 expected_md5 = response.read().decode("ascii", "replace").strip().split()[0].casefold()
@@ -363,7 +372,7 @@ def build_state(
         actual_md5 = hash_file(source_path, "md5")
         if expected_md5 != actual_md5:
             raise BuildError(f"Geofabrik MD5 mismatch: expected {expected_md5}, got {actual_md5}.")
-        source_meta["providerChecksum"] = {"algorithm": "md5", "value": expected_md5, "verified": True, "url": url + ".md5"}
+        source_meta["providerChecksum"] = {"algorithm": "md5", "value": expected_md5, "verified": True, "url": checksum_url}
     source_meta["sha256"] = actual_source_hash
     source_meta["sourceDate"] = _osmium_source_date(str(tools["osmium"]["path"]), source_path) or source_meta.get("lastModified")
     atomic_json(source_meta_path, source_meta)
@@ -518,6 +527,14 @@ def validate_release(root: Path, release: str) -> dict[str, Any]:
                     errors.append(f"{state_id}/{product}: missing source OSM {field}")
             if item.get("cloudAvailable"):
                 _validate_cloud_manifest_item(errors, state_id, product, item)
+    national = manifest.get("national", {}).get("poi")
+    if national and national.get("localAvailable"):
+        from app.pipeline.osm_national_poi import validate_national_poi
+        checked += 1
+        national_validation = validate_national_poi(root, release)
+        errors.extend(f"national/poi: {error}" for error in national_validation.get("errors", []))
+        if national.get("cloudAvailable"):
+            _validate_cloud_manifest_item(errors, "national", "poi", national)
     return {"valid": not errors, "artifactsChecked": checked, "errors": errors, "path": str(path.resolve())}
 
 

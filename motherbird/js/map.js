@@ -5,6 +5,7 @@ import { renderCityPois } from './poi.js';
 import { regionInstaller } from './region-ui.js';
 import { toast } from './ui.js';
 import { placeLight } from './place-details.js';
+import { createNationalPoiArchive, fetchOsmReleaseManifest } from './osm-release.js';
 
 export function initMap() {
   const active = city();
@@ -55,6 +56,7 @@ export function initMap() {
   state.map.whenReady(() => {
     requestAnimationFrame(refreshMapSize);
     window.setTimeout(refreshMapSize, 150);
+    void activateNationalPoiOverlay();
   });
 
   window.addEventListener('resize', debounce(refreshMapSize, 120));
@@ -66,6 +68,72 @@ export function initMap() {
   window.addEventListener('installed-region-activated', ({ detail }) => void activateInstalledBasemap(detail));
   // Federal boundary geometry remains available for a future visual redesign,
   // but the current borders, fills, and controls are intentionally not mounted.
+}
+
+function ensurePmtilesProtocol() {
+  if (!state.pmtilesProtocol) {
+    state.pmtilesProtocol = new globalThis.pmtiles.Protocol();
+    globalThis.maplibregl.addProtocol('pmtiles', state.pmtilesProtocol.tile);
+  }
+  state.installedBasemapProtocol = state.pmtilesProtocol;
+  state.fieldEditionProtocol = state.pmtilesProtocol;
+  return state.pmtilesProtocol;
+}
+
+export async function activateNationalPoiOverlay({ manifest = null } = {}) {
+  const container = document.getElementById('nationalPoiOverlay');
+  if (!container || !state.map || navigator.onLine === false || !globalThis.maplibregl || !globalThis.pmtiles) return false;
+  if (!manifest && !globalThis.WALK_WILDLIFE_SUPABASE?.osmReleaseManifestUrl) return false;
+  try {
+    const release = manifest || await fetchOsmReleaseManifest();
+    const national = createNationalPoiArchive(release);
+    if (!national) return false;
+    const protocol = ensurePmtilesProtocol();
+    protocol.add(national.archive);
+    state.nationalPoiMap?.remove();
+    if (state.nationalPoiSync) state.map.off('move zoom', state.nationalPoiSync);
+    container.replaceChildren();
+    container.classList.remove('hidden');
+    const center = state.map.getCenter();
+    state.nationalPoiMap = new globalThis.maplibregl.Map({
+      container,
+      style: nationalPoiStyle(`pmtiles://${national.url}`),
+      center: [center.lng, center.lat],
+      zoom: state.map.getZoom(),
+      attributionControl: false,
+      interactive: false,
+      fadeDuration: 0
+    });
+    state.nationalPoiSync = () => {
+      const next = state.map?.getCenter();
+      if (next && state.nationalPoiMap) state.nationalPoiMap.jumpTo({ center: [next.lng, next.lat], zoom: state.map.getZoom(), bearing: 0, pitch: 0 });
+    };
+    state.map.on('move zoom', state.nationalPoiSync);
+    state.nationalPoiMap.once('load', state.nationalPoiSync);
+    return true;
+  } catch (error) {
+    container.classList.add('hidden');
+    console.warn('National walking places unavailable:', error);
+    return false;
+  }
+}
+
+function nationalPoiStyle(sourceUrl) {
+  const categoryColor = ['match', ['get', 'category'],
+    'nature', '#2d7259', 'trail', '#745b32', 'waterfront', '#2b7890',
+    'rest', '#7d5da7', 'recreation', '#c65d0e', 'civic', '#38598a',
+    'transit', '#7b536f', 'crossing', '#976f20', 'walkway', '#70695d',
+    'barrier', '#8b3a4a', 'historic', '#79512f', 'scenic', '#39756b',
+    'food', '#b6532c', '#57645f'];
+  return {
+    version: 8,
+    sources: { nationalPoi: { type: 'vector', url: sourceUrl } },
+    layers: [
+      { id: 'national-poi-area', type: 'fill', source: 'nationalPoi', 'source-layer': 'poi', filter: ['==', ['geometry-type'], 'Polygon'], paint: { 'fill-color': categoryColor, 'fill-opacity': 0.14 } },
+      { id: 'national-poi-line', type: 'line', source: 'nationalPoi', 'source-layer': 'poi', filter: ['==', ['geometry-type'], 'LineString'], paint: { 'line-color': categoryColor, 'line-width': 1.4, 'line-opacity': 0.72 } },
+      { id: 'national-poi-point', type: 'circle', source: 'nationalPoi', 'source-layer': 'poi', filter: ['==', ['geometry-type'], 'Point'], paint: { 'circle-color': categoryColor, 'circle-radius': ['interpolate', ['linear'], ['zoom'], 6, 1.5, 15, 4.5], 'circle-stroke-color': '#fffaf0', 'circle-stroke-width': 1, 'circle-opacity': 0.88 } }
+    ]
+  };
 }
 
 export async function activateInstalledBasemap(region) {
@@ -88,10 +156,7 @@ export async function activateInstalledBasemap(region) {
   try {
     const file = await regionInstaller.opfs.readFile(region.mapSource.path);
     if (!file) throw new Error('Installed PMTiles file is missing.');
-    if (!state.installedBasemapProtocol) {
-      state.installedBasemapProtocol = new globalThis.pmtiles.Protocol();
-      globalThis.maplibregl.addProtocol('pmtiles', state.installedBasemapProtocol.tile);
-    }
+    ensurePmtilesProtocol();
     const archive = new globalThis.pmtiles.PMTiles(new globalThis.pmtiles.FileSource(file));
     state.installedBasemapProtocol.add(archive);
     state.map.removeLayer(state.onlineBasemapLayer);
@@ -137,10 +202,7 @@ async function activateFieldEdition(edition) {
   }
 
   try {
-    if (!state.fieldEditionProtocol) {
-      state.fieldEditionProtocol = new globalThis.pmtiles.Protocol();
-      globalThis.maplibregl.addProtocol('pmtiles', state.fieldEditionProtocol.tile);
-    }
+    ensurePmtilesProtocol();
     const sourceUrl = await fieldEditionSource(edition);
     state.fieldEditionMap?.remove();
     container.replaceChildren();

@@ -28,3 +28,13 @@ test('the page includes iOS startup images and an in-app splash fallback', async
   assert.doesNotMatch(css, /\.app-shell,#map/);
   assert.match(loader, /visualViewport/);
 });
+
+test('national PMTiles stay out of service-worker caches and have a display-only overlay', async () => {
+  const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  const worker = await readFile(new URL('../service-worker.js', import.meta.url), 'utf8');
+  const releaseRuntime = await readFile(new URL('../js/osm-release.js', import.meta.url), 'utf8');
+  assert.match(html, /id="nationalPoiOverlay"/);
+  assert.match(worker, /if \(\/\\\.pmtiles\$\/i\.test\(url\.pathname\)\)/);
+  assert.match(releaseRuntime, /new pmtilesImpl\.FetchSource/);
+  assert.doesNotMatch(releaseRuntime, /national[\s\S]{0,300}response\.blob\(\)/i);
+});

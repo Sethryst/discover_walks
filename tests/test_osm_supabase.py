@@ -212,3 +212,35 @@ def test_failed_artifact_upload_leaves_cloud_unavailable_but_publishes_accurate_
     assert "HTTP 503" in saved["states"]["us-va"]["poi"]["upload"]["error"]
     assert summary["partial"] is True
     assert summary["manifest"]["available"] is True
+
+
+def test_full_release_publishes_national_poi_with_range_verification(tmp_path, config, monkeypatch):
+    release = "osm-us-2026-09-07"
+    release_dir = tmp_path / "releases" / release
+    artifact = release_dir / "national" / "poi.pmtiles"
+    artifact.parent.mkdir(parents=True)
+    checksum = write_pmtiles(artifact, 256)
+    manifest = {
+        "release": release,
+        "states": {},
+        "national": {
+            "poi": {
+                "localAvailable": True,
+                "cloudAvailable": False,
+                "path": "national/poi.pmtiles",
+                "sha256": checksum,
+            }
+        },
+    }
+    (release_dir / "manifest.json").write_text(json.dumps(manifest), encoding="utf-8")
+    monkeypatch.setattr("app.pipeline.osm_supabase.validate_pmtiles", lambda path: {"valid": True, "sha256": hashlib.sha256(path.read_bytes()).hexdigest()})
+    monkeypatch.setattr("app.pipeline.osm_supabase.validate_release", lambda root, release: {"valid": True, "errors": []})
+
+    summary = publish_release(tmp_path, release, config, transport=FakeStorage())
+    saved = json.loads((release_dir / "manifest.json").read_text(encoding="utf-8"))
+    national = saved["national"]["poi"]
+    assert national["cloudAvailable"] is True
+    assert national["objectPath"] == "osm/2026-09-07/national/poi.pmtiles"
+    assert national["upload"]["rangeHttpStatus"] == 206
+    assert summary["partial"] is False
+    assert summary["results"][0]["state"] == "national"

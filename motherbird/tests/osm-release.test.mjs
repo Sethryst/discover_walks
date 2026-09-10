@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { publishedStateProduct, fetchOsmReleaseManifest } from '../js/osm-release.js';
+import { createNationalPoiArchive, publishedNationalPoi, publishedStateProduct, fetchOsmReleaseManifest } from '../js/osm-release.js';
 import { RegionInstaller } from '../js/region-installer.js';
 
 test('roadway and POI cloud availability remain independent', () => {
@@ -11,6 +11,33 @@ test('roadway and POI cloud availability remain independent', () => {
   } } };
   assert.equal(publishedStateProduct(manifest, 'us-va', 'roadway').url, 'https://example/road.pmtiles');
   assert.equal(publishedStateProduct(manifest, 'us-va', 'poi'), null);
+});
+
+test('national POIs expose only a range-backed archive and reject installable manifests', () => {
+  const manifest = { national: { poi: {
+    cloudAvailable: true,
+    url: 'https://example.test/national/poi.pmtiles',
+    bytes: 123,
+    delivery: {
+      mode: 'http_range', fullDownloadAllowed: false, offlineInstallable: false, requiresAcceptRangesBytes: true
+    }
+  } } };
+  const calls = [];
+  class FetchSource {
+    constructor(url) { this.url = url; calls.push(['range-source', url]); }
+  }
+  class PMTiles {
+    constructor(source) { this.source = source; calls.push(['archive', source.url]); }
+  }
+  const rangeBacked = createNationalPoiArchive(manifest, { pmtilesImpl: { FetchSource, PMTiles } });
+  assert.equal(rangeBacked.url, manifest.national.poi.url);
+  assert.deepEqual(calls, [
+    ['range-source', manifest.national.poi.url],
+    ['archive', manifest.national.poi.url]
+  ]);
+
+  manifest.national.poi.delivery.offlineInstallable = true;
+  assert.throws(() => publishedNationalPoi(manifest), /range-only delivery/);
 });
 
 test('browser consumes an explicitly configured public release manifest', async () => {

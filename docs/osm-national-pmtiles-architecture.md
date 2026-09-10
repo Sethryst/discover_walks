@@ -2,9 +2,9 @@
 
 ## Outcome
 
-Build reproducible releases from one state PBF at a time, then discard the PBF
-after its validated artifact is safe. A national PBF is an optional development
-input, never a production prerequisite. The browser consumes PMTiles over HTTP range requests when
+Build roadway releases from one state PBF at a time, then discard the PBF after
+its validated artifact is safe. Build the separate national walking POI product
+from one pinned national snapshot after a mandatory measurement pass. The browser consumes PMTiles over HTTP range requests when
 online and the same files from Cache Storage/IndexedDB when offline. The
 browser must never query Overpass or Supabase for raw OSM geometry.
 
@@ -26,9 +26,9 @@ browser must never query Overpass or Supabase for raw OSM geometry.
 
 | Product | Contents | Primary use |
 |---|---|---|
-| `us-poi-vN.pmtiles` | Strictly selected named POIs, normalized properties, point/area centroids | Offline discovery and filters |
+| `national/poi.pmtiles` | Strict walking-oriented POIs and context geometry with normalized properties | Range-read discovery and bounded viewed-tile caching; never a full client download |
 | `us-<state>-roads-vN.pmtiles` | Named walkable/road network, line geometry, road class, surface/access fields | Map context and future routing |
-| `us-<state>-poi-vN.pmtiles` | Strict state POIs, built independently from roadway tiles | Local download and HTTP caching |
+| `us-<state>-poi-vN.pmtiles` | Legacy strict state POIs, built independently from roadway tiles | Validation/transition input; curated regional data remains authoritative |
 
 PBFs are temporary build inputs, not browser assets. Delete a state PBF after
 successful validation/publication unless an operator explicitly requests local
@@ -82,8 +82,9 @@ feature reads. Supabase stores release manifests, user-selected downloads,
 feedback events, and optional search metadata; object storage/CDN serves the
 PMTiles bytes.
 
-Offline priority is: current downloaded state → last-known nearby state →
-national compact POI fallback → explicit empty state. A filter only hides or
+Offline priority is: current downloaded regional/state pack → last-known nearby
+pack → previously cached national tile ranges → explicit empty state. The
+national archive is not presented as a full download. A filter only hides or
 reveals already-downloaded features; it must not imply that a hidden layer was
 not extracted.
 
@@ -121,6 +122,9 @@ fixture. Build the manifest and `us-va` roadway PMTiles first; run the POI
 release independently so a POI failure cannot block roadway publication;
 measure download size, feature counts, tile latency, and offline cache hit
 rate before expanding to all states and territories.
+
+The next phase is implemented in `app/pipeline/osm_national_poi.py`; its exact
+category and build contract is documented in `docs/osm-national-poi-build.md`.
 
 ## Authoritative references
 
