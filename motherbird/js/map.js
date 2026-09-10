@@ -6,6 +6,18 @@ import { regionInstaller } from './region-ui.js';
 import { toast } from './ui.js';
 import { placeLight } from './place-details.js';
 import { createNationalPoiArchive, fetchOsmReleaseManifest } from './osm-release.js';
+import {
+  NATIONAL_POI_CATEGORIES,
+  NATIONAL_POI_QUERY_LAYERS,
+  nationalPoiFeatureDetails,
+  nationalPoiIconUrl,
+  nationalPoiStyle,
+  nationalPoiSymbolLayers,
+  registerNationalPoiIcons
+} from './national-poi-map.js';
+
+const OSM_ATTRIBUTION = '&copy; OpenStreetMap contributors';
+const mapLibreZoom = () => Math.max(0, (state.map?.getZoom() || 0) - 1);
 
 export function initMap() {
   const active = city();
@@ -15,8 +27,8 @@ export function initMap() {
   // When location permission is granted at startup, begin at the actual
   // location—not the regional centroid—and keep enough zoom for a walk.
   const initialZoom = view?.zoom ?? ((state.currentPosition || state.lastPosition) ? Math.max(active.zoom, 15) : active.zoom);
-  state.map = L.map('map', { zoomControl: false, attributionControl: true }).setView([initialPosition.lat, initialPosition.lng], initialZoom);
-  state.onlineBasemapLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap contributors', crossOrigin: true });
+  state.map = L.map('map', { zoomControl: false, attributionControl: true, zoomAnimation: false, fadeAnimation: false, markerZoomAnimation: false, inertia: false }).setView([initialPosition.lat, initialPosition.lng], initialZoom);
+  state.onlineBasemapLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: OSM_ATTRIBUTION, crossOrigin: true });
   if (navigator.onLine !== false) state.onlineBasemapLayer.addTo(state.map);
   state.historyRadiusLayer = L.layerGroup().addTo(state.map);
   state.observationLayer = L.layerGroup().addTo(state.map);
@@ -38,6 +50,7 @@ export function initMap() {
       return;
     }
     if (state.planningMode) return;
+    if (showNationalPoiDetails(event)) return;
     window.dispatchEvent(new CustomEvent('map-context-requested', { detail: { lat: event.latlng.lat, lng: event.latlng.lng } }));
   });
   // Viewport windowing: only build markers for what's on/near screen, recomputed
@@ -51,6 +64,7 @@ export function initMap() {
   const refreshMapSize = () => {
     if (!state.map) return;
     state.map.invalidateSize({ pan: false });
+    state.nationalPoiMap?.resize();
   };
 
   state.map.whenReady(() => {
@@ -66,6 +80,8 @@ export function initMap() {
   if (state.currentPosition) renderUserLocation(state.currentPosition);
   window.addEventListener('field-edition-activated', ({ detail }) => activateFieldEdition(detail));
   window.addEventListener('installed-region-activated', ({ detail }) => void activateInstalledBasemap(detail));
+  window.addEventListener('online', () => void activateInstalledBasemap(state.installedBasemapRegion));
+  window.addEventListener('offline', () => void activateInstalledBasemap(state.installedBasemapRegion));
   // Federal boundary geometry remains available for a future visual redesign,
   // but the current borders, fills, and controls are intentionally not mounted.
 }
@@ -82,63 +98,196 @@ function ensurePmtilesProtocol() {
 
 export async function activateNationalPoiOverlay({ manifest = null } = {}) {
   const container = document.getElementById('nationalPoiOverlay');
-  if (!container || !state.map || navigator.onLine === false || !globalThis.maplibregl || !globalThis.pmtiles) return false;
+  if (!container || !state.map || state.nationalPoiSuppressed || navigator.onLine === false || !globalThis.maplibregl || !globalThis.pmtiles) return false;
+  if (state.nationalPoiMap) return true;
+  if (state.nationalPoiActivating) return false;
   if (!manifest && !globalThis.WALK_WILDLIFE_SUPABASE?.osmReleaseManifestUrl) return false;
+  state.nationalPoiActivating = true;
   try {
     const release = manifest || await fetchOsmReleaseManifest();
+    if (state.nationalPoiSuppressed) return false;
     const national = createNationalPoiArchive(release);
     if (!national) return false;
     const protocol = ensurePmtilesProtocol();
     protocol.add(national.archive);
-    state.nationalPoiMap?.remove();
-    if (state.nationalPoiSync) state.map.off('move zoom', state.nationalPoiSync);
+    deactivateNationalPoiOverlay();
     container.replaceChildren();
     container.classList.remove('hidden');
     const center = state.map.getCenter();
-    state.nationalPoiMap = new globalThis.maplibregl.Map({
+    const map = new globalThis.maplibregl.Map({
       container,
       style: nationalPoiStyle(`pmtiles://${national.url}`),
       center: [center.lng, center.lat],
-      zoom: state.map.getZoom(),
+      zoom: mapLibreZoom(),
       attributionControl: false,
       interactive: false,
-      fadeDuration: 0
+      fadeDuration: 0,
+      localFontFamily: 'system-ui'
     });
+    state.nationalPoiMap = map;
     state.nationalPoiSync = () => {
       const next = state.map?.getCenter();
-      if (next && state.nationalPoiMap) state.nationalPoiMap.jumpTo({ center: [next.lng, next.lat], zoom: state.map.getZoom(), bearing: 0, pitch: 0 });
+      if (next && state.nationalPoiMap) state.nationalPoiMap.jumpTo({ center: [next.lng, next.lat], zoom: mapLibreZoom(), bearing: 0, pitch: 0 });
     };
     state.map.on('move zoom', state.nationalPoiSync);
-    state.nationalPoiMap.once('load', state.nationalPoiSync);
+    map.once('style.load', async () => {
+      if (state.nationalPoiMap !== map || state.nationalPoiSuppressed) return;
+      state.nationalPoiSync();
+      enableNationalMapPresentation();
+      const [iconLayer, ...labelLayers] = nationalPoiSymbolLayers();
+      try {
+        await registerNationalPoiIcons(map);
+        if (state.nationalPoiMap === map && !map.getLayer(iconLayer.id)) map.addLayer(iconLayer);
+      } catch (error) {
+        console.warn('National walking-place icons unavailable:', error);
+      }
+      if (state.nationalPoiMap === map) {
+        labelLayers.forEach((layer) => { if (!map.getLayer(layer.id)) map.addLayer(layer); });
+      }
+    });
     return true;
   } catch (error) {
-    container.classList.add('hidden');
+    deactivateNationalPoiOverlay();
     console.warn('National walking places unavailable:', error);
     return false;
+  } finally {
+    state.nationalPoiActivating = false;
   }
 }
 
-function nationalPoiStyle(sourceUrl) {
-  const categoryColor = ['match', ['get', 'category'],
-    'nature', '#2d7259', 'trail', '#745b32', 'waterfront', '#2b7890',
-    'rest', '#7d5da7', 'recreation', '#c65d0e', 'civic', '#38598a',
-    'transit', '#7b536f', 'crossing', '#976f20', 'walkway', '#70695d',
-    'barrier', '#8b3a4a', 'historic', '#79512f', 'scenic', '#39756b',
-    'food', '#b6532c', '#57645f'];
-  return {
-    version: 8,
-    sources: { nationalPoi: { type: 'vector', url: sourceUrl } },
-    layers: [
-      { id: 'national-poi-area', type: 'fill', source: 'nationalPoi', 'source-layer': 'poi', filter: ['==', ['geometry-type'], 'Polygon'], paint: { 'fill-color': categoryColor, 'fill-opacity': 0.14 } },
-      { id: 'national-poi-line', type: 'line', source: 'nationalPoi', 'source-layer': 'poi', filter: ['==', ['geometry-type'], 'LineString'], paint: { 'line-color': categoryColor, 'line-width': 1.4, 'line-opacity': 0.72 } },
-      { id: 'national-poi-point', type: 'circle', source: 'nationalPoi', 'source-layer': 'poi', filter: ['==', ['geometry-type'], 'Point'], paint: { 'circle-color': categoryColor, 'circle-radius': ['interpolate', ['linear'], ['zoom'], 6, 1.5, 15, 4.5], 'circle-stroke-color': '#fffaf0', 'circle-stroke-width': 1, 'circle-opacity': 0.88 } }
-    ]
+function enableNationalMapPresentation() {
+  const shell = document.querySelector('.app-shell');
+  shell?.classList.add('national-map-active');
+  if (state.onlineBasemapLayer && state.map.hasLayer(state.onlineBasemapLayer)) state.map.removeLayer(state.onlineBasemapLayer);
+  if (!state.nationalPoiAttribution) {
+    state.map.attributionControl.addAttribution(OSM_ATTRIBUTION);
+    state.nationalPoiAttribution = true;
+  }
+  renderNationalPoiLegend();
+}
+
+export function deactivateNationalPoiOverlay({ restoreOnlineBasemap = true } = {}) {
+  if (state.nationalPoiSync && state.map) state.map.off('move zoom', state.nationalPoiSync);
+  state.nationalPoiSync = null;
+  state.nationalPoiMap?.remove();
+  state.nationalPoiMap = null;
+  const container = document.getElementById('nationalPoiOverlay');
+  container?.replaceChildren();
+  container?.classList.add('hidden');
+  document.querySelector('.app-shell')?.classList.remove('national-map-active');
+  document.getElementById('nationalPoiLegend')?.classList.add('hidden');
+  if (state.nationalPoiAttribution && state.map) {
+    state.map.attributionControl.removeAttribution(OSM_ATTRIBUTION);
+    state.nationalPoiAttribution = false;
+  }
+  if (restoreOnlineBasemap && navigator.onLine !== false && state.onlineBasemapLayer && state.map && !state.map.hasLayer(state.onlineBasemapLayer)) {
+    state.onlineBasemapLayer.addTo(state.map);
+  }
+}
+
+function renderNationalPoiLegend() {
+  const legend = document.getElementById('nationalPoiLegend');
+  const toggle = document.getElementById('nationalPoiLegendToggle');
+  const panel = document.getElementById('nationalPoiLegendPanel');
+  if (!legend || !toggle || !panel) return;
+  panel.replaceChildren();
+  const hint = document.createElement('p');
+  hint.textContent = 'Tap a symbol to see its mapped walking qualities.';
+  panel.append(hint);
+  const list = document.createElement('div');
+  list.className = 'national-poi-legend-grid';
+  NATIONAL_POI_CATEGORIES.forEach((category) => {
+    const item = document.createElement('span');
+    item.className = 'national-poi-legend-item';
+    item.style.setProperty('--legend-color', category.color);
+    const icon = document.createElement('img');
+    icon.src = nationalPoiIconUrl(category);
+    icon.alt = '';
+    const label = document.createElement('span');
+    label.textContent = category.label;
+    item.append(icon, label);
+    list.append(item);
+  });
+  panel.append(list);
+  toggle.onclick = () => {
+    const expanded = toggle.getAttribute('aria-expanded') !== 'true';
+    toggle.setAttribute('aria-expanded', String(expanded));
+    panel.classList.toggle('hidden', !expanded);
   };
+  legend.classList.remove('hidden');
+}
+
+function showNationalPoiDetails(event) {
+  const map = state.nationalPoiMap;
+  if (!map) return false;
+  const availableLayers = NATIONAL_POI_QUERY_LAYERS.filter((id) => map.getLayer(id));
+  if (!availableLayers.length) return false;
+  const { x, y } = event.containerPoint;
+  let features = [];
+  try {
+    const offsets = [[0, 0], [-10, 0], [10, 0], [0, -10], [0, 10], [-8, -8], [8, -8], [-8, 8], [8, 8]];
+    features = offsets.flatMap(([dx, dy]) => map.queryRenderedFeatures([x + dx, y + dy], { layers: availableLayers }));
+  } catch {
+    return false;
+  }
+  const feature = features.find((candidate) => candidate?.properties);
+  if (!feature) return false;
+  const details = nationalPoiFeatureDetails(feature.properties);
+  const card = document.createElement('article');
+  card.className = 'national-poi-card';
+  card.style.setProperty('--poi-color', details.color);
+  const heading = document.createElement('header');
+  const icon = document.createElement('img');
+  icon.src = new URL(`../icons/${details.icon}.svg`, import.meta.url).href;
+  icon.alt = '';
+  const title = document.createElement('div');
+  const kicker = document.createElement('small');
+  kicker.textContent = details.category;
+  const name = document.createElement('strong');
+  name.textContent = details.name;
+  title.append(kicker, name);
+  heading.append(icon, title);
+  card.append(heading);
+  if (details.subcategory && details.subcategory.toLocaleLowerCase() !== details.name.toLocaleLowerCase()) {
+    const subtype = document.createElement('p');
+    subtype.textContent = details.subcategory;
+    card.append(subtype);
+  }
+  if (details.qualities.length) {
+    const qualities = document.createElement('dl');
+    details.qualities.forEach((quality) => {
+      const term = document.createElement('dt');
+      term.textContent = quality.label;
+      const value = document.createElement('dd');
+      value.textContent = quality.value;
+      qualities.append(term, value);
+    });
+    card.append(qualities);
+  }
+  const source = document.createElement('small');
+  source.className = 'national-poi-source';
+  source.textContent = `${details.source} · walking-v3`;
+  card.append(source);
+  if (details.osmId && /^(node|way|relation)\/\d+$/.test(details.osmId)) {
+    const link = document.createElement('a');
+    link.href = `https://www.openstreetmap.org/${details.osmId}`;
+    link.target = '_blank';
+    link.rel = 'noreferrer';
+    link.textContent = 'View on OpenStreetMap ↗';
+    card.append(link);
+  }
+  L.popup({ className: 'national-poi-popup', maxWidth: 310 }).setLatLng(event.latlng).setContent(card).openOn(state.map);
+  return true;
 }
 
 export async function activateInstalledBasemap(region) {
   const container = document.getElementById('installedBasemap');
   if (!container || !state.map) return false;
+  state.installedBasemapRegion = region || null;
+  const regionAvailable = Boolean(region?.ready && region.mapSource?.type === 'opfs');
+  const useInstalledBasemap = regionAvailable && navigator.onLine === false;
+  state.nationalPoiSuppressed = useInstalledBasemap;
+  if (useInstalledBasemap) deactivateNationalPoiOverlay({ restoreOnlineBasemap: false });
   if (state.installedBasemapSync) {
     state.map.off('move zoom', state.installedBasemapSync);
     state.installedBasemapSync = null;
@@ -148,8 +297,9 @@ export async function activateInstalledBasemap(region) {
   container.replaceChildren();
   container.classList.add('hidden');
   document.querySelector('.app-shell')?.classList.remove('installed-map-active');
-  if (!region?.ready || region.mapSource?.type !== 'opfs') {
-    if (navigator.onLine !== false && state.onlineBasemapLayer && !state.map.hasLayer(state.onlineBasemapLayer)) state.onlineBasemapLayer.addTo(state.map);
+  if (!useInstalledBasemap) {
+    state.nationalPoiSuppressed = false;
+    if (navigator.onLine !== false) void activateNationalPoiOverlay();
     return false;
   }
   if (!globalThis.maplibregl || !globalThis.pmtiles) return false;
@@ -167,7 +317,7 @@ export async function activateInstalledBasemap(region) {
       container,
       style: fieldEditionStyle(`pmtiles://${file.name}`),
       center: [center.lng, center.lat],
-      zoom: state.map.getZoom(),
+      zoom: mapLibreZoom(),
       attributionControl: false,
       interactive: false,
       fadeDuration: 0
@@ -175,16 +325,18 @@ export async function activateInstalledBasemap(region) {
     state.installedBasemapSync = () => {
       if (!state.installedBasemapMap) return;
       const next = state.map.getCenter();
-      state.installedBasemapMap.jumpTo({ center: [next.lng, next.lat], zoom: state.map.getZoom(), bearing: 0, pitch: 0 });
+      state.installedBasemapMap.jumpTo({ center: [next.lng, next.lat], zoom: mapLibreZoom(), bearing: 0, pitch: 0 });
     };
     state.map.on('move zoom', state.installedBasemapSync);
     state.installedBasemapMap.once('load', state.installedBasemapSync);
     return true;
   } catch (error) {
+    state.nationalPoiSuppressed = false;
     console.warn('Installed PMTiles basemap unavailable:', error);
     container.classList.add('hidden');
     document.querySelector('.app-shell')?.classList.remove('installed-map-active');
     if (navigator.onLine !== false && state.onlineBasemapLayer && !state.map.hasLayer(state.onlineBasemapLayer)) state.onlineBasemapLayer.addTo(state.map);
+    if (navigator.onLine !== false) void activateNationalPoiOverlay();
     if (navigator.onLine === false) toast('Installed streets are unavailable. Pack pins remain; no new area will be fetched.');
     return false;
   }
