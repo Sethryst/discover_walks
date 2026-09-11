@@ -2,7 +2,7 @@ export const db = (() => {
   let database;
   function open() {
     return new Promise((resolve, reject) => {
-      const request = indexedDB.open('walk-wildlife-journal', 11);
+      const request = indexedDB.open('walk-wildlife-journal', 12);
       request.onupgradeneeded = () => {
         database = request.result;
         if (!database.objectStoreNames.contains('walks')) database.createObjectStore('walks', { keyPath: 'id' });
@@ -38,6 +38,12 @@ export const db = (() => {
         // Durable local operation outbox for a future, explicitly enabled county sync.
         // It is never read by the existing aggregate-profile sync.
         if (!database.objectStoreNames.contains('spatial_local_operations')) database.createObjectStore('spatial_local_operations', { keyPath: 'id' });
+        // Geo Cypher keeps audio and cryptographic identity local in this
+        // prototype. A future public transport can publish signed manifests
+        // without coupling raw media to the journal or profile backup paths.
+        if (!database.objectStoreNames.contains('geo_cyphers')) database.createObjectStore('geo_cyphers', { keyPath: 'id' });
+        if (!database.objectStoreNames.contains('geo_cypher_keys')) database.createObjectStore('geo_cypher_keys', { keyPath: 'id' });
+        if (!database.objectStoreNames.contains('geo_cypher_events')) database.createObjectStore('geo_cypher_events', { keyPath: 'id' });
       };
       request.onsuccess = () => { database = request.result; resolve(); };
       request.onerror = () => reject(request.error);
@@ -49,7 +55,7 @@ export const db = (() => {
   function all(name) { return new Promise((resolve, reject) => {const r = store(name).getAll(); r.onsuccess = () => resolve(r.result); r.onerror = () => reject(r.error); }); }
   function remove(name, id) { return new Promise((resolve, reject) => {const r = store(name, 'readwrite').delete(id); r.onsuccess = () => resolve(); r.onerror = () => reject(r.error); }); }
   function clearAll() {
-    return Promise.all(['walks', 'observations', 'moments', 'profile', 'settings', 'poi_metadata', 'neighborhood_discoveries', 'walk_drafts', 'walk_events', 'personal_places', 'personal_place_categories', 'layer_settings', 'voice_notes', 'journal_audio', 'county_additions', 'notification_state', 'spatial_local_operations'].map((name) => new Promise((resolve, reject) => {
+    return Promise.all(['walks', 'observations', 'moments', 'profile', 'settings', 'poi_metadata', 'neighborhood_discoveries', 'walk_drafts', 'walk_events', 'personal_places', 'personal_place_categories', 'layer_settings', 'voice_notes', 'journal_audio', 'county_additions', 'notification_state', 'spatial_local_operations', 'geo_cyphers', 'geo_cypher_keys', 'geo_cypher_events'].map((name) => new Promise((resolve, reject) => {
     const r = store(name, 'readwrite').clear(); r.onsuccess = resolve; r.onerror = () => reject(r.error);
     })));
   }

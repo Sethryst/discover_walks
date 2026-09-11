@@ -1,0 +1,36 @@
+{
+  "id": "synthetic-fairfax-walk-producer",
+  "name": "Synthetic Fairfax producer fixture",
+  "boundary": {
+    "source": "explicit",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [[
+        [-77.301, 38.899],
+        [-77.297, 38.899],
+        [-77.297, 38.901],
+        [-77.301, 38.901],
+        [-77.301, 38.899]
+      ]]
+    }
+  },
+  "osm": {
+    "pbfUrl": "https://example.test/fixture.osm.pbf"
+  },
+  "pedestrianNetwork": {
+    "authoritativeSources": [{
+      "id": "fairfax_fixture_sidewalks",
+      "owner": "Synthetic test fixture",
+      "file": "tests/fixtures/regional-pedestrian-producer/authoritative.geojson",
+      "sourceIdFields": ["GlobalID"],
+      "classificationFields": ["TYPE"],
+      "defaultAccess": "unknown",
+      "defaultEdgeType": "sidewalk"
+    }],
+    "includeRoadCenterlines": true,
+    "overlapToleranceMeters": 1,
+    "snapToleranceMeters": 0,
+    "tileZoom": 14,
+    "sourceTimestamp": "2026-09-10T00:00:00.000Z"
+  }
+}

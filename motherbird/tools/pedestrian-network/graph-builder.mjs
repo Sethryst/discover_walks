@@ -24,7 +24,8 @@ export function buildPedestrianGraph(featureCollection, dataset, { snapTolerance
     }
     const edgeType = classifyEdge(feature.properties || {}, dataset);
     const access = classifyAccess(feature.properties || {}, edgeType, dataset);
-    const accessEvidence = evidenceFor(feature.properties || {}, dataset, edgeType, access);
+    const accessEvidence = feature.properties?._mb_access_evidence
+      || evidenceFor(feature.properties || {}, dataset, edgeType, access);
     rawFeatures.push({
       ...feature,
       properties: {
@@ -35,7 +36,8 @@ export function buildPedestrianGraph(featureCollection, dataset, { snapTolerance
       }
     });
     for (const [partIndex, coordinates] of lines.entries()) {
-      if (dataset.preserve_source_segments) {
+      const preserveSourceSegment = feature.properties?._mb_preserve_source_segments ?? dataset.preserve_source_segments;
+      if (preserveSourceSegment) {
         const normalized = coordinates.map(validCoordinate);
         if (normalized.length < 2 || normalized.some((coordinate) => !coordinate)) {
           rejected.push({ source_feature_id: sourceId, part_index: partIndex, reason: 'invalid_source_linestring' });
@@ -83,6 +85,7 @@ export function buildPedestrianGraph(featureCollection, dataset, { snapTolerance
     ensureNode(nodeByKey, toNodeId, to);
     const edgeId = `${dataset.id}:${candidate.sourceId}:${candidate.partIndex}:${candidate.segmentIndex}`;
     const policy = materializeAccessPolicy({ access: candidate.access, edgeType: candidate.edgeType, evidence: candidate.accessEvidence, attributes: candidate.attributes });
+    const policyWarning = candidate.attributes._mb_policy_warning || policy.policy_warning;
     return {
       edge_id: edgeId,
       from_node_id: fromNodeId,
@@ -92,10 +95,14 @@ export function buildPedestrianGraph(featureCollection, dataset, { snapTolerance
       access: candidate.access,
       routable: policy.routability.ordinary_walking_beta,
       ...policy,
-      source_dataset_id: dataset.id,
+      policy_confidence: Number.isFinite(candidate.attributes._mb_policy_confidence)
+        ? candidate.attributes._mb_policy_confidence
+        : policy.policy_confidence,
+      policy_warning: policyWarning,
+      source_dataset_id: candidate.attributes._mb_source_dataset_id || dataset.id,
       source_feature_id: candidate.sourceId,
-      derived_from_raw_feature_ids: [candidate.sourceId],
-      confidence: dataset.source_validation || (candidate.edgeType === 'crossing' ? 'source_explicit' : 'source_geometry'),
+      derived_from_raw_feature_ids: candidate.attributes._mb_derived_from_raw_feature_ids || [candidate.sourceId],
+      confidence: candidate.attributes._mb_confidence || dataset.source_validation || (candidate.edgeType === 'crossing' ? 'source_explicit' : 'source_geometry'),
       last_verified_at: null,
       updated_at: candidate.updatedAt,
       length_m: round(lineLengthMeters(candidate.coordinates), 3),
@@ -146,6 +153,7 @@ function sourceFeatureId(feature, dataset, index) {
 }
 
 function classifyEdge(properties, dataset) {
+  if (ALLOWED_EDGE_TYPES.has(properties._mb_edge_type)) return properties._mb_edge_type;
   const configuredDefault = dataset.default_edge_type || dataset.network_kind?.[0] || 'footpath';
   for (const field of dataset.classification_fields || []) {
     const value = String(properties[field] ?? '').trim().toLowerCase();
@@ -160,6 +168,7 @@ function classifyEdge(properties, dataset) {
 }
 
 function classifyAccess(properties, edgeType, dataset) {
+  if (['allowed', 'prohibited', 'unknown'].includes(properties._mb_access)) return properties._mb_access;
   for (const field of dataset.access_fields || []) {
     const value = String(properties[field] ?? '').trim().toLowerCase();
     if (['no', 'private', 'prohibited', 'restricted'].includes(value) || value.includes('private')) return 'prohibited';

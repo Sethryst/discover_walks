@@ -117,6 +117,56 @@ pagination and direct GeoJSON downloads. Other registry records can be built
 from local EPSG:4326 GeoJSON while their permanent download adapters are
 resolved.
 
+## Regional OSM walk-package producer
+
+`tools/pedestrian-network/producer.mjs` is the state/region producer for the
+paired MapLibre display archive and existing compact routing runtime. It is
+separate from national POI generation and never treats a region's POIs,
+journeys, or legacy `edges.json` as routing geometry.
+
+For a downloaded PBF:
+
+```text
+npm run build:regional-pedestrian-network -- \
+  --config region-build-configs/fairfax-county-va.json \
+  --pbf C:/data/virginia-latest.osm.pbf \
+  --output C:/build/fairfax-walk-package
+```
+
+Omit `--pbf` to download and cache the configured `osm.pbfUrl`. PBF builds
+require `osmium-tool` on `PATH`, or `--osmium C:/path/to/osmium.exe` (equivalent
+to `OSMIUM_PATH`). The adapter performs polygon extraction, a tag-filter pass,
+and GeoJSON-sequence export. A missing converter is a hard failure; no other
+region artifact is substituted. `--osm-geojson` is the explicit adapter used
+for small fixtures and already-converted extracts.
+
+The producer clips every source to the polygon, normalizes official data and
+OSM into `buildPedestrianGraph`, calls `buildRuntimeGraph` and
+`writeRuntimePackage`, and writes:
+
+```text
+manifest.json
+walk-network.pmtiles
+routing-runtime/
+normalized-source.geojson
+provenance.json
+boundary.geojson
+```
+
+`manifest.json` uses `motherbird-offline-walk-package-v1`. Both primary
+artifacts carry the same content-derived `source_version`; the provenance
+report records input and artifact checksums, source metadata, bounds, counts,
+OSM IDs, suppressed overlaps, access conflicts, and restrictive barriers.
+Build timestamps come from source metadata rather than wall-clock time, so the
+same PBF, polygon, configuration, authoritative data, and producer version
+produce the same bytes.
+
+Fairfax is configured to ingest
+`OpenData/Virginia/Sidewalks/Sidewalks_Centerline_-6549984785839784608.geojson`
+first and use OSM only as a supplement. Equivalent overlaps retain the Fairfax
+feature. Contradictory explicit access evidence is retained and cautiously
+blocked with a conflict warning rather than silently selecting one source.
+
 ### Norfolk finding
 
 The official Norfolk layer describes its features as sidewalk edges, exposes no

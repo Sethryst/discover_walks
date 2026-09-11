@@ -1,8 +1,8 @@
 {
-  "name": "walk-wildlife-journal-vienna",
+  "name": "walk-wildlife",
   "version": "1.0.0",
   "type": "module",
-  "description": "A mobile-first, local-first walking journal that introduces historic places as a person moves through Vienna, VA or a Norfolk, VA prototype layer. It includes walk recording, geofenced historic prompts, personal reflections, geotagged nature observations, and a local points profile. The default experience has no account, server, analytics, or paid backend.",
+  "description": "A mobile-first, local-first walking journal and offline regional map with geofenced place and audio encounters.",
   "main": "app.js",
   "scripts": {
     "build": "node tools/build-pages.mjs",
@@ -38,6 +38,7 @@
     "publish:federal-regions": "node tools/export-federal-region-runtime.mjs",
     "build:spatial-index": "node tools/build-spatial-index.mjs",
     "build:pedestrian-network": "node tools/pedestrian-network/cli.mjs",
+    "build:regional-pedestrian-network": "node tools/pedestrian-network/producer.mjs",
     "serve:pedestrian-routes": "node tools/pedestrian-network/route-api.mjs",
     "check:spatial-sync": "node tools/check-spatial-sync-readiness.mjs",
     "validate:dc-pois": "node tools/validate-dc-pois.mjs",

@@ -15,6 +15,7 @@ import db from './storage.js';
 import { openObservation, saveObservation, setDraftObservationIcon } from './observation.js';
 import { transcribeJournal, toggleJournalRecording, stopJournalCapture } from './journal-capture.js';
 import { renderNearbyPlaces, initJournalPane } from './journal-pane.js';
+import { openGeoCypher } from './geo-cypher.js';
 
 const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];
 
@@ -23,6 +24,7 @@ export function initEvents() {
   bindSheets(); bindLocationControls(); bindWalkControls(); bindSearch(); bindJournal(); bindRegions(); bindDeviceControls();
   el('settingsButton')?.addEventListener('click', openBackpack);
   el('journalButton')?.addEventListener('click', () => void openJournal());
+  el('geoCypherButton')?.addEventListener('click', () => void openGeoCypher());
   el('savePlaceMapButton')?.addEventListener('click', () => {
     if (!state.personalPlaceSelecting) { window.dispatchEvent(new CustomEvent('personal-place-create-requested')); return; }
     const center = state.map.getCenter();

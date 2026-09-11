@@ -21,6 +21,8 @@ import { applyOfflineBootConditions } from './offline-view.js';
 import { migrateLegacyJournalAudio } from './journal-capture.js';
 import { initOnlinePane } from './online-pane.js';
 import { startCoachMarks } from './coach.js';
+import { initNationalOsmLayers } from './national-osm-layers.js';
+import { initGeoCypher } from './geo-cypher.js';
 
 export async function init() {
   if (!document.querySelector('link[href*="splash-fix.css"]')) {
@@ -72,7 +74,9 @@ export async function init() {
     return;
   }
 
+  await initNationalOsmLayers();
   initMap();
+  await initGeoCypher();
   await activateInstalledRegionRuntime();
   await initCountyAdditions();
   await initMapPaint();
