@@ -2,7 +2,7 @@ export const db = (() => {
   let database;
   function open() {
     return new Promise((resolve, reject) => {
-      const request = indexedDB.open('walk-wildlife-journal', 12);
+      const request = indexedDB.open('walk-wildlife-journal', 13);
       request.onupgradeneeded = () => {
         database = request.result;
         if (!database.objectStoreNames.contains('walks')) database.createObjectStore('walks', { keyPath: 'id' });
@@ -44,6 +44,10 @@ export const db = (() => {
         if (!database.objectStoreNames.contains('geo_cyphers')) database.createObjectStore('geo_cyphers', { keyPath: 'id' });
         if (!database.objectStoreNames.contains('geo_cypher_keys')) database.createObjectStore('geo_cypher_keys', { keyPath: 'id' });
         if (!database.objectStoreNames.contains('geo_cypher_events')) database.createObjectStore('geo_cypher_events', { keyPath: 'id' });
+        // Keep lightweight signed metadata separate from media so opening the
+        // encounter sheet never bulk-loads every recording.
+        if (!database.objectStoreNames.contains('geo_cypher_manifests')) database.createObjectStore('geo_cypher_manifests', { keyPath: 'id' });
+        if (!database.objectStoreNames.contains('geo_cypher_audio')) database.createObjectStore('geo_cypher_audio', { keyPath: 'id' });
       };
       request.onsuccess = () => { database = request.result; resolve(); };
       request.onerror = () => reject(request.error);
@@ -55,7 +59,7 @@ export const db = (() => {
   function all(name) { return new Promise((resolve, reject) => {const r = store(name).getAll(); r.onsuccess = () => resolve(r.result); r.onerror = () => reject(r.error); }); }
   function remove(name, id) { return new Promise((resolve, reject) => {const r = store(name, 'readwrite').delete(id); r.onsuccess = () => resolve(); r.onerror = () => reject(r.error); }); }
   function clearAll() {
-    return Promise.all(['walks', 'observations', 'moments', 'profile', 'settings', 'poi_metadata', 'neighborhood_discoveries', 'walk_drafts', 'walk_events', 'personal_places', 'personal_place_categories', 'layer_settings', 'voice_notes', 'journal_audio', 'county_additions', 'notification_state', 'spatial_local_operations', 'geo_cyphers', 'geo_cypher_keys', 'geo_cypher_events'].map((name) => new Promise((resolve, reject) => {
+    return Promise.all(['walks', 'observations', 'moments', 'profile', 'settings', 'poi_metadata', 'neighborhood_discoveries', 'walk_drafts', 'walk_events', 'personal_places', 'personal_place_categories', 'layer_settings', 'voice_notes', 'journal_audio', 'county_additions', 'notification_state', 'spatial_local_operations', 'geo_cyphers', 'geo_cypher_keys', 'geo_cypher_events', 'geo_cypher_manifests', 'geo_cypher_audio'].map((name) => new Promise((resolve, reject) => {
     const r = store(name, 'readwrite').clear(); r.onsuccess = resolve; r.onerror = () => reject(r.error);
     })));
   }

@@ -4,13 +4,15 @@ Geo Cypher is a local-first Fairfax prototype for geofenced audio encounters. It
 
 ## Runtime contract
 
-- `geo_cyphers` stores audio blobs and their signed immutable manifests.
+- `geo_cypher_manifests` stores lightweight signed immutable metadata; `geo_cypher_audio` stores blobs separately and loads them only when playback is requested. Version-12 `geo_cyphers` records migrate locally on first launch.
 - `geo_cypher_keys` stores one non-exportable P-256 private signing key and its public JWK on the device.
-- `geo_cypher_events` stores factual local events: `created`, `encountered`, `started`, and `completed`.
+- `geo_cypher_events` stores factual local events including `created`, `encountered`, `started`, `completed`, `dismissed`, `responded`, and `removed`.
 - A pin signs its ID, creation time, coordinates, radius, duration, MIME type, media SHA-256 digest, creator-key fingerprint, and lineage object.
 - Verification recomputes both the media digest and public-key fingerprint before checking the ECDSA signature.
 - A response starts recording immediately. Its lineage names the parent and root pin; no audible or timed attribution pre-roll is imposed.
 - Audio is capped at two minutes and is fetched from IndexedDB only for playback.
+- Accountless creators are labeled **Anonymous**; the private signing key remains non-exportable on their device.
+- Invalid manifests and changed media fail closed. Dismissal survives reload, and removal deletes the local manifest and audio.
 
 ## Prototype boundary
 
