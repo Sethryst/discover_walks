@@ -8,6 +8,7 @@ const SCHEMA_VERSION = 1, MAX_DURATION_MS = 120000, DEFAULT_RADIUS_METERS = 50;
 const encoder = new TextEncoder();
 let recorder, stream, stopTimer, responseTo, activeAudio, audioUrl;
 let activity = new Map();
+let initialized = false;
 
 const bytesToBase64 = bytes => { let value = ''; bytes.forEach(byte => { value += String.fromCharCode(byte); }); return btoa(value); };
 const base64ToBytes = value => Uint8Array.from(atob(value), character => character.charCodeAt(0));
@@ -149,6 +150,8 @@ async function migrateLegacyPins() {
   }
 }
 export async function initGeoCypher() {
+  if (initialized) return;
+  initialized = true;
   await migrateLegacyPins(); state.geoCyphers = await db.all('geo_cypher_manifests'); activity = new Map();
   for (const event of await db.all('geo_cypher_events')) activity.set(event.pinId, [...(activity.get(event.pinId) || []), event.type]);
   for (const [pinId, events] of activity) if (events.includes('encountered') && !events.includes('dismissed')) state.geoCypherPrompted.add(pinId);

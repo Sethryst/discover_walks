@@ -13,6 +13,17 @@ Do not make people download a whole Fairfax package—or carry every city’s wa
 - Cache recently used tiles locally with a size limit and eviction policy.
 - Offer an explicit “save this area offline” action later, but keep it opt-in.
 
+## Implementation direction
+
+Add a geographic index/package loader so the runtime does not read or persist an
+entire regional POI and walking-graph dataset during startup. Load only records
+that intersect the current map viewport, the active geofence radius, or a
+nearby route request, then merge those records into the in-memory spatial
+index. Persist package metadata and bounded local subsets in IndexedDB rather
+than rewriting thousands of POIs individually. This keeps the visible map
+responsive, reduces IndexedDB transaction pressure on slower devices, and lets
+the event handlers initialize independently of the size of the regional data.
+
 ## Hosting direction
 
 GitHub Releases or a static CDN can host immutable versioned artifacts. GitHub Actions artifacts are better treated as build outputs because they may expire; they should not be the long-term runtime origin.

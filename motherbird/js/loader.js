@@ -56,6 +56,10 @@ export async function init() {
     globalThis.removeEventListener('resize', pinSplashToVisibleViewport);
   };
   setTimeout(dismissSplash, 2500);
+  // Keep the visible app chrome usable even if optional data packages fail to
+  // load. Geo Cypher is initialized lazily here so its record button is also
+  // available on browsers that finish booting slowly.
+  const removePrimaryControlFallbacks = initPrimaryControls();
   try {
     await db.open({ beforeRiskyMigration: async (details) => {
       if (!confirm('Walk & Wildlife needs a local data upgrade. Download a private backup first? Cancel skips the backup and continues.')) return;
@@ -84,18 +88,14 @@ export async function init() {
   await initNationalOsmLayers();
   initMap();
   await initGeoCypher();
+  removePrimaryControlFallbacks();
+  initEvents();
   await activateInstalledRegionRuntime();
   await initCountyAdditions();
   await initMapPaint();
   await initPersonalPlaces();
   await initLayerSystem();
   initFieldGuideFilters();
-
-  try {
-    initEvents();
-  } catch (error) {
-    console.error('initEvents failed:', error);
-  }
 
   await refreshCityMap(false);
   await recoverWalkDraft();
@@ -113,6 +113,20 @@ export async function init() {
   }
 
   void initPwaUpdates().catch(() => {});
+}
+
+function initPrimaryControls() {
+  const controls = [
+    [document.getElementById('settingsButton'), () => import('./ui.js').then(({ openBackpack }) => openBackpack())],
+    [document.getElementById('journalButton'), () => import('./ui.js').then(({ openJournal }) => openJournal())],
+    [document.getElementById('geoCypherButton'), async () => {
+    await initGeoCypher();
+    const { openGeoCypher } = await import('./geo-cypher.js');
+    await openGeoCypher();
+    }]
+  ];
+  controls.forEach(([button, handler]) => button?.addEventListener('click', handler));
+  return () => controls.forEach(([button, handler]) => button?.removeEventListener('click', handler));
 }
 
 export async function createMigratedProfile() {

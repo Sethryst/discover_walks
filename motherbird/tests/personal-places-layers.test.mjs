@@ -71,7 +71,7 @@ test('the PWA exposes persistent layers, personal places, and non-destructive im
   assert.match(html, /id=\"personalPlaceForm\"/);
   assert.match(html, /id=\"joinModeSelect\"/);
   assert.match(html, /Replace pack extras \(never private journal\)/);
-  assert.match(storage, /DATABASE_VERSION = 13/);
+  assert.match(storage, /DATABASE_VERSION = 14/);
   assert.match(storage, /personal_place_categories/);
   assert.match(storage, /layer_settings/);
   assert.match(worker, /\.\/js\/layer-system\.js/);

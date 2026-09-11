@@ -1,7 +1,7 @@
 export const db = (() => {
   let database;
   const DATABASE_NAME = 'walk-wildlife-journal';
-  const DATABASE_VERSION = 13;
+  const DATABASE_VERSION = 14;
   const LEGACY_STORES = [
     'walks', 'observations', 'moments', 'profile', 'settings', 'points_of_interest',
     'poi_metadata', 'regions', 'region_pois', 'region_buckets', 'field_editions',
@@ -12,7 +12,12 @@ export const db = (() => {
   ];
   const migrations = Object.freeze([
     { version: 1, risk: 'additive', description: 'Create the local-first journal stores.', apply: (target) => LEGACY_STORES.forEach((name) => { if (!target.objectStoreNames.contains(name)) target.createObjectStore(name, { keyPath: 'id' }); }) },
-    { version: 13, risk: 'additive', description: 'Separate Geo Cypher manifests from on-demand audio.', apply: (target) => ['geo_cypher_manifests', 'geo_cypher_audio'].forEach((name) => { if (!target.objectStoreNames.contains(name)) target.createObjectStore(name, { keyPath: 'id' }); }) }
+    { version: 13, risk: 'additive', description: 'Separate Geo Cypher manifests from on-demand audio.', apply: (target) => ['geo_cypher_manifests', 'geo_cypher_audio'].forEach((name) => { if (!target.objectStoreNames.contains(name)) target.createObjectStore(name, { keyPath: 'id' }); }) },
+    // Version 13 introduced explicit migrations after earlier releases had
+    // added stores without bumping the database version. Existing databases
+    // could therefore report a current version while still missing stores,
+    // causing app boot to stop before event handlers were registered.
+    { version: 14, risk: 'additive', description: 'Repair missing local stores from earlier installations.', apply: (target) => [...LEGACY_STORES, 'geo_cypher_manifests', 'geo_cypher_audio'].forEach((name) => { if (!target.objectStoreNames.contains(name)) target.createObjectStore(name, { keyPath: 'id' }); }) }
   ]);
 
   async function installedVersion() {
