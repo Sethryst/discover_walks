@@ -26,6 +26,7 @@ index.html + styles.css
 | --- | --- | --- |
 | Boot | `app.js`, `js/loader.js` | Opens IndexedDB, restores profile/settings, initializes map, data, events, views, optional online mode, and region automation. |
 | Walking | `js/walk.js`, `js/geo.js`, `js/geofence.js` | GPS capture, route validation/scoring, proximity prompts, and completed-walk persistence. |
+| Geo Cypher | `js/geo-cypher.js` | Local audio pins, geofence encounters, factual behavior events, and signed response lineage. |
 | Places and cities | `js/constants.js`, `js/city.js`, `js/poi.js` | City registry, seed-data loading/migration, filters, POI rendering, search, and place memories. |
 | Journal | `js/observation.js`, `js/archive.js`, `js/profile.js` | Nature observations, reflections/history moments, archive views, and score/profile updates. |
 | Interface | `js/ui.js`, `js/events.js`, `js/map.js`, `styles.css` | Event wiring, view/modal behavior, map layers, and visual styling. |

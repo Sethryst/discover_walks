@@ -103,6 +103,7 @@ export function handlePosition(position, shouldPan = false) {
   const point = { lat: position.coords.latitude, lng: position.coords.longitude, accuracy: position.coords.accuracy, capturedAtMs: position.timestamp || Date.now() };
   renderUserLocation(point, shouldPan);
   state.lastPosition = { lat: point.lat, lng: point.lng, accuracy: point.accuracy, capturedAt: new Date(point.capturedAtMs).toISOString() };
+  globalThis.window?.dispatchEvent(new CustomEvent('walk-position-received', { detail: point }));
   state.settings.lastPosition = state.lastPosition;
   if (!handlePosition.lastFixWriteAt || Date.now() - handlePosition.lastFixWriteAt > 15000) {
     handlePosition.lastFixWriteAt = Date.now();

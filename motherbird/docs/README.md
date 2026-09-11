@@ -18,6 +18,8 @@ This folder is the short handoff package for people or AI agents changing the pr
 14. [SpatialSyncPolicy.md](SpatialSyncPolicy.md) defines the Module 3 authority and conflict rules for local tombstones and county rebuilds.
 15. `../supabase-migration-spatial-sync.sql` is the unexecuted PostGIS foundation for a future county deployment; it is separate from consumer aggregate sync.
 16. [DeliveryModules.md](DeliveryModules.md) is the release handoff for the spatial platform, Federal/DC Core, and product/research commits.
+17. [GeoCypher.md](GeoCypher.md) documents the local Fairfax audio prototype, signed lineage contract, and public-pilot boundary.
+18. [`../ideas/`](../ideas/) is the working notebook for unfinished product and architecture ideas, including anonymous attribution and just-in-time geographic artifacts.
 
 The original [automation branch specification](../archive/automation.md) is archived as historical context; keep this index and the focused documents current when implementation changes.
 

@@ -7,14 +7,14 @@ import { toast } from './ui.js';
 import { placeLight } from './place-details.js';
 import { createNationalPoiArchive, fetchOsmReleaseManifest } from './osm-release.js';
 import {
-  NATIONAL_POI_CATEGORIES,
   NATIONAL_POI_QUERY_LAYERS,
+  nationalPoiLayerFilters,
   nationalPoiFeatureDetails,
-  nationalPoiIconUrl,
   nationalPoiStyle,
   nationalPoiSymbolLayers,
   registerNationalPoiIcons
 } from './national-poi-map.js';
+import { enabledNationalOsmLayerIds, hasEnabledNationalOsmLayers } from './national-osm-layers.js';
 
 const OSM_ATTRIBUTION = '&copy; OpenStreetMap contributors';
 const mapLibreZoom = () => Math.max(0, (state.map?.getZoom() || 0) - 1);
@@ -82,6 +82,11 @@ export function initMap() {
   window.addEventListener('installed-region-activated', ({ detail }) => void activateInstalledBasemap(detail));
   window.addEventListener('online', () => void activateInstalledBasemap(state.installedBasemapRegion));
   window.addEventListener('offline', () => void activateInstalledBasemap(state.installedBasemapRegion));
+  window.addEventListener('national-osm-layers-changed', () => {
+    if (!hasEnabledNationalOsmLayers()) { deactivateNationalPoiOverlay(); return; }
+    if (state.nationalPoiMap) applyNationalPoiLayerFilters();
+    else void activateNationalPoiOverlay();
+  });
   // Federal boundary geometry remains available for a future visual redesign,
   // but the current borders, fills, and controls are intentionally not mounted.
 }
@@ -98,8 +103,8 @@ function ensurePmtilesProtocol() {
 
 export async function activateNationalPoiOverlay({ manifest = null } = {}) {
   const container = document.getElementById('nationalPoiOverlay');
-  if (!container || !state.map || state.nationalPoiSuppressed || navigator.onLine === false || !globalThis.maplibregl || !globalThis.pmtiles) return false;
-  if (state.nationalPoiMap) return true;
+  if (!container || !state.map || !hasEnabledNationalOsmLayers() || state.nationalPoiSuppressed || navigator.onLine === false || !globalThis.maplibregl || !globalThis.pmtiles) return false;
+  if (state.nationalPoiMap) { applyNationalPoiLayerFilters(); return true; }
   if (state.nationalPoiActivating) return false;
   if (!manifest && !globalThis.WALK_WILDLIFE_SUPABASE?.osmReleaseManifestUrl) return false;
   state.nationalPoiActivating = true;
@@ -116,7 +121,7 @@ export async function activateNationalPoiOverlay({ manifest = null } = {}) {
     const center = state.map.getCenter();
     const map = new globalThis.maplibregl.Map({
       container,
-      style: nationalPoiStyle(`pmtiles://${national.url}`),
+      style: nationalPoiStyle(`pmtiles://${national.url}`, enabledNationalOsmLayerIds()),
       center: [center.lng, center.lat],
       zoom: mapLibreZoom(),
       attributionControl: false,
@@ -134,7 +139,7 @@ export async function activateNationalPoiOverlay({ manifest = null } = {}) {
       if (state.nationalPoiMap !== map || state.nationalPoiSuppressed) return;
       state.nationalPoiSync();
       enableNationalMapPresentation();
-      const [iconLayer, ...labelLayers] = nationalPoiSymbolLayers();
+      const [iconLayer, ...labelLayers] = nationalPoiSymbolLayers(enabledNationalOsmLayerIds());
       try {
         await registerNationalPoiIcons(map);
         if (state.nationalPoiMap === map && !map.getLayer(iconLayer.id)) map.addLayer(iconLayer);
@@ -143,6 +148,7 @@ export async function activateNationalPoiOverlay({ manifest = null } = {}) {
       }
       if (state.nationalPoiMap === map) {
         labelLayers.forEach((layer) => { if (!map.getLayer(layer.id)) map.addLayer(layer); });
+        applyNationalPoiLayerFilters();
       }
     });
     return true;
@@ -163,7 +169,6 @@ function enableNationalMapPresentation() {
     state.map.attributionControl.addAttribution(OSM_ATTRIBUTION);
     state.nationalPoiAttribution = true;
   }
-  renderNationalPoiLegend();
 }
 
 export function deactivateNationalPoiOverlay({ restoreOnlineBasemap = true } = {}) {
@@ -175,7 +180,6 @@ export function deactivateNationalPoiOverlay({ restoreOnlineBasemap = true } = {
   container?.replaceChildren();
   container?.classList.add('hidden');
   document.querySelector('.app-shell')?.classList.remove('national-map-active');
-  document.getElementById('nationalPoiLegend')?.classList.add('hidden');
   if (state.nationalPoiAttribution && state.map) {
     state.map.attributionControl.removeAttribution(OSM_ATTRIBUTION);
     state.nationalPoiAttribution = false;
@@ -185,36 +189,11 @@ export function deactivateNationalPoiOverlay({ restoreOnlineBasemap = true } = {
   }
 }
 
-function renderNationalPoiLegend() {
-  const legend = document.getElementById('nationalPoiLegend');
-  const toggle = document.getElementById('nationalPoiLegendToggle');
-  const panel = document.getElementById('nationalPoiLegendPanel');
-  if (!legend || !toggle || !panel) return;
-  panel.replaceChildren();
-  const hint = document.createElement('p');
-  hint.textContent = 'Tap a symbol to see its mapped walking qualities.';
-  panel.append(hint);
-  const list = document.createElement('div');
-  list.className = 'national-poi-legend-grid';
-  NATIONAL_POI_CATEGORIES.forEach((category) => {
-    const item = document.createElement('span');
-    item.className = 'national-poi-legend-item';
-    item.style.setProperty('--legend-color', category.color);
-    const icon = document.createElement('img');
-    icon.src = nationalPoiIconUrl(category);
-    icon.alt = '';
-    const label = document.createElement('span');
-    label.textContent = category.label;
-    item.append(icon, label);
-    list.append(item);
-  });
-  panel.append(list);
-  toggle.onclick = () => {
-    const expanded = toggle.getAttribute('aria-expanded') !== 'true';
-    toggle.setAttribute('aria-expanded', String(expanded));
-    panel.classList.toggle('hidden', !expanded);
-  };
-  legend.classList.remove('hidden');
+export function applyNationalPoiLayerFilters() {
+  const map = state.nationalPoiMap;
+  if (!map) return;
+  const filters = nationalPoiLayerFilters(enabledNationalOsmLayerIds());
+  Object.entries(filters).forEach(([layerId, filter]) => { if (map.getLayer(layerId)) map.setFilter(layerId, filter); });
 }
 
 function showNationalPoiDetails(event) {
@@ -233,6 +212,7 @@ function showNationalPoiDetails(event) {
   const feature = features.find((candidate) => candidate?.properties);
   if (!feature) return false;
   const details = nationalPoiFeatureDetails(feature.properties);
+  if (!state.nationalOsmLayers[details.categoryId]) return false;
   const card = document.createElement('article');
   card.className = 'national-poi-card';
   card.style.setProperty('--poi-color', details.color);

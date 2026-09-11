@@ -1,0 +1,42 @@
+{
+  "type": "FeatureCollection",
+  "name": "SYNTHETIC OSM ADAPTER FIXTURE — NOT GEOGRAPHIC COVERAGE",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "way/10",
+      "properties": { "@id": "way/10", "highway": "residential", "sidewalk": "both" },
+      "geometry": { "type": "LineString", "coordinates": [[-77.3000, 38.9000], [-77.2995, 38.9000]] }
+    },
+    {
+      "type": "Feature",
+      "id": "way/11",
+      "properties": { "@id": "way/11", "highway": "footway", "foot": "yes", "surface": "paved" },
+      "geometry": { "type": "LineString", "coordinates": [[-77.2995, 38.9000], [-77.2990, 38.9000]] }
+    },
+    {
+      "type": "Feature",
+      "id": "way/12",
+      "properties": { "@id": "way/12", "highway": "footway", "footway": "crossing", "crossing": "marked", "foot": "yes" },
+      "geometry": { "type": "LineString", "coordinates": [[-77.2990, 38.9000], [-77.2988, 38.9000]] }
+    },
+    {
+      "type": "Feature",
+      "id": "way/13",
+      "properties": { "@id": "way/13", "highway": "residential", "sidewalk": "both" },
+      "geometry": { "type": "LineString", "coordinates": [[-77.2988, 38.9000], [-77.2985, 38.9000]] }
+    },
+    {
+      "type": "Feature",
+      "id": "node/21",
+      "properties": { "@id": "node/21", "barrier": "bollard", "access": "yes" },
+      "geometry": { "type": "Point", "coordinates": [-77.2994, 38.9002] }
+    },
+    {
+      "type": "Feature",
+      "id": "way/15",
+      "properties": { "@id": "way/15", "highway": "residential", "sidewalk": "both", "foot": "no" },
+      "geometry": { "type": "LineString", "coordinates": [[-77.3000, 38.9005], [-77.2995, 38.9005]] }
+    }
+  ]
+}

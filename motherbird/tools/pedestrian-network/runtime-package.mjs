@@ -9,7 +9,7 @@ const gzipAsync = promisify(gzip);
 const EDGE_TYPES = ['unknown', 'sidewalk', 'footpath', 'crossing', 'trail', 'pedestrian_plaza', 'indoor_pathway', 'pedestrian_link'];
 const GRID_SIZE_E7 = 20_000; // ~220 m north/south; exact distance is checked at query time.
 
-export function buildRuntimeGraph(graph, dataset, { builtAt = new Date().toISOString() } = {}) {
+export function buildRuntimeGraph(graph, dataset, { builtAt = new Date().toISOString(), sourceVersion = null } = {}) {
   const nodeIndex = new Map(graph.nodes.map((node, index) => [node.node_id, index]));
   const nodes = graph.nodes.map((node) => [node.node_id, Math.round(node.lat * 1e7), Math.round(node.lon * 1e7), Number(node.level || 0), Number(node.flags || 0)]);
   const sources = [];
@@ -40,11 +40,15 @@ export function buildRuntimeGraph(graph, dataset, { builtAt = new Date().toISOSt
   const spatialIndex = buildSpatialIndex(edges, geometry);
   const bounds = graphBounds(nodes);
   const graphHasher = createHash('sha256');
-  for (const value of [dataset.id, POLICY_VERSION, nodes, edges, geometry, sources]) graphHasher.update(JSON.stringify(value));
+  const hashInputs = sourceVersion
+    ? [dataset.id, sourceVersion, POLICY_VERSION, nodes, edges, geometry, sources]
+    : [dataset.id, POLICY_VERSION, nodes, edges, geometry, sources];
+  for (const value of hashInputs) graphHasher.update(JSON.stringify(value));
   const graphHash = graphHasher.digest('hex');
   return {
     schema_version: 1,
     dataset_id: dataset.id,
+    source_version: sourceVersion,
     city: dataset.runtime_city || inferCity(dataset),
     graph_version: `${dataset.id}-${graphHash.slice(0, 12)}`,
     graph_hash: graphHash,
@@ -89,7 +93,7 @@ export async function writeRuntimePackage(outputDir, runtime, auditEdges = []) {
     city: runtime.city,
     dataset_id: runtime.dataset_id,
     graph_version: runtime.graph_version,
-    source_versions: [runtime.dataset_id],
+    source_versions: [runtime.source_version || runtime.dataset_id],
     policy_version: runtime.policy_version,
     graph_hash: runtime.graph_hash,
     built_at: runtime.built_at,

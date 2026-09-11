@@ -4,6 +4,7 @@ import {
   NATIONAL_POI_CATEGORIES,
   NATIONAL_POI_QUERY_LAYERS,
   nationalPoiFeatureDetails,
+  nationalPoiLayerFilters,
   nationalPoiStyle,
   nationalPoiSymbolLayers
 } from '../js/national-poi-map.js';
@@ -15,6 +16,16 @@ test('OSM raster and national POIs share one MapLibre style', () => {
   assert.equal(style.layers[0].id, 'osm-basemap');
   assert.equal(style.layers.find((layer) => layer.id === 'national-poi-point').source, 'nationalPoi');
   assert.match(style.sources.osmBasemap.attribution, /OpenStreetMap/);
+});
+
+test('category filters apply to every rendered and queryable national POI layer', () => {
+  const filters = nationalPoiLayerFilters(['trail', 'nature']);
+  assert.deepEqual(Object.keys(filters).sort(), [
+    'national-poi-area', 'national-poi-icon', 'national-poi-line', 'national-poi-line-label', 'national-poi-place-label', 'national-poi-point'
+  ]);
+  assert.ok(Object.values(filters).every((filter) => JSON.stringify(filter).includes('["trail","nature"]')));
+  const style = nationalPoiStyle('pmtiles://https://example.test/poi.pmtiles', ['trail']);
+  assert.match(JSON.stringify(style.layers.find(({ id }) => id === 'national-poi-point').filter), /trail/);
 });
 
 test('walking categories have unique icons, colors, and readable labels', () => {

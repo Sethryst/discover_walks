@@ -8,6 +8,25 @@
   "osm": {
     "pbfUrl": "https://download.geofabrik.de/north-america/us/virginia-latest.osm.pbf"
   },
+  "pedestrianNetwork": {
+    "authoritativeSources": [
+      {
+        "id": "fairfax_va_sidewalks_centerline",
+        "owner": "Fairfax County GIS",
+        "url": "https://data.virginia.gov/dataset/sidewalks-centerline",
+        "file": "../OpenData/Virginia/Sidewalks/Sidewalks_Centerline_-6549984785839784608.geojson",
+        "sourceIdFields": ["GlobalID", "OBJECTID"],
+        "classificationFields": ["TYPE"],
+        "accessFields": [],
+        "defaultAccess": "unknown",
+        "defaultEdgeType": "sidewalk"
+      }
+    ],
+    "includeRoadCenterlines": true,
+    "overlapToleranceMeters": 2,
+    "snapToleranceMeters": 0.75,
+    "tileZoom": 14
+  },
   "imports": {
     "poi": "regions/fairfax-county-va/pois.json",
     "buildTimePoiSource": "../releases/fairfax-county-va/pois.json",

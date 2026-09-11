@@ -1,0 +1,18 @@
+{
+  "type": "FeatureCollection",
+  "name": "SYNTHETIC AUTHORITATIVE SIDEWALK FIXTURE — NOT GEOGRAPHIC COVERAGE",
+  "features": [
+    {
+      "type": "Feature",
+      "id": 1,
+      "properties": { "GlobalID": "official-sidewalk-a", "TYPE": "SIDEWALK", "SOURCE": "SYNTHETIC TEST" },
+      "geometry": { "type": "LineString", "coordinates": [[-77.3000, 38.9000], [-77.2995, 38.9000]] }
+    },
+    {
+      "type": "Feature",
+      "id": 2,
+      "properties": { "GlobalID": "official-sidewalk-conflict", "TYPE": "SIDEWALK", "SOURCE": "SYNTHETIC TEST" },
+      "geometry": { "type": "LineString", "coordinates": [[-77.3000, 38.9005], [-77.2995, 38.9005]] }
+    }
+  ]
+}

@@ -21,6 +21,9 @@ import { applyOfflineBootConditions } from './offline-view.js';
 import { migrateLegacyJournalAudio } from './journal-capture.js';
 import { initOnlinePane } from './online-pane.js';
 import { startCoachMarks } from './coach.js';
+import { initNationalOsmLayers } from './national-osm-layers.js';
+import { initGeoCypher } from './geo-cypher.js';
+import { initPwaUpdates } from './pwa-update.js';
 
 export async function init() {
   if (!document.querySelector('link[href*="splash-fix.css"]')) {
@@ -54,7 +57,13 @@ export async function init() {
   };
   setTimeout(dismissSplash, 2500);
   try {
-    await db.open();
+    await db.open({ beforeRiskyMigration: async (details) => {
+      if (!confirm('Walk & Wildlife needs a local data upgrade. Download a private backup first? Cancel skips the backup and continues.')) return;
+      const backup = await db.createPreMigrationBackup(details);
+      const url = URL.createObjectURL(backup);
+      const link = document.createElement('a'); link.href = url; link.download = `walk-wildlife-before-database-v${details.toVersion}.json`; link.click();
+      setTimeout(() => URL.revokeObjectURL(url), 0);
+    } });
     await loadLocalState();
     await enterSingleInstalledRegion();
     await migrateLegacyJournalAudio();
@@ -72,7 +81,9 @@ export async function init() {
     return;
   }
 
+  await initNationalOsmLayers();
   initMap();
+  await initGeoCypher();
   await activateInstalledRegionRuntime();
   await initCountyAdditions();
   await initMapPaint();
@@ -101,9 +112,7 @@ export async function init() {
     console.warn('Online mode unavailable:', error.message);
   }
 
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./service-worker.js').catch(() => {});
-  }
+  void initPwaUpdates().catch(() => {});
 }
 
 export async function createMigratedProfile() {

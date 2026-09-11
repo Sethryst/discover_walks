@@ -55,8 +55,28 @@ function matchExpression(valueKey, fallback) {
   return ['match', ['get', 'category'], ...NATIONAL_POI_CATEGORIES.flatMap((category) => [category.id, category[valueKey]]), fallback];
 }
 
-export function nationalPoiStyle(sourceUrl) {
+function visibleCategoryFilter(enabledCategoryIds) {
+  return ['in', ['get', 'category'], ['literal', enabledCategoryIds]];
+}
+
+function filtered(geometryFilter, enabledCategoryIds) {
+  return ['all', geometryFilter, visibleCategoryFilter(enabledCategoryIds)];
+}
+
+export function nationalPoiLayerFilters(enabledCategoryIds = NATIONAL_POI_CATEGORIES.map(({ id }) => id)) {
+  return {
+    'national-poi-area': filtered(['==', ['geometry-type'], 'Polygon'], enabledCategoryIds),
+    'national-poi-line': filtered(['==', ['geometry-type'], 'LineString'], enabledCategoryIds),
+    'national-poi-point': filtered(['==', ['geometry-type'], 'Point'], enabledCategoryIds),
+    'national-poi-icon': filtered(['==', ['geometry-type'], 'Point'], enabledCategoryIds),
+    'national-poi-place-label': filtered(['all', ['has', 'name'], ['in', ['geometry-type'], ['literal', ['Point', 'Polygon']]]], enabledCategoryIds),
+    'national-poi-line-label': filtered(['all', ['has', 'name'], ['==', ['geometry-type'], 'LineString']], enabledCategoryIds)
+  };
+}
+
+export function nationalPoiStyle(sourceUrl, enabledCategoryIds = NATIONAL_POI_CATEGORIES.map(({ id }) => id)) {
   const categoryColor = matchExpression('color', '#57645f');
+  const filters = nationalPoiLayerFilters(enabledCategoryIds);
   return {
     version: 8,
     sources: {
@@ -75,19 +95,20 @@ export function nationalPoiStyle(sourceUrl) {
     },
     layers: [
       { id: 'osm-basemap', type: 'raster', source: 'osmBasemap', paint: { 'raster-fade-duration': 0 } },
-      { id: 'national-poi-area', type: 'fill', source: 'nationalPoi', 'source-layer': 'poi', minzoom: 8, filter: ['==', ['geometry-type'], 'Polygon'], paint: { 'fill-color': categoryColor, 'fill-opacity': 0.16, 'fill-outline-color': categoryColor } },
-      { id: 'national-poi-line', type: 'line', source: 'nationalPoi', 'source-layer': 'poi', minzoom: 8, filter: ['==', ['geometry-type'], 'LineString'], paint: { 'line-color': categoryColor, 'line-width': ['interpolate', ['linear'], ['zoom'], 8, 1, 16, 3], 'line-opacity': 0.76 } },
-      { id: 'national-poi-point', type: 'circle', source: 'nationalPoi', 'source-layer': 'poi', minzoom: 14, filter: ['==', ['geometry-type'], 'Point'], paint: { 'circle-color': categoryColor, 'circle-radius': ['interpolate', ['linear'], ['zoom'], 14, 6, 17, 9], 'circle-stroke-color': '#fffaf0', 'circle-stroke-width': 1.5, 'circle-opacity': 0.9 } }
+      { id: 'national-poi-area', type: 'fill', source: 'nationalPoi', 'source-layer': 'poi', minzoom: 8, filter: filters['national-poi-area'], paint: { 'fill-color': categoryColor, 'fill-opacity': 0.16, 'fill-outline-color': categoryColor } },
+      { id: 'national-poi-line', type: 'line', source: 'nationalPoi', 'source-layer': 'poi', minzoom: 8, filter: filters['national-poi-line'], paint: { 'line-color': categoryColor, 'line-width': ['interpolate', ['linear'], ['zoom'], 8, 1, 16, 3], 'line-opacity': 0.76 } },
+      { id: 'national-poi-point', type: 'circle', source: 'nationalPoi', 'source-layer': 'poi', minzoom: 14, filter: filters['national-poi-point'], paint: { 'circle-color': categoryColor, 'circle-radius': ['interpolate', ['linear'], ['zoom'], 14, 6, 17, 9], 'circle-stroke-color': '#fffaf0', 'circle-stroke-width': 1.5, 'circle-opacity': 0.9 } }
     ]
   };
 }
 
-export function nationalPoiSymbolLayers() {
+export function nationalPoiSymbolLayers(enabledCategoryIds = NATIONAL_POI_CATEGORIES.map(({ id }) => id)) {
   const iconExpression = ['match', ['get', 'category'], ...NATIONAL_POI_CATEGORIES.flatMap((category) => [category.id, `national-poi-${category.id}`]), 'national-poi-map-pin'];
+  const filters = nationalPoiLayerFilters(enabledCategoryIds);
   return [
     {
       id: 'national-poi-icon', type: 'symbol', source: 'nationalPoi', 'source-layer': 'poi', minzoom: 10,
-      filter: ['==', ['geometry-type'], 'Point'],
+      filter: filters['national-poi-icon'],
       layout: {
         'icon-image': iconExpression,
         'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 0.78, 16, 1.05],
@@ -98,7 +119,7 @@ export function nationalPoiSymbolLayers() {
     },
     {
       id: 'national-poi-place-label', type: 'symbol', source: 'nationalPoi', 'source-layer': 'poi', minzoom: 13,
-      filter: ['all', ['has', 'name'], ['in', ['geometry-type'], ['literal', ['Point', 'Polygon']]]],
+      filter: filters['national-poi-place-label'],
       layout: {
         'text-field': ['get', 'name'],
         'text-font': ['Open Sans Regular'],
@@ -112,7 +133,7 @@ export function nationalPoiSymbolLayers() {
     },
     {
       id: 'national-poi-line-label', type: 'symbol', source: 'nationalPoi', 'source-layer': 'poi', minzoom: 13,
-      filter: ['all', ['has', 'name'], ['==', ['geometry-type'], 'LineString']],
+      filter: filters['national-poi-line-label'],
       layout: {
         'symbol-placement': 'line',
         'symbol-spacing': 420,

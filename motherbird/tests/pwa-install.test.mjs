@@ -29,14 +29,15 @@ test('the page includes iOS startup images and an in-app splash fallback', async
   assert.match(loader, /visualViewport/);
 });
 
-test('national PMTiles stay range-only while the map exposes icons, labels, details, and a legend', async () => {
+test('national PMTiles stay range-only while My Maps exposes persisted category controls', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
   const worker = await readFile(new URL('../service-worker.js', import.meta.url), 'utf8');
   const releaseRuntime = await readFile(new URL('../js/osm-release.js', import.meta.url), 'utf8');
   const mapRuntime = await readFile(new URL('../js/map.js', import.meta.url), 'utf8');
   const nationalMapRuntime = await readFile(new URL('../js/national-poi-map.js', import.meta.url), 'utf8');
   assert.match(html, /id="nationalPoiOverlay"/);
-  assert.match(html, /id="nationalPoiLegend"/);
+  assert.doesNotMatch(html, /id="nationalPoiLegend"/);
+  assert.match(html, /id="nationalOsmLayerControls"/);
   assert.match(worker, /if \(\/\\\.pmtiles\$\/i\.test\(url\.pathname\)\)/);
   assert.match(releaseRuntime, /new pmtilesImpl\.FetchSource/);
   assert.doesNotMatch(releaseRuntime, /national[\s\S]{0,300}response\.blob\(\)/i);
