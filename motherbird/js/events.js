@@ -134,6 +134,7 @@ function bindJournal() {
       const pending = state.pendingWalkPlan; state.pendingWalkPlan = null;
       setTimeout(() => paintWalkPlan(pending), 0);
     }
+    window.dispatchEvent(new CustomEvent('journal-save-complete'));
   })());
   el('journalForm')?.addEventListener('submit', saveJournal);
   el('journalNote')?.addEventListener('input', (event) => {

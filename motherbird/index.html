@@ -55,6 +55,11 @@
     </div>
   </main>
   <div class="modal-backdrop hidden" id="modalBackdrop"></div>
+  <aside class="app-update hidden" id="appUpdate" role="status" aria-live="polite">
+    <span><strong>Update ready</strong><small>Your journal and saved audio stay on this device.</small></span>
+    <button class="primary-button" id="applyAppUpdate" type="button">Update now</button>
+    <button class="text-button" id="dismissAppUpdate" type="button" aria-label="Update later">Later</button>
+  </aside>
 
   <section class="sheet split-sheet hidden" id="journalSheet" role="dialog" aria-modal="false" aria-labelledby="journalTitle">
     <button class="close-sheet" data-close-sheet aria-label="Close">×</button>

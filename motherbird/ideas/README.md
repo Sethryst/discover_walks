@@ -6,6 +6,7 @@ This folder holds deliberately unfinished ideas that are ready to refine. These 
 
 - [Anonymous signed attribution](anonymous-signed-attribution.md) — let accountless creators appear as Anonymous while preserving verifiable private lineage.
 - [Just-in-time geographic artifacts](just-in-time-geographic-artifacts.md) — load only the small walking-graph/map artifacts needed for the area a person is using.
+- [Slow-tech map and carrier-pigeon journeys](slow-tech-carrier-pigeon.md) — explore watercolor density, bounded offline routing envelopes, and deliberate route-shaped messages without becoming a feed.
 
 ## Refinement rule
 

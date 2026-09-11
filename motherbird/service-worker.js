@@ -1,7 +1,7 @@
 // Keep the whole module graph with the shell. Caching only app.js leaves an
 // offline (or briefly disconnected) reload with a blank app when any imported
 // module was not already in the runtime cache.
-const APP_CACHE = 'walk-wildlife-shell-v110'; // bump when shell assets change
+const APP_CACHE = 'walk-wildlife-shell-v112'; // bump when shell assets change
 const TILE_CACHE = 'walk-wildlife-osm-viewed-tiles-v1';
 const LIBRARY_CACHE = 'walk-wildlife-library-v2';
 const COMPANION_CACHE = 'walk-wildlife-companion-media-v2';
@@ -10,7 +10,7 @@ const shell = [
   ...['anchor', 'book-open', 'bookmark', 'coffee', 'droplet', 'eye', 'star', 'tree', 'walk', 'navigation', 'search'].map((icon) => `./icons/${icon}.svg`),
   './js/online-pane.js', './js/qr-share.js', './js/open-payload.js', './js/sealed-data.js', './js/offline-view.js', './js/friend-walk.js', './js/place-details.js',
   './js/offline-map-style.js', './js/installed-tiles.js',
-  './js/heartbeat.js', './js/onboarding.js', './js/reflection.js', './js/region-favorites.js', './js/spatial-sync-outbox.js', './js/spatial-sync-policy.js',
+  './js/heartbeat.js', './js/onboarding.js', './js/reflection.js', './js/region-favorites.js', './js/spatial-sync-outbox.js', './js/spatial-sync-policy.js', './js/pwa-update.js',
   './data/dc-official-trails.js', './icons/plus.svg',
   './', './index.html', './watch.html', './styles.css', './splash-fix.css', './watch.css', './legal.css', './privacy.html', './terms.html', './app.js', './manifest.webmanifest', './watch.webmanifest', './supabase-config.js',
   './assets/pwa-icon-192.png', './assets/pwa-icon-512.png', './assets/pwa-maskable-512.png', './assets/apple-touch-icon.png', './assets/splash-screen.jpeg', './assets/splash-1170x2532.png', './assets/splash-1290x2796.png', './assets/splash-2048x2732.png',
@@ -70,7 +70,14 @@ self.addEventListener('install', (event) => event.waitUntil(Promise.all([
       } catch (_) { /* The app can still install if a CDN is briefly unavailable. */ }
     }));
   })
-]).then(() => self.skipWaiting())));
+])));
+
+// An installed PWA keeps using its complete current shell until the page asks
+// the fully-downloaded replacement to activate. IndexedDB is never touched by
+// service-worker cache cleanup.
+self.addEventListener('message', (event) => {
+  if (event.data?.type === 'SKIP_WAITING') self.skipWaiting();
+});
 
 self.addEventListener('activate', (event) => event.waitUntil(
   Promise.all([

@@ -145,7 +145,7 @@ export async function checkGeoCypherGeofences(point) {
 async function migrateLegacyPins() {
   for (const pin of await db.all('geo_cyphers')) {
     if (!pin?.audio || await db.get('geo_cypher_manifests', pin.id)) continue;
-    const { audio, ...manifest } = pin; await db.putMany({ geo_cypher_manifests: [manifest], geo_cypher_audio: [{ id: pin.id, audio }] }, { geo_cyphers: [pin.id] });
+    const { audio, ...manifest } = pin; await db.putMany({ geo_cypher_manifests: [manifest], geo_cypher_audio: [{ id: pin.id, audio }] });
   }
 }
 export async function initGeoCypher() {

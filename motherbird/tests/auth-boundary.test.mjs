@@ -23,7 +23,10 @@ test('service worker versions the updated shell and caches app modules together'
   const worker = await readFile(new URL('../service-worker.js', import.meta.url), 'utf8');
   assert.match(worker, /walk-wildlife-shell-v\d+/);
   assert.match(worker, /walk-wildlife-companion-media-v2/);
-  for (const moduleName of ['discovery-taxonomy', 'field-guide', 'online', 'cloud-journal', 'journal-pane', 'layer-system', 'personal-places', 'companion', 'journal-capture', 'county-additions', 'installed-region-runtime', 'map-paint']) {
+  assert.doesNotMatch(worker, /\.then\(\(\) => self\.skipWaiting\(\)\)/);
+  assert.match(worker, /event\.data\?\.type === 'SKIP_WAITING'/);
+  assert.match(worker, /key\.startsWith\('walk-wildlife-shell-'/);
+  for (const moduleName of ['discovery-taxonomy', 'field-guide', 'online', 'cloud-journal', 'journal-pane', 'layer-system', 'personal-places', 'companion', 'journal-capture', 'county-additions', 'installed-region-runtime', 'map-paint', 'pwa-update']) {
     assert.match(worker, new RegExp(`\\.\\/js\\/${moduleName}\\.js`));
   }
   assert.doesNotMatch(worker, /watch-companion\.js/);
