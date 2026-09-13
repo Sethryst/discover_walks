@@ -186,8 +186,8 @@ export function paintWalkPlan(plan) {
   if (state.activeWalk) { state.pendingWalkPlan = normalized; toast('Walk plan queued until this walk ends.'); return null; }
   if (normalized.pack_id !== state.activeCity) {
     state.pendingWalkPlan = normalized;
-    toast(`This plan is for ${CITIES[normalized.pack_id]?.name || normalized.pack_id}. Choose that installed region first.`);
-    openSheet('regionSheet'); return null;
+    toast(`This plan belongs to ${CITIES[normalized.pack_id]?.name || normalized.pack_id}; it will open when that area enters the active viewport.`);
+    return null;
   }
   const pois = state.cityPois[state.activeCity] || [];
   const stops = normalized.stop_place_ids.map((id) => pois.find((poi) => String(poi.id) === id)).filter(Boolean);

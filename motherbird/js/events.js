@@ -21,17 +21,58 @@ const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];
 
 export function initEvents() {
   initJournalPane();
-  bindSheets(); bindLocationControls(); bindWalkControls(); bindSearch(); bindJournal(); bindRegions(); bindDeviceControls();
-  el('settingsButton')?.addEventListener('click', openBackpack);
+  bindSheets(); bindLocationControls(); bindWalkControls(); bindSearch(); bindJournal(); bindDeviceControls();
+  el('settingsButton')?.addEventListener('click', toggleFieldGuideMenu);
+  el('fieldGuideDropdown')?.addEventListener('click', (event) => {
+    if (event.target.closest('[data-open-field-guide]')) openBackpack();
+    closeFieldGuideMenu();
+  });
   el('journalButton')?.addEventListener('click', () => void openJournal());
   el('geoCypherButton')?.addEventListener('click', () => void openGeoCypher());
-  el('savePlaceMapButton')?.addEventListener('click', () => {
-    if (!state.personalPlaceSelecting) { window.dispatchEvent(new CustomEvent('personal-place-create-requested')); return; }
-    const center = state.map.getCenter();
-    window.dispatchEvent(new CustomEvent('personal-place-location-selected', { detail: { lat: center.lat, lng: center.lng } }));
-  });
+  el('messengerBirdButton')?.addEventListener('click', () => void sendMessengerBird());
   window.addEventListener('walk-poi-encounter', (event) => void import('./walk.js').then(({ recordPoiEncounter }) => recordPoiEncounter(event.detail?.poi, event.detail?.distance)));
   window.addEventListener('backpack-open-requested', openBackpack);
+}
+
+function closeFieldGuideMenu() {
+  el('fieldGuideDropdown')?.classList.add('hidden');
+  el('settingsButton')?.setAttribute('aria-expanded', 'false');
+}
+
+function toggleFieldGuideMenu() {
+  const menu = el('fieldGuideDropdown');
+  if (!menu) return;
+  const opening = menu.classList.contains('hidden');
+  menu.classList.toggle('hidden', !opening);
+  el('settingsButton')?.setAttribute('aria-expanded', String(opening));
+}
+
+async function sendMessengerBird() {
+  const button = el('messengerBirdButton');
+  if (!button || button.getAttribute('aria-busy') === 'true') return;
+  button.setAttribute('aria-busy', 'true');
+  button.classList.remove('sent');
+  window.dispatchEvent(new CustomEvent('messenger-bird-sending'));
+  try {
+    let delivered = false;
+    if ('Notification' in globalThis && Notification.permission !== 'denied') {
+      const permission = Notification.permission === 'default' ? await Notification.requestPermission() : Notification.permission;
+      if (permission === 'granted') {
+        const registration = await navigator.serviceWorker?.ready;
+        if (registration) await registration.showNotification('Messenger bird is ready', { body: 'Map messages and nearby notices can reach you here.', icon: './assets/pwa-icon-192.png', tag: 'messenger-bird' });
+        else new Notification('Messenger bird is ready', { body: 'Map messages and nearby notices can reach you here.' });
+        delivered = true;
+      }
+    }
+    button.classList.add('sent');
+    window.dispatchEvent(new CustomEvent('messenger-bird-sent', { detail: { delivered } }));
+    toast(delivered ? 'Messenger bird sent a notification.' : 'Messenger bird is listening in the app.');
+  } catch (error) {
+    window.dispatchEvent(new CustomEvent('messenger-bird-error', { detail: { error } }));
+    toast('The messenger bird could not deliver that notice.');
+  } finally {
+    button.removeAttribute('aria-busy');
+  }
 }
 
 function bindSheets() {

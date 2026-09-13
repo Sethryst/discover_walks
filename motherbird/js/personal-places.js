@@ -405,16 +405,22 @@ function armPersonalPlaceCrosshair() {
   state.personalPlaceSelecting = true;
   document.body.classList.add('placing-personal-place');
   closeSheets();
-  el('savePlaceMapButton').innerHTML = '<img class="ui-icon ui-icon--small" src="./icons/map-pin.svg" alt="" /> Use this spot';
-  el('savePlaceMapButton').setAttribute('aria-label', 'Use the crosshair position for this Post');
+  const myPlacesButton = document.querySelector('[data-light="personal"]');
+  if (myPlacesButton) {
+    myPlacesButton.textContent = 'USE THIS SPOT';
+    myPlacesButton.setAttribute('aria-label', 'Use the crosshair position for this place');
+  }
   toast('Move the map under the crosshair, then choose “Use this spot.”');
 }
 
 function finishPersonalPlaceCrosshair(location) {
   state.personalPlaceSelecting = false;
   document.body.classList.remove('placing-personal-place');
-  el('savePlaceMapButton').innerHTML = '<img class="ui-icon ui-icon--small" src="./icons/plus.svg" alt="" /> Add Location';
-  el('savePlaceMapButton').setAttribute('aria-label', 'Add a location');
+  const myPlacesButton = document.querySelector('[data-light="personal"]');
+  if (myPlacesButton) {
+    myPlacesButton.textContent = 'MY PLACES';
+    myPlacesButton.setAttribute('aria-label', 'Add a location to My Places');
+  }
   const draft = { ...(state.personalPlaceDraft || {}), location };
   state.personalPlaceDraft = null;
   openPersonalPlaceForm({ draft });

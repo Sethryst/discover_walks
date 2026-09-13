@@ -24,13 +24,18 @@ test('Field Guide joins pack-authored cards to real pins and orders from a fix',
   assert.match(guide, /Location is off, so this stays in pack order/);
 });
 
-test('the idle map replaces primary tabs with Journal, Backpack, Places +, and map lights', async () => {
+test('the idle map nests Journal, Cypher, and Draw inside Field Guide and uses My Places for creation', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
   assert.match(html, /id="journalButton"[^>]*aria-label="Open journal"/);
-  assert.match(html, /id="settingsButton"[^>]*aria-label="Backpack"/);
-  assert.match(html, /id="savePlaceMapButton"[^>]*>.*Places \+/);
+  assert.match(html, /id="settingsButton"[^>]*aria-label="Open Field Guide menu"/);
+  assert.match(html, /id="fieldGuideDropdown"/);
+  assert.match(html, /id="geoCypherButton"/);
+  assert.match(html, /id="mapPencilButton"/);
+  assert.doesNotMatch(html, /id="savePlaceMapButton"/);
   assert.match(html, /id="mapLights" aria-label="Map lights"/);
-  assert.match(html, /id="homeCityButton"/);
+  assert.match(html, /id="messengerBirdButton"/);
+  assert.doesNotMatch(html, /id="homeCityButton"/);
+  assert.doesNotMatch(html, /id="regionSheet"/);
   assert.match(html, /id="locateButton"/);
   assert.match(html, /id="walkButton"/);
   assert.doesNotMatch(html, /<nav class="bottom-nav"/);

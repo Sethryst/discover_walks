@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="./vendor/leaflet/leaflet.css" />
   <link rel="stylesheet" href="./vendor/leaflet-markercluster/MarkerCluster.css" />
   <link rel="stylesheet" href="./vendor/leaflet-markercluster/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="./vendor/leaflet-geoman/leaflet-geoman.css" />
   <link rel="stylesheet" href="./vendor/maplibre-gl.css" />
   <link rel="stylesheet" href="./styles.css?v=69" />
   <link rel="stylesheet" href="./splash-fix.css?v=68" />
@@ -44,12 +45,12 @@
     <div class="viewfinder-frame" aria-label="Walk controls">
       <div class="top-cluster">
         <div class="control-stack"><div class="control-row"><button class="ink-control" id="locateButton" type="button" aria-label="Use my location"><img src="./icons/navigation.svg" alt="" /></button><button class="ink-chevron" id="locateChevron" type="button" aria-label="Location alerts" aria-expanded="false">⌄</button></div><div class="drop-panel hidden" id="locatePanel"><label><input id="geofenceToggle" type="checkbox" checked /> Alerts</label><label>Radius <select id="geofenceRadiusSelect"><option value="30">30 m</option><option value="50" selected>50 m</option><option value="75">75 m</option><option value="100">100 m</option></select></label><div id="geofenceCategoryChips" class="mini-chips"></div></div></div>
-        <button class="ink-control region-control" id="homeCityButton" type="button"><span id="activeCityLabel">Installed region</span></button>
+        <button class="ink-control messenger-bird" id="messengerBirdButton" type="button" aria-label="Send a messenger bird" aria-live="polite"><span aria-hidden="true">🐦</span><span>Messenger</span></button>
         <button class="ink-control companion-slot hidden" id="companionButton" type="button" aria-label="Change Inky costume"><img id="walkCompanionImage" src="./assets/inky-idle.gif" alt="" /></button>
         <div class="control-stack start-stack"><div class="control-row"><button class="ink-control" id="walkButton" type="button">Start walk</button><button class="ink-control hidden" id="endWalkButton" type="button">End walk</button><button class="ink-chevron" id="startChevron" type="button" aria-label="Sketch a walk" aria-expanded="false">⌄</button></div><div class="drop-panel start-panel hidden" id="startPanel"><button class="primary-button" id="generateWalkButton" type="button">Sketch this walk</button></div></div>
         <label class="map-search"><img src="./icons/search.svg" alt="" /><input id="mapSearchInput" type="search" placeholder="Find a place" autocomplete="off" /></label><div class="map-search-results hidden" id="mapSearchResults"></div>
       </div>
-      <div class="middle-tools"><button class="ink-control" id="settingsButton" type="button" aria-label="Backpack">🎒 <span>Field Guide</span></button><button class="ink-control" id="journalButton" type="button" aria-label="Open journal" aria-pressed="false">▦ <span>Journal</span></button><button class="ink-control" id="geoCypherButton" type="button" aria-label="Open nearby audio">◉ <span>Audio</span></button><button class="ink-control" id="mapPencilButton" type="button" aria-label="Draw on map" aria-pressed="false"><img src="./icons/pencil.svg" alt="" /> <span>Draw</span></button><button class="ink-control" id="savePlaceMapButton" type="button"><img src="./icons/plus.svg" alt="" /> Places +</button></div>
+      <div class="middle-tools"><div class="field-guide-menu"><button class="ink-control" id="settingsButton" type="button" aria-label="Open Field Guide menu" aria-expanded="false" aria-controls="fieldGuideDropdown">🎒 <span>Field Guide</span><span aria-hidden="true">⌄</span></button><div class="field-guide-dropdown hidden" id="fieldGuideDropdown"><button type="button" data-open-field-guide>Field Guide home</button><button id="journalButton" type="button" aria-label="Open journal" aria-pressed="false">▦ Journal</button><button id="geoCypherButton" type="button" aria-label="Open nearby audio">◉ Cypher</button><button id="mapPencilButton" type="button" aria-label="Draw on map" aria-pressed="false"><img src="./icons/pencil.svg" alt="" /> Draw</button></div></div></div>
       <aside class="walk-sketch hidden" id="walkSketch" aria-live="polite"><button class="plain-close" id="dismissWalkSketch" type="button" aria-label="Dismiss walk sketch">×</button><strong id="sketchTitle">A walk</strong><p id="sketchReason"></p><ol id="sketchStops"></ol><div class="sketch-actions"><button class="primary-button" id="startPlannedWalkButton" type="button">Start this one</button><button class="secondary-button" id="sendWalkPlanButton" type="button">Send this</button></div></aside>
       <div class="place-crosshair" id="placeCrosshair" aria-hidden="true"><span></span></div><div class="map-lights" id="mapLights" aria-label="Map lights"></div>
     </div>
@@ -160,9 +161,7 @@
     </form>
   </section>
 
-  <section class="sheet hidden" id="regionSheet" role="dialog" aria-modal="true" aria-labelledby="regionSheetTitle"><button class="close-sheet" data-close-sheet aria-label="Close">×</button><h2 id="regionSheetTitle">Installed regions</h2><div class="region-list" id="regionList"></div></section>
-
   <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
-  <script src="./vendor/qrcode.js"></script><script src="./vendor/leaflet/leaflet.js"></script><script src="./vendor/leaflet-markercluster/leaflet.markercluster.js"></script><script src="./vendor/maplibre-gl.js"></script><script src="./vendor/pmtiles.js"></script><script async src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.105.0"></script><script src="./supabase-config.js"></script><script type="module" src="./app.js?v=67"></script>
+  <script src="./vendor/qrcode.js"></script><script src="./vendor/leaflet/leaflet.js"></script><script src="./vendor/leaflet-markercluster/leaflet.markercluster.js"></script><script src="./vendor/leaflet-geoman/leaflet-geoman.min.js"></script><script src="./vendor/turf/turf.min.js"></script><script src="./vendor/maplibre-gl.js"></script><script src="./vendor/pmtiles.js"></script><script async src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.105.0"></script><script src="./supabase-config.js"></script><script type="module" src="./app.js?v=70"></script>
 </body>
 </html>

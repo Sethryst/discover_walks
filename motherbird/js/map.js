@@ -17,6 +17,7 @@ import {
 import { enabledNationalOsmLayerIds, hasEnabledNationalOsmLayers } from './national-osm-layers.js';
 
 const OSM_ATTRIBUTION = '&copy; OpenStreetMap contributors';
+const NEIGHBORHOOD_ZOOM = 15;
 const mapLibreZoom = () => Math.max(0, (state.map?.getZoom() || 0) - 1);
 
 export function initMap() {
@@ -57,9 +58,13 @@ export function initMap() {
   // after panning/zooming settles. Stands in for server-side bbox filtering
   // until the backend described in the recommendations exists.
   state.map.on('moveend zoomend', debounce(() => {
+    trackActiveViewport();
     renderCityPois();
     window.dispatchEvent(new CustomEvent('map-viewport-changed'));
   }, 200));
+  state.map.on('zoomend', syncNeighborhoodPresentation);
+  trackActiveViewport();
+  syncNeighborhoodPresentation();
 
   const refreshMapSize = () => {
     if (!state.map) return;
@@ -70,7 +75,7 @@ export function initMap() {
   state.map.whenReady(() => {
     requestAnimationFrame(refreshMapSize);
     window.setTimeout(refreshMapSize, 150);
-    void activateNationalPoiOverlay();
+    if (state.map.getZoom() >= NEIGHBORHOOD_ZOOM) void activateNationalPoiOverlay();
   });
 
   window.addEventListener('resize', debounce(refreshMapSize, 120));
@@ -91,6 +96,23 @@ export function initMap() {
   // but the current borders, fills, and controls are intentionally not mounted.
 }
 
+function trackActiveViewport() {
+  const bounds = state.map?.getBounds?.();
+  if (!bounds) return;
+  state.activeViewportBounds = Object.freeze({
+    west: bounds.getWest(), south: bounds.getSouth(), east: bounds.getEast(), north: bounds.getNorth(),
+    center: { lat: state.map.getCenter().lat, lng: state.map.getCenter().lng }, zoom: state.map.getZoom()
+  });
+}
+
+function syncNeighborhoodPresentation() {
+  if (!state.map) return;
+  const neighborhood = state.map.getZoom() >= NEIGHBORHOOD_ZOOM;
+  document.querySelector('.app-shell')?.classList.toggle('watercolor-wash', !neighborhood);
+  if (neighborhood) void activateNationalPoiOverlay();
+  else if (state.nationalPoiMap) deactivateNationalPoiOverlay();
+}
+
 function ensurePmtilesProtocol() {
   if (!state.pmtilesProtocol) {
     state.pmtilesProtocol = new globalThis.pmtiles.Protocol();
@@ -103,7 +125,7 @@ function ensurePmtilesProtocol() {
 
 export async function activateNationalPoiOverlay({ manifest = null } = {}) {
   const container = document.getElementById('nationalPoiOverlay');
-  if (!container || !state.map || !hasEnabledNationalOsmLayers() || state.nationalPoiSuppressed || navigator.onLine === false || !globalThis.maplibregl || !globalThis.pmtiles) return false;
+  if (!container || !state.map || state.map.getZoom() < NEIGHBORHOOD_ZOOM || !hasEnabledNationalOsmLayers() || state.nationalPoiSuppressed || navigator.onLine === false || !globalThis.maplibregl || !globalThis.pmtiles) return false;
   if (state.nationalPoiMap) { applyNationalPoiLayerFilters(); return true; }
   if (state.nationalPoiActivating) return false;
   if (!manifest && !globalThis.WALK_WILDLIFE_SUPABASE?.osmReleaseManifestUrl) return false;

@@ -117,7 +117,7 @@ export async function init() {
 
 function initPrimaryControls() {
   const controls = [
-    [document.getElementById('settingsButton'), () => import('./ui.js').then(({ openBackpack }) => openBackpack())],
+    [document.querySelector('[data-open-field-guide]'), () => import('./ui.js').then(({ openBackpack }) => openBackpack())],
     [document.getElementById('journalButton'), () => import('./ui.js').then(({ openJournal }) => openJournal())],
     [document.getElementById('geoCypherButton'), async () => {
     await initGeoCypher();

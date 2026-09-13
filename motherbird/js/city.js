@@ -95,7 +95,7 @@ export async function refreshCityMap(recenter = false) {
   const observations = await db.all('observations');
   observations.filter((observation) => localObservationCity(observation) === state.activeCity).forEach(addObservationMarker);
   if (recenter) state.map.setView([active.center.lat, active.center.lng], active.zoom);
-  el('activeCityLabel').textContent = CITIES[state.activeCity]?.name || cityLabel(state.activeCity);
+  if (el('activeCityLabel')) el('activeCityLabel').textContent = CITIES[state.activeCity]?.name || cityLabel(state.activeCity);
   el('map').setAttribute('aria-label', `Map of ${cityLabel(state.activeCity)} installed-pack places`);
   renderCityExplorer(); renderCityPois();
   await loadNeighborhoodsForCity(state.activeCity);

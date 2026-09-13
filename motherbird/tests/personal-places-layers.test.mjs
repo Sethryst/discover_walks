@@ -61,13 +61,15 @@ test('My maps folders nest like Learn parent folders', () => {
 });
 
 test('the PWA exposes persistent layers, personal places, and non-destructive import controls', async () => {
-  const [html, storage, worker] = await Promise.all([
+  const [html, storage, worker, layers] = await Promise.all([
     readFile(new URL('../index.html', import.meta.url), 'utf8'),
     readFile(new URL('../js/storage.js', import.meta.url), 'utf8'),
-    readFile(new URL('../service-worker.js', import.meta.url), 'utf8')
+    readFile(new URL('../service-worker.js', import.meta.url), 'utf8'),
+    readFile(new URL('../js/layer-system.js', import.meta.url), 'utf8')
   ]);
   assert.doesNotMatch(html, /data-explore-tab=\"personal\"/);
-  assert.match(html, /id=\"savePlaceMapButton\"/);
+  assert.doesNotMatch(html, /id=\"savePlaceMapButton\"/);
+  assert.match(layers, /light\.dataset\.light === 'personal'/);
   assert.match(html, /id=\"personalPlaceForm\"/);
   assert.match(html, /id=\"joinModeSelect\"/);
   assert.match(html, /Replace pack extras \(never private journal\)/);

@@ -309,7 +309,7 @@ function lightModel() {
     { id: 'news', label: 'NEWS', available: newsAvailable(), chips: [], entries: newsEntries, hasChevron: newsEntries.length > 0 },
     { id: 'recreation', label: 'RECREATION', available: recreation.length > 0, chips: recreation },
     { id: 'cuisine', label: 'CUISINE', available: cuisine.length > 0, chips: cuisine },
-    { id: 'personal', label: 'MY PLACES', available: true, chips: personal, hasChevron: true }
+    { id: 'personal', label: state.personalPlaceSelecting ? 'USE THIS SPOT' : 'MY PLACES', available: true, chips: personal, hasChevron: true }
   ].filter((light) => light.available);
 }
 
@@ -502,7 +502,17 @@ function bindLayerControls() {
     const newsMarker = event.target.closest('[data-news-marker]');
     if (newsMarker) { window.dispatchEvent(new CustomEvent('public-marker-focus-requested', { detail: { markerId: newsMarker.dataset.newsMarker } })); return; }
     const light = event.target.closest('[data-light]');
-    if (light) { toggleLight(light.dataset.light); return; }
+    if (light) {
+      if (light.dataset.light === 'personal') {
+        if (!state.personalPlaceSelecting) window.dispatchEvent(new CustomEvent('personal-place-create-requested'));
+        else {
+          const center = state.map.getCenter();
+          window.dispatchEvent(new CustomEvent('personal-place-location-selected', { detail: { lat: center.lat, lng: center.lng } }));
+        }
+        return;
+      }
+      toggleLight(light.dataset.light); return;
+    }
     const expand = event.target.closest('[data-light-expand]');
     if (expand) {
       state.layerUiState.lightExpanded = state.layerUiState.lightExpanded === expand.dataset.lightExpand ? '' : expand.dataset.lightExpand;

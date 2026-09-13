@@ -4,13 +4,10 @@ import { el } from './utils.js';
 
 export const COACH_STEPS = [
   { target: 'locateButton', text: 'Tap the compass to center on you.' },
-  { target: 'homeCityButton', text: 'Tap the region name to change packs.' },
+  { target: 'messengerBirdButton', text: 'Tap the bird to enable nearby notices.' },
   { target: 'walkButton', text: 'Tap Start walk to record your route.' },
   { target: 'mapSearchInput', text: 'Search places and wildlife by name.' },
-  { target: 'settingsButton', text: 'Tap the backpack to open stories.' },
-  { target: 'journalButton', text: 'Tap the grid to write notes.' },
-  { target: 'mapPencilButton', text: 'Tap the pencil to sketch the map.' },
-  { target: 'savePlaceMapButton', text: 'Tap the plus to drop a pin.' },
+  { target: 'settingsButton', text: 'Tap the backpack to open the guide grid.' },
   { target: 'mapLights', text: 'Tap a colored light to filter places.' },
 ];
 

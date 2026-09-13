@@ -25,6 +25,7 @@ export const state = {
 
   // map objects
   map: null,
+  activeViewportBounds: null,
   currentPosition: null,
   lastPosition: null,
   curatedRouteLine: null,
@@ -54,6 +55,7 @@ export const state = {
   onlineBasemapLayer: null,
   mapPaintLayer: null,
   mapPaintActive: false,
+  mapDrawingHistory: [],
   federalBoundaryOverlay: null,
 
   // walking session
