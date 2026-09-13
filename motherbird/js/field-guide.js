@@ -97,21 +97,16 @@ function observationCard(item) {
   return `<article class="guide-card"><small>OBSERVATION${distanceLabel(item.distance)}</small><h3>${escapeHtml(item.title || item.species || 'Observation')}</h3><p>${escapeHtml(item.note || 'Saved privately in your journal.')}</p></article>`;
 }
 export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') {
+  if (tab === 'maps') tab = 'discover';
   state.fieldGuideTab = tab;
   window.dispatchEvent(new CustomEvent('guide-tab-changed', { detail: { tab } }));
   const target = el('fieldGuideList'); if (!target) return;
   document.querySelectorAll('[data-guide-tab]').forEach((button) => button.classList.toggle('active', button.dataset.guideTab === tab));
   target.classList.toggle('hidden', tab === 'online');
   el('sharePanel')?.classList.toggle('hidden', tab !== 'online');
-  el('myMapsPanel')?.classList.toggle('hidden', tab !== 'maps');
   if (tab !== 'learn') {
     shadeLearnBounds(false);
     document.getElementById('backpackSheet')?.classList.remove('learn-min');
-  }
-  if (tab === 'maps') {
-    el('fieldGuideOrderNote')?.classList.add('hidden');
-    renderMapsLibrary(target);
-    return;
   }
   if (tab !== 'learn') {
     shadeLearnBounds(false);

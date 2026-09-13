@@ -73,32 +73,17 @@ async function persistCreatedLayer(layer, shape) {
 async function undoDrawing() {
   const id = state.mapDrawingHistory.at(-1);
   if (!id) { toast('Nothing to undo.'); return; }
-  await db.remove('moments', id);
-  await renderMapDrawings();
-  toast('Last drawing removed.');
+  try { await db.remove('moments', id); await renderMapDrawings(); toast('Last drawing removed.'); }
+  catch (error) { toast(error.message || 'The last drawing could not be removed.'); }
 }
 
 async function clearDrawings() {
-  const drawings = (await db.all('moments')).filter((item) => item.type === 'drawing' && (!item.city || item.city === state.activeCity));
-  await Promise.all(drawings.map((item) => db.remove('moments', item.id)));
-  await renderMapDrawings();
-  toast(drawings.length ? 'Map drawings cleared.' : 'There are no drawings to clear.');
-}
-
-function installActionControl() {
-  const Actions = L.Control.extend({
-    options: { position: 'topleft' },
-    onAdd() {
-      const box = L.DomUtil.create('div', 'leaflet-bar leaflet-control geoman-actions');
-      const undo = L.DomUtil.create('button', '', box); undo.type = 'button'; undo.title = 'Undo last drawing'; undo.setAttribute('aria-label', 'Undo last drawing'); undo.textContent = '↶';
-      const clear = L.DomUtil.create('button', '', box); clear.type = 'button'; clear.title = 'Clear drawings'; clear.setAttribute('aria-label', 'Clear drawings'); clear.textContent = '×';
-      L.DomEvent.disableClickPropagation(box);
-      undo.addEventListener('click', () => void globalThis.pm.map.undo());
-      clear.addEventListener('click', () => void globalThis.pm.map.clearLayers());
-      return box;
-    }
-  });
-  state.map.addControl(new Actions());
+  try {
+    const drawings = (await db.all('moments')).filter((item) => item.type === 'drawing' && (!item.city || item.city === state.activeCity));
+    await Promise.all(drawings.map((item) => db.remove('moments', item.id)));
+    await renderMapDrawings();
+    toast(drawings.length ? 'Map drawings cleared.' : 'There are no drawings to clear.');
+  } catch (error) { toast(error.message || 'Drawings could not be cleared.'); }
 }
 
 export async function initMapPaint() {
@@ -107,10 +92,8 @@ export async function initMapPaint() {
   state.mapPaintLayer = L.featureGroup().addTo(state.map);
   const friendLayer = L.layerGroup().addTo(state.map);
   await renderMapDrawings();
-  state.map.pm.addControls({ position: 'topleft', drawMarker: true, drawPolyline: true, drawPolygon: true, drawRectangle: true, drawCircle: true, drawCircleMarker: false, drawText: false, editMode: false, dragMode: false, cutPolygon: false, removalMode: false, rotateMode: false });
   globalThis.pm = globalThis.pm || {};
   globalThis.pm.map = { undo: undoDrawing, clearLayers: clearDrawings };
-  installActionControl();
   state.map.on('pm:create', ({ layer, shape }) => void persistCreatedLayer(layer, shape));
   window.addEventListener('local-drawings-changed', () => void renderMapDrawings());
   window.addEventListener('city-layer-data-changed', () => void renderMapDrawings());
@@ -122,8 +105,19 @@ export async function initMapPaint() {
       if (ticket.kind === 'pin' && Number.isFinite(ticket.body?.location?.lat) && Number.isFinite(ticket.body?.location?.lng)) L.circleMarker([ticket.body.location.lat, ticket.body.location.lng], { color: '#8b3a4a', radius: 7 }).addTo(friendLayer);
     }
   });
-  button.addEventListener('click', () => {
-    setActive(!state.mapPaintActive);
-    toast(state.mapPaintActive ? 'Drawing tools are ready. Choose a shape from the map toolbar.' : 'Drawing mode closed.');
+  document.querySelector('.draw-shapes')?.addEventListener('click', (event) => {
+    const tool = event.target.closest('[data-draw-shape]'); if (!tool) return;
+    const shapes = { Marker: 'Marker', Line: 'Line', Polygon: 'Polygon', Rectangle: 'Rectangle', Circle: 'Circle' };
+    const shape = shapes[tool.dataset.drawShape]; if (!shape) return;
+    setActive(true); state.map.pm.disableDraw(); state.map.pm.enableDraw(shape, { snappable: true, finishOn: 'dblclick' });
+    document.querySelectorAll('[data-draw-shape]').forEach((item) => item.classList.toggle('active', item === tool));
+    el('drawWorkspaceStatus').textContent = `${tool.textContent.trim()} tool active. Draw on the map.`;
+  });
+  el('undoMapDrawing')?.addEventListener('click', () => void undoDrawing());
+  el('clearMapDrawings')?.addEventListener('click', () => void clearDrawings());
+  window.addEventListener('map-workspace-changed', ({ detail }) => {
+    const active = detail?.destination === 'draw' && detail.open;
+    if (!active) { setActive(false); document.querySelectorAll('[data-draw-shape]').forEach((item) => item.classList.remove('active')); }
+    else { state.mapPaintActive = true; document.body.classList.add('map-painting'); button.setAttribute('aria-pressed', 'true'); }
   });
 }

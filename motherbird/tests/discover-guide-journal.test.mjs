@@ -24,15 +24,21 @@ test('Field Guide joins pack-authored cards to real pins and orders from a fix',
   assert.match(guide, /Location is off, so this stays in pack order/);
 });
 
-test('the idle map nests Journal, Cypher, and Draw inside Field Guide and uses My Places for creation', async () => {
+test('the idle map keeps Journal and Cypher in Field Guide and consolidates map work in the dock', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
   assert.match(html, /id="journalButton"[^>]*aria-label="Open journal"/);
   assert.match(html, /id="settingsButton"[^>]*aria-label="Open Field Guide menu"/);
   assert.match(html, /id="fieldGuideDropdown"/);
   assert.match(html, /id="geoCypherButton"/);
   assert.match(html, /id="mapPencilButton"/);
+  assert.match(html, /data-map-destination="explore"/);
+  assert.match(html, /data-map-destination="maps"/);
+  assert.match(html, /data-map-destination="draw"/);
+  assert.match(html, /id="personalPlacesVisibility"/);
+  const fieldGuideMenu = html.slice(html.indexOf('id="fieldGuideDropdown"'), html.indexOf('</div></div></div>', html.indexOf('id="fieldGuideDropdown"')));
+  assert.doesNotMatch(fieldGuideMenu, /id="mapPencilButton"/);
   assert.doesNotMatch(html, /id="savePlaceMapButton"/);
-  assert.match(html, /id="mapLights" aria-label="Map lights"/);
+  assert.match(html, /id="mapLights" aria-label="Explore map layers"/);
   assert.match(html, /id="messengerBirdButton"/);
   assert.doesNotMatch(html, /id="homeCityButton"/);
   assert.doesNotMatch(html, /id="regionSheet"/);
@@ -59,7 +65,7 @@ test('the Journal has local capture and a scrollable history without export chro
   assert.doesNotMatch(html, /id="fieldEditionStatus"/);
 });
 
-test('Backpack opens the viewport Field Guide first and keeps quieter tools in the pack', async () => {
+test('Backpack opens the viewport Field Guide while My Maps lives only in the dock', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
   const profile = await readFile(new URL('../js/profile.js', import.meta.url), 'utf8');
   const guide = await readFile(new URL('../js/field-guide.js', import.meta.url), 'utf8');
@@ -67,7 +73,8 @@ test('Backpack opens the viewport Field Guide first and keeps quieter tools in t
   const planner = await readFile(new URL('../js/planner.js', import.meta.url), 'utf8');
   assert.match(html, /id="backpackSheet"/);
   assert.match(html, /<h2 id="backpackTitle">Field Guide<\/h2>/);
-  assert.match(html, /data-guide-tab="maps"/);
+  assert.doesNotMatch(html, /data-guide-tab="maps"/);
+  assert.match(html, /data-map-panel="maps"/);
   assert.match(html, /Advanced filters/);
   assert.doesNotMatch(guide, /seasonNote/);
   assert.match(guide, /sortGuideCardsByDistance/);

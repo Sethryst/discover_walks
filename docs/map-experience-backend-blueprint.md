@@ -101,6 +101,29 @@ Keep only the high-frequency actions on the map surface:
 
 Move layers, advanced filters, offline/install, sharing, costumes, backups, and region/package management into Field Guide. Audio can remain a map action only if “leave/hear a message here” is a core loop; otherwise it belongs under Messenger Bird.
 
+### Mapus-inspired map surface consolidation (current direction)
+
+The current implementation has a few visible sources of clutter that should be addressed before adding more controls:
+
+- The fixed top cluster combines Locate, Messenger Bird, Start/End walk, and Search. These are distinct high-frequency actions, and must remain easy to reach; Messenger Bird is a current feature, not a candidate for removal or burial in a tools menu.
+- The four map lights (News, Rec, Cuisine, My Maps) sit in a horizontal group at the bottom of the map, while Geoman and its Undo/Clear control are mounted at Leaflet's top-left. The drawing controls can overlap the Locate area.
+- Draw is also nested in the Field Guide dropdown even though its Geoman controls live directly on the map, splitting one task across two locations.
+- My Maps exists both as a map light with its own expansion and as a Field Guide tab containing personal places, national OSM layers, and advanced filters. Users can reasonably read these as duplicate entry points.
+- The UI mixes fixed overlay controls, Leaflet-native controls, map-light popovers, and larger Field Guide sheets. Their placement, expansion, dismissal, and mobile behavior do not yet read as one coherent map workspace.
+
+Consolidation checklist:
+
+- [x] Preserve Locate, Messenger Bird, Start/End walk, and Search as the global map action cluster. Keep the Messenger Bird one-tap trigger visible and account for its compact mobile icon state.
+- [x] Create a Mapus-inspired map dock for map context and editing, with clear Explore, My Maps, and Draw destinations rather than one undifferentiated stack of buttons.
+- [x] Move News, Rec, and Cuisine visibility controls and their existing category choices into Explore; retain immediate on/off feedback and current filter semantics.
+- [x] Make My Maps the single entry point for personal-place visibility, collections, personal categories, and advanced filters. The Field Guide tab and personal map-light route are removed; the dock reuses the existing management controls.
+- [x] Put the Geoman drawing palette and Undo/Clear actions together in Draw. Geoman's Leaflet top-left toolbar is no longer mounted.
+- [x] Use one adjacent dock panel which closes explicitly and swaps content without rebuilding or resetting layer and saved-place state.
+- [x] Provide a compact, safe-area-aware mobile dock and a touch-friendly panel capped at roughly half the viewport so the map and top actions remain usable.
+- [x] Preserve local-first async behavior: filters repaint before persistence, drawing saves remain asynchronous, and persistence failures surface as non-blocking toasts.
+- [x] Keep current event/data contracts where possible: map-light toggles, category selection, saved drawings, undo/clear, and personal-place management continue to invoke their existing state and persistence flows after the UI moves.
+- [ ] Verify the resulting hierarchy against real desktop/mobile viewport screenshots and test Explore filters, My Maps management, Draw/save/undo/clear, Messenger Bird, and active-walk controls together.
+
 ### Make the map a context engine, not the database
 
 The map should emit context: viewport, focused place, active walk, current coarse region, and encounter. Journaling, ciphers, and messaging consume that context through explicit actions. They should not directly share private records with one another.

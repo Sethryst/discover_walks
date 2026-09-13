@@ -22,6 +22,7 @@ const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];
 export function initEvents() {
   initJournalPane();
   bindSheets(); bindLocationControls(); bindWalkControls(); bindSearch(); bindJournal(); bindDeviceControls();
+  bindMapWorkspace();
   el('settingsButton')?.addEventListener('click', toggleFieldGuideMenu);
   el('fieldGuideDropdown')?.addEventListener('click', (event) => {
     if (event.target.closest('[data-open-field-guide]')) openBackpack();
@@ -32,6 +33,33 @@ export function initEvents() {
   el('messengerBirdButton')?.addEventListener('click', () => void sendMessengerBird());
   window.addEventListener('walk-poi-encounter', (event) => void import('./walk.js').then(({ recordPoiEncounter }) => recordPoiEncounter(event.detail?.poi, event.detail?.distance)));
   window.addEventListener('backpack-open-requested', openBackpack);
+}
+
+function setMapWorkspace(destination = '') {
+  const panel = el('mapWorkspacePanel');
+  if (!panel) return;
+  const current = panel.dataset.destination || '';
+  const next = current === destination && !panel.classList.contains('hidden') ? '' : destination;
+  panel.dataset.destination = next;
+  panel.classList.toggle('hidden', !next);
+  document.body.classList.toggle('map-workspace-open', Boolean(next));
+  document.querySelectorAll('[data-map-destination]').forEach((button) => {
+    const active = button.dataset.mapDestination === next;
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-expanded', String(active));
+  });
+  document.querySelectorAll('[data-map-panel]').forEach((section) => section.classList.toggle('hidden', section.dataset.mapPanel !== next));
+  if (next) el('mapWorkspaceTitle').textContent = next === 'maps' ? 'My Maps' : next[0].toUpperCase() + next.slice(1);
+  window.dispatchEvent(new CustomEvent('map-workspace-changed', { detail: { destination: next, open: Boolean(next) } }));
+}
+
+function bindMapWorkspace() {
+  document.querySelector('.map-dock')?.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-map-destination]');
+    if (button) setMapWorkspace(button.dataset.mapDestination);
+  });
+  el('closeMapWorkspace')?.addEventListener('click', () => setMapWorkspace(''));
+  window.addEventListener('map-workspace-open-requested', ({ detail }) => setMapWorkspace(detail?.destination || 'explore'));
 }
 
 function closeFieldGuideMenu() {

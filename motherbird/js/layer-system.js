@@ -192,7 +192,7 @@ function applyLayerChanges({ rerenderFilters = true } = {}) {
   renderCityPois(); renderPersonalPlacesOnMap(); renderNewsMarkers(); renderRouteLights(); updateLayerBadge();
   if (rerenderFilters) renderLayerFilters();
   renderMapLights();
-  void persistLayerState();
+  void persistLayerState().catch(() => toast('Map choices changed, but could not be saved on this device.'));
 }
 
 function updateLayerStatus() {
@@ -346,11 +346,18 @@ export function renderMapLights() {
   const root = el('mapLights');
   if (!root) return;
   const expanded = state.layerUiState.lightExpanded || '';
-  root.innerHTML = lightModel().map((light) => {
+  root.innerHTML = lightModel().filter((light) => light.id !== 'personal').map((light) => {
     const on = state.layerLights[light.id] === true;
     const hasChevron = light.hasChevron ?? light.chips.length > 0;
     return `<div class="map-light-wrap" data-map-light="${light.id}">${expandedLightContent(light, expanded)}<div class="map-light-row"><button type="button" class="map-light ${on ? 'on' : 'off'}" data-light="${light.id}" aria-pressed="${on}">${escapeHtml(light.label)}</button>${hasChevron ? `<button type="button" class="map-light-chevron" data-light-expand="${light.id}" aria-label="Show ${escapeHtml(light.label.toLowerCase())} choices" aria-expanded="${expanded === light.id}"><span aria-hidden="true">▲</span></button>` : ''}</div></div>`;
   }).join('');
+  const personalToggle = el('personalPlacesVisibility');
+  if (personalToggle) {
+    const visible = state.layerLights.personal === true;
+    personalToggle.classList.toggle('on', visible);
+    personalToggle.setAttribute('aria-pressed', String(visible));
+    personalToggle.textContent = visible ? 'Hide saved places' : 'Show saved places';
+  }
 }
 
 function setChip(chip, enabled) {
@@ -497,7 +504,7 @@ function openImportSheet() {
 
 function bindLayerControls() {
   el('mapLights')?.addEventListener('click', (event) => {
-    if (event.target.closest('[data-open-my-maps]')) { openSheet('backpackSheet'); void import('./field-guide.js').then(({ renderFieldGuide }) => renderFieldGuide('maps')); return; }
+    if (event.target.closest('[data-open-my-maps]')) { window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'maps' } })); return; }
     if (event.target.closest('[data-add-my-place]')) { window.dispatchEvent(new CustomEvent('personal-place-create-requested')); return; }
     const newsMarker = event.target.closest('[data-news-marker]');
     if (newsMarker) { window.dispatchEvent(new CustomEvent('public-marker-focus-requested', { detail: { markerId: newsMarker.dataset.newsMarker } })); return; }
@@ -521,6 +528,7 @@ function bindLayerControls() {
     const chip = event.target.closest('[data-light-chip]');
     if (chip) { const [lightId, chipId] = chip.dataset.lightChip.split(':'); toggleChip(lightId, chipId); }
   });
+  el('personalPlacesVisibility')?.addEventListener('click', () => toggleLight('personal'));
   el('mapLights')?.addEventListener('dblclick', (event) => event.stopPropagation());
   el('poiTagFilters')?.addEventListener('change', (event) => {
     const filter = event.target.closest('[data-layer-filter]');
