@@ -30,7 +30,7 @@ export function initEvents() {
   });
   el('journalButton')?.addEventListener('click', () => void openJournal());
   el('geoCypherButton')?.addEventListener('click', () => void openGeoCypher());
-  el('messengerBirdButton')?.addEventListener('click', () => void sendMessengerBird());
+  bindMessengerBird();
   window.addEventListener('walk-poi-encounter', (event) => void import('./walk.js').then(({ recordPoiEncounter }) => recordPoiEncounter(event.detail?.poi, event.detail?.distance)));
   window.addEventListener('backpack-open-requested', openBackpack);
 }
@@ -76,32 +76,53 @@ function toggleFieldGuideMenu() {
   el('settingsButton')?.setAttribute('aria-expanded', String(opening));
 }
 
-async function sendMessengerBird() {
-  const button = el('messengerBirdButton');
-  if (!button || button.getAttribute('aria-busy') === 'true') return;
-  button.setAttribute('aria-busy', 'true');
-  button.classList.remove('sent');
-  window.dispatchEvent(new CustomEvent('messenger-bird-sending'));
-  try {
-    let delivered = false;
-    if ('Notification' in globalThis && Notification.permission !== 'denied') {
-      const permission = Notification.permission === 'default' ? await Notification.requestPermission() : Notification.permission;
-      if (permission === 'granted') {
-        const registration = await navigator.serviceWorker?.ready;
-        if (registration) await registration.showNotification('Messenger bird is ready', { body: 'Map messages and nearby notices can reach you here.', icon: './assets/pwa-icon-192.png', tag: 'messenger-bird' });
-        else new Notification('Messenger bird is ready', { body: 'Map messages and nearby notices can reach you here.' });
-        delivered = true;
+function renderMessengerNotificationControl() {
+  const button = el('messengerNotificationsButton');
+  if (!button) return;
+  const permission = 'Notification' in globalThis ? Notification.permission : 'unsupported';
+  const enabled = state.settings.messengerNotificationsEnabled === true && permission === 'granted';
+  button.textContent = permission === 'unsupported' ? 'Notifications unavailable' : permission === 'denied' ? 'Notifications blocked in browser settings' : enabled ? 'Turn notifications off' : 'Allow notifications';
+  button.disabled = permission === 'unsupported' || permission === 'denied';
+  button.setAttribute('aria-pressed', String(enabled));
+}
+
+function bindMessengerBird() {
+  const trigger = el('messengerBirdButton');
+  const menu = el('messengerBirdMenu');
+  trigger?.addEventListener('click', () => {
+    const opening = menu?.classList.contains('hidden');
+    menu?.classList.toggle('hidden', !opening);
+    trigger.setAttribute('aria-expanded', String(Boolean(opening)));
+    if (opening) renderMessengerNotificationControl();
+  });
+  el('messengerInboxButton')?.addEventListener('click', () => {
+    menu?.classList.add('hidden'); trigger?.setAttribute('aria-expanded', 'false'); openSheet('messengerInboxSheet');
+  });
+  el('messengerNotificationsButton')?.addEventListener('click', async () => {
+    const control = el('messengerNotificationsButton');
+    if (!control || control.disabled) return;
+    control.disabled = true;
+    try {
+      let permission = Notification.permission;
+      if (state.settings.messengerNotificationsEnabled && permission === 'granted') {
+        state.settings.messengerNotificationsEnabled = false;
+        await db.put('settings', state.settings);
+        toast('Messenger Bird notifications are off.');
+      } else {
+        if (permission === 'default') permission = await Notification.requestPermission();
+        state.settings.messengerNotificationsEnabled = permission === 'granted';
+        await db.put('settings', state.settings);
+        toast(permission === 'granted' ? 'Messenger Bird notifications are on.' : 'Notifications were not allowed.');
       }
+    } catch {
+      toast('Could not save the notification setting.');
+    } finally {
+      renderMessengerNotificationControl();
     }
-    button.classList.add('sent');
-    window.dispatchEvent(new CustomEvent('messenger-bird-sent', { detail: { delivered } }));
-    toast(delivered ? 'Messenger bird sent a notification.' : 'Messenger bird is listening in the app.');
-  } catch (error) {
-    window.dispatchEvent(new CustomEvent('messenger-bird-error', { detail: { error } }));
-    toast('The messenger bird could not deliver that notice.');
-  } finally {
-    button.removeAttribute('aria-busy');
-  }
+  });
+  document.addEventListener('click', (event) => {
+    if (!event.target.closest('.messenger-stack')) { menu?.classList.add('hidden'); trigger?.setAttribute('aria-expanded', 'false'); }
+  });
 }
 
 function bindSheets() {
