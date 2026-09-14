@@ -125,7 +125,8 @@ function siteKind(poi) {
 function siteCard(poi, visited) {
   const name = poi.name || 'Unnamed place';
   const kind = siteKind(poi);
-  return `<article class="guide-card learn-site" data-learn-place="${escapeHtml(String(poi.id))}"><label class="learn-check"><input type="checkbox" data-learn-check="${escapeHtml(String(poi.id))}" ${visited ? 'checked' : ''} /><span>${escapeHtml(kind)}</span></label><h3>${escapeHtml(name)}</h3><div class="learn-site-actions"><button class="secondary-button" type="button" data-learn-walk="${escapeHtml(String(poi.id))}">Walk there</button></div></article>`;
+  const walkAction = state.activeWalk ? 'Add to this walk' : 'Walk there';
+  return `<article class="guide-card learn-site" data-learn-place="${escapeHtml(String(poi.id))}"><label class="learn-check"><input type="checkbox" data-learn-check="${escapeHtml(String(poi.id))}" ${visited ? 'checked' : ''} /><span>${escapeHtml(kind)}</span></label><h3>${escapeHtml(name)}</h3><div class="learn-site-actions"><button class="secondary-button" type="button" data-learn-walk="${escapeHtml(String(poi.id))}">${walkAction}</button></div></article>`;
 }
 
 function childSlot(folderId, child) {

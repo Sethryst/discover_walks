@@ -166,6 +166,23 @@ export function togglePauseWalk() {
   return state.activeWalk?.paused ? resumeWalk() : pauseWalk();
 }
 
+export async function addWalkWaypoint(poi) {
+  const walk = state.activeWalk;
+  if (!walk || !poi || !Number.isFinite(Number(poi.lat)) || !Number.isFinite(Number(poi.lng))) return false;
+  walk.waypoints ||= [];
+  const id = String(poi.id);
+  if (walk.waypoints.some((waypoint) => String(waypoint.id) === id)) {
+    toast(`${poi.name} is already a stop on this walk.`);
+    return true;
+  }
+  walk.waypoints.push({ id, name: String(poi.name || 'Saved place'), lat: Number(poi.lat), lng: Number(poi.lng), addedAt: new Date().toISOString() });
+  walk.associatedPlaceIds = [...new Set([...(walk.associatedPlaceIds || []), id])];
+  await persistWalkDraft();
+  state.map?.flyTo([poi.lat, poi.lng], Math.max(state.map.getZoom(), 16));
+  toast(`${poi.name} added as a stop on your active walk.`);
+  return true;
+}
+
 export async function startWalk({ routeMode = 'tracking' } = {}) {
   if (state.activeWalk) return state.activeWalk;
   if (!navigator.geolocation) { toast('Location is not supported in this browser.'); return null; }

@@ -24,6 +24,18 @@ test('Field Guide joins pack-authored cards to real pins and orders from a fix',
   assert.match(guide, /Location is off, so this stays in pack order/);
 });
 
+test('generated recommendation strings are suppressed and active walks accept Learn destinations as waypoints', async () => {
+  const guide = await readFile(new URL('../js/field-guide.js', import.meta.url), 'utf8');
+  const walk = await readFile(new URL('../js/walk.js', import.meta.url), 'utf8');
+  assert.match(guide, /isPresentableRecommendation/);
+  assert.match(guide, /official non-county\|trail geometry\|artifact_type/);
+  assert.match(guide, /No curated walk recommendations are available/);
+  assert.match(guide, /if \(state\.activeWalk\) void addWalkWaypoint\(poi\)/);
+  assert.match(walk, /export async function addWalkWaypoint\(poi\)/);
+  assert.match(walk, /walk\.waypoints\.push/);
+  assert.match(walk, /await persistWalkDraft\(\)/);
+});
+
 test('the idle map keeps Journal and Cypher in Field Guide and consolidates map work in the dock', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
   assert.match(html, /id="journalButton"[^>]*aria-label="Open journal"/);

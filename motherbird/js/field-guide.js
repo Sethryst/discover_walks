@@ -11,6 +11,7 @@ import { placeLight, publicPlaceSource, walkerDetails } from './place-details.js
 import { installedPackBounds } from './offline-view.js';
 import { isHistorySite, renderLearnHistory, setLearnView, setLearnScreen, setActiveWatershed, setBattlefieldEra, setBattlefieldYear, setBattlefieldSite, stepBattlefieldBack, setActiveLensItem } from './learn-history.js';
 import { setPoiVisited } from './poi-visit-tracking.js';
+import { addWalkWaypoint } from './walk.js';
 import { initMapsFolders, renderMapsLibrary } from './maps-folders.js';
 
 const FORMAT = 'walk-wildlife-plan-v1';
@@ -33,7 +34,7 @@ async function guideData() {
     if (!stopPlaceIds.length) return null;
     const route = card.journeyId ? routeById.get(String(card.journeyId)) : null;
     return { ...card, id: String(card.id), kind: card.kind || (card.journeyId ? 'journey' : 'walk'), title: card.title || 'A walk from this pack', reason: card.reason || '', stopPlaceIds, ...(route?.coordinates?.length > 1 ? { coordinates: route.coordinates } : {}) };
-  }).filter(Boolean);
+  }).filter((card) => card && isPresentableRecommendation(card));
   const authoredLearn = [learn.whyCards, learn.cards, discover.whyCards].find(Array.isArray) || [];
   const learnCards = authoredLearn.map((card) => {
     const placeId = String(card.placeId || card.stopPlaceId || '');
@@ -56,6 +57,14 @@ async function guideData() {
 }
 
 function publicSourceForPoi(poi, authored) { return publicPlaceSource(poi, authored); }
+function isPresentableRecommendation(card) {
+  // Generated proximity clusters are useful internal candidates, not curated recommendations.
+  if (card.kind !== 'journey' && card.curated !== true) return false;
+  const copy = `${card.title || ''} ${card.reason || ''}`;
+  return Boolean(card.title?.trim() && card.reason?.trim())
+    && !/[+]/.test(card.title)
+    && !/park\+cafe\+rest|official non-county|trail geometry|artifact_type|generated from|assembled from/i.test(copy);
+}
 function discoverCard(card) {
   const selected = selectedPlaceId && card.stopPlaceIds?.includes(selectedPlaceId);
   return `<article class="guide-card ${selected ? 'selected' : ''}" data-guide-card="${escapeHtml(card.id)}"><small>${card.kind === 'journey' ? 'JOURNEY' : escapeHtml(card.kind.replaceAll('+', ' + '))}${distanceLabel(card.distance)}</small><h3>${escapeHtml(card.title)}</h3><p>${escapeHtml(card.reason)}</p><button class="primary-button" type="button" data-guide-walk="${escapeHtml(card.id)}">Walk this</button></article>`;
@@ -137,7 +146,7 @@ export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') 
   }
   const cards = data.discover;
   const ordered = sortGuideCardsByDistance(cards, point, (card) => (card.stopPlaceIds || []).map((id) => poiById.get(String(id))));
-  target.innerHTML = ordered.length ? ordered.map(discoverCard).join('') : '';
+  target.innerHTML = ordered.length ? ordered.map(discoverCard).join('') : '<p class="empty-state">No curated walk recommendations are available for this area yet. You can still sketch a walk from Start walk.</p>';
 }
 function planForCard(card) {
   return { pack_id: state.activeCity, title: card.title, reason: card.reason, stop_place_ids: card.stopPlaceIds || [], ...(card.journeyId ? { journeyId: card.journeyId } : {}) };
@@ -241,7 +250,10 @@ export function initFieldGuideFilters() {
     const learnWalk = event.target.closest('[data-learn-walk]');
     if (learnWalk) {
       const poi = (state.cityPois[state.activeCity] || []).find((item) => String(item.id) === learnWalk.dataset.learnWalk);
-      if (poi) paintWalkPlan({ format: FORMAT, pack_id: state.activeCity, title: `Walk to ${poi.name}`, reason: 'A walk from Learn.', stop_place_ids: [poi.id] });
+      if (poi) {
+        if (state.activeWalk) void addWalkWaypoint(poi);
+        else paintWalkPlan({ format: FORMAT, pack_id: state.activeCity, title: `Walk to ${poi.name}`, reason: 'A walk from Learn.', stop_place_ids: [poi.id] });
+      }
       return;
     }
     const learnPlace = event.target.closest('[data-learn-place]');

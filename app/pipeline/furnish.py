@@ -119,15 +119,19 @@ def _edge_artifact(region_id: str, generated_at: str, records: list[dict[str, An
 
 
 def _discover_artifact(region_id: str, generated_at: str, pois: list[dict[str, Any]], journeys: dict[str, Any]) -> dict[str, Any]:
-    """Lead with the four authored Journeys, then offer only park+cafe+comfort walks."""
+    """Publish authored journeys only; generated proximity clusters are not recommendations."""
     cards: list[dict[str, Any]] = []
     installed_ids = {str(poi.get("id")) for poi in pois}
     for journey in journeys.get("journeys", []):
         stop_ids = list(dict.fromkeys(str(stop["id"]) for chapter in journey.get("chapters", []) for stop in [*chapter.get("stops", []), *chapter.get("amenities", [])] if stop.get("id") and str(stop["id"]) in installed_ids))
+        if not journey.get("name") or not journey.get("description") or not stop_ids:
+            continue
+        if any(term in f"{journey['name']} {journey['description']}".casefold() for term in ("official non-county", "trail geometry", "artifact_type", "assembled from")):
+            continue
         cards.append({
             "id": f"journey:{journey['id']}", "artifact_type": "enrichment", "kind": "journey",
             "journeyId": journey["id"], "title": journey["name"],
-            "reason": journey.get("description") or "A sourced sequence of named places and trail chapters.",
+            "reason": journey["description"],
             "stopPlaceIds": stop_ids,
         })
 
