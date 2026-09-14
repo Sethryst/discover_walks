@@ -15,17 +15,26 @@ test('OSM raster and national POIs share one MapLibre style', () => {
   assert.equal(style.sources.nationalPoi.type, 'vector');
   assert.equal(style.layers[0].id, 'osm-basemap');
   assert.equal(style.layers.find((layer) => layer.id === 'national-poi-point').source, 'nationalPoi');
+  const wash = style.layers.find((layer) => layer.id === 'national-poi-wash');
+  assert.equal(wash.type, 'heatmap');
+  assert.equal(wash.minzoom, 8);
+  assert.equal(wash.maxzoom, 13);
+  assert.ok(wash.paint['heatmap-opacity'].includes(12.99));
+  assert.equal(nationalPoiSymbolLayers()[0].minzoom, 12);
+  assert.equal(style.layers.filter(({ id }) => id === 'national-poi-wash').length, 1);
   assert.match(style.sources.osmBasemap.attribution, /OpenStreetMap/);
 });
 
 test('category filters apply to every rendered and queryable national POI layer', () => {
   const filters = nationalPoiLayerFilters(['trail', 'nature']);
   assert.deepEqual(Object.keys(filters).sort(), [
-    'national-poi-area', 'national-poi-icon', 'national-poi-line', 'national-poi-line-label', 'national-poi-place-label', 'national-poi-point'
-  ]);
+    'national-poi-area', 'national-poi-icon', 'national-poi-line', 'national-poi-line-label', 'national-poi-place-label', 'national-poi-point',
+    'national-poi-wash'
+  ].sort());
   assert.ok(Object.values(filters).every((filter) => JSON.stringify(filter).includes('["trail","nature"]')));
   const style = nationalPoiStyle('pmtiles://https://example.test/poi.pmtiles', ['trail']);
   assert.match(JSON.stringify(style.layers.find(({ id }) => id === 'national-poi-point').filter), /trail/);
+  assert.match(JSON.stringify(style.layers.find(({ id }) => id === 'national-poi-wash').filter), /trail/);
 });
 
 test('walking categories have unique icons, colors, and readable labels', () => {

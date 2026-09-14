@@ -64,14 +64,16 @@ function filtered(geometryFilter, enabledCategoryIds) {
 }
 
 export function nationalPoiLayerFilters(enabledCategoryIds = NATIONAL_POI_CATEGORIES.map(({ id }) => id)) {
-  return {
+  const filters = {
     'national-poi-area': filtered(['==', ['geometry-type'], 'Polygon'], enabledCategoryIds),
     'national-poi-line': filtered(['==', ['geometry-type'], 'LineString'], enabledCategoryIds),
     'national-poi-point': filtered(['==', ['geometry-type'], 'Point'], enabledCategoryIds),
     'national-poi-icon': filtered(['==', ['geometry-type'], 'Point'], enabledCategoryIds),
     'national-poi-place-label': filtered(['all', ['has', 'name'], ['in', ['geometry-type'], ['literal', ['Point', 'Polygon']]]], enabledCategoryIds),
-    'national-poi-line-label': filtered(['all', ['has', 'name'], ['==', ['geometry-type'], 'LineString']], enabledCategoryIds)
+    'national-poi-line-label': filtered(['all', ['has', 'name'], ['==', ['geometry-type'], 'LineString']], enabledCategoryIds),
+    'national-poi-wash': filtered(['==', ['geometry-type'], 'Point'], enabledCategoryIds)
   };
+  return filters;
 }
 
 export function nationalPoiStyle(sourceUrl, enabledCategoryIds = NATIONAL_POI_CATEGORIES.map(({ id }) => id)) {
@@ -95,8 +97,19 @@ export function nationalPoiStyle(sourceUrl, enabledCategoryIds = NATIONAL_POI_CA
     },
     layers: [
       { id: 'osm-basemap', type: 'raster', source: 'osmBasemap', paint: { 'raster-fade-duration': 0 } },
-      { id: 'national-poi-area', type: 'fill', source: 'nationalPoi', 'source-layer': 'poi', minzoom: 8, filter: filters['national-poi-area'], paint: { 'fill-color': categoryColor, 'fill-opacity': 0.16, 'fill-outline-color': categoryColor } },
-      { id: 'national-poi-line', type: 'line', source: 'nationalPoi', 'source-layer': 'poi', minzoom: 8, filter: filters['national-poi-line'], paint: { 'line-color': categoryColor, 'line-width': ['interpolate', ['linear'], ['zoom'], 8, 1, 16, 3], 'line-opacity': 0.76 } },
+      {
+        id: 'national-poi-wash', type: 'heatmap', source: 'nationalPoi', 'source-layer': 'poi', minzoom: 8, maxzoom: 13,
+        filter: filters['national-poi-wash'],
+        paint: {
+          'heatmap-weight': 1,
+          'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 8, 0.5, 12, 0.85],
+          'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 8, 24, 12, 38],
+          'heatmap-opacity': ['interpolate', ['linear'], ['zoom'], 8, 0.55, 11, 0.42, 12, 0.22, 12.99, 0],
+          'heatmap-color': ['interpolate', ['linear'], ['heatmap-density'], 0, 'rgba(0,0,0,0)', 0.08, 'rgba(232,237,211,0.22)', 0.25, 'rgba(163,192,151,0.38)', 0.55, 'rgba(91,145,111,0.58)', 1, 'rgba(43,101,81,0.76)']
+        }
+      },
+      { id: 'national-poi-area', type: 'fill', source: 'nationalPoi', 'source-layer': 'poi', minzoom: 12, filter: filters['national-poi-area'], paint: { 'fill-color': categoryColor, 'fill-opacity': 0.16, 'fill-outline-color': categoryColor } },
+      { id: 'national-poi-line', type: 'line', source: 'nationalPoi', 'source-layer': 'poi', minzoom: 12, filter: filters['national-poi-line'], paint: { 'line-color': categoryColor, 'line-width': ['interpolate', ['linear'], ['zoom'], 12, 1, 16, 3], 'line-opacity': 0.76 } },
       { id: 'national-poi-point', type: 'circle', source: 'nationalPoi', 'source-layer': 'poi', minzoom: 14, filter: filters['national-poi-point'], paint: { 'circle-color': categoryColor, 'circle-radius': ['interpolate', ['linear'], ['zoom'], 14, 6, 17, 9], 'circle-stroke-color': '#fffaf0', 'circle-stroke-width': 1.5, 'circle-opacity': 0.9 } }
     ]
   };
@@ -107,11 +120,11 @@ export function nationalPoiSymbolLayers(enabledCategoryIds = NATIONAL_POI_CATEGO
   const filters = nationalPoiLayerFilters(enabledCategoryIds);
   return [
     {
-      id: 'national-poi-icon', type: 'symbol', source: 'nationalPoi', 'source-layer': 'poi', minzoom: 10,
+      id: 'national-poi-icon', type: 'symbol', source: 'nationalPoi', 'source-layer': 'poi', minzoom: 12,
       filter: filters['national-poi-icon'],
       layout: {
         'icon-image': iconExpression,
-        'icon-size': ['interpolate', ['linear'], ['zoom'], 10, 0.78, 16, 1.05],
+        'icon-size': ['interpolate', ['linear'], ['zoom'], 12, 0.78, 16, 1.05],
         'icon-allow-overlap': false,
         'icon-ignore-placement': false,
         'icon-padding': 2
