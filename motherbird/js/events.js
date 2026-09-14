@@ -186,6 +186,13 @@ function bindWalkControls() {
 function bindSearch() {
   const input = el('mapSearchInput'); const results = el('mapSearchResults');
   if (input) input.placeholder = 'Place, trail, or wildlife';
+  let viewportRegionLabel = '';
+  window.addEventListener('viewport-region-changed', ({ detail }) => {
+    viewportRegionLabel = detail?.label || '';
+    if (input && (document.activeElement !== input || !input.value.trim())) input.value = viewportRegionLabel;
+  });
+  input?.addEventListener('focus', () => { if (input.value === viewportRegionLabel) input.select(); });
+  input?.addEventListener('blur', () => { if (!input.value.trim() || input.value === viewportRegionLabel) input.value = viewportRegionLabel; });
   let searchToken = 0;
   input?.addEventListener('input', () => {
     const query = input.value.trim();

@@ -131,6 +131,7 @@ export class FederalBoundaryOverlay {
       neighborhoods: state.neighborhoodData
     });
     this.currentLabel.textContent = region.label;
+    globalThis.window?.dispatchEvent(new CustomEvent('viewport-region-changed', { detail: region }));
     void this.updateProgress(region);
   }
 
