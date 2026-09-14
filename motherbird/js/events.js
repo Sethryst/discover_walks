@@ -60,6 +60,7 @@ function bindMapWorkspace() {
   });
   el('closeMapWorkspace')?.addEventListener('click', () => setMapWorkspace(''));
   window.addEventListener('map-workspace-open-requested', ({ detail }) => setMapWorkspace(detail?.destination || 'explore'));
+  if (globalThis.matchMedia?.('(min-width: 721px)').matches) setMapWorkspace('explore');
 }
 
 function closeFieldGuideMenu() {

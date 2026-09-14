@@ -307,7 +307,7 @@ function lightModel() {
   const personal = state.personalPlaceCategories.map((category) => ({ id: category.id, label: category.name, tags: [], kind: 'personal' }));
   return [
     { id: 'news', label: 'NEWS', available: newsAvailable(), chips: [], entries: newsEntries, hasChevron: newsEntries.length > 0 },
-    { id: 'recreation', label: 'RECREATION', available: recreation.length > 0, chips: recreation },
+    { id: 'recreation', label: 'REC', available: recreation.length > 0, chips: recreation },
     { id: 'cuisine', label: 'CUISINE', available: cuisine.length > 0, chips: cuisine },
     { id: 'personal', label: state.personalPlaceSelecting ? 'USE THIS SPOT' : 'MY PLACES', available: true, chips: personal, hasChevron: true }
   ].filter((light) => light.available);
