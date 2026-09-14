@@ -6,6 +6,8 @@ import { openSheet, toast } from './ui.js';
 const FORMAT = 'walk-wildlife-birdnote-v1';
 const MAX_POINTS = 5000;
 let activeDeliveryLine = null;
+let activeFlightMarker = null;
+let activeFlightFrame = 0;
 
 export function normalizeBirdnote(value) {
   const note = typeof value === 'string' ? JSON.parse(value) : value;
@@ -31,6 +33,49 @@ function routeSources() {
     if (coordinates.length > 1) options.push({ id: `walk:${walk.id}`, title: `Recorded walk · ${new Date(walk.startedAt || walk.createdAt || Date.now()).toLocaleDateString()}`, coordinates });
   }
   return options.filter((route) => route.coordinates.length <= MAX_POINTS);
+}
+
+function flyAlongDrawnLine(route) {
+  if (!route || !state.map || !globalThis.L) return;
+  const points = route.coordinates.map(([lng, lat]) => L.latLng(lat, lng));
+  if (points.length < 2) return;
+  if (activeFlightFrame) cancelAnimationFrame(activeFlightFrame);
+  activeFlightMarker?.remove();
+  const icon = L.divIcon({ className: 'messenger-flight-icon', html: '<span aria-hidden="true">🐦</span>', iconSize: [34, 34], iconAnchor: [17, 17] });
+  const marker = L.marker(points[0], { icon, interactive: false, keyboard: false, zIndexOffset: 10000 }).addTo(state.map);
+  activeFlightMarker = marker;
+  state.map.fitBounds(L.latLngBounds(points), { padding: [70, 70], maxZoom: 16 });
+  const segments = [];
+  let total = 0;
+  for (let index = 1; index < points.length; index += 1) {
+    const length = points[index - 1].distanceTo(points[index]);
+    segments.push({ from: points[index - 1], to: points[index], start: total, length });
+    total += length;
+  }
+  const status = el('messengerFlyLineStatus');
+  if (status) status.textContent = `Flying ${route.title}…`;
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const duration = Math.max(4500, Math.min(18000, total / 7 * 1000));
+  const startedAt = performance.now();
+  const finish = () => {
+    marker.setLatLng(points.at(-1));
+    activeFlightFrame = 0;
+    window.setTimeout(() => { if (activeFlightMarker === marker) { marker.remove(); activeFlightMarker = null; } }, 1600);
+    const startButton = el('messengerFlyLineStart');
+    if (startButton) startButton.disabled = false;
+    if (status) status.textContent = `Finished flying ${route.title}.`;
+  };
+  if (reducedMotion) { finish(); return; }
+  const step = (now) => {
+    const progress = Math.min(1, (now - startedAt) / duration);
+    const distance = total * progress;
+    const segment = segments.find((item) => distance <= item.start + item.length) || segments.at(-1);
+    const fraction = segment.length ? Math.max(0, Math.min(1, (distance - segment.start) / segment.length)) : 1;
+    marker.setLatLng([segment.from.lat + (segment.to.lat - segment.from.lat) * fraction, segment.from.lng + (segment.to.lng - segment.from.lng) * fraction]);
+    if (progress < 1) activeFlightFrame = requestAnimationFrame(step);
+    else finish();
+  };
+  activeFlightFrame = requestAnimationFrame(step);
 }
 
 function renderRoutePreview(route, target) {
@@ -90,6 +135,25 @@ async function playDelivery(delivery) {
 export function initMessengerBird() {
   const select = el('messengerRouteSelect');
   const form = el('messengerComposeForm');
+  const flyButton = el('messengerFlyLineButton');
+  const flyControls = el('messengerFlyLineControls');
+  const flySelect = el('messengerFlyLineSelect');
+  const flyStart = el('messengerFlyLineStart');
+  flyButton?.addEventListener('click', () => {
+    const routes = routeSources().filter((route) => route.id.startsWith('drawing:'));
+    flySelect.innerHTML = routes.length ? `<option value="">Choose a drawn line…</option>${routes.map((route) => `<option value="${escapeHtml(route.id)}">${escapeHtml(route.title)}</option>`).join('')}` : '<option value="">No drawn lines yet</option>';
+    flyStart.disabled = !routes.length;
+    flyControls.classList.toggle('hidden');
+    flyButton.setAttribute('aria-expanded', String(!flyControls.classList.contains('hidden')));
+    el('messengerFlyLineStatus').textContent = routes.length ? '' : 'Draw a Line in Draw to send the bird along it.';
+  });
+  flySelect?.addEventListener('change', () => { flyStart.disabled = !flySelect.value; });
+  flyStart?.addEventListener('click', () => {
+    const route = routeSources().find((item) => item.id === flySelect.value && item.id.startsWith('drawing:'));
+    if (!route) return;
+    flyStart.disabled = true;
+    flyAlongDrawnLine(route);
+  });
   el('messengerComposeButton')?.addEventListener('click', () => {
     el('messengerBirdMenu')?.classList.add('hidden'); el('messengerBirdButton')?.setAttribute('aria-expanded', 'false');
     const routes = routeSources();

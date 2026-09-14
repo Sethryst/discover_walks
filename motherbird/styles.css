@@ -73,6 +73,10 @@
 .advanced-layer-chip.off{opacity:.42;background:rgba(248,241,223,.68)}
 .advanced-layer-chip.on{background:color-mix(in srgb,var(--chip-color) 16%,var(--paper));opacity:1}
 .advanced-layer-chip:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.messenger-fly-line-controls{display:grid;gap:6px;padding:7px;border-left:3px solid #76558b;background:#fffaf0}
+.messenger-fly-line-controls label,.messenger-fly-line-controls small{font-size:.72rem}
+.messenger-fly-line-controls select,.messenger-fly-line-controls button{min-height:38px;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}
+.messenger-flight-icon{display:grid;place-items:center;border:0!important;background:transparent!important;font-size:28px;filter:drop-shadow(0 2px 2px #0006)}
 
 /* Field Guide launcher, messenger bird, Geoman tools, and macro watercolor mode. */
 .field-guide-menu{position:relative;pointer-events:auto}.field-guide-dropdown{position:absolute;right:calc(100% + 8px);top:0;display:grid;gap:5px;width:min(190px,calc(100vw - 78px));padding:8px;border:1px solid var(--line);border-radius:13px;background:rgba(255,250,240,.98);box-shadow:var(--shadow)}.field-guide-dropdown button{display:flex;align-items:center;gap:7px;min-height:44px;padding:8px 10px;border:0;border-bottom:1px solid var(--line);background:transparent;text-align:left;font-weight:800}.field-guide-dropdown button:last-child{border-bottom:0}.field-guide-dropdown img{width:17px;height:17px}.messenger-bird[aria-busy="true"]{animation:messengerFlutter .7s ease-in-out infinite alternate}.messenger-bird.sent{background:#d8e8d8}@keyframes messengerFlutter{to{transform:translateY(-2px) rotate(-1deg)}}
