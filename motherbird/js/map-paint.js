@@ -43,7 +43,9 @@ export async function renderMapDrawings() {
   if (!state.mapPaintLayer) return;
   state.mapPaintLayer.clearLayers();
   state.mapDrawingHistory = [];
-  for (const item of await db.all('moments')) {
+  const moments = await db.all('moments');
+  state.localDrawings = moments.filter((item) => item.type === 'drawing' && (!item.city || item.city === state.activeCity));
+  for (const item of moments) {
     if (item.city && item.city !== state.activeCity) continue;
     if (item.type === 'drawing' && item.body?.geojson) {
       L.geoJSON(item.body.geojson, { onEachFeature: (_feature, layer) => decorateLayer(layer, item.body.measurement) }).eachLayer((layer) => state.mapPaintLayer.addLayer(layer));

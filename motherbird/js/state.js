@@ -56,6 +56,7 @@ export const state = {
   mapPaintLayer: null,
   mapPaintActive: false,
   mapDrawingHistory: [],
+  localDrawings: [],
   federalBoundaryOverlay: null,
 
   // walking session

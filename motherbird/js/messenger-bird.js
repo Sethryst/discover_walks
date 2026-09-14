@@ -5,11 +5,13 @@ import { openSheet, toast } from './ui.js';
 
 const FORMAT = 'walk-wildlife-birdnote-v1';
 const MAX_POINTS = 5000;
+let activeDeliveryLine = null;
 
 export function normalizeBirdnote(value) {
   const note = typeof value === 'string' ? JSON.parse(value) : value;
   if (!note || note.format !== FORMAT || !note.to || !note.message || !Array.isArray(note.route?.coordinates)) throw new Error('This is not a valid Messenger Bird delivery.');
-  if (note.message.length > 500 || note.to.length > 120 || note.route.coordinates.length < 2 || note.route.coordinates.length > MAX_POINTS) throw new Error('This delivery is outside the supported size.');
+  if (note.message.length > 500 || note.to.length > 120 || note.route.coordinates.length > MAX_POINTS) throw new Error('This delivery is outside the supported size.');
+  if (note.route.coordinates.length < 2) throw new Error('This delivery needs a valid route line.');
   const coordinates = note.route.coordinates.map((point) => {
     if (!Array.isArray(point) || point.length < 2 || !Number.isFinite(point[0]) || !Number.isFinite(point[1]) || Math.abs(point[0]) > 180 || Math.abs(point[1]) > 90) throw new Error('This route contains invalid coordinates.');
     return [point[0], point[1]];
@@ -64,7 +66,9 @@ async function playDelivery(delivery) {
   const coordinates = delivery.route.coordinates;
   const latlngs = coordinates.map(([lng, lat]) => [lat, lng]);
   state.map?.fitBounds?.(latlngs, { padding: [60, 60], maxZoom: 16, animate: !matchMedia('(prefers-reduced-motion: reduce)').matches });
+  activeDeliveryLine?.remove();
   const line = globalThis.L?.polyline(latlngs, { color: '#76558b', weight: 5, opacity: .92, dashArray: '7 8', lineCap: 'round' });
+  activeDeliveryLine = line;
   line?.addTo(state.map);
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (line && !reduced) {
@@ -78,7 +82,7 @@ async function playDelivery(delivery) {
   state.settings.messengerDeliveries = (state.settings.messengerDeliveries || []).map((item) => item.id === delivery.id ? delivery : item);
   await db.put('settings', state.settings); await refreshInbox();
   const card = document.createElement('article'); card.className = 'messenger-arrival';
-  card.innerHTML = `<span aria-hidden="true">🐦</span><div><small>DELIVERED FROM ${escapeHtml(delivery.to)}</small><strong>${escapeHtml(delivery.message)}</strong><button type="button" aria-label="Dismiss delivery">×</button></div>`;
+  card.innerHTML = `<span aria-hidden="true">🐦</span><div><small>A ROUTE FROM A FRIEND</small><strong>${escapeHtml(delivery.message)}</strong><button type="button" aria-label="Dismiss delivery">×</button></div>`;
   document.body.append(card); card.querySelector('button').addEventListener('click', () => card.remove());
   window.setTimeout(() => card.remove(), 12000);
 }
@@ -106,7 +110,7 @@ export function initMessengerBird() {
     const route = routeSources().find((item) => item.id === select.value);
     const to = el('messengerRecipient').value.trim(), message = el('messengerNote').value.trim();
     if (!route || !to || !message) return;
-    const payload = normalizeBirdnote({ format: FORMAT, id: crypto.randomUUID(), to, message, sentAt: new Date().toISOString(), route: { title: route.title, coordinates: route.coordinates }, attachments: [] });
+    const payload = normalizeBirdnote({ format: FORMAT, id: crypto.randomUUID(), from: state.profile?.name || 'A friend', to, message, sentAt: new Date().toISOString(), route: { title: route.title, coordinates: route.coordinates }, attachments: [] });
     const preview = `To: ${payload.to}\nNote: ${payload.message}\nRoute: ${payload.route.title} (${payload.route.coordinates.length} points)\nIncluded: the route and note only. No journal, media, or live location.`;
     if (!globalThis.confirm(`Review this delivery before sharing:\n\n${preview}\n\nContinue to your device's share sheet?`)) return;
     const file = new File([JSON.stringify(payload, null, 2)], `${payload.route.title.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '').toLowerCase() || 'route'}.birdnote`, { type: 'application/vnd.walk-wildlife.birdnote+json' });

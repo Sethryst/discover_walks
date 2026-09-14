@@ -20,4 +20,7 @@ test('My Maps controls expose group and individual category toggles', () => {
   assert.match(html, /data-national-osm-toggle-all="walking"/);
   assert.match(html, /data-national-osm-layer="trail" checked/);
   assert.match(html, /data-national-osm-layer="crossing"/);
+  assert.match(html, /Walking network<\/span><small>\(1\/4 shown\)<\/small>/);
+  assert.doesNotMatch(html, /OpenStreetMap/);
+  assert.doesNotMatch(html, /national layer/i);
 });

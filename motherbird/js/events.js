@@ -16,12 +16,14 @@ import { openObservation, saveObservation, setDraftObservationIcon } from './obs
 import { transcribeJournal, toggleJournalRecording, stopJournalCapture } from './journal-capture.js';
 import { renderNearbyPlaces, initJournalPane } from './journal-pane.js';
 import { openGeoCypher } from './geo-cypher.js';
+import { initMessengerBird } from './messenger-bird.js';
 
 const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];
 
 export function initEvents() {
   initJournalPane();
   bindSheets(); bindLocationControls(); bindWalkControls(); bindSearch(); bindJournal(); bindDeviceControls();
+  initMessengerBird();
   bindMapWorkspace();
   el('settingsButton')?.addEventListener('click', toggleFieldGuideMenu);
   el('fieldGuideDropdown')?.addEventListener('click', (event) => {

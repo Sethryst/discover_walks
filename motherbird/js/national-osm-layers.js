@@ -38,7 +38,7 @@ export function nationalOsmLayerControlsHtml(settings = state.nationalOsmLayers)
     const categories = group.categoryIds.map((id) => categoryById.get(id)).filter(Boolean);
     const enabled = categories.filter(({ id }) => settings?.[id] === true).length;
     const allEnabled = enabled === categories.length;
-    return `<section class="layer-filter-group national-osm-layer-group" data-national-osm-group="${escapeHtml(group.id)}"><header><div class="layer-collapse"><span>${escapeHtml(group.label)}</span><small>${enabled}/${categories.length}</small></div><label class="layer-toggle-all"><input type="checkbox" data-national-osm-toggle-all="${escapeHtml(group.id)}" ${allEnabled ? 'checked' : ''} /> Toggle all</label></header><div class="layer-options">${categories.map((category) => `<label class="layer-option" style="--layer-color:${escapeHtml(category.color)}"><input type="checkbox" data-national-osm-layer="${escapeHtml(category.id)}" ${settings?.[category.id] === true ? 'checked' : ''} /><span class="layer-icon"><img src="${escapeHtml(nationalPoiIconUrl(category))}" alt="" /></span><span class="layer-option-copy"><strong>${escapeHtml(category.label)}</strong><small>National OpenStreetMap layer</small></span></label>`).join('')}</div></section>`;
+    return `<section class="layer-filter-group national-osm-layer-group" data-national-osm-group="${escapeHtml(group.id)}"><header><div class="layer-collapse"><span>${escapeHtml(group.label)}</span><small>(${enabled}/${categories.length} shown)</small></div><label class="layer-toggle-all"><input type="checkbox" data-national-osm-toggle-all="${escapeHtml(group.id)}" ${allEnabled ? 'checked' : ''} /> Toggle all</label></header><div class="layer-options">${categories.map((category) => `<label class="layer-option" style="--layer-color:${escapeHtml(category.color)}"><input type="checkbox" data-national-osm-layer="${escapeHtml(category.id)}" ${settings?.[category.id] === true ? 'checked' : ''} /><span class="layer-icon"><img src="${escapeHtml(nationalPoiIconUrl(category))}" alt="" /></span><span class="layer-option-copy"><strong>${escapeHtml(category.label)}</strong></span></label>`).join('')}</div></section>`;
   }).join('');
 }
 
@@ -46,7 +46,7 @@ export function renderNationalOsmLayerControls() {
   const root = document.getElementById('nationalOsmLayerControls');
   if (!root) return;
   const enabled = enabledNationalOsmLayerIds();
-  root.innerHTML = `<p class="map-layer-status">${enabled.length} of ${NATIONAL_POI_CATEGORIES.length} national layers shown. Choices are stored on this device.</p>${nationalOsmLayerControlsHtml()}`;
+  root.innerHTML = `<p class="map-layer-status">${enabled.length}/${NATIONAL_POI_CATEGORIES.length} shown. Choices are stored on this device.</p>${nationalOsmLayerControlsHtml()}`;
 }
 
 async function persistAndApply() {
