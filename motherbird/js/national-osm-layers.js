@@ -1,6 +1,6 @@
 import { state } from './state.js';
 import db from './storage.js';
-import { NATIONAL_POI_CATEGORIES, nationalPoiIconUrl } from './national-poi-map.js';
+import { NATIONAL_POI_CATEGORIES } from './national-poi-map.js';
 import { escapeHtml } from './utils.js';
 
 export const NATIONAL_OSM_LAYER_DEFAULTS = Object.freeze(['trail', 'nature']);
@@ -37,16 +37,17 @@ export function nationalOsmLayerControlsHtml(settings = state.nationalOsmLayers)
   return NATIONAL_OSM_LAYER_GROUPS.map((group) => {
     const categories = group.categoryIds.map((id) => categoryById.get(id)).filter(Boolean);
     const enabled = categories.filter(({ id }) => settings?.[id] === true).length;
-    const allEnabled = enabled === categories.length;
-    return `<section class="layer-filter-group national-osm-layer-group" data-national-osm-group="${escapeHtml(group.id)}"><header><div class="layer-collapse"><span>${escapeHtml(group.label)}</span><small>(${enabled}/${categories.length} shown)</small></div><label class="layer-toggle-all"><input type="checkbox" data-national-osm-toggle-all="${escapeHtml(group.id)}" ${allEnabled ? 'checked' : ''} /> Toggle all</label></header><div class="layer-options">${categories.map((category) => `<label class="layer-option" style="--layer-color:${escapeHtml(category.color)}"><input type="checkbox" data-national-osm-layer="${escapeHtml(category.id)}" ${settings?.[category.id] === true ? 'checked' : ''} /><span class="layer-icon"><img src="${escapeHtml(nationalPoiIconUrl(category))}" alt="" /></span><span class="layer-option-copy"><strong>${escapeHtml(category.label)}</strong></span></label>`).join('')}</div></section>`;
+    return `<section class="national-osm-layer-group" data-national-osm-group="${escapeHtml(group.id)}"><h4>${escapeHtml(group.label)} <small>(${enabled}/${categories.length} shown)</small></h4><div class="national-osm-layer-chips">${categories.map((category) => {
+      const selected = settings?.[category.id] === true;
+      return `<button type="button" class="national-osm-layer-chip ${selected ? 'on' : 'off'}" style="--chip-color:${escapeHtml(category.color)}" data-national-osm-layer="${escapeHtml(category.id)}" aria-pressed="${selected}">${escapeHtml(category.label)}</button>`;
+    }).join('')}</div></section>`;
   }).join('');
 }
 
 export function renderNationalOsmLayerControls() {
   const root = document.getElementById('nationalOsmLayerControls');
   if (!root) return;
-  const enabled = enabledNationalOsmLayerIds();
-  root.innerHTML = `<p class="map-layer-status">${enabled.length}/${NATIONAL_POI_CATEGORIES.length} shown. Choices are stored on this device.</p>${nationalOsmLayerControlsHtml()}`;
+  root.innerHTML = nationalOsmLayerControlsHtml();
 }
 
 async function persistAndApply() {
@@ -58,17 +59,12 @@ async function persistAndApply() {
 function bindNationalOsmLayerControls() {
   if (bindNationalOsmLayerControls.bound) return;
   bindNationalOsmLayerControls.bound = true;
-  document.addEventListener('change', (event) => {
+  document.addEventListener('click', (event) => {
     const layer = event.target.closest('[data-national-osm-layer]');
     if (layer) {
-      state.nationalOsmLayers[layer.dataset.nationalOsmLayer] = layer.checked;
+      const id = layer.dataset.nationalOsmLayer;
+      state.nationalOsmLayers[id] = state.nationalOsmLayers[id] !== true;
       void persistAndApply();
-      return;
     }
-    const toggle = event.target.closest('[data-national-osm-toggle-all]');
-    if (!toggle) return;
-    const group = NATIONAL_OSM_LAYER_GROUPS.find(({ id }) => id === toggle.dataset.nationalOsmToggleAll);
-    group?.categoryIds.forEach((id) => { state.nationalOsmLayers[id] = toggle.checked; });
-    void persistAndApply();
   });
 }

@@ -50,6 +50,18 @@
 .journal-photo{display:block;max-width:100%;max-height:220px;object-fit:contain;margin:8px 0}.nearby-radius-check{font-size:.75rem}.moment-copy{min-width:0;overflow-wrap:anywhere}
 @media(forced-colors:active){.poi-marker,.poi-marker-glyph,.place-cluster span{forced-color-adjust:none}.map-light-row{forced-color-adjust:none}.map-light-row button{forced-color-adjust:auto}.poi-marker-glyph{background:#fff}}
 
+/* Compact, tappable map-category chips, matching the Explore layer controls. */
+.national-osm-controls{padding:12px 0;border-bottom:1px solid var(--line)}
+.national-osm-layer-group{padding:0 0 12px}
+.national-osm-layer-group:last-child{padding-bottom:0}
+.national-osm-layer-group h4{margin:0 0 6px;font-size:.78rem;font-weight:850}
+.national-osm-layer-group h4 small{font-size:.68rem;font-weight:600;opacity:.7}
+.national-osm-layer-chips{display:flex;flex-wrap:wrap;gap:5px}
+.national-osm-layer-chip{min-height:34px;padding:6px 10px;border:1px solid var(--line);border-left:3px solid var(--chip-color);border-radius:9px;background:var(--paper);color:var(--ink);font-size:.72rem;font-weight:750;box-shadow:0 2px 6px rgba(23,60,53,.08);transition:opacity .15s,background .15s}
+.national-osm-layer-chip.off{opacity:.42;background:rgba(248,241,223,.68)}
+.national-osm-layer-chip.on{background:color-mix(in srgb,var(--chip-color) 16%,var(--paper));opacity:1}
+.national-osm-layer-chip:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+
 /* Field Guide launcher, messenger bird, Geoman tools, and macro watercolor mode. */
 .field-guide-menu{position:relative;pointer-events:auto}.field-guide-dropdown{position:absolute;right:calc(100% + 8px);top:0;display:grid;gap:5px;width:min(190px,calc(100vw - 78px));padding:8px;border:1px solid var(--line);border-radius:13px;background:rgba(255,250,240,.98);box-shadow:var(--shadow)}.field-guide-dropdown button{display:flex;align-items:center;gap:7px;min-height:44px;padding:8px 10px;border:0;border-bottom:1px solid var(--line);background:transparent;text-align:left;font-weight:800}.field-guide-dropdown button:last-child{border-bottom:0}.field-guide-dropdown img{width:17px;height:17px}.messenger-bird[aria-busy="true"]{animation:messengerFlutter .7s ease-in-out infinite alternate}.messenger-bird.sent{background:#d8e8d8}@keyframes messengerFlutter{to{transform:translateY(-2px) rotate(-1deg)}}
 .messenger-stack{z-index:25}.messenger-menu{display:grid;gap:6px;width:min(290px,calc(100vw - 24px));left:0}.messenger-menu>strong{font:700 1rem Georgia,serif;padding:0 2px 5px}.messenger-menu button{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:44px;padding:8px;border:0;border-top:1px solid var(--line);background:transparent;text-align:left;font-weight:800}.messenger-menu button span{font-size:.7rem;font-weight:500;opacity:.72}.messenger-menu button:disabled{opacity:.6}.messenger-menu p,.messenger-privacy-note{margin:0;font-size:.76rem;line-height:1.45;opacity:.8}.messenger-inbox-sheet{max-width:520px}
