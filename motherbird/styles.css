@@ -61,6 +61,18 @@
 .national-osm-layer-chip.off{opacity:.42;background:rgba(248,241,223,.68)}
 .national-osm-layer-chip.on{background:color-mix(in srgb,var(--chip-color) 16%,var(--paper));opacity:1}
 .national-osm-layer-chip:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.layer-filter-group{padding:9px 0;border-bottom:1px solid var(--line)}
+.layer-filter-group>header{margin-bottom:6px}
+.layer-filter-group .layer-collapse{display:flex;align-items:center;gap:6px;width:100%;padding:4px 0;border:0;background:none;color:var(--ink);text-align:left;font-weight:850}
+.layer-filter-group .layer-collapse small{font-size:.68rem;font-weight:600;opacity:.7}
+.layer-filter-group .layer-collapse b{margin-left:auto}
+.layer-options{display:flex;flex-wrap:wrap;gap:5px}
+.advanced-layer-chip{display:inline-flex;align-items:center;gap:6px;min-height:34px;max-width:100%;padding:6px 9px;border:1px solid var(--line);border-left:3px solid var(--chip-color);border-radius:9px;background:var(--paper);color:var(--ink);text-align:left;box-shadow:0 2px 6px rgba(23,60,53,.08);transition:opacity .15s,background .15s}
+.advanced-layer-chip strong{font-size:.72rem;font-weight:750}
+.advanced-layer-chip small{font-size:.65rem;white-space:nowrap;opacity:.72}
+.advanced-layer-chip.off{opacity:.42;background:rgba(248,241,223,.68)}
+.advanced-layer-chip.on{background:color-mix(in srgb,var(--chip-color) 16%,var(--paper));opacity:1}
+.advanced-layer-chip:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 
 /* Field Guide launcher, messenger bird, Geoman tools, and macro watercolor mode. */
 .field-guide-menu{position:relative;pointer-events:auto}.field-guide-dropdown{position:absolute;right:calc(100% + 8px);top:0;display:grid;gap:5px;width:min(190px,calc(100vw - 78px));padding:8px;border:1px solid var(--line);border-radius:13px;background:rgba(255,250,240,.98);box-shadow:var(--shadow)}.field-guide-dropdown button{display:flex;align-items:center;gap:7px;min-height:44px;padding:8px 10px;border:0;border-bottom:1px solid var(--line);background:transparent;text-align:left;font-weight:800}.field-guide-dropdown button:last-child{border-bottom:0}.field-guide-dropdown img{width:17px;height:17px}.messenger-bird[aria-busy="true"]{animation:messengerFlutter .7s ease-in-out infinite alternate}.messenger-bird.sent{background:#d8e8d8}@keyframes messengerFlutter{to{transform:translateY(-2px) rotate(-1deg)}}

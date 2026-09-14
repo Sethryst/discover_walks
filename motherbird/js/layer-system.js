@@ -4,7 +4,6 @@ import { availablePoiTags, isFoodFilterTag, isOsmPoi, isVisiblePoi, poiTags, ren
 import { curatedPersonalPlaces, renderPersonalPlacesOnMap, upsertImportedPersonalData } from './personal-places.js';
 import { el, escapeHtml } from './utils.js';
 import { closeSheets, openSheet, toast } from './ui.js';
-import { hydrateInlineIcons } from './icon-loader.js';
 import { CITIES } from './constants.js';
 import { routesForCity } from './routes.js';
 import { refreshPublicMarkers } from './online.js';
@@ -155,17 +154,15 @@ export function renderLayerFilters() {
   root.innerHTML = groups.map((group) => {
     const expanded = state.layerUiState.expanded[group.id] !== false;
     const enabledCount = group.options.filter((option) => state.layerFilters[option.kind][option.id] !== false).length;
-    const allEnabled = group.options.length > 0 && enabledCount === group.options.length;
-    return `<section class="layer-filter-group" data-layer-group="${escapeHtml(group.id)}"><header><button class="layer-collapse" type="button" data-layer-collapse="${escapeHtml(group.id)}" aria-expanded="${expanded}"><span>${escapeHtml(group.label)}</span><small>${enabledCount}/${group.options.length}</small><b aria-hidden="true">⌄</b></button><label class="layer-toggle-all"><input type="checkbox" data-layer-toggle-all="${escapeHtml(group.id)}" ${allEnabled ? 'checked' : ''} ${group.options.length ? '' : 'disabled'} /> Toggle all</label></header><div class="layer-options ${expanded ? '' : 'hidden'}">${group.options.length ? group.options.map(renderLayerOption).join('') : '<p class="layer-empty">Create a personal collection to add it here.</p>'}</div></section>`;
+    return `<section class="layer-filter-group" data-layer-group="${escapeHtml(group.id)}"><header><button class="layer-collapse" type="button" data-layer-collapse="${escapeHtml(group.id)}" aria-expanded="${expanded}"><span>${escapeHtml(group.label)}</span><small>(${enabledCount}/${group.options.length} shown)</small><b aria-hidden="true">⌄</b></button></header><div class="layer-options ${expanded ? '' : 'hidden'}">${group.options.length ? group.options.map(renderLayerOption).join('') : '<p class="layer-empty">Create a personal collection to add it here.</p>'}</div></section>`;
   }).join('') || '<p class="layer-empty">No filters match that search.</p>';
-  void hydrateInlineIcons(root);
   updateLayerStatus();
 }
 
 function renderLayerOption(option) {
   const enabled = state.layerFilters[option.kind][option.id] !== false;
   const countLabel = option.kind === 'personal' ? `${option.count} place${option.count === 1 ? '' : 's'}` : `${option.count} nearby`;
-  return `<label class="layer-option" style="--layer-color:${escapeHtml(option.color)}"><input type="checkbox" data-layer-filter="${escapeHtml(option.kind)}:${escapeHtml(option.id)}" ${enabled ? 'checked' : ''} /><span class="layer-icon"><img data-inline-svg data-icon-fallback="" src="./icons/${escapeHtml(option.icon)}.svg" alt="" /></span><span class="layer-option-copy"><strong>${escapeHtml(option.label)}</strong><small>${escapeHtml(option.description)}</small></span><span class="layer-nearby">${escapeHtml(countLabel)}</span></label>`;
+  return `<button type="button" class="advanced-layer-chip ${enabled ? 'on' : 'off'}" style="--chip-color:${escapeHtml(option.color)}" data-layer-filter="${escapeHtml(option.kind)}:${escapeHtml(option.id)}" aria-pressed="${enabled}"><strong>${escapeHtml(option.label)}</strong><small>${escapeHtml(countLabel)}</small></button>`;
 }
 
 function syncLegacyPoiTags() {
@@ -530,21 +527,15 @@ function bindLayerControls() {
   });
   el('personalPlacesVisibility')?.addEventListener('click', () => toggleLight('personal'));
   el('mapLights')?.addEventListener('dblclick', (event) => event.stopPropagation());
-  el('poiTagFilters')?.addEventListener('change', (event) => {
+  el('poiTagFilters')?.addEventListener('click', (event) => {
     const filter = event.target.closest('[data-layer-filter]');
     if (filter) {
       const [kind, ...idParts] = filter.dataset.layerFilter.split(':');
-      state.layerFilters[kind][idParts.join(':')] = filter.checked;
-      applyLayerChanges(); return;
-    }
-    const all = event.target.closest('[data-layer-toggle-all]');
-    if (all) {
-      const group = buildLayerGroups().find((candidate) => candidate.id === all.dataset.layerToggleAll);
-      group?.options.forEach((option) => { state.layerFilters[option.kind][option.id] = all.checked; });
+      const id = idParts.join(':');
+      state.layerFilters[kind][id] = state.layerFilters[kind][id] === false;
       applyLayerChanges();
+      return;
     }
-  });
-  el('poiTagFilters')?.addEventListener('click', (event) => {
     const button = event.target.closest('[data-layer-collapse]'); if (!button) return;
     const id = button.dataset.layerCollapse; state.layerUiState.expanded[id] = !(state.layerUiState.expanded[id] !== false);
     renderLayerFilters(); void persistLayerState();
