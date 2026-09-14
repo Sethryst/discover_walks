@@ -76,7 +76,7 @@ export function nationalPoiLayerFilters(enabledCategoryIds = NATIONAL_POI_CATEGO
   return filters;
 }
 
-export function nationalPoiStyle(sourceUrl, enabledCategoryIds = NATIONAL_POI_CATEGORIES.map(({ id }) => id)) {
+export function nationalPoiStyle(sourceUrl, enabledCategoryIds = NATIONAL_POI_CATEGORIES.map(({ id }) => id), walkNetworkSourceUrl = null) {
   const categoryColor = matchExpression('color', '#57645f');
   const filters = nationalPoiLayerFilters(enabledCategoryIds);
   return {
@@ -93,10 +93,14 @@ export function nationalPoiStyle(sourceUrl, enabledCategoryIds = NATIONAL_POI_CA
         maxzoom: 19,
         attribution: '© OpenStreetMap contributors'
       },
-      nationalPoi: { type: 'vector', url: sourceUrl }
+      nationalPoi: { type: 'vector', url: sourceUrl },
+      ...(walkNetworkSourceUrl ? { walkNetwork: { type: 'vector', url: walkNetworkSourceUrl } } : {})
     },
     layers: [
       { id: 'osm-basemap', type: 'raster', source: 'osmBasemap', paint: { 'raster-fade-duration': 0 } },
+      ...(walkNetworkSourceUrl && enabledCategoryIds.some((id) => ['trail', 'walkway', 'crossing', 'barrier'].includes(id)) ? [
+        { id: 'national-walk-network', type: 'line', source: 'walkNetwork', 'source-layer': 'walk_network', minzoom: 9, paint: { 'line-color': '#176b56', 'line-width': ['interpolate', ['linear'], ['zoom'], 9, 0.45, 14, 1.15, 18, 2.8], 'line-opacity': 0.72 } }
+      ] : []),
       {
         id: 'national-poi-wash', type: 'heatmap', source: 'nationalPoi', 'source-layer': 'poi', minzoom: 8, maxzoom: 13,
         filter: filters['national-poi-wash'],

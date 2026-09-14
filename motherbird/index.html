@@ -39,6 +39,7 @@
   <main class="app-shell">
     <div id="installedBasemap" class="installed-basemap hidden" aria-hidden="true"></div>
     <div id="map" role="application" aria-label="Map of installed-pack places"></div>
+    <div id="walkingCellOverlay" class="walking-cell-overlay hidden" aria-hidden="true"></div>
     <div id="nationalPoiOverlay" class="national-poi-overlay hidden" aria-hidden="true"></div>
     <aside class="map-intro-hint hidden" id="mapIntroHint" aria-live="polite"><p id="mapIntroText"></p><div class="coach-actions"><button type="button" id="mapIntroNext">Next</button><button type="button" id="mapIntroSkip" class="text-button">Skip</button></div></aside>
     <div id="coachSpotlight" class="coach-spotlight hidden" aria-hidden="true"></div>
@@ -117,12 +118,6 @@
             <label><input type="checkbox" data-seal-class="voice" /> Voice</label>
           </fieldset>
           <output id="sealedCopyStatus" aria-live="polite">Sealed copy: not saved</output>
-        </div>
-      </div>
-      <div class="app-entry" data-app-entry="offline">
-        <button id="offlineMenuButton" type="button" aria-expanded="false" aria-controls="offlinePicker">Offline ⌄</button>
-        <div id="offlinePicker" class="hidden">
-          <section id="offlineModePreview"><h3>Offline tiles</h3><div id="offlineTilePreview"></div><div id="offlineLayerNames"></div><label>Range<select id="offlineRangeSelect"><option value="radius">Geofence radius</option><option value="bbox">Installed pack bounds</option></select></label><label>Zoom<input id="offlineZoomInput" type="number" min="0" max="22" /></label><button id="saveOfflineViewButton" type="button">Confirm offline view</button><small>Only installed tiles. No new county downloads. No sign-in required.</small></section>
         </div>
       </div>
       <div class="app-entry" data-app-entry="backup">

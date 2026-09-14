@@ -5,7 +5,7 @@ import { renderCityPois } from './poi.js';
 import { regionInstaller } from './region-ui.js';
 import { toast } from './ui.js';
 import { placeLight } from './place-details.js';
-import { createNationalPoiArchive, fetchOsmReleaseManifest } from './osm-release.js';
+import { createNationalPoiArchive, createNationalWalkArchive, fetchOsmReleaseManifest } from './osm-release.js';
 import {
   NATIONAL_POI_QUERY_LAYERS,
   nationalPoiLayerFilters,
@@ -15,6 +15,7 @@ import {
   registerNationalPoiIcons
 } from './national-poi-map.js';
 import { enabledNationalOsmLayerIds, hasEnabledNationalOsmLayers } from './national-osm-layers.js';
+import { activateWalkingCellAt } from './walking-cell-runtime.js';
 
 const OSM_ATTRIBUTION = '&copy; OpenStreetMap contributors';
 const NEIGHBORHOOD_ZOOM = 15;
@@ -59,11 +60,14 @@ export function initMap() {
   // until the backend described in the recommendations exists.
   state.map.on('moveend zoomend', debounce(() => {
     trackActiveViewport();
+    const center = state.activeViewportBounds?.center;
+    if (center) void activateWalkingCellAt(center).catch((error) => console.warn('Walking cell unavailable:', error.message));
     renderCityPois();
     window.dispatchEvent(new CustomEvent('map-viewport-changed'));
   }, 200));
   state.map.on('zoomend', syncNeighborhoodPresentation);
   trackActiveViewport();
+  void activateWalkingCellAt(initialPosition).catch((error) => console.warn('Walking cell unavailable:', error.message));
   syncNeighborhoodPresentation();
 
   const refreshMapSize = () => {
@@ -103,6 +107,47 @@ function trackActiveViewport() {
     west: bounds.getWest(), south: bounds.getSouth(), east: bounds.getEast(), north: bounds.getNorth(),
     center: { lat: state.map.getCenter().lat, lng: state.map.getCenter().lng }, zoom: state.map.getZoom()
   });
+  window.addEventListener('walking-cell-ready', ({ detail }) => void activateWalkingCellLayer(detail));
+}
+
+export async function activateWalkingCellLayer(activeCell) {
+  const container = document.getElementById('walkingCellOverlay');
+  if (!container || !state.map || !activeCell?.files?.map || !globalThis.maplibregl || !globalThis.pmtiles) return false;
+  if (state.walkingCellSync) state.map.off('move zoom', state.walkingCellSync);
+  state.walkingCellMap?.remove();
+  container.replaceChildren();
+  container.classList.remove('hidden');
+  const file = activeCell.files.map;
+  const source = new LocalCellSource(file, `opfs://${activeCell.release}/${activeCell.id}/network.pmtiles`);
+  const archive = new globalThis.pmtiles.PMTiles(source);
+  ensurePmtilesProtocol().add(archive);
+  const center = state.map.getCenter();
+  state.walkingCellMap = new globalThis.maplibregl.Map({
+    container,
+    style: walkingNetworkStyle(`pmtiles://${source.getKey()}`),
+    center: [center.lng, center.lat], zoom: mapLibreZoom(),
+    attributionControl: false, interactive: false, fadeDuration: 0
+  });
+  state.walkingCellSync = () => {
+    const next = state.map?.getCenter();
+    if (next && state.walkingCellMap) state.walkingCellMap.jumpTo({ center: [next.lng, next.lat], zoom: mapLibreZoom(), bearing: 0, pitch: 0 });
+  };
+  state.map.on('move zoom', state.walkingCellSync);
+  state.walkingCellMap.once('load', state.walkingCellSync);
+  return true;
+}
+
+class LocalCellSource {
+  constructor(file, key) { this.file = file; this.key = key; }
+  getKey() { return this.key; }
+  async getBytes(offset, length) { return { data: await this.file.slice(offset, offset + length).arrayBuffer() }; }
+}
+
+function walkingNetworkStyle(sourceUrl) {
+  return { version: 8, sources: { walking: { type: 'vector', url: sourceUrl } }, layers: [
+    { id: 'walking-cell-paths', type: 'line', source: 'walking', 'source-layer': 'walk_network', paint: { 'line-color': '#2d7259', 'line-opacity': 0.72, 'line-width': ['interpolate', ['linear'], ['zoom'], 11, 0.7, 18, 3.2] } },
+    { id: 'walking-cell-barriers', type: 'circle', source: 'walking', 'source-layer': 'barriers', paint: { 'circle-color': '#9e332c', 'circle-radius': 3 } }
+  ] };
 }
 
 function syncNeighborhoodPresentation() {
@@ -135,15 +180,17 @@ export async function activateNationalPoiOverlay({ manifest = null } = {}) {
     if (state.nationalPoiSuppressed) return false;
     const national = createNationalPoiArchive(release);
     if (!national) return false;
+    const walkNetwork = createNationalWalkArchive();
     const protocol = ensurePmtilesProtocol();
     protocol.add(national.archive);
+    protocol.add(walkNetwork.archive);
     deactivateNationalPoiOverlay();
     container.replaceChildren();
     container.classList.remove('hidden');
     const center = state.map.getCenter();
     const map = new globalThis.maplibregl.Map({
       container,
-      style: nationalPoiStyle(`pmtiles://${national.url}`, enabledNationalOsmLayerIds()),
+      style: nationalPoiStyle(`pmtiles://${national.url}`, enabledNationalOsmLayerIds(), `pmtiles://${walkNetwork.url}`),
       center: [center.lng, center.lat],
       zoom: mapLibreZoom(),
       attributionControl: false,
@@ -422,4 +469,4 @@ export function renderUserLocation(point, pan = false) {
   if (pan) state.map.panTo([point.lat, point.lng]);
 }
 
-document.getElementById('exitFieldEditionButton')?.addEventListener('click', exitFieldEdition);
+if (typeof document !== 'undefined') document.getElementById('exitFieldEditionButton')?.addEventListener('click', exitFieldEdition);

@@ -159,7 +159,8 @@ test('Record never relabels a WebM file as MP4', () => {
 test('map-first chrome exposes only the requested journal tools and Online entry controls', async () => {
   const html = await source('index.html');
   assert.doesNotMatch(html, /id="onboardingSheet"|data-guide-tab="share"|id="shareJournalButton"|id="accountEmailInput"|id="backupPassphrase"/);
-  for (const id of ['journalTranscribeButton','journalRecordButton','observeButton','nearbyList','journalNavDropdown','journalHistoryList','goOnlineButton','offlineMenuButton','offlineClassList','offlineModePreview','openPhraseInput','openQrButton','openFileInput','joinModeSelect','startFriendWalkButton','joinFriendWalkInput']) assert.ok(html.includes('id="' + id + '"'), id);
+  for (const id of ['journalTranscribeButton','journalRecordButton','observeButton','nearbyList','journalNavDropdown','journalHistoryList','goOnlineButton','offlineClassList','openPhraseInput','openQrButton','openFileInput','joinModeSelect','startFriendWalkButton','joinFriendWalkInput']) assert.ok(html.includes('id="' + id + '"'), id);
+  assert.ok(!html.includes('data-app-entry="offline"'), 'offline Field Guide section is removed');
   assert.match(html, /data-guide-tab="online"[^>]*>Online/);
   assert.ok(html.indexOf('id="journalNote"') < html.indexOf('id="journalHistoryList"'));
   assert.doesNotMatch(await source('js/profile.js'), /void syncProfile/);

@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { createNationalPoiArchive, publishedNationalPoi, publishedStateProduct, fetchOsmReleaseManifest } from '../js/osm-release.js';
+import { createNationalPoiArchive, createNationalWalkArchive, NATIONAL_WALK_PMtiles_URL, publishedNationalPoi, publishedStateProduct, fetchOsmReleaseManifest } from '../js/osm-release.js';
 import { RegionInstaller } from '../js/region-installer.js';
 
 test('roadway and POI cloud availability remain independent', () => {
@@ -38,6 +38,16 @@ test('national POIs expose only a range-backed archive and reject installable ma
 
   manifest.national.poi.delivery.offlineInstallable = true;
   assert.throws(() => publishedNationalPoi(manifest), /range-only delivery/);
+});
+
+test('national walking network points at the Hugging Face dataset through range requests', () => {
+  const calls = [];
+  class FetchSource { constructor(url) { this.url = url; calls.push(['range-source', url]); } }
+  class PMTiles { constructor(source) { this.source = source; calls.push(['archive', source.url]); } }
+  const result = createNationalWalkArchive({ pmtilesImpl: { FetchSource, PMTiles } });
+  assert.equal(result.url, NATIONAL_WALK_PMtiles_URL);
+  assert.equal(result.url, 'https://huggingface.co/datasets/sethryst/us-national-walk/resolve/main/national-walk.pmtiles');
+  assert.deepEqual(calls, [['range-source', result.url], ['archive', result.url]]);
 });
 
 test('browser consumes an explicitly configured public release manifest', async () => {

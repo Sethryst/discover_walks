@@ -23,6 +23,10 @@ test('OSM raster and national POIs share one MapLibre style', () => {
   assert.equal(nationalPoiSymbolLayers()[0].minzoom, 12);
   assert.equal(style.layers.filter(({ id }) => id === 'national-poi-wash').length, 1);
   assert.match(style.sources.osmBasemap.attribution, /OpenStreetMap/);
+  const networkStyle = nationalPoiStyle('pmtiles://https://example.test/poi.pmtiles', ['trail'], 'pmtiles://https://example.test/national-walk.pmtiles');
+  assert.equal(networkStyle.sources.walkNetwork.url, 'pmtiles://https://example.test/national-walk.pmtiles');
+  assert.equal(networkStyle.layers.find(({ id }) => id === 'national-walk-network')['source-layer'], 'walk_network');
+  assert.equal(nationalPoiStyle('pmtiles://poi', ['nature'], 'pmtiles://walk').layers.some(({ id }) => id === 'national-walk-network'), false);
 });
 
 test('category filters apply to every rendered and queryable national POI layer', () => {

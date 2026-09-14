@@ -1,4 +1,15 @@
 const PRODUCTS = new Set(['roadway', 'poi']);
+export const NATIONAL_WALK_PMtiles_URL = 'https://huggingface.co/datasets/sethryst/us-national-walk/resolve/main/national-walk.pmtiles';
+
+export function createNationalWalkArchive({ pmtilesImpl = globalThis.pmtiles } = {}) {
+  if (!pmtilesImpl?.FetchSource || !pmtilesImpl?.PMTiles) {
+    throw new Error('The PMTiles range reader is unavailable.');
+  }
+  // Hugging Face serves this 1.19 GB archive through HTTP range requests.
+  // Keep it remote and range-backed; never download the archive as a Blob.
+  const source = new pmtilesImpl.FetchSource(NATIONAL_WALK_PMtiles_URL);
+  return { url: NATIONAL_WALK_PMtiles_URL, archive: new pmtilesImpl.PMTiles(source) };
+}
 
 export async function fetchOsmReleaseManifest({
   url = globalThis.WALK_WILDLIFE_SUPABASE?.osmReleaseManifestUrl,

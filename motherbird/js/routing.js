@@ -1,6 +1,9 @@
 let worker = null;
 let sequence = 0;
 const pending = new Map();
+let activeWalkingCell = null;
+
+if (typeof window !== 'undefined') window.addEventListener('walking-cell-ready', ({ detail }) => { activeWalkingCell = detail; });
 
 export const ROUTE_FAILURE_MESSAGES = {
   NO_NEARBY_PEDESTRIAN_EDGE: 'A start or destination is too far from the installed pedestrian network.',
@@ -17,7 +20,7 @@ export async function routeOnFoot(points, { city, profile = 'ordinary_walking_be
   if (!Array.isArray(points) || points.length < 2) return failure('INVALID_ROUTE_REQUEST');
   const legs = [];
   for (let index = 0; index < points.length - 1; index += 1) {
-    const result = await requestRoute({ city, profile, origin: points[index], destination: points[index + 1], avoid: { stairs: false, unverified_edges: false } });
+    const result = await requestRoute({ city, profile, origin: points[index], destination: points[index + 1], avoid: { stairs: false, unverified_edges: false }, cellGraphPath: activeWalkingCell?.files?.paths?.graph, cellId: activeWalkingCell?.id, cellRelease: activeWalkingCell?.release });
     if (!result.ok) return result;
     legs.push(result);
   }
