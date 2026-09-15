@@ -215,6 +215,7 @@ export function paintHistoricalTopo({ map, leaflet, opacity = 0.65 }) {
   state.historicalTopoLayer?.remove(); state.historicalTopoLayer = null;
   state.historicalTopoControl?.remove(); state.historicalTopoControl = null;
   if (!map || !leaflet) return null;
+  const basemap = state.onlineBasemapLayer;
   const service = 'https://historical1.arcgis.com/arcgis/rest/services/USA_Historical_Topo_Maps/ImageServer/exportImage';
   const layer = leaflet.gridLayer({ opacity, tileSize: 512, attribution: 'USGS Historical Topographic Map Collection', maxNativeZoom: 19, maxZoom: 22, updateWhenIdle: false, keepBuffer: 2 });
   let total = 0; let done = 0; let failures = 0;
@@ -234,6 +235,7 @@ export function paintHistoricalTopo({ map, leaflet, opacity = 0.65 }) {
     return image;
   };
   layer.addTo(map);
+  if (basemap && map.hasLayer(basemap)) map.removeLayer(basemap);
   const zoomNotice = () => {
     const tooClose = map.getZoom() > 22;
     const button = state.historicalTopoControl?.getContainer?.()?.querySelector('[data-historical-topo-toggle]');
@@ -246,8 +248,8 @@ export function paintHistoricalTopo({ map, leaflet, opacity = 0.65 }) {
   const control = leaflet.control({ position: 'topright' });
   const toggle = () => {
     const on = map.hasLayer(layer);
-    if (on) { map.removeLayer(layer); setTopoStatus('Historic topo is off. Your base map remains visible.'); }
-    else { layer.addTo(map); map.on('zoomend', zoomNotice); setTopoStatus('Rendering historic maps in the background…'); }
+    if (on) { map.removeLayer(layer); if (basemap && navigator.onLine !== false) basemap.addTo(map); setTopoStatus('Historic topo is off. Your base map is visible.'); }
+    else { if (basemap && map.hasLayer(basemap)) map.removeLayer(basemap); layer.addTo(map); map.on('zoomend', zoomNotice); setTopoStatus('Rendering historic maps in the background…'); }
     for (const button of [control.getContainer()?.querySelector('[data-historical-topo-toggle]'), document.querySelector('[data-historical-topo-panel-toggle]')]) {
       if (!button) continue;
       button.setAttribute('aria-pressed', String(!on));

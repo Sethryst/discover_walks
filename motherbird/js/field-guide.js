@@ -124,6 +124,7 @@ export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') 
   el('sharePanel')?.classList.toggle('hidden', tab !== 'online');
   if (tab !== 'learn') {
     shadeLearnBounds(false);
+    if (state.onlineBasemapLayer && navigator.onLine !== false && state.map && !state.map.hasLayer(state.onlineBasemapLayer)) state.onlineBasemapLayer.addTo(state.map);
     document.getElementById('backpackSheet')?.classList.remove('learn-min');
     state.historicalTopoLayer?.remove(); state.historicalTopoLayer = null; state.historicalTopoControl?.remove(); state.historicalTopoControl = null;
   }
