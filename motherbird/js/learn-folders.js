@@ -7,7 +7,8 @@ export const LEARN_GROUPS = [
     { id: 'history', label: 'VA history sites' },
     { id: 'battlefields', label: 'Battlefields' },
     { id: 'markers', label: 'Historic markers' },
-    { id: 'marks', label: 'Survey marks' }
+    { id: 'marks', label: 'Survey marks' },
+    { id: 'topo', label: 'Historic topo maps' }
   ]},
   { id: 'water', label: 'Water', color: '#1d4f7a', art: 'wave', children: [
     { id: 'watersheds', label: 'Watersheds' },
