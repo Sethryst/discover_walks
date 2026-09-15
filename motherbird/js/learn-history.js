@@ -227,7 +227,7 @@ export function paintHistoricalTopo({ map, leaflet, opacity = 0.65 }) {
     const east = -extent + (coords.x + 1) / scale * extent * 2;
     const north = extent - coords.y / scale * extent * 2;
     const south = extent - (coords.y + 1) / scale * extent * 2;
-    const params = new URLSearchParams({ bbox: `${west},${south},${east},${north}`, bboxSR: '3857', imageSR: '3857', size: '1024,1024', format: 'png', interpolation: 'RSP_NearestNeighbor', f: 'image' });
+    const params = new URLSearchParams({ bbox: `${west},${south},${east},${north}`, bboxSR: '3857', imageSR: '3857', size: '1024,1024', dpi: '300', compressionQuality: '100', format: 'png', interpolation: 'RSP_NearestNeighbor', f: 'image' });
     total += 1; setTopoProgress(done, total); setTopoStatus(`Rendering historic maps in the background… ${done} of ${total} images ready`);
     image.onload = () => { done += 1; setTopoProgress(done, total); if (map.getZoom() <= 17) setTopoStatus(done === total ? 'Historic topo is ready. Pan the map to explore more.' : `Rendering historic maps… ${done} of ${total} images ready`); finish(null, image); };
     image.onerror = () => { done += 1; failures += 1; setTopoProgress(done, total); if (map.getZoom() <= 17) setTopoStatus(`${failures} historic image${failures === 1 ? '' : 's'} unavailable. Your base map still works.`); finish(new Error('Historic topo image unavailable'), image); };
