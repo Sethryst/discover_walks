@@ -9,6 +9,7 @@ import { routesForCity } from './routes.js';
 import { refreshPublicMarkers } from './online.js';
 import { ICONS, markerPinHtml, markerVisual } from './poi-icons.js';
 import { civicNoticesFromPack, newsIsAvailable } from './civic-news.js';
+import { showCategoryCoach } from './coach.js';
 
 export const LAYER_GROUPS = [
   { id: 'park_infrastructure', label: 'Park infrastructure', description: 'Comfort and access while you walk', tags: ['drinking_water', 'water_fountain', 'water', 'waste_basket', 'trash', 'bench', 'shelter', 'shade', 'restrooms', 'accessible_parking'] },
@@ -515,7 +516,7 @@ function bindLayerControls() {
         }
         return;
       }
-      toggleLight(light.dataset.light); return;
+      toggleLight(light.dataset.light); showCategoryCoach(light.textContent.trim()); return;
     }
     const expand = event.target.closest('[data-light-expand]');
     if (expand) {

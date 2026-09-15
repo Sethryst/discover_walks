@@ -16,6 +16,7 @@ const STEP_MS = 12000;
 let stepIndex = 0;
 let timer = null;
 let bound = false;
+let paused = false;
 
 function clearHighlight() {
   document.querySelectorAll('.coach-target').forEach((node) => node.classList.remove('coach-target'));
@@ -280,6 +281,9 @@ export async function finishCoach() {
   state.settings[HINT_FLAG] = true;
   await db.put('settings', state.settings);
 }
+export function pauseCoachMarks() { paused = true; clearTimeout(timer); el('mapIntroHint')?.classList.add('hidden'); el('coachSpotlight')?.classList.add('hidden'); el('coachPointer')?.classList.add('hidden'); }
+export function resumeCoachMarks() { if (!paused || state.settings[HINT_FLAG]) return; paused = false; showStep(); }
+export function showCategoryCoach(label) { pauseCoachMarks(); const { hint } = mountOverlay(); const text = el('mapIntroText'); const next = el('mapIntroNext'); text.textContent = `${label} places are on the map.`; next.textContent = 'Got it'; hint.classList.remove('hidden'); next.onclick = () => { hint.classList.add('hidden'); resumeCoachMarks(); }; window.setTimeout(() => { if (!hint.classList.contains('hidden')) { hint.classList.add('hidden'); resumeCoachMarks(); } }, 7000); }
 
 export function startCoachMarks() {
   if (state.settings[HINT_FLAG]) return;
