@@ -216,7 +216,7 @@ export function paintHistoricalTopo({ map, leaflet, opacity = 0.65 }) {
   state.historicalTopoControl?.remove(); state.historicalTopoControl = null;
   if (!map || !leaflet) return null;
   const service = 'https://historical1.arcgis.com/arcgis/rest/services/USA_Historical_Topo_Maps/ImageServer/exportImage';
-  const layer = leaflet.gridLayer({ opacity, tileSize: 512, attribution: 'USGS Historical Topographic Map Collection', maxZoom: 19, updateWhenIdle: false, keepBuffer: 2 });
+  const layer = leaflet.gridLayer({ opacity, tileSize: 512, attribution: 'USGS Historical Topographic Map Collection', maxNativeZoom: 19, maxZoom: 22, updateWhenIdle: false, keepBuffer: 2 });
   let total = 0; let done = 0; let failures = 0;
   layer.createTile = (coords, finish) => {
     const image = document.createElement('img'); image.alt = ''; image.width = 512; image.height = 512;
@@ -235,7 +235,7 @@ export function paintHistoricalTopo({ map, leaflet, opacity = 0.65 }) {
   };
   layer.addTo(map);
   const zoomNotice = () => {
-    const tooClose = map.getZoom() > 19;
+    const tooClose = map.getZoom() > 22;
     const button = state.historicalTopoControl?.getContainer?.()?.querySelector('[data-historical-topo-toggle]');
     if (button && map.hasLayer(layer)) button.textContent = tooClose ? 'Historic topo: Zoom out' : 'Historic topo: On';
     if (tooClose) setTopoStatus('Zoomed in beyond historic map detail. The regular map stays visible; zoom out to see historic topo.');
