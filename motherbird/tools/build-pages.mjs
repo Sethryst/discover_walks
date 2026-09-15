@@ -36,6 +36,7 @@ const publishEntries = [
   'privacy.html',
   'regions',
   'service-worker.js',
+  'shell.css',
   'splash-fix.css',
   'styles.css',
   'supabase-config.js',
