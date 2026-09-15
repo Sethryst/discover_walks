@@ -256,7 +256,6 @@ export function initFieldGuideFilters() {
     const topoEra = event.target.closest('[data-historical-topo-era]');
     if (topoEra) { paintHistoricalTopo({ map: state.map, leaflet: globalThis.L, era: topoEra.value, opacity: Number(event.target.closest('section')?.querySelector('[data-historical-topo-opacity]')?.value || 0.65) }); return; }
     const topoOpacity = event.target.closest('[data-historical-topo-opacity]');
-    if (topoOpacity && state.historicalTopoLayer) { state.historicalTopoLayer.setOpacity(Number(topoOpacity.value)); const output = event.target.closest('section')?.querySelector('[data-historical-topo-opacity-value]'); if (output) output.textContent = `${Math.round(Number(topoOpacity.value) * 100)}%`; return; }
     const check = event.target.closest('[data-learn-check]');
     if (check) {
       const poi = (state.cityPois[state.activeCity] || []).find((item) => String(item.id) === check.dataset.learnCheck);
