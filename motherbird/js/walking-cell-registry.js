@@ -15,9 +15,17 @@ export class WalkingCellRegistry {
     const manifestUrl = new URL(url, globalThis.location?.href || 'http://localhost/');
     // This request is deliberately invariant: coordinates never appear in the URL,
     // headers, body, or referrer. Matching happens only after the static index arrives.
-    const response = await fetchImpl(manifestUrl, { method: 'GET', credentials: 'omit', referrerPolicy: 'no-referrer' });
-    if (!response.ok) throw new Error(`Walking-cell registry returned HTTP ${response.status}.`);
-    return new WalkingCellRegistry(await response.json(), manifestUrl);
+    try {
+      const response = await fetchImpl(manifestUrl, { method: 'GET', credentials: 'omit', referrerPolicy: 'no-referrer' });
+      if (!response.ok) throw new Error(`Walking-cell registry returned HTTP ${response.status}.`);
+      const copy = response.clone();
+      void globalThis.caches?.open(WALKING_CELL_REGISTRY_FORMAT).then((cache) => cache.put(manifestUrl, copy)).catch(() => {});
+      return new WalkingCellRegistry(await response.json(), manifestUrl);
+    } catch (networkError) {
+      const cached = await globalThis.caches?.match(manifestUrl);
+      if (!cached) throw networkError;
+      return new WalkingCellRegistry(await cached.json(), manifestUrl);
+    }
   }
 
   find(lat, lng) {
@@ -39,7 +47,7 @@ function normalizeCell(cell, baseUrl) {
     throw new Error(`Walking-cell ${cell.id} has invalid bounds.`);
   }
   const artifacts = Object.fromEntries(Object.entries(cell.artifacts || {}).map(([kind, artifact]) => {
-    if (!['map', 'graph'].includes(kind)) throw new Error(`Walking-cell ${cell.id} has an unsupported artifact kind.`);
+    if (!['map', 'poi', 'graph'].includes(kind)) throw new Error(`Walking-cell ${cell.id} has an unsupported artifact kind.`);
     const path = artifact?.url || artifact?.path;
     if (!path) throw new Error(`Walking-cell ${cell.id} ${kind} artifact has no URL.`);
     const byteRange = normalizeRange(artifact.range || artifact.byteRange);

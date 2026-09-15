@@ -1,0 +1,44 @@
+{
+  "format": "motherbird-walking-cell-registry-v1",
+  "release": "osm-us-2026-09-07",
+  "cells": [
+    {
+      "id": "nyc-midtown",
+      "bounds": [-73.9925176, 40.7528716, -73.973646, 40.7729572],
+      "artifacts": {
+        "map": {
+          "url": "https://huggingface.co/datasets/sethryst/us-national-walk/resolve/main/national-walk.pmtiles",
+          "mode": "pmtiles_range"
+        },
+        "poi": {
+          "url": "https://huggingface.co/datasets/sethryst/osm-us-2026-09-07/resolve/main/poi.pmtiles",
+          "delivery": { "mode": "http_range" }
+        },
+        "graph": {
+          "path": "./pedestrian-runtime/nyc_pedestrian_network_estimates/runtime/runtime-graph.json",
+          "bytes": 433709,
+          "sha256": "3a3a08558c6c4867359fbdbe7fb3f539b6647c880d97e4420c853ab9721618aa"
+        }
+      }
+    },
+    {
+      "id": "philadelphia-camden-core",
+      "bounds": [-75.1714363, 39.9336425, -75.1061196, 39.9671136],
+      "artifacts": {
+        "map": {
+          "url": "https://huggingface.co/datasets/sethryst/us-national-walk/resolve/main/national-walk.pmtiles",
+          "mode": "pmtiles_range"
+        },
+        "poi": {
+          "url": "https://huggingface.co/datasets/sethryst/osm-us-2026-09-07/resolve/main/poi.pmtiles",
+          "delivery": { "mode": "http_range" }
+        },
+        "graph": {
+          "path": "./pedestrian-runtime/dvrpc_pedestrian_network_philadelphia_camden/runtime/runtime-graph.json",
+          "bytes": 3506506,
+          "sha256": "943ef1ffdfd0b43d5594e0ed56fd9fa95f8d1df47bf363a239a81e67ef7aa421"
+        }
+      }
+    }
+  ]
+}

@@ -1,3 +1,5 @@
+import { OpfsRangeSource } from './opfs-range-source.js';
+
 const PRODUCTS = new Set(['roadway', 'poi']);
 export const NATIONAL_WALK_PMtiles_URL = 'https://huggingface.co/datasets/sethryst/us-national-walk/resolve/main/national-walk.pmtiles';
 
@@ -7,7 +9,7 @@ export function createNationalWalkArchive({ pmtilesImpl = globalThis.pmtiles } =
   }
   // Hugging Face serves this 1.19 GB archive through HTTP range requests.
   // Keep it remote and range-backed; never download the archive as a Blob.
-  const source = new pmtilesImpl.FetchSource(NATIONAL_WALK_PMtiles_URL);
+  const source = new OpfsRangeSource(NATIONAL_WALK_PMtiles_URL, { key: NATIONAL_WALK_PMtiles_URL });
   return { url: NATIONAL_WALK_PMtiles_URL, archive: new pmtilesImpl.PMTiles(source) };
 }
 
@@ -66,7 +68,7 @@ export function createNationalPoiArchive(manifest, { pmtilesImpl = globalThis.pm
   }
   // FetchSource issues bounded HTTP Range requests. There is deliberately no
   // Blob/full-fetch fallback for the national archive.
-  const source = new pmtilesImpl.FetchSource(published.url);
+  const source = new OpfsRangeSource(published.url, { key: published.url });
   return { ...published, archive: new pmtilesImpl.PMTiles(source) };
 }
 

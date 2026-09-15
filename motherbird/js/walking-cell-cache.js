@@ -31,8 +31,14 @@ export class WalkingCellCache {
   }
 
   async ensureCell(release, cell) {
-    const [map, graph] = await Promise.all([this.ensure(release, cell, 'map'), this.ensure(release, cell, 'graph')]);
-    return { map, graph, paths: { map: opfsPath(release, cell.id, 'map'), graph: opfsPath(release, cell.id, 'graph') } };
+    const kinds = Object.keys(cell.artifacts);
+    const entries = await Promise.all(kinds.map(async (kind) => {
+      const artifact = cell.artifacts[kind];
+      if (kind !== 'graph' && isRangeBackedArchive(artifact)) return [kind, { type: 'range', url: artifact.url, key: `${release}/${cell.id}/${kind}` }];
+      const file = await this.ensure(release, cell, kind);
+      return [kind, { type: 'file', file, path: opfsPath(release, cell.id, kind) }];
+    }));
+    return Object.fromEntries(entries);
   }
 
   async #directory(release, cellId, create) {
@@ -73,4 +79,5 @@ function safePart(value) {
   return part;
 }
 
-function fileName(kind) { return kind === 'map' ? 'network.pmtiles' : kind === 'graph' ? 'routing-graph.json' : (() => { throw new Error('Unknown cell artifact kind.'); })(); }
+function isRangeBackedArchive(artifact) { return ['http_range', 'pmtiles_range'].includes(artifact?.delivery?.mode || artifact?.mode); }
+function fileName(kind) { return kind === 'map' ? 'network.pmtiles' : kind === 'poi' ? 'poi.pmtiles' : kind === 'graph' ? 'routing-graph.json' : (() => { throw new Error('Unknown cell artifact kind.'); })(); }

@@ -16,6 +16,7 @@ import {
 } from './national-poi-map.js';
 import { enabledNationalOsmLayerIds, hasEnabledNationalOsmLayers } from './national-osm-layers.js';
 import { activateWalkingCellAt } from './walking-cell-runtime.js';
+import { OpfsRangeSource } from './opfs-range-source.js';
 
 const OSM_ATTRIBUTION = '&copy; OpenStreetMap contributors';
 const NEIGHBORHOOD_ZOOM = 15;
@@ -117,14 +118,19 @@ export async function activateWalkingCellLayer(activeCell) {
   state.walkingCellMap?.remove();
   container.replaceChildren();
   container.classList.remove('hidden');
-  const file = activeCell.files.map;
-  const source = new LocalCellSource(file, `opfs://${activeCell.release}/${activeCell.id}/network.pmtiles`);
-  const archive = new globalThis.pmtiles.PMTiles(source);
-  ensurePmtilesProtocol().add(archive);
+  const protocol = ensurePmtilesProtocol();
+  const mapSource = cellSource(activeCell.files.map, `cell://${activeCell.release}/${activeCell.id}/map`);
+  protocol.add(new globalThis.pmtiles.PMTiles(mapSource));
+  let poiUrl = null;
+  if (activeCell.files.poi) {
+    const poiSource = cellSource(activeCell.files.poi, `cell://${activeCell.release}/${activeCell.id}/poi`);
+    protocol.add(new globalThis.pmtiles.PMTiles(poiSource));
+    poiUrl = `pmtiles://${poiSource.getKey()}`;
+  }
   const center = state.map.getCenter();
   state.walkingCellMap = new globalThis.maplibregl.Map({
     container,
-    style: walkingNetworkStyle(`pmtiles://${source.getKey()}`),
+    style: walkingNetworkStyle(`pmtiles://${mapSource.getKey()}`, poiUrl),
     center: [center.lng, center.lat], zoom: mapLibreZoom(),
     attributionControl: false, interactive: false, fadeDuration: 0
   });
@@ -143,10 +149,19 @@ class LocalCellSource {
   async getBytes(offset, length) { return { data: await this.file.slice(offset, offset + length).arrayBuffer() }; }
 }
 
-function walkingNetworkStyle(sourceUrl) {
-  return { version: 8, sources: { walking: { type: 'vector', url: sourceUrl } }, layers: [
+function cellSource(descriptor, key) {
+  if (descriptor.type === 'range') return new OpfsRangeSource(descriptor.url, { key });
+  if (descriptor.type === 'file' && descriptor.file) return new LocalCellSource(descriptor.file, key);
+  throw new Error('Walking-cell PMTiles source is unavailable.');
+}
+
+function walkingNetworkStyle(sourceUrl, poiUrl = null) {
+  const sources = { walking: { type: 'vector', url: sourceUrl } };
+  if (poiUrl) sources.poi = { type: 'vector', url: poiUrl };
+  return { version: 8, sources, layers: [
     { id: 'walking-cell-paths', type: 'line', source: 'walking', 'source-layer': 'walk_network', paint: { 'line-color': '#2d7259', 'line-opacity': 0.72, 'line-width': ['interpolate', ['linear'], ['zoom'], 11, 0.7, 18, 3.2] } },
-    { id: 'walking-cell-barriers', type: 'circle', source: 'walking', 'source-layer': 'barriers', paint: { 'circle-color': '#9e332c', 'circle-radius': 3 } }
+    { id: 'walking-cell-barriers', type: 'circle', source: 'walking', 'source-layer': 'barriers', paint: { 'circle-color': '#9e332c', 'circle-radius': 3 } },
+    ...(poiUrl ? [{ id: 'walking-cell-poi', type: 'circle', source: 'poi', 'source-layer': 'poi', paint: { 'circle-color': '#c65d0e', 'circle-radius': ['interpolate', ['linear'], ['zoom'], 12, 2, 17, 5], 'circle-stroke-color': '#fffaf0', 'circle-stroke-width': 1 } }] : [])
   ] };
 }
 
@@ -170,7 +185,7 @@ function ensurePmtilesProtocol() {
 
 export async function activateNationalPoiOverlay({ manifest = null } = {}) {
   const container = document.getElementById('nationalPoiOverlay');
-  if (!container || !state.map || state.map.getZoom() < NEIGHBORHOOD_ZOOM || !hasEnabledNationalOsmLayers() || state.nationalPoiSuppressed || navigator.onLine === false || !globalThis.maplibregl || !globalThis.pmtiles) return false;
+  if (!container || !state.map || state.map.getZoom() < NEIGHBORHOOD_ZOOM || !hasEnabledNationalOsmLayers() || state.nationalPoiSuppressed || !globalThis.maplibregl || !globalThis.pmtiles) return false;
   if (state.nationalPoiMap) { applyNationalPoiLayerFilters(); return true; }
   if (state.nationalPoiActivating) return false;
   if (!manifest && !globalThis.WALK_WILDLIFE_SUPABASE?.osmReleaseManifestUrl) return false;

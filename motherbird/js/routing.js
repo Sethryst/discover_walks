@@ -1,3 +1,5 @@
+import { activateWalkingCellAt } from './walking-cell-runtime.js';
+
 let worker = null;
 let sequence = 0;
 const pending = new Map();
@@ -18,9 +20,11 @@ export const ROUTE_FAILURE_MESSAGES = {
 
 export async function routeOnFoot(points, { city, profile = 'ordinary_walking_beta' } = {}) {
   if (!Array.isArray(points) || points.length < 2) return failure('INVALID_ROUTE_REQUEST');
+  try { activeWalkingCell = await activateWalkingCellAt(points[0]) || activeWalkingCell; }
+  catch { /* Keep the last installed graph; the worker returns a typed miss if it cannot cover the request. */ }
   const legs = [];
   for (let index = 0; index < points.length - 1; index += 1) {
-    const result = await requestRoute({ city, profile, origin: points[index], destination: points[index + 1], avoid: { stairs: false, unverified_edges: false }, cellGraphPath: activeWalkingCell?.files?.paths?.graph, cellId: activeWalkingCell?.id, cellRelease: activeWalkingCell?.release });
+    const result = await requestRoute({ city, profile, origin: points[index], destination: points[index + 1], avoid: { stairs: false, unverified_edges: false }, cellGraphPath: activeWalkingCell?.files?.graph?.path, cellId: activeWalkingCell?.id, cellRelease: activeWalkingCell?.release });
     if (!result.ok) return result;
     legs.push(result);
   }

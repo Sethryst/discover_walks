@@ -9,3 +9,9 @@ window.WALK_WILDLIFE_SUPABASE = {
   // Artifact uploads always happen in the build environment, never here.
   osmReleaseManifestUrl: 'https://huggingface.co/datasets/sethryst/osm-us-2026-09-07/resolve/main/manifest.json'
 };
+
+// Public, coordinate-free registry. The client chooses the smallest matching
+// routing cell locally and warms it automatically as the viewport/GPS moves.
+window.MOTHER_BIRD_WALKING_CELLS = {
+  manifestUrl: './data/walking-cells.json'
+};
