@@ -9,7 +9,7 @@ import db from './storage.js';
 import { isVisiblePoi, selectImportantPois } from './poi.js';
 import { placeLight, publicPlaceSource, walkerDetails } from './place-details.js';
 import { installedPackBounds } from './offline-view.js';
-import { isHistorySite, renderLearnHistory, setLearnView, setLearnScreen, setActiveWatershed, setBattlefieldEra, setBattlefieldYear, setBattlefieldSite, stepBattlefieldBack, setActiveLensItem, paintHistoricalTopo } from './learn-history.js';
+import { isHistorySite, renderLearnHistory, setLearnView, setLearnScreen, setActiveWatershed, setBattlefieldEra, setBattlefieldYear, setBattlefieldSite, stepBattlefieldBack, setActiveLensItem, paintHistoricalTopo, stopHistoricalTopo } from './learn-history.js';
 import { setPoiVisited } from './poi-visit-tracking.js';
 import { addWalkWaypoint } from './walk.js';
 import { initMapsFolders, renderMapsLibrary } from './maps-folders.js';
@@ -124,9 +124,8 @@ export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') 
   el('sharePanel')?.classList.toggle('hidden', tab !== 'online');
   if (tab !== 'learn') {
     shadeLearnBounds(false);
-    if (state.onlineBasemapLayer && navigator.onLine !== false && state.map && !state.map.hasLayer(state.onlineBasemapLayer)) state.onlineBasemapLayer.addTo(state.map);
+    stopHistoricalTopo();
     document.getElementById('backpackSheet')?.classList.remove('learn-min');
-    state.historicalTopoLayer?.remove(); state.historicalTopoLayer = null; state.historicalTopoControl?.remove(); state.historicalTopoControl = null;
   }
   if (tab !== 'learn') {
     shadeLearnBounds(false);
