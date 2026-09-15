@@ -116,7 +116,7 @@ export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') 
   if (tab !== 'learn') {
     shadeLearnBounds(false);
     document.getElementById('backpackSheet')?.classList.remove('learn-min');
-    state.historicalTopoLayer?.remove(); state.historicalTopoLayer = null;
+    state.historicalTopoLayer?.remove(); state.historicalTopoLayer = null; state.historicalTopoControl?.remove(); state.historicalTopoControl = null;
   }
   if (tab !== 'learn') {
     shadeLearnBounds(false);
