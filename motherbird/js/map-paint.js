@@ -4,6 +4,8 @@ import { toast } from './ui.js';
 import db from './storage.js';
 
 const DRAW_COLOR = '#76558b';
+const hiddenArtifacts = new Set(JSON.parse(localStorage.getItem('hiddenMapArtifacts') || '[]'));
+let freehandActive = false;
 
 function setActive(active) {
   state.mapPaintActive = active;
@@ -47,6 +49,7 @@ export async function renderMapDrawings() {
   state.localDrawings = moments.filter((item) => item.type === 'drawing' && (!item.city || item.city === state.activeCity));
   for (const item of moments) {
     if (item.city && item.city !== state.activeCity) continue;
+    if (hiddenArtifacts.has(item.id)) continue;
     if (item.type === 'drawing' && item.body?.geojson) {
       L.geoJSON(item.body.geojson, { onEachFeature: (_feature, layer) => decorateLayer(layer, item.body.measurement) }).eachLayer((layer) => state.mapPaintLayer.addLayer(layer));
       state.mapDrawingHistory.push(item.id);
@@ -55,6 +58,20 @@ export async function renderMapDrawings() {
       state.mapDrawingHistory.push(item.id);
     }
     if (item.type === 'friend-pin' && Number.isFinite(item.body?.location?.lat) && Number.isFinite(item.body?.location?.lng)) L.circleMarker([item.body.location.lat, item.body.location.lng], { color: DRAW_COLOR, radius: 7 }).bindTooltip(String(item.body.name || 'Friend pin').replace(/[<>]/g, '')).addTo(state.mapPaintLayer);
+  }
+  renderArtifactList();
+}
+function renderArtifactList() {
+  const list = el('mapArtifactList'); if (!list) return;
+  list.replaceChildren();
+  for (const item of state.localDrawings || []) {
+    const row = document.createElement('article');
+    const name = document.createElement('strong'); name.textContent = item.title || 'Drawing';
+    const toggle = document.createElement('button'); toggle.type = 'button'; toggle.textContent = hiddenArtifacts.has(item.id) ? 'Show' : 'Hide';
+    toggle.addEventListener('click', () => { hiddenArtifacts.has(item.id) ? hiddenArtifacts.delete(item.id) : hiddenArtifacts.add(item.id); localStorage.setItem('hiddenMapArtifacts', JSON.stringify([...hiddenArtifacts])); void renderMapDrawings(); });
+    const remove = document.createElement('button'); remove.type = 'button'; remove.textContent = '×'; remove.setAttribute('aria-label', `Delete ${name.textContent}`);
+    remove.addEventListener('click', async () => { await db.remove('moments', item.id); hiddenArtifacts.delete(item.id); void renderMapDrawings(); });
+    row.append(name, toggle, remove); list.append(row);
   }
 }
 
@@ -97,6 +114,20 @@ export async function initMapPaint() {
   globalThis.pm = globalThis.pm || {};
   globalThis.pm.map = { undo: undoDrawing, clearLayers: clearDrawings };
   state.map.on('pm:create', ({ layer, shape }) => void persistCreatedLayer(layer, shape));
+  const mapNode = state.map.getContainer();
+  let freehand = null;
+  mapNode.addEventListener('pointerdown', (event) => {
+    if (!freehandActive || event.target.closest('.leaflet-control')) return;
+    event.preventDefault(); mapNode.setPointerCapture(event.pointerId); state.map.dragging.disable();
+    freehand = L.polyline([state.map.mouseEventToLatLng(event)], { color: DRAW_COLOR, weight: 4 }).addTo(state.map);
+  });
+  mapNode.addEventListener('pointermove', (event) => { if (freehand) freehand.addLatLng(state.map.mouseEventToLatLng(event)); });
+  mapNode.addEventListener('pointerup', () => {
+    if (!freehand) return;
+    const layer = freehand; freehand = null; state.map.dragging.enable();
+    if (layer.getLatLngs().length > 1) void persistCreatedLayer(layer, 'Freehand');
+    layer.remove();
+  });
   window.addEventListener('local-drawings-changed', () => void renderMapDrawings());
   window.addEventListener('city-layer-data-changed', () => void renderMapDrawings());
   window.addEventListener('friend-walk-tickets', ({ detail }) => {
@@ -109,17 +140,24 @@ export async function initMapPaint() {
   });
   document.querySelector('.draw-shapes')?.addEventListener('click', (event) => {
     const tool = event.target.closest('[data-draw-shape]'); if (!tool) return;
-    const shapes = { Marker: 'Marker', Line: 'Line', Polygon: 'Polygon', Rectangle: 'Rectangle', Circle: 'Circle' };
+    const shapes = { Marker: 'Marker', Line: 'Line', Freehand: 'Freehand', Polygon: 'Polygon', Rectangle: 'Rectangle', Circle: 'Circle' };
     const shape = shapes[tool.dataset.drawShape]; if (!shape) return;
-    setActive(true); state.map.pm.disableDraw(); state.map.pm.enableDraw(shape, { snappable: true, finishOn: 'dblclick' });
+    setActive(true); state.map.pm.disableDraw(); freehandActive = shape === 'Freehand';
+    if (!freehandActive) state.map.pm.enableDraw(shape, { snappable: true, finishOn: 'dblclick' });
     document.querySelectorAll('[data-draw-shape]').forEach((item) => item.classList.toggle('active', item === tool));
     el('drawWorkspaceStatus').textContent = `${tool.textContent.trim()} tool active. Draw on the map.`;
   });
   el('undoMapDrawing')?.addEventListener('click', () => void undoDrawing());
   el('clearMapDrawings')?.addEventListener('click', () => void clearDrawings());
+  el('exportMapArtifacts')?.addEventListener('click', () => {
+    const features = (state.localDrawings || []).map((item) => item.body?.geojson).filter(Boolean);
+    const url = URL.createObjectURL(new Blob([JSON.stringify({ type: 'FeatureCollection', features })], { type: 'application/geo+json' }));
+    const link = document.createElement('a'); link.href = url; link.download = 'map-artifacts.geojson'; link.click();
+    setTimeout(() => URL.revokeObjectURL(url), 0);
+  });
   window.addEventListener('map-workspace-changed', ({ detail }) => {
     const active = detail?.destination === 'draw' && detail.open;
-    if (!active) { setActive(false); document.querySelectorAll('[data-draw-shape]').forEach((item) => item.classList.remove('active')); }
+    if (!active) { freehandActive = false; setActive(false); document.querySelectorAll('[data-draw-shape]').forEach((item) => item.classList.remove('active')); }
     else { state.mapPaintActive = true; document.body.classList.add('map-painting'); button.setAttribute('aria-pressed', 'true'); }
   });
 }

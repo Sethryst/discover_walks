@@ -7,7 +7,7 @@ test('coach marks use one short sentence per feature', async () => {
   const source = await readFile(new URL('../js/coach.js', import.meta.url), 'utf8');
   const steps = [...source.matchAll(/target: '([^']+)', text: '([^']+)'/g)];
   const targets = new Set();
-  assert.ok(steps.length >= 6);
+  assert.equal(steps.length, 4);
   for (const [, target, text] of steps) {
     assert.ok(text.endsWith('.'));
     assert.ok(text.split(/\s+/).length <= 14);
@@ -15,8 +15,8 @@ test('coach marks use one short sentence per feature', async () => {
     assert.equal(targets.has(target), false);
     targets.add(target);
   }
-  assert.match(source, /backpack/);
-  assert.match(source, /grid/);
+  assert.match(source, /walkTab/);
+  assert.match(source, /libraryTab/);
 });
 
 test('intro markup shows one coach line and next control', async () => {
@@ -33,8 +33,8 @@ test('coach overlay sits above map chrome with a box and an arrow', async () => 
   const source = await readFile(new URL('../js/coach.js', import.meta.url), 'utf8');
   const css = await readFile(new URL('../splash-fix.css', import.meta.url), 'utf8');
   assert.match(source, /document\.body\.appendChild/);
-  assert.match(source, /mapToolsHintSeenV7/);
-  assert.match(source, /STEP_MS = 8000/);
+  assert.match(source, /mainShellHintSeenV1/);
+  assert.match(source, /STEP_MS = 12000/);
   assert.match(source, /pickCoachPointer/);
   assert.match(css, /position:\s*fixed/);
   assert.match(css, /z-index:\s*4200/);

@@ -24,6 +24,7 @@ import { startCoachMarks } from './coach.js';
 import { initNationalOsmLayers } from './national-osm-layers.js';
 import { initGeoCypher } from './geo-cypher.js';
 import { initPwaUpdates } from './pwa-update.js';
+import { initPrimaryShell } from './primary-shell.js';
 
 export async function init() {
   if (!document.querySelector('link[href*="splash-fix.css"]')) {
@@ -90,6 +91,7 @@ export async function init() {
   await initGeoCypher();
   removePrimaryControlFallbacks();
   initEvents();
+  initPrimaryShell();
   await activateInstalledRegionRuntime();
   await initCountyAdditions();
   await initMapPaint();

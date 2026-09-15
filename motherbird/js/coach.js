@@ -3,18 +3,16 @@ import { state } from './state.js';
 import { el } from './utils.js';
 
 export const COACH_STEPS = [
-  { target: 'locateButton', text: 'Tap the compass to center on you.' },
-  { target: 'messengerBirdButton', text: 'Tap the bird to enable nearby notices.' },
-  { target: 'walkButton', text: 'Tap Start walk to record your route.' },
-  { target: 'mapSearchInput', text: 'Search places and wildlife by name.' },
-  { target: 'settingsButton', text: 'Tap the backpack to open the guide grid.' },
-  { target: 'mapLights', text: 'Tap a colored light to filter places.' },
+  { target: 'mapSearchInput', text: 'Find a place or trail.' },
+  { target: 'walkTab', text: 'Start or make a walk.' },
+  { target: 'libraryTab', text: 'Keep what you notice.' },
+  { target: 'meTab', text: 'Your private tools.' },
 ];
 
-const HINT_FLAG = 'mapToolsHintSeenV7';
+const HINT_FLAG = 'mainShellHintSeenV1';
 const GAP = 10;
 const MARGIN = 10;
-const STEP_MS = 8000;
+const STEP_MS = 12000;
 let stepIndex = 0;
 let timer = null;
 let bound = false;

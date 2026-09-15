@@ -2,109 +2,553 @@
   "generatedAt": "2026-08-07T10:21:26.858342Z",
   "pois": [
     {
-      "category": "journey",
+      "access": {
+        "destinationLabel": "W&OD east of Vienna Town Green",
+        "note": "NOVA Parks identifies the W&OD and publishes daily hours of 5 a.m. to 9 p.m. Use current NOVA Parks information for closures. Parking and a precise public start entrance have not been verified for this editorial section.",
+        "startLabel": "W&OD west of Vienna Town Green"
+      },
       "chapters": [
         {
-          "amenities": [
-            "restrooms"
-          ],
-          "description": "Enjoy water views and local birdlife around the central ponds.",
-          "distance_miles": 1.2,
-          "estimated_duration_minutes": 34,
-          "experience_score": 35,
+          "amenities": [],
+          "description": "",
+          "distanceMiles": 0.52,
+          "estimatedDurationMinutes": 10,
           "geometry": {
-            "coordinates": [],
+            "coordinates": [
+              [
+                -77.2735856682224,
+                38.9099789524988
+              ],
+              [
+                -77.2731514124759,
+                38.9095974911081
+              ],
+              [
+                -77.2724697273555,
+                38.9089920358761
+              ],
+              [
+                -77.270978259379,
+                38.9076628183212
+              ],
+              [
+                -77.2706790464718,
+                38.9074003532626
+              ],
+              [
+                -77.270552323532,
+                38.9072770076869
+              ],
+              [
+                -77.2701808517611,
+                38.906921053995
+              ],
+              [
+                -77.269680255188,
+                38.9065021078485
+              ],
+              [
+                -77.2691763794907,
+                38.9060411005439
+              ],
+              [
+                -77.269064491692,
+                38.9059470349804
+              ],
+              [
+                -77.2687496412498,
+                38.9056680233273
+              ],
+              [
+                -77.2684324275186,
+                38.9053740237584
+              ],
+              [
+                -77.2681686455841,
+                38.9051603470861
+              ],
+              [
+                -77.2678729442075,
+                38.9049308565626
+              ],
+              [
+                -77.2672056254957,
+                38.9044227006024
+              ]
+            ],
             "type": "LineString"
           },
-          "id": "meadowlark-gardens-loop-chapter-2",
-          "is_loop": true,
-          "name": "Lake Caroline Loop",
+          "geometryProvenance": {
+            "confidence": 0.96,
+            "generatedEstimate": false,
+            "geometryPart": 66,
+            "method": "canonical-record-reference",
+            "sourceName": "Fairfax Non-County Trails",
+            "sourceRecordId": "trails:fairfax-non-county-trails:wod",
+            "sourceUrl": "https://www.fairfaxcounty.gov/gisopen/rest/services/OpenData_A1/FeatureServer/4"
+          },
+          "id": "wod-vienna-west-1",
+          "isLoop": false,
+          "name": "W&OD Vienna west approach 1",
+          "renderable": true,
+          "sources": [
+            {
+              "name": "Fairfax Non-County Trails",
+              "type": "geometry",
+              "url": "https://www.fairfaxcounty.gov/gisopen/rest/services/OpenData_A1/FeatureServer/4"
+            },
+            {
+              "name": "NOVA Parks — Washington & Old Dominion Railroad Regional Park",
+              "type": "official-identity-and-operations",
+              "url": "https://www.novaparks.com/parks/washington-and-old-dominion-railroad-regional-park"
+            }
+          ],
+          "stops": []
+        },
+        {
+          "amenities": [],
+          "description": "",
+          "distanceMiles": 0.11,
+          "estimatedDurationMinutes": 2,
+          "geometry": {
+            "coordinates": [
+              [
+                -77.2671127259855,
+                38.9043630154423
+              ],
+              [
+                -77.2666805166313,
+                38.9040570652524
+              ],
+              [
+                -77.2658194041213,
+                38.9035041301878
+              ],
+              [
+                -77.2655164624887,
+                38.903325824447
+              ]
+            ],
+            "type": "LineString"
+          },
+          "geometryProvenance": {
+            "confidence": 0.96,
+            "generatedEstimate": false,
+            "geometryPart": 67,
+            "method": "canonical-record-reference",
+            "sourceName": "Fairfax Non-County Trails",
+            "sourceRecordId": "trails:fairfax-non-county-trails:wod",
+            "sourceUrl": "https://www.fairfaxcounty.gov/gisopen/rest/services/OpenData_A1/FeatureServer/4"
+          },
+          "id": "wod-vienna-west-2",
+          "isLoop": false,
+          "name": "W&OD Vienna west approach 2",
+          "renderable": true,
+          "sources": [
+            {
+              "name": "Fairfax Non-County Trails",
+              "type": "geometry",
+              "url": "https://www.fairfaxcounty.gov/gisopen/rest/services/OpenData_A1/FeatureServer/4"
+            },
+            {
+              "name": "NOVA Parks — Washington & Old Dominion Railroad Regional Park",
+              "type": "official-identity-and-operations",
+              "url": "https://www.novaparks.com/parks/washington-and-old-dominion-railroad-regional-park"
+            }
+          ],
+          "stops": []
+        },
+        {
+          "amenities": [],
+          "description": "",
+          "distanceMiles": 0.08,
+          "estimatedDurationMinutes": 12,
+          "geometry": {
+            "coordinates": [
+              [
+                -77.2653735238878,
+                38.9032418118781
+              ],
+              [
+                -77.2652966249918,
+                38.9032022746062
+              ],
+              [
+                -77.2646597675938,
+                38.9028499248666
+              ],
+              [
+                -77.2641130261308,
+                38.9025966329712
+              ]
+            ],
+            "type": "LineString"
+          },
+          "geometryProvenance": {
+            "confidence": 0.96,
+            "generatedEstimate": false,
+            "geometryPart": 68,
+            "method": "canonical-record-reference",
+            "sourceName": "Fairfax Non-County Trails",
+            "sourceRecordId": "trails:fairfax-non-county-trails:wod",
+            "sourceUrl": "https://www.fairfaxcounty.gov/gisopen/rest/services/OpenData_A1/FeatureServer/4"
+          },
+          "id": "wod-vienna-town-green",
+          "isLoop": false,
+          "name": "Vienna Town Green pause",
+          "renderable": true,
+          "sources": [
+            {
+              "name": "Fairfax Non-County Trails",
+              "type": "geometry",
+              "url": "https://www.fairfaxcounty.gov/gisopen/rest/services/OpenData_A1/FeatureServer/4"
+            },
+            {
+              "name": "NOVA Parks — Washington & Old Dominion Railroad Regional Park",
+              "type": "official-identity-and-operations",
+              "url": "https://www.novaparks.com/parks/washington-and-old-dominion-railroad-regional-park"
+            }
+          ],
           "stops": [
             {
-              "name": "Lake View",
-              "type": "viewpoint"
+              "category": "park",
+              "id": "parks:fairfax-non-county-parks:11745",
+              "name": "Vienna Town Green"
+            },
+            {
+              "category": "wildlife",
+              "id": "wildlife:fairfax-ebird-hotspots:L4138121",
+              "name": "W&OD Trail--Vienna Town Green birding hotspot"
             }
           ]
         },
         {
-          "amenities": [
-            "restrooms",
-            "parking"
-          ],
-          "description": "A peaceful stroll to the iconic traditional Korean Bell Garden.",
-          "distance_miles": 0.8,
-          "estimated_duration_minutes": 27,
-          "experience_score": 20,
+          "amenities": [],
+          "description": "",
+          "distanceMiles": 0.27,
+          "estimatedDurationMinutes": 5,
           "geometry": {
-            "coordinates": [],
+            "coordinates": [
+              [
+                -77.2639084235764,
+                38.9024989174992
+              ],
+              [
+                -77.2631659171067,
+                38.9021685794988
+              ],
+              [
+                -77.2628240110184,
+                38.9020353369249
+              ],
+              [
+                -77.2622756392102,
+                38.9018128445897
+              ],
+              [
+                -77.2619357105109,
+                38.9017086447708
+              ],
+              [
+                -77.2617642067109,
+                38.9016023490013
+              ],
+              [
+                -77.2616555664781,
+                38.901440601678
+              ],
+              [
+                -77.2615032351688,
+                38.9013712727688
+              ],
+              [
+                -77.2610723400024,
+                38.9012293461973
+              ],
+              [
+                -77.2606534256215,
+                38.9011107653292
+              ],
+              [
+                -77.2600867321433,
+                38.9009461184242
+              ],
+              [
+                -77.2597835475452,
+                38.9008655192054
+              ],
+              [
+                -77.2595659114791,
+                38.9008496771303
+              ],
+              [
+                -77.2595307486476,
+                38.9008783295107
+              ]
+            ],
             "type": "LineString"
           },
-          "id": "meadowlark-gardens-loop-chapter-1",
-          "is_loop": false,
-          "name": "Korean Bell Garden Walk",
-          "stops": [
-            {
-              "name": "Korean Bell Pavilion",
-              "type": "viewpoint"
-            }
-          ]
-        }
-      ],
-      "description": "A 95-acre oasis of beautiful gardens, peaceful ponds, and native plant collections.",
-      "featured": true,
-      "id": "meadowlark-gardens-loop",
-      "lat": 0.0,
-      "lng": 0.0,
-      "name": "Meadowlark Botanical Gardens",
-      "region": "vienna",
-      "type": "journey"
-    },
-    {
-      "category": "journey",
-      "chapters": [
-        {
-          "amenities": [
-            "transit",
-            "coffee",
-            "parking"
-          ],
-          "description": "A flat walk past the historic Vienna Train Station with easy town access.",
-          "distance_miles": 1.5,
-          "estimated_duration_minutes": 45,
-          "experience_score": 35,
-          "geometry": {
-            "coordinates": [],
-            "type": "LineString"
+          "geometryProvenance": {
+            "confidence": 0.96,
+            "generatedEstimate": false,
+            "geometryPart": 69,
+            "method": "canonical-record-reference",
+            "sourceName": "Fairfax Non-County Trails",
+            "sourceRecordId": "trails:fairfax-non-county-trails:wod",
+            "sourceUrl": "https://www.fairfaxcounty.gov/gisopen/rest/services/OpenData_A1/FeatureServer/4"
           },
-          "id": "wod-trail-vienna-chapter-1",
-          "is_loop": false,
-          "name": "Train Station to Community Center",
-          "stops": [
+          "id": "wod-vienna-east-1",
+          "isLoop": false,
+          "name": "W&OD Vienna east section 1",
+          "renderable": true,
+          "sources": [
             {
-              "name": "Vienna Train Station Museum",
-              "type": "historic_site"
+              "name": "Fairfax Non-County Trails",
+              "type": "geometry",
+              "url": "https://www.fairfaxcounty.gov/gisopen/rest/services/OpenData_A1/FeatureServer/4"
             },
             {
-              "name": "Town Center Cafe",
-              "type": "rest"
+              "name": "NOVA Parks — Washington & Old Dominion Railroad Regional Park",
+              "type": "official-identity-and-operations",
+              "url": "https://www.novaparks.com/parks/washington-and-old-dominion-railroad-regional-park"
             }
-          ]
+          ],
+          "stops": []
+        },
+        {
+          "amenities": [],
+          "description": "",
+          "distanceMiles": 1.36,
+          "estimatedDurationMinutes": 27,
+          "geometry": {
+            "coordinates": [
+              [
+                -77.2594501840896,
+                38.9009410811203
+              ],
+              [
+                -77.2594353636883,
+                38.9009527859783
+              ],
+              [
+                -77.2593229150933,
+                38.9010115827501
+              ],
+              [
+                -77.2591325139701,
+                38.9009960266017
+              ],
+              [
+                -77.2587690730843,
+                38.9009631625627
+              ],
+              [
+                -77.2579558418081,
+                38.9008791036192
+              ],
+              [
+                -77.2572084874558,
+                38.9008518508702
+              ],
+              [
+                -77.2565195465832,
+                38.9008832590436
+              ],
+              [
+                -77.2559368628744,
+                38.9009273993973
+              ],
+              [
+                -77.2556485745166,
+                38.900957762623
+              ],
+              [
+                -77.2548987906199,
+                38.9011002232492
+              ],
+              [
+                -77.2542577486905,
+                38.9012250050808
+              ],
+              [
+                -77.2538182207137,
+                38.9012958072066
+              ],
+              [
+                -77.253213081733,
+                38.9013493707599
+              ],
+              [
+                -77.2526827477105,
+                38.9013617629161
+              ],
+              [
+                -77.2521316755804,
+                38.9013870136023
+              ],
+              [
+                -77.2513092852792,
+                38.9013730912916
+              ],
+              [
+                -77.2505077890235,
+                38.9013023614758
+              ],
+              [
+                -77.2498523846358,
+                38.901230452065
+              ],
+              [
+                -77.2490771413685,
+                38.9010983614823
+              ],
+              [
+                -77.2484771880633,
+                38.9009541592954
+              ],
+              [
+                -77.2478484495991,
+                38.9008414655467
+              ],
+              [
+                -77.2473442567802,
+                38.9006445289614
+              ],
+              [
+                -77.2465944174728,
+                38.9003346755538
+              ],
+              [
+                -77.2461595540054,
+                38.9001384734752
+              ],
+              [
+                -77.2458442722424,
+                38.8999009766336
+              ],
+              [
+                -77.245347073781,
+                38.8995880074086
+              ],
+              [
+                -77.2450139610515,
+                38.8993793424538
+              ],
+              [
+                -77.2444268614111,
+                38.898968659921
+              ],
+              [
+                -77.244260984338,
+                38.8988256339408
+              ],
+              [
+                -77.2441720576015,
+                38.8986718212269
+              ],
+              [
+                -77.2439082382176,
+                38.8984658289169
+              ],
+              [
+                -77.2435365726476,
+                38.8981967628966
+              ],
+              [
+                -77.243218732787,
+                38.897965036818
+              ],
+              [
+                -77.2428664039432,
+                38.8977232649706
+              ],
+              [
+                -77.2424428402068,
+                38.8973957347528
+              ],
+              [
+                -77.2419108749726,
+                38.897089369319
+              ],
+              [
+                -77.2412533546711,
+                38.8967557377478
+              ],
+              [
+                -77.2409042904942,
+                38.8966120311356
+              ],
+              [
+                -77.240482544265,
+                38.8964519908354
+              ],
+              [
+                -77.239848290902,
+                38.8962602249902
+              ],
+              [
+                -77.2389963141269,
+                38.8960329839929
+              ],
+              [
+                -77.2377390555538,
+                38.8957023982811
+              ],
+              [
+                -77.2365068838014,
+                38.895377572478
+              ]
+            ],
+            "type": "LineString"
+          },
+          "geometryProvenance": {
+            "confidence": 0.96,
+            "generatedEstimate": false,
+            "geometryPart": 70,
+            "method": "canonical-record-reference",
+            "sourceName": "Fairfax Non-County Trails",
+            "sourceRecordId": "trails:fairfax-non-county-trails:wod",
+            "sourceUrl": "https://www.fairfaxcounty.gov/gisopen/rest/services/OpenData_A1/FeatureServer/4"
+          },
+          "id": "wod-vienna-east-2",
+          "isLoop": false,
+          "name": "W&OD Vienna east section 2",
+          "renderable": true,
+          "sources": [
+            {
+              "name": "Fairfax Non-County Trails",
+              "type": "geometry",
+              "url": "https://www.fairfaxcounty.gov/gisopen/rest/services/OpenData_A1/FeatureServer/4"
+            },
+            {
+              "name": "NOVA Parks — Washington & Old Dominion Railroad Regional Park",
+              "type": "official-identity-and-operations",
+              "url": "https://www.novaparks.com/parks/washington-and-old-dominion-railroad-regional-park"
+            }
+          ],
+          "stops": []
         }
       ],
-      "description": "A paved, highly accessible rail-trail walk through the heart of historic downtown Vienna.",
+      "description": "A paved Vienna section of the Washington & Old Dominion Trail assembled from the county's official non-county trail geometry, with the Town Green and a durable birding hotspot as reasons to pause and notice.",
       "featured": true,
-      "id": "wod-trail-vienna",
-      "lat": 0.0,
-      "lng": 0.0,
-      "name": "W&OD Trail: Historic Vienna",
-      "region": "vienna",
-      "type": "journey"
+      "id": "wod-vienna-town-green",
+      "name": "W&OD: Vienna Town Green Section",
+      "regionId": "fairfax-county-va",
+      "sources": [
+        {
+          "name": "NOVA Parks — Washington & Old Dominion Railroad Regional Park",
+          "type": "official-identity-and-operations",
+          "url": "https://www.novaparks.com/parks/washington-and-old-dominion-railroad-regional-park"
+        }
+      ]
     }
   ],
   "producer": {
     "name": "Gremlin Lab",
     "version": "development"
   },
-  "regionId": "vienna",
-  "schemaVersion": 1
+  "regionId": "fairfax-county-va",
+  "schemaVersion": 1,
+  "subarea": "Vienna",
+  "sourceJourneyFile": "./regions/fairfax-county-va/journeys.json"
 }

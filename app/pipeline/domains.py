@@ -267,9 +267,15 @@ def _configured_property(feature: IntermediateFeature, logical_name: str, *fallb
     """Read an explicit source mapping first, then use established aliases."""
     mapping = feature.metadata.get("sourceMetadata", {}).get("propertyMapping", {})
     mapped_field = mapping.get(logical_name)
-    if mapped_field and feature.properties.get(mapped_field) not in (None, ""):
-        return str(feature.properties[mapped_field])
-    return _first(feature.properties, *fallback_names)
+    candidates = (mapped_field, *mapping.get("nameFallbacks", ()), *fallback_names)
+    for field in candidates:
+        if not field:
+            continue
+        value = str(feature.properties.get(field) or "").strip()
+        # ArcGIS OBJECTIDs and empty labels are provenance, not place titles.
+        if value and not value.isdecimal() and value.casefold() not in {"null", "none", "n/a", "unknown", "unnamed"}:
+            return value
+    return None
 
 
 def _truthy(value: Any) -> bool:
