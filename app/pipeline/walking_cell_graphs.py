@@ -47,7 +47,13 @@ def deduplicate_osm_features(features: Iterable[dict[str, Any]]) -> tuple[list[d
     unique: dict[tuple[str, int], dict[str, Any]] = {}
     duplicates = 0
     for feature in features:
-        identity = osm_identity(feature)
+        try:
+            identity = osm_identity(feature)
+        except ValueError:
+            # Osmium can emit metadata-only records (for example id "/") when
+            # exporting mixed OSM objects. They cannot contribute routable
+            # geometry, so ignore them rather than aborting the whole cell.
+            continue
         if identity in unique:
             duplicates += 1
             # Prefer the newest version, then canonical JSON as a stable tie-break.
