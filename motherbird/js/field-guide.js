@@ -65,6 +65,15 @@ function isPresentableRecommendation(card) {
     && !/[+]/.test(card.title)
     && !/park\+cafe\+rest|official non-county|trail geometry|artifact_type|generated from|assembled from/i.test(copy);
 }
+function nearbyWalks(pois, point) {
+  const candidates = pois.filter((poi) => poi.category !== 'journey' && poi.name && Number.isFinite(poi.lat) && Number.isFinite(poi.lng) && isVisiblePoi(poi))
+    .filter((poi) => /park|trail|garden|greenway|nature|waterfront|historic|museum|landmark|walk/i.test(`${poi.name} ${poi.category} ${Array.isArray(poi.tags) ? poi.tags.join(' ') : ''}`));
+  const ordered = sortGuideCardsByDistance(candidates, point, (poi) => [poi]);
+  return ordered.filter((poi) => !point || poi.distance <= 40233).slice(0, 8).map((poi) => ({
+    id: `nearby:${poi.id}`, kind: 'nearby', title: `Explore ${poi.name}`,
+    reason: 'A nearby place to explore on foot. Pick your own safe walking route to this stop.', stopPlaceIds: [String(poi.id)], distance: poi.distance
+  }));
+}
 function discoverCard(card) {
   const selected = selectedPlaceId && card.stopPlaceIds?.includes(selectedPlaceId);
   return `<article class="guide-card ${selected ? 'selected' : ''}" data-guide-card="${escapeHtml(card.id)}"><small>${card.kind === 'journey' ? 'JOURNEY' : escapeHtml(card.kind.replaceAll('+', ' + '))}${distanceLabel(card.distance)}</small><h3>${escapeHtml(card.title)}</h3><p>${escapeHtml(card.reason)}</p><button class="primary-button" type="button" data-guide-walk="${escapeHtml(card.id)}">Walk this</button></article>`;
@@ -128,7 +137,7 @@ export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') 
     return;
   }
   const data = await guideData();
-  const point = state.currentPosition || state.lastPosition || (tab === 'learn' ? state.map?.getCenter?.() : null);
+  const point = state.currentPosition || state.lastPosition || state.map?.getCenter?.() || null;
   const note = el('fieldGuideOrderNote');
   if (note) {
     note.textContent = tab === 'learn' ? 'Choose a Learn view.' : (point ? `Nearest first from your ${state.currentPosition ? 'current' : state.lastPosition ? 'last' : 'map-center'} fix.` : 'Location is off, so this stays in pack order.');
@@ -145,9 +154,11 @@ export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') 
     await renderLearnHistory(target, point);
     return;
   }
-  const cards = data.discover;
-  const ordered = sortGuideCardsByDistance(cards, point, (card) => (card.stopPlaceIds || []).map((id) => poiById.get(String(id))));
-  target.innerHTML = ordered.length ? ordered.map(discoverCard).join('') : '<p class="empty-state">No curated walk recommendations are available for this area yet. You can still sketch a walk from Start walk.</p>';
+  const ordered = sortGuideCardsByDistance(data.discover, point, (card) => (card.stopPlaceIds || []).map((id) => poiById.get(String(id))));
+  const close = ordered.filter((card) => !point || card.distance <= 40233);
+  const walks = nearbyWalks([...poiById.values()], point).filter((card) => !close.some((item) => item.stopPlaceIds?.includes(card.stopPlaceIds[0])));
+  const shown = [...close, ...walks].sort((a, b) => (a.distance ?? Infinity) - (b.distance ?? Infinity)).slice(0, 12);
+  target.innerHTML = shown.length ? shown.map(discoverCard).join('') : '<p class="empty-state">No walkable places are available near this map view yet. Move the map or choose another area to explore.</p>';
 }
 function planForCard(card) {
   return { pack_id: state.activeCity, title: card.title, reason: card.reason, stop_place_ids: card.stopPlaceIds || [], ...(card.journeyId ? { journeyId: card.journeyId } : {}) };

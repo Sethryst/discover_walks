@@ -134,3 +134,9 @@
 .historical-topo-select select { font: inherit; padding: .5rem; }
 .historical-topo-opacity input { width: 100%; }
 .historical-topo-status { color: #7a2d1d; font-weight: 650; min-height: 1.4em; }
+.historical-topo-progress { height: .55rem; overflow: hidden; border-radius: 999px; background: #e8dfd0; margin: .75rem 0 .35rem; }
+.historical-topo-progress span { display: block; width: 0; height: 100%; border-radius: inherit; background: #2d7259; transition: width .25s ease; }
+.historical-topo-progress.complete span { background: #497b4e; }
+.guide-list:has(.learn-history) { grid-template-columns: minmax(0, 1fr); }
+.historical-topo-panel { width: 100%; max-width: 42rem; }
+.historical-topo-panel p { max-width: 65ch; line-height: 1.45; }
