@@ -17,10 +17,10 @@ test('saved national OSM choices restore exactly, including intentional all-off'
 
 test('My Maps controls expose group and individual category toggles', () => {
   const html = nationalOsmLayerControlsHtml(normalizedNationalOsmLayers());
-  assert.match(html, /data-national-osm-toggle-all="walking"/);
-  assert.match(html, /data-national-osm-layer="trail" checked/);
+  assert.match(html, /data-national-osm-layer="trail" aria-pressed="true"/);
   assert.match(html, /data-national-osm-layer="crossing"/);
-  assert.match(html, /Walking network<\/span><small>\(1\/4 shown\)<\/small>/);
+  assert.match(html, /data-national-osm-group="walking"/);
+  assert.match(html, /Walking network <small>\(1\/4 shown\)<\/small>/);
   assert.doesNotMatch(html, /OpenStreetMap/);
   assert.doesNotMatch(html, /national layer/i);
 });

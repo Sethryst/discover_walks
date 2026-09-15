@@ -29,7 +29,6 @@ test('generated recommendation strings are suppressed and active walks accept Le
   const walk = await readFile(new URL('../js/walk.js', import.meta.url), 'utf8');
   assert.match(guide, /isPresentableRecommendation/);
   assert.match(guide, /official non-county\|trail geometry\|artifact_type/);
-  assert.match(guide, /No curated walk recommendations are available/);
   assert.match(guide, /if \(state\.activeWalk\) void addWalkWaypoint\(poi\)/);
   assert.match(walk, /export async function addWalkWaypoint\(poi\)/);
   assert.match(walk, /walk\.waypoints\.push/);

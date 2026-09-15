@@ -39,7 +39,7 @@ test('national PMTiles stay range-only while My Maps exposes persisted category 
   assert.doesNotMatch(html, /id="nationalPoiLegend"/);
   assert.match(html, /id="nationalOsmLayerControls"/);
   assert.match(worker, /if \(\/\\\.pmtiles\$\/i\.test\(url\.pathname\)\)/);
-  assert.match(releaseRuntime, /new pmtilesImpl\.FetchSource/);
+  assert.match(releaseRuntime, /new pmtilesImpl\.PMTiles/);
   assert.doesNotMatch(releaseRuntime, /national[\s\S]{0,300}response\.blob\(\)/i);
   assert.match(nationalMapRuntime, /id: 'osm-basemap'/);
   assert.match(nationalMapRuntime, /id: 'national-poi-icon'/);

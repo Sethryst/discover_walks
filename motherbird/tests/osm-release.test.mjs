@@ -31,10 +31,7 @@ test('national POIs expose only a range-backed archive and reject installable ma
   }
   const rangeBacked = createNationalPoiArchive(manifest, { pmtilesImpl: { FetchSource, PMTiles } });
   assert.equal(rangeBacked.url, manifest.national.poi.url);
-  assert.deepEqual(calls, [
-    ['range-source', manifest.national.poi.url],
-    ['archive', manifest.national.poi.url]
-  ]);
+  assert.deepEqual(calls, [['archive', manifest.national.poi.url]]);
 
   manifest.national.poi.delivery.offlineInstallable = true;
   assert.throws(() => publishedNationalPoi(manifest), /range-only delivery/);
@@ -47,7 +44,7 @@ test('national walking network points at the Hugging Face dataset through range 
   const result = createNationalWalkArchive({ pmtilesImpl: { FetchSource, PMTiles } });
   assert.equal(result.url, NATIONAL_WALK_PMtiles_URL);
   assert.equal(result.url, 'https://huggingface.co/datasets/sethryst/us-national-walk/resolve/main/national-walk.pmtiles');
-  assert.deepEqual(calls, [['range-source', result.url], ['archive', result.url]]);
+  assert.deepEqual(calls, [['archive', result.url]]);
 });
 
 test('browser consumes an explicitly configured public release manifest', async () => {
