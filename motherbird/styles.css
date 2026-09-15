@@ -140,3 +140,8 @@
 .guide-list:has(.learn-history) { grid-template-columns: minmax(0, 1fr); }
 .historical-topo-panel { width: 100%; max-width: 42rem; }
 .historical-topo-panel p { max-width: 65ch; line-height: 1.45; }
+.historical-topo-panel-toggle { display: none; }
+@media (max-width: 720px) {
+  .historical-topo-map-control { display: none; }
+  .historical-topo-panel-toggle { display: block; min-height: 44px; width: 100%; margin: .5rem 0; }
+}
