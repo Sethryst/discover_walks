@@ -61,6 +61,7 @@ export const state = {
   mapDrawingHistory: [],
   localDrawings: [],
   federalBoundaryOverlay: null,
+  historicalTopoLayer: null,
 
   // walking session
   activeWalk: null,

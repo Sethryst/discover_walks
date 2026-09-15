@@ -153,7 +153,7 @@ export function setLearnView(view) { learnView = LEARN_VIEWS.includes(view) ? vi
 export function currentLearnView() { return learnView; }
 export function isCheckedSite(poi, profile) { return idsFromProfile(profile).has(String(poi?.id || '')); }
 export function setLearnScreen(screen) {
-  learnScreen = ['home', 'history', 'watersheds', 'battlefields', 'names', 'protected', 'wildlife'].includes(screen) ? screen : 'home';
+  learnScreen = ['home', 'history', 'topo', 'watersheds', 'battlefields', 'names', 'protected', 'wildlife'].includes(screen) ? screen : 'home';
   if (screen !== 'battlefields') { activeEraId = null; activeYear = null; activeBattleId = null; }
   if (!['names', 'protected', 'wildlife'].includes(screen)) activeLensItemId = null;
   return learnScreen;
@@ -196,7 +196,17 @@ export function placesInWatershed(pois, feature) {
   return (pois || []).filter((poi) => Number.isFinite(Number(poi.lat)) && Number.isFinite(Number(poi.lng)) && pointInFeature(Number(poi.lng), Number(poi.lat), feature));
 }
 export function learnHomeHtml() {
-  return `<section class="learn-history"><button type="button" class="guide-card learn-entry" data-learn-open="history"><h3>Track VA history sites</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="watersheds"><h3>View watersheds</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="battlefields"><h3>View historic battlefields</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="names"><h3>Name this landscape</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="protected"><h3>Who protects this land</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="wildlife"><h3>Wildlife recorded here</h3></button></section>`;
+  return `<section class="learn-history"><button type="button" class="guide-card learn-entry" data-learn-open="history"><h3>Track VA history sites</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="topo"><h3>Explore historic topo maps</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="watersheds"><h3>View watersheds</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="battlefields"><h3>View historic battlefields</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="names"><h3>Name this landscape</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="protected"><h3>Who protects this land</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="wildlife"><h3>Wildlife recorded here</h3></button></section>`;
+}
+const TOPO_ERAS = ['1950s', '1960s', '1970s', '1980s'];
+export function historicalTopoHtml() {
+  return `<section class="learn-history"><button type="button" class="secondary-button" data-learn-home="1">Back</button><h3>Historic topo maps</h3><p>Compare the landscape with USGS maps from the mid-20th century.</p><label>Era <select data-historical-topo-era>${TOPO_ERAS.map((era) => `<option>${era}</option>`).join('')}</select></label><label>Opacity <input data-historical-topo-opacity type="range" min="0" max="1" step="0.05" value="0.65" /></label><p class="empty-state">Pan and zoom the map to explore. Tiles load on demand.</p></section>`;
+}
+export function paintHistoricalTopo({ map, leaflet, era = '1950s', opacity = 0.65 }) {
+  state.historicalTopoLayer?.remove(); state.historicalTopoLayer = null;
+  if (!map || !leaflet) return null;
+  const layer = leaflet.tileLayer(`https://discover-walks.onrender.com/tiles/${era}/{z}/{x}/{y}.png`, { maxZoom: 13, maxNativeZoom: 13, opacity, attribution: 'USGS Historical Topographic Map Collection' }).addTo(map);
+  state.historicalTopoLayer = layer; return layer;
 }
 export function watershedListHtml(features, selectedId, places) {
   const selected = (features || []).find((feature) => feature.properties?.id === selectedId);
@@ -311,6 +321,9 @@ export async function renderLearnHistory(target, point) {
     target.innerHTML = learnHomeHtml();
     state.learnBoundsLayer?.remove(); state.learnBoundsLayer = null;
     return;
+  }
+  if (learnScreen === 'topo') {
+    setLearnSheetMin(false); target.innerHTML = historicalTopoHtml(); paintHistoricalTopo({ map: state.map, leaflet: globalThis.L }); return;
   }
   const pois = state.cityPois[state.activeCity] || [];
   if (learnScreen === 'watersheds') {

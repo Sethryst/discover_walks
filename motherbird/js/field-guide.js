@@ -9,7 +9,7 @@ import db from './storage.js';
 import { isVisiblePoi, selectImportantPois } from './poi.js';
 import { placeLight, publicPlaceSource, walkerDetails } from './place-details.js';
 import { installedPackBounds } from './offline-view.js';
-import { isHistorySite, renderLearnHistory, setLearnView, setLearnScreen, setActiveWatershed, setBattlefieldEra, setBattlefieldYear, setBattlefieldSite, stepBattlefieldBack, setActiveLensItem } from './learn-history.js';
+import { isHistorySite, renderLearnHistory, setLearnView, setLearnScreen, setActiveWatershed, setBattlefieldEra, setBattlefieldYear, setBattlefieldSite, stepBattlefieldBack, setActiveLensItem, paintHistoricalTopo } from './learn-history.js';
 import { setPoiVisited } from './poi-visit-tracking.js';
 import { addWalkWaypoint } from './walk.js';
 import { initMapsFolders, renderMapsLibrary } from './maps-folders.js';
@@ -116,6 +116,7 @@ export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') 
   if (tab !== 'learn') {
     shadeLearnBounds(false);
     document.getElementById('backpackSheet')?.classList.remove('learn-min');
+    state.historicalTopoLayer?.remove(); state.historicalTopoLayer = null;
   }
   if (tab !== 'learn') {
     shadeLearnBounds(false);
@@ -241,6 +242,10 @@ export function initFieldGuideFilters() {
     if (basin) { setLearnScreen('watersheds'); setActiveWatershed(basin.dataset.learnWatershed); void renderFieldGuide('learn'); return; }
     const viewButton = event.target.closest('[data-learn-view]');
     if (viewButton) { setLearnView(viewButton.dataset.learnView); void renderFieldGuide('learn'); return; }
+    const topoEra = event.target.closest('[data-historical-topo-era]');
+    if (topoEra) { paintHistoricalTopo({ map: state.map, leaflet: globalThis.L, era: topoEra.value, opacity: Number(event.target.closest('section')?.querySelector('[data-historical-topo-opacity]')?.value || 0.65) }); return; }
+    const topoOpacity = event.target.closest('[data-historical-topo-opacity]');
+    if (topoOpacity && state.historicalTopoLayer) { state.historicalTopoLayer.setOpacity(Number(topoOpacity.value)); return; }
     const check = event.target.closest('[data-learn-check]');
     if (check) {
       const poi = (state.cityPois[state.activeCity] || []).find((item) => String(item.id) === check.dataset.learnCheck);
