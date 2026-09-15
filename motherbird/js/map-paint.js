@@ -155,6 +155,7 @@ export async function initMapPaint() {
     const link = document.createElement('a'); link.href = url; link.download = 'map-artifacts.geojson'; link.click();
     setTimeout(() => URL.revokeObjectURL(url), 0);
   });
+  el('manageMapLayers')?.addEventListener('click', () => document.querySelector('[data-map-destination="maps"]')?.click());
   window.addEventListener('map-workspace-changed', ({ detail }) => {
     const active = detail?.destination === 'draw' && detail.open;
     if (!active) { freehandActive = false; setActive(false); document.querySelectorAll('[data-draw-shape]').forEach((item) => item.classList.remove('active')); }
