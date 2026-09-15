@@ -62,6 +62,7 @@ export const state = {
   localDrawings: [],
   federalBoundaryOverlay: null,
   historicalTopoLayer: null,
+  historicalTopoControl: null,
 
   // walking session
   activeWalk: null,

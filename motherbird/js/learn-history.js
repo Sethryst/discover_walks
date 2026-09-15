@@ -200,12 +200,22 @@ export function learnHomeHtml() {
 }
 const TOPO_ERAS = ['1950s', '1960s', '1970s', '1980s'];
 export function historicalTopoHtml() {
-  return `<section class="learn-history"><button type="button" class="secondary-button" data-learn-home="1">Back</button><h3>Historic topo maps</h3><p>Compare the landscape with USGS maps from the mid-20th century.</p><label>Era <select data-historical-topo-era>${TOPO_ERAS.map((era) => `<option>${era}</option>`).join('')}</select></label><label>Opacity <input data-historical-topo-opacity type="range" min="0" max="1" step="0.05" value="0.65" /></label><p class="empty-state">Pan and zoom the map to explore. Tiles load on demand.</p></section>`;
+  return `<section class="learn-history historical-topo-panel"><button type="button" class="secondary-button" data-learn-home="1">← Back to History</button><h3>Historic topo maps</h3><p>Compare the landscape with USGS maps from the mid-20th century. Your current map stays visible while tiles load.</p><label class="historical-topo-select"><span>Map era</span><select data-historical-topo-era aria-label="Historic topo map era">${TOPO_ERAS.map((era) => `<option value="${era}">${era}</option>`).join('')}</select></label><label class="historical-topo-opacity"><span>Overlay opacity <output data-historical-topo-opacity-value>65%</output></span><input data-historical-topo-opacity type="range" min="0" max="1" step="0.05" value="0.65" aria-label="Historic topo overlay opacity" /></label><p class="historical-topo-status" data-historical-topo-status aria-live="polite">Historic topo is on. Tiles load in the background.</p><p class="empty-state">Use the map switch to turn the overlay off or on at any time.</p></section>`;
 }
+function setTopoStatus(message) { document.querySelector('[data-historical-topo-status]')?.replaceChildren(message); }
 export function paintHistoricalTopo({ map, leaflet, era = '1950s', opacity = 0.65 }) {
   state.historicalTopoLayer?.remove(); state.historicalTopoLayer = null;
+  state.historicalTopoControl?.remove(); state.historicalTopoControl = null;
   if (!map || !leaflet) return null;
-  const layer = leaflet.tileLayer(`https://discover-walks.onrender.com/tiles/${era}/{z}/{x}/{y}.png`, { maxZoom: 13, maxNativeZoom: 13, opacity, attribution: 'USGS Historical Topographic Map Collection' }).addTo(map);
+  const layer = leaflet.tileLayer(`https://discover-walks.onrender.com/tiles/${era}/{z}/{x}/{y}.png`, { maxZoom: 13, maxNativeZoom: 13, opacity, attribution: 'USGS Historical Topographic Map Collection' });
+  let pending = 0;
+  layer.on('tileloadstart', () => { pending += 1; setTopoStatus(`Loading ${era} topo tiles in the background… ${pending} requested`); });
+  layer.on('tileload', () => { pending = Math.max(0, pending - 1); if (!pending) setTopoStatus(`${era} historic topo is ready.`); });
+  layer.on('tileerror', () => { pending = Math.max(0, pending - 1); setTopoStatus(`Some ${era} topo tiles could not load. The base map is still available.`); });
+  layer.addTo(map);
+  const control = leaflet.control({ position: 'topright' });
+  control.onAdd = () => { const div = leaflet.DomUtil.create('div', 'leaflet-control historical-topo-map-control'); div.innerHTML = `<button type="button" data-historical-topo-toggle aria-pressed="true">Historic topo: On</button>`; leaflet.DomEvent.disableClickPropagation(div); div.querySelector('button').addEventListener('click', () => { const on = map.hasLayer(layer); if (on) { map.removeLayer(layer); setTopoStatus('Historic topo is off. Your base map remains visible.'); } else { layer.addTo(map); setTopoStatus(`Loading ${era} topo tiles in the background…`); } const button = div.querySelector('button'); button.setAttribute('aria-pressed', String(!on)); button.textContent = `Historic topo: ${on ? 'Off' : 'On'}`; }); return div; };
+  control.addTo(map); state.historicalTopoControl = control;
   state.historicalTopoLayer = layer; return layer;
 }
 export function watershedListHtml(features, selectedId, places) {
