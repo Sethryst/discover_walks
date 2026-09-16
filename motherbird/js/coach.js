@@ -1,12 +1,14 @@
 import db from './storage.js';
 import { state } from './state.js';
 import { el } from './utils.js';
+import { openSheet } from './ui.js';
 
 export const COACH_STEPS = [
   { target: 'mapSearchInput', text: 'Find a place or trail.' },
   { target: 'walkTab', text: 'Start or make a walk.' },
   { target: 'libraryTab', text: 'Keep what you notice.' },
   { target: 'meTab', text: 'Your private tools.' },
+  { target: 'radialChevron', text: 'Quick-access radial menu.' },
 ];
 
 const HINT_FLAG = 'mainShellHintSeenV1';
@@ -26,6 +28,7 @@ export function resolveCoachTarget(id, doc = document) {
   const node = doc.getElementById(id);
   if (!node) return null;
   if (id === 'mapSearchInput') return node.closest('.map-search') || node;
+  if (id === 'radialChevron' || id === 'radialStack') return node.closest('.radial-stack') || node.closest('.radial-btn-group') || node;
   return node;
 }
 
@@ -195,8 +198,8 @@ function placeHint(hint, spotlight, pointer, target) {
 }
 
 function ensureMarkup(hint) {
-  if (el('mapIntroText') && el('mapIntroNext') && el('mapIntroSkip')) return;
-  hint.innerHTML = '<p id="mapIntroText"></p><div class="coach-actions"><button type="button" id="mapIntroNext">Next</button><button type="button" id="mapIntroSkip" class="text-button">Skip</button></div>';
+  if (el('mapIntroText') && el('mapIntroNext') && el('mapIntroSkip') && el('mapIntroHelp')) return;
+  hint.innerHTML = '<p id="mapIntroText"></p><div class="coach-actions"><button type="button" id="mapIntroNext">Next</button><button type="button" id="mapIntroHelp" class="text-button">View Help</button><button type="button" id="mapIntroSkip" class="text-button">Skip</button></div>';
 }
 
 function mountNode(id, className) {
@@ -281,6 +284,20 @@ export async function finishCoach() {
   state.settings[HINT_FLAG] = true;
   await db.put('settings', state.settings);
 }
+export function openAppHelp() {
+  void finishCoach();
+  const meTab = document.getElementById('meTab');
+  if (meTab) meTab.click();
+  openSheet('helpSheet');
+}
+
+export function restartCoachMarks() {
+  state.settings[HINT_FLAG] = false;
+  stepIndex = 0;
+  paused = false;
+  showStep();
+}
+
 export function pauseCoachMarks() { paused = true; clearTimeout(timer); el('mapIntroHint')?.classList.add('hidden'); el('coachSpotlight')?.classList.add('hidden'); el('coachPointer')?.classList.add('hidden'); }
 export function resumeCoachMarks() { if (!paused || state.settings[HINT_FLAG]) return; paused = false; showStep(); }
 export function showCategoryCoach(label) { pauseCoachMarks(); const { hint } = mountOverlay(); const text = el('mapIntroText'); const next = el('mapIntroNext'); text.textContent = `${label} places are on the map.`; next.textContent = 'Got it'; hint.classList.remove('hidden'); next.onclick = () => { hint.classList.add('hidden'); resumeCoachMarks(); }; window.setTimeout(() => { if (!hint.classList.contains('hidden')) { hint.classList.add('hidden'); resumeCoachMarks(); } }, 7000); }
@@ -294,6 +311,10 @@ export function startCoachMarks() {
     el('mapIntroNext')?.addEventListener('click', (event) => {
       event.preventDefault();
       nextStep();
+    });
+    el('mapIntroHelp')?.addEventListener('click', (event) => {
+      event.preventDefault();
+      openAppHelp();
     });
     el('mapIntroSkip')?.addEventListener('click', (event) => {
       event.preventDefault();

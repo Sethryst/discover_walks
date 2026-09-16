@@ -17,6 +17,7 @@ import { transcribeJournal, toggleJournalRecording, stopJournalCapture } from '.
 import { renderNearbyPlaces, initJournalPane } from './journal-pane.js';
 import { openGeoCypher } from './geo-cypher.js';
 import { initMessengerBird } from './messenger-bird.js';
+import { restartCoachMarks } from './coach.js';
 
 const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];
 
@@ -131,6 +132,10 @@ function bindMessengerBird() {
 function bindSheets() {
   document.querySelectorAll('[data-close-sheet]').forEach((button) => button.addEventListener('click', closeSheets));
   el('modalBackdrop')?.addEventListener('click', closeSheets);
+  el('restartCoachMarksButton')?.addEventListener('click', () => {
+    closeSheets();
+    restartCoachMarks();
+  });
 }
 
 function togglePanel(buttonId, panelId) {

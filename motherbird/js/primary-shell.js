@@ -22,7 +22,8 @@ const actions = {
     { id: 'companion', label: 'Companion', icon: '🐾', run: () => document.getElementById('companionButton')?.click() },
     { id: 'alerts', label: 'Walking alerts', icon: '🔔', run: () => document.getElementById('locateChevron')?.click() },
     { id: 'offline-maps', label: 'Offline & maps', icon: '💾', run: () => openSheet('backpackSheet') },
-    { id: 'privacy', label: 'Data & privacy', icon: '🔒', run: () => { openSheet('backpackSheet'); document.querySelector('[data-guide-tab="online"]')?.click(); } }
+    { id: 'privacy', label: 'Data & privacy', icon: '🔒', run: () => { openSheet('backpackSheet'); document.querySelector('[data-guide-tab="online"]')?.click(); } },
+    { id: 'help', label: 'App Help & Guide', icon: '❓', run: () => openSheet('helpSheet') }
   ]
 };
 

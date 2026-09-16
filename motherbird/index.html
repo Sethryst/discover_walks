@@ -44,7 +44,7 @@
     <div id="map" role="application" aria-label="Map of installed-pack places"></div>
     <div id="walkingCellOverlay" class="walking-cell-overlay hidden" aria-hidden="true"></div>
     <div id="nationalPoiOverlay" class="national-poi-overlay hidden" aria-hidden="true"></div>
-    <aside class="map-intro-hint hidden" id="mapIntroHint" aria-live="polite"><p id="mapIntroText"></p><div class="coach-actions"><button type="button" id="mapIntroNext">Next</button><button type="button" id="mapIntroSkip" class="text-button">Skip</button></div></aside>
+    <aside class="map-intro-hint hidden" id="mapIntroHint" aria-live="polite"><p id="mapIntroText"></p><div class="coach-actions"><button type="button" id="mapIntroNext">Next</button><button type="button" id="mapIntroHelp" class="text-button">View Help</button><button type="button" id="mapIntroSkip" class="text-button">Skip</button></div></aside>
     <div id="coachSpotlight" class="coach-spotlight hidden" aria-hidden="true"></div>
     <div class="viewfinder-frame" aria-label="Walk controls">
       <div class="top-cluster">
@@ -163,6 +163,38 @@
       </div>
       <footer class="online-legal"><button class="danger-button" id="clearDataButton" type="button">Clear this device</button><a href="./privacy.html">Privacy</a><a href="./terms.html">Terms</a><a href="./watch.html">Watch</a></footer>
     </section>
+  </section>
+
+  <section class="sheet split-sheet hidden help-sheet" id="helpSheet" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
+    <button class="close-sheet" data-close-sheet aria-label="Close">×</button>
+    <span class="sheet-kicker">APP HELP & GUIDE</span>
+    <h2 id="helpTitle">How to Use Walk & Wildlife</h2>
+    <p class="help-intro">Explore features, customize tools, and learn how to navigate your local-first map.</p>
+    <div class="help-grid">
+      <div class="help-card">
+        <h3>🔍 Search & Explore</h3>
+        <p>Find nearby places, parks, or trailheads using the search bar. Toggle layers like recreation, news, and cuisine.</p>
+      </div>
+      <div class="help-card">
+        <h3>🗺️ Walk & Routes</h3>
+        <p>Sketch timed walks (20, 30, 60 minutes), draw custom routes with the pencil tool, or follow saved paths.</p>
+      </div>
+      <div class="help-card">
+        <h3>▦ Library & Journal</h3>
+        <p>Keep field notes, record wildlife observations, drop audio cyphers, and organize saved places in your private journal.</p>
+      </div>
+      <div class="help-card">
+        <h3>⚙️ Radial Menu</h3>
+        <p>Use the floating quick-access gear menu on the map. Star your favorite actions in the shell menu to pin them here.</p>
+      </div>
+      <div class="help-card">
+        <h3>🔒 Me & Private Tools</h3>
+        <p>Access offline maps, send private Messenger Bird notes, set proximity walking alerts, and configure app backups.</p>
+      </div>
+    </div>
+    <div class="help-actions">
+      <button class="primary-button" id="restartCoachMarksButton" type="button">Restart Interactive Tour</button>
+    </div>
   </section>
 
   <section class="sheet hidden" id="observationSheet" role="dialog" aria-modal="true" aria-labelledby="observationTitle"><button class="close-sheet" data-close-sheet aria-label="Close">×</button><span class="sheet-kicker">PRIVATE OBSERVATION</span><h2 id="observationTitle">What did you notice?</h2><p id="observationLocation"></p><form id="observationForm"><label>Name<input id="speciesInput" maxlength="100" required placeholder="Bird, tree, trail condition…" /></label><label>Note<textarea id="observationNote" rows="4" maxlength="1000"></textarea></label><label class="secondary-button import-label">Add photo<input id="photoInput" type="file" accept="image/*" capture="environment" /></label><small id="photoName">Optional, stored only on this device</small><div class="observation-icons"><button class="active" data-observation-icon="camera" type="button">Photo</button><button data-observation-icon="eye" type="button">Seen</button><button data-observation-icon="tree" type="button">Nature</button></div><button class="primary-button" type="submit">Save observation</button></form></section>
