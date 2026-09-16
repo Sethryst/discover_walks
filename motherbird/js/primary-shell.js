@@ -33,6 +33,7 @@ export function initPrimaryShell() {
   const title = document.getElementById('primaryPanelTitle');
   const list = document.getElementById('primaryPanelActions');
   const select = (tab, { initial = false } = {}) => {
+    const wasActive = document.body.dataset.primaryTab === tab;
     document.body.dataset.primaryTab = tab;
     document.querySelectorAll('[data-primary-tab]').forEach((button) => {
       const active = button.dataset.primaryTab === tab;
@@ -46,10 +47,14 @@ export function initPrimaryShell() {
     document.body.classList.toggle('shell-walk', tab === 'walk');
     if (tab === 'explore') {
       panel.classList.add('hidden');
-      // Always request Explore explicitly. The panel can retain a stale
-      // destination/hidden combination after a responsive breakpoint change,
-      // which otherwise makes the primary Explore tab appear unresponsive.
-      if (!initial) window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'explore' } }));
+      if (!initial) window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: wasActive ? '' : 'explore' } }));
+      return;
+    }
+    // The map workspace belongs to Explore. Close it before showing a shell
+    // pane so the two panels cannot become a conjoined white block.
+    window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: '' } }));
+    if (wasActive && !panel.classList.contains('hidden')) {
+      panel.classList.add('hidden');
       return;
     }
     title.textContent = tab[0].toUpperCase() + tab.slice(1);

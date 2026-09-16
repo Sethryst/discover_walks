@@ -50,6 +50,8 @@ function setMapWorkspace(destination = '', { toggle = true } = {}) {
   panel.classList.toggle('hidden', !next);
   document.body.classList.toggle('map-workspace-open', Boolean(next));
   document.body.classList.toggle('draw-pane-open', next === 'draw');
+  el('collapseDrawTools')?.classList.toggle('hidden', next !== 'draw');
+  if (next !== 'draw') document.body.classList.remove('draw-tools-collapsed');
   document.querySelectorAll('[data-map-destination]').forEach((button) => {
     const active = button.dataset.mapDestination === next;
     button.classList.toggle('active', active);
@@ -66,7 +68,14 @@ function bindMapWorkspace() {
     if (button) setMapWorkspace(button.dataset.mapDestination, { toggle: button.dataset.mapDestination !== 'explore' });
   });
   el('closeMapWorkspace')?.addEventListener('click', () => setMapWorkspace(''));
-  window.addEventListener('map-workspace-open-requested', ({ detail }) => setMapWorkspace(detail?.destination || 'explore'));
+  el('collapseDrawTools')?.addEventListener('click', () => {
+    const button = el('collapseDrawTools');
+    const collapsed = document.body.classList.toggle('draw-tools-collapsed');
+    button?.setAttribute('aria-expanded', String(!collapsed));
+    button?.setAttribute('aria-label', collapsed ? 'Expand draw tools' : 'Collapse draw tools');
+    button.textContent = collapsed ? '⌄' : '⌃';
+  });
+  window.addEventListener('map-workspace-open-requested', ({ detail }) => setMapWorkspace(detail?.destination ?? 'explore'));
 }
 
 function closeFieldGuideMenu() {
