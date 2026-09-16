@@ -32,7 +32,7 @@ export function initPrimaryShell() {
   const panel = document.getElementById('primaryPanel');
   const title = document.getElementById('primaryPanelTitle');
   const list = document.getElementById('primaryPanelActions');
-  const select = (tab) => {
+  const select = (tab, { initial = false } = {}) => {
     document.body.dataset.primaryTab = tab;
     document.querySelectorAll('[data-primary-tab]').forEach((button) => {
       const active = button.dataset.primaryTab === tab;
@@ -40,6 +40,7 @@ export function initPrimaryShell() {
       active ? button.setAttribute('aria-current', 'page') : button.removeAttribute('aria-current');
     });
     closeSheets();
+    document.body.classList.toggle('shell-explore', tab === 'explore');
     document.body.classList.toggle('shell-library', tab === 'library');
     document.body.classList.toggle('shell-me', tab === 'me');
     document.body.classList.toggle('shell-walk', tab === 'walk');
@@ -48,7 +49,7 @@ export function initPrimaryShell() {
       // Always request Explore explicitly. The panel can retain a stale
       // destination/hidden combination after a responsive breakpoint change,
       // which otherwise makes the primary Explore tab appear unresponsive.
-      window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'explore' } }));
+      if (!initial) window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'explore' } }));
       return;
     }
     title.textContent = tab[0].toUpperCase() + tab.slice(1);
@@ -94,7 +95,7 @@ export function initPrimaryShell() {
     if (item?.run) item.run();
   });
   document.getElementById('closePrimaryPanel')?.addEventListener('click', () => panel.classList.add('hidden'));
-  select('explore');
+  select('explore', { initial: true });
   const region = document.body.dataset.regionName || CITIES[state.activeCity]?.name || 'Fairfax County';
   document.getElementById('mapSearchInput')?.setAttribute('placeholder', `Search ${region}`);
 }
