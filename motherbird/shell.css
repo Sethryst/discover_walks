@@ -9,3 +9,10 @@ body.shell-library .middle-tools,body.shell-library .top-cluster .messenger-stac
 .top-cluster .messenger-stack,.top-cluster .start-stack,.middle-tools{display:none!important}
 @media(max-width:720px){body[data-primary-tab="walk"] .top-cluster .start-stack,body[data-primary-tab="me"] .top-cluster .messenger-stack{grid-column:1/-1;grid-row:2}.top-cluster:has(.start-stack:not(.hidden)) .map-search{grid-row:1}.primary-panel{max-height:55dvh}}
 .artifact-heading-actions{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}.artifact-helper{margin:0 0 8px;color:#7a858b;font-size:12px;line-height:1.45}
+
+/* The workspace can fill the desktop viewport, but only its controls should
+   participate in hit testing. This keeps the shell navigation reachable even
+   when the workspace panel is closed or visually empty. */
+.map-workspace{pointer-events:none}
+.map-workspace .map-dock,.map-workspace .map-workspace-panel{pointer-events:auto}
+.primary-nav{z-index:1200}
