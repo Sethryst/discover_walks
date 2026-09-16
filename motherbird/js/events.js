@@ -38,14 +38,14 @@ export function initEvents() {
   window.addEventListener('backpack-open-requested', openBackpack);
 }
 
-function setMapWorkspace(destination = '', { toggle = true } = {}) {
+function setMapWorkspace(destination = '', { toggle = true, forceOpen = false } = {}) {
   const panel = el('mapWorkspacePanel');
   if (!panel) return;
   const current = panel.dataset.destination || '';
   // Explore is the desktop landing workspace. Clicking its tab while it is
   // already selected must keep it open; otherwise the wide layout appears to
   // ignore the Explore click because boot opens this panel automatically.
-  const next = toggle && current === destination && !panel.classList.contains('hidden') ? '' : destination;
+  const next = !forceOpen && toggle && current === destination && !panel.classList.contains('hidden') ? '' : destination;
   panel.dataset.destination = next;
   panel.classList.toggle('hidden', !next);
   document.body.classList.toggle('map-workspace-open', Boolean(next));
@@ -75,7 +75,7 @@ function bindMapWorkspace() {
     button?.setAttribute('aria-label', collapsed ? 'Expand draw tools' : 'Collapse draw tools');
     button.textContent = collapsed ? '⌄' : '⌃';
   });
-  window.addEventListener('map-workspace-open-requested', ({ detail }) => setMapWorkspace(detail?.destination ?? 'explore'));
+  window.addEventListener('map-workspace-open-requested', ({ detail }) => setMapWorkspace(detail?.destination ?? 'explore', { forceOpen: detail?.forceOpen === true }));
 }
 
 function closeFieldGuideMenu() {
