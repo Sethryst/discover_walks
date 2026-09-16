@@ -128,6 +128,9 @@
 .walk-sketch{max-height:min(52dvh,420px);overflow-y:auto;overscroll-behavior:contain}
 @media(max-width:720px){.start-panel{position:fixed;top:auto;left:8px;right:8px;bottom:calc(max(8px,env(safe-area-inset-bottom)) + 64px);width:auto;max-height:min(62dvh,480px)}.walk-sketch{position:fixed;left:8px;right:8px;bottom:calc(max(8px,env(safe-area-inset-bottom)) + 64px);transform:none;width:auto;max-height:min(46dvh,360px);padding:12px}.walk-sketch ol{gap:8px 18px}}
 @media(max-height:680px) and (max-width:720px){.walk-sketch{max-height:40dvh}.start-panel{max-height:55dvh}}
+/* Coach marks must remain available while the desktop workspace is open. */
+.map-workspace-open .map-intro-hint{display:flex}
+
  .historical-topo-map-control button { background: #fffaf0; border: 1px solid #7a2d1d; border-radius: 4px; color: #462016; cursor: pointer; font: inherit; padding: .45rem .65rem; box-shadow: 0 1px 5px #0003; }
 .historical-topo-map-control button[aria-pressed="false"] { background: #f0e9dc; color: #6c6258; }
 .historical-topo-select, .historical-topo-opacity { display: grid; gap: .3rem; margin: .8rem 0; }
@@ -311,4 +314,3 @@
   color: #173c35;
   box-shadow: 0 1px 4px rgba(0,0,0,0.15);
 }
-

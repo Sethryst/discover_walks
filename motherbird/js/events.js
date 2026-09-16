@@ -38,11 +38,14 @@ export function initEvents() {
   window.addEventListener('backpack-open-requested', openBackpack);
 }
 
-function setMapWorkspace(destination = '') {
+function setMapWorkspace(destination = '', { toggle = true } = {}) {
   const panel = el('mapWorkspacePanel');
   if (!panel) return;
   const current = panel.dataset.destination || '';
-  const next = current === destination && !panel.classList.contains('hidden') ? '' : destination;
+  // Explore is the desktop landing workspace. Clicking its tab while it is
+  // already selected must keep it open; otherwise the wide layout appears to
+  // ignore the Explore click because boot opens this panel automatically.
+  const next = toggle && current === destination && !panel.classList.contains('hidden') ? '' : destination;
   panel.dataset.destination = next;
   panel.classList.toggle('hidden', !next);
   document.body.classList.toggle('map-workspace-open', Boolean(next));
@@ -60,11 +63,10 @@ function setMapWorkspace(destination = '') {
 function bindMapWorkspace() {
   document.querySelector('.map-dock')?.addEventListener('click', (event) => {
     const button = event.target.closest('[data-map-destination]');
-    if (button) setMapWorkspace(button.dataset.mapDestination);
+    if (button) setMapWorkspace(button.dataset.mapDestination, { toggle: button.dataset.mapDestination !== 'explore' });
   });
   el('closeMapWorkspace')?.addEventListener('click', () => setMapWorkspace(''));
   window.addEventListener('map-workspace-open-requested', ({ detail }) => setMapWorkspace(detail?.destination || 'explore'));
-  if (globalThis.matchMedia?.('(min-width: 721px)').matches) setMapWorkspace('explore');
 }
 
 function closeFieldGuideMenu() {
