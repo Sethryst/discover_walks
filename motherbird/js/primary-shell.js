@@ -45,10 +45,10 @@ export function initPrimaryShell() {
     document.body.classList.toggle('shell-walk', tab === 'walk');
     if (tab === 'explore') {
       panel.classList.add('hidden');
-      const mapPanel = document.getElementById('mapWorkspacePanel');
-      if (mapPanel?.classList.contains('hidden') || mapPanel.dataset.destination !== 'explore') {
-        window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'explore' } }));
-      }
+      // Always request Explore explicitly. The panel can retain a stale
+      // destination/hidden combination after a responsive breakpoint change,
+      // which otherwise makes the primary Explore tab appear unresponsive.
+      window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'explore' } }));
       return;
     }
     title.textContent = tab[0].toUpperCase() + tab.slice(1);
