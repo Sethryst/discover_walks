@@ -45,6 +45,7 @@ function setMapWorkspace(destination = '') {
   panel.dataset.destination = next;
   panel.classList.toggle('hidden', !next);
   document.body.classList.toggle('map-workspace-open', Boolean(next));
+  document.body.classList.toggle('draw-pane-open', next === 'draw');
   document.querySelectorAll('[data-map-destination]').forEach((button) => {
     const active = button.dataset.mapDestination === next;
     button.classList.toggle('active', active);

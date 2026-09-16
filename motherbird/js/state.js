@@ -60,6 +60,7 @@ export const state = {
   mapPaintActive: false,
   mapDrawingHistory: [],
   localDrawings: [],
+  fieldGuidePreviewMarker: null,
   federalBoundaryOverlay: null,
   historicalTopoLayer: null,
   historicalTopoControl: null,

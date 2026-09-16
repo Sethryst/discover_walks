@@ -227,7 +227,23 @@ export function paintWalkPlan(plan) {
 async function paintCard(cardId) {
   const data = await guideData();
   const card = data.discover.find((item) => item.id === cardId); if (!card) return;
-  paintWalkPlan({ format: FORMAT, ...planForCard(card) });
+  const plan = paintWalkPlan({ format: FORMAT, ...planForCard(card) });
+  const stop = card.stopPlaceIds?.map((id) => (state.cityPois[state.activeCity] || []).find((poi) => String(poi.id) === String(id))).find(Boolean);
+  if (stop) {
+    await db.put('moments', { id: `field-guide-walk:${state.activeCity}:${card.id}`, type: 'journal', city: state.activeCity, title: `Planned walk: ${card.title}`, note: `Planned a walk to ${stop.name}.`, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() });
+    if (state.activeWalk) await addWalkWaypoint(stop);
+  }
+  return plan;
+}
+async function previewCard(cardId) {
+  const data = await guideData();
+  const card = data.discover.find((item) => item.id === cardId); if (!card) return;
+  const stop = card.stopPlaceIds?.map((id) => (state.cityPois[state.activeCity] || []).find((poi) => String(poi.id) === String(id))).find(Boolean);
+  if (!stop || !state.map) return;
+  state.fieldGuidePreviewMarker?.remove();
+  state.fieldGuidePreviewMarker = L.circleMarker([stop.lat, stop.lng], { radius: 12, color: '#7a2d1d', weight: 3, fillColor: '#f3b24b', fillOpacity: .8, interactive: false }).bindTooltip(stop.name, { permanent: true, direction: 'top' }).addTo(state.map);
+  state.map.flyTo([stop.lat, stop.lng], Math.max(state.map.getZoom(), 16));
+  window.setTimeout(() => { state.fieldGuidePreviewMarker?.remove(); state.fieldGuidePreviewMarker = null; }, 8000);
 }
 export function initFieldGuideFilters() {
   initMapsFolders();
@@ -245,7 +261,7 @@ export function initFieldGuideFilters() {
   });
   el('fieldGuideList')?.addEventListener('click', (event) => {
     const preview = event.target.closest('[data-guide-preview]');
-    if (preview) { void paintCard(preview.dataset.guidePreview); return; }
+    if (preview) { void previewCard(preview.dataset.guidePreview); return; }
     const cardElement = event.target.closest('[data-guide-card]');
     if (cardElement && cardElement.dataset.guideCard && !event.target.closest('a,button')) { void paintCard(cardElement.dataset.guideCard); return; }
     const walk = event.target.closest('[data-guide-walk]'); if (walk) { void paintCard(walk.dataset.guideWalk); return; }

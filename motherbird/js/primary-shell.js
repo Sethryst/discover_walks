@@ -1,4 +1,4 @@
-import { openSheet, closeSheets } from './ui.js';
+import { openBackpack, openJournal, openSheet, closeSheets } from './ui.js';
 import { state } from './state.js';
 import { CITIES } from './constants.js';
 import { initRadialMenu, isActionStarred, toggleStarAction } from './radial-menu.js';
@@ -7,14 +7,14 @@ import { generateTimeBasedPlan } from './planner.js';
 const actions = {
   walk: [
     { id: 'sketch-walk', label: 'Sketch a nearby walk', icon: '🗺️', run: () => void generateTimeBasedPlan() },
-    { id: 'field-guide', label: 'Follow a saved walk', icon: '🎒', run: () => openSheet('backpackSheet') },
+    { id: 'field-guide', label: 'Follow a saved walk', icon: '🎒', run: () => void openBackpack() },
     { id: 'draw', label: 'Draw a route', icon: '✏️', run: () => document.querySelector('[data-map-destination="draw"]')?.click() }
   ],
   library: [
-    { id: 'journal', label: 'Journal', icon: '▦', run: () => openSheet('journalSheet') },
+    { id: 'journal', label: 'Journal', icon: '▦', run: () => void openJournal() },
     { id: 'observe', label: 'Observations', icon: '📷', run: () => { openSheet('journalSheet'); document.getElementById('observeButton')?.click(); } },
     { id: 'saved-places', label: 'Saved walks & places', icon: '📍', run: () => document.querySelector('[data-map-destination="maps"]')?.click() },
-    { id: 'field-guide', label: 'Field Guide', icon: '🎒', run: () => openSheet('backpackSheet') },
+    { id: 'field-guide', label: 'Field Guide', icon: '🎒', run: () => void openBackpack() },
     { id: 'cypher', label: 'Nearby audio', icon: '◉', run: () => openSheet('geoCypherSheet') }
   ],
   me: [
@@ -80,6 +80,10 @@ export function initPrimaryShell() {
       starBtn.setAttribute('aria-label', `${starred ? 'Unstar' : 'Star'} ${starBtn.parentElement?.querySelector('.shell-action-btn')?.textContent || 'action'}`);
       starBtn.textContent = starred ? '⭐' : '☆';
     });
+  });
+  window.addEventListener('radial-action-triggered', ({ detail }) => {
+    const item = Object.values(actions).flat().find((action) => action.id === detail?.id);
+    if (item?.run) item.run();
   });
   document.getElementById('closePrimaryPanel')?.addEventListener('click', () => panel.classList.add('hidden'));
   select('explore');

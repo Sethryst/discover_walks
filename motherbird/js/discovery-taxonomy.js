@@ -21,3 +21,15 @@ export function rankDiscoverPlaces(places) {
   const rank = { featured: 0, published: 1, candidate: 2 };
   return [...places].sort((a, b) => (rank[publishingState(a)] ?? 2) - (rank[publishingState(b)] ?? 2) || String(a.name || '').localeCompare(String(b.name || '')));
 }
+
+export function dedupeDiscoverPlaces(places) {
+  const seen = new Set();
+  return places.filter((poi) => {
+    const name = String(poi.name || '').trim().toLocaleLowerCase().replace(/\s+/g, ' ');
+    const coordinates = Number.isFinite(poi.lat) && Number.isFinite(poi.lng) ? `${poi.lat.toFixed(4)}:${poi.lng.toFixed(4)}` : '';
+    const key = name || coordinates || String(poi.id || '');
+    if (!key || seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}

@@ -5,7 +5,7 @@ import { renderCuratedRoutes } from './routes.js';
 import { generateTimeBasedPlan } from './planner.js';
 import { renderCivicEvents } from './civic.js';
 import { renderPersonalPlacesPanel } from './personal-places.js';
-import { DISCOVER_GROUPS, discoverGroupFor, publishingState, rankDiscoverPlaces } from './discovery-taxonomy.js';
+import { DISCOVER_GROUPS, dedupeDiscoverPlaces, discoverGroupFor, publishingState, rankDiscoverPlaces } from './discovery-taxonomy.js';
 
 let activeTab = 'routes';
 let activeDiscoverGroup = '';
@@ -48,7 +48,7 @@ export function setExploreTab(tab) {
 export function renderExplorePlaces() {
   const all = state.cityPois[state.activeCity] || [];
   const query = el('exploreSearchInput').value.trim().toLowerCase();
-  const places = rankDiscoverPlaces(all.filter((poi) => {
+  const places = dedupeDiscoverPlaces(rankDiscoverPlaces(all).filter((poi) => {
     const matchesText = !query || `${poi.name || ''} ${displayPoiName(poi)}`.toLowerCase().includes(query);
     const matchesGroup = !activeDiscoverGroup || discoverGroupFor(poi).id === activeDiscoverGroup;
     return matchesText && matchesGroup && (publishingState(poi) !== 'candidate' || Boolean(query));

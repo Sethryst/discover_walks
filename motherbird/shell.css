@@ -8,4 +8,5 @@ body.shell-library .middle-tools,body.shell-library .top-cluster .messenger-stac
 /* The shell owns navigation now; legacy map launchers remain wired for compatibility but never compete visually. */
 .top-cluster .messenger-stack,.top-cluster .start-stack,.middle-tools{display:none!important}
 @media(max-width:720px){body[data-primary-tab="walk"] .top-cluster .start-stack,body[data-primary-tab="me"] .top-cluster .messenger-stack{grid-column:1/-1;grid-row:2}.top-cluster:has(.start-stack:not(.hidden)) .map-search{grid-row:1}.primary-panel{max-height:55dvh}}
+@media(max-width:720px){body[data-primary-tab="explore"] .map-workspace{display:none}}
 .artifact-heading-actions{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}.artifact-helper{margin:0 0 8px;color:#7a858b;font-size:12px;line-height:1.45}
