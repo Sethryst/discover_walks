@@ -42,7 +42,14 @@ export function initPrimaryShell() {
     document.body.classList.toggle('shell-library', tab === 'library');
     document.body.classList.toggle('shell-me', tab === 'me');
     document.body.classList.toggle('shell-walk', tab === 'walk');
-    if (tab === 'explore') { panel.classList.add('hidden'); return; }
+    if (tab === 'explore') {
+      panel.classList.add('hidden');
+      const mapPanel = document.getElementById('mapWorkspacePanel');
+      if (mapPanel?.classList.contains('hidden') || mapPanel.dataset.destination !== 'explore') {
+        window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'explore' } }));
+      }
+      return;
+    }
     title.textContent = tab[0].toUpperCase() + tab.slice(1);
     list.replaceChildren();
     for (const item of actions[tab] || []) {

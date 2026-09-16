@@ -4,7 +4,7 @@ const ROOT = 'pmtiles-range-cache';
 // ranges (rather than a multi-gigabyte Blob) makes every viewed tile reusable
 // offline and keeps the archive suitable for ordinary HTTP Range hosting.
 export class OpfsRangeSource {
-  constructor(url, { key = url, storage = globalThis.navigator?.storage, fetchImpl = globalThis.fetch } = {}) {
+  constructor(url, { key = url, storage = globalThis.navigator?.storage, fetchImpl = globalThis.fetch?.bind(globalThis) } = {}) {
     this.url = new URL(url, globalThis.location?.href || 'http://localhost/').href;
     this.key = String(key);
     this.storage = storage;
