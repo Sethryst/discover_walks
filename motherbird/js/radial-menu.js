@@ -4,14 +4,14 @@ import { startWalk, stopWalk, pauseWalk, resumeWalk } from './walk.js';
 import db from './storage.js';
 
 const DEFAULT_STARRED = [
-  { id: 'field-guide', label: 'Field Guide', icon: '🎒' },
   { id: 'journal', label: 'Journal', icon: '▦' },
-  { id: 'cypher', label: 'Cypher Audio', icon: '◉' },
-  { id: 'draw', label: 'Draw Route', icon: '✏️' }
+  { id: 'field-guide', label: 'Field Guide', icon: '🎒' }
 ];
 
 export function getStarredActions() {
-  return state.settings.starredRadialActions || DEFAULT_STARRED;
+  return Array.isArray(state.settings?.starredRadialActions)
+    ? state.settings.starredRadialActions
+    : DEFAULT_STARRED;
 }
 
 export function isActionStarred(id) {
@@ -27,8 +27,10 @@ export async function toggleStarAction(item) {
   } else {
     list.push(item);
   }
-  state.settings.starredRadialActions = list;
-  await db.put('settings', state.settings);
+  const persistedList = list.map(({ action, ...savedItem }) => savedItem);
+  const nextSettings = { ...state.settings, starredRadialActions: persistedList };
+  await db.put('settings', nextSettings);
+  state.settings = { ...nextSettings, starredRadialActions: list };
   renderRadialWheel();
   window.dispatchEvent(new CustomEvent('radial-starred-changed', { detail: { id: item.id, starred: index < 0 } }));
 }

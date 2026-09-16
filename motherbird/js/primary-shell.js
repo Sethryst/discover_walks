@@ -57,6 +57,7 @@ export function initPrimaryShell() {
 
       const starBtn = document.createElement('button');
       starBtn.type = 'button';
+      starBtn.dataset.actionId = item.id;
       const starred = isActionStarred(item.id);
       starBtn.className = `star-action-btn ${starred ? 'starred' : ''}`;
       starBtn.setAttribute('aria-label', `${starred ? 'Unstar' : 'Star'} ${item.label}`);
@@ -64,9 +65,6 @@ export function initPrimaryShell() {
       starBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         void toggleStarAction({ id: item.id, label: item.label, icon: item.icon, action: item.run });
-        const nowStarred = isActionStarred(item.id);
-        starBtn.classList.toggle('starred', nowStarred);
-        starBtn.textContent = nowStarred ? '⭐' : '☆';
       });
 
       row.append(button, starBtn);
@@ -75,6 +73,14 @@ export function initPrimaryShell() {
     panel.classList.remove('hidden');
   };
   document.querySelectorAll('[data-primary-tab]').forEach((button) => button.addEventListener('click', () => select(button.dataset.primaryTab)));
+  window.addEventListener('radial-starred-changed', () => {
+    document.querySelectorAll('.star-action-btn[data-action-id]').forEach((starBtn) => {
+      const starred = isActionStarred(starBtn.dataset.actionId);
+      starBtn.classList.toggle('starred', starred);
+      starBtn.setAttribute('aria-label', `${starred ? 'Unstar' : 'Star'} ${starBtn.parentElement?.querySelector('.shell-action-btn')?.textContent || 'action'}`);
+      starBtn.textContent = starred ? '⭐' : '☆';
+    });
+  });
   document.getElementById('closePrimaryPanel')?.addEventListener('click', () => panel.classList.add('hidden'));
   select('explore');
   const region = document.body.dataset.regionName || CITIES[state.activeCity]?.name || 'Fairfax County';
