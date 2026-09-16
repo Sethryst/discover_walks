@@ -200,7 +200,7 @@ export function learnHomeHtml() {
 }
 const TOPO_ERAS = ['1950s', '1960s', '1970s', '1980s'];
 export function historicalTopoHtml() {
-  return `<section class="learn-history historical-topo-panel"><button type="button" class="secondary-button" data-learn-home="1">← Back to Learn</button><h3>Historic topo maps</h3><p>Scanned USGS sheets. Dates and symbols can differ between neighboring images.</p><button type="button" class="secondary-button historical-topo-panel-toggle" data-historical-topo-panel-toggle aria-pressed="true">Historic topo: On</button><div class="historical-topo-progress" data-historical-topo-progress role="progressbar" aria-label="Historic map loading" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span></span></div><p class="historical-topo-status" data-historical-topo-status aria-live="polite">Preparing historic map images…</p><details class="topo-legend"><summary>Map legend</summary><dl><div><dt>Brown lines</dt><dd>Elevation contours</dd></div><div><dt>Blue</dt><dd>Water</dd></div><div><dt>Green</dt><dd>Woodland or vegetation</dd></div><div><dt>Black</dt><dd>Buildings, railroads and other mapped features</dd></div><div><dt>Red</dt><dd>Major roads and boundaries</dd></div></dl><small>Check each scanned sheet's printed legend for its exact symbols and survey year.</small></details></section>`;
+  return `<section class="learn-history historical-topo-panel"><button type="button" class="secondary-button" data-learn-home="1">← Back to Learn</button><h3>Historic topo maps</h3><p>Scanned USGS sheets. Dates and symbols can differ between neighboring images.</p><div class="topo-controls-row"><label class="topo-era-selector">Era <select data-historical-topo-era><option value="">All available years</option>${TOPO_ERAS.map((era) => `<option value="${era}">${era}</option>`).join('')}</select></label><button type="button" class="secondary-button historical-topo-panel-toggle" data-historical-topo-panel-toggle aria-pressed="true">Historic topo: On</button></div><div class="historical-topo-progress" data-historical-topo-progress role="progressbar" aria-label="Historic map loading" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span></span></div><p class="historical-topo-status" data-historical-topo-status aria-live="polite">Preparing historic map images…</p><details class="topo-legend"><summary>Map legend</summary><dl><div><dt>Brown lines</dt><dd>Elevation contours</dd></div><div><dt>Blue</dt><dd>Water</dd></div><div><dt>Green</dt><dd>Woodland or vegetation</dd></div><div><dt>Black</dt><dd>Buildings, railroads and other mapped features</dd></div><div><dt>Red</dt><dd>Major roads and boundaries</dd></div></dl><small>Check each scanned sheet's printed legend for its exact symbols and survey year.</small></details></section>`;
 }
 function setTopoStatus(message) { document.querySelector('[data-historical-topo-status]')?.replaceChildren(message); }
 function setTopoProgress(done, total) {
@@ -219,7 +219,7 @@ export function stopHistoricalTopo() {
     state.onlineBasemapLayer.addTo(state.map);
   }
 }
-export function paintHistoricalTopo({ map, leaflet }) {
+export function paintHistoricalTopo({ map, leaflet, era = null }) {
   stopHistoricalTopo();
   if (!map || !leaflet) return null;
   const basemap = state.onlineBasemapLayer;
@@ -235,14 +235,15 @@ export function paintHistoricalTopo({ map, leaflet }) {
   let total = 0; let done = 0; let failures = 0;
   layer.createTile = (coords, finish) => {
     const image = document.createElement('img'); image.alt = ''; image.width = 512; image.height = 512;
-    // Leaflet's 512 px tiles cover twice the extent of its default 256 px tiles.
     const scale = 2 ** Math.max(0, coords.z - 1);
     const extent = 20037508.342789244;
     const west = -extent + coords.x / scale * extent * 2;
     const east = -extent + (coords.x + 1) / scale * extent * 2;
     const north = extent - coords.y / scale * extent * 2;
     const south = extent - (coords.y + 1) / scale * extent * 2;
-    const params = new URLSearchParams({ bbox: `${west},${south},${east},${north}`, bboxSR: '3857', imageSR: '3857', size: '1024,1024', dpi: '300', compressionQuality: '100', format: 'png', interpolation: 'RSP_NearestNeighbor', f: 'image' });
+    const queryParams = { bbox: `${west},${south},${east},${north}`, bboxSR: '3857', imageSR: '3857', size: '1024,1024', dpi: '300', compressionQuality: '100', format: 'png', interpolation: 'RSP_NearestNeighbor', f: 'image' };
+    if (era) queryParams.time = era;
+    const params = new URLSearchParams(queryParams);
     total += 1; setTopoProgress(done, total); setTopoStatus(`Rendering historic maps in the background… ${done} of ${total} images ready`);
     image.onload = () => { done += 1; setTopoProgress(done, total); setTopoStatus(done === total ? 'Historic topo is ready. Pan the map to explore more.' : `Rendering historic maps… ${done} of ${total} images ready`); finish(null, image); };
     image.onerror = () => { done += 1; failures += 1; setTopoProgress(done, total); setTopoStatus(`${failures} historic image${failures === 1 ? '' : 's'} unavailable. Try panning to another area.`); finish(new Error('Historic topo image unavailable'), image); };
@@ -275,7 +276,7 @@ export function paintHistoricalTopo({ map, leaflet }) {
   };
   map.on('layeradd', keepBaseHidden);
   layer.on('remove', () => { map.off('layeradd', keepBaseHidden); map.off('zoomstart', retainVisibleTiles); mapContainer.removeEventListener('wheel', retainVisibleTiles, true); mapContainer.removeEventListener('touchstart', retainVisibleTiles, true); mapContainer.removeEventListener('dblclick', retainVisibleTiles, true); fallbackPane.replaceChildren(); });
-  const control = leaflet.control({ position: 'topright' });
+  const control = leaflet.control({ position: 'bottomright' });
   const toggle = () => {
     const on = map.hasLayer(layer);
     if (on) { map.removeLayer(layer); if (basemap && navigator.onLine !== false) basemap.addTo(map); setTopoStatus('Historic topo is off. Your base map is visible.'); }
@@ -298,13 +299,13 @@ export function watershedListHtml(features, selectedId, places) {
     const item = selected.properties || {};
     const walk = (places || [])[0];
     const walkHtml = walk ? `<button class="secondary-button" type="button" data-learn-walk="${escapeHtml(String(walk.id))}">Walk inside</button>` : '';
-    return `<section class="learn-history learn-region"><button type="button" class="secondary-button" data-learn-watershed-back="1">Select another</button><h3>${escapeHtml(item.name || 'Watershed')}</h3><p>${escapeHtml(item.protect || '')}</p>${walkHtml}</section>`;
+    return `<section class="learn-history learn-region"><button type="button" class="secondary-button" data-learn-watershed-back="1">← Back to watersheds</button><h3>${escapeHtml(item.name || 'Watershed')}</h3><p>${escapeHtml(item.protect || '')}</p>${walkHtml}</section>`;
   }
   const list = (features || []).map((feature) => {
     const item = feature.properties || {};
     return `<button type="button" class="guide-card" data-learn-watershed="${escapeHtml(item.id)}"><h3>${escapeHtml(item.name)}</h3></button>`;
   }).join('');
-  return `<section class="learn-history"><button type="button" class="secondary-button" data-learn-home="1">Back</button>${list}</section>`;
+  return `<section class="learn-history"><button type="button" class="secondary-button" data-learn-home="1">← Back to Learn</button>${list}</section>`;
 }
 export async function loadWatersheds() {
   if (watershedCache) return watershedCache;
@@ -322,7 +323,14 @@ export function paintWatersheds({ map, leaflet, features, selectedId }) {
   let selectedLayer = null;
   for (const feature of shown) {
     const active = feature.properties?.id === selectedId;
-    const painted = leaflet.geoJSON(feature, { style: { color: active ? '#1d4f7a' : '#4f7f9a', weight: active ? 2 : 1, fillColor: active ? 'rgba(45,114,89,0.28)' : 'rgba(79,127,154,0.12)', fillOpacity: 1 } }).addTo(layer);
+    const painted = leaflet.geoJSON(feature, {
+      style: { color: active ? '#1d4f7a' : '#4f7f9a', weight: active ? 2 : 1, fillColor: active ? 'rgba(45,114,89,0.28)' : 'rgba(79,127,154,0.12)', fillOpacity: 1 },
+      onEachFeature: (feat, l) => {
+        if (feat.properties?.name) {
+          l.bindTooltip(feat.properties.name, { permanent: true, direction: 'center', className: 'map-feature-label' });
+        }
+      }
+    }).addTo(layer);
     if (active) selectedLayer = painted;
   }
   layer.addTo(map); state.learnWatershedLayer = layer;
@@ -392,7 +400,9 @@ export function paintLensItem({ map, leaflet, lens, selected }) {
   for (const item of items) {
     if (!Number.isFinite(Number(item.lat))) continue;
     points.push([item.lat, item.lng]);
-    leaflet.circleMarker([item.lat, item.lng], { radius: selected ? 10 : 6, color: selected ? '#7a2d1d' : '#2d7259', weight: 2, fillColor: selected ? 'rgba(122,45,29,0.28)' : 'rgba(45,114,89,0.22)', fillOpacity: 1 }).addTo(layer);
+    leaflet.circleMarker([item.lat, item.lng], { radius: selected ? 10 : 6, color: selected ? '#7a2d1d' : '#2d7259', weight: 2, fillColor: selected ? 'rgba(122,45,29,0.28)' : 'rgba(45,114,89,0.22)', fillOpacity: 1 })
+      .bindTooltip(item.name || 'Place', { permanent: Boolean(selected), direction: 'top', className: 'map-feature-label' })
+      .addTo(layer);
   }
   layer.addTo(map); state.learnLensLayer = layer;
   if (selected) map.setView([selected.lat, selected.lng], 13);

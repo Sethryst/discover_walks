@@ -175,11 +175,29 @@ export async function addWalkWaypoint(poi) {
     toast(`${poi.name} is already a stop on this walk.`);
     return true;
   }
-  walk.waypoints.push({ id, name: String(poi.name || 'Saved place'), lat: Number(poi.lat), lng: Number(poi.lng), addedAt: new Date().toISOString() });
+  const waypoint = { id, name: String(poi.name || 'Saved place'), lat: Number(poi.lat), lng: Number(poi.lng), addedAt: new Date().toISOString() };
+  walk.waypoints.push(waypoint);
   walk.associatedPlaceIds = [...new Set([...(walk.associatedPlaceIds || []), id])];
+  
+  if (state.map && globalThis.L) {
+    state.waypointLayer ||= L.layerGroup().addTo(state.map);
+    L.marker([poi.lat, poi.lng], { icon: L.divIcon({ className: 'waypoint-pin', html: '📍', iconSize: [24, 24], iconAnchor: [12, 12] }) })
+      .bindTooltip(poi.name, { permanent: true, direction: 'top' })
+      .addTo(state.waypointLayer);
+  }
+
+  await db.put('observations', {
+    id: `waypoint-${Date.now()}-${id}`,
+    title: String(poi.name || 'Stop'),
+    note: `Stop added during active walk (${new Date().toLocaleTimeString()})`,
+    location: { lat: Number(poi.lat), lng: Number(poi.lng) },
+    city: state.activeCity,
+    createdAt: new Date().toISOString()
+  });
+
   await persistWalkDraft();
   state.map?.flyTo([poi.lat, poi.lng], Math.max(state.map.getZoom(), 16));
-  toast(`${poi.name} added as a stop on your active walk.`);
+  toast(`${poi.name} added as a pin and journal stop on your active walk.`);
   return true;
 }
 

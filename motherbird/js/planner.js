@@ -3,6 +3,7 @@ import { CITIES } from './constants.js';
 import { poiTags } from './poi.js';
 import { routeOnFoot } from './routing.js';
 import { escapeHtml } from './utils.js';
+import { toast } from './ui.js';
 
 function selectedMinutes() { return Number(document.querySelector('input[name="walkTime"]:checked')?.value || 30); }
 function selectedRouteMode() { return document.querySelector('input[name="routeMode"]:checked')?.value || 'round-trip'; }
@@ -48,7 +49,10 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
   const center = state.currentPosition || state.map?.getCenter() || CITIES[state.activeCity].center;
   const count = minutes <= 20 ? 2 : minutes >= 60 ? 4 : 3;
   const stops = seededStops?.length ? seededStops : candidateStops(center, interests()).slice(0, count);
-  if (!stops.length) return null;
+  if (!stops.length) {
+    toast('No candidate places nearby to sketch a walk. Try panning the map or picking an area with places.');
+    return null;
+  }
   const points = routeMode === 'round-trip' ? [center, ...stops, center] : [center, ...stops];
   const routed = await routeOnFoot(points, { city: state.activeCity, profile: 'ordinary_walking_beta' }).catch(() => ({ ok: false, status: 'GRAPH_VERSION_UNAVAILABLE' }));
   const plan = {

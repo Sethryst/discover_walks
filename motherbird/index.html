@@ -70,6 +70,14 @@
           <section class="hidden draw-workspace" data-map-panel="draw"><div class="workspace-section-label">Draw</div><div class="draw-shapes" aria-label="Drawing shapes"><button type="button" data-draw-shape="Marker">Pin</button><button type="button" data-draw-shape="Line">Line</button><button type="button" data-draw-shape="Freehand">Free draw</button><button type="button" data-draw-shape="Polygon">Area</button><button type="button" data-draw-shape="Rectangle">Rectangle</button><button type="button" data-draw-shape="Circle">Circle</button><button type="button" id="undoMapDrawing">Undo</button><button type="button" id="clearMapDrawings">Clear</button></div><div class="artifact-heading"><strong>Artifacts</strong><div class="artifact-heading-actions"><button type="button" id="manageMapLayers">Map layers</button><button type="button" id="exportMapArtifacts">Export GeoJSON</button></div></div><p class="artifact-helper">Saved drawings are listed here. Use Map layers to show or hide every map layer, including places, routes, and the national map.</p><div id="mapArtifactList" class="artifact-list"></div><output id="drawWorkspaceStatus" aria-live="polite"></output></section>
         </aside>
       </div>
+      <div class="radial-stack" id="radialStack">
+        <div class="radial-wheel hidden" id="radialWheelMenu" aria-label="Quick-access radial menu"></div>
+        <div class="radial-btn-group">
+          <button class="primary-button radial-walk-btn" id="radialWalkButton" type="button"><span id="radialWalkLabel">Start walk</span></button>
+          <button class="secondary-button radial-pause-btn hidden" id="radialPauseButton" type="button">End walk</button>
+          <button class="ink-chevron radial-chevron" id="radialChevron" type="button" aria-label="Radial quick access" aria-expanded="false">⚙</button>
+        </div>
+      </div>
     </div>
   </main>
   <div class="modal-backdrop hidden" id="modalBackdrop"></div>

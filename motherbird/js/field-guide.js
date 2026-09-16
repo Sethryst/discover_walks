@@ -76,7 +76,7 @@ function nearbyWalks(pois, point) {
 }
 function discoverCard(card) {
   const selected = selectedPlaceId && card.stopPlaceIds?.includes(selectedPlaceId);
-  return `<article class="guide-card ${selected ? 'selected' : ''}" data-guide-card="${escapeHtml(card.id)}"><small>${card.kind === 'journey' ? 'JOURNEY' : escapeHtml(card.kind.replaceAll('+', ' + '))}${distanceLabel(card.distance)}</small><h3>${escapeHtml(card.title)}</h3><p>${escapeHtml(card.reason)}</p><button class="primary-button" type="button" data-guide-walk="${escapeHtml(card.id)}">Walk this</button></article>`;
+  return `<article class="guide-card ${selected ? 'selected' : ''}" data-guide-card="${escapeHtml(card.id)}"><small>${card.kind === 'journey' ? 'JOURNEY' : escapeHtml(card.kind.replaceAll('+', ' + '))}${distanceLabel(card.distance)}</small><h3>${escapeHtml(card.title)}</h3><p>${escapeHtml(card.reason)}</p><div class="card-actions"><button class="primary-button" type="button" data-guide-walk="${escapeHtml(card.id)}">Walk this</button><button class="secondary-button" type="button" data-guide-preview="${escapeHtml(card.id)}">View on map</button></div></article>`;
 }
 function walkingDirection(card) {
   if (!state.activeWalk) return '';
@@ -157,7 +157,14 @@ export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') 
   const ordered = sortGuideCardsByDistance(data.discover, point, (card) => (card.stopPlaceIds || []).map((id) => poiById.get(String(id))));
   const close = ordered.filter((card) => !point || card.distance <= 40233);
   const walks = nearbyWalks([...poiById.values()], point).filter((card) => !close.some((item) => item.stopPlaceIds?.includes(card.stopPlaceIds[0])));
-  const shown = [...close, ...walks].sort((a, b) => (a.distance ?? Infinity) - (b.distance ?? Infinity)).slice(0, 12);
+  const seenKeys = new Set();
+  const shown = [...close, ...walks].filter((card) => {
+    const key = String(card.id || card.title || '');
+    if (!key || seenKeys.has(key)) return false;
+    seenKeys.add(key);
+    if (card.title) seenKeys.add(card.title);
+    return true;
+  }).sort((a, b) => (a.distance ?? Infinity) - (b.distance ?? Infinity)).slice(0, 12);
   target.innerHTML = shown.length ? shown.map(discoverCard).join('') : '<p class="empty-state">No walkable places are available near this map view yet. Move the map or choose another area to explore.</p>';
 }
 function planForCard(card) {
@@ -199,7 +206,6 @@ export async function sendCurrentWalkPlan() {
 }
 export function paintWalkPlan(plan) {
   const normalized = normalizeWalkPlan(plan);
-  if (state.activeWalk) { state.pendingWalkPlan = normalized; toast('Walk plan queued until this walk ends.'); return null; }
   if (normalized.pack_id !== state.activeCity) {
     state.pendingWalkPlan = normalized;
     toast(`This plan belongs to ${CITIES[normalized.pack_id]?.name || normalized.pack_id}; it will open when that area enters the active viewport.`);
@@ -209,7 +215,14 @@ export function paintWalkPlan(plan) {
   const stops = normalized.stop_place_ids.map((id) => pois.find((poi) => String(poi.id) === id)).filter(Boolean);
   state.plannedRoute = { ...normalized, id: `imported-${Date.now()}`, title: normalized.title, reason: normalized.reason, routeMode: 'concept', stops, coordinates: [], journeyId: normalized.journeyId || null };
   if (normalized.journeyId) showCuratedRoute(normalized.journeyId);
-  paintWalkConcept(state.plannedRoute); closeSheets(); return state.plannedRoute;
+  paintWalkConcept(state.plannedRoute);
+  closeSheets();
+  if (state.activeWalk) {
+    toast(`Mapped route preview for "${normalized.title}" onto your active walk.`);
+  } else {
+    toast(`Mapped "${normalized.title}". Tap Start Walk to begin.`);
+  }
+  return state.plannedRoute;
 }
 async function paintCard(cardId) {
   const data = await guideData();
@@ -221,8 +234,18 @@ export function initFieldGuideFilters() {
   window.addEventListener('map-overlay-changed', ({ detail }) => { if (!detail.open || detail.id !== 'backpackSheet') shadeLearnBounds(false); });
   window.addEventListener('layer-state-dirty', () => { if (state.modalOpen === 'backpackSheet' && state.fieldGuideTab === 'learn') void renderFieldGuide('learn'); });
   window.addEventListener('poi-visit-state-changed', () => { if (state.fieldGuideTab === 'learn') void renderFieldGuide('learn'); });
-  document.querySelector('.guide-tabs')?.addEventListener('click', (event) => { const button = event.target.closest('[data-guide-tab]'); if (button) void renderFieldGuide(button.dataset.guideTab); });
+  window.addEventListener('walk-position-received', () => { if (state.modalOpen === 'backpackSheet' && state.fieldGuideTab === 'discover') void renderFieldGuide('discover'); });
+  document.querySelector('.guide-tabs')?.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-guide-tab]');
+    if (button) {
+      const tab = button.dataset.guideTab;
+      if (tab === 'learn' && state.fieldGuideTab === 'learn') setLearnScreen('home');
+      void renderFieldGuide(tab);
+    }
+  });
   el('fieldGuideList')?.addEventListener('click', (event) => {
+    const preview = event.target.closest('[data-guide-preview]');
+    if (preview) { void paintCard(preview.dataset.guidePreview); return; }
     const cardElement = event.target.closest('[data-guide-card]');
     if (cardElement && cardElement.dataset.guideCard && !event.target.closest('a,button')) { void paintCard(cardElement.dataset.guideCard); return; }
     const walk = event.target.closest('[data-guide-walk]'); if (walk) { void paintCard(walk.dataset.guideWalk); return; }

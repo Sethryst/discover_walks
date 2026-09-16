@@ -1,14 +1,33 @@
 import { openSheet, closeSheets } from './ui.js';
 import { state } from './state.js';
 import { CITIES } from './constants.js';
+import { initRadialMenu, isActionStarred, toggleStarAction } from './radial-menu.js';
+import { generateTimeBasedPlan } from './planner.js';
 
 const actions = {
-  walk: [['Start a free walk', () => document.getElementById('walkButton')?.click()], ['Sketch a nearby walk', () => document.getElementById('startChevron')?.click()], ['Follow a saved walk', () => openSheet('backpackSheet')], ['Draw a route', () => document.querySelector('[data-map-destination="draw"]')?.click()]],
-  library: [['Journal', () => openSheet('journalSheet')], ['Observations', () => { openSheet('journalSheet'); document.getElementById('observeButton')?.click(); }], ['Saved walks & places', () => document.querySelector('[data-map-destination="maps"]')?.click()], ['Field Guide', () => openSheet('backpackSheet')], ['Nearby audio', () => openSheet('geoCypherSheet')]],
-  me: [['Messenger Bird', () => openSheet('messengerInboxSheet')], ['Companion', () => document.getElementById('companionButton')?.click()], ['Walking alerts', () => document.getElementById('locateChevron')?.click()], ['Offline & maps', () => openSheet('backpackSheet')], ['Data & privacy', () => { openSheet('backpackSheet'); document.querySelector('[data-guide-tab="online"]')?.click(); }], ['Sharing', () => { openSheet('backpackSheet'); document.querySelector('[data-guide-tab="online"]')?.click(); }]],
+  walk: [
+    { id: 'sketch-walk', label: 'Sketch a nearby walk', icon: '🗺️', run: () => void generateTimeBasedPlan() },
+    { id: 'field-guide', label: 'Follow a saved walk', icon: '🎒', run: () => openSheet('backpackSheet') },
+    { id: 'draw', label: 'Draw a route', icon: '✏️', run: () => document.querySelector('[data-map-destination="draw"]')?.click() }
+  ],
+  library: [
+    { id: 'journal', label: 'Journal', icon: '▦', run: () => openSheet('journalSheet') },
+    { id: 'observe', label: 'Observations', icon: '📷', run: () => { openSheet('journalSheet'); document.getElementById('observeButton')?.click(); } },
+    { id: 'saved-places', label: 'Saved walks & places', icon: '📍', run: () => document.querySelector('[data-map-destination="maps"]')?.click() },
+    { id: 'field-guide', label: 'Field Guide', icon: '🎒', run: () => openSheet('backpackSheet') },
+    { id: 'cypher', label: 'Nearby audio', icon: '◉', run: () => openSheet('geoCypherSheet') }
+  ],
+  me: [
+    { id: 'messenger', label: 'Messenger Bird', icon: '🐦', run: () => openSheet('messengerInboxSheet') },
+    { id: 'companion', label: 'Companion', icon: '🐾', run: () => document.getElementById('companionButton')?.click() },
+    { id: 'alerts', label: 'Walking alerts', icon: '🔔', run: () => document.getElementById('locateChevron')?.click() },
+    { id: 'offline-maps', label: 'Offline & maps', icon: '💾', run: () => openSheet('backpackSheet') },
+    { id: 'privacy', label: 'Data & privacy', icon: '🔒', run: () => { openSheet('backpackSheet'); document.querySelector('[data-guide-tab="online"]')?.click(); } }
+  ]
 };
 
 export function initPrimaryShell() {
+  initRadialMenu();
   const panel = document.getElementById('primaryPanel');
   const title = document.getElementById('primaryPanelTitle');
   const list = document.getElementById('primaryPanelActions');
@@ -26,11 +45,32 @@ export function initPrimaryShell() {
     if (tab === 'explore') { panel.classList.add('hidden'); return; }
     title.textContent = tab[0].toUpperCase() + tab.slice(1);
     list.replaceChildren();
-    for (const [label, run] of actions[tab] || []) {
+    for (const item of actions[tab] || []) {
+      const row = document.createElement('div');
+      row.className = 'shell-action-row';
+
       const button = document.createElement('button');
-      button.type = 'button'; button.textContent = label;
-      button.addEventListener('click', () => { panel.classList.add('hidden'); run(); });
-      list.append(button);
+      button.type = 'button';
+      button.className = 'shell-action-btn';
+      button.textContent = item.label;
+      button.addEventListener('click', () => { panel.classList.add('hidden'); item.run(); });
+
+      const starBtn = document.createElement('button');
+      starBtn.type = 'button';
+      const starred = isActionStarred(item.id);
+      starBtn.className = `star-action-btn ${starred ? 'starred' : ''}`;
+      starBtn.setAttribute('aria-label', `${starred ? 'Unstar' : 'Star'} ${item.label}`);
+      starBtn.textContent = starred ? '⭐' : '☆';
+      starBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        void toggleStarAction({ id: item.id, label: item.label, icon: item.icon, action: item.run });
+        const nowStarred = isActionStarred(item.id);
+        starBtn.classList.toggle('starred', nowStarred);
+        starBtn.textContent = nowStarred ? '⭐' : '☆';
+      });
+
+      row.append(button, starBtn);
+      list.append(row);
     }
     panel.classList.remove('hidden');
   };
