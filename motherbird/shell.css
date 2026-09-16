@@ -16,3 +16,22 @@ body.shell-library .middle-tools,body.shell-library .top-cluster .messenger-stac
 .map-workspace{pointer-events:none}
 .map-workspace .map-dock,.map-workspace .map-workspace-panel{pointer-events:auto}
 .primary-nav{z-index:1200}
+
+/* Keep the shell navigation in one predictable place. The wide-screen map
+   workspace must not become a full-height white layer behind it. */
+@media (min-width: 1100px) {
+  .primary-nav {
+    left: 50%;
+    top: auto;
+    bottom: max(12px, env(safe-area-inset-bottom));
+    transform: translateX(-50%);
+    display: flex;
+  }
+  .map-workspace {
+    inset: auto auto max(12px, env(safe-area-inset-bottom)) 20px;
+    width: auto;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+}

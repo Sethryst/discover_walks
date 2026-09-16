@@ -29,6 +29,8 @@
 @keyframes coachPulse{0%,100%{box-shadow:0 0 0 2px #e8740f,0 0 0 6px rgba(232,116,15,.28)}50%{box-shadow:0 0 0 3px #e8740f,0 0 0 10px rgba(232,116,15,.1)}}
 .coach-pointer{position:fixed;z-index:4195;height:2px;background:#e8740f;transform-origin:left center;pointer-events:none}
 .coach-pointer::after{content:"";position:absolute;right:-1px;top:50%;border:5px solid transparent;border-left:8px solid #e8740f;transform:translateY(-50%)}
+.map-intro-hint{z-index:4200!important;color:#173c35;background:#fffaf0!important;opacity:1!important}
+.map-intro-hint p{color:#173c35!important;min-height:1.3em}
 .journal-open .map-intro-hint,.backpack-open .map-intro-hint,.journal-open .coach-spotlight,.backpack-open .coach-spotlight,.journal-open .coach-pointer,.backpack-open .coach-pointer{display:none !important}
 .learn-history{display:grid;gap:8px}
 .learn-progress{margin:0;font:600 .78rem/1.35 system-ui,sans-serif;color:#173c35}
