@@ -47,7 +47,11 @@ export function initPrimaryShell() {
     document.body.classList.toggle('shell-walk', tab === 'walk');
     if (tab === 'explore') {
       panel.classList.add('hidden');
-      window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'explore', forceOpen: true } }));
+      const mapWorkspace = document.getElementById('mapWorkspacePanel');
+      const exploreOpen = !initial && mapWorkspace?.dataset.destination === 'explore' && !mapWorkspace.classList.contains('hidden');
+      window.dispatchEvent(new CustomEvent('map-workspace-open-requested', {
+        detail: { destination: exploreOpen ? '' : 'explore', forceOpen: !exploreOpen }
+      }));
       return;
     }
     // The map workspace belongs to Explore. Close it before showing a shell
