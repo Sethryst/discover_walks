@@ -4,9 +4,6 @@
 @media(min-width:1100px){.primary-nav{left:50%;top:auto;bottom:max(12px,env(safe-area-inset-bottom));transform:translateX(-50%);display:flex}.primary-panel{left:20px;top:245px;bottom:auto;transform:none;width:320px}.top-cluster{margin-left:356px;max-width:calc(100vw - 371px)}.map-workspace{inset:0 auto 0 20px;width:338px}.map-workspace-panel{width:338px}}
 .topo-legend dl{display:grid;gap:6px}.topo-legend dl div{display:flex;gap:10px}.topo-legend dt{font-weight:750;min-width:105px}.topo-legend dd{margin:0}
 body[data-primary-tab="walk"] .top-cluster .start-stack,body[data-primary-tab="me"] .top-cluster .messenger-stack,body[data-primary-tab="library"] .middle-tools,body[data-primary-tab="walk"] .map-dock [data-map-destination="draw"],body[data-primary-tab="library"] .map-dock [data-map-destination="maps"]{display:flex}body[data-primary-tab="walk"] .map-dock,body[data-primary-tab="library"] .map-dock{display:flex}.walk-active .start-stack{display:flex!important}
-body.shell-library .middle-tools,body.shell-library .top-cluster .messenger-stack,body.shell-me .middle-tools,body.shell-me .top-cluster .start-stack,body.shell-walk .top-cluster .messenger-stack,body.shell-walk .middle-tools{display:none!important}
-/* The shell owns navigation now; legacy map launchers remain wired for compatibility but never compete visually. */
-.top-cluster .messenger-stack,.top-cluster .start-stack,.middle-tools{display:none!important}
 @media(max-width:720px){body[data-primary-tab="walk"] .top-cluster .start-stack,body[data-primary-tab="me"] .top-cluster .messenger-stack{grid-column:1/-1;grid-row:2}.top-cluster:has(.start-stack:not(.hidden)) .map-search{grid-row:1}.primary-panel{max-height:55dvh}}
 .artifact-heading-actions{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}.artifact-helper{margin:0 0 8px;color:#7a858b;font-size:12px;line-height:1.45}
 

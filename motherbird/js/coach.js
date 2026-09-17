@@ -36,10 +36,11 @@ export function readChromeBands(doc = document, viewport = { width: 390, height:
   const top = doc.querySelector('.top-cluster')?.getBoundingClientRect();
   const mid = doc.querySelector('.middle-tools')?.getBoundingClientRect();
   const lights = doc.querySelector('.map-lights')?.getBoundingClientRect();
+  const nav = doc.querySelector('.primary-nav')?.getBoundingClientRect();
   return {
     belowTop: top ? Math.round(top.bottom + 8) : 72,
     leftOfRight: mid ? Math.round(mid.left - 8) : viewport.width - 56,
-    aboveBottom: lights ? Math.round(lights.top - 8) : viewport.height - 64,
+    aboveBottom: Math.min(lights ? Math.round(lights.top - 8) : viewport.height - 64, nav ? Math.round(nav.top - 12) : viewport.height - 64),
   };
 }
 
@@ -177,6 +178,7 @@ function placeHint(hint, spotlight, pointer, target) {
   hint.style.right = '';
   placeSpotlight(spotlight, target);
   if (!target) {
+    hint.classList.add('hidden');
     pointer?.classList.add('hidden');
     return;
   }
@@ -237,7 +239,14 @@ function currentTarget() {
 function relayout() {
   const hint = el('mapIntroHint');
   if (!hint || hint.classList.contains('hidden')) return;
-  placeHint(hint, el('coachSpotlight'), el('coachPointer'), currentTarget());
+  const target = currentTarget();
+  if (!target || !target.isConnected || !target.getClientRects().length || getComputedStyle(target).visibility === 'hidden' || getComputedStyle(target).display === 'none') {
+    hint.classList.add('hidden');
+    el('coachSpotlight')?.classList.add('hidden');
+    el('coachPointer')?.classList.add('hidden');
+    return;
+  }
+  placeHint(hint, el('coachSpotlight'), el('coachPointer'), target);
 }
 
 function armTimer() {
@@ -321,6 +330,7 @@ export function startCoachMarks() {
       void finishCoach();
     });
     window.addEventListener('resize', relayout);
+    window.addEventListener('primary-tab-changed', relayout);
     globalThis.visualViewport?.addEventListener('resize', relayout);
     globalThis.visualViewport?.addEventListener('scroll', relayout);
   }

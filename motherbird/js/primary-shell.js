@@ -45,6 +45,7 @@ export function initPrimaryShell() {
     document.body.classList.toggle('shell-library', tab === 'library');
     document.body.classList.toggle('shell-me', tab === 'me');
     document.body.classList.toggle('shell-walk', tab === 'walk');
+    window.dispatchEvent(new CustomEvent('primary-tab-changed', { detail: { tab } }));
     if (tab === 'explore') {
       panel.classList.add('hidden');
       const mapWorkspace = document.getElementById('mapWorkspacePanel');
