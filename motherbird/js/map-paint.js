@@ -158,7 +158,7 @@ export async function initMapPaint() {
   el('manageMapLayers')?.addEventListener('click', () => document.querySelector('[data-map-destination="maps"]')?.click());
   window.addEventListener('map-workspace-changed', ({ detail }) => {
     const active = detail?.destination === 'draw' && detail.open;
-    if (!active && !state.mapPaintActive) { freehandActive = false; setActive(false); document.querySelectorAll('[data-draw-shape]').forEach((item) => item.classList.remove('active')); }
+    if (!active) { freehandActive = false; setActive(false); document.querySelectorAll('[data-draw-shape]').forEach((item) => item.classList.remove('active')); }
     else { state.mapPaintActive = true; document.body.classList.add('map-painting'); button.setAttribute('aria-pressed', 'true'); }
   });
 }
