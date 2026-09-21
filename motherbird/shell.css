@@ -5,6 +5,12 @@
 .topo-legend dl{display:grid;gap:6px}.topo-legend dl div{display:flex;gap:10px}.topo-legend dt{font-weight:750;min-width:105px}.topo-legend dd{margin:0}
 body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body[data-primary-tab="walk"] .top-cluster .start-stack,body[data-primary-tab="me"] .top-cluster .messenger-stack,body[data-primary-tab="library"] .middle-tools,body[data-primary-tab="walk"] .map-dock [data-map-destination="draw"],body[data-primary-tab="library"] .map-dock [data-map-destination="maps"]{display:flex}body[data-primary-tab="explore"] .map-dock,body[data-primary-tab="walk"] .map-dock,body[data-primary-tab="library"] .map-dock{display:flex}.walk-active .start-stack{display:flex!important}
 @media(max-width:720px){body[data-primary-tab="walk"] .top-cluster .start-stack,body[data-primary-tab="me"] .top-cluster .messenger-stack{grid-column:1/-1;grid-row:2}.top-cluster:has(.start-stack:not(.hidden)) .map-search{grid-row:1}.primary-panel{max-height:55dvh}}
+
+/* The full map workspace dock is redundant on the compact mobile shell and
+   leaves an empty control above the primary navigation. */
+@media (max-width: 720px) {
+  .map-dock { display: none !important; }
+}
 .artifact-heading-actions{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}.artifact-helper{margin:0 0 8px;color:#7a858b;font-size:12px;line-height:1.45}
 
 /* The workspace can fill the desktop viewport, but only its controls should
@@ -30,5 +36,18 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
     background: transparent;
     border: 0;
     box-shadow: none;
+  }
+}
+
+/* Keep the desktop map workspace as a full-height positioning container.
+   The compact shell offset must not collapse it to zero height. */
+@media (min-width: 721px) {
+  .map-workspace {
+    top: 0;
+    bottom: 0;
+    height: auto;
+  }
+  .map-workspace-panel {
+    height: 100%;
   }
 }

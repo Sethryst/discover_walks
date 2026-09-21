@@ -105,6 +105,14 @@ async function clearDrawings() {
   } catch (error) { toast(error.message || 'Drawings could not be cleared.'); }
 }
 
+function exportMapArtifacts() {
+  const features = (state.localDrawings || []).map((item) => item.body?.geojson).filter(Boolean);
+  const url = URL.createObjectURL(new Blob([JSON.stringify({ type: 'FeatureCollection', features })], { type: 'application/geo+json' }));
+  const link = document.createElement('a'); link.href = url; link.download = 'map-artifacts.geojson'; link.click();
+  setTimeout(() => URL.revokeObjectURL(url), 0);
+  el('drawWorkspaceStatus')?.replaceChildren(document.createTextNode(features.length ? `Exported ${features.length} map annotation${features.length === 1 ? '' : 's'} as GeoJSON.` : 'Exported an empty GeoJSON collection.'));
+}
+
 export async function initMapPaint() {
   const button = el('mapPencilButton');
   if (!button || !state.map || !state.map.pm) return;
@@ -157,12 +165,7 @@ export async function initMapPaint() {
     localStorage.setItem('hiddenMapArtifacts', JSON.stringify([...hiddenArtifacts]));
     void renderMapDrawings();
   });
-  el('exportMapArtifacts')?.addEventListener('click', () => {
-    const features = (state.localDrawings || []).map((item) => item.body?.geojson).filter(Boolean);
-    const url = URL.createObjectURL(new Blob([JSON.stringify({ type: 'FeatureCollection', features })], { type: 'application/geo+json' }));
-    const link = document.createElement('a'); link.href = url; link.download = 'map-artifacts.geojson'; link.click();
-    setTimeout(() => URL.revokeObjectURL(url), 0);
-  });
+  el('exportMapArtifacts')?.addEventListener('click', exportMapArtifacts);
   el('manageMapLayers')?.addEventListener('click', () => document.querySelector('[data-map-destination="maps"]')?.click());
   window.addEventListener('map-workspace-changed', ({ detail }) => {
     const active = detail?.destination === 'draw' && detail.open;
