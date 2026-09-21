@@ -39,6 +39,13 @@ export function openSheet(id) {
     window.dispatchEvent(new CustomEvent('journal-close-requested', { detail: { note: el('journalNote')?.value || '', walkId: el('journalForm')?.dataset.walkId || '' } }));
   }
   state.modalOpen = id;
+  // Sheets are focused contexts; do not leave map workspaces stacked behind.
+  document.body.classList.remove('map-workspace-open', 'draw-pane-open', 'draw-tools-collapsed');
+  el('mapWorkspacePanel')?.classList.add('hidden');
+  document.querySelectorAll('[data-map-destination]').forEach((button) => {
+    button.classList.remove('active');
+    button.setAttribute('aria-expanded', 'false');
+  });
   document.body.classList.toggle('journal-open', id === 'journalSheet');
   document.body.classList.toggle('backpack-open', id === 'backpackSheet');
   el('journalButton')?.setAttribute('aria-pressed', String(id === 'journalSheet'));

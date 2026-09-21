@@ -42,6 +42,7 @@
     <aside class="primary-panel hidden" id="primaryPanel" aria-live="polite"><header><h2 id="primaryPanelTitle">Walk</h2><button type="button" id="closePrimaryPanel" aria-label="Close">×</button></header><div id="primaryPanelActions"></div></aside>
     <div id="installedBasemap" class="installed-basemap hidden" aria-hidden="true"></div>
     <div id="map" role="application" aria-label="Map of installed-pack places"></div>
+    <aside class="map-legend" aria-label="Map legend"><strong>Map key</strong><span><i class="legend-dot legend-dot--place"></i> Place</span><span><i class="legend-dot legend-dot--cluster"></i> Cluster count</span><span><i class="legend-dot legend-dot--saved"></i> Saved place</span></aside>
     <div id="walkingCellOverlay" class="walking-cell-overlay hidden" aria-hidden="true"></div>
     <div id="nationalPoiOverlay" class="national-poi-overlay hidden" aria-hidden="true"></div>
     <aside class="map-intro-hint hidden" id="mapIntroHint" aria-live="polite"><p id="mapIntroText"></p><div class="coach-actions"><button type="button" id="mapIntroNext">Next</button><button type="button" id="mapIntroHelp" class="text-button">View Help</button><button type="button" id="mapIntroSkip" class="text-button">Skip</button></div></aside>
@@ -80,6 +81,7 @@
       </div>
     </div>
   </main>
+  <section class="sheet hidden walk-recovery-sheet" id="walkRecoverySheet" role="dialog" aria-modal="true" aria-labelledby="walkRecoveryTitle"><span class="sheet-kicker">WALK DRAFT FOUND</span><h2 id="walkRecoveryTitle">Continue your previous walk?</h2><p>Your saved route is safe on this device. Choose whether to resume recording or end and discard the unfinished walk.</p><div class="sheet-actions"><button class="primary-button" id="resumePreviousWalk" type="button">Resume walk</button><button class="secondary-button" id="endPreviousWalk" type="button">End previous walk</button></div></section>
   <div class="modal-backdrop hidden" id="modalBackdrop"></div>
   <aside class="app-update hidden" id="appUpdate" role="status" aria-live="polite">
     <span><strong>Update ready</strong><small>Your journal and saved audio stay on this device.</small></span>

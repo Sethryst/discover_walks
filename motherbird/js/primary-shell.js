@@ -48,6 +48,12 @@ export function initPrimaryShell() {
     window.dispatchEvent(new CustomEvent('primary-tab-changed', { detail: { tab } }));
     if (tab === 'explore') {
       panel.classList.add('hidden');
+      if (initial) {
+        // Boot is deliberately map-only. Explore is a destination the user
+        // opens, not a panel that should appear on first load.
+        window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: '' } }));
+        return;
+      }
       const mapWorkspace = document.getElementById('mapWorkspacePanel');
       const exploreOpen = !initial && mapWorkspace?.dataset.destination === 'explore' && !mapWorkspace.classList.contains('hidden');
       window.dispatchEvent(new CustomEvent('map-workspace-open-requested', {

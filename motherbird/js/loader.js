@@ -11,7 +11,6 @@ import { renderArchive } from './archive.js';
 import { normalizedEntitlements } from './entitlements.js';
 import { restoreLocalPoiClosures } from './spatial-closure-reporting.js';
 import { initFieldGuideFilters } from './field-guide.js';
-import { recoverWalkDraft } from './walk.js';
 import { initPersonalPlaces } from './personal-places.js';
 import { initLayerSystem } from './layer-system.js';
 import { initMapPaint } from './map-paint.js';
@@ -25,6 +24,7 @@ import { initNationalOsmLayers } from './national-osm-layers.js';
 import { initGeoCypher } from './geo-cypher.js';
 import { initPwaUpdates } from './pwa-update.js';
 import { initPrimaryShell } from './primary-shell.js';
+import { recoverWalkDraft, discardWalk } from './walk.js';
 
 export async function init() {
   if (!document.querySelector('link[href*="splash-fix.css"]')) {
@@ -100,9 +100,11 @@ export async function init() {
   initFieldGuideFilters();
 
   await refreshCityMap(false);
-  await recoverWalkDraft();
+  // Refresh returns to a neutral map state. Any draft remains stored for an
+  // explicit recovery flow; never restart live tracking automatically.
   applyStaticAppearance();
   await renderArchive();
+  await offerWalkDraftRecovery();
   startCoachMarks();
 
   if (splash) requestAnimationFrame(dismissSplash);
@@ -115,6 +117,21 @@ export async function init() {
   }
 
   void initPwaUpdates().catch(() => {});
+}
+
+async function offerWalkDraftRecovery() {
+  const draft = await db.get('walk_drafts', 'active-walk');
+  if (!draft?.walk || !['recording', 'stopped'].includes(draft.walk.recordingStatus)) return;
+  const sheet = document.getElementById('walkRecoverySheet');
+  if (!sheet) return;
+  sheet.classList.remove('hidden');
+  document.getElementById('resumePreviousWalk')?.addEventListener('click', async () => {
+    sheet.classList.add('hidden'); await recoverWalkDraft();
+  }, { once: true });
+  document.getElementById('endPreviousWalk')?.addEventListener('click', async () => {
+    sheet.classList.add('hidden'); const recovered = await recoverWalkDraft();
+    if (recovered) await discardWalk();
+  }, { once: true });
 }
 
 function initPrimaryControls() {

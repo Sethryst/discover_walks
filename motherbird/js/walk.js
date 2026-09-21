@@ -281,7 +281,8 @@ export async function saveWalk() {
 
 export async function discardWalk() {
   const walk = state.activeWalk;
-  if (!walk || walk.recordingStatus !== 'stopped') return;
+  if (!walk) return;
+  stopGpsWatch();
   await Promise.all([
     db.remove('walk_drafts', DRAFT_ID),
     ...(walk.events || []).map((event) => db.remove('walk_events', event.id))

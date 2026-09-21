@@ -239,10 +239,12 @@ async function previewCard(cardId) {
   const data = await guideData();
   const card = data.discover.find((item) => item.id === cardId); if (!card) return;
   const stop = card.stopPlaceIds?.map((id) => (state.cityPois[state.activeCity] || []).find((poi) => String(poi.id) === String(id))).find(Boolean);
-  if (!stop || !state.map) return;
+  if (!stop || !state.map) { toast('This walk has no map location to preview yet.'); return; }
   state.fieldGuidePreviewMarker?.remove();
   state.fieldGuidePreviewMarker = L.circleMarker([stop.lat, stop.lng], { radius: 12, color: '#7a2d1d', weight: 3, fillColor: '#f3b24b', fillOpacity: .8, interactive: false }).bindTooltip(stop.name, { permanent: true, direction: 'top' }).addTo(state.map);
   state.map.flyTo([stop.lat, stop.lng], Math.max(state.map.getZoom(), 16));
+  closeSheets();
+  toast(`Showing ${stop.name} on the map.`);
   window.setTimeout(() => { state.fieldGuidePreviewMarker?.remove(); state.fieldGuidePreviewMarker = null; }, 8000);
 }
 export function initFieldGuideFilters() {
