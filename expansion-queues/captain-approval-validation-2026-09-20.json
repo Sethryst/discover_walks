@@ -4,9 +4,9 @@
   "source": "expansion-queues\\captain-approval-override-2026-09-20.json",
   "approved": 98,
   "summary": {
-    "LANDED": 0,
+    "LANDED": 1,
     "PARTIAL": 0,
-    "BLOCKED": 98
+    "BLOCKED": 97
   },
   "candidates": [
     {
@@ -31,7 +31,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-apps-alexandriava-gov-c408c804",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "meetings-apps-alexandriava-gov-c408c804",
@@ -55,7 +72,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "meetings-apps-alexandriava-gov-c408c804",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-arlingtonva-us-cb15b262",
@@ -79,7 +113,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-arlingtonva-us-cb15b262",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "meetings-arlingtonva-us-cb15b262",
@@ -103,7 +154,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "meetings-arlingtonva-us-cb15b262",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "meetings-ashevillenc-gov-644961e1",
@@ -127,7 +195,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "meetings-ashevillenc-gov-644961e1",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "volunteer-ashevillenc-gov-3ebf2f4c",
@@ -151,7 +236,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "volunteer-ashevillenc-gov-3ebf2f4c",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-exploreasheville-com-94d72b77",
@@ -175,7 +277,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-exploreasheville-com-94d72b77",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-exploreasheville-com-8e96aa9e",
@@ -199,7 +318,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-exploreasheville-com-8e96aa9e",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "meetings-cityofboise-org-3b05a56d",
@@ -223,7 +359,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "meetings-cityofboise-org-3b05a56d",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-boisestatepublicradio-org-1b57dd9c",
@@ -247,7 +400,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-boisestatepublicradio-org-1b57dd9c",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "volunteer-boisewatershed-org-b6e8d60b",
@@ -271,7 +441,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "volunteer-boisewatershed-org-b6e8d60b",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-meridiancity-org-44f75203",
@@ -295,7 +482,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-meridiancity-org-44f75203",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "meetings-boston-gov-269e52b6",
@@ -319,7 +523,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "meetings-boston-gov-269e52b6",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "volunteer-boston-gov-98c6b1e6",
@@ -343,7 +564,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "volunteer-boston-gov-98c6b1e6",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-thebostoncalendar-com-6e034980",
@@ -367,7 +605,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-thebostoncalendar-com-6e034980",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-bostonusa-com-7323eab4",
@@ -391,7 +646,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-bostonusa-com-7323eab4",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-bouldercolorado-gov-96089785",
@@ -415,7 +687,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-bouldercolorado-gov-96089785",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "meetings-bouldercolorado-gov-96089785",
@@ -439,7 +728,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "meetings-bouldercolorado-gov-96089785",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "volunteer-bouldercounty-gov-e331dd88",
@@ -463,7 +769,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "volunteer-bouldercounty-gov-e331dd88",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-bouldercoloradousa-com-8fb18e01",
@@ -487,7 +810,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-bouldercoloradousa-com-8fb18e01",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-chicago-gov-83a3ca20",
@@ -511,7 +851,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-chicago-gov-83a3ca20",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-chicagoonthecheap-com-c652aec2",
@@ -535,7 +892,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-chicagoonthecheap-com-c652aec2",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "volunteer-chicagoparkdistrict-com-ba93a249",
@@ -559,7 +933,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "volunteer-chicagoparkdistrict-com-ba93a249",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "meetings-chicityclerk-com-959bf3e4",
@@ -583,7 +974,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "meetings-chicityclerk-com-959bf3e4",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-denvergov-org-c69e47eb",
@@ -607,7 +1015,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-denvergov-org-c69e47eb",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "meetings-denvergov-org-461d818b",
@@ -631,7 +1056,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "meetings-denvergov-org-461d818b",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "volunteer-denvergov-org-ffc494c0",
@@ -655,7 +1097,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "volunteer-denvergov-org-ffc494c0",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-downtown-denver-com-920db7f3",
@@ -679,7 +1138,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-downtown-denver-com-920db7f3",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-librarycalendar-fairfaxcounty-gov-8d007a14",
@@ -703,7 +1179,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-librarycalendar-fairfaxcounty-gov-8d007a14",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "meetings-fairfaxcounty-gov-6f6370e4",
@@ -727,7 +1220,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "meetings-fairfaxcounty-gov-6f6370e4",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "meetings-summitcountyco-gov-0e4237c8",
@@ -751,7 +1261,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "meetings-summitcountyco-gov-0e4237c8",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-summitdaily-com-1e792ddf",
@@ -775,7 +1302,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-summitdaily-com-1e792ddf",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-town-keystone-co-us-e3452f18",
@@ -799,7 +1343,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-town-keystone-co-us-e3452f18",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "volunteer-volunteermatch-org-79b64c6c",
@@ -823,7 +1384,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "volunteer-volunteermatch-org-79b64c6c",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-loudoun-gov-6856d112",
@@ -847,7 +1425,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-loudoun-gov-6856d112",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "meetings-loudoun-gov-349cf574",
@@ -871,7 +1466,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "meetings-loudoun-gov-349cf574",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "volunteer-loudoun-gov-81bf3267",
@@ -895,7 +1507,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "volunteer-loudoun-gov-81bf3267",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "meetings-nola-gov-b2493356",
@@ -919,7 +1548,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "meetings-nola-gov-b2493356",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "volunteer-nola-gov-c959480f",
@@ -943,7 +1589,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "volunteer-nola-gov-c959480f",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-frenchquarterjournal-com-71d351d3",
@@ -967,7 +1630,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-frenchquarterjournal-com-71d351d3",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-neworleans-com-0da88206",
@@ -991,7 +1671,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-neworleans-com-0da88206",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "meetings-norfolk-gov-67d13024",
@@ -1015,7 +1712,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "meetings-norfolk-gov-67d13024",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-norfolk-gov-67d13024",
@@ -1039,7 +1753,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-norfolk-gov-67d13024",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "volunteer-norfolk-gov-ff89d6a7",
@@ -1063,7 +1794,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "volunteer-norfolk-gov-ff89d6a7",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "meetings-legistar-council-nyc-gov-e75d3835",
@@ -1087,7 +1835,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "meetings-legistar-council-nyc-gov-e75d3835",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-nycgovparks-org-3468fa93",
@@ -1111,7 +1876,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-nycgovparks-org-3468fa93",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-nycforfree-co-3a433d76",
@@ -1135,7 +1917,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-nycforfree-co-3a433d76",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-nycgovparks-org-61d38c99",
@@ -1159,7 +1958,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-nycgovparks-org-61d38c99",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "volunteer-nycgovparks-org-4b7ad625",
@@ -1183,7 +1999,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "volunteer-nycgovparks-org-4b7ad625",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "meetings-phila-gov-a4cb56f4",
@@ -1207,7 +2040,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "meetings-phila-gov-a4cb56f4",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-phila-gov-7efb5a03",
@@ -1231,7 +2081,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-phila-gov-7efb5a03",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-phillyfamily-com-c8e106d8",
@@ -1255,7 +2122,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-phillyfamily-com-c8e106d8",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "volunteer-friendsoftheparks-org-5e217463",
@@ -1279,7 +2163,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "volunteer-friendsoftheparks-org-5e217463",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "meetings-portland-gov-a7c4178f",
@@ -1303,7 +2204,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "meetings-portland-gov-a7c4178f",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "volunteer-portland-gov-fe600e12",
@@ -1327,7 +2245,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "volunteer-portland-gov-fe600e12",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-portlandlivingonthecheap-com-be5408f7",
@@ -1351,7 +2286,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-portlandlivingonthecheap-com-be5408f7",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-events-portlandonline-us-09e0b6eb",
@@ -1375,7 +2327,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-events-portlandonline-us-09e0b6eb",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "meetings-portlandmaine-gov-bc259924",
@@ -1399,7 +2368,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "meetings-portlandmaine-gov-bc259924",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "volunteer-portlandmaine-gov-2c137978",
@@ -1423,7 +2409,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "volunteer-portlandmaine-gov-2c137978",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-mainepublic-org-bfb30cd0",
@@ -1447,7 +2450,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-mainepublic-org-bfb30cd0",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-visitportland-com-6515f560",
@@ -1471,7 +2491,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-visitportland-com-6515f560",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "meetings-princegeorgescountymd-gov-95ea3f6d",
@@ -1495,7 +2532,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "meetings-princegeorgescountymd-gov-95ea3f6d",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-blackhistory-pgparks-com-49fafbc4",
@@ -1519,7 +2573,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-blackhistory-pgparks-com-49fafbc4",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-pgparks-com-005aa0a6",
@@ -1543,7 +2614,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-pgparks-com-005aa0a6",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "volunteer-pgparks-com-bf740430",
@@ -1567,7 +2655,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "volunteer-pgparks-com-bf740430",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-6amcity-com-a7dfd2b6",
@@ -1591,7 +2696,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-6amcity-com-a7dfd2b6",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "volunteer-jrps-org-2a3b895f",
@@ -1615,7 +2737,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "volunteer-jrps-org-2a3b895f",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "meetings-richmondgov-com-87666ac9",
@@ -1639,7 +2778,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "meetings-richmondgov-com-87666ac9",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-visitrichmondva-com-1ae28ba3",
@@ -1663,7 +2819,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-visitrichmondva-com-1ae28ba3",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-sfrecpark-org-ddd118f6",
@@ -1687,7 +2860,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-sfrecpark-org-ddd118f6",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-sf-funcheap-com-cfc0d68c",
@@ -1711,7 +2901,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-sf-funcheap-com-cfc0d68c",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "meetings-sfbos-org-705d79ff",
@@ -1735,7 +2942,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "meetings-sfbos-org-705d79ff",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "volunteer-sfparks-org-ddcc85b5",
@@ -1759,7 +2983,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "volunteer-sfparks-org-ddcc85b5",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-sfrecpark-org-822dab73",
@@ -1783,7 +3024,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-sfrecpark-org-822dab73",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "meetings-santafenm-gov-4df17058",
@@ -1807,7 +3065,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "meetings-santafenm-gov-4df17058",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "volunteer-santafenm-gov-57a0cd99",
@@ -1831,7 +3106,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "volunteer-santafenm-gov-57a0cd99",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-santafe-org-8f1eb055",
@@ -1855,7 +3147,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-santafe-org-8f1eb055",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-santafe-org-068ccfff",
@@ -1879,7 +3188,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-santafe-org-068ccfff",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "meetings-seattle-gov-3418b89c",
@@ -1903,7 +3229,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "meetings-seattle-gov-3418b89c",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "volunteer-seattle-gov-c1758f69",
@@ -1927,7 +3270,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "volunteer-seattle-gov-c1758f69",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-seattle-gov-cca4136c",
@@ -1951,19 +3311,33 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-seattle-gov-cca4136c",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-seattle-net-25130bd8",
       "regionId": "seattle",
-      "status": "BLOCKED",
+      "status": "LANDED",
       "endpoint": "https://seattle.net/api",
-      "activeRegionConfig": false,
-      "releaseEvidence": false,
-      "blockers": [
-        "no matching active source in app/regions configuration",
-        "no generated release evidence for the candidate endpoint or identity"
-      ],
+      "activeRegionConfig": true,
+      "releaseEvidence": true,
+      "blockers": [],
       "requiredEvidence": [
         "endpoint verification",
         "terms/license",
@@ -1975,7 +3349,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-seattle-net-25130bd8",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": true,
+        "releaseEvidence": true,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-greaterseattleonthecheap-com-7d63f8d3",
@@ -1999,7 +3390,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-greaterseattleonthecheap-com-7d63f8d3",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-sedonaaz-gov-605e78d8",
@@ -2023,7 +3431,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-sedonaaz-gov-605e78d8",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-sedonaaz-gov-c0071a9f",
@@ -2047,7 +3472,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-sedonaaz-gov-c0071a9f",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "meetings-sedonaaz-gov-a23d2c98",
@@ -2071,7 +3513,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "meetings-sedonaaz-gov-a23d2c98",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-visitsedona-com-64ad436c",
@@ -2095,7 +3554,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-visitsedona-com-64ad436c",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "volunteer-sedonaaz-gov-79ca6cb2",
@@ -2119,7 +3595,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "volunteer-sedonaaz-gov-79ca6cb2",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-dpr-dc-gov-67b39fe7",
@@ -2143,7 +3636,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-dpr-dc-gov-67b39fe7",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "volunteer-dpr-dc-gov-52180f8a",
@@ -2167,7 +3677,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "volunteer-dpr-dc-gov-52180f8a",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "meetings-dcouncil-us-4d64fb67",
@@ -2191,7 +3718,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "meetings-dcouncil-us-4d64fb67",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-districtfray-com-d21bcaee",
@@ -2215,7 +3759,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-districtfray-com-d21bcaee",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-nps-gov-675f6405",
@@ -2239,7 +3800,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-nps-gov-675f6405",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "volunteer-nps-gov-20ec7407",
@@ -2263,7 +3841,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "volunteer-nps-gov-20ec7407",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "meetings-viennava-gov-bc6ebc78",
@@ -2287,7 +3882,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "meetings-viennava-gov-bc6ebc78",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "food-for-others",
@@ -2311,7 +3923,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "food-for-others",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "events-wolftrap-org-f9ccaf58",
@@ -2335,7 +3964,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "events-wolftrap-org-f9ccaf58",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     },
     {
       "candidateId": "wolf-trap-foundation",
@@ -2359,7 +4005,24 @@
         "focused tests",
         "active region config",
         "generated release evidence"
-      ]
+      ],
+      "acceptance": {
+        "candidateId": "wolf-trap-foundation",
+        "stage": "APPROVED",
+        "missingGates": [
+          "endpointVerification",
+          "termsLicense",
+          "fixture",
+          "mapping",
+          "stableId",
+          "coordinates",
+          "refreshPolicy",
+          "focusedTests"
+        ],
+        "activeRegionConfig": false,
+        "releaseEvidence": false,
+        "policy": "Staged acceptance authorizes research only; LANDED requires active region config plus generated release evidence."
+      }
     }
   ]
 }

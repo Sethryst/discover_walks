@@ -9,6 +9,20 @@
   ],
   "sources": [
     {
+      "id": "events-seattle-net-25130bd8",
+      "name": "Seattle.net community events",
+      "provider": "rss_ics_events",
+      "url": "https://seattle.net/api/events.ics",
+      "domains": ["event"],
+      "licenseUrl": "https://seattle.net/api",
+      "attribution": "Seattle.net community calendar",
+      "authorityTier": "community",
+      "confidence": 0.82,
+      "refreshPolicy": "PT6H",
+      "providerOptions": {"defaultCoordinates": [-122.3321, 47.6062], "limit": 250},
+      "candidateUrl": "https://seattle.net/api"
+    },
+    {
       "id": "seattle-boundary",
       "name": "Seattle Area Polygon",
       "provider": "arcgis_feature_service",
