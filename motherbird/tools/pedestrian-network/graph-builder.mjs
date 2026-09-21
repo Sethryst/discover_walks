@@ -49,6 +49,7 @@ export function buildPedestrianGraph(featureCollection, dataset, { snapTolerance
         }
         candidates.push({
           sourceId,
+          edgeId: feature.properties?._mb_edge_id,
           partIndex,
           segmentIndex: 0,
           from: normalized[0],
@@ -69,7 +70,7 @@ export function buildPedestrianGraph(featureCollection, dataset, { snapTolerance
           rejected.push({ source_feature_id: sourceId, part_index: partIndex, segment_index: segmentIndex, reason: 'invalid_or_zero_length_segment' });
           continue;
         }
-        candidates.push({ sourceId, partIndex, segmentIndex, from, to, coordinates: [from, to], edgeType, access, accessEvidence, attributes: selectAttributes(feature.properties || {}, dataset.edge_attribute_fields), updatedAt: featureUpdatedAt(feature.properties || {}, dataset.last_edit_fields) });
+        candidates.push({ sourceId, edgeId: feature.properties?._mb_edge_id, partIndex, segmentIndex, from, to, coordinates: [from, to], edgeType, access, accessEvidence, attributes: selectAttributes(feature.properties || {}, dataset.edge_attribute_fields), updatedAt: featureUpdatedAt(feature.properties || {}, dataset.last_edit_fields) });
       }
     }
   }
@@ -83,7 +84,7 @@ export function buildPedestrianGraph(featureCollection, dataset, { snapTolerance
     const toNodeId = nodeId(dataset.id, to);
     ensureNode(nodeByKey, fromNodeId, from);
     ensureNode(nodeByKey, toNodeId, to);
-    const edgeId = `${dataset.id}:${candidate.sourceId}:${candidate.partIndex}:${candidate.segmentIndex}`;
+    const edgeId = candidate.edgeId || `${dataset.id}:${candidate.sourceId}:${candidate.partIndex}:${candidate.segmentIndex}`;
     const policy = materializeAccessPolicy({ access: candidate.access, edgeType: candidate.edgeType, evidence: candidate.accessEvidence, attributes: candidate.attributes });
     const policyWarning = candidate.attributes._mb_policy_warning || policy.policy_warning;
     return {

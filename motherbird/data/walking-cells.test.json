@@ -1,0 +1,9 @@
+{
+  "format": "motherbird-walking-cell-registry-v1",
+  "release": "test-release",
+  "cells": [
+    {"cellId":"routable","bounds":[-75,39,-74,40],"availability":"routing_available","artifacts":{"map":{"url":"./test-map.pmtiles"},"graph":{"url":"./test-routable.json","bytes":2,"sha256":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","graphVersion":"motherbird-runtime-graph-v1"}}},
+    {"cellId":"overlap","bounds":[-75,39.5,-74.5,40],"availability":"routing_unavailable","artifacts":{"map":{"url":"./test-map.pmtiles"},"graph":{"url":"./missing.json","bytes":0,"sha256":null,"graphVersion":"motherbird-runtime-graph-v1"}}},
+    {"cellId":"missing","bounds":[-73,39,-72,40],"availability":"routing_unavailable","artifacts":{"map":{"url":"./test-map.pmtiles"},"graph":{"url":"./missing.json","bytes":0,"sha256":null,"graphVersion":"motherbird-runtime-graph-v1"}}}
+  ]
+}

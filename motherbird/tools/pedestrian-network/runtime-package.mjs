@@ -46,11 +46,14 @@ export function buildRuntimeGraph(graph, dataset, { builtAt = new Date().toISOSt
   for (const value of hashInputs) graphHasher.update(JSON.stringify(value));
   const graphHash = graphHasher.digest('hex');
   return {
+    format: 'motherbird-runtime-graph-v1',
     schema_version: 1,
     dataset_id: dataset.id,
     source_version: sourceVersion,
     city: dataset.runtime_city || inferCity(dataset),
-    graph_version: `${dataset.id}-${graphHash.slice(0, 12)}`,
+    // The browser contract treats graph_version as the runtime schema/version,
+    // while graph_hash carries the deterministic graph identity.
+    graph_version: 'motherbird-runtime-graph-v1',
     graph_hash: graphHash,
     policy_version: POLICY_VERSION,
     built_at: builtAt,

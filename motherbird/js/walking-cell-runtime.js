@@ -16,11 +16,19 @@ export async function activateWalkingCellAt(point, { manifestUrl = walkingCellMa
   registryPromise ||= WalkingCellRegistry.load(manifestUrl).catch((error) => { registryPromise = null; throw error; });
   const registry = await registryPromise;
   const cell = registry.find(point.lat, point.lng);
-  if (!cell) return null;
+  if (!cell) {
+    state.walkingCell = Object.freeze({ id: null, release: registry.release, availability: 'unavailable', reason: 'NO_CELL_FOR_COORDINATE', files: {} });
+    return state.walkingCell;
+  }
+  if (cell.availability === 'routing_unavailable' || cell.availability === 'build_failed') {
+    const unavailable = Object.freeze({ id: cell.id, release: registry.release, bounds: cell.bounds, availability: cell.availability, files: {} });
+    state.walkingCell = unavailable;
+    return unavailable;
+  }
   if (state.walkingCell?.id === cell.id && state.walkingCell?.release === registry.release) return state.walkingCell;
   if (activation?.key === `${registry.release}/${cell.id}`) return activation.promise;
   const promise = cache.ensureCell(registry.release, cell).then((files) => {
-    const active = Object.freeze({ id: cell.id, release: registry.release, bounds: cell.bounds, files });
+    const active = Object.freeze({ id: cell.id, release: registry.release, bounds: cell.bounds, availability: cell.availability || 'routing_available', files });
     state.walkingCell = active;
     window.dispatchEvent(new CustomEvent('walking-cell-ready', { detail: active }));
     return active;

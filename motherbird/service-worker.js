@@ -10,7 +10,7 @@ const shell = [
   ...['anchor', 'book-open', 'bookmark', 'coffee', 'droplet', 'eye', 'star', 'tree', 'walk', 'navigation', 'search'].map((icon) => `./icons/${icon}.svg`),
   './js/online-pane.js', './js/qr-share.js', './js/open-payload.js', './js/sealed-data.js', './js/offline-view.js', './js/friend-walk.js', './js/place-details.js',
   './js/offline-map-style.js', './js/installed-tiles.js',
-  './data/walking-cells.json',
+  './data/cells.json',
   './js/heartbeat.js', './js/onboarding.js', './js/reflection.js', './js/region-favorites.js', './js/spatial-sync-outbox.js', './js/spatial-sync-policy.js', './js/pwa-update.js',
   './data/dc-official-trails.js', './icons/plus.svg',
   './', './index.html', './watch.html', './styles.css', './shell.css', './splash-fix.css', './watch.css', './legal.css', './privacy.html', './terms.html', './app.js', './manifest.webmanifest', './watch.webmanifest', './supabase-config.js',

@@ -15,19 +15,36 @@ export class WalkingCellCache {
 
   async ensure(release, cell, kind) {
     const cached = await this.get(release, cell.id, kind);
-    if (cached) return cached;
+    if (cached) {
+      try {
+        await verifyArtifact(cached, cell.artifacts[kind], kind, release, cell);
+        return cached;
+      } catch (_) {
+        await this.remove(release, cell.id, kind).catch(() => {});
+      }
+    }
     const artifact = cell.artifacts[kind];
-    const response = await fetchArtifact(this.fetchImpl, artifact);
-    const blob = await response.blob();
-    if (artifact.bytes && blob.size !== artifact.bytes) throw new Error(`${cell.id} ${kind} artifact size does not match its manifest.`);
-    if (artifact.byteRange && blob.size !== artifact.byteRange.length) throw new Error(`${cell.id} ${kind} range is incomplete.`);
-    if (artifact.sha256) await verifySha256(blob, artifact.sha256);
-    const directory = await this.#directory(release, cell.id, true);
-    const handle = await directory.getFileHandle(fileName(kind), { create: true });
-    const writable = await handle.createWritable();
-    try { await writable.write(blob); await writable.close(); }
-    catch (error) { await writable.abort?.(); throw error; }
-    return handle.getFile();
+    let blob;
+    try {
+      const response = await fetchArtifact(this.fetchImpl, artifact);
+      blob = await response.blob();
+      await verifyArtifact(blob, artifact, kind, release, cell);
+      const directory = await this.#directory(release, cell.id, true);
+      const handle = await directory.getFileHandle(fileName(kind), { create: true });
+      const writable = await handle.createWritable();
+      try { await writable.write(blob); await writable.close(); }
+      catch (error) { await writable.abort?.(); throw error; }
+      return handle.getFile();
+    } catch (error) {
+      await this.remove(release, cell.id, kind).catch(() => {});
+      throw error;
+    }
+  }
+
+  async remove(release, cellId, kind) {
+    const directory = await this.#directory(release, cellId, false);
+    if (!directory) return;
+    try { await directory.removeEntry(fileName(kind)); } catch (error) { if (error?.name !== 'NotFoundError') throw error; }
   }
 
   async ensureCell(release, cell) {
@@ -71,6 +88,21 @@ async function verifySha256(blob, declared) {
   if (!globalThis.crypto?.subtle) throw new Error('Artifact checksum verification is unavailable.');
   const actual = [...new Uint8Array(await crypto.subtle.digest('SHA-256', await blob.arrayBuffer()))].map((value) => value.toString(16).padStart(2, '0')).join('');
   if (actual !== String(declared).replace(/^sha256:/i, '').toLowerCase()) throw new Error('Cell artifact checksum does not match.');
+}
+
+async function verifyArtifact(blob, artifact, kind, release, cell) {
+  if (artifact.bytes != null && blob.size !== Number(artifact.bytes)) throw new Error(`${cell.id} ${kind} artifact size does not match its manifest.`);
+  if (artifact.byteRange && blob.size !== artifact.byteRange.length) throw new Error(`${cell.id} ${kind} range is incomplete.`);
+  if (artifact.sha256) await verifySha256(blob, artifact.sha256);
+  if (kind === 'graph') await verifyGraph(blob, release, cell);
+}
+
+async function verifyGraph(blob, release, cell) {
+  let graph;
+  try { graph = JSON.parse(await blob.text()); } catch (_) { throw new Error('Cell routing graph JSON is malformed.'); }
+  if (graph?.schema_version !== 1 || graph?.format !== 'motherbird-runtime-graph-v1') throw new Error('Cell routing graph version is unsupported.');
+  const expectedDataset = `${release}:${cell.id}`;
+  if (graph.source_version !== release || graph.dataset_id !== expectedDataset) throw new Error('Cell routing graph metadata does not match its registry entry.');
 }
 
 function safePart(value) {

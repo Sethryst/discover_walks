@@ -13,5 +13,5 @@ window.WALK_WILDLIFE_SUPABASE = {
 // Public, coordinate-free registry. The client chooses the smallest matching
 // routing cell locally and warms it automatically as the viewport/GPS moves.
 window.MOTHER_BIRD_WALKING_CELLS = {
-  manifestUrl: './data/walking-cells.json'
+  manifestUrl: './data/cells.json'
 };

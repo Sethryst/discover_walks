@@ -20,10 +20,12 @@ export const ROUTE_FAILURE_MESSAGES = {
 
 export async function routeOnFoot(points, { city, profile = 'ordinary_walking_beta' } = {}) {
   if (!Array.isArray(points) || points.length < 2) return failure('INVALID_ROUTE_REQUEST');
-  try { activeWalkingCell = await activateWalkingCellAt(points[0]) || activeWalkingCell; }
-  catch { /* Keep the last installed graph; the worker returns a typed miss if it cannot cover the request. */ }
+  try { activeWalkingCell = await activateWalkingCellAt(points[0]); }
+  catch (error) { return failure('GRAPH_VERSION_UNAVAILABLE', error.message); }
+  if (!activeWalkingCell?.id || activeWalkingCell.availability !== 'routing_available') return failure('GRAPH_VERSION_UNAVAILABLE', activeWalkingCell?.reason);
   const legs = [];
   for (let index = 0; index < points.length - 1; index += 1) {
+    if (activeWalkingCell?.availability === 'routing_unavailable') return failure('GRAPH_VERSION_UNAVAILABLE');
     const result = await requestRoute({ city, profile, origin: points[index], destination: points[index + 1], avoid: { stairs: false, unverified_edges: false }, cellGraphPath: activeWalkingCell?.files?.graph?.path, cellId: activeWalkingCell?.id, cellRelease: activeWalkingCell?.release });
     if (!result.ok) return result;
     legs.push(result);
@@ -65,4 +67,4 @@ function requestRoute(payload) {
   return new Promise((resolve) => { pending.set(requestId, resolve); worker.postMessage({ type: 'route', requestId, ...payload }); });
 }
 
-function failure(type) { return { ok: false, status: type, failure: { type, message: ROUTE_FAILURE_MESSAGES[type] } }; }
+function failure(type, reason = null) { return { ok: false, status: type, failure: { type, message: ROUTE_FAILURE_MESSAGES[type], reason } }; }
