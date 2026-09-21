@@ -76,6 +76,14 @@ function renderArtifactList() {
 }
 
 async function persistCreatedLayer(layer, shape) {
+  if (shape === 'Marker') {
+    const point = layer.getLatLng?.();
+    if (point) {
+      layer.remove?.();
+      window.dispatchEvent(new CustomEvent('personal-place-create-requested', { detail: { location: { lat: point.lat, lng: point.lng }, name: 'Pinned place' } }));
+    }
+    return;
+  }
   let geojson = layer.toGeoJSON();
   if (shape === 'Circle' && globalThis.turf && Number.isFinite(layer.getRadius?.())) {
     const center = layer.getLatLng();

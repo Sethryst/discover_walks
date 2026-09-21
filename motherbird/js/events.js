@@ -187,6 +187,10 @@ function bindWalkControls() {
   el('startChevron')?.addEventListener('click', () => togglePanel('startChevron', 'startPanel'));
   el('generateWalkButton')?.addEventListener('click', () => void generateTimeBasedPlan());
   window.addEventListener('walk-sketch-painted', (event) => renderWalkSketch(event.detail));
+  window.addEventListener('planner-point-selected', () => {
+    toast('Destination selected. Sketching your point-to-point walk…');
+    void generateTimeBasedPlan();
+  });
   el('dismissWalkSketch')?.addEventListener('click', () => { changePlan(); el('walkSketch').classList.add('hidden'); });
   el('startPlannedWalkButton')?.addEventListener('click', async () => {
     if (!state.plannedRoute) return; lockSelectedPlanOnMap(); el('walkSketch').classList.add('hidden');

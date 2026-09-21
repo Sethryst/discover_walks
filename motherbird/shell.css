@@ -50,4 +50,10 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
   .map-workspace-panel {
     height: 100%;
   }
+  .map-dock {
+    right: auto;
+    width: max-content;
+    padding-left: 6px;
+    padding-right: 6px;
+  }
 }

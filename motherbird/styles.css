@@ -153,7 +153,8 @@
 /* Keep the annotation tools attached to the editor edge; there is no useful
    collapsed state because collapsing the library hides the context they act on. */
 #collapseDrawTools { display: grid !important; }
-.map-workspace-panel[data-destination="draw"] .draw-workspace { overflow: visible !important; }
+.map-workspace-panel[data-destination="draw"] { overflow: visible !important; }
+.map-workspace-panel[data-destination="draw"] .draw-workspace { overflow-y: auto !important; overflow-x: visible !important; }
 .map-workspace-panel[data-destination="draw"] .draw-shapes { visibility: visible !important; }
 .draw-tools-collapsed .map-workspace-panel[data-destination="draw"] { width: 56px !important; }
 .draw-tools-collapsed .map-workspace-panel[data-destination="draw"] > header > div { display: grid !important; }
@@ -161,10 +162,25 @@
 .draw-tools-collapsed .map-workspace-panel[data-destination="draw"] > header { height: 56px !important; padding: 10px !important; }
 .draw-tools-collapsed .map-workspace-panel[data-destination="draw"] > header > div:first-child { display: none !important; }
 .draw-tools-collapsed .map-workspace-panel[data-destination="draw"] > header .map-workspace-header-actions { display: grid !important; }
+.draw-tools-collapsed .map-workspace-panel[data-destination="draw"] .draw-workspace > *:not(.draw-shapes) { visibility: hidden !important; }
+.draw-tools-collapsed .map-workspace-panel[data-destination="draw"] .draw-workspace > .draw-shapes { visibility: visible !important; }
 @media(max-width:720px){
   .map-workspace-panel[data-destination="draw"] { width: min(210px, calc(100vw - 72px)) !important; }
   .draw-tools-collapsed .map-workspace-panel[data-destination="draw"] { width: 56px !important; }
+  .map-workspace-panel[data-destination="draw"] .draw-shapes {
+    position: fixed !important;
+    left: auto !important;
+    right: 8px !important;
+    top: auto !important;
+    bottom: calc(72px + env(safe-area-inset-bottom)) !important;
+    max-height: calc(100dvh - 150px) !important;
+    overflow-y: auto !important;
+  }
 }
+
+/* Draw is opened from Walk → Draw; the legacy map dock should never render. */
+.map-dock { display: none !important; }
+.map-workspace { z-index: 1000; }
 /* Keep the walk sketch fully reachable above the map dock on short phone screens. */
 .start-panel{max-height:min(72dvh,520px);overflow-y:auto;overscroll-behavior:contain}
 .start-panel fieldset{flex-wrap:wrap}

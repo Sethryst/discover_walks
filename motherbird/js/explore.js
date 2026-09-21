@@ -28,7 +28,16 @@ export function initExplore() {
   el('exploreSearchInput').addEventListener('input', renderExplorePlaces);
   document.querySelectorAll('.planner-chip').forEach((button) => button.addEventListener('click', () => { button.classList.toggle('active'); generateTimeBasedPlan(); }));
   document.querySelectorAll('input[name="walkTime"]').forEach((input) => input.addEventListener('change', updatePlanPreview));
-  document.querySelectorAll('input[name="routeMode"]').forEach((input) => input.addEventListener('change', updatePlanPreview));
+  document.querySelectorAll('input[name="routeMode"]').forEach((input) => input.addEventListener('change', () => {
+    if (input.checked && input.value === 'point-to-point') {
+      state.plannerEnd = null;
+      state.plannerSelecting = 'End';
+    } else if (input.checked) {
+      state.plannerSelecting = null;
+      state.plannerEnd = null;
+    }
+    updatePlanPreview();
+  }));
 }
 
 export function setExploreTab(tab) {

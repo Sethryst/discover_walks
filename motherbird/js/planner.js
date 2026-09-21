@@ -47,8 +47,15 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
   const minutes = selectedMinutes();
   const routeMode = selectedRouteMode();
   const center = state.currentPosition || state.map?.getCenter() || CITIES[state.activeCity].center;
+  if (routeMode === 'point-to-point' && !state.plannerEnd) {
+    state.plannerSelecting = 'End';
+    toast('Tap a destination on the map to make this a point-to-point walk.');
+    return null;
+  }
   const count = minutes <= 20 ? 2 : minutes >= 60 ? 4 : 3;
-  const stops = seededStops?.length ? seededStops : candidateStops(center, interests()).slice(0, count);
+  const stops = routeMode === 'point-to-point'
+    ? [{ name: 'Selected destination', lat: state.plannerEnd.lat, lng: state.plannerEnd.lng }]
+    : (seededStops?.length ? seededStops : candidateStops(center, interests()).slice(0, count));
   if (!stops.length) {
     toast('No candidate places nearby to sketch a walk. Try panning the map or picking an area with places.');
     return null;

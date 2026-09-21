@@ -29,6 +29,19 @@ This is the delivery list for making Washington, DC the reference-quality region
 
 ## Then — meaningful discovery, not gamification
 
+## Personal atlas direction — memory before metrics
+
+- [ ] **Personal map accumulation.** Reuse the existing OSM/Leaflet basemap and local IndexedDB artifacts so walks, saved places, observations, photos, journal history, and drawings accumulate into a personal geographic layer. Do not add completion percentages, badges, rankings, streaks, or other game mechanics.
+- [ ] **Regional memory summaries.** Show walks, places, observations, photos, and notes associated with the active region/neighborhood, then lead into the actual map and journal artifacts rather than progress scores.
+- [ ] **Richer walk archive.** Extend the existing Journal/archive detail to include route, duration, distance, recorded places, observations, photos, and notes without creating a parallel history model.
+- [ ] **Reviewable historical import.** Add optional historical-location import as unconfirmed material with explicit review, accept, edit, and discard states before it enters the personal map or journal.
+- [ ] **Photo-to-place memory.** Let confirmed geotagged photos attach to an existing walk or personal place and support a representative photo without inferring meaning; reuse the current observation/journal photo storage.
+- [ ] **Personal Me overview.** Present walks, places, observations, photos, regions, and recent activity as a personal atlas, not fitness statistics or achievement metrics.
+- [ ] **Visual personal-map export.** Export a map snapshot with the existing basemap and selected personal layers; keep it small enough to become a future Birdnote artifact.
+- [ ] **Walk replay exploration.** Investigate replaying an existing walk as a journal artifact using its route, pauses, places, observations, photos, and notes; defer until after the first personal-atlas version.
+- [ ] **Lightweight active-walk surfaces.** Extend the existing Watch/capture architecture for elapsed time, return, pause/resume, and quick capture without creating a second tracking system.
+- [ ] **Optional local-first backup.** Keep local data authoritative and make backup explicit; private GPS tracks, notes, photos, and other personal material must not leave the device without a deliberate user action.
+
 - [ ] **Split Profile progress into two inventories.** Keep **Verified sites** for official/reviewed place records and add **Discoveries** for walk-relevant non-government places such as coffee, food access, nature, art, and community spots. Do not award extra points merely for the split.
   - Done when: Profile shows clear counts, recent discoveries, and category breakdowns without turning every place into a badge chase.
 - [ ] **Make discovery eligibility explicit across regions.** Philadelphia currently has no base-seed POIs; inventory its supplemental package and every other city to identify which records are map-visible, discoverable, geofence-eligible, or excluded.
