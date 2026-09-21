@@ -2,6 +2,72 @@
 
 This is the delivery list for making Washington, DC the reference-quality region. It follows the static, local-first architecture and keeps map POIs separate from installable region packages until those contracts are deliberately integrated.
 
+> This is the canonical product roadmap. `STRATEGIC_DIRECTIONS.md` records active platform strategy, `docs/PRODUCT_DIRECTION_AND_SUSTAINABILITY.md` records the product promise and funding boundaries, and `PROJECT_MEMORY.md` records architectural facts and known limitations. Those documents remain the detailed references; this file owns the prioritized product work.
+
+## Product promise and non-negotiables
+
+Discover Walks is a private, walking-first field journal. Every feature should deepen attention, agency, memory, or connection to place. The app must remain local-first, private by default, static-deployable, and grounded in the existing OSM/Leaflet basemap.
+
+- Build discovery loops and meaningful place cards, not a dense raw-data map or generic route list.
+- Keep prompts sparse, relevant, optional, and respectful of quiet walks.
+- Keep the user's words primary; taxonomy, tags, and interpretations are optional aids.
+- Make accumulation feel rewarding without badges, rankings, streak pressure, completion percentages, leaderboards, or social-performance mechanics.
+- Never sell personal routes, observations, photos, GPS tracks, or journal history; personal history is never subscription-gated.
+- Charge only for durable regional value such as editorial work, packaged offline maps, curated routes, dependable offline search, and field editions.
+
+## Product roadmap
+
+### Foundation — make the personal map trustworthy
+
+- [ ] **Personal map accumulation.** Reuse the current IndexedDB artifacts so walks, saved places, observations, photos, journal history, and drawings accumulate as a personal geographic layer over the existing basemap.
+- [ ] **Real My Maps memory loop.** POIs and Draw → Pin must offer a clear save flow into My Places, persist locally, render on the personal map, and remain editable from Library/My Maps.
+- [ ] **True point-to-point planning.** Round trips may return to origin; point-to-point must let the user select a destination on the map and route to that selected point. Do not silently substitute nearby auto-generated stops.
+- [ ] **Richer walk archive.** Reuse the existing Journal/archive records to show route, duration, distance, recorded places, observations, photos, notes, and optional reflection for each walk.
+- [ ] **Personal Me overview.** Present walks, places, observations, photos, regions, and recent activity as a visual personal atlas, not fitness statistics.
+- [ ] **Visual personal-map export.** Export a map snapshot with the existing basemap and selected personal layers; keep the first version small and suitable for a future Birdnote artifact.
+
+### Discovery experience — attention over volume
+
+- [ ] **Curated discovery loops.** Provide 3–5 genuine round-trip options named for what they offer, with time and distance as supporting facts.
+- [ ] **Dedicated planning mode.** Keep route planning free of POI interruption and make selected routes/entrances visually clear on the map.
+- [ ] **Relevance-ranked discoveries.** Surface at most one or two relevant discoveries during a walk using interests, route, distance, previous visits, and local importance.
+- [ ] **Place cards and containers.** Turn selected OSM/public records into short sourced stories with one inviting question, optional seasonal context, and editorial status. Treat parks, trails, and districts as filter-aware containers rather than pin floods.
+- [ ] **Tell-back reflection.** Offer one optional rotating reflection prompt after a walk.
+- [ ] **Personal naming and optional tags.** Keep observation naming in the user's voice and private by default.
+- [ ] **Regional memory summaries.** Show walks, places, observations, photos, and notes associated with a region or neighborhood, then lead into the actual artifacts rather than progress scores.
+
+### History and import — bring memory in safely
+
+- [ ] **Reviewable historical-location import.** Import routes/locations as unconfirmed historical material with explicit review, accept, edit, and discard states before it enters the personal map or journal.
+- [ ] **Photo-to-place memory.** Let confirmed geotagged photos attach to an existing walk or personal place and support a representative photo without inferring meaning; reuse the current observation/journal photo architecture.
+- [ ] **Walk replay exploration.** Investigate replaying a walk through its route, pauses, places, observations, photos, and notes as a journal artifact, after the first personal-atlas version.
+
+### Platform and regional scale
+
+- [ ] **Packaged offline pedestrian routing.** Replace the temporary public routing adapter with validated regional pedestrian graphs, worker-based search, typed failures, network snapping, and atomic graph publication. See [offline-routing-architecture.md](offline-routing-architecture.md).
+- [ ] **Validated regional packages.** Keep exact boundaries, checksummed artifacts, stable producer IDs, expiring claims, and no producer runtime dependency. See [RegionImportContract.md](RegionImportContract.md) and [RegionBuildPipeline.md](RegionBuildPipeline.md).
+- [ ] **Field Editions.** Deliver bounded offline maps, curated routes, stories, seasonal guides, and audio as durable regional packages without putting the private journal behind a subscription. See [FieldEditions.md](FieldEditions.md).
+- [ ] **Regional/editorial workflow.** Establish repeatable source review, accessibility notes, seasonal cautions, attribution, and release validation for new regions.
+- [ ] **Lightweight active-walk surfaces.** Extend the existing Watch/capture architecture for elapsed time, return, pause/resume, and quick capture without creating a second tracking system.
+- [ ] **Optional local-first backup.** Keep local data authoritative; private GPS tracks, notes, photos, and other personal material leave the device only after deliberate user action.
+
+## Delivery order
+
+1. Repair current memory fundamentals: My Places save paths, custom-pin persistence, personal-layer rendering, and point-to-point destination selection.
+2. Strengthen the walk archive and Me personal atlas using existing records.
+3. Improve curated discovery, place cards, sparse prompts, and regional memory.
+4. Add reviewable historical import and confirmed photo-to-place attachment.
+5. Build visual map export and walk replay.
+6. Advance offline routing, regional packages, Field Editions, and lightweight device surfaces.
+
+## Architecture boundaries
+
+- The browser remains a static ES-module app with IndexedDB as the authoritative personal store.
+- City seeds and installable region packages remain separate contracts until an explicit integration decision is made.
+- OSM/Leaflet remains the basemap; personal layers are additive.
+- Do not create parallel history, photo, place, backup, or routing models when the existing Journal, walk, observation, personal-place, storage, PMTiles, and local-first systems can be extended.
+- Never infer favorites, emotional meaning, preferences, or interpretations from movement history or photos.
+
 ## Now — DC data correctness and routing quality
 
 - [ ] **Repair DC Heritage Trail titles.** The generated DC dataset has 204 trail POIs, all from `Heritage Trail Signs and Plaques`. The importer currently selects the numeric `NAME` field (for example, `12`, `9`, or `3`) before the human-readable plaque/trail field. Inspect the source schema, choose the descriptive title field, reject numeric-only display names, rebuild both DC POI artifacts, and add a regression fixture.
@@ -28,19 +94,6 @@ This is the delivery list for making Washington, DC the reference-quality region
   - Done when: DC can toggle an accessible neighborhood overlay with labels, low-opacity fills, clear attribution, and no impact on route/POI hit targets.
 
 ## Then — meaningful discovery, not gamification
-
-## Personal atlas direction — memory before metrics
-
-- [ ] **Personal map accumulation.** Reuse the existing OSM/Leaflet basemap and local IndexedDB artifacts so walks, saved places, observations, photos, journal history, and drawings accumulate into a personal geographic layer. Do not add completion percentages, badges, rankings, streaks, or other game mechanics.
-- [ ] **Regional memory summaries.** Show walks, places, observations, photos, and notes associated with the active region/neighborhood, then lead into the actual map and journal artifacts rather than progress scores.
-- [ ] **Richer walk archive.** Extend the existing Journal/archive detail to include route, duration, distance, recorded places, observations, photos, and notes without creating a parallel history model.
-- [ ] **Reviewable historical import.** Add optional historical-location import as unconfirmed material with explicit review, accept, edit, and discard states before it enters the personal map or journal.
-- [ ] **Photo-to-place memory.** Let confirmed geotagged photos attach to an existing walk or personal place and support a representative photo without inferring meaning; reuse the current observation/journal photo storage.
-- [ ] **Personal Me overview.** Present walks, places, observations, photos, regions, and recent activity as a personal atlas, not fitness statistics or achievement metrics.
-- [ ] **Visual personal-map export.** Export a map snapshot with the existing basemap and selected personal layers; keep it small enough to become a future Birdnote artifact.
-- [ ] **Walk replay exploration.** Investigate replaying an existing walk as a journal artifact using its route, pauses, places, observations, photos, and notes; defer until after the first personal-atlas version.
-- [ ] **Lightweight active-walk surfaces.** Extend the existing Watch/capture architecture for elapsed time, return, pause/resume, and quick capture without creating a second tracking system.
-- [ ] **Optional local-first backup.** Keep local data authoritative and make backup explicit; private GPS tracks, notes, photos, and other personal material must not leave the device without a deliberate user action.
 
 - [ ] **Split Profile progress into two inventories.** Keep **Verified sites** for official/reviewed place records and add **Discoveries** for walk-relevant non-government places such as coffee, food access, nature, art, and community spots. Do not award extra points merely for the split.
   - Done when: Profile shows clear counts, recent discoveries, and category breakdowns without turning every place into a badge chase.
