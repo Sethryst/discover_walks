@@ -1,5 +1,5 @@
 import { state } from './state.js';
-import { el } from './utils.js';
+import { el, cityLabel } from './utils.js';
 import { toast } from './ui.js';
 import db from './storage.js';
 
@@ -108,6 +108,8 @@ async function clearDrawings() {
 export async function initMapPaint() {
   const button = el('mapPencilButton');
   if (!button || !state.map || !state.map.pm) return;
+  const updateRegionLabel = () => { const label = el('drawRegionLabel'); if (label) label.textContent = cityLabel(state.activeCity) || 'Installed region'; };
+  updateRegionLabel();
   state.mapPaintLayer = L.featureGroup().addTo(state.map);
   const friendLayer = L.layerGroup().addTo(state.map);
   await renderMapDrawings();
@@ -130,6 +132,7 @@ export async function initMapPaint() {
   });
   window.addEventListener('local-drawings-changed', () => void renderMapDrawings());
   window.addEventListener('city-layer-data-changed', () => void renderMapDrawings());
+  window.addEventListener('city-layer-data-changed', updateRegionLabel);
   window.addEventListener('friend-walk-tickets', ({ detail }) => {
     friendLayer.clearLayers();
     for (const ticket of detail || []) {
@@ -149,6 +152,11 @@ export async function initMapPaint() {
   });
   el('undoMapDrawing')?.addEventListener('click', () => void undoDrawing());
   el('clearMapDrawings')?.addEventListener('click', () => void clearDrawings());
+  el('hideAllMapArtifacts')?.addEventListener('click', () => {
+    for (const item of state.localDrawings || []) hiddenArtifacts.add(item.id);
+    localStorage.setItem('hiddenMapArtifacts', JSON.stringify([...hiddenArtifacts]));
+    void renderMapDrawings();
+  });
   el('exportMapArtifacts')?.addEventListener('click', () => {
     const features = (state.localDrawings || []).map((item) => item.body?.geojson).filter(Boolean);
     const url = URL.createObjectURL(new Blob([JSON.stringify({ type: 'FeatureCollection', features })], { type: 'application/geo+json' }));
