@@ -167,7 +167,7 @@ export async function createMigratedProfile() {
   return profile;
 }
 export async function loadLocalState() {
-  const [savedProfile, savedSettings, savedWalks] = await Promise.all([db.get('profile', 'local-user'), db.get('settings', 'app-settings'), db.all('walks')]);
+  const [savedProfile, savedSettings, savedWalks, savedRoutes] = await Promise.all([db.get('profile', 'local-user'), db.get('settings', 'app-settings'), db.all('walks'), db.all('saved_routes')]);
   state.profile = savedProfile ? normalizeProfile(savedProfile) : await createMigratedProfile();
   state.settings = { ...DEFAULT_SETTINGS, ...(savedSettings || {}) };
   if (!Array.isArray(state.settings.geofenceCategories) || !state.settings.geofenceCategories.some((id) => ['recreation', 'cuisine'].includes(id))) state.settings.geofenceCategories = ['recreation', 'cuisine'];
@@ -178,6 +178,7 @@ export async function loadLocalState() {
   state.activeCity = state.settings.activeCity;
   state.lastPosition = validSavedPosition(state.settings.lastPosition) ? { ...state.settings.lastPosition } : null;
   state.walks = savedWalks;
+  state.savedRoutes = savedRoutes;
   state.knownTrackPoints = savedWalks.flatMap((walk) => (walk.points || []).filter((_, index) => index % 5 === 0));
   await restoreLocalPoiClosures();
   await Promise.all([db.put('profile', state.profile), db.put('settings', state.settings)]);

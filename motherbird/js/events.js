@@ -18,6 +18,7 @@ import { renderNearbyPlaces, initJournalPane } from './journal-pane.js';
 import { openGeoCypher } from './geo-cypher.js';
 import { initMessengerBird } from './messenger-bird.js';
 import { restartCoachMarks } from './coach.js';
+import { savePlannedRoute } from './saved-routes.js';
 
 const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];
 
@@ -197,6 +198,14 @@ function bindWalkControls() {
     await startWalk({ routeMode: state.plannedRoute.routeMode || 'tracking' });
   });
   el('sendWalkPlanButton')?.addEventListener('click', () => void sendCurrentWalkPlan());
+  el('saveWalkPlanButton')?.addEventListener('click', async () => {
+    if (!state.plannedRoute) return;
+    const title = window.prompt('Name this route', state.plannedRoute.title || 'Saved route');
+    if (title === null) return;
+    const notes = window.prompt('Add route notes (optional)', '') ?? '';
+    try { await savePlannedRoute(state.plannedRoute, { title, notes }); toast('Route saved in My Maps.'); }
+    catch (error) { toast(error.message || 'Route could not be saved.'); }
+  });
   el('companionButton')?.addEventListener('click', async () => {
     const current = COSTUMES.map((name) => name.toLowerCase()).indexOf(state.settings.companionWalker || 'inky'); const next = COSTUMES[(current + 1) % COSTUMES.length];
     state.settings.companionWalker = next.toLowerCase(); await db.put('settings', state.settings); refreshCompanionState();

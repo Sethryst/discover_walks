@@ -4,7 +4,7 @@ import { readFile } from 'node:fs/promises';
 import db from '../js/storage.js';
 
 test('database upgrades are explicit additive migrations and expose backup preflight', async () => {
-  assert.equal(db.version, 14);
+  assert.equal(db.version, 15);
   assert.deepEqual(db.migrationPlan(12), [
     { version: 13, risk: 'additive', description: 'Separate Geo Cypher manifests from on-demand audio.' },
     { version: 14, risk: 'additive', description: 'Repair missing local stores from earlier installations.' }

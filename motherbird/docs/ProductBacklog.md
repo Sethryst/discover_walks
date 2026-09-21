@@ -45,6 +45,7 @@ Discover Walks is a private, walking-first field journal. Every feature should d
 ### Platform and regional scale
 
 - [ ] **Packaged offline pedestrian routing.** Replace the temporary public routing adapter with validated regional pedestrian graphs, worker-based search, typed failures, network snapping, and atomic graph publication. See [offline-routing-architecture.md](offline-routing-architecture.md).
+- [ ] **Turn-by-turn walking guidance.** Build on packaged offline pedestrian routing to provide step-by-step instructions for an active point-to-point walk, including the next maneuver, distance to maneuver, off-route detection, rerouting, and a clear end-of-route state. Keep guidance local-first and usable offline; do not make spoken navigation or continuous tracking a prerequisite for the first version.
 - [ ] **Validated regional packages.** Keep exact boundaries, checksummed artifacts, stable producer IDs, expiring claims, and no producer runtime dependency. See [RegionImportContract.md](RegionImportContract.md) and [RegionBuildPipeline.md](RegionBuildPipeline.md).
 - [ ] **Field Editions.** Deliver bounded offline maps, curated routes, stories, seasonal guides, and audio as durable regional packages without putting the private journal behind a subscription. See [FieldEditions.md](FieldEditions.md).
 - [ ] **Regional/editorial workflow.** Establish repeatable source review, accessibility notes, seasonal cautions, attribution, and release validation for new regions.
@@ -70,12 +71,10 @@ Discover Walks is a private, walking-first field journal. Every feature should d
 
 ## Now — DC data correctness and routing quality
 
-- [ ] **Repair DC Heritage Trail titles.** The generated DC dataset has 204 trail POIs, all from `Heritage Trail Signs and Plaques`. The importer currently selects the numeric `NAME` field (for example, `12`, `9`, or `3`) before the human-readable plaque/trail field. Inspect the source schema, choose the descriptive title field, reject numeric-only display names, rebuild both DC POI artifacts, and add a regression fixture.
+- [x] **Repair DC Heritage Trail titles.** The generated DC dataset has 204 trail POIs, all from `Heritage Trail Signs and Plaques`. The importer now uses an explicit source-backed `nameForFeature` title and the regression fixture rejects numeric-only display names.
   - Done when: no DC trail/history label is numeric-only or a generic fallback; each remains tied to its official source record.
-- [ ] **Audit any “Unknown site” title at the UI boundary.** The generated DC seed currently contains no literal `Unknown site`; trace the displayed string through search, map marker, sheet, and IndexedDB migration paths. Replace it only with a source-backed title or hide the defective record for review.
+- [x] **Audit any “Unknown site” title at the UI boundary.** The generated DC seed contains no literal `Unknown site`, and the current title paths use source-backed names or explicit record-level fallbacks rather than inventing that label.
   - Done when: the UI cannot display an invented generic title for a DC historical record.
-- [ ] **Diagnose the public-art map count.** The generated DC seed contains 312 `public_art` POIs, so investigate selected filters, viewport rendering, duplicate-coordinate handling, and marker-layer lifecycle rather than adding a new source.
-  - Done when: selecting Public Art reliably presents all eligible art in the current map bounds and reports an honest count.
 - [ ] **Create a DC curated-walk manifest.** Add a versioned source file for short, walkable, editor-reviewed journeys with route geometry, length, accessibility notes, seasonal cautions, primary and alternate entrances, transit/parking, and source/review metadata.
   - Start with: Anacostia Riverwalk / South Capitol section, then 6–10 small walks across distinct DC neighborhoods.
   - Done when: each journey can be rendered as a selectable map route, uses verified entrances, and does not depend on a live routing provider to describe the route.
@@ -84,8 +83,6 @@ Discover Walks is a private, walking-first field journal. Every feature should d
 
 ## Next — region selection and inventory cleanup
 
-- [ ] **Make region switching a first-class Profile control.** The selector already exists in Profile, but is easy to miss and the Home city button currently navigates there. Give it a clear “Region” heading, searchable list, current-region summary, and loading/error state; keep switching disabled only during an active walk.
-  - Done when: a person can switch region directly from Profile without returning home and can find a region quickly as the list grows.
 - [ ] **Consolidate Vienna and Wolf Trap into a Fairfax region decision.** Define whether Fairfax is one city seed, a parent region with Vienna/Wolf Trap subareas, or a map package that augments the Vienna seed. Do not simply merge files: city seeds and installed region packages have different runtime contracts.
   - Done when: the chosen information architecture has one visible user-facing Fairfax entry point and a migration plan for saved city IDs, POI IDs, routes, and civic content.
 - [ ] **Remove non-walker Wolf Trap inventory.** Exclude USGS monitoring stations from the region source/build artifact, not just the UI, unless they later gain reviewed, time-bounded walking relevance. Remove the stale Junior Ranger Day event; events need explicit freshness expiry and belong in Events rather than permanent Places.
@@ -95,8 +92,6 @@ Discover Walks is a private, walking-first field journal. Every feature should d
 
 ## Then — meaningful discovery, not gamification
 
-- [ ] **Split Profile progress into two inventories.** Keep **Verified sites** for official/reviewed place records and add **Discoveries** for walk-relevant non-government places such as coffee, food access, nature, art, and community spots. Do not award extra points merely for the split.
-  - Done when: Profile shows clear counts, recent discoveries, and category breakdowns without turning every place into a badge chase.
 - [ ] **Make discovery eligibility explicit across regions.** Philadelphia currently has no base-seed POIs; inventory its supplemental package and every other city to identify which records are map-visible, discoverable, geofence-eligible, or excluded.
   - Done when: every POI source declares its discovery role and Profile totals match what people can actually encounter.
 - [ ] **Add discovery tests.** Cover first visit, repeat visit, hidden/expired POIs, OSM-only search results, verified versus discovery totals, and city/region switching.

@@ -3,6 +3,7 @@ export const state = {
   profile: null,
   settings: null,
   walks: [],
+  savedRoutes: [],
   observations: [],
   moments: [],
 

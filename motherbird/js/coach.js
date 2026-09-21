@@ -6,9 +6,8 @@ import { openSheet } from './ui.js';
 export const COACH_STEPS = [
   { target: 'mapSearchInput', text: 'Find a place or trail.' },
   { target: 'walkTab', text: 'Start or make a walk.' },
-  { target: 'libraryTab', text: 'Keep what you notice.' },
+  { target: 'libraryTab', text: 'Open Library to view and edit saved maps and drawings and routes and filters.' },
   { target: 'meTab', text: 'Your private tools.' },
-  { target: 'radialChevron', text: 'Quick-access radial menu.' },
 ];
 
 const HINT_FLAG = 'mainShellHintSeenV1';
@@ -333,5 +332,18 @@ export function startCoachMarks() {
     window.addEventListener('primary-tab-changed', relayout);
     globalThis.visualViewport?.addEventListener('resize', relayout);
     globalThis.visualViewport?.addEventListener('scroll', relayout);
+    window.addEventListener('primary-tab-changed', ({ detail }) => {
+      const messages = {
+        library: 'Library holds your saved maps, drawings, routes, and filters.',
+        me: 'Me holds your journal, profile, privacy, and region settings.',
+        walk: 'Walk starts recording and keeps your route local on this device.'
+      };
+      const message = messages[detail?.tab];
+      if (!message || state.settings[HINT_FLAG]) return;
+      const { hint } = mountOverlay();
+      const text = el('mapIntroText'); const next = el('mapIntroNext');
+      text.textContent = message; next.textContent = 'Got it'; hint.classList.remove('hidden');
+      next.onclick = () => { hint.classList.add('hidden'); resumeCoachMarks(); };
+    });
   }
 }

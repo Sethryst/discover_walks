@@ -47,20 +47,21 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
   const minutes = selectedMinutes();
   const routeMode = selectedRouteMode();
   const center = state.currentPosition || state.map?.getCenter() || CITIES[state.activeCity].center;
-  if (routeMode === 'point-to-point' && !state.plannerEnd) {
+  const needsMapDestination = ['round-trip', 'point-to-point'].includes(routeMode);
+  if (needsMapDestination && !state.plannerEnd) {
     state.plannerSelecting = 'End';
     toast('Tap a destination on the map to make this a point-to-point walk.');
     return null;
   }
   const count = minutes <= 20 ? 2 : minutes >= 60 ? 4 : 3;
-  const stops = routeMode === 'point-to-point'
+  const stops = needsMapDestination
     ? [{ name: 'Selected destination', lat: state.plannerEnd.lat, lng: state.plannerEnd.lng }]
     : (seededStops?.length ? seededStops : candidateStops(center, interests()).slice(0, count));
   if (!stops.length) {
     toast('No candidate places nearby to sketch a walk. Try panning the map or picking an area with places.');
     return null;
   }
-  const points = routeMode === 'round-trip' ? [center, ...stops, center] : [center, ...stops];
+  const points = ['round-trip', 'auto-round-trip'].includes(routeMode) ? [center, ...stops, center] : [center, ...stops];
   const routed = await routeOnFoot(points, { city: state.activeCity, profile: 'ordinary_walking_beta' }).catch(() => ({ ok: false, status: 'GRAPH_VERSION_UNAVAILABLE' }));
   const plan = {
     id: `concept-${Date.now()}`, title: title || `${CITIES[state.activeCity]?.name || 'Local'} ${minutes}-minute sketch`,

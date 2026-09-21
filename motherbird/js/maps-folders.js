@@ -3,6 +3,7 @@ import db from './storage.js';
 import { el, escapeHtml } from './utils.js';
 import { closeSheets, toast } from './ui.js';
 import { curatedPersonalPlaces, normalizePersonalCategory, openPersonalPlaceForm } from './personal-places.js';
+import { updateSavedRoute, deleteSavedRoute } from './saved-routes.js';
 
 const DEFAULT_COLOR = '#E8740F';
 let openMapsFolderId = null;
@@ -35,11 +36,15 @@ function mapsPlaceCard(place, color) {
   return `<article class="guide-card learn-entry maps-place" data-focus-personal-place="${escapeHtml(place.id)}" style="--learn-color:${escapeHtml(color || DEFAULT_COLOR)}"><small>${escapeHtml(status)}</small><h3>${escapeHtml(place.name || 'Saved place')}</h3><div class="learn-site-actions"><button class="secondary-button" type="button" data-edit-personal-place="${escapeHtml(place.id)}">Edit</button></div></article>`;
 }
 
+function mapsRouteCard(route) {
+  return `<article class="guide-card learn-entry maps-route" style="--learn-color:${escapeHtml(route.color || DEFAULT_COLOR)}"><small>${escapeHtml(route.routeMode || 'round-trip')} · ${route.coordinates.length} points</small><h3>${escapeHtml(route.title || 'Saved route')}</h3>${route.notes ? `<p>${escapeHtml(route.notes)}</p>` : ''}<div class="learn-site-actions"><button class="secondary-button" type="button" data-edit-saved-route="${escapeHtml(route.id)}">Edit</button><button class="text-button" type="button" data-delete-saved-route="${escapeHtml(route.id)}">Delete</button></div></article>`;
+}
+
 function mapsFolderForm(parentId) {
   return `<form class="maps-folder-form" data-maps-new-folder="${escapeHtml(parentId || '')}"><input name="folderName" maxlength="60" placeholder="New folder name" aria-label="New folder name" /><button class="secondary-button" type="submit">Add folder</button></form>`;
 }
 
-export function mapsLibraryHtml({ categories = [], places = [], openFolderId = null, visibleFilters = {} } = {}) {
+export function mapsLibraryHtml({ categories = [], places = [], routes = [], openFolderId = null, visibleFilters = {} } = {}) {
   const folder = categories.find((category) => category.id === openFolderId) || null;
   const parentId = folder ? folder.id : null;
   const folders = childMapFolders(parentId, categories);
@@ -49,7 +54,7 @@ export function mapsLibraryHtml({ categories = [], places = [], openFolderId = n
     ? here.map((place) => mapsPlaceCard(place, folder?.color)).join('')
     : (folder ? '<p class="empty-state">No places in this folder yet.</p>' : '');
   if (!folder) {
-    return `<section class="learn-history learn-library maps-library"><h3 class="learn-kicker">Folders</h3>${folderTiles || '<p class="learn-progress">Add a folder to group your places.</p>'}<h3 class="learn-kicker">Places</h3>${placeCards || '<p class="empty-state">No unfiled places.</p>'}${mapsFolderForm('')}<div class="maps-library-actions"><button class="primary-button" type="button" data-maps-add-place="">Add location</button></div></section>`;
+    return `<section class="learn-history learn-library maps-library"><h3 class="learn-kicker">Saved routes</h3>${routes.length ? routes.map(mapsRouteCard).join('') : '<p class="empty-state">No saved routes yet. Sketch one and choose Save to My Maps.</p>'}<h3 class="learn-kicker">Folders</h3>${folderTiles || '<p class="learn-progress">Add a folder to group your places.</p>'}<h3 class="learn-kicker">Places</h3>${placeCards || '<p class="empty-state">No unfiled places.</p>'}${mapsFolderForm('')}<div class="maps-library-actions"><button class="primary-button" type="button" data-maps-add-place="">Add location</button></div></section>`;
   }
   const visible = visibleFilters[folder.id] !== false;
   return `<section class="learn-history learn-library maps-library"><button type="button" class="secondary-button" data-maps-back="1">Back</button><h3 class="learn-kicker">${escapeHtml(folder.name)}</h3><label class="personal-map-toggle"><input type="checkbox" data-personal-category-visible="${escapeHtml(folder.id)}" ${visible ? 'checked' : ''} /> Show this folder on the map</label>${folderTiles ? `<h3 class="learn-kicker">Folders</h3>${folderTiles}` : ''}<h3 class="learn-kicker">Places</h3>${placeCards}${mapsFolderForm(folder.id)}<div class="maps-library-actions"><button class="primary-button" type="button" data-add-to-personal-category="${escapeHtml(folder.id)}">Add location</button></div></section>`;
@@ -65,6 +70,7 @@ export function renderMapsLibrary(target = el('fieldGuideList')) {
   target.innerHTML = mapsLibraryHtml({
     categories: state.personalPlaceCategories,
     places: visibleMapPlaces(),
+    routes: state.savedRoutes || [],
     openFolderId: openMapsFolderId,
     visibleFilters: state.layerFilters.personal
   });
@@ -111,6 +117,19 @@ export function initMapsFolders() {
   document.addEventListener('click', (event) => {
     if (state.fieldGuideTab !== 'maps') return;
     if (event.target.closest('[data-maps-add-place]')) { openPersonalPlaceForm(); return; }
+    const editRoute = event.target.closest('[data-edit-saved-route]');
+    if (editRoute) {
+      const route = state.savedRoutes.find((item) => item.id === editRoute.dataset.editSavedRoute);
+      if (!route) return;
+      const title = window.prompt('Route name', route.title); if (title === null) return;
+      const notes = window.prompt('Route notes', route.notes || '') ?? route.notes;
+      const color = window.prompt('Route color (hex)', route.color || '#173c35') ?? route.color;
+      const icon = window.prompt('Route icon name', route.icon || 'route') ?? route.icon;
+      void updateSavedRoute(route.id, { title, notes, color, icon }).then(() => { renderMapsLibrary(); toast('Route updated.'); });
+      return;
+    }
+    const deleteRoute = event.target.closest('[data-delete-saved-route]');
+    if (deleteRoute) { if (window.confirm('Delete this saved route?')) void deleteSavedRoute(deleteRoute.dataset.deleteSavedRoute).then(() => { renderMapsLibrary(); toast('Route deleted.'); }); return; }
     const add = event.target.closest('[data-add-to-personal-category]');
     if (add) { openPersonalPlaceForm({ categoryId: add.dataset.addToPersonalCategory }); return; }
     const edit = event.target.closest('[data-edit-personal-place]');
@@ -143,4 +162,5 @@ export function initMapsFolders() {
   window.addEventListener('personal-places-changed', () => {
     if (state.fieldGuideTab === 'maps') renderMapsLibrary();
   });
+  window.addEventListener('saved-routes-changed', () => { if (state.fieldGuideTab === 'maps') renderMapsLibrary(); });
 }

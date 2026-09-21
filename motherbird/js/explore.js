@@ -26,6 +26,13 @@ export function initExplore() {
     renderExplorePlaces();
   });
   el('exploreSearchInput').addEventListener('input', renderExplorePlaces);
+  el('explorePlacesList')?.addEventListener('click', (event) => {
+    const save = event.target.closest('[data-save-explore-poi]');
+    if (!save) return;
+    event.preventDefault();
+    const poi = (state.cityPois[state.activeCity] || []).find((item) => String(item.id) === save.dataset.saveExplorePoi);
+    if (poi) window.dispatchEvent(new CustomEvent('personal-place-create-requested', { detail: { sourcePoi: poi, location: { lat: poi.lat, lng: poi.lng }, name: displayPoiName(poi) } }));
+  });
   document.querySelectorAll('.planner-chip').forEach((button) => button.addEventListener('click', () => { button.classList.toggle('active'); generateTimeBasedPlan(); }));
   document.querySelectorAll('input[name="walkTime"]').forEach((input) => input.addEventListener('change', updatePlanPreview));
   document.querySelectorAll('input[name="routeMode"]').forEach((input) => input.addEventListener('change', () => {
@@ -67,7 +74,7 @@ export function renderExplorePlaces() {
   const empty = activeDiscoverGroup
     ? `<div class="empty-state"><strong>${escapeHtml(DISCOVER_GROUPS.find((group) => group.id === activeDiscoverGroup)?.label || 'This experience')} is still taking shape here.</strong>There is not enough reviewed local material to recommend yet. Try another experience or search the wider map.</div>`
     : '<div class="empty-state"><strong>This local selection is still taking shape.</strong>Try an experience category or search the wider map.</div>';
-  el('explorePlacesList').innerHTML = context + (places.length ? places.map((poi) => { const group = discoverGroupFor(poi); const verification = isVerifiedPoi(poi) ? ' · Verified source' : ' · Source record'; return `<button type="button" class="place-result" data-place-id="${escapeHtml(poi.id)}"><span>${group.icon}</span><span><strong>${escapeHtml(displayPoiName(poi))}</strong><small>${escapeHtml(group.label)}${publishingState(poi) === 'featured' ? ' · Curated' : ''}${verification}</small></span><b>›</b></button>`; }).join('') : empty);
+  el('explorePlacesList').innerHTML = context + (places.length ? places.map((poi) => { const group = discoverGroupFor(poi); const verification = isVerifiedPoi(poi) ? ' · Verified source' : ' · Source record'; return `<article class="place-result"><button type="button" data-place-id="${escapeHtml(poi.id)}"><span>${group.icon}</span><span><strong>${escapeHtml(displayPoiName(poi))}</strong><small>${escapeHtml(group.label)}${publishingState(poi) === 'featured' ? ' · Curated' : ''}${verification}</small></button><button type="button" class="text-button" data-save-explore-poi="${escapeHtml(poi.id)}">Save to My Places</button></article>`; }).join('') : empty);
 }
 
 export function updatePlanPreview() {
