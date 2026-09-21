@@ -1,6 +1,7 @@
 import { mkdir, readdir, readFile, rm, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(__dirname, '..');
@@ -123,6 +124,42 @@ export class RegionManager {
       poiBuilder: new PoiBuilder(storageProvider),
       taxonomyEngine: new TaxonomyEngine(storageProvider)
     };
+  }
+
+  // Release consumption is intentionally separate from the legacy local builder.
+  // Production artifacts must arrive with a manifest; a failed candidate never touches active data.
+  async verifyRelease(manifest, artifactContents, appVersion = null) {
+    if (!manifest || manifest.manifestVersion !== 1 || !manifest.region || !manifest.packageVersion || !manifest.artifact?.sha256) {
+      throw new Error('Invalid spatial release manifest');
+    }
+    if (manifest.minimumAppVersion && appVersion && appVersion < manifest.minimumAppVersion) throw new Error('Spatial release requires a newer app version');
+    const hash = createHash('sha256').update(Buffer.isBuffer(artifactContents) ? artifactContents : String(artifactContents)).digest('hex');
+    if (hash !== manifest.artifact.sha256) throw new Error('Spatial release checksum mismatch');
+    if (manifest.artifact.size != null && Buffer.byteLength(artifactContents) !== manifest.artifact.size) throw new Error('Spatial release size mismatch');
+    return { ...manifest, lifecycle: 'VERIFIED' };
+  }
+
+  async installVerifiedRelease(manifest, artifactContents) {
+    if (manifest?.lifecycle !== 'VERIFIED') throw new Error('Only a verified release can be installed');
+    const key = `${manifest.region}@${manifest.packageVersion}`;
+    await this.storage.save(`releases/${key}/manifest.json`, JSON.stringify({ ...manifest, lifecycle: 'INSTALLED' }));
+    await this.storage.save(`releases/${key}/artifact`, artifactContents);
+    return { key, lifecycle: 'INSTALLED' };
+  }
+
+  async activateRelease(region, packageVersion) {
+    const key = `${region}@${packageVersion}`;
+    const manifest = await this.storage.read(`releases/${key}/manifest.json`);
+    if (!manifest) throw new Error('Release is not installed');
+    const parsed = typeof manifest === 'string' ? JSON.parse(manifest) : manifest;
+    if (parsed.lifecycle !== 'INSTALLED') throw new Error('Release is not installed');
+    const activeKey = `releases/${region}/active.json`;
+    const previous = await this.storage.read(activeKey);
+    if (previous) await this.storage.save(`releases/${region}/superseded/${packageVersion}.json`, previous);
+    const active = { ...parsed, lifecycle: 'ACTIVE' };
+    await this.storage.save(activeKey, JSON.stringify(active));
+    await this.storage.save(`releases/${key}/manifest.json`, JSON.stringify(active));
+    return active;
   }
 
   async getRegion(regionKey, config = null) {

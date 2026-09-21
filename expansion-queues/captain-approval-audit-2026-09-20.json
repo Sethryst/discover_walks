@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "kind": "captain-approval-audit",
+  "auditedAt": "2026-09-20",
+  "approvalSource": "expansion-queues/captain-review-2026-09-20.json",
+  "scope": [
+    "events-chicago-gov-44124097",
+    "events-norfolk-libcal-com-ed2e4bde",
+    "nps-wolf-trap"
+  ],
+  "findings": [
+    {
+      "candidateId": "events-chicago-gov-44124097",
+      "regionId": "chicago",
+      "decision": "APPROVE_FOR_PROVIDER_RESEARCH",
+      "landedInActiveRegionConfig": false,
+      "landedInAppRelease": false,
+      "status": "NOT_LANDED",
+      "evidence": "app/regions/chicago.json has no sources entry for the Chicago RSS/ICS candidate; no matching source ID or endpoint was found in the Chicago release."
+    },
+    {
+      "candidateId": "events-norfolk-libcal-com-ed2e4bde",
+      "regionId": "norfolk",
+      "decision": "APPROVE_FOR_PROVIDER_RESEARCH",
+      "landedInActiveRegionConfig": false,
+      "landedInAppRelease": false,
+      "status": "NOT_LANDED",
+      "evidence": "app/regions/norfolk.json has no LibCal source entry; the app contains a different Norfolk event/source link, not the approved LibCal candidate."
+    },
+    {
+      "candidateId": "nps-wolf-trap",
+      "regionId": "wolf-trap-va",
+      "decision": "APPROVE_FOR_PROVIDER_RESEARCH",
+      "landedInActiveRegionConfig": true,
+      "landedInAppRelease": true,
+      "status": "LANDED",
+      "evidence": "app/regions/wolf-trap-va.json contains active source nps-wolf-trap with provider nps_events and parkCode wotr; motherbird/regions/wolf-trap-va/pois.json contains event records with that provenance."
+    }
+  ],
+  "validation": {
+    "civicScoutAndBacklogTests": "passed",
+    "productionPipelineTests": "blocked",
+    "productionPipelineBlocker": "Python environment is missing shapely"
+  },
+  "conclusion": "Approval is recorded for provider research. Only Wolf Trap is active in the app. Chicago and Norfolk require provider implementation and release validation before they can be considered landed."
+}

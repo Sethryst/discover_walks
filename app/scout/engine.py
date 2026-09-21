@@ -134,13 +134,14 @@ class ScoutEngine:
             if trust < 4: reasons.append("publisher authority is below government/public-institution tier")
             reasoning = "Requires investigation because " + ", ".join(reasons or ["scope or maintenance cost remains uncertain"]) + "."
         return {
-            "id": raw["id"], "url": raw["url"], "publisher": raw["publisher"], "category": raw["category"],
+            "id": raw["id"], "workItemId": f"source:{raw['id']}", "url": raw["url"], "publisher": raw["publisher"], "category": raw["category"],
             "likelyDataType": raw["dataType"],
             "trustSignals": {"authority": raw["authority"], "governance": raw.get("governance", []), "maintenance": raw.get("maintenance", []), "stability": raw.get("stability", [])},
             "coverageValue": raw["coverageValue"], "estimatedProviderDifficulty": {1: "LOW", 2: "LOW", 3: "MEDIUM", 4: "HIGH", 5: "HIGH"}[difficulty],
             "scores": {"trust": trust, "coverageImpact": impact, "difficulty": difficulty, "coverageGapMultiplier": gap_multiplier, "impactEffortRatio": ratio},
             "classification": classification, "recommendedAction": action, "evaluationReasoning": reasoning,
             "discovery": discovery,
+            "packOperations": {"eligible": classification == "READY", "nextStep": "review-and-create-adapter" if classification == "READY" else "resolve-scout-findings"},
         }
 
     @staticmethod

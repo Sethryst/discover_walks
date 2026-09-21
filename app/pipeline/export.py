@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Any
 
 from app.pipeline.contracts import validate_release
+from app.pipeline.release_contract import validate_release_candidate
 
 
 def build_release(region_id: str, pois: list[dict[str, Any]], warnings: list[dict[str, str]], producer_version: str, generated_at: str | None = None) -> tuple[dict[str, Any], dict[str, Any]]:
@@ -16,7 +17,10 @@ def build_release(region_id: str, pois: list[dict[str, Any]], warnings: list[dic
     timestamp = generated_at or datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
     release = {"schemaVersion": 1, "regionId": region_id, "generatedAt": timestamp, "producer": {"name": "Gremlin Lab", "version": producer_version}, "pois": sorted(pois, key=lambda poi: poi["id"])}
     validate_release(release)
-    manifest = {"schemaVersion": 1, "regionId": region_id, "generatedAt": timestamp, "producer": release["producer"], "sources": [{"name": "OpenStreetMap", "adapter": "openstreetmap-overpass", "license": "ODbL-1.0"}], "warnings": warnings, "checksums": {}}
+    gates = validate_release_candidate(release)
+    if not gates["valid"]:
+        raise ValueError("Release validation failed: " + "; ".join(gates["errors"]))
+    manifest = {"schemaVersion": 1, "manifestVersion": 1, "region": region_id, "packageVersion": producer_version, "packageSchemaVersion": release["schemaVersion"], "regionId": region_id, "generatedAt": timestamp, "producer": release["producer"], "sources": [{"name": "OpenStreetMap", "adapter": "openstreetmap-overpass", "license": "ODbL-1.0"}], "warnings": warnings, "validation": gates, "checksums": {}}
     return release, manifest
 
 

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "kind": "structured-source-batch-audit",
+  "auditedAt": "2026-09-20",
+  "candidates": [
+    {
+      "candidateId": "events-nycgovparks-org-3468fa93",
+      "regionId": "nyc",
+      "status": "BLOCKED",
+      "reason": "The candidate URL is an NYC Parks news RSS feed, not a verified event feed. No generic RSS/ICS provider exists in the registry."
+    },
+    {
+      "candidateId": "events-sfrecpark-org-ddd118f6",
+      "regionId": "san-francisco",
+      "status": "BLOCKED",
+      "reason": "The RSS endpoint timed out during validation. No generic RSS/ICS provider exists in the registry, so no fixture or contract could be validated."
+    },
+    {
+      "candidateId": "events-seattle-net-25130bd8",
+      "regionId": "seattle",
+      "status": "BLOCKED",
+      "reason": "The approved URL is an API directory. Its documented event feed is /api/events.ics, which requires a refined candidate, an ICS adapter, fixture capture, and release validation."
+    }
+  ],
+  "landed": 0,
+  "nextRequiredWork": [
+    "Add and test a governed RSS/ICS adapter.",
+    "Replace or refine the NYC candidate with an actual event endpoint.",
+    "Revalidate the SF feed and capture a fixture.",
+    "Refine Seattle to /api/events.ics and capture a fixture."
+  ]
+}

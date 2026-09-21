@@ -13,6 +13,8 @@ from app.pipeline.adapters.usgs_water import UsgsMonitoringLocationsProvider
 from app.pipeline.adapters.tribe_events import TribeEventsProvider
 from app.pipeline.adapters.philly_events import PhiladelphiaSpecialEventsProvider
 from app.pipeline.adapters.nyc_events import NycEventsProvider
+from app.pipeline.adapters.rss_ics_events import RssIcsEventsProvider
+from app.pipeline.adapters.jsonld_events import JsonLdEventsProvider
 from app.pipeline.source_config import SourceConfig
 
 
@@ -31,6 +33,8 @@ class ProviderRegistry:
         "tribe_events": TribeEventsProvider,
         "phila_special_events": PhiladelphiaSpecialEventsProvider,
         "nyc_events": NycEventsProvider,
+        "rss_ics_events": RssIcsEventsProvider,
+        "jsonld_events": JsonLdEventsProvider,
     }
 
     @classmethod

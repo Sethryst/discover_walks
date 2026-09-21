@@ -1,0 +1,893 @@
+{
+  "schemaVersion": 1,
+  "kind": "captain-approval-landing-audit",
+  "auditedAt": "2026-09-20",
+  "source": "expansion-queues/captain-approval-override-2026-09-20.json",
+  "definition": "LANDED requires candidate identity or endpoint in active app/regions config and matching generated motherbird release evidence.",
+  "summary": {
+    "approved": 98,
+    "landed": 0,
+    "partial": 47,
+    "notLanded": 51
+  },
+  "candidates": [
+    {
+      "regionId": "alexandria-va",
+      "candidateId": "events-apps-alexandriava-gov-c408c804",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "alexandria-va",
+      "candidateId": "meetings-apps-alexandriava-gov-c408c804",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "arlington-va",
+      "candidateId": "events-arlingtonva-us-cb15b262",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "arlington-va",
+      "candidateId": "meetings-arlingtonva-us-cb15b262",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "asheville",
+      "candidateId": "meetings-ashevillenc-gov-644961e1",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "asheville",
+      "candidateId": "volunteer-ashevillenc-gov-3ebf2f4c",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "asheville",
+      "candidateId": "events-exploreasheville-com-94d72b77",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "asheville",
+      "candidateId": "events-exploreasheville-com-8e96aa9e",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "boise-meridian-idaho",
+      "candidateId": "meetings-cityofboise-org-3b05a56d",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "boise-meridian-idaho",
+      "candidateId": "events-boisestatepublicradio-org-1b57dd9c",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "boise-meridian-idaho",
+      "candidateId": "volunteer-boisewatershed-org-b6e8d60b",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "boise-meridian-idaho",
+      "candidateId": "events-meridiancity-org-44f75203",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "boston",
+      "candidateId": "meetings-boston-gov-269e52b6",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "boston",
+      "candidateId": "volunteer-boston-gov-98c6b1e6",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "boston",
+      "candidateId": "events-thebostoncalendar-com-6e034980",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "boston",
+      "candidateId": "events-bostonusa-com-7323eab4",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "boulder",
+      "candidateId": "events-bouldercolorado-gov-96089785",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "boulder",
+      "candidateId": "meetings-bouldercolorado-gov-96089785",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "boulder",
+      "candidateId": "volunteer-bouldercounty-gov-e331dd88",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "boulder",
+      "candidateId": "events-bouldercoloradousa-com-8fb18e01",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "chicago",
+      "candidateId": "events-chicago-gov-83a3ca20",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "chicago",
+      "candidateId": "events-chicagoonthecheap-com-c652aec2",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "chicago",
+      "candidateId": "volunteer-chicagoparkdistrict-com-ba93a249",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "chicago",
+      "candidateId": "meetings-chicityclerk-com-959bf3e4",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "denver",
+      "candidateId": "events-denvergov-org-c69e47eb",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "denver",
+      "candidateId": "meetings-denvergov-org-461d818b",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "denver",
+      "candidateId": "volunteer-denvergov-org-ffc494c0",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "denver",
+      "candidateId": "events-downtown-denver-com-920db7f3",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "fairfax-county-va",
+      "candidateId": "events-librarycalendar-fairfaxcounty-gov-8d007a14",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "fairfax-county-va",
+      "candidateId": "meetings-fairfaxcounty-gov-6f6370e4",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "keystone-colorado",
+      "candidateId": "meetings-summitcountyco-gov-0e4237c8",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "keystone-colorado",
+      "candidateId": "events-summitdaily-com-1e792ddf",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "keystone-colorado",
+      "candidateId": "events-town-keystone-co-us-e3452f18",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "keystone-colorado",
+      "candidateId": "volunteer-volunteermatch-org-79b64c6c",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "loudoun-county-va",
+      "candidateId": "events-loudoun-gov-6856d112",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "loudoun-county-va",
+      "candidateId": "meetings-loudoun-gov-349cf574",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "loudoun-county-va",
+      "candidateId": "volunteer-loudoun-gov-81bf3267",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "new-orleans",
+      "candidateId": "meetings-nola-gov-b2493356",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "new-orleans",
+      "candidateId": "volunteer-nola-gov-c959480f",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "new-orleans",
+      "candidateId": "events-frenchquarterjournal-com-71d351d3",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "new-orleans",
+      "candidateId": "events-neworleans-com-0da88206",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "norfolk",
+      "candidateId": "meetings-norfolk-gov-67d13024",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "norfolk",
+      "candidateId": "events-norfolk-gov-67d13024",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "norfolk",
+      "candidateId": "volunteer-norfolk-gov-ff89d6a7",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "nyc",
+      "candidateId": "meetings-legistar-council-nyc-gov-e75d3835",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "nyc",
+      "candidateId": "events-nycgovparks-org-3468fa93",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "nyc",
+      "candidateId": "events-nycforfree-co-3a433d76",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "nyc",
+      "candidateId": "events-nycgovparks-org-61d38c99",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "nyc",
+      "candidateId": "volunteer-nycgovparks-org-4b7ad625",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "philadelphia",
+      "candidateId": "meetings-phila-gov-a4cb56f4",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "philadelphia",
+      "candidateId": "events-phila-gov-7efb5a03",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "philadelphia",
+      "candidateId": "events-phillyfamily-com-c8e106d8",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "philadelphia",
+      "candidateId": "volunteer-friendsoftheparks-org-5e217463",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "portland",
+      "candidateId": "meetings-portland-gov-a7c4178f",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "portland",
+      "candidateId": "volunteer-portland-gov-fe600e12",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "portland",
+      "candidateId": "events-portlandlivingonthecheap-com-be5408f7",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "portland",
+      "candidateId": "events-events-portlandonline-us-09e0b6eb",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "portland-maine",
+      "candidateId": "meetings-portlandmaine-gov-bc259924",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "portland-maine",
+      "candidateId": "volunteer-portlandmaine-gov-2c137978",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "portland-maine",
+      "candidateId": "events-mainepublic-org-bfb30cd0",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "portland-maine",
+      "candidateId": "events-visitportland-com-6515f560",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "prince-georges-county-md",
+      "candidateId": "meetings-princegeorgescountymd-gov-95ea3f6d",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "prince-georges-county-md",
+      "candidateId": "events-blackhistory-pgparks-com-49fafbc4",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "prince-georges-county-md",
+      "candidateId": "events-pgparks-com-005aa0a6",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "prince-georges-county-md",
+      "candidateId": "volunteer-pgparks-com-bf740430",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "richmond",
+      "candidateId": "events-6amcity-com-a7dfd2b6",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "richmond",
+      "candidateId": "volunteer-jrps-org-2a3b895f",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "richmond",
+      "candidateId": "meetings-richmondgov-com-87666ac9",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "richmond",
+      "candidateId": "events-visitrichmondva-com-1ae28ba3",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "san-francisco",
+      "candidateId": "events-sfrecpark-org-ddd118f6",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "san-francisco",
+      "candidateId": "events-sf-funcheap-com-cfc0d68c",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "san-francisco",
+      "candidateId": "meetings-sfbos-org-705d79ff",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "san-francisco",
+      "candidateId": "volunteer-sfparks-org-ddcc85b5",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "san-francisco",
+      "candidateId": "events-sfrecpark-org-822dab73",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "santa-fe",
+      "candidateId": "meetings-santafenm-gov-4df17058",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "santa-fe",
+      "candidateId": "volunteer-santafenm-gov-57a0cd99",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "santa-fe",
+      "candidateId": "events-santafe-org-8f1eb055",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "santa-fe",
+      "candidateId": "events-santafe-org-068ccfff",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "seattle",
+      "candidateId": "meetings-seattle-gov-3418b89c",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "seattle",
+      "candidateId": "volunteer-seattle-gov-c1758f69",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "seattle",
+      "candidateId": "events-seattle-gov-cca4136c",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "seattle",
+      "candidateId": "events-seattle-net-25130bd8",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "seattle",
+      "candidateId": "events-greaterseattleonthecheap-com-7d63f8d3",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "sedona-arizona",
+      "candidateId": "events-sedonaaz-gov-605e78d8",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "sedona-arizona",
+      "candidateId": "events-sedonaaz-gov-c0071a9f",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "sedona-arizona",
+      "candidateId": "meetings-sedonaaz-gov-a23d2c98",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "sedona-arizona",
+      "candidateId": "events-visitsedona-com-64ad436c",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "sedona-arizona",
+      "candidateId": "volunteer-sedonaaz-gov-79ca6cb2",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "washington-dc",
+      "candidateId": "events-dpr-dc-gov-67b39fe7",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "washington-dc",
+      "candidateId": "volunteer-dpr-dc-gov-52180f8a",
+      "activeRegionConfig": false,
+      "releaseEvidence": true,
+      "status": "PARTIAL",
+      "evidence": [
+        "release-url"
+      ]
+    },
+    {
+      "regionId": "washington-dc",
+      "candidateId": "meetings-dcouncil-us-4d64fb67",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "washington-dc",
+      "candidateId": "events-districtfray-com-d21bcaee",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "wolf-trap-va",
+      "candidateId": "events-nps-gov-675f6405",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "wolf-trap-va",
+      "candidateId": "volunteer-nps-gov-20ec7407",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "wolf-trap-va",
+      "candidateId": "meetings-viennava-gov-bc6ebc78",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "wolf-trap-va",
+      "candidateId": "food-for-others",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "wolf-trap-va",
+      "candidateId": "events-wolftrap-org-f9ccaf58",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    },
+    {
+      "regionId": "wolf-trap-va",
+      "candidateId": "wolf-trap-foundation",
+      "activeRegionConfig": false,
+      "releaseEvidence": false,
+      "status": "NOT_LANDED",
+      "evidence": []
+    }
+  ]
+}

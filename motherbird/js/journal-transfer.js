@@ -14,16 +14,26 @@ function itemId(item, index) { return String(item?.id || `missing-id-${index}`);
 
 export function normalizeJournalBackup(raw) {
   const version = Number(raw?.version);
-  if (!raw || raw.format !== 'walk-wildlife-journal' || ![1, 2].includes(version)) throw new Error('Choose a Discover Walks journal backup file.');
+  if (!raw || raw.format !== 'walk-wildlife-journal' || ![1, 2, 3].includes(version)) throw new Error('Choose a Discover Walks journal backup file.');
   const source = version === 1 ? {
     walks: raw.walks, observations: raw.observations, moments: raw.moments,
     profile: raw.profile ? [raw.profile] : [], settings: raw.settings ? [raw.settings] : []
   } : raw.data;
   if (!source || !Array.isArray(source.walks) || !Array.isArray(source.observations) || !Array.isArray(source.moments)) throw new Error('This backup is missing its journal collections.');
   return {
-    format: 'walk-wildlife-journal', version: 2, exportedAt: raw.exportedAt || null,
+    format: 'walk-wildlife-journal', version: 3, schemaVersion: Number(raw.schemaVersion || version || 1), exportedAt: raw.exportedAt || null,
     data: Object.fromEntries(JOURNAL_TRANSFER_STORES.map((store) => [store, Array.isArray(source[store]) ? clone(source[store]) : []]))
   };
+}
+
+export function journalBackupToGpx(backup) {
+  const normalized = normalizeJournalBackup(backup);
+  const points = [...normalized.data.personal_places, ...normalized.data.observations]
+    .map((item) => ({ item, location: item.location || item.startLocation }))
+    .filter(({ location }) => Number.isFinite(Number(location?.lat)) && Number.isFinite(Number(location?.lng)));
+  const esc = (value) => String(value ?? '').replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
+  const waypoints = points.map(({ item, location }) => `<wpt lat="${esc(location.lat)}" lon="${esc(location.lng)}"><name>${esc(item.title || item.name || item.species || 'Journal place')}</name></wpt>`).join('');
+  return `<?xml version="1.0" encoding="UTF-8"?><gpx version="1.1" creator="Discover Walks" xmlns="http://www.topografix.com/GPX/1/1">${waypoints}</gpx>`;
 }
 
 export function createJournalBackup(data, exportedAt = new Date().toISOString()) {
