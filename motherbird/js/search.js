@@ -77,7 +77,7 @@ export function localSearchHits(query, observations = []) {
 }
 
 export function searchRowHtml(hit) {
-  return `<button type="button" data-search-poi="${escapeHtml(String(hit.id))}" data-search-lat="${hit.lat}" data-search-lng="${hit.lng}"><small>${escapeHtml(hit.searchKind || 'Place')}</small>${escapeHtml(hit.name || 'Named place')}</button>`;
+  return `<div class="map-search-result-row"><button type="button" data-search-poi="${escapeHtml(String(hit.id))}" data-search-lat="${hit.lat}" data-search-lng="${hit.lng}" data-search-name="${escapeHtml(hit.name || 'Named place')}"><small>${escapeHtml(hit.searchKind || 'Place')}</small>${escapeHtml(hit.name || 'Named place')}</button><button type="button" class="map-search-save" aria-label="Save ${escapeHtml(hit.name || 'place')} to My Maps" data-search-save="${escapeHtml(String(hit.id))}" data-search-lat="${hit.lat}" data-search-lng="${hit.lng}" data-search-name="${escapeHtml(hit.name || 'Named place')}">☆</button></div>`;
 }
 
 export function emptySearchHtml(query, pending) {

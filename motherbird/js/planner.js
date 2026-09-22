@@ -67,7 +67,7 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
     id: `concept-${Date.now()}`, title: title || `${CITIES[state.activeCity]?.name || 'Local'} ${minutes}-minute sketch`,
     reason: reason || conceptReason(stops), city: state.activeCity, routeMode, estimatedDurationMinutes: minutes,
     stops, coordinates: routed.ok ? routed.coordinates : [], journeyId,
-    ...(routed.ok ? { distanceMeters: routed.distanceMeters, distanceMiles: Number((routed.distanceMeters / 1609.344).toFixed(2)), graphVersion: routed.graphVersion } : { graphStatus: routed.status || 'GRAPH_VERSION_UNAVAILABLE' })
+    ...(routed.ok ? { distanceMeters: routed.distanceMeters, distanceMiles: Number((routed.distanceMeters / 1609.344).toFixed(2)), graphVersion: routed.graphVersion, instructions: routed.instructions } : { graphStatus: routed.status || 'GRAPH_VERSION_UNAVAILABLE' })
   };
   state.plannedRoute = plan; state.planOptions = [plan];
   paintWalkConcept(plan);

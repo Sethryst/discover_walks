@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#173c35" />
   <meta name="description" content="A local-first walking, history, and wildlife journal." />
+  <meta name="motherbird-walking-cell-registry" content="../published/national-routing/osm-us-2026-09-07/cells.json" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="mobile-web-app-capable" content="yes" />
   <link rel="manifest" href="./manifest.webmanifest" />
@@ -56,7 +57,7 @@
         <label class="map-search"><img src="./icons/search.svg" alt="" /><input id="mapSearchInput" type="search" placeholder="Find a place" autocomplete="off" /></label><div class="map-search-results hidden" id="mapSearchResults"></div>
       </div>
       <div class="middle-tools"><div class="field-guide-menu"><button class="ink-control" id="settingsButton" type="button" aria-label="Open Field Guide menu" aria-expanded="false" aria-controls="fieldGuideDropdown">🎒 <span>Field Guide</span><span aria-hidden="true">⌄</span></button><div class="field-guide-dropdown hidden" id="fieldGuideDropdown"><button type="button" data-open-field-guide>Field Guide home</button><button id="journalButton" type="button" aria-label="Open journal" aria-pressed="false">▦ Journal</button><button id="geoCypherButton" type="button" aria-label="Open nearby audio">◉ Cypher</button></div></div></div>
-      <aside class="walk-sketch hidden" id="walkSketch" aria-live="polite"><button class="plain-close" id="dismissWalkSketch" type="button" aria-label="Dismiss walk sketch">×</button><strong id="sketchTitle">A walk</strong><p id="sketchReason"></p><ol id="sketchStops"></ol><div class="sketch-actions"><button class="primary-button" id="startPlannedWalkButton" type="button">Start this one</button><button class="secondary-button" id="saveWalkPlanButton" type="button">Save to My Maps</button><button class="secondary-button" id="sendWalkPlanButton" type="button">Send this</button></div></aside>
+      <aside class="walk-sketch hidden" id="walkSketch" aria-live="polite"><button class="plain-close" id="dismissWalkSketch" type="button" aria-label="Dismiss walk sketch">×</button><strong id="sketchTitle">A walk</strong><p id="sketchReason"></p><p id="activeManeuver" class="active-maneuver" aria-live="polite"></p><ol id="sketchStops"></ol><ol id="walkInstructions" class="walk-instructions" aria-label="Walking directions"></ol><div class="sketch-actions"><button class="primary-button" id="startPlannedWalkButton" type="button">Start this one</button><button class="secondary-button" id="saveWalkPlanButton" type="button">Save to My Maps</button><button class="secondary-button" id="sendWalkPlanButton" type="button">Send this</button></div></aside>
       <div class="place-crosshair" id="placeCrosshair" aria-hidden="true"><span></span></div>
       <div class="map-workspace">
         <nav class="map-dock" aria-label="Map workspace">
@@ -206,8 +207,8 @@
     <button class="close-sheet" data-close-sheet aria-label="Close">×</button><h2 id="personalPlaceFormTitle">Add location</h2>
     <form id="personalPlaceForm">
       <fieldset class="personal-place-destination-step"><legend>Light</legend><div class="personal-destination-grid"><label><input type="radio" name="personalPlaceDestination" value="news" /> NEWS</label><label><input type="radio" name="personalPlaceDestination" value="recreation" /> RECREATION</label><label><input type="radio" name="personalPlaceDestination" value="cuisine" /> CUISINE</label><label><input type="radio" name="personalPlaceDestination" value="personal" checked /> MY PLACES</label></div></fieldset>
-      <label class="hidden" id="personalPlaceChipRow">Group<select id="personalPlaceChip"></select></label>
-      <details id="personalPlaceCategoryRow" class="category-picker" open><summary>Category <span id="selectedCategoryName"></span></summary><input id="personalPlaceCategory" type="hidden" /><div id="personalCategoryTree"></div></details>
+      <label class="hidden" id="personalPlaceChipRow">Map layer<select id="personalPlaceChip"></select></label>
+      <details id="personalPlaceCategoryRow" class="category-picker" open><summary>Folder <span id="selectedCategoryName"></span></summary><input id="personalPlaceCategory" type="hidden" /><div id="personalCategoryTree"></div></details>
       <fieldset class="new-category-fields hidden" id="personalPlaceNewCategoryFields"><legend>New nested category</legend><label>Name<input id="personalPlaceNewCategoryName" maxlength="60" /></label><label>Inside<select id="personalPlaceParentCategory"><option value="">Top level</option></select></label><label>Color<input id="personalPlaceCategoryColor" type="color" value="#76558b" /></label><label>Icon<select id="personalPlaceCategoryIcon"><option value="map-pin">Place</option><option value="coffee">Coffee</option><option value="tree">Nature</option><option value="star">Favorite</option><option value="building">Building</option></select></label></fieldset>
       <label id="personalPlaceVisibilityRow">Visibility<select id="personalPlaceVisibility"><option value="private">Private</option><option value="friends">Friends only</option><option value="public">Public</option></select></label>
       <input id="personalPlaceLatitude" type="hidden" /><input id="personalPlaceLongitude" type="hidden" /><button class="secondary-button" id="personalPlaceChooseLocation" type="button">Drop crosshair</button><p id="personalPlaceLocationStatus">Drop the crosshair on your place.</p>

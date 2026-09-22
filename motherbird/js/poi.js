@@ -239,7 +239,7 @@ function packAttribution(poi) {
 function poiPopup(poi) {
   const source = publicPlaceSource(poi);
   const details = walkerDetails(poi).map((row) => `<p><small>${escapeHtml(row.group)}</small><br>${escapeHtml(row.text)}</p>`).join('');
-  return `<strong>${escapeHtml(displayPoiName(poi))}</strong>${details}<small>${escapeHtml(packAttribution(poi))}</small>${source ? `<br><a href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer">Public source ↗</a>` : ''}<br><button type="button" class="save-poi-button" data-save-poi="${escapeHtml(String(poi.id))}">Save to My Places</button>`;
+  return `<strong>${escapeHtml(displayPoiName(poi))}</strong>${details}<small>${escapeHtml(packAttribution(poi))}</small>${source ? `<br><a href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer">Public source ↗</a>` : ''}<br><button type="button" class="save-poi-button" data-save-poi="${escapeHtml(String(poi.id))}">Save to My Maps</button>`;
 }
 
 function hasPackTrailGeometry(poi) {

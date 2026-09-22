@@ -7,10 +7,12 @@ test('database upgrades are explicit additive migrations and expose backup prefl
   assert.equal(db.version, 15);
   assert.deepEqual(db.migrationPlan(12), [
     { version: 13, risk: 'additive', description: 'Separate Geo Cypher manifests from on-demand audio.' },
-    { version: 14, risk: 'additive', description: 'Repair missing local stores from earlier installations.' }
+    { version: 14, risk: 'additive', description: 'Repair missing local stores from earlier installations.' },
+    { version: 15, risk: 'additive', description: 'Add editable local saved routes.' }
   ]);
   assert.deepEqual(db.migrationPlan(13), [
-    { version: 14, risk: 'additive', description: 'Repair missing local stores from earlier installations.' }
+    { version: 14, risk: 'additive', description: 'Repair missing local stores from earlier installations.' },
+    { version: 15, risk: 'additive', description: 'Add editable local saved routes.' }
   ]);
   const source = await readFile(new URL('../js/storage.js', import.meta.url), 'utf8');
   const loader = await readFile(new URL('../js/loader.js', import.meta.url), 'utf8');

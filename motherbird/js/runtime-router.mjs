@@ -101,6 +101,7 @@ function routeResponse(runtime, profile, coordinates, edgeIndexes, distanceMeter
     source_provenance_ids: unique(edgeIndexes.map((index) => runtime.sources[runtime.edges[index][8]])),
     distance_m: round(distanceMeters),
     estimated_duration_s: Math.round(distanceMeters / WALKING_METERS_PER_SECOND),
+    instructions: buildInstructions(coordinates, distanceMeters),
     confidence: {
       minimum: Math.min(...confidences),
       average: round(confidences.reduce((sum, value) => sum + value, 0) / confidences.length)
@@ -112,6 +113,36 @@ function routeResponse(runtime, profile, coordinates, edgeIndexes, distanceMeter
     snaps: { origin_m: round(start.distance_m), destination_m: round(end.distance_m) }
   };
 }
+
+function buildInstructions(coordinates, distanceMeters) {
+  if (coordinates.length < 2) return [];
+  const instructions = [{ type: 'depart', text: 'Start walking', distance_m: 0, location: coordinates[0] }];
+  let sinceLast = 0;
+  for (let index = 1; index < coordinates.length - 1; index += 1) {
+    const previous = coordinates[index - 1];
+    const current = coordinates[index];
+    const next = coordinates[index + 1];
+    const segment = haversine(previous, current);
+    sinceLast += segment;
+    const turn = normalizeBearingDelta(bearing(previous, current), bearing(current, next));
+    if (sinceLast < 12 || Math.abs(turn) < 35) continue;
+    const direction = Math.abs(turn) >= 135 ? 'Make a U-turn' : turn > 0 ? 'Turn right' : 'Turn left';
+    instructions.push({ type: direction.includes('U-turn') ? 'uturn' : turn > 0 ? 'right' : 'left', text: direction, distance_m: round(sinceLast), location: current });
+    sinceLast = 0;
+  }
+  const finalLeg = haversine(coordinates.at(-2), coordinates.at(-1));
+  instructions.push({ type: 'arrive', text: 'Arrive at your destination', distance_m: round(sinceLast + finalLeg), location: coordinates.at(-1) });
+  return instructions;
+}
+
+function bearing(from, to) {
+  const radians = (degrees) => degrees * Math.PI / 180;
+  const y = Math.sin(radians(to[0] - from[0])) * Math.cos(radians(to[1]));
+  const x = Math.cos(radians(from[1])) * Math.sin(radians(to[1])) - Math.sin(radians(from[1])) * Math.cos(radians(to[1])) * Math.cos(radians(to[0] - from[0]));
+  return (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
+}
+
+function normalizeBearingDelta(from, to) { return ((to - from + 540) % 360) - 180; }
 
 function nearestEdge(runtime, coordinate, profileBit, maxSnapMeters) {
   const lonE7 = Math.round(coordinate[0] * 1e7); const latE7 = Math.round(coordinate[1] * 1e7);

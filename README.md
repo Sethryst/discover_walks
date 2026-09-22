@@ -8,3 +8,5 @@ This repository contains two products, not one app:
 There is no first-party HTTP API. Do not put FastAPI in the PWA.
 
 Read [`motherbird/README.md`](motherbird/README.md) for the walker-facing product and [`app/README.md`](app/README.md) for the Lab.
+
+For the unified Markdown catalog and short explanation of every project document, see [`DOCUMENTATION.md`](DOCUMENTATION.md). The canonical backlog is [`motherbird/docs/ProductBacklog.md`](motherbird/docs/ProductBacklog.md).

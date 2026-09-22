@@ -1,6 +1,7 @@
 import { state } from './state.js';
 import { el, escapeHtml } from './utils.js';
-import { displayPoiName, isVerifiedPoi } from './poi.js';
+import { displayPoiName } from './poi.js';
+import { walkerDetails } from './place-details.js';
 import { renderCuratedRoutes } from './routes.js';
 import { generateTimeBasedPlan } from './planner.js';
 import { renderCivicEvents } from './civic.js';
@@ -67,14 +68,16 @@ export function renderExplorePlaces() {
   const places = dedupeDiscoverPlaces(rankDiscoverPlaces(all).filter((poi) => {
     const matchesText = !query || `${poi.name || ''} ${displayPoiName(poi)}`.toLowerCase().includes(query);
     const matchesGroup = !activeDiscoverGroup || discoverGroupFor(poi).id === activeDiscoverGroup;
-    return matchesText && matchesGroup && (publishingState(poi) !== 'candidate' || Boolean(query));
+    // Publication state remains a backend trait used for ranking and QA;
+    // walkers should see the place and its useful details instead.
+    return matchesText && matchesGroup;
   })).slice(0, 24);
   el('explorePlaceFilters').innerHTML = DISCOVER_GROUPS.map((group) => `<button type="button" class="poi-chip ${activeDiscoverGroup === group.id ? 'active' : ''}" aria-pressed="${activeDiscoverGroup === group.id}" data-explore-tag="${group.id}">${group.icon} ${group.label}</button>`).join('');
   const context = places.length ? '<p class="discover-context"><strong>A considered selection for this moment</strong><span>Start with one that feels right; the regional map remains there when you want more.</span></p>' : '';
   const empty = activeDiscoverGroup
     ? `<div class="empty-state"><strong>${escapeHtml(DISCOVER_GROUPS.find((group) => group.id === activeDiscoverGroup)?.label || 'This experience')} is still taking shape here.</strong>There is not enough reviewed local material to recommend yet. Try another experience or search the wider map.</div>`
     : '<div class="empty-state"><strong>This local selection is still taking shape.</strong>Try an experience category or search the wider map.</div>';
-  el('explorePlacesList').innerHTML = context + (places.length ? places.map((poi) => { const group = discoverGroupFor(poi); const verification = isVerifiedPoi(poi) ? ' · Verified source' : ' · Source record'; return `<article class="place-result"><button type="button" data-place-id="${escapeHtml(poi.id)}"><span>${group.icon}</span><span><strong>${escapeHtml(displayPoiName(poi))}</strong><small>${escapeHtml(group.label)}${publishingState(poi) === 'featured' ? ' · Curated' : ''}${verification}</small></button><button type="button" class="text-button" data-save-explore-poi="${escapeHtml(poi.id)}">Save to My Places</button></article>`; }).join('') : empty);
+  el('explorePlacesList').innerHTML = context + (places.length ? places.map((poi) => { const group = discoverGroupFor(poi); const details = walkerDetails(poi).map((row) => row.text).join(' · ') || [poi.locationLabel, poi.address].filter(Boolean).join(' · '); const curated = publishingState(poi) === 'featured' ? ' · Curated' : ''; return `<article class="place-result"><button type="button" data-place-id="${escapeHtml(poi.id)}"><span>${group.icon}</span><span><strong>${escapeHtml(displayPoiName(poi))}</strong><small>${escapeHtml(group.label)}${curated}</small>${details ? `<small>${escapeHtml(details)}</small>` : ''}</span></button><button type="button" class="text-button" data-save-explore-poi="${escapeHtml(poi.id)}">Save to My Maps</button></article>`; }).join('') : empty);
 }
 
 export function updatePlanPreview() {

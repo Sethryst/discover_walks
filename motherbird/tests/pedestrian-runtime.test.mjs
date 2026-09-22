@@ -42,6 +42,9 @@ test('runtime graph routes from nearest edges and returns provenance, confidence
   assert.deepEqual(route.source_provenance_ids, ['a', 'b']);
   assert.equal(route.confidence.minimum, 0.8);
   assert.equal(route.warnings.length, 1);
+  assert.equal(route.instructions[0].type, 'depart');
+  assert.equal(route.instructions.at(-1).type, 'arrive');
+  assert.ok(route.instructions.at(-1).distance_m > 0);
   assert.equal(routeRuntimeGraph(runtime, { profile: 'verified_access', origin: [-73.9999, 40.7], destination: [-73.9981, 40.7] }, { maxSnapMeters: 30 }).status, 'ACCESS_POLICY_BLOCKED');
   assert.equal(routeRuntimeGraph(runtime, { profile: 'ordinary_walking_beta', origin: [-74, 40.7], destination: [-73.9, 40.8] }, { maxSnapMeters: 30 }).status, 'NO_ROUTE_IN_COMPONENT');
   assert.equal(routeRuntimeGraph(runtime, { profile: 'ordinary_walking_beta', origin: [-75, 41], destination: [-73.9981, 40.7] }, { maxSnapMeters: 30 }).status, 'NO_NEARBY_PEDESTRIAN_EDGE');

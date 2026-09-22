@@ -8,6 +8,7 @@ import { city, searchPois } from './poi.js';
 import { localSearchHits, searchRowHtml, emptySearchHtml, widenSearch } from './search.js';
 import { switchCity } from './city.js';
 import { generateTimeBasedPlan, lockSelectedPlanOnMap, changePlan } from './planner.js';
+import { routeOnFoot } from './routing.js';
 import { paintWalkPlan, sendCurrentWalkPlan } from './field-guide.js';
 import { wordCount } from './reflection.js';
 import { refreshCompanionState } from './companion.js';
@@ -23,6 +24,7 @@ import { savePlannedRoute } from './saved-routes.js';
 const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];
 
 export function initEvents() {
+  window.addEventListener('walk-position-received', ({ detail }) => void updateActiveManeuver(detail));
   initJournalPane();
   bindSheets(); bindLocationControls(); bindWalkControls(); bindSearch(); bindJournal(); bindDeviceControls();
   initMessengerBird();
@@ -37,6 +39,46 @@ export function initEvents() {
   bindMessengerBird();
   window.addEventListener('walk-poi-encounter', (event) => void import('./walk.js').then(({ recordPoiEncounter }) => recordPoiEncounter(event.detail?.poi, event.detail?.distance)));
   window.addEventListener('backpack-open-requested', openBackpack);
+}
+
+let rerouting = false;
+async function updateActiveManeuver(position) {
+  const target = el('activeManeuver'); const instructions = state.plannedRoute?.instructions || [];
+  if (!target || !instructions.length || !state.activeWalk) return;
+  const routeDistance = nearestRouteDistance(position, state.plannedRoute.coordinates || []);
+  if (routeDistance > 75 && !rerouting) {
+    target.textContent = 'You are off route. Finding a new path…';
+    rerouting = true;
+    try {
+      const plan = state.plannedRoute;
+      const points = [{ lat: position.lat, lng: position.lng }, ...(plan.stops || []).map((stop) => ({ lat: stop.lat, lng: stop.lng }))];
+      if (plan.routeMode === 'round-trip' || plan.routeMode === 'auto-round-trip') points.push(points[0]);
+      const rerouted = await routeOnFoot(points, { city: plan.city, profile: 'ordinary_walking_beta' });
+      if (rerouted.ok) {
+        state.plannedRoute = { ...plan, coordinates: rerouted.coordinates, instructions: rerouted.instructions, distanceMeters: rerouted.distanceMeters, graphVersion: rerouted.graphVersion };
+        target.textContent = 'Route updated. Continue walking.';
+        window.dispatchEvent(new CustomEvent('walk-sketch-painted', { detail: state.plannedRoute }));
+      } else target.textContent = 'You are off route. Follow the map to reconnect.';
+    } finally { rerouting = false; }
+    return;
+  }
+  const next = instructions.find((step) => step.type !== 'depart' && !step.completed);
+  if (!next) { target.textContent = 'You have arrived.'; return; }
+  const [lon, lat] = next.location || [];
+  const distance = Math.round(Math.hypot((position.lat - lat) * 111000, (position.lng - lon) * 88000));
+  target.textContent = `${next.text} in about ${Math.max(0, distance)} m`;
+}
+
+function nearestRouteDistance(point, coordinates) {
+  let best = Infinity;
+  for (let index = 1; index < coordinates.length; index += 1) {
+    const a = coordinates[index - 1]; const b = coordinates[index];
+    const dx = (b[1] - a[1]) * 111000; const dy = (b[0] - a[0]) * 88000;
+    const px = (point.lat - a[0]) * 111000; const py = (point.lng - a[1]) * 88000;
+    const t = Math.max(0, Math.min(1, (px * dx + py * dy) / (dx * dx + dy * dy || 1)));
+    best = Math.min(best, Math.hypot(px - dx * t, py - dy * t));
+  }
+  return best;
 }
 
 function setMapWorkspace(destination = '', { toggle = true, forceOpen = false } = {}) {
@@ -179,6 +221,8 @@ function renderWalkSketch(plan) {
   el('sketchTitle').textContent = plan.title || 'Walk sketch';
   el('sketchReason').textContent = plan.reason || 'A concept from named places in this installed pack.';
   el('sketchStops').innerHTML = (plan.stops || []).map((stop) => `<li>${escapeHtml(stop.name || 'Named stop')}</li>`).join('');
+  const instructions = el('walkInstructions');
+  if (instructions) instructions.innerHTML = (plan.instructions || []).map((step) => `<li>${escapeHtml(step.text)}${step.distance_m ? ` · ${Math.round(step.distance_m)} m` : ''}</li>`).join('');
   el('walkSketch').classList.remove('hidden'); el('startPanel').classList.add('hidden'); el('startChevron').setAttribute('aria-expanded', 'false');
 }
 
@@ -243,6 +287,17 @@ function bindSearch() {
     })();
   });
   results?.addEventListener('click', (event) => {
+    const save = event.target.closest('[data-search-save]');
+    if (save) {
+      const hit = localSearchHits(input.value, []).find((item) => String(item.id) === save.dataset.searchSave);
+      const poi = (state.cityPois[state.activeCity] || []).find((item) => String(item.id) === save.dataset.searchSave) || hit || { id: save.dataset.searchSave, name: save.dataset.searchName, lat: Number(save.dataset.searchLat), lng: Number(save.dataset.searchLng) };
+      if (poi) {
+        event.preventDefault();
+        window.dispatchEvent(new CustomEvent('personal-place-create-requested', { detail: { sourcePoi: poi, location: { lat: Number(poi.lat), lng: Number(poi.lng) }, name: poi.name || 'Saved place' } }));
+        results.classList.add('hidden');
+      }
+      return;
+    }
     const button = event.target.closest('[data-search-poi]'); if (!button) return;
     const lat = Number(button.dataset.searchLat);
     const lng = Number(button.dataset.searchLng);

@@ -43,10 +43,22 @@ export async function routeOnFoot(points, { city, profile = 'ordinary_walking_be
     edgeIds: [...new Set(legs.flatMap((leg) => leg.edge_ids))],
     sourceProvenanceIds: [...new Set(legs.flatMap((leg) => leg.source_provenance_ids))],
     warnings: [...new Set(legs.flatMap((leg) => leg.warnings))],
+    instructions: mergeInstructions(legs),
     graphVersion: legs[0].graph_version,
     policyVersion: legs[0].policy_version,
     confidence: { minimum: Math.min(...legs.map((leg) => leg.confidence.minimum)), average: legs.reduce((sum, leg) => sum + leg.confidence.average, 0) / legs.length }
   };
+}
+
+function mergeInstructions(legs) {
+  const merged = [];
+  for (const leg of legs) {
+    for (const instruction of leg.instructions || []) {
+      if (instruction.type === 'depart' && merged.length) continue;
+      merged.push(instruction);
+    }
+  }
+  return merged;
 }
 
 function requestRoute(payload) {
