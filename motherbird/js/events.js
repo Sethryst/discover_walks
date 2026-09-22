@@ -253,6 +253,12 @@ function bindWalkControls() {
   el('walkButton')?.addEventListener('click', async () => { if (!state.activeWalk) await startWalk({ routeMode: 'tracking' }); });
   el('endWalkButton')?.addEventListener('click', () => void stopWalk());
   el('startChevron')?.addEventListener('click', () => togglePanel('startChevron', 'startPanel'));
+  document.querySelectorAll('input[name="routeMode"]').forEach((input) => input.addEventListener('change', () => {
+    if (!input.checked) return;
+    state.plannerEnd = null;
+    state.plannerSelecting = input.value === 'point-to-point' ? 'End' : null;
+    if (input.value === 'point-to-point') toast('Tap the map to choose your destination.');
+  }));
   el('generateWalkButton')?.addEventListener('click', () => void generateTimeBasedPlan());
   window.addEventListener('walk-sketch-painted', (event) => renderWalkSketch(event.detail));
   window.addEventListener('planner-point-selected', () => {
