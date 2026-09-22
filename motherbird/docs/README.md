@@ -1,5 +1,7 @@
 # Documentation index
 
+Start with the compact topic guides in the repository root: [Product](../../docs/PRODUCT.md), [Architecture](../../docs/ARCHITECTURE.md), [Development](../../docs/DEVELOPMENT.md), [Data](../../docs/DATA.md), [Routing](../../docs/ROUTING.md), and [Editorial](../../docs/EDITORIAL.md). They point to detailed source documents without duplicating them.
+
 This folder is the short handoff package for people or AI agents changing the project without first reading every source file.
 
 1. Read [Architecture.md](Architecture.md) for the system boundary and current-vs-adjacent subsystems.

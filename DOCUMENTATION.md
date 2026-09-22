@@ -2,6 +2,15 @@
 
 This is the single entry point for the repository’s Markdown files. The backlog is the delivery source of truth; the other documents explain architecture, operations, research, or history.
 
+## Compact navigation
+
+- [Product](docs/PRODUCT.md) — strategy and roadmap.
+- [Architecture](docs/ARCHITECTURE.md) — boundaries and ownership.
+- [Development](docs/DEVELOPMENT.md) — setup and testing.
+- [Data](docs/DATA.md) — regions, OSM, POIs, and packages.
+- [Routing](docs/ROUTING.md) — offline pedestrian routing.
+- [Editorial and research](docs/EDITORIAL.md) — sources, civic content, and experiments.
+
 ## Start here
 
 - [README.md](README.md) — repository overview and the two product areas.
