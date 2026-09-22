@@ -111,6 +111,7 @@ export function initPrimaryShell() {
     if (item?.run) item.run();
   });
   document.getElementById('closePrimaryPanel')?.addEventListener('click', () => panel.classList.add('hidden'));
+  window.addEventListener('primary-panel-close-requested', () => panel.classList.add('hidden'));
   select('explore', { initial: true });
   const region = document.body.dataset.regionName || CITIES[state.activeCity]?.name || 'Fairfax County';
   document.getElementById('mapSearchInput')?.setAttribute('placeholder', `Search ${region}`);

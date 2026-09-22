@@ -257,7 +257,10 @@ function bindWalkControls() {
     if (!input.checked) return;
     state.plannerEnd = null;
     state.plannerSelecting = input.value === 'point-to-point' ? 'End' : null;
-    if (input.value === 'point-to-point') toast('Tap the map to choose your destination.');
+    if (input.value === 'point-to-point') {
+      window.dispatchEvent(new CustomEvent('primary-panel-close-requested'));
+      toast('Tap the map to choose your destination.');
+    }
   }));
   el('generateWalkButton')?.addEventListener('click', () => void generateTimeBasedPlan());
   window.addEventListener('walk-sketch-painted', (event) => renderWalkSketch(event.detail));
