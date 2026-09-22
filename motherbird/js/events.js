@@ -245,7 +245,14 @@ function renderWalkSketch(plan) {
     }
   }
   const instructions = el('walkInstructions');
-  if (instructions) instructions.innerHTML = (plan.instructions || []).map((step) => `<li>${escapeHtml(step.text)}${step.distance_m ? ` · ${Math.round(step.distance_m)} m` : ''}</li>`).join('');
+  if (instructions) {
+    const steps = plan.instructions || [];
+    instructions.innerHTML = steps.length
+      ? steps.map((step) => `<li>${escapeHtml(step.text)}${step.distance_m ? ` · ${Math.round(step.distance_m)} m` : ''}</li>`).join('')
+      : `<li class="directions-unavailable">${escapeHtml(plan.graphStatus === 'GRAPH_VERSION_UNAVAILABLE'
+        ? 'Turn-by-turn directions are unavailable because this area’s walking graph is not installed yet.'
+        : 'Turn-by-turn directions are not available for this route.')}</li>`;
+  }
   el('walkSketch').classList.remove('hidden'); el('startPanel').classList.add('hidden'); el('startChevron').setAttribute('aria-expanded', 'false');
 }
 
