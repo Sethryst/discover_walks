@@ -287,7 +287,9 @@ function availableMapChips(kind) {
 }
 
 function routesInViewport() {
-  const packaged = routesForCity(state.activeCity).filter((route) => routeInViewport(route.coordinates));
+  // Do not paint under-specified two-point packaged segments as map routes:
+  // Leaflet necessarily renders those as straight chords rather than paths.
+  const packaged = routesForCity(state.activeCity).filter((route) => route.coordinates.length >= 3 && routeInViewport(route.coordinates));
   const saved = (state.walks || []).filter((walk) => routeInViewport((walk.points || []).map((point) => [point.lat, point.lng])));
   return [...packaged.map((route) => ({ ...route, saved: false })), ...saved.map((walk) => ({ ...walk, coordinates: (walk.points || []).map((point) => [point.lat, point.lng]), saved: true }))];
 }
