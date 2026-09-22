@@ -42,6 +42,8 @@ export async function routeOnFoot(points, { city, profile = 'ordinary_walking_be
     durationSeconds: legs.reduce((sum, leg) => sum + leg.estimated_duration_s, 0),
     edgeIds: [...new Set(legs.flatMap((leg) => leg.edge_ids))],
     sourceProvenanceIds: [...new Set(legs.flatMap((leg) => leg.source_provenance_ids))],
+    cellId: activeWalkingCell.id,
+    cellRelease: activeWalkingCell.release,
     warnings: [...new Set(legs.flatMap((leg) => leg.warnings))],
     instructions: mergeInstructions(legs),
     graphVersion: legs[0].graph_version,

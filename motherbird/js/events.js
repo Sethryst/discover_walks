@@ -9,7 +9,7 @@ import { localSearchHits, searchRowHtml, emptySearchHtml, widenSearch } from './
 import { switchCity } from './city.js';
 import { generateTimeBasedPlan, lockSelectedPlanOnMap, changePlan } from './planner.js';
 import { routeOnFoot } from './routing.js';
-import { paintWalkPlan, sendCurrentWalkPlan } from './field-guide.js';
+import { paintWalkPlan, paintCard, previewCard, sendCurrentWalkPlan } from './field-guide.js?v=132';
 import { wordCount } from './reflection.js';
 import { refreshCompanionState } from './companion.js';
 import db from './storage.js';
@@ -20,11 +20,19 @@ import { openGeoCypher } from './geo-cypher.js';
 import { initMessengerBird } from './messenger-bird.js';
 import { restartCoachMarks } from './coach.js';
 import { savePlannedRoute } from './saved-routes.js';
+import { recordSessionRoutingOutcome } from './routing-feedback.js';
 
 const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];
 
 export function initEvents() {
   window.addEventListener('walk-position-received', ({ detail }) => void updateActiveManeuver(detail));
+  document.addEventListener('click', (event) => {
+    const walkAction = event.target.closest('[data-guide-walk]');
+    if (walkAction) { event.preventDefault(); void paintCard(walkAction.dataset.guideWalk); return; }
+    const preview = event.target.closest('[data-guide-preview]');
+    if (!preview || !state.map) return;
+    void previewCard(preview.dataset.guidePreview);
+  });
   initJournalPane();
   bindSheets(); bindLocationControls(); bindWalkControls(); bindSearch(); bindJournal(); bindDeviceControls();
   initMessengerBird();
@@ -42,11 +50,14 @@ export function initEvents() {
 }
 
 let rerouting = false;
+let lastRerouteAt = 0;
+let activeInstructionIndex = 1;
 async function updateActiveManeuver(position) {
-  const target = el('activeManeuver'); const instructions = state.plannedRoute?.instructions || [];
+  const target = el('activeManeuver'); const plan = state.plannedRoute; const instructions = plan?.instructions || [];
   if (!target || !instructions.length || !state.activeWalk) return;
+  if (target.dataset.routeId !== plan.id) { target.dataset.routeId = plan.id; activeInstructionIndex = 1; }
   const routeDistance = nearestRouteDistance(position, state.plannedRoute.coordinates || []);
-  if (routeDistance > 75 && !rerouting) {
+  if (routeDistance > 75 && !rerouting && Date.now() - lastRerouteAt > 10000) {
     target.textContent = 'You are off route. Finding a new path…';
     rerouting = true;
     try {
@@ -55,6 +66,7 @@ async function updateActiveManeuver(position) {
       if (plan.routeMode === 'round-trip' || plan.routeMode === 'auto-round-trip') points.push(points[0]);
       const rerouted = await routeOnFoot(points, { city: plan.city, profile: 'ordinary_walking_beta' });
       if (rerouted.ok) {
+        lastRerouteAt = Date.now();
         state.plannedRoute = { ...plan, coordinates: rerouted.coordinates, instructions: rerouted.instructions, distanceMeters: rerouted.distanceMeters, graphVersion: rerouted.graphVersion };
         target.textContent = 'Route updated. Continue walking.';
         window.dispatchEvent(new CustomEvent('walk-sketch-painted', { detail: state.plannedRoute }));
@@ -62,7 +74,13 @@ async function updateActiveManeuver(position) {
     } finally { rerouting = false; }
     return;
   }
-  const next = instructions.find((step) => step.type !== 'depart' && !step.completed);
+  while (activeInstructionIndex < instructions.length - 1) {
+    const step = instructions[activeInstructionIndex]; const [lon, lat] = step.location || [];
+    const distance = Math.hypot((position.lat - lat) * 111000, (position.lng - lon) * 88000);
+    if (distance > 25) break;
+    activeInstructionIndex += 1;
+  }
+  const next = instructions[activeInstructionIndex];
   if (!next) { target.textContent = 'You have arrived.'; return; }
   const [lon, lat] = next.location || [];
   const distance = Math.round(Math.hypot((position.lat - lat) * 111000, (position.lng - lon) * 88000));
@@ -221,6 +239,18 @@ function renderWalkSketch(plan) {
   el('sketchTitle').textContent = plan.title || 'Walk sketch';
   el('sketchReason').textContent = plan.reason || 'A concept from named places in this installed pack.';
   el('sketchStops').innerHTML = (plan.stops || []).map((stop) => `<li>${escapeHtml(stop.name || 'Named stop')}</li>`).join('');
+  const cutThrough = el('cutThroughPrompt');
+  if (cutThrough) {
+    const candidate = plan.cutThroughCandidate;
+    cutThrough.classList.toggle('hidden', !candidate || Boolean(plan.cutThroughUsed));
+    if (candidate) {
+      cutThrough.innerHTML = `<span>${escapeHtml(candidate.text || 'You may be able to pass through here.')}</span> <button type="button" data-cut-through="successful_passage">Took it</button> <button type="button" data-cut-through="blocked">Blocked</button> <button type="button" data-cut-through="uncertain">Not sure</button>`;
+      cutThrough.querySelectorAll('[data-cut-through]').forEach((button) => button.addEventListener('click', () => {
+        recordSessionRoutingOutcome({ plan, outcome: button.dataset.cutThrough });
+        plan.cutThroughUsed = true; cutThrough.classList.add('hidden');
+      }, { once: true }));
+    }
+  }
   const instructions = el('walkInstructions');
   if (instructions) instructions.innerHTML = (plan.instructions || []).map((step) => `<li>${escapeHtml(step.text)}${step.distance_m ? ` · ${Math.round(step.distance_m)} m` : ''}</li>`).join('');
   el('walkSketch').classList.remove('hidden'); el('startPanel').classList.add('hidden'); el('startChevron').setAttribute('aria-expanded', 'false');
@@ -238,7 +268,7 @@ function bindWalkControls() {
   });
   el('dismissWalkSketch')?.addEventListener('click', () => { changePlan(); el('walkSketch').classList.add('hidden'); });
   el('startPlannedWalkButton')?.addEventListener('click', async () => {
-    if (!state.plannedRoute) return; lockSelectedPlanOnMap(); el('walkSketch').classList.add('hidden');
+    if (!state.plannedRoute) return; lockSelectedPlanOnMap(); el('walkSketch').classList.remove('hidden');
     await startWalk({ routeMode: state.plannedRoute.routeMode || 'tracking' });
   });
   el('sendWalkPlanButton')?.addEventListener('click', () => void sendCurrentWalkPlan());

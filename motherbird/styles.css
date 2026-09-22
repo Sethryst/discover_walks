@@ -202,6 +202,45 @@
 .walk-sketch{max-height:min(52dvh,420px);overflow-y:auto;overscroll-behavior:contain}
 @media(max-width:720px){.start-panel{position:fixed;top:auto;left:8px;right:8px;bottom:calc(max(8px,env(safe-area-inset-bottom)) + 64px);width:auto;max-height:min(62dvh,480px)}.walk-sketch{position:fixed;left:8px;right:8px;bottom:calc(max(8px,env(safe-area-inset-bottom)) + 64px);transform:none;width:auto;max-height:min(46dvh,360px);padding:12px}.walk-sketch ol{gap:8px 18px}}
 @media(max-height:680px) and (max-width:720px){.walk-sketch{max-height:40dvh}.start-panel{max-height:55dvh}}
+
+/* Draw tools live beneath the search bar at every viewport size. */
+.map-workspace-panel[data-destination="draw"] {
+  position: fixed !important;
+  top: calc(max(12px, env(safe-area-inset-top)) + 48px) !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: auto !important;
+  transform: translateX(-50%) !important;
+  width: min(760px, calc(100vw - 24px)) !important;
+  max-height: min(42dvh, 360px) !important;
+  z-index: 1100 !important;
+}
+.map-workspace-panel[data-destination="draw"] > [data-map-panel="draw"] {
+  max-height: none !important;
+  overflow-y: auto !important;
+}
+.map-workspace-panel[data-destination="draw"] .draw-shapes {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 7px !important;
+}
+.map-workspace-panel[data-destination="draw"] .draw-shapes button {
+  flex: 1 1 92px !important;
+  min-width: 82px !important;
+}
+@media (max-width: 720px) {
+  .map-workspace-panel[data-destination="draw"] {
+    top: calc(max(8px, env(safe-area-inset-top)) + 44px) !important;
+    width: calc(100vw - 16px) !important;
+    max-height: min(38dvh, 300px) !important;
+  }
+  .map-workspace-panel[data-destination="draw"] > header { padding: 7px 10px !important; }
+  .map-workspace-panel[data-destination="draw"] > [data-map-panel="draw"] { padding: 8px !important; }
+  .map-workspace-panel[data-destination="draw"] .draw-shapes button {
+    flex: 1 1 72px !important;
+    min-height: 40px !important;
+  }
+}
 /* Coach marks must remain available while the desktop workspace is open. */
 .map-workspace-open .map-intro-hint{display:flex}
 

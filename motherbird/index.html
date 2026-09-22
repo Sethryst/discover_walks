@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#173c35" />
   <meta name="description" content="A local-first walking, history, and wildlife journal." />
-  <meta name="motherbird-walking-cell-registry" content="../published/national-routing/osm-us-2026-09-07/cells.json" />
+  <meta name="motherbird-walking-cell-registry" content="./data/cells.json" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="mobile-web-app-capable" content="yes" />
   <link rel="manifest" href="./manifest.webmanifest" />
@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="./vendor/leaflet-markercluster/MarkerCluster.Default.css" />
   <link rel="stylesheet" href="./vendor/leaflet-geoman/leaflet-geoman.css" />
   <link rel="stylesheet" href="./vendor/maplibre-gl.css" />
-  <link rel="stylesheet" href="./styles.css?v=77" />
+  <link rel="stylesheet" href="./styles.css?v=78" />
   <link rel="stylesheet" href="./shell.css?v=1" />
   <link rel="stylesheet" href="./splash-fix.css?v=68" />
   <title>Walk & Wildlife</title>
@@ -59,6 +59,7 @@
       <div class="middle-tools"><div class="field-guide-menu"><button class="ink-control" id="settingsButton" type="button" aria-label="Open Field Guide menu" aria-expanded="false" aria-controls="fieldGuideDropdown">🎒 <span>Field Guide</span><span aria-hidden="true">⌄</span></button><div class="field-guide-dropdown hidden" id="fieldGuideDropdown"><button type="button" data-open-field-guide>Field Guide home</button><button id="journalButton" type="button" aria-label="Open journal" aria-pressed="false">▦ Journal</button><button id="geoCypherButton" type="button" aria-label="Open nearby audio">◉ Cypher</button></div></div></div>
       <aside class="walk-sketch hidden" id="walkSketch" aria-live="polite"><button class="plain-close" id="dismissWalkSketch" type="button" aria-label="Dismiss walk sketch">×</button><strong id="sketchTitle">A walk</strong><p id="sketchReason"></p><p id="activeManeuver" class="active-maneuver" aria-live="polite"></p><ol id="sketchStops"></ol><ol id="walkInstructions" class="walk-instructions" aria-label="Walking directions"></ol><div class="sketch-actions"><button class="primary-button" id="startPlannedWalkButton" type="button">Start this one</button><button class="secondary-button" id="saveWalkPlanButton" type="button">Save to My Maps</button><button class="secondary-button" id="sendWalkPlanButton" type="button">Send this</button></div></aside>
       <div class="place-crosshair" id="placeCrosshair" aria-hidden="true"><span></span></div>
+      <div id="cutThroughPrompt" class="cut-through-prompt hidden" aria-live="polite"></div>
       <div class="map-workspace">
         <nav class="map-dock" aria-label="Map workspace">
           <button type="button" data-map-destination="explore" aria-controls="mapWorkspacePanel" aria-expanded="false"><span class="dock-icon dock-icon--explore" aria-hidden="true"></span><span>Explore</span></button>
