@@ -319,7 +319,7 @@ export async function recoverWalkDraft() {
 
 export async function setActiveWalkMode(mode = 'tracking') {
   const walk = state.activeWalk;
-  if (!walk || !['tracking', 'round-trip', 'point-to-point'].includes(mode)) return;
+  if (!walk || !['tracking', 'round-trip', 'auto-round-trip', 'point-to-point'].includes(mode)) return;
   walk.routeMode = mode;
   await persistWalkDraft();
 }

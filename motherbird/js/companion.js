@@ -111,12 +111,12 @@ export function selectCompanionState({
   if (walk?.recordingStatus === 'stopped' && stateIsAvailable('finish', availableStates)) return 'finish';
   const active = walk?.recordingStatus === 'recording' && !walk.paused;
   if (active) {
-    const hour = now.getHours();
-    if ((hour < 6 || hour >= 20) && stateIsAvailable('night', availableStates)) return 'night';
     if (rain) {
       const rainState = pace === 'sprint' ? 'rainSprint' : pace === 'run' ? 'rainRun' : pace === 'slow' ? 'rainSlow' : 'rainWalk';
       if (stateIsAvailable(rainState, availableStates)) return rainState;
     }
+    const hour = now.getHours();
+    if ((hour < 6 || hour >= 20) && stateIsAvailable('night', availableStates)) return 'night';
     for (const special of ['water', 'historic', 'observe', 'journal', 'discover', 'map']) {
       if (context === special && stateIsAvailable(special, availableStates)) return special;
     }
