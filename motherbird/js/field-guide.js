@@ -167,12 +167,6 @@ export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') 
     return true;
   }).sort((a, b) => (a.distance ?? Infinity) - (b.distance ?? Infinity)).slice(0, 12);
   target.innerHTML = shown.length ? shown.map(discoverCard).join('') : '<p class="empty-state">No walkable places are available near this map view yet. Move the map or choose another area to explore.</p>';
-  target.onclick = (event) => {
-    const preview = event.target.closest('[data-guide-preview]');
-    if (preview) { void previewCard(preview.dataset.guidePreview); return; }
-    const walk = event.target.closest('[data-guide-walk]');
-    if (walk) void paintCard(walk.dataset.guideWalk);
-  };
 }
 function planForCard(card) {
   return { pack_id: state.activeCity, title: card.title, reason: card.reason, stop_place_ids: card.stopPlaceIds || [], ...(card.journeyId ? { journeyId: card.journeyId } : {}) };

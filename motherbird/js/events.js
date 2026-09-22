@@ -26,13 +26,6 @@ const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];
 
 export function initEvents() {
   window.addEventListener('walk-position-received', ({ detail }) => void updateActiveManeuver(detail));
-  document.addEventListener('click', (event) => {
-    const walkAction = event.target.closest('[data-guide-walk]');
-    if (walkAction) { event.preventDefault(); void paintCard(walkAction.dataset.guideWalk); return; }
-    const preview = event.target.closest('[data-guide-preview]');
-    if (!preview || !state.map) return;
-    void previewCard(preview.dataset.guidePreview);
-  });
   initJournalPane();
   bindSheets(); bindLocationControls(); bindWalkControls(); bindSearch(); bindJournal(); bindDeviceControls();
   initMessengerBird();
