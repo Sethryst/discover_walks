@@ -1,4 +1,5 @@
 import { state } from './state.js';
+import { CITIES } from './constants.js';
 import { city } from './poi.js';
 import { debounce } from './utils.js';
 import { renderCityPois } from './poi.js';
@@ -21,6 +22,14 @@ import { OpfsRangeSource } from './opfs-range-source.js';
 const OSM_ATTRIBUTION = '&copy; OpenStreetMap contributors';
 const NEIGHBORHOOD_ZOOM = 15;
 const mapLibreZoom = () => Math.max(0, (state.map?.getZoom() || 0) - 1);
+const cityDistanceMeters = (a, b) => Math.hypot((a.lat - b.lat) * 111000, (a.lng - b.lng) * 88000);
+
+function nearestMappedCity(center) {
+  return Object.entries(CITIES)
+    .filter(([, candidate]) => candidate.dataFile && candidate.center)
+    .map(([id, candidate]) => ({ id, distance: cityDistanceMeters(center, candidate.center) }))
+    .sort((left, right) => left.distance - right.distance)[0];
+}
 
 export function initMap() {
   const active = city();
@@ -62,6 +71,11 @@ export function initMap() {
   state.map.on('moveend zoomend', debounce(() => {
     trackActiveViewport();
     const center = state.activeViewportBounds?.center;
+    const nearest = center && nearestMappedCity(center);
+    if (nearest && nearest.id !== state.activeCity && nearest.distance < 45000) {
+      void import('./city.js').then(({ switchCity }) => switchCity(nearest.id, false, { source: 'map' }));
+      return;
+    }
     if (center) void activateWalkingCellAt(center).catch((error) => console.warn('Walking cell unavailable:', error.message));
     renderCityPois();
     window.dispatchEvent(new CustomEvent('map-viewport-changed'));
