@@ -125,6 +125,15 @@ export async function switchCity(nextCity, recenter = true, { source = 'user' } 
   state.poiTags.clear();
   await db.put('settings', state.settings);
   await refreshCityMap(recenter);
+  const regionLabel = cityLabel(nextCity);
+  const search = document.getElementById('mapSearchInput');
+  if (search) {
+    search.placeholder = `Search ${regionLabel}`;
+    if (!search.value.trim() || /^Search /.test(search.value)) search.value = '';
+  }
+  const drawLabel = document.getElementById('drawRegionLabel');
+  if (drawLabel) drawLabel.textContent = regionLabel;
+  window.dispatchEvent(new CustomEvent('viewport-region-changed', { detail: { label: regionLabel, regionId: nextCity } }));
   window.dispatchEvent(new CustomEvent('city-layer-data-changed'));
   setStatus(manuallyLocked ? `${cityLabel(nextCity)} locked for this walk` : `${cityLabel(nextCity)} ready for a walk`);
   toast(manuallyLocked ? `Now exploring ${cityLabel(nextCity)}. GPS pack switching is locked for this walk.` : `Now exploring ${cityLabel(nextCity)}.`);
