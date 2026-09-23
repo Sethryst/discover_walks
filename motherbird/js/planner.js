@@ -4,6 +4,7 @@ import { poiTags } from './poi.js';
 import { routeOnFoot } from './routing.js';
 import { escapeHtml } from './utils.js';
 import { toast } from './ui.js';
+import { splitDisconnectedPaths } from './routes.js';
 
 function selectedMinutes() { return Number(document.querySelector('input[name="walkTime"]:checked')?.value || 30); }
 function selectedRouteMode() { return document.querySelector('input[name="routeMode"]:checked')?.value || 'round-trip'; }
@@ -34,10 +35,12 @@ export function paintWalkConcept(plan = state.plannedRoute, { fit = true } = {})
   if (!plan || !state.map) return null;
   state.planSketchLayer?.remove();
   state.plannedRouteLine?.remove();
+  state.plannedRouteLines?.forEach((line) => line.remove());
   state.planSketchLayer = L.layerGroup().addTo(state.map);
   plan.stops.forEach((stop, index) => L.marker([stop.lat, stop.lng], { icon: L.divIcon({ className: 'sketch-stop', html: `<span>${index + 1}</span>`, iconSize: [30, 30], iconAnchor: [15, 15] }), title: stop.name }).bindTooltip(stop.name).addTo(state.planSketchLayer));
-  if (plan.coordinates?.length > 1) state.plannedRouteLine = L.polyline(plan.coordinates, { color: '#173c35', weight: 6, opacity: .9 }).addTo(state.map);
-  const layers = [...state.planSketchLayer.getLayers(), ...(state.plannedRouteLine ? [state.plannedRouteLine] : [])];
+  state.plannedRouteLines = splitDisconnectedPaths(plan.coordinates).map((coordinates) => L.polyline(coordinates, { color: '#173c35', weight: 6, opacity: .9 }).addTo(state.map));
+  state.plannedRouteLine = state.plannedRouteLines[0] || null;
+  const layers = [...state.planSketchLayer.getLayers(), ...state.plannedRouteLines];
   if (fit && layers.length) { const bounds = L.featureGroup(layers).getBounds(); if (bounds.isValid()) state.map.fitBounds(bounds, { padding: [42, 42], maxZoom: 16 }); }
   window.dispatchEvent(new CustomEvent('walk-sketch-painted', { detail: plan }));
   return plan;
@@ -75,7 +78,7 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
 }
 
 export function choosePlan(id) { return state.planOptions.find((plan) => plan.id === id) || state.plannedRoute; }
-export function changePlan() { state.plannedRoute = null; state.planSketchLayer?.remove(); state.plannedRouteLine?.remove(); }
+export function changePlan() { state.plannedRoute = null; state.planSketchLayer?.remove(); state.plannedRouteLine?.remove(); state.plannedRouteLines?.forEach((line) => line.remove()); state.plannedRouteLines = []; }
 export function togglePlanVisibility() { /* A single painted sketch replaces graph alternatives. */ }
 export function setPlanningMode(active) { state.planningMode = Boolean(active); }
 export function lockSelectedPlanOnMap() { return paintWalkConcept(state.plannedRoute, { fit: false }); }

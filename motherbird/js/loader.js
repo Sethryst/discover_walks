@@ -24,6 +24,7 @@ import { initNationalOsmLayers } from './national-osm-layers.js';
 import { initGeoCypher } from './geo-cypher.js';
 import { initPwaUpdates } from './pwa-update.js';
 import { initPrimaryShell } from './primary-shell.js';
+import { initStories } from './stories.js';
 import { recoverWalkDraft, discardWalk } from './walk.js';
 
 export async function init() {
@@ -88,6 +89,7 @@ export async function init() {
 
   await initNationalOsmLayers();
   initMap();
+  initStories();
   await initGeoCypher();
   removePrimaryControlFallbacks();
   initEvents();

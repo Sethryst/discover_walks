@@ -5,7 +5,7 @@ import { curatedPersonalPlaces, renderPersonalPlacesOnMap, upsertImportedPersona
 import { el, escapeHtml } from './utils.js';
 import { closeSheets, openSheet, toast } from './ui.js';
 import { CITIES } from './constants.js';
-import { routesForCity } from './routes.js';
+import { routesForCity, splitDisconnectedPaths } from './routes.js';
 import { refreshPublicMarkers } from './online.js';
 import { ICONS, markerPinHtml, markerVisual } from './poi-icons.js';
 import { civicNoticesFromPack, newsIsAvailable } from './civic-news.js';
@@ -390,9 +390,11 @@ function renderRouteLights() {
   state.routeLightLayer.clearLayers();
   if (!state.layerLights.recreation || state.layerFilters.public.__routes === false) return;
   routesInViewport().forEach((route) => {
-    const line = L.polyline(route.coordinates, { color: route.saved ? '#8b5e3c' : '#173c35', weight: route.saved ? 4 : 5, opacity: .82, dashArray: route.saved ? null : '9 6' });
-    line.bindTooltip(escapeHtml(route.title || route.name || 'Saved walk'));
-    line.addTo(state.routeLightLayer);
+    splitDisconnectedPaths(route.coordinates).forEach((coordinates) => {
+      const line = L.polyline(coordinates, { color: route.saved ? '#8b5e3c' : '#173c35', weight: route.saved ? 4 : 5, opacity: .82, dashArray: route.saved ? null : '9 6' });
+      line.bindTooltip(escapeHtml(route.title || route.name || 'Saved walk'));
+      line.addTo(state.routeLightLayer);
+    });
   });
 }
 

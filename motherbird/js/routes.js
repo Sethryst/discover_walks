@@ -145,7 +145,30 @@ export function showCuratedRoute(routeId) {
   if (!route || !validateRoute(route).valid || !state.map) return null;
 
   state.curatedRouteLine?.remove();
-  state.curatedRouteLine = L.polyline(route.coordinates, { color: '#1b8b7e', weight: 6, opacity: .9, dashArray: '10 7' }).addTo(state.map);
-  state.map.fitBounds(state.curatedRouteLine.getBounds(), { padding: [28, 28], maxZoom: 14 });
+  state.curatedRouteLines?.forEach((line) => line.remove());
+  const paths = splitDisconnectedPaths(route.coordinates);
+  state.curatedRouteLines = paths.map((coordinates) => L.polyline(coordinates, { color: '#1b8b7e', weight: 6, opacity: .9, dashArray: '10 7' }).addTo(state.map));
+  state.curatedRouteLine = state.curatedRouteLines[0] || null;
+  const bounds = L.featureGroup(state.curatedRouteLines).getBounds();
+  state.map.fitBounds(bounds, { padding: [28, 28], maxZoom: 14 });
   return route;
+}
+
+// Some official GIS features are multipart. Flattening their paths creates a
+// false straight segment between the end of one path and the start of the
+// next. Keep large discontinuities as separate rendered paths instead.
+export function splitDisconnectedPaths(coordinates) {
+  const paths = [];
+  let current = [];
+  for (const coordinate of coordinates || []) {
+    const previous = current.at(-1);
+    const jumpMeters = previous ? Math.hypot((coordinate[0] - previous[0]) * 111000, (coordinate[1] - previous[1]) * 88000) : 0;
+    if (previous && jumpMeters > 250) {
+      if (current.length > 1) paths.push(current);
+      current = [];
+    }
+    current.push(coordinate);
+  }
+  if (current.length > 1) paths.push(current);
+  return paths;
 }

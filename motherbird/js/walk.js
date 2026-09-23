@@ -309,12 +309,47 @@ export async function recoverWalkDraft() {
     state.activeWalk.lastRawPoint = null;
     state.activeWalk.lastMovementAt = new Date().toISOString();
     beginGpsWatch();
+    // A planned route is not durable navigation geometry: after the app has
+    // been closed, the walker may have resumed somewhere different from the
+    // original start. Rebuild the remaining legs from the last known/resumed
+    // position through the saved stops. Never synthesize a straight segment
+    // when the pedestrian graph cannot produce a route.
+    await rerouteRecoveredPlan();
     toast('Recovered your in-progress walk and its recorded route.');
   } else {
     await saveWalk();
   }
   void renderArchive();
   return state.activeWalk;
+}
+
+async function rerouteRecoveredPlan() {
+  const plan = state.plannedRoute;
+  const origin = state.activeWalk?.endLocation || state.lastPosition || state.currentPosition;
+  if (!plan || !origin || !plan.stops?.length) return;
+  const points = [{ lat: origin.lat, lng: origin.lng }, ...plan.stops.map((stop) => ({ lat: stop.lat, lng: stop.lng }))];
+  if (plan.routeMode === 'round-trip' || plan.routeMode === 'auto-round-trip') points.push(points[0]);
+  try {
+    const { routeOnFoot } = await import('./routing.js');
+    const routed = await routeOnFoot(points, { city: plan.city || state.activeCity, profile: 'ordinary_walking_beta' });
+    if (!routed.ok || state.plannedRoute?.id !== plan.id) return;
+    state.plannedRoute = {
+      ...plan,
+      coordinates: routed.coordinates,
+      distanceMeters: routed.distanceMeters,
+      distanceMiles: Number((routed.distanceMeters / 1609.344).toFixed(2)),
+      durationSeconds: routed.durationSeconds,
+      instructions: routed.instructions,
+      edgeIds: routed.edgeIds,
+      cellId: routed.cellId,
+      cellRelease: routed.cellRelease,
+      graphVersion: routed.graphVersion,
+      graphStatus: null
+    };
+    window.dispatchEvent(new CustomEvent('walk-sketch-painted', { detail: state.plannedRoute }));
+  } catch {
+    // Keep the recovered walk usable, but do not draw an unverified fallback.
+  }
 }
 
 export async function setActiveWalkMode(mode = 'tracking') {
