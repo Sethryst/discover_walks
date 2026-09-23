@@ -34,7 +34,7 @@ const dataset = {
     crossing: 'crossing', trail: 'trail', track: 'trail', pedestrian: 'pedestrian_plaza', corridor: 'indoor_pathway'
   },
   access_fields: ['foot', 'access'], default_access: 'unknown',
-  edge_attribute_fields: ['highway', 'footway', 'crossing', 'foot', 'access', 'oneway', 'oneway:foot', '@version', '_mb_source_dataset_id', '_mb_derived_from_raw_feature_ids', '_mb_policy_warning']
+  edge_attribute_fields: ['name', 'ref', 'highway', 'footway', 'crossing', 'foot', 'access', 'oneway', 'oneway:foot', '@version', '_mb_source_dataset_id', '_mb_derived_from_raw_feature_ids', '_mb_policy_warning']
 };
 const graph = buildPedestrianGraph({ type: 'FeatureCollection', features }, dataset, { snapToleranceMeters: 0 });
 const runtime = buildRuntimeGraph(graph, dataset, { builtAt: args['built-at'], sourceVersion: args['source-release'] });
@@ -46,15 +46,6 @@ runtime.source_metadata = {
   duplicate_objects_removed: national.duplicate_objects_removed,
   oneway_semantics: 'preserved_in_edge_audit_source_attributes_not_enforced_by_runtime_router'
 };
-runtime.national_provenance = national.edges.map((edge) => ({
-  edge_id: `${args['dataset-id']}:${edge.source}:${edge.lineIndex}:${edge.segmentIndex}`,
-  osm_identity: edge.source,
-  source_version: edge.sourceVersion,
-  oneway: edge.sourceTags.oneway ?? null,
-  oneway_foot: edge.sourceTags['oneway:foot'] ?? null,
-  highway: edge.sourceTags.highway ?? null,
-  foot: edge.sourceTags.foot ?? null
-}));
 const temporary = `${args.output}.part`;
 await fs.writeFile(temporary, `${JSON.stringify(runtime)}\n`);
 await fs.rename(temporary, args.output);

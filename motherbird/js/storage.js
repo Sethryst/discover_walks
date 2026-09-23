@@ -1,7 +1,7 @@
 export const db = (() => {
   let database;
   const DATABASE_NAME = 'walk-wildlife-journal';
-  const DATABASE_VERSION = 15;
+  const DATABASE_VERSION = 16;
   const LEGACY_STORES = [
     'walks', 'observations', 'moments', 'profile', 'settings', 'points_of_interest',
     'poi_metadata', 'regions', 'region_pois', 'region_buckets', 'field_editions',
@@ -18,7 +18,8 @@ export const db = (() => {
     // could therefore report a current version while still missing stores,
     // causing app boot to stop before event handlers were registered.
     { version: 14, risk: 'additive', description: 'Repair missing local stores from earlier installations.', apply: (target) => [...LEGACY_STORES, 'geo_cypher_manifests', 'geo_cypher_audio'].forEach((name) => { if (!target.objectStoreNames.contains(name)) target.createObjectStore(name, { keyPath: 'id' }); }) },
-    { version: 15, risk: 'additive', description: 'Add editable local saved routes.', apply: (target) => { if (!target.objectStoreNames.contains('saved_routes')) target.createObjectStore('saved_routes', { keyPath: 'id' }); } }
+    { version: 15, risk: 'additive', description: 'Add editable local saved routes.', apply: (target) => { if (!target.objectStoreNames.contains('saved_routes')) target.createObjectStore('saved_routes', { keyPath: 'id' }); } },
+    { version: 16, risk: 'additive', description: 'Add local radio manifests, playback state, saved tracks, and transition assets.', apply: (target) => ['radio_manifests', 'radio_playback_state', 'radio_saved_tracks', 'radio_transition_assets'].forEach((name) => { if (!target.objectStoreNames.contains(name)) target.createObjectStore(name, { keyPath: 'id' }); }) }
   ]);
 
   async function installedVersion() {
@@ -104,7 +105,7 @@ export const db = (() => {
   function all(name) { return new Promise((resolve, reject) => {const r = store(name).getAll(); r.onsuccess = () => resolve(r.result); r.onerror = () => reject(r.error); }); }
   function remove(name, id) { return new Promise((resolve, reject) => {const r = store(name, 'readwrite').delete(id); r.onsuccess = () => resolve(); r.onerror = () => reject(r.error); }); }
   function clearAll() {
-    return Promise.all(['walks', 'saved_routes', 'observations', 'moments', 'profile', 'settings', 'poi_metadata', 'neighborhood_discoveries', 'walk_drafts', 'walk_events', 'personal_places', 'personal_place_categories', 'layer_settings', 'voice_notes', 'journal_audio', 'county_additions', 'notification_state', 'spatial_local_operations', 'geo_cyphers', 'geo_cypher_keys', 'geo_cypher_events', 'geo_cypher_manifests', 'geo_cypher_audio'].map((name) => new Promise((resolve, reject) => {
+    return Promise.all(['walks', 'saved_routes', 'observations', 'moments', 'profile', 'settings', 'poi_metadata', 'neighborhood_discoveries', 'walk_drafts', 'walk_events', 'personal_places', 'personal_place_categories', 'layer_settings', 'voice_notes', 'journal_audio', 'county_additions', 'notification_state', 'spatial_local_operations', 'geo_cyphers', 'geo_cypher_keys', 'geo_cypher_events', 'geo_cypher_manifests', 'geo_cypher_audio', 'radio_manifests', 'radio_playback_state', 'radio_saved_tracks', 'radio_transition_assets'].map((name) => new Promise((resolve, reject) => {
     const r = store(name, 'readwrite').clear(); r.onsuccess = resolve; r.onerror = () => reject(r.error);
     })));
   }

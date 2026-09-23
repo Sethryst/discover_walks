@@ -13,12 +13,15 @@ export function buildRuntimeGraph(graph, dataset, { builtAt = new Date().toISOSt
   const nodeIndex = new Map(graph.nodes.map((node, index) => [node.node_id, index]));
   const nodes = graph.nodes.map((node) => [node.node_id, Math.round(node.lat * 1e7), Math.round(node.lon * 1e7), Number(node.level || 0), Number(node.flags || 0)]);
   const sources = [];
+  const source_names = [];
   const sourceIndex = new Map();
   const geometry = [];
   const edges = graph.edges.map((edge) => {
     if (!sourceIndex.has(edge.source_feature_id)) {
       sourceIndex.set(edge.source_feature_id, sources.length);
       sources.push(edge.source_feature_id);
+      const attributes = edge.source_attributes || {};
+      source_names.push(attributes.name || attributes.ref || null);
     }
     const geometryOffset = geometry.length / 2;
     for (const [lon, lat] of edge.geometry.coordinates) geometry.push(Math.round(lon * 1e7), Math.round(lat * 1e7));
@@ -41,8 +44,8 @@ export function buildRuntimeGraph(graph, dataset, { builtAt = new Date().toISOSt
   const bounds = graphBounds(nodes);
   const graphHasher = createHash('sha256');
   const hashInputs = sourceVersion
-    ? [dataset.id, sourceVersion, POLICY_VERSION, nodes, edges, geometry, sources]
-    : [dataset.id, POLICY_VERSION, nodes, edges, geometry, sources];
+    ? [dataset.id, sourceVersion, POLICY_VERSION, nodes, edges, geometry, sources, source_names]
+    : [dataset.id, POLICY_VERSION, nodes, edges, geometry, sources, source_names];
   for (const value of hashInputs) graphHasher.update(JSON.stringify(value));
   const graphHash = graphHasher.digest('hex');
   return {
@@ -63,6 +66,7 @@ export function buildRuntimeGraph(graph, dataset, { builtAt = new Date().toISOSt
     edges,
     geometry,
     sources,
+    source_names,
     spatial_index: spatialIndex
   };
 }

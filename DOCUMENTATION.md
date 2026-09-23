@@ -10,6 +10,7 @@ This is the single entry point for the repository’s Markdown files. The backlo
 - [Data](docs/DATA.md) — regions, OSM, POIs, and packages.
 - [Routing](docs/ROUTING.md) — offline pedestrian routing.
 - [Editorial and research](docs/EDITORIAL.md) — sources, civic content, and experiments.
+- [Retro Radio Station Concept](docs/audio-radio-station.md) — future public-domain audio broadcast concept.
 
 ## Start here
 
@@ -74,6 +75,7 @@ This is the single entry point for the repository’s Markdown files. The backlo
 - [docs/mip-substrate-plan.md](docs/mip-substrate-plan.md) — MIP substrate plan.
 - [docs/metro-civic-priority.md](docs/metro-civic-priority.md) — civic prioritization model.
 - [motherbird/docs/GeoCypher.md](motherbird/docs/GeoCypher.md) — local Fairfax audio and lineage prototype.
+- [docs/audio-radio-station.md](docs/audio-radio-station.md) — retro-styled multi-channel radio concept and deferred mobile path.
 - [motherbird/research/templates/urban-region-research-mandate.md](motherbird/research/templates/urban-region-research-mandate.md) — research mandate template.
 - [motherbird/research/appalachian-corridor-lab/2026-08-20/README.md](motherbird/research/appalachian-corridor-lab/2026-08-20/README.md) — Appalachian corridor lab notes.
 - [motherbird/research/appalachian-corridor-lab/2026-08-20/poi-family-policy-v20260820.md](motherbird/research/appalachian-corridor-lab/2026-08-20/poi-family-policy-v20260820.md) — POI-family policy.

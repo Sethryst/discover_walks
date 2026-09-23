@@ -101,7 +101,7 @@ function routeResponse(runtime, profile, coordinates, edgeIndexes, distanceMeter
     source_provenance_ids: unique(edgeIndexes.map((index) => runtime.sources[runtime.edges[index][8]])),
     distance_m: round(distanceMeters),
     estimated_duration_s: Math.round(distanceMeters / WALKING_METERS_PER_SECOND),
-    instructions: buildInstructions(coordinates, distanceMeters),
+    instructions: buildInstructions(coordinates, distanceMeters, edgeIndexes, runtime),
     confidence: {
       minimum: Math.min(...confidences),
       average: round(confidences.reduce((sum, value) => sum + value, 0) / confidences.length)
@@ -114,7 +114,7 @@ function routeResponse(runtime, profile, coordinates, edgeIndexes, distanceMeter
   };
 }
 
-function buildInstructions(coordinates, distanceMeters) {
+function buildInstructions(coordinates, distanceMeters, edgeIndexes, runtime) {
   if (coordinates.length < 2) return [];
   const instructions = [{ type: 'depart', text: 'Start walking', distance_m: 0, location: coordinates[0] }];
   let sinceLast = 0;
@@ -127,7 +127,10 @@ function buildInstructions(coordinates, distanceMeters) {
     const turn = normalizeBearingDelta(bearing(previous, current), bearing(current, next));
     if (sinceLast < 12 || Math.abs(turn) < 35) continue;
     const direction = Math.abs(turn) >= 135 ? 'Make a U-turn' : turn > 0 ? 'Turn right' : 'Turn left';
-    instructions.push({ type: direction.includes('U-turn') ? 'uturn' : turn > 0 ? 'right' : 'left', text: direction, distance_m: round(sinceLast), location: current });
+    const namedEdge = runtime.edges[edgeIndexes[Math.min(index - 1, edgeIndexes.length - 1)]];
+    const edgeName = runtime.source_names?.[namedEdge?.[8]];
+    const text = edgeName ? `${direction} onto ${edgeName}` : direction;
+    instructions.push({ type: direction.includes('U-turn') ? 'uturn' : turn > 0 ? 'right' : 'left', text, street: edgeName || null, distance_m: round(sinceLast), location: current });
     sinceLast = 0;
   }
   const finalLeg = haversine(coordinates.at(-2), coordinates.at(-1));

@@ -71,6 +71,10 @@ Discover Walks is a private, walking-first field journal. Every feature should d
 5. Build visual map export and walk replay.
 6. Advance offline routing, regional packages, Field Editions, and lightweight device surfaces.
 
+### Future concept — retro radio companion
+
+- [ ] **Build the browser-driven retro radio architecture.** See [audio-radio-station.md](../../docs/audio-radio-station.md). Start with Hugging Face manifests, simulated broadcast-time selection, on-demand public-domain audio, client-side transitions, and deliberate IndexedDB saves. Defer Liquidsoap/Icecast/VPS hosting and Capacitor packaging until the PWA proves the listening loop.
+
 ## Architecture boundaries
 
 - The browser remains a static ES-module app with IndexedDB as the authoritative personal store.

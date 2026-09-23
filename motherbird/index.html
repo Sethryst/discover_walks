@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#173c35" />
   <meta name="description" content="A local-first walking, history, and wildlife journal." />
-  <meta name="motherbird-walking-cell-registry" content="./data/cells.json?v=20260922-fairfax-proof" />
+  <meta name="motherbird-walking-cell-registry" content="./data/fairfax-minio-cells.json?v=20260923-fairfax-minio-pilot" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="mobile-web-app-capable" content="yes" />
   <link rel="manifest" href="./manifest.webmanifest" />
@@ -32,6 +32,7 @@
   <link rel="stylesheet" href="./vendor/leaflet-geoman/leaflet-geoman.css" />
   <link rel="stylesheet" href="./vendor/maplibre-gl.css" />
   <link rel="stylesheet" href="./styles.css?v=78" />
+  <link rel="stylesheet" href="./radio.css" />
   <link rel="stylesheet" href="./shell.css?v=1" />
   <link rel="stylesheet" href="./splash-fix.css?v=68" />
   <title>Walk & Wildlife</title>
@@ -220,6 +221,17 @@
     </form>
   </section>
 
+  <section class="sheet radio-sheet hidden" id="radioSheet" role="dialog" aria-modal="true" aria-labelledby="radioTitle">
+    <button class="close-sheet" id="radioCloseButton" type="button" aria-label="Close">×</button>
+    <span class="sheet-kicker">WALKING BROADCAST · LOCAL PLAYER</span><h2 id="radioTitle">The Retro Radio</h2>
+    <p id="radioChannelDescription" class="radio-description">Tune into a public-domain broadcast.</p>
+    <div class="radio-console" id="radioPlayer" data-radio-state="paused">
+      <label class="radio-channel-label" for="radioChannel">Station<select id="radioChannel"></select></label>
+      <div class="radio-dial-wrap"><div class="radio-dial-scale" aria-hidden="true"><span>1935</span><span>1940</span><span>1945</span><span>1950</span><span>1955</span></div><input id="radioEraDial" class="radio-era-dial" type="range" min="1935" max="1955" value="1945" step="1" aria-label="Tune broadcast era" /><output id="radioEraValue">1945 · radio</output></div>
+      <div class="radio-on-air"><span class="radio-lamp" aria-hidden="true"></span><div><small id="radioStatus">paused</small><strong id="radioNowPlaying">No transmission selected</strong></div></div>
+      <div class="radio-controls"><button id="radioPlayButton" class="radio-main-button" type="button">▶ Listen</button><button id="radioNextButton" class="secondary-button" type="button">Next transmission</button><button id="radioSaveButton" class="secondary-button" type="button" disabled>Save locally</button></div>
+    </div><p class="radio-note">The dial changes the programmed era, not a timestamp. Audio is fetched only when you listen; saved programs stay on this device.</p>
+  </section>
   <section class="sheet story-sheet hidden" id="storySheet" role="dialog" aria-modal="true" aria-labelledby="storyTitle">
     <button class="close-sheet" data-close-sheet aria-label="Close">×</button>
     <span class="sheet-kicker" id="storyStatus">CHANGING · EDITORIAL PROTOTYPE</span>

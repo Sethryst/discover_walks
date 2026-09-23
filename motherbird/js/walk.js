@@ -13,6 +13,7 @@ import { toast, setStatus, openJournal, closeSheets } from './ui.js';
 import db from './storage.js';
 import { updateProfile } from './profile.js';
 import { renderArchive } from './archive.js';
+import { refreshLiveConditions } from './weather.js';
 import {
   addEventToWalk,
   completeWalkEvent,
@@ -159,6 +160,7 @@ export async function resumeWalk() {
   walk.detectionState.manualPauseEventId = null;
   setStatus('Recording your walk', true);
   updateWalkDisplay();
+  void refreshLiveConditions();
   await persistWalkDraft();
 }
 

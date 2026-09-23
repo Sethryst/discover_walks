@@ -18,6 +18,7 @@ const actions = {
     { id: 'cypher', label: 'Nearby audio', icon: '◉', run: () => openSheet('geoCypherSheet') }
   ],
   me: [
+    { id: 'radio', label: 'Retro Radio', icon: '📻', run: () => window.dispatchEvent(new CustomEvent('radio-open-requested')) },
     { id: 'messenger', label: 'Messenger Bird', icon: '🐦', run: () => openSheet('messengerInboxSheet') },
     { id: 'companion', label: 'Companion', icon: '🐾', run: () => document.getElementById('companionButton')?.click() },
     { id: 'alerts', label: 'Walking alerts', icon: '🔔', run: () => document.getElementById('locateChevron')?.click() },
