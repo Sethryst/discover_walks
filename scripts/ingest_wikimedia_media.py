@@ -79,6 +79,10 @@ def main() -> int:
     import requests
     for record in records:
         if record["validation_errors"]: continue
+        prior = checkpoint.get("media", {}).get(record["id"])
+        if prior and Path(prior.get("path", "")).exists():
+            record["media_evidence"] = {k: prior[k] for k in ("sha256", "bytes", "mime_type") if k in prior}
+            continue
         for attempt in range(6):
             response = requests.get(record["file_url"], headers={"User-Agent": "Gremlin-Lab/1.0 (https://github.com/Sethryst/discover_walks) historical-media", "Referer": record["page_url"]}, timeout=60)
             if response.status_code not in (429, 503): break
@@ -115,6 +119,8 @@ def main() -> int:
                 batch = files[start:start + args.upload_batch_size]
                 patterns = [p.relative_to(args.out).as_posix() for p in batch]
                 api.upload_folder(repo_id=repo_id, repo_type="dataset", folder_path=str(args.out), path_in_repo="", allow_patterns=patterns, ignore_patterns=[".cache/**"], commit_message=f"historical media release {version} batch {start // args.upload_batch_size + 1}")
+                checkpoint.setdefault("hf_upload_batches", []).append({"batch": start // args.upload_batch_size + 1, "files": patterns, "uploaded_at": datetime.now(timezone.utc).isoformat()})
+                checkpoint_path.write_text(json.dumps(checkpoint, indent=2, sort_keys=True), encoding="utf-8")
     return 0
 
 if __name__ == "__main__": sys.exit(main())
