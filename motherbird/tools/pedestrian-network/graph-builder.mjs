@@ -132,6 +132,61 @@ export function buildPedestrianGraph(featureCollection, dataset, { snapTolerance
   };
 }
 
+// Contract only ordinary degree-two corridors. Junctions, endpoints, crossings,
+// access changes, and profile changes remain explicit, so shortest-path costs
+// and legal turn choices are unchanged while coordinate bloat is removed.
+export function contractDegreeTwoGraph(graph) {
+  const edges = graph.edges.map((edge) => ({ ...edge, geometry: { ...edge.geometry, coordinates: edge.geometry.coordinates.map((point) => [...point]) }, derived_from_raw_feature_ids: [...(edge.derived_from_raw_feature_ids || [edge.source_feature_id])] }));
+  const nodeById = new Map(graph.nodes.map((node) => [node.node_id, node]));
+  let changed = true;
+  while (changed) {
+    changed = false;
+    const incident = new Map();
+    for (const edge of edges) {
+      incident.set(edge.from_node_id, [...(incident.get(edge.from_node_id) || []), edge]);
+      incident.set(edge.to_node_id, [...(incident.get(edge.to_node_id) || []), edge]);
+    }
+    for (const [nodeId, touching] of incident) {
+      const node = nodeById.get(nodeId);
+      if (!node || touching.length !== 2 || touching[0] === touching[1]) continue;
+      const [left, right] = touching;
+      if (!sameContractionClass(left, right)) continue;
+      const leftOther = left.from_node_id === nodeId ? left.to_node_id : left.from_node_id;
+      const rightOther = right.from_node_id === nodeId ? right.to_node_id : right.from_node_id;
+      if (leftOther === rightOther) continue;
+      const leftCoords = orientedCoordinates(left, leftOther, nodeId);
+      const rightCoords = orientedCoordinates(right, nodeId, rightOther);
+      const merged = {
+        ...left,
+        edge_id: `${left.edge_id}+${right.edge_id}`,
+        from_node_id: leftOther,
+        to_node_id: rightOther,
+        geometry: { type: 'LineString', coordinates: [...leftCoords, ...rightCoords.slice(1)] },
+        length_m: Number((left.length_m + right.length_m).toFixed(3)),
+        derived_from_raw_feature_ids: [...new Set([...(left.derived_from_raw_feature_ids || []), ...(right.derived_from_raw_feature_ids || [])])]
+      };
+      const leftIndex = edges.indexOf(left);
+      const rightIndex = edges.indexOf(right);
+      edges.splice(Math.max(leftIndex, rightIndex), 1);
+      edges.splice(Math.min(leftIndex, rightIndex), 1, merged);
+      nodeById.delete(nodeId);
+      changed = true;
+      break;
+    }
+  }
+  const remainingNodes = [...nodeById.values()].map((node) => ({ ...node, degree: edges.reduce((count, edge) => count + (edge.from_node_id === node.node_id || edge.to_node_id === node.node_id ? 1 : 0), 0) }));
+  return { ...graph, nodes: remainingNodes, edges };
+}
+
+function sameContractionClass(left, right) {
+  return left.edge_type === right.edge_type && left.access === right.access && left.routable === right.routable && left.profile_bitmask === right.profile_bitmask;
+}
+
+function orientedCoordinates(edge, fromNodeId, toNodeId) {
+  const coordinates = edge.geometry.coordinates;
+  return edge.from_node_id === fromNodeId && edge.to_node_id === toNodeId ? coordinates : [...coordinates].reverse();
+}
+
 function lineParts(geometry) {
   if (geometry?.type === 'LineString' && Array.isArray(geometry.coordinates)) return [geometry.coordinates];
   if (geometry?.type === 'MultiLineString' && Array.isArray(geometry.coordinates)) return geometry.coordinates;

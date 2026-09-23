@@ -117,7 +117,15 @@
   .draw-workspace{overflow:visible!important}.draw-workspace output{display:block;margin:18px 0;padding:12px;border-left:3px solid #624eef;background:#f7f7f7;color:#626c72;font-size:12px}.draw-shapes{position:fixed;z-index:1100;left:calc(50% + 169px);bottom:12px;transform:translateX(-50%);display:flex;align-items:center;gap:0;padding:0 14px;height:54px;border:1px solid #e8e8e8;border-radius:6px;background:#fff;box-shadow:0 2px 7px rgba(0,0,0,.13)}.draw-shapes button{display:grid;place-items:center;gap:2px;width:58px;min-height:46px;padding:4px;border:0;border-radius:4px;background:#fff;color:#626c72;font-size:9px;font-weight:600}.draw-shapes button:hover{background:#f7f7f7;color:#222}.draw-shapes button.active{background:#f1efff;color:#624eef}.draw-tool-icon{position:relative;display:block;width:21px;height:21px}.draw-tool-icon--pin{border:2px solid currentColor;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-sizing:border-box}.draw-tool-icon--pin:after{content:"";position:absolute;inset:5px;border:2px solid currentColor;border-radius:50%}.draw-tool-icon--line:before{content:"";position:absolute;left:2px;right:2px;top:10px;border-top:2px solid currentColor;transform:rotate(-25deg)}.draw-tool-icon--line:after{content:"";position:absolute;inset:3px;border:2px solid currentColor;border-color:currentColor transparent transparent currentColor;transform:rotate(-25deg)}.draw-tool-icon--area{border:2px solid currentColor;clip-path:polygon(20% 0,100% 22%,78% 100%,0 75%)}.draw-tool-icon--rect{border:2px solid currentColor;box-sizing:border-box}.draw-tool-icon--circle{border:2px solid currentColor;border-radius:50%;box-sizing:border-box}.draw-tool-icon--undo,.draw-tool-icon--clear{font-size:24px;line-height:20px}.draw-tool-divider{height:28px;border-left:1px solid #e8e8e8;margin:0 7px}
 }
 .map-search-result-row{display:grid;grid-template-columns:1fr 42px;align-items:stretch;border-bottom:1px solid var(--line)}.map-search-result-row>button:first-child{border-bottom:0}.map-search-result-row .map-search-save{width:42px;padding:0;text-align:center;font-size:1.25rem;color:#76558b}.map-search-result-row .map-search-save:hover{color:#fff;background:#76558b}
-.radial-stack{display:none!important}
+.start-stack .start-panel{display:none!important}
+.top-cluster > .start-stack{display:none!important}
+.radial-stack{display:flex!important}
+.radial-route-btn{min-height:40px;padding:8px 12px;border-radius:999px;font-size:.78rem}
+.radial-stack .start-panel{position:absolute;right:0;bottom:48px;top:auto;left:auto;width:min(310px,calc(100vw - 24px));}
+.radial-stack .start-panel:not(.hidden){display:block!important}
+.radial-stack .start-panel fieldset{display:grid;gap:5px}
+.radial-stack .start-panel label{justify-content:flex-start}
+@media(max-width:520px){.radial-route-btn{font-size:.72rem;padding-inline:10px}.radial-stack{right:12px;bottom:calc(max(64px,env(safe-area-inset-bottom)) + 12px)}}
 .messenger-inbox-sheet,.messenger-compose-sheet{overflow-x:hidden;box-sizing:border-box}
 .walk-recovery-sheet{z-index:2100;max-width:480px}.walk-recovery-sheet p{line-height:1.5}.sheet-actions{display:flex;gap:8px;flex-wrap:wrap}.sheet-actions button{flex:1;min-width:170px}
 .map-legend{position:fixed;right:14px;bottom:calc(max(64px,env(safe-area-inset-bottom)) + 14px);z-index:850;display:grid;gap:5px;padding:9px 11px;border:1px solid rgba(23,60,53,.22);border-radius:11px;background:rgba(255,250,240,.92);box-shadow:0 3px 12px rgba(23,60,53,.14);font-size:.68rem;color:var(--ink);pointer-events:none}.map-legend strong{font-size:.72rem}.map-legend span{display:flex;align-items:center;gap:6px}.legend-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:#34705d}.legend-dot--cluster{background:#9b4e34;border:2px solid #fff;box-shadow:0 0 0 1px #9b4e34}.legend-dot--saved{background:#76558b}
@@ -266,7 +274,7 @@
 
 /* Floating Radial Menu & Star Action Controls */
 .radial-stack {
-  display: none !important;
+  display: flex !important;
   position: fixed;
   right: max(16px, env(safe-area-inset-right));
   bottom: calc(max(64px, env(safe-area-inset-bottom)) + 20px);

@@ -1,4 +1,7 @@
 const CACHE_ROOT = ['walking-cells'];
+const META_DB = 'motherbird-walking-cell-cache';
+const META_STORE = 'artifacts';
+const DEFAULT_SAFETY_RATIO = 0.85;
 
 export class WalkingCellCache {
   constructor({ storage = globalThis.navigator?.storage, fetchImpl = globalThis.fetch } = {}) {
@@ -9,7 +12,11 @@ export class WalkingCellCache {
   async get(release, cellId, kind) {
     const directory = await this.#directory(release, cellId, false);
     if (!directory) return null;
-    try { return await (await directory.getFileHandle(fileName(kind))).getFile(); }
+    try {
+      const file = await (await directory.getFileHandle(fileName(kind))).getFile();
+      await this.#touch(release, cellId, kind, file.size);
+      return file;
+    }
     catch (error) { if (error?.name === 'NotFoundError') return null; throw error; }
   }
 
@@ -34,6 +41,8 @@ export class WalkingCellCache {
       const writable = await handle.createWritable();
       try { await writable.write(blob); await writable.close(); }
       catch (error) { await writable.abort?.(); throw error; }
+      await this.#touch(release, cell.id, kind, blob.size);
+      await this.#evictIfNeeded(`${release}/${cell.id}/${kind}`);
       return handle.getFile();
     } catch (error) {
       await this.remove(release, cell.id, kind).catch(() => {});
@@ -45,6 +54,7 @@ export class WalkingCellCache {
     const directory = await this.#directory(release, cellId, false);
     if (!directory) return;
     try { await directory.removeEntry(fileName(kind)); } catch (error) { if (error?.name !== 'NotFoundError') throw error; }
+    await this.#forget(release, cellId, kind);
   }
 
   async ensureCell(release, cell) {
@@ -66,7 +76,52 @@ export class WalkingCellCache {
       return directory;
     } catch (error) { if (!create && error?.name === 'NotFoundError') return null; throw error; }
   }
+
+  async #touch(release, cellId, kind, bytes) {
+    const db = await openMetadataDb();
+    if (!db) return;
+    await idbPut(db, META_STORE, { id: `${release}/${cellId}/${kind}`, release, cellId, kind, bytes, lastUsedAt: Date.now() });
+  }
+
+  async #forget(release, cellId, kind) {
+    const db = await openMetadataDb();
+    if (db) await idbDelete(db, META_STORE, `${release}/${cellId}/${kind}`);
+  }
+
+  async #evictIfNeeded(protectedId) {
+    const estimate = await this.storage?.estimate?.();
+    if (!estimate?.quota || !estimate.usage || estimate.usage / estimate.quota < DEFAULT_SAFETY_RATIO) return;
+    const db = await openMetadataDb();
+    if (!db) return;
+    const records = (await idbAll(db, META_STORE)).filter((record) => record.id !== protectedId).sort((a, b) => a.lastUsedAt - b.lastUsedAt);
+    for (const record of records) {
+      const latest = await this.storage?.estimate?.();
+      if (!latest?.quota || !latest.usage || latest.usage / latest.quota < 0.75) break;
+      await this.remove(record.release, record.cellId, record.kind).catch(() => {});
+    }
+  }
 }
+
+function openMetadataDb() {
+  if (typeof indexedDB === 'undefined') return Promise.resolve(null);
+  return new Promise((resolve) => {
+    const request = indexedDB.open(META_DB, 1);
+    request.onupgradeneeded = () => request.result.createObjectStore(META_STORE, { keyPath: 'id' });
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = () => resolve(null);
+  });
+}
+
+function idbTransaction(db, store, mode, action) {
+  return new Promise((resolve) => {
+    const request = action(db.transaction(store, mode).objectStore(store));
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = () => resolve(null);
+  });
+}
+function idbPut(db, store, value) { return idbTransaction(db, store, 'readwrite', (objectStore) => objectStore.put(value)); }
+function idbDelete(db, store, key) { return idbTransaction(db, store, 'readwrite', (objectStore) => objectStore.delete(key)); }
+function idbAll(db, store) { return idbTransaction(db, store, 'readonly', (objectStore) => objectStore.getAll()).then((value) => value || []); }
 
 export async function fetchArtifact(fetchImpl, artifact) {
   if (typeof fetchImpl !== 'function') throw new Error('Cell artifact fetch is unavailable.');

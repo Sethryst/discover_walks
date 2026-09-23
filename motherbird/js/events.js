@@ -250,16 +250,28 @@ function renderWalkSketch(plan) {
     instructions.innerHTML = steps.length
       ? steps.map((step) => `<li>${escapeHtml(step.text)}${step.distance_m ? ` · ${Math.round(step.distance_m)} m` : ''}</li>`).join('')
       : `<li class="directions-unavailable">${escapeHtml(plan.graphStatus === 'GRAPH_VERSION_UNAVAILABLE'
-        ? 'Turn-by-turn directions are unavailable because this area’s walking graph is not installed yet.'
+        ? 'Detailed turn-by-turn directions are not packaged for this area yet. You can still save the walk and follow the map.'
         : 'Turn-by-turn directions are not available for this route.')}</li>`;
   }
   el('walkSketch').classList.remove('hidden'); el('startPanel').classList.add('hidden'); el('startChevron').setAttribute('aria-expanded', 'false');
 }
 
 function bindWalkControls() {
+  // Keep walk planning with the persistent bottom walk control so the map's
+  // top edge stays reserved for search and location controls.
+  const bottomWalkBar = el('radialStack');
+  const startPanel = el('startPanel');
+  if (bottomWalkBar && startPanel && !bottomWalkBar.contains(startPanel)) bottomWalkBar.append(startPanel);
   el('walkButton')?.addEventListener('click', async () => { if (!state.activeWalk) await startWalk({ routeMode: 'tracking' }); });
   el('endWalkButton')?.addEventListener('click', () => void stopWalk());
   el('startChevron')?.addEventListener('click', () => togglePanel('startChevron', 'startPanel'));
+  const routeOptionsButton = el('radialRouteOptionsButton');
+  routeOptionsButton?.addEventListener('click', () => {
+    const panel = el('startPanel');
+    const open = panel?.classList.contains('hidden');
+    panel?.classList.toggle('hidden', !open);
+    routeOptionsButton.setAttribute('aria-expanded', String(open));
+  });
   document.querySelectorAll('input[name="routeMode"]').forEach((input) => input.addEventListener('change', () => {
     if (!input.checked) return;
     state.plannerEnd = null;
@@ -268,6 +280,8 @@ function bindWalkControls() {
       window.dispatchEvent(new CustomEvent('primary-panel-close-requested'));
       toast('Tap the map to choose your destination.');
     }
+    el('startPanel')?.classList.add('hidden');
+    el('radialRouteOptionsButton')?.setAttribute('aria-expanded', 'false');
   }));
   el('generateWalkButton')?.addEventListener('click', () => void generateTimeBasedPlan());
   window.addEventListener('walk-sketch-painted', (event) => renderWalkSketch(event.detail));

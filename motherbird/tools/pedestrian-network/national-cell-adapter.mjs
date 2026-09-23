@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import fs from 'node:fs/promises';
-import { buildPedestrianGraph } from './graph-builder.mjs';
+import { buildPedestrianGraph, contractDegreeTwoGraph } from './graph-builder.mjs';
 import { buildRuntimeGraph } from './runtime-package.mjs';
 
 const args = Object.fromEntries(process.argv.slice(2).reduce((pairs, value, index, all) => {
@@ -36,7 +36,7 @@ const dataset = {
   access_fields: ['foot', 'access'], default_access: 'unknown',
   edge_attribute_fields: ['name', 'ref', 'highway', 'footway', 'crossing', 'foot', 'access', 'oneway', 'oneway:foot', '@version', '_mb_source_dataset_id', '_mb_derived_from_raw_feature_ids', '_mb_policy_warning']
 };
-const graph = buildPedestrianGraph({ type: 'FeatureCollection', features }, dataset, { snapToleranceMeters: 0 });
+const graph = contractDegreeTwoGraph(buildPedestrianGraph({ type: 'FeatureCollection', features }, dataset, { snapToleranceMeters: 0 }));
 const runtime = buildRuntimeGraph(graph, dataset, { builtAt: args['built-at'], sourceVersion: args['source-release'] });
 runtime.format = 'motherbird-runtime-graph-v1';
 runtime.cell_id = national.cell_id;
