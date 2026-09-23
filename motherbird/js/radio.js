@@ -1,7 +1,7 @@
 import db from './storage.js';
 import { openSheet, closeSheets, toast } from './ui.js';
 
-const MANIFEST_URL = './data/radio/manifest.json';
+const MANIFEST_URL = './data/radio/manifest.json?v=20260923-radio-v2';
 const STATES = Object.freeze({ paused: 'paused', buffering: 'buffering', playing: 'playing', jingle: 'jingle playing' });
 const FALLBACK_MANIFEST = {
   id: 'otr-time-machine', version: 1, epoch: '1950-01-01T00:00:00Z', slotMinutes: 45,
@@ -36,8 +36,8 @@ async function resolveUrl(track) {
   if (!track.archiveIdentifier) return '';
   const response = await fetch(`https://archive.org/metadata/${encodeURIComponent(track.archiveIdentifier)}`);
   if (!response.ok) throw new Error('Archive metadata unavailable');
-  const metadata = await response.json(); const file = (metadata.files || []).find((candidate) => /\.mp3$/i.test(candidate.name) && Number(candidate.size || 0) > 10000);
-  if (!file) throw new Error('No MP3 found in archive item');
+  const metadata = await response.json(); const file = (metadata.files || []).find((candidate) => /\.(mp3|flac|ogg|m4a|wav)$/i.test(candidate.name) && Number(candidate.size || 0) > 10000);
+  if (!file) throw new Error('No playable audio found in archive item');
   return `https://archive.org/download/${encodeURIComponent(track.archiveIdentifier)}/${file.name.split('/').map(encodeURIComponent).join('/')}`;
 }
 async function cachedBlob(track) { const record = await db.get('radio_saved_tracks', track.id); return record?.audio instanceof Blob ? URL.createObjectURL(record.audio) : ''; }
