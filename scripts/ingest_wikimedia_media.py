@@ -43,6 +43,7 @@ def main() -> int:
     parser.add_argument("--mirror-media", action="store_true")
     parser.add_argument("--approve-valid", action="store_true")
     parser.add_argument("--upload-hf", action="store_true")
+    parser.add_argument("--upload-batch-size", type=int, default=100)
     args = parser.parse_args()
     retrieved = datetime.now(timezone.utc).isoformat()
     write_repository_layout(args.out)
@@ -108,7 +109,12 @@ def main() -> int:
             try:
                 from huggingface_hub import HfApi
             except ImportError as exc: raise RuntimeError("install huggingface_hub to upload") from exc
-            HfApi(token=token).upload_folder(repo_id=repo_id, repo_type="dataset", folder_path=str(args.out), path_in_repo="", ignore_patterns=[".cache/**"], commit_message=f"historical media release {version}")
+            api = HfApi(token=token)
+            files = sorted(p for p in args.out.rglob("*") if p.is_file() and ".cache" not in p.parts)
+            for start in range(0, len(files), args.upload_batch_size):
+                batch = files[start:start + args.upload_batch_size]
+                patterns = [p.relative_to(args.out).as_posix() for p in batch]
+                api.upload_folder(repo_id=repo_id, repo_type="dataset", folder_path=str(args.out), path_in_repo="", allow_patterns=patterns, ignore_patterns=[".cache/**"], commit_message=f"historical media release {version} batch {start // args.upload_batch_size + 1}")
     return 0
 
 if __name__ == "__main__": sys.exit(main())
