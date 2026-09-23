@@ -78,7 +78,7 @@ def main() -> int:
     metadata_batch_size = 10
     for batch_no in range(0, len(titles), metadata_batch_size):
         batch_titles = titles[batch_no:batch_no + metadata_batch_size]
-        pages = fetch_json({"action":"query","titles":"|".join(batch_titles),"prop":"imageinfo|coordinates","iiprop":"url|thumburl|mime|extmetadata","iiurlwidth":"1600","format":"json"}, args.out / ".cache" / f"pages-{batch_no // 50:04d}.json")
+        pages = fetch_json({"action":"query","titles":"|".join(batch_titles),"prop":"imageinfo|coordinates","iiprop":"url|thumburl|mime|extmetadata","iiurlwidth":"1600","format":"json"}, args.out / ".cache" / f"pages-{batch_no // metadata_batch_size:04d}.json")
         pages_by_id.update(pages.get("query", {}).get("pages", {}))
         checkpoint.update({"metadata_batches": (batch_no // metadata_batch_size) + 1, "titles": titles})
         checkpoint_path.write_text(json.dumps(checkpoint, indent=2, sort_keys=True), encoding="utf-8")
