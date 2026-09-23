@@ -15,6 +15,14 @@ Example:
   --approve-valid
 ```
 
+For a broad category run, use the checked-in query set. Results are deduplicated across all categories:
+
+```powershell
+.venv\Scripts\python.exe scripts/ingest_wikimedia_media.py `
+  --query-file config/wikimedia-historical-queries.json `
+  --limit 500 --out .tmp-cache/historical-media-batch
+```
+
 Hugging Face publication is opt-in. `HF_TOKEN` is loaded from `.env`; set `HF_DATASET_REPO` in the process environment. Files are uploaded in bounded batches and recorded in the checkpoint:
 
 ```powershell

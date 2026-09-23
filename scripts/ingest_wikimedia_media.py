@@ -37,7 +37,8 @@ def fetch_json(params: dict[str, str], cache: Path) -> dict:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--query", required=True)
+    parser.add_argument("--query")
+    parser.add_argument("--query-file", type=Path, help="JSON array of broad Commons search queries")
     parser.add_argument("--out", type=Path, default=Path("hf_historical_media"))
     parser.add_argument("--limit", type=int, default=500, help="maximum unique Commons files to discover")
     parser.add_argument("--mirror-media", action="store_true")
@@ -45,22 +46,29 @@ def main() -> int:
     parser.add_argument("--upload-hf", action="store_true")
     parser.add_argument("--upload-batch-size", type=int, default=100)
     args = parser.parse_args()
+    if not args.query and not args.query_file: parser.error("one of --query or --query-file is required")
+    queries = json.loads(args.query_file.read_text(encoding="utf-8")) if args.query_file else [args.query]
+    if not isinstance(queries, list) or not all(isinstance(q, str) and q.strip() for q in queries): parser.error("query file must contain a non-empty JSON string array")
     retrieved = datetime.now(timezone.utc).isoformat()
     write_repository_layout(args.out)
     checkpoint_path = args.out / ".checkpoint.json"
-    checkpoint = json.loads(checkpoint_path.read_text(encoding="utf-8")) if checkpoint_path.exists() else {"query": args.query, "titles": [], "media": {}}
+    checkpoint = json.loads(checkpoint_path.read_text(encoding="utf-8")) if checkpoint_path.exists() else {"queries": queries, "titles": [], "media": {}}
     titles = list(dict.fromkeys(checkpoint.get("titles", [])))
-    offset = checkpoint.get("search_offset", 0)
-    page_no = checkpoint.get("search_page", 0)
-    while len(titles) < args.limit:
-        search = fetch_json({"action":"query","list":"search","srsearch":args.query,"srnamespace":"6","srlimit":"50","sroffset":str(offset),"format":"json"}, args.out / ".cache" / f"search-{page_no:04d}.json")
-        page_titles = [row["title"] for row in search.get("query", {}).get("search", [])]
-        titles = list(dict.fromkeys(titles + page_titles))
-        continuation = search.get("continue", {}).get("sroffset")
-        if not page_titles or continuation is None: break
-        offset, page_no = int(continuation), page_no + 1
-        checkpoint.update({"query": args.query, "titles": titles, "search_offset": offset, "search_page": page_no})
-        checkpoint_path.write_text(json.dumps(checkpoint, indent=2, sort_keys=True), encoding="utf-8")
+    for query_no, query in enumerate(queries):
+        offset = checkpoint.get("search_offsets", {}).get(str(query_no), 0)
+        page_no = checkpoint.get("search_pages", {}).get(str(query_no), 0)
+        while len(titles) < args.limit:
+            search = fetch_json({"action":"query","list":"search","srsearch":query,"srnamespace":"6","srlimit":"50","sroffset":str(offset),"format":"json"}, args.out / ".cache" / f"search-{query_no:03d}-{page_no:04d}.json")
+            page_titles = [row["title"] for row in search.get("query", {}).get("search", [])]
+            titles = list(dict.fromkeys(titles + page_titles))
+            continuation = search.get("continue", {}).get("sroffset")
+            checkpoint.setdefault("search_offsets", {})[str(query_no)] = int(continuation or offset)
+            checkpoint.setdefault("search_pages", {})[str(query_no)] = page_no
+            checkpoint.update({"queries": queries, "titles": titles})
+            checkpoint_path.write_text(json.dumps(checkpoint, indent=2, sort_keys=True), encoding="utf-8")
+            if not page_titles or continuation is None: break
+            offset, page_no = int(continuation), page_no + 1
+        if len(titles) >= args.limit: break
     titles = titles[:args.limit]
     pages_by_id = {}
     metadata_batch_size = 10
