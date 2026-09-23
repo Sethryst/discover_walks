@@ -39,17 +39,37 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--query", required=True)
     parser.add_argument("--out", type=Path, default=Path("hf_historical_media"))
-    parser.add_argument("--limit", type=int, default=10)
+    parser.add_argument("--limit", type=int, default=500, help="maximum unique Commons files to discover")
     parser.add_argument("--mirror-media", action="store_true")
     parser.add_argument("--approve-valid", action="store_true")
     parser.add_argument("--upload-hf", action="store_true")
     args = parser.parse_args()
     retrieved = datetime.now(timezone.utc).isoformat()
     write_repository_layout(args.out)
-    search = fetch_json({"action":"query","list":"search","srsearch":args.query,"srnamespace":"6","srlimit":str(args.limit),"format":"json"}, args.out / ".cache" / "search.json")
-    titles = [row["title"] for row in search.get("query", {}).get("search", [])]
-    pages = fetch_json({"action":"query","titles":"|".join(titles),"prop":"imageinfo|coordinates","iiprop":"url|thumburl|mime|extmetadata","iiurlwidth":"1600","format":"json"}, args.out / ".cache" / "pages-v4.json")
-    records = [commons_item(page, retrieved) for page in pages.get("query", {}).get("pages", {}).values() if page.get("imageinfo")]
+    checkpoint_path = args.out / ".checkpoint.json"
+    checkpoint = json.loads(checkpoint_path.read_text(encoding="utf-8")) if checkpoint_path.exists() else {"query": args.query, "titles": [], "media": {}}
+    titles = list(dict.fromkeys(checkpoint.get("titles", [])))
+    offset = checkpoint.get("search_offset", 0)
+    page_no = checkpoint.get("search_page", 0)
+    while len(titles) < args.limit:
+        search = fetch_json({"action":"query","list":"search","srsearch":args.query,"srnamespace":"6","srlimit":"50","sroffset":str(offset),"format":"json"}, args.out / ".cache" / f"search-{page_no:04d}.json")
+        page_titles = [row["title"] for row in search.get("query", {}).get("search", [])]
+        titles = list(dict.fromkeys(titles + page_titles))
+        continuation = search.get("continue", {}).get("sroffset")
+        if not page_titles or continuation is None: break
+        offset, page_no = int(continuation), page_no + 1
+        checkpoint.update({"query": args.query, "titles": titles, "search_offset": offset, "search_page": page_no})
+        checkpoint_path.write_text(json.dumps(checkpoint, indent=2, sort_keys=True), encoding="utf-8")
+    titles = titles[:args.limit]
+    pages_by_id = {}
+    metadata_batch_size = 10
+    for batch_no in range(0, len(titles), metadata_batch_size):
+        batch_titles = titles[batch_no:batch_no + metadata_batch_size]
+        pages = fetch_json({"action":"query","titles":"|".join(batch_titles),"prop":"imageinfo|coordinates","iiprop":"url|thumburl|mime|extmetadata","iiurlwidth":"1600","format":"json"}, args.out / ".cache" / f"pages-{batch_no // 50:04d}.json")
+        pages_by_id.update(pages.get("query", {}).get("pages", {}))
+        checkpoint.update({"metadata_batches": (batch_no // metadata_batch_size) + 1, "titles": titles})
+        checkpoint_path.write_text(json.dumps(checkpoint, indent=2, sort_keys=True), encoding="utf-8")
+    records = [commons_item(page, retrieved) for page in pages_by_id.values() if page.get("imageinfo")]
     write_jsonl(args.out / "records/candidates.jsonl", records)
     write_jsonl(args.out / "rights/evidence.jsonl", [{"id": r["id"], "license_templates": r["license_templates"], "source_snapshot": r["source_snapshot"]} for r in records])
     write_jsonl(args.out / "locations/geocoded.jsonl", [{"id": r["id"], "location": r["location"]} for r in records])
@@ -69,6 +89,8 @@ def main() -> int:
         record["media_evidence"] = evidence
         destination = args.out / "media" / {"image":"images","audio":"audio","video":"video"}[record["media_type"]] / f"{evidence['sha256']}{Path(record['file_url']).suffix.lower()}"
         destination.write_bytes(response.content)
+        checkpoint.setdefault("media", {})[record["id"]] = {"path": str(destination), **evidence}
+        checkpoint_path.write_text(json.dumps(checkpoint, indent=2, sort_keys=True), encoding="utf-8")
     write_jsonl(args.out / "records/candidates.jsonl", records)
     if args.approve_valid:
         approved = [r | {"state": "approved", "decision_history": [{"state": "approved", "reason": "rights, location, and media validation passed", "at": retrieved}]} for r in records if not r["validation_errors"] and r.get("media_evidence")]
