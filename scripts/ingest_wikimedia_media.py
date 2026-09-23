@@ -74,6 +74,8 @@ def main() -> int:
     write_jsonl(args.out / "records/candidates.jsonl", records)
     write_jsonl(args.out / "rights/evidence.jsonl", [{"id": r["id"], "license_templates": r["license_templates"], "source_snapshot": r["source_snapshot"]} for r in records])
     write_jsonl(args.out / "locations/geocoded.jsonl", [{"id": r["id"], "location": r["location"]} for r in records])
+    checkpoint.update({"validation": {"records": len(records), "candidates": sum(not r["validation_errors"] for r in records), "validated_at": retrieved}})
+    checkpoint_path.write_text(json.dumps(checkpoint, indent=2, sort_keys=True), encoding="utf-8")
     print(json.dumps({"discovered": len(records), "candidates": sum(not r["validation_errors"] for r in records), "out": str(args.out)}))
     if not args.mirror_media: return 0
     import requests
