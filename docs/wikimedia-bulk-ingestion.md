@@ -23,6 +23,14 @@ For a broad category run, use the checked-in query set. Results are deduplicated
   --limit 500 --out .tmp-cache/historical-media-batch
 ```
 
+For higher-signal geographic discovery, use the location/category matrix:
+
+```powershell
+.venv\Scripts\python.exe scripts/ingest_wikimedia_media.py `
+  --query-file config/wikimedia-historical-locations.json `
+  --limit 500 --out .tmp-cache/historical-media-locations
+```
+
 Hugging Face publication is opt-in. `HF_TOKEN` is loaded from `.env`; set `HF_DATASET_REPO` in the process environment. Files are uploaded in bounded batches and recorded in the checkpoint:
 
 ```powershell

@@ -48,6 +48,10 @@ def main() -> int:
     args = parser.parse_args()
     if not args.query and not args.query_file: parser.error("one of --query or --query-file is required")
     queries = json.loads(args.query_file.read_text(encoding="utf-8")) if args.query_file else [args.query]
+    if isinstance(queries, dict):
+        locations = queries.get("locations", [])
+        categories = queries.get("categories", [])
+        queries = [f"{category} {location}" for location in locations for category in categories]
     if not isinstance(queries, list) or not all(isinstance(q, str) and q.strip() for q in queries): parser.error("query file must contain a non-empty JSON string array")
     retrieved = datetime.now(timezone.utc).isoformat()
     write_repository_layout(args.out)
