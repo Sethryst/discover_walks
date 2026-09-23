@@ -5,13 +5,15 @@ Hugging Face upload is opt-in via --upload-hf and HF_DATASET_REPO/HF_TOKEN.
 """
 from __future__ import annotations
 
-import argparse, json, os, sys
+import argparse, json, os, sys, time
 from datetime import datetime, timezone
 from pathlib import Path
+from dotenv import load_dotenv
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+load_dotenv(Path(__file__).resolve().parents[1] / ".env")
 from app.pipeline.historical_media import app_index, validate_media_bytes, write_jsonl, write_repository_layout, commons_item
 
 API = "https://commons.wikimedia.org/w/api.php"
@@ -19,9 +21,17 @@ API = "https://commons.wikimedia.org/w/api.php"
 def fetch_json(params: dict[str, str], cache: Path) -> dict:
     cache.parent.mkdir(parents=True, exist_ok=True)
     if cache.exists(): return json.loads(cache.read_text(encoding="utf-8"))
+    params = {**params, "maxlag": "5"}
     url = f"{API}?{urlencode(params)}"
-    with urlopen(Request(url, headers={"User-Agent": "Gremlin-Lab/1.0 historical-media"}), timeout=30) as response:
-        payload = json.loads(response.read().decode("utf-8"))
+    for attempt in range(6):
+        try:
+            with urlopen(Request(url, headers={"User-Agent": "Gremlin-Lab/1.0 (https://github.com/Sethryst/discover_walks) historical-media"}), timeout=30) as response:
+                payload = json.loads(response.read().decode("utf-8"))
+            if payload.get("error", {}).get("code") == "maxlag": raise RuntimeError(payload["error"].get("info", "maxlag"))
+            break
+        except Exception:
+            if attempt == 5: raise
+            time.sleep(min(60, 2 ** attempt))
     cache.write_text(json.dumps(payload, sort_keys=True), encoding="utf-8")
     return payload
 
@@ -48,7 +58,12 @@ def main() -> int:
     import requests
     for record in records:
         if record["validation_errors"]: continue
-        response = requests.get(record["file_url"], headers={"User-Agent": "Gremlin-Lab/1.0 (historical-media; contact repository maintainers)", "Referer": record["page_url"]}, timeout=60)
+        for attempt in range(6):
+            response = requests.get(record["file_url"], headers={"User-Agent": "Gremlin-Lab/1.0 (https://github.com/Sethryst/discover_walks) historical-media", "Referer": record["page_url"]}, timeout=60)
+            if response.status_code not in (429, 503): break
+            if attempt == 5: response.raise_for_status()
+            delay = int(response.headers.get("Retry-After", min(60, 2 ** attempt)))
+            time.sleep(min(300, delay))
         response.raise_for_status()
         evidence = validate_media_bytes(record, response.content, response.headers.get("Content-Type"))
         record["media_evidence"] = evidence
@@ -71,7 +86,7 @@ def main() -> int:
             try:
                 from huggingface_hub import HfApi
             except ImportError as exc: raise RuntimeError("install huggingface_hub to upload") from exc
-            HfApi(token=token).upload_folder(repo_id=repo_id, repo_type="dataset", folder_path=str(args.out), path_in_repo="", commit_message=f"historical media release {version}")
+            HfApi(token=token).upload_folder(repo_id=repo_id, repo_type="dataset", folder_path=str(args.out), path_in_repo="", ignore_patterns=[".cache/**"], commit_message=f"historical media release {version}")
     return 0
 
 if __name__ == "__main__": sys.exit(main())
