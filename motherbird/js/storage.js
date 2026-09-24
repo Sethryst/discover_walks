@@ -28,7 +28,7 @@ export const db = (() => {
   ]);
 
   async function installedVersion() {
-    if (!globalThis.indexedDB) return 0;
+    if (typeof indexedDB === 'undefined') return 0;
     if (indexedDB.databases) return Number((await indexedDB.databases()).find((entry) => entry.name === DATABASE_NAME)?.version || 0);
     return new Promise((resolve, reject) => {
       let created = false;
@@ -78,7 +78,7 @@ export const db = (() => {
   }
 
   async function open({ beforeRiskyMigration } = {}) {
-    if (!globalThis.indexedDB) {
+    if (typeof indexedDB === 'undefined') {
       database = null;
       return;
     }

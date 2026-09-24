@@ -6,7 +6,7 @@ import db from './storage.js';
 const DRAW_COLOR = '#76558b';
 function readHiddenArtifacts() {
   try {
-    const saved = JSON.parse(globalThis.localStorage?.getItem('hiddenMapArtifacts') || '[]');
+    const saved = JSON.parse(typeof localStorage === 'undefined' ? '[]' : (localStorage.getItem('hiddenMapArtifacts') || '[]'));
     return new Set(Array.isArray(saved) ? saved : []);
   } catch {
     return new Set();
@@ -14,7 +14,7 @@ function readHiddenArtifacts() {
 }
 
 function saveHiddenArtifacts() {
-  try { globalThis.localStorage?.setItem('hiddenMapArtifacts', JSON.stringify([...hiddenArtifacts])); }
+  try { if (typeof localStorage !== 'undefined') localStorage.setItem('hiddenMapArtifacts', JSON.stringify([...hiddenArtifacts])); }
   catch { /* Map drawing stays usable when browser storage is unavailable. */ }
 }
 
