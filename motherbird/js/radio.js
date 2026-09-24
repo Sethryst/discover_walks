@@ -66,7 +66,7 @@ function tuningClick() { try { const context = state.audioContext ||= new AudioC
 async function saveCurrent() { if (!state.current || !state.activeAudio?.src) return; const response = await fetch(state.activeAudio.src); const audio = await response.blob(); await db.put('radio_saved_tracks', { id: state.current.id, ...state.current, audio, savedAt: Date.now() }); toast('Track saved to this device.'); }
 function bind() {
   el('radioChannel')?.addEventListener('change', (event) => { state.channelId = event.target.value; state.current = null; state.queue = []; render(); });
-  el('radioEraDial')?.addEventListener('input', (event) => { const next = Number(event.target.value); if (Math.abs(next - state.lastDial) >= 1) { state.lastDial = next; state.era = next; tuningClick(); state.queue = []; render(); } });
+  el('radioEraDial')?.addEventListener('input', (event) => { const next = Number(event.target.value); if (Math.abs(next - state.lastDial) >= 1) { state.lastDial = next; state.era = next; state.current = chooseTrack(); tuningClick(); state.queue = []; render(); } });
   el('radioPlayButton')?.addEventListener('click', () => { if (state.status === STATES.playing || state.status === STATES.buffering || state.status === STATES.jingle) { state.activeAudio?.pause(); setStatus(STATES.paused, 'Paused'); } else { void playTrack(state.current || chooseTrack()); } });
   el('radioNextButton')?.addEventListener('click', () => void playNext());
   el('radioSaveButton')?.addEventListener('click', () => void saveCurrent().catch((error) => toast(error.message || 'Could not save this track.')));

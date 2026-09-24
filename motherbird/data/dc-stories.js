@@ -60,7 +60,7 @@ export const DC_STORIES = [
   }
 ].map((story) => ({
   ...story,
-  scope: 'local',
+  scope: story.scope || 'local',
   chapters: story.chapters.map((chapter, index) => ({
     ...chapter,
     audioStatus: 'ready',

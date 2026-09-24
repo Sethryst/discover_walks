@@ -18,6 +18,8 @@ const actions = {
     { id: 'cypher', label: 'Nearby audio', icon: '◉', run: () => openSheet('geoCypherSheet') }
   ],
   me: [
+    { id: 'draw', label: 'Draw & annotations', icon: '✏️', run: () => document.querySelector('[data-map-destination="draw"]')?.click() },
+    { id: 'sketch-walk', label: 'Sketch a walk', icon: '🗺️', run: () => void generateTimeBasedPlan() },
     { id: 'radio', label: 'Retro Radio', icon: '📻', run: () => window.dispatchEvent(new CustomEvent('radio-open-requested')) },
     { id: 'messenger', label: 'Messenger Bird', icon: '🐦', run: () => openSheet('messengerInboxSheet') },
     { id: 'companion', label: 'Companion', icon: '🐾', run: () => document.getElementById('companionButton')?.click() },
@@ -112,6 +114,7 @@ export function initPrimaryShell() {
     if (item?.run) item.run();
   });
   document.getElementById('closePrimaryPanel')?.addEventListener('click', () => panel.classList.add('hidden'));
+  document.getElementById('sketchWalkFromDraw')?.addEventListener('click', () => void generateTimeBasedPlan());
   window.addEventListener('primary-panel-close-requested', () => panel.classList.add('hidden'));
   select('explore', { initial: true });
   const region = document.body.dataset.regionName || CITIES[state.activeCity]?.name || 'Fairfax County';

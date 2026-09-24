@@ -11,6 +11,15 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
 @media (max-width: 720px) {
   .map-dock { display: none !important; }
 }
+
+@media (max-width: 720px) {
+  .map-legend { right: 10px; bottom: calc(66px + env(safe-area-inset-bottom) + 10px); max-width: min(42vw, 180px); }
+  .map-workspace-panel { max-height: min(70dvh, 620px); }
+  .map-workspace-panel > [data-map-panel] { max-height: calc(min(70dvh, 620px) - 58px); }
+  .map-workspace-panel[data-destination="draw"] { width: min(92vw, 420px); }
+  .map-workspace-panel[data-destination="draw"] .draw-shapes { position: static !important; display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)); width: auto !important; padding: 0 !important; border: 0; box-shadow: none; }
+  .map-workspace-panel[data-destination="draw"] .draw-shapes button { width: auto !important; min-height: 48px !important; font-size: .68rem; }
+}
 .artifact-heading-actions{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}.artifact-helper{margin:0 0 8px;color:#7a858b;font-size:12px;line-height:1.45}
 
 /* The workspace can fill the desktop viewport, but only its controls should
