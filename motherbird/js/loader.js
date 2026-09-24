@@ -88,7 +88,9 @@ export async function init() {
     return;
   }
 
-  await initNationalOsmLayers();
+  // National layer settings are optional boot data. Do not hold the core map,
+  // walk bar, or radio behind a slow/corrupt layer-settings read.
+  void initNationalOsmLayers().catch((error) => console.warn('National layer settings unavailable:', error.message));
   initMap();
   initStories();
   await initRadio();
