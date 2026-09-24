@@ -4,7 +4,21 @@ import { toast } from './ui.js';
 import db from './storage.js';
 
 const DRAW_COLOR = '#76558b';
-const hiddenArtifacts = new Set(JSON.parse(localStorage.getItem('hiddenMapArtifacts') || '[]'));
+function readHiddenArtifacts() {
+  try {
+    const saved = JSON.parse(globalThis.localStorage?.getItem('hiddenMapArtifacts') || '[]');
+    return new Set(Array.isArray(saved) ? saved : []);
+  } catch {
+    return new Set();
+  }
+}
+
+function saveHiddenArtifacts() {
+  try { globalThis.localStorage?.setItem('hiddenMapArtifacts', JSON.stringify([...hiddenArtifacts])); }
+  catch { /* Map drawing stays usable when browser storage is unavailable. */ }
+}
+
+const hiddenArtifacts = readHiddenArtifacts();
 let freehandActive = false;
 
 function setActive(active) {
@@ -68,7 +82,7 @@ function renderArtifactList() {
     const row = document.createElement('article');
     const name = document.createElement('strong'); name.textContent = item.title || 'Drawing';
     const toggle = document.createElement('button'); toggle.type = 'button'; toggle.textContent = hiddenArtifacts.has(item.id) ? 'Show' : 'Hide';
-    toggle.addEventListener('click', () => { hiddenArtifacts.has(item.id) ? hiddenArtifacts.delete(item.id) : hiddenArtifacts.add(item.id); localStorage.setItem('hiddenMapArtifacts', JSON.stringify([...hiddenArtifacts])); void renderMapDrawings(); });
+    toggle.addEventListener('click', () => { hiddenArtifacts.has(item.id) ? hiddenArtifacts.delete(item.id) : hiddenArtifacts.add(item.id); saveHiddenArtifacts(); void renderMapDrawings(); });
     const remove = document.createElement('button'); remove.type = 'button'; remove.textContent = '×'; remove.setAttribute('aria-label', `Delete ${name.textContent}`);
     remove.addEventListener('click', async () => { await db.remove('moments', item.id); hiddenArtifacts.delete(item.id); void renderMapDrawings(); });
     row.append(name, toggle, remove); list.append(row);
@@ -170,7 +184,7 @@ export async function initMapPaint() {
   el('clearMapDrawings')?.addEventListener('click', () => void clearDrawings());
   el('hideAllMapArtifacts')?.addEventListener('click', () => {
     for (const item of state.localDrawings || []) hiddenArtifacts.add(item.id);
-    localStorage.setItem('hiddenMapArtifacts', JSON.stringify([...hiddenArtifacts]));
+    saveHiddenArtifacts();
     void renderMapDrawings();
   });
   el('exportMapArtifacts')?.addEventListener('click', exportMapArtifacts);

@@ -7,7 +7,7 @@ import { exportFederalRegionRuntime } from './export-federal-region-runtime.mjs'
 
 const toolDirectory = dirname(fileURLToPath(import.meta.url));
 const sourceDirectory = resolve(toolDirectory, '..');
-const outputDirectory = resolve(sourceDirectory, 'dist');
+const outputDirectory = resolve(process.env.MOTHERBIRD_BUILD_DIR || resolve(sourceDirectory, 'dist'));
 
 try {
   await exportFederalRegionRuntime();
@@ -34,6 +34,7 @@ const publishEntries = [
   'legal.css',
   'manifest.webmanifest',
   'privacy.html',
+  'radio.css',
   'regions',
   'service-worker.js',
   'shell.css',
