@@ -2,6 +2,11 @@ export const db = (() => {
   let database;
   const DATABASE_NAME = 'walk-wildlife-journal';
   const DATABASE_VERSION = 16;
+  const memoryStores = new Map();
+  const memoryStore = (name) => {
+    if (!memoryStores.has(name)) memoryStores.set(name, new Map());
+    return memoryStores.get(name);
+  };
   const LEGACY_STORES = [
     'walks', 'observations', 'moments', 'profile', 'settings', 'points_of_interest',
     'poi_metadata', 'regions', 'region_pois', 'region_buckets', 'field_editions',
@@ -23,6 +28,7 @@ export const db = (() => {
   ]);
 
   async function installedVersion() {
+    if (!globalThis.indexedDB) return 0;
     if (indexedDB.databases) return Number((await indexedDB.databases()).find((entry) => entry.name === DATABASE_NAME)?.version || 0);
     return new Promise((resolve, reject) => {
       let created = false;
@@ -72,6 +78,10 @@ export const db = (() => {
   }
 
   async function open({ beforeRiskyMigration } = {}) {
+    if (!globalThis.indexedDB) {
+      database = null;
+      return;
+    }
     const fromVersion = await installedVersion();
     const risky = pendingMigrations(fromVersion).filter(({ risk }) => risk === 'risky');
     if (risky.length && beforeRiskyMigration) await beforeRiskyMigration({ fromVersion, toVersion: DATABASE_VERSION, migrations: risky.map(({ version, description }) => ({ version, description })) });
@@ -99,19 +109,24 @@ export const db = (() => {
       request.onblocked = () => reject(new Error('Close other Walk & Wildlife tabs so the local data upgrade can finish.'));
     });
   }
-  function store(name, mode = 'readonly') { return database.transaction(name, mode).objectStore(name); }
-  function put(name, item) { return new Promise((resolve, reject) => {const r = store(name, 'readwrite').put(item); r.onsuccess = () => resolve(item); r.onerror = () => reject(r.error); }); }
-  function get(name, id) { return new Promise((resolve, reject) => {const r = store(name).get(id); r.onsuccess = () => resolve(r.result); r.onerror = () => reject(r.error); }); }
-  function all(name) { return new Promise((resolve, reject) => {const r = store(name).getAll(); r.onsuccess = () => resolve(r.result); r.onerror = () => reject(r.error); }); }
-  function remove(name, id) { return new Promise((resolve, reject) => {const r = store(name, 'readwrite').delete(id); r.onsuccess = () => resolve(); r.onerror = () => reject(r.error); }); }
+  function store(name, mode = 'readonly') { return database?.transaction(name, mode).objectStore(name) || memoryStore(name); }
+  function memoryItem(name, id) { return memoryStore(name).get(id); }
+  function put(name, item) { if (!database) { memoryStore(name).set(item.id, item); return Promise.resolve(item); } return new Promise((resolve, reject) => {const r = store(name, 'readwrite').put(item); r.onsuccess = () => resolve(item); r.onerror = () => reject(r.error); }); }
+  function get(name, id) { if (!database) return Promise.resolve(memoryItem(name, id)); return new Promise((resolve, reject) => {const r = store(name).get(id); r.onsuccess = () => resolve(r.result); r.onerror = () => reject(r.error); }); }
+  function all(name) { if (!database) return Promise.resolve([...memoryStore(name).values()]); return new Promise((resolve, reject) => {const r = store(name).getAll(); r.onsuccess = () => resolve(r.result); r.onerror = () => reject(r.error); }); }
+  function remove(name, id) { if (!database) { memoryStore(name).delete(id); return Promise.resolve(); } return new Promise((resolve, reject) => {const r = store(name, 'readwrite').delete(id); r.onsuccess = () => resolve(); r.onerror = () => reject(r.error); }); }
   function clearAll() {
+    if (!database) { memoryStores.forEach((items) => items.clear()); return Promise.resolve(); }
     return Promise.all(['walks', 'saved_routes', 'observations', 'moments', 'profile', 'settings', 'poi_metadata', 'neighborhood_discoveries', 'walk_drafts', 'walk_events', 'personal_places', 'personal_place_categories', 'layer_settings', 'voice_notes', 'journal_audio', 'county_additions', 'notification_state', 'spatial_local_operations', 'geo_cyphers', 'geo_cypher_keys', 'geo_cypher_events', 'geo_cypher_manifests', 'geo_cypher_audio', 'radio_manifests', 'radio_playback_state', 'radio_saved_tracks', 'radio_transition_assets'].map((name) => new Promise((resolve, reject) => {
     const r = store(name, 'readwrite').clear(); r.onsuccess = resolve; r.onerror = () => reject(r.error);
     })));
   }
   function putMany(recordsByStore, removals = {}) {
     const names = [...new Set([...Object.keys(recordsByStore), ...Object.keys(removals)])];
-    if (!names.length) return Promise.resolve();
+    if (!database) {
+      for (const name of names) { for (const id of removals[name] || []) memoryStore(name).delete(id); for (const record of recordsByStore[name] || []) memoryStore(name).set(record.id, record); }
+      return Promise.resolve();
+    }
     return new Promise((resolve, reject) => {
       const transaction = database.transaction(names, 'readwrite');
       transaction.oncomplete = () => resolve();
