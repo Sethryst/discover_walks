@@ -28,7 +28,10 @@ export function contextualStations(manifest, context = {}) {
 
 export function recommendedStations(manifest, { history = [], favorites = new Set() } = {}) {
   const scores = new Map();
-  history.forEach((event) => scores.set(String(event.trackId), (scores.get(String(event.trackId)) || 0) + (event.event === 'skipped' ? -2 : 1)));
+  history.forEach((event) => {
+    const key = String(event.channelId || event.trackId);
+    scores.set(key, (scores.get(key) || 0) + (event.event === 'skipped' ? -2 : 1));
+  });
   return (manifest?.stations || manifest?.channels || []).map((station) => ({ station, score: (favorites.has(station.id) ? 4 : 0) + (scores.get(String(station.id)) || 0) })).sort((a, b) => b.score - a.score).map(({ station }) => station);
 }
 
