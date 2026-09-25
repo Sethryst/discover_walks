@@ -40,6 +40,14 @@ function queryGeometry(query) {
   }
   return query.geometry;
 }
+export function restoreSpatialQuery(query) {
+  if (!query) return;
+  state.spatialQuery = query;
+  state.spatialQueryDismissed = new Set();
+  state.spatialQuerySelected = new Set();
+  renderSpatialQuery();
+}
+
 function renderSpatialQuery() {
   if (!state.map || !state.spatialQuery) return;
   if (!state.spatialQueryLayer) state.spatialQueryLayer = L.layerGroup().addTo(state.map);
@@ -282,6 +290,7 @@ export async function initMapPaint() {
   window.addEventListener('local-drawings-changed', () => void renderMapDrawings());
   window.addEventListener('city-layer-data-changed', () => void renderMapDrawings());
   window.addEventListener('layer-state-dirty', renderSpatialQuery);
+  window.addEventListener('spatial-query-restore-requested', ({ detail }) => restoreSpatialQuery(detail?.query));
   window.addEventListener('city-layer-data-changed', updateRegionLabel);
   window.addEventListener('friend-walk-tickets', ({ detail }) => {
     friendLayer.clearLayers();

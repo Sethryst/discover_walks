@@ -49,6 +49,11 @@ export async function openRoomForPlace(place) {
   if (title) { title.dataset.roomId = room.id; title.dataset.stationIds = JSON.stringify(room.data?.featuredStationIds || room.audioStationIds || []); }
   if (type) type.textContent = `${room.type.replaceAll('-', ' ')} · ${room.visibility}`;
   if (body) body.textContent = room.visibility === 'private' ? 'This Room is private on this device. Add place-specific notes and audio here; publishing requires Field Edition.' : 'This Room is ready for place-specific experiences.';
+  const sections = document.getElementById('roomSections');
+  if (sections) {
+    const { renderRoomSections } = await import('./room-renderers.js');
+    sections.innerHTML = renderRoomSections(room);
+  }
   const summary = document.getElementById('roomTraceSummary');
   if (summary) {
     const traces = Array.isArray(room.traces) ? room.traces : [];

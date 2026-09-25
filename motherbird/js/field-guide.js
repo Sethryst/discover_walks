@@ -14,6 +14,7 @@ import { isHistorySite, renderLearnHistory, setLearnView, setLearnScreen, setAct
 import { setPoiVisited } from './poi-visit-tracking.js';
 import { addWalkWaypoint, startWalk } from './walk.js';
 import { initMapsFolders, renderMapsLibrary } from './maps-folders.js';
+import { listSpatialQueries, queryPrompt } from './spatial-query.js';
 
 const FORMAT = 'walk-wildlife-plan-v1';
 let selectedPlaceId = null;
@@ -157,7 +158,8 @@ export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') 
   }
   if (tab === 'discover') {
     const saved = renderSavedDiscoverExperiences();
-    if (saved) { target.innerHTML = saved; return; }
+    const queries = await renderSavedSpatialQueries();
+    if (saved || queries) { target.innerHTML = `${saved || ''}${queries || ''}`; return; }
   }
   const ordered = sortGuideCardsByDistance(data.discover, point, (card) => (card.stopPlaceIds || []).map((id) => poiById.get(String(id))));
   const close = ordered.filter((card) => !point || card.distance <= 40233);
@@ -171,6 +173,20 @@ export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') 
     return true;
   }).sort((a, b) => (a.distance ?? Infinity) - (b.distance ?? Infinity)).slice(0, 12);
   target.innerHTML = shown.length ? shown.map(discoverCard).join('') : '<p class="empty-state">No walkable places are available near this map view yet. Move the map or choose another area to explore.</p>';
+}
+
+async function renderSavedSpatialQueries() {
+  const queries = (await listSpatialQueries())
+    .filter((query) => !query.regionId || query.regionId === state.activeCity)
+    .sort((a, b) => Date.parse(b.updatedAt || b.createdAt || 0) - Date.parse(a.updatedAt || a.createdAt || 0))
+    .slice(0, 12);
+  if (!queries.length) return '';
+  return `<section class="saved-discover-library spatial-query-library"><p class="learn-kicker">Discover Library · Spatial Queries</p>${queries.map((query) => {
+    const label = query.queryType || query.shape || 'Spatial query';
+    const resultCount = Array.isArray(query.resultIds) ? query.resultIds.length : 0;
+    const status = query.status === 'ready' ? `${resultCount} result${resultCount === 1 ? '' : 's'}` : 'Needs map results';
+    return `<article class="guide-card saved-discover-card"><small>${escapeHtml(label)} · ${escapeHtml(status)}</small><h3>${escapeHtml(query.title || queryPrompt(query))}</h3><p>${escapeHtml(queryPrompt(query))}</p><div class="learn-site-actions"><button class="primary-button" type="button" data-view-spatial-query="${escapeHtml(query.id)}">Open on map</button></div></article>`;
+  }).join('')}</section>`;
 }
 
 function renderSavedDiscoverExperiences() {
@@ -328,6 +344,21 @@ export function initFieldGuideFilters() {
       closeSheets(); state.map.fitBounds(L.latLngBounds(points), { padding: [42, 42], maxZoom: 16 });
       if (route) { state.plannedRoute = { ...route, stops: places.map((place) => ({ name: place.name, lat: place.location.lat, lng: place.location.lng })) }; paintWalkConcept(state.plannedRoute); }
       toast('Showing this Discover experience on the map.');
+      return;
+    }
+    const viewQuery = event.target.closest('[data-view-spatial-query]');
+    if (viewQuery) {
+      void listSpatialQueries().then((queries) => {
+        const query = queries.find((item) => item.id === viewQuery.dataset.viewSpatialQuery);
+        if (!query) { toast('This saved Spatial Query is no longer available.'); return; }
+        closeSheets();
+        state.spatialQuery = query;
+        state.spatialQueryDismissed = new Set();
+        state.spatialQuerySelected = new Set();
+        window.dispatchEvent(new CustomEvent('spatial-query-restore-requested', { detail: { query } }));
+        document.querySelector('[data-map-destination="draw"]')?.click();
+        toast('Showing this Spatial Query on the map.');
+      });
       return;
     }
     const preview = event.target.closest('[data-guide-preview]');
