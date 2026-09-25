@@ -28,6 +28,10 @@ const actions = {
   ]
 };
 
+function allActions() {
+  return Object.values(actions).flatMap((items) => items.flatMap((item) => item.advanced ? item.children : item));
+}
+
 export function initPrimaryShell() {
   initRadialMenu();
   const panel = document.getElementById('primaryPanel');
@@ -118,7 +122,7 @@ export function initPrimaryShell() {
     });
   });
   window.addEventListener('radial-action-triggered', ({ detail }) => {
-    const item = Object.values(actions).flat().find((action) => action.id === detail?.id);
+    const item = allActions().find((action) => action.id === detail?.id);
     if (item?.run) item.run();
   });
   document.getElementById('closePrimaryPanel')?.addEventListener('click', () => panel.classList.add('hidden'));
