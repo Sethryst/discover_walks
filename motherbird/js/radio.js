@@ -1,7 +1,7 @@
 import db from './storage.js';
 import { openSheet, closeSheets, toast } from './ui.js';
 
-const MANIFEST_URL = './data/radio/manifest.json?v=20260923-radio-v2';
+const MANIFEST_URL = './data/radio/manifest.json?v=20260925-radio-v3';
 const FAVORITES_KEY = 'gremlin-radio-favorites-v1';
 const MINI_POSITION_KEY = 'gremlin-radio-mini-position-v1';
 const STATES = Object.freeze({ paused: 'paused', buffering: 'buffering', playing: 'playing', jingle: 'jingle playing' });
@@ -52,7 +52,7 @@ async function persistRadioState() {
   await db.put('radio_playback_state', { id: 'current', channelId: state.channelId, favoriteIds: [...state.favorites], history: state.history.slice(-100), updatedAt: Date.now() });
 }
 function recordRadioEvent(track, event) { if (!track?.id) return; state.history.push({ trackId: String(track.id), event, channelId: state.channelId, at: Date.now() }); void persistRadioState(); }
-function tracksForChannel() { const tracks = (state.manifest.tracks || []).filter((track) => !track.channel || track.channel === state.channelId || track.channelIds?.includes(state.channelId)); if (tracks.length || state.channelId !== 'jazz-club') return tracks; return [{ id: 'jazz-fallback', channel: 'jazz-club', title: 'Night Jazz Club · public-domain set', genre: 'Jazz', archiveIdentifier: 'big-band-special', rightsStatus: 'review-required' }]; }
+function tracksForChannel() { const tracks = (state.manifest.tracks || []).filter((track) => !track.channel || track.channel === state.channelId || track.channelIds?.includes(state.channelId)); if (tracks.length || state.channelId !== 'jazz-club') return tracks; return [{ id: 'big-band-fallback', channel: 'jazz-club', title: 'Big Band Broadcast · public-domain set', genre: 'Big Band', archiveIdentifier: 'big-band-special', rightsStatus: 'review-required' }]; }
 function chooseTrack() { const candidates = tracksForChannel(); if (!candidates.length) return null; const slot = Math.floor((Date.now() - Date.parse(state.manifest.epoch || '1950-01-01')) / ((state.manifest.slotMinutes || 45) * 60000)); return candidates[Math.abs(slot) % candidates.length]; }
 function chooseRandomChannel(exclude = null) { const channels = (state.manifest.channels || state.manifest.stations || []).filter((channel) => String(channel.id) !== String(exclude)); if (!channels.length) return; const learnedTrackIds = new Set([...state.savedTrackIds, ...state.favorites].map(String)); const learnedChannels = new Set((state.manifest.tracks || []).filter((track) => learnedTrackIds.has(String(track.id))).flatMap((track) => [track.channel, ...(track.channelIds || [])].filter(Boolean)).map(String)); const weighted = channels.flatMap((channel) => [channel, ...(learnedChannels.has(String(channel.id)) ? [channel, channel] : [])]); state.channelId = weighted[Math.floor(Math.random() * weighted.length)]?.id || channels[0].id; }
 function render() {
@@ -132,5 +132,5 @@ export async function initRadio() {
   const saved = await db.get('radio_playback_state', 'current');
   if (saved) { if (Array.isArray(saved.favoriteIds)) state.favorites = new Set(saved.favoriteIds); if (Array.isArray(saved.history)) state.history = saved.history.slice(-100); }
   state.savedTrackIds = new Set((await db.all('radio_saved_tracks')).map((track) => String(track.id)));
-  bind(); await loadManifest(); const jazz = (state.manifest.channels || []).find((channel) => channel.id === 'jazz-club'); state.channelId = jazz?.id || (state.manifest.channels || [])[0]?.id || state.channelId; if (!state.current) { state.current = chooseTrack(); render(); }
+  bind(); await loadManifest(); const firstStation = (state.manifest.channels || [])[0]; state.channelId = firstStation?.id || state.channelId; if (!state.current) { state.current = chooseTrack(); render(); }
 }
