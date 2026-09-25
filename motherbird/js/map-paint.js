@@ -130,6 +130,18 @@ export function validDrawing(points) {
   return Array.isArray(points) && points.length > 1 && points.length <= 20000 && points.every((point) => Array.isArray(point) && Number.isFinite(point[0]) && Number.isFinite(point[1]) && Math.abs(point[0]) <= 90 && Math.abs(point[1]) <= 180);
 }
 
+function normalizeDrawingGeoJSON(value) {
+  if (!value) return null;
+  let candidate = value;
+  if (typeof candidate === 'string') {
+    try { candidate = JSON.parse(candidate); } catch { return null; }
+  }
+  if (!candidate || typeof candidate !== 'object') return null;
+  if (candidate.type === 'Feature' || candidate.type === 'FeatureCollection') return candidate;
+  if (typeof candidate.type === 'string' && candidate.coordinates) return { type: 'Feature', properties: {}, geometry: candidate };
+  return null;
+}
+
 function geometryMeasurement(geojson) {
   if (!globalThis.turf || !geojson?.geometry) return '';
   const type = geojson.geometry.type;
@@ -159,8 +171,9 @@ export async function renderMapDrawings() {
   for (const item of moments) {
     if (item.city && item.city !== state.activeCity) continue;
     if (hiddenArtifacts.has(item.id)) continue;
-    if (item.type === 'drawing' && item.body?.geojson) {
-      L.geoJSON(item.body.geojson, { onEachFeature: (_feature, layer) => decorateLayer(layer, item.body.measurement) }).eachLayer((layer) => state.mapPaintLayer.addLayer(layer));
+    if (item.type === 'drawing' && normalizeDrawingGeoJSON(item.body?.geojson)) {
+      const geojson = normalizeDrawingGeoJSON(item.body.geojson);
+      L.geoJSON(geojson, { onEachFeature: (_feature, layer) => decorateLayer(layer, item.body.measurement) }).addTo(state.mapPaintLayer);
       state.mapDrawingHistory.push(item.id);
     } else if (item.type === 'drawing' && validDrawing(item.body?.coordinates)) {
       decorateLayer(L.polyline(item.body.coordinates), item.body.measurement).addTo(state.mapPaintLayer);
