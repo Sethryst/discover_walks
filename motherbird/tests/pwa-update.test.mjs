@@ -4,15 +4,17 @@ import { readFile } from 'node:fs/promises';
 import db from '../js/storage.js';
 
 test('database upgrades are explicit additive migrations and expose backup preflight', async () => {
-  assert.equal(db.version, 15);
+  assert.equal(db.version, 16);
   assert.deepEqual(db.migrationPlan(12), [
     { version: 13, risk: 'additive', description: 'Separate Geo Cypher manifests from on-demand audio.' },
     { version: 14, risk: 'additive', description: 'Repair missing local stores from earlier installations.' },
-    { version: 15, risk: 'additive', description: 'Add editable local saved routes.' }
+    { version: 15, risk: 'additive', description: 'Add editable local saved routes.' },
+    { version: 16, risk: 'additive', description: 'Add local radio manifests, playback state, saved tracks, and transition assets.' }
   ]);
   assert.deepEqual(db.migrationPlan(13), [
     { version: 14, risk: 'additive', description: 'Repair missing local stores from earlier installations.' },
-    { version: 15, risk: 'additive', description: 'Add editable local saved routes.' }
+    { version: 15, risk: 'additive', description: 'Add editable local saved routes.' },
+    { version: 16, risk: 'additive', description: 'Add local radio manifests, playback state, saved tracks, and transition assets.' }
   ]);
   const source = await readFile(new URL('../js/storage.js', import.meta.url), 'utf8');
   const loader = await readFile(new URL('../js/loader.js', import.meta.url), 'utf8');
