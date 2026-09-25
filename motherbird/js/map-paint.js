@@ -323,6 +323,6 @@ export async function initMapPaint() {
   window.addEventListener('map-workspace-changed', ({ detail }) => {
     const active = detail?.destination === 'draw' && detail.open;
     if (!active) { freehandActive = false; setActive(false); document.querySelectorAll('[data-draw-shape]').forEach((item) => item.classList.remove('active')); }
-    else { state.mapPaintActive = true; document.body.classList.add('map-painting'); button.setAttribute('aria-pressed', 'true'); }
+    else { state.mapPaintActive = true; document.body.classList.add('map-painting'); button?.setAttribute('aria-pressed', 'true'); }
   });
 }
