@@ -26,6 +26,12 @@ export function contextualStations(manifest, context = {}) {
   return (manifest?.stations || manifest?.channels || []).filter((station) => stationMatchesPlace(station, context));
 }
 
+export function recommendedStations(manifest, { history = [], favorites = new Set() } = {}) {
+  const scores = new Map();
+  history.forEach((event) => scores.set(String(event.trackId), (scores.get(String(event.trackId)) || 0) + (event.event === 'skipped' ? -2 : 1)));
+  return (manifest?.stations || manifest?.channels || []).map((station) => ({ station, score: (favorites.has(station.id) ? 4 : 0) + (scores.get(String(station.id)) || 0) })).sort((a, b) => b.score - a.score).map(({ station }) => station);
+}
+
 export function openRadioForContext(context = {}) {
   window.dispatchEvent(new CustomEvent('radio-open-requested', { detail: { context } }));
 }
