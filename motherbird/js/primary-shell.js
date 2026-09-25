@@ -19,7 +19,7 @@ const actions = {
   me: [
     { id: 'draw', label: 'Draw & annotations', icon: './icons/pencil.svg', run: () => document.querySelector('[data-map-destination="draw"]')?.click() },
     { id: 'sketch-walk', label: 'Sketch a walk', icon: './icons/walk.svg', run: () => void generateTimeBasedPlan() },
-    { id: 'radio', label: 'Retro Radio', icon: './icons/music.svg', run: () => window.dispatchEvent(new CustomEvent('radio-open-requested')) },
+    { id: 'radio', label: 'Radio', icon: './icons/music.svg', run: () => window.dispatchEvent(new CustomEvent('radio-open-requested')) },
     { id: 'companion', label: 'Companion', icon: './icons/heart.svg', run: () => document.getElementById('companionButton')?.click() },
     { id: 'alerts', label: 'Walking alerts', icon: './icons/alert-circle.svg', run: () => document.getElementById('locateChevron')?.click() },
     { id: 'offline-maps', label: 'Offline & maps', icon: './icons/map.svg', run: () => openSheet('backpackSheet') },

@@ -13,8 +13,9 @@ const FALLBACK_MANIFEST = {
 // A station may be ambient, or featured by a POI/Room without becoming a map
 // pin. Editorial packages can use any of these fields:
 // { poiIds, roomIds, regionIds, kind: 'guided-walkthrough' }.
-export function stationMatchesPlace(station, { poiId = null, roomId = null, regionId = null } = {}) {
+export function stationMatchesPlace(station, { poiId = null, roomId = null, regionId = null, stationIds = [] } = {}) {
   if (!station) return false;
+  if (Array.isArray(stationIds) && stationIds.map(String).includes(String(station.id))) return true;
   return [station.poiIds, station.roomIds, station.regionIds].some((ids, index) => {
     const value = [poiId, roomId, regionId][index];
     return value != null && Array.isArray(ids) && ids.map(String).includes(String(value));

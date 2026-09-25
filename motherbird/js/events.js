@@ -42,7 +42,12 @@ export function initEvents() {
   window.addEventListener('room-open-requested', (event) => void openRoomForPlace(event.detail?.place));
   el('roomAudioButton')?.addEventListener('click', () => void openGeoCypher());
   el('roomJournalButton')?.addEventListener('click', () => void openJournal());
-  el('roomRadioButton')?.addEventListener('click', () => openRadioForContext({ roomId: document.getElementById('roomTitle')?.dataset?.roomId || null }));
+  el('roomRadioButton')?.addEventListener('click', () => {
+    const title = document.getElementById('roomTitle');
+    let stationIds = [];
+    try { stationIds = JSON.parse(title?.dataset?.stationIds || '[]'); } catch { /* malformed local metadata simply means no featured station */ }
+    openRadioForContext({ roomId: title?.dataset?.roomId || null, stationIds });
+  });
   bindMessengerBird();
   window.addEventListener('walk-poi-encounter', (event) => void import('./walk.js').then(({ recordPoiEncounter }) => recordPoiEncounter(event.detail?.poi, event.detail?.distance)));
   window.addEventListener('backpack-open-requested', openBackpack);

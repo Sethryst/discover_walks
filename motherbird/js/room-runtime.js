@@ -37,13 +37,13 @@ export function addRoomAudioStation(room, stationId) {
 export async function openRoomForPlace(place) {
   if (!place?.id) return null;
   let room = await resolveRoom(place.id);
-  if (!room) room = await saveRoom(createRoom({ placeId: place.id, type: inferRoomType(place), name: place.name || 'Place Room', geometry: place.geometry || null }));
+  if (!room) room = await saveRoom(createRoom({ placeId: place.id, type: inferRoomType(place), name: place.name || 'Place Room', geometry: place.geometry || null, data: { featuredStationIds: place.radioStationIds || place.stationIds || [] } }));
   activeRoom = room;
   const title = document.getElementById('roomTitle');
   const type = document.getElementById('roomType');
   const body = document.getElementById('roomBody');
   if (title) title.textContent = room.name;
-  if (title) title.dataset.roomId = room.id;
+  if (title) { title.dataset.roomId = room.id; title.dataset.stationIds = JSON.stringify(room.data?.featuredStationIds || room.audioStationIds || []); }
   if (type) type.textContent = `${room.type.replaceAll('-', ' ')} · ${room.visibility}`;
   if (body) body.textContent = room.visibility === 'private' ? 'This Room is private on this device. Add place-specific notes and audio here; publishing requires Field Edition.' : 'This Room is ready for place-specific experiences.';
   openSheet('roomSheet');
