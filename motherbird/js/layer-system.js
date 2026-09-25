@@ -151,12 +151,7 @@ export function renderLayerFilters() {
   ensureLayerDefaults();
   const query = searchQuery.trim().toLowerCase();
   const groups = buildLayerGroups().map((group) => ({ ...group, options: group.options.filter((option) => !query || `${option.label} ${option.description}`.toLowerCase().includes(query)) })).filter((group) => group.options.length || (!query && group.id === 'personal_places'));
-  const labels = { news: 'NEWS', recreation: 'REC', cuisine: 'CUISINE' };
-  const masterLights = ['news', 'recreation', 'cuisine'].map((id) => {
-    const enabled = state.layerLights[id] !== false;
-    return `<button type="button" class="advanced-layer-chip advanced-master-chip ${enabled ? 'on' : 'off'}" data-master-light="${id}" aria-pressed="${enabled}"><strong>${labels[id]}</strong><small>${enabled ? 'on' : 'off'}</small></button>`;
-  }).join('');
-  root.innerHTML = `<section class="advanced-master-filters"><header><strong>Parent lights</strong><small>Quick filters for the map</small></header><div class="advanced-layer-options">${masterLights}</div></section>` + groups.map((group) => {
+  root.innerHTML = groups.map((group) => {
     const expanded = state.layerUiState.expanded[group.id] !== false;
     const enabledCount = group.options.filter((option) => state.layerFilters[option.kind][option.id] !== false).length;
     return `<section class="layer-filter-group" data-layer-group="${escapeHtml(group.id)}"><header><button class="layer-collapse" type="button" data-layer-collapse="${escapeHtml(group.id)}" aria-expanded="${expanded}"><span>${escapeHtml(group.label)}</span><small>(${enabledCount}/${group.options.length} shown)</small><b aria-hidden="true">⌄</b></button></header><div class="layer-options ${expanded ? '' : 'hidden'}">${group.options.length ? group.options.map(renderLayerOption).join('') : '<p class="layer-empty">Create a personal collection to add it here.</p>'}</div></section>`;
