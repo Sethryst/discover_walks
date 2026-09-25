@@ -41,7 +41,7 @@ function flyAlongDrawnLine(route) {
   if (points.length < 2) return;
   if (activeFlightFrame) cancelAnimationFrame(activeFlightFrame);
   activeFlightMarker?.remove();
-  const icon = L.divIcon({ className: 'messenger-flight-icon', html: '<span aria-hidden="true">🐦</span>', iconSize: [34, 34], iconAnchor: [17, 17] });
+  const icon = L.divIcon({ className: 'messenger-flight-icon', html: '<img src="./icons/navigation.svg" alt="" aria-hidden="true">', iconSize: [34, 34], iconAnchor: [17, 17] });
   const marker = L.marker(points[0], { icon, interactive: false, keyboard: false, zIndexOffset: 10000 }).addTo(state.map);
   activeFlightMarker = marker;
   state.map.fitBounds(L.latLngBounds(points), { padding: [70, 70], maxZoom: 16 });
@@ -94,7 +94,7 @@ async function refreshInbox() {
   const count = deliveries.filter((item) => !item.openedAt).length;
   const label = el('messengerInboxCount'); if (label) label.textContent = count ? `${count} new` : `${deliveries.length} saved`;
   const list = el('messengerInboxList');
-  if (list) list.innerHTML = deliveries.length ? deliveries.slice().reverse().map((item) => `<button type="button" class="messenger-delivery-card" data-delivery-id="${escapeHtml(item.id)}"><span aria-hidden="true">🐦</span><span><strong>${escapeHtml(item.route.title)}</strong><small>For ${escapeHtml(item.to)} · ${item.openedAt ? 'Opened' : 'Waiting quietly'}</small></span></button>`).join('') : '<p class="empty-state">No deliveries yet. Open a .birdnote someone shared with you.</p>';
+  if (list) list.innerHTML = deliveries.length ? deliveries.slice().reverse().map((item) => `<button type="button" class="messenger-delivery-card" data-delivery-id="${escapeHtml(item.id)}"><img src="./icons/navigation.svg" alt="" aria-hidden="true"><span><strong>${escapeHtml(item.route.title)}</strong><small>For ${escapeHtml(item.to)} · ${item.openedAt ? 'Opened' : 'Waiting quietly'}</small></span></button>`).join('') : '<p class="empty-state">No deliveries yet. Open a .birdnote someone shared with you.</p>';
 }
 
 async function openDelivery(file) {
@@ -127,7 +127,7 @@ async function playDelivery(delivery) {
   state.settings.messengerDeliveries = (state.settings.messengerDeliveries || []).map((item) => item.id === delivery.id ? delivery : item);
   await db.put('settings', state.settings); await refreshInbox();
   const card = document.createElement('article'); card.className = 'messenger-arrival';
-  card.innerHTML = `<span aria-hidden="true">🐦</span><div><small>A ROUTE FROM A FRIEND</small><strong>${escapeHtml(delivery.message)}</strong><button type="button" aria-label="Dismiss delivery">×</button></div>`;
+  card.innerHTML = `<img src="./icons/navigation.svg" alt="" aria-hidden="true"><div><small>A ROUTE FROM A FRIEND</small><strong>${escapeHtml(delivery.message)}</strong><button type="button" aria-label="Dismiss delivery">×</button></div>`;
   document.body.append(card); card.querySelector('button').addEventListener('click', () => card.remove());
   window.setTimeout(() => card.remove(), 12000);
 }

@@ -6,27 +6,25 @@ import { generateTimeBasedPlan } from './planner.js';
 
 const actions = {
   walk: [
-    { id: 'sketch-walk', label: 'Sketch a nearby walk', icon: '🗺️', run: () => void generateTimeBasedPlan() },
-    { id: 'field-guide', label: 'Follow a saved walk', icon: '🎒', run: () => void openBackpack() },
-    { id: 'draw', label: 'Draw a route', icon: '✏️', run: () => document.querySelector('[data-map-destination="draw"]')?.click() }
+    { id: 'sketch-walk', label: 'Sketch a nearby walk', icon: './icons/walk.svg', run: () => void generateTimeBasedPlan() },
+    { id: 'field-guide', label: 'Follow a saved walk', icon: './icons/book-open.svg', run: () => void openBackpack() },
+    { id: 'draw', label: 'Draw a route', icon: './icons/pencil.svg', run: () => document.querySelector('[data-map-destination="draw"]')?.click() }
   ],
   library: [
-    { id: 'journal', label: 'Journal', icon: '▦', run: () => void openJournal() },
-    { id: 'observe', label: 'Observations', icon: '📷', run: () => { openSheet('journalSheet'); document.getElementById('observeButton')?.click(); } },
-    { id: 'saved-places', label: 'Saved walks & places', icon: '📍', run: () => document.querySelector('[data-map-destination="maps"]')?.click() },
-    { id: 'field-guide', label: 'Field Guide', icon: '🎒', run: () => void openBackpack() },
-    { id: 'cypher', label: 'Nearby audio', icon: '◉', run: () => openSheet('geoCypherSheet') }
+    { id: 'journal', label: 'Journal', icon: './icons/grid.svg', run: () => void openJournal() },
+    { id: 'observe', label: 'Observations', icon: './icons/camera.svg', run: () => { openSheet('journalSheet'); document.getElementById('observeButton')?.click(); } },
+    { id: 'saved-places', label: 'Saved walks & places', icon: './icons/map-pin.svg', run: () => document.querySelector('[data-map-destination="maps"]')?.click() },
+    { id: 'cypher', label: 'Nearby audio', icon: './icons/music.svg', run: () => openSheet('geoCypherSheet') }
   ],
   me: [
-    { id: 'draw', label: 'Draw & annotations', icon: '✏️', run: () => document.querySelector('[data-map-destination="draw"]')?.click() },
-    { id: 'sketch-walk', label: 'Sketch a walk', icon: '🗺️', run: () => void generateTimeBasedPlan() },
-    { id: 'radio', label: 'Retro Radio', icon: '📻', run: () => window.dispatchEvent(new CustomEvent('radio-open-requested')) },
-    { id: 'messenger', label: 'Messenger Bird', icon: '🐦', run: () => openSheet('messengerInboxSheet') },
-    { id: 'companion', label: 'Companion', icon: '🐾', run: () => document.getElementById('companionButton')?.click() },
-    { id: 'alerts', label: 'Walking alerts', icon: '🔔', run: () => document.getElementById('locateChevron')?.click() },
-    { id: 'offline-maps', label: 'Offline & maps', icon: '💾', run: () => openSheet('backpackSheet') },
-    { id: 'privacy', label: 'Data & privacy', icon: '🔒', run: () => { openSheet('backpackSheet'); document.querySelector('[data-guide-tab="online"]')?.click(); } },
-    { id: 'help', label: 'App Help & Guide', icon: '❓', run: () => openSheet('helpSheet') }
+    { id: 'draw', label: 'Draw & annotations', icon: './icons/pencil.svg', run: () => document.querySelector('[data-map-destination="draw"]')?.click() },
+    { id: 'sketch-walk', label: 'Sketch a walk', icon: './icons/walk.svg', run: () => void generateTimeBasedPlan() },
+    { id: 'radio', label: 'Retro Radio', icon: './icons/music.svg', run: () => window.dispatchEvent(new CustomEvent('radio-open-requested')) },
+    { id: 'companion', label: 'Companion', icon: './icons/heart.svg', run: () => document.getElementById('companionButton')?.click() },
+    { id: 'alerts', label: 'Walking alerts', icon: './icons/alert-circle.svg', run: () => document.getElementById('locateChevron')?.click() },
+    { id: 'offline-maps', label: 'Offline & maps', icon: './icons/map.svg', run: () => openSheet('backpackSheet') },
+    { id: 'privacy', label: 'Data & privacy', icon: './icons/info.svg', run: () => { openSheet('backpackSheet'); document.querySelector('[data-guide-tab="online"]')?.click(); } },
+    { id: 'help', label: 'App Help & Guide', icon: './icons/info.svg', run: () => openSheet('helpSheet') }
   ]
 };
 
@@ -80,7 +78,7 @@ export function initPrimaryShell() {
       const button = document.createElement('button');
       button.type = 'button';
       button.className = 'shell-action-btn';
-      button.textContent = item.label;
+      button.innerHTML = `<img src="${item.icon}" alt="" aria-hidden="true"><span>${item.label}</span>`;
       button.addEventListener('click', () => { panel.classList.add('hidden'); item.run(); });
 
       const starBtn = document.createElement('button');
@@ -89,7 +87,7 @@ export function initPrimaryShell() {
       const starred = isActionStarred(item.id);
       starBtn.className = `star-action-btn ${starred ? 'starred' : ''}`;
       starBtn.setAttribute('aria-label', `${starred ? 'Unstar' : 'Star'} ${item.label}`);
-      starBtn.textContent = starred ? '⭐' : '☆';
+      starBtn.innerHTML = `<img src="./icons/star.svg" alt="" aria-hidden="true">`;
       starBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         void toggleStarAction({ id: item.id, label: item.label, icon: item.icon, action: item.run });
@@ -106,7 +104,7 @@ export function initPrimaryShell() {
       const starred = isActionStarred(starBtn.dataset.actionId);
       starBtn.classList.toggle('starred', starred);
       starBtn.setAttribute('aria-label', `${starred ? 'Unstar' : 'Star'} ${starBtn.parentElement?.querySelector('.shell-action-btn')?.textContent || 'action'}`);
-      starBtn.textContent = starred ? '⭐' : '☆';
+      starBtn.innerHTML = `<img src="./icons/star.svg" alt="" aria-hidden="true">`;
     });
   });
   window.addEventListener('radial-action-triggered', ({ detail }) => {
