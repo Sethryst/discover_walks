@@ -18,6 +18,11 @@ Discover Walks is a static, mobile-first web app for recording walks, discoverin
 - **Build DC POIs from versioned official snapshots into both native contracts.** `tools/build-dc-pois.mjs` normalizes Open Data DC GeoJSON, assigns official neighborhood clusters, excludes out-of-bound records, deduplicates conservatively, validates provenance/geofences, and emits both the city seed and region `{pois}` artifact ([docs/DCPOIPipeline.md](docs/DCPOIPipeline.md)).
 - **Keep map filters and discovery prompts intentionally separate.** Every visible source can be filtered on the map, including the OpenStreetMap source filter; geofence choices are derived from the active city's visible, non-OSM POI categories (`js/poi.js`).
 - **Cache the shell and only viewed public map tiles.** `service-worker.js` uses a versioned shell cache and a separate viewed-tile cache; shell membership and cache-version changes must stay coordinated.
+- **Audio Notes are private by default.** `js/geo-cypher.js` retains the historical module/store names for migration compatibility, but the user-facing feature is local Audio Notes. Deliberate Bird Note packages are the portable sharing path; public place-wide audio belongs to Field Edition Rooms.
+- **Rooms are local-first place contexts.** `js/room-runtime.js` creates private or bundled Rooms, associates Journal notes, observations, and Audio Notes through an append-only trace list, and leaves public publishing behind the Field Edition gate.
+- **Spatial Queries are durable questions, not annotations only.** `js/spatial-query.js` assigns semantic types to map gestures; `js/map-paint.js` persists geometry, result IDs, and query readiness, including buffered route-corridor results for lines/freehand drawings.
+- **Radio is independent but context-aware.** `js/radio.js` supports ambient stations plus POI/Room/region-linked stations and persists local channel, era, and favorites state.
+- **The shared place contract is explicit.** `js/spatial-model.js` normalizes identity, geometry, relationships, temporal claims, sources, provenance, uncertainty, and freshness for downstream surfaces.
 
 ## Known Limitations
 
@@ -46,6 +51,7 @@ Discover Walks is a static, mobile-first web app for recording walks, discoverin
 - Runtime architecture and flows: [docs/Architecture.md](docs/Architecture.md), [docs/DataFlow.md](docs/DataFlow.md), `js/loader.js`
 - City/POI runtime: `js/constants.js`, `js/city.js`, `js/poi.js`
 - Local persistence and privacy boundary: `js/storage.js`, `js/online.js`, `js/civic.js`
+- Shared spatial experiences: `js/spatial-model.js`, `js/spatial-query.js`, `js/room-runtime.js`, `js/radio.js`, `js/geo-cypher.js`
 - Region build/package contract: [docs/RegionBuildPipeline.md](docs/RegionBuildPipeline.md), [docs/RegionImportContract.md](docs/RegionImportContract.md), `tools/region-build.mjs`
 - Washington, DC POIs: [docs/DCPOIPipeline.md](docs/DCPOIPipeline.md), `tools/dc-pipeline/`, `tools/build-dc-pois.mjs`
 - Field Editions: [docs/FieldEditions.md](docs/FieldEditions.md), `tools/field-edition-build.mjs`, `js/field-edition-loader.js`

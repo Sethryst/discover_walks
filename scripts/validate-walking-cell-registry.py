@@ -30,11 +30,18 @@ def validate(registry: dict) -> list[str]:
         graph = (cell.get("artifacts") or {}).get("graph") or {}
         url = graph.get("url")
         parsed = urlparse(url or "")
-        if not url or (not parsed.scheme and not parsed.path): errors.append(f"{cid}: invalid graph URL")
+        has_binary_package = bool((cell.get("artifacts") or {}).get("manifest"))
+        if availability == "routing_available" and not has_binary_package and (not url or (not parsed.scheme and not parsed.path)): errors.append(f"{cid}: invalid graph URL")
         if availability == "routing_available":
-            if not isinstance(graph.get("bytes"), int) or graph["bytes"] <= 0: errors.append(f"{cid}: routable graph byte count missing")
-            if not re.fullmatch(r"[0-9a-fA-F]{64}", str(graph.get("sha256") or "")): errors.append(f"{cid}: routable graph checksum missing")
-            if graph.get("graphVersion") != GRAPH_VERSION: errors.append(f"{cid}: graph version mismatch")
+            artifacts = cell.get("artifacts") or {}
+            required = ("nodes.bin", "edges.bin", "adjacency.bin", "edge_geometry.bin", "edge_spatial_index.bin")
+            for name in required:
+                item = artifacts.get(name) or {}
+                if not item.get("url"): errors.append(f"{cid}: routable binary {name} URL missing")
+                if not isinstance(item.get("bytes"), int) or item["bytes"] <= 0: errors.append(f"{cid}: routable binary {name} byte count missing")
+                if not re.fullmatch(r"[0-9a-fA-F]{64}", str(item.get("sha256") or "")): errors.append(f"{cid}: routable binary {name} checksum missing")
+            manifest = artifacts.get("manifest") or {}
+            if not manifest.get("url"): errors.append(f"{cid}: routable binary manifest URL missing")
         if isinstance(b, list) and len(b) == 4:
             for old_id, old_b in previous:
                 if max(b[0], old_b[0]) < min(b[2], old_b[2]) and max(b[1], old_b[1]) < min(b[3], old_b[3]):

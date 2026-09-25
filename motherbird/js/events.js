@@ -17,10 +17,12 @@ import { openObservation, saveObservation, setDraftObservationIcon } from './obs
 import { transcribeJournal, toggleJournalRecording, stopJournalCapture } from './journal-capture.js';
 import { renderNearbyPlaces, initJournalPane } from './journal-pane.js';
 import { openGeoCypher } from './geo-cypher.js';
+import { openRadioForContext } from './radio.js?v=20260925-routing-binary';
 import { initMessengerBird } from './messenger-bird.js';
 import { restartCoachMarks } from './coach.js';
 import { savePlannedRoute } from './saved-routes.js';
 import { recordSessionRoutingOutcome } from './routing-feedback.js';
+import { openRoomForPlace } from './room-runtime.js';
 
 const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];
 
@@ -37,6 +39,16 @@ export function initEvents() {
   });
   el('journalButton')?.addEventListener('click', () => void openJournal());
   el('geoCypherButton')?.addEventListener('click', () => void openGeoCypher());
+  window.addEventListener('room-open-requested', (event) => void openRoomForPlace(event.detail?.place));
+  window.addEventListener('room-sheet-open-requested', () => openSheet('roomSheet'));
+  el('roomAudioButton')?.addEventListener('click', () => void openGeoCypher());
+  el('roomJournalButton')?.addEventListener('click', () => void openJournal());
+  el('roomRadioButton')?.addEventListener('click', () => {
+    const title = document.getElementById('roomTitle');
+    let stationIds = [];
+    try { stationIds = JSON.parse(title?.dataset?.stationIds || '[]'); } catch { /* malformed local metadata simply means no featured station */ }
+    openRadioForContext({ roomId: title?.dataset?.roomId || null, stationIds });
+  });
   bindMessengerBird();
   window.addEventListener('walk-poi-encounter', (event) => void import('./walk.js').then(({ recordPoiEncounter }) => recordPoiEncounter(event.detail?.poi, event.detail?.distance)));
   window.addEventListener('backpack-open-requested', openBackpack);
@@ -104,6 +116,8 @@ function setMapWorkspace(destination = '', { toggle = true, forceOpen = false } 
   panel.classList.toggle('hidden', !next);
   document.body.classList.toggle('map-workspace-open', Boolean(next));
   document.body.classList.toggle('draw-pane-open', next === 'draw');
+  // Draw is a compact tool rail, not a second full-screen workspace.
+  document.body.classList.toggle('draw-tools-collapsed', next === 'draw');
   el('collapseDrawTools')?.classList.toggle('hidden', next !== 'draw');
   if (next !== 'draw') document.body.classList.remove('draw-tools-collapsed');
   document.querySelectorAll('[data-map-destination]').forEach((button) => {
@@ -363,7 +377,10 @@ function bindSearch() {
 
 function bindJournal() {
   let saveTimer;
-  window.addEventListener('map-overlay-changed', ({ detail }) => { if (!detail.open || detail.id !== 'journalSheet') stopJournalCapture(); });
+  window.addEventListener('map-overlay-changed', ({ detail }) => {
+    if (!detail.open || detail.id !== 'journalSheet') stopJournalCapture();
+    if (!detail.open && detail.id === 'roomSheet') state.activeRoom = null;
+  });
   el('journalNote')?.addEventListener('input', () => { clearTimeout(saveTimer); saveTimer = setTimeout(() => void saveJournalOnClose({ note: el('journalNote').value, walkId: el('journalForm').dataset.walkId }), 700); });
   window.addEventListener('journal-close-requested', (event) => void (async () => {
     clearTimeout(saveTimer);

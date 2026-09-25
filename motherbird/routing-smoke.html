@@ -1,0 +1,23 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Binary routing smoke</title>
+<style>body{font:16px system-ui;max-width:60rem;margin:2rem auto;padding:0 1rem}button{font:inherit;padding:.6rem 1rem}pre{white-space:pre-wrap;background:#f3f5f2;padding:1rem;border-radius:.5rem}</style>
+<h1>Binary routing smoke</h1>
+<p>This uses the production <code>routeOnFoot()</code> UI contract and the verified cell registry, with endpoints sampled from one connected graph edge.</p>
+<button id="run">Run connected route</button>
+<pre id="status">idle</pre>
+<script type="module">
+  import { routeOnFoot } from './js/routing.js?smoke=20260925-binary-v4';
+  import { WalkingCellRegistry } from './js/walking-cell-registry.js?smoke=20260925-binary';
+  window.MOTHER_BIRD_WALKING_CELLS = { manifestUrl: './data/national-routing/osm-us-2026-09-07/cells.json?v=20260925-binary' };
+  const output = document.querySelector('#status');
+  const edge = { origin: { lat: 38.7911929, lng: -77.4853467 }, destination: { lat: 38.7912119, lng: -77.4855868 } };
+  const write = (value) => { output.textContent = typeof value === 'string' ? value : JSON.stringify(value, null, 2); };
+  window.addEventListener('routing-progress', (event) => write({ progress: event.detail }));
+  document.querySelector('#run').addEventListener('click', async () => {
+    const registry = await WalkingCellRegistry.load(window.MOTHER_BIRD_WALKING_CELLS.manifestUrl);
+    write({ selectedCell: registry.find(edge.origin.lat, edge.origin.lng)?.id, release: registry.release });
+    const result = await routeOnFoot([edge.origin, edge.destination], { profile: 'ordinary_walking_beta' });
+    write({ ok: result.ok, status: result.status, cellId: result.cellId, cellRelease: result.cellRelease, distanceMeters: result.distanceMeters, coordinateCount: result.coordinates?.length, failure: result.failure });
+  });
+</script>

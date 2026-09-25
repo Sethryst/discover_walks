@@ -14,12 +14,12 @@ const actions = {
     { id: 'journal', label: 'Journal', icon: './icons/grid.svg', run: () => void openJournal() },
     { id: 'observe', label: 'Observations', icon: './icons/camera.svg', run: () => { openSheet('journalSheet'); document.getElementById('observeButton')?.click(); } },
     { id: 'saved-places', label: 'Saved walks & places', icon: './icons/map-pin.svg', run: () => document.querySelector('[data-map-destination="maps"]')?.click() },
-    { id: 'cypher', label: 'Nearby audio', icon: './icons/music.svg', run: () => openSheet('geoCypherSheet') }
+    { id: 'cypher', label: 'Audio Notes', icon: './icons/music.svg', run: () => openSheet('geoCypherSheet') }
   ],
   me: [
     { id: 'draw', label: 'Draw & annotations', icon: './icons/pencil.svg', run: () => document.querySelector('[data-map-destination="draw"]')?.click() },
     { id: 'sketch-walk', label: 'Sketch a walk', icon: './icons/walk.svg', run: () => void generateTimeBasedPlan() },
-    { id: 'radio', label: 'Retro Radio', icon: './icons/music.svg', run: () => window.dispatchEvent(new CustomEvent('radio-open-requested')) },
+    { id: 'radio', label: 'Radio', icon: './icons/music.svg', run: () => window.dispatchEvent(new CustomEvent('radio-open-requested')) },
     { id: 'companion', label: 'Companion', icon: './icons/heart.svg', run: () => document.getElementById('companionButton')?.click() },
     { id: 'alerts', label: 'Walking alerts', icon: './icons/alert-circle.svg', run: () => document.getElementById('locateChevron')?.click() },
     { id: 'offline-maps', label: 'Offline & maps', icon: './icons/map.svg', run: () => openSheet('backpackSheet') },

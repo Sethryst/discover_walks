@@ -8,6 +8,7 @@ import { buildReflectionMoment, wordCount } from './reflection.js';
 import { markPoiVisited } from './poi-visit-tracking.js';
 import { attachWalkArtifact } from './walk-context.js';
 import { requestCompanionContext } from './companion.js';
+import { appendRoomTrace } from './room-runtime.js';
 
 export async function saveHistoryMoment() {
   const site = state.currentSite; if (!site) return;
@@ -32,8 +33,9 @@ export async function saveJournal(event) {
   const note = el('journalNote').value.trim();
   const walkId = event.currentTarget.dataset.walkId;
   if (!note) { closeSheets(); return; }
-  const moment = buildReflectionMoment({ id: event.currentTarget.dataset.momentId || uid('moment'), city: state.activeCity, heading: '', note, prompt: null, walkId, createdAt: new Date().toISOString() });
+  const moment = { ...buildReflectionMoment({ id: event.currentTarget.dataset.momentId || uid('moment'), city: state.activeCity, heading: '', note, prompt: null, walkId, createdAt: new Date().toISOString() }), roomId: state.activeRoom?.id || null };
   await db.put('moments', moment);
+  if (moment.roomId) await appendRoomTrace(moment.roomId, { type: 'journal', refId: moment.id });
   requestCompanionContext('journal');
   closeSheets(); renderArchive();
 }
@@ -45,8 +47,9 @@ export async function saveJournalOnClose({ note = '', walkId = '' } = {}) {
   const existing = form?.dataset.momentId || (walkId ? `journal-${walkId}` : uid('moment'));
   if (form) form.dataset.momentId = existing;
   const previous = await db.get('moments', existing);
-  const moment = { ...previous, ...buildReflectionMoment({ id: existing, city: state.activeCity, heading: '', note: cleanNote, prompt: null, walkId: walkId || null, createdAt: previous?.createdAt || new Date().toISOString() }), updatedAt: new Date().toISOString() };
+  const moment = { ...previous, ...buildReflectionMoment({ id: existing, city: state.activeCity, heading: '', note: cleanNote, prompt: null, walkId: walkId || null, createdAt: previous?.createdAt || new Date().toISOString() }), roomId: state.activeRoom?.id || previous?.roomId || null, updatedAt: new Date().toISOString() };
   await db.put('moments', moment);
+  if (moment.roomId) await appendRoomTrace(moment.roomId, { type: 'journal', refId: moment.id });
   requestCompanionContext('journal');
   await renderArchive();
 }
@@ -56,8 +59,9 @@ export async function ensureCurrentJournalNote() {
   if (!form.dataset.momentId) form.dataset.momentId = uid('moment');
   const id = form.dataset.momentId;
   const previous = await db.get('moments', id);
-  const note = { ...previous, id, type: 'journal', city: state.activeCity, title: previous?.title || 'Field note', note: el('journalNote')?.value || '', walkId: form.dataset.walkId || state.activeWalk?.id || null, createdAt: previous?.createdAt || new Date().toISOString(), updatedAt: new Date().toISOString() };
+  const note = { ...previous, id, type: 'journal', city: state.activeCity, title: previous?.title || 'Field note', note: el('journalNote')?.value || '', walkId: form.dataset.walkId || state.activeWalk?.id || null, roomId: state.activeRoom?.id || previous?.roomId || null, createdAt: previous?.createdAt || new Date().toISOString(), updatedAt: new Date().toISOString() };
   await db.put('moments', note);
+  if (note.roomId) await appendRoomTrace(note.roomId, { type: 'journal', refId: note.id });
   return note;
 }
 export async function saveQuickJournal(event) {
@@ -72,7 +76,7 @@ export async function saveQuickJournal(event) {
   const moment = {
     id: uid('moment'), type: 'journal', title: note ? 'Field note' : 'Photograph', mood: 'Noticed',
     note: note || 'A photograph from this place.', prompt: null, createdAt,
-    walkId: state.activeWalk?.id || null, city: state.activeCity, photo,
+    walkId: state.activeWalk?.id || null, roomId: state.activeRoom?.id || null, city: state.activeCity, photo,
     media: { photo: Boolean(photo), transcribedVoice: form.dataset.voiceTranscript === 'true' },
     location: state.currentPosition || (state.map ? { lat: state.map.getCenter().lat, lng: state.map.getCenter().lng } : null)
   };

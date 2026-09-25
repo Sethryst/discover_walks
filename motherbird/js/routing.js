@@ -12,6 +12,9 @@ export const ROUTE_FAILURE_MESSAGES = {
   ORIGIN_DISCONNECTED: 'The start is on a disconnected piece of the pedestrian network.',
   DESTINATION_DISCONNECTED: 'The destination is on a disconnected piece of the pedestrian network.',
   NO_ROUTE_IN_COMPONENT: 'Both points are near pedestrian geometry, but no connected route joins them.',
+  ROUTING_TIMEOUT: 'Offline routing timed out while loading or searching the cell.',
+  ROUTING_WORKER_ERROR: 'The offline routing worker stopped unexpectedly.',
+  GRAPH_ARTIFACT_MISMATCH: 'The installed routing artifact failed its integrity check.',
   ACCESS_POLICY_BLOCKED: 'The installed geometry does not meet the selected access policy.',
   ACCESSIBILITY_DATA_INSUFFICIENT: 'Ramp, stair, or grade evidence is insufficient for a verified accessible route.',
   GRAPH_VERSION_UNAVAILABLE: 'An offline pedestrian graph is not installed for this city.',
@@ -25,7 +28,7 @@ export async function routeOnFoot(points, { city, profile = 'ordinary_walking_be
     try { activeWalkingCell = await activateWalkingCellAt(points[index]); }
     catch (error) { return failure('GRAPH_VERSION_UNAVAILABLE', error.message); }
     if (!activeWalkingCell?.id || activeWalkingCell.availability !== 'routing_available') return failure('GRAPH_VERSION_UNAVAILABLE', activeWalkingCell?.reason);
-    const result = await requestRoute({ city, profile, origin: points[index], destination: points[index + 1], avoid: { stairs: false, unverified_edges: false }, cellGraphPath: activeWalkingCell?.files?.graph?.path, cellId: activeWalkingCell?.id, cellRelease: activeWalkingCell?.release });
+    const result = await requestRoute({ city, profile, origin: points[index], destination: points[index + 1], avoid: { stairs: false, unverified_edges: false }, cell: activeWalkingCell, cellId: activeWalkingCell?.id, cellRelease: activeWalkingCell?.release });
     if (!result.ok) return result;
     legs.push(result);
   }
@@ -65,19 +68,25 @@ function mergeInstructions(legs) {
 function requestRoute(payload) {
   if (typeof Worker === 'undefined') return Promise.resolve(failure('GRAPH_VERSION_UNAVAILABLE'));
   if (!worker) {
-    worker = new Worker('./js/offline-router-worker.js', { type: 'module' });
+    worker = new Worker('./js/offline-router-worker.js?v=20260925-binary-v4', { type: 'module' });
     worker.onmessage = ({ data }) => {
+      if (data.type === 'progress') { window.dispatchEvent(new CustomEvent('routing-progress', { detail: data })); return; }
+      if (data.type === 'worker-error') { for (const entry of pending.values()) { clearTimeout(entry.timer); entry.resolve(failure('ROUTING_WORKER_ERROR', data.message)); } pending.clear(); return; }
       const callback = pending.get(data.requestId);
       if (!callback) return;
-      pending.delete(data.requestId); callback(data.result);
+      pending.delete(data.requestId); clearTimeout(callback.timer); callback.resolve(data.result);
     };
-    worker.onerror = () => {
-      for (const callback of pending.values()) callback(failure('GRAPH_VERSION_UNAVAILABLE'));
+    worker.onerror = (event) => {
+      const reason = event.message || `${event.filename || 'worker'}:${event.lineno || 0}:${event.colno || 0}`;
+      for (const entry of pending.values()) { clearTimeout(entry.timer); entry.resolve(failure('ROUTING_WORKER_ERROR', reason)); }
       pending.clear(); worker = null;
     };
   }
   const requestId = ++sequence;
-  return new Promise((resolve) => { pending.set(requestId, resolve); worker.postMessage({ type: 'route', requestId, ...payload }); });
+  return new Promise((resolve) => {
+    const timer = setTimeout(() => { pending.delete(requestId); resolve(failure('ROUTING_TIMEOUT', 'Routing worker exceeded 120 seconds.')); }, 120000);
+    pending.set(requestId, { resolve, timer }); worker.postMessage({ type: 'route', requestId, ...payload });
+  });
 }
 
-function failure(type, reason = null) { return { ok: false, status: type, failure: { type, message: ROUTE_FAILURE_MESSAGES[type], reason } }; }
+function failure(type, reason = null) { return { ok: false, status: type, failure: { type, message: ROUTE_FAILURE_MESSAGES[type] || 'Offline routing failed.', reason } }; }

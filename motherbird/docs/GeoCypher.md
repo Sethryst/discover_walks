@@ -1,6 +1,6 @@
-# Geo Cypher prototype
+# Audio Notes (formerly Geo Cypher)
 
-Geo Cypher is a local-first Fairfax prototype for geofenced audio encounters. It deliberately proves the on-device record, encounter, playback, and signed-response loop before any public transport or moderation service is added.
+Audio Notes are local-first geofenced audio encounters. The implementation file and storage keys retain the historical Geo Cypher name for compatibility, but the product feature is private Audio Notes: recording, encounter, playback, and signed-response lineage remain on the device unless the user deliberately shares a Bird Note or attaches the note to a Room.
 
 ## Runtime contract
 
@@ -14,7 +14,11 @@ Geo Cypher is a local-first Fairfax prototype for geofenced audio encounters. It
 - Accountless creators are labeled **Anonymous**; the private signing key remains non-exportable on their device.
 - Invalid manifests and changed media fail closed. Dismissal survives reload, and removal deletes the local manifest and audio.
 
-## Prototype boundary
+## Sharing boundary
+
+Audio Notes are not a public feed. The **Share via Bird Note** action creates a portable `.birdnote` package that another Walk & Wildlife installation can import into its own private Audio Notes. Public place-wide audio belongs to a Field Edition Room and requires explicit publication, ownership, media delivery, and moderation infrastructure.
+
+## Local capability
 
 Pins are currently local to one browser. There is no upload, discovery API, public publishing, moderation pipeline, or background geolocation. The map center allows desktop testing; a recent device fix takes precedence. Playback stays disabled until the reference point is inside the pin radius.
 

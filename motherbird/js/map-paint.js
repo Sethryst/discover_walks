@@ -7,6 +7,7 @@ import { markerPinHtml, markerVisual } from './poi-icons.js';
 import { generateTimeBasedPlan } from './planner.js';
 import { normalizePersonalCategory, upsertImportedPersonalData } from './personal-places.js';
 import { savePlannedRoute } from './saved-routes.js';
+import { createSpatialQuery, listSpatialQueries, queryPrompt, saveSpatialQuery } from './spatial-query.js';
 
 const DRAW_COLOR = '#76558b';
 function readHiddenArtifacts() {
@@ -32,16 +33,38 @@ function queryCategory(poi) {
   if (tags.some((tag) => ['park', 'nature', 'wildlife', 'water', 'water_access', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad', 'trail', 'history', 'history_landmark', 'history_monument', 'history_museum', 'history_cemetery', 'history_marker', 'art', 'public_art'].includes(tag))) return 'recreation';
   return null;
 }
+function queryGeometry(query) {
+  if (!query?.geometry) return null;
+  if (['LineString', 'MultiLineString'].includes(query.geometry.type) && globalThis.turf?.buffer) {
+    return globalThis.turf.buffer({ type: 'Feature', properties: {}, geometry: query.geometry }, 100, { units: 'meters' })?.geometry || null;
+  }
+  return query.geometry;
+}
+export function restoreSpatialQuery(query) {
+  if (!query) return;
+  state.spatialQuery = query;
+  state.spatialQueryDismissed = new Set();
+  state.spatialQuerySelected = new Set();
+  renderSpatialQuery();
+}
+
 function renderSpatialQuery() {
   if (!state.map || !state.spatialQuery) return;
   if (!state.spatialQueryLayer) state.spatialQueryLayer = L.layerGroup().addTo(state.map);
   state.spatialQueryLayer.clearLayers();
+  const geometry = queryGeometry(state.spatialQuery);
   const results = (state.cityPois[state.activeCity] || []).filter(isVisiblePoi).filter((poi) => {
     const category = queryCategory(poi);
     if (!category || state.layerLights?.[category] === false) return false;
-    return globalThis.turf?.booleanPointInPolygon([poi.lng, poi.lat], state.spatialQuery.geometry);
+    if (geometry?.type === 'Polygon' || geometry?.type === 'MultiPolygon') return globalThis.turf?.booleanPointInPolygon([poi.lng, poi.lat], geometry);
+    return false;
   }).filter((poi) => !state.spatialQueryDismissed.has(String(poi.id)));
   state.spatialQueryResults = results;
+  const resultIds = results.map((poi) => String(poi.id));
+  if (state.spatialQuery.status !== 'ready' || JSON.stringify(state.spatialQuery.resultIds || []) !== JSON.stringify(resultIds)) {
+    state.spatialQuery = { ...state.spatialQuery, status: 'ready', resultIds };
+    void saveSpatialQuery(state.spatialQuery).then(() => renderSpatialQueryHistory());
+  }
   results.forEach((poi) => {
     const category = queryCategory(poi);
     const marker = L.marker([poi.lat, poi.lng], { icon: L.divIcon({ className: '', html: markerPinHtml(markerVisual({ poi, light: category })), iconSize: [27, 27], iconAnchor: [13, 13] }) });
@@ -160,6 +183,19 @@ function renderArtifactList() {
     row.append(name, toggle, remove); list.append(row);
   }
 }
+async function renderSpatialQueryHistory() {
+  const status = el('drawWorkspaceStatus'); if (!status) return;
+  let details = status.querySelector('[data-spatial-query-history]');
+  if (!details) { details = document.createElement('details'); details.dataset.spatialQueryHistory = 'true'; details.className = 'spatial-query-history'; status.prepend(details); }
+  const queries = (await listSpatialQueries()).filter((query) => !query.regionId || query.regionId === state.activeCity).sort((a, b) => Date.parse(b.createdAt || 0) - Date.parse(a.createdAt || 0)).slice(0, 8);
+  details.innerHTML = `<summary>Saved Spatial Queries (${queries.length})</summary>`;
+  const list = document.createElement('div');
+  queries.forEach((query) => {
+    const button = document.createElement('button'); button.type = 'button'; button.className = 'secondary-button'; button.textContent = `${query.shape} · ${query.resultIds?.length || 0} results`;
+    button.addEventListener('click', () => { state.spatialQuery = query; state.spatialQueryDismissed = new Set(); state.spatialQuerySelected = new Set(); renderSpatialQuery(); }); list.append(button);
+  });
+  details.append(list);
+}
 
 async function persistCreatedLayer(layer, shape) {
   if (shape === 'Marker') {
@@ -175,7 +211,14 @@ async function persistCreatedLayer(layer, shape) {
     const center = layer.getLatLng();
     geojson = globalThis.turf.circle([center.lng, center.lat], layer.getRadius() / 1000, { units: 'kilometers', steps: 72 });
   }
-  if (['Circle', 'Polygon', 'Rectangle'].includes(shape) && geojson?.geometry) { state.spatialQuery = { shape, geometry: geojson.geometry, id: crypto.randomUUID() }; state.spatialQueryDismissed = new Set(); state.spatialQuerySelected = new Set(); renderSpatialQuery(); toast('Spatial Query ready. Choose places to save, discover, dismiss, or route.'); }
+  if (['Circle', 'Polygon', 'Rectangle', 'Freehand', 'Line'].includes(shape) && geojson?.geometry) {
+    const query = createSpatialQuery({ shape, geometry: geojson.geometry, regionId: state.activeCity });
+    state.spatialQuery = query; state.spatialQueryDismissed = new Set(); state.spatialQuerySelected = new Set();
+    void saveSpatialQuery(query).then(() => renderSpatialQueryHistory());
+    if (['Circle', 'Polygon', 'Rectangle', 'Freehand', 'Line'].includes(shape)) renderSpatialQuery();
+    el('drawWorkspaceStatus')?.insertAdjacentText('afterbegin', `${queryPrompt(query)} `);
+    toast(`${queryPrompt(query)} Spatial Query saved.`);
+  }
   const measurement = geometryMeasurement(geojson);
   try {
     await db.put('moments', { id: crypto.randomUUID(), type: 'drawing', title: `${shape || 'Map'} drawing`, city: state.activeCity, createdAt: new Date().toISOString(), body: { geojson, shape, measurement } });
@@ -217,7 +260,16 @@ export async function initMapPaint() {
   updateRegionLabel();
   state.mapPaintLayer = L.featureGroup().addTo(state.map);
   const friendLayer = L.layerGroup().addTo(state.map);
+  const savedQueries = (await listSpatialQueries()).filter((query) => !query.regionId || query.regionId === state.activeCity).sort((a, b) => Date.parse(b.createdAt || 0) - Date.parse(a.createdAt || 0));
+  const latestQuery = savedQueries[0];
+  if (latestQuery) {
+    state.spatialQuery = latestQuery;
+    state.spatialQueryDismissed = new Set();
+    state.spatialQuerySelected = new Set();
+  }
   await renderMapDrawings();
+  if (latestQuery) renderSpatialQuery();
+  await renderSpatialQueryHistory();
   globalThis.pm = globalThis.pm || {};
   globalThis.pm.map = { undo: undoDrawing, clearLayers: clearDrawings };
   state.map.on('pm:create', ({ layer, shape }) => void persistCreatedLayer(layer, shape));
@@ -238,6 +290,7 @@ export async function initMapPaint() {
   window.addEventListener('local-drawings-changed', () => void renderMapDrawings());
   window.addEventListener('city-layer-data-changed', () => void renderMapDrawings());
   window.addEventListener('layer-state-dirty', renderSpatialQuery);
+  window.addEventListener('spatial-query-restore-requested', ({ detail }) => restoreSpatialQuery(detail?.query));
   window.addEventListener('city-layer-data-changed', updateRegionLabel);
   window.addEventListener('friend-walk-tickets', ({ detail }) => {
     friendLayer.clearLayers();

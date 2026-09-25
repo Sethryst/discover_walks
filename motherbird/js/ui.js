@@ -22,6 +22,7 @@ export function openAccountSettings() {
   openSheet('accountSheet');
 }
 export function closeSheets() {
+  const closingId = state.modalOpen;
   if (state.modalOpen === 'journalSheet') {
     window.dispatchEvent(new CustomEvent('journal-close-requested', { detail: { note: el('journalNote')?.value || '', walkId: el('journalForm')?.dataset.walkId || '' } }));
   }
@@ -32,7 +33,7 @@ export function closeSheets() {
   el('modalBackdrop')?.classList.add('hidden');
   document.querySelectorAll('.sheet').forEach((sheet) => sheet.classList.add('hidden'));
   if (state.draftMarker) { state.draftMarker.remove(); state.draftMarker = null; }
-  window.dispatchEvent(new CustomEvent('map-overlay-changed', { detail: { open: false } }));
+  window.dispatchEvent(new CustomEvent('map-overlay-changed', { detail: { open: false, id: closingId } }));
 }
 export function openSheet(id) {
   if (state.modalOpen === 'journalSheet' && id !== 'journalSheet') {

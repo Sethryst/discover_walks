@@ -7,6 +7,7 @@ import { renderArchive } from './archive.js';
 import { buildObservationRecord } from './observation-model.js';
 import { attachWalkArtifact } from './walk-context.js';
 import { requestCompanionContext } from './companion.js';
+import { appendRoomTrace } from './room-runtime.js';
 
 function observationIcon(iconName = 'camera') {
   return L.divIcon({ className: '', html: `<div class="wildlife-marker personal-observation-marker"><img src="./icons/${escapeHtml(iconName)}.svg" alt="" /></div>`, iconSize: [28, 28], iconAnchor: [14, 14] });
@@ -61,6 +62,7 @@ export async function saveObservation(event) {
       photo,
       location: state.draftObservationLocation,
       walkId: state.activeWalk?.id || null,
+      roomId: state.activeRoom?.id || null,
       coverage: null
     }),
     pointsAwarded: 0
@@ -70,6 +72,7 @@ export async function saveObservation(event) {
     await db.put('settings', state.settings);
   }
   await db.put('observations', observation);
+  if (observation.roomId) await appendRoomTrace(observation.roomId, { type: 'observation', refId: observation.id, location: observation.location });
   await attachWalkArtifact(observation, 'observation');
   requestCompanionContext('observe');
   await updateProfile((profile) => { profile.observationsLogged += 1; return 0; });

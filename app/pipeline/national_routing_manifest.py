@@ -20,6 +20,22 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def binary_artifacts(directory: Path, manifest: dict[str, Any], base_url: str | None) -> dict[str, dict[str, Any]] | None:
+    """Return a complete binary package only when every file is present and hashed."""
+    declared = manifest.get("artifacts") or {}
+    names = ("nodes.bin", "edges.bin", "adjacency.bin", "edge_geometry.bin", "edge_spatial_index.bin")
+    result = {}
+    for name in names:
+        path = directory / name
+        item = declared.get(name) or {}
+        if not path.is_file() or path.stat().st_size <= 0: return None
+        digest = sha256(path)
+        if item.get("bytes") is not None and int(item["bytes"]) != path.stat().st_size: return None
+        if item.get("sha256") and item["sha256"].replace("sha256:", "").lower() != digest: return None
+        result[name] = {"url": f"{base_url.rstrip('/')}/{name}" if base_url else f"cells/{{cell}}/{name}", "bytes": path.stat().st_size, "sha256": digest}
+    return result
+
+
 def build_manifest(plan: dict[str, Any], root: Path, *, graph_version: str = "motherbird-runtime-graph-v1",
                    map_available: bool = True, map_url: str = "./national-walk.pmtiles",
                    remote_base: str | None = None) -> dict[str, Any]:
@@ -45,18 +61,22 @@ def build_manifest(plan: dict[str, Any], root: Path, *, graph_version: str = "mo
             graph_bytes = int(remote.get("graphBytes", 0)) if verified else 0
         else:
             graph_bytes = graph.stat().st_size if verified else 0
+        binaries = binary_artifacts(directory, (remote or receipt), remote_base.rstrip('/') + f"/{cell['id']}" if remote_base else None)
+        binary_verified = bool(binaries and (remote or receipt).get("graphVersion", graph_version) == graph_version)
+        if binary_verified:
+            for artifact in binaries.values(): artifact["url"] = artifact["url"].replace("{cell}", cell["id"])
         entry = {
             "id": cell["id"], "cellId": cell["id"], "bounds": cell["bounds"], "clipBounds": cell.get("clipBounds"),
             "regionId": cell.get("regionId"), "cityId": cell.get("cityId"),
-            "graphPath": f"cells/{cell['id']}/runtime-graph.json" if verified else None,
+            "graphPath": None,
             "byteCount": graph_bytes, "graphHash": graph_hash,
             "graphVersion": ((remote or receipt).get("graphVersion", graph_version)), "sourceRelease": plan["release"],
             "compileStatus": ((remote or receipt).get("compileStatus", "complete") if verified else "missing"),
-            "availability": availability(map_available=map_available, graph_verified=verified),
+            "availability": availability(map_available=map_available, graph_verified=binary_verified),
             "artifacts": {
                 "map": {"url": map_url, "mode": "pmtiles_range"},
-                "graph": {"url": (remote_base.rstrip("/") + f"/{cell['id']}/runtime-graph.json" if remote_base else f"cells/{cell['id']}/runtime-graph.json"), "bytes": graph_bytes,
-                          "sha256": graph_hash, "graphVersion": ((remote or receipt).get("graphVersion", graph_version))},
+                "manifest": {"url": (remote_base.rstrip("/") + f"/{cell['id']}/manifest.json" if remote_base else f"cells/{cell['id']}/manifest.json")} if binary_verified else {},
+                **(binaries or {}),
             },
         }
         cells.append(entry)
