@@ -12,15 +12,13 @@ const actions = {
   library: [
     { id: 'library-field-guide', label: 'Field Guide', icon: './icons/book-open.svg', run: () => void openBackpack() },
     { id: 'journal', label: 'Journal', icon: './icons/grid.svg', run: () => void openJournal() },
-    { id: 'observe', label: 'Observations', icon: './icons/camera.svg', run: () => { openSheet('journalSheet'); document.getElementById('observeButton')?.click(); } },
+    { id: 'observe', label: 'Observations & audio notes', icon: './icons/camera.svg', run: () => { openSheet('journalSheet'); document.getElementById('observeButton')?.click(); } },
     { id: 'saved-places', label: 'Saved walks & places', icon: './icons/map-pin.svg', run: () => window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'maps', forceOpen: true } })) },
-    { id: 'cypher', label: 'Audio Notes', icon: './icons/music.svg', run: () => openSheet('geoCypherSheet') }
   ],
   me: [
     { id: 'me-companion', label: 'Companion', icon: './icons/heart.svg', run: () => window.dispatchEvent(new CustomEvent('companion-menu-requested')) },
     { id: 'me-draw', label: 'Draw & annotations', icon: './icons/pencil.svg', run: () => window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'draw', forceOpen: true } })) },
     { id: 'me-radio', label: 'Radio', icon: './icons/music.svg', run: () => window.dispatchEvent(new CustomEvent('radio-open-requested')) },
-    { id: 'alerts', label: 'Walking alerts', icon: './icons/alert-circle.svg', run: () => document.getElementById('locateChevron')?.click() },
     { id: 'offline-maps', label: 'Offline & maps', icon: './icons/map.svg', run: () => openSheet('backpackSheet') },
     { id: 'privacy', label: 'Data & privacy', icon: './icons/info.svg', run: () => { openSheet('backpackSheet'); document.querySelector('[data-guide-tab="online"]')?.click(); } },
     { id: 'help', label: 'App Help & Guide', icon: './icons/info.svg', run: () => openSheet('helpSheet') }
