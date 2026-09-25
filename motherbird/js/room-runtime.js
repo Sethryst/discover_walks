@@ -42,6 +42,7 @@ export async function openRoomForPlace(place) {
   const type = document.getElementById('roomType');
   const body = document.getElementById('roomBody');
   if (title) title.textContent = room.name;
+  if (title) title.dataset.roomId = room.id;
   if (type) type.textContent = `${room.type.replaceAll('-', ' ')} · ${room.visibility}`;
   if (body) body.textContent = room.visibility === 'private' ? 'This Room is private on this device. Add place-specific notes and audio here; publishing requires Field Edition.' : 'This Room is ready for place-specific experiences.';
   openSheet('roomSheet');

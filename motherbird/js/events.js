@@ -17,6 +17,7 @@ import { openObservation, saveObservation, setDraftObservationIcon } from './obs
 import { transcribeJournal, toggleJournalRecording, stopJournalCapture } from './journal-capture.js';
 import { renderNearbyPlaces, initJournalPane } from './journal-pane.js';
 import { openGeoCypher } from './geo-cypher.js';
+import { openRadioForContext } from './radio.js';
 import { initMessengerBird } from './messenger-bird.js';
 import { restartCoachMarks } from './coach.js';
 import { savePlannedRoute } from './saved-routes.js';
@@ -41,6 +42,7 @@ export function initEvents() {
   window.addEventListener('room-open-requested', (event) => void openRoomForPlace(event.detail?.place));
   el('roomAudioButton')?.addEventListener('click', () => void openGeoCypher());
   el('roomJournalButton')?.addEventListener('click', () => void openJournal());
+  el('roomRadioButton')?.addEventListener('click', () => openRadioForContext({ roomId: document.getElementById('roomTitle')?.dataset?.roomId || null }));
   bindMessengerBird();
   window.addEventListener('walk-poi-encounter', (event) => void import('./walk.js').then(({ recordPoiEncounter }) => recordPoiEncounter(event.detail?.poi, event.detail?.distance)));
   window.addEventListener('backpack-open-requested', openBackpack);

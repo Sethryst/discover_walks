@@ -25,6 +25,10 @@ export function contextualStations(manifest, context = {}) {
   return (manifest?.stations || manifest?.channels || []).filter((station) => stationMatchesPlace(station, context));
 }
 
+export function openRadioForContext(context = {}) {
+  window.dispatchEvent(new CustomEvent('radio-open-requested', { detail: { context } }));
+}
+
 const state = { manifest: FALLBACK_MANIFEST, channelId: 'x1', era: 1945, status: STATES.paused, queue: [], current: null, activeAudio: null, nextAudio: null, urls: new Set(), audioContext: null, lastDial: 1945, favorites: new Set(JSON.parse(localStorage.getItem(FAVORITES_KEY) || '[]')) };
 const el = (id) => document.getElementById(id);
 const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[char]));
@@ -90,6 +94,14 @@ function bind() {
   el('radioFavoriteButton')?.addEventListener('click', toggleFavorite);
   el('radioSaveButton')?.addEventListener('click', () => void saveCurrent().catch((error) => toast(error.message || 'Could not save this track.')));
   el('radioCloseButton')?.addEventListener('click', () => { state.activeAudio?.pause(); closeSheets(); });
-  window.addEventListener('radio-open-requested', () => { openSheet('radioSheet'); render(); });
+  window.addEventListener('radio-open-requested', ({ detail }) => {
+    const matches = contextualStations(state.manifest, detail?.context || {});
+    if (matches.length) {
+      const station = matches[0];
+      if (state.manifest.channels?.some((channel) => channel.id === station.id)) state.channelId = station.id;
+      state.current = station.tracks?.[0] || state.current;
+    }
+    openSheet('radioSheet'); render();
+  });
 }
 export async function initRadio() { bind(); await loadManifest(); if (!state.current) { state.current = chooseTrack(); render(); } }
