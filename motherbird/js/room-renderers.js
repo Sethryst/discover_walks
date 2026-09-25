@@ -5,7 +5,7 @@ const TYPE_COPY = {
   trail: ['Trail guide', 'A route-oriented Room for landmarks, observations, and walk traces.'],
   garden: ['Garden guide', 'A local coordinate workspace for beds, habitats, and seasonal notes.'],
   park: ['Park guide', 'A place-based workspace for entrances, paths, and nearby observations.'],
-  historic-site: ['History guide', 'A contextual Room for site history, sources, and visitor notes.'],
+  'historic-site': ['History guide', 'A contextual Room for site history, sources, and visitor notes.'],
   neighborhood: ['Neighborhood guide', 'A local Room for connected places and resident-curated walks.'],
   building: ['Place guide', 'A private place-based workspace for notes, audio, and visits.']
 };
