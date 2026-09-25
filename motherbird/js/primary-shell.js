@@ -85,7 +85,7 @@ export function initPrimaryShell() {
       const starred = isActionStarred(item.id);
       starBtn.className = `star-action-btn ${starred ? 'starred' : ''}`;
       starBtn.setAttribute('aria-label', `${starred ? 'Unstar' : 'Star'} ${item.label}`);
-      starBtn.innerHTML = `<img class="star-action-icon" src="./icons/star.svg" alt="" aria-hidden="true">`;
+      starBtn.innerHTML = starred ? '<span class="star-action-icon" aria-hidden="true">★</span>' : '<span class="star-action-icon" aria-hidden="true">☆</span>';
       starBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         void toggleStarAction({ id: item.id, label: item.label, icon: item.icon, action: item.run });
@@ -102,7 +102,7 @@ export function initPrimaryShell() {
       const starred = isActionStarred(starBtn.dataset.actionId);
       starBtn.classList.toggle('starred', starred);
       starBtn.setAttribute('aria-label', `${starred ? 'Unstar' : 'Star'} ${starBtn.parentElement?.querySelector('.shell-action-btn')?.textContent || 'action'}`);
-      starBtn.innerHTML = `<img src="./icons/star.svg" alt="" aria-hidden="true">`;
+      starBtn.innerHTML = starred ? '<span class="star-action-icon" aria-hidden="true">★</span>' : '<span class="star-action-icon" aria-hidden="true">☆</span>';
     });
   });
   window.addEventListener('radial-action-triggered', ({ detail }) => {
