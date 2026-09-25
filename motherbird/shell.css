@@ -80,6 +80,20 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
   font-weight: 700 !important;
   cursor: pointer;
 }
+
+/* Keep saved annotations visible beside the compact drawing rail. */
+.map-workspace-panel[data-destination="draw"] .draw-actions,
+.map-workspace-panel[data-destination="draw"] .artifact-heading,
+.map-workspace-panel[data-destination="draw"] .artifact-list,
+.map-workspace-panel[data-destination="draw"] #drawWorkspaceStatus {
+  display: grid !important; position: fixed !important; left: 78px !important;
+  width: min(300px, calc(100vw - 92px)) !important; pointer-events: auto !important;
+  visibility: visible !important; opacity: 1 !important; clip: auto !important; clip-path: none !important;
+}
+.map-workspace-panel[data-destination="draw"] .draw-actions { top: 50%; transform: translateY(-174px); }
+.map-workspace-panel[data-destination="draw"] .artifact-heading { top: 50%; transform: translateY(-122px); }
+.map-workspace-panel[data-destination="draw"] .artifact-list { top: calc(50% - 76px); max-height: 32dvh; overflow: auto; }
+.map-workspace-panel[data-destination="draw"] #drawWorkspaceStatus { top: calc(50% + 18dvh); }
 .map-workspace-panel[data-destination="draw"] .draw-shapes button:hover,
 .map-workspace-panel[data-destination="draw"] .draw-shapes button:focus-visible,
 .map-workspace-panel[data-destination="draw"] .draw-shapes button.active {
