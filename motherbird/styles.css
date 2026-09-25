@@ -549,3 +549,19 @@
   width: 48px !important;
   min-height: 48px !important;
 }
+@media (max-width: 720px) {
+  .draw-tools-collapsed .map-workspace-panel[data-destination="draw"] .draw-shapes {
+    left: max(8px, env(safe-area-inset-left)) !important;
+    top: 50% !important;
+    width: 52px !important;
+    max-height: calc(100dvh - 112px) !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    padding: 5px 3px !important;
+  }
+  .draw-tools-collapsed .map-workspace-panel[data-destination="draw"] .draw-shapes button {
+    width: 44px !important;
+    min-height: 42px !important;
+    flex: 0 0 42px !important;
+  }
+}
