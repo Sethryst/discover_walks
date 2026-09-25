@@ -7,6 +7,7 @@ import { markerPinHtml, markerVisual } from './poi-icons.js';
 import { generateTimeBasedPlan } from './planner.js';
 import { normalizePersonalCategory, upsertImportedPersonalData } from './personal-places.js';
 import { savePlannedRoute } from './saved-routes.js';
+import { createSpatialQuery, queryPrompt, saveSpatialQuery } from './spatial-query.js';
 
 const DRAW_COLOR = '#76558b';
 function readHiddenArtifacts() {
@@ -175,7 +176,14 @@ async function persistCreatedLayer(layer, shape) {
     const center = layer.getLatLng();
     geojson = globalThis.turf.circle([center.lng, center.lat], layer.getRadius() / 1000, { units: 'kilometers', steps: 72 });
   }
-  if (['Circle', 'Polygon', 'Rectangle'].includes(shape) && geojson?.geometry) { state.spatialQuery = { shape, geometry: geojson.geometry, id: crypto.randomUUID() }; state.spatialQueryDismissed = new Set(); state.spatialQuerySelected = new Set(); renderSpatialQuery(); toast('Spatial Query ready. Choose places to save, discover, dismiss, or route.'); }
+  if (['Circle', 'Polygon', 'Rectangle', 'Freehand', 'Line'].includes(shape) && geojson?.geometry) {
+    const query = createSpatialQuery({ shape, geometry: geojson.geometry, regionId: state.activeCity });
+    state.spatialQuery = query; state.spatialQueryDismissed = new Set(); state.spatialQuerySelected = new Set();
+    void saveSpatialQuery(query);
+    if (['Circle', 'Polygon', 'Rectangle'].includes(shape)) renderSpatialQuery();
+    el('drawWorkspaceStatus')?.insertAdjacentText('afterbegin', `${queryPrompt(query)} `);
+    toast(`${queryPrompt(query)} Spatial Query saved.`);
+  }
   const measurement = geometryMeasurement(geojson);
   try {
     await db.put('moments', { id: crypto.randomUUID(), type: 'drawing', title: `${shape || 'Map'} drawing`, city: state.activeCity, createdAt: new Date().toISOString(), body: { geojson, shape, measurement } });
