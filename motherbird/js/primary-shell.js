@@ -19,9 +19,12 @@ const actions = {
     { id: 'me-companion', label: 'Companion', icon: './icons/heart.svg', run: () => window.dispatchEvent(new CustomEvent('companion-menu-requested')) },
     { id: 'me-draw', label: 'Draw & annotations', icon: './icons/pencil.svg', run: () => window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'draw', forceOpen: true } })) },
     { id: 'me-radio', label: 'Radio', icon: './icons/music.svg', run: () => window.dispatchEvent(new CustomEvent('radio-open-requested')) },
-    { id: 'offline-maps', label: 'Offline & maps', icon: './icons/map.svg', run: () => openSheet('backpackSheet') },
-    { id: 'privacy', label: 'Data & privacy', icon: './icons/info.svg', run: () => { openSheet('backpackSheet'); document.querySelector('[data-guide-tab="online"]')?.click(); } },
-    { id: 'help', label: 'App Help & Guide', icon: './icons/info.svg', run: () => openSheet('helpSheet') }
+    { id: 'me-online', label: 'Online', icon: './icons/globe.svg', run: () => { openSheet('backpackSheet'); document.querySelector('[data-guide-tab="online"]')?.click(); } },
+    { id: 'me-advanced', label: 'Advanced', advanced: true, children: [
+      { id: 'offline-maps', label: 'Offline & maps', icon: './icons/map.svg', run: () => openSheet('backpackSheet') },
+      { id: 'privacy', label: 'Data & privacy', icon: './icons/info.svg', run: () => { openSheet('backpackSheet'); document.querySelector('[data-guide-tab="online"]')?.click(); } },
+      { id: 'help', label: 'App Help & Guide', icon: './icons/info.svg', run: () => openSheet('helpSheet') }
+    ] }
   ]
 };
 
@@ -68,7 +71,7 @@ export function initPrimaryShell() {
     }
     title.textContent = tab[0].toUpperCase() + tab.slice(1);
     list.replaceChildren();
-    for (const item of actions[tab] || []) {
+    const renderAction = (item) => {
       const row = document.createElement('div');
       row.className = 'shell-action-row';
 
@@ -92,7 +95,16 @@ export function initPrimaryShell() {
       });
 
       row.append(button, starBtn);
-      list.append(row);
+      return row;
+    };
+    for (const item of actions[tab] || []) {
+      if (item.advanced) {
+        const details = document.createElement('details');
+        details.className = 'shell-advanced-actions';
+        details.innerHTML = `<summary>${item.label}</summary>`;
+        item.children.forEach((child) => details.append(renderAction(child)));
+        list.append(details);
+      } else list.append(renderAction(item));
     }
     panel.classList.remove('hidden');
   };
