@@ -12,7 +12,7 @@ import { placeLight, publicPlaceSource, walkerDetails } from './place-details.js
 import { installedPackBounds } from './offline-view.js';
 import { isHistorySite, renderLearnHistory, setLearnView, setLearnScreen, setActiveWatershed, setBattlefieldEra, setBattlefieldYear, setBattlefieldSite, stepBattlefieldBack, setActiveLensItem, paintHistoricalTopo, stopHistoricalTopo } from './learn-history.js';
 import { setPoiVisited } from './poi-visit-tracking.js';
-import { addWalkWaypoint } from './walk.js';
+import { addWalkWaypoint, startWalk } from './walk.js';
 import { initMapsFolders, renderMapsLibrary } from './maps-folders.js';
 
 const FORMAT = 'walk-wildlife-plan-v1';
@@ -155,6 +155,10 @@ export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') 
     await renderLearnHistory(target, point);
     return;
   }
+  if (tab === 'discover') {
+    const saved = renderSavedDiscoverExperiences();
+    if (saved) { target.innerHTML = saved; return; }
+  }
   const ordered = sortGuideCardsByDistance(data.discover, point, (card) => (card.stopPlaceIds || []).map((id) => poiById.get(String(id))));
   const close = ordered.filter((card) => !point || card.distance <= 40233);
   const walks = nearbyWalks([...poiById.values()], point).filter((card) => !close.some((item) => item.stopPlaceIds?.includes(card.stopPlaceIds[0])));
@@ -167,6 +171,26 @@ export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') 
     return true;
   }).sort((a, b) => (a.distance ?? Infinity) - (b.distance ?? Infinity)).slice(0, 12);
   target.innerHTML = shown.length ? shown.map(discoverCard).join('') : '<p class="empty-state">No walkable places are available near this map view yet. Move the map or choose another area to explore.</p>';
+}
+
+function renderSavedDiscoverExperiences() {
+  const categories = state.personalPlaceCategories.filter((category) => category.id === 'discover' || category.id.startsWith('discover-'));
+  const places = state.personalPlaces || [];
+  const routes = state.savedRoutes || [];
+  const experiences = categories.map((category) => ({
+    category,
+    selected: places.filter((place) => (place.categoryId || place.category_id) === category.id),
+    route: routes.find((item) => item.discoverCategoryId === category.id) || routes.find((item) => item.title === category.name)
+  })).filter((item) => item.selected.length || item.route);
+  if (!experiences.length) return '';
+  return `<section class="saved-discover-library"><p class="learn-kicker">Saved Discover experiences</p>${experiences.map(({ category, selected, route }) => {
+    const duration = route?.durationSeconds ? `${Math.round(route.durationSeconds / 60)} min` : '';
+    const distance = route?.distanceMeters ? `${(route.distanceMeters / 1609.344).toFixed(1)} mi` : '';
+    const meta = [selected.length ? `${selected.length} place${selected.length === 1 ? '' : 's'}` : '', distance, duration].filter(Boolean).join(' · ');
+    const stops = selected.map((place) => `<li>${escapeHtml(place.name || 'Saved place')}</li>`).join('');
+    const action = route ? `<button class="primary-button" type="button" data-start-saved-discover="${escapeHtml(route.id)}">Start walk</button>` : selected.length ? `<button class="primary-button" type="button" data-plan-saved-discover="${escapeHtml(category.id)}">Start route planning</button>` : '<span class="empty-state">Route unavailable</span>';
+    return `<article class="guide-card saved-discover-card"><small>Discover${meta ? ` · ${escapeHtml(meta)}` : ''}</small><h3>${escapeHtml(category.name)}</h3>${stops ? `<ul>${stops}</ul>` : '<p class="empty-state">No saved places are available for this experience.</p>'}<div class="learn-site-actions">${action}<button class="secondary-button" type="button" data-view-saved-discover="${escapeHtml(category.id)}">View on map</button></div></article>`;
+  }).join('')}</section>`;
 }
 function planForCard(card) {
   return { pack_id: state.activeCity, title: card.title, reason: card.reason, stop_place_ids: card.stopPlaceIds || [], ...(card.journeyId ? { journeyId: card.journeyId } : {}) };
@@ -275,6 +299,37 @@ export function initFieldGuideFilters() {
     }
   });
   document.addEventListener('click', (event) => {
+    const startSaved = event.target.closest('[data-start-saved-discover]');
+    if (startSaved) {
+      const route = state.savedRoutes.find((item) => item.id === startSaved.dataset.startSavedDiscover);
+      if (!route) { toast('This saved route is no longer available.'); return; }
+      const places = (state.personalPlaces || []).filter((place) => place.categoryId === route.discoverCategoryId);
+      state.plannedRoute = { ...route, stops: places.map((place) => ({ id: place.sourcePoiId || place.id, name: place.name, lat: place.location.lat, lng: place.location.lng })), routeMode: route.routeMode || 'round-trip' };
+      paintWalkConcept(state.plannedRoute);
+      closeSheets();
+      void startWalk({ routeMode: state.plannedRoute.routeMode });
+      return;
+    }
+    const planSaved = event.target.closest('[data-plan-saved-discover]');
+    if (planSaved) {
+      const places = (state.personalPlaces || []).filter((place) => place.categoryId === planSaved.dataset.planSavedDiscover);
+      if (!places.length) { toast('No saved places are available for route planning.'); return; }
+      document.querySelector('input[name="routeMode"][value="auto-round-trip"]')?.click();
+      import('./planner.js').then(({ generateTimeBasedPlan }) => generateTimeBasedPlan({ stops: places.map((place) => ({ id: place.sourcePoiId || place.id, name: place.name, lat: place.location.lat, lng: place.location.lng })), title: state.personalPlaceCategories.find((item) => item.id === planSaved.dataset.planSavedDiscover)?.name || 'Discover walk', reason: 'Discover saved places' }));
+      return;
+    }
+    const viewSaved = event.target.closest('[data-view-saved-discover]');
+    if (viewSaved) {
+      const categoryId = viewSaved.dataset.viewSavedDiscover;
+      const route = state.savedRoutes.find((item) => item.discoverCategoryId === categoryId);
+      const places = (state.personalPlaces || []).filter((place) => place.categoryId === categoryId);
+      const points = [...(route?.coordinates || []), ...places.map((place) => [place.location.lat, place.location.lng])];
+      if (!points.length || !state.map) { toast('This Discover experience has no map location yet.'); return; }
+      closeSheets(); state.map.fitBounds(L.latLngBounds(points), { padding: [42, 42], maxZoom: 16 });
+      if (route) { state.plannedRoute = { ...route, stops: places.map((place) => ({ name: place.name, lat: place.location.lat, lng: place.location.lng })) }; paintWalkConcept(state.plannedRoute); }
+      toast('Showing this Discover experience on the map.');
+      return;
+    }
     const preview = event.target.closest('[data-guide-preview]');
     if (preview) { void previewCard(preview.dataset.guidePreview); return; }
     const cardElement = event.target.closest('[data-guide-card]');

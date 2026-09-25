@@ -5,7 +5,7 @@ import db from './storage.js';
 import { displayPoiName, isVisiblePoi, poiTags } from './poi.js';
 import { markerPinHtml, markerVisual } from './poi-icons.js';
 import { generateTimeBasedPlan } from './planner.js';
-import { ensurePersonalCategory, upsertImportedPersonalData } from './personal-places.js';
+import { normalizePersonalCategory, upsertImportedPersonalData } from './personal-places.js';
 import { savePlannedRoute } from './saved-routes.js';
 
 const DRAW_COLOR = '#76558b';
@@ -77,9 +77,15 @@ function renderSpatialQuery() {
       const title = window.prompt('Name this Discover experience', state.plannedRoute?.title || 'Spatial Query walk');
       if (title === null) return;
       try {
-        const category = await ensurePersonalCategory('Discover');
+        const baseId = `discover-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 42) || 'experience'}`;
+        let categoryId = baseId; let suffix = 2;
+        while (state.personalPlaceCategories.some((item) => item.id === categoryId)) categoryId = `${baseId}-${suffix++}`;
+        const category = normalizePersonalCategory({ id: categoryId, name: title, icon: 'walk', color: '#76558b', description: 'Saved Discover experience.' });
+        await db.put('personal_place_categories', category);
+        state.personalPlaceCategories.push(category);
+        state.layerFilters.personal[category.id] = true;
         await upsertImportedPersonalData([], selected.map((poi) => ({ id: `discover:${poi.id}`, name: displayPoiName(poi), location: { lat: poi.lat, lng: poi.lng }, categoryId: category.id, sourcePoiId: poi.id, packId: state.activeCity, state: 'saved', private: true })), 'skip');
-        if (state.plannedRoute?.coordinates?.length >= 2) await savePlannedRoute(state.plannedRoute, { title, notes: `Spatial Query · ${selected.length} selected places` });
+        if (state.plannedRoute?.coordinates?.length >= 2) await savePlannedRoute(state.plannedRoute, { title, discoverCategoryId: category.id, notes: `Spatial Query · ${selected.length} selected places` });
         toast(state.plannedRoute?.coordinates?.length >= 2 ? 'Discover walk saved.' : 'Discover collection saved.');
       } catch (error) { toast(error.message || 'Discover experience could not be saved.'); }
     };

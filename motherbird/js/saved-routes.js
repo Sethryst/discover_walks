@@ -11,7 +11,11 @@ export function normalizeSavedRoute(route = {}, now = new Date().toISOString()) 
     notes: String(route.notes || '').trim().slice(0, 2000),
     icon: String(route.icon || 'route').trim().slice(0, 30),
     color: /^#[0-9a-f]{6}$/i.test(route.color || '') ? route.color : '#173c35',
-    routeMode: String(route.routeMode || 'round-trip'), coordinates,
+    routeMode: String(route.routeMode || 'round-trip'),
+    discoverCategoryId: route.discoverCategoryId ? String(route.discoverCategoryId) : null,
+    distanceMeters: Number.isFinite(Number(route.distanceMeters)) ? Number(route.distanceMeters) : null,
+    durationSeconds: Number.isFinite(Number(route.durationSeconds)) ? Number(route.durationSeconds) : null,
+    coordinates,
     destination: route.destination && Number.isFinite(Number(route.destination.lat)) && Number.isFinite(Number(route.destination.lng)) ? { lat: Number(route.destination.lat), lng: Number(route.destination.lng) } : null,
     createdAt: route.createdAt || now, updatedAt: now, saved: true
   };
