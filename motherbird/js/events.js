@@ -112,7 +112,7 @@ function setMapWorkspace(destination = '', { toggle = true, forceOpen = false } 
     button.setAttribute('aria-expanded', String(active));
   });
   document.querySelectorAll('[data-map-panel]').forEach((section) => section.classList.toggle('hidden', section.dataset.mapPanel !== next));
-  if (next) el('mapWorkspaceTitle').textContent = next === 'maps' ? 'My Maps' : next[0].toUpperCase() + next.slice(1);
+  if (next) el('mapWorkspaceTitle').textContent = next === 'maps' ? 'My Places' : next[0].toUpperCase() + next.slice(1);
   window.dispatchEvent(new CustomEvent('map-workspace-changed', { detail: { destination: next, open: Boolean(next) } }));
 }
 
@@ -300,7 +300,7 @@ function bindWalkControls() {
     const title = window.prompt('Name this route', state.plannedRoute.title || 'Saved route');
     if (title === null) return;
     const notes = window.prompt('Add route notes (optional)', '') ?? '';
-    try { await savePlannedRoute(state.plannedRoute, { title, notes }); toast('Route saved in My Maps.'); }
+    try { await savePlannedRoute(state.plannedRoute, { title, notes }); toast('Route saved in My Places.'); }
     catch (error) { toast(error.message || 'Route could not be saved.'); }
   });
   el('companionButton')?.addEventListener('click', async () => {

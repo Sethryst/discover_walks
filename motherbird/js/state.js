@@ -61,6 +61,8 @@ export const state = {
   mapPaintActive: false,
   mapDrawingHistory: [],
   localDrawings: [],
+  spatialQuery: null,
+  spatialQueryLayer: null,
   fieldGuidePreviewMarker: null,
   federalBoundaryOverlay: null,
   historicalTopoLayer: null,

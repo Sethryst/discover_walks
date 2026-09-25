@@ -2,6 +2,8 @@ import { state } from './state.js';
 import { el, cityLabel } from './utils.js';
 import { toast } from './ui.js';
 import db from './storage.js';
+import { displayPoiName, isVisiblePoi, poiTags } from './poi.js';
+import { markerPinHtml, markerVisual } from './poi-icons.js';
 
 const DRAW_COLOR = '#76558b';
 function readHiddenArtifacts() {
@@ -20,6 +22,29 @@ function saveHiddenArtifacts() {
 
 const hiddenArtifacts = readHiddenArtifacts();
 let freehandActive = false;
+function queryCategory(poi) {
+  const tags = poiTags(poi);
+  if (tags.includes('event')) return 'news';
+  if (tags.some((tag) => ['coffee', 'coffee_shop', 'cafe', 'market', 'farmers_market', 'grocery', 'supermarket', 'convenience', 'restaurant', 'fast_food'].includes(tag))) return 'cuisine';
+  if (tags.some((tag) => ['park', 'nature', 'wildlife', 'water', 'water_access', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad', 'trail', 'history', 'history_landmark', 'history_monument', 'history_museum', 'history_cemetery', 'history_marker', 'art', 'public_art'].includes(tag))) return 'recreation';
+  return null;
+}
+function renderSpatialQuery() {
+  if (!state.map || !state.spatialQuery) return;
+  if (!state.spatialQueryLayer) state.spatialQueryLayer = L.layerGroup().addTo(state.map);
+  state.spatialQueryLayer.clearLayers();
+  (state.cityPois[state.activeCity] || []).filter(isVisiblePoi).filter((poi) => {
+    const category = queryCategory(poi);
+    if (!category || state.layerLights?.[category] === false) return false;
+    return globalThis.turf?.booleanPointInPolygon([poi.lng, poi.lat], state.spatialQuery.geometry);
+  }).forEach((poi) => {
+    const category = queryCategory(poi);
+    const marker = L.marker([poi.lat, poi.lng], { icon: L.divIcon({ className: '', html: markerPinHtml(markerVisual({ poi, light: category })), iconSize: [27, 27], iconAnchor: [13, 13] }) });
+    marker.bindPopup(`<strong>${String(displayPoiName(poi)).replace(/[<>]/g, '')}</strong><small>Spatial query · ${category}</small><br><button type="button" class="save-poi-button" data-save-query-poi="${String(poi.id).replace(/[^\w:-]/g, '')}">Save to My Places</button>`);
+    marker.on('popupopen', () => marker.getPopup()?.getElement()?.querySelector('[data-save-query-poi]')?.addEventListener('click', () => window.dispatchEvent(new CustomEvent('personal-place-create-requested', { detail: { sourcePoi: poi, location: { lat: poi.lat, lng: poi.lng }, name: displayPoiName(poi) } }))));
+    marker.addTo(state.spatialQueryLayer);
+  });
+}
 
 function setActive(active) {
   state.mapPaintActive = active;
@@ -103,6 +128,7 @@ async function persistCreatedLayer(layer, shape) {
     const center = layer.getLatLng();
     geojson = globalThis.turf.circle([center.lng, center.lat], layer.getRadius() / 1000, { units: 'kilometers', steps: 72 });
   }
+  if (['Circle', 'Polygon', 'Rectangle'].includes(shape) && geojson?.geometry) { state.spatialQuery = { shape, geometry: geojson.geometry }; renderSpatialQuery(); toast('Spatial query ready. REC, NEWS, and CUISINE control what appears inside it.'); }
   const measurement = geometryMeasurement(geojson);
   try {
     await db.put('moments', { id: crypto.randomUUID(), type: 'drawing', title: `${shape || 'Map'} drawing`, city: state.activeCity, createdAt: new Date().toISOString(), body: { geojson, shape, measurement } });
@@ -138,6 +164,8 @@ function exportMapArtifacts() {
 export async function initMapPaint() {
   const button = el('mapPencilButton');
   if (!button || !state.map || !state.map.pm) return;
+  const initialLabels = { Line: 'Test route', Freehand: 'Sketch area', Polygon: 'Investigate territory', Rectangle: 'Define area', Circle: 'Explore area' };
+  document.querySelectorAll('[data-draw-shape]').forEach((item) => { const label = initialLabels[item.dataset.drawShape]; if (label) item.querySelector('span:last-child').textContent = label; });
   const updateRegionLabel = () => { const label = el('drawRegionLabel'); if (label) label.textContent = cityLabel(state.activeCity) || 'Installed region'; };
   updateRegionLabel();
   state.mapPaintLayer = L.featureGroup().addTo(state.map);
@@ -162,6 +190,7 @@ export async function initMapPaint() {
   });
   window.addEventListener('local-drawings-changed', () => void renderMapDrawings());
   window.addEventListener('city-layer-data-changed', () => void renderMapDrawings());
+  window.addEventListener('layer-state-dirty', renderSpatialQuery);
   window.addEventListener('city-layer-data-changed', updateRegionLabel);
   window.addEventListener('friend-walk-tickets', ({ detail }) => {
     friendLayer.clearLayers();
@@ -175,6 +204,8 @@ export async function initMapPaint() {
     const tool = event.target.closest('[data-draw-shape]'); if (!tool) return;
     const shapes = { Marker: 'Marker', Line: 'Line', Freehand: 'Freehand', Polygon: 'Polygon', Rectangle: 'Rectangle', Circle: 'Circle' };
     const shape = shapes[tool.dataset.drawShape]; if (!shape) return;
+    const labels = { Line: 'Test route', Freehand: 'Sketch area', Polygon: 'Investigate territory', Rectangle: 'Define area', Circle: 'Explore area' };
+    if (labels[shape]) tool.querySelector('span:last-child').textContent = labels[shape];
     setActive(true); state.map.pm.disableDraw(); freehandActive = shape === 'Freehand';
     if (!freehandActive) state.map.pm.enableDraw(shape, { snappable: true, finishOn: 'dblclick' });
     document.querySelectorAll('[data-draw-shape]').forEach((item) => item.classList.toggle('active', item === tool));
