@@ -4,6 +4,7 @@ import { toast } from './ui.js';
 import db from './storage.js';
 import { displayPoiName, isVisiblePoi, poiTags } from './poi.js';
 import { markerPinHtml, markerVisual } from './poi-icons.js';
+import { generateTimeBasedPlan } from './planner.js';
 
 const DRAW_COLOR = '#76558b';
 function readHiddenArtifacts() {
@@ -33,17 +34,40 @@ function renderSpatialQuery() {
   if (!state.map || !state.spatialQuery) return;
   if (!state.spatialQueryLayer) state.spatialQueryLayer = L.layerGroup().addTo(state.map);
   state.spatialQueryLayer.clearLayers();
-  (state.cityPois[state.activeCity] || []).filter(isVisiblePoi).filter((poi) => {
+  const results = (state.cityPois[state.activeCity] || []).filter(isVisiblePoi).filter((poi) => {
     const category = queryCategory(poi);
     if (!category || state.layerLights?.[category] === false) return false;
     return globalThis.turf?.booleanPointInPolygon([poi.lng, poi.lat], state.spatialQuery.geometry);
-  }).forEach((poi) => {
+  }).filter((poi) => !state.spatialQueryDismissed.has(String(poi.id)));
+  state.spatialQueryResults = results;
+  results.forEach((poi) => {
     const category = queryCategory(poi);
     const marker = L.marker([poi.lat, poi.lng], { icon: L.divIcon({ className: '', html: markerPinHtml(markerVisual({ poi, light: category })), iconSize: [27, 27], iconAnchor: [13, 13] }) });
-    marker.bindPopup(`<strong>${String(displayPoiName(poi)).replace(/[<>]/g, '')}</strong><small>Spatial query · ${category}</small><br><button type="button" class="save-poi-button" data-save-query-poi="${String(poi.id).replace(/[^\w:-]/g, '')}">Save to My Places</button>`);
-    marker.on('popupopen', () => marker.getPopup()?.getElement()?.querySelector('[data-save-query-poi]')?.addEventListener('click', () => window.dispatchEvent(new CustomEvent('personal-place-create-requested', { detail: { sourcePoi: poi, location: { lat: poi.lat, lng: poi.lng }, name: displayPoiName(poi) } }))));
+    const id = String(poi.id).replace(/[^\w:-]/g, '');
+    const selected = state.spatialQuerySelected.has(String(poi.id));
+    marker.bindPopup(`<strong>${String(displayPoiName(poi)).replace(/[<>]/g, '')}</strong><small>Spatial Query · ${category || 'place'}</small><div class="spatial-query-actions"><button type="button" data-query-save="${id}">Save</button><button type="button" data-query-discover="${id}">Add to Discover</button><button type="button" data-query-dismiss="${id}">Dismiss</button><button type="button" data-query-route="${id}">Route</button><label><input type="checkbox" data-query-select="${id}" ${selected ? 'checked' : ''}/> Walk stop</label></div>`);
+    marker.on('popupopen', () => {
+      const root = marker.getPopup()?.getElement(); if (!root) return;
+      root.querySelector('[data-query-save]')?.addEventListener('click', () => window.dispatchEvent(new CustomEvent('personal-place-create-requested', { detail: { sourcePoi: poi, location: { lat: poi.lat, lng: poi.lng }, name: displayPoiName(poi) } })));
+      root.querySelector('[data-query-discover]')?.addEventListener('click', async () => {
+        const categoryName = 'Discover';
+        const categoryId = 'discover';
+        const detail = { sourcePoi: poi, location: { lat: poi.lat, lng: poi.lng }, name: displayPoiName(poi), categoryId, categoryName };
+        window.dispatchEvent(new CustomEvent('personal-place-create-requested', { detail }));
+      });
+      root.querySelector('[data-query-dismiss]')?.addEventListener('click', () => { state.spatialQueryDismissed.add(String(poi.id)); marker.closePopup(); renderSpatialQuery(); });
+      root.querySelector('[data-query-route]')?.addEventListener('click', () => { document.querySelector('input[name="routeMode"][value="point-to-point"]')?.click(); state.plannerEnd = { lat: poi.lat, lng: poi.lng }; window.dispatchEvent(new CustomEvent('planner-point-selected')); });
+      root.querySelector('[data-query-select]')?.addEventListener('change', (event) => { event.target.checked ? state.spatialQuerySelected.add(String(poi.id)) : state.spatialQuerySelected.delete(String(poi.id)); renderSpatialQuery(); });
+    });
     marker.addTo(state.spatialQueryLayer);
   });
+  const status = el('drawWorkspaceStatus');
+  if (status && state.spatialQuery) {
+    const button = status.querySelector('[data-query-walk-selected]') || document.createElement('button');
+    button.type = 'button'; button.dataset.queryWalkSelected = 'true'; button.className = 'secondary-button'; button.textContent = `Start walk with ${state.spatialQuerySelected.size} selected place${state.spatialQuerySelected.size === 1 ? '' : 's'}`; button.disabled = state.spatialQuerySelected.size < 2;
+    button.onclick = () => { const stops = state.spatialQueryResults.filter((poi) => state.spatialQuerySelected.has(String(poi.id))); document.querySelector('input[name="routeMode"][value="auto-round-trip"]')?.click(); void generateTimeBasedPlan({ stops, title: 'Spatial Query walk', reason: `Spatial Query · ${stops.length} selected places` }); };
+    if (!button.parentElement) status.append(button);
+  }
 }
 
 function setActive(active) {
@@ -128,7 +152,7 @@ async function persistCreatedLayer(layer, shape) {
     const center = layer.getLatLng();
     geojson = globalThis.turf.circle([center.lng, center.lat], layer.getRadius() / 1000, { units: 'kilometers', steps: 72 });
   }
-  if (['Circle', 'Polygon', 'Rectangle'].includes(shape) && geojson?.geometry) { state.spatialQuery = { shape, geometry: geojson.geometry }; renderSpatialQuery(); toast('Spatial query ready. REC, NEWS, and CUISINE control what appears inside it.'); }
+  if (['Circle', 'Polygon', 'Rectangle'].includes(shape) && geojson?.geometry) { state.spatialQuery = { shape, geometry: geojson.geometry, id: crypto.randomUUID() }; state.spatialQueryDismissed = new Set(); state.spatialQuerySelected = new Set(); renderSpatialQuery(); toast('Spatial Query ready. Choose places to save, discover, dismiss, or route.'); }
   const measurement = geometryMeasurement(geojson);
   try {
     await db.put('moments', { id: crypto.randomUUID(), type: 'drawing', title: `${shape || 'Map'} drawing`, city: state.activeCity, createdAt: new Date().toISOString(), body: { geojson, shape, measurement } });

@@ -129,6 +129,18 @@ export async function ensureDefaultPersonalCategory() {
   return category;
 }
 
+export async function ensurePersonalCategory(name = 'Discover') {
+  const label = String(name || 'Discover').trim() || 'Discover';
+  const id = slugifyCategory(label);
+  const existing = state.personalPlaceCategories.find((category) => category.id === id || category.name.toLocaleLowerCase() === label.toLocaleLowerCase());
+  if (existing) return existing;
+  const category = normalizePersonalCategory({ id, name: label, icon: 'map-pin', color: '#76558b', description: 'Places added from Spatial Queries.' });
+  await db.put('personal_place_categories', category);
+  state.personalPlaceCategories.push(category);
+  state.layerFilters.personal[category.id] = true;
+  return category;
+}
+
 export async function initPersonalPlaces() {
   [state.personalPlaceCategories, state.personalPlaces] = await Promise.all([
     db.all('personal_place_categories'), db.all('personal_places')
@@ -639,7 +651,11 @@ function bindPersonalPlaceControls() {
   el('addAdvancedPlaceButton')?.addEventListener('click', () => openPersonalPlaceForm({ draft: { advancedOnly: true, visibility: 'private', light: 'personal' } }));
   if (el('advancedPlacesToggle')) el('advancedPlacesToggle').checked = Boolean(state.settings.showAdvancedPlaces);
   el('advancedPlacesToggle')?.addEventListener('change', async (event) => { state.settings.showAdvancedPlaces = event.target.checked; await db.put('settings', state.settings); renderPersonalPlacesOnMap(); renderPersonalPlacesPanel(); window.dispatchEvent(new CustomEvent('layer-state-dirty')); });
-  window.addEventListener('personal-place-create-requested', (event) => openPersonalPlaceForm(event.detail || {}));
+  window.addEventListener('personal-place-create-requested', async (event) => {
+    const detail = event.detail || {};
+    if (detail.categoryName) detail.categoryId = (await ensurePersonalCategory(detail.categoryName)).id;
+    openPersonalPlaceForm(detail);
+  });
   window.addEventListener('personal-place-location-selected', (event) => finishPersonalPlaceCrosshair(event.detail));
   window.addEventListener('public-marker-focus-requested', (event) => {
     const marker = state.publicMarkers.find((candidate) => candidate.id === event.detail?.markerId);
