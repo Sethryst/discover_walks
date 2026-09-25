@@ -55,7 +55,7 @@ function renderSpatialQuery() {
   const resultIds = results.map((poi) => String(poi.id));
   if (state.spatialQuery.status !== 'ready' || JSON.stringify(state.spatialQuery.resultIds || []) !== JSON.stringify(resultIds)) {
     state.spatialQuery = { ...state.spatialQuery, status: 'ready', resultIds };
-    void saveSpatialQuery(state.spatialQuery);
+    void saveSpatialQuery(state.spatialQuery).then(() => renderSpatialQueryHistory());
   }
   results.forEach((poi) => {
     const category = queryCategory(poi);
@@ -175,6 +175,19 @@ function renderArtifactList() {
     row.append(name, toggle, remove); list.append(row);
   }
 }
+async function renderSpatialQueryHistory() {
+  const status = el('drawWorkspaceStatus'); if (!status) return;
+  let details = status.querySelector('[data-spatial-query-history]');
+  if (!details) { details = document.createElement('details'); details.dataset.spatialQueryHistory = 'true'; details.className = 'spatial-query-history'; status.prepend(details); }
+  const queries = (await listSpatialQueries()).filter((query) => !query.regionId || query.regionId === state.activeCity).sort((a, b) => Date.parse(b.createdAt || 0) - Date.parse(a.createdAt || 0)).slice(0, 8);
+  details.innerHTML = `<summary>Saved Spatial Queries (${queries.length})</summary>`;
+  const list = document.createElement('div');
+  queries.forEach((query) => {
+    const button = document.createElement('button'); button.type = 'button'; button.className = 'secondary-button'; button.textContent = `${query.shape} · ${query.resultIds?.length || 0} results`;
+    button.addEventListener('click', () => { state.spatialQuery = query; state.spatialQueryDismissed = new Set(); state.spatialQuerySelected = new Set(); renderSpatialQuery(); }); list.append(button);
+  });
+  details.append(list);
+}
 
 async function persistCreatedLayer(layer, shape) {
   if (shape === 'Marker') {
@@ -193,7 +206,7 @@ async function persistCreatedLayer(layer, shape) {
   if (['Circle', 'Polygon', 'Rectangle', 'Freehand', 'Line'].includes(shape) && geojson?.geometry) {
     const query = createSpatialQuery({ shape, geometry: geojson.geometry, regionId: state.activeCity });
     state.spatialQuery = query; state.spatialQueryDismissed = new Set(); state.spatialQuerySelected = new Set();
-    void saveSpatialQuery(query);
+    void saveSpatialQuery(query).then(() => renderSpatialQueryHistory());
     if (['Circle', 'Polygon', 'Rectangle', 'Freehand', 'Line'].includes(shape)) renderSpatialQuery();
     el('drawWorkspaceStatus')?.insertAdjacentText('afterbegin', `${queryPrompt(query)} `);
     toast(`${queryPrompt(query)} Spatial Query saved.`);
@@ -248,6 +261,7 @@ export async function initMapPaint() {
   }
   await renderMapDrawings();
   if (latestQuery) renderSpatialQuery();
+  await renderSpatialQueryHistory();
   globalThis.pm = globalThis.pm || {};
   globalThis.pm.map = { undo: undoDrawing, clearLayers: clearDrawings };
   state.map.on('pm:create', ({ layer, shape }) => void persistCreatedLayer(layer, shape));
