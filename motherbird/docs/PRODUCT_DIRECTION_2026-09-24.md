@@ -768,3 +768,11 @@ Discover Walks is becoming a system for forming a relationship with the physical
 - Radio adds an independent ambient layer.
 
 The product’s strongest distinction is not any individual feature. It is the relationship among these layers: structured world knowledge, active questioning, personal memory, and deeper entry into place.
+
+## 16. Audio Notes, Radio, and Rooms clarification
+
+The former Geo Cypher prototype is presented to users as **Audio Notes**. Audio Notes are private, local-first recordings attached to a place or walk. They remain on the device unless the user explicitly publishes them through Bird Note or attaches them to a shared Room. The existing signed-manifest and on-demand audio stores remain useful implementation details, but Geo Cypher is not a public social product by default.
+
+Radio remains a separate listening system, but stations may be contextual as well as ambient. A station can be featured by a POI, Room, route, or region. For example, a museum Room may expose a guided-walkthrough station without converting the station into an ordinary map pin.
+
+Rooms should begin as local/private or bundled editorial experiences. Public Rooms and shared place traces are Field Edition capabilities, gated behind the subscription boundary because they require durable ownership, media storage, permissions, moderation, deletion, and database-backed delivery.

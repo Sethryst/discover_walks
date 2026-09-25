@@ -24,7 +24,8 @@ export const db = (() => {
     // causing app boot to stop before event handlers were registered.
     { version: 14, risk: 'additive', description: 'Repair missing local stores from earlier installations.', apply: (target) => [...LEGACY_STORES, 'geo_cypher_manifests', 'geo_cypher_audio'].forEach((name) => { if (!target.objectStoreNames.contains(name)) target.createObjectStore(name, { keyPath: 'id' }); }) },
     { version: 15, risk: 'additive', description: 'Add editable local saved routes.', apply: (target) => { if (!target.objectStoreNames.contains('saved_routes')) target.createObjectStore('saved_routes', { keyPath: 'id' }); } },
-    { version: 16, risk: 'additive', description: 'Add local radio manifests, playback state, saved tracks, and transition assets.', apply: (target) => ['radio_manifests', 'radio_playback_state', 'radio_saved_tracks', 'radio_transition_assets'].forEach((name) => { if (!target.objectStoreNames.contains(name)) target.createObjectStore(name, { keyPath: 'id' }); }) }
+    { version: 16, risk: 'additive', description: 'Add local radio manifests, playback state, saved tracks, and transition assets.', apply: (target) => ['radio_manifests', 'radio_playback_state', 'radio_saved_tracks', 'radio_transition_assets'].forEach((name) => { if (!target.objectStoreNames.contains(name)) target.createObjectStore(name, { keyPath: 'id' }); }) },
+    { version: 17, risk: 'additive', description: 'Add local Spatial Query and Room records.', apply: (target) => ['spatial_queries', 'rooms'].forEach((name) => { if (!target.objectStoreNames.contains(name)) target.createObjectStore(name, { keyPath: 'id' }); }) }
   ]);
 
   async function installedVersion() {
@@ -100,7 +101,7 @@ export const db = (() => {
         // cloud backup, public markers, and county additions.
         // Durable local operation outbox for a future, explicitly enabled county sync.
         // It is never read by the existing aggregate-profile sync.
-        // Geo Cypher keeps audio and cryptographic identity local in this
+        // Audio Notes keep audio and cryptographic identity local in this
         // prototype. A future public transport can publish signed manifests
         // without coupling raw media to the journal or profile backup paths.
       };
@@ -117,7 +118,7 @@ export const db = (() => {
   function remove(name, id) { if (!database) { memoryStore(name).delete(id); return Promise.resolve(); } return new Promise((resolve, reject) => {const r = store(name, 'readwrite').delete(id); r.onsuccess = () => resolve(); r.onerror = () => reject(r.error); }); }
   function clearAll() {
     if (!database) { memoryStores.forEach((items) => items.clear()); return Promise.resolve(); }
-    return Promise.all(['walks', 'saved_routes', 'observations', 'moments', 'profile', 'settings', 'poi_metadata', 'neighborhood_discoveries', 'walk_drafts', 'walk_events', 'personal_places', 'personal_place_categories', 'layer_settings', 'voice_notes', 'journal_audio', 'county_additions', 'notification_state', 'spatial_local_operations', 'geo_cyphers', 'geo_cypher_keys', 'geo_cypher_events', 'geo_cypher_manifests', 'geo_cypher_audio', 'radio_manifests', 'radio_playback_state', 'radio_saved_tracks', 'radio_transition_assets'].map((name) => new Promise((resolve, reject) => {
+    return Promise.all(['walks', 'saved_routes', 'observations', 'moments', 'profile', 'settings', 'poi_metadata', 'neighborhood_discoveries', 'walk_drafts', 'walk_events', 'personal_places', 'personal_place_categories', 'layer_settings', 'voice_notes', 'journal_audio', 'county_additions', 'notification_state', 'spatial_local_operations', 'geo_cyphers', 'geo_cypher_keys', 'geo_cypher_events', 'geo_cypher_manifests', 'geo_cypher_audio', 'radio_manifests', 'radio_playback_state', 'radio_saved_tracks', 'radio_transition_assets', 'spatial_queries', 'rooms'].map((name) => new Promise((resolve, reject) => {
     const r = store(name, 'readwrite').clear(); r.onsuccess = resolve; r.onerror = () => reject(r.error);
     })));
   }

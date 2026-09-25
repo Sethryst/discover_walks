@@ -14,7 +14,7 @@ const actions = {
     { id: 'journal', label: 'Journal', icon: './icons/grid.svg', run: () => void openJournal() },
     { id: 'observe', label: 'Observations', icon: './icons/camera.svg', run: () => { openSheet('journalSheet'); document.getElementById('observeButton')?.click(); } },
     { id: 'saved-places', label: 'Saved walks & places', icon: './icons/map-pin.svg', run: () => document.querySelector('[data-map-destination="maps"]')?.click() },
-    { id: 'cypher', label: 'Nearby audio', icon: './icons/music.svg', run: () => openSheet('geoCypherSheet') }
+    { id: 'cypher', label: 'Audio Notes', icon: './icons/music.svg', run: () => openSheet('geoCypherSheet') }
   ],
   me: [
     { id: 'draw', label: 'Draw & annotations', icon: './icons/pencil.svg', run: () => document.querySelector('[data-map-destination="draw"]')?.click() },

@@ -10,6 +10,21 @@ const FALLBACK_MANIFEST = {
   jingles: [{ id: 'static', label: 'AM static', mediaUrl: '' }], tracks: []
 };
 
+// A station may be ambient, or featured by a POI/Room without becoming a map
+// pin. Editorial packages can use any of these fields:
+// { poiIds, roomIds, regionIds, kind: 'guided-walkthrough' }.
+export function stationMatchesPlace(station, { poiId = null, roomId = null, regionId = null } = {}) {
+  if (!station) return false;
+  return [station.poiIds, station.roomIds, station.regionIds].some((ids, index) => {
+    const value = [poiId, roomId, regionId][index];
+    return value != null && Array.isArray(ids) && ids.map(String).includes(String(value));
+  });
+}
+
+export function contextualStations(manifest, context = {}) {
+  return (manifest?.stations || manifest?.channels || []).filter((station) => stationMatchesPlace(station, context));
+}
+
 const state = { manifest: FALLBACK_MANIFEST, channelId: 'x1', era: 1945, status: STATES.paused, queue: [], current: null, activeAudio: null, nextAudio: null, urls: new Set(), audioContext: null, lastDial: 1945, favorites: new Set(JSON.parse(localStorage.getItem(FAVORITES_KEY) || '[]')) };
 const el = (id) => document.getElementById(id);
 const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[char]));

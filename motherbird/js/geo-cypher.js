@@ -5,6 +5,10 @@ import { el, escapeHtml, formatDistance } from './utils.js';
 import { openSheet } from './ui.js';
 
 const SCHEMA_VERSION = 1, MAX_DURATION_MS = 120000, DEFAULT_RADIUS_METERS = 50;
+// Compatibility module name retained for existing local records. The product
+// feature is now presented as private Audio Notes; sharing is explicit through
+// Bird Note or a published Room.
+export const AUDIO_NOTE_MAX_DURATION_MS = MAX_DURATION_MS;
 const encoder = new TextEncoder();
 let recorder, stream, stopTimer, responseTo, activeAudio, audioUrl;
 let activity = new Map();
@@ -136,6 +140,7 @@ async function playPin(pin) {
 }
 async function removePin(pin) { stopPlayback(); await db.putMany({}, { geo_cypher_manifests: [pin.id], geo_cypher_audio: [pin.id], geo_cyphers: [pin.id] }); await recordEvent(pin.id, 'removed'); state.geoCyphers = state.geoCyphers.filter(item => item.id !== pin.id); setStatus('Audio removed from this device.'); await renderGeoCyphers(); }
 export async function openGeoCypher() { openSheet('geoCypherSheet'); await renderGeoCyphers(); }
+export const openAudioNotes = openGeoCypher;
 export async function checkGeoCypherGeofences(point) {
   for (const pin of state.geoCyphers) {
     if (state.geoCypherPrompted.has(pin.id) || activity.get(pin.id)?.some(type => type === 'dismissed' || type === 'removed') || distanceMeters(point, pin) > pin.radiusMeters) continue;
