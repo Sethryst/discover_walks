@@ -21,6 +21,13 @@ export function normalizeBirdnote(value) {
   return { format: FORMAT, id: String(note.id || crypto.randomUUID()), to: String(note.to), message: String(note.message), sentAt: String(note.sentAt || ''), route: { title: String(note.route.title || 'A chosen route').slice(0, 120), coordinates }, attachments: [] };
 }
 
+export function normalizeAudioBirdnote(value) {
+  if (!value || value.format !== 'walk-wildlife-birdnote-audio-v1' || !value.manifest?.id || !value.audio?.data) throw new Error('This is not a valid Audio Note Bird Note.');
+  const bytes = Uint8Array.from(atob(value.audio.data), (character) => character.charCodeAt(0));
+  if (!bytes.length || bytes.length > 8 * 1024 * 1024) throw new Error('This Audio Note is outside the supported size.');
+  return { format: value.format, id: String(value.id || crypto.randomUUID()), manifest: value.manifest, audio: new Blob([bytes], { type: value.audio.mimeType || value.manifest.mimeType || 'audio/webm' }), sentAt: String(value.sentAt || '') };
+}
+
 function routeSources() {
   const options = [];
   for (const moment of state.localDrawings || []) {
@@ -98,7 +105,16 @@ async function refreshInbox() {
 }
 
 async function openDelivery(file) {
-  const parsed = normalizeBirdnote(await file.text());
+  const raw = JSON.parse(await file.text());
+  if (raw.format === 'walk-wildlife-birdnote-audio-v1') {
+    const parsedAudio = normalizeAudioBirdnote(raw);
+    await db.putMany({ geo_cypher_manifests: [parsedAudio.manifest], geo_cypher_audio: [{ id: parsedAudio.manifest.id, audio: parsedAudio.audio }] });
+    state.geoCyphers = [parsedAudio.manifest, ...state.geoCyphers.filter((item) => item.id !== parsedAudio.manifest.id)];
+    window.dispatchEvent(new CustomEvent('audio-note-received', { detail: { id: parsedAudio.manifest.id } }));
+    toast('Audio Note received and saved privately on this device.');
+    return;
+  }
+  const parsed = normalizeBirdnote(raw);
   const list = state.settings.messengerDeliveries || [];
   let delivery = list.find((item) => item.id === parsed.id);
   if (!delivery) { delivery = { ...parsed, receivedAt: new Date().toISOString(), openedAt: null }; state.settings.messengerDeliveries = [...list, delivery]; await db.put('settings', state.settings); }

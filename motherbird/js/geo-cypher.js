@@ -16,6 +16,21 @@ let initialized = false;
 
 const bytesToBase64 = bytes => { let value = ''; bytes.forEach(byte => { value += String.fromCharCode(byte); }); return btoa(value); };
 const base64ToBytes = value => Uint8Array.from(atob(value), character => character.charCodeAt(0));
+async function blobToBase64(blob) { return bytesToBase64(new Uint8Array(await blob.arrayBuffer())); }
+
+export async function createAudioBirdnote(pin, audio) {
+  if (!pin?.id || !(audio instanceof Blob) || audio.size > 8 * 1024 * 1024) throw new Error('This Audio Note is too large to send as a Bird Note.');
+  return { format: 'walk-wildlife-birdnote-audio-v1', id: crypto.randomUUID(), sentAt: new Date().toISOString(), manifest: pin, audio: { mimeType: audio.type || pin.mimeType || 'audio/webm', data: await blobToBase64(audio) } };
+}
+
+export async function shareAudioNote(pin) {
+  const media = await db.get('geo_cypher_audio', pin?.id);
+  if (!media?.audio) throw new Error('This Audio Note is no longer available on this device.');
+  const payload = await createAudioBirdnote(pin, media.audio);
+  const file = new File([JSON.stringify(payload)], `audio-note-${String(pin.id).slice(0, 8)}.birdnote`, { type: 'application/vnd.walk-wildlife.birdnote+json' });
+  if (navigator.share && (!navigator.canShare || navigator.canShare({ files: [file] }))) await navigator.share({ title: 'An Audio Note', text: 'A private Audio Note shared through Bird Note.', files: [file] });
+  else { const url = URL.createObjectURL(file); const anchor = document.createElement('a'); anchor.href = url; anchor.download = file.name; anchor.click(); setTimeout(() => URL.revokeObjectURL(url), 1000); }
+}
 
 export function canonicalLineagePayload(pin) {
   return JSON.stringify({ schemaVersion: pin.schemaVersion, id: pin.id, createdAt: pin.createdAt, lat: pin.lat, lng: pin.lng, radiusMeters: pin.radiusMeters, durationMs: pin.durationMs, mimeType: pin.mimeType, contentHash: pin.contentHash, creatorKeyId: pin.creatorKeyId, lineage: pin.lineage });
@@ -126,7 +141,7 @@ export async function renderGeoCyphers() {
     const distanceLabel = Number.isFinite(distance) ? (distance < 1000 ? `${Math.round(distance)} m` : `${formatDistance(distance)} mi`) : 'location unavailable';
     const generation = Number(pin.lineage?.generation || 0), labels = { nearby: 'Nearby — walk into range', entered: 'Entered — ready to hear', ready: 'Ready to hear', playing: 'Playing', dismissed: 'Dismissed', responded: 'Responded', unavailable: 'Unavailable' };
     const provenance = verified ? `Anonymous · ${generation ? `reply ${generation} in this thread` : 'original audio'} · origin verified` : 'Integrity check failed — playback disabled';
-    return `<article class="geo-cypher-card ${inRange ? 'is-triggered' : ''} ${verified ? '' : 'is-unavailable'}" data-geo-cypher-id="${escapeHtml(pin.id)}"><button class="geo-cypher-play" type="button" aria-label="Play audio from Anonymous" ${ready ? '' : 'disabled'}>▶</button><div class="geo-cypher-meta"><strong>${labels[status]}</strong><small>${escapeHtml(distanceLabel)} · ${Math.ceil(pin.durationMs / 1000)} sec</small><small class="geo-cypher-lineage">${escapeHtml(provenance)}</small></div><div class="geo-cypher-card-actions">${ready ? '<button class="primary-button geo-cypher-respond" type="button">Respond now</button>' : ''}${verified && status !== 'dismissed' ? '<button class="secondary-button geo-cypher-dismiss" type="button">Dismiss</button>' : ''}<button class="secondary-button geo-cypher-remove" type="button">Remove</button></div>${verified ? '<p class="geo-cypher-more">A signature confirms this audio and its reply path have not changed. It does not endorse what was said.</p>' : ''}</article>`;
+    return `<article class="geo-cypher-card ${inRange ? 'is-triggered' : ''} ${verified ? '' : 'is-unavailable'}" data-geo-cypher-id="${escapeHtml(pin.id)}"><button class="geo-cypher-play" type="button" aria-label="Play audio from Anonymous" ${ready ? '' : 'disabled'}>▶</button><div class="geo-cypher-meta"><strong>${labels[status]}</strong><small>${escapeHtml(distanceLabel)} · ${Math.ceil(pin.durationMs / 1000)} sec</small><small class="geo-cypher-lineage">${escapeHtml(provenance)}</small></div><div class="geo-cypher-card-actions">${ready ? '<button class="primary-button geo-cypher-respond" type="button">Respond now</button>' : ''}${verified && status !== 'dismissed' ? '<button class="secondary-button geo-cypher-dismiss" type="button">Dismiss</button>' : ''}${verified ? '<button class="secondary-button geo-cypher-share" type="button">Share via Bird Note</button>' : ''}<button class="secondary-button geo-cypher-remove" type="button">Remove</button></div>${verified ? '<p class="geo-cypher-more">Private by default. A signature confirms this audio has not changed; sharing is always deliberate.</p>' : ''}</article>`;
   }).join('') : '<p class="geo-cypher-empty">No audio here yet. Drop the first one when you’re ready.</p>';
 }
 async function playPin(pin) {
@@ -167,6 +182,7 @@ export async function initGeoCypher() {
     if (event.target.closest('.geo-cypher-play')) void playPin(pin);
     if (event.target.closest('.geo-cypher-respond')) { responseTo = pin; el('geoCypherCancelResponse')?.classList.remove('hidden'); el('geoCypherRecordButton').textContent = 'Record response'; void startRecording(pin); }
     if (event.target.closest('.geo-cypher-dismiss')) void recordEvent(pin.id, 'dismissed').then(() => { setStatus('Dismissed. This encounter will stay quiet.'); return renderGeoCyphers(); });
+    if (event.target.closest('.geo-cypher-share')) void shareAudioNote(pin).then(() => setStatus('Bird Note package prepared.')).catch((error) => setStatus(error.message || 'Audio Note could not be shared.'));
     if (event.target.closest('.geo-cypher-remove')) void removePin(pin);
   });
   globalThis.window?.addEventListener('walk-position-received', event => void checkGeoCypherGeofences(event.detail));
