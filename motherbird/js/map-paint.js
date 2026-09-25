@@ -7,7 +7,7 @@ import { markerPinHtml, markerVisual } from './poi-icons.js';
 import { generateTimeBasedPlan } from './planner.js';
 import { normalizePersonalCategory, upsertImportedPersonalData } from './personal-places.js';
 import { savePlannedRoute } from './saved-routes.js';
-import { createSpatialQuery, queryPrompt, saveSpatialQuery } from './spatial-query.js';
+import { createSpatialQuery, listSpatialQueries, queryPrompt, saveSpatialQuery } from './spatial-query.js';
 
 const DRAW_COLOR = '#76558b';
 function readHiddenArtifacts() {
@@ -234,7 +234,15 @@ export async function initMapPaint() {
   updateRegionLabel();
   state.mapPaintLayer = L.featureGroup().addTo(state.map);
   const friendLayer = L.layerGroup().addTo(state.map);
+  const savedQueries = (await listSpatialQueries()).filter((query) => !query.regionId || query.regionId === state.activeCity).sort((a, b) => Date.parse(b.createdAt || 0) - Date.parse(a.createdAt || 0));
+  const latestQuery = savedQueries[0];
+  if (latestQuery) {
+    state.spatialQuery = latestQuery;
+    state.spatialQueryDismissed = new Set();
+    state.spatialQuerySelected = new Set();
+  }
   await renderMapDrawings();
+  if (latestQuery) renderSpatialQuery();
   globalThis.pm = globalThis.pm || {};
   globalThis.pm.map = { undo: undoDrawing, clearLayers: clearDrawings };
   state.map.on('pm:create', ({ layer, shape }) => void persistCreatedLayer(layer, shape));
