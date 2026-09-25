@@ -14,6 +14,22 @@ export function renderProfile() {
   if (el('favoriteCategoryChips')) el('favoriteCategoryChips').innerHTML = GEOFENCE_CATEGORIES.map(([id, label]) => `<button type="button" class="poi-chip ${favorites.has(id) ? 'active' : ''}" data-favorite-category="${id}">${label}</button>`).join('');
   renderGeofenceCategoryChips();
   void renderFavoriteRegions(state.settings);
+  const avatar = el('profileAvatarButton');
+  if (avatar) {
+    const signedIn = Boolean(state.online.session);
+    avatar.classList.toggle('hidden', !signedIn);
+    el('profileAvatarGlyph').textContent = state.profile.avatarIcon || '✦';
+    const image = el('profileAvatarImage'); image.src = state.profile.avatarImage || '';
+    image.classList.toggle('hidden', !state.profile.avatarImage);
+    el('profileAvatarGlyph').classList.toggle('hidden', Boolean(state.profile.avatarImage));
+    el('profileAvatarSettings')?.classList.toggle('hidden', !signedIn);
+  }
+}
+
+export async function setProfileAvatar({ icon = null, image = null } = {}) {
+  state.profile = normalizeProfile({ ...state.profile, avatarIcon: icon || state.profile.avatarIcon || '✦', avatarImage: image || null });
+  await db.put('profile', state.profile);
+  renderProfile();
 }
 
 export async function updateProfile(mutator) {
