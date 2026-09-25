@@ -375,7 +375,10 @@ function bindSearch() {
 
 function bindJournal() {
   let saveTimer;
-  window.addEventListener('map-overlay-changed', ({ detail }) => { if (!detail.open || detail.id !== 'journalSheet') stopJournalCapture(); });
+  window.addEventListener('map-overlay-changed', ({ detail }) => {
+    if (!detail.open || detail.id !== 'journalSheet') stopJournalCapture();
+    if (!detail.open && detail.id === 'roomSheet') state.activeRoom = null;
+  });
   el('journalNote')?.addEventListener('input', () => { clearTimeout(saveTimer); saveTimer = setTimeout(() => void saveJournalOnClose({ note: el('journalNote').value, walkId: el('journalForm').dataset.walkId }), 700); });
   window.addEventListener('journal-close-requested', (event) => void (async () => {
     clearTimeout(saveTimer);
