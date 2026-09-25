@@ -565,3 +565,78 @@
     flex: 0 0 42px !important;
   }
 }
+
+/* Compact annotation grid: keep the map controls clear without adding a second bar. */
+.map-workspace-panel[data-destination="draw"] .draw-shapes {
+  top: 76px !important;
+  left: 78px !important;
+  right: auto !important;
+  width: 112px !important;
+  max-height: calc(100dvh - 150px) !important;
+  overflow-y: auto !important;
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 3px !important;
+  padding: 5px !important;
+  transform: none !important;
+}
+.map-workspace-panel[data-destination="draw"] .draw-shapes button,
+.draw-tools-collapsed .map-workspace-panel[data-destination="draw"] .draw-shapes button {
+  width: 50px !important;
+  min-height: 43px !important;
+  flex: none !important;
+  font-size: 7px !important;
+}
+.map-workspace-panel[data-destination="draw"] .draw-shapes button span:last-child {
+  white-space: normal !important;
+  line-height: 1.05 !important;
+  text-align: center !important;
+}
+.draw-shapes.draw-tool-rail {
+  top: 76px !important;
+  left: 78px !important;
+  right: auto !important;
+  width: 112px !important;
+  max-height: calc(100dvh - 150px) !important;
+  overflow-y: auto !important;
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 3px !important;
+  padding: 5px !important;
+  transform: none !important;
+}
+.draw-shapes.draw-tool-rail button {
+  width: 50px !important;
+  min-height: 43px !important;
+  flex: none !important;
+  font-size: 7px !important;
+}
+.draw-shapes.draw-tool-rail button span:last-child {
+  white-space: normal !important;
+  line-height: 1.05 !important;
+  text-align: center !important;
+}
+@media (max-width: 720px) {
+  .map-workspace-panel[data-destination="draw"] .draw-shapes {
+    top: 76px !important;
+    left: 8px !important;
+    width: min(174px, calc(100vw - 16px)) !important;
+    max-height: calc(100dvh - 150px) !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 4px !important;
+  }
+  .map-workspace-panel[data-destination="draw"] .draw-shapes button,
+  .draw-tools-collapsed .map-workspace-panel[data-destination="draw"] .draw-shapes button {
+    width: auto !important;
+    min-height: 43px !important;
+  }
+  .draw-shapes.draw-tool-rail {
+    top: 76px !important;
+    left: 8px !important;
+    width: min(174px, calc(100vw - 16px)) !important;
+    max-height: calc(100dvh - 150px) !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 4px !important;
+  }
+  .draw-shapes.draw-tool-rail button { width: auto !important; min-height: 43px !important; }
+}

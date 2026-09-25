@@ -274,7 +274,7 @@ export async function initMapPaint() {
   }
   if (!state.map.pm && globalThis.L?.PM?.Map) state.map.pm = new globalThis.L.PM.Map(state.map);
   if (!state.map.pm) return;
-  const initialLabels = { Line: 'Test route', Freehand: 'Sketch area', Polygon: 'Investigate territory', Rectangle: 'Define area', Circle: 'Explore area' };
+  const initialLabels = { Line: 'Test route', Freehand: 'Sketch area', Polygon: 'Area', Rectangle: 'Define area', Circle: 'Explore area' };
   document.querySelectorAll('[data-draw-shape]').forEach((item) => { const label = initialLabels[item.dataset.drawShape]; if (label) item.querySelector('span:last-child').textContent = label; });
   const updateRegionLabel = () => { const label = el('drawRegionLabel'); if (label) label.textContent = cityLabel(state.activeCity) || 'Installed region'; };
   updateRegionLabel();
@@ -324,7 +324,7 @@ export async function initMapPaint() {
     const tool = event.target.closest('[data-draw-shape]'); if (!tool) return;
     const shapes = { Marker: 'Marker', Line: 'Line', Freehand: 'Freehand', Polygon: 'Polygon', Rectangle: 'Rectangle', Circle: 'Circle' };
     const shape = shapes[tool.dataset.drawShape]; if (!shape) return;
-    const labels = { Line: 'Test route', Freehand: 'Sketch area', Polygon: 'Investigate territory', Rectangle: 'Define area', Circle: 'Explore area' };
+    const labels = { Line: 'Test route', Freehand: 'Sketch area', Polygon: 'Area', Rectangle: 'Define area', Circle: 'Explore area' };
     if (labels[shape]) tool.querySelector('span:last-child').textContent = labels[shape];
     setActive(true); state.map.pm.disableDraw(); freehandActive = shape === 'Freehand';
     if (!freehandActive) state.map.pm.enableDraw(shape, { snappable: true, finishOn: 'dblclick' });
