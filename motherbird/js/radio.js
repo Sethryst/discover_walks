@@ -43,6 +43,10 @@ export function openRadioForContext(context = {}) {
 const state = { manifest: FALLBACK_MANIFEST, channelId: 'x1', status: STATES.paused, queue: [], current: null, activeAudio: null, nextAudio: null, urls: new Set(), audioContext: null, favorites: new Set(JSON.parse(localStorage.getItem(FAVORITES_KEY) || '[]')), history: [], savedTrackIds: new Set(), playbackToken: 0 };
 const el = (id) => document.getElementById(id);
 const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[char]));
+function availableStations() {
+  const candidates = state.manifest.channels || state.manifest.stations || state.manifest.liveStations || state.manifest.streams || [];
+  return Array.isArray(candidates) ? candidates : Object.values(candidates || {});
+}
 
 function setStatus(status, detail = '') { state.status = status; const text = detail || status; const label = el('radioStatus'); if (label) label.textContent = text; const miniStatus = el('radioMiniStatus'); if (miniStatus) miniStatus.textContent = text; el('radioPlayer')?.setAttribute('data-radio-state', status); el('radioMiniPlayer')?.classList.toggle('hidden', !state.current); updatePlayButtons(); }
 function updatePlayButtons() { const playing = state.status === STATES.playing || state.status === STATES.buffering || state.status === STATES.jingle; for (const id of ['radioPlayButton', 'radioMiniPlayButton']) { const button = el(id); if (!button) continue; button.textContent = playing ? '❚❚' : '▶'; button.setAttribute('aria-label', playing ? 'Pause radio' : 'Play radio'); } }
@@ -63,7 +67,7 @@ function render() {
   if (el('radioNowPlaying')) el('radioNowPlaying').textContent = title;
   if (el('radioMiniTitle')) el('radioMiniTitle').textContent = title;
   const favorite = el('radioFavoriteButton'); if (favorite) { favorite.disabled = !state.current; const isFavorite = state.current && state.favorites.has(state.current.id); favorite.textContent = isFavorite ? '♥ Favorited' : '♡ Favorite'; favorite.setAttribute('aria-pressed', String(Boolean(isFavorite))); }
-  const stations = state.manifest.channels || state.manifest.stations || [];
+  const stations = availableStations();
   if (el('radioStationCount')) el('radioStationCount').textContent = `${stations.length} station${stations.length === 1 ? '' : 's'} available`;
   const picker = el('radioFavoritesSelect');
   if (picker) {
@@ -123,7 +127,7 @@ function bind() {
   el('radioMiniNextButton')?.addEventListener('click', () => void playNext());
   el('radioFavoriteButton')?.addEventListener('click', toggleFavorite);
   el('radioFavoritesSelect')?.addEventListener('change', (event) => {
-    const station = (state.manifest.channels || state.manifest.stations || []).find((item) => String(item.id) === String(event.target.value));
+    const station = availableStations().find((item) => String(item.id) === String(event.target.value));
     if (!station) return;
     state.channelId = station.id;
     state.current = chooseTrack();
