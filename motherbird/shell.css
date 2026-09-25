@@ -13,7 +13,8 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
 }
 
 @media (max-width: 720px) {
-  .map-legend { right: 10px; bottom: calc(66px + env(safe-area-inset-bottom) + 10px); max-width: min(42vw, 180px); }
+  /* Keep the map chrome above the full-width mobile navigation and its safe area. */
+  .map-legend { right: 10px; bottom: calc(64px + env(safe-area-inset-bottom) + 86px); max-width: min(42vw, 180px); }
   .map-workspace-panel { max-height: min(70dvh, 620px); }
   .map-workspace-panel > [data-map-panel] { max-height: calc(min(70dvh, 620px) - 58px); }
   .map-workspace-panel[data-destination="draw"] { width: min(92vw, 420px); }
