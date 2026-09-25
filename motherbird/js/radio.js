@@ -2,6 +2,7 @@ import db from './storage.js';
 import { openSheet, closeSheets, toast } from './ui.js';
 
 const MANIFEST_URL = './data/radio/manifest.json?v=20260923-radio-v2';
+const FAVORITES_KEY = 'gremlin-radio-favorites-v1';
 const STATES = Object.freeze({ paused: 'paused', buffering: 'buffering', playing: 'playing', jingle: 'jingle playing' });
 const FALLBACK_MANIFEST = {
   id: 'otr-time-machine', version: 1, epoch: '1950-01-01T00:00:00Z', slotMinutes: 45,
@@ -9,7 +10,7 @@ const FALLBACK_MANIFEST = {
   jingles: [{ id: 'static', label: 'AM static', mediaUrl: '' }], tracks: []
 };
 
-const state = { manifest: FALLBACK_MANIFEST, channelId: 'x1', era: 1945, status: STATES.paused, queue: [], current: null, activeAudio: null, nextAudio: null, urls: new Set(), audioContext: null, lastDial: 1945 };
+const state = { manifest: FALLBACK_MANIFEST, channelId: 'x1', era: 1945, status: STATES.paused, queue: [], current: null, activeAudio: null, nextAudio: null, urls: new Set(), audioContext: null, lastDial: 1945, favorites: new Set(JSON.parse(localStorage.getItem(FAVORITES_KEY) || '[]')) };
 const el = (id) => document.getElementById(id);
 const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[char]));
 
@@ -25,6 +26,7 @@ function render() {
   if (el('radioEraValue')) el('radioEraValue').textContent = `${state.era} · ${channel?.genre || 'radio'}`;
   if (el('radioNowPlaying')) el('radioNowPlaying').textContent = state.current ? `${state.current.title} · ${state.current.broadcastDate || state.current.year || 'undated'}` : 'No transmission selected';
   if (el('radioSaveButton')) el('radioSaveButton').disabled = !state.current;
+  const favorite = el('radioFavoriteButton'); if (favorite) { favorite.disabled = !state.current; const isFavorite = state.current && state.favorites.has(state.current.id); favorite.textContent = isFavorite ? '♥ Favorited' : '♡ Favorite'; favorite.setAttribute('aria-pressed', String(Boolean(isFavorite))); }
 }
 async function loadManifest() {
   try { const response = await fetch(MANIFEST_URL, { cache: 'no-cache' }); if (!response.ok) throw new Error('manifest unavailable'); state.manifest = await response.json(); await db.put('radio_manifests', { id: state.manifest.id || 'default', ...state.manifest, fetchedAt: Date.now() }); }
@@ -64,13 +66,15 @@ async function playJingle() {
 async function playNext() { const next = state.queue.shift() || chooseTrack(); if (!next) return playTrack(null); state.queue.push(chooseTrack()); await playJingle(); await playTrack(next); }
 function tuningClick() { try { const context = state.audioContext ||= new AudioContext(); const buffer = context.createBuffer(1, context.sampleRate * 0.5, context.sampleRate); const data = buffer.getChannelData(0); for (let i = 0; i < data.length; i += 1) data[i] = (Math.random() * 2 - 1) * (1 - i / data.length) * 0.12; const source = context.createBufferSource(); const gain = context.createGain(); source.buffer = buffer; gain.gain.value = 0.25; source.connect(gain).connect(context.destination); source.start(); } catch { /* AudioContext is optional decoration. */ } }
 async function saveCurrent() { if (!state.current || !state.activeAudio?.src) return; const response = await fetch(state.activeAudio.src); const audio = await response.blob(); await db.put('radio_saved_tracks', { id: state.current.id, ...state.current, audio, savedAt: Date.now() }); toast('Track saved to this device.'); }
+function toggleFavorite() { if (!state.current) return; if (state.favorites.has(state.current.id)) state.favorites.delete(state.current.id); else state.favorites.add(state.current.id); localStorage.setItem(FAVORITES_KEY, JSON.stringify([...state.favorites])); render(); toast(state.favorites.has(state.current.id) ? 'Favorite kept on this device.' : 'Favorite removed.'); }
 function bind() {
   el('radioChannel')?.addEventListener('change', (event) => { state.channelId = event.target.value; state.current = null; state.queue = []; render(); });
   el('radioEraDial')?.addEventListener('input', (event) => { const next = Number(event.target.value); if (Math.abs(next - state.lastDial) >= 1) { state.lastDial = next; state.era = next; state.current = chooseTrack(); tuningClick(); state.queue = []; render(); } });
   el('radioPlayButton')?.addEventListener('click', () => { if (state.status === STATES.playing || state.status === STATES.buffering || state.status === STATES.jingle) { state.activeAudio?.pause(); setStatus(STATES.paused, 'Paused'); } else { void playTrack(state.current || chooseTrack()); } });
   el('radioNextButton')?.addEventListener('click', () => void playNext());
+  el('radioFavoriteButton')?.addEventListener('click', toggleFavorite);
   el('radioSaveButton')?.addEventListener('click', () => void saveCurrent().catch((error) => toast(error.message || 'Could not save this track.')));
   el('radioCloseButton')?.addEventListener('click', () => { state.activeAudio?.pause(); closeSheets(); });
   window.addEventListener('radio-open-requested', () => { openSheet('radioSheet'); render(); });
 }
-export async function initRadio() { bind(); await loadManifest(); }
+export async function initRadio() { bind(); await loadManifest(); if (!state.current) { state.current = chooseTrack(); render(); } }

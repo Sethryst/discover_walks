@@ -224,14 +224,14 @@
 
   <section class="sheet radio-sheet hidden" id="radioSheet" role="dialog" aria-modal="true" aria-labelledby="radioTitle">
     <button class="close-sheet" id="radioCloseButton" type="button" aria-label="Close">×</button>
-    <span class="sheet-kicker">WALKING BROADCAST · LOCAL PLAYER</span><h2 id="radioTitle">The Retro Radio</h2>
-    <p id="radioChannelDescription" class="radio-description">Tune into a public-domain broadcast.</p>
+    <span class="sheet-kicker">WALKING BROADCAST · AMBIENT DISCOVERY</span><h2 id="radioTitle">Radio</h2>
+    <p id="radioChannelDescription" class="radio-description">Start with one transmission. Listen, skip, and keep what stays with you.</p>
     <div class="radio-console" id="radioPlayer" data-radio-state="paused">
       <label class="radio-channel-label" for="radioChannel">Station<select id="radioChannel"></select></label>
       <div class="radio-dial-wrap"><div class="radio-dial-scale" aria-hidden="true"><span>1935</span><span>1940</span><span>1945</span><span>1950</span><span>1955</span></div><input id="radioEraDial" class="radio-era-dial" type="range" min="1935" max="1955" value="1945" step="1" aria-label="Tune broadcast era" /><output id="radioEraValue">1945 · radio</output></div>
       <div class="radio-on-air"><span class="radio-lamp" aria-hidden="true"></span><div><small id="radioStatus">paused</small><strong id="radioNowPlaying">No transmission selected</strong></div></div>
-      <div class="radio-controls"><button id="radioPlayButton" class="radio-main-button" type="button">▶ Listen</button><button id="radioNextButton" class="secondary-button" type="button">Next transmission</button><button id="radioSaveButton" class="secondary-button" type="button" disabled>Save locally</button></div>
-    </div><p class="radio-note">The dial changes the programmed era, not a timestamp. Audio is fetched only when you listen; saved programs stay on this device.</p>
+      <div class="radio-controls"><button id="radioPlayButton" class="radio-main-button" type="button">▶ Listen</button><button id="radioNextButton" class="secondary-button" type="button">Skip</button><button id="radioFavoriteButton" class="secondary-button" type="button" disabled>♡ Favorite</button><button id="radioSaveButton" class="secondary-button" type="button" disabled>Save audio</button></div>
+    </div><p class="radio-note">Radio is intentionally serendipitous. The dial changes the era; favorites stay on this device and quietly shape what comes next.</p>
   </section>
   <section class="sheet story-sheet hidden" id="storySheet" role="dialog" aria-modal="true" aria-labelledby="storyTitle">
     <button class="close-sheet" data-close-sheet aria-label="Close">×</button>
