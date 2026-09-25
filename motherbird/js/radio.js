@@ -63,6 +63,14 @@ function render() {
   if (el('radioNowPlaying')) el('radioNowPlaying').textContent = title;
   if (el('radioMiniTitle')) el('radioMiniTitle').textContent = title;
   const favorite = el('radioFavoriteButton'); if (favorite) { favorite.disabled = !state.current; const isFavorite = state.current && state.favorites.has(state.current.id); favorite.textContent = isFavorite ? '♥ Favorited' : '♡ Favorite'; favorite.setAttribute('aria-pressed', String(Boolean(isFavorite))); }
+  const stations = state.manifest.channels || state.manifest.stations || [];
+  if (el('radioStationCount')) el('radioStationCount').textContent = `${stations.length} station${stations.length === 1 ? '' : 's'} available`;
+  const picker = el('radioFavoritesSelect');
+  if (picker) {
+    const favorites = stations.filter((station) => state.favorites.has(station.id) || (state.manifest.tracks || []).some((track) => state.favorites.has(track.id) && (track.channel === station.id || track.channelIds?.includes(station.id))));
+    picker.innerHTML = '<option value="">Choose a favorite station</option>' + favorites.map((station) => `<option value="${escapeHtml(station.id)}">${escapeHtml(station.name || station.title || station.id)}</option>`).join('');
+    picker.value = stations.some((station) => station.id === state.channelId && state.favorites.has(station.id)) ? state.channelId : '';
+  }
   updatePlayButtons();
 }
 async function loadManifest() {
@@ -114,6 +122,13 @@ function bind() {
   el('radioNextButton')?.addEventListener('click', () => void playNext());
   el('radioMiniNextButton')?.addEventListener('click', () => void playNext());
   el('radioFavoriteButton')?.addEventListener('click', toggleFavorite);
+  el('radioFavoritesSelect')?.addEventListener('change', (event) => {
+    const station = (state.manifest.channels || state.manifest.stations || []).find((item) => String(item.id) === String(event.target.value));
+    if (!station) return;
+    state.channelId = station.id;
+    state.current = chooseTrack();
+    render();
+  });
   ['radioLiveSources', 'radioLocalSources'].forEach((id) => el(id)?.addEventListener('change', () => { state.current = chooseTrack(); render(); }));
   el('radioCloseButton')?.addEventListener('click', () => closeSheets());
   el('radioMiniOpenButton')?.addEventListener('click', () => openSheet('radioSheet'));
