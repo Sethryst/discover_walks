@@ -62,7 +62,6 @@ function render() {
   const title = state.current ? `${state.current.title} · ${state.current.broadcastDate || state.current.year || 'undated'}` : 'No transmission selected';
   if (el('radioNowPlaying')) el('radioNowPlaying').textContent = title;
   if (el('radioMiniTitle')) el('radioMiniTitle').textContent = title;
-  if (el('radioSaveButton')) el('radioSaveButton').disabled = !state.current;
   const favorite = el('radioFavoriteButton'); if (favorite) { favorite.disabled = !state.current; const isFavorite = state.current && state.favorites.has(state.current.id); favorite.textContent = isFavorite ? '♥ Favorited' : '♡ Favorite'; favorite.setAttribute('aria-pressed', String(Boolean(isFavorite))); }
   updatePlayButtons();
 }
@@ -107,7 +106,6 @@ async function playJingle() {
 }
 async function playNext() { if (state.current) recordRadioEvent(state.current, 'skipped'); const previousChannel = state.channelId; chooseRandomChannel(previousChannel); state.queue = []; const next = chooseTrack(); if (!next) return playTrack(null); if (!(await playJingle())) return; await playTrack(next); }
 function tuningClick() { try { const context = state.audioContext ||= new AudioContext(); const buffer = context.createBuffer(1, context.sampleRate * 0.5, context.sampleRate); const data = buffer.getChannelData(0); for (let i = 0; i < data.length; i += 1) data[i] = (Math.random() * 2 - 1) * (1 - i / data.length) * 0.12; const source = context.createBufferSource(); const gain = context.createGain(); source.buffer = buffer; gain.gain.value = 0.25; source.connect(gain).connect(context.destination); source.start(); } catch { /* AudioContext is optional decoration. */ } }
-async function saveCurrent() { if (!state.current || !state.activeAudio?.src) return; const response = await fetch(state.activeAudio.src); const audio = await response.blob(); await db.put('radio_saved_tracks', { id: state.current.id, ...state.current, audio, savedAt: Date.now() }); state.savedTrackIds.add(String(state.current.id)); toast('Track saved to this device.'); }
 function toggleFavorite() { if (!state.current) return; if (state.favorites.has(state.current.id)) state.favorites.delete(state.current.id); else state.favorites.add(state.current.id); localStorage.setItem(FAVORITES_KEY, JSON.stringify([...state.favorites])); void persistRadioState(); render(); toast(state.favorites.has(state.current.id) ? 'Favorite kept on this device.' : 'Favorite removed.'); }
 function bind() {
   bindMiniPlayerDrag();
@@ -116,7 +114,6 @@ function bind() {
   el('radioNextButton')?.addEventListener('click', () => void playNext());
   el('radioMiniNextButton')?.addEventListener('click', () => void playNext());
   el('radioFavoriteButton')?.addEventListener('click', toggleFavorite);
-  el('radioSaveButton')?.addEventListener('click', () => void saveCurrent().catch((error) => toast(error.message || 'Could not save this track.')));
   ['radioLiveSources', 'radioLocalSources'].forEach((id) => el(id)?.addEventListener('change', () => { state.current = chooseTrack(); render(); }));
   el('radioCloseButton')?.addEventListener('click', () => closeSheets());
   el('radioMiniOpenButton')?.addEventListener('click', () => openSheet('radioSheet'));
