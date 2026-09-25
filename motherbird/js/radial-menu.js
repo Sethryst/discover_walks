@@ -29,10 +29,17 @@ export async function toggleStarAction(item) {
   }
   const persistedList = list.map(({ action, ...savedItem }) => savedItem);
   const nextSettings = { ...state.settings, starredRadialActions: persistedList };
-  await db.put('settings', nextSettings);
   state.settings = { ...nextSettings, starredRadialActions: list };
   renderRadialWheel();
   window.dispatchEvent(new CustomEvent('radial-starred-changed', { detail: { id: item.id, starred: index < 0 } }));
+  try {
+    await db.put('settings', nextSettings);
+  } catch (error) {
+    state.settings = { ...state.settings, starredRadialActions: index >= 0 ? [...list, item] : list.filter((entry) => entry.id !== item.id) };
+    renderRadialWheel();
+    window.dispatchEvent(new CustomEvent('radial-starred-changed', { detail: { id: item.id, starred: index >= 0 } }));
+    throw error;
+  }
 }
 
 export function updateRadialWalkButton() {

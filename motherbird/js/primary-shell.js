@@ -92,6 +92,7 @@ export function initPrimaryShell() {
       starBtn.dataset.actionId = item.id;
       const starred = isActionStarred(item.id);
       starBtn.className = `star-action-btn ${starred ? 'starred' : ''}`;
+      starBtn.setAttribute('aria-pressed', String(starred));
       starBtn.setAttribute('aria-label', `${starred ? 'Unstar' : 'Star'} ${item.label}`);
       starBtn.innerHTML = starred ? '<span class="star-action-icon" aria-hidden="true">★</span>' : '<span class="star-action-icon" aria-hidden="true">☆</span>';
       starBtn.addEventListener('click', (e) => {
@@ -118,6 +119,7 @@ export function initPrimaryShell() {
     document.querySelectorAll('.star-action-btn[data-action-id]').forEach((starBtn) => {
       const starred = isActionStarred(starBtn.dataset.actionId);
       starBtn.classList.toggle('starred', starred);
+      starBtn.setAttribute('aria-pressed', String(starred));
       starBtn.setAttribute('aria-label', `${starred ? 'Unstar' : 'Star'} ${starBtn.parentElement?.querySelector('.shell-action-btn')?.textContent || 'action'}`);
       starBtn.innerHTML = starred ? '<span class="star-action-icon" aria-hidden="true">★</span>' : '<span class="star-action-icon" aria-hidden="true">☆</span>';
     });
