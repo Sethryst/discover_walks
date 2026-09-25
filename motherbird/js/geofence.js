@@ -3,6 +3,7 @@ import { state } from './state.js';
 import { isWalkablePoi, poiTags, showHistory } from './poi.js';
 import { requestCompanionContext } from './companion.js';
 import { mergeExplorePois } from './learn-explore.js';
+import db from './storage.js';
 
 export function checkGeofences(point) {
   void mergeExplorePois().then(() => checkGeofencesNow(point));
@@ -22,7 +23,9 @@ function checkGeofencesNow(point) {
     const tags = poiTags(poi);
     const recreation = tags.some((tag) => ['park', 'trail', 'nature', 'wildlife', 'water', 'water_access', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad', 'history', 'rest'].includes(tag) || tag.startsWith('history_'));
     const cuisine = tags.some((tag) => ['coffee', 'coffee_shop', 'cafe', 'market', 'farmers_market', 'grocery', 'supermarket', 'convenience', 'restaurant', 'fast_food'].includes(tag));
-    const allowed = (recreation && enabledStars.has('recreation') && state.layerLights.recreation)
+    const news = tags.some((tag) => ['event', 'news', 'community', 'civic'].includes(tag)) || poi.light === 'news';
+    const allowed = (news && enabledStars.has('news') && state.layerLights.news)
+      || (recreation && enabledStars.has('recreation') && state.layerLights.recreation)
       || (cuisine && enabledStars.has('cuisine') && state.layerLights.cuisine);
     if (!allowed) return false;
     if (state.prompted.has(`${state.activeCity}:${poi.id}`)) return false;
@@ -43,6 +46,11 @@ function checkGeofencesNow(point) {
   }
   if (nearby && !state.modalOpen) {
     if (state.activeWalk) state.activeWalk.discoveryCount = (state.activeWalk.discoveryCount || 0) + 1;
+    if (settings.autoJournalGeofences !== false) {
+      const id = `geofence:${state.activeCity}:${nearby.poi.id}`;
+      void db.put('moments', { id, type: 'journal', city: state.activeCity, title: `Encountered ${nearby.poi.name || 'a nearby place'}`, note: `Automatically added from a geofence encounter. Distance: ${Math.round(nearby.distance)} m.`, poiId: nearby.poi.id, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString(), geofence: true });
+      globalThis.window?.dispatchEvent(new CustomEvent('journal-data-changed'));
+    }
     void showHistory(nearby.poi, nearby.distance);
   }
 }

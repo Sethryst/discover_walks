@@ -176,7 +176,7 @@ export async function loadLocalState() {
   const [savedProfile, savedSettings, savedWalks, savedRoutes] = await Promise.all([db.get('profile', 'local-user'), db.get('settings', 'app-settings'), db.all('walks'), db.all('saved_routes')]);
   state.profile = savedProfile ? normalizeProfile(savedProfile) : await createMigratedProfile();
   state.settings = { ...DEFAULT_SETTINGS, ...(savedSettings || {}) };
-  if (!Array.isArray(state.settings.geofenceCategories) || !state.settings.geofenceCategories.some((id) => ['recreation', 'cuisine'].includes(id))) state.settings.geofenceCategories = ['recreation', 'cuisine'];
+  if (!Array.isArray(state.settings.geofenceCategories) || !state.settings.geofenceCategories.length) state.settings.geofenceCategories = ['news', 'recreation', 'cuisine'];
   state.settings.entitlements = normalizedEntitlements(state.settings.entitlements);
   if (!CITIES[state.settings.activeCity]?.dataFile) {
     state.settings.activeCity = state.settings.favoriteRegionIds?.find((id) => CITIES[id]?.dataFile) || DEFAULT_CITY_ID;

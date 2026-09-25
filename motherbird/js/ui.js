@@ -139,6 +139,6 @@ export function renderGeofenceCategoryChips() {
   const selected = new Set(state.settings.geofenceCategories || categories.map(([id]) => id));
   const chipsEl = el('geofenceCategoryChips');
   if (chipsEl) {
-    chipsEl.innerHTML = categories.map(([id, label]) => `<button type="button" class="poi-chip ${selected.has(id) ? 'active' : ''}" aria-pressed="${selected.has(id)}" data-geofence-category="${id}">${label}</button>`).join('');
+    chipsEl.innerHTML = `<label class="geofence-auto-toggle"><input id="autoJournalGeofences" type="checkbox" ${state.settings.autoJournalGeofences !== false ? 'checked' : ''} /> Auto-journal encounters</label>${categories.map(([id, label]) => `<button type="button" class="poi-chip ${selected.has(id) ? 'active' : ''}" aria-pressed="${selected.has(id)}" data-geofence-category="${id}">${label}</button>`).join('');
   }
 }

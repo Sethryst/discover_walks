@@ -219,6 +219,7 @@ function bindLocationControls() {
   el('geofenceToggle')?.addEventListener('change', async (event) => { state.settings.enableGeofencing = event.target.checked; await db.put('settings', state.settings); });
   el('geofenceRadiusSelect')?.addEventListener('change', async (event) => { state.settings.defaultGeofenceRadiusMeters = Number(event.target.value); await db.put('settings', state.settings); });
   el('geofenceCategoryChips')?.addEventListener('click', async (event) => {
+    if (event.target.id === 'autoJournalGeofences') return;
     const chip = event.target.closest('[data-geofence-category]'); if (!chip) return;
     const selected = new Set(state.settings.geofenceCategories || []);
     selected.has(chip.dataset.geofenceCategory) ? selected.delete(chip.dataset.geofenceCategory) : selected.add(chip.dataset.geofenceCategory);
@@ -231,6 +232,11 @@ function bindCompanionMenu() {
     const select = el('companionWalker');
     if (select) select.value = state.settings.companionWalker || 'inky';
     openSheet('companionSheet');
+  });
+  el('geofenceCategoryChips')?.addEventListener('change', async (event) => {
+    if (event.target.id !== 'autoJournalGeofences') return;
+    state.settings.autoJournalGeofences = event.target.checked;
+    await db.put('settings', state.settings);
   });
   el('companionWalker')?.addEventListener('change', async (event) => {
     state.settings.companionWalker = event.target.value;
