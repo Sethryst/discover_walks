@@ -53,7 +53,8 @@ async function persistRadioState() {
 }
 function recordRadioEvent(track, event) { if (!track?.id) return; state.history.push({ trackId: String(track.id), event, channelId: state.channelId, at: Date.now() }); void persistRadioState(); }
 function tracksForChannel() { const tracks = (state.manifest.tracks || []).filter((track) => !track.channel || track.channel === state.channelId || track.channelIds?.includes(state.channelId)); if (tracks.length || state.channelId !== 'jazz-club') return tracks; return [{ id: 'big-band-fallback', channel: 'jazz-club', title: 'Big Band Broadcast · public-domain set', genre: 'Big Band', archiveIdentifier: 'big-band-special', rightsStatus: 'review-required' }]; }
-function chooseTrack() { const candidates = tracksForChannel(); if (!candidates.length) return null; const slot = Math.floor((Date.now() - Date.parse(state.manifest.epoch || '1950-01-01')) / ((state.manifest.slotMinutes || 45) * 60000)); return candidates[Math.abs(slot) % candidates.length]; }
+function sourceEnabled(track) { const live = el('radioLiveSources')?.checked !== false; const local = el('radioLocalSources')?.checked !== false; const kind = String(track?.sourceType || track?.source || track?.kind || '').toLowerCase(); if (!kind) return live || local; if (kind.includes('live') || kind.includes('broadcast')) return live; return local; }
+function chooseTrack() { const candidates = tracksForChannel().filter(sourceEnabled); if (!candidates.length) return null; const slot = Math.floor((Date.now() - Date.parse(state.manifest.epoch || '1950-01-01')) / ((state.manifest.slotMinutes || 45) * 60000)); return candidates[Math.abs(slot) % candidates.length]; }
 function chooseRandomChannel(exclude = null) { const channels = (state.manifest.channels || state.manifest.stations || []).filter((channel) => String(channel.id) !== String(exclude)); if (!channels.length) return; const learnedTrackIds = new Set([...state.savedTrackIds, ...state.favorites].map(String)); const learnedChannels = new Set((state.manifest.tracks || []).filter((track) => learnedTrackIds.has(String(track.id))).flatMap((track) => [track.channel, ...(track.channelIds || [])].filter(Boolean)).map(String)); const weighted = channels.flatMap((channel) => [channel, ...(learnedChannels.has(String(channel.id)) ? [channel, channel] : [])]); state.channelId = weighted[Math.floor(Math.random() * weighted.length)]?.id || channels[0].id; }
 function render() {
   const channel = state.manifest.channels?.find((item) => item.id === state.channelId);
@@ -116,6 +117,7 @@ function bind() {
   el('radioMiniNextButton')?.addEventListener('click', () => void playNext());
   el('radioFavoriteButton')?.addEventListener('click', toggleFavorite);
   el('radioSaveButton')?.addEventListener('click', () => void saveCurrent().catch((error) => toast(error.message || 'Could not save this track.')));
+  ['radioLiveSources', 'radioLocalSources'].forEach((id) => el(id)?.addEventListener('change', () => { state.current = chooseTrack(); render(); }));
   el('radioCloseButton')?.addEventListener('click', () => closeSheets());
   el('radioMiniOpenButton')?.addEventListener('click', () => openSheet('radioSheet'));
   window.addEventListener('radio-open-requested', ({ detail }) => {

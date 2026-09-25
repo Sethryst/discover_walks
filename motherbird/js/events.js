@@ -29,7 +29,7 @@ const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];
 export function initEvents() {
   window.addEventListener('walk-position-received', ({ detail }) => void updateActiveManeuver(detail));
   initJournalPane();
-  bindSheets(); bindLocationControls(); bindWalkControls(); bindSearch(); bindJournal(); bindDeviceControls();
+  bindSheets(); bindLocationControls(); bindCompanionMenu(); bindWalkControls(); bindSearch(); bindJournal(); bindDeviceControls();
   initMessengerBird();
   bindMapWorkspace();
   el('settingsButton')?.addEventListener('click', toggleFieldGuideMenu);
@@ -223,6 +223,21 @@ function bindLocationControls() {
     const selected = new Set(state.settings.geofenceCategories || []);
     selected.has(chip.dataset.geofenceCategory) ? selected.delete(chip.dataset.geofenceCategory) : selected.add(chip.dataset.geofenceCategory);
     state.settings.geofenceCategories = [...selected]; await db.put('settings', state.settings); renderGeofenceCategoryChips();
+  });
+}
+
+function bindCompanionMenu() {
+  window.addEventListener('companion-menu-requested', () => {
+    const select = el('companionWalker');
+    if (select) select.value = state.settings.companionWalker || 'inky';
+    openSheet('companionSheet');
+  });
+  el('companionWalker')?.addEventListener('change', async (event) => {
+    state.settings.companionWalker = event.target.value;
+    await db.put('settings', state.settings);
+    refreshCompanionState();
+    const preview = el('companionPreviewImage');
+    if (preview) preview.src = `./assets/${event.target.value === 'inky' ? 'inky-idle' : `${event.target.value}-idle`}.gif`;
   });
 }
 

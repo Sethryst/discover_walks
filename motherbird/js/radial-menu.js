@@ -5,7 +5,7 @@ import db from './storage.js';
 
 const DEFAULT_STARRED = [
   { id: 'journal', label: 'Journal', icon: '▦' },
-  { id: 'field-guide', label: 'Field Guide', icon: '🎒' }
+  { id: 'walk-field-guide', label: 'Field Guide', icon: '🎒' }
 ];
 
 export function getStarredActions() {

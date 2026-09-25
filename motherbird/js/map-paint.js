@@ -191,9 +191,7 @@ function renderArtifactList() {
     const name = document.createElement('strong'); name.textContent = item.title || 'Drawing';
     const toggle = document.createElement('button'); toggle.type = 'button'; toggle.textContent = hiddenArtifacts.has(item.id) ? 'Show' : 'Hide';
     toggle.addEventListener('click', () => { hiddenArtifacts.has(item.id) ? hiddenArtifacts.delete(item.id) : hiddenArtifacts.add(item.id); saveHiddenArtifacts(); void renderMapDrawings(); });
-    const remove = document.createElement('button'); remove.type = 'button'; remove.textContent = '×'; remove.setAttribute('aria-label', `Delete ${name.textContent}`);
-    remove.addEventListener('click', async () => { await db.remove('moments', item.id); hiddenArtifacts.delete(item.id); void renderMapDrawings(); });
-    row.append(name, toggle, remove); list.append(row);
+    row.append(name, toggle); list.append(row);
   }
 }
 async function renderSpatialQueryHistory() {

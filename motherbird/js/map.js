@@ -40,6 +40,13 @@ export function initMap() {
   // location—not the regional centroid—and keep enough zoom for a walk.
   const initialZoom = view?.zoom ?? ((state.currentPosition || state.lastPosition) ? Math.max(active.zoom, 15) : active.zoom);
   state.map = L.map('map', { zoomControl: false, attributionControl: true, zoomAnimation: false, fadeAnimation: false, markerZoomAnimation: false, inertia: false }).setView([initialPosition.lat, initialPosition.lng], initialZoom);
+  // Resizing or rotating the viewport must never change the user's map zoom.
+  window.addEventListener('resize', () => {
+    if (!state.map) return;
+    const center = state.map.getCenter(); const zoom = state.map.getZoom();
+    state.map.invalidateSize({ pan: false });
+    state.map.setView(center, zoom, { animate: false });
+  }, { passive: true });
   state.onlineBasemapLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: OSM_ATTRIBUTION, crossOrigin: true });
   if (navigator.onLine !== false) state.onlineBasemapLayer.addTo(state.map);
   state.historyRadiusLayer = L.layerGroup().addTo(state.map);
