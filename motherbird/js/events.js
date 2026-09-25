@@ -21,6 +21,7 @@ import { initMessengerBird } from './messenger-bird.js';
 import { restartCoachMarks } from './coach.js';
 import { savePlannedRoute } from './saved-routes.js';
 import { recordSessionRoutingOutcome } from './routing-feedback.js';
+import { openRoomForPlace } from './room-runtime.js';
 
 const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];
 
@@ -37,6 +38,7 @@ export function initEvents() {
   });
   el('journalButton')?.addEventListener('click', () => void openJournal());
   el('geoCypherButton')?.addEventListener('click', () => void openGeoCypher());
+  window.addEventListener('room-open-requested', (event) => void openRoomForPlace(event.detail?.place));
   bindMessengerBird();
   window.addEventListener('walk-poi-encounter', (event) => void import('./walk.js').then(({ recordPoiEncounter }) => recordPoiEncounter(event.detail?.poi, event.detail?.distance)));
   window.addEventListener('backpack-open-requested', openBackpack);

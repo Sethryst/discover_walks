@@ -2,6 +2,7 @@
 // without making private Rooms dependent on a database.
 import db from './storage.js';
 import { uid } from './utils.js';
+import { openSheet } from './ui.js';
 
 export const ROOM_TYPES = Object.freeze(['building', 'park', 'trail', 'garden', 'historic-site', 'museum', 'neighborhood']);
 export const ROOM_VISIBILITY = Object.freeze(['private', 'bundled', 'public']);
@@ -29,4 +30,28 @@ export function canPublishRoom(room, { fieldEdition = false } = {}) {
 
 export function addRoomAudioStation(room, stationId) {
   return { ...room, audioStationIds: [...new Set([...(room.audioStationIds || []), String(stationId)])], updatedAt: new Date().toISOString() };
+}
+
+export async function openRoomForPlace(place) {
+  if (!place?.id) return null;
+  let room = await resolveRoom(place.id);
+  if (!room) room = await saveRoom(createRoom({ placeId: place.id, type: inferRoomType(place), name: place.name || 'Place Room', geometry: place.geometry || null }));
+  const title = document.getElementById('roomTitle');
+  const type = document.getElementById('roomType');
+  const body = document.getElementById('roomBody');
+  if (title) title.textContent = room.name;
+  if (type) type.textContent = `${room.type.replaceAll('-', ' ')} · ${room.visibility}`;
+  if (body) body.textContent = room.visibility === 'private' ? 'This Room is private on this device. Add place-specific notes and audio here; publishing requires Field Edition.' : 'This Room is ready for place-specific experiences.';
+  openSheet('roomSheet');
+  return room;
+}
+
+function inferRoomType(place) {
+  const tags = [...(place.tags || []), place.category, place.type].filter(Boolean).map(String);
+  if (tags.some((tag) => /museum/i.test(tag))) return 'museum';
+  if (tags.some((tag) => /garden/i.test(tag))) return 'garden';
+  if (tags.some((tag) => /trail/i.test(tag))) return 'trail';
+  if (tags.some((tag) => /park/i.test(tag))) return 'park';
+  if (tags.some((tag) => /historic|heritage/i.test(tag))) return 'historic-site';
+  return 'building';
 }

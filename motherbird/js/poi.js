@@ -153,6 +153,9 @@ export function renderCityPois() {
       marker.on('popupopen', (event) => event.popup.getElement()?.querySelector('[data-save-poi]')?.addEventListener('click', () => {
         window.dispatchEvent(new CustomEvent('personal-place-create-requested', { detail: { sourcePoi: poi, location: { lat: poi.lat, lng: poi.lng }, name: displayPoiName(poi) } }));
       }, { once: true }));
+      marker.on('popupopen', (event) => event.popup.getElement()?.querySelector('[data-open-room]')?.addEventListener('click', () => {
+        window.dispatchEvent(new CustomEvent('room-open-requested', { detail: { place: poi } }));
+      }, { once: true }));
       return marker;
     });
   if (state.poiLayer.addLayers) state.poiLayer.addLayers(markers); else markers.forEach((marker) => marker.addTo(state.poiLayer));
@@ -239,7 +242,7 @@ function packAttribution(poi) {
 function poiPopup(poi) {
   const source = publicPlaceSource(poi);
   const details = walkerDetails(poi).map((row) => `<p><small>${escapeHtml(row.group)}</small><br>${escapeHtml(row.text)}</p>`).join('');
-  return `<strong>${escapeHtml(displayPoiName(poi))}</strong>${details}<small>${escapeHtml(packAttribution(poi))}</small>${source ? `<br><a href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer">Public source ↗</a>` : ''}<br><button type="button" class="save-poi-button" data-save-poi="${escapeHtml(String(poi.id))}">Save to My Maps</button>`;
+  return `<strong>${escapeHtml(displayPoiName(poi))}</strong>${details}<small>${escapeHtml(packAttribution(poi))}</small>${source ? `<br><a href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer">Public source ↗</a>` : ''}<br><button type="button" class="save-poi-button" data-save-poi="${escapeHtml(String(poi.id))}">Save to My Maps</button><button type="button" class="save-poi-button" data-open-room="${escapeHtml(String(poi.id))}">Enter Room</button>`;
 }
 
 function hasPackTrailGeometry(poi) {
