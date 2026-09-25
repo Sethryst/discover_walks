@@ -13,7 +13,7 @@ const actions = {
   library: [
     { id: 'journal', label: 'Journal', icon: './icons/grid.svg', run: () => void openJournal() },
     { id: 'observe', label: 'Observations', icon: './icons/camera.svg', run: () => { openSheet('journalSheet'); document.getElementById('observeButton')?.click(); } },
-    { id: 'saved-places', label: 'Saved walks & places', icon: './icons/map-pin.svg', run: () => document.querySelector('[data-map-destination="maps"]')?.click() },
+    { id: 'saved-places', label: 'Saved walks & places', icon: './icons/map-pin.svg', run: () => window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'maps', forceOpen: true } })) },
     { id: 'cypher', label: 'Audio Notes', icon: './icons/music.svg', run: () => openSheet('geoCypherSheet') }
   ],
   me: [
