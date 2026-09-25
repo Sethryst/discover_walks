@@ -64,9 +64,10 @@ function visibleMapPlaces() {
   return curatedPersonalPlaces().filter((place) => !place.advancedOnly || state.settings.showAdvancedPlaces);
 }
 
-export function renderMapsLibrary(target = el('fieldGuideList')) {
+export async function renderMapsLibrary(target = el('fieldGuideList')) {
   if (!target) return;
   if (openMapsFolderId && !state.personalPlaceCategories.some((category) => category.id === openMapsFolderId)) openMapsFolderId = null;
+  const [walks, observations, moments, audioNotes, pins] = await Promise.all([db.all('walks'), db.all('observations'), db.all('moments'), db.all('geo_cypher_manifests'), db.all('personal_places')]);
   target.innerHTML = mapsLibraryHtml({
     categories: state.personalPlaceCategories,
     places: visibleMapPlaces(),
@@ -74,6 +75,15 @@ export function renderMapsLibrary(target = el('fieldGuideList')) {
     openFolderId: openMapsFolderId,
     visibleFilters: state.layerFilters.personal
   });
+  const cards = [
+    ...walks.map((item) => ['Walk', item.title || 'Recorded walk', ((Number(item.distanceMeters || 0) / 1609.344).toFixed(1) + ' mi')]),
+    ...observations.map((item) => ['Observation', item.species || 'Observation', item.note || 'Field observation']),
+    ...audioNotes.map((item) => ['Audio note', item.title || 'Audio note', item.location ? 'Pinned audio note' : 'Saved on this device']),
+    ...pins.map((item) => ['Custom pin', item.name || 'Saved place', item.categoryId || 'Personal place']),
+    ...moments.filter((item) => item.type === 'drawing').map((item) => ['Annotation', item.title || 'Map annotation', item.body?.measurement || item.body?.shape || 'Map drawing'])
+  ];
+  const cardsHtml = cards.map(([kind, title, detail]) => '<article class="guide-card learn-entry saved-record"><small>' + escapeHtml(kind) + '</small><h3>' + escapeHtml(title) + '</h3><p>' + escapeHtml(detail) + '</p></article>').join('');
+  target.insertAdjacentHTML('beforeend', '<section class="saved-walks-places" aria-labelledby="savedWalksPlacesTitle"><h3 class="learn-kicker" id="savedWalksPlacesTitle">Everything saved here</h3><p class="learn-progress">Walks, observations, audio notes, custom pins, and map annotations stay connected in this private library.</p>' + (cards.length ? '<div class="saved-record-grid">' + cardsHtml + '</div>' : '<p class="empty-state">Nothing saved yet.</p>') + '</section>');
 }
 
 function uniqueFolderId(base) {
@@ -162,5 +172,6 @@ export function initMapsFolders() {
   window.addEventListener('personal-places-changed', () => {
     if (state.fieldGuideTab === 'maps') renderMapsLibrary();
   });
-  window.addEventListener('saved-routes-changed', () => { if (state.fieldGuideTab === 'maps') renderMapsLibrary(); });
+  window.addEventListener('saved-routes-changed', () => { if (state.fieldGuideTab === 'maps') void renderMapsLibrary(); });
+  ['observations-changed', 'geo-cyphers-changed', 'local-drawings-changed', 'walks-changed'].forEach((eventName) => window.addEventListener(eventName, () => { if (state.fieldGuideTab === 'maps') void renderMapsLibrary(); }));
 }
