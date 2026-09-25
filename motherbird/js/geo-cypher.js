@@ -33,7 +33,7 @@ export async function shareAudioNote(pin) {
 }
 
 export function canonicalLineagePayload(pin) {
-  return JSON.stringify({ schemaVersion: pin.schemaVersion, id: pin.id, createdAt: pin.createdAt, lat: pin.lat, lng: pin.lng, radiusMeters: pin.radiusMeters, durationMs: pin.durationMs, mimeType: pin.mimeType, contentHash: pin.contentHash, creatorKeyId: pin.creatorKeyId, lineage: pin.lineage });
+  return JSON.stringify({ schemaVersion: pin.schemaVersion, id: pin.id, roomId: pin.roomId || null, createdAt: pin.createdAt, lat: pin.lat, lng: pin.lng, radiusMeters: pin.radiusMeters, durationMs: pin.durationMs, mimeType: pin.mimeType, contentHash: pin.contentHash, creatorKeyId: pin.creatorKeyId, lineage: pin.lineage });
 }
 async function sha256(value) {
   const bytes = value instanceof Blob ? new Uint8Array(await value.arrayBuffer()) : encoder.encode(value);
@@ -87,7 +87,7 @@ async function recordEvent(pinId, type) {
 async function saveRecording(audio, durationMs, parent) {
   const identity = await deviceSigningIdentity(), id = crypto.randomUUID(), location = pinLocation();
   if (!location) throw new Error('A map location is required.');
-  const unsigned = { schemaVersion: SCHEMA_VERSION, id, createdAt: new Date().toISOString(), lat: Number(location.lat.toFixed(6)), lng: Number(location.lng.toFixed(6)), locationSource: location.source, radiusMeters: Number(state.settings?.defaultGeofenceRadiusMeters) || DEFAULT_RADIUS_METERS, durationMs: Math.min(durationMs, MAX_DURATION_MS), mimeType: audio.type || 'audio/webm', contentHash: await sha256(audio), creatorKeyId: identity.keyId, lineage: { rootId: parent?.lineage?.rootId || parent?.id || id, parentId: parent?.id || null, generation: parent ? Number(parent.lineage?.generation || 0) + 1 : 0 } };
+  const unsigned = { schemaVersion: SCHEMA_VERSION, id, roomId: state.activeRoom?.id || null, createdAt: new Date().toISOString(), lat: Number(location.lat.toFixed(6)), lng: Number(location.lng.toFixed(6)), locationSource: location.source, radiusMeters: Number(state.settings?.defaultGeofenceRadiusMeters) || DEFAULT_RADIUS_METERS, durationMs: Math.min(durationMs, MAX_DURATION_MS), mimeType: audio.type || 'audio/webm', contentHash: await sha256(audio), creatorKeyId: identity.keyId, lineage: { rootId: parent?.lineage?.rootId || parent?.id || id, parentId: parent?.id || null, generation: parent ? Number(parent.lineage?.generation || 0) + 1 : 0 } };
   const signed = await signGeoCypher(unsigned, identity);
   await db.putMany({ geo_cypher_manifests: [signed], geo_cypher_audio: [{ id, audio }] });
   state.geoCyphers = [signed, ...state.geoCyphers];

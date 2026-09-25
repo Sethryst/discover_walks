@@ -4,6 +4,7 @@ import db from './storage.js';
 import { uid } from './utils.js';
 import { openSheet } from './ui.js';
 import { normalizeSpatialPlace } from './spatial-model.js';
+import { state } from './state.js';
 
 export const ROOM_TYPES = Object.freeze(['building', 'park', 'trail', 'garden', 'historic-site', 'museum', 'neighborhood']);
 export const ROOM_VISIBILITY = Object.freeze(['private', 'bundled', 'public']);
@@ -39,6 +40,7 @@ export async function openRoomForPlace(place) {
   let room = await resolveRoom(place.id);
   if (!room) room = await saveRoom(createRoom({ placeId: place.id, type: inferRoomType(place), name: place.name || 'Place Room', geometry: place.geometry || null, data: { featuredStationIds: place.radioStationIds || place.stationIds || [] } }));
   activeRoom = room;
+  state.activeRoom = room;
   const title = document.getElementById('roomTitle');
   const type = document.getElementById('roomType');
   const body = document.getElementById('roomBody');

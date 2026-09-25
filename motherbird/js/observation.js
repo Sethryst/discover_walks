@@ -61,6 +61,7 @@ export async function saveObservation(event) {
       photo,
       location: state.draftObservationLocation,
       walkId: state.activeWalk?.id || null,
+      roomId: state.activeRoom?.id || null,
       coverage: null
     }),
     pointsAwarded: 0

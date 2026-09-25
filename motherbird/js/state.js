@@ -66,6 +66,7 @@ export const state = {
   spatialQueryResults: [],
   spatialQueryDismissed: new Set(),
   spatialQuerySelected: new Set(),
+  activeRoom: null,
   fieldGuidePreviewMarker: null,
   federalBoundaryOverlay: null,
   historicalTopoLayer: null,
