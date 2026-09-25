@@ -33,14 +33,23 @@ function queryCategory(poi) {
   if (tags.some((tag) => ['park', 'nature', 'wildlife', 'water', 'water_access', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad', 'trail', 'history', 'history_landmark', 'history_monument', 'history_museum', 'history_cemetery', 'history_marker', 'art', 'public_art'].includes(tag))) return 'recreation';
   return null;
 }
+function queryGeometry(query) {
+  if (!query?.geometry) return null;
+  if (['LineString', 'MultiLineString'].includes(query.geometry.type) && globalThis.turf?.buffer) {
+    return globalThis.turf.buffer({ type: 'Feature', properties: {}, geometry: query.geometry }, 100, { units: 'meters' })?.geometry || null;
+  }
+  return query.geometry;
+}
 function renderSpatialQuery() {
   if (!state.map || !state.spatialQuery) return;
   if (!state.spatialQueryLayer) state.spatialQueryLayer = L.layerGroup().addTo(state.map);
   state.spatialQueryLayer.clearLayers();
+  const geometry = queryGeometry(state.spatialQuery);
   const results = (state.cityPois[state.activeCity] || []).filter(isVisiblePoi).filter((poi) => {
     const category = queryCategory(poi);
     if (!category || state.layerLights?.[category] === false) return false;
-    return globalThis.turf?.booleanPointInPolygon([poi.lng, poi.lat], state.spatialQuery.geometry);
+    if (geometry?.type === 'Polygon' || geometry?.type === 'MultiPolygon') return globalThis.turf?.booleanPointInPolygon([poi.lng, poi.lat], geometry);
+    return false;
   }).filter((poi) => !state.spatialQueryDismissed.has(String(poi.id)));
   state.spatialQueryResults = results;
   results.forEach((poi) => {
@@ -180,7 +189,7 @@ async function persistCreatedLayer(layer, shape) {
     const query = createSpatialQuery({ shape, geometry: geojson.geometry, regionId: state.activeCity });
     state.spatialQuery = query; state.spatialQueryDismissed = new Set(); state.spatialQuerySelected = new Set();
     void saveSpatialQuery(query);
-    if (['Circle', 'Polygon', 'Rectangle'].includes(shape)) renderSpatialQuery();
+    if (['Circle', 'Polygon', 'Rectangle', 'Freehand', 'Line'].includes(shape)) renderSpatialQuery();
     el('drawWorkspaceStatus')?.insertAdjacentText('afterbegin', `${queryPrompt(query)} `);
     toast(`${queryPrompt(query)} Spatial Query saved.`);
   }
