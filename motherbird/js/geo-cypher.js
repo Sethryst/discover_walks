@@ -3,6 +3,7 @@ import { state } from './state.js';
 import { distanceMeters } from './geo.js';
 import { el, escapeHtml, formatDistance } from './utils.js';
 import { openSheet } from './ui.js';
+import { appendRoomTrace } from './room-runtime.js';
 
 const SCHEMA_VERSION = 1, MAX_DURATION_MS = 120000, DEFAULT_RADIUS_METERS = 50;
 // Compatibility module name retained for existing local records. The product
@@ -90,6 +91,7 @@ async function saveRecording(audio, durationMs, parent) {
   const unsigned = { schemaVersion: SCHEMA_VERSION, id, roomId: state.activeRoom?.id || null, createdAt: new Date().toISOString(), lat: Number(location.lat.toFixed(6)), lng: Number(location.lng.toFixed(6)), locationSource: location.source, radiusMeters: Number(state.settings?.defaultGeofenceRadiusMeters) || DEFAULT_RADIUS_METERS, durationMs: Math.min(durationMs, MAX_DURATION_MS), mimeType: audio.type || 'audio/webm', contentHash: await sha256(audio), creatorKeyId: identity.keyId, lineage: { rootId: parent?.lineage?.rootId || parent?.id || id, parentId: parent?.id || null, generation: parent ? Number(parent.lineage?.generation || 0) + 1 : 0 } };
   const signed = await signGeoCypher(unsigned, identity);
   await db.putMany({ geo_cypher_manifests: [signed], geo_cypher_audio: [{ id, audio }] });
+  if (signed.roomId) await appendRoomTrace(signed.roomId, { type: 'audio-note', refId: signed.id, location });
   state.geoCyphers = [signed, ...state.geoCyphers];
   await recordEvent(id, 'created');
   if (parent) await recordEvent(parent.id, 'responded');

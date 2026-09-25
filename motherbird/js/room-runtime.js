@@ -2,7 +2,6 @@
 // without making private Rooms dependent on a database.
 import db from './storage.js';
 import { uid } from './utils.js';
-import { openSheet } from './ui.js';
 import { normalizeSpatialPlace } from './spatial-model.js';
 import { state } from './state.js';
 
@@ -48,11 +47,24 @@ export async function openRoomForPlace(place) {
   if (title) { title.dataset.roomId = room.id; title.dataset.stationIds = JSON.stringify(room.data?.featuredStationIds || room.audioStationIds || []); }
   if (type) type.textContent = `${room.type.replaceAll('-', ' ')} · ${room.visibility}`;
   if (body) body.textContent = room.visibility === 'private' ? 'This Room is private on this device. Add place-specific notes and audio here; publishing requires Field Edition.' : 'This Room is ready for place-specific experiences.';
-  openSheet('roomSheet');
+  window.dispatchEvent(new CustomEvent('room-sheet-open-requested'));
   return room;
 }
 
 export function currentRoom() { return activeRoom; }
+
+export async function appendRoomTrace(roomId, { type, refId, location = null, createdAt = new Date().toISOString() } = {}) {
+  if (!roomId || !type || !refId) return null;
+  const room = await db.get('rooms', roomId);
+  if (!room) return null;
+  const traces = Array.isArray(room.traces) ? room.traces : [];
+  if (traces.some((trace) => trace.refId === String(refId))) return room;
+  const next = { ...room, traces: [...traces, { id: uid('room-trace'), type: String(type), refId: String(refId), location, createdAt }], updatedAt: new Date().toISOString() };
+  await db.put('rooms', next);
+  if (activeRoom?.id === roomId) activeRoom = next;
+  if (state.activeRoom?.id === roomId) state.activeRoom = next;
+  return next;
+}
 
 function inferRoomType(place) {
   const tags = [...(place.tags || []), place.category, place.type].filter(Boolean).map(String);

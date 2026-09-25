@@ -8,6 +8,7 @@ import { buildReflectionMoment, wordCount } from './reflection.js';
 import { markPoiVisited } from './poi-visit-tracking.js';
 import { attachWalkArtifact } from './walk-context.js';
 import { requestCompanionContext } from './companion.js';
+import { appendRoomTrace } from './room-runtime.js';
 
 export async function saveHistoryMoment() {
   const site = state.currentSite; if (!site) return;
@@ -34,6 +35,7 @@ export async function saveJournal(event) {
   if (!note) { closeSheets(); return; }
   const moment = { ...buildReflectionMoment({ id: event.currentTarget.dataset.momentId || uid('moment'), city: state.activeCity, heading: '', note, prompt: null, walkId, createdAt: new Date().toISOString() }), roomId: state.activeRoom?.id || null };
   await db.put('moments', moment);
+  if (moment.roomId) await appendRoomTrace(moment.roomId, { type: 'journal', refId: moment.id });
   requestCompanionContext('journal');
   closeSheets(); renderArchive();
 }
@@ -47,6 +49,7 @@ export async function saveJournalOnClose({ note = '', walkId = '' } = {}) {
   const previous = await db.get('moments', existing);
   const moment = { ...previous, ...buildReflectionMoment({ id: existing, city: state.activeCity, heading: '', note: cleanNote, prompt: null, walkId: walkId || null, createdAt: previous?.createdAt || new Date().toISOString() }), roomId: state.activeRoom?.id || previous?.roomId || null, updatedAt: new Date().toISOString() };
   await db.put('moments', moment);
+  if (moment.roomId) await appendRoomTrace(moment.roomId, { type: 'journal', refId: moment.id });
   requestCompanionContext('journal');
   await renderArchive();
 }
@@ -58,6 +61,7 @@ export async function ensureCurrentJournalNote() {
   const previous = await db.get('moments', id);
   const note = { ...previous, id, type: 'journal', city: state.activeCity, title: previous?.title || 'Field note', note: el('journalNote')?.value || '', walkId: form.dataset.walkId || state.activeWalk?.id || null, roomId: state.activeRoom?.id || previous?.roomId || null, createdAt: previous?.createdAt || new Date().toISOString(), updatedAt: new Date().toISOString() };
   await db.put('moments', note);
+  if (note.roomId) await appendRoomTrace(note.roomId, { type: 'journal', refId: note.id });
   return note;
 }
 export async function saveQuickJournal(event) {

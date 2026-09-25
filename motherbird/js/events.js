@@ -40,6 +40,7 @@ export function initEvents() {
   el('journalButton')?.addEventListener('click', () => void openJournal());
   el('geoCypherButton')?.addEventListener('click', () => void openGeoCypher());
   window.addEventListener('room-open-requested', (event) => void openRoomForPlace(event.detail?.place));
+  window.addEventListener('room-sheet-open-requested', () => openSheet('roomSheet'));
   el('roomAudioButton')?.addEventListener('click', () => void openGeoCypher());
   el('roomJournalButton')?.addEventListener('click', () => void openJournal());
   el('roomRadioButton')?.addEventListener('click', () => {
