@@ -1,0 +1,60 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Routing worker diagnostic</title>
+<style>body{font:14px system-ui;max-width:70rem;margin:1rem auto;padding:0 1rem}pre{white-space:pre-wrap;background:#f3f5f2;padding:1rem;border-radius:.5rem}</style>
+<h1>Routing worker diagnostic</h1>
+<pre id="out">starting…</pre>
+<script type="module">
+const out = document.querySelector('#out');
+const lines = [];
+const log = (label, value) => { lines.push(`${label}: ${typeof value === 'string' ? value : JSON.stringify(value)}`); out.textContent = lines.join('\n'); };
+const requests = [];
+const originalFetch = window.fetch.bind(window);
+window.fetch = async (...args) => {
+  const url = String(args[0]?.url || args[0]);
+  requests.push(url);
+  try { const response = await originalFetch(...args); log('fetch', { url, status: response.status, contentType: response.headers.get('content-type') }); return response; }
+  catch (error) { log('fetch-error', { url, message: error.message }); throw error; }
+};
+
+const root = new URL('./', location.href);
+const workerUrl = new URL('./js/offline-router-worker.js?diagnostic=20260925-worker-startup-v1', root).href;
+const runtimeUrl = new URL('./js/runtime-router.mjs?diagnostic=20260925-runtime-v1', root).href;
+const manifestUrl = new URL('./data/national-routing/osm-us-2026-09-07/cells.json?diagnostic=20260925', root).href;
+const cellRoot = new URL('./data/national-routing/osm-us-2026-09-07/cells/z10-291-392/', root);
+const binaryNames = ['nodes.bin','edges.bin','adjacency.bin','edge_geometry.bin','edge_spatial_index.bin'];
+const expected = { 'nodes.bin':8575496, 'edges.bin':29995928, 'adjacency.bin':14856880, 'edge_geometry.bin':11998376, 'edge_spatial_index.bin':3844192 };
+
+window.addEventListener('error', event => log('window-error', { message: event.message, filename: event.filename, line: event.lineno, column: event.colno }));
+window.addEventListener('unhandledrejection', event => log('window-unhandled-rejection', { message: event.reason?.message || String(event.reason), stack: event.reason?.stack || null }));
+
+async function probe(url, label, readBytes = 16) {
+  const response = await originalFetch(url, { cache: 'no-store' });
+  const bytes = new Uint8Array(await response.clone().arrayBuffer());
+  log(label, { url, status: response.status, contentType: response.headers.get('content-type'), bytes: bytes.byteLength, firstBytes: [...bytes.slice(0, readBytes)] });
+  return response;
+}
+
+log('location', location.href);
+const registrations = await navigator.serviceWorker.getRegistrations();
+log('serviceWorker-before-unregister', { controller: navigator.serviceWorker.controller?.scriptURL || null, registrations: registrations.map(r => ({ scope: r.scope, active: r.active?.scriptURL || null })) });
+await Promise.all(registrations.map(registration => registration.unregister()));
+log('serviceWorker-after-unregister', { controller: navigator.serviceWorker.controller?.scriptURL || null, registrations: (await navigator.serviceWorker.getRegistrations()).map(r => r.scope) });
+await probe(workerUrl, 'worker-probe');
+await probe(runtimeUrl, 'runtime-probe');
+await probe(manifestUrl, 'manifest-probe');
+for (const name of binaryNames) {
+  const response = await probe(new URL(name, cellRoot).href, `binary-probe-${name}`, 8);
+  log(`binary-size-${name}`, { expected: expected[name], actual: Number(response.headers.get('content-length') || 0) });
+}
+
+try { await import(runtimeUrl); log('runtime-import', 'success'); } catch (error) { log('runtime-import-error', { name: error.name, message: error.message, stack: error.stack }); }
+
+const worker = new Worker(workerUrl, { type: 'module' });
+worker.onmessage = event => log('worker-onmessage', event.data);
+worker.onerror = event => log('worker-onerror', { message: event.message, filename: event.filename, line: event.lineno, column: event.colno, error: event.error?.message || null, stack: event.error?.stack || null });
+worker.onmessageerror = event => log('worker-onmessageerror', String(event));
+worker.postMessage({ type: 'diagnostic-ping' });
+await new Promise(resolve => setTimeout(resolve, 3000));
+log('request-summary', { requests, runtimeGraphRequested: requests.some(url => /runtime-graph\.json/i.test(url)), binariesRequested: Object.fromEntries(binaryNames.map(name => [name, requests.some(url => url.endsWith(`/${name}`))])) });
+</script>

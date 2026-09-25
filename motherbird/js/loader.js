@@ -1,4 +1,4 @@
-import db from './storage.js';
+import db from './storage.js?v=20260925-routing-binary';
 import { state } from './state.js';
 import { DEFAULT_SETTINGS, CITIES, DEFAULT_CITY_ID } from './constants.js';
 import { normalizeProfile, sitesForProfile } from './utils.js';
@@ -6,7 +6,7 @@ import { toast } from './ui.js';
 import { initMap } from './map.js';
 import { applyStaticAppearance } from './ui.js';
 import { loadAllCityData, refreshCityMap } from './city.js';
-import { initEvents } from './events.js';
+import { initEvents } from './events.js?v=20260925-routing-binary';
 import { renderArchive } from './archive.js';
 import { normalizedEntitlements } from './entitlements.js';
 import { restoreLocalPoiClosures } from './spatial-closure-reporting.js';
@@ -25,7 +25,7 @@ import { initGeoCypher } from './geo-cypher.js';
 import { initPwaUpdates } from './pwa-update.js';
 import { initPrimaryShell } from './primary-shell.js';
 import { initStories } from './stories.js';
-import { initRadio } from './radio.js';
+import { initRadio } from './radio.js?v=20260925-routing-binary';
 import { recoverWalkDraft, discardWalk } from './walk.js';
 
 export async function init() {
