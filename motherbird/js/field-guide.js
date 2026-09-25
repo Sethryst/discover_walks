@@ -356,7 +356,7 @@ export function initFieldGuideFilters() {
         state.spatialQueryDismissed = new Set();
         state.spatialQuerySelected = new Set();
         window.dispatchEvent(new CustomEvent('spatial-query-restore-requested', { detail: { query } }));
-        document.querySelector('[data-map-destination="draw"]')?.click();
+        window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'draw', forceOpen: true } }));
         toast('Showing this Spatial Query on the map.');
       });
       return;

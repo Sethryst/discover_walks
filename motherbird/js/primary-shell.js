@@ -8,7 +8,7 @@ const actions = {
   walk: [
     { id: 'sketch-walk', label: 'Sketch a nearby walk', icon: './icons/walk.svg', run: () => void generateTimeBasedPlan() },
     { id: 'field-guide', label: 'Follow a saved walk', icon: './icons/book-open.svg', run: () => void openBackpack() },
-    { id: 'draw', label: 'Draw a route', icon: './icons/pencil.svg', run: () => document.querySelector('[data-map-destination="draw"]')?.click() }
+    { id: 'draw', label: 'Draw a route', icon: './icons/pencil.svg', run: () => window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'draw', forceOpen: true } })) }
   ],
   library: [
     { id: 'journal', label: 'Journal', icon: './icons/grid.svg', run: () => void openJournal() },
@@ -17,7 +17,7 @@ const actions = {
     { id: 'cypher', label: 'Audio Notes', icon: './icons/music.svg', run: () => openSheet('geoCypherSheet') }
   ],
   me: [
-    { id: 'draw', label: 'Draw & annotations', icon: './icons/pencil.svg', run: () => document.querySelector('[data-map-destination="draw"]')?.click() },
+    { id: 'draw', label: 'Draw & annotations', icon: './icons/pencil.svg', run: () => window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'draw', forceOpen: true } })) },
     { id: 'sketch-walk', label: 'Sketch a walk', icon: './icons/walk.svg', run: () => void generateTimeBasedPlan() },
     { id: 'radio', label: 'Radio', icon: './icons/music.svg', run: () => window.dispatchEvent(new CustomEvent('radio-open-requested')) },
     { id: 'companion', label: 'Companion', icon: './icons/heart.svg', run: () => document.getElementById('companionButton')?.click() },
