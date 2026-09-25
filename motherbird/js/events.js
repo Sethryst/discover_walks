@@ -39,6 +39,8 @@ export function initEvents() {
   el('journalButton')?.addEventListener('click', () => void openJournal());
   el('geoCypherButton')?.addEventListener('click', () => void openGeoCypher());
   window.addEventListener('room-open-requested', (event) => void openRoomForPlace(event.detail?.place));
+  el('roomAudioButton')?.addEventListener('click', () => void openGeoCypher());
+  el('roomJournalButton')?.addEventListener('click', () => void openJournal());
   bindMessengerBird();
   window.addEventListener('walk-poi-encounter', (event) => void import('./walk.js').then(({ recordPoiEncounter }) => recordPoiEncounter(event.detail?.poi, event.detail?.distance)));
   window.addEventListener('backpack-open-requested', openBackpack);

@@ -6,6 +6,7 @@ import { openSheet } from './ui.js';
 
 export const ROOM_TYPES = Object.freeze(['building', 'park', 'trail', 'garden', 'historic-site', 'museum', 'neighborhood']);
 export const ROOM_VISIBILITY = Object.freeze(['private', 'bundled', 'public']);
+let activeRoom = null;
 
 export function createRoom({ placeId, type = 'building', name = '', geometry = null, visibility = 'private', data = {} } = {}) {
   if (!placeId) throw new Error('A Room needs a place id.');
@@ -36,6 +37,7 @@ export async function openRoomForPlace(place) {
   if (!place?.id) return null;
   let room = await resolveRoom(place.id);
   if (!room) room = await saveRoom(createRoom({ placeId: place.id, type: inferRoomType(place), name: place.name || 'Place Room', geometry: place.geometry || null }));
+  activeRoom = room;
   const title = document.getElementById('roomTitle');
   const type = document.getElementById('roomType');
   const body = document.getElementById('roomBody');
@@ -45,6 +47,8 @@ export async function openRoomForPlace(place) {
   openSheet('roomSheet');
   return room;
 }
+
+export function currentRoom() { return activeRoom; }
 
 function inferRoomType(place) {
   const tags = [...(place.tags || []), place.category, place.type].filter(Boolean).map(String);
