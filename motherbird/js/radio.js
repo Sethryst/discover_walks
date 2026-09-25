@@ -50,7 +50,7 @@ function tracksForChannel() { return (state.manifest.tracks || []).filter((track
 function chooseTrack() { const candidates = tracksForChannel(); if (!candidates.length) return null; const slot = Math.floor((Date.now() - Date.parse(state.manifest.epoch || '1950-01-01')) / ((state.manifest.slotMinutes || 45) * 60000)); return candidates[Math.abs(slot) % candidates.length]; }
 function render() {
   const channel = state.manifest.channels?.find((item) => item.id === state.channelId);
-  if (el('radioChannel')) el('radioChannel').innerHTML = (state.manifest.channels || []).map((item) => `<option value="${escapeHtml(item.id)}" ${item.id === state.channelId ? 'selected' : ''}>${escapeHtml(item.name)}</option>`).join('');
+  if (el('radioChannel')) el('radioChannel').innerHTML = recommendedStations(state.manifest, { history: state.history, favorites: state.favorites }).map((item) => `<option value="${escapeHtml(item.id)}" ${item.id === state.channelId ? 'selected' : ''}>${escapeHtml(item.name)}</option>`).join('');
   if (el('radioChannelDescription')) el('radioChannelDescription').textContent = channel?.description || 'Tune the dial to select a broadcast.';
   const [min, max] = years(state.manifest); const dial = el('radioEraDial'); if (dial) { dial.min = min; dial.max = max; dial.value = String(Math.max(min, Math.min(max, state.era))); }
   if (el('radioEraValue')) el('radioEraValue').textContent = `${state.era} · ${channel?.genre || 'radio'}`;
