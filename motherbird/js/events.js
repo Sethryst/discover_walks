@@ -131,10 +131,13 @@ function setMapWorkspace(destination = '', { toggle = true, forceOpen = false } 
 }
 
 function bindMapWorkspace() {
-  document.querySelector('.map-dock')?.addEventListener('click', (event) => {
-    const button = event.target.closest('[data-map-destination]');
-    if (button) setMapWorkspace(button.dataset.mapDestination, { toggle: button.dataset.mapDestination !== 'explore' });
-  });
+  const openDestination = (button) => {
+    setMapWorkspace(button.dataset.mapDestination, { toggle: button.dataset.mapDestination !== 'explore' });
+  };
+  // Bind the controls directly as well as through the legacy dock. The shell
+  // action panel opens these buttons programmatically, and the dock is hidden
+  // in the compact mobile/rail layout.
+  document.querySelectorAll('[data-map-destination]').forEach((button) => button.addEventListener('click', () => openDestination(button)));
   el('closeMapWorkspace')?.addEventListener('click', () => setMapWorkspace(''));
   el('collapseDrawTools')?.addEventListener('click', () => {
     const button = el('collapseDrawTools');
@@ -263,8 +266,8 @@ function renderWalkSketch(plan) {
     const steps = plan.instructions || [];
     instructions.innerHTML = steps.length
       ? steps.map((step) => `<li>${escapeHtml(step.text)}${step.distance_m ? ` · ${Math.round(step.distance_m)} m` : ''}</li>`).join('')
-      : `<li class="directions-unavailable">${escapeHtml(plan.graphStatus === 'GRAPH_VERSION_UNAVAILABLE'
-        ? 'Detailed turn-by-turn directions are not packaged for this area yet. You can still save the walk and follow the map.'
+      : `<li class="directions-unavailable">${escapeHtml(plan.graphStatus
+        ? `No connected walking route was found (${plan.graphStatus}). Tap the map again closer to a pedestrian path.`
         : 'Turn-by-turn directions are not available for this route.')}</li>`;
   }
   el('walkSketch').classList.remove('hidden'); el('startPanel').classList.add('hidden'); el('startChevron').setAttribute('aria-expanded', 'false');
