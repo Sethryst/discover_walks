@@ -6,6 +6,176 @@
 body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body[data-primary-tab="walk"] .map-dock [data-map-destination="draw"],body[data-primary-tab="library"] .map-dock [data-map-destination="maps"]{display:flex}body[data-primary-tab="explore"] .map-dock,body[data-primary-tab="walk"] .map-dock,body[data-primary-tab="library"] .map-dock{display:flex}
 @media(max-width:720px){body[data-primary-tab="walk"] .top-cluster .start-stack{grid-column:1/-1;grid-row:2}.top-cluster:has(.start-stack:not(.hidden)) .map-search{grid-row:1}.primary-panel{max-height:55dvh}}
 
+/* Keep Draw & annotations available as a real left-edge rail.  The draw
+   workspace is opened from the primary shell, but its controls must not
+   depend on the workspace panel's normal layout (which is responsive and can
+   otherwise clip or collapse the tools). */
+.map-workspace-panel[data-destination="draw"] {
+  position: fixed !important;
+  inset: 0 auto auto 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  pointer-events: none !important;
+  z-index: 4000 !important;
+}
+.map-workspace-panel[data-destination="draw"] > header,
+.map-workspace-panel[data-destination="draw"] > [data-map-panel="draw"] > *:not(.draw-shapes) {
+  display: none !important;
+}
+.map-workspace-panel[data-destination="draw"] > [data-map-panel="draw"],
+.map-workspace-panel[data-destination="draw"] .draw-workspace {
+  display: block !important;
+  width: 0 !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+.map-workspace-panel[data-destination="draw"] .draw-shapes {
+  position: fixed !important;
+  z-index: 2000 !important;
+  top: 50% !important;
+  left: max(8px, env(safe-area-inset-left)) !important;
+  right: auto !important;
+  bottom: auto !important;
+  transform: translateY(-50%) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+  width: 66px !important;
+  max-height: calc(100dvh - 32px) !important;
+  box-sizing: border-box !important;
+  padding: 7px 5px !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  border: 1px solid #dfe3e6 !important;
+  border-radius: 10px !important;
+  background: rgba(255,255,255,.97) !important;
+  box-shadow: 0 8px 24px rgba(34,44,52,.16) !important;
+  pointer-events: auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  clip: auto !important;
+  clip-path: none !important;
+}
+.map-workspace-panel[data-destination="draw"] .draw-shapes button {
+  display: grid !important;
+  flex: 0 0 52px !important;
+  place-items: center !important;
+  gap: 2px !important;
+  width: 54px !important;
+  min-height: 52px !important;
+  box-sizing: border-box !important;
+  padding: 4px 2px !important;
+  border: 0 !important;
+  border-radius: 7px !important;
+  background: transparent !important;
+  color: #626c72 !important;
+  font-size: 8px !important;
+  font-weight: 700 !important;
+  cursor: pointer;
+}
+.map-workspace-panel[data-destination="draw"] .draw-shapes button:hover,
+.map-workspace-panel[data-destination="draw"] .draw-shapes button:focus-visible,
+.map-workspace-panel[data-destination="draw"] .draw-shapes button.active {
+  background: #f1efff !important;
+  color: #624eef !important;
+  outline: 2px solid #624eef;
+  outline-offset: -2px;
+}
+.map-workspace-panel[data-destination="draw"] .draw-tool-icon {
+  display: block !important;
+  width: 22px !important;
+  height: 22px !important;
+  object-fit: contain;
+}
+@media (max-width: 430px) {
+  .map-workspace-panel[data-destination="draw"] .draw-shapes {
+    width: 58px !important;
+    left: max(6px, env(safe-area-inset-left)) !important;
+    padding: 5px 3px !important;
+  }
+  .map-workspace-panel[data-destination="draw"] .draw-shapes button {
+    flex-basis: 45px !important;
+    width: 50px !important;
+    min-height: 45px !important;
+    font-size: 7px !important;
+  }
+}
+
+/* The rail is moved to body by map-paint.js so it cannot be clipped by the
+   responsive workspace panel or a transformed map container. */
+.draw-tool-rail {
+  position: fixed !important;
+  z-index: 5000 !important;
+  top: 50% !important;
+  left: max(8px, env(safe-area-inset-left)) !important;
+  right: auto !important;
+  bottom: auto !important;
+  transform: translateY(-50%) !important;
+  display: none !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+  width: 66px !important;
+  max-height: calc(100dvh - 32px) !important;
+  box-sizing: border-box !important;
+  padding: 7px 5px !important;
+  overflow-y: auto !important;
+  border: 1px solid #dfe3e6 !important;
+  border-radius: 10px !important;
+  background: rgba(255,255,255,.97) !important;
+  box-shadow: 0 8px 24px rgba(34,44,52,.16) !important;
+}
+body.draw-pane-open .draw-tool-rail { display: flex !important; }
+.draw-tool-rail button {
+  display: grid !important;
+  flex: 0 0 52px !important;
+  place-items: center !important;
+  gap: 2px !important;
+  width: 54px !important;
+  min-height: 52px !important;
+  box-sizing: border-box !important;
+  padding: 4px 2px !important;
+  border: 0 !important;
+  border-radius: 7px !important;
+  background: transparent !important;
+  color: #626c72 !important;
+  font-size: 8px !important;
+  font-weight: 700 !important;
+}
+.draw-tool-rail button:hover,
+.draw-tool-rail button:focus-visible,
+.draw-tool-rail button.active {
+  background: #f1efff !important;
+  color: #624eef !important;
+  outline: 2px solid #624eef;
+  outline-offset: -2px;
+}
+.draw-tool-rail .draw-tool-icon {
+  display: block !important;
+  width: 22px !important;
+  height: 22px !important;
+  object-fit: contain;
+}
+@media (max-width: 430px) {
+  .draw-tool-rail {
+    left: max(6px, env(safe-area-inset-left)) !important;
+    width: 58px !important;
+    padding: 5px 3px !important;
+  }
+  .draw-tool-rail button {
+    flex-basis: 45px !important;
+    width: 50px !important;
+    min-height: 45px !important;
+    font-size: 7px !important;
+  }
+}
+
 /* The full map workspace dock is redundant on the compact mobile shell and
    leaves an empty control above the primary navigation. */
 @media (max-width: 720px) {
@@ -125,3 +295,100 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
 .messenger-arrival > img { width: 18px; height: 18px; flex: none; }
 .shell-action-btn { display: flex; align-items: center; gap: 8px; }
 .star-action-btn { display: grid; place-items: center; }
+
+/* Final draw-rail override: this must remain last because the legacy shell
+   rules above intentionally reshape the workspace at several breakpoints. */
+.map-workspace-panel[data-destination="draw"] {
+  position: fixed !important;
+  inset: 0 auto auto 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+  transform: none !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  pointer-events: none !important;
+}
+.map-workspace-panel[data-destination="draw"] > header,
+.map-workspace-panel[data-destination="draw"] > [data-map-panel="draw"] > *:not(.draw-shapes) {
+  display: none !important;
+}
+.map-workspace-panel[data-destination="draw"] > [data-map-panel="draw"],
+.map-workspace-panel[data-destination="draw"] .draw-workspace {
+  display: block !important;
+  position: static !important;
+  width: 0 !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+.map-workspace-panel[data-destination="draw"] .draw-shapes {
+  position: fixed !important;
+  z-index: 2000 !important;
+  top: 50% !important;
+  left: max(8px, env(safe-area-inset-left)) !important;
+  right: auto !important;
+  bottom: auto !important;
+  transform: translateY(-50%) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+  width: 66px !important;
+  max-height: calc(100dvh - 32px) !important;
+  box-sizing: border-box !important;
+  padding: 7px 5px !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  border: 1px solid #dfe3e6 !important;
+  border-radius: 10px !important;
+  background: rgba(255,255,255,.97) !important;
+  box-shadow: 0 8px 24px rgba(34,44,52,.16) !important;
+  pointer-events: auto !important;
+}
+.map-workspace-panel[data-destination="draw"] .draw-shapes button {
+  display: grid !important;
+  flex: 0 0 52px !important;
+  place-items: center !important;
+  gap: 2px !important;
+  width: 54px !important;
+  min-height: 52px !important;
+  box-sizing: border-box !important;
+  padding: 4px 2px !important;
+  border: 0 !important;
+  border-radius: 7px !important;
+  background: transparent !important;
+  color: #626c72 !important;
+  font-size: 8px !important;
+  font-weight: 700 !important;
+  cursor: pointer;
+}
+.map-workspace-panel[data-destination="draw"] .draw-shapes button:hover,
+.map-workspace-panel[data-destination="draw"] .draw-shapes button:focus-visible,
+.map-workspace-panel[data-destination="draw"] .draw-shapes button.active {
+  background: #f1efff !important;
+  color: #624eef !important;
+  outline: 2px solid #624eef;
+  outline-offset: -2px;
+}
+.map-workspace-panel[data-destination="draw"] .draw-tool-icon {
+  display: block !important;
+  width: 22px !important;
+  height: 22px !important;
+  object-fit: contain;
+}
+@media (max-width: 430px) {
+  .map-workspace-panel[data-destination="draw"] .draw-shapes {
+    width: 58px !important;
+    left: max(6px, env(safe-area-inset-left)) !important;
+    padding: 5px 3px !important;
+  }
+  .map-workspace-panel[data-destination="draw"] .draw-shapes button {
+    flex-basis: 45px !important;
+    width: 50px !important;
+    min-height: 45px !important;
+    font-size: 7px !important;
+  }
+}
