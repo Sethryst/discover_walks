@@ -3,6 +3,7 @@
 import db from './storage.js';
 import { uid } from './utils.js';
 import { openSheet } from './ui.js';
+import { normalizeSpatialPlace } from './spatial-model.js';
 
 export const ROOM_TYPES = Object.freeze(['building', 'park', 'trail', 'garden', 'historic-site', 'museum', 'neighborhood']);
 export const ROOM_VISIBILITY = Object.freeze(['private', 'bundled', 'public']);
@@ -11,7 +12,7 @@ let activeRoom = null;
 export function createRoom({ placeId, type = 'building', name = '', geometry = null, visibility = 'private', data = {} } = {}) {
   if (!placeId) throw new Error('A Room needs a place id.');
   if (!ROOM_TYPES.includes(type)) throw new Error(`Unsupported Room type: ${type}`);
-  return { id: uid('room'), schemaVersion: 1, placeId: String(placeId), type, name: String(name).trim().slice(0, 120), geometry, visibility: ROOM_VISIBILITY.includes(visibility) ? visibility : 'private', data, audioStationIds: [], traces: [], createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() };
+  return { id: uid('room'), schemaVersion: 1, placeId: String(placeId), type, name: String(name).trim().slice(0, 120), geometry, spatialPlace: normalizeSpatialPlace({ id: placeId, name, type, geometry }), visibility: ROOM_VISIBILITY.includes(visibility) ? visibility : 'private', data, audioStationIds: [], traces: [], createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() };
 }
 
 export async function saveRoom(room) {
