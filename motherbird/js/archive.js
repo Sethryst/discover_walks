@@ -120,11 +120,12 @@ export async function renderJournalHistory() {
   target.innerHTML = rows.map((item) => {
     if (item.type === 'drawing') return `<div data-journal-kind="annotations"><article class="moment-card annotation-card"><span class="moment-symbol">⌖</span><div class="moment-copy"><strong>${escapeHtml(item.title || 'Map annotation')}</strong><p>${escapeHtml(item.body?.measurement || `${item.body?.shape || 'Map'} annotation`)}</p><button type="button" class="secondary-button journal-delete-annotation" data-delete-annotation="${escapeHtml(item.id)}">Delete annotation</button></div><time class="moment-date">${shortDate(item.createdAt)}</time></article></div>`;
     const kind = item.type === 'walk' ? 'walks' : item.type === 'voice' ? 'voice' : item.type === 'observation' ? 'observations' : 'notes';
-    if (kind !== 'voice') return `<div data-journal-kind="${kind}">${momentCard(item)}</div>`;
+    if (kind !== 'voice') return `<div data-journal-kind="${kind}">${momentCard(item)}${item.geofence ? `<button type="button" class="text-button journal-delete-geofence" data-delete-geofence="${escapeHtml(item.id)}">Delete automatic encounter</button>` : ''}</div>`;
     const url = URL.createObjectURL(item.audio); voiceObjectUrls.push(url);
     return `<article class="moment-card voice-card" data-journal-kind="voice"><strong>Voice file</strong><small>${escapeHtml(shortDate(item.createdAt))} · attached to ${escapeHtml(item.momentId || 'journal')}</small><audio controls preload="none" src="${url}"></audio></article>`;
   }).join('') || '<p class="empty-state">Your earlier pages appear here, newest first.</p>';
   target.querySelectorAll('[data-delete-annotation]').forEach((button) => button.addEventListener('click', async () => { await db.remove('moments', button.dataset.deleteAnnotation); await renderArchive(); }));
+  target.querySelectorAll('[data-delete-geofence]').forEach((button) => button.addEventListener('click', async () => { await db.remove('moments', button.dataset.deleteGeofence); await renderArchive(); }));
   const counts = { notes: items.filter((item) => !['walk', 'observation'].includes(item.type)).length, observations: items.filter((item) => item.type === 'observation').length, voice: voices.filter((item) => item.audio instanceof Blob).length, walks: items.filter((item) => item.type === 'walk').length };
   if (el('journalNavDropdown')) el('journalNavDropdown').innerHTML = Object.entries(counts).map(([kind, count]) => `<button type="button" data-journal-jump="${kind}">${kind === 'voice' ? 'voice files' : kind} <b>${count}</b></button>`).join('');
 }
