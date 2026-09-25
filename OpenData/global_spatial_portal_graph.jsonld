@@ -1,0 +1,30 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "id": "@id",
+    "type": "@type",
+    "scope": "spatialCoverage",
+    "level": "additionalType",
+    "portal": "url",
+    "source": "citation",
+    "supports": "keywords"
+  },
+  "@graph": [
+    {"id":"https://geoportal.un.org/","type":"DataCatalog","name":"UN GeoPortal","scope":"Global / United Nations","level":"international","portal":"https://geoportal.un.org/","supports":["maps","datasets","geospatial services"],"source":"https://geoportal.un.org/"},
+    {"id":"https://geohub.data.undp.org/","type":"DataCatalog","name":"UNDP GeoHub","scope":"Global / development programs","level":"international","portal":"https://geohub.data.undp.org/","supports":["open geospatial datasets","SDG layers","geospatial tools"],"source":"https://geohub.data.undp.org/"},
+    {"id":"https://data.geodata.state.gov/","type":"DataCatalog","name":"U.S. State Department GeoData Static Repository","scope":"Global / U.S. State Department","level":"national and international","portal":"https://data.geodata.state.gov/","supports":["static geospatial downloads"],"source":"https://data.geodata.state.gov/"},
+    {"id":"https://open-data.earth/","type":"DataCatalog","name":"OpenData.Earth","scope":"Global","level":"international","portal":"https://open-data.earth/","supports":["land cover","elevation","climate","biodiversity","administrative boundaries"],"source":"https://open-data.earth/"},
+    {"id":"https://www.vizzie.org/portals/","type":"DataCatalog","name":"Vizzie open-data portal directory","scope":"44 countries and regions","level":"national, state, city","portal":"https://www.vizzie.org/portals/","supports":["portal discovery","dataset counts","map-ready datasets"],"source":"https://www.vizzie.org/portals/"},
+    {"id":"https://openadmindata.org/","type":"Dataset","name":"Open Admin Data","scope":"Worldwide administrative divisions","level":"country, province/state, county/district, municipality","portal":"https://openadmindata.org/","supports":["administrative boundaries","gazetteer-like jurisdiction hierarchy"],"source":"https://openadmindata.org/"},
+    {"id":"https://data.gov/","type":"DataCatalog","name":"Data.gov","scope":"United States","level":"national","portal":"https://data.gov/","supports":["federal datasets","geospatial datasets","links to state/local catalogs"],"source":"https://data.gov/"},
+    {"id":"https://open.canada.ca/data/en","type":"DataCatalog","name":"Canada Open Government Portal","scope":"Canada","level":"national, province/territory, municipality","portal":"https://open.canada.ca/data/en","supports":["federal geospatial platform","open datasets"],"source":"https://open.canada.ca/data/en"},
+    {"id":"https://data.europa.eu/","type":"DataCatalog","name":"European Data Portal","scope":"European Union and member states","level":"national, regional, municipal","portal":"https://data.europa.eu/","supports":["harvested national and local catalogs","geospatial datasets"],"source":"https://data.europa.eu/"},
+    {"id":"https://data.gov.in/","type":"DataCatalog","name":"India Open Government Data Platform","scope":"India","level":"national, state/UT, district, city","portal":"https://data.gov.in/","supports":["government datasets","state and local discovery","geospatial data"],"source":"https://data.gov.in/"},
+    {"id":"https://data.cityofnewyork.us/","type":"DataCatalog","name":"NYC Open Data","scope":"New York City, United States","level":"city","portal":"https://data.cityofnewyork.us/","supports":["Socrata catalog","city GIS and civic datasets"],"source":"https://data.cityofnewyork.us/"},
+    {"id":"https://data.cityofchicago.org/","type":"DataCatalog","name":"Chicago Data Portal","scope":"Chicago, United States","level":"city","portal":"https://data.cityofchicago.org/","supports":["Socrata catalog","city GIS and civic datasets"],"source":"https://data.cityofchicago.org/"},
+    {"id":"https://odp-cctegis.opendata.arcgis.com/","type":"DataCatalog","name":"City of Cape Town eGIS Open Data","scope":"Cape Town, South Africa","level":"city","portal":"https://odp-cctegis.opendata.arcgis.com/","supports":["ArcGIS Hub","city geospatial layers"],"source":"https://odp-cctegis.opendata.arcgis.com/"},
+    {"id":"https://opendata-geospatialdenver.hub.arcgis.com/","type":"DataCatalog","name":"Denver Geospatial Open Data","scope":"Denver, Colorado, United States","level":"city","portal":"https://opendata-geospatialdenver.hub.arcgis.com/","supports":["ArcGIS Hub","city geospatial layers"],"source":"https://opendata-geospatialdenver.hub.arcgis.com/"},
+    {"id":"https://geoportal.alexandriava.gov/portal","type":"DataCatalog","name":"Alexandria GeoPortal","scope":"Alexandria, Virginia, United States","level":"city","portal":"https://geoportal.alexandriava.gov/portal","supports":["ArcGIS Enterprise","parks","trails","transit","accessibility layers"],"source":"https://geoportal.alexandriava.gov/portal"},
+    {"id":"https://www.loudoun.gov/","type":"DataCatalog","name":"Loudoun County GIS/Open Data","scope":"Loudoun County, Virginia, United States","level":"county","portal":"https://www.loudoun.gov/","supports":["county GIS","property and infrastructure layers"],"source":"https://www.loudoun.gov/"}
+  ]
+}
