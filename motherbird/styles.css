@@ -566,6 +566,69 @@
   }
 }
 
+/* Unified draw workspace: one left rail plus the annotation dashboard. */
+.map-workspace-panel[data-destination="draw"] {
+  position: fixed !important;
+  left: 76px !important;
+  top: 76px !important;
+  width: min(330px, calc(100vw - 92px)) !important;
+  height: auto !important;
+  max-height: calc(100dvh - 150px) !important;
+  overflow: hidden !important;
+  background: rgba(255,250,240,.97) !important;
+  border: 1px solid rgba(23,60,53,.25) !important;
+  border-radius: 15px !important;
+  box-shadow: var(--shadow) !important;
+  pointer-events: auto !important;
+}
+.map-workspace-panel[data-destination="draw"] > header { display: flex !important; }
+.map-workspace-panel[data-destination="draw"] > [data-map-panel="draw"] {
+  display: block !important;
+  width: auto !important;
+  height: auto !important;
+  max-height: calc(100dvh - 208px) !important;
+  padding: 12px !important;
+  overflow-y: auto !important;
+}
+.map-workspace-panel[data-destination="draw"] .draw-workspace {
+  display: block !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 8px 0 !important;
+  overflow: visible !important;
+}
+.map-workspace-panel[data-destination="draw"] .draw-workspace > * { display: revert !important; visibility: visible !important; }
+.map-workspace-panel[data-destination="draw"] .draw-shapes {
+  position: static !important;
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  width: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  transform: none !important;
+  padding: 0 0 10px !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+.map-workspace-panel[data-destination="draw"] .draw-shapes [data-draw-shape="Marker"],
+.map-workspace-panel[data-destination="draw"] .draw-shapes [data-draw-shape="Line"],
+.map-workspace-panel[data-destination="draw"] .draw-shapes [data-draw-shape="Polygon"],
+.map-workspace-panel[data-destination="draw"] .draw-shapes [data-draw-shape="Rectangle"] { display: none !important; }
+.map-workspace-panel[data-destination="draw"] .draw-shapes button { width: auto !important; min-height: 48px !important; font-size: 8px !important; }
+.map-workspace-panel[data-destination="draw"] .draw-shapes button:nth-child(3) { color: #d85f52 !important; }
+.map-workspace-panel[data-destination="draw"] .draw-shapes button:nth-child(6) { color: #e4ad2c !important; }
+.map-workspace-panel[data-destination="draw"] .artifact-list { display: grid; gap: 6px; max-height: 42dvh; overflow-y: auto; }
+.map-workspace-panel[data-destination="draw"] .artifact-list article { display: grid; grid-template-columns: 1fr auto auto; gap: 6px; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--line); font-size: .75rem; }
+.map-workspace-panel[data-destination="draw"] .draw-pin-grid { display: grid !important; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 5px; padding-bottom: 10px; }
+.map-workspace-panel[data-destination="draw"] .draw-pin-grid button { display: grid; place-items: center; gap: 2px; min-height: 48px; border: 0; border-radius: 9px; background: color-mix(in srgb, var(--pin-color) 16%, white); color: var(--pin-color); font-size: .58rem; font-weight: 800; }
+.map-workspace-panel[data-destination="draw"] .draw-pin-grid button > span:first-child { font-size: 1.35rem; line-height: .8; }
+.map-workspace-panel[data-destination="draw"] .draw-pin-grid button > span:last-child { color: var(--ink); line-height: 1.05; overflow-wrap: anywhere; }
+@media (max-width: 720px) {
+  .map-workspace-panel[data-destination="draw"] { left: 8px !important; top: 76px !important; width: min(330px, calc(100vw - 16px)) !important; max-height: calc(100dvh - 150px) !important; }
+  .map-workspace-panel[data-destination="draw"] > [data-map-panel="draw"] { max-height: calc(100dvh - 208px) !important; }
+}
+
 /* Compact annotation grid: keep the map controls clear without adding a second bar. */
 .map-workspace-panel[data-destination="draw"] .draw-shapes {
   top: 76px !important;
@@ -639,4 +702,37 @@
     gap: 4px !important;
   }
   .draw-shapes.draw-tool-rail button { width: auto !important; min-height: 43px !important; }
+}
+
+/* Final unified draw workspace override. */
+.map-workspace-panel[data-destination="draw"] {
+  position: fixed !important; left: 76px !important; top: 76px !important;
+  width: min(330px, calc(100vw - 92px)) !important; height: auto !important;
+  max-height: calc(100dvh - 150px) !important; overflow: hidden !important;
+  background: rgba(255,250,240,.97) !important; pointer-events: auto !important;
+}
+.map-workspace-panel[data-destination="draw"] > header { display: flex !important; }
+.map-workspace-panel[data-destination="draw"] > [data-map-panel="draw"] {
+  display: block !important; width: auto !important; height: auto !important;
+  max-height: calc(100dvh - 208px) !important; padding: 12px !important; overflow-y: auto !important;
+}
+.map-workspace-panel[data-destination="draw"] .draw-workspace {
+  display: block !important; width: auto !important; height: auto !important; padding: 8px 0 !important; overflow: visible !important;
+}
+.map-workspace-panel[data-destination="draw"] .draw-workspace > * { display: revert !important; visibility: visible !important; }
+.map-workspace-panel[data-destination="draw"] .draw-shapes {
+  position: static !important; display: grid !important; grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  width: auto !important; max-height: none !important; overflow: visible !important; transform: none !important;
+  padding: 0 0 10px !important; border: 0 !important; box-shadow: none !important; background: transparent !important;
+}
+.map-workspace-panel[data-destination="draw"] .draw-shapes [data-draw-shape="Marker"],
+.map-workspace-panel[data-destination="draw"] .draw-shapes [data-draw-shape="Line"],
+.map-workspace-panel[data-destination="draw"] .draw-shapes [data-draw-shape="Polygon"],
+.map-workspace-panel[data-destination="draw"] .draw-shapes [data-draw-shape="Rectangle"] { display: none !important; }
+.map-workspace-panel[data-destination="draw"] .draw-shapes button { width: auto !important; min-height: 48px !important; font-size: 8px !important; }
+.map-workspace-panel[data-destination="draw"] .artifact-list { display: grid !important; gap: 6px; max-height: 42dvh; overflow-y: auto; }
+.map-workspace-panel[data-destination="draw"] .artifact-list article { display: grid; grid-template-columns: 1fr auto auto; gap: 6px; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--line); font-size: .75rem; }
+@media (max-width: 720px) {
+  .map-workspace-panel[data-destination="draw"] { left: 8px !important; top: 76px !important; width: min(330px, calc(100vw - 16px)) !important; }
+  .map-workspace-panel[data-destination="draw"] .draw-pin-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }

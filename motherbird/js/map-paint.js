@@ -235,6 +235,7 @@ async function persistCreatedLayer(layer, shape) {
   const measurement = geometryMeasurement(geojson);
   try {
     await db.put('moments', { id: crypto.randomUUID(), type: 'drawing', title: `${shape || 'Map'} drawing`, city: state.activeCity, createdAt: new Date().toISOString(), body: { geojson, shape, measurement } });
+    layer.remove?.();
     await renderMapDrawings();
     toast(measurement ? `Drawing saved · ${measurement}` : 'Drawing saved.');
   } catch (error) { toast(error.message || 'Drawing could not be saved.'); }
@@ -268,14 +269,16 @@ export async function initMapPaint() {
   const button = el('mapPencilButton');
   if (!state.map) return;
   const drawTools = document.querySelector('.draw-shapes');
-  if (drawTools && drawTools.parentElement !== document.body) {
-    drawTools.classList.add('draw-tool-rail');
-    document.body.append(drawTools);
-  }
   if (!state.map.pm && globalThis.L?.PM?.Map) state.map.pm = new globalThis.L.PM.Map(state.map);
   if (!state.map.pm) return;
   const initialLabels = { Line: 'Test route', Freehand: 'Sketch area', Polygon: 'Area', Rectangle: 'Define area', Circle: 'Explore area' };
   document.querySelectorAll('[data-draw-shape]').forEach((item) => { const label = initialLabels[item.dataset.drawShape]; if (label) item.querySelector('span:last-child').textContent = label; });
+  const pinGrid = document.createElement('div');
+  pinGrid.className = 'draw-pin-grid';
+  pinGrid.setAttribute('aria-label', 'Custom pin categories');
+  pinGrid.innerHTML = [['Grocery', 'grocery', '#65b96a'], ['Shopping', 'shopping', '#8c63d8'], ['Cuisine', 'cuisine', '#ef8b2c'], ['Services', 'services', '#4b8ed8'], ['Health', 'health', '#df5c55'], ['Home', 'home', '#9a6b47'], ['Transport', 'transport', '#7f8790']].map(([label, id, color]) => `<button type="button" data-draw-pin="${id}" style="--pin-color:${color}"><span aria-hidden="true">●</span><span>${label}</span></button>`).join('');
+  drawTools?.before(pinGrid);
+  pinGrid.addEventListener('click', (event) => { const pin = event.target.closest('[data-draw-pin]'); if (pin) window.dispatchEvent(new CustomEvent('personal-place-create-requested', { detail: { categoryName: pin.dataset.drawPin } })); });
   const updateRegionLabel = () => { const label = el('drawRegionLabel'); if (label) label.textContent = cityLabel(state.activeCity) || 'Installed region'; };
   updateRegionLabel();
   state.mapPaintLayer = L.featureGroup().addTo(state.map);
