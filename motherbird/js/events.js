@@ -17,7 +17,7 @@ import { openObservation, saveObservation, setDraftObservationIcon } from './obs
 import { transcribeJournal, toggleJournalRecording, stopJournalCapture } from './journal-capture.js';
 import { renderNearbyPlaces, initJournalPane } from './journal-pane.js';
 import { openGeoCypher } from './geo-cypher.js';
-import { openRadioForContext } from './radio.js';
+import { openRadioForContext } from './radio.js?v=20260925-routing-binary';
 import { initMessengerBird } from './messenger-bird.js';
 import { restartCoachMarks } from './coach.js';
 import { savePlannedRoute } from './saved-routes.js';
@@ -116,6 +116,8 @@ function setMapWorkspace(destination = '', { toggle = true, forceOpen = false } 
   panel.classList.toggle('hidden', !next);
   document.body.classList.toggle('map-workspace-open', Boolean(next));
   document.body.classList.toggle('draw-pane-open', next === 'draw');
+  // Draw is a compact tool rail, not a second full-screen workspace.
+  document.body.classList.toggle('draw-tools-collapsed', next === 'draw');
   el('collapseDrawTools')?.classList.toggle('hidden', next !== 'draw');
   if (next !== 'draw') document.body.classList.remove('draw-tools-collapsed');
   document.querySelectorAll('[data-map-destination]').forEach((button) => {
