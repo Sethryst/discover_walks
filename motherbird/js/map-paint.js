@@ -52,6 +52,11 @@ function renderSpatialQuery() {
     return false;
   }).filter((poi) => !state.spatialQueryDismissed.has(String(poi.id)));
   state.spatialQueryResults = results;
+  const resultIds = results.map((poi) => String(poi.id));
+  if (state.spatialQuery.status !== 'ready' || JSON.stringify(state.spatialQuery.resultIds || []) !== JSON.stringify(resultIds)) {
+    state.spatialQuery = { ...state.spatialQuery, status: 'ready', resultIds };
+    void saveSpatialQuery(state.spatialQuery);
+  }
   results.forEach((poi) => {
     const category = queryCategory(poi);
     const marker = L.marker([poi.lat, poi.lng], { icon: L.divIcon({ className: '', html: markerPinHtml(markerVisual({ poi, light: category })), iconSize: [27, 27], iconAnchor: [13, 13] }) });
