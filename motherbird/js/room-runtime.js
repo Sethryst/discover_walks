@@ -9,10 +9,12 @@ export const ROOM_TYPES = Object.freeze(['building', 'park', 'trail', 'garden', 
 export const ROOM_VISIBILITY = Object.freeze(['private', 'bundled', 'public']);
 let activeRoom = null;
 
-export function createRoom({ placeId, type = 'building', name = '', geometry = null, visibility = 'private', data = {} } = {}) {
+export function createRoom({ placeId, type = 'building', name = '', geometry = null, visibility = 'private', data = {}, fieldEdition = false } = {}) {
   if (!placeId) throw new Error('A Room needs a place id.');
   if (!ROOM_TYPES.includes(type)) throw new Error(`Unsupported Room type: ${type}`);
-  return { id: uid('room'), schemaVersion: 1, placeId: String(placeId), type, name: String(name).trim().slice(0, 120), geometry, spatialPlace: normalizeSpatialPlace({ id: placeId, name, type, geometry }), visibility: ROOM_VISIBILITY.includes(visibility) ? visibility : 'private', data, audioStationIds: [], traces: [], createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() };
+  const requestedVisibility = ROOM_VISIBILITY.includes(visibility) ? visibility : 'private';
+  const effectiveVisibility = requestedVisibility === 'public' && !fieldEdition ? 'private' : requestedVisibility;
+  return { id: uid('room'), schemaVersion: 1, placeId: String(placeId), type, name: String(name).trim().slice(0, 120), geometry, spatialPlace: normalizeSpatialPlace({ id: placeId, name, type, geometry }), visibility: effectiveVisibility, data, audioStationIds: [], traces: [], createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() };
 }
 
 export async function saveRoom(room) {
