@@ -12,12 +12,12 @@ import { civicNoticesFromPack, newsIsAvailable } from './civic-news.js';
 import { showCategoryCoach } from './coach.js';
 
 export const LAYER_GROUPS = [
-  { id: 'walking_network', label: 'Walking network', description: 'Routes, crossings, and access conditions', tags: ['trail', 'walkway', 'crossing', 'barrier'] },
-  { id: 'nature_water', label: 'Nature & water', description: 'Nature, water, scenery, and recreation', tags: ['nature', 'water', 'scenic', 'recreation', 'park', 'wildlife', 'water_access', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad'] },
-  { id: 'places_services', label: 'Places & services', description: 'Rest, civic places, transit, and food & drink', tags: ['rest', 'bench', 'shelter', 'shade', 'restrooms', 'historic', 'civic', 'transit', 'market', 'farmers_market', 'restaurant', 'fast_food', 'coffee', 'coffee_shop', 'cafe', 'food_cart', 'bakery'] },
-  { id: 'culture', label: 'History, art & culture', description: 'Public stories and creative places', tags: ['history', 'history_landmark', 'history_monument', 'history_museum', 'history_cemetery', 'history_marker', 'art', 'public_art'] },
-  { id: 'community', label: 'Community & essentials', description: 'Public services and shared spaces', tags: ['community', 'facility', 'library', 'recreation_center', 'pantry', 'wifi'] },
-  { id: 'more', label: 'More map layers', description: 'OpenStreetMap places and additional regional categories', tags: ['event', 'osm', 'argentinian', 'british', 'crepe', 'greek', 'latin_american', 'tea', 'turkish'] }
+  { id: 'walking_network', light: 'recreation', label: 'Walking network', description: 'Routes, crossings, and access conditions', tags: ['trail', 'walkway', 'crossing', 'barrier'] },
+  { id: 'nature_water', light: 'recreation', label: 'Nature & water', description: 'Nature, water, scenery, and recreation', tags: ['nature', 'water', 'scenic', 'recreation', 'park', 'wildlife', 'water_access', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad'] },
+  { id: 'places_services', light: 'recreation', label: 'Places & services', description: 'Rest, civic places, transit, and food & drink', tags: ['rest', 'bench', 'shelter', 'shade', 'restrooms', 'historic', 'civic', 'transit', 'market', 'farmers_market', 'restaurant', 'fast_food', 'coffee', 'coffee_shop', 'cafe', 'food_cart', 'bakery'] },
+  { id: 'culture', light: 'news', label: 'History, art & culture', description: 'Public stories and creative places', tags: ['history', 'history_landmark', 'history_monument', 'history_museum', 'history_cemetery', 'history_marker', 'art', 'public_art'] },
+  { id: 'community', light: 'news', label: 'Community & essentials', description: 'Public services and shared spaces', tags: ['community', 'facility', 'library', 'recreation_center', 'pantry', 'wifi'] },
+  { id: 'more', light: 'cuisine', label: 'More map layers', description: 'OpenStreetMap places and additional regional categories', tags: ['osm', 'argentinian', 'british', 'crepe', 'greek', 'latin_american', 'tea', 'turkish'] }
 ];
 
 const STATIC_LABELS = {
@@ -102,7 +102,7 @@ function buildAllLayerGroups() {
 }
 
 export function buildLayerGroups() {
-  return buildAllLayerGroups().filter((group) => group.options.length);
+  return buildAllLayerGroups().filter((group) => group.options.length && state.layerLights[group.light] !== false);
 }
 
 function shouldShowEmptyStandard(id) {
@@ -142,7 +142,7 @@ function ensureLayerDefaults() {
 }
 
 function recreationTag(id) {
-  return LIGHT_CHIPS.recreation.some((chip) => chip.prefix ? String(id).startsWith(chip.prefix) : chip.tags?.includes(id));
+  return LAYER_GROUPS.some((group) => group.light === 'recreation' && group.tags.includes(id));
 }
 
 export function renderLayerFilters() {
@@ -169,7 +169,8 @@ function syncLegacyPoiTags() {
   const available = availablePoiTags((state.cityPois[state.activeCity] || []).filter(isVisiblePoi)).map(([id]) => id);
   state.poiTags = new Set(available.filter((id) => {
     if (id === 'event') return state.layerLights.news && state.layerFilters.public[id] !== false;
-    if (recreationTag(id)) return state.layerLights.recreation && state.layerFilters.public[id] !== false;
+    const group = LAYER_GROUPS.find((candidate) => candidate.tags.includes(id));
+    if (group) return state.layerLights[group.light] && state.layerFilters.public[id] !== false;
     if (LIGHT_CHIPS.cuisine.some((chip) => chip.tags.includes(id))) return state.layerLights.cuisine && state.layerFilters.public[id] !== false;
     return state.layerFilters.public[id] !== false;
   }));
