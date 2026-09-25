@@ -3,6 +3,7 @@ import { openSheet, closeSheets, toast } from './ui.js';
 
 const MANIFEST_URL = './data/radio/manifest.json?v=20260923-radio-v2';
 const FAVORITES_KEY = 'gremlin-radio-favorites-v1';
+const MINI_POSITION_KEY = 'gremlin-radio-mini-position-v1';
 const STATES = Object.freeze({ paused: 'paused', buffering: 'buffering', playing: 'playing', jingle: 'jingle playing' });
 const FALLBACK_MANIFEST = {
   id: 'otr-time-machine', version: 1, epoch: '1950-01-01T00:00:00Z', slotMinutes: 45,
@@ -45,6 +46,7 @@ const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => 
 
 function setStatus(status, detail = '') { state.status = status; const text = detail || status; const label = el('radioStatus'); if (label) label.textContent = text; const miniStatus = el('radioMiniStatus'); if (miniStatus) miniStatus.textContent = text; el('radioPlayer')?.setAttribute('data-radio-state', status); el('radioMiniPlayer')?.classList.toggle('hidden', !state.current); updatePlayButtons(); }
 function updatePlayButtons() { const playing = state.status === STATES.playing || state.status === STATES.buffering || state.status === STATES.jingle; for (const id of ['radioPlayButton', 'radioMiniPlayButton']) { const button = el(id); if (!button) continue; button.textContent = playing ? '❚❚' : '▶'; button.setAttribute('aria-label', playing ? 'Pause radio' : 'Play radio'); } }
+function bindMiniPlayerDrag() { const player = el('radioMiniPlayer'); if (!player || player.dataset.dragBound) return; player.dataset.dragBound = 'true'; const saved = JSON.parse(localStorage.getItem(MINI_POSITION_KEY) || 'null'); if (saved && Number.isFinite(saved.x) && Number.isFinite(saved.y)) { player.style.left = `${saved.x}px`; player.style.top = `${saved.y}px`; player.style.right = 'auto'; player.style.bottom = 'auto'; player.style.transform = 'none'; } let drag = null; player.addEventListener('pointerdown', (event) => { if (event.target.closest('button')) return; drag = { dx: event.clientX - player.offsetLeft, dy: event.clientY - player.offsetTop }; player.setPointerCapture(event.pointerId); player.classList.add('dragging'); }); player.addEventListener('pointermove', (event) => { if (!drag) return; const x = Math.max(8, Math.min(innerWidth - player.offsetWidth - 8, event.clientX - drag.dx)); const y = Math.max(52, Math.min(innerHeight - player.offsetHeight - 8, event.clientY - drag.dy)); player.style.left = `${x}px`; player.style.top = `${y}px`; player.style.right = 'auto'; player.style.bottom = 'auto'; player.style.transform = 'none'; }); player.addEventListener('pointerup', () => { if (!drag) return; drag = null; player.classList.remove('dragging'); localStorage.setItem(MINI_POSITION_KEY, JSON.stringify({ x: player.offsetLeft, y: player.offsetTop })); }); }
 function pauseRadio() { state.playbackToken += 1; state.nextAudio?.pause(); state.nextAudio = null; state.activeAudio?.pause(); setStatus(STATES.paused, 'Paused'); updatePlayButtons(); }
 async function persistRadioState() {
   await db.put('radio_playback_state', { id: 'current', channelId: state.channelId, favoriteIds: [...state.favorites], history: state.history.slice(-100), updatedAt: Date.now() });
@@ -107,6 +109,7 @@ function tuningClick() { try { const context = state.audioContext ||= new AudioC
 async function saveCurrent() { if (!state.current || !state.activeAudio?.src) return; const response = await fetch(state.activeAudio.src); const audio = await response.blob(); await db.put('radio_saved_tracks', { id: state.current.id, ...state.current, audio, savedAt: Date.now() }); state.savedTrackIds.add(String(state.current.id)); toast('Track saved to this device.'); }
 function toggleFavorite() { if (!state.current) return; if (state.favorites.has(state.current.id)) state.favorites.delete(state.current.id); else state.favorites.add(state.current.id); localStorage.setItem(FAVORITES_KEY, JSON.stringify([...state.favorites])); void persistRadioState(); render(); toast(state.favorites.has(state.current.id) ? 'Favorite kept on this device.' : 'Favorite removed.'); }
 function bind() {
+  bindMiniPlayerDrag();
   const togglePlayback = () => { if (state.status === STATES.playing || state.status === STATES.buffering || state.status === STATES.jingle) pauseRadio(); else void playTrack(state.current || chooseTrack()); };
   el('radioPlayButton')?.addEventListener('click', togglePlayback); el('radioMiniPlayButton')?.addEventListener('click', togglePlayback);
   el('radioNextButton')?.addEventListener('click', () => void playNext());

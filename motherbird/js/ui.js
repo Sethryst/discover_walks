@@ -27,7 +27,7 @@ export function closeSheets() {
     window.dispatchEvent(new CustomEvent('journal-close-requested', { detail: { note: el('journalNote')?.value || '', walkId: el('journalForm')?.dataset.walkId || '' } }));
   }
   state.modalOpen = null;
-  document.body.classList.remove('journal-open', 'layers-open', 'backpack-open');
+  document.body.classList.remove('journal-open', 'layers-open', 'backpack-open', 'radio-open');
   el('journalButton')?.setAttribute('aria-pressed', 'false');
   el('settingsButton')?.setAttribute('aria-pressed', 'false');
   el('modalBackdrop')?.classList.add('hidden');
@@ -49,6 +49,7 @@ export function openSheet(id) {
   });
   document.body.classList.toggle('journal-open', id === 'journalSheet');
   document.body.classList.toggle('backpack-open', id === 'backpackSheet');
+  document.body.classList.toggle('radio-open', id === 'radioSheet');
   el('journalButton')?.setAttribute('aria-pressed', String(id === 'journalSheet'));
   el('settingsButton')?.setAttribute('aria-pressed', String(id === 'backpackSheet'));
   document.querySelectorAll('.sheet').forEach((sheet) => sheet.classList.add('hidden'));

@@ -523,7 +523,29 @@
 .map-workspace-panel[data-destination="draw"]>[data-map-panel="draw"]{display:block!important;position:static!important;width:0!important;height:0!important;min-height:0!important;padding:0!important;overflow:visible!important}
 .map-workspace-panel[data-destination="draw"] .draw-workspace{display:block!important;width:0!important;height:0!important;padding:0!important;overflow:visible!important}
 .map-workspace-panel[data-destination="draw"] .draw-workspace>*:not(.draw-shapes){display:none!important}
-.map-workspace-panel[data-destination="draw"] .draw-shapes{position:fixed!important;top:50%!important;left:max(10px,env(safe-area-inset-left))!important;right:auto!important;bottom:auto!important;transform:translateY(-50%)!important;display:flex!important;flex-direction:column!important;gap:4px!important;width:58px!important;padding:7px 5px!important;border:1px solid #dfe3e6!important;border-radius:10px!important;background:rgba(255,255,255,.96)!important;box-shadow:0 8px 24px rgba(34,44,52,.16)!important;pointer-events:auto!important}
+.map-workspace-panel[data-destination="draw"] .draw-shapes{position:fixed!important;top:50%!important;left:auto!important;right:max(10px,env(safe-area-inset-right))!important;bottom:auto!important;transform:translateY(-50%)!important;display:flex!important;flex-direction:column!important;gap:4px!important;width:58px!important;padding:7px 5px!important;border:1px solid #dfe3e6!important;border-radius:10px!important;background:rgba(255,255,255,.96)!important;box-shadow:0 8px 24px rgba(34,44,52,.16)!important;pointer-events:auto!important}
 .map-workspace-panel[data-destination="draw"] .draw-shapes button{width:48px!important;min-height:48px!important;padding:5px 2px!important;border-radius:7px!important;font-size:8px!important}
 .map-workspace-panel[data-destination="draw"] .draw-shapes button:hover,.map-workspace-panel[data-destination="draw"] .draw-shapes button.active{background:#f1efff!important}
-@media(max-width:720px){.map-workspace-panel[data-destination="draw"] .draw-shapes{left:max(8px,env(safe-area-inset-left))!important}}
+@media(max-width:720px){.map-workspace-panel[data-destination="draw"] .draw-shapes{left:auto!important;right:max(8px,env(safe-area-inset-right))!important}}
+
+/* Final collapsed draw-rail geometry: keep the tools visible as a real left-edge control. */
+.draw-tools-collapsed .map-workspace-panel[data-destination="draw"] .draw-shapes {
+  position: fixed !important;
+  top: 50% !important;
+  left: 8px !important;
+  right: auto !important;
+  width: 58px !important;
+  height: auto !important;
+  min-height: 0 !important;
+  transform: translateY(-50%) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  visibility: visible !important;
+  z-index: 2000 !important;
+  pointer-events: auto !important;
+}
+.draw-tools-collapsed .map-workspace-panel[data-destination="draw"] .draw-shapes button {
+  display: grid !important;
+  width: 48px !important;
+  min-height: 48px !important;
+}
