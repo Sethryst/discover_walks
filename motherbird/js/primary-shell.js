@@ -20,6 +20,7 @@ const actions = {
     { id: 'me-draw', label: 'Draw & annotations', icon: './icons/pencil.svg', run: () => window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'draw', forceOpen: true } })) },
     { id: 'me-radio', label: 'Radio', icon: './icons/music.svg', run: () => window.dispatchEvent(new CustomEvent('radio-open-requested')) },
     { id: 'me-online', label: 'Online', icon: './icons/globe.svg', run: () => { openSheet('backpackSheet'); document.querySelector('[data-guide-tab="online"]')?.click(); } },
+    { id: 'me-export', label: 'Export data', icon: './icons/download.svg', run: () => { openSheet('backpackSheet'); document.querySelector('[data-guide-tab="export"]')?.click(); } },
     { id: 'me-advanced', label: 'Advanced', advanced: true, children: [
       { id: 'offline-maps', label: 'Offline & maps', icon: './icons/map.svg', run: () => openSheet('backpackSheet') },
       { id: 'privacy', label: 'Data & privacy', icon: './icons/info.svg', run: () => { openSheet('backpackSheet'); document.querySelector('[data-guide-tab="online"]')?.click(); } },

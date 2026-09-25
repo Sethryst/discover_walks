@@ -122,8 +122,13 @@ export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') 
   window.dispatchEvent(new CustomEvent('guide-tab-changed', { detail: { tab } }));
   const target = el('fieldGuideList'); if (!target) return;
   document.querySelectorAll('[data-guide-tab]').forEach((button) => button.classList.toggle('active', button.dataset.guideTab === tab));
-  target.classList.toggle('hidden', tab === 'online');
-  el('sharePanel')?.classList.toggle('hidden', tab !== 'online');
+  const isUtilityTab = tab === 'online' || tab === 'export';
+  target.classList.toggle('hidden', isUtilityTab);
+  el('sharePanel')?.classList.toggle('hidden', !isUtilityTab);
+  document.querySelector('[data-app-entry="online"]')?.classList.toggle('hidden', tab !== 'online');
+  document.querySelector('[data-app-entry="backup"]')?.classList.toggle('hidden', tab !== 'export');
+  document.querySelector('[data-app-entry="share"]')?.classList.toggle('hidden', tab !== 'export');
+  document.querySelector('.online-legal')?.classList.toggle('hidden', tab !== 'export');
   if (tab !== 'learn') {
     shadeLearnBounds(false);
     stopHistoricalTopo();
@@ -133,9 +138,9 @@ export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') 
     shadeLearnBounds(false);
     document.getElementById('backpackSheet')?.classList.remove('learn-min');
   }
-  if (tab === 'online') {
+  if (tab === 'online' || tab === 'export') {
     el('fieldGuideOrderNote')?.classList.add('hidden');
-    window.dispatchEvent(new CustomEvent('online-panel-render-requested'));
+    if (tab === 'online') window.dispatchEvent(new CustomEvent('online-panel-render-requested'));
     return;
   }
   const data = await guideData();
