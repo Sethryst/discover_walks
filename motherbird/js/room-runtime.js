@@ -47,6 +47,13 @@ export async function openRoomForPlace(place) {
   if (title) { title.dataset.roomId = room.id; title.dataset.stationIds = JSON.stringify(room.data?.featuredStationIds || room.audioStationIds || []); }
   if (type) type.textContent = `${room.type.replaceAll('-', ' ')} · ${room.visibility}`;
   if (body) body.textContent = room.visibility === 'private' ? 'This Room is private on this device. Add place-specific notes and audio here; publishing requires Field Edition.' : 'This Room is ready for place-specific experiences.';
+  const summary = document.getElementById('roomTraceSummary');
+  if (summary) {
+    const traces = Array.isArray(room.traces) ? room.traces : [];
+    const counts = traces.reduce((result, trace) => { result[trace.type] = (result[trace.type] || 0) + 1; return result; }, {});
+    const labels = Object.entries(counts).map(([type, count]) => `${count} ${type.replaceAll('-', ' ')}`).join(' · ');
+    summary.textContent = traces.length ? `This Room remembers ${labels}.` : 'Nothing has been recorded in this Room yet.';
+  }
   window.dispatchEvent(new CustomEvent('room-sheet-open-requested'));
   return room;
 }
