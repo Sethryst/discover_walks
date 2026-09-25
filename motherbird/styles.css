@@ -704,6 +704,38 @@
   .draw-shapes.draw-tool-rail button { width: auto !important; min-height: 43px !important; }
 }
 
+/* Live-state override must come after the legacy rail rules above. */
+body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] {
+  position: fixed !important; left: 76px !important; top: 76px !important;
+  width: min(330px, calc(100vw - 92px)) !important; height: auto !important;
+  max-height: calc(100dvh - 150px) !important; overflow: hidden !important;
+  pointer-events: auto !important; background: rgba(255,250,240,.97) !important;
+}
+body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] > header { display: flex !important; }
+body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] > [data-map-panel="draw"] {
+  display: block !important; width: auto !important; height: auto !important;
+  max-height: calc(100dvh - 208px) !important; padding: 12px !important; overflow-y: auto !important;
+}
+body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-workspace {
+  display: block !important; width: auto !important; height: auto !important; padding: 8px 0 !important; overflow: visible !important;
+}
+body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-workspace > * { display: revert !important; visibility: visible !important; }
+body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-pin-grid { display: grid !important; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 5px; }
+body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
+  position: static !important; display: grid !important; grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  width: auto !important; height: auto !important; max-height: none !important; overflow: visible !important;
+  transform: none !important; padding: 0 0 10px !important; border: 0 !important; box-shadow: none !important; background: transparent !important;
+}
+body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes [data-draw-shape="Marker"],
+body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes [data-draw-shape="Line"],
+body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes [data-draw-shape="Polygon"],
+body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes [data-draw-shape="Rectangle"] { display: none !important; }
+body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] #mapArtifactList { display: grid !important; max-height: 42dvh; overflow-y: auto; }
+body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] #mapArtifactList article { display: grid; grid-template-columns: 1fr auto auto; gap: 6px; align-items: center; }
+@media (max-width: 720px) {
+  body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] { left: 8px !important; top: 76px !important; width: min(330px, calc(100vw - 16px)) !important; }
+}
+
 /* Final unified draw workspace override. */
 .map-workspace-panel[data-destination="draw"] {
   position: fixed !important; left: 76px !important; top: 76px !important;
