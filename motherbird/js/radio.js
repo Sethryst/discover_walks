@@ -39,24 +39,21 @@ export function openRadioForContext(context = {}) {
   window.dispatchEvent(new CustomEvent('radio-open-requested', { detail: { context } }));
 }
 
-const state = { manifest: FALLBACK_MANIFEST, channelId: 'x1', era: 1945, status: STATES.paused, queue: [], current: null, activeAudio: null, nextAudio: null, urls: new Set(), audioContext: null, lastDial: 1945, favorites: new Set(JSON.parse(localStorage.getItem(FAVORITES_KEY) || '[]')), history: [] };
+const state = { manifest: FALLBACK_MANIFEST, channelId: 'x1', status: STATES.paused, queue: [], current: null, activeAudio: null, nextAudio: null, urls: new Set(), audioContext: null, favorites: new Set(JSON.parse(localStorage.getItem(FAVORITES_KEY) || '[]')), history: [], savedTrackIds: new Set() };
 const el = (id) => document.getElementById(id);
 const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[char]));
 
 function setStatus(status, detail = '') { state.status = status; const label = el('radioStatus'); if (label) label.textContent = detail || status; el('radioPlayer')?.setAttribute('data-radio-state', status); }
 async function persistRadioState() {
-  await db.put('radio_playback_state', { id: 'current', channelId: state.channelId, era: state.era, favoriteIds: [...state.favorites], history: state.history.slice(-100), updatedAt: Date.now() });
+  await db.put('radio_playback_state', { id: 'current', channelId: state.channelId, favoriteIds: [...state.favorites], history: state.history.slice(-100), updatedAt: Date.now() });
 }
 function recordRadioEvent(track, event) { if (!track?.id) return; state.history.push({ trackId: String(track.id), event, channelId: state.channelId, at: Date.now() }); void persistRadioState(); }
-function years(manifest) { const tracks = manifest.tracks || []; const values = tracks.map((track) => Number(track.broadcastDate?.slice?.(0, 4) || track.year)).filter(Number.isFinite); return values.length ? [Math.min(...values), Math.max(...values)] : [1935, 1955]; }
-function tracksForChannel() { return (state.manifest.tracks || []).filter((track) => (!track.channel || track.channel === state.channelId || track.channelIds?.includes(state.channelId)) && (!track.year || Math.abs(Number(track.year) - state.era) <= 4 || Number(track.broadcastDate?.slice?.(0, 4)) === state.era)); }
+function tracksForChannel() { return (state.manifest.tracks || []).filter((track) => !track.channel || track.channel === state.channelId || track.channelIds?.includes(state.channelId)); }
 function chooseTrack() { const candidates = tracksForChannel(); if (!candidates.length) return null; const slot = Math.floor((Date.now() - Date.parse(state.manifest.epoch || '1950-01-01')) / ((state.manifest.slotMinutes || 45) * 60000)); return candidates[Math.abs(slot) % candidates.length]; }
+function chooseRandomChannel() { const channels = state.manifest.channels || state.manifest.stations || []; if (!channels.length) return; const savedChannels = new Set((state.manifest.tracks || []).filter((track) => state.savedTrackIds.has(String(track.id))).flatMap((track) => [track.channel, ...(track.channelIds || [])].filter(Boolean)).map(String)); const weighted = channels.flatMap((channel) => [channel, ...(savedChannels.has(String(channel.id)) ? [channel, channel] : [])]); state.channelId = weighted[Math.floor(Math.random() * weighted.length)]?.id || channels[0].id; }
 function render() {
   const channel = state.manifest.channels?.find((item) => item.id === state.channelId);
-  if (el('radioChannel')) el('radioChannel').innerHTML = recommendedStations(state.manifest, { history: state.history, favorites: state.favorites }).map((item) => `<option value="${escapeHtml(item.id)}" ${item.id === state.channelId ? 'selected' : ''}>${escapeHtml(item.name)}</option>`).join('');
   if (el('radioChannelDescription')) el('radioChannelDescription').textContent = channel?.description || 'Tune the dial to select a broadcast.';
-  const [min, max] = years(state.manifest); const dial = el('radioEraDial'); if (dial) { dial.min = min; dial.max = max; dial.value = String(Math.max(min, Math.min(max, state.era))); }
-  if (el('radioEraValue')) el('radioEraValue').textContent = `${state.era} · ${channel?.genre || 'radio'}`;
   if (el('radioNowPlaying')) el('radioNowPlaying').textContent = state.current ? `${state.current.title} · ${state.current.broadcastDate || state.current.year || 'undated'}` : 'No transmission selected';
   if (el('radioSaveButton')) el('radioSaveButton').disabled = !state.current;
   const favorite = el('radioFavoriteButton'); if (favorite) { favorite.disabled = !state.current; const isFavorite = state.current && state.favorites.has(state.current.id); favorite.textContent = isFavorite ? '♥ Favorited' : '♡ Favorite'; favorite.setAttribute('aria-pressed', String(Boolean(isFavorite))); }
@@ -101,8 +98,6 @@ function tuningClick() { try { const context = state.audioContext ||= new AudioC
 async function saveCurrent() { if (!state.current || !state.activeAudio?.src) return; const response = await fetch(state.activeAudio.src); const audio = await response.blob(); await db.put('radio_saved_tracks', { id: state.current.id, ...state.current, audio, savedAt: Date.now() }); toast('Track saved to this device.'); }
 function toggleFavorite() { if (!state.current) return; if (state.favorites.has(state.current.id)) state.favorites.delete(state.current.id); else state.favorites.add(state.current.id); localStorage.setItem(FAVORITES_KEY, JSON.stringify([...state.favorites])); void persistRadioState(); render(); toast(state.favorites.has(state.current.id) ? 'Favorite kept on this device.' : 'Favorite removed.'); }
 function bind() {
-  el('radioChannel')?.addEventListener('change', (event) => { state.channelId = event.target.value; state.current = null; state.queue = []; void persistRadioState(); render(); });
-  el('radioEraDial')?.addEventListener('input', (event) => { const next = Number(event.target.value); if (Math.abs(next - state.lastDial) >= 1) { state.lastDial = next; state.era = next; state.current = chooseTrack(); tuningClick(); state.queue = []; void persistRadioState(); render(); } });
   el('radioPlayButton')?.addEventListener('click', () => { if (state.status === STATES.playing || state.status === STATES.buffering || state.status === STATES.jingle) { state.activeAudio?.pause(); setStatus(STATES.paused, 'Paused'); } else { void playTrack(state.current || chooseTrack()); } });
   el('radioNextButton')?.addEventListener('click', () => void playNext());
   el('radioFavoriteButton')?.addEventListener('click', toggleFavorite);
@@ -120,6 +115,7 @@ function bind() {
 }
 export async function initRadio() {
   const saved = await db.get('radio_playback_state', 'current');
-  if (saved) { if (saved.channelId) state.channelId = saved.channelId; if (Number.isFinite(Number(saved.era))) state.era = Number(saved.era); if (Array.isArray(saved.favoriteIds)) state.favorites = new Set(saved.favoriteIds); if (Array.isArray(saved.history)) state.history = saved.history.slice(-100); }
-  bind(); await loadManifest(); if (!state.current) { state.current = chooseTrack(); render(); }
+  if (saved) { if (Array.isArray(saved.favoriteIds)) state.favorites = new Set(saved.favoriteIds); if (Array.isArray(saved.history)) state.history = saved.history.slice(-100); }
+  state.savedTrackIds = new Set((await db.all('radio_saved_tracks')).map((track) => String(track.id)));
+  bind(); await loadManifest(); chooseRandomChannel(); if (!state.current) { state.current = chooseTrack(); render(); }
 }

@@ -35,22 +35,12 @@ test('generated recommendation strings are suppressed and active walks accept Le
   assert.match(walk, /await persistWalkDraft\(\)/);
 });
 
-test('the idle map keeps Journal and Cypher in Field Guide and consolidates map work in the dock', async () => {
+test('the shell removes redundant legacy Field Guide and Messenger controls', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
-  assert.match(html, /id="journalButton"[^>]*aria-label="Open journal"/);
-  assert.match(html, /id="settingsButton"[^>]*aria-label="Open Field Guide menu"/);
-  assert.match(html, /id="fieldGuideDropdown"/);
-  assert.match(html, /id="geoCypherButton"/);
-  assert.match(html, /id="mapPencilButton"/);
-  assert.match(html, /data-map-destination="explore"/);
-  assert.match(html, /data-map-destination="maps"/);
-  assert.match(html, /data-map-destination="draw"/);
-  assert.match(html, /id="personalPlacesVisibility"/);
-  const fieldGuideMenu = html.slice(html.indexOf('id="fieldGuideDropdown"'), html.indexOf('</div></div></div>', html.indexOf('id="fieldGuideDropdown"')));
-  assert.doesNotMatch(fieldGuideMenu, /id="mapPencilButton"/);
-  assert.doesNotMatch(html, /id="savePlaceMapButton"/);
-  assert.match(html, /id="mapLights" aria-label="Explore map layers"/);
-  assert.match(html, /id="messengerBirdButton"/);
+  assert.doesNotMatch(html, /id="settingsButton"/);
+  assert.doesNotMatch(html, /id="fieldGuideDropdown"/);
+  assert.doesNotMatch(html, /class="middle-tools"/);
+  assert.doesNotMatch(html, /id="messengerBirdButton"/);
   assert.doesNotMatch(html, /id="homeCityButton"/);
   assert.doesNotMatch(html, /id="regionSheet"/);
   assert.match(html, /id="locateButton"/);
