@@ -12,17 +12,16 @@ import { civicNoticesFromPack, newsIsAvailable } from './civic-news.js';
 import { showCategoryCoach } from './coach.js';
 
 export const LAYER_GROUPS = [
-  { id: 'park_infrastructure', label: 'Park infrastructure', description: 'Comfort and access while you walk', tags: ['drinking_water', 'water_fountain', 'water', 'waste_basket', 'trash', 'bench', 'shelter', 'shade', 'restrooms', 'accessible_parking'] },
-  { id: 'dining', label: 'Cuisine', description: 'Markets, restaurants, cafés, and quick stops', tags: ['market', 'farmers_market', 'restaurant', 'fast_food', 'mexican', 'filipino', 'coffee', 'coffee_shop', 'cafe', 'food_cart', 'bakery'] },
-  { id: 'navigation', label: 'Navigation', description: 'Routes and ways to arrive', tags: ['trail', 'parking', 'bicycle_parking', 'bike_rack'] },
-  { id: 'outdoors', label: 'Nature & outdoors', description: 'Green space, wildlife, and water access', tags: ['park', 'nature', 'wildlife', 'water_access', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad'] },
+  { id: 'walking_network', label: 'Walking network', description: 'Routes, crossings, and access conditions', tags: ['trail', 'walkway', 'crossing', 'barrier'] },
+  { id: 'nature_water', label: 'Nature & water', description: 'Nature, water, scenery, and recreation', tags: ['nature', 'water', 'scenic', 'recreation', 'park', 'wildlife', 'water_access', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad'] },
+  { id: 'places_services', label: 'Places & services', description: 'Rest, civic places, transit, and food & drink', tags: ['rest', 'bench', 'shelter', 'shade', 'restrooms', 'historic', 'civic', 'transit', 'market', 'farmers_market', 'restaurant', 'fast_food', 'coffee', 'coffee_shop', 'cafe', 'food_cart', 'bakery'] },
   { id: 'culture', label: 'History, art & culture', description: 'Public stories and creative places', tags: ['history', 'history_landmark', 'history_monument', 'history_museum', 'history_cemetery', 'history_marker', 'art', 'public_art'] },
   { id: 'community', label: 'Community & essentials', description: 'Public services and shared spaces', tags: ['community', 'facility', 'library', 'recreation_center', 'pantry', 'wifi'] },
-  { id: 'activities', label: 'Sports & activities', description: 'Places to move and play', tags: ['basketball', 'tennis', 'disc_golf', 'skate_park'] },
-  { id: 'more', label: 'More map layers', description: 'Additional regional categories', tags: ['event', 'osm', 'rest'] }
+  { id: 'more', label: 'More map layers', description: 'OpenStreetMap places and additional regional categories', tags: ['event', 'osm', 'argentinian', 'british', 'crepe', 'greek', 'latin_american', 'tea', 'turkish'] }
 ];
 
 const STATIC_LABELS = {
+  walkway: 'Walkways', crossing: 'Crossings', barrier: 'Barriers', nature: 'Nature', scenic: 'Scenic places', recreation: 'Recreation', rest: 'Rest & comfort', historic: 'Historic places', civic: 'Civic places', transit: 'Transit', argentinian: 'Argentinian', british: 'British', crepe: 'Crepe', greek: 'Greek', latin_american: 'Latin American', tea: 'Tea', turkish: 'Turkish',
   drinking_water: 'Water fountains', water_fountain: 'Water fountains', water: 'Water', waste_basket: 'Trash receptacles', trash: 'Trash receptacles', bench: 'Benches', shelter: 'Shade shelters', shade: 'Shade', restrooms: 'Restrooms', accessible_parking: 'Accessible parking', restaurant: 'Restaurants', fast_food: 'Quick-service food', mexican: 'Mexican food', filipino: 'Filipino food', coffee: 'Coffee shops', coffee_shop: 'Coffee shops', cafe: 'Cafés', food_cart: 'Food carts', bakery: 'Bakeries', trail: 'Trail markers', parking: 'Parking', bicycle_parking: 'Bike racks', bike_rack: 'Bike racks', osm: 'OpenStreetMap places'
 };
 
@@ -54,6 +53,13 @@ const MAP_TAGS = new Set([
 function isMapTag(id) { return MAP_TAGS.has(id) || String(id).startsWith('history'); }
 
 export async function initLayerSystem() {
+  // Explore owns public category filters and the NEWS chip; Library owns
+  // personal places and saved records. Move the existing filter surface into
+  // Explore so My Places never becomes a second category browser.
+  document.querySelector('.news-story-dropdown')?.remove();
+  const explorePanel = document.querySelector('[data-map-panel="explore"]');
+  const advancedFilters = document.querySelector('.advanced-filters');
+  if (explorePanel && advancedFilters) explorePanel.append(advancedFilters);
   const [savedFilters, savedUi] = await Promise.all([
     db.get('layer_settings', 'current-filters'), db.get('layer_settings', 'layer-ui-state')
   ]);
@@ -87,27 +93,17 @@ function buildAllLayerGroups() {
     return { ...group, options };
   });
   const extras = [...available].filter(([id]) => !claimed.has(id));
-  groups.find((group) => group.id === 'dining').options.push(...extras.filter(([id]) => isFoodFilterTag(id)).map(([id, label]) => publicOption(id, label, pois)));
+  groups.find((group) => group.id === 'places_services').options.push(...extras.filter(([id]) => isFoodFilterTag(id)).map(([id, label]) => publicOption(id, label, pois)));
   groups.find((group) => group.id === 'more').options.push(...extras.filter(([id]) => !isFoodFilterTag(id)).map(([id, label]) => publicOption(id, label, pois)));
-  groups.push({
-    id: 'personal_places', label: 'Personal places', description: 'Collections saved only on this device',
-    options: state.personalPlaceCategories.map((category) => ({
-      id: category.id, kind: 'personal', label: category.name, description: category.description || 'Custom collection',
-      icon: category.icon, color: category.color, count: personalNearbyCount(category.id)
-    }))
-  });
-  return groups.filter((group) => group.options.length || group.id === 'personal_places');
+  return groups.filter((group) => group.options.length);
 }
 
 export function buildLayerGroups() {
-  return buildAllLayerGroups().map((group) => ({
-    ...group,
-    options: group.options.filter((option) => option.kind === 'personal' || (option.kind === 'public' && !isMapTag(option.id) && !isFoodFilterTag(option.id)))
-  })).filter((group) => group.options.length);
+  return buildAllLayerGroups().filter((group) => group.options.length);
 }
 
 function shouldShowEmptyStandard(id) {
-  return false;
+  return ['trail', 'walkway', 'crossing', 'barrier', 'nature', 'water', 'scenic', 'recreation', 'rest', 'historic', 'civic', 'transit', 'restaurant', 'coffee', 'library', 'wifi', 'public_art', 'community', 'osm', 'argentinian', 'british', 'crepe', 'greek', 'latin_american', 'tea', 'turkish'].includes(id);
 }
 
 function publicOption(id, sourceLabel, pois) {
@@ -309,7 +305,7 @@ function lightModel() {
     { id: 'news', label: 'NEWS', available: newsAvailable(), chips: [], entries: newsEntries, hasChevron: newsEntries.length > 0 },
     { id: 'recreation', label: 'REC', available: recreation.length > 0, chips: recreation },
     { id: 'cuisine', label: 'CUISINE', available: cuisine.length > 0, chips: cuisine },
-    { id: 'personal', label: state.personalPlaceSelecting ? 'USE THIS SPOT' : 'MY PLACES', available: true, chips: personal, hasChevron: true }
+    { id: 'personal', label: state.personalPlaceSelecting ? 'USE THIS SPOT' : 'MY PLACES', available: false, chips: personal, hasChevron: true }
   ].filter((light) => light.available);
 }
 
@@ -351,13 +347,6 @@ export function renderMapLights() {
     const hasChevron = light.hasChevron ?? light.chips.length > 0;
     return `<div class="map-light-wrap" data-map-light="${light.id}">${expandedLightContent(light, expanded)}<div class="map-light-row"><button type="button" class="map-light ${on ? 'on' : 'off'}" data-light="${light.id}" aria-pressed="${on}">${escapeHtml(light.label)}</button>${hasChevron ? `<button type="button" class="map-light-chevron" data-light-expand="${light.id}" aria-label="Show ${escapeHtml(light.label.toLowerCase())} choices" aria-expanded="${expanded === light.id}"><span aria-hidden="true">▲</span></button>` : ''}</div></div>`;
   }).join('');
-  const personalToggle = el('personalPlacesVisibility');
-  if (personalToggle) {
-    const visible = state.layerLights.personal === true;
-    personalToggle.classList.toggle('on', visible);
-    personalToggle.setAttribute('aria-pressed', String(visible));
-    personalToggle.textContent = visible ? 'Hide saved places' : 'Show saved places';
-  }
 }
 
 function setChip(chip, enabled) {
