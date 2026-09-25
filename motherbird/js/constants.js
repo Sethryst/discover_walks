@@ -222,7 +222,7 @@ export function chosenPackIds(settings = {}) {
 ];
 export const DEFAULT_SETTINGS = {
   id: 'app-settings', activeCity: null, lastSyncedAt: null, lastSupabaseHeartbeatAt: null,
-  enableGeofencing: true, geofenceCategories: ['recreation', 'cuisine'], favoriteCategories: [], favoriteRegionIds: [], defaultGeofenceRadiusMeters: 50, defaultPinVisibility: 'private', shareAttribution: '', customObservationTags: {}, companionWalker: 'inky', onboardingCompleted: false, entitlements: { fieldEdition: false, cloudJournalBackup: false, offlineRegions: [], partnerGrants: [] }
+  enableGeofencing: true, geofenceCategories: ['news', 'recreation', 'cuisine'], favoriteCategories: [], favoriteRegionIds: [], defaultGeofenceRadiusMeters: 50, defaultPinVisibility: 'private', shareAttribution: '', customObservationTags: {}, companionWalker: 'inky', onboardingCompleted: false, entitlements: { fieldEdition: false, cloudJournalBackup: false, offlineRegions: [], partnerGrants: [] }
 };
 
 export const OBSERVATION_ICONS = ['camera', 'tree', 'star', 'heart', 'coffee', 'book-open', 'music', 'wind'];

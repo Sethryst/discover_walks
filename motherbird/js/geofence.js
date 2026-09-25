@@ -12,7 +12,7 @@ function checkGeofencesNow(point) {
   const settings = state.settings || {};
   if (settings.enableGeofencing === false) return;
   if (state.activeWalk && (state.activeWalk.discoveryCount || 0) >= 2) return;
-  const enabledStars = new Set(settings.geofenceCategories || ['recreation', 'cuisine']);
+  const enabledStars = new Set(settings.geofenceCategories || ['news', 'recreation', 'cuisine']);
   const favorites = new Set(settings.favoriteCategories || []);
   const defaultRadius = settings.defaultGeofenceRadiusMeters || 50;
   const pois = state.cityPois[state.activeCity] || [];

@@ -135,7 +135,7 @@ export function journalPhoto(value) {
 }
 export function badge(name, earned, detail) { return `<span class="badge ${earned ? 'earned' : ''}" title="${escapeHtml(detail)}">${earned ? '✓ ' : ''}${escapeHtml(name)}</span>`; }
 export function renderGeofenceCategoryChips() {
-  const categories = [['recreation', '★ Rec'], ['cuisine', '★ Cuisine']];
+  const categories = [['news', '★ News'], ['recreation', '★ Rec'], ['cuisine', '★ Cuisine']];
   const selected = new Set(state.settings.geofenceCategories || categories.map(([id]) => id));
   const chipsEl = el('geofenceCategoryChips');
   if (chipsEl) {

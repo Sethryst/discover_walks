@@ -306,9 +306,9 @@ function lightModel() {
   const personalPins = curatedPersonalPlaces().filter((place) => !place.packId || place.packId === state.activeCity);
   const personal = state.personalPlaceCategories.map((category) => ({ id: category.id, label: category.name, tags: [], kind: 'personal' }));
   return [
-    { id: 'news', label: 'NEWS', available: newsAvailable(), chips: [], entries: newsEntries, hasChevron: newsEntries.length > 0 },
-    { id: 'recreation', label: 'REC', available: recreation.length > 0, chips: recreation },
-    { id: 'cuisine', label: 'CUISINE', available: cuisine.length > 0, chips: cuisine },
+    { id: 'news', label: 'NEWS', available: newsAvailable(), chips: [], entries: newsEntries, hasChevron: false },
+    { id: 'recreation', label: 'REC', available: recreation.length > 0, chips: recreation, hasChevron: false },
+    { id: 'cuisine', label: 'CUISINE', available: cuisine.length > 0, chips: cuisine, hasChevron: false },
     { id: 'personal', label: state.personalPlaceSelecting ? 'USE THIS SPOT' : 'MY PLACES', available: false, chips: personal, hasChevron: true }
   ].filter((light) => light.available);
 }
