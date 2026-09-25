@@ -131,13 +131,6 @@ function setMapWorkspace(destination = '', { toggle = true, forceOpen = false } 
 }
 
 function bindMapWorkspace() {
-  const openDestination = (button) => {
-    setMapWorkspace(button.dataset.mapDestination, { toggle: button.dataset.mapDestination !== 'explore' });
-  };
-  // Bind the controls directly as well as through the legacy dock. The shell
-  // action panel opens these buttons programmatically, and the dock is hidden
-  // in the compact mobile/rail layout.
-  document.querySelectorAll('[data-map-destination]').forEach((button) => button.addEventListener('click', () => openDestination(button)));
   el('closeMapWorkspace')?.addEventListener('click', () => setMapWorkspace(''));
   el('collapseDrawTools')?.addEventListener('click', () => {
     const button = el('collapseDrawTools');

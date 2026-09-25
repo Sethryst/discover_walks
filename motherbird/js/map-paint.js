@@ -253,7 +253,7 @@ function exportMapArtifacts() {
 
 export async function initMapPaint() {
   const button = el('mapPencilButton');
-  if (!button || !state.map || !state.map.pm) return;
+  if (!state.map || !state.map.pm) return;
   const initialLabels = { Line: 'Test route', Freehand: 'Sketch area', Polygon: 'Investigate territory', Rectangle: 'Define area', Circle: 'Explore area' };
   document.querySelectorAll('[data-draw-shape]').forEach((item) => { const label = initialLabels[item.dataset.drawShape]; if (label) item.querySelector('span:last-child').textContent = label; });
   const updateRegionLabel = () => { const label = el('drawRegionLabel'); if (label) label.textContent = cityLabel(state.activeCity) || 'Installed region'; };
@@ -319,7 +319,7 @@ export async function initMapPaint() {
     void renderMapDrawings();
   });
   el('exportMapArtifacts')?.addEventListener('click', exportMapArtifacts);
-  el('manageMapLayers')?.addEventListener('click', () => document.querySelector('[data-map-destination="maps"]')?.click());
+  el('manageMapLayers')?.addEventListener('click', () => window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'maps', forceOpen: true } })));
   window.addEventListener('map-workspace-changed', ({ detail }) => {
     const active = detail?.destination === 'draw' && detail.open;
     if (!active) { freehandActive = false; setActive(false); document.querySelectorAll('[data-draw-shape]').forEach((item) => item.classList.remove('active')); }
