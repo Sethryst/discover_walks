@@ -5,6 +5,8 @@ import db from './storage.js';
 import { displayPoiName, isVisiblePoi, poiTags } from './poi.js';
 import { markerPinHtml, markerVisual } from './poi-icons.js';
 import { generateTimeBasedPlan } from './planner.js';
+import { ensurePersonalCategory, upsertImportedPersonalData } from './personal-places.js';
+import { savePlannedRoute } from './saved-routes.js';
 
 const DRAW_COLOR = '#76558b';
 function readHiddenArtifacts() {
@@ -67,6 +69,21 @@ function renderSpatialQuery() {
     button.type = 'button'; button.dataset.queryWalkSelected = 'true'; button.className = 'secondary-button'; button.textContent = `Start walk with ${state.spatialQuerySelected.size} selected place${state.spatialQuerySelected.size === 1 ? '' : 's'}`; button.disabled = state.spatialQuerySelected.size < 2;
     button.onclick = () => { const stops = state.spatialQueryResults.filter((poi) => state.spatialQuerySelected.has(String(poi.id))); document.querySelector('input[name="routeMode"][value="auto-round-trip"]')?.click(); void generateTimeBasedPlan({ stops, title: 'Spatial Query walk', reason: `Spatial Query · ${stops.length} selected places` }); };
     if (!button.parentElement) status.append(button);
+    const save = status.querySelector('[data-query-save-discover]') || document.createElement('button');
+    save.type = 'button'; save.dataset.querySaveDiscover = 'true'; save.className = 'secondary-button'; save.textContent = 'Save selected to Discover'; save.disabled = state.spatialQuerySelected.size < 1;
+    save.onclick = async () => {
+      const selected = state.spatialQueryResults.filter((poi) => state.spatialQuerySelected.has(String(poi.id)));
+      if (!selected.length) return;
+      const title = window.prompt('Name this Discover experience', state.plannedRoute?.title || 'Spatial Query walk');
+      if (title === null) return;
+      try {
+        const category = await ensurePersonalCategory('Discover');
+        await upsertImportedPersonalData([], selected.map((poi) => ({ id: `discover:${poi.id}`, name: displayPoiName(poi), location: { lat: poi.lat, lng: poi.lng }, categoryId: category.id, sourcePoiId: poi.id, packId: state.activeCity, state: 'saved', private: true })), 'skip');
+        if (state.plannedRoute?.coordinates?.length >= 2) await savePlannedRoute(state.plannedRoute, { title, notes: `Spatial Query · ${selected.length} selected places` });
+        toast(state.plannedRoute?.coordinates?.length >= 2 ? 'Discover walk saved.' : 'Discover collection saved.');
+      } catch (error) { toast(error.message || 'Discover experience could not be saved.'); }
+    };
+    if (!save.parentElement) status.append(save);
   }
 }
 
