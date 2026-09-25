@@ -78,6 +78,7 @@ export function initPrimaryShell() {
       const button = document.createElement('button');
       button.type = 'button';
       button.className = 'shell-action-btn';
+      button.dataset.actionId = item.id;
       button.innerHTML = `<img src="${item.icon}" alt="" aria-hidden="true"><span>${item.label}</span>`;
       button.addEventListener('click', () => { panel.classList.add('hidden'); item.run(); });
 
@@ -87,7 +88,7 @@ export function initPrimaryShell() {
       const starred = isActionStarred(item.id);
       starBtn.className = `star-action-btn ${starred ? 'starred' : ''}`;
       starBtn.setAttribute('aria-label', `${starred ? 'Unstar' : 'Star'} ${item.label}`);
-      starBtn.innerHTML = `<img src="./icons/star.svg" alt="" aria-hidden="true">`;
+      starBtn.innerHTML = `<img class="star-action-icon" src="./icons/star.svg" alt="" aria-hidden="true">`;
       starBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         void toggleStarAction({ id: item.id, label: item.label, icon: item.icon, action: item.run });

@@ -482,6 +482,8 @@
   transition: transform 0.15s ease;
 }
 
+.star-action-icon { width: 18px; height: 18px; display: block; filter: brightness(0) saturate(100%) invert(70%) sepia(68%) saturate(654%) hue-rotate(2deg) brightness(92%) contrast(88%); }
+
 .star-action-btn:hover {
   transform: scale(1.15);
 }
@@ -489,6 +491,9 @@
 .star-action-btn.starred {
   color: #d4a017;
 }
+
+.shell-action-btn[data-action-id="draw"] img,
+.shell-action-btn[data-action-id="sketch-walk"] img { filter: brightness(0) saturate(100%) invert(39%) sepia(98%) saturate(1165%) hue-rotate(188deg) brightness(91%) contrast(92%); }
 
 .card-actions {
   display: flex;
