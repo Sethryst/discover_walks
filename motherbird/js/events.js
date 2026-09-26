@@ -17,7 +17,7 @@ import { openObservation, saveObservation, setDraftObservationIcon } from './obs
 import { transcribeJournal, toggleJournalRecording, stopJournalCapture } from './journal-capture.js';
 import { renderNearbyPlaces, initJournalPane } from './journal-pane.js';
 import { openGeoCypher } from './geo-cypher.js';
-import { openRadioForContext } from './radio.js?v=20260926-journal-refresh-v1';
+import { openRadioForContext } from './radio.js?v=20260926-source-exclusive-v1';
 import { initMessengerBird } from './messenger-bird.js';
 import { restartCoachMarks } from './coach.js';
 import { savePlannedRoute } from './saved-routes.js';

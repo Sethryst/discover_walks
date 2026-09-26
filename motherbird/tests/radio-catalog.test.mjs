@@ -14,8 +14,9 @@ test('radio exposes the complete SoundCloud catalog and transport surfaces', asy
   assert.equal(new Set(urls).size, 60);
   assert.match(radio, /Classic Gospel Hymns · Oh the Deep, Deep Love of Jesus/);
   assert.match(radio, /getSounds/);
+  assert.match(radio, /soundcloudWidget\?\.pause/);
   for (const id of ['radioPreviousButton', 'radioPlayButton', 'radioNextButton', 'radioShuffleButton', 'radioRepeatButton', 'radioQueueButton', 'radioSaveButton', 'radioMiniPreviousButton', 'radioMiniPlayButton', 'radioMiniNextButton']) assert.match(html, new RegExp(`id="${id}"`));
   assert.match(html, /id="radioLiveSources"/);
   assert.match(html, /id="radioLocalSources"/);
-  assert.match(serviceWorker, /walk-wildlife-shell-v192/);
+  assert.match(serviceWorker, /walk-wildlife-shell-v193/);
 });
