@@ -57,6 +57,22 @@ export function initJournalPane() {
     quotePanel.innerHTML = `<div><strong>Reflection library</strong><button type="button" id="dismissLongPauseQuotes" aria-label="Dismiss reflection quotes">×</button></div><p>Quotes are optional. Choose one when it fits, or dismiss this panel.</p>${WALK_QUOTES.map(({ quote, attribution, context, tag }) => `<button type="button" data-journal-quote="${escapeHtml(quote)}" title="${escapeHtml(context)}"><span>“${escapeHtml(quote)}”</span><small>— ${escapeHtml(attribution)} · ${escapeHtml(tag)}</small></button>`).join('')}`;
   }
   window.addEventListener('walk-long-pause-detected', () => quotePanel?.classList.remove('hidden'));
+  window.addEventListener('journal-quote-suggestion', (event) => {
+    if (!quotePanel || !event.detail?.quote) return;
+    const suggestion = event.detail;
+    const card = document.createElement('article');
+    card.className = 'quote-suggestion';
+    card.innerHTML = `<strong>Suggested for this moment</strong><p>“${escapeHtml(suggestion.quote)}”</p><small>— ${escapeHtml(suggestion.attribution)} · ${escapeHtml(suggestion.tag)} · confidence ${Math.round(Number(suggestion.confidence || 0) * 100)}%</small><button type="button" data-journal-quote="${escapeHtml(suggestion.quote)}">Add to journal</button>`;
+    quotePanel.prepend(card);
+    quotePanel.classList.remove('hidden');
+    card.querySelector('[data-journal-quote]')?.addEventListener('click', () => {
+      const note = el('journalNote');
+      if (!note) return;
+      note.value = `${note.value.trim()}${note.value.trim() ? '\n\n' : ''}${suggestion.quote}`;
+      note.dispatchEvent(new Event('input', { bubbles: true }));
+      card.remove();
+    });
+  });
   el('dismissLongPauseQuotes')?.addEventListener('click', () => el('longPauseQuotes')?.classList.add('hidden'));
   document.querySelectorAll('[data-journal-quote]').forEach((button) => button.addEventListener('click', () => {
     const note = el('journalNote');

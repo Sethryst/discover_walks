@@ -4,6 +4,7 @@ import { isWalkablePoi, poiTags, showHistory } from './poi.js';
 import { requestCompanionContext } from './companion.js';
 import { mergeExplorePois } from './learn-explore.js';
 import db from './storage.js';
+import { quoteContextForPoi, suggestContextualQuote } from './quote-context.js';
 
 export function checkGeofences(point) {
   void mergeExplorePois().then(() => checkGeofencesNow(point));
@@ -43,6 +44,8 @@ function checkGeofencesNow(point) {
     const tags = poiTags(nearby.poi);
     requestCompanionContext(tags.some((tag) => ['water', 'water_access', 'river', 'lake'].includes(tag)) ? 'water' : tags.some((tag) => tag === 'history' || tag.startsWith('history_')) ? 'historic' : tags.some((tag) => ['wildlife', 'nature'].includes(tag)) ? 'observe' : 'discover');
     globalThis.window?.dispatchEvent(new CustomEvent('walk-poi-encounter', { detail: nearby }));
+    const context = quoteContextForPoi(nearby.poi);
+    if (context) void suggestContextualQuote({ ...context, poi: nearby.poi, eventId: nearby.poi.id });
   }
   if (nearby && !state.modalOpen) {
     if (state.activeWalk) state.activeWalk.discoveryCount = (state.activeWalk.discoveryCount || 0) + 1;

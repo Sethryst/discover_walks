@@ -1,7 +1,7 @@
 // Keep the whole module graph with the shell. Caching only app.js leaves an
 // offline (or briefly disconnected) reload with a blank app when any imported
 // module was not already in the runtime cache.
-const APP_CACHE = 'walk-wildlife-shell-v172'; // Leisure story playback and context-aware quote library
+const APP_CACHE = 'walk-wildlife-shell-v173'; // Contextual quote confidence and deduplication
 const TILE_CACHE = 'walk-wildlife-osm-viewed-tiles-v1';
 const LIBRARY_CACHE = 'walk-wildlife-library-v2';
 const COMPANION_CACHE = 'walk-wildlife-companion-media-v2';
@@ -22,7 +22,7 @@ const shell = [
   './js/quiet-places.js', './js/region-api.js', './js/region-installer.js', './js/region-manager.js', './js/region-package.js', './js/osm-release.js',
   './js/osm-regions.js', './js/national-poi-map.js', './js/national-osm-layers.js', './js/offline-routing-package.mjs', './js/opfs-range-source.js', './js/walking-cell-registry.js', './js/walking-cell-cache.js', './js/walking-cell-runtime.js', './js/personal-edge-scores.js', './js/geo-cypher.js', './js/room-runtime.js', './js/room-renderers.js', './js/spatial-query.js', './js/spatial-model.js',
   './js/region-ui.js', './js/routes.js', './js/stories.js', './js/routing.js', './js/routing-feedback.js', './js/runtime-router.mjs', './js/offline-router-worker.js', './js/seasonal-awareness.js', './js/state.js', './js/storage.js', './js/saved-routes.js',
-  './js/ui.js', './js/utils.js', './js/walk.js', './js/walk-artifact.js', './js/walk-context.js', './js/walk-state.js', './js/companion.js', './js/revisit.js', './js/journal-transfer.js', './js/journal-capture.js', './js/map-paint.js', './js/county-additions.js', './js/installed-region-runtime.js', './js/watch-session.js', './js/watch-app.js', './js/device-entry.js', './js/observation-model.js', './js/weather.js', './js/journal-pane.js', './js/icon-loader.js', './js/poi-icons.js', './js/poi-filter-rules.js', './js/layer-system.js', './js/personal-places.js',
+  './js/ui.js', './js/utils.js', './js/walk.js', './js/walk-artifact.js', './js/walk-context.js', './js/walk-state.js', './js/companion.js', './js/revisit.js', './js/journal-transfer.js', './js/journal-capture.js', './js/map-paint.js', './js/county-additions.js', './js/installed-region-runtime.js', './js/watch-session.js', './js/watch-app.js', './js/device-entry.js', './js/observation-model.js', './js/weather.js', './js/journal-pane.js', './js/quote-context.js', './js/icon-loader.js', './js/poi-icons.js', './js/poi-filter-rules.js', './js/layer-system.js', './js/personal-places.js',
   './icons/mic.svg', './icons/pencil.svg', './icons/camera.svg', './icons/target.svg', './icons/share-2.svg', './icons/map-pin.svg', './icons/trash-2.svg', './icons/water-fountain.svg', './icons/bench.svg', './icons/parking.svg', './icons/bike.svg', './icons/building.svg', './icons/utensils.svg', './icons/home.svg', './icons/activity.svg', './icons/route.svg', './icons/alert-circle.svg', './icons/layers.svg',
   './data/anchorage-poi.json', './data/baltimore-poi.json', './data/boise-meridian-idaho-poi.json', './data/columbus-poi.json', './data/corpus-christi-poi.json',
   './data/dc-poi.json', './data/detroit-poi.json', './data/fort-worth-poi.json', './data/keystone-colorado-poi.json', './data/los-angeles-poi.json',

@@ -82,3 +82,10 @@ These capabilities satisfy the document’s intended Map → Spatial Query → D
 - PMTiles specifically for Room assets until asset requirements justify it.
 - Hosted Liquidsoap/Icecast/VPS radio infrastructure and Capacitor packaging until the browser listening loop is proven.
 
+## Contextual quote suggestions
+
+Quote suggestions are journal-only and optional. Ordinary POI geofencing and quote eligibility are separate systems. A POI may suggest a quote only when its semantic tags directly support a context such as `trailhead`, `bridge`/water, park threshold, woods, wildlife, overlook, or elevation.
+
+The first runtime slice lives in `motherbird/js/quote-context.js`. It assigns a confidence score from explicit tag matches, chooses one quote for the context, and deduplicates by city, context, and stable POI/event ID in local settings. It emits `journal-quote-suggestion`; the journal presents one “Add to journal” action and never auto-writes quote text.
+
+The current boundary is intentional: route geometry, elevation tracks, and reliable wildlife observations still need event producers before those contexts can be activated. POI geofencing continues to serve ordinary encounter behavior and is not treated as proof that a quote belongs.

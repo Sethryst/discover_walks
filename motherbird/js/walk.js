@@ -25,6 +25,7 @@ import {
 } from './walk-artifact.js';
 import { companionStateForWalk, setCompanionState } from './companion.js';
 import { walkIsActive } from './walk-state.js';
+import { suggestContextualQuote } from './quote-context.js';
 
 const DRAFT_ID = 'active-walk';
 
@@ -277,6 +278,7 @@ export async function saveWalk() {
   state.walks = [...state.walks.filter((item) => item.id !== finished.id), finished];
   state.knownTrackPoints.push(...finished.points.filter((_, index) => index % 5 === 0));
   resetActiveWalk();
+  void suggestContextualQuote({ context: 'end-of-walk-return', confidence: 0.9, eventId: finished.id });
   window.dispatchEvent(new CustomEvent('walk-ended', { detail: { id: finished.id } }));
   closeSheets();
   setStatus('Walk saved locally');
