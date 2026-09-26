@@ -1,10 +1,18 @@
 import { state } from './state.js';
 import { distanceMeters } from './geo.js';
-import { el, escapeHtml } from './utils.js';
+import { el, escapeHtml, uid } from './utils.js';
+import db from './storage.js';
 import { displayPoiName, isOsmPoi, isVisiblePoi, poiObeysMapLights } from './poi.js';
 import { WALK_QUOTES } from './reflection.js';
 
 const SHEET_STATES = ['collapsed', 'half', 'expanded'];
+
+async function pinQuote(quote, attribution, context = '') {
+  const existing = await db.all('moments');
+  if (existing.some((item) => item.quotePinned && item.quote === quote)) return;
+  await db.put('moments', { id: uid('pinned-quote'), type: 'journal', title: 'Pinned walking quote', note: `“${quote}”\n\n— ${attribution}`, quote, attribution, quoteContext: context, quotePinned: true, city: state.activeCity, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() });
+  window.dispatchEvent(new CustomEvent('journal-data-changed'));
+}
 
 export function setJournalSheetState(next = 'half') {
   const journal = el('persistentJournal');
@@ -54,7 +62,7 @@ export function initJournalPane() {
   if (!handle || !journal) return;
   const quotePanel = el('longPauseQuotes');
   if (quotePanel) {
-    quotePanel.innerHTML = `<div><strong>Reflection library</strong><button type="button" id="dismissLongPauseQuotes" aria-label="Dismiss reflection quotes">×</button></div><p>Quotes are optional. Choose one when it fits, or dismiss this panel.</p>${WALK_QUOTES.map(({ quote, attribution, context, tag }) => `<button type="button" data-journal-quote="${escapeHtml(quote)}" title="${escapeHtml(context)}"><span>“${escapeHtml(quote)}”</span><small>— ${escapeHtml(attribution)} · ${escapeHtml(tag)}</small></button>`).join('')}`;
+    quotePanel.innerHTML = `<div><strong>Reflection library</strong><button type="button" id="dismissLongPauseQuotes" aria-label="Dismiss reflection quotes">×</button></div><p>Quotes are optional. Choose one, pin it, or dismiss this panel.</p>${WALK_QUOTES.map(({ quote, attribution, context, tag }) => `<div class="quote-library-item"><button type="button" data-journal-quote="${escapeHtml(quote)}" title="${escapeHtml(context)}"><span>“${escapeHtml(quote)}”</span><small>— ${escapeHtml(attribution)} · ${escapeHtml(tag)}</small></button><button type="button" data-pin-quote="${escapeHtml(quote)}" data-pin-attribution="${escapeHtml(attribution)}" data-pin-context="${escapeHtml(context)}">Pin</button></div>`).join('')}`;
   }
   window.addEventListener('walk-long-pause-detected', () => quotePanel?.classList.remove('hidden'));
   window.addEventListener('journal-quote-suggestion', (event) => {
@@ -62,7 +70,7 @@ export function initJournalPane() {
     const suggestion = event.detail;
     const card = document.createElement('article');
     card.className = 'quote-suggestion';
-    card.innerHTML = `<strong>Suggested for this moment</strong><p>“${escapeHtml(suggestion.quote)}”</p><small>— ${escapeHtml(suggestion.attribution)} · ${escapeHtml(suggestion.tag)} · confidence ${Math.round(Number(suggestion.confidence || 0) * 100)}%</small><button type="button" data-journal-quote="${escapeHtml(suggestion.quote)}">Add to journal</button>`;
+    card.innerHTML = `<strong>Suggested for this moment</strong><p>“${escapeHtml(suggestion.quote)}”</p><small>— ${escapeHtml(suggestion.attribution)} · ${escapeHtml(suggestion.tag)} · confidence ${Math.round(Number(suggestion.confidence || 0) * 100)}%</small><div><button type="button" data-journal-quote="${escapeHtml(suggestion.quote)}">Add to journal</button><button type="button" data-pin-quote="${escapeHtml(suggestion.quote)}" data-pin-attribution="${escapeHtml(suggestion.attribution)}" data-pin-context="${escapeHtml(suggestion.context || '')}">Pin to top</button></div>`;
     quotePanel.prepend(card);
     quotePanel.classList.remove('hidden');
     card.querySelector('[data-journal-quote]')?.addEventListener('click', () => {
@@ -72,6 +80,11 @@ export function initJournalPane() {
       note.dispatchEvent(new Event('input', { bubbles: true }));
       card.remove();
     });
+    card.querySelector('[data-pin-quote]')?.addEventListener('click', async (click) => {
+      const button = click.currentTarget;
+      await pinQuote(button.dataset.pinQuote, button.dataset.pinAttribution, button.dataset.pinContext);
+      button.textContent = 'Pinned'; button.disabled = true;
+    });
   });
   el('dismissLongPauseQuotes')?.addEventListener('click', () => el('longPauseQuotes')?.classList.add('hidden'));
   document.querySelectorAll('[data-journal-quote]').forEach((button) => button.addEventListener('click', () => {
@@ -80,6 +93,10 @@ export function initJournalPane() {
     note.value = `${note.value.trim()}${note.value.trim() ? '\n\n' : ''}${button.dataset.journalQuote}`;
     note.dispatchEvent(new Event('input', { bubbles: true }));
     el('longPauseQuotes')?.classList.add('hidden');
+  }));
+  document.querySelectorAll('[data-pin-quote]').forEach((button) => button.addEventListener('click', async () => {
+    await pinQuote(button.dataset.pinQuote, button.dataset.pinAttribution, button.dataset.pinContext);
+    button.textContent = 'Pinned'; button.disabled = true;
   }));
   let startY = 0;
   let dragging = false;

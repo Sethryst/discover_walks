@@ -116,7 +116,7 @@ export async function renderJournalHistory() {
   voiceObjectUrls.forEach((url) => URL.revokeObjectURL(url));
   voiceObjectUrls = [];
   const currentId = el('journalForm')?.dataset.momentId;
-  const rows = [...items.filter((item) => item.id !== currentId), ...voices.filter((item) => item.audio instanceof Blob).map((item) => ({ ...item, type: 'voice' }))].sort((a, b) => Date.parse(b.createdAt || 0) - Date.parse(a.createdAt || 0));
+  const rows = [...items.filter((item) => item.id !== currentId), ...voices.filter((item) => item.audio instanceof Blob).map((item) => ({ ...item, type: 'voice' }))].sort((a, b) => Number(Boolean(b.quotePinned)) - Number(Boolean(a.quotePinned)) || Date.parse(b.createdAt || 0) - Date.parse(a.createdAt || 0));
   target.innerHTML = rows.map((item) => {
     if (item.type === 'drawing') return `<div data-journal-kind="annotations"><article class="moment-card annotation-card"><span class="moment-symbol">⌖</span><div class="moment-copy"><strong>${escapeHtml(item.title || 'Map annotation')}</strong><p>${escapeHtml(item.body?.measurement || `${item.body?.shape || 'Map'} annotation`)}</p><button type="button" class="secondary-button journal-delete-annotation" data-delete-annotation="${escapeHtml(item.id)}">Delete annotation</button></div><time class="moment-date">${shortDate(item.createdAt)}</time></article></div>`;
     const kind = item.type === 'walk' ? 'walks' : item.type === 'voice' ? 'voice' : item.type === 'observation' ? 'observations' : 'notes';
@@ -196,5 +196,5 @@ export async function openWalkDetail(id) {
 }
 export async function allArchiveItems() {
   const [walks, observations, moments] = await Promise.all([db.all('walks'), db.all('observations'), db.all('moments')]);
-  return [...walks.map((walk) => ({ ...walk, type: 'walk', createdAt: walk.startedAt })), ...observations, ...moments].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  return [...walks.map((walk) => ({ ...walk, type: 'walk', createdAt: walk.startedAt })), ...observations, ...moments].sort((a, b) => Number(Boolean(b.quotePinned)) - Number(Boolean(a.quotePinned)) || new Date(b.createdAt) - new Date(a.createdAt));
 }
