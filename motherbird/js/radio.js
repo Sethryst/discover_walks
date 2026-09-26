@@ -1,7 +1,7 @@
 import db from './storage.js';
 import { openSheet, closeSheets, toast } from './ui.js';
 
-const MANIFEST_URL = './data/radio/manifest.json?v=20260925-radio-v3';
+const MANIFEST_URL = './data/radio/manifest.json?v=20260925-radio-v4';
 const FAVORITES_KEY = 'gremlin-radio-favorites-v1';
 const MINI_POSITION_KEY = 'gremlin-radio-mini-position-v1';
 const STATES = Object.freeze({ paused: 'paused', buffering: 'buffering', playing: 'playing', jingle: 'jingle playing' });
@@ -97,6 +97,14 @@ function makeAudio(url) { const audio = new Audio(); audio.preload = 'auto'; aud
 function cleanupAudio(audio) { if (!audio) return; audio.pause(); audio.removeAttribute('src'); audio.load(); }
 async function playTrack(track) {
   if (!track) { setStatus(STATES.paused, 'No broadcasts available'); return; }
+  if (track.rightsStatus === 'external-player-link' && track.sourceUrl) {
+    window.open(track.sourceUrl, '_blank', 'noopener,noreferrer');
+    state.current = track;
+    recordRadioEvent(track, 'opened');
+    setStatus(STATES.paused, 'Opened official station player');
+    render();
+    return;
+  }
   const token = ++state.playbackToken;
   setStatus(STATES.buffering, 'Finding transmission…');
   try {
