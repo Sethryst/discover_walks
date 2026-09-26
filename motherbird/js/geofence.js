@@ -34,7 +34,7 @@ function checkGeofencesNow(point) {
       requestCompanionContext(tags.some((tag) => ['water', 'water_access', 'river', 'lake'].includes(tag)) ? 'water' : tags.some((tag) => tag === 'history' || tag.startsWith('history_')) ? 'historic' : tags.some((tag) => ['wildlife', 'nature'].includes(tag)) ? 'observe' : 'discover');
       globalThis.window?.dispatchEvent(new CustomEvent('walk-poi-encounter', { detail: encounter }));
       const context = quoteContextForPoi(encounter.poi);
-      if (context && ['setting-out-trailhead', 'crossing-stream-water'].includes(context.context)) void suggestContextualQuote({ ...context, poi: encounter.poi, eventId: encounter.poi.id });
+      if (context) void suggestContextualQuote({ ...context, poi: encounter.poi, eventId: encounter.poi.id });
     }
     if (settings.autoJournalGeofences !== false) {
       const id = `geofence:${state.activeCity}:${encounter.poi.id}`;

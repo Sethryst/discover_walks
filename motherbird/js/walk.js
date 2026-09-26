@@ -48,6 +48,7 @@ export function addWalkPoint(point) {
       void recordWalkEvent('pause', point, { automatic: true, reason: 'stationary-position-samples' }, undefined, 'active').then((event) => {
         if (event) {
           walk.detectionState.autoPauseEventId = event.id;
+          void suggestContextualQuote({ context: 'long-pause', confidence: 0.9, eventId: event.id });
           globalThis.window?.dispatchEvent(new CustomEvent('walk-long-pause-detected'));
         }
       });
