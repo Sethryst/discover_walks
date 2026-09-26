@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="./vendor/leaflet-geoman/leaflet-geoman.css" />
   <link rel="stylesheet" href="./vendor/maplibre-gl.css" />
   <link rel="stylesheet" href="./styles.css?v=84" />
-  <link rel="stylesheet" href="./radio.css" />
+    <link rel="stylesheet" href="./radio.css?v=20260925-soundcloud-v1" />
   <link rel="stylesheet" href="./shell.css?v=3" />
   <link rel="stylesheet" href="./splash-fix.css?v=68" />
   <title>Walk & Wildlife</title>
@@ -223,6 +223,7 @@
     <span class="sheet-kicker">WALKING BROADCAST · AMBIENT DISCOVERY</span><h2 id="radioTitle">Radio</h2>
     <p id="radioChannelDescription" class="radio-description">Start with one transmission. Listen, skip, and keep what stays with you.</p>
     <fieldset class="radio-source-switches" aria-label="Broadcast sources"><legend>Sources</legend><label><input id="radioLiveSources" type="checkbox" /> Permissioned live broadcasts</label><label><input id="radioLocalSources" type="checkbox" checked /> Archive programs</label></fieldset>
+    <div class="radio-live-player hidden" id="radioLivePlayer" aria-live="polite"><div><small>LIVE SOUNDCLOUD</small><strong>Permissioned live broadcast</strong></div><label class="radio-live-picker">Playlist<select id="radioSoundcloudSelect"></select></label><iframe id="radioSoundcloudFrame" title="SoundCloud live broadcast" allow="autoplay" loading="lazy"></iframe></div>
     <div class="radio-console" id="radioPlayer" data-radio-state="paused">
       <div class="radio-on-air"><span class="radio-lamp" aria-hidden="true"></span><div><small id="radioStatus">paused</small><strong id="radioNowPlaying">No transmission selected</strong></div></div>
       <div class="radio-controls"><button id="radioPlayButton" class="radio-main-button" type="button">▶ Listen</button><button id="radioNextButton" class="secondary-button" type="button">Skip</button><button id="radioFavoriteButton" class="secondary-button" type="button" disabled>♡ Favorite</button></div>

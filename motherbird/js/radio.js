@@ -2,6 +2,7 @@ import db from './storage.js';
 import { openSheet, closeSheets, toast } from './ui.js';
 
 const MANIFEST_URL = './data/radio/manifest.json?v=20260925-radio-v7';
+const SOUNDCLOUD_PLAYLISTS = Object.freeze([['Bard Songs', 'https://soundcloud.com/wellness-walks/sets/bardsongs'], ['Honky Tonk & Heartbreak', 'https://soundcloud.com/wellness-walks/sets/honkytonkandheartbreak'], ['Dylan & Dirt Roads', 'https://soundcloud.com/wellness-walks/sets/dylananddirtroads'], ['Bass House 2026', 'https://soundcloud.com/wellness-walks/sets/basshouse-2026'], ['Soul / R&B', 'https://soundcloud.com/wellness-walks/sets/soulrnb'], ['Bass House', 'https://soundcloud.com/wellness-walks/sets/basshouse'], ['World Fusion', 'https://soundcloud.com/wellness-walks/sets/worldfusion'], ['Blues Rock', 'https://soundcloud.com/wellness-walks/sets/bluesrock'], ['Funk Disco', 'https://soundcloud.com/wellness-walks/sets/funkdisco']]);
 const FAVORITES_KEY = 'gremlin-radio-favorites-v1';
 const MINI_POSITION_KEY = 'gremlin-radio-mini-position-v1';
 const STATES = Object.freeze({ paused: 'paused', buffering: 'buffering', playing: 'playing', jingle: 'jingle playing' });
@@ -49,6 +50,8 @@ function availableStations() {
 }
 
 function setStatus(status, detail = '') { state.status = status; const text = detail || status; const label = el('radioStatus'); if (label) label.textContent = text; const miniStatus = el('radioMiniStatus'); if (miniStatus) miniStatus.textContent = text; el('radioPlayer')?.setAttribute('data-radio-state', status); el('radioMiniPlayer')?.classList.toggle('hidden', !state.current); updatePlayButtons(); }
+function soundcloudEmbedUrl(url) { return `https://w.soundcloud.com/player/?url=${encodeURIComponent(url)}&color=%23d95f35&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&visual=false`; }
+function updateLivePlayer() { const enabled = el('radioLiveSources')?.checked === true; const player = el('radioLivePlayer'); const select = el('radioSoundcloudSelect'); const frame = el('radioSoundcloudFrame'); if (!player || !select || !frame) return; if (!select.options.length) select.innerHTML = SOUNDCLOUD_PLAYLISTS.map(([label, url]) => `<option value="${escapeHtml(url)}">${escapeHtml(label)}</option>`).join(''); if (enabled && !frame.src) frame.src = soundcloudEmbedUrl(select.value); player.classList.toggle('hidden', !enabled); }
 function updatePlayButtons() { const playing = state.status === STATES.playing || state.status === STATES.buffering || state.status === STATES.jingle; for (const id of ['radioPlayButton', 'radioMiniPlayButton']) { const button = el(id); if (!button) continue; button.textContent = playing ? '❚❚' : '▶'; button.setAttribute('aria-label', playing ? 'Pause radio' : 'Play radio'); } }
 function bindMiniPlayerDrag() { const player = el('radioMiniPlayer'); if (!player || player.dataset.dragBound) return; player.dataset.dragBound = 'true'; const clamp = () => { const x = Math.max(8, Math.min(innerWidth - player.offsetWidth - 8, player.offsetLeft)); const y = Math.max(52, Math.min(innerHeight - player.offsetHeight - 8, player.offsetTop)); player.style.left = `${x}px`; player.style.top = `${y}px`; player.style.right = 'auto'; player.style.bottom = 'auto'; player.style.transform = 'none'; }; const saved = JSON.parse(localStorage.getItem(MINI_POSITION_KEY) || 'null'); if (saved && Number.isFinite(saved.x) && Number.isFinite(saved.y)) { player.style.left = `${saved.x}px`; player.style.top = `${saved.y}px`; player.style.right = 'auto'; player.style.bottom = 'auto'; player.style.transform = 'none'; } let drag = null; player.addEventListener('pointerdown', (event) => { if (event.target.closest('button')) return; drag = { dx: event.clientX - player.offsetLeft, dy: event.clientY - player.offsetTop }; player.setPointerCapture(event.pointerId); player.classList.add('dragging'); }); player.addEventListener('pointermove', (event) => { if (!drag) return; const x = Math.max(8, Math.min(innerWidth - player.offsetWidth - 8, event.clientX - drag.dx)); const y = Math.max(52, Math.min(innerHeight - player.offsetHeight - 8, event.clientY - drag.dy)); player.style.left = `${x}px`; player.style.top = `${y}px`; player.style.right = 'auto'; player.style.bottom = 'auto'; player.style.transform = 'none'; }); player.addEventListener('pointerup', () => { if (!drag) return; drag = null; player.classList.remove('dragging'); clamp(); localStorage.setItem(MINI_POSITION_KEY, JSON.stringify({ x: player.offsetLeft, y: player.offsetTop })); }); window.addEventListener('resize', clamp); }
 function pauseRadio() { state.playbackToken += 1; state.nextAudio?.pause(); state.nextAudio = null; state.activeAudio?.pause(); setStatus(STATES.paused, 'Paused'); updatePlayButtons(); }
@@ -142,7 +145,9 @@ function bind() {
     state.current = chooseTrack();
     render();
   });
-  ['radioLiveSources', 'radioLocalSources'].forEach((id) => el(id)?.addEventListener('change', () => { state.current = chooseTrack(); render(); }));
+  el('radioLiveSources')?.addEventListener('change', () => { updateLivePlayer(); state.current = chooseTrack(); render(); });
+  el('radioLocalSources')?.addEventListener('change', () => { state.current = chooseTrack(); render(); });
+  el('radioSoundcloudSelect')?.addEventListener('change', (event) => { const frame = el('radioSoundcloudFrame'); if (frame) frame.src = soundcloudEmbedUrl(event.target.value); });
   el('radioCloseButton')?.addEventListener('click', () => closeSheets());
   el('radioMiniOpenButton')?.addEventListener('click', () => openSheet('radioSheet'));
   window.addEventListener('radio-open-requested', ({ detail }) => {
@@ -159,5 +164,5 @@ export async function initRadio() {
   const saved = await db.get('radio_playback_state', 'current');
   if (saved) { if (Array.isArray(saved.favoriteIds)) state.favorites = new Set(saved.favoriteIds); if (Array.isArray(saved.history)) state.history = saved.history.slice(-100); }
   state.savedTrackIds = new Set((await db.all('radio_saved_tracks')).map((track) => String(track.id)));
-  bind(); await loadManifest(); const firstStation = (state.manifest.channels || [])[0]; state.channelId = firstStation?.id || state.channelId; if (!state.current) { state.current = chooseTrack(); render(); }
+  bind(); updateLivePlayer(); await loadManifest(); const firstStation = (state.manifest.channels || [])[0]; state.channelId = firstStation?.id || state.channelId; if (!state.current) { state.current = chooseTrack(); render(); }
 }
