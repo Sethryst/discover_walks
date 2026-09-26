@@ -1,13 +1,13 @@
 // Keep the whole module graph with the shell. Caching only app.js leaves an
 // offline (or briefly disconnected) reload with a blank app when any imported
 // module was not already in the runtime cache.
-const APP_CACHE = 'walk-wildlife-shell-v167'; // Compact Explore geofence controls
+const APP_CACHE = 'walk-wildlife-shell-v168'; // Iconic Explore category controls
 const TILE_CACHE = 'walk-wildlife-osm-viewed-tiles-v1';
 const LIBRARY_CACHE = 'walk-wildlife-library-v2';
 const COMPANION_CACHE = 'walk-wildlife-companion-media-v2';
 const libraryPath = new URL('./vendor/', self.registration.scope).pathname;
 const shell = [
-  ...['anchor', 'book-open', 'bookmark', 'coffee', 'droplet', 'eye', 'star', 'tree', 'walk', 'navigation', 'search'].map((icon) => `./icons/${icon}.svg`),
+  ...['anchor', 'book-open', 'bookmark', 'coffee', 'droplet', 'eye', 'newspaper', 'star', 'tree', 'walk', 'navigation', 'search'].map((icon) => `./icons/${icon}.svg`),
   './js/online-pane.js', './js/qr-share.js', './js/open-payload.js', './js/sealed-data.js', './js/historical-media.js', './js/offline-view.js', './js/friend-walk.js', './js/place-details.js',
   './js/offline-map-style.js', './js/installed-tiles.js', './js/story-audio.js',
   './data/cells.json',

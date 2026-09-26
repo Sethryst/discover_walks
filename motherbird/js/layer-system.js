@@ -306,9 +306,9 @@ function lightModel() {
   const personalPins = curatedPersonalPlaces().filter((place) => !place.packId || place.packId === state.activeCity);
   const personal = state.personalPlaceCategories.map((category) => ({ id: category.id, label: category.name, tags: [], kind: 'personal' }));
   return [
-    { id: 'news', label: 'NEWS', available: newsAvailable(), chips: [], entries: newsEntries, hasChevron: false },
-    { id: 'recreation', label: 'REC', available: recreation.length > 0, chips: recreation, hasChevron: false },
-    { id: 'cuisine', label: 'CUISINE', available: cuisine.length > 0, chips: cuisine, hasChevron: false },
+    { id: 'news', label: 'NEWS', icon: 'newspaper', available: newsAvailable(), chips: [], entries: newsEntries, hasChevron: false },
+    { id: 'recreation', label: 'REC', icon: 'tree', available: recreation.length > 0, chips: recreation, hasChevron: false },
+    { id: 'cuisine', label: 'CUISINE', icon: 'utensils', available: cuisine.length > 0, chips: cuisine, hasChevron: false },
     { id: 'personal', label: state.personalPlaceSelecting ? 'USE THIS SPOT' : 'MY PLACES', available: false, chips: personal, hasChevron: true }
   ].filter((light) => light.available);
 }
@@ -349,7 +349,7 @@ export function renderMapLights() {
   root.innerHTML = lightModel().filter((light) => light.id !== 'personal').map((light) => {
     const on = state.layerLights[light.id] === true;
     const hasChevron = light.hasChevron ?? light.chips.length > 0;
-    return `<div class="map-light-wrap" data-map-light="${light.id}">${expandedLightContent(light, expanded)}<div class="map-light-row"><button type="button" class="map-light ${on ? 'on' : 'off'}" data-light="${light.id}" aria-pressed="${on}">${escapeHtml(light.label)}</button>${hasChevron ? `<button type="button" class="map-light-chevron" data-light-expand="${light.id}" aria-label="Show ${escapeHtml(light.label.toLowerCase())} choices" aria-expanded="${expanded === light.id}"><span aria-hidden="true">▲</span></button>` : ''}</div></div>`;
+    return `<div class="map-light-wrap" data-map-light="${light.id}">${expandedLightContent(light, expanded)}<div class="map-light-row"><button type="button" class="map-light ${on ? 'on' : 'off'}" data-light="${light.id}" aria-pressed="${on}"><img src="./icons/${escapeHtml(light.icon)}.svg" alt="" aria-hidden="true">${escapeHtml(light.label)}</button>${hasChevron ? `<button class="map-light-chevron" type="button" data-light-expand="${light.id}" aria-label="Show ${escapeHtml(light.label.toLowerCase())} choices" aria-expanded="${expanded === light.id}"><span aria-hidden="true">▲</span></button>` : ''}</div></div>`;
   }).join('');
 }
 
