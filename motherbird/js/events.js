@@ -17,7 +17,7 @@ import { openObservation, saveObservation, setDraftObservationIcon } from './obs
 import { transcribeJournal, toggleJournalRecording, stopJournalCapture } from './journal-capture.js';
 import { renderNearbyPlaces, initJournalPane } from './journal-pane.js';
 import { openGeoCypher } from './geo-cypher.js';
-import { openRadioForContext } from './radio.js?v=20260926-track-count-v1';
+import { openRadioForContext } from './radio.js?v=20260926-journal-refresh-v1';
 import { initMessengerBird } from './messenger-bird.js';
 import { restartCoachMarks } from './coach.js';
 import { savePlannedRoute } from './saved-routes.js';
@@ -29,6 +29,7 @@ const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];
 export function initEvents() {
   window.addEventListener('walk-position-received', ({ detail }) => void updateActiveManeuver(detail));
   initJournalPane();
+  window.addEventListener('journal-data-changed', () => void renderArchive());
   bindSheets(); bindLocationControls(); bindCompanionMenu(); bindWalkControls(); bindSearch(); bindJournal(); bindDeviceControls();
   initMessengerBird();
   bindMapWorkspace();
