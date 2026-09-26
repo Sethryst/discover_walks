@@ -65,12 +65,23 @@ function renderPlayer() {
 async function playChapter(button) {
   const chapter = activeStory?.chapters[activeChapter];
   if (!chapter) return;
+  const existingPlayer = document.getElementById('storyAudioElement');
+  if (existingPlayer && !existingPlayer.paused) {
+    existingPlayer.pause();
+    button.textContent = '▶'; button.setAttribute('aria-label', 'Resume chapter');
+    return;
+  }
+  if (existingPlayer?.src && existingPlayer.dataset.chapter === String(activeChapter)) {
+    await existingPlayer.play();
+    button.textContent = 'Ⅱ'; button.setAttribute('aria-label', 'Pause chapter');
+    return;
+  }
   try {
     const saved = savedStoryAudio(chapter);
     const url = saved?.url || await loadStoryChapterAudio(chapter);
     let player = document.getElementById('storyAudioElement');
     if (!player) { player = document.createElement('audio'); player.id = 'storyAudioElement'; player.controls = true; player.hidden = true; document.getElementById('storyPlay').after(player); }
-    player.src = url; await player.play(); button.textContent = 'Ⅱ'; button.setAttribute('aria-label', 'Stop chapter');
+    player.src = url; player.dataset.chapter = String(activeChapter); await player.play(); button.textContent = 'Ⅱ'; button.setAttribute('aria-label', 'Pause chapter');
     player.onended = () => {
       button.textContent = '▶'; button.setAttribute('aria-label', 'Play chapter');
       if (autoplayStory && !locationLockedStory && activeStory && activeChapter < activeStory.chapters.length - 1) {
@@ -94,13 +105,14 @@ function speakChapter(button, chapter) {
     return;
   }
   const speaking = speechSynthesis.speaking;
+  if (speaking) { speechSynthesis.pause(); button.textContent = '▶'; button.setAttribute('aria-label', 'Resume chapter'); return; }
+  if (speechSynthesis.paused) { speechSynthesis.resume(); button.textContent = 'Ⅱ'; button.setAttribute('aria-label', 'Pause chapter'); return; }
   speechSynthesis.cancel();
-  if (speaking) { button.textContent = '▶'; button.setAttribute('aria-label', 'Play chapter'); return; }
   const utterance = new SpeechSynthesisUtterance(chapter.narration);
   utterance.rate = .96;
   utterance.onend = () => { button.textContent = '▶'; button.setAttribute('aria-label', 'Play chapter'); };
   speechSynthesis.speak(utterance);
-  button.textContent = 'Ⅱ'; button.setAttribute('aria-label', 'Stop chapter');
+  button.textContent = 'Ⅱ'; button.setAttribute('aria-label', 'Pause chapter');
 }
 
 export function openStory(storyId) {
@@ -111,7 +123,10 @@ export function openStory(storyId) {
   locationLockedStory = autoplayStory && Boolean(state.currentPosition || state.lastPosition);
   state.storyRouteLine?.remove();
   if (state.map && globalThis.L) {
-    state.storyRouteLine = L.polyline(activeStory.route, { color: '#e16b3c', weight: 6, opacity: .92, dashArray: '2 8', lineCap: 'round' }).addTo(state.map);
+    state.storyRouteLine = L.layerGroup([
+      L.polyline(activeStory.route, { color: '#fffaf0', weight: 10, opacity: .9, lineCap: 'round', lineJoin: 'round' }),
+      L.polyline(activeStory.route, { color: '#e16b3c', weight: 5, opacity: .98, dashArray: '12 8', lineCap: 'round', lineJoin: 'round' })
+    ]).addTo(state.map);
     state.map.fitBounds(L.latLngBounds(activeStory.footprint), { padding: [45, 45], maxZoom: 16 });
   }
   renderPlayer();

@@ -45,7 +45,10 @@ export function addWalkPoint(point) {
   if (last && distanceMeters(last, point) < 7) {
     if (now - new Date(walk.lastMovementAt || walk.startedAt).getTime() >= 120000 && !walk.detectionState?.autoPauseEventId) {
       void recordWalkEvent('pause', point, { automatic: true, reason: 'stationary-position-samples' }, undefined, 'active').then((event) => {
-        if (event) walk.detectionState.autoPauseEventId = event.id;
+        if (event) {
+          walk.detectionState.autoPauseEventId = event.id;
+          globalThis.window?.dispatchEvent(new CustomEvent('walk-long-pause-detected'));
+        }
       });
     }
     void persistWalkDraft();

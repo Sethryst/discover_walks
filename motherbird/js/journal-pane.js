@@ -51,6 +51,15 @@ export function initJournalPane() {
   const handle = el('journalDragHandle');
   const journal = el('persistentJournal');
   if (!handle || !journal) return;
+  window.addEventListener('walk-long-pause-detected', () => el('longPauseQuotes')?.classList.remove('hidden'));
+  el('dismissLongPauseQuotes')?.addEventListener('click', () => el('longPauseQuotes')?.classList.add('hidden'));
+  document.querySelectorAll('[data-journal-quote]').forEach((button) => button.addEventListener('click', () => {
+    const note = el('journalNote');
+    if (!note) return;
+    note.value = `${note.value.trim()}${note.value.trim() ? '\n\n' : ''}${button.dataset.journalQuote}`;
+    note.dispatchEvent(new Event('input', { bubbles: true }));
+    el('longPauseQuotes')?.classList.add('hidden');
+  }));
   let startY = 0;
   let dragging = false;
 

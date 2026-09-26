@@ -86,8 +86,9 @@ export function paintChangeStory(item) {
   const layer = leaflet.layerGroup();
   const ring = item.ring || [];
   if (ring.length > 2) {
-    leaflet.polygon(ring, { color, weight: 3, fillColor: color, fillOpacity: 0.22 }).on('click', () => openStoryCard(item, 'place')).addTo(layer);
-    leaflet.polyline(ring, { color, weight: 4, opacity: 0.95 }).addTo(layer);
+    leaflet.polygon(ring, { color, weight: 2, opacity: 0.8, fillColor: color, fillOpacity: 0.12, className: 'news-story-footprint' }).on('click', () => openStoryCard(item, 'place')).addTo(layer);
+    leaflet.polyline(ring, { color: '#fffaf0', weight: 7, opacity: 0.92, lineCap: 'round', lineJoin: 'round' }).addTo(layer);
+    leaflet.polyline(ring, { color, weight: 3, opacity: 0.98, dashArray: '9 7', lineCap: 'round', lineJoin: 'round' }).addTo(layer);
   }
   for (const view of item.views || []) {
     leaflet.circleMarker([view.lat, view.lng], { radius: 9, color, weight: 2, fillColor: '#fff', fillOpacity: 1 }).on('click', () => {
