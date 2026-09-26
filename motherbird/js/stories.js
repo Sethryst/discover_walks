@@ -120,7 +120,7 @@ export function openStory(storyId) {
   if (!activeStory) return;
   activeChapter = 0;
   autoplayStory = activeStory.id === 'east-potomac-changing-park';
-  locationLockedStory = autoplayStory && Boolean(state.currentPosition || state.lastPosition);
+  locationLockedStory = false;
   state.storyRouteLine?.remove();
   if (state.map && globalThis.L) {
     state.storyRouteLine = L.layerGroup([

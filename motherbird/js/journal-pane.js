@@ -2,6 +2,7 @@ import { state } from './state.js';
 import { distanceMeters } from './geo.js';
 import { el, escapeHtml } from './utils.js';
 import { displayPoiName, isOsmPoi, isVisiblePoi, poiObeysMapLights } from './poi.js';
+import { WALK_QUOTES } from './reflection.js';
 
 const SHEET_STATES = ['collapsed', 'half', 'expanded'];
 
@@ -51,7 +52,11 @@ export function initJournalPane() {
   const handle = el('journalDragHandle');
   const journal = el('persistentJournal');
   if (!handle || !journal) return;
-  window.addEventListener('walk-long-pause-detected', () => el('longPauseQuotes')?.classList.remove('hidden'));
+  const quotePanel = el('longPauseQuotes');
+  if (quotePanel) {
+    quotePanel.innerHTML = `<div><strong>Reflection library</strong><button type="button" id="dismissLongPauseQuotes" aria-label="Dismiss reflection quotes">×</button></div><p>Quotes are optional. Choose one when it fits, or dismiss this panel.</p>${WALK_QUOTES.map(({ quote, attribution, context, tag }) => `<button type="button" data-journal-quote="${escapeHtml(quote)}" title="${escapeHtml(context)}"><span>“${escapeHtml(quote)}”</span><small>— ${escapeHtml(attribution)} · ${escapeHtml(tag)}</small></button>`).join('')}`;
+  }
+  window.addEventListener('walk-long-pause-detected', () => quotePanel?.classList.remove('hidden'));
   el('dismissLongPauseQuotes')?.addEventListener('click', () => el('longPauseQuotes')?.classList.add('hidden'));
   document.querySelectorAll('[data-journal-quote]').forEach((button) => button.addEventListener('click', () => {
     const note = el('journalNote');
