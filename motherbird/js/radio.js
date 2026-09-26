@@ -158,6 +158,7 @@ function bind() {
   el('radioQueueButton')?.addEventListener('click', () => { const next = chooseNextTrack(); if (next) state.queue.push(next); render(); });
   el('radioSaveButton')?.addEventListener('click', () => void saveCurrentTrack());
   el('radioLibraryButton')?.addEventListener('click', () => void renderLibrary());
+  window.addEventListener('radio-library-requested', () => { openSheet('radioSheet'); void renderLibrary(); });
   el('radioTrackSelect')?.addEventListener('change', (event) => { const track = tracksForChannel().find((item) => String(item.id) === String(event.target.value)); if (track) void playTrack(track); });
   el('radioFavoriteButton')?.addEventListener('click', toggleFavorite);
   el('radioFavoritesSelect')?.addEventListener('change', (event) => {
