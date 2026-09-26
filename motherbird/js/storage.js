@@ -1,7 +1,7 @@
 export const db = (() => {
   let database;
   const DATABASE_NAME = 'walk-wildlife-journal';
-  const DATABASE_VERSION = 17;
+  const DATABASE_VERSION = 18;
   const memoryStores = new Map();
   const memoryStore = (name) => {
     if (!memoryStores.has(name)) memoryStores.set(name, new Map());
@@ -25,7 +25,8 @@ export const db = (() => {
     { version: 14, risk: 'additive', description: 'Repair missing local stores from earlier installations.', apply: (target) => [...LEGACY_STORES, 'geo_cypher_manifests', 'geo_cypher_audio'].forEach((name) => { if (!target.objectStoreNames.contains(name)) target.createObjectStore(name, { keyPath: 'id' }); }) },
     { version: 15, risk: 'additive', description: 'Add editable local saved routes.', apply: (target) => { if (!target.objectStoreNames.contains('saved_routes')) target.createObjectStore('saved_routes', { keyPath: 'id' }); } },
     { version: 16, risk: 'additive', description: 'Add local radio manifests, playback state, saved tracks, and transition assets.', apply: (target) => ['radio_manifests', 'radio_playback_state', 'radio_saved_tracks', 'radio_transition_assets'].forEach((name) => { if (!target.objectStoreNames.contains(name)) target.createObjectStore(name, { keyPath: 'id' }); }) },
-    { version: 17, risk: 'additive', description: 'Add local Spatial Query and Room records.', apply: (target) => ['spatial_queries', 'rooms'].forEach((name) => { if (!target.objectStoreNames.contains(name)) target.createObjectStore(name, { keyPath: 'id' }); }) }
+    { version: 17, risk: 'additive', description: 'Add local Spatial Query and Room records.', apply: (target) => ['spatial_queries', 'rooms'].forEach((name) => { if (!target.objectStoreNames.contains(name)) target.createObjectStore(name, { keyPath: 'id' }); }) },
+    { version: 18, risk: 'additive', description: 'Add soundtrack library playlists and walk soundtrack records.', apply: (target) => ['radio_playlists', 'walk_soundtracks'].forEach((name) => { if (!target.objectStoreNames.contains(name)) target.createObjectStore(name, { keyPath: 'id' }); }) }
   ]);
 
   async function installedVersion() {

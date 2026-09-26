@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="./vendor/leaflet-geoman/leaflet-geoman.css" />
   <link rel="stylesheet" href="./vendor/maplibre-gl.css" />
   <link rel="stylesheet" href="./styles.css?v=84" />
-    <link rel="stylesheet" href="./radio.css?v=20260926-radio-controls-v1" />
+    <link rel="stylesheet" href="./radio.css?v=20260926-radio-library-v1" />
   <link rel="stylesheet" href="./shell.css?v=3" />
   <link rel="stylesheet" href="./splash-fix.css?v=68" />
   <title>Walk & Wildlife</title>
@@ -230,6 +230,7 @@
       <div class="radio-controls"><button id="radioPreviousButton" class="secondary-button" type="button" aria-label="Previous track">⏮ Previous</button><button id="radioPlayButton" class="radio-main-button" type="button">▶ Listen</button><button id="radioNextButton" class="secondary-button" type="button">Next ⏭</button></div>
       <div class="radio-controls radio-secondary-controls"><button id="radioShuffleButton" class="secondary-button" type="button" aria-pressed="false">🔀 Shuffle</button><button id="radioRepeatButton" class="secondary-button" type="button" aria-pressed="false">🔁 Repeat</button><button id="radioQueueButton" class="secondary-button" type="button">Queue</button><button id="radioSaveButton" class="secondary-button" type="button" disabled>＋ Save</button><button id="radioFavoriteButton" class="secondary-button" type="button" disabled>♡ Favorite</button></div>
       <div class="radio-queue hidden" id="radioQueue" aria-live="polite"></div>
+      <button id="radioLibraryButton" class="secondary-button radio-library-button" type="button">♫ Soundtrack library</button><div id="radioLibrary" class="radio-library hidden" aria-live="polite"></div>
     </div><label class="radio-favorites-picker">Favorites<select id="radioFavoritesSelect"><option value="">Choose a favorite station</option></select></label><p class="radio-note"><span id="radioStationCount">0 stations available</span> · Choose one source at a time. Saved tracks stay on this device.</p>
   </section>
   <aside class="radio-mini-player hidden" id="radioMiniPlayer" aria-label="Radio mini player"><div><small id="radioMiniStatus">Paused</small><strong id="radioMiniTitle">Radio</strong></div><button id="radioMiniPreviousButton" type="button" aria-label="Previous track">⏮</button><button id="radioMiniPlayButton" type="button" aria-label="Play radio">▶</button><button id="radioMiniNextButton" type="button" aria-label="Next track">⏭</button><button id="radioMiniShuffleButton" type="button" aria-label="Toggle shuffle" aria-pressed="false">🔀</button><button id="radioMiniRepeatButton" type="button" aria-label="Toggle repeat" aria-pressed="false">🔁</button><button id="radioMiniOpenButton" type="button" aria-label="Open radio">↗</button></aside>

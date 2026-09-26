@@ -229,6 +229,7 @@ export async function startWalk({ routeMode = 'tracking' } = {}) {
   beginGpsWatch();
   getCurrentLocation();
   toast('Walk started. Your route is being saved on this device.');
+  window.dispatchEvent(new CustomEvent('walk-started', { detail: { id: state.activeWalk.id } }));
   return state.activeWalk;
 }
 
