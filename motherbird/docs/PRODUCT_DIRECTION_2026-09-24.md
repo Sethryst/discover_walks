@@ -84,7 +84,7 @@ These capabilities satisfy the document’s intended Map → Spatial Query → D
 
 ## Contextual quote suggestions
 
-Quote suggestions are journal-only and optional. Ordinary POI geofencing and quote eligibility are separate systems. A POI may suggest a quote only when its semantic tags directly support a context such as `trailhead`, `bridge`/water, park threshold, woods, wildlife, overlook, or elevation.
+Quote suggestions are journal-only and optional. Ordinary POI geofencing and quote eligibility are separate systems: every valid walkable POI may auto-log once when the walker passes within its radius, while only direct `trailhead` or `bridge`/water matches currently suggest a quote.
 
 The first runtime slice lives in `motherbird/js/quote-context.js`. It assigns a confidence score from explicit tag matches, chooses one quote for the context, and deduplicates by city, context, and stable POI/event ID in local settings. It emits `journal-quote-suggestion`; the journal presents one “Add to journal” action and never auto-writes quote text.
 
