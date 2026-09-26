@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="./vendor/leaflet-geoman/leaflet-geoman.css" />
   <link rel="stylesheet" href="./vendor/maplibre-gl.css" />
   <link rel="stylesheet" href="./styles.css?v=84" />
-    <link rel="stylesheet" href="./radio.css?v=20260926-radio-library-v2" />
+    <link rel="stylesheet" href="./radio.css?v=20260926-radio-widget-v1" />
   <link rel="stylesheet" href="./shell.css?v=3" />
   <link rel="stylesheet" href="./splash-fix.css?v=68" />
   <title>Walk & Wildlife</title>
@@ -223,7 +223,7 @@
     <span class="sheet-kicker">WALKING BROADCAST · AMBIENT DISCOVERY</span><h2 id="radioTitle">Radio</h2>
     <p id="radioChannelDescription" class="radio-description">Start with one transmission. Listen, skip, and keep what stays with you.</p>
     <fieldset class="radio-source-switches" aria-label="Broadcast sources"><legend>Sources</legend><label><input id="radioLiveSources" type="checkbox" /> Permissioned live broadcasts</label><label><input id="radioLocalSources" type="checkbox" checked /> Archive programs</label></fieldset>
-    <div class="radio-live-player hidden" id="radioLivePlayer" aria-live="polite"><div><small>LIVE SOUNDCLOUD</small><strong>Permissioned live broadcast</strong></div><label class="radio-live-picker">Find a playlist<input id="radioSoundcloudSearch" type="search" placeholder="Search 42 playlists…" autocomplete="off" /><span id="radioSoundcloudCount" aria-live="polite"></span></label><label class="radio-live-picker">Playlist<select id="radioSoundcloudSelect"></select></label><iframe id="radioSoundcloudFrame" title="SoundCloud live broadcast" allow="autoplay" loading="lazy"></iframe></div>
+    <div class="radio-live-player hidden" id="radioLivePlayer" aria-live="polite"><div><small>LIVE SOUNDCLOUD</small><strong>Permissioned live broadcast</strong></div><label class="radio-live-picker">Find a playlist<input id="radioSoundcloudSearch" type="search" placeholder="Search 60 playlists…" autocomplete="off" /><span id="radioSoundcloudCount" aria-live="polite"></span></label><label class="radio-live-picker">Playlist<select id="radioSoundcloudSelect"></select></label><iframe id="radioSoundcloudFrame" title="SoundCloud live broadcast" allow="autoplay" loading="lazy"></iframe><label class="radio-live-picker">Track in this playlist<select id="radioSoundcloudTrackSelect"><option>Loading playlist tracks…</option></select></label></div>
     <div class="radio-console" id="radioPlayer" data-radio-state="paused">
       <div class="radio-on-air"><span class="radio-lamp" aria-hidden="true"></span><div><small id="radioStatus">paused</small><strong id="radioNowPlaying">No transmission selected</strong></div></div>
       <label class="radio-track-picker">Track<select id="radioTrackSelect"><option value="">Choose a track</option></select></label>
@@ -248,7 +248,7 @@
   </section>
   <script type="module">import { openStory } from './js/stories.js'; window.openStory = openStory; const buttons=[...document.querySelectorAll('[data-story-open]')]; buttons.forEach((button) => button.addEventListener('click', () => openStory(button.dataset.storyOpen))); const filter=document.getElementById('storyScopeFilter'); filter?.addEventListener('change',()=>{const value=filter.value; buttons.filter((button)=>button.closest('.news-story-list')).forEach((button)=>{button.hidden=value==='national' ? !button.dataset.storyOpen.includes('the-wagon') : value==='local' && button.dataset.storyOpen.includes('the-wagon');}); document.getElementById('nationalStoryEmpty')?.classList.toggle('hidden',value!=='national');});</script>
   <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
-      <script src="./vendor/qrcode.js"></script><script src="./vendor/leaflet/leaflet.js"></script><script src="./vendor/leaflet-markercluster/leaflet.markercluster.js"></script><script src="./vendor/leaflet-geoman/leaflet-geoman.min.js"></script><script src="./vendor/turf/turf.min.js"></script><script src="./vendor/maplibre-gl.js"></script><script src="./vendor/pmtiles.js"></script><script async src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.105.0"></script><script src="./supabase-config.js"></script><script type="module" src="./app.js?v=106"></script>
+      <script src="./vendor/qrcode.js"></script><script src="./vendor/leaflet/leaflet.js"></script><script src="./vendor/leaflet-markercluster/leaflet.markercluster.js"></script><script src="./vendor/leaflet-geoman/leaflet-geoman.min.js"></script><script src="./vendor/turf/turf.min.js"></script><script src="./vendor/maplibre-gl.js"></script><script src="./vendor/pmtiles.js"></script><script async src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.105.0"></script><script src="https://w.soundcloud.com/player/api.js"></script><script src="./supabase-config.js"></script><script type="module" src="./app.js?v=106"></script>
 </body>
 </html>
 
