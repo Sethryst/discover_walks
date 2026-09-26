@@ -1,25 +1,34 @@
 {
   "id": "motherbird-radio",
-  "version": 4,
+  "version": 5,
   "epoch": "2026-09-25T00:00:00Z",
   "slotMinutes": 45,
   "channels": [
-    {"id":"vermont-jazz","name":"Vermont Public Jazz","description":"Acoustic, mainstream jazz for an easygoing walk.","genre":"Jazz","integration":"official-player-link","sourceUrl":"https://www.vermontpublic.org/music"},
-    {"id":"capradio-jazzstream","name":"CapRadio JazzStream","description":"A 24-hour jazz service with classic and contemporary selections.","genre":"Jazz","integration":"official-player-link","sourceUrl":"https://www.capradio.org/music/jazzstream/"},
-    {"id":"wbgo","name":"WBGO","description":"New York and Newark jazz, live performances, and deep programming.","genre":"Jazz","integration":"official-player-link","sourceUrl":"https://www.wbgo.org/"},
-    {"id":"kjazz","name":"KJazz 88.1","description":"Los Angeles jazz and blues with a strong station identity.","genre":"Jazz","integration":"official-player-link","sourceUrl":"https://www.kjazz.org/"},
-    {"id":"fip-jazz","name":"FIP Jazz","description":"Ad-free international jazz, from classics to adventurous new work.","genre":"Jazz","integration":"official-player-link","sourceUrl":"https://www.radiofrance.fr/fip/jazz"},
-    {"id":"all-classical","name":"All Classical Radio","description":"Classical listening with a dependable piano and instrumental lane.","genre":"Classical / Piano","integration":"official-player-link","sourceUrl":"https://www.allclassical.org/listen/"},
-    {"id":"sunday-baroque","name":"Sunday Baroque","description":"Upbeat, inviting Baroque music for historic neighborhoods and gardens.","genre":"Baroque","integration":"official-player-link","sourceUrl":"https://www.vermontpublic.org/music"}
+    {"id":"dimension-theater","name":"Dimension Theater","description":"Public-domain science-fiction radio drama for future-city walks.","genre":"Science Fiction","integration":"archive-program"},
+    {"id":"signal-lost","name":"Signal Lost","description":"Atom Age adventures, strange transmissions, and retro-future suspense.","genre":"Science Fiction","integration":"archive-program"},
+    {"id":"x-1","name":"X-1","description":"A dedicated public-domain X Minus One station.","genre":"Science Fiction","integration":"archive-program"},
+    {"id":"brass-sidewalk","name":"Brass & Sidewalk","description":"1920s jazz and early recordings for lively city walks.","genre":"Jazz","integration":"archive-program"},
+    {"id":"main-street-1930","name":"Main Street 1930","description":"Vocal jazz, dance orchestra, and period-pop for historic downtowns.","genre":"Jazz / Period Pop","integration":"archive-program"},
+    {"id":"marimba-district","name":"The Marimba District","description":"Novelty orchestra, marimba, vibraphone, and dance music.","genre":"Orchestra","integration":"archive-program"},
+    {"id":"dance-hall","name":"Dance Hall","description":"Upbeat 1920s and 1930s dance-band programming.","genre":"Dance Band","integration":"archive-program"},
+    {"id":"radio-ballroom","name":"Radio Ballroom","description":"Period jazz and dance-orchestra programming.","genre":"Dance Orchestra","integration":"archive-program"},
+    {"id":"piano-window","name":"Piano Window","description":"Quiet public-domain piano arrangements for reflective walks.","genre":"Piano","integration":"archive-program"}
   ],
   "jingles": [],
   "tracks": [
-    {"id":"vermont-jazz-link","channel":"vermont-jazz","title":"Vermont Public Jazz · official player","genre":"Jazz","sourceType":"live-link","rightsStatus":"external-player-link","sourceUrl":"https://www.vermontpublic.org/music"},
-    {"id":"capradio-jazzstream-link","channel":"capradio-jazzstream","title":"CapRadio JazzStream · official player","genre":"Jazz","sourceType":"live-link","rightsStatus":"external-player-link","sourceUrl":"https://www.capradio.org/music/jazzstream/"},
-    {"id":"wbgo-link","channel":"wbgo","title":"WBGO · official player","genre":"Jazz","sourceType":"live-link","rightsStatus":"external-player-link","sourceUrl":"https://www.wbgo.org/"},
-    {"id":"kjazz-link","channel":"kjazz","title":"KJazz 88.1 · official player","genre":"Jazz","sourceType":"live-link","rightsStatus":"external-player-link","sourceUrl":"https://www.kjazz.org/"},
-    {"id":"fip-jazz-link","channel":"fip-jazz","title":"FIP Jazz · official player","genre":"Jazz","sourceType":"live-link","rightsStatus":"external-player-link","sourceUrl":"https://www.radiofrance.fr/fip/jazz"},
-    {"id":"all-classical-link","channel":"all-classical","title":"All Classical Radio · official player","genre":"Classical / Piano","sourceType":"live-link","rightsStatus":"external-player-link","sourceUrl":"https://www.allclassical.org/listen/"},
-    {"id":"sunday-baroque-link","channel":"sunday-baroque","title":"Sunday Baroque · official player","genre":"Baroque","sourceType":"live-link","rightsStatus":"external-player-link","sourceUrl":"https://www.vermontpublic.org/music"}
+    {"id":"dimension-theater-source","channel":"dimension-theater","title":"Dimension X · public-domain collection","genre":"Science Fiction","archiveIdentifier":"Dimension-X","rightsStatus":"public-domain","rightsLabel":"Public Domain","sourceUrl":"https://archive.org/details/Dimension-X"},
+    {"id":"signal-lost-source","channel":"signal-lost","title":"Science Fiction Radio: Atom Age Adventures","genre":"Science Fiction","archiveIdentifier":"Science_Fiction_Radio_Atom_Age_Adventures","rightsStatus":"public-domain-mark-1.0","rightsLabel":"Public Domain Mark 1.0","sourceUrl":"https://archive.org/details/Science_Fiction_Radio_Atom_Age_Adventures"},
+    {"id":"x-1-source","channel":"x-1","title":"X Minus One · Old Time Radio","genre":"Science Fiction","archiveIdentifier":"xminusoneotr","rightsStatus":"public-domain","rightsLabel":"Public Domain","sourceUrl":"https://archive.org/details/xminusoneotr"},
+    {"id":"brass-sidewalk-source","channel":"brass-sidewalk","title":"Free 20s Jazz Collection","genre":"Jazz","archiveIdentifier":"Free_20s_Jazz_Collection","rightsStatus":"public-domain","rightsLabel":"Public Domain","sourceUrl":"https://archive.org/details/Free_20s_Jazz_Collection"},
+    {"id":"early-jazz-landmark","channel":"brass-sidewalk","title":"West End Blues · Louis Armstrong Hot Five","genre":"Jazz","archiveIdentifier":"westend-blues-hot-five","rightsStatus":"public-domain-mark-1.0","rightsLabel":"Public Domain Mark 1.0","sourceUrl":"https://archive.org/details/westend-blues-hot-five"},
+    {"id":"main-street-1930-source","channel":"main-street-1930","title":"Ben Alley Collection, 1925–1935","genre":"Jazz / Period Pop","archiveIdentifier":"BenAlleyCollection1925-1935","rightsStatus":"public-domain-mark-1.0","rightsLabel":"Public Domain Mark 1.0","sourceUrl":"https://archive.org/details/BenAlleyCollection1925-1935"},
+    {"id":"marimba-district-source","channel":"marimba-district","title":"Joe Green Orchestra, 1926–1935","genre":"Orchestra","archiveIdentifier":"JoeGreenOrchestraCollection1927-1935","rightsStatus":"public-domain-mark-1.0","rightsLabel":"Public Domain Mark 1.0","sourceUrl":"https://archive.org/details/JoeGreenOrchestraCollection1927-1935"},
+    {"id":"dance-hall-source","channel":"dance-hall","title":"Knickerbockers Collection, 1925–1935","genre":"Dance Band","archiveIdentifier":"TheKnickerbockersCollection1925-1935DirectedByBenSelvin","rightsStatus":"public-domain-mark-1.0","rightsLabel":"Public Domain Mark 1.0","sourceUrl":"https://archive.org/details/TheKnickerbockersCollection1925-1935DirectedByBenSelvin"},
+    {"id":"radio-ballroom-source","channel":"radio-ballroom","title":"Ipana Troubadours Collection, 1925–1935","genre":"Dance Orchestra","archiveIdentifier":"IpanaTroubadoursCollection1925-1935COMPLETE","rightsStatus":"public-domain-mark-1.0","rightsLabel":"Public Domain Mark 1.0","sourceUrl":"https://archive.org/details/IpanaTroubadoursCollection1925-1935COMPLETE"},
+    {"id":"piano-window-1","channel":"piano-window","title":"Le Pont d’Avignon · piano folk arrangement","genre":"Piano","archiveIdentifier":"140folksongsrote00unse.015.omr","rightsStatus":"public-domain-mark-1.0","rightsLabel":"Public Domain Mark 1.0","sourceUrl":"https://archive.org/details/140folksongsrote00unse.015.omr"},
+    {"id":"piano-window-2","channel":"piano-window","title":"The Old Folks at Home · piano","genre":"Piano","archiveIdentifier":"140folksongsrote00unse.098-099.omr","rightsStatus":"public-domain-mark-1.0","rightsLabel":"Public Domain Mark 1.0","sourceUrl":"https://archive.org/details/140folksongsrote00unse.098-099.omr"},
+    {"id":"piano-window-3","channel":"piano-window","title":"I Saw Three Ships · piano","genre":"Piano","archiveIdentifier":"140folksongsrote00unse.044.omr","rightsStatus":"public-domain-mark-1.0","rightsLabel":"Public Domain Mark 1.0","sourceUrl":"https://archive.org/details/140folksongsrote00unse.044.omr"},
+    {"id":"piano-window-4","channel":"piano-window","title":"In Memoriam · Bohemian Folk Song","genre":"Piano","archiveIdentifier":"140folksongsrote00unse.160.omr","rightsStatus":"public-domain-mark-1.0","rightsLabel":"Public Domain Mark 1.0","sourceUrl":"https://archive.org/details/140folksongsrote00unse.160.omr"},
+    {"id":"piano-window-5","channel":"piano-window","title":"Old King Cole · piano","genre":"Piano","archiveIdentifier":"140folksongsrote00unse.092.omr","rightsStatus":"public-domain-mark-1.0","rightsLabel":"Public Domain Mark 1.0","sourceUrl":"https://archive.org/details/140folksongsrote00unse.092.omr"}
   ]
 }

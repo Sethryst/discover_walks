@@ -1,7 +1,7 @@
 import db from './storage.js';
 import { openSheet, closeSheets, toast } from './ui.js';
 
-const MANIFEST_URL = './data/radio/manifest.json?v=20260925-radio-v5';
+const MANIFEST_URL = './data/radio/manifest.json?v=20260925-radio-v6';
 const FAVORITES_KEY = 'gremlin-radio-favorites-v1';
 const MINI_POSITION_KEY = 'gremlin-radio-mini-position-v1';
 const STATES = Object.freeze({ paused: 'paused', buffering: 'buffering', playing: 'playing', jingle: 'jingle playing' });
