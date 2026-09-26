@@ -123,6 +123,10 @@ export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') 
   const target = el('fieldGuideList'); if (!target) return;
   document.querySelectorAll('[data-guide-tab]').forEach((button) => button.classList.toggle('active', button.dataset.guideTab === tab));
   const isUtilityTab = tab === 'online' || tab === 'export';
+  const sheet = document.getElementById('backpackSheet');
+  document.getElementById('backpackTitle')?.replaceChildren(document.createTextNode(isUtilityTab ? (tab === 'online' ? 'Online' : 'Export data') : 'Field Guide'));
+  document.querySelector('.guide-tabs')?.classList.toggle('hidden', isUtilityTab);
+  sheet?.classList.toggle('utility-open', isUtilityTab);
   target.classList.toggle('hidden', isUtilityTab);
   el('sharePanel')?.classList.toggle('hidden', !isUtilityTab);
   document.querySelector('[data-app-entry="online"]')?.classList.toggle('hidden', tab !== 'online');
@@ -307,6 +311,7 @@ export async function previewCard(cardId) {
 }
 export function initFieldGuideFilters() {
   initMapsFolders();
+  window.addEventListener('utility-tab-requested', ({ detail }) => { void renderFieldGuide(detail?.tab === 'export' ? 'export' : 'online'); });
   window.addEventListener('map-overlay-changed', ({ detail }) => { if (!detail.open || detail.id !== 'backpackSheet') shadeLearnBounds(false); });
   window.addEventListener('layer-state-dirty', () => { if (state.modalOpen === 'backpackSheet' && state.fieldGuideTab === 'learn') void renderFieldGuide('learn'); });
   window.addEventListener('poi-visit-state-changed', () => { if (state.fieldGuideTab === 'learn') void renderFieldGuide('learn'); });
