@@ -38,6 +38,12 @@ jobs:
         working-directory: motherbird
         run: npm ci
 
+      - name: Verify Motherbird runtime and KPI contracts
+        working-directory: motherbird
+        run: |
+          npm test -- --runInBand
+          node --test tests/kpi-index.test.mjs
+
       - name: Build Motherbird
         working-directory: motherbird
         run: npm run build
