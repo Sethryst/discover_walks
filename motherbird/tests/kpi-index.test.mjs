@@ -91,6 +91,8 @@ test('KPI exposes discovered source proposals without treating them as publicati
   assert.ok(model.sourceProposals.some((proposal) => proposal.geographyId === 'replay-new-city'));
   assert.match(html, /Discovered source proposals/);
   assert.match(html, /not authorized/);
+  assert.match(html, /data-source-proposal-approval/);
+  assert.match(html, /acquisition_source_proposals/);
 });
 
 test('KPI coverage separates core failures from missing optional enhancements', async () => {
