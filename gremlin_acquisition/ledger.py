@@ -7,7 +7,7 @@ from .models import SourceRecord, SourceStatus, jsonable
 class AcquisitionLedger:
     """Durable, restart-safe ledger. JSON export is retained for inspection only."""
     def __init__(self, path=None):
-        self.sources: dict[str,SourceRecord]={}; self.attempts=[]; self.decisions=[]; self.coverage=[]; self.search_feedback=[]; self.region_discoveries=[]; self.source_proposals=[]; self.redirects=[]; self.pois=[]; self.poi_transitions=[]; self.event_transitions=[]; self.manifests=[]; self.review_packages=[]; self.package_transitions=[]; self.path=Path(path) if path else None
+        self.sources: dict[str,SourceRecord]={}; self.attempts=[]; self.decisions=[]; self.coverage=[]; self.search_feedback=[]; self.region_discoveries=[]; self.source_proposals=[]; self.source_proposal_transitions=[]; self.redirects=[]; self.pois=[]; self.poi_transitions=[]; self.event_transitions=[]; self.manifests=[]; self.review_packages=[]; self.package_transitions=[]; self.path=Path(path) if path else None
         self._db=sqlite3.connect(self.path) if self.path else None
         if self._db:
             self._db.executescript('''create table if not exists sources(url text primary key, payload text not null, updated_at text default current_timestamp);
@@ -18,6 +18,7 @@ class AcquisitionLedger:
             create table if not exists search_feedback(id integer primary key, payload text not null);
             create table if not exists region_discoveries(id integer primary key, payload text not null);
             create table if not exists source_proposals(proposal_id text primary key, payload text not null);
+            create table if not exists source_proposal_transitions(id integer primary key, payload text not null);
             create table if not exists redirects(id integer primary key, payload text not null);
             create table if not exists pois(id integer primary key, payload text not null);
             create table if not exists poi_transitions(id integer primary key, payload text not null);
@@ -34,6 +35,7 @@ class AcquisitionLedger:
             self.search_feedback=[json.loads(row[0]) for row in self._db.execute('select payload from search_feedback order by id')]
             self.region_discoveries=[json.loads(row[0]) for row in self._db.execute('select payload from region_discoveries order by id')]
             self.source_proposals=[json.loads(row[0]) for row in self._db.execute('select payload from source_proposals order by proposal_id')]
+            self.source_proposal_transitions=[json.loads(row[0]) for row in self._db.execute('select payload from source_proposal_transitions order by id')]
             self.redirects=[json.loads(row[0]) for row in self._db.execute('select payload from redirects order by id')]
             self.pois=[json.loads(row[0]) for row in self._db.execute('select payload from pois order by id')]
             self.poi_transitions=[json.loads(row[0]) for row in self._db.execute('select payload from poi_transitions order by id')]
@@ -77,8 +79,34 @@ class AcquisitionLedger:
                 raise ValueError(f"source proposal already exists with different evidence: {row.get('id')}")
             return existing
         self.source_proposals.append(row)
+        self.record_source_proposal_transition(row['id'], 'PROPOSED', 'discovered source candidate', row.get('run_id'))
         if self._db:
             self._db.execute('insert into source_proposals(proposal_id,payload) values(?,?)', (row['id'], json.dumps(row, sort_keys=True)))
+            self._db.commit()
+        return row
+
+    def approve_source_proposal(self, proposal_id, actor, approval_reference):
+        """Approve a discovered source without fetching or publishing it."""
+        row = next((item for item in self.source_proposals if item.get('id') == proposal_id), None)
+        if not row:
+            raise KeyError(f"unknown source proposal: {proposal_id}")
+        if row.get('status') != 'PROPOSED':
+            raise ValueError(f"source proposal is not awaiting review: {row.get('status')}")
+        if not actor or not approval_reference:
+            raise ValueError('trusted moderator actor and approval reference are required')
+        row['status'] = 'APPROVED'
+        row['approval'] = {'actor': actor, 'reference': approval_reference}
+        self.record_source_proposal_transition(proposal_id, 'APPROVED', 'trusted moderator approval', actor)
+        if self._db:
+            self._db.execute('update source_proposals set payload=? where proposal_id=?', (json.dumps(row, sort_keys=True), proposal_id))
+            self._db.commit()
+        return row
+
+    def record_source_proposal_transition(self, proposal_id, state, reason, actor='system'):
+        row = {'proposal_id': proposal_id, 'state': state, 'reason': reason, 'actor': actor}
+        self.source_proposal_transitions.append(row)
+        if self._db:
+            self._db.execute('insert into source_proposal_transitions(payload) values(?)', (json.dumps(row, sort_keys=True),))
             self._db.commit()
         return row
 
@@ -235,7 +263,7 @@ class AcquisitionLedger:
         if self._db: self._db.execute('insert into transitions(payload) values(?)',(json.dumps(row,sort_keys=True),)); self._db.commit()
         return source
     def dump(self, path: str|Path):
-        Path(path).write_text(json.dumps({"sources":jsonable(list(self.sources.values())),"attempts":self.attempts,"decisions":self.decisions,"coverage":self.coverage,"search_feedback":self.search_feedback,"region_discoveries":self.region_discoveries,"source_proposals":self.source_proposals,"redirects":self.redirects,"pois":self.pois,"poi_transitions":self.poi_transitions,"event_transitions":self.event_transitions,"manifests":self.manifests,"review_packages":self.review_packages,"package_transitions":self.package_transitions}, indent=2, sort_keys=True), encoding="utf-8")
+        Path(path).write_text(json.dumps({"sources":jsonable(list(self.sources.values())),"attempts":self.attempts,"decisions":self.decisions,"coverage":self.coverage,"search_feedback":self.search_feedback,"region_discoveries":self.region_discoveries,"source_proposals":self.source_proposals,"source_proposal_transitions":self.source_proposal_transitions,"redirects":self.redirects,"pois":self.pois,"poi_transitions":self.poi_transitions,"event_transitions":self.event_transitions,"manifests":self.manifests,"review_packages":self.review_packages,"package_transitions":self.package_transitions}, indent=2, sort_keys=True), encoding="utf-8")
 
     def manifest(self, run_id, inputs, config, dependency_revision="unknown"):
         payload={"run_id":run_id,"schema":"acquisition-ledger.v2","input_sha256":hashlib.sha256(json.dumps(inputs,sort_keys=True).encode()).hexdigest(),"config":config,"dependency_revision":dependency_revision}

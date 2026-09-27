@@ -81,3 +81,21 @@ def test_source_proposals_are_restart_safe_and_remain_proposed(tmp_path):
     reopened = AcquisitionLedger(tmp_path / "ledger.sqlite3")
     assert reopened.source_proposals[0]['status'] == 'PROPOSED'
     assert reopened.source_proposals[0]['publication'] == 'not authorized'
+
+
+def test_source_proposal_approval_is_explicit_and_restart_safe(tmp_path):
+    ledger = AcquisitionLedger(tmp_path / "ledger.sqlite3")
+    proposal = {
+        'id': 'discovered-2', 'status': 'PROPOSED', 'geographyId': 'new-city',
+        'sourceId': 'source-2', 'provider': 'geojson', 'url': 'https://city.gov/trails',
+        'domains': ['trail'], 'binding': {'kind': 'region-source'},
+        'evidence': {'query': 'trail query'}, 'publication': 'not authorized',
+    }
+    ledger.record_source_proposal('run-2', proposal)
+    import pytest
+    with pytest.raises(ValueError): ledger.approve_source_proposal('discovered-2', '', '')
+    approved = ledger.approve_source_proposal('discovered-2', 'moderator-1', 'supabase-source-approval-1')
+    assert approved['status'] == 'APPROVED'
+    reopened = AcquisitionLedger(tmp_path / "ledger.sqlite3")
+    assert reopened.source_proposals[0]['approval']['reference'] == 'supabase-source-approval-1'
+    assert [row['state'] for row in reopened.source_proposal_transitions] == ['PROPOSED', 'APPROVED']
