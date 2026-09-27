@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { loadPublicSupabaseConfig, runHeartbeat } from '../tools/supabase-heartbeat.mjs';
+import { loadPublicSupabaseConfig, runAcquisitionSchemaProbe, runHeartbeat } from '../tools/supabase-heartbeat.mjs';
 
 test('scheduled heartbeat loads only the browser-safe Supabase configuration', async () => {
   const config = await loadPublicSupabaseConfig();
@@ -23,4 +23,16 @@ test('scheduled heartbeat sends a body-free HEAD request with the publishable ke
     url: 'https://example.supabase.co/rest/v1/profiles?select=id&limit=1',
     options: { method: 'HEAD', headers: { apikey: 'public-test-key' } }
   }]);
+});
+
+test('acquisition schema probe reports each required table', async () => {
+  const calls = [];
+  const result = await runAcquisitionSchemaProbe({ url: 'https://example.supabase.co', anonKey: 'public-test-key' }, async (url, options) => {
+    calls.push({ url, options });
+    return { ok: !url.includes('source_proposals'), status: url.includes('source_proposals') ? 404 : 200 };
+  });
+  assert.equal(result.status, 'incomplete');
+  assert.equal(result.tables.acquisition_source_proposals.httpStatus, 404);
+  assert.equal(calls.length, 3);
+  assert.ok(calls.every((call) => call.options.headers.apikey === 'public-test-key'));
 });

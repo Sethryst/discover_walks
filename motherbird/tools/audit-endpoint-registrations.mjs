@@ -2,7 +2,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { collectKpiInventory } from './build-kpi-index.mjs';
-import { loadPublicSupabaseConfig, runHeartbeat } from './supabase-heartbeat.mjs';
+import { loadPublicSupabaseConfig, runAcquisitionSchemaProbe, runHeartbeat } from './supabase-heartbeat.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..');
@@ -11,6 +11,7 @@ async function probeSupabase() {
   try {
     const config = await loadPublicSupabaseConfig();
     const status = await runHeartbeat(config);
+    const acquisitionSchema = await runAcquisitionSchemaProbe(config);
     const schemaResponse = await fetch(`${config.url}/rest/v1/`, {
       headers: { apikey: config.anonKey, Accept: 'application/openapi+json' }
     });
@@ -25,7 +26,8 @@ async function probeSupabase() {
         httpStatus: schemaResponse.status,
         exposedRelationCount: exposedRelations.length,
         exposedRelations
-      }
+      },
+      acquisitionSchema
     };
   } catch (error) {
     return { status: 'failed', detail: String(error?.message || error).replace(/sb_[A-Za-z0-9_-]+/g, '[redacted]') };

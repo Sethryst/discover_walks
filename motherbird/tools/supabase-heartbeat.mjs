@@ -22,6 +22,18 @@ export async function runHeartbeat(config, request = fetch) {
   return response.status;
 }
 
+export async function runAcquisitionSchemaProbe(config, request = fetch) {
+  const tables = ['acquisition_package_approvals', 'acquisition_package_selections', 'acquisition_source_proposals'];
+  const results = {};
+  for (const table of tables) {
+    const response = await request(`${config.url.replace(/\/$/, '')}/rest/v1/${table}?select=*&limit=1`, {
+      method: 'GET', headers: { apikey: config.anonKey, Accept: 'application/json' }
+    });
+    results[table] = { status: response.ok ? 'present' : 'missing_or_inaccessible', httpStatus: response.status };
+  }
+  return { status: Object.values(results).every((item) => item.status === 'present') ? 'verified' : 'incomplete', tables: results };
+}
+
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const status = await runHeartbeat(await loadPublicSupabaseConfig());
   console.log(`Supabase heartbeat succeeded (HTTP ${status}).`);
