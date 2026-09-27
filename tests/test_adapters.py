@@ -28,6 +28,21 @@ def test_ledger_ingestion_persists_coverage_duplicates_and_changes(tmp_path):
     need = RegionalNeed("Example City", "city-1", (FeatureRequirement("parks"),))
     report = ledger.ingest_pois("run-1", need, result)
     assert report["recordCount"] == 1
+
+def test_acquisition_pipeline_returns_review_only_package_after_fallback(tmp_path):
+    from gremlin_acquisition.pipeline import acquire_review_package
+    config = {"url": "https://city.gov/places", "domains": ["parks"], "propertyMapping": {"id": "id", "name": "name"}}
+    replacement = {**config, "url": "https://city.gov/replacement"}
+    body = '{"features":[{"type":"Feature","properties":{"id":"p1","name":"Central Park"},"geometry":{"type":"Point","coordinates":[-122.6,45.5]}}]}'
+    def transport(url):
+        if url == config["url"]: raise RuntimeError("retired source")
+        return body
+    ledger = AcquisitionLedger(tmp_path / "pipeline.sqlite3")
+    need = RegionalNeed("Example City", "city-1", (FeatureRequirement("parks"),))
+    result = acquire_review_package("run-1", need, [config, replacement], transport, ledger, tmp_path / "packages")
+    assert result["fallbackStatus"] == "SUCCEEDED"
+    assert result["package"]["coverage"]["gaps"] == []
+    assert ledger.review_packages[0]["status"] == "READY FOR REVIEW"
     assert report["duplicateCount"] == 1
     assert report["gaps"] == []
     assert ledger.poi_transitions[0]["state"] == "new"
