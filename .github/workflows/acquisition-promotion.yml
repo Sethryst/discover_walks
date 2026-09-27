@@ -1,0 +1,40 @@
+name: Acquisition promotion (explicit approval only)
+
+on:
+  workflow_dispatch:
+    inputs:
+      package:
+        description: Content-addressed package path produced by review
+        required: true
+        type: string
+      action:
+        description: Validate or publish; routine acquisition never publishes
+        required: true
+        type: choice
+        options: [validate, publish]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: acquisition-promotion
+  cancel-in-progress: false
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    environment: acquisition-moderated
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify selected package and tests
+        shell: bash
+        env:
+          PACKAGE: ${{ inputs.package }}
+          ACTION: ${{ inputs.action }}
+        run: |
+          test -f "$PACKAGE"
+          python -m compileall -q gremlin_acquisition
+          python -m gremlin_acquisition --help
+          test "$ACTION" = validate || test "$ACTION" = publish
+          echo "Package selected explicitly: $PACKAGE"
+          echo "Publication requires a protected environment approval and a separate reviewed release change."

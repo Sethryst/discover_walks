@@ -180,6 +180,18 @@ export async function collectKpiInventory() {
     frontend: frontendFor(source)
   })));
 
+  const acquisitionReplay = await readJson(resolve(repoRoot, 'fixtures', 'acquisition', 'replay.json'), {});
+  const acquisitionMetrics = {
+    schema: 'acquisition-kpi.v1',
+    regionsSearched: acquisitionReplay.root ? 1 : 0,
+    plannedNeighbors: Array.isArray(acquisitionReplay.expected_neighbors) ? acquisitionReplay.expected_neighbors.length : 0,
+    duplicateDomains: Array.isArray(acquisitionReplay.duplicate_domains) ? acquisitionReplay.duplicate_domains.length : 0,
+    migrationRecovery: acquisitionReplay.migrated?.from && acquisitionReplay.migrated?.to ? 1 : 0,
+    currentEventYield: 0,
+    geocodedCoverage: null,
+    sourceOfTruth: 'offline replay manifest only; live ledger is not published'
+  };
+
   const registrationRegistry = await readJson(resolve(repoRoot, 'app', 'endpoint-registrations.json'), { registrations: [] });
   const endpointHealth = await readJson(resolve(motherbirdRoot, 'data', 'endpoint-health.json'), { registrations: [] });
   const healthById = new Map((endpointHealth.registrations || []).map((entry) => [entry.id, entry.health]));
@@ -352,7 +364,7 @@ export async function collectKpiInventory() {
   ];
 
   return {
-    generatedAt: new Date().toISOString(), cities, configs: configs.map(({ id, name }) => ({ id, name })), sources, providers, gaps, backlogItems, automationJobs, productCapabilities, spatialSync,
+    generatedAt: new Date().toISOString(), cities, configs: configs.map(({ id, name }) => ({ id, name })), sources, providers, gaps, backlogItems, automationJobs, productCapabilities, spatialSync, acquisitionMetrics,
     endpointRegistry: {
       asOf: registrationRegistry.asOf,
       evidencePolicy: registrationRegistry.evidencePolicy,
@@ -414,6 +426,7 @@ export function renderKpiHtml(model) {
     ['Registered accounts', summary.registeredAccounts, `${summary.registeredConfigured} configured · ${summary.registeredHealthy} health-verified · ${summary.registeredProducing} producing`],
     ['DC spatial package', summary.spatialIndexedPois.toLocaleString(), summary.spatialSyncReady ? 'Identity approved · local-only sync transport' : 'Identity needs approval'],
     ['Review backlog', summary.backlogCandidates, `${summary.readyBacklog} classified READY`],
+    ['National acquisition', model.acquisitionMetrics.plannedNeighbors, `${model.acquisitionMetrics.regionsSearched} replay region · ${model.acquisitionMetrics.duplicateDomains} duplicate domains`],
     ['Priority repairs', summary.p0Gaps + summary.p1Gaps, `${summary.p0Gaps} P0 · ${summary.p1Gaps} P1`]
   ];
   const sourceRows = renderRows(model.sources, [

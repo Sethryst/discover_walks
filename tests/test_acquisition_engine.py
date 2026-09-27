@@ -2,7 +2,7 @@ from gremlin_acquisition.geo import WklsGeography
 from gremlin_acquisition.planner import AcquisitionPlanner
 from gremlin_acquisition.ledger import AcquisitionLedger
 from gremlin_acquisition.models import EventEvidence, SourceRecord, SourceStatus
-from gremlin_acquisition.fallbacks import validate_event, apply_source_result
+from gremlin_acquisition.fallbacks import validate_event, apply_source_result, parse_ics, parse_jsonld
 from gremlin_acquisition.promotion import PromotionBuilder
 
 def test_portland_expands_and_loop_is_penalized():
@@ -14,3 +14,18 @@ def test_empty_and_migrated_states():
 def test_event_validation_and_idempotent_promotion():
     e=validate_event(EventEvidence("Town Fair","2099-05-01T10:00:00Z","https://x/e","https://x",stable_id="e1",latitude=1,longitude=2),"2026-01-01")
     s=SourceRecord("https://x","x","g",status=SourceStatus.APPROVED,events=[e]); b=PromotionBuilder(); a=b.build([s],{"e1"}); c=b.build([s],{"e1"}); assert a==c and a["event_count"]==1
+
+def test_replay_parsers_preserve_provenance_and_reject_unresolved_geo():
+    ics="BEGIN:VEVENT\\nUID:i1\\nSUMMARY:Town Walk\\nDTSTART:20990101T100000Z\\nURL:https://official.example/walk\\nEND:VEVENT"
+    events=parse_ics(ics,"https://official.example/calendar.ics")
+    assert events[0].stable_id == "i1" and events[0].source_url.endswith("calendar.ics")
+    html='<script type="application/ld+json">{"@type":"Event","name":"Library Walk","startDate":"2099-01-02T10:00:00Z"}</script>'
+    assert parse_jsonld(html,"https://official.example/page")[0].parser == "json-ld"
+    assert WklsGeography().resolve("Not A Canonical Place").id == ""
+
+def test_invalid_selected_event_is_not_silently_dropped():
+    e=EventEvidence("Missing geo","2099-01-01T10:00:00Z","https://x/e","https://x",stable_id="bad")
+    validate_event(e,"2026-01-01")
+    s=SourceRecord("https://x","x","g",status=SourceStatus.APPROVED,events=[e])
+    import pytest
+    with pytest.raises(ValueError): PromotionBuilder().build([s],{"bad"})
