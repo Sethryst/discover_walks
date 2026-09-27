@@ -11,7 +11,7 @@ class AcquisitionPlanner:
     def score(self, geography, seen_domains=(), failures=(), empty=False, duplicate_count=0):
         loop = min(5.0, duplicate_count * 1.5)
         return ScoreBreakdown(geographic_novelty=2.0 if geography.id not in seen_domains else 0.0, publisher_novelty=2.0, expected_event_yield=2.0, freshness_likelihood=1.5, authority=2.0, adapter_confidence=1.0, fallback_success=0.5, duplicate_risk=min(4,duplicate_count), recent_failure_penalty=min(3,len(failures)), empty_calendar_penalty=2.0 if empty else 0.0, loop_penalty=loop, explanation=f"{geography.name}: expand because novelty is {max(0,2-duplicate_count):.1f}; duplicate domains={duplicate_count}, failures={len(failures)}")
-    def plan(self, run_id="acquisition", root="Portland", max_batches=3, budget=30, needs=None):
+    def plan(self, run_id="acquisition", root="Portland", max_batches=3, budget=30, needs=None, cooldown_attempts=1):
         root_geo=self.geo.resolve(root); candidates=[root_geo]+self.geo.neighbors(root_geo); plans=[]
         if not root_geo.id:
             self.ledger.record_search_feedback(run_id, "", root, "UNRESOLVED GEOGRAPHY", notes="WKLS did not return one canonical identity")
@@ -19,8 +19,13 @@ class AcquisitionPlanner:
         prior_attempts = [row for row in self.ledger.attempts if row.get("geography_id") in {candidate.id for candidate in candidates}]
         failed_by_geo = {candidate.id: sum(1 for row in prior_attempts if row.get("geography_id") == candidate.id and row.get("result") in {"failed", "temporary failure"}) for candidate in candidates}
         duplicate_by_geo = {candidate.id: sum(1 for row in prior_attempts if row.get("geography_id") == candidate.id and row.get("result") == "duplicate") for candidate in candidates}
+        recent_attempts = self.ledger.attempts[-max(0, cooldown_attempts):] if cooldown_attempts else []
+        cooling_down = {row.get("geography_id") for row in recent_attempts if row.get("result") in {"failed", "temporary failure", "permanent failure"}}
         for g in candidates:
             if not g.id:
+                continue
+            if g.id in cooling_down:
+                self.ledger.record_decision(run_id, g.id, self.score(g, seen_domains={root_geo.id}, failures=["cooldown"]), "excluded during deterministic recent-failure cooldown", [r.canonical_category for r in (needs.requirements if needs else ())])
                 continue
             if not self.ledger.budget_available(budget):
                 self.ledger.record_search_feedback(run_id, g.id, g.name, "BUDGET EXHAUSTED", notes=f"global attempt budget={budget}")

@@ -58,6 +58,17 @@ def test_package_planning_records_requirements_and_search_feedback(tmp_path):
     ledger.record_search_feedback("run-1", "city-1", "official parks", "succeeded", ["park"])
     assert ledger.search_feedback[0]["categories_found"] == ["park"]
 
+def test_planner_enforces_recent_failure_cooldown(tmp_path):
+    ledger = AcquisitionLedger(tmp_path / "ledger.sqlite3")
+    ledger.record_attempt("prior", "city-1", "https://failed.example", "geojson", "failed")
+    need = RegionalNeed("Portland", "city-1", (FeatureRequirement("parks"),))
+    class Geo:
+        def resolve(self, query): return Geography("city-1", query, "city")
+        def neighbors(self, geography): return [Geography("city-2", "Neighbor", "city")]
+    plans = AcquisitionPlanner(geo=Geo(), ledger=ledger).plan_package("next", need, max_batches=2)
+    assert [plan.geography.id for plan in plans] == ["city-2"]
+    assert any("cooldown" in decision["reason"] for decision in ledger.decisions)
+
 
 def test_region_requirements_are_derived_from_app_config():
     need = need_from_region_config({
