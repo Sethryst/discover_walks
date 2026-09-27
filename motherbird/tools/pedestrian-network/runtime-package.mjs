@@ -105,6 +105,10 @@ export async function writeRuntimePackage(outputDir, runtime, auditEdges = []) {
     graph_hash: runtime.graph_hash,
     built_at: runtime.built_at,
     bounding_box: runtime.bounding_box,
+    edge_ids: runtime.edges.map((edge) => edge[0]),
+    edge_types: runtime.edge_types,
+    sources: runtime.sources,
+    source_names: runtime.source_names,
     node_count: runtime.nodes.length,
     edge_count: runtime.edges.length,
     artifacts: Object.fromEntries(Object.entries(files).map(([name, contents]) => [name, { bytes: contents.length, sha256: createHash('sha256').update(contents).digest('hex') }]))

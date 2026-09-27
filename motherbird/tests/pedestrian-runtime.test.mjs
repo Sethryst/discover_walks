@@ -60,6 +60,9 @@ test('runtime package writes compact graph, adjacency, geometry, index, attribut
   assert.equal(manifest.policy_version, '2026-08-27.1');
   assert.equal(manifest.node_count, graph.nodes.length);
   assert.equal(manifest.edge_count, graph.edges.length);
+  assert.deepEqual(manifest.edge_ids, runtime.edges.map((edge) => edge[0]));
+  assert.deepEqual(manifest.sources, runtime.sources);
+  assert.deepEqual(manifest.source_names, runtime.source_names);
   assert.ok(Object.values(manifest.artifacts).every(({ bytes, sha256 }) => bytes > 0 && sha256.length === 64));
 });
 
