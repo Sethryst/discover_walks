@@ -18,6 +18,7 @@ class EventEvidence:
     free_entry_evidence: str|None=None; accessibility_evidence: str|None=None; parser: str|None=None
     retrieved_at: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
     warnings: list[str] = field(default_factory=list); expired: bool = False
+    timezone_name: str|None = None; raw_evidence_sha256: str|None = None
 
 @dataclass
 class ScoreBreakdown:
@@ -40,6 +41,7 @@ class SourceRecord:
     status: SourceStatus = SourceStatus.INVESTIGATE; events: list[EventEvidence] = field(default_factory=list)
     replacement_url: str|None = None; last_attempt: str|None = None; retry_cooldown: str|None = None
     failures: list[str] = field(default_factory=list); related_sources: list[str] = field(default_factory=list); code_version: str = "acquisition-v1"
+    publisher_id: str|None = None; evidence_hash: str|None = None; approved_by: str|None = None
 
 def jsonable(value: Any):
     if hasattr(value, "__dataclass_fields__"):
