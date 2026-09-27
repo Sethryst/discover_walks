@@ -96,7 +96,14 @@ def test_kpi_reports_honest_empty_values_and_lifecycle_counts():
     from gremlin_acquisition.kpi import summarize
     ledger=AcquisitionLedger(); source=SourceRecord('https://x','x','g',status=SourceStatus.NO_CURRENT_EVENTS)
     ledger.upsert(source); ledger.record_attempt('r','g','https://x','rss','succeeded empty',produced_events=False)
-    kpi=summarize(ledger); assert kpi['empty_calendars']==1 and kpi['current_event_yield']==0 and kpi['geocoded_event_coverage'] is None
+    kpi=summarize(ledger); assert kpi['empty_calendars']==1 and kpi['current_event_yield']==0 and kpi['geocoded_event_coverage'] is None and kpi['event_quality_average'] is None
+
+def test_kpi_reports_event_quality_denominator_and_low_quality_count():
+    ledger=AcquisitionLedger()
+    event=validate_event(EventEvidence('Walk','2099-01-01T10:00:00Z','https://x/e','https://x',stable_id='e1'),'2026-01-01')
+    ledger.upsert(SourceRecord('https://x','x','g',events=[event]))
+    kpi=summarize(ledger)
+    assert kpi['event_quality_scored_count'] == 1 and kpi['event_quality_average'] == 0.8 and kpi['event_quality_below_threshold'] == 0
 
 def test_wkls_scoped_portland_resolution_when_runtime_dependencies_exist():
     place=WklsGeography().resolve('Portland, Oregon')
