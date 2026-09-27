@@ -5,10 +5,18 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from app.pipeline.operator_promotion import build_report
+from app.pipeline.operator_promotion import build_report, fetch_approvals
 
 
 class OperatorPromotionTests(unittest.TestCase):
+    def test_secret_key_authenticates_without_bearer_jwt(self):
+        with patch.dict(os.environ, {"SUPABASE_URL": "https://example.supabase.co", "SUPABASE_SECRET_KEY": "sb_secret_test"}, clear=True), patch("app.pipeline.operator_promotion.urlopen") as request:
+            request.return_value.__enter__.return_value.read.return_value = b'[]'
+            self.assertEqual(fetch_approvals(), [])
+        headers = dict(request.call_args.args[0].header_items())
+        self.assertEqual(headers["Apikey"], "sb_secret_test")
+        self.assertNotIn("Authorization", headers)
+
     def test_approved_source_becomes_promotion_ready_only_after_url_check(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)

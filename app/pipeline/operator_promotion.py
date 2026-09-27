@@ -21,10 +21,12 @@ ROOT = Path(__file__).parents[2]
 
 def fetch_approvals() -> list[dict]:
     base = os.environ["SUPABASE_URL"].rstrip("/")
-    key = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
+    key = os.environ["SUPABASE_SECRET_KEY"].strip()
+    if not key:
+        raise ValueError("SUPABASE_SECRET_KEY must be configured")
     request = Request(
         f"{base}/rest/v1/kpi_operator_approvals?approved=eq.true&select=source_id,approved,approved_by,updated_at",
-        headers={"apikey": key, "Authorization": f"Bearer {key}"},
+        headers={"apikey": key},
     )
     with urlopen(request, timeout=30) as response:
         return json.load(response)

@@ -19,7 +19,7 @@ jobs:
       - name: Build promotion report from approved sources
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
           PROMOTION_REPORT: promotion-artifacts/kpi-operator-promotion.json
         run: python -m app.pipeline.operator_promotion
       - name: Upload promotion-ready package
