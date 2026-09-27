@@ -51,6 +51,12 @@ def test_run_manifest_is_content_bound_and_durable(tmp_path):
     with pytest.raises(ValueError): ledger.manifest('run-1', {'region':'elsewhere'}, {'budget':3}, 'wkls-rev')
     reopened=AcquisitionLedger(tmp_path/'manifest.db'); assert reopened.manifests == [first]
 
+def test_redirect_history_is_durable(tmp_path):
+    ledger=AcquisitionLedger(tmp_path/'redirects.db')
+    ledger.record_redirect('run-1','https://old.example/events','https://new.example/events',reason='official migration')
+    reopened=AcquisitionLedger(tmp_path/'redirects.db')
+    assert reopened.redirects[0]['replacement_url'] == 'https://new.example/events'
+
 def test_lifecycle_transitions_are_explicit_and_persisted(tmp_path):
     ledger=AcquisitionLedger(tmp_path/'l.db'); source=SourceRecord('https://x','x','g')
     ledger.transition(source,'VALIDATING','fetch started'); ledger.transition(source,'READY FOR REVIEW','dated event found')
