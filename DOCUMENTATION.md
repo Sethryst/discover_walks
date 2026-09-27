@@ -71,6 +71,7 @@ This is the single entry point for the repository’s Markdown files. The backlo
 - [docs/civic-engagement-contract.md](docs/civic-engagement-contract.md) — civic engagement boundaries.
 - [docs/candidate-source-lifecycle.md](docs/candidate-source-lifecycle.md) — source lifecycle states.
 - [docs/candidate-acceptance-policy.md](docs/candidate-acceptance-policy.md) — acceptance criteria for sources.
+- [docs/source-validation-operations.md](docs/source-validation-operations.md) — approval-gated source validation work orders and operator workflow.
 - [docs/editorial-event-policy.md](docs/editorial-event-policy.md) — event freshness and attribution rules.
 - [docs/mip-substrate-plan.md](docs/mip-substrate-plan.md) — MIP substrate plan.
 - [docs/metro-civic-priority.md](docs/metro-civic-priority.md) — civic prioritization model.
