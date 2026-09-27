@@ -51,9 +51,13 @@ async function loadBinary(release, cell, kind, artifact, manifestArtifact) {
     const file = await persistentCache.ensure(release, cacheCell, kind);
     return file.arrayBuffer();
   } catch (error) {
-    if (error?.message !== 'Origin Private File System is unavailable.') throw error;
+    if (!isCacheInfrastructureError(error)) throw error;
     return bytes(artifact, manifestArtifact || artifact);
   }
+}
+function isCacheInfrastructureError(error) {
+  return error?.name === 'QuotaExceededError'
+    || /origin private file system is unavailable|quota|storage/i.test(error?.message || '');
 }
 function evictGraphs(protectedKey) {
   while (graphCacheBytes > MAX_GRAPH_CACHE_BYTES && graphs.size > 1) {
