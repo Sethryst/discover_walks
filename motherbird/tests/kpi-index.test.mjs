@@ -76,6 +76,15 @@ test('KPI page exposes operator paths without publishing credential values', asy
   assert.doesNotMatch(html, /OPEN_ROUTING_KEY\s*[:=]\s*[A-Za-z0-9_-]{12,}/);
 });
 
+test('KPI review inventory exposes committed content-addressed packages', async () => {
+  const model = await collectKpiInventory();
+  const html = renderKpiHtml(model);
+  assert.ok(model.reviewPackages.some((item) => item.packageId === '3901ef3ee5a69e8582e50b40116aa511d226f2cc5903d067f778df9e8ceb466d'));
+  assert.match(html, /READY FOR REVIEW/);
+  assert.match(html, /River Park/);
+  assert.doesNotMatch(html, /No persisted review package artifacts found/);
+});
+
 test('KPI coverage separates core failures from missing optional enhancements', async () => {
   const model = await collectKpiInventory();
   for (const city of model.cities) {
