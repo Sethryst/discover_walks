@@ -289,6 +289,10 @@ function renderRoutePointControls() {
   const stops = state.plannerStops || [];
   const end = state.plannerEnd;
   const pointLabel = (point) => point ? `${point.lat.toFixed(5)}, ${point.lng.toFixed(5)}` : 'Not selected';
+  const startField = el('chooseStartButton');
+  const endField = el('chooseEndButton');
+  if (startField) startField.innerHTML = `<strong>Start</strong><span>${escapeHtml(pointLabel(start || state.currentPosition))}</span>`;
+  if (endField) endField.innerHTML = `<strong>Destination</strong><span>${escapeHtml(pointLabel(end))}</span>`;
   list.innerHTML = [
     `<li><strong>Start</strong><span>${escapeHtml(pointLabel(start || state.currentPosition))}</span></li>`,
     ...stops.map((point, index) => `<li><strong>Stop ${index + 1}</strong><span>${escapeHtml(pointLabel(point))}</span></li>`),
@@ -335,6 +339,8 @@ function bindWalkControls() {
   const beginPointSelection = (type) => {
     state.plannerSelecting = type;
     setPlanningMode(true);
+    const status = el('routeComposerStatus');
+    if (status) status.textContent = type === 'Start' ? 'Choose a starting point on the map.' : type === 'Stop' ? 'Choose the next destination on the map.' : 'Choose a destination on the map.';
     toast(type === 'Start' ? 'Tap the map to choose your starting point.' : type === 'Stop' ? 'Tap the map to add a stop.' : 'Tap the map to choose your destination.');
   };
   el('chooseStartButton')?.addEventListener('click', () => beginPointSelection('Start'));
@@ -357,10 +363,13 @@ function bindWalkControls() {
     const type = event.detail?.type || 'End';
     renderRoutePointControls();
     if (type !== 'End') {
+      const status = el('routeComposerStatus');
+      if (status) status.textContent = type === 'Start' ? 'Start selected. Choose a destination next.' : 'Destination added. Add another or show the route.';
       toast(type === 'Start' ? 'Starting point selected.' : 'Stop added to this walk.');
       return;
     }
     el('routeSelectionHint')?.classList.add('hidden');
+    el('routeComposerStatus')?.replaceChildren(document.createTextNode('Destination selected. Review the route or add another destination.'));
     el('startPanel')?.classList.remove('hidden');
     el('radialRouteOptionsButton')?.setAttribute('aria-expanded', 'true');
     toast('Destination selected. Sketching your point-to-point walk…');
