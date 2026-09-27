@@ -13,7 +13,7 @@ Gremlin Lab is a data-rich walking project with two connected but deliberately s
 - [Development](#development)
 - [Libraries and data](#libraries-and-data)
 - [Project guides](#project-guides)
-- [Contributing](#contributing)
+- [Project principles](#project-principles)
 - [License](#license)
 
 ## What is here
@@ -109,18 +109,17 @@ Routing and map data may include OpenStreetMap and civic/open-data sources. Each
 - [`HANDOFF-national-routing-tonight.md`](HANDOFF-national-routing-tonight.md) — routing handoff context.
 - [`AGENTS.md`](AGENTS.md) — repository workflow and deployment rules.
 
-## Contributing
+## Project principles
 
-Small, test-backed increments are preferred. When changing deployed browser code:
+- **Local-first:** the app should remain useful with limited connectivity and make its storage behavior understandable.
+- **Evidence before inference:** geographic facts, route connections, accessibility claims, and source attributions should come from inspectable data.
+- **Honest navigation:** when a verified route cannot be established, the product should say so rather than draw a decorative line.
+- **Small public surface:** this repository publishes a static browser app; it does not promise a hosted API or a contribution workflow.
+- **Respect for source terms:** OpenStreetMap, civic data, libraries, and media keep their own licenses and attribution requirements.
+- **Private by design where possible:** personal walks and local state are intended to stay in the browser unless a specific feature says otherwise.
 
-1. Inspect the current live site first.
-2. Verify the behavior locally.
-3. Update the relevant asset/cache version.
-4. Commit only files belonging to the request.
-5. Push and verify the resulting Pages deployment.
-
-For routing changes, include actual route outcomes, failure reasons, instruction examples, integrity/resource measurements, and the distinction between locally tested, browser-tested, published, and live-verified behavior.
+This repository is maintained as a personal project. There is no promise of issue response, support, compatibility, or acceptance of outside changes. You are welcome to read and use the code under the license below, but pull requests and unsolicited contributions are not part of the project’s operating model.
 
 ## License
 
-Unless a subdirectory says otherwise, the original code in this repository is released under the [ISC License](LICENSE). Third-party libraries, map data, civic data, and historical media remain subject to their own licenses, attribution requirements, and source terms.
+Unless a subdirectory says otherwise, the original code in this repository is released under the [MIT License](LICENSE). Third-party libraries, map data, civic data, and historical media remain subject to their own licenses, attribution requirements, and source terms. The MIT License grants broad rights to the original code; it does not relicense third-party material.
