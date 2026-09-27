@@ -4,7 +4,7 @@ from .geo import WklsGeography
 from .models import AcquisitionPlan, ScoreBreakdown
 from .ledger import AcquisitionLedger
 from .package_intelligence import FeatureRequirement, RegionalNeed, needs_from_discoveries
-from .source_search import generate_search_lines
+from .source_search import generate_search_lines, classify_search_result, search_feedback
 
 class AcquisitionPlanner:
     def __init__(self, geo=None, ledger=None): self.geo=geo or WklsGeography(); self.ledger=ledger or AcquisitionLedger()
@@ -56,5 +56,34 @@ class AcquisitionPlanner:
         for need in needs_from_discoveries(discoveries):
             plans.extend(self.plan_package(run_id, need, max_batches=max_batches, budget=budget))
         return sorted(plans, key=lambda p: (-p.score.priority, p.geography.id))
+
+    def search_sources(self, run_id, need: RegionalNeed, adapter, *, max_lines=None):
+        """Run deterministic search lines and persist every provider outcome.
+
+        Search is deliberately separate from acquisition: a result can suggest
+        a source without authorizing a fetch or publication.
+        """
+        lines = generate_search_lines(need)
+        if max_lines is not None:
+            lines = lines[:max_lines]
+        results = []
+        for line in lines:
+            result = classify_search_result(adapter.search(line))
+            feedback = search_feedback(result)
+            self.ledger.record_search_feedback(
+                run_id, need.geography_id, line.query, result.status,
+                feedback["categories_found"],
+                notes=json_reason(feedback),
+            )
+            results.append(result)
+        return results
+
+
+def json_reason(feedback):
+    """Stable human-readable search evidence for the ledger notes field."""
+    domains = ','.join(feedback["domains"]) or 'none'
+    sources = ','.join(feedback["source_urls"]) or 'none'
+    reason = feedback.get("reason") or 'no provider explanation'
+    return f"domains={domains}; sources={sources}; reason={reason}"
 
 def canonical_domain(url): return (urlsplit(url).hostname or "").lower().removeprefix("www.")
