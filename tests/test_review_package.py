@@ -34,7 +34,9 @@ def test_review_package_requires_explicit_approval_before_promotion(tmp_path):
     assert approved["status"] == "APPROVED"
     promoted = ledger.mark_package_promoted(package["packageId"], "pages-commit-1")
     assert promoted["status"] == "PROMOTED"
-    assert AcquisitionLedger(tmp_path / "ledger.sqlite3").review_packages[0]["approval"]["actor"] == "moderator-1"
+    reopened = AcquisitionLedger(tmp_path / "ledger.sqlite3")
+    assert reopened.review_packages[0]["approval"]["actor"] == "moderator-1"
+    assert [row["state"] for row in reopened.package_transitions] == ["READY FOR REVIEW", "APPROVED", "PROMOTED"]
 
 
 def test_artifact_lifecycle_metadata_is_explicit_and_non_authorizing(tmp_path):

@@ -13,18 +13,33 @@ class AcquisitionPlanner:
         return ScoreBreakdown(geographic_novelty=2.0 if geography.id not in seen_domains else 0.0, publisher_novelty=2.0, expected_event_yield=2.0, freshness_likelihood=1.5, authority=2.0, adapter_confidence=1.0, fallback_success=0.5, duplicate_risk=min(4,duplicate_count), recent_failure_penalty=min(3,len(failures)), empty_calendar_penalty=2.0 if empty else 0.0, loop_penalty=loop, explanation=f"{geography.name}: expand because novelty is {max(0,2-duplicate_count):.1f}; duplicate domains={duplicate_count}, failures={len(failures)}")
     def plan(self, run_id="acquisition", root="Portland", max_batches=3, budget=30, needs=None):
         root_geo=self.geo.resolve(root); candidates=[root_geo]+self.geo.neighbors(root_geo); plans=[]
+        if not root_geo.id:
+            self.ledger.record_search_feedback(run_id, "", root, "UNRESOLVED GEOGRAPHY", notes="WKLS did not return one canonical identity")
+            return []
+        prior_attempts = [row for row in self.ledger.attempts if row.get("geography_id") in {candidate.id for candidate in candidates}]
+        failed_by_geo = {candidate.id: sum(1 for row in prior_attempts if row.get("geography_id") == candidate.id and row.get("result") in {"failed", "temporary failure"}) for candidate in candidates}
+        duplicate_by_geo = {candidate.id: sum(1 for row in prior_attempts if row.get("geography_id") == candidate.id and row.get("result") == "duplicate") for candidate in candidates}
         for g in candidates:
-            if len(plans) >= max_batches or not self.ledger.budget_available(budget): break
-            if not g.id: continue
+            if not g.id:
+                continue
+            if not self.ledger.budget_available(budget):
+                self.ledger.record_search_feedback(run_id, g.id, g.name, "BUDGET EXHAUSTED", notes=f"global attempt budget={budget}")
+                continue
             requirement_categories=[r.canonical_category for r in (needs.requirements if needs else ())]
-            score=self.score(g, seen_domains={root_geo.id}, duplicate_count=1 if g.id==root_geo.id else 0)
+            score=self.score(g, seen_domains={root_geo.id}, failures=["prior failure"] * failed_by_geo.get(g.id, 0), duplicate_count=duplicate_by_geo.get(g.id, 0))
             lines=[line.query for line in generate_search_lines(RegionalNeed(g.name, g.id, tuple(needs.requirements) if needs else ()))][:9]
-            lines += [f"official events {g.name} Oregon",f"{g.name} calendar events",f"site:.gov {g.name} events"]
+            lines += [f"official events {g.name}", f"{g.name} calendar events", f"site:.gov {g.name} events"]
             if requirement_categories:
                 lines=[f"official {category} source {g.name}" for category in requirement_categories] + lines
                 score.explanation += f"; unmet package categories={','.join(requirement_categories)}"
-            p=AcquisitionPlan(run_id,g,lines,"at least one new canonical domain or publisher or unmet package category",budget,score,score.explanation); plans.append(p); self.ledger.record_decision(run_id,g.id,score,score.explanation,requirement_categories)
-        return sorted(plans,key=lambda p:(-p.score.priority,p.geography.id))
+            p=AcquisitionPlan(run_id,g,lines,"at least one new canonical domain or publisher or unmet package category",budget,score,score.explanation); plans.append(p)
+        ranked = sorted(plans,key=lambda p:(-p.score.priority,p.geography.id))
+        selected = ranked[:max_batches]
+        selected_ids = {plan.geography.id for plan in selected}
+        for plan in ranked:
+            reason = plan.reason if plan.geography.id in selected_ids else f"excluded after ranking: batch limit {max_batches}"
+            self.ledger.record_decision(run_id,plan.geography.id,plan.score,reason,[r.canonical_category for r in (needs.requirements if needs else ())])
+        return selected
 
     def plan_package(self, run_id, need: RegionalNeed, max_batches=3, budget=30):
         """Plan a package requirement without assuming the region is Portland."""

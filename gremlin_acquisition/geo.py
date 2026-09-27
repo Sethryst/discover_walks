@@ -27,35 +27,67 @@ class WklsGeography:
     def __init__(self, resolver=None, neighbor_provider=None):
         self.resolver = resolver
         self.neighbor_provider = neighbor_provider
+        self._resolved = {}
     def resolve(self, query: str) -> Geography:
         if self.resolver:
             result = self.resolver.search(query); rows = result.to_dicts()
             if len(rows) != 1: return Geography("", query, "ambiguous" if rows else "unresolved")
             row = rows[0]
-            return self._from_row(row, result.path)
+            geography = self._from_row(row, result.path)
+            self._resolved[geography.id] = result
+            return geography
         upstream = _load_wkls()
         if upstream:
             scope = upstream
             rows = scope.search(query).to_dicts()
             if len(rows) != 1: return Geography("", query, "ambiguous" if rows else "unresolved")
             row = rows[0]
-            return self._from_row(row, "")
+            geography = self._from_row(row, getattr(scope.search(query), "path", ""))
+            self._resolved[geography.id] = scope.search(query)
+            return geography
         return Geography("", query, "unresolved")
 
     def neighbors(self, geography: Geography) -> list[Geography]:
         provider = self.neighbor_provider
         if provider is None and self.resolver is not None:
             provider = getattr(self.resolver, "neighbors", None)
-        if provider is None:
-            return []
-        candidates = provider(geography)
+        if provider is not None:
+            candidates = provider(geography)
+        else:
+            candidates = self._wkls_boundary_neighbors(geography)
         return [candidate for candidate in candidates if candidate.id and candidate.id != geography.id]
+
+    def _wkls_boundary_neighbors(self, geography):
+        """Derive siblings only from WKLS parent collections and real boundaries."""
+        node = self._resolved.get(geography.id)
+        if node is None:
+            return []
+        try:
+            from shapely.geometry import shape
+            root = shape(json.loads(node.geojson()))
+            parent = node.parent
+            collection_name = {"country": "countries", "state": "regions", "region": "regions", "county": "counties", "city": "cities", "place": "cities", "town": "cities"}.get(geography.level)
+            if parent is None or not collection_name:
+                return []
+            rows = getattr(parent, collection_name)().to_dicts()
+            upstream = _load_wkls()
+            result = []
+            for row in rows:
+                candidate_id = str(row.get("id", ""))
+                if not candidate_id or candidate_id == geography.id:
+                    continue
+                candidate = upstream.by_id(candidate_id)
+                if root.touches(shape(json.loads(candidate.geojson()))) or root.intersects(shape(json.loads(candidate.geojson()))):
+                    result.append(self._from_row(row, getattr(candidate, "path", "")))
+            return result
+        except (ImportError, AttributeError, KeyError, TypeError, ValueError, json.JSONDecodeError):
+            return []
 
     @staticmethod
     def _from_row(row, fallback_id=""):
         bbox=row.get('bbox')
         if isinstance(bbox, dict): bbox=(bbox.get('xmin'),bbox.get('ymin'),bbox.get('xmax'),bbox.get('ymax'))
-        return Geography(str(row.get('id',fallback_id)),row.get('name') or row.get('name_primary') or row.get('name_en') or '',row.get('subtype','place'),row.get('country','US'),row.get('parent_id'),bbox=bbox,source_revision=WKLS_REVISION)
+        return Geography(str(row.get('id',fallback_id)),row.get('name') or row.get('name_primary') or row.get('name_en') or '',row.get('admin_level') or row.get('subtype','place'),row.get('country','US'),row.get('parent_id'),bbox=bbox,source_revision=WKLS_REVISION)
 
     def verified_neighbors(self, geography: Geography, candidates):
         """Return candidates whose verified bboxes touch/overlap the target.

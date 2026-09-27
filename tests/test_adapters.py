@@ -30,6 +30,7 @@ def test_ledger_ingestion_persists_coverage_duplicates_and_changes(tmp_path):
     assert report["recordCount"] == 1
     assert report["duplicateCount"] == 1
     assert report["gaps"] == []
+    assert ledger.poi_transitions[0]["state"] == "new"
     reopened = AcquisitionLedger(tmp_path / "ledger.sqlite3")
     assert len(reopened.pois) == 1 and len(reopened.coverage) == 1
 
