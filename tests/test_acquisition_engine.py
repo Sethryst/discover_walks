@@ -44,3 +44,9 @@ def test_rss_canonicalization_and_redirect_cycles():
     assert canonical_url('HTTPS://WWW.Example.gov/events/?utm_source=x&x=1') == 'https://example.gov/events?x=1'
     terminal, cycle=follow_redirects('https://a.test', {'https://a.test':'https://b.test','https://b.test':'https://a.test'})
     assert terminal == 'https://a.test' and cycle
+
+def test_verified_neighbor_prefilter_never_fabricates_ids():
+    from gremlin_acquisition.models import Geography
+    target=Geography('a','A','city',bbox=(0,0,1,1)); touching=Geography('b','B','city',bbox=(1,0,2,1)); far=Geography('c','C','city',bbox=(4,4,5,5))
+    assert [x.id for x in WklsGeography().verified_neighbors(target,[touching,far])] == ['b']
+    assert WklsGeography().verified_neighbors(Geography('','Unknown','unresolved'),[touching]) == []

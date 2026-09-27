@@ -9,7 +9,7 @@ class SourceStatus(str, Enum):
 
 @dataclass(frozen=True)
 class Geography:
-    id: str; name: str; level: str; country: str="US"; parent_id: str|None=None; latitude: float|None=None; longitude: float|None=None
+    id: str; name: str; level: str; country: str="US"; parent_id: str|None=None; latitude: float|None=None; longitude: float|None=None; bbox: tuple[float,float,float,float]|None=None; source_revision: str|None=None
 
 @dataclass
 class EventEvidence:

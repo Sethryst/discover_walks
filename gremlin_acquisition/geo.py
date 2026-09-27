@@ -30,13 +30,13 @@ class WklsGeography:
             result = self.resolver.search(query); rows = result.to_dicts()
             if len(rows) != 1: return Geography("", query, "ambiguous" if rows else "unresolved")
             row = rows[0]
-            return Geography(str(row.get("id", result.path)), row.get("name", query), row.get("subtype", "place"), row.get("country", "US"))
+            return self._from_row(row, result.path)
         upstream = _load_wkls()
         if upstream:
             rows = upstream.search(query).to_dicts()
             if len(rows) != 1: return Geography("", query, "ambiguous" if rows else "unresolved")
             row = rows[0]
-            return Geography(str(row.get("id", "")), row.get("name", query), row.get("subtype", "place"), row.get("country", "US"), parent_id=row.get("parent_id"))
+            return self._from_row(row, "")
         known = {"portland": Geography("us-or-multnomah-portland","Portland","city",parent_id="us-or-multnomah"), "beaverton": Geography("us-or-washington-beaverton","Beaverton","city",parent_id="us-or-washington"), "gresham": Geography("us-or-multnomah-gresham","Gresham","city",parent_id="us-or-multnomah"), "tigard": Geography("us-or-washington-tigard","Tigard","city",parent_id="us-or-washington"), "hillsboro": Geography("us-or-washington-hillsboro","Hillsboro","city",parent_id="us-or-washington")}
         return known.get(query.lower(), Geography("", query, "unresolved"))
 
@@ -48,3 +48,19 @@ class WklsGeography:
             return []
         pilot = [self.resolve(x) for x in ("Beaverton","Gresham","Tigard","Hillsboro")]
         return [g for g in pilot if g.id != geography.id]
+
+    @staticmethod
+    def _from_row(row, fallback_id=""):
+        bbox=row.get('bbox')
+        if isinstance(bbox, dict): bbox=(bbox.get('xmin'),bbox.get('ymin'),bbox.get('xmax'),bbox.get('ymax'))
+        return Geography(str(row.get('id',fallback_id)),row.get('name',''),row.get('subtype','place'),row.get('country','US'),row.get('parent_id'),bbox=bbox,source_revision=WKLS_REVISION)
+
+    def verified_neighbors(self, geography: Geography, candidates):
+        """Return candidates whose verified bboxes touch/overlap the target.
+
+        This is a conservative prefilter only; callers must use WKLS geometry
+        intersection for final adjacency when publishing a graph edge.
+        """
+        if not geography.bbox: return []
+        ax1,ay1,ax2,ay2=geography.bbox
+        return [c for c in candidates if c.id and c.id != geography.id and c.bbox and not (c.bbox[2] < ax1 or c.bbox[0] > ax2 or c.bbox[3] < ay1 or c.bbox[1] > ay2)]

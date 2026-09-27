@@ -23,3 +23,8 @@ The SQLite ledger is the durable source of truth; JSON export is for inspection.
 Promotion requires an `APPROVED` source, explicitly selected event IDs, fresh validation, non-expired timestamps, and no validation warnings. Routine acquisition never publishes. Moderator approval must be performed by the existing authenticated Supabase/RLS boundary; a CLI flag or public JSON field is not authorization.
 
 Production configuration must provide a cached provider transport and pinned `vendor/wkls` revision. Fixtures and replay URLs are test-only and are not evidence of production availability.
+
+WKLS runtime dependencies are listed in `requirements-wkls.txt`. Its bundled
+Overture parquet is metadata/geometry provenance, not a permission to invent
+adjacency: `verified_neighbors` is only a bbox prefilter and final graph edges
+require an explicit geometry-intersection check.
