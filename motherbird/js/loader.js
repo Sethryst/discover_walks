@@ -92,11 +92,13 @@ export async function init() {
   // walk bar, or radio behind a slow/corrupt layer-settings read.
   void initNationalOsmLayers().catch((error) => console.warn('National layer settings unavailable:', error.message));
   initMap();
+  // The walk planner is core map functionality. Bind it before optional
+  // stories, radio, and companion layers can abort startup on bad local data.
+  initEvents();
   initStories();
   await initRadio();
   await initGeoCypher();
   removePrimaryControlFallbacks();
-  initEvents();
   initPrimaryShell();
   await activateInstalledRegionRuntime();
   await initCountyAdditions();

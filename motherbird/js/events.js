@@ -30,7 +30,7 @@ export function initEvents() {
   window.addEventListener('walk-position-received', ({ detail }) => void updateActiveManeuver(detail));
   initJournalPane();
   window.addEventListener('journal-data-changed', () => void renderArchive());
-  bindSheets(); bindLocationControls(); bindCompanionMenu(); bindWalkControls(); bindSearch(); bindJournal(); bindDeviceControls();
+  bindSheets(); bindWalkControls(); bindLocationControls(); bindCompanionMenu(); bindSearch(); bindJournal(); bindDeviceControls();
   initMessengerBird();
   bindMapWorkspace();
   el('settingsButton')?.addEventListener('click', toggleFieldGuideMenu);
@@ -214,8 +214,10 @@ function togglePanel(buttonId, panelId) {
 function bindLocationControls() {
   el('locateButton')?.addEventListener('click', getCurrentLocation);
   el('locateChevron')?.addEventListener('click', () => togglePanel('locateChevron', 'locatePanel'));
-  el('geofenceToggle').checked = state.settings.enableGeofencing !== false;
-  el('geofenceRadiusSelect').value = String(state.settings.defaultGeofenceRadiusMeters || 50);
+  const geofenceToggle = el('geofenceToggle');
+  const geofenceRadius = el('geofenceRadiusSelect');
+  if (geofenceToggle) geofenceToggle.checked = state.settings.enableGeofencing !== false;
+  if (geofenceRadius) geofenceRadius.value = String(state.settings.defaultGeofenceRadiusMeters || 50);
   renderGeofenceCategoryChips();
   el('geofenceToggle')?.addEventListener('change', async (event) => { state.settings.enableGeofencing = event.target.checked; await db.put('settings', state.settings); });
   el('geofenceRadiusSelect')?.addEventListener('change', async (event) => { state.settings.defaultGeofenceRadiusMeters = Number(event.target.value); await db.put('settings', state.settings); });
@@ -287,11 +289,16 @@ function bindWalkControls() {
   el('endWalkButton')?.addEventListener('click', () => void stopWalk());
   el('startChevron')?.addEventListener('click', () => togglePanel('startChevron', 'startPanel'));
   const routeOptionsButton = el('radialRouteOptionsButton');
-  routeOptionsButton?.addEventListener('click', () => {
+  const openRouteOptions = () => {
     const panel = el('startPanel');
     const open = panel?.classList.contains('hidden');
     panel?.classList.toggle('hidden', !open);
     routeOptionsButton.setAttribute('aria-expanded', String(open));
+  };
+  // Keep one authoritative handler when the shell is re-initialized.
+  if (routeOptionsButton) routeOptionsButton.onclick = openRouteOptions;
+  document.addEventListener('click', (event) => {
+    if (event.target.closest?.('#radialRouteOptionsButton') && event.target !== routeOptionsButton) openRouteOptions();
   });
   document.querySelectorAll('input[name="routeMode"]').forEach((input) => input.addEventListener('change', () => {
     if (!input.checked) return;
