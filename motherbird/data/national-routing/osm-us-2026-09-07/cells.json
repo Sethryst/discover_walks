@@ -326342,37 +326342,37 @@
     },
     {
       "artifacts": {
-        "map": {
-          "mode": "pmtiles_range",
-          "url": "./national-walk.pmtiles"
+        "adjacency.bin": {
+          "bytes": 14856880,
+          "sha256": "1a33430323655dce5c4462fb22abd7d19907a1fba6ab44d7a380a807af24302f",
+          "url": "cells/z10-291-392/adjacency.bin"
+        },
+        "edge_geometry.bin": {
+          "bytes": 11998376,
+          "sha256": "87fd821783f098640473289e781215c86f95c692e73b1e7f913209bedc179f1b",
+          "url": "cells/z10-291-392/edge_geometry.bin"
+        },
+        "edge_spatial_index.bin": {
+          "bytes": 3844192,
+          "sha256": "bf505b546c7a229b13e8bf2f5424601b3cb12bfe9833b1599a7159792c4fb346",
+          "url": "cells/z10-291-392/edge_spatial_index.bin"
+        },
+        "edges.bin": {
+          "bytes": 29995928,
+          "sha256": "a222e6de253d685c8080f386fecb732af7f85a7064386f50b8c0a1a49ca0f91d",
+          "url": "cells/z10-291-392/edges.bin"
         },
         "manifest": {
           "url": "cells/z10-291-392/manifest.json"
         },
+        "map": {
+          "mode": "pmtiles_range",
+          "url": "./national-walk.pmtiles"
+        },
         "nodes.bin": {
-          "url": "cells/z10-291-392/nodes.bin",
           "bytes": 8575496,
-          "sha256": "b331738524eb83b8cf5dbf90726187be439abb5169c0aa0088941754e6f2f0dd"
-        },
-        "edges.bin": {
-          "url": "cells/z10-291-392/edges.bin",
-          "bytes": 29995928,
-          "sha256": "a222e6de253d685c8080f386fecb732af7f85a7064386f50b8c0a1a49ca0f91d"
-        },
-        "adjacency.bin": {
-          "url": "cells/z10-291-392/adjacency.bin",
-          "bytes": 14856880,
-          "sha256": "1a33430323655dce5c4462fb22abd7d19907a1fba6ab44d7a380a807af24302f"
-        },
-        "edge_geometry.bin": {
-          "url": "cells/z10-291-392/edge_geometry.bin",
-          "bytes": 11998376,
-          "sha256": "87fd821783f098640473289e781215c86f95c692e73b1e7f913209bedc179f1b"
-        },
-        "edge_spatial_index.bin": {
-          "url": "cells/z10-291-392/edge_spatial_index.bin",
-          "bytes": 3844192,
-          "sha256": "bf505b546c7a229b13e8bf2f5424601b3cb12bfe9833b1599a7159792c4fb346"
+          "sha256": "b331738524eb83b8cf5dbf90726187be439abb5169c0aa0088941754e6f2f0dd",
+          "url": "cells/z10-291-392/nodes.bin"
         }
       },
       "availability": "routing_available",
@@ -327511,25 +327511,47 @@
     },
     {
       "artifacts": {
+        "adjacency.bin": {
+          "bytes": 16885132,
+          "sha256": "b3c6beae44774b9a55f0c719a896a6916e363c638a596cf17796926074ccd3c5",
+          "url": "cells/z10-292-391/adjacency.bin"
+        },
+        "edge_geometry.bin": {
+          "bytes": 13725976,
+          "sha256": "da67324a3a5f5aaef6ecf6767444c49bbc2331fcf235710345653299206b716c",
+          "url": "cells/z10-292-391/edge_geometry.bin"
+        },
+        "edge_spatial_index.bin": {
+          "bytes": 4120160,
+          "sha256": "7221c4a8184baa542c91188d70dc769c6043f0a02add05f5da4d5897a0c80ca4",
+          "url": "cells/z10-292-391/edge_spatial_index.bin"
+        },
+        "edges.bin": {
+          "bytes": 34314928,
+          "sha256": "81ab47bf7e7f323c25873ec1af41ac249c220cae7462f365cd02789c55b60904",
+          "url": "cells/z10-292-391/edges.bin"
+        },
+        "manifest": {
+          "url": "cells/z10-292-391/manifest.json"
+        },
         "map": {
           "mode": "pmtiles_range",
           "url": "./national-walk.pmtiles"
         },
-        "graph": {
-          "url": "cells/z10-292-391/runtime-graph.json",
-          "bytes": 0,
-          "sha256": null,
-          "graphVersion": "motherbird-runtime-graph-v1"
+        "nodes.bin": {
+          "bytes": 9477452,
+          "sha256": "d221dadb4ed66679e91de5c3e23a6ab7f1b63fa294405144807c02317af9279b",
+          "url": "cells/z10-292-391/nodes.bin"
         }
       },
-      "availability": "routing_unavailable",
+      "availability": "routing_available",
       "bounds": [
         -77.34375,
         38.822591,
         -76.9921875,
         39.0959629
       ],
-      "byteCount": 195621257,
+      "byteCount": 78523648,
       "cellId": "z10-292-391",
       "cityId": null,
       "clipBounds": [
@@ -327539,7 +327561,7 @@
         39.1411815
       ],
       "compileStatus": "complete",
-      "graphHash": "2ea0c702169104e643cd4502ff2b31d5567d6b35efb7aba0d0ec077451b7e804",
+      "graphHash": "b54b96ff9e04d850483d6bcc6851b91553bd86e4d48012b87472ba0fd14bb4a3",
       "graphPath": null,
       "graphVersion": "motherbird-runtime-graph-v1",
       "id": "z10-292-391",
