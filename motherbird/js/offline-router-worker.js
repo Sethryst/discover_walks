@@ -2,6 +2,9 @@ import { routeRuntimeGraph } from './runtime-router.mjs';
 
 
 const graphs = new Map();
+const graphLoads = new Map();
+const MAX_GRAPH_CACHE_BYTES = 160 * 1024 * 1024;
+let graphCacheBytes = 0;
 const reportWorkerError = (error) => self.postMessage({ type: 'worker-error', message: error?.message || String(error), stack: error?.stack || null });
 self.addEventListener('error', (event) => reportWorkerError(event.error || event.message));
 self.addEventListener('unhandledrejection', (event) => reportWorkerError(event.reason));
@@ -16,14 +19,35 @@ self.onmessage = async ({ data }) => {
 const report=(id,phase,completed,total)=>self.postMessage({type:'progress',requestId:id,phase,completed,total});
 const fail=(code,message)=>Object.assign(new Error(message),{code});
 async function loadGraph(cell,id,release,cellId) {
-  const key=`${release}/${cellId}`; if(graphs.has(key)) return graphs.get(key);
+  const key=`${release}/${cellId}`;
+  const cached = graphs.get(key);
+  if (cached) { cached.lastUsed = performance.now(); return cached.runtime; }
+  if (graphLoads.has(key)) return graphLoads.get(key);
+  const load = loadGraphUncached(cell,id,release,cellId,key);
+  graphLoads.set(key, load);
+  try { return await load; } finally { graphLoads.delete(key); }
+}
+async function loadGraphUncached(cell,id,release,cellId,key) {
   if(!cell?.artifacts) throw fail('GRAPH_VERSION_UNAVAILABLE','Routing cell artifacts are missing.');
   const ma=cell.artifacts.manifest || cell.artifacts.graphManifest; const manifest=ma ? await json(ma.url) : cell.metadata || {};
   if(manifest.schema_version!==1 || manifest.graph_version!=='motherbird-runtime-graph-v1') throw fail('GRAPH_VERSION_UNAVAILABLE','Binary routing manifest is incompatible.');
   const names=['nodes','edges','adjacency','edge_geometry','edge_spatial_index']; const b={}; report(id,'fetching',0,5);
   for(let i=0;i<names.length;i++){const n=names[i], a=cell.artifacts[n]||cell.artifacts[`${n}.bin`]; if(!a?.url) throw fail('GRAPH_VERSION_UNAVAILABLE',`Binary artifact ${n} is missing.`); b[n]=await bytes(a,manifest.artifacts?.[`${n}.bin`]||a); report(id,'fetching',i+1,5);}
   report(id,'decoding',0,5); const nodes=readNodes(b.nodes); report(id,'decoding',1,5); const edges=readEdges(b.edges,manifest); report(id,'decoding',2,5); const adjacency=readAdj(b.adjacency); report(id,'decoding',3,5); const geometry=readGeometry(b.edge_geometry); report(id,'decoding',4,5); const spatial_index=readSpatial(b.edge_spatial_index); report(id,'decoding',5,5);
-  const runtime={...manifest,nodes,edges,adjacency,geometry,spatial_index,sources:manifest.sources||[],source_names:manifest.source_names||[],edge_types:manifest.edge_types||['unknown','sidewalk','footpath','crossing','trail','pedestrian_plaza','indoor_pathway','pedestrian_link']}; graphs.set(key,runtime); report(id,'ready',5,5); return runtime;
+  const runtime={...manifest,nodes,edges,adjacency,geometry,spatial_index,sources:manifest.sources||[],source_names:manifest.source_names||[],edge_types:manifest.edge_types||['unknown','sidewalk','footpath','crossing','trail','pedestrian_plaza','indoor_pathway','pedestrian_link']};
+  const bytes = Object.values(manifest.artifacts || {}).reduce((sum, artifact) => sum + Number(artifact.bytes || 0), 0);
+  const entry = { runtime, bytes: Math.max(bytes * 2, 1), lastUsed: performance.now() };
+  const previous = graphs.get(key); if (previous) graphCacheBytes -= previous.bytes;
+  graphs.set(key, entry); graphCacheBytes += entry.bytes; evictGraphs(key);
+  report(id,'ready',5,5); return runtime;
+}
+function evictGraphs(protectedKey) {
+  while (graphCacheBytes > MAX_GRAPH_CACHE_BYTES && graphs.size > 1) {
+    let oldestKey = null; let oldestTime = Infinity;
+    for (const [key, entry] of graphs) if (key !== protectedKey && entry.lastUsed < oldestTime) { oldestKey = key; oldestTime = entry.lastUsed; }
+    if (!oldestKey) break;
+    graphCacheBytes -= graphs.get(oldestKey).bytes; graphs.delete(oldestKey);
+  }
 }
 async function json(url){const r=await fetch(url,{credentials:'omit',referrerPolicy:'no-referrer'});if(!r.ok)throw fail('GRAPH_VERSION_UNAVAILABLE',`Routing manifest returned HTTP ${r.status}.`);return r.json();}
 async function bytes(a,e){const r=await fetch(a.url,{credentials:'omit',referrerPolicy:'no-referrer'});if(!r.ok)throw fail('GRAPH_VERSION_UNAVAILABLE',`Routing artifact returned HTTP ${r.status}.`);const blob=await r.blob();if(e.bytes!=null&&blob.size!==Number(e.bytes))throw fail('GRAPH_ARTIFACT_MISMATCH','Routing artifact size does not match its manifest.');if(e.sha256){const h=[...new Uint8Array(await crypto.subtle.digest('SHA-256',await blob.arrayBuffer()))].map(v=>v.toString(16).padStart(2,'0')).join('');if(h!==e.sha256.replace(/^sha256:/,''))throw fail('GRAPH_ARTIFACT_MISMATCH','Routing artifact checksum does not match its manifest.');}return blob.arrayBuffer();}
