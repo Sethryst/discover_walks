@@ -115,19 +115,20 @@ function boundaryTransferPoints(left, right) {
 
 function mergeInstructions(legs) {
   const merged = [];
-  for (const leg of legs) {
+  legs.forEach((leg, legIndex) => {
     for (const instruction of leg.instructions || []) {
       if (instruction.type === 'depart' && merged.length) continue;
+      if (instruction.type === 'arrive' && legIndex < legs.length - 1) continue;
       merged.push(instruction);
     }
-  }
+  });
   return merged;
 }
 
 function requestRoute(payload) {
   if (typeof Worker === 'undefined') return Promise.resolve(failure('GRAPH_VERSION_UNAVAILABLE'));
   if (!worker) {
-    worker = new Worker('./js/offline-router-worker.js?v=20260927-cell-stitch-v5', { type: 'module' });
+    worker = new Worker('./js/offline-router-worker.js?v=20260927-cell-stitch-v6', { type: 'module' });
     worker.onmessage = ({ data }) => {
       if (data.type === 'progress') { window.dispatchEvent(new CustomEvent('routing-progress', { detail: data })); return; }
       if (data.type === 'worker-error') { for (const entry of pending.values()) { clearTimeout(entry.timer); entry.resolve(failure('ROUTING_WORKER_ERROR', data.message)); } pending.clear(); return; }
