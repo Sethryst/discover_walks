@@ -30,7 +30,7 @@ on:
         type: string
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: acquisition-frontend-promotion
@@ -42,6 +42,9 @@ jobs:
     environment: acquisition-moderated
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
       - name: Run explicit frontend promotion or rollback
         shell: bash
         env:
@@ -54,10 +57,22 @@ jobs:
         run: |
           python -m compileall -q gremlin_acquisition
           if [ "$ACTION" = "rollback" ]; then
-            python -m gremlin_acquisition.frontend_release --action rollback --package-id "$PACKAGE" --active-package-id "$ACTIVE"
+            python -m gremlin_acquisition.frontend_release --action rollback --package-id "$PACKAGE" --active-package-id "$ACTIVE" --publish-dir motherbird/data/acquisition-packages
           else
             IFS=',' read -r -a RECORD_IDS <<< "$IDS"
             ARGS=()
             for id in "${RECORD_IDS[@]}"; do ARGS+=(--selected-record-id "$id"); done
-            python -m gremlin_acquisition.frontend_release --action promote --review-package "$REVIEW" --approval-reference "$APPROVAL" "${ARGS[@]}"
+            python -m gremlin_acquisition.frontend_release --action promote --review-package "$REVIEW" --approval-reference "$APPROVAL" --publish-dir motherbird/data/acquisition-packages "${ARGS[@]}"
+          fi
+      - name: Publish the exact approved package manifest
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add motherbird/data/acquisition-packages promotion-artifacts
+          if git diff --cached --quiet; then
+            echo "No publication change; promotion was idempotent."
+          else
+            git commit -m "Publish approved acquisition package"
+            git push
           fi
