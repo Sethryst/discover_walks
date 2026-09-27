@@ -7,11 +7,12 @@
 <button id="run">Run connected route</button>
 <pre id="status">idle</pre>
 <script type="module">
-  import { routeOnFoot } from './js/routing.js?smoke=20260925-binary-v4';
-  import { WalkingCellRegistry } from './js/walking-cell-registry.js?smoke=20260925-binary';
-  window.MOTHER_BIRD_WALKING_CELLS = { manifestUrl: './data/national-routing/osm-us-2026-09-07/cells.json?v=20260925-binary' };
+  import { routeOnFoot } from './js/routing.js?smoke=20260927-fairfax-v1';
+  import { WalkingCellRegistry } from './js/walking-cell-registry.js?smoke=20260927-fairfax-v1';
+  window.MOTHER_BIRD_WALKING_CELLS = { manifestUrl: './data/national-routing/osm-us-2026-09-07/cells.json?v=20260927-fairfax-v1' };
   const output = document.querySelector('#status');
-  const edge = { origin: { lat: 38.7911929, lng: -77.4853467 }, destination: { lat: 38.7912119, lng: -77.4855868 } };
+  // Edge 0 in the published Fairfax/Vienna cell z10-292-391.
+  const edge = { origin: { lat: 38.8338858, lng: -77.0482543 }, destination: { lat: 38.8339808, lng: -77.0481402 } };
   const write = (value) => { output.textContent = typeof value === 'string' ? value : JSON.stringify(value, null, 2); };
   window.addEventListener('routing-progress', (event) => write({ progress: event.detail }));
   document.querySelector('#run').addEventListener('click', async () => {
