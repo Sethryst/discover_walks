@@ -27,10 +27,13 @@ import { openRoomForPlace } from './room-runtime.js';
 const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];
 
 export function initEvents() {
+  // Bind the user-walk controls before optional journal/companion surfaces.
+  // Those surfaces may be unavailable during a first boot or migration.
+  bindWalkControls();
   window.addEventListener('walk-position-received', ({ detail }) => void updateActiveManeuver(detail));
   initJournalPane();
   window.addEventListener('journal-data-changed', () => void renderArchive());
-  bindSheets(); bindWalkControls(); bindLocationControls(); bindCompanionMenu(); bindSearch(); bindJournal(); bindDeviceControls();
+  bindSheets(); bindLocationControls(); bindCompanionMenu(); bindSearch(); bindJournal(); bindDeviceControls();
   initMessengerBird();
   bindMapWorkspace();
   el('settingsButton')?.addEventListener('click', toggleFieldGuideMenu);
