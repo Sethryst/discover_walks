@@ -27,6 +27,12 @@ def validate(registry: dict) -> list[str]:
         if not isinstance(b, list) or len(b) != 4 or not all(isinstance(v, (int, float)) for v in b) or not (-180 <= b[0] <= b[2] <= 180 and -90 <= b[1] <= b[3] <= 90): errors.append(f"{cid}: invalid bounds")
         availability = cell.get("availability")
         if availability not in AVAILABILITY: errors.append(f"{cid}: invalid availability")
+        neighbors = cell.get("routingNeighbors")
+        if neighbors is not None and (not isinstance(neighbors, list) or any(not isinstance(item, str) for item in neighbors) or neighbors != sorted(set(neighbors))):
+            errors.append(f"{cid}: routingNeighbors must be sorted and unique")
+        stitching = cell.get("stitching")
+        if stitching is not None and (stitching.get("coordinateConvention") != "[lon,lat]" or stitching.get("sharedBoundaryRouting") != "neighbor_cell_handoff" or stitching.get("snapToleranceMeters") != 3):
+            errors.append(f"{cid}: unsupported stitching contract")
         graph = (cell.get("artifacts") or {}).get("graph") or {}
         url = graph.get("url")
         parsed = urlparse(url or "")
@@ -48,7 +54,13 @@ def validate(registry: dict) -> list[str]:
                     # Overlap is allowed for adaptive shards, but ordering must be deterministic.
                     if cid < old_id: errors.append(f"overlapping cells not deterministically ordered: {old_id}, {cid}")
             previous.append((cid, b))
-    if [c.get("cellId") or c.get("id") for c in cells] != sorted(c.get("cellId") or c.get("id") for c in cells): errors.append("cells are not deterministically ordered")
+    ordered_ids = [c.get("cellId") or c.get("id") for c in cells]
+    if ordered_ids != sorted(ordered_ids): errors.append("cells are not deterministically ordered")
+    known_ids = set(ordered_ids)
+    for cell in cells:
+        cid = cell.get("cellId") or cell.get("id")
+        for neighbor in cell.get("routingNeighbors") or []:
+            if neighbor not in known_ids: errors.append(f"{cid}: unknown routing neighbor {neighbor}")
     return errors
 
 def main(argv=None):
