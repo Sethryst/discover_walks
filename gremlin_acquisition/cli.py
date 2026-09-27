@@ -24,7 +24,10 @@ def main(argv=None):
     ledger=AcquisitionLedger(a.ledger); plans=AcquisitionPlanner(WklsGeography(),ledger).plan(root=a.root,max_batches=a.batches)
     if a.ics:
         events=[validate_event(e,date.today().isoformat()) for e in parse_ics(a.ics.read_text(encoding='utf-8'),a.source_url)]
-        source=SourceRecord(a.source_url,'replay.invalid',plans[0].geography.id,events=events); apply_source_result(source,events); ledger.upsert(source)
+        previous = ledger.sources.get(a.source_url)
+        source=SourceRecord(a.source_url,'replay.invalid',plans[0].geography.id,events=events); apply_source_result(source,events)
+        ledger.record_event_transitions('cli-replay', a.source_url, previous.events if previous else [], events)
+        ledger.upsert(source)
     package = None
     if a.region_config:
         if not a.source_body:

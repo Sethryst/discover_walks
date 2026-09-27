@@ -7,7 +7,7 @@ from .models import SourceRecord, SourceStatus, jsonable
 class AcquisitionLedger:
     """Durable, restart-safe ledger. JSON export is retained for inspection only."""
     def __init__(self, path=None):
-        self.sources: dict[str,SourceRecord]={}; self.attempts=[]; self.decisions=[]; self.coverage=[]; self.search_feedback=[]; self.region_discoveries=[]; self.pois=[]; self.poi_transitions=[]; self.review_packages=[]; self.package_transitions=[]; self.path=Path(path) if path else None
+        self.sources: dict[str,SourceRecord]={}; self.attempts=[]; self.decisions=[]; self.coverage=[]; self.search_feedback=[]; self.region_discoveries=[]; self.pois=[]; self.poi_transitions=[]; self.event_transitions=[]; self.review_packages=[]; self.package_transitions=[]; self.path=Path(path) if path else None
         self._db=sqlite3.connect(self.path) if self.path else None
         if self._db:
             self._db.executescript('''create table if not exists sources(url text primary key, payload text not null, updated_at text default current_timestamp);
@@ -19,6 +19,7 @@ class AcquisitionLedger:
             create table if not exists region_discoveries(id integer primary key, payload text not null);
             create table if not exists pois(id integer primary key, payload text not null);
             create table if not exists poi_transitions(id integer primary key, payload text not null);
+            create table if not exists event_transitions(id integer primary key, payload text not null);
             create table if not exists review_packages(package_id text primary key, payload text not null);
             create table if not exists package_transitions(id integer primary key, payload text not null);'''); self._db.commit()
             for row in self._db.execute('select payload from sources'):
@@ -31,6 +32,7 @@ class AcquisitionLedger:
             self.region_discoveries=[json.loads(row[0]) for row in self._db.execute('select payload from region_discoveries order by id')]
             self.pois=[json.loads(row[0]) for row in self._db.execute('select payload from pois order by id')]
             self.poi_transitions=[json.loads(row[0]) for row in self._db.execute('select payload from poi_transitions order by id')]
+            self.event_transitions=[json.loads(row[0]) for row in self._db.execute('select payload from event_transitions order by id')]
             self.review_packages=[json.loads(row[0]) for row in self._db.execute('select payload from review_packages order by package_id')]
             self.package_transitions=[json.loads(row[0]) for row in self._db.execute('select payload from package_transitions order by id')]
         else: self.transitions=[]
@@ -151,6 +153,29 @@ class AcquisitionLedger:
 
     def budget_available(self, limit): return len(self.attempts) < limit
 
+    def record_event_transitions(self, run_id, source_url, previous, current):
+        """Persist current-event lifecycle changes, including expiry and removal."""
+        before = {event.stable_id or event.official_url: event for event in previous}
+        after = {event.stable_id or event.official_url: event for event in current}
+        rows = []
+        for key in sorted(set(before) | set(after)):
+            old, new = before.get(key), after.get(key)
+            if old is None:
+                state = "EXPIRED" if new.expired else "NEW"
+            elif new is None:
+                state = "REMOVED"
+            elif new.expired and not old.expired:
+                state = "EXPIRED"
+            elif jsonable(old) != jsonable(new):
+                state = "UPDATED"
+            else:
+                state = "UNCHANGED"
+            row = {"run_id": run_id, "source_url": source_url, "event_id": key, "state": state}
+            rows.append(row); self.event_transitions.append(row)
+        if self._db and rows:
+            self._db.executemany('insert into event_transitions(payload) values(?)', ((json.dumps(row, sort_keys=True),) for row in rows)); self._db.commit()
+        return rows
+
     def record_poi_transition(self, run_id, geography_id, record_id, state, reason):
         row = {"run_id": run_id, "geography_id": geography_id, "record_id": record_id, "state": state, "reason": reason}
         self.poi_transitions.append(row)
@@ -183,7 +208,7 @@ class AcquisitionLedger:
         if self._db: self._db.execute('insert into transitions(payload) values(?)',(json.dumps(row,sort_keys=True),)); self._db.commit()
         return source
     def dump(self, path: str|Path):
-        Path(path).write_text(json.dumps({"sources":jsonable(list(self.sources.values())),"attempts":self.attempts,"decisions":self.decisions,"coverage":self.coverage,"search_feedback":self.search_feedback,"region_discoveries":self.region_discoveries,"pois":self.pois,"poi_transitions":self.poi_transitions,"review_packages":self.review_packages,"package_transitions":self.package_transitions}, indent=2, sort_keys=True), encoding="utf-8")
+        Path(path).write_text(json.dumps({"sources":jsonable(list(self.sources.values())),"attempts":self.attempts,"decisions":self.decisions,"coverage":self.coverage,"search_feedback":self.search_feedback,"region_discoveries":self.region_discoveries,"pois":self.pois,"poi_transitions":self.poi_transitions,"event_transitions":self.event_transitions,"review_packages":self.review_packages,"package_transitions":self.package_transitions}, indent=2, sort_keys=True), encoding="utf-8")
 
     def manifest(self, run_id, inputs, config, dependency_revision="unknown"):
         return {"run_id":run_id,"schema":"acquisition-ledger.v2","input_sha256":hashlib.sha256(json.dumps(inputs,sort_keys=True).encode()).hexdigest(),"config":config,"dependency_revision":dependency_revision}

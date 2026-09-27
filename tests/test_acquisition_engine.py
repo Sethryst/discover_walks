@@ -49,6 +49,16 @@ def test_lifecycle_transitions_are_explicit_and_persisted(tmp_path):
     with pytest.raises(ValueError): ledger.transition(source,'PROMOTED','skip approval')
     reopened=AcquisitionLedger(tmp_path/'l.db'); assert len(reopened.transitions)==2
 
+def test_event_lifecycle_history_persists_new_updated_expired_and_removed(tmp_path):
+    ledger=AcquisitionLedger(tmp_path/'events.db')
+    first=validate_event(EventEvidence('Walk','2099-01-01T10:00:00Z','https://x/w','https://x',stable_id='e1',latitude=1,longitude=2),'2026-01-01')
+    ledger.record_event_transitions('r1','https://x',[ ],[first])
+    expired=validate_event(EventEvidence('Walk moved','2020-01-01T10:00:00Z','https://x/w','https://x',stable_id='e1',latitude=1,longitude=2),'2026-01-01')
+    ledger.record_event_transitions('r2','https://x',[first],[expired])
+    ledger.record_event_transitions('r3','https://x',[expired],[])
+    reopened=AcquisitionLedger(tmp_path/'events.db')
+    assert [row['state'] for row in reopened.event_transitions] == ['NEW','EXPIRED','REMOVED']
+
 def test_rss_canonicalization_and_redirect_cycles():
     rss='<rss><channel><item><title>River Walk</title><pubDate>2099-01-01T10:00:00Z</pubDate><guid>r1</guid></item></channel></rss>'
     assert parse_rss(rss,'https://example.gov/feed')[0].stable_id == 'r1'
