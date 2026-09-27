@@ -102,6 +102,12 @@ def run_discovered_region_pilot(fixture_dir, ledger_path, package_dir):
     proposals = governed_source_proposals([search_result], need.geography_id)
     for proposal in proposals:
         ledger.record_source_proposal('discovered-region-pilot', proposal)
+    proposal_dir = Path(package_dir).parent / 'source-proposals'
+    proposal_dir.mkdir(parents=True, exist_ok=True)
+    for proposal in proposals:
+        (proposal_dir / f"{proposal['id']}.json").write_text(
+            json.dumps(proposal, sort_keys=True, indent=2) + "\n", encoding='utf-8'
+        )
     discovered_source = {**discovered_sources[0], 'propertyMapping': config['source']['propertyMapping']}
     failed_source = {**discovered_source, 'url': 'https://new-city.example/retired-places.geojson'}
     def transport(url):
@@ -128,5 +134,6 @@ def run_discovered_region_pilot(fixture_dir, ledger_path, package_dir):
         'fallbackReason': fallback.reason,
         'sourceProposals': proposals,
         'ledgerSourceProposals': len(ledger.source_proposals),
+        'sourceProposalPaths': [str(proposal_dir / f"{proposal['id']}.json") for proposal in proposals],
         'ledgerDiscoveries': len(ledger.region_discoveries),
     }
