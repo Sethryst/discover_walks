@@ -11,7 +11,7 @@ from .release import build_selected_package, rollback_exact
 from .adapters import parse_geojson, acquire_with_fallback
 from .package_intelligence import FeatureRequirement, RegionalNeed, coverage_report, discover_regions, needs_from_discoveries
 from .review_package import build_review_package, write_review_package
-from .source_search import SearchResult, candidate_source_configs
+from .source_search import SearchResult, candidate_source_configs, governed_source_proposals
 
 
 class _ReplayGeography:
@@ -94,10 +94,12 @@ def run_discovered_region_pilot(fixture_dir, ledger_path, package_dir):
     plans = AcquisitionPlanner(geo=geo, ledger=ledger).plan_discovered_regions(
         'discovered-region-pilot', discoveries, max_batches=1, budget=5
     )
-    discovered_sources = candidate_source_configs([SearchResult(
+    search_result = SearchResult(
         '"New City" official places', 'replay-search', 'ok',
         (config['source']['url'],), tuple(sorted({r.canonical_category for r in need.requirements})),
-    )])
+    )
+    discovered_sources = candidate_source_configs([search_result])
+    proposals = governed_source_proposals([search_result], need.geography_id)
     discovered_source = {**discovered_sources[0], 'propertyMapping': config['source']['propertyMapping']}
     failed_source = {**discovered_source, 'url': 'https://new-city.example/retired-places.geojson'}
     def transport(url):
@@ -122,5 +124,6 @@ def run_discovered_region_pilot(fixture_dir, ledger_path, package_dir):
         'recordCount': len(result.records),
         'attemptCount': len(fallback.attempts),
         'fallbackReason': fallback.reason,
+        'sourceProposals': proposals,
         'ledgerDiscoveries': len(ledger.region_discoveries),
     }

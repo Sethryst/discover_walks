@@ -1,6 +1,6 @@
 from gremlin_acquisition.package_intelligence import FeatureRequirement, RegionalNeed
 from gremlin_acquisition.source_search import (
-    SearchResult, SearchLine, candidate_source_configs, classify_search_result, generate_search_lines, search_feedback,
+    SearchResult, SearchLine, candidate_source_configs, classify_search_result, generate_search_lines, governed_source_proposals, search_feedback,
 )
 from gremlin_acquisition.ledger import AcquisitionLedger
 from gremlin_acquisition.planner import AcquisitionPlanner
@@ -44,6 +44,16 @@ def test_search_results_become_deduplicated_https_source_candidates():
         'discoveredFrom': 'park query',
         'discoveryReason': 'search result classified as successful',
     }]
+
+
+def test_source_candidates_become_review_only_governed_proposals():
+    proposals = governed_source_proposals([
+        SearchResult('park query', 'catalog-search', 'ok', ('https://city.gov/parks',), ('park',), 'official catalog')
+    ], 'new-city')
+    assert proposals[0]['status'] == 'PROPOSED'
+    assert proposals[0]['binding']['kind'] == 'region-source'
+    assert proposals[0]['publication'] == 'not authorized'
+    assert proposals[0]['evidence']['query'] == 'park query'
 
 
 def test_planner_persists_each_search_outcome_without_fetching_sources(tmp_path):

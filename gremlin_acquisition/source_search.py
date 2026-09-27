@@ -6,6 +6,7 @@ result classification so search behavior is replayable and auditable.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from hashlib import sha256
 from typing import Iterable, Protocol
 from urllib.parse import urlsplit
 
@@ -59,6 +60,29 @@ def candidate_source_configs(results: Iterable[SearchResult], *, provider='geojs
             })
             candidates[key]['domains'] = sorted(set(candidates[key]['domains']) | set(categories))
     return [candidates[key] for key in sorted(candidates)]
+
+
+def governed_source_proposals(results: Iterable[SearchResult], geography_id: str) -> list[dict]:
+    """Create review-only registration proposals from search candidates."""
+    proposals = []
+    for candidate in candidate_source_configs(results):
+        source_id = sha256(f"{geography_id}|{candidate['url']}".encode()).hexdigest()[:16]
+        proposals.append({
+            'id': f"discovered-{source_id}",
+            'status': 'PROPOSED',
+            'geographyId': geography_id,
+            'sourceId': source_id,
+            'provider': candidate['provider'],
+            'url': candidate['url'],
+            'domains': candidate['domains'],
+            'binding': {'kind': 'region-source', 'regionId': geography_id, 'sourceId': source_id},
+            'evidence': {
+                'query': candidate['discoveredFrom'],
+                'reason': candidate['discoveryReason'],
+            },
+            'publication': 'not authorized',
+        })
+    return proposals
 
 
 class SourceSearchAdapter(Protocol):
