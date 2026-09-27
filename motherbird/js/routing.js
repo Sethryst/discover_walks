@@ -77,10 +77,24 @@ async function stitchBoundaryLeg(origin, destination, originCell, destinationCel
     if (!first.ok) continue;
     const second = await request(destinationCell, transfer, destination);
     if (!second.ok) continue;
+    const firstEnd = first.geometry?.coordinates?.at(-1);
+    const secondStart = second.geometry?.coordinates?.[0];
+    if (!firstEnd || !secondStart
+      || distanceMeters(firstEnd, [transfer.lng, transfer.lat]) > 25
+      || distanceMeters(secondStart, [transfer.lng, transfer.lat]) > 25
+      || distanceMeters(firstEnd, secondStart) > 25) continue;
     const score = first.distance_m + second.distance_m;
     if (!best || score < best.score) best = { score, legs: [first, second] };
   }
   return best?.legs || null;
+}
+
+function distanceMeters(a, b) {
+  const radians = (value) => value * Math.PI / 180;
+  const lat1 = radians(a[1]); const lat2 = radians(b[1]);
+  const dLat = lat2 - lat1; const dLon = radians(b[0] - a[0]);
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) ** 2;
+  return 6371000 * 2 * Math.atan2(Math.sqrt(h), Math.sqrt(1 - h));
 }
 
 function boundaryTransferPoints(left, right) {
@@ -113,7 +127,7 @@ function mergeInstructions(legs) {
 function requestRoute(payload) {
   if (typeof Worker === 'undefined') return Promise.resolve(failure('GRAPH_VERSION_UNAVAILABLE'));
   if (!worker) {
-    worker = new Worker('./js/offline-router-worker.js?v=20260927-cell-stitch-v4', { type: 'module' });
+    worker = new Worker('./js/offline-router-worker.js?v=20260927-cell-stitch-v5', { type: 'module' });
     worker.onmessage = ({ data }) => {
       if (data.type === 'progress') { window.dispatchEvent(new CustomEvent('routing-progress', { detail: data })); return; }
       if (data.type === 'worker-error') { for (const entry of pending.values()) { clearTimeout(entry.timer); entry.resolve(failure('ROUTING_WORKER_ERROR', data.message)); } pending.clear(); return; }
