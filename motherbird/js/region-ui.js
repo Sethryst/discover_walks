@@ -8,6 +8,7 @@ import { canUseOfflineRegion } from './entitlements.js';
 import { FieldEditionLoader } from './field-edition-loader.js';
 import { CITIES } from './constants.js';
 import { downloadPublishedStateProduct, fetchOsmReleaseManifest } from './osm-release.js';
+import { acquisitionPlacesForRegion, loadActiveAcquisitionPackage } from './acquisition-package-runtime.js';
 
 export const regionInstaller = new RegionInstaller({ db });
 
@@ -107,10 +108,20 @@ export async function initRegionAutomation() {
     const region = installedRegions.some((entry) => entry.id === activeRegionId)
       ? await regionApi.loadRegion(activeRegionId)
       : null;
+    const acquisitionPackage = await loadActiveAcquisitionPackage();
+    const acquisitionPlaces = acquisitionPlacesForRegion(acquisitionPackage, [activeRegionId, CITIES[state.activeCity]?.id, CITIES[state.activeCity]?.packId]);
+    if (acquisitionPlaces.length) {
+      const base = state.cityPois[state.activeCity] || [];
+      const merged = new Map(base.map((poi) => [String(poi.id), poi]));
+      acquisitionPlaces.forEach((poi) => merged.set(String(poi.id), poi));
+      state.cityPois[state.activeCity] = [...merged.values()];
+    }
 
     state.regionAutomation = {
       ...region,
       installedRegions,
+      acquisitionPackage,
+      acquisitionPlaces,
       installer: regionInstaller
     };
     chip.textContent = region?.ready ? 'Region automation ready' : 'No installed offline region selected';

@@ -52,6 +52,8 @@ def build_selected_frontend_package(package: dict, selected_record_ids, *, appro
         "schema": "motherbird-regional-package.v1",
         "packageId": package.get("packageId"),
         "approvalReference": approval_reference,
+        "geography": package.get("coverage", {}).get("geographyId") or package.get("geography"),
+        "requirements": package.get("coverage", {}).get("requiredCategories", []),
         "places": [to_frontend_place(POIRecord(**available[record_id]["record"])) for record_id in sorted(selected)],
     }
     return projected
