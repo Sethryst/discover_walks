@@ -2,7 +2,7 @@ from gremlin_acquisition.geo import WklsGeography
 from gremlin_acquisition.planner import AcquisitionPlanner
 from gremlin_acquisition.ledger import AcquisitionLedger
 from gremlin_acquisition.models import EventEvidence, SourceRecord, SourceStatus
-from gremlin_acquisition.fallbacks import validate_event, apply_source_result, parse_ics, parse_jsonld
+from gremlin_acquisition.fallbacks import validate_event, apply_source_result, parse_ics, parse_jsonld, parse_rss, canonical_url, follow_redirects
 from gremlin_acquisition.promotion import PromotionBuilder
 
 def test_portland_expands_and_loop_is_penalized():
@@ -37,3 +37,10 @@ def test_sqlite_ledger_reloads_and_enforces_global_budget(tmp_path):
     reopened=AcquisitionLedger(path)
     assert len(reopened.attempts)==1 and 'https://x' in reopened.sources
     assert not reopened.budget_available(1)
+
+def test_rss_canonicalization_and_redirect_cycles():
+    rss='<rss><channel><item><title>River Walk</title><pubDate>2099-01-01T10:00:00Z</pubDate><guid>r1</guid></item></channel></rss>'
+    assert parse_rss(rss,'https://example.gov/feed')[0].stable_id == 'r1'
+    assert canonical_url('HTTPS://WWW.Example.gov/events/?utm_source=x&x=1') == 'https://example.gov/events?x=1'
+    terminal, cycle=follow_redirects('https://a.test', {'https://a.test':'https://b.test','https://b.test':'https://a.test'})
+    assert terminal == 'https://a.test' and cycle
