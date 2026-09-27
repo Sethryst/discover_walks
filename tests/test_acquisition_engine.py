@@ -38,6 +38,13 @@ def test_sqlite_ledger_reloads_and_enforces_global_budget(tmp_path):
     assert len(reopened.attempts)==1 and 'https://x' in reopened.sources
     assert not reopened.budget_available(1)
 
+def test_lifecycle_transitions_are_explicit_and_persisted(tmp_path):
+    ledger=AcquisitionLedger(tmp_path/'l.db'); source=SourceRecord('https://x','x','g')
+    ledger.transition(source,'VALIDATING','fetch started'); ledger.transition(source,'READY FOR REVIEW','dated event found')
+    import pytest
+    with pytest.raises(ValueError): ledger.transition(source,'PROMOTED','skip approval')
+    reopened=AcquisitionLedger(tmp_path/'l.db'); assert len(reopened.transitions)==2
+
 def test_rss_canonicalization_and_redirect_cycles():
     rss='<rss><channel><item><title>River Walk</title><pubDate>2099-01-01T10:00:00Z</pubDate><guid>r1</guid></item></channel></rss>'
     assert parse_rss(rss,'https://example.gov/feed')[0].stable_id == 'r1'

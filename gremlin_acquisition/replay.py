@@ -19,9 +19,9 @@ def run_offline_pilot(fixture_dir, ledger_path, package_dir, audit_path):
         event=EventEvidence(item['title'],item['start'],item['official_url'],data['source'],item.get('stable_id'),latitude=item.get('latitude'),longitude=item.get('longitude'),parser='replay')
         events.append(validate_event(event,date.today().isoformat()))
     source=SourceRecord(data['source'],'replay.invalid',plans[-1].geography.id,events=events)
-    apply_source_result(source,events); ledger.upsert(source)
+    ledger.transition(source,'VALIDATING','replay evidence received'); apply_source_result(source,events); ledger.transition(source,'READY FOR REVIEW','current replay event evidence validated'); ledger.upsert(source)
     # The offline fixture stands in for the trusted approval boundary only.
-    source.status=SourceStatus.APPROVED; source.approved_by='replay-moderator-contract'; ledger.upsert(source)
+    source.approved_by='replay-moderator-contract'; ledger.transition(source,'APPROVED','trusted replay approval contract',actor=source.approved_by); ledger.upsert(source)
     selected=[e.stable_id for e in events if not e.expired and not e.warnings]
     report={'generatedAt':'offline-replay','rows':[{'sourceId':source.source_url,'status':'ready-for-promotion','events':[{'stableId':e.stable_id,'title':e.title,'startsAt':e.start,'officialUrl':e.official_url} for e in events if not e.expired and not e.warnings]}]}
     payload,path=build_selected_package(report,selected,package_dir)
