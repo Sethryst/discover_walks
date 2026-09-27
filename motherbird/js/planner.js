@@ -66,6 +66,11 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
   }
   const points = ['round-trip', 'auto-round-trip'].includes(routeMode) ? [center, ...stops, center] : [center, ...stops];
   const routed = await routeOnFoot(points, { city: state.activeCity, profile: 'ordinary_walking_beta' }).catch(() => ({ ok: false, status: 'GRAPH_VERSION_UNAVAILABLE' }));
+  if (!routed.ok && routeMode === 'point-to-point') {
+    state.plannerEnd = null;
+    state.plannerSelecting = 'End';
+    toast('That destination could not be connected. Tap the map again to choose another point.');
+  }
   const plan = {
     id: `concept-${Date.now()}`, title: title || `${CITIES[state.activeCity]?.name || 'Local'} ${minutes}-minute sketch`,
     reason: reason || conceptReason(stops), city: state.activeCity, routeMode, estimatedDurationMinutes: minutes,

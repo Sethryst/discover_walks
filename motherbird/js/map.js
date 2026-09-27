@@ -16,7 +16,8 @@ import {
   registerNationalPoiIcons
 } from './national-poi-map.js';
 import { enabledNationalOsmLayerIds, hasEnabledNationalOsmLayers } from './national-osm-layers.js';
-import { activateWalkingCellAt } from './walking-cell-runtime.js';
+import { activateWalkingCellAt, walkingCellManifestUrl } from './walking-cell-runtime.js';
+import { WalkingCellRegistry } from './walking-cell-registry.js';
 import { OpfsRangeSource } from './opfs-range-source.js';
 
 const OSM_ATTRIBUTION = '&copy; OpenStreetMap contributors';
@@ -40,6 +41,7 @@ export function initMap() {
   // location—not the regional centroid—and keep enough zoom for a walk.
   const initialZoom = view?.zoom ?? ((state.currentPosition || state.lastPosition) ? Math.max(active.zoom, 15) : active.zoom);
   state.map = L.map('map', { zoomControl: false, attributionControl: true, zoomAnimation: false, fadeAnimation: false, markerZoomAnimation: false, inertia: false }).setView([initialPosition.lat, initialPosition.lng], initialZoom);
+  if (new URLSearchParams(globalThis.location?.search || '').get('routing-debug') === '1') void addRoutingDebugOverlay();
   // Resizing or rotating the viewport must never change the user's map zoom.
   window.addEventListener('resize', () => {
     if (!state.map) return;
@@ -120,6 +122,25 @@ export function initMap() {
   });
   // Federal boundary geometry remains available for a future visual redesign,
   // but the current borders, fills, and controls are intentionally not mounted.
+}
+
+async function addRoutingDebugOverlay() {
+  const manifestUrl = walkingCellManifestUrl();
+  if (!manifestUrl || !state.map) return;
+  try {
+    const registry = await WalkingCellRegistry.load(manifestUrl);
+    const layer = L.layerGroup().addTo(state.map);
+    state.routingDebugLayer = layer;
+    registry.cells.filter((cell) => cell.availability === 'routing_available').forEach((cell) => {
+      const rectangle = L.rectangle([[cell.bounds.south, cell.bounds.west], [cell.bounds.north, cell.bounds.east]], {
+        color: '#e87500', weight: 2, opacity: 0.95, fillColor: '#ff9d2e', fillOpacity: 0.18, interactive: false
+      });
+      rectangle.bindTooltip(`Routable cell: ${cell.id}`, { sticky: true });
+      rectangle.addTo(layer);
+    });
+  } catch (error) {
+    console.warn('Routing debug overlay unavailable:', error.message);
+  }
 }
 
 function trackActiveViewport() {

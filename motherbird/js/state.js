@@ -51,6 +51,7 @@ export const state = {
   nationalPoiAttribution: false,
   nationalOsmLayers: {},
   walkingCell: null,
+  routingDebugLayer: null,
   walkingCellMap: null,
   walkingCellSync: null,
   geoCyphers: [],

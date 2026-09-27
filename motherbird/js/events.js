@@ -307,16 +307,20 @@ function bindWalkControls() {
     if (!input.checked) return;
     state.plannerEnd = null;
     state.plannerSelecting = input.value === 'point-to-point' ? 'End' : null;
+    const selectionHint = el('routeSelectionHint');
+    selectionHint?.classList.toggle('hidden', input.value !== 'point-to-point');
     if (input.value === 'point-to-point') {
-      window.dispatchEvent(new CustomEvent('primary-panel-close-requested'));
       toast('Tap the map to choose your destination.');
     }
-    el('startPanel')?.classList.add('hidden');
-    el('radialRouteOptionsButton')?.setAttribute('aria-expanded', 'false');
+    el('startPanel')?.classList.remove('hidden');
+    el('radialRouteOptionsButton')?.setAttribute('aria-expanded', 'true');
   }));
   el('generateWalkButton')?.addEventListener('click', () => void generateTimeBasedPlan());
   window.addEventListener('walk-sketch-painted', (event) => renderWalkSketch(event.detail));
   window.addEventListener('planner-point-selected', () => {
+    el('routeSelectionHint')?.classList.add('hidden');
+    el('startPanel')?.classList.add('hidden');
+    el('radialRouteOptionsButton')?.setAttribute('aria-expanded', 'false');
     toast('Destination selected. Sketching your point-to-point walk…');
     void generateTimeBasedPlan();
   });
