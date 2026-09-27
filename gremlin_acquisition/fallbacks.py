@@ -38,7 +38,12 @@ def validate_event(event, now_date):
     except ValueError: warnings.append("invalid start timestamp")
     if event.expired: warnings.append("expired")
     if event.latitude is None or event.longitude is None: warnings.append("missing coordinates")
-    event.warnings=warnings; return event
+    event.warnings=warnings
+    from .quality import score_event
+    score = score_event(event, now_date)
+    event.quality_score = score.total
+    event.quality_rationale = list(score.rationale)
+    return event
 
 def parse_ics(body, source_url, retrieved_at=None):
     rows=[]; current={}

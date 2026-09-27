@@ -243,7 +243,10 @@ class AcquisitionLedger:
                 state = "UPDATED"
             else:
                 state = "UNCHANGED"
-            row = {"run_id": run_id, "source_url": source_url, "event_id": key, "state": state}
+            scored = new or old
+            row = {"run_id": run_id, "source_url": source_url, "event_id": key, "state": state,
+                   "qualityScore": scored.quality_score if scored else None,
+                   "qualityRationale": list(scored.quality_rationale) if scored else []}
             rows.append(row); self.event_transitions.append(row)
         if self._db and rows:
             self._db.executemany('insert into event_transitions(payload) values(?)', ((json.dumps(row, sort_keys=True),) for row in rows)); self._db.commit()

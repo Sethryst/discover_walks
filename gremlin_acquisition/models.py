@@ -19,6 +19,8 @@ class EventEvidence:
     retrieved_at: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
     warnings: list[str] = field(default_factory=list); expired: bool = False
     timezone_name: str|None = None; raw_evidence_sha256: str|None = None
+    quality_score: float|None = None
+    quality_rationale: list[str] = field(default_factory=list)
 
 @dataclass
 class ScoreBreakdown:

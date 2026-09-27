@@ -17,7 +17,11 @@ def test_empty_and_migrated_states():
     s2=SourceRecord("https://x.example/events","x.example","g"); apply_source_result(s2,[]); assert s2.status==SourceStatus.NO_CURRENT_EVENTS
 def test_event_validation_and_idempotent_promotion():
     e=validate_event(EventEvidence("Town Fair","2099-05-01T10:00:00Z","https://x/e","https://x",stable_id="e1",latitude=1,longitude=2),"2026-01-01")
-    s=SourceRecord("https://x","x","g",status=SourceStatus.APPROVED,events=[e]); b=PromotionBuilder(); a=b.build([s],{"e1"}); c=b.build([s],{"e1"}); assert a==c and a["event_count"]==1
+    s=SourceRecord("https://x","x","g",status=SourceStatus.APPROVED,events=[e]); b=PromotionBuilder(); a=b.build([s],{"e1"}); c=b.build([s],{"e1"}); assert a==c and a["event_count"]==1 and e.quality_score == 1.0
+
+def test_event_quality_score_explains_missing_geometry():
+    e=validate_event(EventEvidence("Town Fair","2099-05-01T10:00:00Z","https://x/e","https://x",stable_id="e1"),"2026-01-01")
+    assert e.quality_score == 0.8 and "missing coordinates" in e.quality_rationale
 
 def test_replay_parsers_preserve_provenance_and_reject_unresolved_geo():
     ics="BEGIN:VEVENT\\nUID:i1\\nSUMMARY:Town Walk\\nDTSTART:20990101T100000Z\\nURL:https://official.example/walk\\nEND:VEVENT"
@@ -73,6 +77,7 @@ def test_event_lifecycle_history_persists_new_updated_expired_and_removed(tmp_pa
     ledger.record_event_transitions('r3','https://x',[expired],[])
     reopened=AcquisitionLedger(tmp_path/'events.db')
     assert [row['state'] for row in reopened.event_transitions] == ['NEW','EXPIRED','REMOVED']
+    assert reopened.event_transitions[0]['qualityScore'] == 1.0
 
 def test_rss_canonicalization_and_redirect_cycles():
     rss='<rss><channel><item><title>River Walk</title><pubDate>2099-01-01T10:00:00Z</pubDate><guid>r1</guid></item></channel></rss>'
