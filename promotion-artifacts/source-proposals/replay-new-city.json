@@ -1,0 +1,15 @@
+{
+  "id": "discovered-6d9f33cfe2a1d5a7",
+  "status": "PROPOSED",
+  "geographyId": "replay-new-city",
+  "sourceId": "6d9f33cfe2a1d5a7",
+  "provider": "replay-search",
+  "url": "https://new-city.example/official-places.geojson",
+  "domains": ["history", "library", "park", "trail"],
+  "binding": {"kind": "region-source", "regionId": "replay-new-city", "sourceId": "6d9f33cfe2a1d5a7"},
+  "evidence": {
+    "query": "\"New City\" official places",
+    "reason": "search result classified as successful"
+  },
+  "publication": "not authorized"
+}

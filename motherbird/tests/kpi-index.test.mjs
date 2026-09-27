@@ -85,6 +85,14 @@ test('KPI review inventory exposes committed content-addressed packages', async 
   assert.doesNotMatch(html, /No persisted review package artifacts found/);
 });
 
+test('KPI exposes discovered source proposals without treating them as publication', async () => {
+  const model = await collectKpiInventory();
+  const html = renderKpiHtml(model);
+  assert.ok(model.sourceProposals.some((proposal) => proposal.geographyId === 'replay-new-city'));
+  assert.match(html, /Discovered source proposals/);
+  assert.match(html, /not authorized/);
+});
+
 test('KPI coverage separates core failures from missing optional enhancements', async () => {
   const model = await collectKpiInventory();
   for (const city of model.cities) {
