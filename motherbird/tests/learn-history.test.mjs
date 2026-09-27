@@ -7,7 +7,8 @@ import {
   packProgress,
   rectangleFromBbox,
   fillForRemaining,
-  learnHistoryHtml
+  learnHistoryHtml,
+  viewboxContainsPoint
 } from '../js/learn-history.js';
 
 const museum = { id: 'm1', name: 'Fairfax Museum', lat: 38.84, lng: -77.3, tags: ['history', 'history_museum'] };
@@ -65,4 +66,10 @@ test('Learn HTML names the two parent folders', () => {
   assert.match(html, /Watersheds/);
   assert.match(html, /Historic eras/);
   assert.doesNotMatch(html, /NEAREST STORY/);
+});
+
+test('Learn content is gated by the active map view', () => {
+  const map = { getBounds: () => ({ contains: ([lat, lng]) => lat > 38 && lat < 39 && lng < -77 && lng > -78, intersects: () => true }) };
+  assert.equal(viewboxContainsPoint(map, { lat: 38.5, lng: -77.5 }), true);
+  assert.equal(viewboxContainsPoint(map, { lat: 41.8, lng: -87.6 }), false);
 });

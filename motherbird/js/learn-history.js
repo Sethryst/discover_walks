@@ -2,6 +2,7 @@ import { state } from './state.js';
 import { CITIES } from './constants.js';
 import { escapeHtml } from './utils.js';
 import { distanceMeters } from './geo.js';
+import { installedPackBounds } from './offline-view.js';
 
 export const LEARN_INDEX_URL = './data/learn/index.json';
 export const LEARN_SPLITS_URL = './data/learn/history/pack-splits.json';
@@ -74,6 +75,21 @@ export function packProgress(pois, profile) {
 export function sortSitesByDistance(sites, point) {
   if (!point || !Number.isFinite(Number(point.lat))) return [...sites];
   return [...sites].sort((left, right) => distanceMeters(point, left) - distanceMeters(point, right));
+}
+
+// Learn content is local to the installed pack. Do not expose Virginia's
+// historical catalogue while the map is parked somewhere else in the US.
+export function viewboxContainsPoint(map, item) {
+  if (!map?.getBounds || !Number.isFinite(Number(item?.lat)) || !Number.isFinite(Number(item?.lng))) return false;
+  try { return map.getBounds().contains([Number(item.lat), Number(item.lng)]); } catch { return false; }
+}
+
+export function viewboxOverPack(map) {
+  const bbox = installedPackBounds();
+  if (!map?.getBounds || !bbox) return false;
+  try {
+    return map.getBounds().intersects([[bbox.south, bbox.west], [bbox.north, bbox.east]]);
+  } catch { return false; }
 }
 
 export function rectangleFromBbox(bbox) {
@@ -413,8 +429,20 @@ export async function renderLearnHistory(target, point) {
   if (learnScreen !== 'topo' && state.historicalTopoLayer) stopHistoricalTopo();
   if (learnScreen === 'home') {
     setLearnSheetMin(false);
+    if (!viewboxOverPack(state.map)) {
+      target.innerHTML = '<section class="learn-history"><p class="empty-state">Move the map over this installed pack to open its Learn layers.</p></section>';
+      state.learnBoundsLayer?.remove(); state.learnBoundsLayer = null;
+      return;
+    }
     target.innerHTML = learnHomeHtml();
     state.learnBoundsLayer?.remove(); state.learnBoundsLayer = null;
+    return;
+  }
+  if (!viewboxOverPack(state.map)) {
+    setLearnSheetMin(false);
+    target.innerHTML = '<section class="learn-history"><p class="empty-state">This Learn layer is local to the installed pack. Move the map over it to continue.</p></section>';
+    state.learnBoundsLayer?.remove(); state.learnBoundsLayer = null;
+    stopHistoricalTopo();
     return;
   }
   if (learnScreen === 'topo') {
@@ -447,8 +475,11 @@ export async function renderLearnHistory(target, point) {
     const lens = (catalog.lenses || []).find((item) => item.id === learnScreen) || null;
     const selected = (lens?.items || []).find((item) => item.id === activeLensItemId) || null;
     setLearnSheetMin(!!selected);
-    target.innerHTML = lensHtml(lens, selected, countWildlifeNotes());
-    paintLensItem({ map: state.map, leaflet: globalThis.L, lens, selected });
+    const visibleLens = lens ? { ...lens, items: (lens.items || []).filter((item) => viewboxContainsPoint(state.map, item)) } : null;
+    const visibleSelected = selected && viewboxContainsPoint(state.map, selected) ? selected : null;
+    setLearnSheetMin(!!visibleSelected);
+    target.innerHTML = lensHtml(visibleLens, visibleSelected, countWildlifeNotes());
+    paintLensItem({ map: state.map, leaflet: globalThis.L, lens: visibleLens, selected: visibleSelected });
     return;
   }
   setLearnSheetMin(false);
@@ -459,7 +490,9 @@ export async function renderLearnHistory(target, point) {
     const index = await fetch(LEARN_INDEX_URL).then((response) => response.ok ? response.json() : null);
     if (index?.folders?.length) folders = index.folders;
   } catch {}
-  target.innerHTML = learnHistoryHtml({ progress, folders, remaining: sortSitesByDistance(split.remaining, point).slice(0, 40), seen: sortSitesByDistance(split.seen, point).slice(0, 40) });
+  const visibleRemaining = split.remaining.filter((poi) => viewboxContainsPoint(state.map, poi));
+  const visibleSeen = split.seen.filter((poi) => viewboxContainsPoint(state.map, poi));
+  target.innerHTML = learnHistoryHtml({ progress, folders, remaining: sortSitesByDistance(visibleRemaining, point).slice(0, 40), seen: sortSitesByDistance(visibleSeen, point).slice(0, 40) });
   const catalog = await loadVirginiaSplits();
   paintVirginiaSplits({ map: state.map, leaflet: globalThis.L, packs: catalog.packs || [], activeId: state.activeCity, progress });
 }

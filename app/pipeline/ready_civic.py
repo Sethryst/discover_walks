@@ -13,7 +13,6 @@ from app.pipeline.source_config import SourceConfig
 
 
 READY = {
-    "chicago": (RssIcsEventsProvider, "https://www.chicago.gov/city/en/rss.html", "Chicago events", [-87.6298, 41.8781]),
     "norfolk": (JsonLdEventsProvider, "https://norfolk.libcal.com/calendars", "Norfolk Public Library Calendar", [-76.2859, 36.8508]),
     "wolf-trap-va": (NpsEventsProvider, "https://developer.nps.gov/api/v1/events", "NPS Wolf Trap events", [-77.2653, 38.9451]),
 }
