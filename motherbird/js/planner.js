@@ -8,6 +8,7 @@ import { splitDisconnectedPaths } from './routes.js';
 
 function selectedMinutes() { return Number(document.querySelector('input[name="walkTime"]:checked')?.value || 30); }
 function selectedRouteMode() { return document.querySelector('input[name="routeMode"]:checked')?.value || 'round-trip'; }
+function plannerOrigin() { return state.plannerStart || state.currentPosition || state.map?.getCenter() || CITIES[state.activeCity].center; }
 
 function interests() {
   const pressed = [...document.querySelectorAll('[data-start-interest][aria-pressed="true"]')].map((button) => button.dataset.startInterest);
@@ -49,7 +50,7 @@ export function paintWalkConcept(plan = state.plannedRoute, { fit = true } = {})
 export async function generateTimeBasedPlan({ stops: seededStops = null, title = null, reason = null, journeyId = null } = {}) {
   const minutes = selectedMinutes();
   const routeMode = selectedRouteMode();
-  const center = state.currentPosition || state.map?.getCenter() || CITIES[state.activeCity].center;
+  const center = plannerOrigin();
   const needsMapDestination = ['round-trip', 'point-to-point'].includes(routeMode);
   if (needsMapDestination && !state.plannerEnd) {
     state.plannerSelecting = 'End';
@@ -57,8 +58,9 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
     return null;
   }
   const count = minutes <= 20 ? 2 : minutes >= 60 ? 4 : 3;
+  const selectedStops = (state.plannerStops || []).map((point, index) => ({ name: `Stop ${index + 1}`, ...point }));
   const stops = needsMapDestination
-    ? [{ name: 'Selected destination', lat: state.plannerEnd.lat, lng: state.plannerEnd.lng }]
+    ? [...selectedStops, { name: 'Selected destination', lat: state.plannerEnd.lat, lng: state.plannerEnd.lng }]
     : (seededStops?.length ? seededStops : candidateStops(center, interests()).slice(0, count));
   if (!stops.length) {
     toast('No candidate places nearby to sketch a walk. Try panning the map or picking an area with places.');

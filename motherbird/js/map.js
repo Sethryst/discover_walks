@@ -65,10 +65,12 @@ export function initMap() {
   state.trailLayer = L.featureGroup().addTo(state.map);
   state.map.on('click', (event) => {
     if (state.plannerSelecting) {
-      state[`planner${state.plannerSelecting}`] = { lat: event.latlng.lat, lng: event.latlng.lng };
+      const point = { lat: event.latlng.lat, lng: event.latlng.lng };
+      if (state.plannerSelecting === 'Stop') state.plannerStops = [...(state.plannerStops || []), point];
+      else state[`planner${state.plannerSelecting}`] = point;
       const selected = state.plannerSelecting;
       state.plannerSelecting = null;
-      window.dispatchEvent(new CustomEvent('planner-point-selected', { detail: selected }));
+      window.dispatchEvent(new CustomEvent('planner-point-selected', { detail: { type: selected, point } }));
       return;
     }
     if (state.planningMode) return;

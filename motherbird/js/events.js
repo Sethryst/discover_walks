@@ -306,15 +306,35 @@ function bindWalkControls() {
   document.querySelectorAll('input[name="routeMode"]').forEach((input) => input.addEventListener('change', () => {
     if (!input.checked) return;
     state.plannerEnd = null;
+    state.plannerStops = [];
     state.plannerSelecting = input.value === 'point-to-point' ? 'End' : null;
     const selectionHint = el('routeSelectionHint');
     selectionHint?.classList.toggle('hidden', input.value !== 'point-to-point');
+    el('routePointControls')?.classList.toggle('hidden', input.value !== 'point-to-point');
     if (input.value === 'point-to-point') {
       toast('Tap the map to choose your destination.');
     }
     el('startPanel')?.classList.remove('hidden');
     el('radialRouteOptionsButton')?.setAttribute('aria-expanded', 'true');
   }));
+  const beginPointSelection = (type) => {
+    state.plannerSelecting = type;
+    toast(type === 'Start' ? 'Tap the map to choose your starting point.' : type === 'Stop' ? 'Tap the map to add a stop.' : 'Tap the map to choose your destination.');
+  };
+  el('chooseStartButton')?.addEventListener('click', () => beginPointSelection('Start'));
+  el('chooseEndButton')?.addEventListener('click', () => beginPointSelection('End'));
+  el('addStopButton')?.addEventListener('click', () => beginPointSelection('Stop'));
+  el('useCurrentLocationButton')?.addEventListener('click', () => {
+    if (!state.currentPosition) { toast('Current location is not available yet.'); return; }
+    state.plannerStart = { ...state.currentPosition };
+    toast('Starting point set to your current location.');
+  });
+  el('swapRoutePointsButton')?.addEventListener('click', () => {
+    const start = state.plannerStart || state.currentPosition;
+    state.plannerStart = state.plannerEnd;
+    state.plannerEnd = start ? { ...start } : null;
+    toast('Start and destination swapped.');
+  });
   el('generateWalkButton')?.addEventListener('click', () => void generateTimeBasedPlan());
   window.addEventListener('walk-sketch-painted', (event) => renderWalkSketch(event.detail));
   window.addEventListener('planner-point-selected', () => {

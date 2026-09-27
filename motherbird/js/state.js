@@ -92,6 +92,7 @@ export const state = {
   personalPlaceDraft: null,
   plannerStart: null,
   plannerEnd: null,
+  plannerStops: [],
   planOptions: [],
   routePlanningFailures: [],
   visiblePlanIds: new Set(),
