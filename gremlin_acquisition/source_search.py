@@ -32,6 +32,35 @@ class SearchResult:
     reason: str | None = None
 
 
+def candidate_source_configs(results: Iterable[SearchResult], *, provider='geojson') -> list[dict]:
+    """Turn search evidence into deterministic, reviewable source candidates.
+
+    Discovery proposes endpoints only; it does not approve them. Invalid,
+    non-HTTPS, and duplicate URLs are excluded with stable ordering.
+    """
+    candidates = {}
+    for raw in results:
+        result = classify_search_result(raw)
+        if result.status not in {'SUCCEEDED', 'SOURCE MIGRATED'}:
+            continue
+        categories = sorted(set(result.categories_found))
+        for url in result.urls:
+            parsed = urlsplit(url)
+            normalized = url.strip()
+            if parsed.scheme != 'https' or not parsed.hostname or not normalized:
+                continue
+            key = normalized.rstrip('/')
+            candidates.setdefault(key, {
+                'provider': result.provider or provider,
+                'url': key,
+                'domains': categories,
+                'discoveredFrom': result.query,
+                'discoveryReason': result.reason or 'search result classified as successful',
+            })
+            candidates[key]['domains'] = sorted(set(candidates[key]['domains']) | set(categories))
+    return [candidates[key] for key in sorted(candidates)]
+
+
 class SourceSearchAdapter(Protocol):
     name: str
 

@@ -1,6 +1,6 @@
 from gremlin_acquisition.package_intelligence import FeatureRequirement, RegionalNeed
 from gremlin_acquisition.source_search import (
-    SearchResult, SearchLine, classify_search_result, generate_search_lines, search_feedback,
+    SearchResult, SearchLine, candidate_source_configs, classify_search_result, generate_search_lines, search_feedback,
 )
 from gremlin_acquisition.ledger import AcquisitionLedger
 from gremlin_acquisition.planner import AcquisitionPlanner
@@ -30,6 +30,20 @@ def test_search_failures_remain_distinct():
     assert classify_search_result(SearchResult("q", "p", "timeout")).status == "TEMPORARY FAILURE"
     assert classify_search_result(SearchResult("q", "p", "empty")).status == "EMPTY"
     assert classify_search_result(SearchResult("q", "p", "duplicate")).status == "DUPLICATE SOURCE"
+
+
+def test_search_results_become_deduplicated_https_source_candidates():
+    candidates = candidate_source_configs([
+        SearchResult('park query', 'catalog-search', 'ok', ('https://city.gov/parks/', 'http://unsafe.example/park'), ('park',)),
+        SearchResult('trail query', 'catalog-search', 'ok', ('https://city.gov/parks',), ('trail',)),
+    ])
+    assert candidates == [{
+        'provider': 'catalog-search',
+        'url': 'https://city.gov/parks',
+        'domains': ['park', 'trail'],
+        'discoveredFrom': 'park query',
+        'discoveryReason': 'search result classified as successful',
+    }]
 
 
 def test_planner_persists_each_search_outcome_without_fetching_sources(tmp_path):
