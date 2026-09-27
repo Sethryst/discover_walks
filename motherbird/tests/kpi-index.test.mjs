@@ -61,6 +61,10 @@ test('KPI page exposes operator paths without publishing credential values', asy
   assert.match(html, /id="operatorGate"/);
   assert.match(html, /id="operatorPasskey"/);
   assert.match(html, /data-approval-id/);
+  assert.match(html, /acquisition_package_approvals/);
+  assert.match(html, /acquisition_package_selections/);
+  assert.match(html, /data-package-approval/);
+  assert.match(html, /data-package-record/);
   assert.doesNotMatch(html, /igmrogers@gmail\.com|2404210284/);
   assert.match(html, /DC spatial solo-pilot KPI/);
   assert.match(html, /local-only sync transport/);
