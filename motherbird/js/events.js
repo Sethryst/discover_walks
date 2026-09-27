@@ -313,24 +313,37 @@ function bindWalkControls() {
   const openRouteOptions = () => {
     const panel = el('startPanel');
     const open = panel?.classList.contains('hidden');
+    document.querySelectorAll('.drop-panel').forEach((item) => item.classList.add('hidden'));
+    document.querySelectorAll('.ink-chevron').forEach((item) => item.setAttribute('aria-expanded', 'false'));
     panel?.classList.toggle('hidden', !open);
     routeOptionsButton.setAttribute('aria-expanded', String(open));
     setPlanningMode(open);
   };
   // Keep one authoritative handler when the shell is re-initialized.
   if (routeOptionsButton) routeOptionsButton.onclick = openRouteOptions;
+  if (!document.body.dataset.walkMenuDismissBound) {
+    document.body.dataset.walkMenuDismissBound = 'true';
+    document.addEventListener('click', (event) => {
+      if (event.target.closest('#startPanel, #radialRouteOptionsButton, #startChevron')) return;
+      const panel = el('startPanel');
+      if (panel && !panel.classList.contains('hidden')) {
+        panel.classList.add('hidden');
+        el('radialRouteOptionsButton')?.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
   document.querySelectorAll('input[name="routeMode"]').forEach((input) => input.addEventListener('change', () => {
     if (!input.checked) return;
     state.plannerEnd = null;
     state.plannerStops = [];
-    state.plannerSelecting = input.value === 'point-to-point' ? 'End' : null;
+    state.plannerSelecting = ['round-trip', 'point-to-point'].includes(input.value) ? 'End' : null;
     setPlanningMode(true);
     el('sketchTimeOptions')?.classList.toggle('hidden', input.value !== 'auto-round-trip');
     const selectionHint = el('routeSelectionHint');
     selectionHint?.classList.toggle('hidden', input.value !== 'point-to-point');
-    el('routePointControls')?.classList.toggle('hidden', input.value !== 'point-to-point');
+    el('routePointControls')?.classList.toggle('hidden', !['round-trip', 'point-to-point'].includes(input.value));
     renderRoutePointControls();
-    if (input.value === 'point-to-point') {
+    if (['round-trip', 'point-to-point'].includes(input.value)) {
       toast('Tap the map to choose your destination.');
     }
     el('startPanel')?.classList.remove('hidden');
@@ -339,6 +352,8 @@ function bindWalkControls() {
   const beginPointSelection = (type) => {
     state.plannerSelecting = type;
     setPlanningMode(true);
+    el('startPanel')?.classList.add('hidden');
+    el('radialRouteOptionsButton')?.setAttribute('aria-expanded', 'false');
     const status = el('routeComposerStatus');
     if (status) status.textContent = type === 'Start' ? 'Choose a starting point on the map.' : type === 'Stop' ? 'Choose the next destination on the map.' : 'Choose a destination on the map.';
     toast(type === 'Start' ? 'Tap the map to choose your starting point.' : type === 'Stop' ? 'Tap the map to add a stop.' : 'Tap the map to choose your destination.');
@@ -373,7 +388,7 @@ function bindWalkControls() {
     el('startPanel')?.classList.remove('hidden');
     el('radialRouteOptionsButton')?.setAttribute('aria-expanded', 'true');
     toast('Destination selected. Sketching your point-to-point walk…');
-    void generateTimeBasedPlan();
+    toast('Destination added. Review the route options, then show the route.');
   });
   el('dismissWalkSketch')?.addEventListener('click', () => { changePlan(); setPlanningMode(false); el('walkSketch').classList.add('hidden'); });
   el('startPlannedWalkButton')?.addEventListener('click', async () => {

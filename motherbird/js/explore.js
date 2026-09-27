@@ -37,7 +37,7 @@ export function initExplore() {
   document.querySelectorAll('.planner-chip').forEach((button) => button.addEventListener('click', () => { button.classList.toggle('active'); generateTimeBasedPlan(); }));
   document.querySelectorAll('input[name="walkTime"]').forEach((input) => input.addEventListener('change', updatePlanPreview));
   document.querySelectorAll('input[name="routeMode"]').forEach((input) => input.addEventListener('change', () => {
-    if (input.checked && input.value === 'point-to-point') {
+    if (input.checked && ['round-trip', 'point-to-point'].includes(input.value)) {
       state.plannerEnd = null;
       state.plannerSelecting = 'End';
     } else if (input.checked) {

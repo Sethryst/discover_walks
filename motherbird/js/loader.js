@@ -6,7 +6,7 @@ import { toast } from './ui.js';
 import { initMap } from './map.js?v=20260926-routing-debug-2';
 import { applyStaticAppearance } from './ui.js';
 import { loadAllCityData, refreshCityMap } from './city.js';
-import { initEvents } from './events.js?v=20260926-editable-route-points-4';
+import { initEvents } from './events.js?v=20260927-condensed-walk';
 import { renderArchive } from './archive.js';
 import { normalizedEntitlements } from './entitlements.js';
 import { restoreLocalPoiClosures } from './spatial-closure-reporting.js';

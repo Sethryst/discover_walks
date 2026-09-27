@@ -155,7 +155,7 @@ export function renderLayerFilters() {
     const expanded = state.layerUiState.expanded[group.id] !== false;
     const enabledCount = group.options.filter((option) => state.layerFilters[option.kind][option.id] !== false).length;
     return `<section class="layer-filter-group" data-layer-group="${escapeHtml(group.id)}"><header><button class="layer-collapse" type="button" data-layer-collapse="${escapeHtml(group.id)}" aria-expanded="${expanded}"><span>${escapeHtml(group.label)}</span><small>(${enabledCount}/${group.options.length} shown)</small><b aria-hidden="true">⌄</b></button></header><div class="layer-options ${expanded ? '' : 'hidden'}">${group.options.length ? group.options.map(renderLayerOption).join('') : '<p class="layer-empty">Create a personal collection to add it here.</p>'}</div></section>`;
-  }).join('') || '<p class="layer-empty">No filters match that search.</p>';
+  }).join('') || `<p class="layer-empty">${query ? 'No filters match that search.' : 'Select a category first.'}</p>`;
   updateLayerStatus();
 }
 
@@ -302,7 +302,7 @@ function routeInViewport(coordinates = []) {
 function lightModel() {
   const recreation = availableMapChips('recreation');
   const cuisine = availableMapChips('cuisine');
-  const newsEntries = [...civicAvailability.notices, ...packPublicMarkers('news')];
+  const newsEntries = state.layerLights.news ? [...civicAvailability.notices, ...packPublicMarkers('news')] : [];
   const personalPins = curatedPersonalPlaces().filter((place) => !place.packId || place.packId === state.activeCity);
   const personal = state.personalPlaceCategories.map((category) => ({ id: category.id, label: category.name, tags: [], kind: 'personal' }));
   return [
