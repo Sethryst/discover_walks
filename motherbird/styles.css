@@ -308,6 +308,9 @@
   flex: 1 1 92px !important;
   min-width: 82px !important;
 }
+/* Layer lights keep their color and icon; status is conveyed by the button state. */
+.map-workspace-panel .map-light { grid-template-columns: 18px 1fr; }
+
 @media (max-width: 720px) {
   .map-workspace-panel[data-destination="draw"] {
     top: calc(max(8px, env(safe-area-inset-top)) + 44px) !important;
