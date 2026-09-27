@@ -224,6 +224,27 @@ class AcquisitionLedger:
             self._db.commit()
         return row
 
+    def record_package_selection(self, package_id, record_ids, actor, selection_reference):
+        """Record human record selection separately from approval and publication."""
+        row = next((item for item in self.review_packages if item["package_id"] == package_id), None)
+        if not row:
+            raise KeyError(f"unknown review package: {package_id}")
+        if row["status"] not in {"READY FOR REVIEW", "APPROVED"}:
+            raise ValueError(f"package cannot receive selections in state {row['status']}")
+        if not actor or not selection_reference:
+            raise ValueError("trusted reviewer actor and selection reference are required")
+        available = {record.get("recordId") for record in row["payload"].get("records", [])}
+        selected = sorted(set(record_ids))
+        unknown = [record_id for record_id in selected if record_id not in available]
+        if unknown:
+            raise ValueError(f"selection contains unknown record IDs: {', '.join(unknown)}")
+        row["selection"] = {"recordIds": selected, "actor": actor, "reference": selection_reference}
+        self.record_package_transition(package_id, "RECORDS SELECTED", "explicit human record selection", actor)
+        if self._db:
+            self._db.execute('update review_packages set payload=? where package_id=?', (json.dumps(row, sort_keys=True), package_id))
+            self._db.commit()
+        return row
+
     def budget_available(self, limit): return len(self.attempts) < limit
 
     def record_event_transitions(self, run_id, source_url, previous, current):
