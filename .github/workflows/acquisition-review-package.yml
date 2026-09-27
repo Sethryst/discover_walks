@@ -1,0 +1,55 @@
+name: Build acquisition review package
+
+on:
+  workflow_dispatch:
+    inputs:
+      region_config:
+        description: Repository region configuration path
+        required: true
+        type: string
+      source_body:
+        description: Replay JSON body path for the configured source
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: acquisition-review-package
+  cancel-in-progress: false
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build deterministic review package
+        run: >-
+          python -m gremlin_acquisition.cli
+          --ledger .gremlin-acquisition/ledger.sqlite3
+          --region-config "${{ inputs.region_config }}"
+          --source-body "${{ inputs.source_body }}"
+          --output-dir promotion-artifacts/packages
+      - name: Verify package remains review-only
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          packages = sorted(Path('promotion-artifacts/packages').glob('*.json'))
+          if len(packages) != 1:
+              raise SystemExit(f'expected exactly one review package, found {len(packages)}')
+          payload = json.loads(packages[0].read_text())
+          if payload.get('status') != 'READY FOR REVIEW':
+              raise SystemExit('review package did not remain READY FOR REVIEW')
+          if payload.get('approval') is not None or payload.get('publication') is not None:
+              raise SystemExit('review package contains approval/publication metadata')
+          print(f"review package: {payload['packageId']}")
+          PY
+      - name: Upload review artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: acquisition-review-package
+          path: promotion-artifacts/packages/*.json
+          if-no-files-found: error

@@ -1,0 +1,63 @@
+name: Acquisition frontend promotion (explicit approval only)
+
+on:
+  workflow_dispatch:
+    inputs:
+      review_package:
+        description: Approved review package artifact path
+        required: true
+        type: string
+      approval_reference:
+        description: Trusted moderator approval reference
+        required: true
+        type: string
+      selected_record_ids:
+        description: Comma-separated approved POI record IDs
+        required: true
+        type: string
+      action:
+        description: Promote or rollback an exact package
+        required: true
+        type: choice
+        options: [promote, rollback]
+      package_id:
+        description: Exact package ID for rollback
+        required: false
+        type: string
+      active_package_id:
+        description: Exact active package ID for rollback
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: acquisition-frontend-promotion
+  cancel-in-progress: false
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    environment: acquisition-moderated
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run explicit frontend promotion or rollback
+        shell: bash
+        env:
+          ACTION: ${{ inputs.action }}
+          REVIEW: ${{ inputs.review_package }}
+          APPROVAL: ${{ inputs.approval_reference }}
+          IDS: ${{ inputs.selected_record_ids }}
+          PACKAGE: ${{ inputs.package_id }}
+          ACTIVE: ${{ inputs.active_package_id }}
+        run: |
+          python -m compileall -q gremlin_acquisition
+          if [ "$ACTION" = "rollback" ]; then
+            python -m gremlin_acquisition.frontend_release --action rollback --package-id "$PACKAGE" --active-package-id "$ACTIVE"
+          else
+            IFS=',' read -r -a RECORD_IDS <<< "$IDS"
+            ARGS=()
+            for id in "${RECORD_IDS[@]}"; do ARGS+=(--selected-record-id "$id"); done
+            python -m gremlin_acquisition.frontend_release --action promote --review-package "$REVIEW" --approval-reference "$APPROVAL" "${ARGS[@]}"
+          fi

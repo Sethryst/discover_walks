@@ -191,6 +191,39 @@ export async function collectKpiInventory() {
     geocodedCoverage: null,
     sourceOfTruth: 'offline replay manifest only; live ledger is not published'
   };
+  const packageCategories = [...new Set(configs.flatMap((region) => [
+    ...(region.osm?.categories || []),
+    ...(region.sources || []).flatMap((source) => source.domains || [])
+  ]).map((category) => String(category).toLowerCase()).filter(Boolean))].sort();
+  const packageIntelligence = {
+    schema: 'package-intelligence-kpi.v1',
+    configuredRegions: configs.length,
+    regionsWithRequirements: configs.filter((region) => (region.osm?.categories || []).length || (region.sources || []).some((source) => (source.domains || []).length)).length,
+    frontendCategories: packageCategories,
+    sourceCount: sources.length,
+    sourceBackedCategories: packageCategories.length,
+    sourceOfTruth: 'repository region requirements and governed source definitions; acquisition results are not claimed until ledger evidence is published'
+  };
+  const reviewPackageDirectory = resolve(repoRoot, 'promotion-artifacts', 'packages');
+  const reviewPackages = [];
+  if (await exists(reviewPackageDirectory)) {
+    for (const filename of (await readdir(reviewPackageDirectory)).filter((name) => name.endsWith('.json')).sort()) {
+      const packagePayload = await readJson(resolve(reviewPackageDirectory, filename));
+      if (!packagePayload?.packageId) continue;
+      reviewPackages.push({
+        packageId: packagePayload.packageId,
+        geographyId: packagePayload.geography?.id || 'unknown',
+        geographyQuery: packagePayload.geography?.query || 'unknown',
+        status: packagePayload.status || 'READY FOR REVIEW',
+        accepted: Array.isArray(packagePayload.records) ? packagePayload.records.length : 0,
+        rejected: Array.isArray(packagePayload.rejected) ? packagePayload.rejected.length : 0,
+        gaps: Array.isArray(packagePayload.coverage?.gaps) ? packagePayload.coverage.gaps : [],
+        generatedAt: packagePayload.generatedAt || null
+      });
+    }
+  }
+  packageIntelligence.reviewPackages = reviewPackages;
+  packageIntelligence.reviewPackageSource = reviewPackages.length ? 'content-addressed repository artifacts' : 'no persisted review package artifacts found';
 
   const registrationRegistry = await readJson(resolve(repoRoot, 'app', 'endpoint-registrations.json'), { registrations: [] });
   const endpointHealth = await readJson(resolve(motherbirdRoot, 'data', 'endpoint-health.json'), { registrations: [] });
@@ -364,7 +397,7 @@ export async function collectKpiInventory() {
   ];
 
   return {
-    generatedAt: new Date().toISOString(), cities, configs: configs.map(({ id, name }) => ({ id, name })), sources, providers, gaps, backlogItems, automationJobs, productCapabilities, spatialSync, acquisitionMetrics,
+    generatedAt: new Date().toISOString(), cities, configs: configs.map(({ id, name }) => ({ id, name })), sources, providers, gaps, backlogItems, automationJobs, productCapabilities, spatialSync, acquisitionMetrics, packageIntelligence, reviewPackages,
     endpointRegistry: {
       asOf: registrationRegistry.asOf,
       evidencePolicy: registrationRegistry.evidencePolicy,
@@ -427,6 +460,7 @@ export function renderKpiHtml(model) {
     ['DC spatial package', summary.spatialIndexedPois.toLocaleString(), summary.spatialSyncReady ? 'Identity approved · local-only sync transport' : 'Identity needs approval'],
     ['Review backlog', summary.backlogCandidates, `${summary.readyBacklog} classified READY`],
     ['National acquisition', model.acquisitionMetrics.plannedNeighbors, `${model.acquisitionMetrics.regionsSearched} replay region · ${model.acquisitionMetrics.duplicateDomains} duplicate domains`],
+    ['Package requirements', model.packageIntelligence.frontendCategories.length, `${model.packageIntelligence.configuredRegions} configured regions · source-backed categories`],
     ['Priority repairs', summary.p0Gaps + summary.p1Gaps, `${summary.p0Gaps} P0 · ${summary.p1Gaps} P1`]
   ];
   const sourceRows = renderRows(model.sources, [
@@ -477,6 +511,8 @@ export function renderKpiHtml(model) {
 <section class="cards">${cards.map(([label,value,note])=>`<article class="card"><span>${escapeHtml(label)}</span><b>${value}</b><small>${escapeHtml(note)}</small></article>`).join('')}</section>
 <section class="panel" id="operatorGate"><h2>Operator source review</h2><p>Public visitors can inspect this queue. Moderator controls require your passkey; approvals are stored in Supabase and protected by Row Level Security.</p><div class="toolbar"><button class="primary-button" id="operatorPasskey" type="button">Sign in with passkey</button><span id="operatorAuthStatus" class="pill warn">Moderator sign-in required</span></div><div id="operatorControls" hidden><p class="note">Check a source only after validating its payload, attribution, date/freshness behavior, accessibility or free-entry claim, and adapter contract. These marks do not publish data.</p><table><thead><tr><th>Approve</th><th>Status</th><th>Region</th><th>Source</th><th>Detected type</th></tr></thead><tbody>${operatorRows || '<tr><td colspan="5" class="empty">No review candidates.</td></tr>'}</tbody></table></div></section>
 <section class="panel"><h2>How data reaches a walker</h2><p>Secrets stay in scheduled producer jobs. Published browser assets contain reviewed outputs, never credential values.</p><div class="flow"><div><b>Official source</b><br><small>ArcGIS, APIs, RSS/ICS, open data</small></div><div><b>Provider adapter</b><br><small>Fetch, normalize, validate</small></div><div><b>Governed artifact</b><br><small>Attribution, stable IDs, freshness</small></div><div><b>Mother Bird package</b><br><small>POIs, journeys, civic, conditions</small></div><div><b>Frontend view</b><br><small>Map, Walks, Vote, Volunteer, Events</small></div></div></section>
+<section class="panel"><h2>Package intelligence</h2><p>The backend plans against declared frontend needs and source definitions. These are coverage requirements, not claims that acquisition has succeeded.</p><table><tbody><tr><th>Configured regions</th><td>${model.packageIntelligence.configuredRegions}</td></tr><tr><th>Regions with requirements</th><td>${model.packageIntelligence.regionsWithRequirements}</td></tr><tr><th>Source-backed categories</th><td>${escapeHtml(model.packageIntelligence.frontendCategories.join(' · ') || 'No category requirements recorded')}</td></tr><tr><th>Governed source definitions</th><td>${model.packageIntelligence.sourceCount}</td></tr><tr><th>Evidence policy</th><td>${escapeHtml(model.packageIntelligence.sourceOfTruth)}</td></tr></tbody></table></section>
+<section class="panel"><h2>Review packages</h2><p>Content-addressed package artifacts are evidence for review only. Approval and publication remain separate authenticated actions.</p><table><thead><tr><th>Package</th><th>Geography</th><th>Status</th><th>Accepted</th><th>Rejected</th><th>Coverage gaps</th></tr></thead><tbody>${model.reviewPackages.map((item) => `<tr><td><code>${escapeHtml(item.packageId)}</code></td><td>${escapeHtml(item.geographyQuery)}<br><small>${escapeHtml(item.geographyId)}</small></td><td><span class="pill ${item.status === 'PROMOTED' ? 'good' : item.status === 'APPROVED' ? 'good' : 'warn'}">${escapeHtml(item.status)}</span></td><td>${item.accepted}</td><td>${item.rejected}</td><td>${escapeHtml(item.gaps.join(' · ') || 'None recorded')}</td></tr>`).join('') || '<tr><td colspan="6" class="empty">No persisted review package artifacts found. Acquisition has not been represented as publication.</td></tr>'}</tbody></table><p class="note">Evidence source: ${escapeHtml(model.packageIntelligence.reviewPackageSource)}</p></section>
 <section class="panel"><h2>Account-to-data pipeline</h2><p>${escapeHtml(model.endpointRegistry.evidencePolicy)} Registry evidence is current through ${escapeHtml(model.endpointRegistry.asOf)}.</p><table><thead><tr><th>Registered product</th><th>Registered</th><th>Configured</th><th>Credential</th><th>Health</th><th>Producing</th><th>Next evidence gate</th></tr></thead><tbody>${registrationRows}</tbody></table></section>
 <section class="panel"><h2>Product delivery progress</h2><p>Observable UI behavior and automation foundations detected from the same code and repository contracts deployed to Pages.</p><table><thead><tr><th>Capability</th><th>Status</th><th>Observable evidence</th><th>User/operator surface</th><th>Next automation step</th></tr></thead><tbody>${capabilityRows}</tbody></table></section>
 <section class="panel"><h2>DC spatial solo-pilot KPI</h2><p>Package identity and local-closure operating policy. This is not a claim that county network sync is running.</p><table><tbody><tr><th>Package</th><td>${escapeHtml(model.spatialSync.poiVersion || 'Not approved')} · ${escapeHtml(model.spatialSync.boundaryVintage || 'Not approved')}</td></tr><tr><th>Indexed records</th><td>${model.spatialSync.poiCount.toLocaleString()} POIs · ${model.spatialSync.boundaryCount.toLocaleString()} boundaries</td></tr><tr><th>Verification</th><td>${model.spatialSync.packageVerified ? 'Checksummed package + runtime fingerprint' : 'Missing verification evidence'}</td></tr><tr><th>Closure policy</th><td>${escapeHtml(model.spatialSync.closurePolicy)}</td></tr><tr><th>Transport</th><td>${escapeHtml(model.spatialSync.transport)} · retain ${model.spatialSync.retentionVersions} canonical versions after a future deployment</td></tr></tbody></table></section>

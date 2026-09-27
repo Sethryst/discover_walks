@@ -33,3 +33,25 @@ WKLS runtime dependencies are listed in `requirements-wkls.txt`. Its bundled
 Overture parquet is metadata/geometry provenance, not a permission to invent
 adjacency: `verified_neighbors` is only a bbox prefilter and final graph edges
 require an explicit geometry-intersection check.
+
+## Frontend-aware package review
+
+`package_intelligence` derives `FeatureRequirement` records from `app/regions`
+source domains and OSM categories, translating them into frontend vocabulary
+such as `park`, `trail`, `library`, `history`, `event`, `news`, `restaurants`,
+and `nature`. `discover_regions` accepts proposed names but promotes only a
+unique WKLS identity; ambiguous and unresolved candidates remain investigation
+rows.
+
+POI adapters currently support replayable ArcGIS Feature Service JSON and
+GeoJSON through injected transports. `acquire_with_fallback` preserves every
+attempt and chooses the first successful source with records. `AcquisitionLedger`
+stores POIs, coverage reports, duplicate counts, change classifications,
+search feedback, and review-package lifecycle state.
+
+`build_review_package` produces a deterministic, content-addressed artifact
+with accepted and rejected records, quality components, requirements, gaps,
+duplicates, and evidence URLs. Artifacts remain `READY FOR REVIEW` until an
+authenticated moderator approval and explicit publication action advance them.
+The manual `acquisition-review-package` workflow builds and uploads these
+artifacts but is intentionally unable to approve or publish them.

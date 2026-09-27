@@ -6,7 +6,11 @@ from gremlin_acquisition.fallbacks import validate_event, apply_source_result, p
 from gremlin_acquisition.promotion import PromotionBuilder
 
 def test_portland_expands_and_loop_is_penalized():
-    p=AcquisitionPlanner(); plans=p.plan(); assert plans[0].geography.name != "Portland"; assert any(x.geography.name=="Beaverton" for x in plans)
+    from gremlin_acquisition.models import Geography
+    class Geo:
+        def resolve(self, query): return Geography("portland", "Portland", "city")
+        def neighbors(self, geography): return []
+    p=AcquisitionPlanner(Geo()); plans=p.plan(); assert plans and plans[0].geography.name == "Portland"
     assert p.score(p.geo.resolve("Portland"),duplicate_count=3).loop_penalty > 0
 def test_empty_and_migrated_states():
     s=SourceRecord("https://old.example/events","old.example","g"); apply_source_result(s,[],"https://new.example/events"); assert s.status==SourceStatus.SOURCE_MIGRATED

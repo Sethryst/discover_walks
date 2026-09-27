@@ -5,13 +5,28 @@ from datetime import date
 from pathlib import Path
 from .fallbacks import parse_ics, validate_event, apply_source_result
 from .ledger import AcquisitionLedger
-from .models import SourceRecord, SourceStatus
+from .models import Geography, SourceRecord, SourceStatus
 from .planner import AcquisitionPlanner
 from .release import build_selected_package, rollback_exact
 
+
+class _ReplayGeography:
+    """Deterministic geography fixture; production planning uses WKLS."""
+
+    def resolve(self, query):
+        return Geography(
+            id="replay-portland",
+            name="Portland",
+            level="city",
+            source_revision="replay-fixture",
+        )
+
+    def neighbors(self, geography):
+        return []
+
 def run_offline_pilot(fixture_dir, ledger_path, package_dir, audit_path):
     fixture=Path(fixture_dir); ledger=AcquisitionLedger(ledger_path)
-    plans=AcquisitionPlanner(ledger=ledger).plan(run_id='offline-pilot',root='Portland',max_batches=4,budget=20)
+    plans=AcquisitionPlanner(geo=_ReplayGeography(),ledger=ledger).plan(run_id='offline-pilot',root='Portland',max_batches=4,budget=20)
     raw=(fixture/'ics.json').read_text(encoding='utf-8'); data=json.loads(raw)
     events=[validate_event(e,date.today().isoformat()) for e in []]
     for item in data.get('events',[]):
