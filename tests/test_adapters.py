@@ -28,6 +28,11 @@ def test_ledger_ingestion_persists_coverage_duplicates_and_changes(tmp_path):
     need = RegionalNeed("Example City", "city-1", (FeatureRequirement("parks"),))
     report = ledger.ingest_pois("run-1", need, result)
     assert report["recordCount"] == 1
+    assert report["duplicateCount"] == 1
+    assert report["gaps"] == []
+    assert ledger.poi_transitions[0]["state"] == "new"
+    reopened = AcquisitionLedger(tmp_path / "ledger.sqlite3")
+    assert len(reopened.pois) == 1 and len(reopened.coverage) == 1
 
 def test_acquisition_pipeline_returns_review_only_package_after_fallback(tmp_path):
     from gremlin_acquisition.pipeline import acquire_review_package
@@ -43,11 +48,6 @@ def test_acquisition_pipeline_returns_review_only_package_after_fallback(tmp_pat
     assert result["fallbackStatus"] == "SUCCEEDED"
     assert result["package"]["coverage"]["gaps"] == []
     assert ledger.review_packages[0]["status"] == "READY FOR REVIEW"
-    assert report["duplicateCount"] == 1
-    assert report["gaps"] == []
-    assert ledger.poi_transitions[0]["state"] == "new"
-    reopened = AcquisitionLedger(tmp_path / "ledger.sqlite3")
-    assert len(reopened.pois) == 1 and len(reopened.coverage) == 1
 
 
 def test_fallback_preserves_failed_source_and_selects_replacement():
