@@ -45,6 +45,28 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Verify package approval through Supabase RLS boundary
+        if: inputs.action == 'promote'
+        shell: bash
+        env:
+          REVIEW: ${{ inputs.review_package }}
+          APPROVAL: ${{ inputs.approval_reference }}
+          IDS: ${{ inputs.selected_record_ids }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+        run: |
+          test -n "$SUPABASE_URL" -a -n "$SUPABASE_SECRET_KEY"
+          PACKAGE_ID=$(python -c 'import json,sys; print(json.load(open(sys.argv[1]))["packageId"])' "$REVIEW")
+          RESPONSE=$(curl --fail --silent --show-error \
+            -H "apikey: $SUPABASE_SECRET_KEY" \
+            -H "Authorization: Bearer $SUPABASE_SECRET_KEY" \
+            "$SUPABASE_URL/rest/v1/acquisition_package_approvals?package_id=eq.${PACKAGE_ID}&approved=eq.true&select=package_id,approved,approval_reference")
+          echo "$RESPONSE" | jq -e --arg package "$PACKAGE_ID" --arg reference "$APPROVAL" 'length == 1 and .[0].package_id == $package and .[0].approved == true and .[0].approval_reference == $reference' >/dev/null
+          SELECTIONS=$(curl --fail --silent --show-error \
+            -H "apikey: $SUPABASE_SECRET_KEY" \
+            -H "Authorization: Bearer $SUPABASE_SECRET_KEY" \
+            "$SUPABASE_URL/rest/v1/acquisition_package_selections?package_id=eq.${PACKAGE_ID}&selected=eq.true&select=record_id")
+          echo "$SELECTIONS" | jq -e --arg ids "$IDS" '([.[].record_id] | sort) == ($ids | split(",") | map(select(length > 0)) | sort)' >/dev/null
       - name: Run explicit frontend promotion or rollback
         shell: bash
         env:

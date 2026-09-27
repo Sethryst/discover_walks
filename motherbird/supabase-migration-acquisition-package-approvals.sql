@@ -39,3 +39,19 @@ create policy "acquisition package approvals operator update"
 
 create index if not exists acquisition_package_approvals_updated_at_idx
   on public.acquisition_package_approvals (updated_at desc);
+
+create table if not exists public.acquisition_package_selections (
+  package_id text not null,
+  record_id text not null,
+  selected boolean not null default false,
+  selected_by uuid not null references auth.users(id) on delete cascade,
+  updated_at timestamptz not null default now(),
+  primary key (package_id, record_id)
+);
+
+alter table public.acquisition_package_selections enable row level security;
+drop policy if exists "acquisition package selections operator access" on public.acquisition_package_selections;
+create policy "acquisition package selections operator access"
+  on public.acquisition_package_selections for all to authenticated
+  using (selected_by = auth.uid())
+  with check (selected_by = auth.uid());
