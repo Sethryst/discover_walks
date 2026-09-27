@@ -98,7 +98,7 @@ function routeResponse(runtime, profile, coordinates, edgeIndexes, distanceMeter
     edge_ids: edgeIndexes.map((index) => runtime.edges[index][0]),
     edge_types: edgeIndexes.map((index) => runtime.edge_types[runtime.edges[index][5]] || 'unknown'),
     crossing_edge_ids: edgeIndexes.filter((index) => runtime.edge_types[runtime.edges[index][5]] === 'crossing').map((index) => runtime.edges[index][0]),
-    source_provenance_ids: unique(edgeIndexes.map((index) => runtime.sources[runtime.edges[index][8]])),
+    source_provenance_ids: unique(edgeIndexes.map((index) => runtime.sources[runtime.edges[index][8]]).filter(Boolean)),
     distance_m: round(distanceMeters),
     estimated_duration_s: Math.round(distanceMeters / WALKING_METERS_PER_SECOND),
     instructions: buildInstructions(coordinates, distanceMeters, edgeIndexes, runtime),
