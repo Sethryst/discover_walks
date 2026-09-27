@@ -1,0 +1,30 @@
+name: Bug report
+description: Report a reproducible problem in the app or data pipeline
+title: "bug: "
+labels:
+  - bug
+body:
+  - type: textarea
+    id: observed
+    attributes:
+      label: What happened?
+      description: Describe the behavior and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction steps
+      description: Include the region, route, page, or command involved.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Browser, device, OS, or pipeline/runtime version.
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Include logs, screenshots, fixture names, or source references. Do not include private journal data or secrets.

@@ -78,6 +78,11 @@ def compile_features(features: Iterable[dict[str, Any]], cell: dict[str, Any], r
         tags = feature.get("properties") or {}
         if str(tags.get("highway", "")).casefold() not in WALKABLE:
             continue
+        # Keep explicitly inaccessible ways out of the pedestrian graph even
+        # when their highway classification is otherwise walkable.
+        if any(str(tags.get(key, "")).casefold() in {"private", "no", "restricted"}
+               for key in ("access", "foot")):
+            continue
         source_type, source_id = osm_identity(feature)
         for line_index, line in enumerate(lines):
             points = [_point(value) for value in line]

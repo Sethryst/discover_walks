@@ -1,0 +1,23 @@
+name: Research question
+description: Capture a geographic, civic, historical, or product investigation
+title: "research: "
+labels:
+  - research
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      description: What do we want to learn or decide?
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Candidate sources
+      description: List datasets, official pages, field observations, or fixtures worth checking.
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Useful outcome
+      description: What would count as a useful answer or artifact?
