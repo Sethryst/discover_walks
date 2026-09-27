@@ -1,10 +1,19 @@
 import argparse
+import hashlib
 import json
 import shutil
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 ARTIFACTS = ("nodes.bin", "edges.bin", "adjacency.bin", "edge_geometry.bin", "edge_spatial_index.bin")
+
+
+def sha256(path):
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
 
 
 def publish(*, release, cell_id, source, target, registry_path):
@@ -19,6 +28,9 @@ def publish(*, release, cell_id, source, target, registry_path):
         expected = source_manifest.get("artifacts", {}).get(name, {})
         if not artifact.is_file() or artifact.stat().st_size != int(expected.get("bytes", -1)):
             raise RuntimeError(f"Missing or invalid artifact: {artifact}")
+        expected_hash = str(expected.get("sha256", "")).removeprefix("sha256:")
+        if not expected_hash or sha256(artifact) != expected_hash:
+            raise RuntimeError(f"Checksum mismatch: {artifact}")
 
     target.mkdir(parents=True, exist_ok=True)
     shutil.copy2(source_manifest_path, target / "manifest.json")
