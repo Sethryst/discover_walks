@@ -29,3 +29,11 @@ def test_invalid_selected_event_is_not_silently_dropped():
     s=SourceRecord("https://x","x","g",status=SourceStatus.APPROVED,events=[e])
     import pytest
     with pytest.raises(ValueError): PromotionBuilder().build([s],{"bad"})
+
+def test_sqlite_ledger_reloads_and_enforces_global_budget(tmp_path):
+    path=tmp_path/'ledger.sqlite3'; first=AcquisitionLedger(path)
+    first.record_attempt('r','g','https://x','ics','failed')
+    first.upsert(SourceRecord('https://x','x','g'))
+    reopened=AcquisitionLedger(path)
+    assert len(reopened.attempts)==1 and 'https://x' in reopened.sources
+    assert not reopened.budget_available(1)
