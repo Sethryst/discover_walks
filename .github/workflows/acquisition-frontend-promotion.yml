@@ -106,7 +106,7 @@ jobs:
             IFS=',' read -r -a RECORD_IDS <<< "$IDS"
             ARGS=()
             for id in "${RECORD_IDS[@]}"; do ARGS+=(--selected-record-id "$id"); done
-            python -m gremlin_acquisition.frontend_release --action promote --review-package "$REVIEW" --approval-reference "$APPROVAL" --publish-dir motherbird/data/acquisition-packages "${ARGS[@]}"
+            python -m gremlin_acquisition.frontend_release --action promote --review-package "$REVIEW" --approval-reference "$APPROVAL" --publish-dir motherbird/data/acquisition-packages --audit promotion-artifacts/frontend-audit.jsonl "${ARGS[@]}"
           fi
       - name: Publish the exact approved package manifest
         shell: bash

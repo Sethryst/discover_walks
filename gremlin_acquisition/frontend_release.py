@@ -5,7 +5,7 @@ from pathlib import Path
 from .frontend_package import build_selected_frontend_package
 
 
-def promote(review_path, selected_ids, approval_reference, output_dir, publish_dir=None):
+def promote(review_path, selected_ids, approval_reference, output_dir, publish_dir=None, audit_path=None):
     review = json.loads(Path(review_path).read_text(encoding="utf-8"))
     payload = build_selected_frontend_package(review, selected_ids, approval_reference=approval_reference)
     destination = Path(output_dir) / f"{review['packageId']}.json"
@@ -25,6 +25,10 @@ def promote(review_path, selected_ids, approval_reference, output_dir, publish_d
         else:
             publication = {"schema": "motherbird-acquisition-publication.v1", "activePackageId": payload["packageId"], "previousPackageId": previous, "history": ([previous] if previous else [])}
             active_path.write_text(json.dumps(publication, sort_keys=True, indent=2) + "\n", encoding="utf-8")
+    if audit_path:
+        audit = Path(audit_path); audit.parent.mkdir(parents=True, exist_ok=True)
+        with audit.open("a", encoding="utf-8") as handle:
+            handle.write(json.dumps({"action": "promote", "packageId": payload["packageId"], "approvalReference": approval_reference, "selectedRecordIds": sorted(selected_ids), "publication": publication}, sort_keys=True) + "\n")
     return payload, destination, publication
 
 
@@ -68,7 +72,7 @@ def main(argv=None):
     if args.action == "promote":
         if not args.review_package or not args.approval_reference or not args.selected_record_id:
             parser.error("promote requires --review-package, --approval-reference, and --selected-record-id")
-        payload, path, publication = promote(args.review_package, args.selected_record_id, args.approval_reference, args.output_dir, args.publish_dir)
+        payload, path, publication = promote(args.review_package, args.selected_record_id, args.approval_reference, args.output_dir, args.publish_dir, args.audit)
         print(json.dumps({"packageId": payload["packageId"], "path": str(path), "action": "promote", "publication": publication}, sort_keys=True))
     else:
         if not args.package_id or not args.active_package_id:
