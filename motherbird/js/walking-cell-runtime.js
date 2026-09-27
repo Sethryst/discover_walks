@@ -27,7 +27,15 @@ export async function activateWalkingCellAt(point, { manifestUrl = walkingCellMa
   if (state.walkingCell?.id === cell.id && state.walkingCell?.release === registry.release) return state.walkingCell;
   if (activation?.key === `${registry.release}/${cell.id}`) return activation.promise;
   const promise = Promise.resolve().then(() => {
-    const active = Object.freeze({ id: cell.id, release: registry.release, bounds: cell.bounds, availability: cell.availability || 'routing_available', artifacts: cell.artifacts, files: {} });
+    const active = Object.freeze({
+      id: cell.id,
+      release: registry.release,
+      bounds: cell.bounds,
+      availability: cell.availability || 'routing_available',
+      routingNeighbors: Array.isArray(cell.routingNeighbors) ? [...cell.routingNeighbors] : [],
+      artifacts: cell.artifacts,
+      files: {}
+    });
     state.walkingCell = active;
     window.dispatchEvent(new CustomEvent('walking-cell-ready', { detail: active }));
     return active;

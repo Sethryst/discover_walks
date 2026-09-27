@@ -7,7 +7,10 @@ self.addEventListener('error', (event) => reportWorkerError(event.error || event
 self.addEventListener('unhandledrejection', (event) => reportWorkerError(event.reason));
 self.onmessage = async ({ data }) => {
   if (data?.type !== 'route') return;
-  try { self.postMessage({ requestId: data.requestId, result: routeRuntimeGraph(await loadGraph(data.cell, data.requestId, data.cellRelease, data.cellId), data) }); }
+  try {
+    const runtime = await loadGraph(data.cell, data.requestId, data.cellRelease, data.cellId);
+    self.postMessage({ requestId: data.requestId, result: routeRuntimeGraph(runtime, data, { maxSnapMeters: data.maxSnapMeters }) });
+  }
   catch (e) { self.postMessage({ requestId: data.requestId, result: { ok:false, status:e.code || 'GRAPH_VERSION_UNAVAILABLE', failure:{ type:e.code || 'GRAPH_VERSION_UNAVAILABLE', message:e.message } } }); }
 };
 const report=(id,phase,completed,total)=>self.postMessage({type:'progress',requestId:id,phase,completed,total});
