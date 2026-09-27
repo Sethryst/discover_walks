@@ -24,6 +24,10 @@ on:
         description: Exact package ID for rollback
         required: false
         type: string
+      review_run_id:
+        description: Optional Actions run ID that produced the uploaded review artifact
+        required: false
+        type: string
       active_package_id:
         description: Exact active package ID for rollback
         required: false
@@ -31,6 +35,7 @@ on:
 
 permissions:
   contents: write
+  actions: read
 
 concurrency:
   group: acquisition-frontend-promotion
@@ -45,11 +50,28 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Resolve review package path
+        shell: bash
+        env:
+          REVIEW_INPUT: ${{ inputs.review_package }}
+          REVIEW_RUN_ID: ${{ inputs.review_run_id }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -n "$REVIEW_RUN_ID" ]; then
+            mkdir -p promotion-artifacts/imported-review
+            gh run download "$REVIEW_RUN_ID" --name acquisition-review-package --dir promotion-artifacts/imported-review
+            REVIEW_PATH=$(find promotion-artifacts/imported-review -type f -name '*.json' -print -quit)
+            test -n "$REVIEW_PATH"
+          else
+            REVIEW_PATH="$REVIEW_INPUT"
+          fi
+          test -n "$REVIEW_PATH"
+          echo "REVIEW_PATH=$REVIEW_PATH" >> "$GITHUB_ENV"
       - name: Verify package approval through Supabase RLS boundary
         if: inputs.action == 'promote'
         shell: bash
         env:
-          REVIEW: ${{ inputs.review_package }}
+          REVIEW: ${{ env.REVIEW_PATH }}
           APPROVAL: ${{ inputs.approval_reference }}
           IDS: ${{ inputs.selected_record_ids }}
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
@@ -71,7 +93,7 @@ jobs:
         shell: bash
         env:
           ACTION: ${{ inputs.action }}
-          REVIEW: ${{ inputs.review_package }}
+          REVIEW: ${{ env.REVIEW_PATH }}
           APPROVAL: ${{ inputs.approval_reference }}
           IDS: ${{ inputs.selected_record_ids }}
           PACKAGE: ${{ inputs.package_id }}
