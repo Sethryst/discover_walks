@@ -22,6 +22,11 @@ The SQLite ledger is the durable source of truth; JSON export is for inspection.
 
 Promotion requires an `APPROVED` source, explicitly selected event IDs, fresh validation, non-expired timestamps, and no validation warnings. Routine acquisition never publishes. Moderator approval must be performed by the existing authenticated Supabase/RLS boundary; a CLI flag or public JSON field is not authorization.
 
+Explicit release is available through `gremlin_acquisition.release`: it consumes
+the reviewed promotion report plus selected event IDs, writes a content-
+addressed package, and records exact-package rollback intent. It does not
+choose events, infer approval, or reactivate expired records.
+
 Production configuration must provide a cached provider transport and pinned `vendor/wkls` revision. Fixtures and replay URLs are test-only and are not evidence of production availability.
 
 WKLS runtime dependencies are listed in `requirements-wkls.txt`. Its bundled
