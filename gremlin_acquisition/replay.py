@@ -66,6 +66,7 @@ def run_portland_poi_pilot(fixture_dir, ledger_path, package_dir):
     """Replay the declared Portland frontend POI requirements into review state."""
     fixture = Path(fixture_dir)
     ledger = AcquisitionLedger(ledger_path)
+    ledger.manifest('portland-poi-pilot', {'fixture': str(fixture / 'pois.json'), 'requirements': ['park', 'trail', 'library', 'history']}, {'mode': 'poi-replay', 'budget': 0}, 'replay-fixture')
     geography = _ReplayGeography().resolve('Portland')
     requirements = tuple(FeatureRequirement(category) for category in ('park', 'trail', 'library', 'history'))
     need = RegionalNeed('Portland', geography.id, requirements, 'verified replay pilot')
@@ -82,6 +83,7 @@ def run_discovered_region_pilot(fixture_dir, ledger_path, package_dir):
     """Exercise a newly discovered region without Portland-specific assumptions."""
     fixture = Path(fixture_dir)
     ledger = AcquisitionLedger(ledger_path)
+    ledger.manifest('discovered-region-pilot', {'fixture': str(fixture / 'discovered-region.json'), 'query': 'New City'}, {'mode': 'discovery-fallback-replay', 'budget': 5}, 'replay-fixture')
     config = json.loads((fixture / 'discovered-region.json').read_text(encoding='utf-8'))
     geo = _DiscoveredReplayGeography()
     discoveries = discover_regions([config['query']], geo, known_ids=())

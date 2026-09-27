@@ -26,5 +26,9 @@ def test_new_region_discovery_replay_plans_and_packages_without_portland(tmp_pat
     assert result['sourceProposals'][0]['status'] == 'PROPOSED'
     assert result['sourceProposals'][0]['publication'] == 'not authorized'
     assert result['ledgerSourceProposals'] == 1
+    import sqlite3, json
+    with sqlite3.connect(tmp_path/'ledger.sqlite3') as db:
+        manifest = json.loads(db.execute('select payload from manifests where run_id=?', ('discovered-region-pilot',)).fetchone()[0])
+    assert manifest['dependency_revision'] == 'replay-fixture'
     assert (tmp_path/'source-proposals'/f"{result['sourceProposals'][0]['id']}.json").exists()
     assert (tmp_path/'packages'/f"{result['packageId']}.json").exists()
