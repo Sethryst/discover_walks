@@ -8,7 +8,7 @@ from .ledger import AcquisitionLedger
 from .models import Geography, SourceRecord, SourceStatus
 from .planner import AcquisitionPlanner
 from .release import build_selected_package, rollback_exact
-from .adapters import parse_geojson
+from .adapters import parse_geojson, acquire_with_fallback
 from .package_intelligence import FeatureRequirement, RegionalNeed, coverage_report, discover_regions, needs_from_discoveries
 from .review_package import build_review_package, write_review_package
 
@@ -93,8 +93,16 @@ def run_discovered_region_pilot(fixture_dir, ledger_path, package_dir):
     plans = AcquisitionPlanner(geo=geo, ledger=ledger).plan_discovered_regions(
         'discovered-region-pilot', discoveries, max_batches=1, budget=5
     )
-    result = parse_geojson(config['document'], config['source'])
-    report = ledger.ingest_pois('discovered-region-pilot', need, result)
+    failed_source = {**config['source'], 'url': 'https://new-city.example/retired-places.geojson'}
+    def transport(url):
+        if url == config['source']['url']:
+            return json.dumps(config['document'])
+        raise RuntimeError('source retired; use the official replacement')
+    fallback = acquire_with_fallback([failed_source, config['source']], transport)
+    result = fallback.selected
+    if result is None:
+        raise ValueError('discovery replay fallback chain produced no selected source')
+    report = ledger.ingest_fallback('discovered-region-pilot', need, fallback)
     package = build_review_package(need, result.records, [config['source']['url']])
     ledger.record_review_package(package)
     path = write_review_package(package, package_dir)
@@ -106,5 +114,7 @@ def run_discovered_region_pilot(fixture_dir, ledger_path, package_dir):
         'packagePath': str(path),
         'coverage': report,
         'recordCount': len(result.records),
+        'attemptCount': len(fallback.attempts),
+        'fallbackReason': fallback.reason,
         'ledgerDiscoveries': len(ledger.region_discoveries),
     }

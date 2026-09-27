@@ -21,4 +21,6 @@ def test_new_region_discovery_replay_plans_and_packages_without_portland(tmp_pat
     assert result['plannedGeographies'] == ['replay-new-city']
     assert result['coverage']['gaps'] == []
     assert result['ledgerDiscoveries'] == 1
+    assert result['attemptCount'] == 2
+    assert 'prior failure or empty attempt' in result['fallbackReason']
     assert (tmp_path/'packages'/f"{result['packageId']}.json").exists()
