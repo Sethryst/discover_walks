@@ -7,7 +7,7 @@ import { openBackpack, openJournal, closeSheets, openSheet, renderGeofenceCatego
 import { city, searchPois } from './poi.js';
 import { localSearchHits, searchRowHtml, emptySearchHtml, widenSearch } from './search.js';
 import { switchCity } from './city.js';
-import { generateTimeBasedPlan, lockSelectedPlanOnMap, changePlan } from './planner.js?v=20260926-editable-route-points';
+import { generateTimeBasedPlan, lockSelectedPlanOnMap, changePlan, setPlanningMode } from './planner.js?v=20260926-editable-route-points';
 import { routeOnFoot } from './routing.js';
 import { paintWalkPlan, paintCard, previewCard, sendCurrentWalkPlan } from './field-guide.js?v=132';
 import { wordCount } from './reflection.js';
@@ -279,7 +279,7 @@ function renderWalkSketch(plan) {
         ? `No connected walking route was found (${plan.graphStatus}). Tap the map again closer to a pedestrian path.`
         : 'Turn-by-turn directions are not available for this route.')}</li>`;
   }
-  el('walkSketch').classList.remove('hidden'); el('startPanel').classList.add('hidden'); el('startChevron').setAttribute('aria-expanded', 'false');
+  el('walkSketch').classList.remove('hidden');
 }
 
 function renderRoutePointControls() {
@@ -311,6 +311,7 @@ function bindWalkControls() {
     const open = panel?.classList.contains('hidden');
     panel?.classList.toggle('hidden', !open);
     routeOptionsButton.setAttribute('aria-expanded', String(open));
+    setPlanningMode(open);
   };
   // Keep one authoritative handler when the shell is re-initialized.
   if (routeOptionsButton) routeOptionsButton.onclick = openRouteOptions;
@@ -319,6 +320,7 @@ function bindWalkControls() {
     state.plannerEnd = null;
     state.plannerStops = [];
     state.plannerSelecting = input.value === 'point-to-point' ? 'End' : null;
+    setPlanningMode(true);
     el('sketchTimeOptions')?.classList.toggle('hidden', input.value !== 'auto-round-trip');
     const selectionHint = el('routeSelectionHint');
     selectionHint?.classList.toggle('hidden', input.value !== 'point-to-point');
@@ -332,6 +334,7 @@ function bindWalkControls() {
   }));
   const beginPointSelection = (type) => {
     state.plannerSelecting = type;
+    setPlanningMode(true);
     toast(type === 'Start' ? 'Tap the map to choose your starting point.' : type === 'Stop' ? 'Tap the map to add a stop.' : 'Tap the map to choose your destination.');
   };
   el('chooseStartButton')?.addEventListener('click', () => beginPointSelection('Start'));
@@ -358,15 +361,15 @@ function bindWalkControls() {
       return;
     }
     el('routeSelectionHint')?.classList.add('hidden');
-    el('startPanel')?.classList.add('hidden');
-    el('radialRouteOptionsButton')?.setAttribute('aria-expanded', 'false');
+    el('startPanel')?.classList.remove('hidden');
+    el('radialRouteOptionsButton')?.setAttribute('aria-expanded', 'true');
     toast('Destination selected. Sketching your point-to-point walk…');
     void generateTimeBasedPlan();
   });
-  el('dismissWalkSketch')?.addEventListener('click', () => { changePlan(); el('walkSketch').classList.add('hidden'); });
+  el('dismissWalkSketch')?.addEventListener('click', () => { changePlan(); setPlanningMode(false); el('walkSketch').classList.add('hidden'); });
   el('startPlannedWalkButton')?.addEventListener('click', async () => {
     if (!state.plannedRoute) return; lockSelectedPlanOnMap(); el('walkSketch').classList.remove('hidden');
-    await startWalk({ routeMode: state.plannedRoute.routeMode || 'tracking' });
+    setPlanningMode(false); await startWalk({ routeMode: state.plannedRoute.routeMode || 'tracking' });
   });
   el('sendWalkPlanButton')?.addEventListener('click', () => void sendCurrentWalkPlan());
   el('saveWalkPlanButton')?.addEventListener('click', async () => {
