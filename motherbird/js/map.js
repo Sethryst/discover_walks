@@ -41,8 +41,6 @@ export function initMap() {
   // location—not the regional centroid—and keep enough zoom for a walk.
   const initialZoom = view?.zoom ?? ((state.currentPosition || state.lastPosition) ? Math.max(active.zoom, 15) : active.zoom);
   state.map = L.map('map', { zoomControl: false, attributionControl: true, zoomAnimation: false, fadeAnimation: false, markerZoomAnimation: false, inertia: false }).setView([initialPosition.lat, initialPosition.lng], initialZoom);
-  // Temporary single-user testing aid: show the installed routing footprint by default.
-  void addRoutingDebugOverlay();
   // Resizing or rotating the viewport must never change the user's map zoom.
   window.addEventListener('resize', () => {
     if (!state.map) return;

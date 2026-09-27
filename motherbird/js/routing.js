@@ -17,7 +17,7 @@ export const ROUTE_FAILURE_MESSAGES = {
   GRAPH_ARTIFACT_MISMATCH: 'The installed routing artifact failed its integrity check.',
   ACCESS_POLICY_BLOCKED: 'The installed geometry does not meet the selected access policy.',
   ACCESSIBILITY_DATA_INSUFFICIENT: 'Ramp, stair, or grade evidence is insufficient for a verified accessible route.',
-  GRAPH_VERSION_UNAVAILABLE: 'An offline pedestrian graph is not installed for this city.',
+  GRAPH_VERSION_UNAVAILABLE: 'We could not calculate that walk right now.',
   INVALID_ROUTE_REQUEST: 'The route request could not be read.'
 };
 
@@ -36,15 +36,16 @@ export async function routeOnFoot(points, { city, profile = 'ordinary_walking_be
     }
     catch (error) { return failure('GRAPH_VERSION_UNAVAILABLE', error.message); }
     if (!activeWalkingCell?.id || activeWalkingCell.availability !== 'routing_available') return failure('GRAPH_VERSION_UNAVAILABLE', activeWalkingCell?.reason);
-    const request = (cell) => requestRoute({ city, profile, origin: points[index], destination: points[index + 1], avoid: { stairs: false, unverified_edges: false }, cell, cellId: cell?.id, cellRelease: cell?.release });
+    const request = (cell, origin = points[index], destination = points[index + 1]) => requestRoute({ city, profile, origin, destination, avoid: { stairs: false, unverified_edges: false }, cell, cellId: cell?.id, cellRelease: cell?.release });
     let result = await request(activeWalkingCell);
     const neighborIds = new Set(activeWalkingCell.routingNeighbors || []);
-    if (!result.ok && destinationCell?.id && destinationCell.id !== activeWalkingCell.id && neighborIds.has(destinationCell.id) && destinationCell.availability === 'routing_available') {
-      result = await request(destinationCell);
-      if (result.ok) result = { ...result, warnings: [...new Set([...(result.warnings || []), 'neighbor_cell_fallback'])] };
-    }
-    if (!result.ok) return result;
-    legs.push(result);
+    if (result.ok) legs.push(result);
+    else if (destinationCell?.id && destinationCell.id !== activeWalkingCell.id
+      && neighborIds.has(destinationCell.id) && destinationCell.availability === 'routing_available') {
+      const stitched = await stitchBoundaryLeg(points[index], points[index + 1], activeWalkingCell, destinationCell, request);
+      if (!stitched) return result;
+      legs.push(...stitched);
+    } else return result;
   }
   const coordinates = [];
   for (const leg of legs) for (const [lon, lat] of leg.geometry.coordinates) {
@@ -68,6 +69,36 @@ export async function routeOnFoot(points, { city, profile = 'ordinary_walking_be
   };
 }
 
+async function stitchBoundaryLeg(origin, destination, originCell, destinationCell, request) {
+  const candidates = boundaryTransferPoints(originCell, destinationCell);
+  let best = null;
+  for (const transfer of candidates) {
+    const first = await request(originCell, origin, transfer);
+    if (!first.ok) continue;
+    const second = await request(destinationCell, transfer, destination);
+    if (!second.ok) continue;
+    const score = first.distance_m + second.distance_m;
+    if (!best || score < best.score) best = { score, legs: [first, second] };
+  }
+  return best?.legs || null;
+}
+
+function boundaryTransferPoints(left, right) {
+  const a = left.bounds; const b = right.bounds;
+  const south = Math.max(a.south, b.south); const north = Math.min(a.north, b.north);
+  const west = Math.max(a.west, b.west); const east = Math.min(a.east, b.east);
+  if (south > north || west > east) return [];
+  const points = [];
+  if (Math.abs(a.east - b.west) < 1e-7 || Math.abs(b.east - a.west) < 1e-7) {
+    const lng = Math.abs(a.east - b.west) < 1e-7 ? a.east : b.east;
+    for (let index = 1; index <= 9; index += 1) points.push({ lat: south + (north - south) * index / 10, lng });
+  } else if (Math.abs(a.north - b.south) < 1e-7 || Math.abs(b.north - a.south) < 1e-7) {
+    const lat = Math.abs(a.north - b.south) < 1e-7 ? a.north : b.north;
+    for (let index = 1; index <= 9; index += 1) points.push({ lat, lng: west + (east - west) * index / 10 });
+  }
+  return points;
+}
+
 function mergeInstructions(legs) {
   const merged = [];
   for (const leg of legs) {
@@ -82,7 +113,7 @@ function mergeInstructions(legs) {
 function requestRoute(payload) {
   if (typeof Worker === 'undefined') return Promise.resolve(failure('GRAPH_VERSION_UNAVAILABLE'));
   if (!worker) {
-    worker = new Worker('./js/offline-router-worker.js?v=20260925-binary-v4', { type: 'module' });
+    worker = new Worker('./js/offline-router-worker.js?v=20260927-cell-stitch-v1', { type: 'module' });
     worker.onmessage = ({ data }) => {
       if (data.type === 'progress') { window.dispatchEvent(new CustomEvent('routing-progress', { detail: data })); return; }
       if (data.type === 'worker-error') { for (const entry of pending.values()) { clearTimeout(entry.timer); entry.resolve(failure('ROUTING_WORKER_ERROR', data.message)); } pending.clear(); return; }
