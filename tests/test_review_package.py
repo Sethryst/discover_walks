@@ -51,11 +51,13 @@ def test_review_package_requires_explicit_approval_before_promotion(tmp_path):
     with pytest.raises(ValueError): ledger.mark_package_promoted(package["packageId"], "release-1")
     approved = ledger.approve_review_package(package["packageId"], "moderator-1", "supabase-approval-1")
     assert approved["status"] == "APPROVED"
+    record_id = package["records"][0]["record"]["record_id"]
+    ledger.record_package_selection(package["packageId"], [record_id], "reviewer-1", "selection-1")
     promoted = ledger.mark_package_promoted(package["packageId"], "pages-commit-1")
     assert promoted["status"] == "PROMOTED"
     reopened = AcquisitionLedger(tmp_path / "ledger.sqlite3")
     assert reopened.review_packages[0]["approval"]["actor"] == "moderator-1"
-    assert [row["state"] for row in reopened.package_transitions] == ["READY FOR REVIEW", "APPROVED", "PROMOTED"]
+    assert [row["state"] for row in reopened.package_transitions] == ["READY FOR REVIEW", "APPROVED", "RECORDS SELECTED", "PROMOTED"]
 
 
 def test_artifact_lifecycle_metadata_is_explicit_and_non_authorizing(tmp_path):

@@ -216,6 +216,8 @@ class AcquisitionLedger:
         row = next((item for item in self.review_packages if item["package_id"] == package_id), None)
         if not row or row["status"] != "APPROVED":
             raise ValueError("only an approved package can be promoted")
+        if not row.get("selection", {}).get("recordIds"):
+            raise ValueError("package requires explicit record selection before promotion")
         row["status"] = "PROMOTED"
         row["publication"] = {"reference": publication_reference}
         self.record_package_transition(package_id, "PROMOTED", "explicit publication")
