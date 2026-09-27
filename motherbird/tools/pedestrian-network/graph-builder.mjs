@@ -237,7 +237,9 @@ function classifyAccess(properties, edgeType, dataset) {
 }
 
 function selectAttributes(properties, fields = []) {
-  return Object.fromEntries(fields.filter((field) => properties[field] !== undefined).map((field) => [field, properties[field]]));
+  const preserved = ['name', 'ref', 'official_name', 'alt_name'];
+  const selected = [...new Set([...fields, ...preserved])];
+  return Object.fromEntries(selected.filter((field) => properties[field] !== undefined).map((field) => [field, properties[field]]));
 }
 
 function featureUpdatedAt(properties, fields = ['last_edited_date']) {

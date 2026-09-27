@@ -107,6 +107,19 @@ test('source-preserved networks keep each curved LineString as one edge', () => 
   assert.equal(graph.edges[0].source_attributes.flow, 42);
 });
 
+test('preserves navigational names even when the dataset field allowlist omits them', () => {
+  const graph = buildPedestrianGraph({
+    type: 'FeatureCollection',
+    features: [{ type: 'Feature', id: 'named', properties: { name: 'Oak Street', ref: 'VA-123', flow: 42 }, geometry: { type: 'LineString', coordinates: [[-74, 40.7], [-73.999, 40.7]] } }]
+  }, {
+    ...dataset,
+    id: 'named',
+    source_id_fields: ['id'],
+    edge_attribute_fields: ['flow']
+  }, { snapToleranceMeters: 0 });
+  assert.deepEqual(graph.edges[0].source_attributes, { flow: 42, name: 'Oak Street', ref: 'VA-123' });
+});
+
 test('route harness returns graph geometry and typed failures without straight-line fallback', () => {
   const source = {
     type: 'FeatureCollection',
