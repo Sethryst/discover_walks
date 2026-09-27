@@ -118,8 +118,10 @@ Routing and map data may include OpenStreetMap and civic/open-data sources. Each
 - **Respect for source terms:** OpenStreetMap, civic data, libraries, and media keep their own licenses and attribution requirements.
 - **Private by design where possible:** personal walks and local state are intended to stay in the browser unless a specific feature says otherwise.
 
-This repository is maintained as a personal project. There is no promise of issue response, support, compatibility, or acceptance of outside changes. You are welcome to read and use the code under the license below, but pull requests and unsolicited contributions are not part of the project’s operating model.
+This repository is maintained as a personal project. There is no promise of issue response, support, compatibility, or acceptance of outside changes. The source is publicly visible for transparency and evaluation, but it is not offered for reuse or outside contributions.
 
 ## License
 
-Unless a subdirectory says otherwise, the original code in this repository is released under the [MIT License](LICENSE). Third-party libraries, map data, civic data, and historical media remain subject to their own licenses, attribution requirements, and source terms. The MIT License grants broad rights to the original code; it does not relicense third-party material.
+Unless a subdirectory says otherwise, the original code and project materials in this repository are proprietary and all rights are reserved under the [repository license](LICENSE). Viewing the source does not grant permission to copy, modify, publish, distribute, sell, or reuse it in another project. Third-party libraries, map data, civic data, and historical media remain subject to their own licenses, attribution requirements, and source terms; this repository does not relicense them. Permission requests should be made to the copyright holder.
+
+The deployed site is hosted through GitHub Pages by the repository owner. Netlify is not part of the deployment path.
