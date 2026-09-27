@@ -233,7 +233,7 @@ class AcquisitionLedger:
             raise ValueError(f"package cannot receive selections in state {row['status']}")
         if not actor or not selection_reference:
             raise ValueError("trusted reviewer actor and selection reference are required")
-        available = {record.get("recordId") for record in row["payload"].get("records", [])}
+        available = {record.get("record", {}).get("record_id") for record in row["payload"].get("records", [])}
         selected = sorted(set(record_ids))
         unknown = [record_id for record_id in selected if record_id not in available]
         if unknown:
