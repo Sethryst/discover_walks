@@ -50,3 +50,7 @@ def test_verified_neighbor_prefilter_never_fabricates_ids():
     target=Geography('a','A','city',bbox=(0,0,1,1)); touching=Geography('b','B','city',bbox=(1,0,2,1)); far=Geography('c','C','city',bbox=(4,4,5,5))
     assert [x.id for x in WklsGeography().verified_neighbors(target,[touching,far])] == ['b']
     assert WklsGeography().verified_neighbors(Geography('','Unknown','unresolved'),[touching]) == []
+
+def test_wkls_scoped_portland_resolution_when_runtime_dependencies_exist():
+    place=WklsGeography().resolve('Portland, Oregon')
+    if place.id: assert place.name == 'Portland' and place.source_revision

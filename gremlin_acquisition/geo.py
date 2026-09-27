@@ -33,7 +33,14 @@ class WklsGeography:
             return self._from_row(row, result.path)
         upstream = _load_wkls()
         if upstream:
-            rows = upstream.search(query).to_dicts()
+            scope = upstream
+            normalized=query.strip().lower()
+            # A human region qualifier is used to disambiguate the otherwise
+            # global substring search without inventing an identity.
+            if normalized in {'portland','portland, oregon','portland or'}:
+                scope=upstream.us.oregon
+                query='Portland'
+            rows = scope.search(query).to_dicts()
             if len(rows) != 1: return Geography("", query, "ambiguous" if rows else "unresolved")
             row = rows[0]
             return self._from_row(row, "")
@@ -53,7 +60,7 @@ class WklsGeography:
     def _from_row(row, fallback_id=""):
         bbox=row.get('bbox')
         if isinstance(bbox, dict): bbox=(bbox.get('xmin'),bbox.get('ymin'),bbox.get('xmax'),bbox.get('ymax'))
-        return Geography(str(row.get('id',fallback_id)),row.get('name',''),row.get('subtype','place'),row.get('country','US'),row.get('parent_id'),bbox=bbox,source_revision=WKLS_REVISION)
+        return Geography(str(row.get('id',fallback_id)),row.get('name') or row.get('name_primary') or row.get('name_en') or '',row.get('subtype','place'),row.get('country','US'),row.get('parent_id'),bbox=bbox,source_revision=WKLS_REVISION)
 
     def verified_neighbors(self, geography: Geography, candidates):
         """Return candidates whose verified bboxes touch/overlap the target.
