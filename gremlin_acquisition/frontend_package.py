@@ -4,6 +4,24 @@ from __future__ import annotations
 from .package_intelligence import POIRecord
 
 
+def validate_frontend_package(payload: dict) -> list[str]:
+    errors = []
+    if payload.get('schema') != 'motherbird-regional-package.v1':
+        errors.append('schema must be motherbird-regional-package.v1')
+    if not payload.get('packageId'):
+        errors.append('packageId is required')
+    if not payload.get('approvalReference'):
+        errors.append('approvalReference is required')
+    if not isinstance(payload.get('requirements'), list):
+        errors.append('requirements must be a list')
+    if not isinstance(payload.get('places'), list):
+        errors.append('places must be a list')
+    for place in payload.get('places', []):
+        if not isinstance(place, dict) or not place.get('id') or not place.get('name') or not place.get('category') or not place.get('source'):
+            errors.append('places require id, name, category, and source')
+    return errors
+
+
 def to_frontend_place(record: POIRecord) -> dict:
     """Map only evidence-backed fields; absent optional data stays absent/unknown."""
     place = {
@@ -56,4 +74,7 @@ def build_selected_frontend_package(package: dict, selected_record_ids, *, appro
         "requirements": package.get("coverage", {}).get("requiredCategories", []),
         "places": [to_frontend_place(POIRecord(**available[record_id]["record"])) for record_id in sorted(selected)],
     }
+    errors = validate_frontend_package(projected)
+    if errors:
+        raise ValueError('invalid frontend package: ' + '; '.join(errors))
     return projected

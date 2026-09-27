@@ -1,5 +1,5 @@
 from gremlin_acquisition.package_intelligence import FeatureRequirement, POIRecord, RegionalNeed
-from gremlin_acquisition.review_package import build_review_package, write_review_package
+from gremlin_acquisition.review_package import build_review_package, validate_review_package, write_review_package
 from gremlin_acquisition.ledger import AcquisitionLedger
 
 
@@ -12,6 +12,7 @@ def test_review_package_is_content_addressed_and_explains_quality():
     assert first["packageId"]
     assert first["records"][0]["quality"]["frontend_fit"] == 1.0
     assert first["coverage"]["gaps"] == []
+    assert validate_review_package(first) == []
 
 
 def test_review_package_keeps_invalid_records_out_of_accepted_output():
@@ -21,6 +22,12 @@ def test_review_package_keeps_invalid_records_out_of_accepted_output():
     assert package["records"] == []
     assert package["rejected"][0]["recordId"] == "bad"
     assert package["rejected"][0]["quality"]["total"] < 0.6
+
+
+def test_review_package_writer_rejects_malformed_schema(tmp_path):
+    import pytest
+    with pytest.raises(ValueError, match='invalid review package'):
+        write_review_package({'schema': 'wrong'}, tmp_path)
 
 
 def test_review_coverage_counts_delivered_records_not_rejected_candidates():

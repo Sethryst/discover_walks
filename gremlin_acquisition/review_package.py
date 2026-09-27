@@ -9,6 +9,31 @@ from .models import jsonable
 from .quality import score_poi
 
 
+def validate_review_package(payload: dict) -> list[str]:
+    """Return schema errors without making publication decisions."""
+    errors = []
+    if payload.get('schema') != 'discover-walks-review-package.v1':
+        errors.append('schema must be discover-walks-review-package.v1')
+    geography = payload.get('geography')
+    if not isinstance(geography, dict) or not geography.get('id') or not geography.get('query'):
+        errors.append('geography requires id and query')
+    if not isinstance(payload.get('requirements'), list) or not payload['requirements']:
+        errors.append('requirements must be a non-empty list')
+    coverage = payload.get('coverage')
+    if not isinstance(coverage, dict) or not isinstance(coverage.get('requiredCategories'), list) or not isinstance(coverage.get('gaps'), list):
+        errors.append('coverage requires requiredCategories and gaps lists')
+    for key in ('records', 'rejected', 'duplicates', 'sourceEvidence'):
+        if key not in payload:
+            errors.append(f'missing {key}')
+    for row in payload.get('records', []):
+        if not isinstance(row, dict) or not isinstance(row.get('record'), dict) or not row['record'].get('record_id'):
+            errors.append('accepted records require record.record_id')
+    for row in payload.get('rejected', []):
+        if not isinstance(row, dict) or not row.get('recordId') or not isinstance(row.get('quality'), dict):
+            errors.append('rejected records require recordId and quality')
+    return errors
+
+
 def build_review_package(need: RegionalNeed, records, source_evidence=()):
     unique, duplicates = deduplicate_pois(records)
     accepted = []
@@ -46,6 +71,9 @@ def build_review_package(need: RegionalNeed, records, source_evidence=()):
 
 def write_review_package(payload: dict, directory: str | Path, *, status="READY FOR REVIEW", approval=None, publication=None):
     """Write an artifact with lifecycle metadata; writing never authorizes publication."""
+    errors = validate_review_package(payload)
+    if errors:
+        raise ValueError('invalid review package: ' + '; '.join(errors))
     payload = dict(payload)
     payload["status"] = status
     payload["approval"] = approval

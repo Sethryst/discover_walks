@@ -2,12 +2,15 @@
 from __future__ import annotations
 import argparse, json
 from pathlib import Path
-from .frontend_package import build_selected_frontend_package
+from .frontend_package import build_selected_frontend_package, validate_frontend_package
 
 
 def promote(review_path, selected_ids, approval_reference, output_dir, publish_dir=None, audit_path=None):
     review = json.loads(Path(review_path).read_text(encoding="utf-8"))
     payload = build_selected_frontend_package(review, selected_ids, approval_reference=approval_reference)
+    errors = validate_frontend_package(payload)
+    if errors:
+        raise ValueError('invalid frontend package: ' + '; '.join(errors))
     destination = Path(output_dir) / f"{review['packageId']}.json"
     destination.parent.mkdir(parents=True, exist_ok=True)
     destination.write_text(json.dumps(payload, sort_keys=True, indent=2) + "\n", encoding="utf-8")
