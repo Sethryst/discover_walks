@@ -1,0 +1,30 @@
+name: Validate approved sources for promotion
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build promotion report from approved sources
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          PROMOTION_REPORT: promotion-artifacts/kpi-operator-promotion.json
+        run: python -m app.pipeline.operator_promotion
+      - name: Upload promotion-ready package
+        uses: actions/upload-artifact@v4
+        with:
+          name: kpi-operator-promotion-report
+          path: promotion-artifacts/kpi-operator-promotion.json
+          retention-days: 30
