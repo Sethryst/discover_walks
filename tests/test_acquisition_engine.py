@@ -99,6 +99,7 @@ def test_kpi_reports_honest_empty_values_and_lifecycle_counts():
     kpi=summarize(ledger); assert kpi['empty_calendars']==1 and kpi['current_event_yield']==0 and kpi['geocoded_event_coverage'] is None and kpi['event_quality_average'] is None
 
 def test_kpi_reports_event_quality_denominator_and_low_quality_count():
+    from gremlin_acquisition.kpi import summarize
     ledger=AcquisitionLedger()
     event=validate_event(EventEvidence('Walk','2099-01-01T10:00:00Z','https://x/e','https://x',stable_id='e1'),'2026-01-01')
     ledger.upsert(SourceRecord('https://x','x','g',events=[event]))
