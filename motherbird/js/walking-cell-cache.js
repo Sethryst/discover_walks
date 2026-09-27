@@ -167,4 +167,10 @@ function safePart(value) {
 }
 
 function isRangeBackedArchive(artifact) { return ['http_range', 'pmtiles_range'].includes(artifact?.delivery?.mode || artifact?.mode); }
-function fileName(kind) { return kind === 'map' ? 'network.pmtiles' : kind === 'poi' ? 'poi.pmtiles' : kind === 'graph' ? 'routing-graph.json' : (() => { throw new Error('Unknown cell artifact kind.'); })(); }
+function fileName(kind) {
+  return kind === 'map' ? 'network.pmtiles'
+    : kind === 'poi' ? 'poi.pmtiles'
+      : kind === 'graph' ? 'routing-graph.json'
+        : ['nodes', 'edges', 'adjacency', 'edge_geometry', 'edge_spatial_index'].includes(kind) ? `${kind}.bin`
+          : (() => { throw new Error('Unknown cell artifact kind.'); })();
+}

@@ -1,8 +1,10 @@
 import { routeRuntimeGraph } from './runtime-router.mjs';
+import { WalkingCellCache } from './walking-cell-cache.js';
 
 
 const graphs = new Map();
 const graphLoads = new Map();
+const persistentCache = new WalkingCellCache();
 const MAX_GRAPH_CACHE_BYTES = 160 * 1024 * 1024;
 let graphCacheBytes = 0;
 const reportWorkerError = (error) => self.postMessage({ type: 'worker-error', message: error?.message || String(error), stack: error?.stack || null });
@@ -33,7 +35,7 @@ async function loadGraphUncached(cell,id,release,cellId,key) {
   const ma=cell.artifacts.manifest || cell.artifacts.graphManifest; const manifest=ma ? await json(ma.url) : cell.metadata || {};
   if(manifest.schema_version!==1 || manifest.graph_version!=='motherbird-runtime-graph-v1') throw fail('GRAPH_VERSION_UNAVAILABLE','Binary routing manifest is incompatible.');
   const names=['nodes','edges','adjacency','edge_geometry','edge_spatial_index']; const b={}; report(id,'fetching',0,5);
-  for(let i=0;i<names.length;i++){const n=names[i], a=cell.artifacts[n]||cell.artifacts[`${n}.bin`]; if(!a?.url) throw fail('GRAPH_VERSION_UNAVAILABLE',`Binary artifact ${n} is missing.`); b[n]=await bytes(a,manifest.artifacts?.[`${n}.bin`]||a); report(id,'fetching',i+1,5);}
+  for(let i=0;i<names.length;i++){const n=names[i], a=cell.artifacts[n]||cell.artifacts[`${n}.bin`]; if(!a?.url) throw fail('GRAPH_VERSION_UNAVAILABLE',`Binary artifact ${n} is missing.`); b[n]=await loadBinary(release, cell, n, a, manifest.artifacts?.[`${n}.bin`]); report(id,'fetching',i+1,5);}
   report(id,'decoding',0,5); const nodes=readNodes(b.nodes); report(id,'decoding',1,5); const edges=readEdges(b.edges,manifest); report(id,'decoding',2,5); const adjacency=readAdj(b.adjacency); report(id,'decoding',3,5); const geometry=readGeometry(b.edge_geometry); report(id,'decoding',4,5); const spatial_index=readSpatial(b.edge_spatial_index); report(id,'decoding',5,5);
   const runtime={...manifest,nodes,edges,adjacency,geometry,spatial_index,sources:manifest.sources||[],source_names:manifest.source_names||[],edge_types:manifest.edge_types||['unknown','sidewalk','footpath','crossing','trail','pedestrian_plaza','indoor_pathway','pedestrian_link']};
   const bytes = Object.values(manifest.artifacts || {}).reduce((sum, artifact) => sum + Number(artifact.bytes || 0), 0);
@@ -41,6 +43,17 @@ async function loadGraphUncached(cell,id,release,cellId,key) {
   const previous = graphs.get(key); if (previous) graphCacheBytes -= previous.bytes;
   graphs.set(key, entry); graphCacheBytes += entry.bytes; evictGraphs(key);
   report(id,'ready',5,5); return runtime;
+}
+async function loadBinary(release, cell, kind, artifact, manifestArtifact) {
+  const verifiedArtifact = { ...artifact, ...(manifestArtifact || {}) };
+  const cacheCell = { ...cell, artifacts: { [kind]: verifiedArtifact } };
+  try {
+    const file = await persistentCache.ensure(release, cacheCell, kind);
+    return file.arrayBuffer();
+  } catch (error) {
+    if (error?.message !== 'Origin Private File System is unavailable.') throw error;
+    return bytes(artifact, manifestArtifact || artifact);
+  }
 }
 function evictGraphs(protectedKey) {
   while (graphCacheBytes > MAX_GRAPH_CACHE_BYTES && graphs.size > 1) {
