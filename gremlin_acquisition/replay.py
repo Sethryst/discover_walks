@@ -10,7 +10,7 @@ from .planner import AcquisitionPlanner
 from .release import build_selected_package, rollback_exact
 from .adapters import parse_geojson
 from .package_intelligence import FeatureRequirement, RegionalNeed, coverage_report
-from .review_package import build_review_package
+from .review_package import build_review_package, write_review_package
 
 
 class _ReplayGeography:
@@ -58,7 +58,5 @@ def run_portland_poi_pilot(fixture_dir, ledger_path, package_dir):
     report = ledger.ingest_pois('portland-poi-pilot', need, result)
     package = build_review_package(need, result.records, [config['source']['url']])
     ledger.record_review_package(package)
-    path = Path(package_dir) / f"{package['packageId']}.json"
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(package, sort_keys=True, indent=2) + '\n', encoding='utf-8')
+    path = write_review_package(package, package_dir)
     return {'packageId': package['packageId'], 'packagePath': str(path), 'coverage': report, 'recordCount': len(result.records)}

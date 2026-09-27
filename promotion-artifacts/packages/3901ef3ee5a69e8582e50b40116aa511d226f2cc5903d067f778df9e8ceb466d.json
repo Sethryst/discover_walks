@@ -1,0 +1,227 @@
+{
+  "approval": null,
+  "coverage": {
+    "counts": {
+      "history": 1,
+      "library": 1,
+      "park": 1,
+      "trail": 1
+    },
+    "discoveredFrom": "verified replay pilot",
+    "gaps": [],
+    "geographyId": "replay-portland",
+    "geographyQuery": "Portland",
+    "quality": 1.0,
+    "recordCount": 4,
+    "requiredCategories": [
+      "park",
+      "trail",
+      "library",
+      "history"
+    ]
+  },
+  "duplicates": {},
+  "frontendSchema": "motherbird-place.v1",
+  "geography": {
+    "id": "replay-portland",
+    "query": "Portland"
+  },
+  "packageId": "3901ef3ee5a69e8582e50b40116aa511d226f2cc5903d067f778df9e8ceb466d",
+  "places": [
+    {
+      "category": "park",
+      "coordinates": [
+        -122.67,
+        45.52
+      ],
+      "id": "pdx-park-1",
+      "latitude": 45.52,
+      "longitude": -122.67,
+      "name": "River Park",
+      "official_url": "https://portland.example/park",
+      "publishingState": "candidate",
+      "source": "https://portland.example/official-pois.geojson"
+    },
+    {
+      "category": "trail",
+      "coordinates": [
+        -122.671,
+        45.521
+      ],
+      "id": "pdx-trail-1",
+      "latitude": 45.521,
+      "longitude": -122.671,
+      "name": "River Trail",
+      "official_url": "https://portland.example/trail",
+      "publishingState": "candidate",
+      "source": "https://portland.example/official-pois.geojson"
+    },
+    {
+      "category": "library",
+      "coordinates": [
+        -122.672,
+        45.522
+      ],
+      "id": "pdx-library-1",
+      "latitude": 45.522,
+      "longitude": -122.672,
+      "name": "Central Library",
+      "official_url": "https://portland.example/library",
+      "publishingState": "candidate",
+      "source": "https://portland.example/official-pois.geojson"
+    },
+    {
+      "category": "history",
+      "coordinates": [
+        -122.673,
+        45.523
+      ],
+      "id": "pdx-history-1",
+      "latitude": 45.523,
+      "longitude": -122.673,
+      "name": "Historic Depot",
+      "official_url": "https://portland.example/history",
+      "publishingState": "candidate",
+      "source": "https://portland.example/official-pois.geojson"
+    }
+  ],
+  "publication": null,
+  "records": [
+    {
+      "quality": {
+        "completeness": 1.0,
+        "freshness": 0.5,
+        "frontend_fit": 1.0,
+        "geometry": 1.0,
+        "provenance": 1.0,
+        "rationale": [
+          "validated identity and provenance"
+        ],
+        "total": 0.9
+      },
+      "record": {
+        "attributes": {
+          "official_url": "https://portland.example/park"
+        },
+        "category": "park",
+        "latitude": 45.52,
+        "longitude": -122.67,
+        "name": "River Park",
+        "official_url": null,
+        "record_id": "pdx-park-1",
+        "source_updated_at": null,
+        "source_url": "https://portland.example/official-pois.geojson"
+      }
+    },
+    {
+      "quality": {
+        "completeness": 1.0,
+        "freshness": 0.5,
+        "frontend_fit": 1.0,
+        "geometry": 1.0,
+        "provenance": 1.0,
+        "rationale": [
+          "validated identity and provenance"
+        ],
+        "total": 0.9
+      },
+      "record": {
+        "attributes": {
+          "official_url": "https://portland.example/trail"
+        },
+        "category": "trail",
+        "latitude": 45.521,
+        "longitude": -122.671,
+        "name": "River Trail",
+        "official_url": null,
+        "record_id": "pdx-trail-1",
+        "source_updated_at": null,
+        "source_url": "https://portland.example/official-pois.geojson"
+      }
+    },
+    {
+      "quality": {
+        "completeness": 1.0,
+        "freshness": 0.5,
+        "frontend_fit": 1.0,
+        "geometry": 1.0,
+        "provenance": 1.0,
+        "rationale": [
+          "validated identity and provenance"
+        ],
+        "total": 0.9
+      },
+      "record": {
+        "attributes": {
+          "official_url": "https://portland.example/library"
+        },
+        "category": "library",
+        "latitude": 45.522,
+        "longitude": -122.672,
+        "name": "Central Library",
+        "official_url": null,
+        "record_id": "pdx-library-1",
+        "source_updated_at": null,
+        "source_url": "https://portland.example/official-pois.geojson"
+      }
+    },
+    {
+      "quality": {
+        "completeness": 1.0,
+        "freshness": 0.5,
+        "frontend_fit": 1.0,
+        "geometry": 1.0,
+        "provenance": 1.0,
+        "rationale": [
+          "validated identity and provenance"
+        ],
+        "total": 0.9
+      },
+      "record": {
+        "attributes": {
+          "official_url": "https://portland.example/history"
+        },
+        "category": "history",
+        "latitude": 45.523,
+        "longitude": -122.673,
+        "name": "Historic Depot",
+        "official_url": null,
+        "record_id": "pdx-history-1",
+        "source_updated_at": null,
+        "source_url": "https://portland.example/official-pois.geojson"
+      }
+    }
+  ],
+  "rejected": [],
+  "requirements": [
+    {
+      "category": "park",
+      "frontend_surface": "explore",
+      "minimum_records": 1,
+      "required": true
+    },
+    {
+      "category": "trail",
+      "frontend_surface": "explore",
+      "minimum_records": 1,
+      "required": true
+    },
+    {
+      "category": "library",
+      "frontend_surface": "explore",
+      "minimum_records": 1,
+      "required": true
+    },
+    {
+      "category": "history",
+      "frontend_surface": "explore",
+      "minimum_records": 1,
+      "required": true
+    }
+  ],
+  "schema": "discover-walks-review-package.v1",
+  "sourceEvidence": [
+    "https://portland.example/official-pois.geojson"
+  ],
+  "status": "READY FOR REVIEW"
+}
