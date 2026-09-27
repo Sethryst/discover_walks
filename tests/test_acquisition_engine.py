@@ -58,6 +58,12 @@ def test_verified_neighbor_prefilter_never_fabricates_ids():
     assert [x.id for x in WklsGeography().verified_neighbors(target,[touching,far])] == ['b']
     assert WklsGeography().verified_neighbors(Geography('','Unknown','unresolved'),[touching]) == []
 
+def test_kpi_reports_honest_empty_values_and_lifecycle_counts():
+    from gremlin_acquisition.kpi import summarize
+    ledger=AcquisitionLedger(); source=SourceRecord('https://x','x','g',status=SourceStatus.NO_CURRENT_EVENTS)
+    ledger.upsert(source); ledger.record_attempt('r','g','https://x','rss','succeeded empty',produced_events=False)
+    kpi=summarize(ledger); assert kpi['empty_calendars']==1 and kpi['current_event_yield']==0 and kpi['geocoded_event_coverage'] is None
+
 def test_wkls_scoped_portland_resolution_when_runtime_dependencies_exist():
     place=WklsGeography().resolve('Portland, Oregon')
     if place.id: assert place.name == 'Portland' and place.source_revision
