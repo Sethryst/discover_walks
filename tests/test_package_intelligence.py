@@ -79,6 +79,22 @@ def test_region_requirements_are_derived_from_app_config():
     assert need.geography_id == "new-region"
     assert [r.canonical_category for r in need.requirements] == ["coffee", "library", "park", "trail"]
 
+def test_planner_resolves_arbitrary_new_region_queries_and_records_only_verified_scopes():
+    from gremlin_acquisition.models import Geography
+    class Geo:
+        def resolve(self, query):
+            return Geography('new-city', 'New City', 'city') if query == 'New City' else Geography('', query, 'ambiguous')
+        def neighbors(self, geography): return []
+    from gremlin_acquisition.planner import AcquisitionPlanner
+    from gremlin_acquisition.ledger import AcquisitionLedger
+    ledger = AcquisitionLedger()
+    discoveries, plans = AcquisitionPlanner(geo=Geo(), ledger=ledger).plan_region_queries(
+        'region-discovery', ['New City', 'Unclear Place'], requirements=(FeatureRequirement('parks'),), known_ids=()
+    )
+    assert [row.status for row in discoveries] == ['NEW', 'AMBIGUOUS']
+    assert [plan.geography.id for plan in plans] == ['new-city']
+    assert [row['status'] for row in ledger.region_discoveries] == ['NEW', 'AMBIGUOUS']
+
 
 def test_existing_region_configs_can_be_loaded():
     needs = load_region_needs("app/regions")

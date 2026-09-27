@@ -3,7 +3,7 @@ from urllib.parse import urlsplit
 from .geo import WklsGeography
 from .models import AcquisitionPlan, ScoreBreakdown
 from .ledger import AcquisitionLedger
-from .package_intelligence import FeatureRequirement, RegionalNeed, needs_from_discoveries
+from .package_intelligence import FeatureRequirement, RegionalNeed, needs_from_discoveries, discover_regions
 from .source_search import generate_search_lines, classify_search_result, search_feedback
 
 class AcquisitionPlanner:
@@ -56,6 +56,18 @@ class AcquisitionPlanner:
         for need in needs_from_discoveries(discoveries):
             plans.extend(self.plan_package(run_id, need, max_batches=max_batches, budget=budget))
         return sorted(plans, key=lambda p: (-p.score.priority, p.geography.id))
+
+    def plan_region_queries(self, run_id, queries, known_ids=(), max_batches=3, budget=30, requirements=None):
+        """Resolve arbitrary system region candidates, then plan only verified NEW scopes."""
+        discoveries = discover_regions(queries, self.geo, known_ids=known_ids)
+        for discovery in discoveries:
+            self.ledger.record_region_discovery(run_id, discovery)
+        selected_requirements = tuple(requirements or ())
+        plans = []
+        discovered_needs = needs_from_discoveries(discoveries, selected_requirements) if selected_requirements else needs_from_discoveries(discoveries)
+        for need in discovered_needs:
+            plans.extend(self.plan_package(run_id, need, max_batches=max_batches, budget=budget))
+        return discoveries, sorted(plans, key=lambda p: (-p.score.priority, p.geography.id))
 
     def search_sources(self, run_id, need: RegionalNeed, adapter, *, max_lines=None):
         """Run deterministic search lines and persist every provider outcome.
