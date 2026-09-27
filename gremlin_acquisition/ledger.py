@@ -102,6 +102,24 @@ class AcquisitionLedger:
             self._db.commit()
         return row
 
+    def governed_source_config(self, proposal_id):
+        """Return a source config only after explicit proposal approval."""
+        row = next((item for item in self.source_proposals if item.get('id') == proposal_id), None)
+        if not row:
+            raise KeyError(f"unknown source proposal: {proposal_id}")
+        if row.get('status') != 'APPROVED':
+            raise ValueError('source proposal must be APPROVED before configuration handoff')
+        self.record_source_proposal_transition(proposal_id, 'GOVERNED CONFIG PROPOSED', 'approved source configuration handoff', 'system')
+        return {
+            'id': row['sourceId'],
+            'provider': row['provider'],
+            'url': row['url'],
+            'domains': list(row.get('domains') or []),
+            'proposalId': row['id'],
+            'approval': row['approval'],
+            'status': 'GOVERNED CONFIG PROPOSED',
+        }
+
     def record_source_proposal_transition(self, proposal_id, state, reason, actor='system'):
         row = {'proposal_id': proposal_id, 'state': state, 'reason': reason, 'actor': actor}
         self.source_proposal_transitions.append(row)

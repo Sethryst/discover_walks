@@ -94,8 +94,12 @@ def test_source_proposal_approval_is_explicit_and_restart_safe(tmp_path):
     ledger.record_source_proposal('run-2', proposal)
     import pytest
     with pytest.raises(ValueError): ledger.approve_source_proposal('discovered-2', '', '')
+    with pytest.raises(ValueError): ledger.governed_source_config('discovered-2')
     approved = ledger.approve_source_proposal('discovered-2', 'moderator-1', 'supabase-source-approval-1')
     assert approved['status'] == 'APPROVED'
+    governed = ledger.governed_source_config('discovered-2')
+    assert governed['status'] == 'GOVERNED CONFIG PROPOSED'
+    assert governed['proposalId'] == 'discovered-2'
     reopened = AcquisitionLedger(tmp_path / "ledger.sqlite3")
     assert reopened.source_proposals[0]['approval']['reference'] == 'supabase-source-approval-1'
     assert [row['state'] for row in reopened.source_proposal_transitions] == ['PROPOSED', 'APPROVED']
