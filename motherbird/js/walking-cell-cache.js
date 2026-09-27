@@ -172,5 +172,6 @@ function fileName(kind) {
     : kind === 'poi' ? 'poi.pmtiles'
       : kind === 'graph' ? 'routing-graph.json'
         : ['nodes', 'edges', 'adjacency', 'edge_geometry', 'edge_spatial_index'].includes(kind) ? `${kind}.bin`
+          : kind === 'edge_metadata' ? 'edge-metadata.json.gz'
           : (() => { throw new Error('Unknown cell artifact kind.'); })();
 }

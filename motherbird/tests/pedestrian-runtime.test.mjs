@@ -56,13 +56,11 @@ test('runtime package writes compact graph, adjacency, geometry, index, attribut
   const directory = await fs.mkdtemp(path.join(os.tmpdir(), 'mother-bird-runtime-'));
   const manifest = await writeRuntimePackage(directory, runtime, graph.edges);
   const names = (await fs.readdir(directory)).sort();
-  assert.deepEqual(names, ['adjacency.bin', 'edge_attributes.jsonl.gz', 'edge_geometry.bin', 'edge_spatial_index.bin', 'edges.bin', 'manifest.json', 'nodes.bin', 'runtime-graph.json']);
+  assert.deepEqual(names, ['adjacency.bin', 'edge_attributes.jsonl.gz', 'edge_geometry.bin', 'edge_metadata.json.gz', 'edge_spatial_index.bin', 'edges.bin', 'manifest.json', 'nodes.bin', 'runtime-graph.json']);
   assert.equal(manifest.policy_version, '2026-08-27.1');
   assert.equal(manifest.node_count, graph.nodes.length);
   assert.equal(manifest.edge_count, graph.edges.length);
-  assert.deepEqual(manifest.edge_ids, runtime.edges.map((edge) => edge[0]));
-  assert.deepEqual(manifest.sources, runtime.sources);
-  assert.deepEqual(manifest.source_names, runtime.source_names);
+  assert.ok(manifest.artifacts['edge_metadata.json.gz'].bytes > 0);
   assert.ok(Object.values(manifest.artifacts).every(({ bytes, sha256 }) => bytes > 0 && sha256.length === 64));
 });
 

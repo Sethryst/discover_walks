@@ -19,7 +19,7 @@ def load_publisher():
     return module
 
 
-@pytest.mark.skipif(not SOURCE.is_dir(), reason="compiled routing fixture is unavailable")
+@pytest.mark.skipif(not SOURCE.is_dir() or not (SOURCE / "edge_metadata.json.gz").is_file(), reason="compiled metadata fixture is unavailable")
 def test_publish_requires_valid_binary_checksums(tmp_path):
     publisher = load_publisher()
     source = tmp_path / "source"

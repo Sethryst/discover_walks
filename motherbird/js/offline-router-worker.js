@@ -34,15 +34,20 @@ async function loadGraphUncached(cell,id,release,cellId,key) {
   if(!cell?.artifacts) throw fail('GRAPH_VERSION_UNAVAILABLE','Routing cell artifacts are missing.');
   const ma=cell.artifacts.manifest || cell.artifacts.graphManifest; const manifest=ma ? await json(ma.url) : cell.metadata || {};
   if(manifest.schema_version!==1 || manifest.graph_version!=='motherbird-runtime-graph-v1') throw fail('GRAPH_VERSION_UNAVAILABLE','Binary routing manifest is incompatible.');
-  const names=['nodes','edges','adjacency','edge_geometry','edge_spatial_index']; const b={}; report(id,'fetching',0,5);
-  for(let i=0;i<names.length;i++){const n=names[i], a=cell.artifacts[n]||cell.artifacts[`${n}.bin`]; if(!a?.url) throw fail('GRAPH_VERSION_UNAVAILABLE',`Binary artifact ${n} is missing.`); b[n]=await loadBinary(release, cell, n, a, manifest.artifacts?.[`${n}.bin`]); report(id,'fetching',i+1,5);}
-  report(id,'decoding',0,5); const nodes=readNodes(b.nodes); report(id,'decoding',1,5); const edges=readEdges(b.edges,manifest); report(id,'decoding',2,5); const adjacency=readAdj(b.adjacency); report(id,'decoding',3,5); const geometry=readGeometry(b.edge_geometry); report(id,'decoding',4,5); const spatial_index=readSpatial(b.edge_spatial_index); report(id,'decoding',5,5);
-  const runtime={...manifest,nodes,edges,adjacency,geometry,spatial_index,sources:manifest.sources||[],source_names:manifest.source_names||[],edge_types:manifest.edge_types||['unknown','sidewalk','footpath','crossing','trail','pedestrian_plaza','indoor_pathway','pedestrian_link']};
+  const names=['nodes','edges','adjacency','edge_geometry','edge_spatial_index','edge_metadata']; const b={}; report(id,'fetching',0,names.length);
+  for(let i=0;i<names.length;i++){const n=names[i], manifestName=n==='edge_metadata'?'edge_metadata.json.gz':`${n}.bin`, a=cell.artifacts[n]||cell.artifacts[manifestName]; if(!a?.url && n !== 'edge_metadata') throw fail('GRAPH_VERSION_UNAVAILABLE',`Binary artifact ${n} is missing.`); b[n]=a?.url ? await loadBinary(release, cell, n, a, manifest.artifacts?.[manifestName]) : null; report(id,'fetching',i+1,names.length);}
+  report(id,'decoding',0,6); const nodes=readNodes(b.nodes); report(id,'decoding',1,6); const metadata=await readMetadata(b.edge_metadata); const edges=readEdges(b.edges,{...manifest,...metadata}); report(id,'decoding',2,6); const adjacency=readAdj(b.adjacency); report(id,'decoding',3,6); const geometry=readGeometry(b.edge_geometry); report(id,'decoding',4,6); const spatial_index=readSpatial(b.edge_spatial_index); report(id,'decoding',5,6);
+  const runtime={...manifest,...metadata,nodes,edges,adjacency,geometry,spatial_index,edge_types:manifest.edge_types||['unknown','sidewalk','footpath','crossing','trail','pedestrian_plaza','indoor_pathway','pedestrian_link']};
   const bytes = Object.values(manifest.artifacts || {}).reduce((sum, artifact) => sum + Number(artifact.bytes || 0), 0);
   const entry = { runtime, bytes: Math.max(bytes * 2, 1), lastUsed: performance.now() };
   const previous = graphs.get(key); if (previous) graphCacheBytes -= previous.bytes;
   graphs.set(key, entry); graphCacheBytes += entry.bytes; evictGraphs(key);
-  report(id,'ready',5,5); return runtime;
+  report(id,'ready',6,6); return runtime;
+}
+async function readMetadata(buffer) {
+  if (!buffer) return {};
+  const stream = new Blob([buffer]).stream().pipeThrough(new DecompressionStream('gzip'));
+  return JSON.parse(await new Response(stream).text());
 }
 async function loadBinary(release, cell, kind, artifact, manifestArtifact) {
   const verifiedArtifact = { ...artifact, ...(manifestArtifact || {}) };
