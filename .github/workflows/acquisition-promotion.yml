@@ -11,7 +11,15 @@ on:
         description: Validate or publish; routine acquisition never publishes
         required: true
         type: choice
-        options: [validate, publish]
+        options: [validate, publish, rollback]
+      report:
+        description: Reviewed promotion report path (validate/publish only)
+        required: false
+        type: string
+      selected_event_ids:
+        description: Comma-separated event IDs explicitly selected by moderator
+        required: false
+        type: string
 
 permissions:
   contents: read
@@ -31,10 +39,17 @@ jobs:
         env:
           PACKAGE: ${{ inputs.package }}
           ACTION: ${{ inputs.action }}
+          SELECTED_IDS: ${{ inputs.selected_event_ids }}
         run: |
-          test -f "$PACKAGE"
           python -m compileall -q gremlin_acquisition
-          python -m gremlin_acquisition --help
-          test "$ACTION" = validate || test "$ACTION" = publish
-          echo "Package selected explicitly: $PACKAGE"
-          echo "Publication requires a protected environment approval and a separate reviewed release change."
+          if [ "$ACTION" = rollback ]; then
+            python -m gremlin_acquisition.release --action rollback --package-id "$PACKAGE" --active-package-id "$PACKAGE" --audit promotion-artifacts/audit.jsonl
+          else
+            test -f "$PACKAGE"
+            test -n "${{ inputs.report }}"
+            IFS=',' read -r -a IDS <<< "$SELECTED_IDS"
+            ARGS=()
+            for id in "${IDS[@]}"; do ARGS+=(--selected-event-id "$id"); done
+            python -m gremlin_acquisition.release --action "$ACTION" --report "${{ inputs.report }}" --output-dir promotion-artifacts/packages "${ARGS[@]}"
+          fi
+          echo "Publication requires this protected environment approval and explicit selected event IDs."

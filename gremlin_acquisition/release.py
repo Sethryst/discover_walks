@@ -7,6 +7,7 @@ auditable release action.
 from __future__ import annotations
 import hashlib, json
 from pathlib import Path
+import argparse
 
 def build_selected_package(report, selected_event_ids, output_dir):
     selected=set(selected_event_ids); events=[]; rejected=[]
@@ -32,3 +33,20 @@ def rollback_exact(package_id, active_package_id, history_path):
     row={'action':'rollback','packageId':package_id,'restored':'prior-approved-state','preserveLaterPromotions':True}
     with Path(history_path).open('a',encoding='utf-8') as f: f.write(json.dumps(row,sort_keys=True)+'\n')
     return row
+
+def main(argv=None):
+    parser=argparse.ArgumentParser(description='Explicit acquisition package release')
+    parser.add_argument('--report',type=Path); parser.add_argument('--selected-event-id',action='append',default=[])
+    parser.add_argument('--output-dir',type=Path,default=Path('promotion-artifacts/packages'))
+    parser.add_argument('--action',choices=('validate','publish','rollback'),required=True)
+    parser.add_argument('--package-id'); parser.add_argument('--active-package-id'); parser.add_argument('--audit',type=Path,default=Path('promotion-artifacts/audit.jsonl'))
+    args=parser.parse_args(argv)
+    if args.action in ('validate','publish'):
+        if not args.report: parser.error('--report is required')
+        payload,path=build_selected_package(json.loads(args.report.read_text(encoding='utf-8')),args.selected_event_id,args.output_dir)
+        print(json.dumps({'action':args.action,'packageId':payload['packageId'],'path':str(path)},sort_keys=True))
+    else:
+        if not args.package_id or not args.active_package_id: parser.error('rollback requires exact package IDs')
+        print(json.dumps(rollback_exact(args.package_id,args.active_package_id,args.audit),sort_keys=True))
+
+if __name__ == '__main__': main()
