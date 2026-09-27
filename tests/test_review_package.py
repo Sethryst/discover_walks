@@ -20,6 +20,18 @@ def test_review_package_keeps_invalid_records_out_of_accepted_output():
     package = build_review_package(need, [record])
     assert package["records"] == []
     assert package["rejected"][0]["recordId"] == "bad"
+    assert package["rejected"][0]["quality"]["total"] < 0.6
+
+
+def test_review_coverage_counts_delivered_records_not_rejected_candidates():
+    need = RegionalNeed("Example City", "city-1", (FeatureRequirement("parks"), FeatureRequirement("libraries")))
+    package = build_review_package(need, [
+        POIRecord("park", "Central Park", "parks", "https://city.gov/parks", 45.5, -122.6),
+        POIRecord("library", "Central Library", "libraries", "not-a-url", 45.5, -122.6),
+    ])
+    assert package["coverage"]["counts"] == {"park": 1, "library": 0}
+    assert package["coverage"]["gaps"] == ["library"]
+    assert package["candidateCoverage"]["gaps"] == []
 
 
 def test_review_package_requires_explicit_approval_before_promotion(tmp_path):
