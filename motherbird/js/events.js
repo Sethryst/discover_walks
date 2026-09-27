@@ -282,6 +282,20 @@ function renderWalkSketch(plan) {
   el('walkSketch').classList.remove('hidden'); el('startPanel').classList.add('hidden'); el('startChevron').setAttribute('aria-expanded', 'false');
 }
 
+function renderRoutePointControls() {
+  const list = el('routeStopList');
+  if (!list) return;
+  const start = state.plannerStart;
+  const stops = state.plannerStops || [];
+  const end = state.plannerEnd;
+  const pointLabel = (point) => point ? `${point.lat.toFixed(5)}, ${point.lng.toFixed(5)}` : 'Not selected';
+  list.innerHTML = [
+    `<li><strong>Start</strong><span>${escapeHtml(pointLabel(start || state.currentPosition))}</span></li>`,
+    ...stops.map((point, index) => `<li><strong>Stop ${index + 1}</strong><span>${escapeHtml(pointLabel(point))}</span></li>`),
+    `<li><strong>Destination</strong><span>${escapeHtml(pointLabel(end))}</span></li>`
+  ].join('');
+}
+
 function bindWalkControls() {
   // Keep walk planning with the persistent bottom walk control so the map's
   // top edge stays reserved for search and location controls.
@@ -300,9 +314,6 @@ function bindWalkControls() {
   };
   // Keep one authoritative handler when the shell is re-initialized.
   if (routeOptionsButton) routeOptionsButton.onclick = openRouteOptions;
-  document.addEventListener('click', (event) => {
-    if (event.target.closest?.('#radialRouteOptionsButton') && event.target !== routeOptionsButton) openRouteOptions();
-  });
   document.querySelectorAll('input[name="routeMode"]').forEach((input) => input.addEventListener('change', () => {
     if (!input.checked) return;
     state.plannerEnd = null;
@@ -312,6 +323,7 @@ function bindWalkControls() {
     const selectionHint = el('routeSelectionHint');
     selectionHint?.classList.toggle('hidden', input.value !== 'point-to-point');
     el('routePointControls')?.classList.toggle('hidden', input.value !== 'point-to-point');
+    renderRoutePointControls();
     if (input.value === 'point-to-point') {
       toast('Tap the map to choose your destination.');
     }
@@ -338,7 +350,13 @@ function bindWalkControls() {
   });
   el('generateWalkButton')?.addEventListener('click', () => void generateTimeBasedPlan());
   window.addEventListener('walk-sketch-painted', (event) => renderWalkSketch(event.detail));
-  window.addEventListener('planner-point-selected', () => {
+  window.addEventListener('planner-point-selected', (event) => {
+    const type = event.detail?.type || 'End';
+    renderRoutePointControls();
+    if (type !== 'End') {
+      toast(type === 'Start' ? 'Starting point selected.' : 'Stop added to this walk.');
+      return;
+    }
     el('routeSelectionHint')?.classList.add('hidden');
     el('startPanel')?.classList.add('hidden');
     el('radialRouteOptionsButton')?.setAttribute('aria-expanded', 'false');

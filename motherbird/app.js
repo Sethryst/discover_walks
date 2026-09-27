@@ -1,6 +1,6 @@
 /* Discover Walks Journal — local-first walking, history, and nature journal. */
 
-import('./js/loader.js?v=20260926-user-walk-7').then(({ init }) => init()).catch((error) => {
+import('./js/loader.js?v=20260926-user-walk-8').then(({ init }) => init()).catch((error) => {
   console.error('Walk & Wildlife startup failed:', error);
   const toast = document.getElementById('toast');
   if (toast) {
