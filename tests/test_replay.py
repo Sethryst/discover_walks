@@ -25,4 +25,5 @@ def test_new_region_discovery_replay_plans_and_packages_without_portland(tmp_pat
     assert 'prior failure or empty attempt' in result['fallbackReason']
     assert result['sourceProposals'][0]['status'] == 'PROPOSED'
     assert result['sourceProposals'][0]['publication'] == 'not authorized'
+    assert result['ledgerSourceProposals'] == 1
     assert (tmp_path/'packages'/f"{result['packageId']}.json").exists()

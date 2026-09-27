@@ -67,3 +67,17 @@ def test_planner_persists_each_search_outcome_without_fetching_sources(tmp_path)
     assert results[0].status == "SUCCEEDED"
     assert ledger.search_feedback[0]["outcome"] == "SUCCEEDED"
     assert "city.gov" in ledger.search_feedback[0]["notes"]
+
+
+def test_source_proposals_are_restart_safe_and_remain_proposed(tmp_path):
+    ledger = AcquisitionLedger(tmp_path / "ledger.sqlite3")
+    proposal = {
+        'id': 'discovered-1', 'status': 'PROPOSED', 'geographyId': 'new-city',
+        'sourceId': 'source-1', 'provider': 'geojson', 'url': 'https://city.gov/parks',
+        'domains': ['park'], 'binding': {'kind': 'region-source'},
+        'evidence': {'query': 'park query'}, 'publication': 'not authorized',
+    }
+    ledger.record_source_proposal('run-1', proposal)
+    reopened = AcquisitionLedger(tmp_path / "ledger.sqlite3")
+    assert reopened.source_proposals[0]['status'] == 'PROPOSED'
+    assert reopened.source_proposals[0]['publication'] == 'not authorized'

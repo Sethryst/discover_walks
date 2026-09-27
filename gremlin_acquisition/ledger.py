@@ -7,7 +7,7 @@ from .models import SourceRecord, SourceStatus, jsonable
 class AcquisitionLedger:
     """Durable, restart-safe ledger. JSON export is retained for inspection only."""
     def __init__(self, path=None):
-        self.sources: dict[str,SourceRecord]={}; self.attempts=[]; self.decisions=[]; self.coverage=[]; self.search_feedback=[]; self.region_discoveries=[]; self.redirects=[]; self.pois=[]; self.poi_transitions=[]; self.event_transitions=[]; self.manifests=[]; self.review_packages=[]; self.package_transitions=[]; self.path=Path(path) if path else None
+        self.sources: dict[str,SourceRecord]={}; self.attempts=[]; self.decisions=[]; self.coverage=[]; self.search_feedback=[]; self.region_discoveries=[]; self.source_proposals=[]; self.redirects=[]; self.pois=[]; self.poi_transitions=[]; self.event_transitions=[]; self.manifests=[]; self.review_packages=[]; self.package_transitions=[]; self.path=Path(path) if path else None
         self._db=sqlite3.connect(self.path) if self.path else None
         if self._db:
             self._db.executescript('''create table if not exists sources(url text primary key, payload text not null, updated_at text default current_timestamp);
@@ -17,6 +17,7 @@ class AcquisitionLedger:
             create table if not exists coverage(id integer primary key, payload text not null);
             create table if not exists search_feedback(id integer primary key, payload text not null);
             create table if not exists region_discoveries(id integer primary key, payload text not null);
+            create table if not exists source_proposals(proposal_id text primary key, payload text not null);
             create table if not exists redirects(id integer primary key, payload text not null);
             create table if not exists pois(id integer primary key, payload text not null);
             create table if not exists poi_transitions(id integer primary key, payload text not null);
@@ -32,6 +33,7 @@ class AcquisitionLedger:
             self.coverage=[json.loads(row[0]) for row in self._db.execute('select payload from coverage order by id')]
             self.search_feedback=[json.loads(row[0]) for row in self._db.execute('select payload from search_feedback order by id')]
             self.region_discoveries=[json.loads(row[0]) for row in self._db.execute('select payload from region_discoveries order by id')]
+            self.source_proposals=[json.loads(row[0]) for row in self._db.execute('select payload from source_proposals order by proposal_id')]
             self.redirects=[json.loads(row[0]) for row in self._db.execute('select payload from redirects order by id')]
             self.pois=[json.loads(row[0]) for row in self._db.execute('select payload from pois order by id')]
             self.poi_transitions=[json.loads(row[0]) for row in self._db.execute('select payload from poi_transitions order by id')]
@@ -65,6 +67,20 @@ class AcquisitionLedger:
                  "geography": jsonable(discovery.geography), "reason": discovery.reason}
         self.region_discoveries.append(payload)
         if self._db: self._db.execute('insert into region_discoveries(payload) values(?)',(json.dumps(payload,sort_keys=True),)); self._db.commit()
+
+    def record_source_proposal(self, run_id, proposal):
+        """Persist a review-only source registration proposal."""
+        row = {"run_id": run_id, **proposal}
+        existing = next((item for item in self.source_proposals if item.get("id") == row.get("id")), None)
+        if existing:
+            if existing != row:
+                raise ValueError(f"source proposal already exists with different evidence: {row.get('id')}")
+            return existing
+        self.source_proposals.append(row)
+        if self._db:
+            self._db.execute('insert into source_proposals(proposal_id,payload) values(?,?)', (row['id'], json.dumps(row, sort_keys=True)))
+            self._db.commit()
+        return row
 
     def record_redirect(self, run_id, source_url, replacement_url, status="redirected", reason=None):
         """Persist a source redirect or migration edge for later recovery reasoning."""
@@ -219,7 +235,7 @@ class AcquisitionLedger:
         if self._db: self._db.execute('insert into transitions(payload) values(?)',(json.dumps(row,sort_keys=True),)); self._db.commit()
         return source
     def dump(self, path: str|Path):
-        Path(path).write_text(json.dumps({"sources":jsonable(list(self.sources.values())),"attempts":self.attempts,"decisions":self.decisions,"coverage":self.coverage,"search_feedback":self.search_feedback,"region_discoveries":self.region_discoveries,"redirects":self.redirects,"pois":self.pois,"poi_transitions":self.poi_transitions,"event_transitions":self.event_transitions,"manifests":self.manifests,"review_packages":self.review_packages,"package_transitions":self.package_transitions}, indent=2, sort_keys=True), encoding="utf-8")
+        Path(path).write_text(json.dumps({"sources":jsonable(list(self.sources.values())),"attempts":self.attempts,"decisions":self.decisions,"coverage":self.coverage,"search_feedback":self.search_feedback,"region_discoveries":self.region_discoveries,"source_proposals":self.source_proposals,"redirects":self.redirects,"pois":self.pois,"poi_transitions":self.poi_transitions,"event_transitions":self.event_transitions,"manifests":self.manifests,"review_packages":self.review_packages,"package_transitions":self.package_transitions}, indent=2, sort_keys=True), encoding="utf-8")
 
     def manifest(self, run_id, inputs, config, dependency_revision="unknown"):
         payload={"run_id":run_id,"schema":"acquisition-ledger.v2","input_sha256":hashlib.sha256(json.dumps(inputs,sort_keys=True).encode()).hexdigest(),"config":config,"dependency_revision":dependency_revision}
