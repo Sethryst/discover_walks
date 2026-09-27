@@ -42,6 +42,15 @@ def test_sqlite_ledger_reloads_and_enforces_global_budget(tmp_path):
     assert len(reopened.attempts)==1 and 'https://x' in reopened.sources
     assert not reopened.budget_available(1)
 
+def test_run_manifest_is_content_bound_and_durable(tmp_path):
+    ledger=AcquisitionLedger(tmp_path/'manifest.db')
+    first=ledger.manifest('run-1', {'region':'portland'}, {'budget':3}, 'wkls-rev')
+    assert first['input_sha256']
+    assert ledger.manifest('run-1', {'region':'portland'}, {'budget':3}, 'wkls-rev') == first
+    import pytest
+    with pytest.raises(ValueError): ledger.manifest('run-1', {'region':'elsewhere'}, {'budget':3}, 'wkls-rev')
+    reopened=AcquisitionLedger(tmp_path/'manifest.db'); assert reopened.manifests == [first]
+
 def test_lifecycle_transitions_are_explicit_and_persisted(tmp_path):
     ledger=AcquisitionLedger(tmp_path/'l.db'); source=SourceRecord('https://x','x','g')
     ledger.transition(source,'VALIDATING','fetch started'); ledger.transition(source,'READY FOR REVIEW','dated event found')
