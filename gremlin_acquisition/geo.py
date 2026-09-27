@@ -5,7 +5,7 @@ latter may require the remote Overture parquet view, while IDs and hierarchy
 are still useful from cached metadata. Unknown and ambiguous searches remain
 unresolved.
 """
-import os, sys
+import os, sys, json
 from .models import Geography
 
 WKLS_REVISION = "966257fa9dfaed338e82e2ed2d03c9791f47e204"
@@ -71,3 +71,25 @@ class WklsGeography:
         if not geography.bbox: return []
         ax1,ay1,ax2,ay2=geography.bbox
         return [c for c in candidates if c.id and c.id != geography.id and c.bbox and not (c.bbox[2] < ax1 or c.bbox[0] > ax2 or c.bbox[3] < ay1 or c.bbox[1] > ay2)]
+
+    def verified_adjacent(self, query, names):
+        """Resolve and geometry-check named Oregon municipalities with WKLS."""
+        upstream=_load_wkls()
+        if not upstream: return []
+        root=upstream.us.oregon.search(query); rows=root.to_dicts()
+        if len(rows)!=1: return []
+        root_shape=json.loads(root.geojson())
+        try:
+            from shapely.geometry import shape
+            root_geom=shape(root_shape)
+        except (ImportError, ValueError, TypeError): return []
+        result=[]
+        for name in names:
+            found=upstream.us.oregon.search(name).to_dicts()
+            if len(found)!=1 or found[0].get('id')==rows[0].get('id'): continue
+            candidate=upstream.us.oregon.search(name)
+            try:
+                if root_geom.touches(shape(json.loads(candidate.geojson()))) or root_geom.intersects(shape(json.loads(candidate.geojson()))):
+                    result.append(self._from_row(found[0], candidate.path))
+            except (ValueError, TypeError): continue
+        return result
