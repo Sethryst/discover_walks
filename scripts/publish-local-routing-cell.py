@@ -1,7 +1,9 @@
 import argparse
 import hashlib
 import json
+import os
 import shutil
+import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -54,7 +56,14 @@ def publish(*, release, cell_id, source, target, registry_path):
         item = manifest["artifacts"][name]
         artifacts[name] = {"url": f"cells/{cell_id}/{name}", "bytes": item["bytes"], "sha256": item["sha256"]}
     artifacts.pop("graph", None)
-    registry_path.write_text(json.dumps(registry, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    registry_path.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.NamedTemporaryFile("w", encoding="utf-8", dir=registry_path.parent, prefix=f".{registry_path.name}.", suffix=".tmp", delete=False) as stream:
+        temporary_registry = Path(stream.name)
+        json.dump(registry, stream, indent=2, sort_keys=True)
+        stream.write("\n")
+        stream.flush()
+        os.fsync(stream.fileno())
+    os.replace(temporary_registry, registry_path)
     return {"cell": cell_id, "release": release, "availability": cell["availability"], "bytes": cell["byteCount"], "graphHash": cell["graphHash"]}
 
 
