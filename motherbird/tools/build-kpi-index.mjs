@@ -218,6 +218,7 @@ export async function collectKpiInventory() {
         accepted: Array.isArray(packagePayload.records) ? packagePayload.records.length : 0,
         rejected: Array.isArray(packagePayload.rejected) ? packagePayload.rejected.length : 0,
         records: Array.isArray(packagePayload.records) ? packagePayload.records.map((row) => ({ recordId: row.record?.record_id, name: row.record?.name, category: row.record?.category })) : [],
+        rejectedRecords: Array.isArray(packagePayload.rejected) ? packagePayload.rejected.map((row) => ({ recordId: row.recordId, reasons: Array.isArray(row.reasons) ? row.reasons : [] })) : [],
         gaps: Array.isArray(packagePayload.coverage?.gaps) ? packagePayload.coverage.gaps : [],
         generatedAt: packagePayload.generatedAt || null
       });
@@ -451,7 +452,7 @@ function renderRows(rows, columns) {
 
 export function renderKpiHtml(model) {
   const { summary } = model;
-  const packageRows = model.reviewPackages.map((item) => `<tr><td><code>${escapeHtml(item.packageId)}</code><br><label><input type="checkbox" data-package-approval="${escapeHtml(item.packageId)}" disabled> Approve package</label></td><td>${escapeHtml(item.geographyQuery)}<br><small>${escapeHtml(item.geographyId)}</small></td><td><span class="pill ${item.status === 'PROMOTED' ? 'good' : item.status === 'APPROVED' ? 'good' : 'warn'}">${escapeHtml(item.status)}</span></td><td>${item.records.map((record) => `<label><input type="checkbox" data-package-record="${escapeHtml(item.packageId)}:${escapeHtml(record.recordId || '')}" disabled> ${escapeHtml(record.name || record.recordId || 'unnamed')} <small>(${escapeHtml(record.category || 'unknown')})</small></label>`).join('<br>') || 'No accepted records'}</td><td>${item.rejected}</td><td>${escapeHtml(item.gaps.join(' · ') || 'None recorded')}</td></tr>`).join('');
+  const packageRows = model.reviewPackages.map((item) => `<tr><td><code>${escapeHtml(item.packageId)}</code><br><label><input type="checkbox" data-package-approval="${escapeHtml(item.packageId)}" disabled> Approve package</label></td><td>${escapeHtml(item.geographyQuery)}<br><small>${escapeHtml(item.geographyId)}</small></td><td><span class="pill ${item.status === 'PROMOTED' ? 'good' : item.status === 'APPROVED' ? 'good' : 'warn'}">${escapeHtml(item.status)}</span></td><td>${item.records.map((record) => `<label><input type="checkbox" data-package-record="${escapeHtml(item.packageId)}:${escapeHtml(record.recordId || '')}" disabled> ${escapeHtml(record.name || record.recordId || 'unnamed')} <small>(${escapeHtml(record.category || 'unknown')})</small></label>`).join('<br>') || 'No accepted records'}</td><td>${item.rejectedRecords.length ? `<details><summary>${item.rejectedRecords.length} rejected</summary>${item.rejectedRecords.map((record) => `<div><code>${escapeHtml(record.recordId || 'unnamed')}</code>: ${escapeHtml(record.reasons.join(' · ') || 'quality gate failed')}</div>`).join('') }</details>` : '0'}</td><td>${escapeHtml(item.gaps.join(' · ') || 'None recorded')}</td></tr>`).join('');
   const cards = [
     ['Experience modes', summary.experienceModes, `${summary.discoverCategories} Discover categories · ${summary.fieldGuideSubjects} Guide subjects`],
     ['Core-ready regions', summary.coreReadyRegions, `of ${summary.selectableRegions} selectable regions load required place + civic packages`],
