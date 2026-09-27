@@ -3,7 +3,7 @@
     "url": "https://portland.example/official-pois.geojson",
     "provider": "geojson",
     "domains": ["park", "trail", "library", "history"],
-    "propertyMapping": {"id": "id", "name": "name", "include": ["official_url"]}
+    "propertyMapping": {"id": "id", "name": "name", "category": "category", "include": ["official_url"]}
   },
   "document": {
     "type": "FeatureCollection",

@@ -28,7 +28,7 @@ class FallbackResult:
 def _category(config: dict, default="place") -> str:
     domains = config.get("domains") or []
     constants = (config.get("propertyMapping") or {}).get("constants") or {}
-    return str(constants.get("type") or (domains[0] if domains else default))
+    return str(constants.get("type") or (config.get("category") if config.get("category") else (domains[0] if domains else default)))
 
 
 def _record(config: dict, feature: dict, index: int) -> POIRecord:
@@ -51,7 +51,8 @@ def _record(config: dict, feature: dict, index: int) -> POIRecord:
         lat = lon = None
     attributes = {key: props[key] for key in mapping.get("include", []) if key in props}
     attributes.update(mapping.get("constants", {}))
-    return normalize_poi(POIRecord(str(record_id), str(name or ""), _category(config), config["url"], lat, lon, attributes=attributes))
+    category = props.get(mapping.get("category", "category")) or _category(config)
+    return normalize_poi(POIRecord(str(record_id), str(name or ""), str(category), config["url"], lat, lon, attributes=attributes))
 
 
 def parse_geojson(body: dict, config: dict) -> AdapterResult:
