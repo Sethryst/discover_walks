@@ -47,6 +47,8 @@ def test_acquisition_pipeline_returns_review_only_package_after_fallback(tmp_pat
     result = acquire_review_package("run-1", need, [config, replacement], transport, ledger, tmp_path / "packages")
     assert result["fallbackStatus"] == "SUCCEEDED"
     assert result["package"]["coverage"]["gaps"] == []
+    assert any("retired source" in evidence for evidence in result["package"]["sourceEvidence"])
+    assert any("SUCCEEDED" in evidence for evidence in result["package"]["sourceEvidence"])
     assert ledger.review_packages[0]["status"] == "READY FOR REVIEW"
 
 
