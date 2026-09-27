@@ -102,4 +102,4 @@ def test_source_proposal_approval_is_explicit_and_restart_safe(tmp_path):
     assert governed['proposalId'] == 'discovered-2'
     reopened = AcquisitionLedger(tmp_path / "ledger.sqlite3")
     assert reopened.source_proposals[0]['approval']['reference'] == 'supabase-source-approval-1'
-    assert [row['state'] for row in reopened.source_proposal_transitions] == ['PROPOSED', 'APPROVED']
+    assert [row['state'] for row in reopened.source_proposal_transitions] == ['PROPOSED', 'APPROVED', 'GOVERNED CONFIG PROPOSED']
