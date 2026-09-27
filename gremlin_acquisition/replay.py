@@ -9,7 +9,7 @@ from .models import Geography, SourceRecord, SourceStatus
 from .planner import AcquisitionPlanner
 from .release import build_selected_package, rollback_exact
 from .adapters import parse_geojson
-from .package_intelligence import FeatureRequirement, RegionalNeed, coverage_report
+from .package_intelligence import FeatureRequirement, RegionalNeed, coverage_report, discover_regions, needs_from_discoveries
 from .review_package import build_review_package, write_review_package
 
 
@@ -23,6 +23,21 @@ class _ReplayGeography:
             level="city",
             source_revision="replay-fixture",
         )
+
+    def neighbors(self, geography):
+        return []
+
+
+class _DiscoveredReplayGeography:
+    """Small deterministic resolver used to prove the discovery path.
+
+    Production resolution remains WKLS-backed; this fixture deliberately
+    exposes the same interface without pretending the replay place is real.
+    """
+    def resolve(self, query):
+        if "new city" in str(query).casefold():
+            return Geography("replay-new-city", "New City", "city", source_revision="replay-fixture")
+        return Geography("", str(query), "ambiguous", source_revision="replay-fixture")
 
     def neighbors(self, geography):
         return []
@@ -60,3 +75,36 @@ def run_portland_poi_pilot(fixture_dir, ledger_path, package_dir):
     ledger.record_review_package(package)
     path = write_review_package(package, package_dir)
     return {'packageId': package['packageId'], 'packagePath': str(path), 'coverage': report, 'recordCount': len(result.records)}
+
+
+def run_discovered_region_pilot(fixture_dir, ledger_path, package_dir):
+    """Exercise a newly discovered region without Portland-specific assumptions."""
+    fixture = Path(fixture_dir)
+    ledger = AcquisitionLedger(ledger_path)
+    config = json.loads((fixture / 'discovered-region.json').read_text(encoding='utf-8'))
+    geo = _DiscoveredReplayGeography()
+    discoveries = discover_regions([config['query']], geo, known_ids=())
+    for discovery in discoveries:
+        ledger.record_region_discovery('discovered-region-pilot', discovery)
+    needs = needs_from_discoveries(discoveries)
+    if len(needs) != 1:
+        raise ValueError('discovery replay did not produce exactly one new canonical region')
+    need = needs[0]
+    plans = AcquisitionPlanner(geo=geo, ledger=ledger).plan_discovered_regions(
+        'discovered-region-pilot', discoveries, max_batches=1, budget=5
+    )
+    result = parse_geojson(config['document'], config['source'])
+    report = ledger.ingest_pois('discovered-region-pilot', need, result)
+    package = build_review_package(need, result.records, [config['source']['url']])
+    ledger.record_review_package(package)
+    path = write_review_package(package, package_dir)
+    return {
+        'discoveryStatus': discoveries[0].status,
+        'geographyId': need.geography_id,
+        'plannedGeographies': [plan.geography.id for plan in plans],
+        'packageId': package['packageId'],
+        'packagePath': str(path),
+        'coverage': report,
+        'recordCount': len(result.records),
+        'ledgerDiscoveries': len(ledger.region_discoveries),
+    }

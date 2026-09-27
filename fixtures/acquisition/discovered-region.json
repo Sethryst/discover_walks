@@ -1,0 +1,18 @@
+{
+  "query": "New City",
+  "source": {
+    "url": "https://new-city.example/official-places.geojson",
+    "provider": "geojson",
+    "domains": ["park", "trail", "library", "history"],
+    "propertyMapping": {"id": "id", "name": "name", "category": "category", "include": ["official_url"]}
+  },
+  "document": {
+    "type": "FeatureCollection",
+    "features": [
+      {"type": "Feature", "id": "new-park-1", "properties": {"id": "new-park-1", "name": "Civic Green", "category": "park", "official_url": "https://new-city.example/park"}, "geometry": {"type": "Point", "coordinates": [-90.1, 35.1]}},
+      {"type": "Feature", "id": "new-trail-1", "properties": {"id": "new-trail-1", "name": "Creek Trail", "category": "trail", "official_url": "https://new-city.example/trail"}, "geometry": {"type": "Point", "coordinates": [-90.101, 35.101]}},
+      {"type": "Feature", "id": "new-library-1", "properties": {"id": "new-library-1", "name": "New City Library", "category": "library", "official_url": "https://new-city.example/library"}, "geometry": {"type": "Point", "coordinates": [-90.102, 35.102]}},
+      {"type": "Feature", "id": "new-history-1", "properties": {"id": "new-history-1", "name": "Founders Hall", "category": "historic sites", "official_url": "https://new-city.example/history"}, "geometry": {"type": "Point", "coordinates": [-90.103, 35.103]}}
+    ]
+  }
+}
