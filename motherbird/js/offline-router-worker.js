@@ -19,7 +19,8 @@ self.onmessage = async ({ data }) => {
 const report=(id,phase,completed,total)=>self.postMessage({type:'progress',requestId:id,phase,completed,total});
 const fail=(code,message)=>Object.assign(new Error(message),{code});
 async function loadGraph(cell,id,release,cellId) {
-  const key=`${release}/${cellId}`;
+  const version = cell?.graphHash || cell?.graphVersion || cell?.artifacts?.manifest?.sha256 || 'unversioned';
+  const key=`${release}/${cellId}/${version}`;
   const cached = graphs.get(key);
   if (cached) { cached.lastUsed = performance.now(); return cached.runtime; }
   if (graphLoads.has(key)) return graphLoads.get(key);
