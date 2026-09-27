@@ -70,7 +70,8 @@ def _automated_items(region_id: str, artifact: str, generated_at: str, venue_pin
         return []
     try:
         module_name = str(provider["module"])
-        fetch_cards = getattr(importlib.import_module(module_name), "fetch_cards")
+        module = importlib.import_module(module_name)
+        fetch_cards = getattr(module, provider.get("function", "fetch_cards"))
         now = datetime.fromisoformat(generated_at.replace("Z", "+00:00"))
         if provider.get("venueJoin"):
             return fetch_cards(now, venue_pins or [])

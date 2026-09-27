@@ -6,6 +6,8 @@
     "boston": {"label": "Boston", "module": "app.pipeline.boston_civic", "pagination": "17 official pages / 90-day window"},
     "philadelphia": {"label": "Philadelphia special events", "module": "app.pipeline.philly_civic", "pagination": "initial official view only; source pagination endpoint currently unavailable"},
     "washington-dc": {"label": "DC.gov", "module": "app.pipeline.dc_civic", "pagination": "official Load More pages / 90-day window"},
-    "prince-georges-county-md": {"label": "PG Parks", "module": "app.pipeline.pgparks_civic", "pagination": "official next-page cursor / 90-day window"}
+    "prince-georges-county-md": {"label": "PG Parks", "module": "app.pipeline.pgparks_civic", "pagination": "official next-page cursor / 90-day window"},
+    "norfolk": {"label": "Norfolk Public Library Calendar", "module": "app.pipeline.ready_civic", "function": "norfolk", "pagination": "READY candidate / current dated events"},
+    "wolf-trap-va": {"label": "NPS Wolf Trap events", "module": "app.pipeline.ready_civic", "function": "wolf_trap", "pagination": "READY candidate / current dated events"}
   }
 }
