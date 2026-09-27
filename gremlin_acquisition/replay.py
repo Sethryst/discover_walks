@@ -8,6 +8,9 @@ from .ledger import AcquisitionLedger
 from .models import Geography, SourceRecord, SourceStatus
 from .planner import AcquisitionPlanner
 from .release import build_selected_package, rollback_exact
+from .adapters import parse_geojson
+from .package_intelligence import FeatureRequirement, RegionalNeed, coverage_report
+from .review_package import build_review_package
 
 
 class _ReplayGeography:
@@ -42,3 +45,20 @@ def run_offline_pilot(fixture_dir, ledger_path, package_dir, audit_path):
     payload,path=build_selected_package(report,selected,package_dir)
     rollback=rollback_exact(payload['packageId'],payload['packageId'],audit_path)
     return {'plans':len(plans),'sourceStatus':source.status.value,'selectedEvents':len(selected),'packageId':payload['packageId'],'packagePath':str(path),'rollback':rollback}
+
+def run_portland_poi_pilot(fixture_dir, ledger_path, package_dir):
+    """Replay the declared Portland frontend POI requirements into review state."""
+    fixture = Path(fixture_dir)
+    ledger = AcquisitionLedger(ledger_path)
+    geography = _ReplayGeography().resolve('Portland')
+    requirements = tuple(FeatureRequirement(category) for category in ('park', 'trail', 'library', 'history'))
+    need = RegionalNeed('Portland', geography.id, requirements, 'verified replay pilot')
+    config = json.loads((fixture / 'pois.json').read_text(encoding='utf-8'))
+    result = parse_geojson(config['document'], config['source'])
+    report = ledger.ingest_pois('portland-poi-pilot', need, result)
+    package = build_review_package(need, result.records, [config['source']['url']])
+    ledger.record_review_package(package)
+    path = Path(package_dir) / f"{package['packageId']}.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(package, sort_keys=True, indent=2) + '\n', encoding='utf-8')
+    return {'packageId': package['packageId'], 'packagePath': str(path), 'coverage': report, 'recordCount': len(result.records)}
