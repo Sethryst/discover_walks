@@ -1,0 +1,4 @@
+def summarize(ledger):
+    sources=list(ledger.sources.values()); events=[e for s in sources for e in s.events if not e.expired]
+    domains={s.canonical_domain for s in sources}; regions={s.geography_id for s in sources}
+    return {"regions_searched":len(regions),"new_canonical_domains":len(domains),"current_event_yield":len(events),"geocoded_event_coverage":sum(e.latitude is not None and e.longitude is not None for e in events)/len(events) if events else 0,"fallback_success_rate":sum(a["produced_events"] for a in ledger.attempts)/len(ledger.attempts) if ledger.attempts else 0,"promotion_ready_sources":sum(s.status.value=="READY FOR REVIEW" for s in sources),"next_recommended_acquisition_batch":[d["geography_id"] for d in ledger.decisions[-3:]],"reasons":[d["reason"] for d in ledger.decisions[-3:]]}
