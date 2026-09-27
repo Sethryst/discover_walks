@@ -25,10 +25,24 @@ export async function routeOnFoot(points, { city, profile = 'ordinary_walking_be
   if (!Array.isArray(points) || points.length < 2) return failure('INVALID_ROUTE_REQUEST');
   const legs = [];
   for (let index = 0; index < points.length - 1; index += 1) {
-    try { activeWalkingCell = await activateWalkingCellAt(points[index]); }
+    let destinationCell = null;
+    try {
+      activeWalkingCell = await activateWalkingCellAt(points[index]);
+      const originCell = activeWalkingCell;
+      // Load the destination index as well so a boundary leg can use the
+      // neighboring package when the origin package cannot connect it.
+      destinationCell = await activateWalkingCellAt(points[index + 1]);
+      activeWalkingCell = originCell;
+    }
     catch (error) { return failure('GRAPH_VERSION_UNAVAILABLE', error.message); }
     if (!activeWalkingCell?.id || activeWalkingCell.availability !== 'routing_available') return failure('GRAPH_VERSION_UNAVAILABLE', activeWalkingCell?.reason);
-    const result = await requestRoute({ city, profile, origin: points[index], destination: points[index + 1], avoid: { stairs: false, unverified_edges: false }, cell: activeWalkingCell, cellId: activeWalkingCell?.id, cellRelease: activeWalkingCell?.release });
+    const request = (cell) => requestRoute({ city, profile, origin: points[index], destination: points[index + 1], avoid: { stairs: false, unverified_edges: false }, cell, cellId: cell?.id, cellRelease: cell?.release });
+    let result = await request(activeWalkingCell);
+    const neighborIds = new Set(activeWalkingCell.routingNeighbors || []);
+    if (!result.ok && destinationCell?.id && destinationCell.id !== activeWalkingCell.id && neighborIds.has(destinationCell.id) && destinationCell.availability === 'routing_available') {
+      result = await request(destinationCell);
+      if (result.ok) result = { ...result, warnings: [...new Set([...(result.warnings || []), 'neighbor_cell_fallback'])] };
+    }
     if (!result.ok) return result;
     legs.push(result);
   }
@@ -44,7 +58,7 @@ export async function routeOnFoot(points, { city, profile = 'ordinary_walking_be
     durationSeconds: legs.reduce((sum, leg) => sum + leg.estimated_duration_s, 0),
     edgeIds: [...new Set(legs.flatMap((leg) => leg.edge_ids))],
     sourceProvenanceIds: [...new Set(legs.flatMap((leg) => leg.source_provenance_ids))],
-    cellId: activeWalkingCell.id,
+    cellId: legs.at(-1)?.cell_id || activeWalkingCell.id,
     cellRelease: activeWalkingCell.release,
     warnings: [...new Set(legs.flatMap((leg) => leg.warnings))],
     instructions: mergeInstructions(legs),
