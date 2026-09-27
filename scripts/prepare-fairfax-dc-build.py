@@ -10,8 +10,10 @@ for cid in ids:
         _, x, y = cid.split('-'); ref = all_cells[f'z10-293-{y}']; w,s,e,n = ref['bounds']; shift=(int(x)-293)*(e-w)
         all_cells[cid] = {'id':cid, 'bounds':[w+shift,s,e+shift,n], 'clipBounds':[w+shift,s,e+shift,n], 'output':f'cells/{cid}', 'sourcePbf':['state-pbf/md.pedestrian.osm.pbf']}
     c=all_cells[cid]
-    if int(cid.split('-')[1]) >= 294: c['sourcePbf']=['state-pbf/pa.pedestrian.osm.pbf','state-pbf/nj.pedestrian.osm.pbf','state-pbf/de.pedestrian.osm.pbf']
-    else: c['sourcePbf']=['state-pbf/dc.pedestrian.osm.pbf','state-pbf/md.pedestrian.osm.pbf','state-pbf/va.pedestrian.osm.pbf']
+    # Include every available state extract for every tile. State boundaries
+    # do not align with z10 tile columns, and omitting a neighboring extract
+    # creates false-empty cells at the corridor's eastern and western edges.
+    c['sourcePbf']=[f'state-pbf/{name}.pedestrian.osm.pbf' for name in ['dc','md','va','pa','nj','de']]
 out=root/'.tmp-cache/fairfax-dc-build'; (out/'state-pbf').mkdir(parents=True,exist_ok=True)
 for name in ['dc','md','va','pa','nj','de']:
     src = root/f'.gremlin-osm/national-pedestrian-routing/state-pbf/{name}.pedestrian.osm.pbf'
