@@ -7,7 +7,7 @@ import { openBackpack, openJournal, closeSheets, openSheet, renderGeofenceCatego
 import { city, searchPois } from './poi.js';
 import { localSearchHits, searchRowHtml, emptySearchHtml, widenSearch } from './search.js';
 import { switchCity } from './city.js';
-import { generateTimeBasedPlan, lockSelectedPlanOnMap, changePlan } from './planner.js';
+import { generateTimeBasedPlan, lockSelectedPlanOnMap, changePlan } from './planner.js?v=20260926-editable-route-points';
 import { routeOnFoot } from './routing.js';
 import { paintWalkPlan, paintCard, previewCard, sendCurrentWalkPlan } from './field-guide.js?v=132';
 import { wordCount } from './reflection.js';
