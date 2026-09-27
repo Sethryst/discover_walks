@@ -15,6 +15,16 @@
     -77.031821,
     39.0645566
   ],
+  "edge_types": [
+    "unknown",
+    "sidewalk",
+    "footpath",
+    "crossing",
+    "trail",
+    "pedestrian_plaza",
+    "indoor_pathway",
+    "pedestrian_link"
+  ],
   "node_count": 789787,
   "edge_count": 857873,
   "artifacts": {
@@ -37,6 +47,10 @@
     "edge_spatial_index.bin": {
       "bytes": 4120160,
       "sha256": "7221c4a8184baa542c91188d70dc769c6043f0a02add05f5da4d5897a0c80ca4"
+    },
+    "edge_metadata.json.gz": {
+      "bytes": 3197748,
+      "sha256": "42858363163fbb65214de3e5fe4fbd85f412bcecdb9c94c46dfadb4d476f5981"
     },
     "runtime-graph.json": {
       "bytes": 195621257,
