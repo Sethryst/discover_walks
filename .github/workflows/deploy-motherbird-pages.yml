@@ -13,7 +13,9 @@ permissions:
 
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  # Pages should converge on the newest repository state; older queued builds
+  # must not hold the current review artifact behind stale deployments.
+  cancel-in-progress: true
 
 jobs:
   deploy:
