@@ -73,7 +73,7 @@ def test_record_selection_is_separate_and_audited(tmp_path):
     package = build_review_package(need, [POIRecord("p1", "Central Park", "parks", "https://city.gov/parks", 45.5, -122.6)])
     ledger = AcquisitionLedger(tmp_path / "selection.sqlite3")
     ledger.record_review_package(package)
-    record_id = package["records"][0]["recordId"]
+    record_id = package["records"][0]["record"]["record_id"]
     selected = ledger.record_package_selection(package["packageId"], [record_id], "reviewer-1", "selection-1")
     assert selected["selection"]["recordIds"] == [record_id]
     assert any(row["state"] == "RECORDS SELECTED" for row in ledger.package_transitions)
