@@ -39,8 +39,10 @@ def binary_artifacts(directory: Path, manifest: dict[str, Any], base_url: str | 
 def build_manifest(plan: dict[str, Any], root: Path, *, graph_version: str = "motherbird-runtime-graph-v1",
                    map_available: bool = True, map_url: str = "./national-walk.pmtiles",
                    remote_base: str | None = None) -> dict[str, Any]:
+    plan_cells = plan.get("cells", [])
+    neighbors = {cell["id"]: _cell_neighbors(cell, plan_cells) for cell in plan_cells}
     cells = []
-    for cell in plan.get("cells", []):
+    for cell in plan_cells:
         directory = root / cell["output"]
         graph = directory / "runtime-graph.json"
         receipt_path = directory / "manifest.json"
@@ -73,6 +75,9 @@ def build_manifest(plan: dict[str, Any], root: Path, *, graph_version: str = "mo
             "graphVersion": ((remote or receipt).get("graphVersion", graph_version)), "sourceRelease": plan["release"],
             "compileStatus": ((remote or receipt).get("compileStatus", "complete") if verified else "missing"),
             "availability": availability(map_available=map_available, graph_verified=binary_verified),
+            "routingNeighbors": neighbors[cell["id"]],
+            "stitching": {"coordinateConvention": "[lon,lat]", "snapToleranceMeters": 3,
+                          "sharedBoundaryRouting": "neighbor_cell_handoff"},
             "artifacts": {
                 "map": {"url": map_url, "mode": "pmtiles_range"},
                 "manifest": {"url": (remote_base.rstrip("/") + f"/{cell['id']}/manifest.json" if remote_base else f"cells/{cell['id']}/manifest.json")} if binary_verified else {},
@@ -84,6 +89,22 @@ def build_manifest(plan: dict[str, Any], root: Path, *, graph_version: str = "mo
             "overlapPolicy": {"allowed": True, "tieBreak": ["smallest_bounds_area", "cell_id_ascending"]},
             "coordinateConvention": {"runtimeGraph": "[lon, lat]", "uiRoute": "[lat, lon]"},
             "cells": cells}
+
+
+def _cell_neighbors(cell: dict[str, Any], plan_cells: list[dict[str, Any]]) -> list[str]:
+    """Return deterministic adjacent cells for explicit cross-cell handoff."""
+    tile = cell.get("tile") or {}
+    if not all(key in tile for key in ("z", "x", "y")):
+        return []
+    z, x, y = int(tile["z"]), int(tile["x"]), int(tile["y"])
+    result = []
+    for other in plan_cells:
+        if other.get("id") == cell.get("id"):
+            continue
+        ot = other.get("tile") or {}
+        if int(ot.get("z", -1)) == z and abs(int(ot.get("x", 10**9)) - x) <= 1 and abs(int(ot.get("y", 10**9)) - y) <= 1:
+            result.append(other["id"])
+    return sorted(result)
 
 
 def main(argv=None):
