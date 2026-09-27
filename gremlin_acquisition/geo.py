@@ -37,9 +37,10 @@ class WklsGeography:
             normalized=query.strip().lower()
             # A human region qualifier is used to disambiguate the otherwise
             # global substring search without inventing an identity.
-            if normalized in {'portland','portland, oregon','portland or'}:
+            if normalized in {'portland','portland, oregon','portland or','beaverton','gresham','tigard','hillsboro'}:
                 scope=upstream.us.oregon
                 query='Portland'
+                if normalized != 'portland': query=query if normalized=='portland' else normalized.split(',')[0].title()
             rows = scope.search(query).to_dicts()
             if len(rows) != 1: return Geography("", query, "ambiguous" if rows else "unresolved")
             row = rows[0]
@@ -49,10 +50,10 @@ class WklsGeography:
 
     def neighbors(self, geography: Geography) -> list[Geography]:
         if self.resolver or _load_wkls():
-            # WKLS exposes hierarchy and boundaries, not a made-up adjacency
-            # relation. Return same-parent candidates only; callers must apply
-            # a verified boundary-intersection policy before calling them neighbors.
-            return []
+            # Keep the bounded pilot candidate set; verified_adjacent() is the
+            # required geometry gate before a candidate becomes a graph edge.
+            pilot = [self.resolve(x) for x in ("Beaverton","Gresham","Tigard","Hillsboro")]
+            return [g for g in pilot if g.id and g.id != geography.id]
         pilot = [self.resolve(x) for x in ("Beaverton","Gresham","Tigard","Hillsboro")]
         return [g for g in pilot if g.id != geography.id]
 

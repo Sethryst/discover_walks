@@ -12,7 +12,7 @@ def canonical_url(url):
     parts=urlsplit(url.strip()); host=(parts.hostname or '').lower().removeprefix('www.')
     port='' if parts.port in (None,80,443) else f':{parts.port}'
     query=urlencode(sorted((k,v) for k,v in parse_qsl(parts.query,keep_blank_values=True) if not k.lower().startswith(('utm_','fbclid'))))
-    return urlunsplit((parts.scheme.lower(),host+port,parts.path.rstrip('/') or '/',query,''))
+    return urlunsplit((parts.scheme.lower(),host+port,parts.path.rstrip('/'),query,''))
 
 def classify_fetch(status_code, error=None, events=None):
     if error:
@@ -53,10 +53,10 @@ def parse_ics(body, source_url, retrieved_at=None):
 
 def parse_jsonld(body, source_url):
     events=[]
-    for raw in re.findall(r'<script[^>]+application/ld\+json[^>]*>(.*?)</script>',body,re.S|re.I):
+    for raw in re.findall(r'<script[^>]*application/ld[+]json[^>]*>(.*?)</script>',body,re.S|re.I):
         try: data=json.loads(raw)
         except json.JSONDecodeError: continue
-        items=data if isinstance(data,list) else data.get('@graph',[]) if isinstance(data,dict) else [data]
+        items=data if isinstance(data,list) else (data.get('@graph',[]) or [data]) if isinstance(data,dict) else [data]
         for x in items:
             if isinstance(x,dict) and (x.get('@type')=='Event' or 'startDate' in x): events.append(EventEvidence(x.get('name',''),x.get('startDate',''),x.get('url',source_url),source_url,x.get('@id'),end=x.get('endDate'),parser='json-ld'))
     return events
