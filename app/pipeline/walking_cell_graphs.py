@@ -131,14 +131,19 @@ def compile_plan(plan_path: Path, work_dir: Path, *, osmium: str = "osmium", nod
         try:
             exported = temporary / "objects.geojsonseq"
             bounds = ",".join(map(str, cell["clipBounds"]))
-            clipped = temporary / "clipped.osm.pbf"
-            source = sources[0]
-            if len(sources) > 1:
-                source = temporary / "merged.osm.pbf"
-                _run([osmium, "merge", "--overwrite", "-o", str(source), *map(str, sources)])
-            _run([osmium, "extract", "--overwrite", "--strategy", "complete_ways", "--bbox", bounds, "-o", str(clipped), str(source)])
-            _run([osmium, "export", "--overwrite", "--add-unique-id", "type_id", "-f", "geojsonseq", "-o", str(exported), str(clipped)])
-            graph = compile_features(_read_geojsonseq(exported), cell, plan["release"])
+            # State extracts overlap at borders and may contain duplicate OSM
+            # nodes. Merging them as one PBF makes osmium reject the input as
+            # unsorted/duplicated before our deterministic deduplicator runs.
+            # Clip/export each source independently, then deduplicate the
+            # resulting GeoJSON sequence by stable OSM identity.
+            exported_paths = []
+            for source_index, source in enumerate(sources):
+                clipped = temporary / f"clipped-{source_index}.osm.pbf"
+                source_exported = temporary / f"objects-{source_index}.geojsonseq"
+                _run([osmium, "extract", "--overwrite", "--strategy", "complete_ways", "--bbox", bounds, "-o", str(clipped), str(source)])
+                _run([osmium, "export", "--overwrite", "--add-unique-id", "type_id", "-f", "geojsonseq", "-o", str(source_exported), str(clipped)])
+                exported_paths.append(source_exported)
+            graph = compile_features((feature for path in exported_paths for feature in _read_geojsonseq(path)), cell, plan["release"])
             intermediate_path = output / "national-source-graph.json"
             _atomic_json(intermediate_path, graph)
             graph_path = output / "runtime-graph.json"
@@ -147,6 +152,8 @@ def compile_plan(plan_path: Path, work_dir: Path, *, osmium: str = "osmium", nod
                   "--dataset-id", f"{plan['release']}:{cell['id']}", "--source-release", plan["release"],
                   "--built-at", str(plan.get("generatedAt") or plan.get("generated_at") or "1970-01-01T00:00:00.000Z")])
             runtime = json.loads(graph_path.read_text(encoding="utf-8"))
+            if not runtime.get("nodes") or not runtime.get("edges") or not runtime.get("bounding_box"):
+                raise ValueError(f"Cell {cell['id']} produced an empty or unbounded runtime graph")
             graph_bytes = graph_path.stat().st_size
             manifest = {"status": "complete", "compileStatus": "complete", "fingerprint": fingerprint,
                         "graphVersion": FORMAT, "runtimeGraphVersion": runtime["graph_version"],
@@ -207,7 +214,12 @@ def _atomic_json(path, value):
         stream.flush()
         os.fsync(stream.fileno())
     os.replace(temporary, path)
-def _run(command): subprocess.run(command, check=True)
+def _run(command):
+    env = None
+    if command and Path(str(command[0])).name.lower().startswith("node"):
+        env = os.environ.copy()
+        env["NODE_OPTIONS"] = f"{env.get('NODE_OPTIONS', '')} --max-old-space-size=12288".strip()
+    subprocess.run(command, check=True, env=env)
 def _distance(a, b):
     lon1, lat1, lon2, lat2 = map(lambda value: math.radians(value / 1e7), (*a, *b))
     h = math.sin((lat2-lat1)/2)**2 + math.cos(lat1)*math.cos(lat2)*math.sin((lon2-lon1)/2)**2

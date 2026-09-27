@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "city": "osm-us-2026-09-07:z10-291-396",
+  "dataset_id": "osm-us-2026-09-07:z10-291-396",
+  "graph_version": "motherbird-runtime-graph-v1",
+  "source_versions": [
+    "osm-us-2026-09-07"
+  ],
+  "policy_version": "2026-08-27.1",
+  "graph_hash": "8ae10a0c5b66991da991277f4129749ab9a5acccfde668f5e343dbc2d47757f1",
+  "built_at": "1970-01-01T00:00:00.000Z",
+  "bounding_box": [
+    -77.8754142,
+    37.377931,
+    -77.213171,
+    37.796515
+  ],
+  "node_count": 793606,
+  "edge_count": 861025,
+  "artifacts": {
+    "nodes.bin": {
+      "bytes": 9523280,
+      "sha256": "74c60847f1aaaade30bee1952480ce278feb1eebeaa3982aa1c0c5da324a4503"
+    },
+    "edges.bin": {
+      "bytes": 34441008,
+      "sha256": "313e8ec00cfe98cfb6bcac759a4e70b8a413b293ba44ccc95e1bcdb25ae312ee"
+    },
+    "adjacency.bin": {
+      "bytes": 16950840,
+      "sha256": "da99d27a199cf43ff118d49fd0769c0416417460b1b0e560143f18af0f838c42"
+    },
+    "edge_geometry.bin": {
+      "bytes": 13776408,
+      "sha256": "7055edbe314b14ad9c264a10325935fefef98b8a7a9199fd874a1ff1ce451f19"
+    },
+    "edge_spatial_index.bin": {
+      "bytes": 4486348,
+      "sha256": "f48aba74c89bdf41135096af94011d3196d7cc741e092d2f3891a83afaed610f"
+    },
+    "runtime-graph.json": {
+      "bytes": 196941701,
+      "sha256": "a96ad75593694155f2a36afca1208fb9360d190682582d67b8961d5e1bc47979"
+    },
+    "edge_attributes.jsonl.gz": {
+      "bytes": 20,
+      "sha256": "9e72928e7a01615b4cf090daa617b4ca9d68531748f887f323f695eb4ca3ef63"
+    }
+  }
+}
