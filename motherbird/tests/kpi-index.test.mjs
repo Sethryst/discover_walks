@@ -104,3 +104,14 @@ test('KPI coverage separates core failures from missing optional enhancements', 
   assert.equal(model.summary.p0Gaps, model.gaps.filter((gap) => gap.priority === 'P0').length);
   assert.deepEqual([...model.gaps].map((gap) => gap.priority), [...model.gaps].map((gap) => gap.priority).sort());
 });
+
+test('KPI dashboard groups sections into three expandable folders with an overview', async () => {
+  const model = await collectKpiInventory();
+  const html = renderKpiHtml(model);
+  assert.match(html, /Review & acquisition/);
+  assert.match(html, /Delivery & readiness/);
+  assert.match(html, /Systems & governance/);
+  assert.match(html, /Overall readiness/);
+  assert.match(html, /details\.className='folder'/);
+  assert.match(html, /link\.className='folder-link'/);
+});
