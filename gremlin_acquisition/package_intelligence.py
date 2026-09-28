@@ -9,6 +9,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from hashlib import sha256
 import json
+import math
+import re
 from pathlib import Path
 from .models import Geography
 from typing import Iterable
@@ -132,6 +134,7 @@ class POIRecord:
 def normalize_poi(record: POIRecord) -> POIRecord:
     """Translate a source record into the frontend category vocabulary."""
     record.category = record.canonical_category
+    record.name = " ".join(record.name.strip().split())
     return record
 
 
@@ -150,16 +153,51 @@ def validate_poi(record: POIRecord) -> list[str]:
     return errors
 
 
-def deduplicate_pois(records: Iterable[POIRecord]) -> tuple[list[POIRecord], dict[str, list[str]]]:
+def _dedupe_name(value: str) -> str:
+    """Create a conservative cross-source name key without fuzzy matching."""
+    return re.sub(r"[^a-z0-9]+", " ", value.casefold()).strip()
+
+
+def _distance_meters(left: POIRecord, right: POIRecord) -> float | None:
+    if None in (left.latitude, left.longitude, right.latitude, right.longitude):
+        return None
+    lat = math.radians((left.latitude + right.latitude) / 2)
+    dx = (right.longitude - left.longitude) * 111_320 * math.cos(lat)
+    dy = (right.latitude - left.latitude) * 110_540
+    return math.hypot(dx, dy)
+
+
+def deduplicate_pois(records: Iterable[POIRecord], *, proximity_meters: float = 75) -> tuple[list[POIRecord], dict[str, list[str]]]:
+    """Deduplicate in cheap stages before retaining a canonical record.
+
+    Stage 1 uses upstream IDs, stage 2 uses category + normalized name, and
+    stage 3 confirms same-name candidates are geographically close. This
+    catches cross-source coordinate drift while avoiding an O(n²) comparison
+    across a regional package. Records without coordinates only collapse when
+    their normalized category/name pair is identical.
+    """
     unique: dict[str, POIRecord] = {}
     duplicates: dict[str, list[str]] = {}
+    by_record_id: dict[str, str] = {}
+    by_name: dict[tuple[str, str], list[str]] = {}
     for original in records:
         record = normalize_poi(original)
-        key = record.identity_key
-        if key in unique:
-            duplicates.setdefault(key, []).append(record.record_id)
+        exact_key = record.identity_key
+        name_key = (record.canonical_category, _dedupe_name(record.name))
+        matched_key = by_record_id.get(record.record_id)
+        if matched_key is None:
+            for candidate_key in by_name.get(name_key, ()):
+                candidate = unique[candidate_key]
+                distance = _distance_meters(candidate, record)
+                if distance is None or distance <= proximity_meters:
+                    matched_key = candidate_key
+                    break
+        if matched_key is not None:
+            duplicates.setdefault(matched_key, []).append(record.record_id)
             continue
-        unique[key] = record
+        unique[exact_key] = record
+        by_record_id[record.record_id] = exact_key
+        by_name.setdefault(name_key, []).append(exact_key)
     return list(unique.values()), duplicates
 
 
