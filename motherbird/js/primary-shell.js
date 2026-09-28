@@ -115,7 +115,6 @@ export function initPrimaryShell() {
     panel.classList.remove('hidden');
   };
   document.querySelectorAll('[data-primary-tab]').forEach((button) => button.addEventListener('click', () => select(button.dataset.primaryTab)));
-  document.getElementById('radioTab')?.addEventListener('click', () => window.dispatchEvent(new CustomEvent('radio-open-requested', { detail: { context: { stationIds: ['labri-ideas-library'] } } })));
   window.addEventListener('radial-starred-changed', () => {
     document.querySelectorAll('.star-action-btn[data-action-id]').forEach((starBtn) => {
       const starred = isActionStarred(starBtn.dataset.actionId);
