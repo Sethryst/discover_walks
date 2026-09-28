@@ -82,6 +82,7 @@ export const WALK_ZOOM = 14;
 function anyEnabled(tags) { return tags.some((tag) => state.layerFilters?.public?.[tag] !== false); }
 
 export function poiObeysMapLights(poi) {
+  if (poi?.civicNotice) return state.layerLights?.news === true && state.layerFilters?.public?.event !== false;
   const tags = poiTags(poi);
   const matches = [];
   const nature = tags.filter((tag) => NATURE_TAGS.includes(tag));
