@@ -41,7 +41,7 @@
   <div class="app-splash" id="appSplash" aria-hidden="true"><img src="./assets/splash-screen.jpeg" alt="" /></div>
   <script>setTimeout(() => document.getElementById('appSplash')?.classList.add('app-splash--done'), 3200);</script>
   <main class="app-shell">
-    <nav class="primary-nav" aria-label="Main navigation"><button id="exploreTab" type="button" data-primary-tab="explore" class="active" aria-current="page">Explore</button><button id="libraryTab" type="button" data-primary-tab="library">Library</button><button id="meTab" type="button" data-primary-tab="me">Me</button><button id="radioTab" type="button">Radio</button></nav>
+    <nav class="primary-nav" aria-label="Main navigation"><button id="exploreTab" type="button" data-primary-tab="explore" class="active" aria-current="page">Explore</button><button id="libraryTab" type="button" data-primary-tab="library">Library</button><button id="meTab" type="button" data-primary-tab="me">Me</button><button id="radioTab" type="button" onclick="document.getElementById('radioSheet')?.classList.remove('hidden'); document.body.classList.add('radio-open'); window.dispatchEvent(new CustomEvent('radio-open-requested'))">Radio</button></nav>
     <aside class="primary-panel hidden" id="primaryPanel" aria-live="polite"><header><h2 id="primaryPanelTitle">Walk</h2><button type="button" id="closePrimaryPanel" aria-label="Close">×</button></header><div id="primaryPanelActions"></div></aside>
     <div id="installedBasemap" class="installed-basemap hidden" aria-hidden="true"></div>
     <div id="map" role="application" aria-label="Map of installed-pack places"></div>
