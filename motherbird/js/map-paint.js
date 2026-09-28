@@ -26,6 +26,7 @@ function saveHiddenArtifacts() {
 
 const hiddenArtifacts = readHiddenArtifacts();
 let freehandActive = false;
+let customIconActive = false;
 function queryCategory(poi) {
   const tags = poiTags(poi);
   if (tags.includes('event')) return 'news';
@@ -212,6 +213,14 @@ async function persistCreatedLayer(layer, shape) {
   if (shape === 'Marker') {
     const point = layer.getLatLng?.();
     if (point) {
+      if (customIconActive) {
+        customIconActive = false;
+        const nearest = (state.publicMarkers || []).filter((marker) => marker.pack_id === state.activeCity && Number.isFinite(Number(marker.latitude)) && Number.isFinite(Number(marker.longitude))).map((marker) => ({ marker, distance: state.map.distance(point, [Number(marker.latitude), Number(marker.longitude)]) })).sort((a, b) => a.distance - b.distance)[0];
+        layer.setIcon?.(L.divIcon({ className: 'custom-map-icon', html: '<span class="custom-icon-dot"></span>', iconSize: [22, 22], iconAnchor: [11, 11] }));
+        layer.remove?.();
+        window.dispatchEvent(new CustomEvent('personal-place-create-requested', { detail: { location: { lat: point.lat, lng: point.lng }, name: nearest?.distance <= 100 ? (nearest.marker.name || 'Custom place') : 'Custom place', light: nearest?.marker.light || 'personal', sourcePoiId: nearest?.marker.id || null } }));
+        return;
+      }
       layer.remove?.();
       window.dispatchEvent(new CustomEvent('personal-place-create-requested', { detail: { location: { lat: point.lat, lng: point.lng }, name: 'Pinned place' } }));
     }
@@ -269,6 +278,9 @@ export async function initMapPaint() {
   const drawTools = document.querySelector('.draw-shapes');
   if (!state.map.pm && globalThis.L?.PM?.Map) state.map.pm = new globalThis.L.PM.Map(state.map);
   if (!state.map.pm) return;
+  const customIconButton = document.createElement('button');
+  customIconButton.type = 'button'; customIconButton.dataset.drawShape = 'CustomIcon'; customIconButton.innerHTML = '<span class="custom-icon-dot" aria-hidden="true"></span><span>Custom icon</span>';
+  drawTools?.prepend(customIconButton);
   const initialLabels = { Line: 'Test route', Freehand: 'Sketch area', Polygon: 'Area', Rectangle: 'Define area', Circle: 'Explore area' };
   document.querySelectorAll('[data-draw-shape]').forEach((item) => { const label = initialLabels[item.dataset.drawShape]; if (label) item.querySelector('span:last-child').textContent = label; });
   const pinGrid = document.createElement('div');
@@ -323,8 +335,9 @@ export async function initMapPaint() {
   });
   document.querySelector('.draw-shapes')?.addEventListener('click', (event) => {
     const tool = event.target.closest('[data-draw-shape]'); if (!tool) return;
-    const shapes = { Marker: 'Marker', Line: 'Line', Freehand: 'Freehand', Polygon: 'Polygon', Rectangle: 'Rectangle', Circle: 'Circle' };
+    const shapes = { CustomIcon: 'CustomIcon', Marker: 'Marker', Line: 'Line', Freehand: 'Freehand', Polygon: 'Polygon', Rectangle: 'Rectangle', Circle: 'Circle' };
     const shape = shapes[tool.dataset.drawShape]; if (!shape) return;
+    if (shape === 'CustomIcon') { customIconActive = true; setActive(true); state.map.pm.disableDraw(); state.map.pm.enableDraw('Marker', { snappable: true }); tool.classList.add('active'); el('drawWorkspaceStatus').textContent = 'Custom icon active. Place it on an Explore place.'; return; }
     const labels = { Line: 'Test route', Freehand: 'Sketch area', Polygon: 'Area', Rectangle: 'Define area', Circle: 'Explore area' };
     if (labels[shape]) tool.querySelector('span:last-child').textContent = labels[shape];
     setActive(true); state.map.pm.disableDraw(); freehandActive = shape === 'Freehand';

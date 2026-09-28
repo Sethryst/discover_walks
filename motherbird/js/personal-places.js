@@ -416,6 +416,7 @@ function armPersonalPlaceCrosshair() {
   state.personalPlaceDraft.location = null;
   state.personalPlaceSelecting = true;
   document.body.classList.add('placing-personal-place');
+  el('confirmCrosshairButton')?.classList.remove('hidden');
   closeSheets();
   const myPlacesButton = document.querySelector('[data-light="personal"]');
   if (myPlacesButton) {
@@ -428,6 +429,7 @@ function armPersonalPlaceCrosshair() {
 function finishPersonalPlaceCrosshair(location) {
   state.personalPlaceSelecting = false;
   document.body.classList.remove('placing-personal-place');
+  el('confirmCrosshairButton')?.classList.add('hidden');
   const myPlacesButton = document.querySelector('[data-light="personal"]');
   if (myPlacesButton) {
     myPlacesButton.textContent = 'MY PLACES';
@@ -648,6 +650,7 @@ function bindPersonalPlaceControls() {
     renderPersonalPlaceFormState();
   });
   el('personalPlaceChooseLocation')?.addEventListener('click', armPersonalPlaceCrosshair);
+  el('confirmCrosshairButton')?.addEventListener('click', () => { const center = state.map?.getCenter(); if (center) window.dispatchEvent(new CustomEvent('personal-place-location-selected', { detail: { lat: center.lat, lng: center.lng } })); });
   el('addAdvancedPlaceButton')?.addEventListener('click', () => openPersonalPlaceForm({ draft: { advancedOnly: true, visibility: 'private', light: 'personal' } }));
   if (el('advancedPlacesToggle')) el('advancedPlacesToggle').checked = Boolean(state.settings.showAdvancedPlaces);
   el('advancedPlacesToggle')?.addEventListener('change', async (event) => { state.settings.showAdvancedPlaces = event.target.checked; await db.put('settings', state.settings); renderPersonalPlacesOnMap(); renderPersonalPlacesPanel(); window.dispatchEvent(new CustomEvent('layer-state-dirty')); });

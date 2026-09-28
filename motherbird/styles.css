@@ -782,6 +782,9 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] #mapArtifactList
  .quote-suggestion{display:grid;gap:4px;padding:8px;border:1px solid #8ba998;border-radius:9px;background:#eef6ed}.quote-suggestion p{margin:0;font:1rem/1.35 Georgia,serif}.quote-suggestion small{opacity:.72}.quote-suggestion button{justify-self:start;border:1px solid var(--line);border-radius:7px;background:#fffdf5;padding:5px 8px}
  .quote-library-item{display:grid;grid-template-columns:1fr auto;gap:4px;align-items:stretch}.quote-library-item>[data-journal-quote]{min-width:0}.quote-library-item>[data-pin-quote]{border:1px solid var(--line);border-radius:7px;background:#fffdf5;padding:5px 8px}
 .map-workspace-panel .map-light:before{display:none!important}
+.crosshair-confirm{position:fixed;z-index:1250;left:50%;bottom:calc(max(18px,env(safe-area-inset-bottom)) + 72px);transform:translateX(-50%);border:2px solid #d9a400;border-radius:999px;background:#f6c928;color:#3f3200;padding:10px 18px;font-weight:900;box-shadow:0 4px 14px #0003}
+.custom-icon-dot{display:inline-block;width:18px;height:18px;border:2px solid #9b7a00;border-radius:50%;background:#f6c928;box-shadow:inset 0 0 0 3px #fff5a8}
+.custom-map-icon{background:transparent;border:0}
 .radio-controls button img,.radio-mini-player button img{width:16px;height:16px;vertical-align:middle}
 .map-workspace-panel .map-light{padding:7px 9px!important;height:42px!important;grid-template-columns:18px 1fr auto!important;grid-template-rows:1fr!important;gap:6px!important;text-align:left!important}
 .radio-controls:first-of-type{display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:6px}.radio-controls:first-of-type button{min-width:0!important;padding:8px 5px;display:flex;align-items:center;justify-content:center;gap:4px}.radio-controls:first-of-type button img{width:15px;height:15px}

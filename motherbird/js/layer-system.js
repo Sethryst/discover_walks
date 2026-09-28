@@ -61,7 +61,7 @@ export async function initLayerSystem() {
   const advancedFilters = document.querySelector('.advanced-filters');
   if (explorePanel && advancedFilters) {
     explorePanel.append(advancedFilters);
-    advancedFilters.open = true;
+    advancedFilters.open = false;
   }
   const [savedFilters, savedUi] = await Promise.all([
     db.get('layer_settings', 'current-filters'), db.get('layer_settings', 'layer-ui-state')
