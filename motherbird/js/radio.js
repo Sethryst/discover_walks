@@ -192,7 +192,7 @@ function bind() {
     if (matches.length) {
       const station = matches[0];
       if (state.manifest.channels?.some((channel) => channel.id === station.id)) state.channelId = station.id;
-      state.current = station.tracks?.[0] || state.current;
+      state.current = station.tracks?.[0] || (state.channelId === 'labri-ideas-library' ? tracksForChannel()[0] : state.current);
     }
     openSheet('radioSheet'); render();
   });
