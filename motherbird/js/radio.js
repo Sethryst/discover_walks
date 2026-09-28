@@ -115,7 +115,7 @@ async function resolveUrl(track) {
   if (!track.archiveIdentifier) return '';
   const response = await fetch(`https://archive.org/metadata/${encodeURIComponent(track.archiveIdentifier)}`);
   if (!response.ok) throw new Error('Archive metadata unavailable');
-  const metadata = await response.json(); const file = (metadata.files || []).find((candidate) => /\.(mp3|flac|ogg|m4a|wav)$/i.test(candidate.name) && Number(candidate.size || 0) > 10000);
+  const metadata = await response.json(); const playable = (metadata.files || []).filter((candidate) => /\.(mp3|ogg|m4a|wav|flac)$/i.test(candidate.name) && Number(candidate.size || 0) > 10000); const file = playable.sort((a, b) => { const rank = (name) => /\.mp3$/i.test(name) ? 0 : /\.(ogg|m4a|wav)$/i.test(name) ? 1 : 2; return rank(a.name) - rank(b.name); })[0];
   if (!file) throw new Error('No playable audio found in archive item');
   return `https://archive.org/download/${encodeURIComponent(track.archiveIdentifier)}/${file.name.split('/').map(encodeURIComponent).join('/')}`;
 }
@@ -125,7 +125,7 @@ function makeAudio(url) { const audio = new Audio(); audio.preload = 'auto'; aud
 function cleanupAudio(audio) { if (!audio) return; audio.pause(); audio.removeAttribute('src'); audio.load(); }
 async function playTrack(track) {
   if (!track) { setStatus(STATES.paused, 'No broadcasts available'); return; }
-  if (track.rightsStatus === 'external-player-link' && track.sourceUrl) {
+  if ((!track.mediaUrl && !track.archiveIdentifier) && track.sourceUrl) {
     window.open(track.sourceUrl, '_blank', 'noopener,noreferrer');
     state.current = track;
     recordRadioEvent(track, 'opened');
@@ -167,7 +167,7 @@ function bind() {
   el('radioQueueButton')?.addEventListener('click', () => { const next = chooseNextTrack(); if (next) state.queue.push(next); render(); });
   el('radioLibraryButton')?.addEventListener('click', () => void renderLibrary());
   window.addEventListener('radio-library-requested', () => { openSheet('radioSheet'); void renderLibrary(); });
-  el('radioTrackSelect')?.addEventListener('change', (event) => { const track = (state.manifest.tracks || []).find((item) => String(item.id) === String(event.target.value)); if (track) { state.channelId = track.channel || state.channelId; void playTrack(track); } });
+  el('radioTrackSelect')?.addEventListener('change', (event) => { const track = (state.manifest.tracks || []).find((item) => String(item.id) === String(event.target.value)); if (track) { state.channelId = track.channel || state.channelId; state.current = track; render(); void playTrack(track); } });
   el('radioFavoriteButton')?.addEventListener('click', toggleFavorite);
   el('radioFavoritesSelect')?.addEventListener('change', (event) => {
     const station = availableStations().find((item) => String(item.id) === String(event.target.value));

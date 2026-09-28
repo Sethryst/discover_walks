@@ -25,7 +25,7 @@ import { initGeoCypher } from './geo-cypher.js';
 import { initPwaUpdates } from './pwa-update.js';
 import { initPrimaryShell } from './primary-shell.js';
 import { initStories } from './stories.js';
-import { initRadio } from './radio.js?v=20260928-radio-controls-v2';
+import { initRadio } from './radio.js?v=20260928-radio-controls-v3';
 import { recoverWalkDraft, discardWalk } from './walk.js';
 
 export async function init() {
