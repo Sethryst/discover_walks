@@ -783,3 +783,7 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] #mapArtifactList
  .quote-library-item{display:grid;grid-template-columns:1fr auto;gap:4px;align-items:stretch}.quote-library-item>[data-journal-quote]{min-width:0}.quote-library-item>[data-pin-quote]{border:1px solid var(--line);border-radius:7px;background:#fffdf5;padding:5px 8px}
 .map-workspace-panel .map-light:before{display:none!important}
 .radio-controls button img,.radio-mini-player button img{width:16px;height:16px;vertical-align:middle}
+.map-workspace-panel .map-light{padding:7px 9px!important;height:42px!important;grid-template-columns:18px 1fr auto!important;grid-template-rows:1fr!important;gap:6px!important;text-align:left!important}
+.radio-controls:first-of-type{display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:6px}.radio-controls:first-of-type button{min-width:0!important;padding:8px 5px;display:flex;align-items:center;justify-content:center;gap:4px}.radio-controls:first-of-type button img{width:15px;height:15px}
+.companion-options{display:grid;grid-template-columns:minmax(0,1fr) minmax(120px,42%);gap:12px;align-items:center}.companion-options select{min-width:0}.companion-options img{display:block;width:100%;height:clamp(150px,35vw,240px);object-fit:contain;object-position:center bottom}
+@media(max-width:520px){.radio-controls:first-of-type button{font-size:.72rem}.companion-options{grid-template-columns:1fr;gap:8px}.companion-options img{height:clamp(170px,52vw,230px);max-width:100%}}

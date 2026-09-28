@@ -111,7 +111,7 @@ async function loadManifest() {
   render();
 }
 async function resolveUrl(track) {
-  if (track.mediaUrl) return track.mediaUrl;
+  if (track.mediaUrl) return track.mediaUrl.replace('https://drive.google.com/uc?export=download&id=', 'https://drive.usercontent.google.com/download?id=') + (track.mediaUrl.includes('export=download') ? '&export=download&confirm=t' : '');
   if (!track.archiveIdentifier) return '';
   const response = await fetch(`https://archive.org/metadata/${encodeURIComponent(track.archiveIdentifier)}`);
   if (!response.ok) throw new Error('Archive metadata unavailable');
