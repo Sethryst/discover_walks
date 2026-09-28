@@ -143,7 +143,8 @@ async function playTrack(track) {
     const outgoing = state.activeAudio; state.activeAudio = incoming; state.nextAudio = null; state.current = track; recordRadioEvent(track, 'played'); setStatus(STATES.playing, 'ON AIR'); render();
     if (outgoing) { outgoing.volume = 1; incoming.volume = 0; const start = performance.now(); const fade = (now) => { const progress = Math.min(1, (now - start) / 900); if (outgoing) outgoing.volume = 1 - progress; incoming.volume = progress; if (progress < 1) requestAnimationFrame(fade); else cleanupAudio(outgoing); }; requestAnimationFrame(fade); }
     incoming.addEventListener('ended', () => void playNext(), { once: true });
-  } catch (error) { if (token === state.playbackToken) setStatus(STATES.paused, error.message || 'Transmission unavailable'); }
+  } catch (error) { if (token === state.playbackToken) setStatus(STATES.paused, error.message || 'Transmission unavailable'); return false; }
+  return true;
 }
 async function playJingle() {
   const token = ++state.playbackToken;
@@ -152,7 +153,7 @@ async function playJingle() {
   const clip = clips[Math.floor(Math.random() * clips.length)];
   try { const url = await loadAudio(clip); if (token !== state.playbackToken) return false; const audio = makeAudio(url); state.nextAudio = audio; setStatus(STATES.jingle, clip.label || 'Station identification…'); await audio.play(); await new Promise((resolve) => { const finish = () => { cleanupAudio(audio); resolve(); }; audio.addEventListener('ended', finish, { once: true }); audio.addEventListener('error', finish, { once: true }); const watch = () => { if (token !== state.playbackToken) finish(); else if (state.nextAudio === audio) requestAnimationFrame(watch); }; watch(); }); if (state.nextAudio === audio) state.nextAudio = null; return token === state.playbackToken; } catch { if (state.nextAudio) state.nextAudio = null; return false; }
 }
-async function playNext() { if (state.repeat && state.current) return playTrack(state.current); if (state.current) recordRadioEvent(state.current, 'skipped'); const next = chooseNextTrack() || chooseTrack(); if (!next) return playTrack(null); if (!(await playJingle())) return; await playTrack(next); }
+async function playNext() { if (state.repeat && state.current) return playTrack(state.current); if (state.current) recordRadioEvent(state.current, 'skipped'); for (let attempt = 0; attempt < 12; attempt += 1) { const next = chooseNextTrack() || chooseTrack(); if (!next) return playTrack(null); if (!(await playJingle())) continue; if (await playTrack(next)) return true; } setStatus(STATES.paused, 'No playable broadcasts available'); return false; }
 async function playPrevious() { const previous = choosePreviousTrack(); if (previous) await playTrack(previous); }
 async function saveCurrentTrack() { if (!state.current || state.sourceMode !== 'local') return; const track = { ...state.current, id: String(state.current.id), savedAt: Date.now(), categories: ['saved-songs'], source: 'radio' }; await db.put('radio_saved_tracks', track); state.savedTrackIds.add(track.id); render(); await renderLibrary(); toast('Saved to your soundtrack library.'); }
 function toggleSource(source) { state.sourceMode = source; const live = el('radioLiveSources'); const local = el('radioLocalSources'); if (source === 'live') { if (live) live.checked = true; if (local) local.checked = false; } else { if (live) live.checked = false; if (local) local.checked = true; soundcloudWidget?.pause?.(); } pauseRadio(); state.current = null; state.queue = []; render(); updateLivePlayer(); }

@@ -278,15 +278,12 @@ export async function initMapPaint() {
   const drawTools = document.querySelector('.draw-shapes');
   if (!state.map.pm && globalThis.L?.PM?.Map) state.map.pm = new globalThis.L.PM.Map(state.map);
   if (!state.map.pm) return;
-  const customIconButton = document.createElement('button');
-  customIconButton.type = 'button'; customIconButton.dataset.drawShape = 'CustomIcon'; customIconButton.innerHTML = '<span class="custom-icon-dot" aria-hidden="true"></span><span>Custom icon</span>';
-  drawTools?.prepend(customIconButton);
   const initialLabels = { Line: 'Test route', Freehand: 'Sketch area', Polygon: 'Area', Rectangle: 'Define area', Circle: 'Explore area' };
   document.querySelectorAll('[data-draw-shape]').forEach((item) => { const label = initialLabels[item.dataset.drawShape]; if (label) item.querySelector('span:last-child').textContent = label; });
   const pinGrid = document.createElement('div');
   pinGrid.className = 'draw-pin-grid';
   pinGrid.setAttribute('aria-label', 'Custom pin categories');
-  pinGrid.innerHTML = [['Grocery', 'grocery', '#65b96a'], ['Shopping', 'shopping', '#8c63d8'], ['Cuisine', 'cuisine', '#ef8b2c'], ['Services', 'services', '#4b8ed8'], ['Health', 'health', '#df5c55'], ['Home', 'home', '#9a6b47'], ['Transport', 'transport', '#7f8790']].map(([label, id, color]) => `<button type="button" data-draw-pin="${id}" style="--pin-color:${color}"><span aria-hidden="true">●</span><span>${label}</span></button>`).join('');
+  pinGrid.innerHTML = [['Grocery', 'grocery', '#65b96a'], ['Shopping', 'shopping', '#8c63d8'], ['Cuisine', 'cuisine', '#ef8b2c'], ['Services', 'services', '#4b8ed8'], ['Health', 'health', '#df5c55'], ['Home', 'home', '#9a6b47'], ['Transport', 'transport', '#7f8790'], ['Custom icon', 'custom', '#f6c928']].map(([label, id, color]) => `<button type="button" data-draw-pin="${id}" style="--pin-color:${color}"><span aria-hidden="true">●</span><span>${label}</span></button>`).join('');
   drawTools?.before(pinGrid);
   pinGrid.addEventListener('click', (event) => { const pin = event.target.closest('[data-draw-pin]'); if (pin) window.dispatchEvent(new CustomEvent('personal-place-create-requested', { detail: { categoryName: pin.dataset.drawPin } })); });
   const updateRegionLabel = () => { const label = el('drawRegionLabel'); if (label) label.textContent = cityLabel(state.activeCity) || 'Installed region'; };
@@ -337,7 +334,6 @@ export async function initMapPaint() {
     const tool = event.target.closest('[data-draw-shape]'); if (!tool) return;
     const shapes = { CustomIcon: 'CustomIcon', Marker: 'Marker', Line: 'Line', Freehand: 'Freehand', Polygon: 'Polygon', Rectangle: 'Rectangle', Circle: 'Circle' };
     const shape = shapes[tool.dataset.drawShape]; if (!shape) return;
-    if (shape === 'CustomIcon') { customIconActive = true; setActive(true); state.map.pm.disableDraw(); state.map.pm.enableDraw('Marker', { snappable: true }); tool.classList.add('active'); el('drawWorkspaceStatus').textContent = 'Custom icon active. Place it on an Explore place.'; return; }
     const labels = { Line: 'Test route', Freehand: 'Sketch area', Polygon: 'Area', Rectangle: 'Define area', Circle: 'Explore area' };
     if (labels[shape]) tool.querySelector('span:last-child').textContent = labels[shape];
     setActive(true); state.map.pm.disableDraw(); freehandActive = shape === 'Freehand';

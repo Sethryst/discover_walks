@@ -316,6 +316,7 @@ function readFormDraft() {
     visibility: el('personalPlaceVisibility').value,
     name: el('personalPlaceName').value,
     notes: el('personalPlaceNotes').value,
+    customIcon: el('personalPlaceForm').dataset.customIcon === 'true',
     location: locationFromForm()
   };
 }
@@ -382,6 +383,7 @@ export function openPersonalPlaceForm({ editId = null, publicMarkerId = null, ca
   form.dataset.editId = place?.id || saved.editId || '';
   form.dataset.publicMarkerId = marker?.id || place?.publicMarkerId || saved.publicMarkerId || '';
   form.dataset.sourcePoiId = sourcePoi?.id || place?.sourcePoiId || '';
+  form.dataset.customIcon = saved.customIcon ? 'true' : 'false';
   form.dataset.managementCategoryId = place?.categoryId || categoryId || saved.categoryId || '';
   el('personalPlaceFormTitle').textContent = marker ? 'Edit Post' : (place ? 'Edit location' : 'Add Location');
   document.querySelectorAll('input[name="personalPlaceDestination"]').forEach((input) => { input.checked = input.value === light; input.disabled = Boolean(marker); });
@@ -436,6 +438,10 @@ function finishPersonalPlaceCrosshair(location) {
     myPlacesButton.setAttribute('aria-label', 'Add a location to My Places');
   }
   const draft = { ...(state.personalPlaceDraft || {}), location };
+  if (draft.customIcon && !draft.name) {
+    const nearest = (state.publicMarkers || []).filter((marker) => marker.pack_id === state.activeCity && Number.isFinite(Number(marker.latitude)) && Number.isFinite(Number(marker.longitude))).map((marker) => ({ marker, distance: state.map.distance(location, [Number(marker.latitude), Number(marker.longitude)]) })).sort((a, b) => a.distance - b.distance)[0];
+    if (nearest?.distance <= 100) draft.name = nearest.marker.name || nearest.marker.title || '';
+  }
   state.personalPlaceDraft = null;
   openPersonalPlaceForm({ draft });
 }
@@ -656,8 +662,8 @@ function bindPersonalPlaceControls() {
   el('advancedPlacesToggle')?.addEventListener('change', async (event) => { state.settings.showAdvancedPlaces = event.target.checked; await db.put('settings', state.settings); renderPersonalPlacesOnMap(); renderPersonalPlacesPanel(); window.dispatchEvent(new CustomEvent('layer-state-dirty')); });
   window.addEventListener('personal-place-create-requested', async (event) => {
     const detail = event.detail || {};
-    if (detail.categoryName) detail.categoryId = (await ensurePersonalCategory(detail.categoryName)).id;
-    openPersonalPlaceForm(detail);
+    if (detail.categoryName) { detail.categoryId = (await ensurePersonalCategory(detail.categoryName)).id; detail.customIcon = detail.categoryName === 'custom'; }
+    openPersonalPlaceForm(detail.customIcon ? { ...detail, draft: { ...detail } } : detail);
   });
   window.addEventListener('personal-place-location-selected', (event) => finishPersonalPlaceCrosshair(event.detail));
   window.addEventListener('public-marker-focus-requested', (event) => {
