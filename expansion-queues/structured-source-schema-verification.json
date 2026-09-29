@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "kind": "structured-source-schema-verification",
-  "candidateCount": 4,
+  "candidateCount": 2,
   "results": [
     {
       "source_id": "events-chicago-gov-44124097",
@@ -21,40 +21,6 @@
       "blocker": "adapter-failed"
     },
     {
-      "source_id": "nps-wolf-trap",
-      "url": "https://developer.nps.gov/api/v1/events?parkCode=wotr",
-      "status": "FAILED",
-      "http_status": null,
-      "content_type": null,
-      "final_url": "https://developer.nps.gov/api/v1/events?parkCode=wotr",
-      "jsonld_events": 0,
-      "candidate_endpoints": [],
-      "selector_candidates": [],
-      "schema_status": "adapter-error",
-      "schema_evidence": [
-        "HTTPError",
-        "HTTP Error 403: Forbidden"
-      ],
-      "blocker": "adapter-failed"
-    },
-    {
-      "source_id": "events-nycgovparks-org-3468fa93",
-      "url": "https://www.nycgovparks.org/news/rss",
-      "status": "FAILED",
-      "http_status": null,
-      "content_type": null,
-      "final_url": "https://www.nycgovparks.org/news/rss",
-      "jsonld_events": 0,
-      "candidate_endpoints": [],
-      "selector_candidates": [],
-      "schema_status": "adapter-error",
-      "schema_evidence": [
-        "HTTPError",
-        "HTTP Error 403: Forbidden"
-      ],
-      "blocker": "adapter-failed"
-    },
-    {
       "source_id": "events-sfrecpark-org-ddd118f6",
       "url": "https://sfrecpark.org/rss.aspx",
       "status": "FAILED",
@@ -69,7 +35,7 @@
         "status=FAILED",
         "records=0",
         "errors=0",
-        "rawSha256=f227958ad48b9fa724e69819e220f7456939cd1bccad6cac25c624c8c208befc"
+        "rawSha256=3de5526a4d7ecb990de798e4ebdefc9bbba3d7d43628441d69465bb4ef929aee"
       ],
       "blocker": "schema-unverified"
     }
