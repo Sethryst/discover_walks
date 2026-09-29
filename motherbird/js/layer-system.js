@@ -10,6 +10,7 @@ import { refreshPublicMarkers } from './online.js';
 import { ICONS, markerPinHtml, markerVisual } from './poi-icons.js';
 import { civicNoticesFromPack, newsIsAvailable } from './civic-news.js';
 import { showCategoryCoach } from './coach.js';
+import { syncNewsStory } from './learn-change.js';
 
 export const LAYER_GROUPS = [
   { id: 'walking_network', light: 'recreation', label: 'Walking network', description: 'Routes, crossings, and access conditions', tags: ['trail', 'walkway', 'crossing', 'barrier'] },
@@ -190,7 +191,7 @@ function applyLayerChanges({ rerenderFilters = true } = {}) {
   renderCityPois(); renderPersonalPlacesOnMap(); renderNewsMarkers(); renderRouteLights(); updateLayerBadge();
   if (rerenderFilters) renderLayerFilters();
   renderMapLights();
-  window.dispatchEvent(new CustomEvent('layer-state-dirty'));
+  void syncNewsStory();
   void persistLayerState().catch(() => toast('Map choices changed, but could not be saved on this device.'));
 }
 
