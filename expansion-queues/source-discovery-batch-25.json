@@ -3,8 +3,31 @@
   "kind": "source-discovery-batch",
   "offset": 25,
   "batchSize": 25,
-  "totalUnresolved": 80,
+  "totalUnresolved": 71,
   "records": [
+    {
+      "source_id": "events-6amcity-com-a7dfd2b6",
+      "url": "https://6amcity.com/web/va/richmond/events",
+      "status": "SUCCEEDED",
+      "http_status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "final_url": "https://6amcity.com/web/va/richmond/events",
+      "jsonld_events": 0,
+      "candidate_endpoints": [
+        "https://6amcity.com/><title>Events in Richmond | RICtoday</title><meta name=",
+        "https://6amcity.com/va/richmond/events-0\\",
+        "https://6amcity.com/va/richmond/events\\",
+        "https://6amcity.com/web/_next/static/chunks/app/%5Bstate%5D/%5Bcity%5D/events/page-75a2bdf154591383.js"
+      ],
+      "selector_candidates": [],
+      "schema_status": "endpoint-or-selector-needed",
+      "schema_evidence": [
+        "jsonldEvents=0",
+        "links=4",
+        "selectors=0"
+      ],
+      "blocker": null
+    },
     {
       "source_id": "events-downtownnorfolk-org-cf7e9296",
       "url": "https://www.downtownnorfolk.org/explore/calendar",
@@ -109,6 +132,87 @@
       "blocker": null
     },
     {
+      "source_id": "events-mainepublic-org-bfb30cd0",
+      "url": "https://www.mainepublic.org/community-calendar",
+      "status": "SUCCEEDED",
+      "http_status": 200,
+      "content_type": "text/html;charset=UTF-8",
+      "final_url": "https://www.mainepublic.org/community-calendar",
+      "jsonld_events": 0,
+      "candidate_endpoints": [
+        "https://www.mainepublic.org/community-calendar",
+        "https://www.mainepublic.org/community-calendar#main",
+        "https://www.mainepublic.org/community-calendar-event-submission",
+        "https://www.mainepublic.org/community-calendar/event/altrusa-of-portland-me-brickyard-hollow-brewing-company-community-fundraiser-16-09-2026-22-56-51",
+        "https://www.mainepublic.org/community-calendar/event/audio-universe-tour-of-the-solar-system-18-09-2026-13-46-44",
+        "https://www.mainepublic.org/community-calendar/event/collage-connections-02-09-2026-08-15-16",
+        "https://www.mainepublic.org/community-calendar/event/collins-center-maxwell-quartet-28-09-2026-13-44-36",
+        "https://www.mainepublic.org/community-calendar/event/dreaming-at-dawn-08-07-2026-09-30-42",
+        "https://www.mainepublic.org/community-calendar/event/farmington-chess-club-06-04-2026-15-51-48",
+        "https://www.mainepublic.org/community-calendar/event/forest-bathing-a-guided-mindful-stroll-19-09-2026-22-26-50",
+        "https://www.mainepublic.org/community-calendar/event/happy-hour-at-the-allagash-bungalow-09-09-2026-19-04-44",
+        "https://www.mainepublic.org/community-calendar/event/maine-lit-fest-2026-23-09-2026-09-17-40",
+        "https://www.mainepublic.org/community-calendar/event/the-olive-trees-are-weeping-23-09-2026-14-28-53",
+        "https://www.mainepublic.org/community-calendar/event/transcendence-poetry-festival-poets-cypher-with-aquarius-funkk-germaine-robinson-11-09-2026-23-20-10",
+        "https://www.mainepublic.org/community-calendar/event/tuesdays-free-seasonal-beer-sampling-09-09-2026-19-46-38",
+        "https://www.mainepublic.org/community-calendar?f1=00000178-84d9-d0a9-a5fc-b7fb17d30000",
+        "https://www.mainepublic.org/community-calendar?f1=00000178-84d9-d0a9-a5fc-b7fb18b70000",
+        "https://www.mainepublic.org/community-calendar?f1=00000178-84d9-d0a9-a5fc-b7fb22460000",
+        "https://www.mainepublic.org/community-calendar?f1=00000178-84d9-d0a9-a5fc-b7fb240b0000",
+        "https://www.mainepublic.org/community-calendar?f1=00000178-84d9-d0a9-a5fc-b7fb24d30000",
+        "https://www.mainepublic.org/community-calendar?f1=00000178-84d9-d0a9-a5fc-b7fb24f00000",
+        "https://www.mainepublic.org/community-calendar?f1=00000178-84d9-d0a9-a5fc-b7fb2a800000",
+        "https://www.mainepublic.org/community-calendar?f1=00000178-84d9-d0a9-a5fc-b7fb30570000",
+        "https://www.mainepublic.org/community-calendar?f1=00000178-84d9-d0a9-a5fc-b7fb37620000",
+        "https://www.mainepublic.org/community-calendar?f1=00000178-84d9-d0a9-a5fc-b7fb3c7b0001",
+        "https://www.mainepublic.org/community-calendar?f1=00000178-84d9-d0a9-a5fc-b7fb3c960000",
+        "https://www.mainepublic.org/community-calendar?f1=00000178-84d9-d0a9-a5fc-b7fb436b0000",
+        "https://www.mainepublic.org/community-calendar?f1=00000178-84d9-d0a9-a5fc-b7fb4a4b0000",
+        "https://www.mainepublic.org/community-calendar?f1=00000178-84d9-d0a9-a5fc-b7fb745f0000",
+        "https://www.mainepublic.org/community-calendar?p=2",
+        "https://www.mainewriters.org/maine-lit-fest-schedule"
+      ],
+      "selector_candidates": [
+        "div.EventSearchPage-content",
+        "div.EventSearchResultsModule-ajax",
+        "div.EventSearchResultsModule-filters-apply",
+        "div.EventSearchResultsModule-filters-content",
+        "div.EventSearchResultsModule-filters-extra",
+        "div.EventSearchResultsModule-filters-header",
+        "div.EventSearchResultsModule-filters-overlay",
+        "div.EventSearchResultsModule-filters-query",
+        "div.EventSearchResultsModule-filters-query-heading",
+        "div.EventSearchResultsModule-filters-title",
+        "div.EventSearchResultsModule-form-button",
+        "div.EventSearchResultsModule-nextPage",
+        "div.EventSearchResultsModule-pageCounts",
+        "div.EventSearchResultsModule-pagination",
+        "div.EventSearchResultsModule-previousPage",
+        "div.EventSearchResultsModule-spotlights-title",
+        "div.EventSearchResultsModule-top",
+        "div.EventSearchResultsModule-wrapper",
+        "div.PromoEvent-content",
+        "div.PromoEvent-date",
+        "div.PromoEvent-description",
+        "div.PromoEvent-description-more",
+        "div.PromoEvent-description-wrapper",
+        "div.PromoEvent-link",
+        "div.PromoEvent-price",
+        "div.PromoEvent-time",
+        "div.PromoEvent-venue",
+        "li.EventSearchResultsModule-results-item",
+        "li.EventSearchResultsModule-spotlights-item",
+        "li.PromoEvent-categories-item"
+      ],
+      "schema_status": "endpoint-or-selector-needed",
+      "schema_evidence": [
+        "jsonldEvents=0",
+        "links=31",
+        "selectors=30"
+      ],
+      "blocker": null
+    },
+    {
       "source_id": "events-neworleans-com-0da88206",
       "url": "https://www.neworleans.com/events/",
       "status": "SUCCEEDED",
@@ -196,36 +300,6 @@
         "jsonldEvents=0",
         "links=69",
         "selectors=2"
-      ],
-      "blocker": null
-    },
-    {
-      "source_id": "events-nps-gov-675f6405",
-      "url": "https://www.nps.gov/wotr/planyourvisit/calendar.htm",
-      "status": "SUCCEEDED",
-      "http_status": 200,
-      "content_type": "text/html;charset=UTF-8",
-      "final_url": "https://www.nps.gov/wotr/planyourvisit/calendar.htm",
-      "jsonld_events": 0,
-      "candidate_endpoints": [
-        "https://www.nps.gov/common/commonspot/templates/assets/js/calendar.early.min.js",
-        "https://www.nps.gov/common/commonspot/templates/assets/js/calendar.late.min.js?v=20230112",
-        "https://www.nps.gov/manifest.json",
-        "https://www.nps.gov/theme/assets/vendor/nps-calendar/nps-calendar.css",
-        "https://www.nps.gov/wotr/planyourvisit/calendar.htm",
-        "https://www.nps.gov/wotr/planyourvisit/calendar.htm#GlobalFooter",
-        "https://www.nps.gov/wotr/planyourvisit/calendar.htm#GlobalFooterSearchInput",
-        "https://www.nps.gov/wotr/planyourvisit/calendar.htm#GlobalNav-toggle",
-        "https://www.nps.gov/wotr/planyourvisit/calendar.htm#LocalNav-desktop-nav",
-        "https://www.nps.gov/wotr/planyourvisit/calendar.htm#ParkFooter",
-        "https://www.nps.gov/wotr/planyourvisit/calendar.htm#main"
-      ],
-      "selector_candidates": [],
-      "schema_status": "endpoint-or-selector-needed",
-      "schema_evidence": [
-        "jsonldEvents=0",
-        "links=11",
-        "selectors=0"
       ],
       "blocker": null
     },
@@ -490,43 +564,6 @@
       "blocker": null
     },
     {
-      "source_id": "events-summitdaily-com-1e792ddf",
-      "url": "https://www.summitdaily.com/explore-summit/calendar/",
-      "status": "SUCCEEDED",
-      "http_status": 200,
-      "content_type": "text/html; charset=UTF-8",
-      "final_url": "https://www.summitdaily.com/explore-summit/calendar/",
-      "jsonld_events": 0,
-      "candidate_endpoints": [
-        "https://hub.cityspark.com/Event/Submission/SummitDaily",
-        "https://portal.cityspark.com/EventEntry/EventEntry/SummitDaily",
-        "https://www.summitdaily.com/><p><strong>Explore Summit calendar submission rules</strong></p><ul><li>Events must be in Summit County</li><li>Virtual events must be hosted by a Summit County business or organization</li><li>The calendar is only for events and not business promotions (election campaign events are not permitted)</li></ul><p><strong>How to submit an event</strong></p><ul id=",
-        "https://www.summitdaily.com/explore-summit/calendar",
-        "https://www.summitdaily.com/explore-summit/calendar/",
-        "https://www.summitdaily.com/explore-summit/calendar/#/",
-        "https://www.summitdaily.com/explore-summit/calendar/#/show?category=12",
-        "https://www.summitdaily.com/explore-summit/calendar/#/show?category=17",
-        "https://www.summitdaily.com/explore-summit/calendar/#/show?category=6",
-        "https://www.summitdaily.com/explore-summit/calendar/#/show?location=39.64,+-106.085&distance=1",
-        "https://www.summitdaily.com/explore-summit/calendar/#/show?location=Breckenridge,+CO&distance=5",
-        "https://www.summitdaily.com/explore-summit/calendar/#/show?location=Copper+Mountain,+CO&distance=1",
-        "https://www.summitdaily.com/explore-summit/calendar/#/show?location=Dillon,+CO&distance=1",
-        "https://www.summitdaily.com/explore-summit/calendar/#/show?location=Frisco,+CO&distance=3",
-        "https://www.summitdaily.com/explore-summit/calendar/#/show?location=Keystone,+CO&distance=3",
-        "https://www.summitdaily.com/explore-summit/calendar/#carousel-353976",
-        "https://www.summitdaily.com/feed/",
-        "https://www.summitdaily.com/how-to-submit-an-event/"
-      ],
-      "selector_candidates": [],
-      "schema_status": "endpoint-or-selector-needed",
-      "schema_evidence": [
-        "jsonldEvents=0",
-        "links=18",
-        "selectors=0"
-      ],
-      "blocker": null
-    },
-    {
       "source_id": "events-town-keystone-co-us-e3452f18",
       "url": "https://www.town.keystone.co.us/events",
       "status": "FAILED",
@@ -544,39 +581,62 @@
       "blocker": "fetch-failed"
     },
     {
-      "source_id": "events-wolftrap-org-f9ccaf58",
-      "url": "https://www.wolftrap.org/",
-      "status": "FAILED",
-      "http_status": null,
-      "content_type": null,
-      "final_url": null,
-      "jsonld_events": 0,
-      "candidate_endpoints": [],
-      "selector_candidates": [],
-      "schema_status": "not-run",
-      "schema_evidence": [
-        "HTTPError",
-        "HTTP Error 403: Forbidden"
-      ],
-      "blocker": "fetch-failed"
-    },
-    {
-      "source_id": "food-for-others",
-      "url": "https://foodforothers.org",
+      "source_id": "events-visitrichmondva-com-1ae28ba3",
+      "url": "https://www.visitrichmondva.com/events/",
       "status": "SUCCEEDED",
       "http_status": 200,
-      "content_type": "text/html; charset=UTF-8",
-      "final_url": "https://foodforothers.org",
+      "content_type": "text/html; charset=utf-8",
+      "final_url": "https://www.visitrichmondva.com/events/",
       "jsonld_events": 0,
       "candidate_endpoints": [
-        "https://feedfairfax.com/races/food-for-others-tysons-5k/#new_tab"
+        "https://www.visitrichmondva.com/drink/events/",
+        "https://www.visitrichmondva.com/event/first-fridays/50907/",
+        "https://www.visitrichmondva.com/event/rails-%26-sails-history-tour/17041/",
+        "https://www.visitrichmondva.com/event/richmond-african-american-history-tour/48364/",
+        "https://www.visitrichmondva.com/events/",
+        "https://www.visitrichmondva.com/events/#explore",
+        "https://www.visitrichmondva.com/events/#main-content",
+        "https://www.visitrichmondva.com/events/#slideshow-container",
+        "https://www.visitrichmondva.com/events/arts-and-culture/",
+        "https://www.visitrichmondva.com/events/blkrva/thank-you/",
+        "https://www.visitrichmondva.com/events/concerts-and-live-music/",
+        "https://www.visitrichmondva.com/events/family-friendly/",
+        "https://www.visitrichmondva.com/events/food-and-drink/",
+        "https://www.visitrichmondva.com/events/history-and-heritage/",
+        "https://www.visitrichmondva.com/events/history-and-heritage/civil-war-emancipation-day/",
+        "https://www.visitrichmondva.com/events/link.url",
+        "https://www.visitrichmondva.com/events/outdoor-events/",
+        "https://www.visitrichmondva.com/events/richmond-festivals/",
+        "https://www.visitrichmondva.com/events/richmond-festivals/2nd-street-festival/",
+        "https://www.visitrichmondva.com/events/richmond-festivals/dominion-riverrock/",
+        "https://www.visitrichmondva.com/events/richmond-festivals/juneteenth/",
+        "https://www.visitrichmondva.com/events/richmond-festivals/richmond-folk-festival/",
+        "https://www.visitrichmondva.com/events/richmond-festivals/richmond-jazz-festival/",
+        "https://www.visitrichmondva.com/events/richmond-festivals/virginia-wine-expo/",
+        "https://www.visitrichmondva.com/events/submit-your-event/",
+        "https://www.visitrichmondva.com/events/this-weekend/",
+        "https://www.visitrichmondva.com/events/{{assetLink()}}",
+        "https://www.visitrichmondva.com/events/{{href}}",
+        "https://www.visitrichmondva.com/events/{{link.url}}",
+        "https://www.visitrichmondva.com/includes/rest_v2/plugins_events_events_by_date/find/",
+        "https://www.visitrichmondva.com/meetings/meet-safely/hotel-meeting-safety/",
+        "https://www.visitrichmondva.com/meetings/meeting-planner-guide/",
+        "https://www.visitrichmondva.com/meetings/meeting-venues/",
+        "https://www.visitrichmondva.com/partners/events/rva-champions/",
+        "https://www.visitrichmondva.com/restaurants/events/",
+        "https://www.visitrichmondva.com/sports/",
+        "https://www.visitrichmondva.com/things-to-do/outdoors/events/",
+        "https://www.visitrichmondva.com/things-to-do/outdoors/va-capital-trail/",
+        "https://www.visitrichmondva.com/things-to-do/sports/sports-events/"
       ],
-      "selector_candidates": [],
+      "selector_candidates": [
+        "div.contentRender"
+      ],
       "schema_status": "endpoint-or-selector-needed",
       "schema_evidence": [
         "jsonldEvents=0",
-        "links=1",
-        "selectors=0"
+        "links=39",
+        "selectors=1"
       ],
       "blocker": null
     },
@@ -615,8 +675,8 @@
       "blocker": "fetch-failed"
     },
     {
-      "source_id": "meetings-portland-gov-a7c4178f",
-      "url": "https://www.portland.gov/council/meetings",
+      "source_id": "meetings-portlandmaine-gov-bc259924",
+      "url": "https://www.portlandmaine.gov/government",
       "status": "FAILED",
       "http_status": null,
       "content_type": null,
@@ -632,76 +692,59 @@
       "blocker": "fetch-failed"
     },
     {
-      "source_id": "meetings-summitcountyco-gov-0e4237c8",
-      "url": "https://www.summitcountyco.gov/",
-      "status": "SUCCEEDED",
-      "http_status": 200,
-      "content_type": "text/html; charset=UTF-8",
-      "final_url": "https://www.summitcountyco.gov/",
+      "source_id": "meetings-princegeorgescountymd-gov-95ea3f6d",
+      "url": "https://www.princegeorgescountymd.gov/govt/council/",
+      "status": "FAILED",
+      "http_status": null,
+      "content_type": null,
+      "final_url": null,
       "jsonld_events": 0,
-      "candidate_endpoints": [
-        "https://www.summitcountyco.gov/calendar.php",
-        "https://www.summitcountyco.gov/revize/plugins/revize_calendar/core/main.css",
-        "https://www.summitcountyco.gov/revize/plugins/revize_calendar/core/nav-panels.css",
-        "https://www.summitcountyco.gov/revize/plugins/revize_calendar/daygrid/main.min.css",
-        "https://www.summitcountyco.gov/revize/plugins/revize_calendar/index.v2.js",
-        "https://www.summitcountyco.gov/revize/plugins/revize_calendar/list/main.min.css",
-        "https://www.summitcountyco.gov/revize/plugins/revize_calendar/timegrid/main.min.css"
-      ],
-      "selector_candidates": [
-        "div.event-modal-header",
-        "div.modal-event-date-wrap"
-      ],
-      "schema_status": "endpoint-or-selector-needed",
+      "candidate_endpoints": [],
+      "selector_candidates": [],
+      "schema_status": "not-run",
       "schema_evidence": [
-        "jsonldEvents=0",
-        "links=7",
-        "selectors=2"
+        "HTTPError",
+        "HTTP Error 404: Not Found"
       ],
-      "blocker": null
+      "blocker": "fetch-failed"
     },
     {
-      "source_id": "meetings-viennava-gov-bc6ebc78",
-      "url": "https://www.viennava.gov/",
-      "status": "SUCCEEDED",
-      "http_status": 200,
-      "content_type": "text/html; charset=utf-8",
-      "final_url": "https://www.viennava.gov/Home",
+      "source_id": "meetings-richmondgov-com-87666ac9",
+      "url": "https://www.richmondgov.com/government",
+      "status": "FAILED",
+      "http_status": null,
+      "content_type": null,
+      "final_url": null,
       "jsonld_events": 0,
-      "candidate_endpoints": [
-        "https://www.viennava.gov/>  </picture></div> <h2>Parks and Recreation Programs and Events Guide</h2><p class=",
-        "https://www.viennava.gov/About/Town-Calendar",
-        "https://www.viennava.gov/Events-directory",
-        "https://www.viennava.gov/Events-directory/Halloween-on-the-Green",
-        "https://www.viennava.gov/Events-directory/Meet-the-Mayor",
-        "https://www.viennava.gov/Events-directory/Meet-the-Mayor-Nazzo-Pazzo",
-        "https://www.viennava.gov/Events-directory/Oktoberfest",
-        "https://www.viennava.gov/Events-directory/Southside-Park-Habitat-Restoration",
-        "https://www.viennava.gov/Events-directory/VTC-Fall-2026",
-        "https://www.viennava.gov/Feedback",
-        "https://www.viennava.gov/Town-Departments/Parks-and-Recreation/Concerts-and-Events",
-        "https://www.viennava.gov/Town-Departments/Parks-and-Recreation/Concerts-and-Events/Halloween-Parade",
-        "https://www.viennava.gov/Town-Departments/Parks-and-Recreation/Programs-and-Events-Guide",
-        "https://www.viennava.gov/files/assets/town/v/1/parks-and-rec/images/concerts-and-events/concerts-and-events-slide-13.jpg?dimension=homepagelisting",
-        "https://www.viennava.gov/files/assets/town/v/1/parks-and-rec/images/concerts-and-events/habitat-restoration-event.jpg?dimension=homepagelisting",
-        "https://www.viennava.gov/files/assets/town/v/1/parks-and-rec/images/concerts-and-events/vtc-production-photo.jpg?dimension=homepagelisting"
-      ],
-      "selector_candidates": [
-        "div.embed-code-homepage-events",
-        "div.profile-listing-container",
-        "div.profile-tabbed-listing"
-      ],
-      "schema_status": "endpoint-or-selector-needed",
+      "candidate_endpoints": [],
+      "selector_candidates": [],
+      "schema_status": "not-run",
       "schema_evidence": [
-        "jsonldEvents=0",
-        "links=16",
-        "selectors=3"
+        "URLError",
+        "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.richmondgov.com'. (_ssl.c:1018)>"
       ],
-      "blocker": null
+      "blocker": "fetch-failed"
     },
     {
       "source_id": "volunteer-friendsoftheparks-org-5e217463",
       "url": "https://friendsoftheparks.org/volunteer",
+      "status": "FAILED",
+      "http_status": null,
+      "content_type": null,
+      "final_url": null,
+      "jsonld_events": 0,
+      "candidate_endpoints": [],
+      "selector_candidates": [],
+      "schema_status": "not-run",
+      "schema_evidence": [
+        "HTTPError",
+        "HTTP Error 404: Not Found"
+      ],
+      "blocker": "fetch-failed"
+    },
+    {
+      "source_id": "volunteer-jrps-org-2a3b895f",
+      "url": "https://www.jrps.org/volunteer",
       "status": "FAILED",
       "http_status": null,
       "content_type": null,
@@ -773,27 +816,6 @@
       "blocker": "no-dated-event-schema-or-discoverable-endpoint"
     },
     {
-      "source_id": "volunteer-nps-gov-20ec7407",
-      "url": "https://www.nps.gov/wotr/getinvolved/volunteer.htm",
-      "status": "SUCCEEDED",
-      "http_status": 200,
-      "content_type": "text/html;charset=UTF-8",
-      "final_url": "https://www.nps.gov/wotr/getinvolved/volunteer.htm",
-      "jsonld_events": 0,
-      "candidate_endpoints": [
-        "https://www.nps.gov/manifest.json",
-        "https://www.nps.gov/wotr/planyourvisit/calendar.htm"
-      ],
-      "selector_candidates": [],
-      "schema_status": "endpoint-or-selector-needed",
-      "schema_evidence": [
-        "jsonldEvents=0",
-        "links=2",
-        "selectors=0"
-      ],
-      "blocker": null
-    },
-    {
       "source_id": "volunteer-nycgovparks-org-4b7ad625",
       "url": "https://www.nycgovparks.org/events/volunteer",
       "status": "FAILED",
@@ -809,6 +831,34 @@
         "HTTP Error 403: Forbidden"
       ],
       "blocker": "fetch-failed"
+    },
+    {
+      "source_id": "volunteer-pgparks-com-bf740430",
+      "url": "https://www.pgparks.com/get-involved/volunteer-opportunities",
+      "status": "SUCCEEDED",
+      "http_status": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "final_url": "https://www.pgparks.com/get-involved/volunteer-opportunities",
+      "jsonld_events": 0,
+      "candidate_endpoints": [
+        "https://mncppc.maps.arcgis.com/apps/dashboards/c224c96fddee42489c404c05bb593463",
+        "https://myemail-api.constantcontact.com/The-Volunteers--Corner--April-2024.html?soid=1101321276695&aid=bL34PTH1TCY",
+        "https://myemail-api.constantcontact.com/The-Volunteers--Corner--July-2024.html?soid=1101321276695&aid=UI9ARACzQA4",
+        "https://www.mncppc.org/",
+        "https://www.pgparks.com/activities-events-events/photo/",
+        "https://www.pgparks.com/facilities-rentals/facilityfinder?facility%5B%5D=event-center",
+        "https://www.pgparks.com/get-involved/invite-us-to-your-event",
+        "https://www.pgparks.com/things-to-do/events",
+        "https://www.pgparks.com/website-feedback"
+      ],
+      "selector_candidates": [],
+      "schema_status": "endpoint-or-selector-needed",
+      "schema_evidence": [
+        "jsonldEvents=0",
+        "links=9",
+        "selectors=0"
+      ],
+      "blocker": null
     },
     {
       "source_id": "volunteer-portland-gov-fe600e12",
@@ -839,6 +889,23 @@
       "blocker": null
     },
     {
+      "source_id": "volunteer-portlandmaine-gov-2c137978",
+      "url": "https://www.portlandmaine.gov/parks-recreation",
+      "status": "FAILED",
+      "http_status": null,
+      "content_type": null,
+      "final_url": null,
+      "jsonld_events": 0,
+      "candidate_endpoints": [],
+      "selector_candidates": [],
+      "schema_status": "not-run",
+      "schema_evidence": [
+        "HTTPError",
+        "HTTP Error 404: Not Found"
+      ],
+      "blocker": "fetch-failed"
+    },
+    {
       "source_id": "volunteer-volunteermatch-org-79b64c6c",
       "url": "https://www.volunteermatch.org/",
       "status": "SUCCEEDED",
@@ -859,23 +926,6 @@
         "selectors=0"
       ],
       "blocker": null
-    },
-    {
-      "source_id": "wolf-trap-foundation",
-      "url": "https://www.wolftrap.org/calendar",
-      "status": "FAILED",
-      "http_status": null,
-      "content_type": null,
-      "final_url": null,
-      "jsonld_events": 0,
-      "candidate_endpoints": [],
-      "selector_candidates": [],
-      "schema_status": "not-run",
-      "schema_evidence": [
-        "HTTPError",
-        "HTTP Error 403: Forbidden"
-      ],
-      "blocker": "fetch-failed"
     }
   ]
 }

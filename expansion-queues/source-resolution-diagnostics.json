@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
   "kind": "static-source-resolution-diagnostics",
-  "generatedAt": "2026-09-29T23:46:35.340399Z",
+  "generatedAt": "2026-09-29T23:50:33.644378Z",
   "source": "expansion-queues/regional-source-backlog.json",
   "policy": "Diagnostics do not publish records; only validated dated records with location and provenance may enter civic packages.",
   "summary": {
-    "candidateCount": 72,
-    "resolvedCount": 30,
-    "unresolvedCount": 72,
+    "candidateCount": 71,
+    "resolvedCount": 31,
+    "unresolvedCount": 71,
     "blockers": {
       "schema-unverified": 2,
-      "selector-or-endpoint-undiscovered": 70
+      "selector-or-endpoint-undiscovered": 69
     }
   },
   "sources": [
@@ -139,23 +139,6 @@
       "category": "events",
       "url": "https://www.meridiancity.org/cityevents",
       "publisher": "meridiancity.org",
-      "adapter": "review-required",
-      "observed": {
-        "httpStatus": null,
-        "contentType": null,
-        "checkedAt": null
-      },
-      "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
-    },
-    {
-      "sourceId": "meetings-boston-gov-269e52b6",
-      "regionId": "boston",
-      "category": "meetings",
-      "url": "https://www.boston.gov/government",
-      "publisher": "boston.gov",
       "adapter": "review-required",
       "observed": {
         "httpStatus": null,

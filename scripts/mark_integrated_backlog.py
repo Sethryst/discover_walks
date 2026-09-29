@@ -35,6 +35,11 @@ INTEGRATED = {
     "meetings-bouldercolorado-gov-96089785",
     "meetings-viennava-gov-bc6ebc78",
     "events-summitdaily-com-1e792ddf",
+    "meetings-boston-gov-269e52b6",
+}
+
+EVIDENCE = {
+    "meetings-boston-gov-269e52b6": "Published 96 future dated/location-backed City of Boston calendar records in motherbird/regions/boston/civic/index.json via paginated official events pages and date-group selectors",
 }
 
 def main() -> None:
@@ -45,7 +50,7 @@ def main() -> None:
         for item in region["queue"]:
             if item["id"] in INTEGRATED:
                 item["trackingState"] = "INTEGRATED_STATIC"
-                item["integrationEvidence"] = "Published validated dated/location-backed records in motherbird/regions/boulder/civic/index.json via schema.org JSON-LD"
+                item["integrationEvidence"] = EVIDENCE.get(item["id"], "Published validated dated/location-backed records in static civic package")
                 changed += 1
     states = {}
     for region in payload["regions"]:
