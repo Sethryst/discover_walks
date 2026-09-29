@@ -1139,13 +1139,14 @@
           },
           "url": "https://bouldercolorado.gov/events",
           "workItemId": "source:events-bouldercolorado-gov-96089785",
-          "trackingState": "TRACKED_REACHABLE",
+          "trackingState": "INTEGRATED_STATIC",
           "trackingEvidence": {
             "checkedAt": "2026-09-29T17:47:01.475Z",
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
-          }
+          },
+          "integrationEvidence": "Published validated dated/location-backed records in motherbird/regions/boulder/civic/index.json via schema.org JSON-LD"
         },
         {
           "category": "meetings",
@@ -1185,13 +1186,14 @@
           },
           "url": "https://bouldercolorado.gov/events",
           "workItemId": "source:meetings-bouldercolorado-gov-96089785",
-          "trackingState": "TRACKED_REACHABLE",
+          "trackingState": "INTEGRATED_STATIC",
           "trackingEvidence": {
             "checkedAt": "2026-09-29T17:47:01.475Z",
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
-          }
+          },
+          "integrationEvidence": "Published validated dated/location-backed records in motherbird/regions/boulder/civic/index.json via schema.org JSON-LD"
         },
         {
           "category": "volunteer",
@@ -6144,11 +6146,11 @@
     },
     "regionCount": 34,
     "trackingStates": {
-      "INTEGRATED_STATIC": 26,
-      "TRACKED_REACHABLE": 45,
+      "INTEGRATED_STATIC": 28,
+      "TRACKED_REACHABLE": 43,
       "UNTRACKED_ACTIONABLE": 31
     },
     "trackingPolicy": "Tracked reachable sources remain in the audit backlog but are removed from the active operator queue until adapter work is requested.",
-    "unresolvedCount": 76
+    "unresolvedCount": 74
   }
 }

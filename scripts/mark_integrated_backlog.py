@@ -31,6 +31,8 @@ INTEGRATED = {
     "events-apps-alexandriava-gov-c408c804",
     "meetings-summitcountyco-gov-0e4237c8",
     "meetings-portland-gov-a7c4178f",
+    "events-bouldercolorado-gov-96089785",
+    "meetings-bouldercolorado-gov-96089785",
 }
 
 def main() -> None:
