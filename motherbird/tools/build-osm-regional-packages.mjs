@@ -12,7 +12,6 @@ const snapshots = {
   nyc: 'data/osm/newyork-osm-poi.json',
   philadelphia: 'data/osm/philadelphia-osm-poi.json',
   richmond: 'data/osm/richmond-osm-poi.json',
-  'wolf-trap-va': 'data/osm/wolf-trap-va-poi.json'
 };
 const selected = new Set(process.argv.slice(2).filter((arg) => !arg.startsWith('-')));
 const generatedAtOverride = process.argv.find((arg) => arg.startsWith('--generated-at='))?.split('=')[1];

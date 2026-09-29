@@ -14,13 +14,13 @@ from app.pipeline.source_config import SourceConfig
 
 READY = {
     "norfolk": (JsonLdEventsProvider, "https://norfolk.libcal.com/calendars", "Norfolk Public Library Calendar", [-76.2859, 36.8508]),
-    "wolf-trap-va": (NpsEventsProvider, "https://developer.nps.gov/api/v1/events", "NPS Wolf Trap events", [-77.2653, 38.9451]),
+    "fairfax-county-va": (NpsEventsProvider, "https://developer.nps.gov/api/v1/events", "NPS Wolf Trap events", [-77.2653, 38.9451]),
 }
 
 
 def fetch_cards(now: datetime, region_id: str) -> list[dict]:
     provider_type, url, name, coordinates = READY[region_id]
-    raw = {"id": f"ready-{region_id}-events", "name": name, "provider": "nps_events" if provider_type is NpsEventsProvider else ("jsonld_events" if provider_type is JsonLdEventsProvider else "rss_ics_events"), "url": url, "domains": ["event"], "licenseUrl": url, "authorityTier": "local_government" if region_id != "wolf-trap-va" else "federal_government", "credentialEnv": "NPS_API_KEY" if region_id == "wolf-trap-va" else None, "providerOptions": {"defaultCoordinates": coordinates, "parkCode": "wotr", "limit": 250}}
+    raw = {"id": f"ready-{region_id}-events", "name": name, "provider": "nps_events" if provider_type is NpsEventsProvider else ("jsonld_events" if provider_type is JsonLdEventsProvider else "rss_ics_events"), "url": url, "domains": ["event"], "licenseUrl": url, "authorityTier": "federal_government" if provider_type is NpsEventsProvider else "local_government", "credentialEnv": "NPS_API_KEY" if provider_type is NpsEventsProvider else None, "providerOptions": {"defaultCoordinates": coordinates, "parkCode": "wotr", "limit": 250}}
     source = SourceConfig.from_dict(raw)
     region = json.loads((Path(__file__).parents[1] / "regions" / f"{region_id}.json").read_text(encoding="utf-8"))
     features, _ = provider_type().acquire(source, region)
@@ -51,4 +51,4 @@ def fetch_cards(now: datetime, region_id: str) -> list[dict]:
 
 def chicago(now: datetime) -> list[dict]: return fetch_cards(now, "chicago")
 def norfolk(now: datetime) -> list[dict]: return fetch_cards(now, "norfolk")
-def wolf_trap(now: datetime) -> list[dict]: return fetch_cards(now, "wolf-trap-va")
+def wolf_trap(now: datetime) -> list[dict]: return fetch_cards(now, "fairfax-county-va")

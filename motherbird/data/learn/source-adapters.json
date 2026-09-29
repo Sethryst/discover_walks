@@ -7,7 +7,7 @@
   "runtimePolicy": "Local/static adapter definitions only; never imply source approval or fetch live data.",
   "summary": {
     "recordCount": 102,
-    "regionCount": 25,
+    "regionCount": 24,
     "classifications": {
       "READY": 3,
       "INVESTIGATE": 99,
@@ -711,6 +711,98 @@
       }
     },
     {
+      "id": "events-nps-gov-675f6405",
+      "workItemId": "source:events-nps-gov-675f6405",
+      "regionId": "fairfax-county-va",
+      "regionName": "Fairfax County, Virginia",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.nps.gov/wotr/planyourvisit/calendar.htm",
+      "publisher": "nps.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-wolftrap-org-f9ccaf58",
+      "workItemId": "source:events-wolftrap-org-f9ccaf58",
+      "regionId": "fairfax-county-va",
+      "regionName": "Fairfax County, Virginia",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.wolftrap.org/",
+      "publisher": "Wolf Trap",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "editorial_registry:editorial-event-sources.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "nps-wolf-trap",
+      "workItemId": "source:nps-wolf-trap",
+      "regionId": "fairfax-county-va",
+      "regionName": "Fairfax County, Virginia",
+      "category": "events",
+      "classification": "READY",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "JSON API",
+      "adapter": "json-api",
+      "url": "https://developer.nps.gov/api/v1/events?parkCode=wotr",
+      "publisher": "NPS Wolf Trap events",
+      "packOperations": {
+        "eligible": true,
+        "nextStep": "review-and-create-adapter"
+      },
+      "discovery": {
+        "confidence": 0.8,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "candidate_registry:wolf-trap-va.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "wolf-trap-foundation",
+      "workItemId": "source:wolf-trap-foundation",
+      "regionId": "fairfax-county-va",
+      "regionName": "Fairfax County, Virginia",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.wolftrap.org/calendar",
+      "publisher": "Wolf Trap Foundation calendar",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.6,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "candidate_registry:wolf-trap-va.json",
+        "origin": "automated"
+      }
+    },
+    {
       "id": "meetings-fairfaxcounty-gov-6f6370e4",
       "workItemId": "source:meetings-fairfaxcounty-gov-6f6370e4",
       "regionId": "fairfax-county-va",
@@ -722,6 +814,75 @@
       "adapter": "html-directory",
       "url": "https://www.fairfaxcounty.gov/calendar/",
       "publisher": "fairfaxcounty.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "meetings-viennava-gov-bc6ebc78",
+      "workItemId": "source:meetings-viennava-gov-bc6ebc78",
+      "regionId": "fairfax-county-va",
+      "regionName": "Fairfax County, Virginia",
+      "category": "meetings",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.viennava.gov/",
+      "publisher": "viennava.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "food-for-others",
+      "workItemId": "source:food-for-others",
+      "regionId": "fairfax-county-va",
+      "regionName": "Fairfax County, Virginia",
+      "category": "publicSpaces",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://foodforothers.org",
+      "publisher": "Food For Others",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.6,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "candidate_registry:wolf-trap-va.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "volunteer-nps-gov-20ec7407",
+      "workItemId": "source:volunteer-nps-gov-20ec7407",
+      "regionId": "fairfax-county-va",
+      "regionName": "Fairfax County, Virginia",
+      "category": "volunteer",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.nps.gov/wotr/getinvolved/volunteer.htm",
+      "publisher": "nps.gov",
       "packOperations": {
         "eligible": false,
         "nextStep": "resolve-scout-findings"
@@ -2194,167 +2355,6 @@
       "adapter": "html-directory",
       "url": "https://dpr.dc.gov/page/volunteer-and-give-back",
       "publisher": "dpr.dc.gov",
-      "packOperations": {
-        "eligible": false,
-        "nextStep": "resolve-scout-findings"
-      },
-      "discovery": {
-        "confidence": 0.62,
-        "foundAt": "2026-09-27T08:49:42.288422Z",
-        "method": "civic_priority:civic-source-priority.json",
-        "origin": "automated"
-      }
-    },
-    {
-      "id": "events-nps-gov-675f6405",
-      "workItemId": "source:events-nps-gov-675f6405",
-      "regionId": "wolf-trap-va",
-      "regionName": "Wolf Trap, Virginia",
-      "category": "events",
-      "classification": "INVESTIGATE",
-      "trackingState": "TRACKED_REACHABLE",
-      "likelyDataType": "HTML calendar",
-      "adapter": "html-directory",
-      "url": "https://www.nps.gov/wotr/planyourvisit/calendar.htm",
-      "publisher": "nps.gov",
-      "packOperations": {
-        "eligible": false,
-        "nextStep": "resolve-scout-findings"
-      },
-      "discovery": {
-        "confidence": 0.62,
-        "foundAt": "2026-09-27T08:49:42.288422Z",
-        "method": "civic_priority:civic-source-priority.json",
-        "origin": "automated"
-      }
-    },
-    {
-      "id": "events-wolftrap-org-f9ccaf58",
-      "workItemId": "source:events-wolftrap-org-f9ccaf58",
-      "regionId": "wolf-trap-va",
-      "regionName": "Wolf Trap, Virginia",
-      "category": "events",
-      "classification": "INVESTIGATE",
-      "trackingState": "UNTRACKED_ACTIONABLE",
-      "likelyDataType": "HTML calendar",
-      "adapter": "html-directory",
-      "url": "https://www.wolftrap.org/",
-      "publisher": "Wolf Trap",
-      "packOperations": {
-        "eligible": false,
-        "nextStep": "resolve-scout-findings"
-      },
-      "discovery": {
-        "confidence": 0.62,
-        "foundAt": "2026-09-27T08:49:42.288422Z",
-        "method": "editorial_registry:editorial-event-sources.json",
-        "origin": "automated"
-      }
-    },
-    {
-      "id": "nps-wolf-trap",
-      "workItemId": "source:nps-wolf-trap",
-      "regionId": "wolf-trap-va",
-      "regionName": "Wolf Trap, Virginia",
-      "category": "events",
-      "classification": "READY",
-      "trackingState": "UNTRACKED_ACTIONABLE",
-      "likelyDataType": "JSON API",
-      "adapter": "json-api",
-      "url": "https://developer.nps.gov/api/v1/events?parkCode=wotr",
-      "publisher": "NPS Wolf Trap events",
-      "packOperations": {
-        "eligible": true,
-        "nextStep": "review-and-create-adapter"
-      },
-      "discovery": {
-        "confidence": 0.8,
-        "foundAt": "2026-09-27T08:49:42.288422Z",
-        "method": "candidate_registry:wolf-trap-va.json",
-        "origin": "automated"
-      }
-    },
-    {
-      "id": "wolf-trap-foundation",
-      "workItemId": "source:wolf-trap-foundation",
-      "regionId": "wolf-trap-va",
-      "regionName": "Wolf Trap, Virginia",
-      "category": "events",
-      "classification": "INVESTIGATE",
-      "trackingState": "UNTRACKED_ACTIONABLE",
-      "likelyDataType": "HTML calendar",
-      "adapter": "html-directory",
-      "url": "https://www.wolftrap.org/calendar",
-      "publisher": "Wolf Trap Foundation calendar",
-      "packOperations": {
-        "eligible": false,
-        "nextStep": "resolve-scout-findings"
-      },
-      "discovery": {
-        "confidence": 0.6,
-        "foundAt": "2026-09-27T08:49:42.288422Z",
-        "method": "candidate_registry:wolf-trap-va.json",
-        "origin": "automated"
-      }
-    },
-    {
-      "id": "meetings-viennava-gov-bc6ebc78",
-      "workItemId": "source:meetings-viennava-gov-bc6ebc78",
-      "regionId": "wolf-trap-va",
-      "regionName": "Wolf Trap, Virginia",
-      "category": "meetings",
-      "classification": "INVESTIGATE",
-      "trackingState": "TRACKED_REACHABLE",
-      "likelyDataType": "HTML calendar",
-      "adapter": "html-directory",
-      "url": "https://www.viennava.gov/",
-      "publisher": "viennava.gov",
-      "packOperations": {
-        "eligible": false,
-        "nextStep": "resolve-scout-findings"
-      },
-      "discovery": {
-        "confidence": 0.62,
-        "foundAt": "2026-09-27T08:49:42.288422Z",
-        "method": "civic_priority:civic-source-priority.json",
-        "origin": "automated"
-      }
-    },
-    {
-      "id": "food-for-others",
-      "workItemId": "source:food-for-others",
-      "regionId": "wolf-trap-va",
-      "regionName": "Wolf Trap, Virginia",
-      "category": "publicSpaces",
-      "classification": "INVESTIGATE",
-      "trackingState": "TRACKED_REACHABLE",
-      "likelyDataType": "HTML calendar",
-      "adapter": "html-directory",
-      "url": "https://foodforothers.org",
-      "publisher": "Food For Others",
-      "packOperations": {
-        "eligible": false,
-        "nextStep": "resolve-scout-findings"
-      },
-      "discovery": {
-        "confidence": 0.6,
-        "foundAt": "2026-09-27T08:49:42.288422Z",
-        "method": "candidate_registry:wolf-trap-va.json",
-        "origin": "automated"
-      }
-    },
-    {
-      "id": "volunteer-nps-gov-20ec7407",
-      "workItemId": "source:volunteer-nps-gov-20ec7407",
-      "regionId": "wolf-trap-va",
-      "regionName": "Wolf Trap, Virginia",
-      "category": "volunteer",
-      "classification": "INVESTIGATE",
-      "trackingState": "TRACKED_REACHABLE",
-      "likelyDataType": "HTML calendar",
-      "adapter": "html-directory",
-      "url": "https://www.nps.gov/wotr/getinvolved/volunteer.htm",
-      "publisher": "nps.gov",
       "packOperations": {
         "eligible": false,
         "nextStep": "resolve-scout-findings"

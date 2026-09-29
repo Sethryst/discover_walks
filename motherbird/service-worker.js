@@ -1,7 +1,7 @@
 // Keep the whole module graph with the shell. Caching only app.js leaves an
 // offline (or briefly disconnected) reload with a blank app when any imported
 // module was not already in the runtime cache.
-const APP_CACHE = 'walk-wildlife-shell-v244'; // Refresh source catalogue startup imports
+const APP_CACHE = 'walk-wildlife-shell-v245'; // Fairfax absorbs Wolf Trap; refresh regional package graph
 const TILE_CACHE = 'walk-wildlife-osm-viewed-tiles-v1';
 const LIBRARY_CACHE = 'walk-wildlife-library-v2';
 const COMPANION_CACHE = 'walk-wildlife-companion-media-v2';
@@ -31,8 +31,8 @@ const shell = [
   './data/virginia-pack-splits.json', './data/learn-next-layers.json', './data/learn/index.json', './data/learn/discover/watersheds.json', './data/learn/history/pack-splits.json', './data/learn/history/battlefields.json',
   './data/pedestrian-runtime/nyc_pedestrian_network_estimates/runtime/runtime-graph.json',
   './data/pedestrian-runtime/dvrpc_pedestrian_network_philadelphia_camden/runtime/runtime-graph.json',
-  ...['asheville', 'boston', 'boulder', 'chicago', 'denver', 'new-orleans', 'portland', 'portland-maine', 'san-francisco', 'santa-fe', 'wolf-trap-va'].map((region) => `./regions/${region}/pois.json`),
-  ...['alexandria-va', 'arlington-va', 'baltimore', 'boise-meridian-idaho', 'boston', 'boulder', 'chicago', 'columbus', 'corpus-christi', 'denver', 'detroit', 'fairfax-county-va', 'falls-church-va', 'fort-worth', 'keystone-colorado', 'los-angeles', 'loudoun-county-va', 'new-orleans', 'norfolk', 'nyc', 'philadelphia', 'pittsburgh', 'portland', 'portland-maine', 'prince-georges-county-md', 'richmond', 'san-francisco', 'santa-fe', 'seattle', 'sedona-arizona', 'tempe', 'washington-dc', 'wolf-trap-va'].flatMap((region) => [
+  ...['asheville', 'boston', 'boulder', 'chicago', 'denver', 'new-orleans', 'portland', 'portland-maine', 'san-francisco', 'santa-fe'].map((region) => `./regions/${region}/pois.json`),
+  ...['alexandria-va', 'arlington-va', 'baltimore', 'boise-meridian-idaho', 'boston', 'boulder', 'chicago', 'columbus', 'corpus-christi', 'denver', 'detroit', 'fairfax-county-va', 'falls-church-va', 'fort-worth', 'keystone-colorado', 'los-angeles', 'loudoun-county-va', 'new-orleans', 'norfolk', 'nyc', 'philadelphia', 'pittsburgh', 'portland', 'portland-maine', 'prince-georges-county-md', 'richmond', 'san-francisco', 'santa-fe', 'seattle', 'sedona-arizona', 'tempe', 'washington-dc'].flatMap((region) => [
     `./regions/${region}/osm/pois.json`, `./regions/${region}/osm/manifest.json`, `./regions/${region}/osm/validation.json`,
     `./regions/${region}/osm/spatial-index-delta.json`, `./regions/${region}/osm/attribution.json`
   ]),
