@@ -33,6 +33,7 @@ INTEGRATED = {
     "meetings-portland-gov-a7c4178f",
     "events-bouldercolorado-gov-96089785",
     "meetings-bouldercolorado-gov-96089785",
+    "meetings-viennava-gov-bc6ebc78",
 }
 
 def main() -> None:
