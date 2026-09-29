@@ -95,7 +95,7 @@ export function poiObeysMapLights(poi) {
       : tags.some((tag) => RESTAURANT_TAGS.includes(tag)) ? RESTAURANT_TAGS : null;
   if (foodFamily) matches.push(state.layerLights?.cuisine && anyEnabled(foodFamily));
   if (tags.includes('event')) matches.push(state.layerLights?.news && state.layerFilters?.public?.event !== false);
-  return matches.length ? matches.some(Boolean) : true;
+  return matches.length ? matches.some(Boolean) : false;
 }
 // Filter choices come from the imported POI set, never the currently visible
 // result set. That keeps a selected category reversible even when it produces

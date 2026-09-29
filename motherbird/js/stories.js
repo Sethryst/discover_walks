@@ -22,6 +22,7 @@ function drawStories() {
   storyLayer?.remove();
   state.storyRouteLine?.remove();
   state.storyRouteLine = null;
+  if (state.layerLights?.news === false) return;
   storyLayer = L.layerGroup().addTo(state.map);
   storiesForCity().forEach((story) => {
     const field = L.polygon(story.footprint, { className: 'story-field', color: '#e16b3c', weight: 2, opacity: .55, fillColor: '#e9a66e', fillOpacity: .11, dashArray: '4 9', interactive: true });
@@ -165,4 +166,5 @@ export function initStories() {
     }
   });
   window.addEventListener('city-layer-data-changed', drawStories);
+  window.addEventListener('layer-state-dirty', drawStories);
 }
