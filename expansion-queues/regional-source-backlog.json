@@ -1985,13 +1985,14 @@
           },
           "url": "https://librarycalendar.fairfaxcounty.gov/",
           "workItemId": "source:events-librarycalendar-fairfaxcounty-gov-8d007a14",
-          "trackingState": "TRACKED_REACHABLE",
+          "trackingState": "INTEGRATED_STATIC",
           "trackingEvidence": {
             "checkedAt": "2026-09-29T17:47:04.696Z",
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
-          }
+          },
+          "integrationEvidence": "Published validated dated/location-backed records in motherbird/regions/boulder/civic/index.json via schema.org JSON-LD"
         },
         {
           "category": "meetings",
@@ -6134,11 +6135,11 @@
     },
     "regionCount": 34,
     "trackingStates": {
-      "TRACKED_REACHABLE": 53,
-      "INTEGRATED_STATIC": 17,
+      "TRACKED_REACHABLE": 52,
+      "INTEGRATED_STATIC": 18,
       "UNTRACKED_ACTIONABLE": 32
     },
     "trackingPolicy": "Tracked reachable sources remain in the audit backlog but are removed from the active operator queue until adapter work is requested.",
-    "unresolvedCount": 85
+    "unresolvedCount": 84
   }
 }
