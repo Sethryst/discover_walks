@@ -2034,13 +2034,14 @@
           },
           "url": "https://www.fairfaxcounty.gov/calendar/",
           "workItemId": "source:meetings-fairfaxcounty-gov-6f6370e4",
-          "trackingState": "TRACKED_REACHABLE",
+          "trackingState": "INTEGRATED_STATIC",
           "trackingEvidence": {
             "checkedAt": "2026-09-29T17:47:04.696Z",
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
-          }
+          },
+          "integrationEvidence": "Published validated dated/location-backed records in motherbird/regions/boulder/civic/index.json via schema.org JSON-LD"
         },
         {
           "category": "events",
@@ -6138,11 +6139,11 @@
     },
     "regionCount": 34,
     "trackingStates": {
-      "TRACKED_REACHABLE": 49,
-      "INTEGRATED_STATIC": 21,
+      "TRACKED_REACHABLE": 48,
+      "INTEGRATED_STATIC": 22,
       "UNTRACKED_ACTIONABLE": 32
     },
     "trackingPolicy": "Tracked reachable sources remain in the audit backlog but are removed from the active operator queue until adapter work is requested.",
-    "unresolvedCount": 81
+    "unresolvedCount": 80
   }
 }
