@@ -81,7 +81,7 @@ export function paintChangeStory(item) {
   state.learnChangeLayer = null;
   const map = state.map;
   const leaflet = globalThis.L;
-  if (!map || !leaflet || !item) return null;
+  if (!map || !leaflet || !item || state.layerLights?.news === false) return null;
   const color = item.color || '#b85c7a';
   const layer = leaflet.layerGroup();
   const ring = item.ring || [];

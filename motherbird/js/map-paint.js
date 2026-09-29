@@ -198,8 +198,9 @@ function renderArtifactList() {
 async function renderSpatialQueryHistory() {
   const status = el('drawWorkspaceStatus'); if (!status) return;
   let details = status.querySelector('[data-spatial-query-history]');
-  if (!details) { details = document.createElement('details'); details.dataset.spatialQueryHistory = 'true'; details.className = 'spatial-query-history'; status.prepend(details); }
   const queries = (await listSpatialQueries()).filter((query) => !query.regionId || query.regionId === state.activeCity).sort((a, b) => Date.parse(b.createdAt || 0) - Date.parse(a.createdAt || 0)).slice(0, 8);
+  if (!queries.length) { details?.remove(); return; }
+  if (!details) { details = document.createElement('details'); details.dataset.spatialQueryHistory = 'true'; details.className = 'spatial-query-history'; status.prepend(details); }
   details.innerHTML = `<summary>Saved Spatial Queries (${queries.length})</summary>`;
   const list = document.createElement('div');
   queries.forEach((query) => {

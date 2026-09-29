@@ -190,6 +190,7 @@ function applyLayerChanges({ rerenderFilters = true } = {}) {
   renderCityPois(); renderPersonalPlacesOnMap(); renderNewsMarkers(); renderRouteLights(); updateLayerBadge();
   if (rerenderFilters) renderLayerFilters();
   renderMapLights();
+  window.dispatchEvent(new CustomEvent('layer-state-dirty'));
   void persistLayerState().catch(() => toast('Map choices changed, but could not be saved on this device.'));
 }
 
