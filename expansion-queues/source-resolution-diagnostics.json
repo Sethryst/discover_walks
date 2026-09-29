@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "kind": "static-source-resolution-diagnostics",
-  "generatedAt": "2026-09-29T23:08:45.265025Z",
+  "generatedAt": "2026-09-29T23:10:21.790980Z",
   "source": "expansion-queues/regional-source-backlog.json",
   "policy": "Diagnostics do not publish records; only validated dated records with location and provenance may enter civic packages.",
   "summary": {
-    "candidateCount": 93,
-    "resolvedCount": 9,
-    "unresolvedCount": 93,
+    "candidateCount": 92,
+    "resolvedCount": 10,
+    "unresolvedCount": 92,
     "blockers": {
-      "schema-unverified": 5,
+      "schema-unverified": 4,
       "selector-or-endpoint-undiscovered": 88
     }
   },
@@ -811,23 +811,6 @@
       "blocker": "selector-or-endpoint-undiscovered",
       "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
       "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
-    },
-    {
-      "sourceId": "events-norfolk-libcal-com-ed2e4bde",
-      "regionId": "norfolk",
-      "category": "events",
-      "url": "https://norfolk.libcal.com/calendars",
-      "publisher": "Norfolk Public Library Calendar",
-      "adapter": "review-required",
-      "observed": {
-        "httpStatus": 200,
-        "contentType": "text/html; charset=utf-8",
-        "checkedAt": "2026-09-29T17:47:06.798Z"
-      },
-      "blocker": "schema-unverified",
-      "diagnostic": "endpoint is reachable but no validated replay/schema evidence exists",
-      "nextAcquisitionPath": "inspect feed content; require item-level dated events and stable IDs before publishing",
       "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
     },
     {

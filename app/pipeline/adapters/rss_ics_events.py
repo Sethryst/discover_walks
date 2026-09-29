@@ -51,7 +51,7 @@ def _parse_ics(payload: str):
     for line in lines:
         if line == "BEGIN:VEVENT": current = {}
         elif line == "END:VEVENT" and current is not None:
-            events.append({"id": current.get("UID"), "name": current.get("SUMMARY"), "startsAt": _date(current.get("DTSTART")), "endsAt": _date(current.get("DTEND")), "officialUrl": current.get("URL"), "summary": current.get("DESCRIPTION")})
+            events.append({"id": current.get("UID"), "name": current.get("SUMMARY"), "startsAt": _date(current.get("DTSTART")), "endsAt": _date(current.get("DTEND")), "officialUrl": current.get("URL"), "summary": current.get("DESCRIPTION"), "venueAddress": current.get("LOCATION")})
             current = None
         elif current is not None and ":" in line:
             key, value = line.split(":", 1)

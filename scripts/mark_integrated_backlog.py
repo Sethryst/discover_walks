@@ -14,6 +14,7 @@ INTEGRATED = {
     "events-sf-funcheap-com-cfc0d68c",
     "events-visitportland-com-6515f560",
     "events-frenchquarterjournal-com-71d351d3",
+    "events-norfolk-libcal-com-ed2e4bde",
 }
 
 def main() -> None:
