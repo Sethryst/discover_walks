@@ -1,7 +1,7 @@
 # Static source backlog progress
 
-The 102-candidate backlog currently has 18 sources integrated into static civic
-packages and 84 unresolved. The integrated sources have source-backed records;
+The 102-candidate backlog currently has 19 sources integrated into static civic
+packages and 83 unresolved. The integrated sources have source-backed records;
 the unresolved sources remain excluded from app data.
 
 The machine-readable evidence is
@@ -12,17 +12,17 @@ probe evidence, blocker, and next acquisition path.
 Current counts:
 
 - Candidates: 102
-- Resolved/integrated static: 18
-- Unresolved: 84
-- New records added in this batch: 820 records (previous 802 plus 18 Fairfax County Public Library events)
-- Unresolved blockers: 82 selector/endpoint discovery, 2 schema verification
+- Resolved/integrated static: 19
+- Unresolved: 83
+- New records added in this batch: 873 records (previous 820 plus 53 NYC Council meetings)
+- Unresolved blockers: 81 selector/endpoint discovery, 2 schema verification
 
 The zero-record result is intentional: the live JSON-LD and RSS/ICS passes did
 not produce dated, location-backed records that satisfy the civic contract.
 Undated landing pages, generic news feeds, blocked responses, and pages without
 an events contract were not promoted.
 
-Next work is source-specific endpoint discovery for the 82 remaining HTML
+Next work is source-specific endpoint discovery for the 81 remaining HTML
 calendars and schema/replay validation for the two remaining structured
 candidates. The diagnostic report preserves the per-source acquisition path
 for that work.

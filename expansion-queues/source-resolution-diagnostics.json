@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
   "kind": "static-source-resolution-diagnostics",
-  "generatedAt": "2026-09-29T23:24:30.940091Z",
+  "generatedAt": "2026-09-29T23:26:55.851337Z",
   "source": "expansion-queues/regional-source-backlog.json",
   "policy": "Diagnostics do not publish records; only validated dated records with location and provenance may enter civic packages.",
   "summary": {
-    "candidateCount": 84,
-    "resolvedCount": 18,
-    "unresolvedCount": 84,
+    "candidateCount": 83,
+    "resolvedCount": 19,
+    "unresolvedCount": 83,
     "blockers": {
       "schema-unverified": 2,
-      "selector-or-endpoint-undiscovered": 82
+      "selector-or-endpoint-undiscovered": 81
     }
   },
   "sources": [
@@ -751,23 +751,6 @@
       "category": "volunteer",
       "url": "https://www.norfolk.gov/4248/Volunteer",
       "publisher": "norfolk.gov",
-      "adapter": "review-required",
-      "observed": {
-        "httpStatus": 200,
-        "contentType": "text/html; charset=utf-8",
-        "checkedAt": "2026-09-29T17:47:06.798Z"
-      },
-      "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
-    },
-    {
-      "sourceId": "meetings-legistar-council-nyc-gov-e75d3835",
-      "regionId": "nyc",
-      "category": "meetings",
-      "url": "https://legistar.council.nyc.gov/Calendar.aspx",
-      "publisher": "legistar.council.nyc.gov",
       "adapter": "review-required",
       "observed": {
         "httpStatus": 200,

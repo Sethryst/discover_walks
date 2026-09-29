@@ -3466,13 +3466,14 @@
           },
           "url": "https://legistar.council.nyc.gov/Calendar.aspx",
           "workItemId": "source:meetings-legistar-council-nyc-gov-e75d3835",
-          "trackingState": "TRACKED_REACHABLE",
+          "trackingState": "INTEGRATED_STATIC",
           "trackingEvidence": {
             "checkedAt": "2026-09-29T17:47:06.798Z",
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
-          }
+          },
+          "integrationEvidence": "Published validated dated/location-backed records in motherbird/regions/boulder/civic/index.json via schema.org JSON-LD"
         },
         {
           "category": "events",
@@ -6135,11 +6136,11 @@
     },
     "regionCount": 34,
     "trackingStates": {
-      "TRACKED_REACHABLE": 52,
-      "INTEGRATED_STATIC": 18,
+      "TRACKED_REACHABLE": 51,
+      "INTEGRATED_STATIC": 19,
       "UNTRACKED_ACTIONABLE": 32
     },
     "trackingPolicy": "Tracked reachable sources remain in the audit backlog but are removed from the active operator queue until adapter work is requested.",
-    "unresolvedCount": 84
+    "unresolvedCount": 83
   }
 }

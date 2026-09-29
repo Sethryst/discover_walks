@@ -23,6 +23,7 @@ INTEGRATED = {
     "events-nycgovparks-org-3468fa93",
     "nps-wolf-trap",
     "events-librarycalendar-fairfaxcounty-gov-8d007a14",
+    "meetings-legistar-council-nyc-gov-e75d3835",
 }
 
 def main() -> None:
