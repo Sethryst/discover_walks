@@ -1,7 +1,7 @@
 # Static source backlog progress
 
-The 102-candidate backlog currently has 29 sources integrated into static civic
-packages and 73 unresolved. The integrated sources have source-backed records;
+The 102-candidate backlog currently has 30 sources integrated into static civic
+packages and 72 unresolved. The integrated sources have source-backed records;
 the unresolved sources remain excluded from app data.
 
 The machine-readable evidence is
@@ -12,10 +12,10 @@ probe evidence, blocker, and next acquisition path.
 Current counts:
 
 - Candidates: 102
-- Resolved/integrated static: 29
-- Unresolved: 73
-- New records added in this batch: 1012 records (previous 1003 plus 9 Vienna meetings)
-- Unresolved blockers: 71 selector/endpoint discovery, 2 schema verification
+- Resolved/integrated static: 30
+- Unresolved: 72
+- New records added in this batch: 1019 records (previous 1012 plus 7 Summit Daily CitySpark events)
+- Unresolved blockers: 70 selector/endpoint discovery, 2 schema verification
 
 The zero-record result is intentional: the live JSON-LD and RSS/ICS passes did
 not produce dated, location-backed records that satisfy the civic contract.

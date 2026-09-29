@@ -2586,13 +2586,14 @@
           },
           "url": "https://www.summitdaily.com/explore-summit/calendar/",
           "workItemId": "source:events-summitdaily-com-1e792ddf",
-          "trackingState": "TRACKED_REACHABLE",
+          "trackingState": "INTEGRATED_STATIC",
           "trackingEvidence": {
             "checkedAt": "2026-09-29T17:47:04.696Z",
             "httpStatus": 200,
             "contentType": "text/html; charset=UTF-8",
             "source": "local-batched-validation"
-          }
+          },
+          "integrationEvidence": "Published validated dated/location-backed records in motherbird/regions/boulder/civic/index.json via schema.org JSON-LD"
         },
         {
           "category": "events",
@@ -6147,11 +6148,11 @@
     },
     "regionCount": 34,
     "trackingStates": {
-      "INTEGRATED_STATIC": 29,
-      "TRACKED_REACHABLE": 42,
+      "INTEGRATED_STATIC": 30,
+      "TRACKED_REACHABLE": 41,
       "UNTRACKED_ACTIONABLE": 31
     },
     "trackingPolicy": "Tracked reachable sources remain in the audit backlog but are removed from the active operator queue until adapter work is requested.",
-    "unresolvedCount": 73
+    "unresolvedCount": 72
   }
 }
