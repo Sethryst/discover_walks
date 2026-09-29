@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
   "kind": "static-source-resolution-diagnostics",
-  "generatedAt": "2026-09-29T23:10:21.790980Z",
+  "generatedAt": "2026-09-29T23:11:47.111623Z",
   "source": "expansion-queues/regional-source-backlog.json",
   "policy": "Diagnostics do not publish records; only validated dated records with location and provenance may enter civic packages.",
   "summary": {
-    "candidateCount": 92,
-    "resolvedCount": 10,
-    "unresolvedCount": 92,
+    "candidateCount": 91,
+    "resolvedCount": 11,
+    "unresolvedCount": 91,
     "blockers": {
       "schema-unverified": 4,
-      "selector-or-endpoint-undiscovered": 88
+      "selector-or-endpoint-undiscovered": 87
     }
   },
   "sources": [
@@ -18,23 +18,6 @@
       "sourceId": "events-apps-alexandriava-gov-c408c804",
       "regionId": "alexandria-va",
       "category": "events",
-      "url": "https://apps.alexandriava.gov/Calendar/",
-      "publisher": "apps.alexandriava.gov",
-      "adapter": "review-required",
-      "observed": {
-        "httpStatus": 200,
-        "contentType": "text/html; charset=utf-8",
-        "checkedAt": "2026-09-29T17:47:01.475Z"
-      },
-      "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
-    },
-    {
-      "sourceId": "meetings-apps-alexandriava-gov-c408c804",
-      "regionId": "alexandria-va",
-      "category": "meetings",
       "url": "https://apps.alexandriava.gov/Calendar/",
       "publisher": "apps.alexandriava.gov",
       "adapter": "review-required",
