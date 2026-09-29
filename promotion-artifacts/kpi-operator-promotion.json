@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "kind": "kpi-operator-promotion-report",
+  "generatedAt": "2026-09-29T20:45:00+00:00",
+  "publication": "blocked-until-explicit-release",
+  "approvedCount": 0,
+  "promotionReadyCount": 0,
+  "progress": {
+    "backlogSourceCount": 102,
+    "integratedBacklogSourceCount": 5,
+    "integratedBacklogRecordCount": 370,
+    "additionalExistingAdapterRecordCount": 12,
+    "totalIntegratedRecordCount": 382,
+    "remainingSourceCount": 97,
+    "adapterFamilies": {
+      "jsonld": 3,
+      "jsonApi": 1,
+      "npsApi": 1,
+      "htmlAggregateEndpoint": 1,
+      "rssIcs": 0,
+      "htmlDirectoryPending": 96
+    },
+    "status": "blocked-on-source-specific-access-or-structured-data",
+    "evidence": [
+      "motherbird/regions/philadelphia/civic/index.json",
+      "motherbird/regions/prince-georges-county/civic/index.json",
+      "motherbird/regions/seattle/civic/index.json",
+      "motherbird/regions/vienna/civic/index.json",
+      "motherbird/data/learn/source-adapters.json"
+    ]
+  },
+  "rows": []
+}
