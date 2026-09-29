@@ -5726,13 +5726,14 @@
           },
           "url": "https://www.sedonaaz.gov/your-government/departments-and-programs/parks-recreation/calendar",
           "workItemId": "source:events-sedonaaz-gov-c0071a9f",
-          "trackingState": "TRACKED_REACHABLE",
+          "trackingState": "INTEGRATED_STATIC",
           "trackingEvidence": {
             "checkedAt": "2026-09-29T17:47:13.030Z",
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
-          }
+          },
+          "integrationEvidence": "Published 7 future dated/location-backed City of Sedona calendar records in motherbird/regions/sedona-arizona/civic/index.json from official October 2026 month and detail pages"
         },
         {
           "category": "meetings",
@@ -5772,13 +5773,14 @@
           },
           "url": "https://www.sedonaaz.gov/your-government/general-information/city-calendar",
           "workItemId": "source:meetings-sedonaaz-gov-a23d2c98",
-          "trackingState": "TRACKED_REACHABLE",
+          "trackingState": "INTEGRATED_STATIC",
           "trackingEvidence": {
             "checkedAt": "2026-09-29T17:47:13.030Z",
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
-          }
+          },
+          "integrationEvidence": "Published 3 future dated/location-backed City of Sedona meeting records in motherbird/regions/sedona-arizona/civic/index.json from official October 2026 month and detail pages"
         },
         {
           "category": "events",
@@ -6150,11 +6152,11 @@
     },
     "regionCount": 34,
     "trackingStates": {
-      "INTEGRATED_STATIC": 31,
-      "TRACKED_REACHABLE": 41,
+      "INTEGRATED_STATIC": 33,
+      "TRACKED_REACHABLE": 39,
       "UNTRACKED_ACTIONABLE": 30
     },
     "trackingPolicy": "Tracked reachable sources remain in the audit backlog but are removed from the active operator queue until adapter work is requested.",
-    "unresolvedCount": 71
+    "unresolvedCount": 69
   }
 }

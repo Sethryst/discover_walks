@@ -36,10 +36,14 @@ INTEGRATED = {
     "meetings-viennava-gov-bc6ebc78",
     "events-summitdaily-com-1e792ddf",
     "meetings-boston-gov-269e52b6",
+    "events-sedonaaz-gov-c0071a9f",
+    "meetings-sedonaaz-gov-a23d2c98",
 }
 
 EVIDENCE = {
     "meetings-boston-gov-269e52b6": "Published 96 future dated/location-backed City of Boston calendar records in motherbird/regions/boston/civic/index.json via paginated official events pages and date-group selectors",
+    "events-sedonaaz-gov-c0071a9f": "Published 7 future dated/location-backed City of Sedona calendar records in motherbird/regions/sedona-arizona/civic/index.json from official October 2026 month and detail pages",
+    "meetings-sedonaaz-gov-a23d2c98": "Published 3 future dated/location-backed City of Sedona meeting records in motherbird/regions/sedona-arizona/civic/index.json from official October 2026 month and detail pages",
 }
 
 def main() -> None:

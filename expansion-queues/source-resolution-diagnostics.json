@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
   "kind": "static-source-resolution-diagnostics",
-  "generatedAt": "2026-09-29T23:50:33.644378Z",
+  "generatedAt": "2026-09-29T23:56:20.075463Z",
   "source": "expansion-queues/regional-source-backlog.json",
   "policy": "Diagnostics do not publish records; only validated dated records with location and provenance may enter civic packages.",
   "summary": {
-    "candidateCount": 71,
-    "resolvedCount": 31,
-    "unresolvedCount": 71,
+    "candidateCount": 69,
+    "resolvedCount": 33,
+    "unresolvedCount": 69,
     "blockers": {
       "schema-unverified": 2,
-      "selector-or-endpoint-undiscovered": 69
+      "selector-or-endpoint-undiscovered": 67
     }
   },
   "sources": [
@@ -1074,40 +1074,6 @@
       "category": "events",
       "url": "https://www.sedonaaz.gov/your-government/departments-and-programs/parks-recreation/programs/free-to-be-me-drum-circle",
       "publisher": "City of Sedona Free to Be Me Drum Circle",
-      "adapter": "review-required",
-      "observed": {
-        "httpStatus": 200,
-        "contentType": "text/html; charset=utf-8",
-        "checkedAt": "2026-09-29T17:47:13.030Z"
-      },
-      "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
-    },
-    {
-      "sourceId": "events-sedonaaz-gov-c0071a9f",
-      "regionId": "sedona-arizona",
-      "category": "events",
-      "url": "https://www.sedonaaz.gov/your-government/departments-and-programs/parks-recreation/calendar",
-      "publisher": "sedonaaz.gov",
-      "adapter": "review-required",
-      "observed": {
-        "httpStatus": 200,
-        "contentType": "text/html; charset=utf-8",
-        "checkedAt": "2026-09-29T17:47:13.030Z"
-      },
-      "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
-    },
-    {
-      "sourceId": "meetings-sedonaaz-gov-a23d2c98",
-      "regionId": "sedona-arizona",
-      "category": "meetings",
-      "url": "https://www.sedonaaz.gov/your-government/general-information/city-calendar",
-      "publisher": "sedonaaz.gov",
       "adapter": "review-required",
       "observed": {
         "httpStatus": 200,
