@@ -281,11 +281,13 @@
       "final_url": "https://www.sedonaaz.gov/your-government/departments-and-programs/parks-recreation/calendar",
       "jsonld_events": 0,
       "candidate_endpoints": [
+        "https://www.sedonaaz.gov/Home/Components/Calendar/Calendar",
         "https://www.sedonaaz.gov/Home/Components/Calendar/Event/19223/359",
         "https://www.sedonaaz.gov/Home/Components/Calendar/Event/19243/359",
         "https://www.sedonaaz.gov/Home/Components/Calendar/Event/19247/359",
         "https://www.sedonaaz.gov/Home/Components/Calendar/Event/19249/359",
         "https://www.sedonaaz.gov/Home/Components/Calendar/Event/19251/359",
+        "https://www.sedonaaz.gov/Home/Components/Calendar/GetCalendarEvents",
         "https://www.sedonaaz.gov/Template/GetFeedbackPartial?feedbackUrl=https%3a%2f%2fwww.sedonaaz.gov%2fyour-government%2fdepartments-and-programs%2fparks-recreation%2fcalendar",
         "https://www.sedonaaz.gov/business/economic-development/training-and-events",
         "https://www.sedonaaz.gov/community/news-information/meetings-documents",
@@ -315,7 +317,7 @@
       "schema_status": "endpoint-or-selector-needed",
       "schema_evidence": [
         "jsonldEvents=0",
-        "links=25",
+        "links=27",
         "selectors=3"
       ],
       "blocker": null
@@ -660,6 +662,7 @@
       "final_url": "https://www.sedonaaz.gov/your-government/general-information/city-calendar",
       "jsonld_events": 0,
       "candidate_endpoints": [
+        "https://www.sedonaaz.gov/Home/Components/Calendar/Calendar",
         "https://www.sedonaaz.gov/Home/Components/Calendar/Event/18535/25",
         "https://www.sedonaaz.gov/Home/Components/Calendar/Event/19223/25",
         "https://www.sedonaaz.gov/Home/Components/Calendar/Event/19243/25",
@@ -676,6 +679,7 @@
         "https://www.sedonaaz.gov/Home/Components/Calendar/Event/20019/25",
         "https://www.sedonaaz.gov/Home/Components/Calendar/Event/20021/25",
         "https://www.sedonaaz.gov/Home/Components/Calendar/Event/20027/25",
+        "https://www.sedonaaz.gov/Home/Components/Calendar/GetCalendarEvents",
         "https://www.sedonaaz.gov/Template/GetFeedbackPartial?feedbackUrl=https%3a%2f%2fwww.sedonaaz.gov%2fyour-government%2fgeneral-information%2fcity-calendar",
         "https://www.sedonaaz.gov/business/economic-development/training-and-events",
         "https://www.sedonaaz.gov/community/news-information/meetings-documents",
@@ -731,7 +735,7 @@
       "schema_status": "endpoint-or-selector-needed",
       "schema_evidence": [
         "jsonldEvents=0",
-        "links=62",
+        "links=64",
         "selectors=3"
       ],
       "blocker": null

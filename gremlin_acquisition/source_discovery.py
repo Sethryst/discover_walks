@@ -49,6 +49,16 @@ def _script_endpoints(html: str, base: str) -> tuple[str, ...]:
         found.append(urljoin(base, raw))
     for raw in re.findall(r"calendarKey\s*:\s*['\"]([^'\"]+)['\"]", html, re.I):
         found.append(f"calendarKey:{raw}")
+    # CivicPlus municipal calendars commonly render an empty shell and load
+    # records through these stable component routes.  Emit them as discovery
+    # candidates; acquisition must still validate dates and locations.
+    if re.search(r"Home/Components/Calendar|Components/Calendar", html, re.I):
+        origin = f"{urlparse(base).scheme}://{urlparse(base).netloc}"
+        for path in (
+            "/Home/Components/Calendar/GetCalendarEvents",
+            "/Home/Components/Calendar/Calendar",
+        ):
+            found.append(urljoin(origin, path))
     return tuple(sorted(set(found)))
 
 def discover_html(source_id: str, url: str, html: str, *, http_status: int = 200, content_type: str = "text/html", final_url: str | None = None) -> DiscoveryResult:

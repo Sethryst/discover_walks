@@ -14,3 +14,9 @@ def test_structured_schema_probe_accepts_replay_records():
     body = {"type": "FeatureCollection", "features": [{"type": "Feature", "id": "p1", "properties": {"id": "p1", "name": "Park"}, "geometry": {"type": "Point", "coordinates": [-77.1, 38.9]}}]}
     result = verify_structured_schema("x", config, lambda _: json.dumps(body))
     assert result.schema_status == "schema-valid"
+
+def test_html_discovery_adds_civicplus_calendar_fallbacks():
+    html = '<div data-calendar="Home/Components/Calendar"></div>'
+    result = discover_html("x", "https://city.example.gov/events", html)
+    assert "https://city.example.gov/Home/Components/Calendar/GetCalendarEvents" in result.candidate_endpoints
+    assert "https://city.example.gov/Home/Components/Calendar/Calendar" in result.candidate_endpoints
