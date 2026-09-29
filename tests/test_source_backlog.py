@@ -62,9 +62,9 @@ class SourceBacklogTests(unittest.TestCase):
     def test_unresolved_diagnostics_cover_only_unintegrated_sources(self) -> None:
         root = Path(__file__).parents[1]
         report = _diagnostic_module.build(root, "2026-09-29T00:00:00Z")
-        self.assertEqual(report["summary"]["resolvedCount"], 15)
-        self.assertEqual(report["summary"]["unresolvedCount"], 87)
-        self.assertEqual(len(report["sources"]), 87)
+        self.assertEqual(report["summary"]["resolvedCount"], 16)
+        self.assertEqual(report["summary"]["unresolvedCount"], 86)
+        self.assertEqual(len(report["sources"]), 86)
         self.assertTrue(all(row["blocker"] and row["nextAcquisitionPath"] for row in report["sources"]))
         self.assertTrue(all(row["publicationDecision"].startswith("NOT_PUBLISHED") for row in report["sources"]))
 

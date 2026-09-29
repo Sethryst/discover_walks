@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "kind": "static-source-resolution-diagnostics",
-  "generatedAt": "2026-09-29T23:13:31.632096Z",
+  "generatedAt": "2026-09-29T23:16:19.159301Z",
   "source": "expansion-queues/regional-source-backlog.json",
   "policy": "Diagnostics do not publish records; only validated dated records with location and provenance may enter civic packages.",
   "summary": {
-    "candidateCount": 87,
-    "resolvedCount": 15,
-    "unresolvedCount": 87,
+    "candidateCount": 86,
+    "resolvedCount": 16,
+    "unresolvedCount": 86,
     "blockers": {
-      "schema-unverified": 4,
+      "schema-unverified": 3,
       "selector-or-endpoint-undiscovered": 83
     }
   },
@@ -811,23 +811,6 @@
       "blocker": "selector-or-endpoint-undiscovered",
       "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
       "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
-    },
-    {
-      "sourceId": "events-nycgovparks-org-3468fa93",
-      "regionId": "nyc",
-      "category": "events",
-      "url": "https://www.nycgovparks.org/news/rss",
-      "publisher": "nycgovparks.org",
-      "adapter": "review-required",
-      "observed": {
-        "httpStatus": null,
-        "contentType": null,
-        "checkedAt": null
-      },
-      "blocker": "schema-unverified",
-      "diagnostic": "endpoint is reachable but no validated replay/schema evidence exists",
-      "nextAcquisitionPath": "inspect feed content; require item-level dated events and stable IDs before publishing",
       "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
     },
     {

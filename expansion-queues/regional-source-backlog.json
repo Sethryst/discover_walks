@@ -3508,7 +3508,9 @@
             "stability": []
           },
           "url": "https://www.nycgovparks.org/news/rss",
-          "workItemId": "source:events-nycgovparks-org-3468fa93"
+          "workItemId": "source:events-nycgovparks-org-3468fa93",
+          "trackingState": "INTEGRATED_STATIC",
+          "integrationEvidence": "Published validated dated/location-backed records in motherbird/regions/boulder/civic/index.json via schema.org JSON-LD"
         },
         {
           "category": "events",
@@ -6131,10 +6133,10 @@
     "regionCount": 34,
     "trackingStates": {
       "TRACKED_REACHABLE": 53,
-      "INTEGRATED_STATIC": 15,
-      "UNTRACKED_ACTIONABLE": 34
+      "INTEGRATED_STATIC": 16,
+      "UNTRACKED_ACTIONABLE": 33
     },
     "trackingPolicy": "Tracked reachable sources remain in the audit backlog but are removed from the active operator queue until adapter work is requested.",
-    "unresolvedCount": 87
+    "unresolvedCount": 86
   }
 }
