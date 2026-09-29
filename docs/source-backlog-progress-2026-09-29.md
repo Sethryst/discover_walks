@@ -1,7 +1,7 @@
 # Static source backlog progress
 
-The 102-candidate backlog currently has 11 sources integrated into static civic
-packages and 91 unresolved. The integrated sources have source-backed records;
+The 102-candidate backlog currently has 15 sources integrated into static civic
+packages and 87 unresolved. The integrated sources have source-backed records;
 the unresolved sources remain excluded from app data.
 
 The machine-readable evidence is
@@ -12,10 +12,10 @@ probe evidence, blocker, and next acquisition path.
 Current counts:
 
 - Candidates: 102
-- Resolved/integrated static: 11
-- Unresolved: 91
-- New records added in this batch: 716 records (15 Boulder County, 40 San Francisco, 1 Portland, 4 New Orleans, 354 Norfolk Library, 302 Alexandria meetings)
-- Unresolved blockers: 87 selector/endpoint discovery, 4 schema verification
+- Resolved/integrated static: 15
+- Unresolved: 87
+- New records added in this batch: 750 records (15 Boulder County, 40 San Francisco, 1 Portland, 4 New Orleans, 354 Norfolk Library, 302 Alexandria meetings, 9 Loudoun events, 9 Loudoun meetings, 8 Norfolk events, 8 Norfolk meetings)
+- Unresolved blockers: 83 selector/endpoint discovery, 4 schema verification
 
 The zero-record result is intentional: the live JSON-LD and RSS/ICS passes did
 not produce dated, location-backed records that satisfy the civic contract.

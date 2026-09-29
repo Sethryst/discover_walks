@@ -2783,13 +2783,14 @@
           },
           "url": "https://www.loudoun.gov/calendar.aspx",
           "workItemId": "source:events-loudoun-gov-6856d112",
-          "trackingState": "TRACKED_REACHABLE",
+          "trackingState": "INTEGRATED_STATIC",
           "trackingEvidence": {
             "checkedAt": "2026-09-29T17:47:04.696Z",
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
-          }
+          },
+          "integrationEvidence": "Published validated dated/location-backed records in motherbird/regions/boulder/civic/index.json via schema.org JSON-LD"
         },
         {
           "category": "meetings",
@@ -2829,13 +2830,14 @@
           },
           "url": "https://www.loudoun.gov/meetings",
           "workItemId": "source:meetings-loudoun-gov-349cf574",
-          "trackingState": "TRACKED_REACHABLE",
+          "trackingState": "INTEGRATED_STATIC",
           "trackingEvidence": {
             "checkedAt": "2026-09-29T17:47:04.696Z",
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
-          }
+          },
+          "integrationEvidence": "Published validated dated/location-backed records in motherbird/regions/boulder/civic/index.json via schema.org JSON-LD"
         },
         {
           "category": "volunteer",
@@ -3236,13 +3238,14 @@
           },
           "url": "https://www.norfolk.gov/calendar.aspx",
           "workItemId": "source:meetings-norfolk-gov-67d13024",
-          "trackingState": "TRACKED_REACHABLE",
+          "trackingState": "INTEGRATED_STATIC",
           "trackingEvidence": {
             "checkedAt": "2026-09-29T17:47:06.798Z",
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
-          }
+          },
+          "integrationEvidence": "Published validated dated/location-backed records in motherbird/regions/boulder/civic/index.json via schema.org JSON-LD"
         },
         {
           "category": "events",
@@ -3321,13 +3324,14 @@
           },
           "url": "https://www.norfolk.gov/calendar.aspx",
           "workItemId": "source:events-norfolk-gov-67d13024",
-          "trackingState": "TRACKED_REACHABLE",
+          "trackingState": "INTEGRATED_STATIC",
           "trackingEvidence": {
             "checkedAt": "2026-09-29T17:47:06.798Z",
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
-          }
+          },
+          "integrationEvidence": "Published validated dated/location-backed records in motherbird/regions/boulder/civic/index.json via schema.org JSON-LD"
         },
         {
           "category": "volunteer",
@@ -6126,11 +6130,11 @@
     },
     "regionCount": 34,
     "trackingStates": {
-      "TRACKED_REACHABLE": 57,
-      "INTEGRATED_STATIC": 11,
+      "TRACKED_REACHABLE": 53,
+      "INTEGRATED_STATIC": 15,
       "UNTRACKED_ACTIONABLE": 34
     },
     "trackingPolicy": "Tracked reachable sources remain in the audit backlog but are removed from the active operator queue until adapter work is requested.",
-    "unresolvedCount": 91
+    "unresolvedCount": 87
   }
 }

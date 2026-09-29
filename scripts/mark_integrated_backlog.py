@@ -16,6 +16,10 @@ INTEGRATED = {
     "events-frenchquarterjournal-com-71d351d3",
     "events-norfolk-libcal-com-ed2e4bde",
     "meetings-apps-alexandriava-gov-c408c804",
+    "events-loudoun-gov-6856d112",
+    "meetings-loudoun-gov-349cf574",
+    "events-norfolk-gov-67d13024",
+    "meetings-norfolk-gov-67d13024",
 }
 
 def main() -> None:
