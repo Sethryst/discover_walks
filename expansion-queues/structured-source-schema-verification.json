@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "kind": "structured-source-schema-verification",
-  "candidateCount": 5,
+  "candidateCount": 4,
   "results": [
     {
       "source_id": "events-chicago-gov-44124097",
@@ -38,23 +38,6 @@
       "blocker": "adapter-failed"
     },
     {
-      "source_id": "events-norfolk-libcal-com-ed2e4bde",
-      "url": "https://norfolk.libcal.com/calendars",
-      "status": "FAILED",
-      "http_status": null,
-      "content_type": null,
-      "final_url": "https://norfolk.libcal.com/calendars",
-      "jsonld_events": 0,
-      "candidate_endpoints": [],
-      "selector_candidates": [],
-      "schema_status": "adapter-error",
-      "schema_evidence": [
-        "ModuleNotFoundError",
-        "No module named 'feedparser'"
-      ],
-      "blocker": "adapter-failed"
-    },
-    {
       "source_id": "events-nycgovparks-org-3468fa93",
       "url": "https://www.nycgovparks.org/news/rss",
       "status": "FAILED",
@@ -75,18 +58,20 @@
       "source_id": "events-sfrecpark-org-ddd118f6",
       "url": "https://sfrecpark.org/rss.aspx",
       "status": "FAILED",
-      "http_status": null,
-      "content_type": null,
+      "http_status": 200,
+      "content_type": "application/json",
       "final_url": "https://sfrecpark.org/rss.aspx",
       "jsonld_events": 0,
       "candidate_endpoints": [],
       "selector_candidates": [],
-      "schema_status": "adapter-error",
+      "schema_status": "schema-invalid-or-empty",
       "schema_evidence": [
-        "ModuleNotFoundError",
-        "No module named 'feedparser'"
+        "status=FAILED",
+        "records=0",
+        "errors=0",
+        "rawSha256=f227958ad48b9fa724e69819e220f7456939cd1bccad6cac25c624c8c208befc"
       ],
-      "blocker": "adapter-failed"
+      "blocker": "schema-unverified"
     }
   ]
 }
