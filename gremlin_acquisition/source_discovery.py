@@ -42,6 +42,15 @@ def _links(html: str, base: str) -> tuple[str, ...]:
         if re.search(r"\.(?:ics|ical)(?:$|[?#])|rss|atom|feed|calendar|event|api|json", target.lower() + " " + text): found.append(target)
     return tuple(sorted(set(found)))
 
+def _script_endpoints(html: str, base: str) -> tuple[str, ...]:
+    """Extract endpoint-like strings embedded in calendar initialization JS."""
+    found = []
+    for raw in re.findall(r"['\"](\/[^'\"]+(?:calendarData|\.json|event|meeting|calendar)[^'\"]*)['\"]", html, re.I):
+        found.append(urljoin(base, raw))
+    for raw in re.findall(r"calendarKey\s*:\s*['\"]([^'\"]+)['\"]", html, re.I):
+        found.append(f"calendarKey:{raw}")
+    return tuple(sorted(set(found)))
+
 def discover_html(source_id: str, url: str, html: str, *, http_status: int = 200, content_type: str = "text/html", final_url: str | None = None) -> DiscoveryResult:
     jsonld = 0
     for block in re.findall(r'''<script[^>]+type=["']application/ld\+json["'][^>]*>(.*?)</script>''', html, re.I | re.S):
@@ -51,7 +60,7 @@ def discover_html(source_id: str, url: str, html: str, *, http_status: int = 200
             jsonld += sum(1 for item in values if isinstance(item, dict) and "Event" in ([item.get("@type")] if isinstance(item.get("@type"), str) else item.get("@type", [])))
         except json.JSONDecodeError:
             continue
-    endpoints = _links(html, final_url or url)
+    endpoints = tuple(sorted(set(_links(html, final_url or url) + _script_endpoints(html, final_url or url))))
     selectors = []
     for tag, attr in (("article", "class"), ("li", "class"), ("div", "class")):
         for value in re.findall(fr"<{tag}[^>]*{attr}=[\"']([^\"']+)[\"']", html, re.I):
