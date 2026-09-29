@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
   "kind": "static-source-resolution-diagnostics",
-  "generatedAt": "2026-09-29T22:56:37.314379Z",
+  "generatedAt": "2026-09-29T23:05:35.819134Z",
   "source": "expansion-queues/regional-source-backlog.json",
   "policy": "Diagnostics do not publish records; only validated dated records with location and provenance may enter civic packages.",
   "summary": {
-    "candidateCount": 96,
-    "resolvedCount": 6,
-    "unresolvedCount": 96,
+    "candidateCount": 94,
+    "resolvedCount": 8,
+    "unresolvedCount": 94,
     "blockers": {
       "schema-unverified": 5,
-      "selector-or-endpoint-undiscovered": 91
+      "selector-or-endpoint-undiscovered": 89
     }
   },
   "sources": [
@@ -1154,23 +1154,6 @@
       "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
     },
     {
-      "sourceId": "events-visitportland-com-6515f560",
-      "regionId": "portland-maine",
-      "category": "events",
-      "url": "https://www.visitportland.com/events/",
-      "publisher": "visitportland.com",
-      "adapter": "review-required",
-      "observed": {
-        "httpStatus": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "checkedAt": "2026-09-29T17:47:08.895Z"
-      },
-      "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
-    },
-    {
       "sourceId": "meetings-princegeorgescountymd-gov-95ea3f6d",
       "regionId": "prince-georges-county-md",
       "category": "meetings",
@@ -1287,23 +1270,6 @@
       "blocker": "schema-unverified",
       "diagnostic": "endpoint is reachable but no validated replay/schema evidence exists",
       "nextAcquisitionPath": "inspect feed content; require item-level dated events and stable IDs before publishing",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
-    },
-    {
-      "sourceId": "events-sf-funcheap-com-cfc0d68c",
-      "regionId": "san-francisco",
-      "category": "events",
-      "url": "https://sf.funcheap.com/",
-      "publisher": "Funcheap SF",
-      "adapter": "review-required",
-      "observed": {
-        "httpStatus": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "checkedAt": "2026-09-29T17:47:08.895Z"
-      },
-      "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
       "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
     },
     {

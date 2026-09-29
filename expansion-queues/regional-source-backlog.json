@@ -4336,13 +4336,14 @@
           },
           "url": "https://www.visitportland.com/events/",
           "workItemId": "source:events-visitportland-com-6515f560",
-          "trackingState": "TRACKED_REACHABLE",
+          "trackingState": "INTEGRATED_STATIC",
           "trackingEvidence": {
             "checkedAt": "2026-09-29T17:47:08.895Z",
             "httpStatus": 200,
             "contentType": "text/html; charset=UTF-8",
             "source": "local-batched-validation"
-          }
+          },
+          "integrationEvidence": "Published validated dated/location-backed records in motherbird/regions/boulder/civic/index.json via schema.org JSON-LD"
         }
       ]
     },
@@ -4929,13 +4930,14 @@
           },
           "url": "https://sf.funcheap.com/",
           "workItemId": "source:events-sf-funcheap-com-cfc0d68c",
-          "trackingState": "TRACKED_REACHABLE",
+          "trackingState": "INTEGRATED_STATIC",
           "trackingEvidence": {
             "checkedAt": "2026-09-29T17:47:08.895Z",
             "httpStatus": 200,
             "contentType": "text/html; charset=UTF-8",
             "source": "local-batched-validation"
-          }
+          },
+          "integrationEvidence": "Published validated dated/location-backed records in motherbird/regions/boulder/civic/index.json via schema.org JSON-LD"
         },
         {
           "category": "meetings",
@@ -6121,11 +6123,11 @@
     },
     "regionCount": 34,
     "trackingStates": {
-      "TRACKED_REACHABLE": 62,
+      "TRACKED_REACHABLE": 60,
       "UNTRACKED_ACTIONABLE": 34,
-      "INTEGRATED_STATIC": 6
+      "INTEGRATED_STATIC": 8
     },
     "trackingPolicy": "Tracked reachable sources remain in the audit backlog but are removed from the active operator queue until adapter work is requested.",
-    "unresolvedCount": 96
+    "unresolvedCount": 94
   }
 }
