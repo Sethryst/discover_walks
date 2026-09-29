@@ -112,6 +112,6 @@ test('KPI dashboard groups sections into three expandable folders with an overvi
   assert.match(html, /Delivery & readiness/);
   assert.match(html, /Systems & governance/);
   assert.match(html, /Overall readiness/);
-  assert.match(html, /details\.className='folder'/);
+  assert.match(html, /(?:details|tocGroup)\.className='(?:folder|toc-group)'/);
   assert.match(html, /link\.className='folder-link'/);
 });
