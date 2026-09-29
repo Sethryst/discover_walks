@@ -16,10 +16,10 @@ on:
         required: true
         type: string
       action:
-        description: Promote or rollback an exact package
+        description: Validate, promote, or rollback an exact package
         required: true
         type: choice
-        options: [promote, rollback]
+        options: [validate, promote, rollback]
       package_id:
         description: Exact package ID for rollback
         required: false
@@ -68,7 +68,7 @@ jobs:
           test -n "$REVIEW_PATH"
           echo "REVIEW_PATH=$REVIEW_PATH" >> "$GITHUB_ENV"
       - name: Verify package approval through Supabase RLS boundary
-        if: inputs.action == 'promote'
+        if: inputs.action != 'rollback'
         shell: bash
         env:
           REVIEW: ${{ env.REVIEW_PATH }}
@@ -89,7 +89,7 @@ jobs:
             -H "Authorization: Bearer $SUPABASE_SECRET_KEY" \
             "$SUPABASE_URL/rest/v1/acquisition_package_selections?package_id=eq.${PACKAGE_ID}&selected=eq.true&select=record_id")
           echo "$SELECTIONS" | jq -e --arg ids "$IDS" '([.[].record_id] | sort) == ($ids | split(",") | map(select(length > 0)) | sort)' >/dev/null
-      - name: Run explicit frontend promotion or rollback
+      - name: Run explicit frontend validation, promotion, or rollback
         shell: bash
         env:
           ACTION: ${{ inputs.action }}
@@ -102,6 +102,11 @@ jobs:
           python -m compileall -q gremlin_acquisition
           if [ "$ACTION" = "rollback" ]; then
             python -m gremlin_acquisition.frontend_release --action rollback --package-id "$PACKAGE" --active-package-id "$ACTIVE" --publish-dir motherbird/data/acquisition-packages
+          elif [ "$ACTION" = "validate" ]; then
+            IFS=',' read -r -a RECORD_IDS <<< "$IDS"
+            ARGS=()
+            for id in "${RECORD_IDS[@]}"; do ARGS+=(--selected-record-id "$id"); done
+            python -m gremlin_acquisition.frontend_release --action promote --review-package "$REVIEW" --approval-reference "$APPROVAL" --output-dir promotion-artifacts/frontend-candidates --audit promotion-artifacts/frontend-audit.jsonl "${ARGS[@]}"
           else
             IFS=',' read -r -a RECORD_IDS <<< "$IDS"
             ARGS=()
@@ -109,6 +114,7 @@ jobs:
             python -m gremlin_acquisition.frontend_release --action promote --review-package "$REVIEW" --approval-reference "$APPROVAL" --publish-dir motherbird/data/acquisition-packages --audit promotion-artifacts/frontend-audit.jsonl "${ARGS[@]}"
           fi
       - name: Publish the exact approved package manifest
+        if: inputs.action == 'promote'
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
@@ -120,3 +126,10 @@ jobs:
             git commit -m "Publish approved acquisition package"
             git push
           fi
+      - name: Upload validated candidate
+        if: inputs.action == 'validate'
+        uses: actions/upload-artifact@v4
+        with:
+          name: acquisition-frontend-candidate
+          path: promotion-artifacts/frontend-candidates/*.json
+          if-no-files-found: error
