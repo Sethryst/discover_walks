@@ -1,0 +1,1667 @@
+{
+  "schemaVersion": 1,
+  "kind": "static-source-resolution-diagnostics",
+  "generatedAt": "2026-09-29T20:38:50.947288Z",
+  "source": "expansion-queues/regional-source-backlog.json",
+  "policy": "Diagnostics do not publish records; only validated dated records with location and provenance may enter civic packages.",
+  "summary": {
+    "candidateCount": 97,
+    "resolvedCount": 5,
+    "unresolvedCount": 97,
+    "blockers": {
+      "schema-unverified": 5,
+      "selector-or-endpoint-undiscovered": 92
+    }
+  },
+  "sources": [
+    {
+      "sourceId": "events-apps-alexandriava-gov-c408c804",
+      "regionId": "alexandria-va",
+      "category": "events",
+      "url": "https://apps.alexandriava.gov/Calendar/",
+      "publisher": "apps.alexandriava.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:01.475Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "meetings-apps-alexandriava-gov-c408c804",
+      "regionId": "alexandria-va",
+      "category": "meetings",
+      "url": "https://apps.alexandriava.gov/Calendar/",
+      "publisher": "apps.alexandriava.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:01.475Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-arlingtonva-us-cb15b262",
+      "regionId": "arlington-va",
+      "category": "events",
+      "url": "https://www.arlingtonva.us/Government/Topics/Meeting-Calendar",
+      "publisher": "arlingtonva.us",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:01.475Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "meetings-arlingtonva-us-cb15b262",
+      "regionId": "arlington-va",
+      "category": "meetings",
+      "url": "https://www.arlingtonva.us/Government/Topics/Meeting-Calendar",
+      "publisher": "arlingtonva.us",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:01.475Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "meetings-ashevillenc-gov-644961e1",
+      "regionId": "asheville",
+      "category": "meetings",
+      "url": "https://www.ashevillenc.gov/government/",
+      "publisher": "ashevillenc.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "checkedAt": "2026-09-29T17:47:01.475Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "volunteer-ashevillenc-gov-3ebf2f4c",
+      "regionId": "asheville",
+      "category": "volunteer",
+      "url": "https://www.ashevillenc.gov/parks/",
+      "publisher": "ashevillenc.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": null,
+        "contentType": null,
+        "checkedAt": null
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-exploreasheville-com-94d72b77",
+      "regionId": "asheville",
+      "category": "events",
+      "url": "https://www.exploreasheville.com/events/free-events-asheville-nc",
+      "publisher": "Explore Asheville Free Events",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:01.475Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-exploreasheville-com-8e96aa9e",
+      "regionId": "asheville",
+      "category": "events",
+      "url": "https://www.exploreasheville.com/events",
+      "publisher": "exploreasheville.com",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:01.475Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "meetings-cityofboise-org-3b05a56d",
+      "regionId": "boise-meridian-idaho",
+      "category": "meetings",
+      "url": "https://www.cityofboise.org/city-government/city-council/",
+      "publisher": "cityofboise.org",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": null,
+        "contentType": null,
+        "checkedAt": null
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-boisestatepublicradio-org-1b57dd9c",
+      "regionId": "boise-meridian-idaho",
+      "category": "events",
+      "url": "https://www.boisestatepublicradio.org/community-calendar-search?f0=00000178-b7ab-d01e-aff8-b7fbab860000",
+      "publisher": "Boise State Public Radio Community Calendar",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html;charset=UTF-8",
+        "checkedAt": "2026-09-29T17:47:01.475Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "volunteer-boisewatershed-org-b6e8d60b",
+      "regionId": "boise-meridian-idaho",
+      "category": "volunteer",
+      "url": "https://www.boisewatershed.org/about/volunteer/",
+      "publisher": "boisewatershed.org",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:01.475Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-meridiancity-org-44f75203",
+      "regionId": "boise-meridian-idaho",
+      "category": "events",
+      "url": "https://www.meridiancity.org/cityevents",
+      "publisher": "meridiancity.org",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": null,
+        "contentType": null,
+        "checkedAt": null
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "meetings-boston-gov-269e52b6",
+      "regionId": "boston",
+      "category": "meetings",
+      "url": "https://www.boston.gov/government",
+      "publisher": "boston.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": null,
+        "contentType": null,
+        "checkedAt": null
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "volunteer-boston-gov-98c6b1e6",
+      "regionId": "boston",
+      "category": "volunteer",
+      "url": "https://www.boston.gov/parks",
+      "publisher": "boston.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "checkedAt": "2026-09-29T17:47:01.475Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-thebostoncalendar-com-6e034980",
+      "regionId": "boston",
+      "category": "events",
+      "url": "https://www.thebostoncalendar.com/",
+      "publisher": "The Boston Calendar",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": null,
+        "contentType": null,
+        "checkedAt": null
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-bostonusa-com-7323eab4",
+      "regionId": "boston",
+      "category": "events",
+      "url": "https://www.bostonusa.com/events/",
+      "publisher": "bostonusa.com",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:01.475Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-bouldercolorado-gov-96089785",
+      "regionId": "boulder",
+      "category": "events",
+      "url": "https://bouldercolorado.gov/events",
+      "publisher": "bouldercolorado.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:01.475Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "meetings-bouldercolorado-gov-96089785",
+      "regionId": "boulder",
+      "category": "meetings",
+      "url": "https://bouldercolorado.gov/events",
+      "publisher": "bouldercolorado.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:01.475Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "volunteer-bouldercounty-gov-e331dd88",
+      "regionId": "boulder",
+      "category": "volunteer",
+      "url": "https://bouldercounty.gov/open-space/activities/calendar/",
+      "publisher": "bouldercounty.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "checkedAt": "2026-09-29T17:47:01.475Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-bouldercoloradousa-com-8fb18e01",
+      "regionId": "boulder",
+      "category": "events",
+      "url": "https://www.bouldercoloradousa.com/events/",
+      "publisher": "Boulder Official Calendar",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:01.475Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-chicago-gov-44124097",
+      "regionId": "chicago",
+      "category": "events",
+      "url": "https://www.chicago.gov/city/en/rss.html",
+      "publisher": "chicago.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": null,
+        "contentType": null,
+        "checkedAt": null
+      },
+      "blocker": "schema-unverified",
+      "diagnostic": "endpoint is reachable but no validated replay/schema evidence exists",
+      "nextAcquisitionPath": "inspect feed content; require item-level dated events and stable IDs before publishing",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-chicago-gov-83a3ca20",
+      "regionId": "chicago",
+      "category": "events",
+      "url": "https://www.chicago.gov/city/en/depts/dca/supp_info/ccc_calendar.html",
+      "publisher": "chicago.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html;charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:04.696Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-chicagoonthecheap-com-c652aec2",
+      "regionId": "chicago",
+      "category": "events",
+      "url": "https://chicagoonthecheap.com/events/",
+      "publisher": "Chicago On the Cheap",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "checkedAt": "2026-09-29T17:47:04.696Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "volunteer-chicagoparkdistrict-com-ba93a249",
+      "regionId": "chicago",
+      "category": "volunteer",
+      "url": "https://www.chicagoparkdistrict.com/volunteer/",
+      "publisher": "chicagoparkdistrict.com",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "checkedAt": "2026-09-29T17:47:04.696Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "meetings-chicityclerk-com-959bf3e4",
+      "regionId": "chicago",
+      "category": "meetings",
+      "url": "https://www.chicityclerk.com/public-comment-process",
+      "publisher": "chicityclerk.com",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "checkedAt": "2026-09-29T17:47:04.696Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-denvergov-org-c69e47eb",
+      "regionId": "denver",
+      "category": "events",
+      "url": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Public-Event-Film-Permitting/Public-Events-Calendar",
+      "publisher": "Denver Public Events Calendar",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:04.696Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "meetings-denvergov-org-461d818b",
+      "regionId": "denver",
+      "category": "meetings",
+      "url": "https://www.denvergov.org/pocketgov/en-US/city-government/meetings-boards/city-council-meetings",
+      "publisher": "denvergov.org",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": null,
+        "contentType": null,
+        "checkedAt": null
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "volunteer-denvergov-org-ffc494c0",
+      "regionId": "denver",
+      "category": "volunteer",
+      "url": "https://www.denvergov.org/pocketgov/en-US/parks-recreation/programs-services/volunteer",
+      "publisher": "denvergov.org",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": null,
+        "contentType": null,
+        "checkedAt": null
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-downtown-denver-com-920db7f3",
+      "regionId": "denver",
+      "category": "events",
+      "url": "https://www.downtown-denver.com/events/",
+      "publisher": "downtown-denver.com",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": null,
+        "contentType": null,
+        "checkedAt": null
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-librarycalendar-fairfaxcounty-gov-8d007a14",
+      "regionId": "fairfax-county-va",
+      "category": "events",
+      "url": "https://librarycalendar.fairfaxcounty.gov/",
+      "publisher": "librarycalendar.fairfaxcounty.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:04.696Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "meetings-fairfaxcounty-gov-6f6370e4",
+      "regionId": "fairfax-county-va",
+      "category": "meetings",
+      "url": "https://www.fairfaxcounty.gov/calendar/",
+      "publisher": "fairfaxcounty.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:04.696Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "nps-wolf-trap",
+      "regionId": "fairfax-county-va",
+      "category": "events",
+      "url": "https://developer.nps.gov/api/v1/events?parkCode=wotr",
+      "publisher": "NPS Wolf Trap events",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": null,
+        "contentType": null,
+        "checkedAt": null
+      },
+      "blocker": "schema-unverified",
+      "diagnostic": "endpoint is reachable but no validated replay/schema evidence exists",
+      "nextAcquisitionPath": "confirm documented endpoint/schema, then add a paginated JSON adapter",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-nps-gov-675f6405",
+      "regionId": "fairfax-county-va",
+      "category": "events",
+      "url": "https://www.nps.gov/wotr/planyourvisit/calendar.htm",
+      "publisher": "nps.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html;charset=UTF-8",
+        "checkedAt": "2026-09-29T17:47:13.030Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "volunteer-nps-gov-20ec7407",
+      "regionId": "fairfax-county-va",
+      "category": "volunteer",
+      "url": "https://www.nps.gov/wotr/getinvolved/volunteer.htm",
+      "publisher": "nps.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html;charset=UTF-8",
+        "checkedAt": "2026-09-29T17:47:13.030Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "meetings-viennava-gov-bc6ebc78",
+      "regionId": "fairfax-county-va",
+      "category": "meetings",
+      "url": "https://www.viennava.gov/",
+      "publisher": "viennava.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:13.030Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "food-for-others",
+      "regionId": "fairfax-county-va",
+      "category": "publicSpaces",
+      "url": "https://foodforothers.org",
+      "publisher": "Food For Others",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "checkedAt": "2026-09-29T17:47:13.030Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-wolftrap-org-f9ccaf58",
+      "regionId": "fairfax-county-va",
+      "category": "events",
+      "url": "https://www.wolftrap.org/",
+      "publisher": "Wolf Trap",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": null,
+        "contentType": null,
+        "checkedAt": null
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "wolf-trap-foundation",
+      "regionId": "fairfax-county-va",
+      "category": "events",
+      "url": "https://www.wolftrap.org/calendar",
+      "publisher": "Wolf Trap Foundation calendar",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": null,
+        "contentType": null,
+        "checkedAt": null
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "meetings-summitcountyco-gov-0e4237c8",
+      "regionId": "keystone-colorado",
+      "category": "meetings",
+      "url": "https://www.summitcountyco.gov/",
+      "publisher": "summitcountyco.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "checkedAt": "2026-09-29T17:47:04.696Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-summitdaily-com-1e792ddf",
+      "regionId": "keystone-colorado",
+      "category": "events",
+      "url": "https://www.summitdaily.com/explore-summit/calendar/",
+      "publisher": "Summit Daily Events",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "checkedAt": "2026-09-29T17:47:04.696Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-town-keystone-co-us-e3452f18",
+      "regionId": "keystone-colorado",
+      "category": "events",
+      "url": "https://www.town.keystone.co.us/events",
+      "publisher": "town.keystone.co.us",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": null,
+        "contentType": null,
+        "checkedAt": null
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "volunteer-volunteermatch-org-79b64c6c",
+      "regionId": "keystone-colorado",
+      "category": "volunteer",
+      "url": "https://www.volunteermatch.org/",
+      "publisher": "volunteermatch.org",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": null,
+        "contentType": null,
+        "checkedAt": null
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-loudoun-gov-6856d112",
+      "regionId": "loudoun-county-va",
+      "category": "events",
+      "url": "https://www.loudoun.gov/calendar.aspx",
+      "publisher": "loudoun.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:04.696Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "meetings-loudoun-gov-349cf574",
+      "regionId": "loudoun-county-va",
+      "category": "meetings",
+      "url": "https://www.loudoun.gov/meetings",
+      "publisher": "loudoun.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:04.696Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "volunteer-loudoun-gov-81bf3267",
+      "regionId": "loudoun-county-va",
+      "category": "volunteer",
+      "url": "https://www.loudoun.gov/volunteer",
+      "publisher": "loudoun.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:04.696Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "meetings-nola-gov-b2493356",
+      "regionId": "new-orleans",
+      "category": "meetings",
+      "url": "https://nola.gov/city-government/city-council/",
+      "publisher": "nola.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": null,
+        "contentType": null,
+        "checkedAt": null
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "volunteer-nola-gov-c959480f",
+      "regionId": "new-orleans",
+      "category": "volunteer",
+      "url": "https://www.nola.gov/parks-and-parkways/special-events/",
+      "publisher": "nola.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": null,
+        "contentType": null,
+        "checkedAt": null
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-frenchquarterjournal-com-71d351d3",
+      "regionId": "new-orleans",
+      "category": "events",
+      "url": "https://www.frenchquarterjournal.com/events",
+      "publisher": "French Quarter Journal Events",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html;charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:06.798Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-neworleans-com-0da88206",
+      "regionId": "new-orleans",
+      "category": "events",
+      "url": "https://www.neworleans.com/events/",
+      "publisher": "neworleans.com",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:06.798Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-norfolk-libcal-com-ed2e4bde",
+      "regionId": "norfolk",
+      "category": "events",
+      "url": "https://norfolk.libcal.com/calendars",
+      "publisher": "Norfolk Public Library Calendar",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:06.798Z"
+      },
+      "blocker": "schema-unverified",
+      "diagnostic": "endpoint is reachable but no validated replay/schema evidence exists",
+      "nextAcquisitionPath": "inspect feed content; require item-level dated events and stable IDs before publishing",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "meetings-norfolk-gov-67d13024",
+      "regionId": "norfolk",
+      "category": "meetings",
+      "url": "https://www.norfolk.gov/calendar.aspx",
+      "publisher": "norfolk.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:06.798Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-downtownnorfolk-org-cf7e9296",
+      "regionId": "norfolk",
+      "category": "events",
+      "url": "https://www.downtownnorfolk.org/explore/calendar",
+      "publisher": "Downtown Norfolk",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": null,
+        "contentType": null,
+        "checkedAt": null
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-norfolk-gov-67d13024",
+      "regionId": "norfolk",
+      "category": "events",
+      "url": "https://www.norfolk.gov/calendar.aspx",
+      "publisher": "norfolk.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:06.798Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "volunteer-norfolk-gov-ff89d6a7",
+      "regionId": "norfolk",
+      "category": "volunteer",
+      "url": "https://www.norfolk.gov/4248/Volunteer",
+      "publisher": "norfolk.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:06.798Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "meetings-legistar-council-nyc-gov-e75d3835",
+      "regionId": "nyc",
+      "category": "meetings",
+      "url": "https://legistar.council.nyc.gov/Calendar.aspx",
+      "publisher": "legistar.council.nyc.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:06.798Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-nycgovparks-org-3468fa93",
+      "regionId": "nyc",
+      "category": "events",
+      "url": "https://www.nycgovparks.org/news/rss",
+      "publisher": "nycgovparks.org",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": null,
+        "contentType": null,
+        "checkedAt": null
+      },
+      "blocker": "schema-unverified",
+      "diagnostic": "endpoint is reachable but no validated replay/schema evidence exists",
+      "nextAcquisitionPath": "inspect feed content; require item-level dated events and stable IDs before publishing",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-nycforfree-co-3a433d76",
+      "regionId": "nyc",
+      "category": "events",
+      "url": "https://www.nycforfree.co/weekly-roundup",
+      "publisher": "NYC for FREE",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:06.798Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "volunteer-nycgovparks-org-4b7ad625",
+      "regionId": "nyc",
+      "category": "volunteer",
+      "url": "https://www.nycgovparks.org/events/volunteer",
+      "publisher": "nycgovparks.org",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": null,
+        "contentType": null,
+        "checkedAt": null
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "meetings-phila-gov-a4cb56f4",
+      "regionId": "philadelphia",
+      "category": "meetings",
+      "url": "https://www.phila.gov/government",
+      "publisher": "phila.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": null,
+        "contentType": null,
+        "checkedAt": null
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-phila-gov-7efb5a03",
+      "regionId": "philadelphia",
+      "category": "events",
+      "url": "https://www.phila.gov/parks/",
+      "publisher": "phila.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "checkedAt": "2026-09-29T17:47:06.798Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "volunteer-friendsoftheparks-org-5e217463",
+      "regionId": "philadelphia",
+      "category": "volunteer",
+      "url": "https://friendsoftheparks.org/volunteer",
+      "publisher": "friendsoftheparks.org",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": null,
+        "contentType": null,
+        "checkedAt": null
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "meetings-portland-gov-a7c4178f",
+      "regionId": "portland",
+      "category": "meetings",
+      "url": "https://www.portland.gov/council/meetings",
+      "publisher": "portland.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": null,
+        "contentType": null,
+        "checkedAt": null
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "volunteer-portland-gov-fe600e12",
+      "regionId": "portland",
+      "category": "volunteer",
+      "url": "https://www.portland.gov/parks/volunteer",
+      "publisher": "portland.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:06.798Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-portlandlivingonthecheap-com-be5408f7",
+      "regionId": "portland",
+      "category": "events",
+      "url": "https://portlandlivingonthecheap.com/category/free-events/",
+      "publisher": "Portland Living on the Cheap",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "checkedAt": "2026-09-29T17:47:06.798Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-events-portlandonline-us-09e0b6eb",
+      "regionId": "portland",
+      "category": "events",
+      "url": "https://events.portlandonline.us/",
+      "publisher": "events.portlandonline.us",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": null,
+        "contentType": null,
+        "checkedAt": null
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "meetings-portlandmaine-gov-bc259924",
+      "regionId": "portland-maine",
+      "category": "meetings",
+      "url": "https://www.portlandmaine.gov/government",
+      "publisher": "portlandmaine.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": null,
+        "contentType": null,
+        "checkedAt": null
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "volunteer-portlandmaine-gov-2c137978",
+      "regionId": "portland-maine",
+      "category": "volunteer",
+      "url": "https://www.portlandmaine.gov/parks-recreation",
+      "publisher": "portlandmaine.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": null,
+        "contentType": null,
+        "checkedAt": null
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-mainepublic-org-bfb30cd0",
+      "regionId": "portland-maine",
+      "category": "events",
+      "url": "https://www.mainepublic.org/community-calendar",
+      "publisher": "Maine Public Community Calendar",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html;charset=UTF-8",
+        "checkedAt": "2026-09-29T17:47:08.895Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-visitportland-com-6515f560",
+      "regionId": "portland-maine",
+      "category": "events",
+      "url": "https://www.visitportland.com/events/",
+      "publisher": "visitportland.com",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "checkedAt": "2026-09-29T17:47:08.895Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "meetings-princegeorgescountymd-gov-95ea3f6d",
+      "regionId": "prince-georges-county-md",
+      "category": "meetings",
+      "url": "https://www.princegeorgescountymd.gov/govt/council/",
+      "publisher": "princegeorgescountymd.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": null,
+        "contentType": null,
+        "checkedAt": null
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "volunteer-pgparks-com-bf740430",
+      "regionId": "prince-georges-county-md",
+      "category": "volunteer",
+      "url": "https://www.pgparks.com/get-involved/volunteer-opportunities",
+      "publisher": "pgparks.com",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "checkedAt": "2026-09-29T17:47:08.895Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-6amcity-com-a7dfd2b6",
+      "regionId": "richmond",
+      "category": "events",
+      "url": "https://6amcity.com/web/va/richmond/events",
+      "publisher": "RICtoday Events",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:08.895Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "volunteer-jrps-org-2a3b895f",
+      "regionId": "richmond",
+      "category": "volunteer",
+      "url": "https://www.jrps.org/volunteer",
+      "publisher": "jrps.org",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": null,
+        "contentType": null,
+        "checkedAt": null
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "meetings-richmondgov-com-87666ac9",
+      "regionId": "richmond",
+      "category": "meetings",
+      "url": "https://www.richmondgov.com/government",
+      "publisher": "richmondgov.com",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": null,
+        "contentType": null,
+        "checkedAt": null
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-visitrichmondva-com-1ae28ba3",
+      "regionId": "richmond",
+      "category": "events",
+      "url": "https://www.visitrichmondva.com/events/",
+      "publisher": "visitrichmondva.com",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:08.895Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-sfrecpark-org-ddd118f6",
+      "regionId": "san-francisco",
+      "category": "events",
+      "url": "https://sfrecpark.org/rss.aspx",
+      "publisher": "sfrecpark.org",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:08.895Z"
+      },
+      "blocker": "schema-unverified",
+      "diagnostic": "endpoint is reachable but no validated replay/schema evidence exists",
+      "nextAcquisitionPath": "inspect feed content; require item-level dated events and stable IDs before publishing",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-sf-funcheap-com-cfc0d68c",
+      "regionId": "san-francisco",
+      "category": "events",
+      "url": "https://sf.funcheap.com/",
+      "publisher": "Funcheap SF",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "checkedAt": "2026-09-29T17:47:08.895Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "meetings-sfbos-org-705d79ff",
+      "regionId": "san-francisco",
+      "category": "meetings",
+      "url": "https://sfbos.org/participate-and-submit-public-comments",
+      "publisher": "sfbos.org",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html",
+        "checkedAt": "2026-09-29T17:47:08.895Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "volunteer-sfparks-org-ddcc85b5",
+      "regionId": "san-francisco",
+      "category": "volunteer",
+      "url": "https://www.sfparks.org/support-park/volunteer",
+      "publisher": "sfparks.org",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html",
+        "checkedAt": "2026-09-29T17:47:08.895Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-sfrecpark-org-822dab73",
+      "regionId": "san-francisco",
+      "category": "events",
+      "url": "https://sfrecpark.org/Calendar.aspx",
+      "publisher": "sfrecpark.org",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:08.895Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "meetings-santafenm-gov-4df17058",
+      "regionId": "santa-fe",
+      "category": "meetings",
+      "url": "https://www.santafenm.gov/city-government",
+      "publisher": "santafenm.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": null,
+        "contentType": null,
+        "checkedAt": null
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "volunteer-santafenm-gov-57a0cd99",
+      "regionId": "santa-fe",
+      "category": "volunteer",
+      "url": "https://www.santafenm.gov/parks_recreation",
+      "publisher": "santafenm.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": null,
+        "contentType": null,
+        "checkedAt": null
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-santafe-org-8f1eb055",
+      "regionId": "santa-fe",
+      "category": "events",
+      "url": "https://www.santafe.org/visiting-santa-fe/calendar/",
+      "publisher": "Santa Fe Official Calendar",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:08.895Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-santafe-org-068ccfff",
+      "regionId": "santa-fe",
+      "category": "events",
+      "url": "https://www.santafe.org/events/",
+      "publisher": "santafe.org",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:08.895Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "meetings-seattle-gov-3418b89c",
+      "regionId": "seattle",
+      "category": "meetings",
+      "url": "https://www.seattle.gov/civic-meetings",
+      "publisher": "seattle.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": null,
+        "contentType": null,
+        "checkedAt": null
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "volunteer-seattle-gov-c1758f69",
+      "regionId": "seattle",
+      "category": "volunteer",
+      "url": "https://www.seattle.gov/parks/volunteer-and-ways-to-give",
+      "publisher": "seattle.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": null,
+        "contentType": null,
+        "checkedAt": null
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-seattle-gov-cca4136c",
+      "regionId": "seattle",
+      "category": "events",
+      "url": "https://www.seattle.gov/event-calendar",
+      "publisher": "seattle.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:13.030Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-greaterseattleonthecheap-com-7d63f8d3",
+      "regionId": "seattle",
+      "category": "events",
+      "url": "https://www.greaterseattleonthecheap.com/events/",
+      "publisher": "Greater Seattle on the Cheap",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "checkedAt": "2026-09-29T17:47:13.030Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-sedonaaz-gov-605e78d8",
+      "regionId": "sedona-arizona",
+      "category": "events",
+      "url": "https://www.sedonaaz.gov/your-government/departments-and-programs/parks-recreation/programs/free-to-be-me-drum-circle",
+      "publisher": "City of Sedona Free to Be Me Drum Circle",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:13.030Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-sedonaaz-gov-c0071a9f",
+      "regionId": "sedona-arizona",
+      "category": "events",
+      "url": "https://www.sedonaaz.gov/your-government/departments-and-programs/parks-recreation/calendar",
+      "publisher": "sedonaaz.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:13.030Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "meetings-sedonaaz-gov-a23d2c98",
+      "regionId": "sedona-arizona",
+      "category": "meetings",
+      "url": "https://www.sedonaaz.gov/your-government/general-information/city-calendar",
+      "publisher": "sedonaaz.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:13.030Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-visitsedona-com-64ad436c",
+      "regionId": "sedona-arizona",
+      "category": "events",
+      "url": "https://visitsedona.com/events-calendar/",
+      "publisher": "Visit Sedona Calendar",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "checkedAt": "2026-09-29T17:47:13.030Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "volunteer-sedonaaz-gov-79ca6cb2",
+      "regionId": "sedona-arizona",
+      "category": "volunteer",
+      "url": "https://www.sedonaaz.gov/community/residents/volunteer",
+      "publisher": "sedonaaz.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "checkedAt": "2026-09-29T17:47:13.030Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-dpr-dc-gov-67b39fe7",
+      "regionId": "washington-dc",
+      "category": "events",
+      "url": "https://dpr.dc.gov/service/attend-events",
+      "publisher": "dpr.dc.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "checkedAt": "2026-09-29T17:47:13.030Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "volunteer-dpr-dc-gov-52180f8a",
+      "regionId": "washington-dc",
+      "category": "volunteer",
+      "url": "https://dpr.dc.gov/page/volunteer-and-give-back",
+      "publisher": "dpr.dc.gov",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": null,
+        "contentType": null,
+        "checkedAt": null
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "meetings-dcouncil-us-4d64fb67",
+      "regionId": "washington-dc",
+      "category": "meetings",
+      "url": "https://dcouncil.us/",
+      "publisher": "dcouncil.us",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": null,
+        "contentType": null,
+        "checkedAt": null
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    },
+    {
+      "sourceId": "events-districtfray-com-d21bcaee",
+      "regionId": "washington-dc",
+      "category": "events",
+      "url": "https://districtfray.com/events/free-events/",
+      "publisher": "District Fray Free Events",
+      "adapter": "review-required",
+      "observed": {
+        "httpStatus": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "checkedAt": "2026-09-29T17:47:13.030Z"
+      },
+      "blocker": "selector-or-endpoint-undiscovered",
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
+      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+    }
+  ]
+}

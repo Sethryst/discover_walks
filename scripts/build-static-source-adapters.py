@@ -41,6 +41,8 @@ def build(root: Path) -> dict:
                 "publisher": item["publisher"],
                 "packOperations": item["packOperations"],
                 "discovery": item["discovery"],
+                "trackingEvidence": item.get("trackingEvidence"),
+                "integrationEvidence": item.get("integrationEvidence"),
             })
     records.sort(key=lambda record: (record["regionId"], record["category"], record["id"]))
     ids = [record["id"] for record in records]
@@ -51,7 +53,7 @@ def build(root: Path) -> dict:
         "kind": "walking-static-source-adapters",
         "generatedAt": backlog["generatedAt"],
         "source": "expansion-queues/regional-source-backlog.json",
-        "publicationState": "catalogued-not-verified",
+        "publicationState": "catalogued-with-resolution-evidence",
         "runtimePolicy": "Local/static adapter definitions only; never imply source approval or fetch live data.",
         "summary": {
             "recordCount": len(records),

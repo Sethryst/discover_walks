@@ -13,6 +13,12 @@ assert _adapter_spec.loader is not None
 _adapter_spec.loader.exec_module(_adapter_module)
 build_static_adapters = _adapter_module.build
 
+_diagnostic_script = Path(__file__).parents[1] / "scripts" / "diagnose_source_backlog.py"
+_diagnostic_spec = importlib.util.spec_from_file_location("source_diagnostics", _diagnostic_script)
+_diagnostic_module = importlib.util.module_from_spec(_diagnostic_spec)
+assert _diagnostic_spec.loader is not None
+_diagnostic_spec.loader.exec_module(_diagnostic_module)
+
 
 class SourceBacklogTests(unittest.TestCase):
     def test_duplicate_category_and_url_collapses_to_best_evidence(self) -> None:
@@ -52,6 +58,15 @@ class SourceBacklogTests(unittest.TestCase):
         self.assertEqual(len({record["id"] for record in catalogue["records"]}), 102)
         self.assertTrue(all(record["url"].startswith("https://") for record in catalogue["records"]))
         self.assertTrue(all(record["adapter"] for record in catalogue["records"]))
+
+    def test_unresolved_diagnostics_cover_only_unintegrated_sources(self) -> None:
+        root = Path(__file__).parents[1]
+        report = _diagnostic_module.build(root, "2026-09-29T00:00:00Z")
+        self.assertEqual(report["summary"]["resolvedCount"], 5)
+        self.assertEqual(report["summary"]["unresolvedCount"], 97)
+        self.assertEqual(len(report["sources"]), 97)
+        self.assertTrue(all(row["blocker"] and row["nextAcquisitionPath"] for row in report["sources"]))
+        self.assertTrue(all(row["publicationDecision"].startswith("NOT_PUBLISHED") for row in report["sources"]))
 
 
 if __name__ == "__main__":
