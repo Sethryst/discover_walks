@@ -3052,13 +3052,14 @@
           },
           "url": "https://www.frenchquarterjournal.com/events",
           "workItemId": "source:events-frenchquarterjournal-com-71d351d3",
-          "trackingState": "TRACKED_REACHABLE",
+          "trackingState": "INTEGRATED_STATIC",
           "trackingEvidence": {
             "checkedAt": "2026-09-29T17:47:06.798Z",
             "httpStatus": 200,
             "contentType": "text/html;charset=utf-8",
             "source": "local-batched-validation"
-          }
+          },
+          "integrationEvidence": "Published validated dated/location-backed records in motherbird/regions/new-orleans/civic/index.json via discovered official JSON-LD event pages"
         },
         {
           "category": "events",
@@ -3813,7 +3814,7 @@
             "contentType": "text/html; charset=UTF-8",
             "source": "local-batched-validation"
           },
-          "integrationEvidence": "Published validated dated/location-backed records in motherbird/regions/boulder/civic/index.json via schema.org JSON-LD"
+          "integrationEvidence": "Published civic records in motherbird/regions/*/civic/index.json"
         },
         {
           "category": "volunteer",
@@ -4341,9 +4342,9 @@
             "checkedAt": "2026-09-29T17:47:08.895Z",
             "httpStatus": 200,
             "contentType": "text/html; charset=UTF-8",
-            "source": "local-batched-validation"
+          "source": "local-batched-validation"
           },
-          "integrationEvidence": "Published validated dated/location-backed records in motherbird/regions/boulder/civic/index.json via schema.org JSON-LD"
+          "integrationEvidence": "Published validated dated/location-backed records in motherbird/regions/portland-maine/civic/index.json via discovered official JSON-LD event page"
         }
       ]
     },
@@ -6123,11 +6124,11 @@
     },
     "regionCount": 34,
     "trackingStates": {
-      "TRACKED_REACHABLE": 60,
+      "TRACKED_REACHABLE": 59,
       "UNTRACKED_ACTIONABLE": 34,
-      "INTEGRATED_STATIC": 8
+      "INTEGRATED_STATIC": 9
     },
     "trackingPolicy": "Tracked reachable sources remain in the audit backlog but are removed from the active operator queue until adapter work is requested.",
-    "unresolvedCount": 94
+    "unresolvedCount": 93
   }
 }

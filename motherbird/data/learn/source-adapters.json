@@ -1307,7 +1307,7 @@
       "regionName": "New Orleans, LA",
       "category": "events",
       "classification": "INVESTIGATE",
-      "trackingState": "TRACKED_REACHABLE",
+      "trackingState": "INTEGRATED_STATIC",
       "likelyDataType": "HTML calendar",
       "adapter": "html-directory",
       "url": "https://www.frenchquarterjournal.com/events",
@@ -1328,7 +1328,7 @@
         "contentType": "text/html;charset=utf-8",
         "source": "local-batched-validation"
       },
-      "integrationEvidence": null
+      "integrationEvidence": "Published validated dated/location-backed records in motherbird/regions/new-orleans/civic/index.json via discovered official JSON-LD event pages"
     },
     {
       "id": "events-neworleans-com-0da88206",
@@ -1748,7 +1748,7 @@
         "contentType": "text/html; charset=UTF-8",
         "source": "local-batched-validation"
       },
-      "integrationEvidence": "Published validated dated/location-backed records in motherbird/regions/boulder/civic/index.json via schema.org JSON-LD"
+      "integrationEvidence": "Published civic records in motherbird/regions/*/civic/index.json"
     },
     {
       "id": "meetings-phila-gov-a4cb56f4",
@@ -1968,7 +1968,7 @@
         "contentType": "text/html; charset=UTF-8",
         "source": "local-batched-validation"
       },
-      "integrationEvidence": "Published validated dated/location-backed records in motherbird/regions/boulder/civic/index.json via schema.org JSON-LD"
+      "integrationEvidence": "Published validated dated/location-backed records in motherbird/regions/portland-maine/civic/index.json via discovered official JSON-LD event page"
     },
     {
       "id": "meetings-portlandmaine-gov-bc259924",

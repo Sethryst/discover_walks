@@ -31,7 +31,7 @@ def main():
     for f in (ROOT/'expansion-queues').glob('source-discovery-batch-*.json'):
         for item in json.loads(f.read_text())['records']:
             row=byid.get(item['source_id'])
-            for endpoint in item.get('candidate_endpoints',[])[:3]:
+            for endpoint in item.get('candidate_endpoints',[])[:10]:
                 if row and endpoint.startswith('https://'): targets.append((row,endpoint))
     with ThreadPoolExecutor(max_workers=12) as pool: results=[f.result() for f in as_completed([pool.submit(probe,*t) for t in targets])]
     results.sort(key=lambda x:(x['sourceId'],x['endpoint']))

@@ -13,6 +13,7 @@ INTEGRATED = {
     "volunteer-bouldercounty-gov-e331dd88",
     "events-sf-funcheap-com-cfc0d68c",
     "events-visitportland-com-6515f560",
+    "events-frenchquarterjournal-com-71d351d3",
 }
 
 def main() -> None:

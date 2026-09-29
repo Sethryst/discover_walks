@@ -12,10 +12,11 @@ def main():
    if event.get('venueAddress') or event.get('coordinates'): grouped.setdefault((row['regionId'],row['sourceId']),[]).append(event)
  added=0; sources=[]
  for (region,source_id),events in grouped.items():
-  path=ROOT/'motherbird/regions'/region/'civic/index.json'
+  package_region = {'prince-georges-county-md': 'prince-georges-county'}.get(region, region)
+  path=ROOT/'motherbird/regions'/package_region/'civic/index.json'
   if not path.exists(): continue
   payload=json.loads(path.read_text(encoding='utf-8')); now=datetime.now(timezone.utc).isoformat().replace('+00:00','Z')
-  artifact=payload.setdefault('artifacts',{}).setdefault('events',{'schemaVersion':1,'regionId':region,'producer':'followup-jsonld-static','generatedAt':now,'items':[]})
+  artifact=payload.setdefault('artifacts',{}).setdefault('events',{'schemaVersion':1,'regionId':package_region,'producer':'followup-jsonld-static','generatedAt':now,'items':[]})
   existing={x['id'] for x in artifact['items']}; local=0
   for event in events:
    eid='followup:'+source_id+':'+hashlib.sha256((event['officialUrl']+'|'+event['title']+'|'+event['startsAt']).encode()).hexdigest()[:16]
