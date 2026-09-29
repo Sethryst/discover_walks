@@ -27,6 +27,7 @@ import { initPrimaryShell } from './primary-shell.js';
 import { initStories } from './stories.js';
 import { initRadio } from './radio.js?v=20260928-radio-controls-v3';
 import { recoverWalkDraft, discardWalk } from './walk.js';
+import { loadSourceAdapters } from './source-adapters.js';
 
 export async function init() {
   if (!document.querySelector('link[href*="splash-fix.css"]')) {
@@ -82,6 +83,10 @@ export async function init() {
     }
     await applyOfflineBootConditions();
     await loadAllCityData();
+    // The backlog is a local/static adapter catalogue. Load it during boot so
+    // every region can resolve its source definitions without a remote store;
+    // an unavailable optional catalogue must not prevent walking offline.
+    void loadSourceAdapters().catch((error) => console.warn('Static source adapter catalogue unavailable:', error.message));
   } catch (error) {
     console.error(error);
     toast('Local storage or places data could not open in this browser.');

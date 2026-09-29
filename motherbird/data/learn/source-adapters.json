@@ -1,0 +1,2370 @@
+{
+  "schemaVersion": 1,
+  "kind": "walking-static-source-adapters",
+  "generatedAt": "2026-09-27T08:49:42.288422Z",
+  "source": "expansion-queues/regional-source-backlog.json",
+  "publicationState": "catalogued-not-verified",
+  "runtimePolicy": "Local/static adapter definitions only; never imply source approval or fetch live data.",
+  "summary": {
+    "recordCount": 102,
+    "regionCount": 25,
+    "classifications": {
+      "READY": 3,
+      "INVESTIGATE": 99,
+      "REJECT": 0
+    },
+    "adapters": {
+      "html-directory": 96,
+      "json-api": 2,
+      "rss-ics": 4
+    }
+  },
+  "records": [
+    {
+      "id": "events-apps-alexandriava-gov-c408c804",
+      "workItemId": "source:events-apps-alexandriava-gov-c408c804",
+      "regionId": "alexandria-va",
+      "regionName": "Alexandria, Virginia",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://apps.alexandriava.gov/Calendar/",
+      "publisher": "apps.alexandriava.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "meetings-apps-alexandriava-gov-c408c804",
+      "workItemId": "source:meetings-apps-alexandriava-gov-c408c804",
+      "regionId": "alexandria-va",
+      "regionName": "Alexandria, Virginia",
+      "category": "meetings",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://apps.alexandriava.gov/Calendar/",
+      "publisher": "apps.alexandriava.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-arlingtonva-us-cb15b262",
+      "workItemId": "source:events-arlingtonva-us-cb15b262",
+      "regionId": "arlington-va",
+      "regionName": "Arlington County, Virginia",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.arlingtonva.us/Government/Topics/Meeting-Calendar",
+      "publisher": "arlingtonva.us",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "meetings-arlingtonva-us-cb15b262",
+      "workItemId": "source:meetings-arlingtonva-us-cb15b262",
+      "regionId": "arlington-va",
+      "regionName": "Arlington County, Virginia",
+      "category": "meetings",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.arlingtonva.us/Government/Topics/Meeting-Calendar",
+      "publisher": "arlingtonva.us",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-exploreasheville-com-8e96aa9e",
+      "workItemId": "source:events-exploreasheville-com-8e96aa9e",
+      "regionId": "asheville",
+      "regionName": "Asheville, NC",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.exploreasheville.com/events",
+      "publisher": "exploreasheville.com",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-exploreasheville-com-94d72b77",
+      "workItemId": "source:events-exploreasheville-com-94d72b77",
+      "regionId": "asheville",
+      "regionName": "Asheville, NC",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.exploreasheville.com/events/free-events-asheville-nc",
+      "publisher": "Explore Asheville Free Events",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "editorial_registry:editorial-event-sources.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "meetings-ashevillenc-gov-644961e1",
+      "workItemId": "source:meetings-ashevillenc-gov-644961e1",
+      "regionId": "asheville",
+      "regionName": "Asheville, NC",
+      "category": "meetings",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.ashevillenc.gov/government/",
+      "publisher": "ashevillenc.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "volunteer-ashevillenc-gov-3ebf2f4c",
+      "workItemId": "source:volunteer-ashevillenc-gov-3ebf2f4c",
+      "regionId": "asheville",
+      "regionName": "Asheville, NC",
+      "category": "volunteer",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.ashevillenc.gov/parks/",
+      "publisher": "ashevillenc.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-boisestatepublicradio-org-1b57dd9c",
+      "workItemId": "source:events-boisestatepublicradio-org-1b57dd9c",
+      "regionId": "boise-meridian-idaho",
+      "regionName": "Boise, Meridian & Old Town, Idaho",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.boisestatepublicradio.org/community-calendar-search?f0=00000178-b7ab-d01e-aff8-b7fbab860000",
+      "publisher": "Boise State Public Radio Community Calendar",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "editorial_registry:editorial-event-sources.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-meridiancity-org-44f75203",
+      "workItemId": "source:events-meridiancity-org-44f75203",
+      "regionId": "boise-meridian-idaho",
+      "regionName": "Boise, Meridian & Old Town, Idaho",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.meridiancity.org/cityevents",
+      "publisher": "meridiancity.org",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "meetings-cityofboise-org-3b05a56d",
+      "workItemId": "source:meetings-cityofboise-org-3b05a56d",
+      "regionId": "boise-meridian-idaho",
+      "regionName": "Boise, Meridian & Old Town, Idaho",
+      "category": "meetings",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.cityofboise.org/city-government/city-council/",
+      "publisher": "cityofboise.org",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "volunteer-boisewatershed-org-b6e8d60b",
+      "workItemId": "source:volunteer-boisewatershed-org-b6e8d60b",
+      "regionId": "boise-meridian-idaho",
+      "regionName": "Boise, Meridian & Old Town, Idaho",
+      "category": "volunteer",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.boisewatershed.org/about/volunteer/",
+      "publisher": "boisewatershed.org",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-bostonusa-com-7323eab4",
+      "workItemId": "source:events-bostonusa-com-7323eab4",
+      "regionId": "boston",
+      "regionName": "Boston, MA",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.bostonusa.com/events/",
+      "publisher": "bostonusa.com",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-thebostoncalendar-com-6e034980",
+      "workItemId": "source:events-thebostoncalendar-com-6e034980",
+      "regionId": "boston",
+      "regionName": "Boston, MA",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.thebostoncalendar.com/",
+      "publisher": "The Boston Calendar",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "editorial_registry:editorial-event-sources.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "meetings-boston-gov-269e52b6",
+      "workItemId": "source:meetings-boston-gov-269e52b6",
+      "regionId": "boston",
+      "regionName": "Boston, MA",
+      "category": "meetings",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.boston.gov/government",
+      "publisher": "boston.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "volunteer-boston-gov-98c6b1e6",
+      "workItemId": "source:volunteer-boston-gov-98c6b1e6",
+      "regionId": "boston",
+      "regionName": "Boston, MA",
+      "category": "volunteer",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.boston.gov/parks",
+      "publisher": "boston.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-bouldercolorado-gov-96089785",
+      "workItemId": "source:events-bouldercolorado-gov-96089785",
+      "regionId": "boulder",
+      "regionName": "Boulder, CO",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://bouldercolorado.gov/events",
+      "publisher": "bouldercolorado.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-bouldercoloradousa-com-8fb18e01",
+      "workItemId": "source:events-bouldercoloradousa-com-8fb18e01",
+      "regionId": "boulder",
+      "regionName": "Boulder, CO",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.bouldercoloradousa.com/events/",
+      "publisher": "Boulder Official Calendar",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "editorial_registry:editorial-event-sources.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "meetings-bouldercolorado-gov-96089785",
+      "workItemId": "source:meetings-bouldercolorado-gov-96089785",
+      "regionId": "boulder",
+      "regionName": "Boulder, CO",
+      "category": "meetings",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://bouldercolorado.gov/events",
+      "publisher": "bouldercolorado.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "volunteer-bouldercounty-gov-e331dd88",
+      "workItemId": "source:volunteer-bouldercounty-gov-e331dd88",
+      "regionId": "boulder",
+      "regionName": "Boulder, CO",
+      "category": "volunteer",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://bouldercounty.gov/open-space/activities/calendar/",
+      "publisher": "bouldercounty.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-chicago-gov-44124097",
+      "workItemId": "source:events-chicago-gov-44124097",
+      "regionId": "chicago",
+      "regionName": "Chicago, IL",
+      "category": "events",
+      "classification": "READY",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "RSS/ICS",
+      "adapter": "rss-ics",
+      "url": "https://www.chicago.gov/city/en/rss.html",
+      "publisher": "chicago.gov",
+      "packOperations": {
+        "eligible": true,
+        "nextStep": "review-and-create-adapter"
+      },
+      "discovery": {
+        "confidence": 0.82,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-chicago-gov-83a3ca20",
+      "workItemId": "source:events-chicago-gov-83a3ca20",
+      "regionId": "chicago",
+      "regionName": "Chicago, IL",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.chicago.gov/city/en/depts/dca/supp_info/ccc_calendar.html",
+      "publisher": "chicago.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-chicagoonthecheap-com-c652aec2",
+      "workItemId": "source:events-chicagoonthecheap-com-c652aec2",
+      "regionId": "chicago",
+      "regionName": "Chicago, IL",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://chicagoonthecheap.com/events/",
+      "publisher": "Chicago On the Cheap",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "editorial_registry:editorial-event-sources.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "meetings-chicityclerk-com-959bf3e4",
+      "workItemId": "source:meetings-chicityclerk-com-959bf3e4",
+      "regionId": "chicago",
+      "regionName": "Chicago, IL",
+      "category": "meetings",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.chicityclerk.com/public-comment-process",
+      "publisher": "chicityclerk.com",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "volunteer-chicagoparkdistrict-com-ba93a249",
+      "workItemId": "source:volunteer-chicagoparkdistrict-com-ba93a249",
+      "regionId": "chicago",
+      "regionName": "Chicago, IL",
+      "category": "volunteer",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.chicagoparkdistrict.com/volunteer/",
+      "publisher": "chicagoparkdistrict.com",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-denvergov-org-c69e47eb",
+      "workItemId": "source:events-denvergov-org-c69e47eb",
+      "regionId": "denver",
+      "regionName": "Denver, CO",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Public-Event-Film-Permitting/Public-Events-Calendar",
+      "publisher": "Denver Public Events Calendar",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "editorial_registry:editorial-event-sources.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-downtown-denver-com-920db7f3",
+      "workItemId": "source:events-downtown-denver-com-920db7f3",
+      "regionId": "denver",
+      "regionName": "Denver, CO",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.downtown-denver.com/events/",
+      "publisher": "downtown-denver.com",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "meetings-denvergov-org-461d818b",
+      "workItemId": "source:meetings-denvergov-org-461d818b",
+      "regionId": "denver",
+      "regionName": "Denver, CO",
+      "category": "meetings",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.denvergov.org/pocketgov/en-US/city-government/meetings-boards/city-council-meetings",
+      "publisher": "denvergov.org",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "volunteer-denvergov-org-ffc494c0",
+      "workItemId": "source:volunteer-denvergov-org-ffc494c0",
+      "regionId": "denver",
+      "regionName": "Denver, CO",
+      "category": "volunteer",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.denvergov.org/pocketgov/en-US/parks-recreation/programs-services/volunteer",
+      "publisher": "denvergov.org",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-librarycalendar-fairfaxcounty-gov-8d007a14",
+      "workItemId": "source:events-librarycalendar-fairfaxcounty-gov-8d007a14",
+      "regionId": "fairfax-county-va",
+      "regionName": "Fairfax County, Virginia",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://librarycalendar.fairfaxcounty.gov/",
+      "publisher": "librarycalendar.fairfaxcounty.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "meetings-fairfaxcounty-gov-6f6370e4",
+      "workItemId": "source:meetings-fairfaxcounty-gov-6f6370e4",
+      "regionId": "fairfax-county-va",
+      "regionName": "Fairfax County, Virginia",
+      "category": "meetings",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.fairfaxcounty.gov/calendar/",
+      "publisher": "fairfaxcounty.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-summitdaily-com-1e792ddf",
+      "workItemId": "source:events-summitdaily-com-1e792ddf",
+      "regionId": "keystone-colorado",
+      "regionName": "Keystone & Summit County, CO",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.summitdaily.com/explore-summit/calendar/",
+      "publisher": "Summit Daily Events",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "editorial_registry:editorial-event-sources.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-town-keystone-co-us-e3452f18",
+      "workItemId": "source:events-town-keystone-co-us-e3452f18",
+      "regionId": "keystone-colorado",
+      "regionName": "Keystone & Summit County, CO",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.town.keystone.co.us/events",
+      "publisher": "town.keystone.co.us",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "meetings-summitcountyco-gov-0e4237c8",
+      "workItemId": "source:meetings-summitcountyco-gov-0e4237c8",
+      "regionId": "keystone-colorado",
+      "regionName": "Keystone & Summit County, CO",
+      "category": "meetings",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.summitcountyco.gov/",
+      "publisher": "summitcountyco.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "volunteer-volunteermatch-org-79b64c6c",
+      "workItemId": "source:volunteer-volunteermatch-org-79b64c6c",
+      "regionId": "keystone-colorado",
+      "regionName": "Keystone & Summit County, CO",
+      "category": "volunteer",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.volunteermatch.org/",
+      "publisher": "volunteermatch.org",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-loudoun-gov-6856d112",
+      "workItemId": "source:events-loudoun-gov-6856d112",
+      "regionId": "loudoun-county-va",
+      "regionName": "Loudoun County, Virginia",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.loudoun.gov/calendar.aspx",
+      "publisher": "loudoun.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "meetings-loudoun-gov-349cf574",
+      "workItemId": "source:meetings-loudoun-gov-349cf574",
+      "regionId": "loudoun-county-va",
+      "regionName": "Loudoun County, Virginia",
+      "category": "meetings",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.loudoun.gov/meetings",
+      "publisher": "loudoun.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "volunteer-loudoun-gov-81bf3267",
+      "workItemId": "source:volunteer-loudoun-gov-81bf3267",
+      "regionId": "loudoun-county-va",
+      "regionName": "Loudoun County, Virginia",
+      "category": "volunteer",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.loudoun.gov/volunteer",
+      "publisher": "loudoun.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-frenchquarterjournal-com-71d351d3",
+      "workItemId": "source:events-frenchquarterjournal-com-71d351d3",
+      "regionId": "new-orleans",
+      "regionName": "New Orleans, LA",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.frenchquarterjournal.com/events",
+      "publisher": "French Quarter Journal Events",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "editorial_registry:editorial-event-sources.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-neworleans-com-0da88206",
+      "workItemId": "source:events-neworleans-com-0da88206",
+      "regionId": "new-orleans",
+      "regionName": "New Orleans, LA",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.neworleans.com/events/",
+      "publisher": "neworleans.com",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "meetings-nola-gov-b2493356",
+      "workItemId": "source:meetings-nola-gov-b2493356",
+      "regionId": "new-orleans",
+      "regionName": "New Orleans, LA",
+      "category": "meetings",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://nola.gov/city-government/city-council/",
+      "publisher": "nola.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "volunteer-nola-gov-c959480f",
+      "workItemId": "source:volunteer-nola-gov-c959480f",
+      "regionId": "new-orleans",
+      "regionName": "New Orleans, LA",
+      "category": "volunteer",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.nola.gov/parks-and-parkways/special-events/",
+      "publisher": "nola.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-downtownnorfolk-org-cf7e9296",
+      "workItemId": "source:events-downtownnorfolk-org-cf7e9296",
+      "regionId": "norfolk",
+      "regionName": "Norfolk, VA",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.downtownnorfolk.org/explore/calendar",
+      "publisher": "Downtown Norfolk",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "editorial_registry:editorial-event-sources.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-norfolk-gov-67d13024",
+      "workItemId": "source:events-norfolk-gov-67d13024",
+      "regionId": "norfolk",
+      "regionName": "Norfolk, VA",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.norfolk.gov/calendar.aspx",
+      "publisher": "norfolk.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-norfolk-libcal-com-ed2e4bde",
+      "workItemId": "source:events-norfolk-libcal-com-ed2e4bde",
+      "regionId": "norfolk",
+      "regionName": "Norfolk, VA",
+      "category": "events",
+      "classification": "READY",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "RSS/ICS",
+      "adapter": "rss-ics",
+      "url": "https://norfolk.libcal.com/calendars",
+      "publisher": "Norfolk Public Library Calendar",
+      "packOperations": {
+        "eligible": true,
+        "nextStep": "review-and-create-adapter"
+      },
+      "discovery": {
+        "confidence": 0.82,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "editorial_registry:editorial-event-sources.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "meetings-norfolk-gov-67d13024",
+      "workItemId": "source:meetings-norfolk-gov-67d13024",
+      "regionId": "norfolk",
+      "regionName": "Norfolk, VA",
+      "category": "meetings",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.norfolk.gov/calendar.aspx",
+      "publisher": "norfolk.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "volunteer-norfolk-gov-ff89d6a7",
+      "workItemId": "source:volunteer-norfolk-gov-ff89d6a7",
+      "regionId": "norfolk",
+      "regionName": "Norfolk, VA",
+      "category": "volunteer",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.norfolk.gov/4248/Volunteer",
+      "publisher": "norfolk.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-nycforfree-co-3a433d76",
+      "workItemId": "source:events-nycforfree-co-3a433d76",
+      "regionId": "nyc",
+      "regionName": "New York City, NY",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.nycforfree.co/weekly-roundup",
+      "publisher": "NYC for FREE",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "editorial_registry:editorial-event-sources.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-nycgovparks-org-3468fa93",
+      "workItemId": "source:events-nycgovparks-org-3468fa93",
+      "regionId": "nyc",
+      "regionName": "New York City, NY",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "RSS/ICS",
+      "adapter": "rss-ics",
+      "url": "https://www.nycgovparks.org/news/rss",
+      "publisher": "nycgovparks.org",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.82,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-nycgovparks-org-61d38c99",
+      "workItemId": "source:events-nycgovparks-org-61d38c99",
+      "regionId": "nyc",
+      "regionName": "New York City, NY",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.nycgovparks.org/events/",
+      "publisher": "nycgovparks.org",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "meetings-legistar-council-nyc-gov-e75d3835",
+      "workItemId": "source:meetings-legistar-council-nyc-gov-e75d3835",
+      "regionId": "nyc",
+      "regionName": "New York City, NY",
+      "category": "meetings",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://legistar.council.nyc.gov/Calendar.aspx",
+      "publisher": "legistar.council.nyc.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "volunteer-nycgovparks-org-4b7ad625",
+      "workItemId": "source:volunteer-nycgovparks-org-4b7ad625",
+      "regionId": "nyc",
+      "regionName": "New York City, NY",
+      "category": "volunteer",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.nycgovparks.org/events/volunteer",
+      "publisher": "nycgovparks.org",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-phila-gov-7efb5a03",
+      "workItemId": "source:events-phila-gov-7efb5a03",
+      "regionId": "philadelphia",
+      "regionName": "Philadelphia, PA",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.phila.gov/parks/",
+      "publisher": "phila.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-phillyfamily-com-c8e106d8",
+      "workItemId": "source:events-phillyfamily-com-c8e106d8",
+      "regionId": "philadelphia",
+      "regionName": "Philadelphia, PA",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://phillyfamily.com/events/",
+      "publisher": "Philadelphia Family Events",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "editorial_registry:editorial-event-sources.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "meetings-phila-gov-a4cb56f4",
+      "workItemId": "source:meetings-phila-gov-a4cb56f4",
+      "regionId": "philadelphia",
+      "regionName": "Philadelphia, PA",
+      "category": "meetings",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.phila.gov/government",
+      "publisher": "phila.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "volunteer-friendsoftheparks-org-5e217463",
+      "workItemId": "source:volunteer-friendsoftheparks-org-5e217463",
+      "regionId": "philadelphia",
+      "regionName": "Philadelphia, PA",
+      "category": "volunteer",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://friendsoftheparks.org/volunteer",
+      "publisher": "friendsoftheparks.org",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-events-portlandonline-us-09e0b6eb",
+      "workItemId": "source:events-events-portlandonline-us-09e0b6eb",
+      "regionId": "portland",
+      "regionName": "Portland, OR",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://events.portlandonline.us/",
+      "publisher": "events.portlandonline.us",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-portlandlivingonthecheap-com-be5408f7",
+      "workItemId": "source:events-portlandlivingonthecheap-com-be5408f7",
+      "regionId": "portland",
+      "regionName": "Portland, OR",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://portlandlivingonthecheap.com/category/free-events/",
+      "publisher": "Portland Living on the Cheap",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "editorial_registry:editorial-event-sources.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "meetings-portland-gov-a7c4178f",
+      "workItemId": "source:meetings-portland-gov-a7c4178f",
+      "regionId": "portland",
+      "regionName": "Portland, OR",
+      "category": "meetings",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.portland.gov/council/meetings",
+      "publisher": "portland.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "volunteer-portland-gov-fe600e12",
+      "workItemId": "source:volunteer-portland-gov-fe600e12",
+      "regionId": "portland",
+      "regionName": "Portland, OR",
+      "category": "volunteer",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.portland.gov/parks/volunteer",
+      "publisher": "portland.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-mainepublic-org-bfb30cd0",
+      "workItemId": "source:events-mainepublic-org-bfb30cd0",
+      "regionId": "portland-maine",
+      "regionName": "Portland, ME",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.mainepublic.org/community-calendar",
+      "publisher": "Maine Public Community Calendar",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "editorial_registry:editorial-event-sources.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-visitportland-com-6515f560",
+      "workItemId": "source:events-visitportland-com-6515f560",
+      "regionId": "portland-maine",
+      "regionName": "Portland, ME",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.visitportland.com/events/",
+      "publisher": "visitportland.com",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "meetings-portlandmaine-gov-bc259924",
+      "workItemId": "source:meetings-portlandmaine-gov-bc259924",
+      "regionId": "portland-maine",
+      "regionName": "Portland, ME",
+      "category": "meetings",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.portlandmaine.gov/government",
+      "publisher": "portlandmaine.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "volunteer-portlandmaine-gov-2c137978",
+      "workItemId": "source:volunteer-portlandmaine-gov-2c137978",
+      "regionId": "portland-maine",
+      "regionName": "Portland, ME",
+      "category": "volunteer",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.portlandmaine.gov/parks-recreation",
+      "publisher": "portlandmaine.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-blackhistory-pgparks-com-49fafbc4",
+      "workItemId": "source:events-blackhistory-pgparks-com-49fafbc4",
+      "regionId": "prince-georges-county-md",
+      "regionName": "Prince George's County, Maryland",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://blackhistory.pgparks.com/activities-events-events/category/free",
+      "publisher": "PG Parks Free Events",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "editorial_registry:editorial-event-sources.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-pgparks-com-005aa0a6",
+      "workItemId": "source:events-pgparks-com-005aa0a6",
+      "regionId": "prince-georges-county-md",
+      "regionName": "Prince George's County, Maryland",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://pgparks.com/activities-events-events/category/free",
+      "publisher": "pgparks.com",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "meetings-princegeorgescountymd-gov-95ea3f6d",
+      "workItemId": "source:meetings-princegeorgescountymd-gov-95ea3f6d",
+      "regionId": "prince-georges-county-md",
+      "regionName": "Prince George's County, Maryland",
+      "category": "meetings",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.princegeorgescountymd.gov/govt/council/",
+      "publisher": "princegeorgescountymd.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "volunteer-pgparks-com-bf740430",
+      "workItemId": "source:volunteer-pgparks-com-bf740430",
+      "regionId": "prince-georges-county-md",
+      "regionName": "Prince George's County, Maryland",
+      "category": "volunteer",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.pgparks.com/get-involved/volunteer-opportunities",
+      "publisher": "pgparks.com",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-6amcity-com-a7dfd2b6",
+      "workItemId": "source:events-6amcity-com-a7dfd2b6",
+      "regionId": "richmond",
+      "regionName": "Richmond, VA",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://6amcity.com/web/va/richmond/events",
+      "publisher": "RICtoday Events",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "editorial_registry:editorial-event-sources.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-visitrichmondva-com-1ae28ba3",
+      "workItemId": "source:events-visitrichmondva-com-1ae28ba3",
+      "regionId": "richmond",
+      "regionName": "Richmond, VA",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.visitrichmondva.com/events/",
+      "publisher": "visitrichmondva.com",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "meetings-richmondgov-com-87666ac9",
+      "workItemId": "source:meetings-richmondgov-com-87666ac9",
+      "regionId": "richmond",
+      "regionName": "Richmond, VA",
+      "category": "meetings",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.richmondgov.com/government",
+      "publisher": "richmondgov.com",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "volunteer-jrps-org-2a3b895f",
+      "workItemId": "source:volunteer-jrps-org-2a3b895f",
+      "regionId": "richmond",
+      "regionName": "Richmond, VA",
+      "category": "volunteer",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.jrps.org/volunteer",
+      "publisher": "jrps.org",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-sf-funcheap-com-cfc0d68c",
+      "workItemId": "source:events-sf-funcheap-com-cfc0d68c",
+      "regionId": "san-francisco",
+      "regionName": "San Francisco, CA",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://sf.funcheap.com/",
+      "publisher": "Funcheap SF",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "editorial_registry:editorial-event-sources.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-sfrecpark-org-822dab73",
+      "workItemId": "source:events-sfrecpark-org-822dab73",
+      "regionId": "san-francisco",
+      "regionName": "San Francisco, CA",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://sfrecpark.org/Calendar.aspx",
+      "publisher": "sfrecpark.org",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-sfrecpark-org-ddd118f6",
+      "workItemId": "source:events-sfrecpark-org-ddd118f6",
+      "regionId": "san-francisco",
+      "regionName": "San Francisco, CA",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "RSS/ICS",
+      "adapter": "rss-ics",
+      "url": "https://sfrecpark.org/rss.aspx",
+      "publisher": "sfrecpark.org",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.82,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "meetings-sfbos-org-705d79ff",
+      "workItemId": "source:meetings-sfbos-org-705d79ff",
+      "regionId": "san-francisco",
+      "regionName": "San Francisco, CA",
+      "category": "meetings",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://sfbos.org/participate-and-submit-public-comments",
+      "publisher": "sfbos.org",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "volunteer-sfparks-org-ddcc85b5",
+      "workItemId": "source:volunteer-sfparks-org-ddcc85b5",
+      "regionId": "san-francisco",
+      "regionName": "San Francisco, CA",
+      "category": "volunteer",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.sfparks.org/support-park/volunteer",
+      "publisher": "sfparks.org",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-santafe-org-068ccfff",
+      "workItemId": "source:events-santafe-org-068ccfff",
+      "regionId": "santa-fe",
+      "regionName": "Santa Fe, NM",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.santafe.org/events/",
+      "publisher": "santafe.org",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-santafe-org-8f1eb055",
+      "workItemId": "source:events-santafe-org-8f1eb055",
+      "regionId": "santa-fe",
+      "regionName": "Santa Fe, NM",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.santafe.org/visiting-santa-fe/calendar/",
+      "publisher": "Santa Fe Official Calendar",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "editorial_registry:editorial-event-sources.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "meetings-santafenm-gov-4df17058",
+      "workItemId": "source:meetings-santafenm-gov-4df17058",
+      "regionId": "santa-fe",
+      "regionName": "Santa Fe, NM",
+      "category": "meetings",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.santafenm.gov/city-government",
+      "publisher": "santafenm.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "volunteer-santafenm-gov-57a0cd99",
+      "workItemId": "source:volunteer-santafenm-gov-57a0cd99",
+      "regionId": "santa-fe",
+      "regionName": "Santa Fe, NM",
+      "category": "volunteer",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.santafenm.gov/parks_recreation",
+      "publisher": "santafenm.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-greaterseattleonthecheap-com-7d63f8d3",
+      "workItemId": "source:events-greaterseattleonthecheap-com-7d63f8d3",
+      "regionId": "seattle",
+      "regionName": "Seattle, Washington",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.greaterseattleonthecheap.com/events/",
+      "publisher": "Greater Seattle on the Cheap",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "editorial_registry:editorial-event-sources.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-seattle-gov-cca4136c",
+      "workItemId": "source:events-seattle-gov-cca4136c",
+      "regionId": "seattle",
+      "regionName": "Seattle, Washington",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.seattle.gov/event-calendar",
+      "publisher": "seattle.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-seattle-net-25130bd8",
+      "workItemId": "source:events-seattle-net-25130bd8",
+      "regionId": "seattle",
+      "regionName": "Seattle, Washington",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "JSON API",
+      "adapter": "json-api",
+      "url": "https://seattle.net/api",
+      "publisher": "seattle.net",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.82,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "meetings-seattle-gov-3418b89c",
+      "workItemId": "source:meetings-seattle-gov-3418b89c",
+      "regionId": "seattle",
+      "regionName": "Seattle, Washington",
+      "category": "meetings",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.seattle.gov/civic-meetings",
+      "publisher": "seattle.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "volunteer-seattle-gov-c1758f69",
+      "workItemId": "source:volunteer-seattle-gov-c1758f69",
+      "regionId": "seattle",
+      "regionName": "Seattle, Washington",
+      "category": "volunteer",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.seattle.gov/parks/volunteer-and-ways-to-give",
+      "publisher": "seattle.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-sedonaaz-gov-605e78d8",
+      "workItemId": "source:events-sedonaaz-gov-605e78d8",
+      "regionId": "sedona-arizona",
+      "regionName": "Sedona, Arizona",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.sedonaaz.gov/your-government/departments-and-programs/parks-recreation/programs/free-to-be-me-drum-circle",
+      "publisher": "City of Sedona Free to Be Me Drum Circle",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "editorial_registry:editorial-event-sources.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-sedonaaz-gov-c0071a9f",
+      "workItemId": "source:events-sedonaaz-gov-c0071a9f",
+      "regionId": "sedona-arizona",
+      "regionName": "Sedona, Arizona",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.sedonaaz.gov/your-government/departments-and-programs/parks-recreation/calendar",
+      "publisher": "sedonaaz.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-visitsedona-com-64ad436c",
+      "workItemId": "source:events-visitsedona-com-64ad436c",
+      "regionId": "sedona-arizona",
+      "regionName": "Sedona, Arizona",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://visitsedona.com/events-calendar/",
+      "publisher": "Visit Sedona Calendar",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "editorial_registry:editorial-event-sources.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "meetings-sedonaaz-gov-a23d2c98",
+      "workItemId": "source:meetings-sedonaaz-gov-a23d2c98",
+      "regionId": "sedona-arizona",
+      "regionName": "Sedona, Arizona",
+      "category": "meetings",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.sedonaaz.gov/your-government/general-information/city-calendar",
+      "publisher": "sedonaaz.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "volunteer-sedonaaz-gov-79ca6cb2",
+      "workItemId": "source:volunteer-sedonaaz-gov-79ca6cb2",
+      "regionId": "sedona-arizona",
+      "regionName": "Sedona, Arizona",
+      "category": "volunteer",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.sedonaaz.gov/community/residents/volunteer",
+      "publisher": "sedonaaz.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-districtfray-com-d21bcaee",
+      "workItemId": "source:events-districtfray-com-d21bcaee",
+      "regionId": "washington-dc",
+      "regionName": "Washington, DC",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://districtfray.com/events/free-events/",
+      "publisher": "District Fray Free Events",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "editorial_registry:editorial-event-sources.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-dpr-dc-gov-67b39fe7",
+      "workItemId": "source:events-dpr-dc-gov-67b39fe7",
+      "regionId": "washington-dc",
+      "regionName": "Washington, DC",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://dpr.dc.gov/service/attend-events",
+      "publisher": "dpr.dc.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "meetings-dcouncil-us-4d64fb67",
+      "workItemId": "source:meetings-dcouncil-us-4d64fb67",
+      "regionId": "washington-dc",
+      "regionName": "Washington, DC",
+      "category": "meetings",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://dcouncil.us/",
+      "publisher": "dcouncil.us",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "volunteer-dpr-dc-gov-52180f8a",
+      "workItemId": "source:volunteer-dpr-dc-gov-52180f8a",
+      "regionId": "washington-dc",
+      "regionName": "Washington, DC",
+      "category": "volunteer",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://dpr.dc.gov/page/volunteer-and-give-back",
+      "publisher": "dpr.dc.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-nps-gov-675f6405",
+      "workItemId": "source:events-nps-gov-675f6405",
+      "regionId": "wolf-trap-va",
+      "regionName": "Wolf Trap, Virginia",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.nps.gov/wotr/planyourvisit/calendar.htm",
+      "publisher": "nps.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "events-wolftrap-org-f9ccaf58",
+      "workItemId": "source:events-wolftrap-org-f9ccaf58",
+      "regionId": "wolf-trap-va",
+      "regionName": "Wolf Trap, Virginia",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.wolftrap.org/",
+      "publisher": "Wolf Trap",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "editorial_registry:editorial-event-sources.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "nps-wolf-trap",
+      "workItemId": "source:nps-wolf-trap",
+      "regionId": "wolf-trap-va",
+      "regionName": "Wolf Trap, Virginia",
+      "category": "events",
+      "classification": "READY",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "JSON API",
+      "adapter": "json-api",
+      "url": "https://developer.nps.gov/api/v1/events?parkCode=wotr",
+      "publisher": "NPS Wolf Trap events",
+      "packOperations": {
+        "eligible": true,
+        "nextStep": "review-and-create-adapter"
+      },
+      "discovery": {
+        "confidence": 0.8,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "candidate_registry:wolf-trap-va.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "wolf-trap-foundation",
+      "workItemId": "source:wolf-trap-foundation",
+      "regionId": "wolf-trap-va",
+      "regionName": "Wolf Trap, Virginia",
+      "category": "events",
+      "classification": "INVESTIGATE",
+      "trackingState": "UNTRACKED_ACTIONABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.wolftrap.org/calendar",
+      "publisher": "Wolf Trap Foundation calendar",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.6,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "candidate_registry:wolf-trap-va.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "meetings-viennava-gov-bc6ebc78",
+      "workItemId": "source:meetings-viennava-gov-bc6ebc78",
+      "regionId": "wolf-trap-va",
+      "regionName": "Wolf Trap, Virginia",
+      "category": "meetings",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.viennava.gov/",
+      "publisher": "viennava.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "food-for-others",
+      "workItemId": "source:food-for-others",
+      "regionId": "wolf-trap-va",
+      "regionName": "Wolf Trap, Virginia",
+      "category": "publicSpaces",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://foodforothers.org",
+      "publisher": "Food For Others",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.6,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "candidate_registry:wolf-trap-va.json",
+        "origin": "automated"
+      }
+    },
+    {
+      "id": "volunteer-nps-gov-20ec7407",
+      "workItemId": "source:volunteer-nps-gov-20ec7407",
+      "regionId": "wolf-trap-va",
+      "regionName": "Wolf Trap, Virginia",
+      "category": "volunteer",
+      "classification": "INVESTIGATE",
+      "trackingState": "TRACKED_REACHABLE",
+      "likelyDataType": "HTML calendar",
+      "adapter": "html-directory",
+      "url": "https://www.nps.gov/wotr/getinvolved/volunteer.htm",
+      "publisher": "nps.gov",
+      "packOperations": {
+        "eligible": false,
+        "nextStep": "resolve-scout-findings"
+      },
+      "discovery": {
+        "confidence": 0.62,
+        "foundAt": "2026-09-27T08:49:42.288422Z",
+        "method": "civic_priority:civic-source-priority.json",
+        "origin": "automated"
+      }
+    }
+  ]
+}

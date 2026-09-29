@@ -1,9 +1,17 @@
 import json
+import importlib.util
 import tempfile
 import unittest
 from pathlib import Path
 
 from app.scout.backlog import _deduplicate, build_backlog
+
+_adapter_script = Path(__file__).parents[1] / "scripts" / "build-static-source-adapters.py"
+_adapter_spec = importlib.util.spec_from_file_location("static_source_adapters", _adapter_script)
+_adapter_module = importlib.util.module_from_spec(_adapter_spec)
+assert _adapter_spec.loader is not None
+_adapter_spec.loader.exec_module(_adapter_module)
+build_static_adapters = _adapter_module.build
 
 
 class SourceBacklogTests(unittest.TestCase):
@@ -34,6 +42,16 @@ class SourceBacklogTests(unittest.TestCase):
             payload = json.loads(path.read_text(encoding="utf-8"))
             self.assertTrue(payload["readOnly"])
             self.assertIn("review", payload["kind"])
+
+    def test_static_adapter_catalogue_covers_every_backlog_record(self) -> None:
+        root = Path(__file__).parents[1]
+        catalogue = build_static_adapters(root)
+        self.assertEqual(catalogue["kind"], "walking-static-source-adapters")
+        self.assertEqual(catalogue["summary"]["recordCount"], 102)
+        self.assertEqual(len(catalogue["records"]), 102)
+        self.assertEqual(len({record["id"] for record in catalogue["records"]}), 102)
+        self.assertTrue(all(record["url"].startswith("https://") for record in catalogue["records"]))
+        self.assertTrue(all(record["adapter"] for record in catalogue["records"]))
 
 
 if __name__ == "__main__":
