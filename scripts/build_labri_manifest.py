@@ -8,6 +8,7 @@ from pathlib import Path
 from urllib.request import Request, urlopen
 
 SOURCE_URL = "https://www.labriideaslibrary.org/"
+HOSTED_AUDIO_BASE = "https://huggingface.co/datasets/sethryst/labri-ideas-library/resolve/main/audio/"
 OUTPUT = Path(__file__).resolve().parents[1] / "motherbird" / "data" / "radio" / "labri.json"
 LINK_RE = re.compile(
     r'<a[^>]+href="([^\"]*drive\.google\.com/uc\?export=download&id=[^\"]+)"[^>]*>(.*?)</a>',
@@ -38,8 +39,8 @@ def main() -> None:
                 "title": title,
                 "genre": "Lecture",
                 "sourceType": "labri-library",
-                "mediaUrl": source_url,
-                "sourceUrl": SOURCE_URL,
+                "mediaUrl": f"{HOSTED_AUDIO_BASE}labri-{lecture_id}.mp3",
+                "sourceUrl": "https://huggingface.co/datasets/sethryst/labri-ideas-library",
                 "rightsStatus": "permissioned",
                 "rightsLabel": "Permission granted by L'Abri Ideas Library",
             }
