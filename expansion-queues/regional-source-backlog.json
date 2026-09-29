@@ -3585,7 +3585,9 @@
             "stability": []
           },
           "url": "https://www.nycgovparks.org/events/",
-          "workItemId": "source:events-nycgovparks-org-61d38c99"
+          "workItemId": "source:events-nycgovparks-org-61d38c99",
+          "trackingState": "INTEGRATED_STATIC",
+          "integrationEvidence": "Published civic records in motherbird/regions/*/civic/index.json"
         },
         {
           "category": "volunteer",
@@ -3803,13 +3805,14 @@
           },
           "url": "https://phillyfamily.com/events/",
           "workItemId": "source:events-phillyfamily-com-c8e106d8",
-          "trackingState": "TRACKED_REACHABLE",
+          "trackingState": "INTEGRATED_STATIC",
           "trackingEvidence": {
             "checkedAt": "2026-09-29T17:47:06.798Z",
             "httpStatus": 200,
             "contentType": "text/html; charset=UTF-8",
             "source": "local-batched-validation"
-          }
+          },
+          "integrationEvidence": "Published civic records in motherbird/regions/*/civic/index.json"
         },
         {
           "category": "volunteer",
@@ -4461,13 +4464,14 @@
           },
           "url": "https://blackhistory.pgparks.com/activities-events-events/category/free",
           "workItemId": "source:events-blackhistory-pgparks-com-49fafbc4",
-          "trackingState": "TRACKED_REACHABLE",
+          "trackingState": "INTEGRATED_STATIC",
           "trackingEvidence": {
             "checkedAt": "2026-09-29T17:47:08.895Z",
             "httpStatus": 200,
             "contentType": "text/html; charset=UTF-8",
             "source": "local-batched-validation"
-          }
+          },
+          "integrationEvidence": "Published civic records in motherbird/regions/*/civic/index.json"
         },
         {
           "category": "events",
@@ -4507,13 +4511,14 @@
           },
           "url": "https://pgparks.com/activities-events-events/category/free",
           "workItemId": "source:events-pgparks-com-005aa0a6",
-          "trackingState": "TRACKED_REACHABLE",
+          "trackingState": "INTEGRATED_STATIC",
           "trackingEvidence": {
             "checkedAt": "2026-09-29T17:47:08.895Z",
             "httpStatus": 200,
             "contentType": "text/html; charset=UTF-8",
             "source": "local-batched-validation"
-          }
+          },
+          "integrationEvidence": "Published civic records in motherbird/regions/*/civic/index.json"
         },
         {
           "category": "volunteer",
@@ -5499,13 +5504,14 @@
           },
           "url": "https://seattle.net/api",
           "workItemId": "source:events-seattle-net-25130bd8",
-          "trackingState": "TRACKED_REACHABLE",
+          "trackingState": "INTEGRATED_STATIC",
           "trackingEvidence": {
             "checkedAt": "2026-09-29T17:47:13.030Z",
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
-          }
+          },
+          "integrationEvidence": "Published civic records in motherbird/regions/*/civic/index.json"
         },
         {
           "category": "events",
@@ -6114,9 +6120,11 @@
     },
     "regionCount": 34,
     "trackingStates": {
-      "TRACKED_REACHABLE": 67,
-      "UNTRACKED_ACTIONABLE": 35
+      "TRACKED_REACHABLE": 63,
+      "UNTRACKED_ACTIONABLE": 34,
+      "INTEGRATED_STATIC": 5
     },
-    "trackingPolicy": "Tracked reachable sources remain in the audit backlog but are removed from the active operator queue until adapter work is requested."
+    "trackingPolicy": "Tracked reachable sources remain in the audit backlog but are removed from the active operator queue until adapter work is requested.",
+    "unresolvedCount": 97
   }
 }
