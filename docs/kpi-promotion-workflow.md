@@ -1,5 +1,11 @@
 # KPI promotion workflow
 
+## Default path
+
+KPI review and static app publication do not require Supabase. The normal agent path is: validate the source, build fixtures and adapters, generate release evidence, write the checked-in static artifact, and let GitHub Pages deploy it. Supabase approval tables, authenticated operator controls, and Supabase Storage are optional operator workflows only.
+
+Agents must not select the Supabase path merely because credentials or a bucket exist in the environment. Use it only when the user explicitly requests remote approval, remote sync, or object storage in the current task.
+
 The KPI operator console is a release control surface, not an ingestion job.
 
 1. Acquisition creates a content-addressed package with `READY FOR REVIEW` status.

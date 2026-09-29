@@ -25,3 +25,10 @@ an events contract were not promoted.
 Next work is source-specific endpoint discovery for the 92 HTML calendars and
 schema/replay validation for the five structured candidates. The diagnostic
 report preserves the per-source acquisition path for that work.
+
+Discovery ran in four bounded batches (`25 + 25 + 25 + 22`) and is stored in
+`expansion-queues/source-discovery-batch-{0,25,50,75}.json`. The structured
+verification pass is stored in
+`expansion-queues/structured-source-schema-verification.json`: 0 valid and 5
+blocked or adapter-invalid (two HTTP 403, one HTTP 404, and two requiring the
+optional `feedparser` dependency).

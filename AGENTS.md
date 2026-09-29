@@ -1,5 +1,13 @@
 # Repository workflow
 
+## Default publishing policy
+
+Static repository artifacts and GitHub Pages are the default path for all app data, source catalogues, regional releases, and review outputs. Supabase is optional and operator-controlled only; agents must not invoke Supabase, Supabase Storage, Supabase approval tables, or Supabase credentials unless the user explicitly requests a Supabase operation in the current task.
+
+An agent must never block a static build or local release because Supabase is absent. When Supabase is not explicitly requested, write validated artifacts to the repository's normal `published/`, `releases/`, `motherbird/data/`, or Pages build outputs, and label their provenance and publication state clearly. Never move records to a live/remote state merely because a Supabase variable happens to exist in `.env`.
+
+The optional Supabase path remains available for a human operator who deliberately chooses authenticated profiles, remote sync, approval persistence, or object storage. Keep its code and documentation separate from the default static workflow.
+
 ## Live Pages and deployment verification
 
 - The canonical live GitHub Pages URL for the Motherbird UI is https://sethryst.github.io/discover_walks/ (the app is served from the repository root; do not append `/motherbird/`).
