@@ -590,7 +590,14 @@ export function renderSourceAtlasHtml(model) {
 export async function buildKpiIndex(outputDirectory = resolve(motherbirdRoot, 'dist', 'kpi')) {
   const model = await collectKpiInventory();
   await mkdir(outputDirectory, { recursive: true });
-  await writeFile(resolve(outputDirectory, 'index.html'), renderKpiHtml(model));
+  let indexHtml = renderKpiHtml(model);
+  indexHtml = indexHtml.replace('</style>', '.one-page-note{display:none}.operator-only{display:none!important}header>p:not(.updated){display:none}@media(max-width:650px){header{padding-top:28px}.overview,.visual-grid{grid-template-columns:1fr}.folder-link{font-size:.76rem;padding:6px 9px}}.overview{margin:14px 0}.visual-grid{margin-bottom:14px}</style>');
+  indexHtml = indexHtml.replace('<section class="panel" id="operatorGate">', '<section class="panel operator-only" id="operatorGate" hidden>');
+  indexHtml = indexHtml.replace('details.open=groupIndex===0', 'details.open=false');
+  indexHtml = indexHtml.replace('<p>One repository-backed view of what Mother Bird can show, where the data originates, how it is transformed, and what is not connected yet.</p><p class="updated">Generated ${escapeHtml(model.generatedAt)} during the Pages build. Counts describe repository state—not a claim of geographic completeness.</p>', '<p class="updated">Repository-backed readiness snapshot · generated ${escapeHtml(model.generatedAt)}</p>');
+  indexHtml = indexHtml.replace("const authStatus=document.querySelector('#operatorAuthStatus')", "const operatorGate=document.querySelector('#operatorGate'),authStatus=document.querySelector('#operatorAuthStatus')");
+  indexHtml = indexHtml.replace("authStatus.textContent='Signed in as moderator';authStatus.className='pill good';controls.hidden=false", "authStatus.textContent='Signed in as moderator';authStatus.className='pill good';operatorGate.hidden=false;operatorGate.classList.remove('operator-only');controls.hidden=false");
+  await writeFile(resolve(outputDirectory, 'index.html'), indexHtml);
   await writeFile(resolve(outputDirectory, 'enrichment.html'), renderEnrichmentHtml(model));
   await writeFile(resolve(outputDirectory, 'sources.html'), renderSourceAtlasHtml(model));
   await writeFile(resolve(outputDirectory, 'inventory.json'), JSON.stringify(model, null, 2));
