@@ -7,6 +7,7 @@ create table if not exists public.kpi_package_promotions (
   status text not null default 'REVIEW'
     check (status in ('REVIEW','APPROVED','BUILD_REQUESTED','VALIDATED','PUBLISH_REQUESTED','PUBLISHED','FAILED')),
   approval_reference text,
+  review_run_id bigint,
   candidate_package_id text,
   validation_summary jsonb,
   publication_summary jsonb,
