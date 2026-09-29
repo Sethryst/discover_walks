@@ -2125,13 +2125,14 @@
           },
           "url": "https://www.nps.gov/wotr/planyourvisit/calendar.htm",
           "workItemId": "source:events-nps-gov-675f6405",
-          "trackingState": "TRACKED_REACHABLE",
+          "trackingState": "INTEGRATED_STATIC",
           "trackingEvidence": {
             "checkedAt": "2026-09-29T17:47:13.030Z",
             "httpStatus": 200,
             "contentType": "text/html;charset=UTF-8",
             "source": "local-batched-validation"
-          }
+          },
+          "integrationEvidence": "Published validated dated/location-backed records in motherbird/regions/boulder/civic/index.json via schema.org JSON-LD"
         },
         {
           "category": "volunteer",
@@ -6139,11 +6140,11 @@
     },
     "regionCount": 34,
     "trackingStates": {
-      "TRACKED_REACHABLE": 48,
-      "INTEGRATED_STATIC": 22,
+      "TRACKED_REACHABLE": 47,
+      "INTEGRATED_STATIC": 23,
       "UNTRACKED_ACTIONABLE": 32
     },
     "trackingPolicy": "Tracked reachable sources remain in the audit backlog but are removed from the active operator queue until adapter work is requested.",
-    "unresolvedCount": 80
+    "unresolvedCount": 79
   }
 }

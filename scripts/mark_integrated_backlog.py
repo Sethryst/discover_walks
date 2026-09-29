@@ -27,6 +27,7 @@ INTEGRATED = {
     "events-arlingtonva-us-cb15b262",
     "meetings-arlingtonva-us-cb15b262",
     "meetings-fairfaxcounty-gov-6f6370e4",
+    "events-nps-gov-675f6405",
 }
 
 def main() -> None:
