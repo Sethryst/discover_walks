@@ -15,6 +15,7 @@ import { setPoiVisited } from './poi-visit-tracking.js';
 import { addWalkWaypoint, startWalk } from './walk.js';
 import { initMapsFolders, renderMapsLibrary } from './maps-folders.js';
 import { listSpatialQueries, queryPrompt } from './spatial-query.js?v=20260928-spatial-query-fix';
+import { loadSourceAdapters } from './source-adapters.js';
 
 const FORMAT = 'walk-wildlife-plan-v1';
 let selectedPlaceId = null;
@@ -116,6 +117,10 @@ export function sortGuideCardsByDistance(cards, point, coordinateFor) {
 function observationCard(item) {
   return `<article class="guide-card"><small>OBSERVATION${distanceLabel(item.distance)}</small><h3>${escapeHtml(item.title || item.species || 'Observation')}</h3><p>${escapeHtml(item.note || 'Saved privately in your journal.')}</p></article>`;
 }
+function sourceAdapterCard(record) {
+  const stateLabel = record.classification === 'READY' ? 'READY' : 'REVIEW QUEUED';
+  return `<article class="guide-card source-adapter-card"><small>${escapeHtml(record.regionName)} · ${escapeHtml(stateLabel)}</small><h3>${escapeHtml(record.category)} · ${escapeHtml(record.publisher)}</h3><p>${escapeHtml(record.likelyDataType)} source routed through the local <strong>${escapeHtml(record.adapter)}</strong> adapter. This record remains catalogued, not verified.</p><p><small>${escapeHtml(record.url)}</small></p><a class="secondary-button" href="${escapeHtml(record.url)}" target="_blank" rel="noreferrer">Open official source ↗</a></article>`;
+}
 export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') {
   if (tab === 'maps') tab = 'discover';
   state.fieldGuideTab = tab;
@@ -145,6 +150,17 @@ export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') 
   if (tab === 'online' || tab === 'export') {
     el('fieldGuideOrderNote')?.classList.add('hidden');
     if (tab === 'online') window.dispatchEvent(new CustomEvent('online-panel-render-requested'));
+    return;
+  }
+  if (tab === 'sources') {
+    el('fieldGuideOrderNote')?.classList.remove('hidden');
+    el('fieldGuideOrderNote').textContent = '102 backlog records are available through local/static adapter definitions. Review status is preserved.';
+    try {
+      const catalogue = await loadSourceAdapters();
+      target.innerHTML = catalogue.records.map(sourceAdapterCard).join('');
+    } catch (error) {
+      target.innerHTML = `<p class="empty-state">Static source catalogue unavailable: ${escapeHtml(error.message)}</p>`;
+    }
     return;
   }
   const data = await guideData();
