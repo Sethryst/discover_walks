@@ -1,7 +1,7 @@
 # Static source backlog progress
 
-The 102-candidate backlog currently has 24 sources integrated into static civic
-packages and 78 unresolved. The integrated sources have source-backed records;
+The 102-candidate backlog currently has 25 sources integrated into static civic
+packages and 77 unresolved. The integrated sources have source-backed records;
 the unresolved sources remain excluded from app data.
 
 The machine-readable evidence is
@@ -12,10 +12,10 @@ probe evidence, blocker, and next acquisition path.
 Current counts:
 
 - Candidates: 102
-- Resolved/integrated static: 24
-- Unresolved: 78
-- New records added in this batch: 966 records (Alexandria's general calendar source reuses the validated city iCalendar records)
-- Unresolved blockers: 76 selector/endpoint discovery, 2 schema verification
+- Resolved/integrated static: 25
+- Unresolved: 77
+- New records added in this batch: 971 records (previous 966 plus 5 Summit County meetings)
+- Unresolved blockers: 75 selector/endpoint discovery, 2 schema verification
 
 The zero-record result is intentional: the live JSON-LD and RSS/ICS passes did
 not produce dated, location-backed records that satisfy the civic contract.

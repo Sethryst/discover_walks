@@ -2536,13 +2536,14 @@
           },
           "url": "https://www.summitcountyco.gov/",
           "workItemId": "source:meetings-summitcountyco-gov-0e4237c8",
-          "trackingState": "TRACKED_REACHABLE",
+          "trackingState": "INTEGRATED_STATIC",
           "trackingEvidence": {
             "checkedAt": "2026-09-29T17:47:04.696Z",
             "httpStatus": 200,
             "contentType": "text/html; charset=UTF-8",
             "source": "local-batched-validation"
-          }
+          },
+          "integrationEvidence": "Published validated dated/location-backed records in motherbird/regions/boulder/civic/index.json via schema.org JSON-LD"
         },
         {
           "category": "events",
@@ -6141,11 +6142,11 @@
     },
     "regionCount": 34,
     "trackingStates": {
-      "INTEGRATED_STATIC": 24,
-      "TRACKED_REACHABLE": 46,
+      "INTEGRATED_STATIC": 25,
+      "TRACKED_REACHABLE": 45,
       "UNTRACKED_ACTIONABLE": 32
     },
     "trackingPolicy": "Tracked reachable sources remain in the audit backlog but are removed from the active operator queue until adapter work is requested.",
-    "unresolvedCount": 78
+    "unresolvedCount": 77
   }
 }

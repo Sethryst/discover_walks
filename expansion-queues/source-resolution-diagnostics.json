@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
   "kind": "static-source-resolution-diagnostics",
-  "generatedAt": "2026-09-29T23:35:38.709873Z",
+  "generatedAt": "2026-09-29T23:37:07.053642Z",
   "source": "expansion-queues/regional-source-backlog.json",
   "policy": "Diagnostics do not publish records; only validated dated records with location and provenance may enter civic packages.",
   "summary": {
-    "candidateCount": 78,
-    "resolvedCount": 24,
-    "unresolvedCount": 78,
+    "candidateCount": 77,
+    "resolvedCount": 25,
+    "unresolvedCount": 77,
     "blockers": {
       "schema-unverified": 2,
-      "selector-or-endpoint-undiscovered": 76
+      "selector-or-endpoint-undiscovered": 75
     }
   },
   "sources": [
@@ -501,23 +501,6 @@
         "httpStatus": null,
         "contentType": null,
         "checkedAt": null
-      },
-      "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
-    },
-    {
-      "sourceId": "meetings-summitcountyco-gov-0e4237c8",
-      "regionId": "keystone-colorado",
-      "category": "meetings",
-      "url": "https://www.summitcountyco.gov/",
-      "publisher": "summitcountyco.gov",
-      "adapter": "review-required",
-      "observed": {
-        "httpStatus": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "checkedAt": "2026-09-29T17:47:04.696Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
       "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
