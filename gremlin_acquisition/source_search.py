@@ -33,6 +33,45 @@ class SearchResult:
     reason: str | None = None
 
 
+def infer_provider(url: str, default: str = 'geojson') -> str:
+    """Infer a safe adapter family from a discovered endpoint URL."""
+    normalized = url.lower().split('?', 1)[0].rstrip('/')
+    if normalized.endswith(('.ics', '.ical', '.ifb')):
+        return 'icalendar'
+    if 'featureserver' in normalized or 'mapserver' in normalized:
+        return 'arcgis_feature_service'
+    if '/collections/' in normalized and normalized.endswith('/items'):
+        return 'ogc_records'
+    if '/resource/' in normalized and normalized.endswith(('.json', '.csv')):
+        return 'socrata'
+    if normalized.endswith(('.json', '.geojson')) or 'api/' in normalized:
+        return 'geojson'
+    return default
+
+
+def discover_ogc_collections(document: dict, catalog_url: str, *, default_domains=(),
+                             authority_tier='unknown') -> list[dict]:
+    """Convert an OGC API - Records collections response into proposals."""
+    from urllib.parse import urljoin
+    proposals = []
+    for collection in document.get('collections') or ():
+        if not isinstance(collection, dict) or not collection.get('id'):
+            continue
+        collection_id = str(collection['id'])
+        links = collection.get('links') or []
+        items_link = next((link.get('href') for link in links if link.get('rel') in {'items', 'data'} and link.get('href')), None)
+        items_url = items_link or urljoin(catalog_url.rstrip('/') + '/', f'collections/{collection_id}/items')
+        license_link = next((link.get('href') for link in links if link.get('rel') in {'license', 'describedby'} and link.get('href')), None)
+        proposals.append({
+            'provider': 'ogc_records', 'url': items_url, 'collection': collection_id,
+            'title': collection.get('title') or collection_id,
+            'description': collection.get('description'), 'licenseUrl': license_link or collection.get('license'),
+            'domains': list(default_domains), 'discoveredFrom': catalog_url, 'status': 'PROPOSED',
+            'authorityTier': authority_tier,
+        })
+    return sorted(proposals, key=lambda row: row['url'])
+
+
 def candidate_source_configs(results: Iterable[SearchResult], *, provider='geojson') -> list[dict]:
     """Turn search evidence into deterministic, reviewable source candidates.
 
@@ -52,7 +91,7 @@ def candidate_source_configs(results: Iterable[SearchResult], *, provider='geojs
                 continue
             key = normalized.rstrip('/')
             candidates.setdefault(key, {
-                'provider': result.provider or provider,
+                'provider': infer_provider(key, result.provider or provider),
                 'url': key,
                 'domains': categories,
                 'discoveredFrom': result.query,
@@ -85,6 +124,20 @@ def governed_source_proposals(results: Iterable[SearchResult], geography_id: str
     return proposals
 
 
+def governed_config_from_candidate(candidate: dict, *, license_url: str,
+                                   authority_tier: str) -> dict:
+    """Promote one discovered candidate into an evidence-bearing config.
+
+    Discovery remains proposal-only. Promotion is explicit and requires the
+    two provenance fields consumed by the review gate.
+    """
+    if not license_url or not authority_tier or authority_tier.casefold() == 'unknown':
+        raise ValueError('license_url and a known authority_tier are required')
+    config = dict(candidate)
+    config.update({'licenseUrl': license_url, 'authorityTier': authority_tier, 'status': 'APPROVED'})
+    return config
+
+
 class SourceSearchAdapter(Protocol):
     name: str
 
@@ -95,7 +148,13 @@ def generate_search_lines(need: RegionalNeed, provider="deterministic-official-s
     lines: list[SearchLine] = []
     for requirement in need.requirements:
         category = requirement.canonical_category
-        phrases = (f"{category} official data", f"{category} calendar", f"{category} map")
+        phrases = (
+            f"{category} official data", f"{category} calendar", f"{category} map",
+            f"{category} open data", f"{category} GIS", f"{category} API",
+            f"{category} GeoJSON", f"{category} CSV", f"{category} ArcGIS",
+            f"{category} FeatureServer", f"{category} MapServer",
+            f"{category} iCal", f"{category} ICS",
+        )
         for phrase in phrases:
             lines.append(SearchLine(
                 need.geography_id, need.geography_query, category,

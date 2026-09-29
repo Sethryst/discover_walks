@@ -41,6 +41,18 @@ def test_review_coverage_counts_delivered_records_not_rejected_candidates():
     assert package["candidateCoverage"]["gaps"] == []
 
 
+def test_package_reports_discovery_to_acceptance_metrics():
+    need = RegionalNeed("Portland", "pdx", (FeatureRequirement("park"),))
+    package = build_review_package(need, [
+        POIRecord("1", "Park", "park", "https://city.gov", 45.5, -122.6),
+        POIRecord("2", "Park", "park", "https://city.gov", 45.5, -122.6),
+    ])
+    assert package["coverageMetrics"]["discoveredRecords"] == 2
+    assert package["coverageMetrics"]["deduplicatedRecords"] == 1
+    assert package["coverageMetrics"]["acceptedRecords"] == 1
+    assert package["coverageMetrics"]["duplicateRecords"] == 1
+
+
 def test_review_package_requires_explicit_approval_before_promotion(tmp_path):
     need = RegionalNeed("Example City", "city-1", (FeatureRequirement("parks"),))
     package = build_review_package(need, [POIRecord("p1", "Central Park", "parks", "https://city.gov/parks", 45.5, -122.6)])

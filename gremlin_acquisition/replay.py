@@ -8,7 +8,7 @@ from .ledger import AcquisitionLedger
 from .models import Geography, SourceRecord, SourceStatus
 from .planner import AcquisitionPlanner
 from .release import build_selected_package, rollback_exact
-from .adapters import parse_geojson, acquire_with_fallback
+from .adapters import parse_geojson, acquire_with_fallback, source_health
 from .package_intelligence import FeatureRequirement, RegionalNeed, coverage_report, discover_regions, needs_from_discoveries
 from .review_package import build_review_package, write_review_package
 from .source_search import SearchResult, candidate_source_configs, governed_source_proposals
@@ -73,7 +73,7 @@ def run_portland_poi_pilot(fixture_dir, ledger_path, package_dir):
     config = json.loads((fixture / 'pois.json').read_text(encoding='utf-8'))
     result = parse_geojson(config['document'], config['source'])
     report = ledger.ingest_pois('portland-poi-pilot', need, result)
-    package = build_review_package(need, result.records, [config['source']['url']])
+    package = build_review_package(need, result.records, [config['source']['url'], source_health(result)])
     ledger.record_review_package(package)
     path = write_review_package(package, package_dir)
     return {'packageId': package['packageId'], 'packagePath': str(path), 'coverage': report, 'recordCount': len(result.records)}
@@ -121,7 +121,10 @@ def run_discovered_region_pilot(fixture_dir, ledger_path, package_dir):
     if result is None:
         raise ValueError('discovery replay fallback chain produced no selected source')
     report = ledger.ingest_fallback('discovered-region-pilot', need, fallback)
-    package = build_review_package(need, result.records, [config['source']['url']])
+    package = build_review_package(
+        need, result.records,
+        [config['source']['url'], *(source_health(attempt) for attempt in fallback.attempts)],
+    )
     ledger.record_review_package(package)
     path = write_review_package(package, package_dir)
     return {

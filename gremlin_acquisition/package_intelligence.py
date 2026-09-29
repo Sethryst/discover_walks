@@ -47,6 +47,7 @@ class RegionalNeed:
     geography_id: str | None
     requirements: tuple[FeatureRequirement, ...]
     discovered_from: str = "configured requirement"
+    bbox: tuple[float, float, float, float] | None = None
 
 
 @dataclass(frozen=True)
@@ -151,6 +152,16 @@ def validate_poi(record: POIRecord) -> list[str]:
     if (record.latitude is None) != (record.longitude is None):
         errors.append("partial coordinates")
     return errors
+
+
+def validate_region_geometry(record: POIRecord, bbox: tuple[float, float, float, float] | None) -> list[str]:
+    """Validate that a located record falls inside (or on) a region bbox."""
+    if bbox is None or record.latitude is None or record.longitude is None:
+        return []
+    min_lon, min_lat, max_lon, max_lat = bbox
+    if not (min_lon <= record.longitude <= max_lon and min_lat <= record.latitude <= max_lat):
+        return ["geometry outside region bbox"]
+    return []
 
 
 def _dedupe_name(value: str) -> str:
@@ -261,6 +272,10 @@ def need_from_region_config(config: dict) -> RegionalNeed:
         geography_id=config.get("id"),
         requirements=requirements,
         discovered_from="app/regions configuration",
+        # Region configs and onboarding CLI use min_lat, min_lon, max_lat,
+        # max_lon; validation normalizes to the geometry-friendly lon/lat order.
+        bbox=(config["bbox"][1], config["bbox"][0], config["bbox"][3], config["bbox"][2])
+        if isinstance(config.get("bbox"), list) and len(config["bbox"]) == 4 else None,
     )
 
 

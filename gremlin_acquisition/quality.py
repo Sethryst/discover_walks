@@ -2,7 +2,8 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from .package_intelligence import POIRecord, RegionalNeed, validate_poi
+from datetime import date, datetime
+from .package_intelligence import POIRecord, RegionalNeed, validate_poi, validate_region_geometry
 from .models import EventEvidence
 
 
@@ -13,6 +14,7 @@ class QualityScore:
     provenance: float
     frontend_fit: float
     freshness: float
+    authority: float
     total: float
     rationale: tuple[str, ...]
 
@@ -26,6 +28,25 @@ class EventQualityScore:
     freshness: float
     total: float
     rationale: tuple[str, ...]
+
+
+def freshness_score(updated_at: str | None, *, today: date | None = None, max_age_days: int = 365) -> tuple[float, str | None]:
+    """Score an ISO source date with deterministic age bands."""
+    if not updated_at:
+        return 0.5, "missing source update timestamp"
+    try:
+        parsed = datetime.fromisoformat(str(updated_at).replace('Z', '+00:00')).date()
+    except ValueError:
+        return 0.25, "invalid source update timestamp"
+    reference = today or date.today()
+    age = (reference - parsed).days
+    if age < 0:
+        return 0.75, "source update timestamp is in the future"
+    if age <= max_age_days:
+        return 1.0, None
+    if age <= max_age_days * 2:
+        return 0.5, f"source is {age} days old"
+    return 0.25, f"source is stale at {age} days old"
 
 
 def score_event(event: EventEvidence, now_date: str) -> EventQualityScore:
@@ -47,13 +68,21 @@ def score_event(event: EventEvidence, now_date: str) -> EventQualityScore:
 
 
 def score_poi(record: POIRecord, need: RegionalNeed) -> QualityScore:
-    errors = validate_poi(record)
+    errors = validate_poi(record) + validate_region_geometry(record, need.bbox)
     completeness = 1.0 if record.name and record.canonical_category else 0.0
     geometry = 1.0 if record.latitude is not None and record.longitude is not None else 0.0
     provenance = 1.0 if record.source_url.startswith(("https://", "http://")) else 0.0
     required = {r.canonical_category for r in need.requirements}
     frontend_fit = 1.0 if record.canonical_category in required else 0.0
-    freshness = 1.0 if record.source_updated_at else 0.5
+    freshness, freshness_note = freshness_score(record.source_updated_at)
+    authority_tier = str(record.attributes.get("authorityTier", "unknown")).casefold()
+    authority = {
+        "federal": 1.0, "state_government": 1.0, "local_government": 1.0,
+        "city_government": 1.0, "county_government": 1.0, "official": 0.9,
+        "editorial": 0.6, "community": 0.5, "unknown": 0.35,
+    }.get(authority_tier, 0.35)
     rationale = tuple(errors) or ("validated identity and provenance",)
-    total = round((completeness + geometry + provenance + frontend_fit + freshness) / 5, 3)
-    return QualityScore(completeness, geometry, provenance, frontend_fit, freshness, total, rationale)
+    if freshness_note: rationale = rationale + (freshness_note,)
+    if authority < 0.6: rationale = rationale + ("source authority is unknown or non-official",)
+    total = round((completeness + geometry + provenance + frontend_fit + freshness + authority) / 6, 3)
+    return QualityScore(completeness, geometry, provenance, frontend_fit, freshness, authority, total, rationale)

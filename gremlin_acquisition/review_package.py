@@ -35,21 +35,23 @@ def validate_review_package(payload: dict) -> list[str]:
 
 
 def build_review_package(need: RegionalNeed, records, source_evidence=()):
-    unique, duplicates = deduplicate_pois(records)
+    input_records = list(records)
+    unique, duplicates = deduplicate_pois(input_records)
     accepted = []
     accepted_records = []
     rejected = []
     for record in unique:
         score = score_poi(record, need)
         row = {"record": jsonable(record), "quality": jsonable(score)}
-        if score.total >= 0.6 and not score.rationale[0].startswith(("missing", "invalid", "partial", "latitude", "longitude")):
+        if score.total >= 0.6 and not score.rationale[0].startswith(("missing", "invalid", "partial", "latitude", "longitude", "geometry")):
             accepted.append(row)
             accepted_records.append(record)
         else:
             rejected.append({"recordId": record.record_id, "quality": jsonable(score), "reasons": list(score.rationale)})
+    evidence_rows = list(source_evidence)
     payload = {
         "schema": "discover-walks-review-package.v1",
-        "geography": {"id": need.geography_id, "query": need.geography_query},
+        "geography": {"id": need.geography_id, "query": need.geography_query, "bbox": need.bbox},
         "requirements": [jsonable(requirement) for requirement in need.requirements],
         # Coverage is a delivery claim, so it is calculated from records that
         # passed validation and quality gates. Keep candidate coverage beside
@@ -59,7 +61,17 @@ def build_review_package(need: RegionalNeed, records, source_evidence=()):
         "records": accepted,
         "rejected": rejected,
         "duplicates": {key: sorted(values) for key, values in sorted(duplicates.items())},
-        "sourceEvidence": sorted(source_evidence),
+        "sourceEvidence": sorted(row for row in evidence_rows if isinstance(row, str)),
+        "sourceHealth": sorted((row for row in evidence_rows if isinstance(row, dict)), key=lambda row: (row.get('url', ''), row.get('provider', ''))),
+        "sourceMetadata": sorted((row for row in evidence_rows if isinstance(row, dict) and ('licenseUrl' in row or 'authorityTier' in row)), key=lambda row: (row.get('url', ''), row.get('provider', ''))),
+        "coverageMetrics": {
+            "discoveredRecords": len(input_records),
+            "deduplicatedRecords": len(unique),
+            "acceptedRecords": len(accepted_records),
+            "rejectedRecords": len(rejected),
+            "duplicateGroups": len(duplicates),
+            "duplicateRecords": sum(len(values) for values in duplicates.values()),
+        },
     }
     from .frontend_package import frontend_places_from_review_package
     payload["frontendSchema"] = "motherbird-place.v1"
