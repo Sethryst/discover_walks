@@ -9,7 +9,7 @@ import { localSearchHits, searchRowHtml, emptySearchHtml, widenSearch } from './
 import { switchCity } from './city.js';
 import { generateTimeBasedPlan, lockSelectedPlanOnMap, changePlan, setPlanningMode } from './planner.js?v=20260926-editable-route-points';
 import { routeOnFoot } from './routing.js';
-import { paintWalkPlan, paintCard, previewCard, sendCurrentWalkPlan } from './field-guide.js?v=132';
+import { paintWalkPlan, paintCard, previewCard, sendCurrentWalkPlan } from './field-guide.js?v=133-source-catalogue';
 import { wordCount } from './reflection.js';
 import { refreshCompanionState } from './companion.js';
 import db from './storage.js';
