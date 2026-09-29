@@ -14,7 +14,7 @@ import { isHistorySite, renderLearnHistory, setLearnView, setLearnScreen, setAct
 import { setPoiVisited } from './poi-visit-tracking.js';
 import { addWalkWaypoint, startWalk } from './walk.js';
 import { initMapsFolders, renderMapsLibrary } from './maps-folders.js';
-import { listSpatialQueries, queryPrompt } from './spatial-query.js';
+import { listSpatialQueries, queryPrompt } from './spatial-query.js?v=20260928-spatial-query-fix';
 
 const FORMAT = 'walk-wildlife-plan-v1';
 let selectedPlaceId = null;

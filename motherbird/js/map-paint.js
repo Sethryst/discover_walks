@@ -7,7 +7,7 @@ import { markerPinHtml, markerVisual } from './poi-icons.js';
 import { generateTimeBasedPlan } from './planner.js';
 import { normalizePersonalCategory, upsertImportedPersonalData } from './personal-places.js';
 import { savePlannedRoute } from './saved-routes.js';
-import { createSpatialQuery, queryPrompt, saveSpatialQuery } from './spatial-query.js';
+import { createSpatialQuery, queryPrompt, saveSpatialQuery } from './spatial-query.js?v=20260928-spatial-query-fix';
 
 const DRAW_COLOR = '#76558b';
 function readHiddenArtifacts() {
