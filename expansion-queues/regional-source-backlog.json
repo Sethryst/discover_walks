@@ -272,13 +272,14 @@
           },
           "url": "https://www.arlingtonva.us/Government/Topics/Meeting-Calendar",
           "workItemId": "source:events-arlingtonva-us-cb15b262",
-          "trackingState": "TRACKED_REACHABLE",
+          "trackingState": "INTEGRATED_STATIC",
           "trackingEvidence": {
             "checkedAt": "2026-09-29T17:47:01.475Z",
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
-          }
+          },
+          "integrationEvidence": "Published validated dated/location-backed records in motherbird/regions/boulder/civic/index.json via schema.org JSON-LD"
         },
         {
           "category": "meetings",
@@ -318,13 +319,14 @@
           },
           "url": "https://www.arlingtonva.us/Government/Topics/Meeting-Calendar",
           "workItemId": "source:meetings-arlingtonva-us-cb15b262",
-          "trackingState": "TRACKED_REACHABLE",
+          "trackingState": "INTEGRATED_STATIC",
           "trackingEvidence": {
             "checkedAt": "2026-09-29T17:47:01.475Z",
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
-          }
+          },
+          "integrationEvidence": "Published validated dated/location-backed records in motherbird/regions/boulder/civic/index.json via schema.org JSON-LD"
         }
       ]
     },
@@ -6136,11 +6138,11 @@
     },
     "regionCount": 34,
     "trackingStates": {
-      "TRACKED_REACHABLE": 51,
-      "INTEGRATED_STATIC": 19,
+      "TRACKED_REACHABLE": 49,
+      "INTEGRATED_STATIC": 21,
       "UNTRACKED_ACTIONABLE": 32
     },
     "trackingPolicy": "Tracked reachable sources remain in the audit backlog but are removed from the active operator queue until adapter work is requested.",
-    "unresolvedCount": 83
+    "unresolvedCount": 81
   }
 }

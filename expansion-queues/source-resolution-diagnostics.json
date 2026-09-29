@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
   "kind": "static-source-resolution-diagnostics",
-  "generatedAt": "2026-09-29T23:26:55.851337Z",
+  "generatedAt": "2026-09-29T23:30:19.043576Z",
   "source": "expansion-queues/regional-source-backlog.json",
   "policy": "Diagnostics do not publish records; only validated dated records with location and provenance may enter civic packages.",
   "summary": {
-    "candidateCount": 83,
-    "resolvedCount": 19,
-    "unresolvedCount": 83,
+    "candidateCount": 81,
+    "resolvedCount": 21,
+    "unresolvedCount": 81,
     "blockers": {
       "schema-unverified": 2,
-      "selector-or-endpoint-undiscovered": 81
+      "selector-or-endpoint-undiscovered": 79
     }
   },
   "sources": [
@@ -20,40 +20,6 @@
       "category": "events",
       "url": "https://apps.alexandriava.gov/Calendar/",
       "publisher": "apps.alexandriava.gov",
-      "adapter": "review-required",
-      "observed": {
-        "httpStatus": 200,
-        "contentType": "text/html; charset=utf-8",
-        "checkedAt": "2026-09-29T17:47:01.475Z"
-      },
-      "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
-    },
-    {
-      "sourceId": "events-arlingtonva-us-cb15b262",
-      "regionId": "arlington-va",
-      "category": "events",
-      "url": "https://www.arlingtonva.us/Government/Topics/Meeting-Calendar",
-      "publisher": "arlingtonva.us",
-      "adapter": "review-required",
-      "observed": {
-        "httpStatus": 200,
-        "contentType": "text/html; charset=utf-8",
-        "checkedAt": "2026-09-29T17:47:01.475Z"
-      },
-      "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
-    },
-    {
-      "sourceId": "meetings-arlingtonva-us-cb15b262",
-      "regionId": "arlington-va",
-      "category": "meetings",
-      "url": "https://www.arlingtonva.us/Government/Topics/Meeting-Calendar",
-      "publisher": "arlingtonva.us",
       "adapter": "review-required",
       "observed": {
         "httpStatus": 200,
