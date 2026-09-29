@@ -95,13 +95,14 @@
           },
           "url": "https://apps.alexandriava.gov/Calendar/",
           "workItemId": "source:events-apps-alexandriava-gov-c408c804",
-          "trackingState": "TRACKED_REACHABLE",
+          "trackingState": "INTEGRATED_STATIC",
           "trackingEvidence": {
             "checkedAt": "2026-09-29T17:47:01.475Z",
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
-          }
+          },
+          "integrationEvidence": "Published validated dated/location-backed records in motherbird/regions/boulder/civic/index.json via schema.org JSON-LD"
         },
         {
           "category": "meetings",
@@ -6140,11 +6141,11 @@
     },
     "regionCount": 34,
     "trackingStates": {
-      "TRACKED_REACHABLE": 47,
-      "INTEGRATED_STATIC": 23,
+      "INTEGRATED_STATIC": 24,
+      "TRACKED_REACHABLE": 46,
       "UNTRACKED_ACTIONABLE": 32
     },
     "trackingPolicy": "Tracked reachable sources remain in the audit backlog but are removed from the active operator queue until adapter work is requested.",
-    "unresolvedCount": 79
+    "unresolvedCount": 78
   }
 }
