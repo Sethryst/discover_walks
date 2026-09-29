@@ -13,7 +13,7 @@ import { restoreLocalPoiClosures } from './spatial-closure-reporting.js';
 import { initFieldGuideFilters } from './field-guide.js';
 import { initPersonalPlaces } from './personal-places.js';
 import { initLayerSystem } from './layer-system.js';
-import { initMapPaint } from './map-paint.js';
+import { initMapPaint } from './map-paint.js?v=20260929-startup-fix-2';
 import { activateInstalledRegionRuntime } from './installed-region-runtime.js';
 import { initCountyAdditions } from './county-additions.js';
 import { applyOfflineBootConditions } from './offline-view.js';
