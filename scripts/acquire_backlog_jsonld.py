@@ -15,24 +15,35 @@ sys.path.insert(0, str(ROOT))
 from app.pipeline.adapters.jsonld_events import JsonLdEventsProvider
 from app.pipeline.source_config import SourceConfig
 
-SOURCES = [
-    ("events-blackhistory-pgparks-com-49fafbc4", "Prince George's County Parks", "prince-georges-county", "https://blackhistory.pgparks.com/activities-events-events/category/free"),
-    ("events-pgparks-com-005aa0a6", "Prince George's County Parks", "prince-georges-county", "https://www.pgparks.com/events"),
-]
+CATALOGUE = ROOT / "motherbird" / "data" / "learn" / "source-adapters.json"
 
 
 def main() -> None:
     provider = JsonLdEventsProvider()
     now = datetime.now(timezone.utc)
-    for source_id, name, region, url in SOURCES:
+    records = json.loads(CATALOGUE.read_text(encoding="utf-8"))["records"]
+    for record in records:
+        if not record["id"].startswith("events-") or record["regionId"] in {"philadelphia", "prince-georges-county-md", "wolf-trap-va"}:
+            continue
+        source_id, name, region, url = record["id"], record["publisher"], record["regionId"], record["url"]
         config = SourceConfig(
             id=source_id, name=name, provider="jsonld_events", url=url,
             domains=("event",), license_url=url,
             provider_options={"defaultCoordinates": [-76.8, 38.9], "limit": 250},
         )
-        features, report = provider.acquire(config, {})
+        try:
+            features, report = provider.acquire(config, {})
+        except Exception as exc:
+            print(json.dumps({"source": source_id, "skipped": type(exc).__name__}))
+            continue
         path = ROOT / "motherbird" / "regions" / region / "civic" / "index.json"
+        if not path.exists():
+            print(json.dumps({"source": source_id, "skipped": "no civic package"}))
+            continue
         payload = json.loads(path.read_text(encoding="utf-8"))
+        if "events" not in payload.get("artifacts", {}):
+            print(json.dumps({"source": source_id, "skipped": "no events contract"}))
+            continue
         events = payload["artifacts"]["events"]["items"]
         existing = {item["id"] for item in events}
         added = 0
