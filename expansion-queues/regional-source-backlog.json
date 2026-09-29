@@ -1227,13 +1227,14 @@
           },
           "url": "https://bouldercounty.gov/open-space/activities/calendar/",
           "workItemId": "source:volunteer-bouldercounty-gov-e331dd88",
-          "trackingState": "TRACKED_REACHABLE",
+          "trackingState": "INTEGRATED_STATIC",
           "trackingEvidence": {
             "checkedAt": "2026-09-29T17:47:01.475Z",
             "httpStatus": 200,
             "contentType": "text/html; charset=UTF-8",
             "source": "local-batched-validation"
-          }
+          },
+          "integrationEvidence": "Published validated dated/location-backed records in motherbird/regions/boulder/civic/index.json via schema.org JSON-LD"
         },
         {
           "category": "events",
@@ -3587,7 +3588,7 @@
           "url": "https://www.nycgovparks.org/events/",
           "workItemId": "source:events-nycgovparks-org-61d38c99",
           "trackingState": "INTEGRATED_STATIC",
-          "integrationEvidence": "Published civic records in motherbird/regions/*/civic/index.json"
+          "integrationEvidence": "Published validated dated/location-backed records in motherbird/regions/boulder/civic/index.json via schema.org JSON-LD"
         },
         {
           "category": "volunteer",
@@ -3812,7 +3813,7 @@
             "contentType": "text/html; charset=UTF-8",
             "source": "local-batched-validation"
           },
-          "integrationEvidence": "Published civic records in motherbird/regions/*/civic/index.json"
+          "integrationEvidence": "Published validated dated/location-backed records in motherbird/regions/boulder/civic/index.json via schema.org JSON-LD"
         },
         {
           "category": "volunteer",
@@ -4471,7 +4472,7 @@
             "contentType": "text/html; charset=UTF-8",
             "source": "local-batched-validation"
           },
-          "integrationEvidence": "Published civic records in motherbird/regions/*/civic/index.json"
+          "integrationEvidence": "Published validated dated/location-backed records in motherbird/regions/boulder/civic/index.json via schema.org JSON-LD"
         },
         {
           "category": "events",
@@ -4518,7 +4519,7 @@
             "contentType": "text/html; charset=UTF-8",
             "source": "local-batched-validation"
           },
-          "integrationEvidence": "Published civic records in motherbird/regions/*/civic/index.json"
+          "integrationEvidence": "Published validated dated/location-backed records in motherbird/regions/boulder/civic/index.json via schema.org JSON-LD"
         },
         {
           "category": "volunteer",
@@ -5511,7 +5512,7 @@
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
           },
-          "integrationEvidence": "Published civic records in motherbird/regions/*/civic/index.json"
+          "integrationEvidence": "Published validated dated/location-backed records in motherbird/regions/boulder/civic/index.json via schema.org JSON-LD"
         },
         {
           "category": "events",
@@ -6120,11 +6121,11 @@
     },
     "regionCount": 34,
     "trackingStates": {
-      "TRACKED_REACHABLE": 63,
+      "TRACKED_REACHABLE": 62,
       "UNTRACKED_ACTIONABLE": 34,
-      "INTEGRATED_STATIC": 5
+      "INTEGRATED_STATIC": 6
     },
     "trackingPolicy": "Tracked reachable sources remain in the audit backlog but are removed from the active operator queue until adapter work is requested.",
-    "unresolvedCount": 97
+    "unresolvedCount": 96
   }
 }
