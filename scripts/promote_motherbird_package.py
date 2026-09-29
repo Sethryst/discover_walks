@@ -2,7 +2,7 @@
 import argparse, json, sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from gremlin_acquisition.frontend_package import build_selected_frontend_package
+from gremlin_acquisition.frontend_release import promote
 
 def main():
     parser = argparse.ArgumentParser()
@@ -12,17 +12,10 @@ def main():
     parser.add_argument('--action', choices=('validate', 'publish'), required=True)
     parser.add_argument('--output-dir', type=Path, default=Path('promotion-artifacts/candidates'))
     args = parser.parse_args()
-    package = json.loads(args.package.read_text(encoding='utf-8'))
-    package['status'] = 'APPROVED'
     selected = [item.strip() for item in args.selected.split(',') if item.strip()]
-    result = build_selected_frontend_package(package, selected, approval_reference=args.approval_reference)
-    result['lifecycle'] = 'VALIDATED' if args.action == 'validate' else 'PUBLISHED'
-    result['approvalReference'] = args.approval_reference
-    destination_dir = Path('promotion-artifacts/published' if args.action == 'publish' else args.output_dir)
-    destination_dir.mkdir(parents=True, exist_ok=True)
-    destination = destination_dir / f"{result['packageId']}.json"
-    destination.write_text(json.dumps(result, indent=2, sort_keys=True) + '\n', encoding='utf-8')
-    print(json.dumps({'action': args.action, 'packageId': result['packageId'], 'path': str(destination), 'placeCount': len(result['places'])}, sort_keys=True))
+    publish_dir = Path('motherbird/data/acquisition-packages') if args.action == 'publish' else None
+    result, destination, publication = promote(args.package, selected, args.approval_reference, args.output_dir, publish_dir=publish_dir, audit_path=Path('promotion-artifacts/frontend-audit.jsonl'))
+    print(json.dumps({'action': args.action, 'packageId': result['packageId'], 'path': str(destination), 'publication': publication, 'placeCount': len(result['places'])}, sort_keys=True))
 
 if __name__ == '__main__':
     main()

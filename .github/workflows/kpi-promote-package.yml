@@ -54,5 +54,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: motherbird-${{ inputs.action }}-package
-          path: promotion-artifacts/${{ inputs.action == 'publish' && 'published' || 'candidates' }}/*.json
+          path: ${{ inputs.action == 'publish' && 'motherbird/data/acquisition-packages/*.json' || 'promotion-artifacts/candidates/*.json' }}
           if-no-files-found: error
