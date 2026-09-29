@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "kind": "static-source-resolution-diagnostics",
-  "generatedAt": "2026-09-29T23:16:19.159301Z",
+  "generatedAt": "2026-09-29T23:20:06.400340Z",
   "source": "expansion-queues/regional-source-backlog.json",
   "policy": "Diagnostics do not publish records; only validated dated records with location and provenance may enter civic packages.",
   "summary": {
-    "candidateCount": 86,
-    "resolvedCount": 16,
-    "unresolvedCount": 86,
+    "candidateCount": 85,
+    "resolvedCount": 17,
+    "unresolvedCount": 85,
     "blockers": {
-      "schema-unverified": 3,
+      "schema-unverified": 2,
       "selector-or-endpoint-undiscovered": 83
     }
   },
@@ -505,23 +505,6 @@
       "blocker": "selector-or-endpoint-undiscovered",
       "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
       "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
-    },
-    {
-      "sourceId": "nps-wolf-trap",
-      "regionId": "fairfax-county-va",
-      "category": "events",
-      "url": "https://developer.nps.gov/api/v1/events?parkCode=wotr",
-      "publisher": "NPS Wolf Trap events",
-      "adapter": "review-required",
-      "observed": {
-        "httpStatus": null,
-        "contentType": null,
-        "checkedAt": null
-      },
-      "blocker": "schema-unverified",
-      "diagnostic": "endpoint is reachable but no validated replay/schema evidence exists",
-      "nextAcquisitionPath": "confirm documented endpoint/schema, then add a paginated JSON adapter",
       "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
     },
     {

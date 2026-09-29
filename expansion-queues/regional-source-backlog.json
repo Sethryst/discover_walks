@@ -2079,7 +2079,9 @@
             "stability": []
           },
           "url": "https://developer.nps.gov/api/v1/events?parkCode=wotr",
-          "workItemId": "source:nps-wolf-trap"
+          "workItemId": "source:nps-wolf-trap",
+          "trackingState": "INTEGRATED_STATIC",
+          "integrationEvidence": "Published validated dated/location-backed records in motherbird/regions/boulder/civic/index.json via schema.org JSON-LD"
         },
         {
           "category": "events",
@@ -6133,10 +6135,10 @@
     "regionCount": 34,
     "trackingStates": {
       "TRACKED_REACHABLE": 53,
-      "INTEGRATED_STATIC": 16,
-      "UNTRACKED_ACTIONABLE": 33
+      "INTEGRATED_STATIC": 17,
+      "UNTRACKED_ACTIONABLE": 32
     },
     "trackingPolicy": "Tracked reachable sources remain in the audit backlog but are removed from the active operator queue until adapter work is requested.",
-    "unresolvedCount": 86
+    "unresolvedCount": 85
   }
 }
