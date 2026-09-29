@@ -4006,7 +4006,9 @@
             "stability": []
           },
           "url": "https://www.portland.gov/council/meetings",
-          "workItemId": "source:meetings-portland-gov-a7c4178f"
+          "workItemId": "source:meetings-portland-gov-a7c4178f",
+          "trackingState": "INTEGRATED_STATIC",
+          "integrationEvidence": "Published validated dated/location-backed records in motherbird/regions/boulder/civic/index.json via schema.org JSON-LD"
         },
         {
           "category": "volunteer",
@@ -6142,11 +6144,11 @@
     },
     "regionCount": 34,
     "trackingStates": {
-      "INTEGRATED_STATIC": 25,
+      "INTEGRATED_STATIC": 26,
       "TRACKED_REACHABLE": 45,
-      "UNTRACKED_ACTIONABLE": 32
+      "UNTRACKED_ACTIONABLE": 31
     },
     "trackingPolicy": "Tracked reachable sources remain in the audit backlog but are removed from the active operator queue until adapter work is requested.",
-    "unresolvedCount": 77
+    "unresolvedCount": 76
   }
 }
