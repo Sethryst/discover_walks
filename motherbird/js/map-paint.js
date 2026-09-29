@@ -7,7 +7,7 @@ import { markerPinHtml, markerVisual } from './poi-icons.js';
 import { generateTimeBasedPlan } from './planner.js';
 import { normalizePersonalCategory, upsertImportedPersonalData } from './personal-places.js';
 import { savePlannedRoute } from './saved-routes.js';
-import { createSpatialQuery, listSpatialQueries, queryPrompt, saveSpatialQuery } from './spatial-query.js';
+import { createSpatialQuery, queryPrompt, saveSpatialQuery } from './spatial-query.js';
 
 const DRAW_COLOR = '#76558b';
 function readHiddenArtifacts() {
@@ -198,16 +198,11 @@ function renderArtifactList() {
 async function renderSpatialQueryHistory() {
   const status = el('drawWorkspaceStatus'); if (!status) return;
   let details = status.querySelector('[data-spatial-query-history]');
-  const queries = (await listSpatialQueries()).filter((query) => !query.regionId || query.regionId === state.activeCity).sort((a, b) => Date.parse(b.createdAt || 0) - Date.parse(a.createdAt || 0)).slice(0, 8);
-  if (!queries.length) { details?.remove(); return; }
-  if (!details) { details = document.createElement('details'); details.dataset.spatialQueryHistory = 'true'; details.className = 'spatial-query-history'; status.prepend(details); }
-  details.innerHTML = `<summary>Saved Spatial Queries (${queries.length})</summary>`;
-  const list = document.createElement('div');
-  queries.forEach((query) => {
-    const button = document.createElement('button'); button.type = 'button'; button.className = 'secondary-button'; button.textContent = `${query.shape} · ${query.resultIds?.length || 0} results`;
-    button.addEventListener('click', () => { state.spatialQuery = query; state.spatialQueryDismissed = new Set(); state.spatialQuerySelected = new Set(); renderSpatialQuery(); }); list.append(button);
-  });
-  details.append(list);
+  // Query history must never share the draw-tool hit area. The draw rail is
+  // intentionally compact and its status node is positioned over the map;
+  // keeping the disclosure here can intercept area selection and Undo/Clear.
+  details?.remove();
+  return;
 }
 
 async function persistCreatedLayer(layer, shape) {
