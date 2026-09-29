@@ -20,3 +20,9 @@ def test_html_discovery_adds_civicplus_calendar_fallbacks():
     result = discover_html("x", "https://city.example.gov/events", html)
     assert "https://city.example.gov/Home/Components/Calendar/GetCalendarEvents" in result.candidate_endpoints
     assert "https://city.example.gov/Home/Components/Calendar/Calendar" in result.candidate_endpoints
+
+def test_html_discovery_extracts_widget_feed_attributes():
+    html = '<div data-api-url="/api/events.json"></div><script>eventSources: "https://feed.example/events.ics"</script>'
+    result = discover_html("x", "https://city.example.gov/events", html)
+    assert "https://city.example.gov/api/events.json" in result.candidate_endpoints
+    assert "https://feed.example/events.ics" in result.candidate_endpoints

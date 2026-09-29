@@ -59,6 +59,14 @@ def _script_endpoints(html: str, base: str) -> tuple[str, ...]:
             "/Home/Components/Calendar/Calendar",
         ):
             found.append(urljoin(origin, path))
+    # Calendar widgets frequently keep their feed behind data attributes or
+    # eventSources configuration instead of ordinary links.
+    for raw in re.findall(r"(?:data-(?:api|feed|endpoint|source)(?:-url)?|eventSources?)\s*=[\"']([^\"']+)", html, re.I):
+        target = urljoin(base, unescape(raw).strip())
+        if urlparse(target).scheme in {"http", "https"}:
+            found.append(target)
+    for raw in re.findall(r"(?:api|feed|endpoint|source|calendar)[A-Za-z0-9_-]*\s*:\s*[\"'](https?://[^\"']+)", html, re.I):
+        found.append(raw)
     return tuple(sorted(set(found)))
 
 def discover_html(source_id: str, url: str, html: str, *, http_status: int = 200, content_type: str = "text/html", final_url: str | None = None) -> DiscoveryResult:
