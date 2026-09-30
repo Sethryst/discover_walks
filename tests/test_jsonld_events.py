@@ -6,7 +6,7 @@ from app.pipeline.source_config import SourceConfig
 class _Response:
     def __enter__(self): return self
     def __exit__(self, *args): return None
-    def read(self): return b'<script type="application/ld+json">{"@type":"Event","name":"Trail day","startDate":"2026-08-08T12:00:00Z","location":{"geo":{"latitude":38.9,"longitude":-77.1}}}</script>'
+    def read(self): return b'<script type="application/ld+json">{"@type":"Event","name":"Trail day","startDate":"2026-08-08T12:00:00Z","location":{"geo":{"latitude":38.9,"longitude":-77.1},"address":"1 Trail Road"}}</script>'
 
 class JsonLdEventsTests(unittest.TestCase):
     @patch("app.pipeline.adapters.jsonld_events.urlopen")
