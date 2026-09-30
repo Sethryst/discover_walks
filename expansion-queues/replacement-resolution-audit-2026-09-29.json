@@ -412,10 +412,10 @@
     },
     {
       "sourceId": "volunteer-nycgovparks-org-4b7ad625",
-      "replacementUrl": "https://data.cityofnewyork.us/resource/fudw-fgrp.json",
-      "status": "BLOCKED_FRESHNESS",
-      "evidence": "Official NYC Parks Socrata metadata exposes event_id, title, date, start_time, end_time, location_description, url, and the joinable cpcm-i88g location dataset. The current/future query returned no rows and sampled inventory records are historical, so no current volunteer/event records were published.",
-      "nextAcquisitionPath": "Recheck the official Socrata inventory for current/future rows and join cpcm-i88g locations before publication."
+      "replacementUrl": "https://www.nycgovparks.org/xml/events_300_rss.json",
+      "status": "INTEGRATED_STATIC",
+      "evidence": "Official NYC Parks BigApps upcoming-14-days JSON returned 949 current/future records with GUIDs, explicit local start/end times, locations, and canonical NYC Parks links; records published to the NYC civic package.",
+      "nextAcquisitionPath": null
     },
     {
       "sourceId": "volunteer-pgparks-com-bf740430",
