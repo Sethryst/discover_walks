@@ -199,6 +199,13 @@
       "status": "BLOCKED_CURRENT_ITEMS",
       "evidence": "The official Tourism Santa Fe calendar page returned HTTP 200, but its ItemList contained zero event items; the site-owned REST endpoint returned HTTP 403. No event was promoted from the empty list or blocked endpoint.",
       "nextAcquisitionPath": "Recheck the official calendar when current item-level listings are present, or obtain an owner-approved public export/API with stable IDs, explicit dates/times/locations, and freshness."
+    },
+    {
+      "sourceId": "events-boisestatepublicradio-org-1b57dd9c",
+      "replacementUrl": "https://www.boisestatepublicradio.org/community-calendar-search",
+      "status": "BLOCKED_FRESHNESS",
+      "evidence": "The official Boise State Public Radio community calendar returned item-level event URLs with stable slugs and explicit event pages, but the current sampled listings were dated 2026-09-29 or earlier at the 2026-09-30 freshness point. No future item was published.",
+      "nextAcquisitionPath": "Recheck the official community calendar for a future dated item with explicit start/end times, location, canonical URL, and stable slug before promotion."
     }
   ]
 }
