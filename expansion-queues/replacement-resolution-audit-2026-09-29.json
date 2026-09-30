@@ -195,10 +195,10 @@
     },
     {
       "sourceId": "events-sfrecpark-org-ddd118f6",
-      "replacementUrl": "https://sfrecpark.org/rss.aspx",
-      "status": "BLOCKED_SCHEMA",
-      "evidence": "HTTP 200 normal HTML page (text/html), not XML RSS/Atom; no feed items or item-level event schema were present.",
-      "nextAcquisitionPath": "Obtain a current official SF Rec & Parks RSS/ICS/JSON endpoint or add a verified event-calendar selector."
+      "replacementUrl": "https://sfrecpark.org/iCalendar.aspx",
+      "status": "INTEGRATED_STATIC",
+      "evidence": "Official SF Recreation & Parks iCalendar subscription directory exposed 78 current/future events with UID, explicit local date/time, location, and canonical EID URLs; records published to the San Francisco civic package.",
+      "nextAcquisitionPath": null
     },
     {
       "sourceId": "events-town-keystone-co-us-e3452f18",

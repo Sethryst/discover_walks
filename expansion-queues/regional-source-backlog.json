@@ -1676,7 +1676,7 @@
       "note": "Audit categories apply only to rows present in the replacement audit; the diagnostics remain authoritative for all 54 candidate rows."
     },
     "unresolvedCount": 0,
-    "integratedStaticCount": 49,
+    "integratedStaticCount": 51,
     "excludedIntegratedSources": {
       "count": 48,
       "policy": "INTEGRATED_STATIC sources are excluded from active candidate queues but remain represented in release packages and resolution audits."
@@ -1879,18 +1879,18 @@
       "regionId": "san-francisco",
       "category": "events",
       "originalUrl": "https://sfrecpark.org/Calendar.aspx",
-      "status": "BLOCKED_SCHEMA",
-      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
-      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+      "status": "INTEGRATED_STATIC",
+      "evidence": "Official SF Recreation & Parks iCalendar subscription directory exposed 78 current/future events with UID, explicit local date/time, location, and canonical EID URLs; records published to the San Francisco civic package.",
+      "nextAcquisitionPath": null
     },
     {
       "sourceId": "events-sfrecpark-org-ddd118f6",
       "regionId": "san-francisco",
       "category": "events",
       "originalUrl": "https://sfrecpark.org/rss.aspx",
-      "status": "BLOCKED_SCHEMA",
-      "evidence": "HTTP 200 normal HTML page (text/html), not XML RSS/Atom; no feed items or item-level event schema were present.",
-      "nextAcquisitionPath": "Obtain a current official SF Rec & Parks RSS/ICS/JSON endpoint or add a verified event-calendar selector."
+      "status": "INTEGRATED_STATIC",
+      "evidence": "Official SF Recreation & Parks iCalendar subscription directory exposed 78 current/future events with UID, explicit local date/time, location, and canonical EID URLs; records published to the San Francisco civic package.",
+      "nextAcquisitionPath": null
     },
     {
       "sourceId": "events-thebostoncalendar-com-6e034980",
