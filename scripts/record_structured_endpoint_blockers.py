@@ -41,6 +41,13 @@ new = [
         "evidence": "The official DC public calendar endpoint returned RSS with stable event URLs, explicit dates/times, and locations, but the sampled current feed item was dated 2013-04-17 and therefore fails the freshness requirement. No historical records were published.",
         "nextAcquisitionPath": "Recheck the official DC calendar RSS when current/future items are present, or obtain a current DPR event export/API with stable IDs, explicit dates/times/locations, and freshness.",
     },
+    {
+        "sourceId": "events-chicago-gov-44124097",
+        "replacementUrl": "https://www.chicago.gov/city/en/rss.html",
+        "status": "BLOCKED_ENDPOINT_NOT_FOUND",
+        "evidence": "The recorded official Chicago RSS entrypoint returned HTTP 404 through a normal public request. No replacement press-room content, search snippet, or undated page was treated as an event feed.",
+        "nextAcquisitionPath": "Obtain a current official Chicago events RSS/ICS/JSON endpoint or source-specific dated event calendar with stable IDs, explicit dates/times/locations, and freshness.",
+    },
 ]
 ids = {item["sourceId"] for item in new}
 payload["results"] = [item for item in payload["results"] if item.get("sourceId") not in ids]
