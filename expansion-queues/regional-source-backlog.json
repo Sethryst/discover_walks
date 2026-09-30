@@ -1829,7 +1829,9 @@
             "stability": []
           },
           "url": "https://www.denvergov.org/pocketgov/en-US/parks-recreation/programs-services/volunteer",
-          "workItemId": "source:volunteer-denvergov-org-ffc494c0"
+          "workItemId": "source:volunteer-denvergov-org-ffc494c0",
+          "trackingState": "INTEGRATED_STATIC",
+          "integrationEvidence": "Published 2 dated/location-backed Denver Parks volunteer records from the official Engage public calendar HTML selector, with stable activity UUIDs and checked 2026-09-30."
         },
         {
           "category": "events",
@@ -6166,11 +6168,11 @@
     },
     "regionCount": 34,
     "trackingStates": {
-      "INTEGRATED_STATIC": 40,
+      "INTEGRATED_STATIC": 41,
       "TRACKED_REACHABLE": 39,
-      "UNTRACKED_ACTIONABLE": 23
+      "UNTRACKED_ACTIONABLE": 22
     },
     "trackingPolicy": "Tracked reachable sources remain in the audit backlog but are removed from the active operator queue until adapter work is requested.",
-    "unresolvedCount": 62
+    "unresolvedCount": 61
   }
 }
