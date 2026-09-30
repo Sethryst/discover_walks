@@ -5450,7 +5450,9 @@
             "stability": []
           },
           "url": "https://www.seattle.gov/parks/volunteer-and-ways-to-give",
-          "workItemId": "source:volunteer-seattle-gov-c1758f69"
+          "workItemId": "source:volunteer-seattle-gov-c1758f69",
+          "trackingState": "INTEGRATED_STATIC",
+          "integrationEvidence": "Published 2 dated/location-backed Seattle Parks volunteer records from the official Trumba ICS export, with stable event UIDs and checked 2026-09-29."
         },
         {
           "category": "events",
@@ -6154,11 +6156,11 @@
     },
     "regionCount": 34,
     "trackingStates": {
-      "INTEGRATED_STATIC": 34,
+      "INTEGRATED_STATIC": 35,
       "TRACKED_REACHABLE": 39,
-      "UNTRACKED_ACTIONABLE": 29
+      "UNTRACKED_ACTIONABLE": 28
     },
     "trackingPolicy": "Tracked reachable sources remain in the audit backlog but are removed from the active operator queue until adapter work is requested.",
-    "unresolvedCount": 68
+    "unresolvedCount": 67
   }
 }

@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
   "kind": "static-source-resolution-diagnostics",
-  "generatedAt": "2026-09-30T00:18:42.750398Z",
+  "generatedAt": "2026-09-30T00:42:07.661758Z",
   "source": "expansion-queues/regional-source-backlog.json",
   "policy": "Diagnostics do not publish records; only validated dated records with location and provenance may enter civic packages.",
   "summary": {
-    "candidateCount": 68,
-    "resolvedCount": 34,
-    "unresolvedCount": 68,
+    "candidateCount": 67,
+    "resolvedCount": 35,
+    "unresolvedCount": 67,
     "blockers": {
       "schema-unverified": 2,
-      "selector-or-endpoint-undiscovered": 66
+      "selector-or-endpoint-undiscovered": 65
     }
   },
   "sources": [
@@ -988,23 +988,6 @@
       "regionId": "seattle",
       "category": "meetings",
       "url": "https://www.seattle.gov/civic-meetings",
-      "publisher": "seattle.gov",
-      "adapter": "review-required",
-      "observed": {
-        "httpStatus": null,
-        "contentType": null,
-        "checkedAt": null
-      },
-      "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
-    },
-    {
-      "sourceId": "volunteer-seattle-gov-c1758f69",
-      "regionId": "seattle",
-      "category": "volunteer",
-      "url": "https://www.seattle.gov/parks/volunteer-and-ways-to-give",
       "publisher": "seattle.gov",
       "adapter": "review-required",
       "observed": {
