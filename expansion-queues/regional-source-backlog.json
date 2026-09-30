@@ -2069,8 +2069,8 @@
             "source": "local-batched-validation"
           },
           "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
-          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+          "resolutionNote": "The official New Orleans & Company event list exposes current schema.org item records with stable detail URLs, future dates, and venue labels, but the sampled JSON-LD provides date-only startDate/endDate values and no explicit start time. No event was published without a verifiable time.",
+          "nextAcquisitionPath": "Use official item-level detail pages or a documented calendar endpoint that exposes explicit start/end date-times, stable IDs, locations, canonical URLs, and freshness."
         }
       ]
     },
@@ -3055,8 +3055,8 @@
             "source": "local-batched-validation"
           },
           "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "Reachable official Richmond Region Tourism event-detail pages expose schema.org Event records with stable detail URLs and locations, but sampled listings expose date-only startDate/endDate values; times appear only in prose or recurring descriptions. No records were published without explicit structured times.",
-          "nextAcquisitionPath": "Locate an official Richmond calendar/API field or item pages with explicit start/end date-times, then validate freshness and stable detail URLs before promotion."
+          "resolutionNote": "The official Richmond Region Tourism event list exposes schema.org item records with stable detail URLs and venue names, but the sampled JSON-LD provides date-only startDate/endDate values; prose time ranges are not sufficient structured time evidence. No event was published without explicit start/end date-times.",
+          "nextAcquisitionPath": "Locate an official Richmond calendar/API field or item-level pages with explicit start/end date-times, then validate freshness, stable IDs, locations, and canonical URLs before promotion."
         }
       ]
     },

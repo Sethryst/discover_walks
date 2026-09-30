@@ -134,8 +134,8 @@
       "sourceId": "events-neworleans-com-0da88206",
       "replacementUrl": "https://www.neworleans.com/events/",
       "status": "BLOCKED_SCHEMA",
-      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
-      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+      "evidence": "The official New Orleans & Company event list exposes current schema.org item records with stable detail URLs, future dates, and venue labels, but the sampled JSON-LD provides date-only startDate/endDate values and no explicit start time. No event was published without a verifiable time.",
+      "nextAcquisitionPath": "Use official item-level detail pages or a documented calendar endpoint that exposes explicit start/end date-times, stable IDs, locations, canonical URLs, and freshness."
     },
     {
       "sourceId": "events-nycforfree-co-3a433d76",
@@ -211,8 +211,8 @@
       "sourceId": "events-visitrichmondva-com-1ae28ba3",
       "replacementUrl": "https://www.visitrichmondva.com/events/",
       "status": "BLOCKED_SCHEMA",
-      "evidence": "Reachable official Richmond Region Tourism event-detail pages expose schema.org Event records with stable detail URLs and locations, but sampled listings expose date-only startDate/endDate values; times appear only in prose or recurring descriptions. No records were published without explicit structured times.",
-      "nextAcquisitionPath": "Locate an official Richmond calendar/API field or item pages with explicit start/end date-times, then validate freshness and stable detail URLs before promotion."
+      "evidence": "The official Richmond Region Tourism event list exposes schema.org item records with stable detail URLs and venue names, but the sampled JSON-LD provides date-only startDate/endDate values; prose time ranges are not sufficient structured time evidence. No event was published without explicit start/end date-times.",
+      "nextAcquisitionPath": "Locate an official Richmond calendar/API field or item-level pages with explicit start/end date-times, then validate freshness, stable IDs, locations, and canonical URLs before promotion."
     },
     {
       "sourceId": "events-visitsedona-com-64ad436c",
