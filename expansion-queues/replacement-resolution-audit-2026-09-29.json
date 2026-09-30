@@ -5,11 +5,256 @@
   "policy": "Replacement pages are discovery leads only. No record is published without an official item-level date, location, stable identifier, provenance, and freshness.",
   "results": [
     {
-      "sourceId": "volunteer-seattle-gov-c1758f69",
-      "replacementUrl": "https://www.trumba.com/calendars/parks-recreation.ics",
+      "sourceId": "events-6amcity-com-a7dfd2b6",
+      "replacementUrl": "https://6amcity.com/web/va/richmond/events",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "events-boisestatepublicradio-org-1b57dd9c",
+      "replacementUrl": "https://www.boisestatepublicradio.org/community-calendar-search",
       "status": "INTEGRATED_STATIC",
-      "evidence": "Official Seattle Parks page embeds the Trumba public calendar; the ICS export returned current volunteer entries with timezone, UID, title, date/time, and location. Two records published to the Seattle civic package.",
+      "evidence": "The official Boise State Public Radio detail page exposed a non-recurring October 1, 2026 opening reception with explicit 5–9 PM time, Idaho Art Gallery street address, stable detail slug, and official station URL; one record was published.",
       "nextAcquisitionPath": null
+    },
+    {
+      "sourceId": "events-bostonusa-com-7323eab4",
+      "replacementUrl": "https://www.bostonusa.com/events/",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "events-bouldercoloradousa-com-8fb18e01",
+      "replacementUrl": "https://www.bouldercoloradousa.com/includes/rest_v2/plugins_events_events_by_date/find/",
+      "status": "BLOCKED_ACCESS_OR_PERMISSION",
+      "evidence": "The official Boulder calendar page documents this site-owned REST path in its JavaScript, but a normal unauthenticated request returned HTTP 403. No bypass, alternate access-control path, or records from the blocked endpoint were used.",
+      "nextAcquisitionPath": "Obtain an owner-approved public export/API or a normally reachable official item-level event page; require stable IDs, explicit dates/times/locations, and freshness."
+    },
+    {
+      "sourceId": "events-chicago-gov-44124097",
+      "replacementUrl": "https://www.chicago.gov/city/en/rss.html",
+      "status": "BLOCKED_ENDPOINT_NOT_FOUND",
+      "evidence": "The recorded official Chicago RSS entrypoint returned HTTP 404 through a normal public request. No replacement press-room content, search snippet, or undated page was treated as an event feed.",
+      "nextAcquisitionPath": "Obtain a current official Chicago events RSS/ICS/JSON endpoint or source-specific dated event calendar with stable IDs, explicit dates/times/locations, and freshness."
+    },
+    {
+      "sourceId": "events-chicago-gov-83a3ca20",
+      "replacementUrl": "https://www.chicago.gov/city/en/depts/dca/supp_info/events2.html",
+      "status": "INTEGRATED_STATIC",
+      "evidence": "The official City of Chicago DCASE calendar JSON endpoint returned future non-recurring records with explicit start/end times, addresses, stable numeric IDs, and chicago.gov detail URLs; third-party registration URLs were excluded.",
+      "nextAcquisitionPath": null
+    },
+    {
+      "sourceId": "events-chicagoonthecheap-com-c652aec2",
+      "replacementUrl": "https://chicagoonthecheap.com/events/",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "events-denvergov-org-c69e47eb",
+      "replacementUrl": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Public-Event-Film-Permitting/Public-Events-Calendar",
+      "status": "ENDPOINT_DISCOVERED_SCHEMA_PENDING",
+      "evidence": "The official Denver calendar page returned HTTP 200 and exposes the Eproval public calendar key 9ce8805d-e5be-4d77-b848-5abdb86c16bc plus the vendor calendar client. A direct guessed POST to the vendor host's /api/v2/public/rpc returned HTTP 405, confirming that the client URI/host handshake is required; no validated item payload was obtained and no records were published from the key or page shell.",
+      "nextAcquisitionPath": "Replay the Eproval public-calendar client handshake for the recorded calendar key, capture Calendar_GetPublicCalendarEntries results, and validate stable IDs, explicit dates/times/locations, official detail URLs, and freshness before promotion."
+    },
+    {
+      "sourceId": "events-districtfray-com-d21bcaee",
+      "replacementUrl": "https://districtfray.com/events/free-events/",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "events-downtown-denver-com-920db7f3",
+      "replacementUrl": "https://www.downtowndenver.com/event-list",
+      "status": "INTEGRATED_STATIC",
+      "evidence": "Official Downtown Denver Partnership event detail JSON-LD returned scheduled start/end timestamps, venue address 101 W 14th Ave, Denver, and canonical event slug for Civic Center EATS 9/30/2026.",
+      "nextAcquisitionPath": null
+    },
+    {
+      "sourceId": "events-downtownnorfolk-org-cf7e9296",
+      "replacementUrl": "https://www.downtownnorfolk.org/explore/calendar",
+      "status": "INTEGRATED_STATIC",
+      "evidence": "Official Downtown Norfolk detail pages exposed explicit date, time, location, and canonical URL fields for three current/future events; three records were published to Norfolk civic events.",
+      "nextAcquisitionPath": null
+    },
+    {
+      "sourceId": "events-dpr-dc-gov-67b39fe7",
+      "replacementUrl": "https://calendar.dc.gov/node/all/events",
+      "status": "BLOCKED_FRESHNESS",
+      "evidence": "The official DC public calendar endpoint returned RSS with stable event URLs, explicit dates/times, and locations, but the sampled current feed item was dated 2013-04-17 and therefore fails the freshness requirement. No historical records were published.",
+      "nextAcquisitionPath": "Recheck the official DC calendar RSS when current/future items are present, or obtain a current DPR event export/API with stable IDs, explicit dates/times/locations, and freshness."
+    },
+    {
+      "sourceId": "events-events-portlandonline-us-09e0b6eb",
+      "replacementUrl": "https://events.portlandonline.us/",
+      "status": "BLOCKED_ACCESS_OR_PERMISSION",
+      "evidence": "The municipal PortlandOnline events root and calendar path both returned HTTP 403 through normal public requests. No bypass, credential use, or third-party mirror was attempted; no records were published.",
+      "nextAcquisitionPath": "Obtain a City of Portland-approved public calendar export/API or a normally reachable official item-level event page with stable IDs, explicit dates/times/locations, and freshness."
+    },
+    {
+      "sourceId": "events-exploreasheville-com-8e96aa9e",
+      "replacementUrl": "https://www.exploreasheville.com/events",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "events-exploreasheville-com-94d72b77",
+      "replacementUrl": "https://www.exploreasheville.com/events/free-events-asheville-nc",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "events-greaterseattleonthecheap-com-7d63f8d3",
+      "replacementUrl": "https://www.greaterseattleonthecheap.com/events/",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "events-mainepublic-org-bfb30cd0",
+      "replacementUrl": "https://www.mainepublic.org/community-calendar",
+      "status": "INTEGRATED_STATIC",
+      "evidence": "The official Maine Public detail page for the Maxwell Quartet exposed a stable URL, explicit October 25, 2026 date, 3:00–4:30 PM time, and Minsky Recital Hall venue; one record was published to Portland-Maine civic events.",
+      "nextAcquisitionPath": null
+    },
+    {
+      "sourceId": "events-meridiancity-org-44f75203",
+      "replacementUrl": null,
+      "status": "BLOCKED_ACCESS_OR_PERMISSION",
+      "evidence": "Operator guidance identifies a third-party Tockify calendar, but no owner-approved export/API was supplied; the old city page is not used to bypass a 403.",
+      "nextAcquisitionPath": "Obtain City of Meridian/Tockify owner permission and an official export, feed, or API."
+    },
+    {
+      "sourceId": "events-neworleans-com-0da88206",
+      "replacementUrl": "https://www.neworleans.com/events/",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "events-nycforfree-co-3a433d76",
+      "replacementUrl": "https://www.nycforfree.co/weekly-roundup",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "events-phila-gov-7efb5a03",
+      "replacementUrl": "https://www.phila.gov/parks/",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "events-portlandlivingonthecheap-com-be5408f7",
+      "replacementUrl": "https://portlandlivingonthecheap.com/category/free-events/",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "events-santafe-org-068ccfff",
+      "replacementUrl": "https://www.santafe.org/events/",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "events-santafe-org-8f1eb055",
+      "replacementUrl": "https://www.santafe.org/visiting-santa-fe/calendar/",
+      "status": "BLOCKED_CURRENT_ITEMS",
+      "evidence": "The official Tourism Santa Fe calendar page returned HTTP 200, but its ItemList contained zero event items; the site-owned REST endpoint returned HTTP 403. No event was promoted from the empty list or blocked endpoint.",
+      "nextAcquisitionPath": "Recheck the official calendar when current item-level listings are present, or obtain an owner-approved public export/API with stable IDs, explicit dates/times/locations, and freshness."
+    },
+    {
+      "sourceId": "events-seattle-gov-cca4136c",
+      "replacementUrl": "https://www.seattle.gov/event-calendar",
+      "status": "INTEGRATED_STATIC",
+      "evidence": "Seattle.gov embeds a reachable Trumba JSON feed with future non-recurring records, explicit date/time/location fields, stable event IDs, and Seattle.gov permalinks; meeting and volunteer-work listings were excluded.",
+      "nextAcquisitionPath": null
+    },
+    {
+      "sourceId": "events-sedonaaz-gov-605e78d8",
+      "replacementUrl": "https://www.sedonaaz.gov/your-government/general-information/city-calendar",
+      "status": "BLOCKED_ACCESS_OR_PERMISSION",
+      "evidence": "The official Sedona city-calendar path returned HTTP 403 through a normal public request. No access-control bypass, alternate credential, or third-party mirror was used; no event records were published.",
+      "nextAcquisitionPath": "Obtain a City of Sedona-approved public calendar export/API or a normally reachable official item-level event page with stable IDs, explicit dates/times/locations, and freshness."
+    },
+    {
+      "sourceId": "events-sfrecpark-org-822dab73",
+      "replacementUrl": "https://sfrecpark.org/Calendar.aspx",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "events-sfrecpark-org-ddd118f6",
+      "replacementUrl": "https://sfrecpark.org/rss.aspx",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "HTTP 200 normal HTML page (text/html), not XML RSS/Atom; no feed items or item-level event schema were present.",
+      "nextAcquisitionPath": "Obtain a current official SF Rec & Parks RSS/ICS/JSON endpoint or add a verified event-calendar selector."
+    },
+    {
+      "sourceId": "events-town-keystone-co-us-e3452f18",
+      "replacementUrl": "https://www.keystoneco.gov/",
+      "status": "BLOCKED_EVENT_FEED_NOT_VERIFIED",
+      "evidence": "The official Town of Keystone site exposes council/agenda pages and an event-request form, but no reachable official public event feed, structured calendar, or item-level event pages were verified. A dated staff report is permit/planning guidance rather than a publishable event feed, so no event records were fabricated from it.",
+      "nextAcquisitionPath": "Obtain the Town's official event calendar export/API or a verified source-specific selector with stable event IDs, explicit dates, times, and locations; keep municipal meetings and resort/third-party programming separate."
+    },
+    {
+      "sourceId": "events-visitrichmondva-com-1ae28ba3",
+      "replacementUrl": "https://www.visitrichmondva.com/events/",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "Reachable official Richmond Region Tourism event-detail pages expose schema.org Event records with stable detail URLs and locations, but sampled listings expose date-only startDate/endDate values; times appear only in prose or recurring descriptions. No records were published without explicit structured times.",
+      "nextAcquisitionPath": "Locate an official Richmond calendar/API field or item pages with explicit start/end date-times, then validate freshness and stable detail URLs before promotion."
+    },
+    {
+      "sourceId": "events-visitsedona-com-64ad436c",
+      "replacementUrl": "https://visitsedona.com/events-calendar/",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "food-for-others",
+      "replacementUrl": "https://foodforothers.org",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "meetings-ashevillenc-gov-644961e1",
+      "replacementUrl": "https://www.ashevillenc.gov/government/",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "meetings-chicityclerk-com-959bf3e4",
+      "replacementUrl": "https://www.chicityclerk.com/public-comment-process",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "meetings-cityofboise-org-3b05a56d",
+      "replacementUrl": "https://boisecityid.iqm2.com/Citizens/Calendar.aspx",
+      "status": "ENDPOINT_DISCOVERED_SCHEMA_PENDING",
+      "evidence": "The official City of Boise council destination leads to a normally reachable IQM2 calendar shell. The sampled response was HTML and did not expose verifiable item-level meeting rows, stable IDs, or a public JSON/ICS payload, so no meeting was published from inferred cadence or third-party mirrors.",
+      "nextAcquisitionPath": "Identify the IQM2 public calendar's documented item endpoint or stable meeting-detail selector and verify explicit dates, times, City Hall/virtual locations, and IDs."
+    },
+    {
+      "sourceId": "meetings-dcouncil-us-4d64fb67",
+      "replacementUrl": "https://dccouncil.gov/wp-json/tribe/events/v1/events",
+      "status": "ENDPOINT_DISCOVERED_NO_CURRENT_ITEMS",
+      "evidence": "The official DC Council RSS page exposes the Council calendar, and the public site advertises a WordPress Events REST API. A normal JSON request returned HTTP 200 with a valid events schema but zero published items in the current/future window; no record was promoted from archived or undated hearing material.",
+      "nextAcquisitionPath": "Recheck the official Events REST API or Hearing Management System when current published hearings are present, and require stable item IDs, explicit dates, times, and Wilson Building/virtual locations."
     },
     {
       "sourceId": "meetings-denvergov-org-461d818b",
@@ -33,6 +278,20 @@
       "nextAcquisitionPath": null
     },
     {
+      "sourceId": "meetings-portlandmaine-gov-bc259924",
+      "replacementUrl": "https://portlandme.civicclerk.com/web/home.aspx",
+      "status": "ENDPOINT_DISCOVERED_SCHEMA_PENDING",
+      "evidence": "Official Portland, Maine homepage links to CivicClerk agendas/minutes and its calendar page exposes a CivicClerk-backed event path, but the public HTML response is client-rendered and the sampled event payload did not expose validated item-level date/location fields.",
+      "nextAcquisitionPath": "Identify the public CivicClerk calendar JSON/ICS endpoint or use a documented selector that returns stable event IDs, dates, times, and locations."
+    },
+    {
+      "sourceId": "meetings-princegeorgescountymd-gov-95ea3f6d",
+      "replacementUrl": "https://princegeorgescountymd.legistar.com/Calendar.aspx",
+      "status": "INTEGRATED_STATIC",
+      "evidence": "Official Legistar calendar returned current 2026 meeting rows with date, time, location, and stable meeting-detail IDs; two records published to the Prince George's County civic package.",
+      "nextAcquisitionPath": null
+    },
+    {
       "sourceId": "meetings-richmondgov-com-87666ac9",
       "replacementUrl": "https://richmondva.legistar.com/Calendar.aspx",
       "status": "INTEGRATED_STATIC",
@@ -47,62 +306,6 @@
       "nextAcquisitionPath": "Identify the documented CivicClerk public API/ICS endpoint or a stable event page with explicit meeting fields."
     },
     {
-      "sourceId": "volunteer-santafenm-gov-57a0cd99",
-      "replacementUrl": "https://santafenm.gov/public-works/parks-and-open-space",
-      "status": "BLOCKED_SCHEMA",
-      "evidence": "The official Santa Fe Parks and Open Space page provides a volunteer application link and general Adopt-a-Park/Trail information, but no scheduled volunteer items with explicit dates, times, locations, or stable opportunity IDs. The waiver/form is not a volunteer event feed, so no records were published.",
-      "nextAcquisitionPath": "Obtain the City’s public volunteer master-calendar export/API or item-level opportunity pages with stable IDs, explicit dates, times, and locations."
-    },
-    {
-      "sourceId": "volunteer-nola-gov-c959480f",
-      "replacementUrl": null,
-      "status": "DISCOVERY_ONLY_PERMIT_GUIDANCE",
-      "evidence": "The operator replacement is a park or recreation-center use permit. Permit instructions describe how to request space and do not constitute scheduled volunteer opportunities or an event feed; no records were fabricated from the guidance.",
-      "nextAcquisitionPath": "Locate an official NORDC volunteer calendar or item-level volunteer opportunity feed with stable IDs, explicit dates, times, and locations."
-    },
-    {
-      "sourceId": "events-downtown-denver-com-920db7f3",
-      "replacementUrl": "https://www.downtowndenver.com/event-list",
-      "status": "INTEGRATED_STATIC",
-      "evidence": "Official Downtown Denver Partnership event detail JSON-LD returned scheduled start/end timestamps, venue address 101 W 14th Ave, Denver, and canonical event slug for Civic Center EATS 9/30/2026.",
-      "nextAcquisitionPath": null
-    },
-    {
-      "sourceId": "meetings-cityofboise-org-3b05a56d",
-      "replacementUrl": "https://boisecityid.iqm2.com/Citizens/Calendar.aspx",
-      "status": "ENDPOINT_DISCOVERED_SCHEMA_PENDING",
-      "evidence": "The official City of Boise council destination leads to a normally reachable IQM2 calendar shell. The sampled response was HTML and did not expose verifiable item-level meeting rows, stable IDs, or a public JSON/ICS payload, so no meeting was published from inferred cadence or third-party mirrors.",
-      "nextAcquisitionPath": "Identify the IQM2 public calendar's documented item endpoint or stable meeting-detail selector and verify explicit dates, times, City Hall/virtual locations, and IDs."
-    },
-    {
-      "sourceId": "events-town-keystone-co-us-e3452f18",
-      "replacementUrl": "https://www.keystoneco.gov/",
-      "status": "BLOCKED_EVENT_FEED_NOT_VERIFIED",
-      "evidence": "The official Town of Keystone site exposes council/agenda pages and an event-request form, but no reachable official public event feed, structured calendar, or item-level event pages were verified. A dated staff report is permit/planning guidance rather than a publishable event feed, so no event records were fabricated from it.",
-      "nextAcquisitionPath": "Obtain the Town's official event calendar export/API or a verified source-specific selector with stable event IDs, explicit dates, times, and locations; keep municipal meetings and resort/third-party programming separate."
-    },
-    {
-      "sourceId": "volunteer-denvergov-org-ffc494c0",
-      "replacementUrl": "https://engagedenver.denvergov.org/Calendar",
-      "status": "INTEGRATED_STATIC",
-      "evidence": "Official Denver Engage public calendar HTML exposed stable activity UUIDs, explicit 2026-09-30 dates/times, and locations for West-Bar-Val-Wood Park Cleanup and Harvey Park Cleanup & Flowerbed Adoption. Two records published; entries without explicit locations or unqualified dates were excluded.",
-      "nextAcquisitionPath": null
-    },
-    {
-      "sourceId": "meetings-portlandmaine-gov-bc259924",
-      "replacementUrl": "https://portlandme.civicclerk.com/web/home.aspx",
-      "status": "ENDPOINT_DISCOVERED_SCHEMA_PENDING",
-      "evidence": "Official Portland, Maine homepage links to CivicClerk agendas/minutes and its calendar page exposes a CivicClerk-backed event path, but the public HTML response is client-rendered and the sampled event payload did not expose validated item-level date/location fields.",
-      "nextAcquisitionPath": "Identify the public CivicClerk calendar JSON/ICS endpoint or use a documented selector that returns stable event IDs, dates, times, and locations."
-    },
-    {
-      "sourceId": "volunteer-portlandmaine-gov-2c137978",
-      "replacementUrl": "https://www.portlandmaine.gov/programs",
-      "status": "BLOCKED_SCHEMA",
-      "evidence": "The official Portland Parks, Recreation & Facilities programs page describes volunteering and links to general recreation/program navigation, but does not expose item-level volunteer dates, times, locations, or stable opportunity IDs. The citywide calendar contains general events and meetings, not a validated volunteer feed, so no records were published.",
-      "nextAcquisitionPath": "Obtain the official Parks/Recreation volunteer calendar, MyRec export/API, or item-level opportunity pages with stable IDs, explicit dates, times, and locations."
-    },
-    {
       "sourceId": "meetings-seattle-gov-3418b89c",
       "replacementUrl": "https://seattle.legistar.com/Calendar.aspx",
       "status": "BLOCKED_CURRENT_SAMPLE",
@@ -110,60 +313,11 @@
       "nextAcquisitionPath": "Recheck the official Legistar calendar for a non-canceled dated meeting with a confirmed location before promotion."
     },
     {
-      "sourceId": "meetings-dcouncil-us-4d64fb67",
-      "replacementUrl": "https://dccouncil.gov/wp-json/tribe/events/v1/events",
-      "status": "ENDPOINT_DISCOVERED_NO_CURRENT_ITEMS",
-      "evidence": "The official DC Council RSS page exposes the Council calendar, and the public site advertises a WordPress Events REST API. A normal JSON request returned HTTP 200 with a valid events schema but zero published items in the current/future window; no record was promoted from archived or undated hearing material.",
-      "nextAcquisitionPath": "Recheck the official Events REST API or Hearing Management System when current published hearings are present, and require stable item IDs, explicit dates, times, and Wilson Building/virtual locations."
-    },
-    {
-      "sourceId": "meetings-princegeorgescountymd-gov-95ea3f6d",
-      "replacementUrl": "https://princegeorgescountymd.legistar.com/Calendar.aspx",
-      "status": "INTEGRATED_STATIC",
-      "evidence": "Official Legistar calendar returned current 2026 meeting rows with date, time, location, and stable meeting-detail IDs; two records published to the Prince George's County civic package.",
-      "nextAcquisitionPath": null
-    },
-    {
-      "sourceId": "events-sfrecpark-org-ddd118f6",
-      "replacementUrl": "https://sfrecpark.org/rss.aspx",
+      "sourceId": "meetings-sfbos-org-705d79ff",
+      "replacementUrl": "https://sfbos.org/participate-and-submit-public-comments",
       "status": "BLOCKED_SCHEMA",
-      "evidence": "HTTP 200 normal HTML page (text/html), not XML RSS/Atom; no feed items or item-level event schema were present.",
-      "nextAcquisitionPath": "Obtain a current official SF Rec & Parks RSS/ICS/JSON endpoint or add a verified event-calendar selector."
-    },
-    {
-      "sourceId": "volunteer-nycgovparks-org-4b7ad625",
-      "replacementUrl": "https://data.cityofnewyork.us/resource/fudw-fgrp.json",
-      "status": "BLOCKED_FRESHNESS",
-      "evidence": "Official Socrata metadata exposes event_id, title, date, start_time, end_time, location_description, url, and related location table; sampled records were dated 2019-12, so the inventory does not provide fresh current records for publication.",
-      "nextAcquisitionPath": "Identify a current NYC Parks event inventory/API or verified export with recent dated records and joinable locations."
-    },
-    {
-      "sourceId": "volunteer-friendsoftheparks-org-5e217463",
-      "replacementUrl": "https://www.fotp.org/events",
-      "status": "BLOCKED_FRESHNESS",
-      "evidence": "The official Friends of the Parks events page is reachable and exposes item-level dates, times, locations, and Google Calendar ICS links, but the sampled dated listings were already past at the 2026-09-29 freshness point. No stale volunteer/event records were published.",
-      "nextAcquisitionPath": "Recheck the official events page or its item-level ICS links for a future dated opportunity with stable event identity and explicit location."
-    },
-    {
-      "sourceId": "volunteer-jrps-org-2a3b895f",
-      "replacementUrl": "https://jamesriverpark.org/park-calendar/",
-      "status": "ENDPOINT_DISCOVERED_SCHEMA_PENDING",
-      "evidence": "The official Friends of James River Park calendar loads normally and exposes the EventON public REST configuration at the page level, including a site REST base and calendar endpoint parameters. The sampled page did not itself contain item-level event payloads, so no records were published from search snippets or third-party calendar pages.",
-      "nextAcquisitionPath": "Replay the official EventON AJAX endpoint at https://jamesriverpark.org/wp-admin/admin-ajax.php using the page's eventon_init_load/eventon_search_evo_events actions; verify stable event IDs, explicit dates/times/locations, and freshness, then publish only validated volunteer records."
-    },
-    {
-      "sourceId": "volunteer-dpr-dc-gov-52180f8a",
-      "replacementUrl": "https://dpr.dc.gov/page/volunteers",
-      "status": "BLOCKED_SCHEMA",
-      "evidence": "The official DC DPR volunteer page is reachable and lists current volunteer role names, but it does not expose item-level scheduled dates, times, locations, or stable opportunity IDs. The registration link and role descriptions are not a dated opportunity feed, so no records were published.",
-      "nextAcquisitionPath": "Obtain the public DPR volunteer registration/calendar export or a normally reachable item-level opportunity page with stable IDs, explicit dates, times, and locations."
-    },
-    {
-      "sourceId": "events-meridiancity-org-44f75203",
-      "replacementUrl": null,
-      "status": "BLOCKED_ACCESS_OR_PERMISSION",
-      "evidence": "Operator guidance identifies a third-party Tockify calendar, but no owner-approved export/API was supplied; the old city page is not used to bypass a 403.",
-      "nextAcquisitionPath": "Obtain City of Meridian/Tockify owner permission and an official export, feed, or API."
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
     },
     {
       "sourceId": "volunteer-ashevillenc-gov-3ebf2f4c",
@@ -171,90 +325,6 @@
       "status": "BLOCKED_403",
       "evidence": "The official Asheville Parks & Recreation replacement pages were not normally fetchable: the public page request returned HTTP 403. No bypass, alternate access-control path, or record publication was attempted; search snippets are discovery evidence only.",
       "nextAcquisitionPath": "Obtain an operator-provided official export/API or a normally reachable Asheville Parks & Recreation calendar page with item-level stable IDs, explicit dates, times, and locations."
-    },
-    {
-      "sourceId": "volunteer-portland-gov-fe600e12",
-      "replacementUrl": "https://www.portland.gov/parks/volunteer",
-      "status": "INTEGRATED_STATIC",
-      "evidence": "Official Portland Parks item pages returned three future volunteer events (Argay Park Volunteer Day, Mill Park Volunteer Day, and Pier Park Stewardship Day) with stable slug URLs, explicit 2026-10-01/02 dates, times, volunteer labels, and named park locations. Three records published to the Portland civic package.",
-      "nextAcquisitionPath": null
-    },
-    {
-      "sourceId": "events-bouldercoloradousa-com-8fb18e01",
-      "replacementUrl": "https://www.bouldercoloradousa.com/includes/rest_v2/plugins_events_events_by_date/find/",
-      "status": "BLOCKED_ACCESS_OR_PERMISSION",
-      "evidence": "The official Boulder calendar page documents this site-owned REST path in its JavaScript, but a normal unauthenticated request returned HTTP 403. No bypass, alternate access-control path, or records from the blocked endpoint were used.",
-      "nextAcquisitionPath": "Obtain an owner-approved public export/API or a normally reachable official item-level event page; require stable IDs, explicit dates/times/locations, and freshness."
-    },
-    {
-      "sourceId": "events-santafe-org-8f1eb055",
-      "replacementUrl": "https://www.santafe.org/visiting-santa-fe/calendar/",
-      "status": "BLOCKED_CURRENT_ITEMS",
-      "evidence": "The official Tourism Santa Fe calendar page returned HTTP 200, but its ItemList contained zero event items; the site-owned REST endpoint returned HTTP 403. No event was promoted from the empty list or blocked endpoint.",
-      "nextAcquisitionPath": "Recheck the official calendar when current item-level listings are present, or obtain an owner-approved public export/API with stable IDs, explicit dates/times/locations, and freshness."
-    },
-    {
-      "sourceId": "events-events-portlandonline-us-09e0b6eb",
-      "replacementUrl": "https://events.portlandonline.us/",
-      "status": "BLOCKED_ACCESS_OR_PERMISSION",
-      "evidence": "The municipal PortlandOnline events root and calendar path both returned HTTP 403 through normal public requests. No bypass, credential use, or third-party mirror was attempted; no records were published.",
-      "nextAcquisitionPath": "Obtain a City of Portland-approved public calendar export/API or a normally reachable official item-level event page with stable IDs, explicit dates/times/locations, and freshness."
-    },
-    {
-      "sourceId": "events-dpr-dc-gov-67b39fe7",
-      "replacementUrl": "https://calendar.dc.gov/node/all/events",
-      "status": "BLOCKED_FRESHNESS",
-      "evidence": "The official DC public calendar endpoint returned RSS with stable event URLs, explicit dates/times, and locations, but the sampled current feed item was dated 2013-04-17 and therefore fails the freshness requirement. No historical records were published.",
-      "nextAcquisitionPath": "Recheck the official DC calendar RSS when current/future items are present, or obtain a current DPR event export/API with stable IDs, explicit dates/times/locations, and freshness."
-    },
-    {
-      "sourceId": "events-chicago-gov-44124097",
-      "replacementUrl": "https://www.chicago.gov/city/en/rss.html",
-      "status": "BLOCKED_ENDPOINT_NOT_FOUND",
-      "evidence": "The recorded official Chicago RSS entrypoint returned HTTP 404 through a normal public request. No replacement press-room content, search snippet, or undated page was treated as an event feed.",
-      "nextAcquisitionPath": "Obtain a current official Chicago events RSS/ICS/JSON endpoint or source-specific dated event calendar with stable IDs, explicit dates/times/locations, and freshness."
-    },
-    {
-      "sourceId": "events-sedonaaz-gov-605e78d8",
-      "replacementUrl": "https://www.sedonaaz.gov/your-government/general-information/city-calendar",
-      "status": "BLOCKED_ACCESS_OR_PERMISSION",
-      "evidence": "The official Sedona city-calendar path returned HTTP 403 through a normal public request. No access-control bypass, alternate credential, or third-party mirror was used; no event records were published.",
-      "nextAcquisitionPath": "Obtain a City of Sedona-approved public calendar export/API or a normally reachable official item-level event page with stable IDs, explicit dates/times/locations, and freshness."
-    },
-    {
-      "sourceId": "volunteer-sedonaaz-gov-79ca6cb2",
-      "replacementUrl": "https://www.sedonaaz.gov/your-government/departments-and-programs/parks-recreation/calendar",
-      "status": "BLOCKED_ACCESS_OR_PERMISSION",
-      "evidence": "The official Sedona Parks & Recreation calendar path returned HTTP 403 through a normal public request. No access-control bypass, alternate credential, or third-party mirror was used; no volunteer records were published.",
-      "nextAcquisitionPath": "Obtain a City of Sedona-approved Parks & Recreation volunteer export/API or a normally reachable official item-level opportunity page with stable IDs, explicit dates/times/locations, and freshness."
-    },
-    {
-      "sourceId": "events-denvergov-org-c69e47eb",
-      "replacementUrl": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Public-Event-Film-Permitting/Public-Events-Calendar",
-      "status": "ENDPOINT_DISCOVERED_SCHEMA_PENDING",
-      "evidence": "The official Denver calendar page returned HTTP 200 and exposes the Eproval public calendar key 9ce8805d-e5be-4d77-b848-5abdb86c16bc plus the vendor calendar client. A direct guessed POST to the vendor host's /api/v2/public/rpc returned HTTP 405, confirming that the client URI/host handshake is required; no validated item payload was obtained and no records were published from the key or page shell.",
-      "nextAcquisitionPath": "Replay the Eproval public-calendar client handshake for the recorded calendar key, capture Calendar_GetPublicCalendarEntries results, and validate stable IDs, explicit dates/times/locations, official detail URLs, and freshness before promotion."
-    },
-    {
-      "sourceId": "events-visitrichmondva-com-1ae28ba3",
-      "replacementUrl": "https://www.visitrichmondva.com/events/",
-      "status": "BLOCKED_SCHEMA",
-      "evidence": "Reachable official Richmond Region Tourism event-detail pages expose schema.org Event records with stable detail URLs and locations, but sampled listings expose date-only startDate/endDate values; times appear only in prose or recurring descriptions. No records were published without explicit structured times.",
-      "nextAcquisitionPath": "Locate an official Richmond calendar/API field or item pages with explicit start/end date-times, then validate freshness and stable detail URLs before promotion."
-    },
-    {
-      "sourceId": "events-downtownnorfolk-org-cf7e9296",
-      "replacementUrl": "https://www.downtownnorfolk.org/explore/calendar",
-      "status": "INTEGRATED_STATIC",
-      "evidence": "Official Downtown Norfolk detail pages exposed explicit date, time, location, and canonical URL fields for three current/future events; three records were published to Norfolk civic events.",
-      "nextAcquisitionPath": null
-    },
-    {
-      "sourceId": "events-mainepublic-org-bfb30cd0",
-      "replacementUrl": "https://www.mainepublic.org/community-calendar",
-      "status": "INTEGRATED_STATIC",
-      "evidence": "The official Maine Public detail page for the Maxwell Quartet exposed a stable URL, explicit October 25, 2026 date, 3:00–4:30 PM time, and Minsky Recital Hall venue; one record was published to Portland-Maine civic events.",
-      "nextAcquisitionPath": null
     },
     {
       "sourceId": "volunteer-boisewatershed-org-b6e8d60",
@@ -271,25 +341,130 @@
       "nextAcquisitionPath": null
     },
     {
-      "sourceId": "events-chicago-gov-83a3ca20",
-      "replacementUrl": "https://www.chicago.gov/city/en/depts/dca/supp_info/events2.html",
+      "sourceId": "volunteer-boston-gov-98c6b1e6",
+      "replacementUrl": "https://www.boston.gov/parks",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "volunteer-chicagoparkdistrict-com-ba93a249",
+      "replacementUrl": "https://www.chicagoparkdistrict.com/volunteer/",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "volunteer-denvergov-org-ffc494c0",
+      "replacementUrl": "https://engagedenver.denvergov.org/Calendar",
       "status": "INTEGRATED_STATIC",
-      "evidence": "The official City of Chicago DCASE calendar JSON endpoint returned future non-recurring records with explicit start/end times, addresses, stable numeric IDs, and chicago.gov detail URLs; third-party registration URLs were excluded.",
+      "evidence": "Official Denver Engage public calendar HTML exposed stable activity UUIDs, explicit 2026-09-30 dates/times, and locations for West-Bar-Val-Wood Park Cleanup and Harvey Park Cleanup & Flowerbed Adoption. Two records published; entries without explicit locations or unqualified dates were excluded.",
       "nextAcquisitionPath": null
     },
     {
-      "sourceId": "events-seattle-gov-cca4136c",
-      "replacementUrl": "https://www.seattle.gov/event-calendar",
+      "sourceId": "volunteer-dpr-dc-gov-52180f8a",
+      "replacementUrl": "https://dpr.dc.gov/page/volunteers",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The official DC DPR volunteer page is reachable and lists current volunteer role names, but it does not expose item-level scheduled dates, times, locations, or stable opportunity IDs. The registration link and role descriptions are not a dated opportunity feed, so no records were published.",
+      "nextAcquisitionPath": "Obtain the public DPR volunteer registration/calendar export or a normally reachable item-level opportunity page with stable IDs, explicit dates, times, and locations."
+    },
+    {
+      "sourceId": "volunteer-friendsoftheparks-org-5e217463",
+      "replacementUrl": "https://www.fotp.org/events",
+      "status": "BLOCKED_FRESHNESS",
+      "evidence": "The official Friends of the Parks events page is reachable and exposes item-level dates, times, locations, and Google Calendar ICS links, but the sampled dated listings were already past at the 2026-09-29 freshness point. No stale volunteer/event records were published.",
+      "nextAcquisitionPath": "Recheck the official events page or its item-level ICS links for a future dated opportunity with stable event identity and explicit location."
+    },
+    {
+      "sourceId": "volunteer-jrps-org-2a3b895f",
+      "replacementUrl": "https://jamesriverpark.org/park-calendar/",
+      "status": "ENDPOINT_DISCOVERED_SCHEMA_PENDING",
+      "evidence": "The official Friends of James River Park calendar loads normally and exposes the EventON public REST configuration at the page level, including a site REST base and calendar endpoint parameters. The sampled page did not itself contain item-level event payloads, so no records were published from search snippets or third-party calendar pages.",
+      "nextAcquisitionPath": "Replay the official EventON AJAX endpoint at https://jamesriverpark.org/wp-admin/admin-ajax.php using the page's eventon_init_load/eventon_search_evo_events actions; verify stable event IDs, explicit dates/times/locations, and freshness, then publish only validated volunteer records."
+    },
+    {
+      "sourceId": "volunteer-loudoun-gov-81bf3267",
+      "replacementUrl": "https://www.loudoun.gov/volunteer",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "volunteer-nola-gov-c959480f",
+      "replacementUrl": null,
+      "status": "DISCOVERY_ONLY_PERMIT_GUIDANCE",
+      "evidence": "The operator replacement is a park or recreation-center use permit. Permit instructions describe how to request space and do not constitute scheduled volunteer opportunities or an event feed; no records were fabricated from the guidance.",
+      "nextAcquisitionPath": "Locate an official NORDC volunteer calendar or item-level volunteer opportunity feed with stable IDs, explicit dates, times, and locations."
+    },
+    {
+      "sourceId": "volunteer-norfolk-gov-ff89d6a7",
+      "replacementUrl": "https://www.norfolk.gov/4248/Volunteer",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "volunteer-nps-gov-20ec7407",
+      "replacementUrl": "https://www.nps.gov/wotr/getinvolved/volunteer.htm",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "volunteer-nycgovparks-org-4b7ad625",
+      "replacementUrl": "https://data.cityofnewyork.us/resource/fudw-fgrp.json",
+      "status": "BLOCKED_FRESHNESS",
+      "evidence": "Official Socrata metadata exposes event_id, title, date, start_time, end_time, location_description, url, and related location table; sampled records were dated 2019-12, so the inventory does not provide fresh current records for publication.",
+      "nextAcquisitionPath": "Identify a current NYC Parks event inventory/API or verified export with recent dated records and joinable locations."
+    },
+    {
+      "sourceId": "volunteer-pgparks-com-bf740430",
+      "replacementUrl": "https://www.pgparks.com/get-involved/volunteer-opportunities",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "volunteer-portland-gov-fe600e12",
+      "replacementUrl": "https://www.portland.gov/parks/volunteer",
       "status": "INTEGRATED_STATIC",
-      "evidence": "Seattle.gov embeds a reachable Trumba JSON feed with future non-recurring records, explicit date/time/location fields, stable event IDs, and Seattle.gov permalinks; meeting and volunteer-work listings were excluded.",
+      "evidence": "Official Portland Parks item pages returned three future volunteer events (Argay Park Volunteer Day, Mill Park Volunteer Day, and Pier Park Stewardship Day) with stable slug URLs, explicit 2026-10-01/02 dates, times, volunteer labels, and named park locations. Three records published to the Portland civic package.",
       "nextAcquisitionPath": null
     },
     {
-      "sourceId": "events-boisestatepublicradio-org-1b57dd9c",
-      "replacementUrl": "https://www.boisestatepublicradio.org/community-calendar-search",
+      "sourceId": "volunteer-portlandmaine-gov-2c137978",
+      "replacementUrl": "https://www.portlandmaine.gov/programs",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The official Portland Parks, Recreation & Facilities programs page describes volunteering and links to general recreation/program navigation, but does not expose item-level volunteer dates, times, locations, or stable opportunity IDs. The citywide calendar contains general events and meetings, not a validated volunteer feed, so no records were published.",
+      "nextAcquisitionPath": "Obtain the official Parks/Recreation volunteer calendar, MyRec export/API, or item-level opportunity pages with stable IDs, explicit dates, times, and locations."
+    },
+    {
+      "sourceId": "volunteer-santafenm-gov-57a0cd99",
+      "replacementUrl": "https://santafenm.gov/public-works/parks-and-open-space",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The official Santa Fe Parks and Open Space page provides a volunteer application link and general Adopt-a-Park/Trail information, but no scheduled volunteer items with explicit dates, times, locations, or stable opportunity IDs. The waiver/form is not a volunteer event feed, so no records were published.",
+      "nextAcquisitionPath": "Obtain the City’s public volunteer master-calendar export/API or item-level opportunity pages with stable IDs, explicit dates, times, and locations."
+    },
+    {
+      "sourceId": "volunteer-seattle-gov-c1758f69",
+      "replacementUrl": "https://www.trumba.com/calendars/parks-recreation.ics",
       "status": "INTEGRATED_STATIC",
-      "evidence": "The official Boise State Public Radio detail page exposed a non-recurring October 1, 2026 opening reception with explicit 5–9 PM time, Idaho Art Gallery street address, stable detail slug, and official station URL; one record was published.",
+      "evidence": "Official Seattle Parks page embeds the Trumba public calendar; the ICS export returned current volunteer entries with timezone, UID, title, date/time, and location. Two records published to the Seattle civic package.",
       "nextAcquisitionPath": null
+    },
+    {
+      "sourceId": "volunteer-sedonaaz-gov-79ca6cb2",
+      "replacementUrl": "https://www.sedonaaz.gov/your-government/departments-and-programs/parks-recreation/calendar",
+      "status": "BLOCKED_ACCESS_OR_PERMISSION",
+      "evidence": "The official Sedona Parks & Recreation calendar path returned HTTP 403 through a normal public request. No access-control bypass, alternate credential, or third-party mirror was used; no volunteer records were published.",
+      "nextAcquisitionPath": "Obtain a City of Sedona-approved Parks & Recreation volunteer export/API or a normally reachable official item-level opportunity page with stable IDs, explicit dates/times/locations, and freshness."
+    },
+    {
+      "sourceId": "volunteer-sfparks-org-ddcc85b5",
+      "replacementUrl": "https://www.sfparks.org/support-park/volunteer",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
     }
   ]
 }

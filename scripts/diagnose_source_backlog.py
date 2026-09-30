@@ -81,7 +81,7 @@ def build(root: Path, checked_at: str | None = None) -> dict:
     return {"schemaVersion": 1, "kind": "static-source-resolution-diagnostics", "generatedAt": timestamp,
             "source": "expansion-queues/regional-source-backlog.json",
             "policy": "Diagnostics do not publish records; only validated dated records with location and provenance may enter civic packages.",
-            "summary": {"candidateCount": len(rows), "resolvedCount": backlog["summary"].get("trackingStates", {}).get("INTEGRATED_STATIC", 0),
+            "summary": {"candidateCount": len(rows), "resolvedCount": backlog["summary"].get("integratedStaticCount", 0),
                         "unresolvedCount": len(rows), "blockers": dict(sorted(Counter(row["blocker"] for row in rows).items()))}, "sources": rows}
 
 def main() -> None:

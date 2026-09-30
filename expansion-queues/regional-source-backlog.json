@@ -244,7 +244,10 @@
             "httpStatus": 200,
             "contentType": "text/html; charset=UTF-8",
             "source": "local-batched-validation"
-          }
+          },
+          "resolutionDisposition": "BLOCKED_SCHEMA",
+          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
         },
         {
           "category": "volunteer",
@@ -331,7 +334,10 @@
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
-          }
+          },
+          "resolutionDisposition": "BLOCKED_SCHEMA",
+          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
         },
         {
           "category": "events",
@@ -377,7 +383,10 @@
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
-          }
+          },
+          "resolutionDisposition": "BLOCKED_SCHEMA",
+          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
         }
       ]
     },
@@ -510,7 +519,10 @@
             "stability": []
           },
           "url": "https://www.cityofboise.org/city-government/city-council/",
-          "workItemId": "source:meetings-cityofboise-org-3b05a56d"
+          "workItemId": "source:meetings-cityofboise-org-3b05a56d",
+          "resolutionDisposition": "ENDPOINT_DISCOVERED_SCHEMA_PENDING",
+          "resolutionNote": "The official City of Boise council destination leads to a normally reachable IQM2 calendar shell. The sampled response was HTML and did not expose verifiable item-level meeting rows, stable IDs, or a public JSON/ICS payload, so no meeting was published from inferred cadence or third-party mirrors.",
+          "nextAcquisitionPath": "Identify the IQM2 public calendar's documented item endpoint or stable meeting-detail selector and verify explicit dates, times, City Hall/virtual locations, and IDs."
         },
         {
           "category": "events",
@@ -549,7 +561,10 @@
             "stability": []
           },
           "url": "https://www.meridiancity.org/cityevents",
-          "workItemId": "source:events-meridiancity-org-44f75203"
+          "workItemId": "source:events-meridiancity-org-44f75203",
+          "resolutionDisposition": "BLOCKED_ACCESS_OR_PERMISSION",
+          "resolutionNote": "Operator guidance identifies a third-party Tockify calendar, but no owner-approved export/API was supplied; the old city page is not used to bypass a 403.",
+          "nextAcquisitionPath": "Obtain City of Meridian/Tockify owner permission and an official export, feed, or API."
         }
       ]
     },
@@ -648,7 +663,10 @@
             "httpStatus": 200,
             "contentType": "text/html; charset=UTF-8",
             "source": "local-batched-validation"
-          }
+          },
+          "resolutionDisposition": "BLOCKED_SCHEMA",
+          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
         },
         {
           "category": "events",
@@ -687,7 +705,10 @@
             "stability": []
           },
           "url": "https://www.thebostoncalendar.com/",
-          "workItemId": "source:events-thebostoncalendar-com-6e034980"
+          "workItemId": "source:events-thebostoncalendar-com-6e034980",
+          "resolutionDisposition": "BLOCKED_SCHEMA",
+          "resolutionNote": "No validated item-level record was obtained from the recorded official destination; no landing-page or undated content was published.",
+          "nextAcquisitionPath": "Obtain and validate an official structured endpoint or item-level selector with stable IDs, explicit dates/times/locations, canonical URLs, provenance, and freshness."
         },
         {
           "category": "events",
@@ -733,7 +754,10 @@
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
-          }
+          },
+          "resolutionDisposition": "BLOCKED_SCHEMA",
+          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
         }
       ]
     },
@@ -833,7 +857,10 @@
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
-          }
+          },
+          "resolutionDisposition": "BLOCKED_ACCESS_OR_PERMISSION",
+          "resolutionNote": "The official Boulder calendar page documents this site-owned REST path in its JavaScript, but a normal unauthenticated request returned HTTP 403. No bypass, alternate access-control path, or records from the blocked endpoint were used.",
+          "nextAcquisitionPath": "Obtain an owner-approved public export/API or a normally reachable official item-level event page; require stable IDs, explicit dates/times/locations, and freshness."
         }
       ]
     },
@@ -926,7 +953,10 @@
             "stability": []
           },
           "url": "https://www.chicago.gov/city/en/rss.html",
-          "workItemId": "source:events-chicago-gov-44124097"
+          "workItemId": "source:events-chicago-gov-44124097",
+          "resolutionDisposition": "BLOCKED_ENDPOINT_NOT_FOUND",
+          "resolutionNote": "The recorded official Chicago RSS entrypoint returned HTTP 404 through a normal public request. No replacement press-room content, search snippet, or undated page was treated as an event feed.",
+          "nextAcquisitionPath": "Obtain a current official Chicago events RSS/ICS/JSON endpoint or source-specific dated event calendar with stable IDs, explicit dates/times/locations, and freshness."
         },
         {
           "category": "events",
@@ -972,7 +1002,10 @@
             "httpStatus": 200,
             "contentType": "text/html; charset=UTF-8",
             "source": "local-batched-validation"
-          }
+          },
+          "resolutionDisposition": "BLOCKED_SCHEMA",
+          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
         },
         {
           "category": "volunteer",
@@ -1018,7 +1051,10 @@
             "httpStatus": 200,
             "contentType": "text/html; charset=UTF-8",
             "source": "local-batched-validation"
-          }
+          },
+          "resolutionDisposition": "BLOCKED_SCHEMA",
+          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
         },
         {
           "category": "meetings",
@@ -1064,7 +1100,10 @@
             "httpStatus": 200,
             "contentType": "text/html; charset=UTF-8",
             "source": "local-batched-validation"
-          }
+          },
+          "resolutionDisposition": "BLOCKED_SCHEMA",
+          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
         }
       ]
     },
@@ -1248,7 +1287,10 @@
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
-          }
+          },
+          "resolutionDisposition": "ENDPOINT_DISCOVERED_SCHEMA_PENDING",
+          "resolutionNote": "The official Denver calendar page returned HTTP 200 and exposes the Eproval public calendar key 9ce8805d-e5be-4d77-b848-5abdb86c16bc plus the vendor calendar client. A direct guessed POST to the vendor host's /api/v2/public/rpc returned HTTP 405, confirming that the client URI/host handshake is required; no validated item payload was obtained and no records were published from the key or page shell.",
+          "nextAcquisitionPath": "Replay the Eproval public-calendar client handshake for the recorded calendar key, capture Calendar_GetPublicCalendarEntries results, and validate stable IDs, explicit dates/times/locations, official detail URLs, and freshness before promotion."
         }
       ]
     },
@@ -1380,7 +1422,10 @@
             "httpStatus": 200,
             "contentType": "text/html;charset=UTF-8",
             "source": "local-batched-validation"
-          }
+          },
+          "resolutionDisposition": "BLOCKED_SCHEMA",
+          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
         },
         {
           "category": "publicSpaces",
@@ -1430,7 +1475,10 @@
             "httpStatus": 200,
             "contentType": "text/html; charset=UTF-8",
             "source": "local-batched-validation"
-          }
+          },
+          "resolutionDisposition": "BLOCKED_SCHEMA",
+          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
         },
         {
           "category": "events",
@@ -1469,7 +1517,10 @@
             "stability": []
           },
           "url": "https://www.wolftrap.org/",
-          "workItemId": "source:events-wolftrap-org-f9ccaf58"
+          "workItemId": "source:events-wolftrap-org-f9ccaf58",
+          "resolutionDisposition": "BLOCKED_SCHEMA",
+          "resolutionNote": "No validated item-level record was obtained from the recorded official destination; no landing-page or undated content was published.",
+          "nextAcquisitionPath": "Obtain and validate an official structured endpoint or item-level selector with stable IDs, explicit dates/times/locations, canonical URLs, provenance, and freshness."
         },
         {
           "category": "events",
@@ -1512,7 +1563,10 @@
             "stability": []
           },
           "url": "https://www.wolftrap.org/calendar",
-          "workItemId": "source:wolf-trap-foundation"
+          "workItemId": "source:wolf-trap-foundation",
+          "resolutionDisposition": "BLOCKED_SCHEMA",
+          "resolutionNote": "No validated item-level record was obtained from the recorded official destination; no landing-page or undated content was published.",
+          "nextAcquisitionPath": "Obtain and validate an official structured endpoint or item-level selector with stable IDs, explicit dates/times/locations, canonical URLs, provenance, and freshness."
         }
       ]
     },
@@ -1690,7 +1744,10 @@
             "stability": []
           },
           "url": "https://www.town.keystone.co.us/events",
-          "workItemId": "source:events-town-keystone-co-us-e3452f18"
+          "workItemId": "source:events-town-keystone-co-us-e3452f18",
+          "resolutionDisposition": "BLOCKED_EVENT_FEED_NOT_VERIFIED",
+          "resolutionNote": "The official Town of Keystone site exposes council/agenda pages and an event-request form, but no reachable official public event feed, structured calendar, or item-level event pages were verified. A dated staff report is permit/planning guidance rather than a publishable event feed, so no event records were fabricated from it.",
+          "nextAcquisitionPath": "Obtain the Town's official event calendar export/API or a verified source-specific selector with stable event IDs, explicit dates, times, and locations; keep municipal meetings and resort/third-party programming separate."
         },
         {
           "category": "volunteer",
@@ -1729,7 +1786,10 @@
             "stability": []
           },
           "url": "https://www.volunteermatch.org/",
-          "workItemId": "source:volunteer-volunteermatch-org-79b64c6c"
+          "workItemId": "source:volunteer-volunteermatch-org-79b64c6c",
+          "resolutionDisposition": "BLOCKED_SCHEMA",
+          "resolutionNote": "No validated item-level record was obtained from the recorded official destination; no landing-page or undated content was published.",
+          "nextAcquisitionPath": "Obtain and validate an official structured endpoint or item-level selector with stable IDs, explicit dates/times/locations, canonical URLs, provenance, and freshness."
         }
       ]
     },
@@ -1860,7 +1920,10 @@
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
-          }
+          },
+          "resolutionDisposition": "BLOCKED_SCHEMA",
+          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
         }
       ]
     },
@@ -1953,7 +2016,10 @@
             "stability": []
           },
           "url": "https://www.nola.gov/parks-and-parkways/special-events/",
-          "workItemId": "source:volunteer-nola-gov-c959480f"
+          "workItemId": "source:volunteer-nola-gov-c959480f",
+          "resolutionDisposition": "DISCOVERY_ONLY_PERMIT_GUIDANCE",
+          "resolutionNote": "The operator replacement is a park or recreation-center use permit. Permit instructions describe how to request space and do not constitute scheduled volunteer opportunities or an event feed; no records were fabricated from the guidance.",
+          "nextAcquisitionPath": "Locate an official NORDC volunteer calendar or item-level volunteer opportunity feed with stable IDs, explicit dates, times, and locations."
         },
         {
           "category": "events",
@@ -1999,7 +2065,10 @@
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
-          }
+          },
+          "resolutionDisposition": "BLOCKED_SCHEMA",
+          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
         }
       ]
     },
@@ -2088,7 +2157,10 @@
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
-          }
+          },
+          "resolutionDisposition": "BLOCKED_SCHEMA",
+          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
         }
       ]
     },
@@ -2180,7 +2252,10 @@
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
-          }
+          },
+          "resolutionDisposition": "BLOCKED_SCHEMA",
+          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
         },
         {
           "category": "volunteer",
@@ -2219,7 +2294,10 @@
             "stability": []
           },
           "url": "https://www.nycgovparks.org/events/volunteer",
-          "workItemId": "source:volunteer-nycgovparks-org-4b7ad625"
+          "workItemId": "source:volunteer-nycgovparks-org-4b7ad625",
+          "resolutionDisposition": "BLOCKED_FRESHNESS",
+          "resolutionNote": "Official Socrata metadata exposes event_id, title, date, start_time, end_time, location_description, url, and related location table; sampled records were dated 2019-12, so the inventory does not provide fresh current records for publication.",
+          "nextAcquisitionPath": "Identify a current NYC Parks event inventory/API or verified export with recent dated records and joinable locations."
         }
       ]
     },
@@ -2319,7 +2397,10 @@
             "httpStatus": 200,
             "contentType": "text/html; charset=UTF-8",
             "source": "local-batched-validation"
-          }
+          },
+          "resolutionDisposition": "BLOCKED_SCHEMA",
+          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
         },
         {
           "category": "volunteer",
@@ -2358,7 +2439,10 @@
             "stability": []
           },
           "url": "https://friendsoftheparks.org/volunteer",
-          "workItemId": "source:volunteer-friendsoftheparks-org-5e217463"
+          "workItemId": "source:volunteer-friendsoftheparks-org-5e217463",
+          "resolutionDisposition": "BLOCKED_FRESHNESS",
+          "resolutionNote": "The official Friends of the Parks events page is reachable and exposes item-level dates, times, locations, and Google Calendar ICS links, but the sampled dated listings were already past at the 2026-09-29 freshness point. No stale volunteer/event records were published.",
+          "nextAcquisitionPath": "Recheck the official events page or its item-level ICS links for a future dated opportunity with stable event identity and explicit location."
         }
       ]
     },
@@ -2500,7 +2584,10 @@
             "httpStatus": 200,
             "contentType": "text/html; charset=UTF-8",
             "source": "local-batched-validation"
-          }
+          },
+          "resolutionDisposition": "BLOCKED_SCHEMA",
+          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
         },
         {
           "category": "events",
@@ -2539,7 +2626,10 @@
             "stability": []
           },
           "url": "https://events.portlandonline.us/",
-          "workItemId": "source:events-events-portlandonline-us-09e0b6eb"
+          "workItemId": "source:events-events-portlandonline-us-09e0b6eb",
+          "resolutionDisposition": "BLOCKED_ACCESS_OR_PERMISSION",
+          "resolutionNote": "The municipal PortlandOnline events root and calendar path both returned HTTP 403 through normal public requests. No bypass, credential use, or third-party mirror was attempted; no records were published.",
+          "nextAcquisitionPath": "Obtain a City of Portland-approved public calendar export/API or a normally reachable official item-level event page with stable IDs, explicit dates/times/locations, and freshness."
         }
       ]
     },
@@ -2632,7 +2722,10 @@
             "stability": []
           },
           "url": "https://www.portlandmaine.gov/government",
-          "workItemId": "source:meetings-portlandmaine-gov-bc259924"
+          "workItemId": "source:meetings-portlandmaine-gov-bc259924",
+          "resolutionDisposition": "ENDPOINT_DISCOVERED_SCHEMA_PENDING",
+          "resolutionNote": "Official Portland, Maine homepage links to CivicClerk agendas/minutes and its calendar page exposes a CivicClerk-backed event path, but the public HTML response is client-rendered and the sampled event payload did not expose validated item-level date/location fields.",
+          "nextAcquisitionPath": "Identify the public CivicClerk calendar JSON/ICS endpoint or use a documented selector that returns stable event IDs, dates, times, and locations."
         },
         {
           "category": "volunteer",
@@ -2671,7 +2764,10 @@
             "stability": []
           },
           "url": "https://www.portlandmaine.gov/parks-recreation",
-          "workItemId": "source:volunteer-portlandmaine-gov-2c137978"
+          "workItemId": "source:volunteer-portlandmaine-gov-2c137978",
+          "resolutionDisposition": "BLOCKED_SCHEMA",
+          "resolutionNote": "The official Portland Parks, Recreation & Facilities programs page describes volunteering and links to general recreation/program navigation, but does not expose item-level volunteer dates, times, locations, or stable opportunity IDs. The citywide calendar contains general events and meetings, not a validated volunteer feed, so no records were published.",
+          "nextAcquisitionPath": "Obtain the official Parks/Recreation volunteer calendar, MyRec export/API, or item-level opportunity pages with stable IDs, explicit dates, times, and locations."
         }
       ]
     },
@@ -2761,7 +2857,10 @@
             "httpStatus": 200,
             "contentType": "text/html; charset=UTF-8",
             "source": "local-batched-validation"
-          }
+          },
+          "resolutionDisposition": "BLOCKED_SCHEMA",
+          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
         }
       ]
     },
@@ -2861,7 +2960,10 @@
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
-          }
+          },
+          "resolutionDisposition": "BLOCKED_SCHEMA",
+          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
         },
         {
           "category": "volunteer",
@@ -2900,7 +3002,10 @@
             "stability": []
           },
           "url": "https://www.jrps.org/volunteer",
-          "workItemId": "source:volunteer-jrps-org-2a3b895f"
+          "workItemId": "source:volunteer-jrps-org-2a3b895f",
+          "resolutionDisposition": "ENDPOINT_DISCOVERED_SCHEMA_PENDING",
+          "resolutionNote": "The official Friends of James River Park calendar loads normally and exposes the EventON public REST configuration at the page level, including a site REST base and calendar endpoint parameters. The sampled page did not itself contain item-level event payloads, so no records were published from search snippets or third-party calendar pages.",
+          "nextAcquisitionPath": "Replay the official EventON AJAX endpoint at https://jamesriverpark.org/wp-admin/admin-ajax.php using the page's eventon_init_load/eventon_search_evo_events actions; verify stable event IDs, explicit dates/times/locations, and freshness, then publish only validated volunteer records."
         },
         {
           "category": "events",
@@ -2946,7 +3051,10 @@
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
-          }
+          },
+          "resolutionDisposition": "BLOCKED_SCHEMA",
+          "resolutionNote": "Reachable official Richmond Region Tourism event-detail pages expose schema.org Event records with stable detail URLs and locations, but sampled listings expose date-only startDate/endDate values; times appear only in prose or recurring descriptions. No records were published without explicit structured times.",
+          "nextAcquisitionPath": "Locate an official Richmond calendar/API field or item pages with explicit start/end date-times, then validate freshness and stable detail URLs before promotion."
         }
       ]
     },
@@ -3046,7 +3154,10 @@
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
-          }
+          },
+          "resolutionDisposition": "BLOCKED_SCHEMA",
+          "resolutionNote": "HTTP 200 normal HTML page (text/html), not XML RSS/Atom; no feed items or item-level event schema were present.",
+          "nextAcquisitionPath": "Obtain a current official SF Rec & Parks RSS/ICS/JSON endpoint or add a verified event-calendar selector."
         },
         {
           "category": "meetings",
@@ -3092,7 +3203,10 @@
             "httpStatus": 200,
             "contentType": "text/html",
             "source": "local-batched-validation"
-          }
+          },
+          "resolutionDisposition": "BLOCKED_SCHEMA",
+          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
         },
         {
           "category": "volunteer",
@@ -3138,7 +3252,10 @@
             "httpStatus": 200,
             "contentType": "text/html",
             "source": "local-batched-validation"
-          }
+          },
+          "resolutionDisposition": "BLOCKED_SCHEMA",
+          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
         },
         {
           "category": "events",
@@ -3184,7 +3301,10 @@
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
-          }
+          },
+          "resolutionDisposition": "BLOCKED_SCHEMA",
+          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
         }
       ]
     },
@@ -3277,7 +3397,10 @@
             "stability": []
           },
           "url": "https://www.santafenm.gov/city-government",
-          "workItemId": "source:meetings-santafenm-gov-4df17058"
+          "workItemId": "source:meetings-santafenm-gov-4df17058",
+          "resolutionDisposition": "ENDPOINT_DISCOVERED_SCHEMA_PENDING",
+          "resolutionNote": "Official Santa Fe City Clerk page links to the CivicClerk public meeting portal and a 2026 meeting-calendar PDF, but the public portal shell requires JavaScript and no item-level date/time/location payload was directly verifiable in the reachable response.",
+          "nextAcquisitionPath": "Identify the documented CivicClerk public API/ICS endpoint or a stable event page with explicit meeting fields."
         },
         {
           "category": "volunteer",
@@ -3316,7 +3439,10 @@
             "stability": []
           },
           "url": "https://www.santafenm.gov/parks_recreation",
-          "workItemId": "source:volunteer-santafenm-gov-57a0cd99"
+          "workItemId": "source:volunteer-santafenm-gov-57a0cd99",
+          "resolutionDisposition": "BLOCKED_SCHEMA",
+          "resolutionNote": "The official Santa Fe Parks and Open Space page provides a volunteer application link and general Adopt-a-Park/Trail information, but no scheduled volunteer items with explicit dates, times, locations, or stable opportunity IDs. The waiver/form is not a volunteer event feed, so no records were published.",
+          "nextAcquisitionPath": "Obtain the City’s public volunteer master-calendar export/API or item-level opportunity pages with stable IDs, explicit dates, times, and locations."
         },
         {
           "category": "events",
@@ -3362,7 +3488,10 @@
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
-          }
+          },
+          "resolutionDisposition": "BLOCKED_CURRENT_ITEMS",
+          "resolutionNote": "The official Tourism Santa Fe calendar page returned HTTP 200, but its ItemList contained zero event items; the site-owned REST endpoint returned HTTP 403. No event was promoted from the empty list or blocked endpoint.",
+          "nextAcquisitionPath": "Recheck the official calendar when current item-level listings are present, or obtain an owner-approved public export/API with stable IDs, explicit dates/times/locations, and freshness."
         },
         {
           "category": "events",
@@ -3408,7 +3537,10 @@
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
-          }
+          },
+          "resolutionDisposition": "BLOCKED_SCHEMA",
+          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
         }
       ]
     },
@@ -3491,7 +3623,10 @@
             "stability": []
           },
           "url": "https://www.seattle.gov/civic-meetings",
-          "workItemId": "source:meetings-seattle-gov-3418b89c"
+          "workItemId": "source:meetings-seattle-gov-3418b89c",
+          "resolutionDisposition": "BLOCKED_CURRENT_SAMPLE",
+          "resolutionNote": "The official Seattle City Clerk page links to Legistar, whose calendar exposes stable meeting-detail and iCalendar IDs. Future rows sampled for 2026-09-29 through 2026-10-26 were explicitly marked Canceled, so no active meeting record was published.",
+          "nextAcquisitionPath": "Recheck the official Legistar calendar for a non-canceled dated meeting with a confirmed location before promotion."
         },
         {
           "category": "events",
@@ -3537,7 +3672,10 @@
             "httpStatus": 200,
             "contentType": "text/html; charset=UTF-8",
             "source": "local-batched-validation"
-          }
+          },
+          "resolutionDisposition": "BLOCKED_SCHEMA",
+          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
         }
       ]
     },
@@ -3636,7 +3774,10 @@
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
-          }
+          },
+          "resolutionDisposition": "BLOCKED_ACCESS_OR_PERMISSION",
+          "resolutionNote": "The official Sedona city-calendar path returned HTTP 403 through a normal public request. No access-control bypass, alternate credential, or third-party mirror was used; no event records were published.",
+          "nextAcquisitionPath": "Obtain a City of Sedona-approved public calendar export/API or a normally reachable official item-level event page with stable IDs, explicit dates/times/locations, and freshness."
         },
         {
           "category": "events",
@@ -3682,7 +3823,10 @@
             "httpStatus": 200,
             "contentType": "text/html; charset=UTF-8",
             "source": "local-batched-validation"
-          }
+          },
+          "resolutionDisposition": "BLOCKED_SCHEMA",
+          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
         },
         {
           "category": "volunteer",
@@ -3728,7 +3872,10 @@
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
-          }
+          },
+          "resolutionDisposition": "BLOCKED_ACCESS_OR_PERMISSION",
+          "resolutionNote": "The official Sedona Parks & Recreation calendar path returned HTTP 403 through a normal public request. No access-control bypass, alternate credential, or third-party mirror was used; no volunteer records were published.",
+          "nextAcquisitionPath": "Obtain a City of Sedona-approved Parks & Recreation volunteer export/API or a normally reachable official item-level opportunity page with stable IDs, explicit dates/times/locations, and freshness."
         }
       ]
     },
@@ -3869,7 +4016,10 @@
             "httpStatus": 200,
             "contentType": "text/html; charset=UTF-8",
             "source": "local-batched-validation"
-          }
+          },
+          "resolutionDisposition": "BLOCKED_FRESHNESS",
+          "resolutionNote": "The official DC public calendar endpoint returned RSS with stable event URLs, explicit dates/times, and locations, but the sampled current feed item was dated 2013-04-17 and therefore fails the freshness requirement. No historical records were published.",
+          "nextAcquisitionPath": "Recheck the official DC calendar RSS when current/future items are present, or obtain a current DPR event export/API with stable IDs, explicit dates/times/locations, and freshness."
         },
         {
           "category": "volunteer",
@@ -3908,7 +4058,10 @@
             "stability": []
           },
           "url": "https://dpr.dc.gov/page/volunteer-and-give-back",
-          "workItemId": "source:volunteer-dpr-dc-gov-52180f8a"
+          "workItemId": "source:volunteer-dpr-dc-gov-52180f8a",
+          "resolutionDisposition": "BLOCKED_SCHEMA",
+          "resolutionNote": "The official DC DPR volunteer page is reachable and lists current volunteer role names, but it does not expose item-level scheduled dates, times, locations, or stable opportunity IDs. The registration link and role descriptions are not a dated opportunity feed, so no records were published.",
+          "nextAcquisitionPath": "Obtain the public DPR volunteer registration/calendar export or a normally reachable item-level opportunity page with stable IDs, explicit dates, times, and locations."
         },
         {
           "category": "meetings",
@@ -3947,7 +4100,10 @@
             "stability": []
           },
           "url": "https://dcouncil.us/",
-          "workItemId": "source:meetings-dcouncil-us-4d64fb67"
+          "workItemId": "source:meetings-dcouncil-us-4d64fb67",
+          "resolutionDisposition": "ENDPOINT_DISCOVERED_NO_CURRENT_ITEMS",
+          "resolutionNote": "The official DC Council RSS page exposes the Council calendar, and the public site advertises a WordPress Events REST API. A normal JSON request returned HTTP 200 with a valid events schema but zero published items in the current/future window; no record was promoted from archived or undated hearing material.",
+          "nextAcquisitionPath": "Recheck the official Events REST API or Hearing Management System when current published hearings are present, and require stable item IDs, explicit dates, times, and Wilson Building/virtual locations."
         },
         {
           "category": "events",
@@ -3993,7 +4149,10 @@
             "httpStatus": 200,
             "contentType": "text/html; charset=UTF-8",
             "source": "local-batched-validation"
-          }
+          },
+          "resolutionDisposition": "BLOCKED_SCHEMA",
+          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
         }
       ]
     }
@@ -4008,8 +4167,8 @@
     },
     "regionCount": 34,
     "trackingStates": {
-      "UNTRACKED": 0,
-      "TRACKED_REACHABLE": 33
+      "TRACKED_REACHABLE": 33,
+      "UNTRACKED": 21
     },
     "trackingPolicy": "Tracked reachable sources remain in the audit backlog but are removed from the active operator queue until adapter work is requested.",
     "resolutionStatusCategories": {

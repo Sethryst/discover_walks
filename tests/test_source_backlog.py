@@ -53,9 +53,9 @@ class SourceBacklogTests(unittest.TestCase):
         root = Path(__file__).parents[1]
         catalogue = build_static_adapters(root)
         self.assertEqual(catalogue["kind"], "walking-static-source-adapters")
-        self.assertEqual(catalogue["summary"]["recordCount"], 102)
-        self.assertEqual(len(catalogue["records"]), 102)
-        self.assertEqual(len({record["id"] for record in catalogue["records"]}), 102)
+        self.assertEqual(catalogue["summary"]["recordCount"], 54)
+        self.assertEqual(len(catalogue["records"]), 54)
+        self.assertEqual(len({record["id"] for record in catalogue["records"]}), 54)
         self.assertTrue(all(record["url"].startswith("https://") for record in catalogue["records"]))
         self.assertTrue(all(record["adapter"] for record in catalogue["records"]))
 
