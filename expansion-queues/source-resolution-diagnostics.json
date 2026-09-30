@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
   "kind": "static-source-resolution-diagnostics",
-  "generatedAt": "2026-09-30T10:37:08.509196Z",
+  "generatedAt": "2026-09-30T10:39:23.710084Z",
   "source": "expansion-queues/regional-source-backlog.json",
   "policy": "Diagnostics do not publish records; only validated dated records with location and provenance may enter civic packages.",
   "summary": {
-    "candidateCount": 59,
+    "candidateCount": 58,
     "resolvedCount": 42,
-    "unresolvedCount": 59,
+    "unresolvedCount": 58,
     "blockers": {
       "schema-unverified": 2,
-      "selector-or-endpoint-undiscovered": 57
+      "selector-or-endpoint-undiscovered": 56
     }
   },
   "sources": [
@@ -948,32 +948,6 @@
         "candidateEndpointCount": 0,
         "selectorCandidateCount": 0,
         "schemaStatus": "not-run"
-      }
-    },
-    {
-      "sourceId": "events-mainepublic-org-bfb30cd0",
-      "regionId": "portland-maine",
-      "category": "events",
-      "url": "https://www.mainepublic.org/community-calendar",
-      "publisher": "Maine Public Community Calendar",
-      "adapter": "review-required",
-      "observed": {
-        "httpStatus": 200,
-        "contentType": "text/html;charset=UTF-8",
-        "checkedAt": "2026-09-29T17:47:08.895Z"
-      },
-      "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 28 endpoint/link candidates, but no item-level contract validation",
-      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
-      "discoveryEvidence": {
-        "status": "SUCCEEDED",
-        "httpStatus": 200,
-        "contentType": "text/html;charset=UTF-8",
-        "finalUrl": "https://www.mainepublic.org/community-calendar",
-        "candidateEndpointCount": 28,
-        "selectorCandidateCount": 30,
-        "schemaStatus": "endpoint-or-selector-needed"
       }
     },
     {

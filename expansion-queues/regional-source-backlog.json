@@ -4336,12 +4336,19 @@
           },
           "url": "https://www.mainepublic.org/community-calendar",
           "workItemId": "source:events-mainepublic-org-bfb30cd0",
-          "trackingState": "TRACKED_REACHABLE",
+          "trackingState": "INTEGRATED_STATIC",
           "trackingEvidence": {
             "checkedAt": "2026-09-29T17:47:08.895Z",
             "httpStatus": 200,
             "contentType": "text/html;charset=UTF-8",
             "source": "local-batched-validation"
+          },
+          "integrationEvidence": {
+            "integratedAt": "2026-09-30T00:00:00Z",
+            "recordCount": 1,
+            "verifiedSourceFormat": "official HTML event detail page",
+            "verifiedSourceUrl": "https://www.mainepublic.org/community-calendar/event/collins-center-maxwell-quartet-28-09-2026-13-44-36",
+            "notes": "Published one listing with an explicit date, time, venue, and stable official detail URL; recurring and conflicting listings were excluded."
           }
         },
         {
@@ -6182,7 +6189,7 @@
       "UNTRACKED_ACTIONABLE": 22
     },
     "trackingPolicy": "Tracked reachable sources remain in the audit backlog but are removed from the active operator queue until adapter work is requested.",
-    "unresolvedCount": 59,
-    "integratedStaticCount": 43
+    "unresolvedCount": 58,
+    "integratedStaticCount": 44
   }
 }
