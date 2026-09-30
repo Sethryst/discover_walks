@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "regionId": "denver",
-  "generatedAt": "2026-08-06T12:00:50.221249Z",
+  "generatedAt": "2026-09-29T23:59:00Z",
   "artifacts": {
     "vote": {
       "generatedAt": "2026-08-07T03:25:17.422721Z",
@@ -69,6 +69,35 @@
       "producer": {
         "name": "Gremlin Lab",
         "version": "development"
+      },
+      "regionId": "denver",
+      "schemaVersion": 1
+    },
+    "events": {
+      "generatedAt": "2026-09-29T23:59:00Z",
+      "items": [
+        {
+          "date": "2026-09-29",
+          "endsAt": "2026-09-29T15:30:00-06:00",
+          "expiresAt": "2026-09-30T06:00:00Z",
+          "id": "denver-legistar:1447175:2026-09-29",
+          "locationLabel": "City & County Building, Room 391, Denver, CO",
+          "officialUrl": "https://denver.legistar.com/MeetingDetail.aspx?ID=1447175&GUID=58EF1F8F-579E-4A86-80CD-1748E731D17D",
+          "source": {
+            "authorityTier": "local_government",
+            "name": "City and County of Denver",
+            "reviewStatus": "verified",
+            "url": "https://denver.legistar.com/Calendar.aspx"
+          },
+          "startsAt": "2026-09-29T13:30:00-06:00",
+          "summary": "Community Planning and Housing meeting listed in the official Denver Legistar calendar.",
+          "title": "Community Planning and Housing",
+          "venueAddress": "City & County Building, Room 391, 1437 Bannock Street, Denver, CO"
+        }
+      ],
+      "producer": {
+        "name": "Gremlin Lab",
+        "version": "static-source-resolution"
       },
       "regionId": "denver",
       "schemaVersion": 1
