@@ -66,7 +66,7 @@ new = [
         "sourceId": "events-denvergov-org-c69e47eb",
         "replacementUrl": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Public-Event-Film-Permitting/Public-Events-Calendar",
         "status": "ENDPOINT_DISCOVERED_SCHEMA_PENDING",
-        "evidence": "The official Denver calendar page returned HTTP 200 and exposes the Eproval public calendar key 9ce8805d-e5be-4d77-b848-5abdb86c16bc plus the vendor calendar client. The public RPC host/client handshake was not independently replayed with a validated item payload, so no records were published from the key or page shell.",
+        "evidence": "The official Denver calendar page returned HTTP 200 and exposes the Eproval public calendar key 9ce8805d-e5be-4d77-b848-5abdb86c16bc plus the vendor calendar client. A direct guessed POST to the vendor host's /api/v2/public/rpc returned HTTP 405, confirming that the client URI/host handshake is required; no validated item payload was obtained and no records were published from the key or page shell.",
         "nextAcquisitionPath": "Replay the Eproval public-calendar client handshake for the recorded calendar key, capture Calendar_GetPublicCalendarEntries results, and validate stable IDs, explicit dates/times/locations, official detail URLs, and freshness before promotion.",
     },
 ]
