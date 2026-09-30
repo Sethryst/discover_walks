@@ -4064,13 +4064,14 @@
           },
           "url": "https://www.portland.gov/parks/volunteer",
           "workItemId": "source:volunteer-portland-gov-fe600e12",
-          "trackingState": "TRACKED_REACHABLE",
+          "trackingState": "INTEGRATED_STATIC",
           "trackingEvidence": {
             "checkedAt": "2026-09-29T17:47:06.798Z",
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
-          }
+          },
+          "integrationEvidence": "Published 3 future dated/location-backed Portland Parks volunteer records from official item pages with stable slugs, explicit times, park locations, and checked 2026-09-30."
         },
         {
           "category": "events",
@@ -6168,11 +6169,11 @@
     },
     "regionCount": 34,
     "trackingStates": {
-      "INTEGRATED_STATIC": 41,
-      "TRACKED_REACHABLE": 39,
+      "INTEGRATED_STATIC": 42,
+      "TRACKED_REACHABLE": 38,
       "UNTRACKED_ACTIONABLE": 22
     },
     "trackingPolicy": "Tracked reachable sources remain in the audit backlog but are removed from the active operator queue until adapter work is requested.",
-    "unresolvedCount": 61
+    "unresolvedCount": 60
   }
 }

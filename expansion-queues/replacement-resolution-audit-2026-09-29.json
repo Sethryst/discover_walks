@@ -4,30 +4,187 @@
   "checkedAt": "2026-09-29T23:59:00Z",
   "policy": "Replacement pages are discovery leads only. No record is published without an official item-level date, location, stable identifier, provenance, and freshness.",
   "results": [
-    {"sourceId":"volunteer-seattle-gov-c1758f69","replacementUrl":"https://www.trumba.com/calendars/parks-recreation.ics","status":"INTEGRATED_STATIC","evidence":"Official Seattle Parks page embeds the Trumba public calendar; the ICS export returned current volunteer entries with timezone, UID, title, date/time, and location. Two records published to the Seattle civic package.","nextAcquisitionPath":null},
-    {"sourceId":"meetings-denvergov-org-461d818b","replacementUrl":"https://denver.legistar.com/Calendar.aspx","status":"INTEGRATED_STATIC","evidence":"Official Denver City Council access page points to Legistar; the calendar returned a non-canceled 2026-09-29 meeting with stable ID 1447175, explicit time, and City & County Building Room 391 location.","nextAcquisitionPath":null},
-    {"sourceId":"meetings-nola-gov-b2493356","replacementUrl":"https://cityofno.legistar.com/Calendar.aspx","status":"INTEGRATED_STATIC","evidence":"Official City of New Orleans Legistar calendar returned the 2026-09-17 City Council row with iCalendar ID 1428857/GUID, 10:03 AM time, and City Hall Council Chamber location.","nextAcquisitionPath":null},
-    {"sourceId":"meetings-phila-gov-a4cb56f4","replacementUrl":"https://phila.legistar.com/Calendar.aspx","status":"INTEGRATED_STATIC","evidence":"Official Philadelphia Legistar calendar returned the 2026-09-24 CITY COUNCIL row with iCalendar ID 1442898/GUID, 10:00 AM time, and Room 400, City Hall location.","nextAcquisitionPath":null},
-    {"sourceId":"meetings-richmondgov-com-87666ac9","replacementUrl":"https://richmondva.legistar.com/Calendar.aspx","status":"INTEGRATED_STATIC","evidence":"Official Richmond City Clerk page points to Legistar; the calendar returned the 2026-09-28 City Council row with iCalendar ID 1354767/GUID, 6:00 PM time, and Council Chamber, 2nd Floor - City Hall location.","nextAcquisitionPath":null},
-    {"sourceId":"meetings-santafenm-gov-4df17058","replacementUrl":"https://santafenm.portal.civicclerk.com/","status":"ENDPOINT_DISCOVERED_SCHEMA_PENDING","evidence":"Official Santa Fe City Clerk page links to the CivicClerk public meeting portal and a 2026 meeting-calendar PDF, but the public portal shell requires JavaScript and no item-level date/time/location payload was directly verifiable in the reachable response.","nextAcquisitionPath":"Identify the documented CivicClerk public API/ICS endpoint or a stable event page with explicit meeting fields."},
-    {"sourceId":"volunteer-santafenm-gov-57a0cd99","replacementUrl":"https://santafenm.gov/public-works/parks-and-open-space","status":"BLOCKED_SCHEMA","evidence":"The official Santa Fe Parks and Open Space page provides a volunteer application link and general Adopt-a-Park/Trail information, but no scheduled volunteer items with explicit dates, times, locations, or stable opportunity IDs. The waiver/form is not a volunteer event feed, so no records were published.","nextAcquisitionPath":"Obtain the City’s public volunteer master-calendar export/API or item-level opportunity pages with stable IDs, explicit dates, times, and locations."},
-    {"sourceId":"volunteer-nola-gov-c959480f","replacementUrl":null,"status":"DISCOVERY_ONLY_PERMIT_GUIDANCE","evidence":"The operator replacement is a park or recreation-center use permit. Permit instructions describe how to request space and do not constitute scheduled volunteer opportunities or an event feed; no records were fabricated from the guidance.","nextAcquisitionPath":"Locate an official NORDC volunteer calendar or item-level volunteer opportunity feed with stable IDs, explicit dates, times, and locations."},
-    {"sourceId":"events-downtown-denver-com-920db7f3","replacementUrl":"https://www.downtowndenver.com/event-list","status":"INTEGRATED_STATIC","evidence":"Official Downtown Denver Partnership event detail JSON-LD returned scheduled start/end timestamps, venue address 101 W 14th Ave, Denver, and canonical event slug for Civic Center EATS 9/30/2026.","nextAcquisitionPath":null},
-    {"sourceId":"meetings-cityofboise-org-3b05a56d","replacementUrl":"https://boisecityid.iqm2.com/Citizens/Calendar.aspx","status":"ENDPOINT_DISCOVERED_SCHEMA_PENDING","evidence":"The official City of Boise council destination leads to a normally reachable IQM2 calendar shell. The sampled response was HTML and did not expose verifiable item-level meeting rows, stable IDs, or a public JSON/ICS payload, so no meeting was published from inferred cadence or third-party mirrors.","nextAcquisitionPath":"Identify the IQM2 public calendar's documented item endpoint or stable meeting-detail selector and verify explicit dates, times, City Hall/virtual locations, and IDs."},
-    {"sourceId":"events-town-keystone-co-us-e3452f18","replacementUrl":"https://www.keystoneco.gov/","status":"BLOCKED_EVENT_FEED_NOT_VERIFIED","evidence":"The official Town of Keystone site exposes council/agenda pages and an event-request form, but no reachable official public event feed, structured calendar, or item-level event pages were verified. A dated staff report is permit/planning guidance rather than a publishable event feed, so no event records were fabricated from it.","nextAcquisitionPath":"Obtain the Town's official event calendar export/API or a verified source-specific selector with stable event IDs, explicit dates, times, and locations; keep municipal meetings and resort/third-party programming separate."},
-    {"sourceId":"volunteer-denvergov-org-ffc494c0","replacementUrl":"https://engagedenver.denvergov.org/Calendar","status":"INTEGRATED_STATIC","evidence":"Official Denver Engage public calendar HTML exposed stable activity UUIDs, explicit 2026-09-30 dates/times, and locations for West-Bar-Val-Wood Park Cleanup and Harvey Park Cleanup & Flowerbed Adoption. Two records published; entries without explicit locations or unqualified dates were excluded.","nextAcquisitionPath":null},
-    {"sourceId":"meetings-portlandmaine-gov-bc259924","replacementUrl":"https://portlandme.civicclerk.com/web/home.aspx","status":"ENDPOINT_DISCOVERED_SCHEMA_PENDING","evidence":"Official Portland, Maine homepage links to CivicClerk agendas/minutes and its calendar page exposes a CivicClerk-backed event path, but the public HTML response is client-rendered and the sampled event payload did not expose validated item-level date/location fields.","nextAcquisitionPath":"Identify the public CivicClerk calendar JSON/ICS endpoint or use a documented selector that returns stable event IDs, dates, times, and locations."},
-    {"sourceId":"volunteer-portlandmaine-gov-2c137978","replacementUrl":"https://www.portlandmaine.gov/programs","status":"BLOCKED_SCHEMA","evidence":"The official Portland Parks, Recreation & Facilities programs page describes volunteering and links to general recreation/program navigation, but does not expose item-level volunteer dates, times, locations, or stable opportunity IDs. The citywide calendar contains general events and meetings, not a validated volunteer feed, so no records were published.","nextAcquisitionPath":"Obtain the official Parks/Recreation volunteer calendar, MyRec export/API, or item-level opportunity pages with stable IDs, explicit dates, times, and locations."},
-    {"sourceId":"meetings-seattle-gov-3418b89c","replacementUrl":"https://seattle.legistar.com/Calendar.aspx","status":"BLOCKED_CURRENT_SAMPLE","evidence":"The official Seattle City Clerk page links to Legistar, whose calendar exposes stable meeting-detail and iCalendar IDs. Future rows sampled for 2026-09-29 through 2026-10-26 were explicitly marked Canceled, so no active meeting record was published.","nextAcquisitionPath":"Recheck the official Legistar calendar for a non-canceled dated meeting with a confirmed location before promotion."},
-    {"sourceId":"meetings-dcouncil-us-4d64fb67","replacementUrl":"https://dccouncil.gov/wp-json/tribe/events/v1/events","status":"ENDPOINT_DISCOVERED_NO_CURRENT_ITEMS","evidence":"The official DC Council RSS page exposes the Council calendar, and the public site advertises a WordPress Events REST API. A normal JSON request returned HTTP 200 with a valid events schema but zero published items in the current/future window; no record was promoted from archived or undated hearing material.","nextAcquisitionPath":"Recheck the official Events REST API or Hearing Management System when current published hearings are present, and require stable item IDs, explicit dates, times, and Wilson Building/virtual locations."},
-    {"sourceId":"meetings-princegeorgescountymd-gov-95ea3f6d","replacementUrl":"https://princegeorgescountymd.legistar.com/Calendar.aspx","status":"INTEGRATED_STATIC","evidence":"Official Legistar calendar returned current 2026 meeting rows with date, time, location, and stable meeting-detail IDs; two records published to the Prince George's County civic package.","nextAcquisitionPath":null},
-    {"sourceId":"events-sfrecpark-org-ddd118f6","replacementUrl":"https://sfrecpark.org/rss.aspx","status":"BLOCKED_SCHEMA","evidence":"HTTP 200 normal HTML page (text/html), not XML RSS/Atom; no feed items or item-level event schema were present.","nextAcquisitionPath":"Obtain a current official SF Rec & Parks RSS/ICS/JSON endpoint or add a verified event-calendar selector."},
-    {"sourceId":"volunteer-nycgovparks-org-4b7ad625","replacementUrl":"https://data.cityofnewyork.us/resource/fudw-fgrp.json","status":"BLOCKED_FRESHNESS","evidence":"Official Socrata metadata exposes event_id, title, date, start_time, end_time, location_description, url, and related location table; sampled records were dated 2019-12, so the inventory does not provide fresh current records for publication.","nextAcquisitionPath":"Identify a current NYC Parks event inventory/API or verified export with recent dated records and joinable locations."},
-    {"sourceId":"volunteer-friendsoftheparks-org-5e217463","replacementUrl":"https://www.fotp.org/events","status":"BLOCKED_FRESHNESS","evidence":"The official Friends of the Parks events page is reachable and exposes item-level dates, times, locations, and Google Calendar ICS links, but the sampled dated listings were already past at the 2026-09-29 freshness point. No stale volunteer/event records were published.","nextAcquisitionPath":"Recheck the official events page or its item-level ICS links for a future dated opportunity with stable event identity and explicit location."},
-    {"sourceId":"volunteer-jrps-org-2a3b895f","replacementUrl":"https://jamesriverpark.org/park-calendar/","status":"ENDPOINT_DISCOVERED_SCHEMA_PENDING","evidence":"The official Friends of James River Park calendar loads normally and exposes the EventON public REST configuration at the page level, including a site REST base and calendar endpoint parameters. The sampled page did not itself contain item-level event payloads, so no records were published from search snippets or third-party calendar pages.","nextAcquisitionPath":"Replay the public EventON REST request documented by the page configuration, verify stable event IDs, explicit dates/times/locations, and freshness, then publish only validated volunteer records."},
-    {"sourceId":"volunteer-dpr-dc-gov-52180f8a","replacementUrl":"https://dpr.dc.gov/page/volunteers","status":"BLOCKED_SCHEMA","evidence":"The official DC DPR volunteer page is reachable and lists current volunteer role names, but it does not expose item-level scheduled dates, times, locations, or stable opportunity IDs. The registration link and role descriptions are not a dated opportunity feed, so no records were published.","nextAcquisitionPath":"Obtain the public DPR volunteer registration/calendar export or a normally reachable item-level opportunity page with stable IDs, explicit dates, times, and locations."},
-    {"sourceId":"events-meridiancity-org-44f75203","replacementUrl":null,"status":"BLOCKED_ACCESS_OR_PERMISSION","evidence":"Operator guidance identifies a third-party Tockify calendar, but no owner-approved export/API was supplied; the old city page is not used to bypass a 403.","nextAcquisitionPath":"Obtain City of Meridian/Tockify owner permission and an official export, feed, or API."},
-    {"sourceId":"events-chicago-gov-44124097","replacementUrl":null,"status":"DISCOVERY_ONLY","evidence":"The replacement is a press room; it is not treated as an event feed or RSS evidence.","nextAcquisitionPath":"Locate an official Chicago events JSON/ICS/RSS endpoint or source-specific dated event calendar."},
-    {"sourceId":"volunteer-ashevillenc-gov-3ebf2f4c","replacementUrl":"https://www.ashevillenc.gov/department/parks-recreation/","status":"BLOCKED_403","evidence":"The official Asheville Parks & Recreation replacement pages were not normally fetchable: the public page request returned HTTP 403. No bypass, alternate access-control path, or record publication was attempted; search snippets are discovery evidence only.","nextAcquisitionPath":"Obtain an operator-provided official export/API or a normally reachable Asheville Parks & Recreation calendar page with item-level stable IDs, explicit dates, times, and locations."}
+    {
+      "sourceId": "volunteer-seattle-gov-c1758f69",
+      "replacementUrl": "https://www.trumba.com/calendars/parks-recreation.ics",
+      "status": "INTEGRATED_STATIC",
+      "evidence": "Official Seattle Parks page embeds the Trumba public calendar; the ICS export returned current volunteer entries with timezone, UID, title, date/time, and location. Two records published to the Seattle civic package.",
+      "nextAcquisitionPath": null
+    },
+    {
+      "sourceId": "meetings-denvergov-org-461d818b",
+      "replacementUrl": "https://denver.legistar.com/Calendar.aspx",
+      "status": "INTEGRATED_STATIC",
+      "evidence": "Official Denver City Council access page points to Legistar; the calendar returned a non-canceled 2026-09-29 meeting with stable ID 1447175, explicit time, and City & County Building Room 391 location.",
+      "nextAcquisitionPath": null
+    },
+    {
+      "sourceId": "meetings-nola-gov-b2493356",
+      "replacementUrl": "https://cityofno.legistar.com/Calendar.aspx",
+      "status": "INTEGRATED_STATIC",
+      "evidence": "Official City of New Orleans Legistar calendar returned the 2026-09-17 City Council row with iCalendar ID 1428857/GUID, 10:03 AM time, and City Hall Council Chamber location.",
+      "nextAcquisitionPath": null
+    },
+    {
+      "sourceId": "meetings-phila-gov-a4cb56f4",
+      "replacementUrl": "https://phila.legistar.com/Calendar.aspx",
+      "status": "INTEGRATED_STATIC",
+      "evidence": "Official Philadelphia Legistar calendar returned the 2026-09-24 CITY COUNCIL row with iCalendar ID 1442898/GUID, 10:00 AM time, and Room 400, City Hall location.",
+      "nextAcquisitionPath": null
+    },
+    {
+      "sourceId": "meetings-richmondgov-com-87666ac9",
+      "replacementUrl": "https://richmondva.legistar.com/Calendar.aspx",
+      "status": "INTEGRATED_STATIC",
+      "evidence": "Official Richmond City Clerk page points to Legistar; the calendar returned the 2026-09-28 City Council row with iCalendar ID 1354767/GUID, 6:00 PM time, and Council Chamber, 2nd Floor - City Hall location.",
+      "nextAcquisitionPath": null
+    },
+    {
+      "sourceId": "meetings-santafenm-gov-4df17058",
+      "replacementUrl": "https://santafenm.portal.civicclerk.com/",
+      "status": "ENDPOINT_DISCOVERED_SCHEMA_PENDING",
+      "evidence": "Official Santa Fe City Clerk page links to the CivicClerk public meeting portal and a 2026 meeting-calendar PDF, but the public portal shell requires JavaScript and no item-level date/time/location payload was directly verifiable in the reachable response.",
+      "nextAcquisitionPath": "Identify the documented CivicClerk public API/ICS endpoint or a stable event page with explicit meeting fields."
+    },
+    {
+      "sourceId": "volunteer-santafenm-gov-57a0cd99",
+      "replacementUrl": "https://santafenm.gov/public-works/parks-and-open-space",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The official Santa Fe Parks and Open Space page provides a volunteer application link and general Adopt-a-Park/Trail information, but no scheduled volunteer items with explicit dates, times, locations, or stable opportunity IDs. The waiver/form is not a volunteer event feed, so no records were published.",
+      "nextAcquisitionPath": "Obtain the City\u2019s public volunteer master-calendar export/API or item-level opportunity pages with stable IDs, explicit dates, times, and locations."
+    },
+    {
+      "sourceId": "volunteer-nola-gov-c959480f",
+      "replacementUrl": null,
+      "status": "DISCOVERY_ONLY_PERMIT_GUIDANCE",
+      "evidence": "The operator replacement is a park or recreation-center use permit. Permit instructions describe how to request space and do not constitute scheduled volunteer opportunities or an event feed; no records were fabricated from the guidance.",
+      "nextAcquisitionPath": "Locate an official NORDC volunteer calendar or item-level volunteer opportunity feed with stable IDs, explicit dates, times, and locations."
+    },
+    {
+      "sourceId": "events-downtown-denver-com-920db7f3",
+      "replacementUrl": "https://www.downtowndenver.com/event-list",
+      "status": "INTEGRATED_STATIC",
+      "evidence": "Official Downtown Denver Partnership event detail JSON-LD returned scheduled start/end timestamps, venue address 101 W 14th Ave, Denver, and canonical event slug for Civic Center EATS 9/30/2026.",
+      "nextAcquisitionPath": null
+    },
+    {
+      "sourceId": "meetings-cityofboise-org-3b05a56d",
+      "replacementUrl": "https://boisecityid.iqm2.com/Citizens/Calendar.aspx",
+      "status": "ENDPOINT_DISCOVERED_SCHEMA_PENDING",
+      "evidence": "The official City of Boise council destination leads to a normally reachable IQM2 calendar shell. The sampled response was HTML and did not expose verifiable item-level meeting rows, stable IDs, or a public JSON/ICS payload, so no meeting was published from inferred cadence or third-party mirrors.",
+      "nextAcquisitionPath": "Identify the IQM2 public calendar's documented item endpoint or stable meeting-detail selector and verify explicit dates, times, City Hall/virtual locations, and IDs."
+    },
+    {
+      "sourceId": "events-town-keystone-co-us-e3452f18",
+      "replacementUrl": "https://www.keystoneco.gov/",
+      "status": "BLOCKED_EVENT_FEED_NOT_VERIFIED",
+      "evidence": "The official Town of Keystone site exposes council/agenda pages and an event-request form, but no reachable official public event feed, structured calendar, or item-level event pages were verified. A dated staff report is permit/planning guidance rather than a publishable event feed, so no event records were fabricated from it.",
+      "nextAcquisitionPath": "Obtain the Town's official event calendar export/API or a verified source-specific selector with stable event IDs, explicit dates, times, and locations; keep municipal meetings and resort/third-party programming separate."
+    },
+    {
+      "sourceId": "volunteer-denvergov-org-ffc494c0",
+      "replacementUrl": "https://engagedenver.denvergov.org/Calendar",
+      "status": "INTEGRATED_STATIC",
+      "evidence": "Official Denver Engage public calendar HTML exposed stable activity UUIDs, explicit 2026-09-30 dates/times, and locations for West-Bar-Val-Wood Park Cleanup and Harvey Park Cleanup & Flowerbed Adoption. Two records published; entries without explicit locations or unqualified dates were excluded.",
+      "nextAcquisitionPath": null
+    },
+    {
+      "sourceId": "meetings-portlandmaine-gov-bc259924",
+      "replacementUrl": "https://portlandme.civicclerk.com/web/home.aspx",
+      "status": "ENDPOINT_DISCOVERED_SCHEMA_PENDING",
+      "evidence": "Official Portland, Maine homepage links to CivicClerk agendas/minutes and its calendar page exposes a CivicClerk-backed event path, but the public HTML response is client-rendered and the sampled event payload did not expose validated item-level date/location fields.",
+      "nextAcquisitionPath": "Identify the public CivicClerk calendar JSON/ICS endpoint or use a documented selector that returns stable event IDs, dates, times, and locations."
+    },
+    {
+      "sourceId": "volunteer-portlandmaine-gov-2c137978",
+      "replacementUrl": "https://www.portlandmaine.gov/programs",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The official Portland Parks, Recreation & Facilities programs page describes volunteering and links to general recreation/program navigation, but does not expose item-level volunteer dates, times, locations, or stable opportunity IDs. The citywide calendar contains general events and meetings, not a validated volunteer feed, so no records were published.",
+      "nextAcquisitionPath": "Obtain the official Parks/Recreation volunteer calendar, MyRec export/API, or item-level opportunity pages with stable IDs, explicit dates, times, and locations."
+    },
+    {
+      "sourceId": "meetings-seattle-gov-3418b89c",
+      "replacementUrl": "https://seattle.legistar.com/Calendar.aspx",
+      "status": "BLOCKED_CURRENT_SAMPLE",
+      "evidence": "The official Seattle City Clerk page links to Legistar, whose calendar exposes stable meeting-detail and iCalendar IDs. Future rows sampled for 2026-09-29 through 2026-10-26 were explicitly marked Canceled, so no active meeting record was published.",
+      "nextAcquisitionPath": "Recheck the official Legistar calendar for a non-canceled dated meeting with a confirmed location before promotion."
+    },
+    {
+      "sourceId": "meetings-dcouncil-us-4d64fb67",
+      "replacementUrl": "https://dccouncil.gov/wp-json/tribe/events/v1/events",
+      "status": "ENDPOINT_DISCOVERED_NO_CURRENT_ITEMS",
+      "evidence": "The official DC Council RSS page exposes the Council calendar, and the public site advertises a WordPress Events REST API. A normal JSON request returned HTTP 200 with a valid events schema but zero published items in the current/future window; no record was promoted from archived or undated hearing material.",
+      "nextAcquisitionPath": "Recheck the official Events REST API or Hearing Management System when current published hearings are present, and require stable item IDs, explicit dates, times, and Wilson Building/virtual locations."
+    },
+    {
+      "sourceId": "meetings-princegeorgescountymd-gov-95ea3f6d",
+      "replacementUrl": "https://princegeorgescountymd.legistar.com/Calendar.aspx",
+      "status": "INTEGRATED_STATIC",
+      "evidence": "Official Legistar calendar returned current 2026 meeting rows with date, time, location, and stable meeting-detail IDs; two records published to the Prince George's County civic package.",
+      "nextAcquisitionPath": null
+    },
+    {
+      "sourceId": "events-sfrecpark-org-ddd118f6",
+      "replacementUrl": "https://sfrecpark.org/rss.aspx",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "HTTP 200 normal HTML page (text/html), not XML RSS/Atom; no feed items or item-level event schema were present.",
+      "nextAcquisitionPath": "Obtain a current official SF Rec & Parks RSS/ICS/JSON endpoint or add a verified event-calendar selector."
+    },
+    {
+      "sourceId": "volunteer-nycgovparks-org-4b7ad625",
+      "replacementUrl": "https://data.cityofnewyork.us/resource/fudw-fgrp.json",
+      "status": "BLOCKED_FRESHNESS",
+      "evidence": "Official Socrata metadata exposes event_id, title, date, start_time, end_time, location_description, url, and related location table; sampled records were dated 2019-12, so the inventory does not provide fresh current records for publication.",
+      "nextAcquisitionPath": "Identify a current NYC Parks event inventory/API or verified export with recent dated records and joinable locations."
+    },
+    {
+      "sourceId": "volunteer-friendsoftheparks-org-5e217463",
+      "replacementUrl": "https://www.fotp.org/events",
+      "status": "BLOCKED_FRESHNESS",
+      "evidence": "The official Friends of the Parks events page is reachable and exposes item-level dates, times, locations, and Google Calendar ICS links, but the sampled dated listings were already past at the 2026-09-29 freshness point. No stale volunteer/event records were published.",
+      "nextAcquisitionPath": "Recheck the official events page or its item-level ICS links for a future dated opportunity with stable event identity and explicit location."
+    },
+    {
+      "sourceId": "volunteer-jrps-org-2a3b895f",
+      "replacementUrl": "https://jamesriverpark.org/park-calendar/",
+      "status": "ENDPOINT_DISCOVERED_SCHEMA_PENDING",
+      "evidence": "The official Friends of James River Park calendar loads normally and exposes the EventON public REST configuration at the page level, including a site REST base and calendar endpoint parameters. The sampled page did not itself contain item-level event payloads, so no records were published from search snippets or third-party calendar pages.",
+      "nextAcquisitionPath": "Replay the public EventON REST request documented by the page configuration, verify stable event IDs, explicit dates/times/locations, and freshness, then publish only validated volunteer records."
+    },
+    {
+      "sourceId": "volunteer-dpr-dc-gov-52180f8a",
+      "replacementUrl": "https://dpr.dc.gov/page/volunteers",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The official DC DPR volunteer page is reachable and lists current volunteer role names, but it does not expose item-level scheduled dates, times, locations, or stable opportunity IDs. The registration link and role descriptions are not a dated opportunity feed, so no records were published.",
+      "nextAcquisitionPath": "Obtain the public DPR volunteer registration/calendar export or a normally reachable item-level opportunity page with stable IDs, explicit dates, times, and locations."
+    },
+    {
+      "sourceId": "events-meridiancity-org-44f75203",
+      "replacementUrl": null,
+      "status": "BLOCKED_ACCESS_OR_PERMISSION",
+      "evidence": "Operator guidance identifies a third-party Tockify calendar, but no owner-approved export/API was supplied; the old city page is not used to bypass a 403.",
+      "nextAcquisitionPath": "Obtain City of Meridian/Tockify owner permission and an official export, feed, or API."
+    },
+    {
+      "sourceId": "events-chicago-gov-44124097",
+      "replacementUrl": null,
+      "status": "DISCOVERY_ONLY",
+      "evidence": "The replacement is a press room; it is not treated as an event feed or RSS evidence.",
+      "nextAcquisitionPath": "Locate an official Chicago events JSON/ICS/RSS endpoint or source-specific dated event calendar."
+    },
+    {
+      "sourceId": "volunteer-ashevillenc-gov-3ebf2f4c",
+      "replacementUrl": "https://www.ashevillenc.gov/department/parks-recreation/",
+      "status": "BLOCKED_403",
+      "evidence": "The official Asheville Parks & Recreation replacement pages were not normally fetchable: the public page request returned HTTP 403. No bypass, alternate access-control path, or record publication was attempted; search snippets are discovery evidence only.",
+      "nextAcquisitionPath": "Obtain an operator-provided official export/API or a normally reachable Asheville Parks & Recreation calendar page with item-level stable IDs, explicit dates, times, and locations."
+    },
+    {
+      "sourceId": "volunteer-portland-gov-fe600e12",
+      "replacementUrl": "https://www.portland.gov/parks/volunteer",
+      "status": "INTEGRATED_STATIC",
+      "evidence": "Official Portland Parks item pages returned three future volunteer events (Argay Park Volunteer Day, Mill Park Volunteer Day, and Pier Park Stewardship Day) with stable slug URLs, explicit 2026-10-01/02 dates, times, volunteer labels, and named park locations. Three records published to the Portland civic package.",
+      "nextAcquisitionPath": null
+    }
   ]
 }
