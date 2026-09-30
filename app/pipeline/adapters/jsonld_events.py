@@ -28,10 +28,11 @@ class JsonLdEventsProvider(SourceAdapter):
         features = []
         default = source.provider_options.get("defaultCoordinates")
         for event in records[:int(source.provider_options.get("limit", 250))]:
-            point = _point(event.get("location"), default)
-            if not point or not event.get("name") or not event.get("startDate"): continue
+            address = _address(event.get("location"))
+            point = _point(event.get("location"), None) or (_point(event.get("location"), default) if address else None)
+            if not point or not address or not event.get("name") or not _has_explicit_time(event.get("startDate")): continue
             event_id = str(event.get("identifier") or hashlib.sha256(f"{source.id}|{event['name']}|{event['startDate']}|{event.get('url', source.url)}".encode()).hexdigest()[:20])
-            props = {"name": event["name"], "startsAt": event["startDate"], "endsAt": event.get("endDate"), "eventType": event.get("@type", "Event"), "officialUrl": event.get("url") or source.url, "venueAddress": _address(event.get("location")), "summary": event.get("description")}
+            props = {"name": event["name"], "startsAt": event["startDate"], "endsAt": event.get("endDate"), "eventType": event.get("@type", "Event"), "officialUrl": event.get("url") or source.url, "venueAddress": address, "summary": event.get("description")}
             features.append(IntermediateFeature(event_id, source.name, source.url, {"type": "Point", "coordinates": point}, props, stamp, {"rawFormat": "schema.org-jsonld", "sourceMetadata": {"sourceConfigId": source.id}, "confidence": source.confidence}))
         return features, {"format": "schema.org-jsonld", "recordCount": len(records), "acceptedCount": len(features)}
 
@@ -61,3 +62,7 @@ def _address(location):
         if isinstance(address, str): return address
         if isinstance(address, dict): return ", ".join(str(address.get(k)) for k in ("streetAddress", "addressLocality", "addressRegion", "postalCode") if address.get(k))
     return None
+
+def _has_explicit_time(value):
+    """Reject date-only JSON-LD and recurring/undated calendar shells."""
+    return isinstance(value, str) and "T" in value and len(value.split("T", 1)[1]) >= 5

@@ -17,3 +17,11 @@ class JsonLdEventsTests(unittest.TestCase):
         self.assertEqual(len(features), 1)
         self.assertEqual(report["acceptedCount"], 1)
         self.assertEqual(features[0].geometry["coordinates"], [-77.1, 38.9])
+
+    @patch("app.pipeline.adapters.jsonld_events.urlopen")
+    def test_rejects_date_only_event_without_explicit_time(self, open_url):
+        open_url.return_value = type("R", (), {"__enter__": lambda s: s, "__exit__": lambda *a: None, "read": lambda s: b'<script type="application/ld+json">{"@type":"Event","name":"Recurring tour","startDate":"2026-10-02","location":{"address":{"streetAddress":"1 Main St","addressLocality":"Richmond","addressRegion":"VA"}}}</script>'})()
+        source = SourceConfig.from_dict({"id":"date-only","name":"JSON-LD","provider":"jsonld_events","url":"https://example.test/events","domains":["event"],"licenseUrl":"https://example.test/license"})
+        features, report = JsonLdEventsProvider().acquire(source, {})
+        self.assertEqual(features, [])
+        self.assertEqual(report["acceptedCount"], 0)
