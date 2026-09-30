@@ -18,8 +18,8 @@ def fetch(row):
         return {"source_id": row["id"], "url": row["url"], "status": "FAILED", "http_status": None, "content_type": None, "final_url": None, "jsonld_events": 0, "candidate_endpoints": [], "selector_candidates": [], "schema_status": "not-run", "schema_evidence": [type(exc).__name__, str(exc)], "blocker": "fetch-failed"}
 
 def main():
-    parser = argparse.ArgumentParser(); parser.add_argument("--batch", type=int, default=25); parser.add_argument("--offset", type=int, default=0); parser.add_argument("--output", type=Path, default=ROOT / "expansion-queues" / "source-discovery-batch.json")
-    args = parser.parse_args(); backlog = json.loads((ROOT / "expansion-queues" / "regional-source-backlog.json").read_text(encoding="utf-8"))
+    parser = argparse.ArgumentParser(); parser.add_argument("--batch", type=int, default=25); parser.add_argument("--offset", type=int, default=0); parser.add_argument("--output", type=Path, default=ROOT / "expansion-queues" / "source-discovery-batch.json"); parser.add_argument("--backlog", type=Path, default=ROOT / "expansion-queues" / "regional-source-backlog.json")
+    args = parser.parse_args(); backlog = json.loads(args.backlog.read_text(encoding="utf-8"))
     rows = [dict(item, regionId=region["id"]) for region in backlog["regions"] for item in region["queue"] if item.get("trackingState") != "INTEGRATED_STATIC"]
     batch = rows[args.offset:args.offset + args.batch]
     with ThreadPoolExecutor(max_workers=min(8, max(1, len(batch)))) as pool:

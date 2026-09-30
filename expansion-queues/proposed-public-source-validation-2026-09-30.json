@@ -15,43 +15,43 @@
     },
     {
       "sourceId": "bowie-municipal-rss-directory",
-      "regionId": null,
+      "regionId": "bowie-md",
       "category": "events-and-meetings",
-      "status": "PUBLIC_FEED_DIRECTORY_SCHEMA_PENDING",
+      "status": "INTEGRATED_STATIC",
       "officialUrl": "https://www.cityofbowie.org/rss.aspx",
       "format": "RSS/XML directory",
-      "evidence": "Official City of Bowie RSS directory is publicly reachable and exposes RSSFeed.aspx routes, but no Bowie regional static package exists in this repository and the individual event/meeting feed payloads still require item-level schema validation.",
-      "nextAcquisitionPath": "Select the official municipal events and meetings feed, verify RSS items contain stable links plus explicit dated times and locations, then map Bowie to a static regional package before publication."
+      "evidence": "Official municipal Calendar RSS returned 29 records with stable EID links, explicit dates/times/locations, canonical Calendar.aspx URLs, and local-government provenance; 5 records without complete location/date evidence were excluded.",
+      "nextAcquisitionPath": null
     },
     {
       "sourceId": "fort-wayne-municipal-rss-directory",
-      "regionId": null,
+      "regionId": "fort-wayne-in",
       "category": "events-and-meetings",
-      "status": "PUBLIC_FEED_DIRECTORY_SCHEMA_PENDING",
+      "status": "INTEGRATED_STATIC",
       "officialUrl": "https://www.cityoffortwayne.in.gov/rss.aspx",
       "format": "RSS/XML directory",
-      "evidence": "Official Fort Wayne RSS directory is publicly reachable and exposes municipal board, parks, classes, and city-feed routes, but no Fort Wayne regional static package exists in this repository and item-level event schema/freshness remains unverified.",
-      "nextAcquisitionPath": "Select the official parks/classes and public-meeting feeds, validate stable links, explicit dates/times/locations, and freshness, then map Fort Wayne to a static regional package before publication."
+      "evidence": "Official municipal Calendar RSS returned 46 records with stable EID links, explicit dates/times/locations, canonical Calendar.aspx URLs, and local-government provenance.",
+      "nextAcquisitionPath": null
     },
     {
       "sourceId": "broomfield-municipal-rss-directory",
-      "regionId": null,
+      "regionId": "broomfield-co",
       "category": "events-and-meetings",
-      "status": "PUBLIC_FEED_DIRECTORY_SCHEMA_PENDING",
+      "status": "INTEGRATED_STATIC",
       "officialUrl": "https://broomfield.org/rss.aspx",
       "format": "RSS/XML directory",
-      "evidence": "Official Broomfield RSS directory is publicly reachable and exposes city, Parks/Recreation, senior-services, and agenda routes, but no Broomfield regional static package exists in this repository and item-level event schema/freshness remains unverified.",
-      "nextAcquisitionPath": "Select the official Parks/Recreation and agenda feeds, validate stable links, explicit dates/times/locations, and freshness, then map Broomfield to a static regional package before publication."
+      "evidence": "Official municipal Calendar RSS returned 7 records with stable EID links, explicit dates/times/locations, canonical Calendar.aspx URLs, and local-government provenance; one record without a location was excluded.",
+      "nextAcquisitionPath": null
     },
     {
       "sourceId": "golden-valley-mn-rss-directory",
-      "regionId": null,
+      "regionId": "golden-valley-mn",
       "category": "events-and-meetings",
-      "status": "PUBLIC_FEED_DIRECTORY_SCHEMA_PENDING",
+      "status": "INTEGRATED_STATIC",
       "officialUrl": "https://www.goldenvalleymn.gov/rss.aspx",
       "format": "RSS/XML directory",
-      "evidence": "Official Golden Valley RSS directory is publicly reachable and exposes city-calendar and civic-update routes, but no Golden Valley regional static package exists in this repository and item-level event schema/freshness remains unverified.",
-      "nextAcquisitionPath": "Select the official city-calendar feed, validate stable links, explicit dates/times/locations, and freshness, then map Golden Valley to a static regional package before publication."
+      "evidence": "Official municipal Calendar RSS returned 4 records with stable EID links, explicit dates/times/locations, canonical Calendar.aspx URLs, and local-government provenance.",
+      "nextAcquisitionPath": null
     },
     {
       "sourceId": "open-dc-public-bodies",
