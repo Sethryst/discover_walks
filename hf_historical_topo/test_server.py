@@ -1,3 +1,7 @@
+import pytest
+
+pytest.importorskip("rasterio")
+
 from server import tile_bbox, overlaps
 
 def test_world_tile():

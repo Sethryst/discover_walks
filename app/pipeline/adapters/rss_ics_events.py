@@ -42,7 +42,8 @@ def _parse_xml(payload: bytes):
     output = []
     for node in nodes:
         values = {_local(child.tag): html.unescape("".join(child.itertext()).strip()) for child in node}
-        output.append({"name": values.get("title"), "startsAt": _date(values.get("pubDate") or values.get("startDate") or values.get("date")), "endsAt": _date(values.get("endDate")), "officialUrl": values.get("link") or values.get("url"), "summary": values.get("description")})
+        raw_date = values.get("pubDate") or values.get("startDate") or values.get("date")
+        output.append({"name": values.get("title"), "startsAt": _date(raw_date), "timeOffsetExplicit": bool(raw_date and re.search(r"(?:Z|[+-]\d{2}:?\d{2})$", raw_date.strip())), "endsAt": _date(values.get("endDate")), "officialUrl": values.get("link") or values.get("url"), "summary": values.get("description")})
     return output
 
 def _parse_ics(payload: str):

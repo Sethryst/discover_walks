@@ -14,7 +14,7 @@ from app.pipeline.source_config import SourceConfig, load_region
 class OsmEnrichmentTests(unittest.TestCase):
     def test_every_region_has_explicit_valid_osm_status(self) -> None:
         files = region_files(Path("app/regions"))
-        self.assertEqual(len(files), 35)
+        self.assertEqual(len(files), 34)
         for path in files:
             config = json.loads(path.read_text(encoding="utf-8"))
             osm = normalize_osm_config(config)
@@ -70,7 +70,7 @@ class OsmEnrichmentTests(unittest.TestCase):
     def test_runtime_packages_have_valid_checksums_and_spatial_deltas(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             report = coverage_report(Path("app/regions"), Path(directory), Path("motherbird"))
-        self.assertEqual(report["summary"], {"configuredRegions": 35, "enabled": 33, "unavailable": 2, "built": 33})
+        self.assertEqual(report["summary"], {"configuredRegions": 34, "enabled": 32, "unavailable": 2, "built": 32})
         enabled = [region for region in report["regions"] if region["osmStatus"] == "enabled"]
         self.assertTrue(all(region["checksumStatus"] == "valid" for region in enabled))
         self.assertTrue(all(region["spatialIndex"]["status"] == "delta_ready" for region in enabled))
