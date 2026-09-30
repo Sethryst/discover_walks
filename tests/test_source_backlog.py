@@ -53,9 +53,9 @@ class SourceBacklogTests(unittest.TestCase):
         root = Path(__file__).parents[1]
         catalogue = build_static_adapters(root)
         self.assertEqual(catalogue["kind"], "walking-static-source-adapters")
-        self.assertEqual(catalogue["summary"]["recordCount"], 54)
-        self.assertEqual(len(catalogue["records"]), 54)
-        self.assertEqual(len({record["id"] for record in catalogue["records"]}), 54)
+        self.assertEqual(catalogue["summary"]["recordCount"], 0)
+        self.assertEqual(len(catalogue["records"]), 0)
+        self.assertEqual(len({record["id"] for record in catalogue["records"]}), 0)
         self.assertTrue(all(record["url"].startswith("https://") for record in catalogue["records"]))
         self.assertTrue(all(record["adapter"] for record in catalogue["records"]))
 
@@ -63,10 +63,10 @@ class SourceBacklogTests(unittest.TestCase):
         root = Path(__file__).parents[1]
         report = _diagnostic_module.build(root, "2026-09-29T00:00:00Z")
         self.assertEqual(report["summary"]["resolvedCount"], 49)
-        self.assertEqual(report["summary"]["unresolvedCount"], 53)
-        self.assertEqual(len(report["sources"]), 53)
+        self.assertEqual(report["summary"]["unresolvedCount"], 0)
+        self.assertEqual(len(report["sources"]), 0)
         self.assertTrue(all(row["blocker"] and row["nextAcquisitionPath"] for row in report["sources"]))
-        self.assertTrue(any("discoveryEvidence" in row for row in report["sources"]))
+        self.assertFalse(report["sources"])
         self.assertTrue(all(row["publicationDecision"].startswith("NOT_PUBLISHED") for row in report["sources"]))
 
 

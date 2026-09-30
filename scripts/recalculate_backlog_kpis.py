@@ -11,7 +11,8 @@ payload["summary"]["trackingStates"] = dict(sorted(states.items()))
 # The queue is the unresolved review set. Previously integrated sources are
 # intentionally excluded from it but remain counted for repository-wide KPIs.
 excluded = payload["summary"].get("excludedIntegratedSources", {}).get("count", 0)
-payload["summary"]["integratedStaticCount"] = states.get("INTEGRATED_STATIC", 0) + excluded
+retired_integrated = sum(1 for row in payload.get("retiredCandidates", []) if row.get("status") == "INTEGRATED_STATIC")
+payload["summary"]["integratedStaticCount"] = states.get("INTEGRATED_STATIC", 0) + excluded + retired_integrated
 payload["summary"]["unresolvedCount"] = len(rows) - states.get("INTEGRATED_STATIC", 0)
 payload["summary"]["candidateCount"] = len(rows)
 path.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")

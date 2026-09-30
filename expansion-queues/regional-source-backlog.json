@@ -199,196 +199,7 @@
       },
       "id": "asheville",
       "name": "Asheville, NC",
-      "queue": [
-        {
-          "category": "meetings",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
-          "id": "meetings-ashevillenc-gov-644961e1",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "ashevillenc.gov",
-          "rank": 1,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 12.5,
-            "trust": 5
-          },
-          "trustSignals": {
-            "authority": "government",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.ashevillenc.gov/government/",
-          "workItemId": "source:meetings-ashevillenc-gov-644961e1",
-          "trackingState": "TRACKED_REACHABLE",
-          "trackingEvidence": {
-            "checkedAt": "2026-09-29T17:47:01.475Z",
-            "httpStatus": 200,
-            "contentType": "text/html; charset=UTF-8",
-            "source": "local-batched-validation"
-          },
-          "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
-          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
-        },
-        {
-          "category": "volunteer",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
-          "id": "volunteer-ashevillenc-gov-3ebf2f4c",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "ashevillenc.gov",
-          "rank": 2,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 12.5,
-            "trust": 5
-          },
-          "trustSignals": {
-            "authority": "government",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.ashevillenc.gov/parks/",
-          "workItemId": "source:volunteer-ashevillenc-gov-3ebf2f4c",
-          "resolutionDisposition": "DO_NOT_INVESTIGATE",
-          "resolutionNote": "Official replacement returned HTTP 403 through normal public access. Do not bypass; wait for an operator-provided official export/API or normally reachable item-level source."
-        },
-        {
-          "category": "events",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "editorial_registry:editorial-event-sources.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
-          "id": "events-exploreasheville-com-94d72b77",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "Explore Asheville Free Events",
-          "rank": 3,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 7.5,
-            "trust": 3
-          },
-          "trustSignals": {
-            "authority": "official_partner",
-            "governance": [
-              "Free claim: explicit"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.exploreasheville.com/events/free-events-asheville-nc",
-          "workItemId": "source:events-exploreasheville-com-94d72b77",
-          "trackingState": "TRACKED_REACHABLE",
-          "trackingEvidence": {
-            "checkedAt": "2026-09-29T17:47:01.475Z",
-            "httpStatus": 200,
-            "contentType": "text/html; charset=utf-8",
-            "source": "local-batched-validation"
-          },
-          "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
-          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
-        },
-        {
-          "category": "events",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
-          "id": "events-exploreasheville-com-8e96aa9e",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "exploreasheville.com",
-          "rank": 4,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 2.5,
-            "trust": 1
-          },
-          "trustSignals": {
-            "authority": "unknown",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.exploreasheville.com/events",
-          "workItemId": "source:events-exploreasheville-com-8e96aa9e",
-          "trackingState": "TRACKED_REACHABLE",
-          "trackingEvidence": {
-            "checkedAt": "2026-09-29T17:47:01.475Z",
-            "httpStatus": 200,
-            "contentType": "text/html; charset=utf-8",
-            "source": "local-batched-validation"
-          },
-          "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
-          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
-        }
-      ]
+      "queue": []
     },
     {
       "coverage": {
@@ -481,94 +292,7 @@
       },
       "id": "boise-meridian-idaho",
       "name": "Boise, Meridian & Old Town, Idaho",
-      "queue": [
-        {
-          "category": "meetings",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
-          "id": "meetings-cityofboise-org-3b05a56d",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "cityofboise.org",
-          "rank": 1,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 2.5,
-            "trust": 1
-          },
-          "trustSignals": {
-            "authority": "unknown",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.cityofboise.org/city-government/city-council/",
-          "workItemId": "source:meetings-cityofboise-org-3b05a56d",
-          "resolutionDisposition": "INTEGRATED_STATIC",
-          "resolutionNote": "Published 50 scheduled dated/location-backed meetings from the official City of Boise IQM2 calendar; stable meeting-detail IDs and venue addresses verified 2026-09-30.",
-          "nextAcquisitionPath": null,
-          "trackingState": "INTEGRATED_STATIC",
-          "integrationEvidence": "Published 50 scheduled dated/location-backed meetings from the official City of Boise IQM2 calendar; stable meeting-detail IDs and venue addresses verified 2026-09-30."
-        },
-        {
-          "category": "events",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
-          "id": "events-meridiancity-org-44f75203",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "meridiancity.org",
-          "rank": 4,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 0.65,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 1.08,
-            "trust": 1
-          },
-          "trustSignals": {
-            "authority": "unknown",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.meridiancity.org/cityevents",
-          "workItemId": "source:events-meridiancity-org-44f75203",
-          "resolutionDisposition": "BLOCKED_ACCESS_OR_PERMISSION",
-          "resolutionNote": "Operator guidance identifies a third-party Tockify calendar, but no owner-approved export/API was supplied; the old city page is not used to bypass a 403.",
-          "nextAcquisitionPath": "Obtain City of Meridian/Tockify owner permission and an official export, feed, or API."
-        }
-      ]
+      "queue": []
     },
     {
       "coverage": {
@@ -620,148 +344,7 @@
       },
       "id": "boston",
       "name": "Boston, MA",
-      "queue": [
-        {
-          "category": "volunteer",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
-          "id": "volunteer-boston-gov-98c6b1e6",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "boston.gov",
-          "rank": 2,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 12.5,
-            "trust": 5
-          },
-          "trustSignals": {
-            "authority": "government",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.boston.gov/parks",
-          "workItemId": "source:volunteer-boston-gov-98c6b1e6",
-          "trackingState": "TRACKED_REACHABLE",
-          "trackingEvidence": {
-            "checkedAt": "2026-09-29T17:47:01.475Z",
-            "httpStatus": 200,
-            "contentType": "text/html; charset=UTF-8",
-            "source": "local-batched-validation"
-          },
-          "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
-          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
-        },
-        {
-          "category": "events",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "editorial_registry:editorial-event-sources.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
-          "id": "events-thebostoncalendar-com-6e034980",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "The Boston Calendar",
-          "rank": 3,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 0.65,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 2.17,
-            "trust": 2
-          },
-          "trustSignals": {
-            "authority": "editorial",
-            "governance": [
-              "Free claim: per_listing"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.thebostoncalendar.com/",
-          "workItemId": "source:events-thebostoncalendar-com-6e034980",
-          "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "No validated item-level record was obtained from the recorded official destination; no landing-page or undated content was published.",
-          "nextAcquisitionPath": "Obtain and validate an official structured endpoint or item-level selector with stable IDs, explicit dates/times/locations, canonical URLs, provenance, and freshness."
-        },
-        {
-          "category": "events",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
-          "id": "events-bostonusa-com-7323eab4",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "bostonusa.com",
-          "rank": 4,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 0.65,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 1.08,
-            "trust": 1
-          },
-          "trustSignals": {
-            "authority": "unknown",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.bostonusa.com/events/",
-          "workItemId": "source:events-bostonusa-com-7323eab4",
-          "trackingState": "TRACKED_REACHABLE",
-          "trackingEvidence": {
-            "checkedAt": "2026-09-29T17:47:01.475Z",
-            "httpStatus": 200,
-            "contentType": "text/html; charset=utf-8",
-            "source": "local-batched-validation"
-          },
-          "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
-          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
-        }
-      ]
+      "queue": []
     },
     {
       "coverage": {
@@ -814,57 +397,7 @@
       },
       "id": "boulder",
       "name": "Boulder, CO",
-      "queue": [
-        {
-          "category": "events",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "editorial_registry:editorial-event-sources.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
-          "id": "events-bouldercoloradousa-com-8fb18e01",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "Boulder Official Calendar",
-          "rank": 4,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 7.5,
-            "trust": 3
-          },
-          "trustSignals": {
-            "authority": "official_partner",
-            "governance": [
-              "Free claim: per_listing"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.bouldercoloradousa.com/events/",
-          "workItemId": "source:events-bouldercoloradousa-com-8fb18e01",
-          "trackingState": "TRACKED_REACHABLE",
-          "trackingEvidence": {
-            "checkedAt": "2026-09-29T17:47:01.475Z",
-            "httpStatus": 200,
-            "contentType": "text/html; charset=utf-8",
-            "source": "local-batched-validation"
-          },
-          "resolutionDisposition": "BLOCKED_ACCESS_OR_PERMISSION",
-          "resolutionNote": "The official Boulder calendar page documents this site-owned REST path in its JavaScript, but a normal unauthenticated request returned HTTP 403. No bypass, alternate access-control path, or records from the blocked endpoint were used.",
-          "nextAcquisitionPath": "Obtain an owner-approved public export/API or a normally reachable official item-level event page; require stable IDs, explicit dates/times/locations, and freshness."
-        }
-      ]
+      "queue": []
     },
     {
       "coverage": {
@@ -917,197 +450,7 @@
       },
       "id": "chicago",
       "name": "Chicago, IL",
-      "queue": [
-        {
-          "category": "events",
-          "classification": "READY",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.82,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "LOW",
-          "evaluationReasoning": "High-authority publisher, identifiable structure, and an existing Gremlin Lab provider pattern are present.",
-          "id": "events-chicago-gov-44124097",
-          "likelyDataType": "RSS/ICS",
-          "packOperations": {
-            "eligible": true,
-            "nextStep": "review-and-create-adapter"
-          },
-          "publisher": "chicago.gov",
-          "rank": 1,
-          "recommendedAction": "Captain may approve immediate provider research and fixture capture.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 5,
-            "difficulty": 1,
-            "impactEffortRatio": 37.5,
-            "trust": 5
-          },
-          "trustSignals": {
-            "authority": "government",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.chicago.gov/city/en/rss.html",
-          "workItemId": "source:events-chicago-gov-44124097",
-          "resolutionDisposition": "BLOCKED_ENDPOINT_NOT_FOUND",
-          "resolutionNote": "The recorded official Chicago RSS entrypoint returned HTTP 404 through a normal public request. No replacement press-room content, search snippet, or undated page was treated as an event feed.",
-          "nextAcquisitionPath": "Obtain a current official Chicago events RSS/ICS/JSON endpoint or source-specific dated event calendar with stable IDs, explicit dates/times/locations, and freshness."
-        },
-        {
-          "category": "events",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "editorial_registry:editorial-event-sources.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
-          "id": "events-chicagoonthecheap-com-c652aec2",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "Chicago On the Cheap",
-          "rank": 3,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 5,
-            "trust": 2
-          },
-          "trustSignals": {
-            "authority": "editorial",
-            "governance": [
-              "Free claim: per_listing"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://chicagoonthecheap.com/events/",
-          "workItemId": "source:events-chicagoonthecheap-com-c652aec2",
-          "trackingState": "TRACKED_REACHABLE",
-          "trackingEvidence": {
-            "checkedAt": "2026-09-29T17:47:04.696Z",
-            "httpStatus": 200,
-            "contentType": "text/html; charset=UTF-8",
-            "source": "local-batched-validation"
-          },
-          "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
-          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
-        },
-        {
-          "category": "volunteer",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
-          "id": "volunteer-chicagoparkdistrict-com-ba93a249",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "chicagoparkdistrict.com",
-          "rank": 4,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 2.5,
-            "trust": 1
-          },
-          "trustSignals": {
-            "authority": "unknown",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.chicagoparkdistrict.com/volunteer/",
-          "workItemId": "source:volunteer-chicagoparkdistrict-com-ba93a249",
-          "trackingState": "TRACKED_REACHABLE",
-          "trackingEvidence": {
-            "checkedAt": "2026-09-29T17:47:04.696Z",
-            "httpStatus": 200,
-            "contentType": "text/html; charset=UTF-8",
-            "source": "local-batched-validation"
-          },
-          "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
-          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
-        },
-        {
-          "category": "meetings",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
-          "id": "meetings-chicityclerk-com-959bf3e4",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "chicityclerk.com",
-          "rank": 5,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 2.5,
-            "trust": 1
-          },
-          "trustSignals": {
-            "authority": "unknown",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.chicityclerk.com/public-comment-process",
-          "workItemId": "source:meetings-chicityclerk-com-959bf3e4",
-          "trackingState": "TRACKED_REACHABLE",
-          "trackingEvidence": {
-            "checkedAt": "2026-09-29T17:47:04.696Z",
-            "httpStatus": 200,
-            "contentType": "text/html; charset=UTF-8",
-            "source": "local-batched-validation"
-          },
-          "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
-          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
-        }
-      ]
+      "queue": []
     },
     {
       "coverage": {
@@ -1244,57 +587,7 @@
       },
       "id": "denver",
       "name": "Denver, CO",
-      "queue": [
-        {
-          "category": "events",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "editorial_registry:editorial-event-sources.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
-          "id": "events-denvergov-org-c69e47eb",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "Denver Public Events Calendar",
-          "rank": 1,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 12.5,
-            "trust": 5
-          },
-          "trustSignals": {
-            "authority": "government",
-            "governance": [
-              "Free claim: per_listing"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Public-Event-Film-Permitting/Public-Events-Calendar",
-          "workItemId": "source:events-denvergov-org-c69e47eb",
-          "trackingState": "TRACKED_REACHABLE",
-          "trackingEvidence": {
-            "checkedAt": "2026-09-29T17:47:04.696Z",
-            "httpStatus": 200,
-            "contentType": "text/html; charset=utf-8",
-            "source": "local-batched-validation"
-          },
-          "resolutionDisposition": "ENDPOINT_DISCOVERED_SCHEMA_PENDING",
-          "resolutionNote": "The official Denver calendar page returned HTTP 200 and exposes the Eproval public calendar key 9ce8805d-e5be-4d77-b848-5abdb86c16bc plus the vendor calendar client. A direct guessed POST to the vendor host's /api/v2/public/rpc returned HTTP 405, confirming that the client URI/host handshake is required; no validated item payload was obtained and no records were published from the key or page shell.",
-          "nextAcquisitionPath": "Replay the Eproval public-calendar client handshake for the recorded calendar key, capture Calendar_GetPublicCalendarEntries results, and validate stable IDs, explicit dates/times/locations, official detail URLs, and freshness before promotion."
-        }
-      ]
+      "queue": []
     },
     {
       "coverage": {
@@ -1379,198 +672,7 @@
       },
       "id": "fairfax-county-va",
       "name": "Fairfax County, Virginia",
-      "queue": [
-        {
-          "category": "volunteer",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
-          "id": "volunteer-nps-gov-20ec7407",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "nps.gov",
-          "rank": 3,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 0.65,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 5.42,
-            "trust": 5
-          },
-          "trustSignals": {
-            "authority": "government",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.nps.gov/wotr/getinvolved/volunteer.htm",
-          "workItemId": "source:volunteer-nps-gov-20ec7407",
-          "trackingState": "TRACKED_REACHABLE",
-          "trackingEvidence": {
-            "checkedAt": "2026-09-29T17:47:13.03Z",
-            "httpStatus": 200,
-            "contentType": "text/html;charset=UTF-8",
-            "source": "local-batched-validation"
-          },
-          "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
-          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
-        },
-        {
-          "category": "publicSpaces",
-          "classification": "INVESTIGATE",
-          "coverageValue": "medium",
-          "discovery": {
-            "confidence": 0.6,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "candidate_registry:wolf-trap-va.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
-          "id": "food-for-others",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "Food For Others",
-          "rank": 5,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 3,
-            "difficulty": 3,
-            "impactEffortRatio": 4.5,
-            "trust": 3
-          },
-          "trustSignals": {
-            "authority": "official_partner",
-            "governance": [
-              "Registry status: disabled",
-              "terms review",
-              "permitted acquisition method",
-              "verified address and coordinates",
-              "saved fixture"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://foodforothers.org",
-          "workItemId": "source:food-for-others",
-          "trackingState": "TRACKED_REACHABLE",
-          "trackingEvidence": {
-            "checkedAt": "2026-09-29T17:47:13.03Z",
-            "httpStatus": 200,
-            "contentType": "text/html; charset=UTF-8",
-            "source": "local-batched-validation"
-          },
-          "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
-          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
-        },
-        {
-          "category": "events",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "editorial_registry:editorial-event-sources.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
-          "id": "events-wolftrap-org-f9ccaf58",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "Wolf Trap",
-          "rank": 6,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 0.65,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 3.25,
-            "trust": 3
-          },
-          "trustSignals": {
-            "authority": "official_partner",
-            "governance": [
-              "Free claim: per_listing"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.wolftrap.org/",
-          "workItemId": "source:events-wolftrap-org-f9ccaf58",
-          "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "No validated item-level record was obtained from the recorded official destination; no landing-page or undated content was published.",
-          "nextAcquisitionPath": "Obtain and validate an official structured endpoint or item-level selector with stable IDs, explicit dates/times/locations, canonical URLs, provenance, and freshness."
-        },
-        {
-          "category": "events",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.6,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "candidate_registry:wolf-trap-va.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
-          "id": "wolf-trap-foundation",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "Wolf Trap Foundation calendar",
-          "rank": 7,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 0.65,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 3.25,
-            "trust": 3
-          },
-          "trustSignals": {
-            "authority": "official_partner",
-            "governance": [
-              "Registry status: disabled",
-              "terms review",
-              "permitted acquisition method",
-              "saved fixture",
-              "verified coordinates"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.wolftrap.org/calendar",
-          "workItemId": "source:wolf-trap-foundation",
-          "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "No validated item-level record was obtained from the recorded official destination; no landing-page or undated content was published.",
-          "nextAcquisitionPath": "Obtain and validate an official structured endpoint or item-level selector with stable IDs, explicit dates/times/locations, canonical URLs, provenance, and freshness."
-        }
-      ]
+      "queue": []
     },
     {
       "coverage": {
@@ -1708,92 +810,7 @@
       },
       "id": "keystone-colorado",
       "name": "Keystone & Summit County, CO",
-      "queue": [
-        {
-          "category": "events",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
-          "id": "events-town-keystone-co-us-e3452f18",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "town.keystone.co.us",
-          "rank": 3,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 2.5,
-            "trust": 1
-          },
-          "trustSignals": {
-            "authority": "unknown",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.town.keystone.co.us/events",
-          "workItemId": "source:events-town-keystone-co-us-e3452f18",
-          "resolutionDisposition": "BLOCKED_EVENT_FEED_NOT_VERIFIED",
-          "resolutionNote": "The official Town of Keystone site exposes council/agenda pages and an event-request form, but no reachable official public event feed, structured calendar, or item-level event pages were verified. A dated staff report is permit/planning guidance rather than a publishable event feed, so no event records were fabricated from it.",
-          "nextAcquisitionPath": "Obtain the Town's official event calendar export/API or a verified source-specific selector with stable event IDs, explicit dates, times, and locations; keep municipal meetings and resort/third-party programming separate."
-        },
-        {
-          "category": "volunteer",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
-          "id": "volunteer-volunteermatch-org-79b64c6c",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "volunteermatch.org",
-          "rank": 4,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 2.5,
-            "trust": 1
-          },
-          "trustSignals": {
-            "authority": "unknown",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.volunteermatch.org/",
-          "workItemId": "source:volunteer-volunteermatch-org-79b64c6c",
-          "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "No validated item-level record was obtained from the recorded official destination; no landing-page or undated content was published.",
-          "nextAcquisitionPath": "Obtain and validate an official structured endpoint or item-level selector with stable IDs, explicit dates/times/locations, canonical URLs, provenance, and freshness."
-        }
-      ]
+      "queue": []
     },
     {
       "coverage": {
@@ -1877,57 +894,7 @@
       },
       "id": "loudoun-county-va",
       "name": "Loudoun County, Virginia",
-      "queue": [
-        {
-          "category": "volunteer",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
-          "id": "volunteer-loudoun-gov-81bf3267",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "loudoun.gov",
-          "rank": 3,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 12.5,
-            "trust": 5
-          },
-          "trustSignals": {
-            "authority": "government",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.loudoun.gov/volunteer",
-          "workItemId": "source:volunteer-loudoun-gov-81bf3267",
-          "trackingState": "TRACKED_REACHABLE",
-          "trackingEvidence": {
-            "checkedAt": "2026-09-29T17:47:04.696Z",
-            "httpStatus": 200,
-            "contentType": "text/html; charset=utf-8",
-            "source": "local-batched-validation"
-          },
-          "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
-          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
-        }
-      ]
+      "queue": []
     },
     {
       "coverage": {
@@ -1980,99 +947,7 @@
       },
       "id": "new-orleans",
       "name": "New Orleans, LA",
-      "queue": [
-        {
-          "category": "volunteer",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
-          "id": "volunteer-nola-gov-c959480f",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "nola.gov",
-          "rank": 2,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 12.5,
-            "trust": 5
-          },
-          "trustSignals": {
-            "authority": "government",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.nola.gov/parks-and-parkways/special-events/",
-          "workItemId": "source:volunteer-nola-gov-c959480f",
-          "resolutionDisposition": "DISCOVERY_ONLY_PERMIT_GUIDANCE",
-          "resolutionNote": "The operator replacement is a park or recreation-center use permit. Permit instructions describe how to request space and do not constitute scheduled volunteer opportunities or an event feed; no records were fabricated from the guidance.",
-          "nextAcquisitionPath": "Locate an official NORDC volunteer calendar or item-level volunteer opportunity feed with stable IDs, explicit dates, times, and locations."
-        },
-        {
-          "category": "events",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
-          "id": "events-neworleans-com-0da88206",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "neworleans.com",
-          "rank": 4,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 2.5,
-            "trust": 1
-          },
-          "trustSignals": {
-            "authority": "unknown",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.neworleans.com/events/",
-          "workItemId": "source:events-neworleans-com-0da88206",
-          "trackingState": "TRACKED_REACHABLE",
-          "trackingEvidence": {
-            "checkedAt": "2026-09-29T17:47:06.798Z",
-            "httpStatus": 200,
-            "contentType": "text/html; charset=utf-8",
-            "source": "local-batched-validation"
-          },
-          "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "The official New Orleans & Company event list exposes current schema.org item records with stable detail URLs, future dates, and venue labels, but the sampled JSON-LD provides date-only startDate/endDate values and no explicit start time. No event was published without a verifiable time.",
-          "nextAcquisitionPath": "Use official item-level detail pages or a documented calendar endpoint that exposes explicit start/end date-times, stable IDs, locations, canonical URLs, and freshness."
-        }
-      ]
+      "queue": []
     },
     {
       "coverage": {
@@ -2114,57 +989,7 @@
       },
       "id": "norfolk",
       "name": "Norfolk, VA",
-      "queue": [
-        {
-          "category": "volunteer",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
-          "id": "volunteer-norfolk-gov-ff89d6a7",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "norfolk.gov",
-          "rank": 5,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 0.65,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 5.42,
-            "trust": 5
-          },
-          "trustSignals": {
-            "authority": "government",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.norfolk.gov/4248/Volunteer",
-          "workItemId": "source:volunteer-norfolk-gov-ff89d6a7",
-          "trackingState": "TRACKED_REACHABLE",
-          "trackingEvidence": {
-            "checkedAt": "2026-09-29T17:47:06.798Z",
-            "httpStatus": 200,
-            "contentType": "text/html; charset=utf-8",
-            "source": "local-batched-validation"
-          },
-          "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
-          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
-        }
-      ]
+      "queue": []
     },
     {
       "coverage": {
@@ -2209,99 +1034,7 @@
       },
       "id": "nyc",
       "name": "New York City, NY",
-      "queue": [
-        {
-          "category": "events",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "editorial_registry:editorial-event-sources.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
-          "id": "events-nycforfree-co-3a433d76",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "NYC for FREE",
-          "rank": 3,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 0.65,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 2.17,
-            "trust": 2
-          },
-          "trustSignals": {
-            "authority": "editorial",
-            "governance": [
-              "Free claim: editorial"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.nycforfree.co/weekly-roundup",
-          "workItemId": "source:events-nycforfree-co-3a433d76",
-          "trackingState": "TRACKED_REACHABLE",
-          "trackingEvidence": {
-            "checkedAt": "2026-09-29T17:47:06.798Z",
-            "httpStatus": 200,
-            "contentType": "text/html; charset=utf-8",
-            "source": "local-batched-validation"
-          },
-          "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
-          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
-        },
-        {
-          "category": "volunteer",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
-          "id": "volunteer-nycgovparks-org-4b7ad625",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "nycgovparks.org",
-          "rank": 5,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 0.65,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 1.08,
-            "trust": 1
-          },
-          "trustSignals": {
-            "authority": "unknown",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.nycgovparks.org/events/volunteer",
-          "workItemId": "source:volunteer-nycgovparks-org-4b7ad625",
-          "resolutionDisposition": "BLOCKED_FRESHNESS",
-          "resolutionNote": "Official Socrata metadata exposes event_id, title, date, start_time, end_time, location_description, url, and related location table; sampled records were dated 2019-12, so the inventory does not provide fresh current records for publication.",
-          "nextAcquisitionPath": "Identify a current NYC Parks event inventory/API or verified export with recent dated records and joinable locations."
-        }
-      ]
+      "queue": []
     },
     {
       "coverage": {
@@ -2354,99 +1087,7 @@
       },
       "id": "philadelphia",
       "name": "Philadelphia, PA",
-      "queue": [
-        {
-          "category": "events",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
-          "id": "events-phila-gov-7efb5a03",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "phila.gov",
-          "rank": 2,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 0.65,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 5.42,
-            "trust": 5
-          },
-          "trustSignals": {
-            "authority": "government",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.phila.gov/parks/",
-          "workItemId": "source:events-phila-gov-7efb5a03",
-          "trackingState": "TRACKED_REACHABLE",
-          "trackingEvidence": {
-            "checkedAt": "2026-09-29T17:47:06.798Z",
-            "httpStatus": 200,
-            "contentType": "text/html; charset=UTF-8",
-            "source": "local-batched-validation"
-          },
-          "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
-          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
-        },
-        {
-          "category": "volunteer",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
-          "id": "volunteer-friendsoftheparks-org-5e217463",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "friendsoftheparks.org",
-          "rank": 4,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 0.65,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 1.08,
-            "trust": 1
-          },
-          "trustSignals": {
-            "authority": "unknown",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://friendsoftheparks.org/volunteer",
-          "workItemId": "source:volunteer-friendsoftheparks-org-5e217463",
-          "resolutionDisposition": "BLOCKED_FRESHNESS",
-          "resolutionNote": "The official Friends of the Parks events page is reachable and exposes item-level dates, times, locations, and Google Calendar ICS links, but the sampled dated listings were already past at the 2026-09-29 freshness point. No stale volunteer/event records were published.",
-          "nextAcquisitionPath": "Recheck the official events page or its item-level ICS links for a future dated opportunity with stable event identity and explicit location."
-        }
-      ]
+      "queue": []
     },
     {
       "coverage": {
@@ -2541,99 +1182,7 @@
       },
       "id": "portland",
       "name": "Portland, OR",
-      "queue": [
-        {
-          "category": "events",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "editorial_registry:editorial-event-sources.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
-          "id": "events-portlandlivingonthecheap-com-be5408f7",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "Portland Living on the Cheap",
-          "rank": 3,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 0.65,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 2.17,
-            "trust": 2
-          },
-          "trustSignals": {
-            "authority": "editorial",
-            "governance": [
-              "Free claim: editorial"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://portlandlivingonthecheap.com/category/free-events/",
-          "workItemId": "source:events-portlandlivingonthecheap-com-be5408f7",
-          "trackingState": "TRACKED_REACHABLE",
-          "trackingEvidence": {
-            "checkedAt": "2026-09-29T17:47:06.798Z",
-            "httpStatus": 200,
-            "contentType": "text/html; charset=UTF-8",
-            "source": "local-batched-validation"
-          },
-          "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
-          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
-        },
-        {
-          "category": "events",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
-          "id": "events-events-portlandonline-us-09e0b6eb",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "events.portlandonline.us",
-          "rank": 4,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 0.65,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 1.08,
-            "trust": 1
-          },
-          "trustSignals": {
-            "authority": "unknown",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://events.portlandonline.us/",
-          "workItemId": "source:events-events-portlandonline-us-09e0b6eb",
-          "resolutionDisposition": "BLOCKED_ACCESS_OR_PERMISSION",
-          "resolutionNote": "The municipal PortlandOnline events root and calendar path both returned HTTP 403 through normal public requests. No bypass, credential use, or third-party mirror was attempted; no records were published.",
-          "nextAcquisitionPath": "Obtain a City of Portland-approved public calendar export/API or a normally reachable official item-level event page with stable IDs, explicit dates/times/locations, and freshness."
-        }
-      ]
+      "queue": []
     },
     {
       "coverage": {
@@ -2686,92 +1235,7 @@
       },
       "id": "portland-maine",
       "name": "Portland, ME",
-      "queue": [
-        {
-          "category": "meetings",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
-          "id": "meetings-portlandmaine-gov-bc259924",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "portlandmaine.gov",
-          "rank": 1,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 12.5,
-            "trust": 5
-          },
-          "trustSignals": {
-            "authority": "government",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.portlandmaine.gov/government",
-          "workItemId": "source:meetings-portlandmaine-gov-bc259924",
-          "resolutionDisposition": "ENDPOINT_DISCOVERED_SCHEMA_PENDING",
-          "resolutionNote": "Official Portland, Maine homepage links to CivicClerk agendas/minutes and its calendar page exposes a CivicClerk-backed event path, but the public HTML response is client-rendered and the sampled event payload did not expose validated item-level date/location fields.",
-          "nextAcquisitionPath": "Identify the public CivicClerk calendar JSON/ICS endpoint or use a documented selector that returns stable event IDs, dates, times, and locations."
-        },
-        {
-          "category": "volunteer",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
-          "id": "volunteer-portlandmaine-gov-2c137978",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "portlandmaine.gov",
-          "rank": 2,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 12.5,
-            "trust": 5
-          },
-          "trustSignals": {
-            "authority": "government",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.portlandmaine.gov/parks-recreation",
-          "workItemId": "source:volunteer-portlandmaine-gov-2c137978",
-          "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "The official Portland Parks, Recreation & Facilities programs page describes volunteering and links to general recreation/program navigation, but does not expose item-level volunteer dates, times, locations, or stable opportunity IDs. The citywide calendar contains general events and meetings, not a validated volunteer feed, so no records were published.",
-          "nextAcquisitionPath": "Obtain the official Parks/Recreation volunteer calendar, MyRec export/API, or item-level opportunity pages with stable IDs, explicit dates, times, and locations."
-        }
-      ]
+      "queue": []
     },
     {
       "coverage": {
@@ -2814,57 +1278,7 @@
       },
       "id": "prince-georges-county-md",
       "name": "Prince George's County, Maryland",
-      "queue": [
-        {
-          "category": "volunteer",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
-          "id": "volunteer-pgparks-com-bf740430",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "pgparks.com",
-          "rank": 4,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 0.65,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 1.08,
-            "trust": 1
-          },
-          "trustSignals": {
-            "authority": "unknown",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.pgparks.com/get-involved/volunteer-opportunities",
-          "workItemId": "source:volunteer-pgparks-com-bf740430",
-          "trackingState": "TRACKED_REACHABLE",
-          "trackingEvidence": {
-            "checkedAt": "2026-09-29T17:47:08.895Z",
-            "httpStatus": 200,
-            "contentType": "text/html; charset=UTF-8",
-            "source": "local-batched-validation"
-          },
-          "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
-          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
-        }
-      ]
+      "queue": []
     },
     {
       "coverage": {
@@ -2917,148 +1331,7 @@
       },
       "id": "richmond",
       "name": "Richmond, VA",
-      "queue": [
-        {
-          "category": "events",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "editorial_registry:editorial-event-sources.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
-          "id": "events-6amcity-com-a7dfd2b6",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "RICtoday Events",
-          "rank": 1,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 5,
-            "trust": 2
-          },
-          "trustSignals": {
-            "authority": "editorial",
-            "governance": [
-              "Free claim: per_listing"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://6amcity.com/web/va/richmond/events",
-          "workItemId": "source:events-6amcity-com-a7dfd2b6",
-          "trackingState": "TRACKED_REACHABLE",
-          "trackingEvidence": {
-            "checkedAt": "2026-09-29T17:47:08.895Z",
-            "httpStatus": 200,
-            "contentType": "text/html; charset=utf-8",
-            "source": "local-batched-validation"
-          },
-          "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
-          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
-        },
-        {
-          "category": "volunteer",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
-          "id": "volunteer-jrps-org-2a3b895f",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "jrps.org",
-          "rank": 2,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 2.5,
-            "trust": 1
-          },
-          "trustSignals": {
-            "authority": "unknown",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.jrps.org/volunteer",
-          "workItemId": "source:volunteer-jrps-org-2a3b895f",
-          "resolutionDisposition": "ENDPOINT_DISCOVERED_SCHEMA_PENDING",
-          "resolutionNote": "The official Friends of James River Park calendar loads normally and exposes the EventON public REST configuration at the page level, including a site REST base and calendar endpoint parameters. The sampled page did not itself contain item-level event payloads, so no records were published from search snippets or third-party calendar pages.",
-          "nextAcquisitionPath": "Replay the official EventON AJAX endpoint at https://jamesriverpark.org/wp-admin/admin-ajax.php using the page's eventon_init_load/eventon_search_evo_events actions; verify stable event IDs, explicit dates/times/locations, and freshness, then publish only validated volunteer records."
-        },
-        {
-          "category": "events",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
-          "id": "events-visitrichmondva-com-1ae28ba3",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "visitrichmondva.com",
-          "rank": 4,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 2.5,
-            "trust": 1
-          },
-          "trustSignals": {
-            "authority": "unknown",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.visitrichmondva.com/events/",
-          "workItemId": "source:events-visitrichmondva-com-1ae28ba3",
-          "trackingState": "TRACKED_REACHABLE",
-          "trackingEvidence": {
-            "checkedAt": "2026-09-29T17:47:08.895Z",
-            "httpStatus": 200,
-            "contentType": "text/html; charset=utf-8",
-            "source": "local-batched-validation"
-          },
-          "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "The official Richmond Region Tourism event list exposes schema.org item records with stable detail URLs and venue names, but the sampled JSON-LD provides date-only startDate/endDate values; prose time ranges are not sufficient structured time evidence. No event was published without explicit start/end date-times.",
-          "nextAcquisitionPath": "Locate an official Richmond calendar/API field or item-level pages with explicit start/end date-times, then validate freshness, stable IDs, locations, and canonical URLs before promotion."
-        }
-      ]
+      "queue": []
     },
     {
       "coverage": {
@@ -3111,204 +1384,7 @@
       },
       "id": "san-francisco",
       "name": "San Francisco, CA",
-      "queue": [
-        {
-          "category": "events",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.82,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "LOW",
-          "evaluationReasoning": "Requires investigation because publisher authority is below government/public-institution tier.",
-          "id": "events-sfrecpark-org-ddd118f6",
-          "likelyDataType": "RSS/ICS",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "sfrecpark.org",
-          "rank": 1,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 5,
-            "difficulty": 1,
-            "impactEffortRatio": 7.5,
-            "trust": 1
-          },
-          "trustSignals": {
-            "authority": "unknown",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://sfrecpark.org/rss.aspx",
-          "workItemId": "source:events-sfrecpark-org-ddd118f6",
-          "trackingState": "TRACKED_REACHABLE",
-          "trackingEvidence": {
-            "checkedAt": "2026-09-29T17:47:08.895Z",
-            "httpStatus": 200,
-            "contentType": "text/html; charset=utf-8",
-            "source": "local-batched-validation"
-          },
-          "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "HTTP 200 normal HTML page (text/html), not XML RSS/Atom; no feed items or item-level event schema were present.",
-          "nextAcquisitionPath": "Obtain a current official SF Rec & Parks RSS/ICS/JSON endpoint or add a verified event-calendar selector."
-        },
-        {
-          "category": "meetings",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
-          "id": "meetings-sfbos-org-705d79ff",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "sfbos.org",
-          "rank": 3,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 2.5,
-            "trust": 1
-          },
-          "trustSignals": {
-            "authority": "unknown",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://sfbos.org/participate-and-submit-public-comments",
-          "workItemId": "source:meetings-sfbos-org-705d79ff",
-          "trackingState": "TRACKED_REACHABLE",
-          "trackingEvidence": {
-            "checkedAt": "2026-09-29T17:47:08.895Z",
-            "httpStatus": 200,
-            "contentType": "text/html",
-            "source": "local-batched-validation"
-          },
-          "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
-          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
-        },
-        {
-          "category": "volunteer",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
-          "id": "volunteer-sfparks-org-ddcc85b5",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "sfparks.org",
-          "rank": 4,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 2.5,
-            "trust": 1
-          },
-          "trustSignals": {
-            "authority": "unknown",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.sfparks.org/support-park/volunteer",
-          "workItemId": "source:volunteer-sfparks-org-ddcc85b5",
-          "trackingState": "TRACKED_REACHABLE",
-          "trackingEvidence": {
-            "checkedAt": "2026-09-29T17:47:08.895Z",
-            "httpStatus": 200,
-            "contentType": "text/html",
-            "source": "local-batched-validation"
-          },
-          "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
-          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
-        },
-        {
-          "category": "events",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
-          "id": "events-sfrecpark-org-822dab73",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "sfrecpark.org",
-          "rank": 5,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 2.5,
-            "trust": 1
-          },
-          "trustSignals": {
-            "authority": "unknown",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://sfrecpark.org/Calendar.aspx",
-          "workItemId": "source:events-sfrecpark-org-822dab73",
-          "trackingState": "TRACKED_REACHABLE",
-          "trackingEvidence": {
-            "checkedAt": "2026-09-29T17:47:08.895Z",
-            "httpStatus": 200,
-            "contentType": "text/html; charset=utf-8",
-            "source": "local-batched-validation"
-          },
-          "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
-          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
-        }
-      ]
+      "queue": []
     },
     {
       "coverage": {
@@ -3361,190 +1437,7 @@
       },
       "id": "santa-fe",
       "name": "Santa Fe, NM",
-      "queue": [
-        {
-          "category": "meetings",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
-          "id": "meetings-santafenm-gov-4df17058",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "santafenm.gov",
-          "rank": 1,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 12.5,
-            "trust": 5
-          },
-          "trustSignals": {
-            "authority": "government",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.santafenm.gov/city-government",
-          "workItemId": "source:meetings-santafenm-gov-4df17058",
-          "resolutionDisposition": "ENDPOINT_DISCOVERED_SCHEMA_PENDING",
-          "resolutionNote": "Official Santa Fe City Clerk page links to the CivicClerk public meeting portal and a 2026 meeting-calendar PDF, but the public portal shell requires JavaScript and no item-level date/time/location payload was directly verifiable in the reachable response.",
-          "nextAcquisitionPath": "Identify the documented CivicClerk public API/ICS endpoint or a stable event page with explicit meeting fields."
-        },
-        {
-          "category": "volunteer",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
-          "id": "volunteer-santafenm-gov-57a0cd99",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "santafenm.gov",
-          "rank": 2,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 12.5,
-            "trust": 5
-          },
-          "trustSignals": {
-            "authority": "government",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.santafenm.gov/parks_recreation",
-          "workItemId": "source:volunteer-santafenm-gov-57a0cd99",
-          "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "The official Santa Fe Parks and Open Space page provides a volunteer application link and general Adopt-a-Park/Trail information, but no scheduled volunteer items with explicit dates, times, locations, or stable opportunity IDs. The waiver/form is not a volunteer event feed, so no records were published.",
-          "nextAcquisitionPath": "Obtain the City’s public volunteer master-calendar export/API or item-level opportunity pages with stable IDs, explicit dates, times, and locations."
-        },
-        {
-          "category": "events",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "editorial_registry:editorial-event-sources.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
-          "id": "events-santafe-org-8f1eb055",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "Santa Fe Official Calendar",
-          "rank": 3,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 7.5,
-            "trust": 3
-          },
-          "trustSignals": {
-            "authority": "official_partner",
-            "governance": [
-              "Free claim: per_listing"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.santafe.org/visiting-santa-fe/calendar/",
-          "workItemId": "source:events-santafe-org-8f1eb055",
-          "trackingState": "TRACKED_REACHABLE",
-          "trackingEvidence": {
-            "checkedAt": "2026-09-29T17:47:08.895Z",
-            "httpStatus": 200,
-            "contentType": "text/html; charset=utf-8",
-            "source": "local-batched-validation"
-          },
-          "resolutionDisposition": "BLOCKED_CURRENT_ITEMS",
-          "resolutionNote": "The official Tourism Santa Fe calendar page returned HTTP 200, but its ItemList contained zero event items; the site-owned REST endpoint returned HTTP 403. No event was promoted from the empty list or blocked endpoint.",
-          "nextAcquisitionPath": "Recheck the official calendar when current item-level listings are present, or obtain an owner-approved public export/API with stable IDs, explicit dates/times/locations, and freshness."
-        },
-        {
-          "category": "events",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
-          "id": "events-santafe-org-068ccfff",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "santafe.org",
-          "rank": 4,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 2.5,
-            "trust": 1
-          },
-          "trustSignals": {
-            "authority": "unknown",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.santafe.org/events/",
-          "workItemId": "source:events-santafe-org-068ccfff",
-          "trackingState": "TRACKED_REACHABLE",
-          "trackingEvidence": {
-            "checkedAt": "2026-09-29T17:47:08.895Z",
-            "httpStatus": 200,
-            "contentType": "text/html; charset=utf-8",
-            "source": "local-batched-validation"
-          },
-          "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
-          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
-        }
-      ]
+      "queue": []
     },
     {
       "coverage": {
@@ -3587,99 +1480,7 @@
       },
       "id": "seattle",
       "name": "Seattle, Washington",
-      "queue": [
-        {
-          "category": "meetings",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
-          "id": "meetings-seattle-gov-3418b89c",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "seattle.gov",
-          "rank": 1,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 12.5,
-            "trust": 5
-          },
-          "trustSignals": {
-            "authority": "government",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.seattle.gov/civic-meetings",
-          "workItemId": "source:meetings-seattle-gov-3418b89c",
-          "resolutionDisposition": "BLOCKED_CURRENT_SAMPLE",
-          "resolutionNote": "The official Seattle City Clerk page links to Legistar, whose calendar exposes stable meeting-detail and iCalendar IDs. Future rows sampled for 2026-09-29 through 2026-10-26 were explicitly marked Canceled, so no active meeting record was published.",
-          "nextAcquisitionPath": "Recheck the official Legistar calendar for a non-canceled dated meeting with a confirmed location before promotion."
-        },
-        {
-          "category": "events",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "editorial_registry:editorial-event-sources.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
-          "id": "events-greaterseattleonthecheap-com-7d63f8d3",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "Greater Seattle on the Cheap",
-          "rank": 5,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 0.65,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 2.17,
-            "trust": 2
-          },
-          "trustSignals": {
-            "authority": "editorial",
-            "governance": [
-              "Free claim: editorial"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.greaterseattleonthecheap.com/events/",
-          "workItemId": "source:events-greaterseattleonthecheap-com-7d63f8d3",
-          "trackingState": "TRACKED_REACHABLE",
-          "trackingEvidence": {
-            "checkedAt": "2026-09-29T17:47:13.03Z",
-            "httpStatus": 200,
-            "contentType": "text/html; charset=UTF-8",
-            "source": "local-batched-validation"
-          },
-          "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
-          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
-        }
-      ]
+      "queue": []
     },
     {
       "coverage": {
@@ -3731,155 +1532,7 @@
       },
       "id": "sedona-arizona",
       "name": "Sedona, Arizona",
-      "queue": [
-        {
-          "category": "events",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "editorial_registry:editorial-event-sources.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
-          "id": "events-sedonaaz-gov-605e78d8",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "City of Sedona Free to Be Me Drum Circle",
-          "rank": 1,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 12.5,
-            "trust": 5
-          },
-          "trustSignals": {
-            "authority": "government",
-            "governance": [
-              "Free claim: explicit"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.sedonaaz.gov/your-government/departments-and-programs/parks-recreation/programs/free-to-be-me-drum-circle",
-          "workItemId": "source:events-sedonaaz-gov-605e78d8",
-          "trackingState": "TRACKED_REACHABLE",
-          "trackingEvidence": {
-            "checkedAt": "2026-09-29T17:47:13.03Z",
-            "httpStatus": 200,
-            "contentType": "text/html; charset=utf-8",
-            "source": "local-batched-validation"
-          },
-          "resolutionDisposition": "BLOCKED_ACCESS_OR_PERMISSION",
-          "resolutionNote": "The official Sedona city-calendar path returned HTTP 403 through a normal public request. No access-control bypass, alternate credential, or third-party mirror was used; no event records were published.",
-          "nextAcquisitionPath": "Obtain a City of Sedona-approved public calendar export/API or a normally reachable official item-level event page with stable IDs, explicit dates/times/locations, and freshness."
-        },
-        {
-          "category": "events",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "editorial_registry:editorial-event-sources.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
-          "id": "events-visitsedona-com-64ad436c",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "Visit Sedona Calendar",
-          "rank": 4,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 7.5,
-            "trust": 3
-          },
-          "trustSignals": {
-            "authority": "official_partner",
-            "governance": [
-              "Free claim: per_listing"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://visitsedona.com/events-calendar/",
-          "workItemId": "source:events-visitsedona-com-64ad436c",
-          "trackingState": "TRACKED_REACHABLE",
-          "trackingEvidence": {
-            "checkedAt": "2026-09-29T17:47:13.03Z",
-            "httpStatus": 200,
-            "contentType": "text/html; charset=UTF-8",
-            "source": "local-batched-validation"
-          },
-          "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
-          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
-        },
-        {
-          "category": "volunteer",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
-          "id": "volunteer-sedonaaz-gov-79ca6cb2",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "sedonaaz.gov",
-          "rank": 5,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 0.65,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 5.42,
-            "trust": 5
-          },
-          "trustSignals": {
-            "authority": "government",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://www.sedonaaz.gov/community/residents/volunteer",
-          "workItemId": "source:volunteer-sedonaaz-gov-79ca6cb2",
-          "trackingState": "TRACKED_REACHABLE",
-          "trackingEvidence": {
-            "checkedAt": "2026-09-29T17:47:13.03Z",
-            "httpStatus": 200,
-            "contentType": "text/html; charset=utf-8",
-            "source": "local-batched-validation"
-          },
-          "resolutionDisposition": "BLOCKED_ACCESS_OR_PERMISSION",
-          "resolutionNote": "The official Sedona Parks & Recreation calendar path returned HTTP 403 through a normal public request. No access-control bypass, alternate credential, or third-party mirror was used; no volunteer records were published.",
-          "nextAcquisitionPath": "Obtain a City of Sedona-approved Parks & Recreation volunteer export/API or a normally reachable official item-level opportunity page with stable IDs, explicit dates/times/locations, and freshness."
-        }
-      ]
+      "queue": []
     },
     {
       "coverage": {
@@ -3973,206 +1626,19 @@
       },
       "id": "washington-dc",
       "name": "Washington, DC",
-      "queue": [
-        {
-          "category": "events",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
-          "id": "events-dpr-dc-gov-67b39fe7",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "dpr.dc.gov",
-          "rank": 1,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 0.65,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 5.42,
-            "trust": 5
-          },
-          "trustSignals": {
-            "authority": "government",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://dpr.dc.gov/service/attend-events",
-          "workItemId": "source:events-dpr-dc-gov-67b39fe7",
-          "trackingState": "TRACKED_REACHABLE",
-          "trackingEvidence": {
-            "checkedAt": "2026-09-29T17:47:13.03Z",
-            "httpStatus": 200,
-            "contentType": "text/html; charset=UTF-8",
-            "source": "local-batched-validation"
-          },
-          "resolutionDisposition": "BLOCKED_FRESHNESS",
-          "resolutionNote": "The official DC public calendar endpoint returned RSS with stable event URLs, explicit dates/times, and locations, but the sampled current feed item was dated 2013-04-17 and therefore fails the freshness requirement. No historical records were published.",
-          "nextAcquisitionPath": "Recheck the official DC calendar RSS when current/future items are present, or obtain a current DPR event export/API with stable IDs, explicit dates/times/locations, and freshness."
-        },
-        {
-          "category": "volunteer",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited.",
-          "id": "volunteer-dpr-dc-gov-52180f8a",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "dpr.dc.gov",
-          "rank": 2,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 0.65,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 5.42,
-            "trust": 5
-          },
-          "trustSignals": {
-            "authority": "government",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://dpr.dc.gov/page/volunteer-and-give-back",
-          "workItemId": "source:volunteer-dpr-dc-gov-52180f8a",
-          "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "The official DC DPR volunteer page is reachable and lists current volunteer role names, but it does not expose item-level scheduled dates, times, locations, or stable opportunity IDs. The registration link and role descriptions are not a dated opportunity feed, so no records were published.",
-          "nextAcquisitionPath": "Obtain the public DPR volunteer registration/calendar export or a normally reachable item-level opportunity page with stable IDs, explicit dates, times, and locations."
-        },
-        {
-          "category": "meetings",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "civic_priority:civic-source-priority.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
-          "id": "meetings-dcouncil-us-4d64fb67",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "dcouncil.us",
-          "rank": 3,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 1.5,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 2.5,
-            "trust": 1
-          },
-          "trustSignals": {
-            "authority": "unknown",
-            "governance": [
-              "Discovery registry only"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://dcouncil.us/",
-          "workItemId": "source:meetings-dcouncil-us-4d64fb67",
-          "resolutionDisposition": "ENDPOINT_DISCOVERED_NO_CURRENT_ITEMS",
-          "resolutionNote": "The official DC Council RSS page exposes the Council calendar, and the public site advertises a WordPress Events REST API. A normal JSON request returned HTTP 200 with a valid events schema but zero published items in the current/future window; no record was promoted from archived or undated hearing material.",
-          "nextAcquisitionPath": "Recheck the official Events REST API or Hearing Management System when current published hearings are present, and require stable item IDs, explicit dates, times, and Wilson Building/virtual locations."
-        },
-        {
-          "category": "events",
-          "classification": "INVESTIGATE",
-          "coverageValue": "high",
-          "discovery": {
-            "confidence": 0.62,
-            "foundAt": "2026-09-27T08:49:42.288422Z",
-            "method": "editorial_registry:editorial-event-sources.json",
-            "origin": "automated"
-          },
-          "estimatedProviderDifficulty": "MEDIUM",
-          "evaluationReasoning": "Requires investigation because data structure needs confirmation, no confirmed existing provider pattern, discovery confidence is limited, publisher authority is below government/public-institution tier.",
-          "id": "events-districtfray-com-d21bcaee",
-          "likelyDataType": "HTML calendar",
-          "packOperations": {
-            "eligible": false,
-            "nextStep": "resolve-scout-findings"
-          },
-          "publisher": "District Fray Free Events",
-          "rank": 4,
-          "recommendedAction": "Human review is required before provider work.",
-          "scores": {
-            "coverageGapMultiplier": 0.65,
-            "coverageImpact": 5,
-            "difficulty": 3,
-            "impactEffortRatio": 2.17,
-            "trust": 2
-          },
-          "trustSignals": {
-            "authority": "editorial",
-            "governance": [
-              "Free claim: editorial"
-            ],
-            "maintenance": [],
-            "stability": []
-          },
-          "url": "https://districtfray.com/events/free-events/",
-          "workItemId": "source:events-districtfray-com-d21bcaee",
-          "trackingState": "TRACKED_REACHABLE",
-          "trackingEvidence": {
-            "checkedAt": "2026-09-29T17:47:13.03Z",
-            "httpStatus": 200,
-            "contentType": "text/html; charset=UTF-8",
-            "source": "local-batched-validation"
-          },
-          "resolutionDisposition": "BLOCKED_SCHEMA",
-          "resolutionNote": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
-          "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
-        }
-      ]
+      "queue": []
     }
   ],
   "schemaVersion": 1,
   "summary": {
-    "candidateCount": 54,
+    "candidateCount": 0,
     "classifications": {
       "INVESTIGATE": 53,
       "REJECT": 0,
       "READY": 1
     },
     "regionCount": 34,
-    "trackingStates": {
-      "INTEGRATED_STATIC": 1,
-      "TRACKED_REACHABLE": 33,
-      "UNTRACKED": 20
-    },
+    "trackingStates": {},
     "trackingPolicy": "Tracked reachable sources remain in the audit backlog but are removed from the active operator queue until adapter work is requested.",
     "resolutionStatusCategories": {
       "INTEGRATED_STATIC": 16,
@@ -4209,7 +1675,7 @@
       "source": "expansion-queues/replacement-resolution-audit-2026-09-29.json",
       "note": "Audit categories apply only to rows present in the replacement audit; the diagnostics remain authoritative for all 54 candidate rows."
     },
-    "unresolvedCount": 53,
+    "unresolvedCount": 0,
     "integratedStaticCount": 49,
     "excludedIntegratedSources": {
       "count": 48,
@@ -4223,6 +1689,497 @@
       "sourceIds": [
         "volunteer-ashevillenc-gov-3ebf2f4c"
       ]
+    },
+    "retiredCandidateCount": 54,
+    "retirementPolicy": "Removed from the active queue at operator request; retained here with evidence and next acquisition paths."
+  },
+  "retiredCandidates": [
+    {
+      "sourceId": "events-6amcity-com-a7dfd2b6",
+      "regionId": "richmond",
+      "category": "events",
+      "originalUrl": "https://6amcity.com/web/va/richmond/events",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "events-bostonusa-com-7323eab4",
+      "regionId": "boston",
+      "category": "events",
+      "originalUrl": "https://www.bostonusa.com/events/",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "events-bouldercoloradousa-com-8fb18e01",
+      "regionId": "boulder",
+      "category": "events",
+      "originalUrl": "https://www.bouldercoloradousa.com/events/",
+      "status": "BLOCKED_ACCESS_OR_PERMISSION",
+      "evidence": "The official Boulder calendar page documents this site-owned REST path in its JavaScript, but a normal unauthenticated request returned HTTP 403. No bypass, alternate access-control path, or records from the blocked endpoint were used.",
+      "nextAcquisitionPath": "Obtain an owner-approved public export/API or a normally reachable official item-level event page; require stable IDs, explicit dates/times/locations, and freshness."
+    },
+    {
+      "sourceId": "events-chicago-gov-44124097",
+      "regionId": "chicago",
+      "category": "events",
+      "originalUrl": "https://www.chicago.gov/city/en/rss.html",
+      "status": "BLOCKED_ENDPOINT_NOT_FOUND",
+      "evidence": "The recorded official Chicago RSS entrypoint returned HTTP 404 through a normal public request. No replacement press-room content, search snippet, or undated page was treated as an event feed.",
+      "nextAcquisitionPath": "Obtain a current official Chicago events RSS/ICS/JSON endpoint or source-specific dated event calendar with stable IDs, explicit dates/times/locations, and freshness."
+    },
+    {
+      "sourceId": "events-chicagoonthecheap-com-c652aec2",
+      "regionId": "chicago",
+      "category": "events",
+      "originalUrl": "https://chicagoonthecheap.com/events/",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "events-denvergov-org-c69e47eb",
+      "regionId": "denver",
+      "category": "events",
+      "originalUrl": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Public-Event-Film-Permitting/Public-Events-Calendar",
+      "status": "ENDPOINT_DISCOVERED_SCHEMA_PENDING",
+      "evidence": "The official Denver calendar page returned HTTP 200 and exposes the Eproval public calendar key 9ce8805d-e5be-4d77-b848-5abdb86c16bc plus the vendor calendar client. A direct guessed POST to the vendor host's /api/v2/public/rpc returned HTTP 405, confirming that the client URI/host handshake is required; no validated item payload was obtained and no records were published from the key or page shell.",
+      "nextAcquisitionPath": "Replay the Eproval public-calendar client handshake for the recorded calendar key, capture Calendar_GetPublicCalendarEntries results, and validate stable IDs, explicit dates/times/locations, official detail URLs, and freshness before promotion."
+    },
+    {
+      "sourceId": "events-districtfray-com-d21bcaee",
+      "regionId": "washington-dc",
+      "category": "events",
+      "originalUrl": "https://districtfray.com/events/free-events/",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "events-dpr-dc-gov-67b39fe7",
+      "regionId": "washington-dc",
+      "category": "events",
+      "originalUrl": "https://dpr.dc.gov/service/attend-events",
+      "status": "BLOCKED_FRESHNESS",
+      "evidence": "The official DC public calendar endpoint returned RSS with stable event URLs, explicit dates/times, and locations, but the sampled current feed item was dated 2013-04-17 and therefore fails the freshness requirement. No historical records were published.",
+      "nextAcquisitionPath": "Recheck the official DC calendar RSS when current/future items are present, or obtain a current DPR event export/API with stable IDs, explicit dates/times/locations, and freshness."
+    },
+    {
+      "sourceId": "events-events-portlandonline-us-09e0b6eb",
+      "regionId": "portland",
+      "category": "events",
+      "originalUrl": "https://events.portlandonline.us/",
+      "status": "BLOCKED_ACCESS_OR_PERMISSION",
+      "evidence": "The municipal PortlandOnline events root and calendar path both returned HTTP 403 through normal public requests. No bypass, credential use, or third-party mirror was attempted; no records were published.",
+      "nextAcquisitionPath": "Obtain a City of Portland-approved public calendar export/API or a normally reachable official item-level event page with stable IDs, explicit dates/times/locations, and freshness."
+    },
+    {
+      "sourceId": "events-exploreasheville-com-8e96aa9e",
+      "regionId": "asheville",
+      "category": "events",
+      "originalUrl": "https://www.exploreasheville.com/events",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "events-exploreasheville-com-94d72b77",
+      "regionId": "asheville",
+      "category": "events",
+      "originalUrl": "https://www.exploreasheville.com/events/free-events-asheville-nc",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "events-greaterseattleonthecheap-com-7d63f8d3",
+      "regionId": "seattle",
+      "category": "events",
+      "originalUrl": "https://www.greaterseattleonthecheap.com/events/",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "events-meridiancity-org-44f75203",
+      "regionId": "boise-meridian-idaho",
+      "category": "events",
+      "originalUrl": "https://www.meridiancity.org/cityevents",
+      "status": "BLOCKED_ACCESS_OR_PERMISSION",
+      "evidence": "Operator guidance identifies a third-party Tockify calendar, but no owner-approved export/API was supplied; the old city page is not used to bypass a 403.",
+      "nextAcquisitionPath": "Obtain City of Meridian/Tockify owner permission and an official export, feed, or API."
+    },
+    {
+      "sourceId": "events-neworleans-com-0da88206",
+      "regionId": "new-orleans",
+      "category": "events",
+      "originalUrl": "https://www.neworleans.com/events/",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The official New Orleans & Company event list exposes current schema.org item records with stable detail URLs, future dates, and venue labels, but the sampled JSON-LD provides date-only startDate/endDate values and no explicit start time. No event was published without a verifiable time.",
+      "nextAcquisitionPath": "Use official item-level detail pages or a documented calendar endpoint that exposes explicit start/end date-times, stable IDs, locations, canonical URLs, and freshness."
+    },
+    {
+      "sourceId": "events-nycforfree-co-3a433d76",
+      "regionId": "nyc",
+      "category": "events",
+      "originalUrl": "https://www.nycforfree.co/weekly-roundup",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "events-phila-gov-7efb5a03",
+      "regionId": "philadelphia",
+      "category": "events",
+      "originalUrl": "https://www.phila.gov/parks/",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "events-portlandlivingonthecheap-com-be5408f7",
+      "regionId": "portland",
+      "category": "events",
+      "originalUrl": "https://portlandlivingonthecheap.com/category/free-events/",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "events-santafe-org-068ccfff",
+      "regionId": "santa-fe",
+      "category": "events",
+      "originalUrl": "https://www.santafe.org/events/",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "events-santafe-org-8f1eb055",
+      "regionId": "santa-fe",
+      "category": "events",
+      "originalUrl": "https://www.santafe.org/visiting-santa-fe/calendar/",
+      "status": "BLOCKED_CURRENT_ITEMS",
+      "evidence": "The official Tourism Santa Fe calendar page returned HTTP 200, but its ItemList contained zero event items; the site-owned REST endpoint returned HTTP 403. No event was promoted from the empty list or blocked endpoint.",
+      "nextAcquisitionPath": "Recheck the official calendar when current item-level listings are present, or obtain an owner-approved public export/API with stable IDs, explicit dates/times/locations, and freshness."
+    },
+    {
+      "sourceId": "events-sedonaaz-gov-605e78d8",
+      "regionId": "sedona-arizona",
+      "category": "events",
+      "originalUrl": "https://www.sedonaaz.gov/your-government/departments-and-programs/parks-recreation/programs/free-to-be-me-drum-circle",
+      "status": "BLOCKED_ACCESS_OR_PERMISSION",
+      "evidence": "The official Sedona city-calendar path returned HTTP 403 through a normal public request. No access-control bypass, alternate credential, or third-party mirror was used; no event records were published.",
+      "nextAcquisitionPath": "Obtain a City of Sedona-approved public calendar export/API or a normally reachable official item-level event page with stable IDs, explicit dates/times/locations, and freshness."
+    },
+    {
+      "sourceId": "events-sfrecpark-org-822dab73",
+      "regionId": "san-francisco",
+      "category": "events",
+      "originalUrl": "https://sfrecpark.org/Calendar.aspx",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "events-sfrecpark-org-ddd118f6",
+      "regionId": "san-francisco",
+      "category": "events",
+      "originalUrl": "https://sfrecpark.org/rss.aspx",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "HTTP 200 normal HTML page (text/html), not XML RSS/Atom; no feed items or item-level event schema were present.",
+      "nextAcquisitionPath": "Obtain a current official SF Rec & Parks RSS/ICS/JSON endpoint or add a verified event-calendar selector."
+    },
+    {
+      "sourceId": "events-thebostoncalendar-com-6e034980",
+      "regionId": "boston",
+      "category": "events",
+      "originalUrl": "https://www.thebostoncalendar.com/",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "No validated item-level record was obtained from the recorded official destination; no landing-page or undated content was published.",
+      "nextAcquisitionPath": "Obtain and validate an official structured endpoint or item-level selector with stable IDs, explicit dates/times/locations, canonical URLs, provenance, and freshness."
+    },
+    {
+      "sourceId": "events-town-keystone-co-us-e3452f18",
+      "regionId": "keystone-colorado",
+      "category": "events",
+      "originalUrl": "https://www.town.keystone.co.us/events",
+      "status": "BLOCKED_EVENT_FEED_NOT_VERIFIED",
+      "evidence": "The official Town of Keystone site exposes council/agenda pages and an event-request form, but no reachable official public event feed, structured calendar, or item-level event pages were verified. A dated staff report is permit/planning guidance rather than a publishable event feed, so no event records were fabricated from it.",
+      "nextAcquisitionPath": "Obtain the Town's official event calendar export/API or a verified source-specific selector with stable event IDs, explicit dates, times, and locations; keep municipal meetings and resort/third-party programming separate."
+    },
+    {
+      "sourceId": "events-visitrichmondva-com-1ae28ba3",
+      "regionId": "richmond",
+      "category": "events",
+      "originalUrl": "https://www.visitrichmondva.com/events/",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The official Richmond Region Tourism event list exposes schema.org item records with stable detail URLs and venue names, but the sampled JSON-LD provides date-only startDate/endDate values; prose time ranges are not sufficient structured time evidence. No event was published without explicit start/end date-times.",
+      "nextAcquisitionPath": "Locate an official Richmond calendar/API field or item-level pages with explicit start/end date-times, then validate freshness, stable IDs, locations, and canonical URLs before promotion."
+    },
+    {
+      "sourceId": "events-visitsedona-com-64ad436c",
+      "regionId": "sedona-arizona",
+      "category": "events",
+      "originalUrl": "https://visitsedona.com/events-calendar/",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "events-wolftrap-org-f9ccaf58",
+      "regionId": "fairfax-county-va",
+      "category": "events",
+      "originalUrl": "https://www.wolftrap.org/",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "No validated item-level record was obtained from the recorded official destination; no landing-page or undated content was published.",
+      "nextAcquisitionPath": "Obtain and validate an official structured endpoint or item-level selector with stable IDs, explicit dates/times/locations, canonical URLs, provenance, and freshness."
+    },
+    {
+      "sourceId": "food-for-others",
+      "regionId": "fairfax-county-va",
+      "category": "publicSpaces",
+      "originalUrl": "https://foodforothers.org",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "meetings-ashevillenc-gov-644961e1",
+      "regionId": "asheville",
+      "category": "meetings",
+      "originalUrl": "https://www.ashevillenc.gov/government/",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "meetings-chicityclerk-com-959bf3e4",
+      "regionId": "chicago",
+      "category": "meetings",
+      "originalUrl": "https://www.chicityclerk.com/public-comment-process",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "meetings-cityofboise-org-3b05a56d",
+      "regionId": "boise-meridian-idaho",
+      "category": "meetings",
+      "originalUrl": "https://www.cityofboise.org/city-government/city-council/",
+      "status": "INTEGRATED_STATIC",
+      "evidence": "Published 50 scheduled dated/location-backed meetings from the official City of Boise IQM2 calendar; stable meeting-detail IDs and venue addresses verified 2026-09-30.",
+      "nextAcquisitionPath": null
+    },
+    {
+      "sourceId": "meetings-dcouncil-us-4d64fb67",
+      "regionId": "washington-dc",
+      "category": "meetings",
+      "originalUrl": "https://dcouncil.us/",
+      "status": "ENDPOINT_DISCOVERED_NO_CURRENT_ITEMS",
+      "evidence": "The official DC Council RSS page exposes the Council calendar, and the public site advertises a WordPress Events REST API. A normal JSON request returned HTTP 200 with a valid events schema but zero published items in the current/future window; no record was promoted from archived or undated hearing material.",
+      "nextAcquisitionPath": "Recheck the official Events REST API or Hearing Management System when current published hearings are present, and require stable item IDs, explicit dates, times, and Wilson Building/virtual locations."
+    },
+    {
+      "sourceId": "meetings-portlandmaine-gov-bc259924",
+      "regionId": "portland-maine",
+      "category": "meetings",
+      "originalUrl": "https://www.portlandmaine.gov/government",
+      "status": "ENDPOINT_DISCOVERED_SCHEMA_PENDING",
+      "evidence": "Official Portland, Maine homepage links to CivicClerk agendas/minutes and its calendar page exposes a CivicClerk-backed event path, but the public HTML response is client-rendered and the sampled event payload did not expose validated item-level date/location fields.",
+      "nextAcquisitionPath": "Identify the public CivicClerk calendar JSON/ICS endpoint or use a documented selector that returns stable event IDs, dates, times, and locations."
+    },
+    {
+      "sourceId": "meetings-santafenm-gov-4df17058",
+      "regionId": "santa-fe",
+      "category": "meetings",
+      "originalUrl": "https://www.santafenm.gov/city-government",
+      "status": "ENDPOINT_DISCOVERED_SCHEMA_PENDING",
+      "evidence": "Official Santa Fe City Clerk page links to the CivicClerk public meeting portal and a 2026 meeting-calendar PDF, but the public portal shell requires JavaScript and no item-level date/time/location payload was directly verifiable in the reachable response.",
+      "nextAcquisitionPath": "Identify the documented CivicClerk public API/ICS endpoint or a stable event page with explicit meeting fields."
+    },
+    {
+      "sourceId": "meetings-seattle-gov-3418b89c",
+      "regionId": "seattle",
+      "category": "meetings",
+      "originalUrl": "https://www.seattle.gov/civic-meetings",
+      "status": "BLOCKED_CURRENT_SAMPLE",
+      "evidence": "The official Seattle City Clerk page links to Legistar, whose calendar exposes stable meeting-detail and iCalendar IDs. Future rows sampled for 2026-09-29 through 2026-10-26 were explicitly marked Canceled, so no active meeting record was published.",
+      "nextAcquisitionPath": "Recheck the official Legistar calendar for a non-canceled dated meeting with a confirmed location before promotion."
+    },
+    {
+      "sourceId": "meetings-sfbos-org-705d79ff",
+      "regionId": "san-francisco",
+      "category": "meetings",
+      "originalUrl": "https://sfbos.org/participate-and-submit-public-comments",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "volunteer-ashevillenc-gov-3ebf2f4c",
+      "regionId": "asheville",
+      "category": "volunteer",
+      "originalUrl": "https://www.ashevillenc.gov/parks/",
+      "status": "DO_NOT_INVESTIGATE",
+      "evidence": "Official replacement returned HTTP 403 through normal public access. Do not bypass; wait for an operator-provided official export/API or normally reachable item-level source.",
+      "nextAcquisitionPath": null
+    },
+    {
+      "sourceId": "volunteer-boston-gov-98c6b1e6",
+      "regionId": "boston",
+      "category": "volunteer",
+      "originalUrl": "https://www.boston.gov/parks",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "volunteer-chicagoparkdistrict-com-ba93a249",
+      "regionId": "chicago",
+      "category": "volunteer",
+      "originalUrl": "https://www.chicagoparkdistrict.com/volunteer/",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "volunteer-dpr-dc-gov-52180f8a",
+      "regionId": "washington-dc",
+      "category": "volunteer",
+      "originalUrl": "https://dpr.dc.gov/page/volunteer-and-give-back",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The official DC DPR volunteer page is reachable and lists current volunteer role names, but it does not expose item-level scheduled dates, times, locations, or stable opportunity IDs. The registration link and role descriptions are not a dated opportunity feed, so no records were published.",
+      "nextAcquisitionPath": "Obtain the public DPR volunteer registration/calendar export or a normally reachable item-level opportunity page with stable IDs, explicit dates, times, and locations."
+    },
+    {
+      "sourceId": "volunteer-friendsoftheparks-org-5e217463",
+      "regionId": "philadelphia",
+      "category": "volunteer",
+      "originalUrl": "https://friendsoftheparks.org/volunteer",
+      "status": "BLOCKED_FRESHNESS",
+      "evidence": "The official Friends of the Parks events page is reachable and exposes item-level dates, times, locations, and Google Calendar ICS links, but the sampled dated listings were already past at the 2026-09-29 freshness point. No stale volunteer/event records were published.",
+      "nextAcquisitionPath": "Recheck the official events page or its item-level ICS links for a future dated opportunity with stable event identity and explicit location."
+    },
+    {
+      "sourceId": "volunteer-jrps-org-2a3b895f",
+      "regionId": "richmond",
+      "category": "volunteer",
+      "originalUrl": "https://www.jrps.org/volunteer",
+      "status": "ENDPOINT_DISCOVERED_SCHEMA_PENDING",
+      "evidence": "The official Friends of James River Park calendar loads normally and exposes the EventON public REST configuration at the page level, including a site REST base and calendar endpoint parameters. The sampled page did not itself contain item-level event payloads, so no records were published from search snippets or third-party calendar pages.",
+      "nextAcquisitionPath": "Replay the official EventON AJAX endpoint at https://jamesriverpark.org/wp-admin/admin-ajax.php using the page's eventon_init_load/eventon_search_evo_events actions; verify stable event IDs, explicit dates/times/locations, and freshness, then publish only validated volunteer records."
+    },
+    {
+      "sourceId": "volunteer-loudoun-gov-81bf3267",
+      "regionId": "loudoun-county-va",
+      "category": "volunteer",
+      "originalUrl": "https://www.loudoun.gov/volunteer",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "volunteer-nola-gov-c959480f",
+      "regionId": "new-orleans",
+      "category": "volunteer",
+      "originalUrl": "https://www.nola.gov/parks-and-parkways/special-events/",
+      "status": "DISCOVERY_ONLY_PERMIT_GUIDANCE",
+      "evidence": "The operator replacement is a park or recreation-center use permit. Permit instructions describe how to request space and do not constitute scheduled volunteer opportunities or an event feed; no records were fabricated from the guidance.",
+      "nextAcquisitionPath": "Locate an official NORDC volunteer calendar or item-level volunteer opportunity feed with stable IDs, explicit dates, times, and locations."
+    },
+    {
+      "sourceId": "volunteer-norfolk-gov-ff89d6a7",
+      "regionId": "norfolk",
+      "category": "volunteer",
+      "originalUrl": "https://www.norfolk.gov/4248/Volunteer",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "volunteer-nps-gov-20ec7407",
+      "regionId": "fairfax-county-va",
+      "category": "volunteer",
+      "originalUrl": "https://www.nps.gov/wotr/getinvolved/volunteer.htm",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "volunteer-nycgovparks-org-4b7ad625",
+      "regionId": "nyc",
+      "category": "volunteer",
+      "originalUrl": "https://www.nycgovparks.org/events/volunteer",
+      "status": "BLOCKED_FRESHNESS",
+      "evidence": "Official Socrata metadata exposes event_id, title, date, start_time, end_time, location_description, url, and related location table; sampled records were dated 2019-12, so the inventory does not provide fresh current records for publication.",
+      "nextAcquisitionPath": "Identify a current NYC Parks event inventory/API or verified export with recent dated records and joinable locations."
+    },
+    {
+      "sourceId": "volunteer-pgparks-com-bf740430",
+      "regionId": "prince-georges-county-md",
+      "category": "volunteer",
+      "originalUrl": "https://www.pgparks.com/get-involved/volunteer-opportunities",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "volunteer-portlandmaine-gov-2c137978",
+      "regionId": "portland-maine",
+      "category": "volunteer",
+      "originalUrl": "https://www.portlandmaine.gov/parks-recreation",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The official Portland Parks, Recreation & Facilities programs page describes volunteering and links to general recreation/program navigation, but does not expose item-level volunteer dates, times, locations, or stable opportunity IDs. The citywide calendar contains general events and meetings, not a validated volunteer feed, so no records were published.",
+      "nextAcquisitionPath": "Obtain the official Parks/Recreation volunteer calendar, MyRec export/API, or item-level opportunity pages with stable IDs, explicit dates, times, and locations."
+    },
+    {
+      "sourceId": "volunteer-santafenm-gov-57a0cd99",
+      "regionId": "santa-fe",
+      "category": "volunteer",
+      "originalUrl": "https://www.santafenm.gov/parks_recreation",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The official Santa Fe Parks and Open Space page provides a volunteer application link and general Adopt-a-Park/Trail information, but no scheduled volunteer items with explicit dates, times, locations, or stable opportunity IDs. The waiver/form is not a volunteer event feed, so no records were published.",
+      "nextAcquisitionPath": "Obtain the City’s public volunteer master-calendar export/API or item-level opportunity pages with stable IDs, explicit dates, times, and locations."
+    },
+    {
+      "sourceId": "volunteer-sedonaaz-gov-79ca6cb2",
+      "regionId": "sedona-arizona",
+      "category": "volunteer",
+      "originalUrl": "https://www.sedonaaz.gov/community/residents/volunteer",
+      "status": "BLOCKED_ACCESS_OR_PERMISSION",
+      "evidence": "The official Sedona Parks & Recreation calendar path returned HTTP 403 through a normal public request. No access-control bypass, alternate credential, or third-party mirror was used; no volunteer records were published.",
+      "nextAcquisitionPath": "Obtain a City of Sedona-approved Parks & Recreation volunteer export/API or a normally reachable official item-level opportunity page with stable IDs, explicit dates/times/locations, and freshness."
+    },
+    {
+      "sourceId": "volunteer-sfparks-org-ddcc85b5",
+      "regionId": "san-francisco",
+      "category": "volunteer",
+      "originalUrl": "https://www.sfparks.org/support-park/volunteer",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "The recorded official destination was reachable during bounded discovery, but no validated item-level record with stable identity, explicit date/time, and explicit location was obtained. Landing pages, snippets, recurring descriptions, and undated links were not published.",
+      "nextAcquisitionPath": "Recheck the official source for a documented JSON, Socrata, ArcGIS, GeoJSON, RSS/Atom, ICS, calendar endpoint, or item-level selector; require stable IDs, explicit dates/times/locations, canonical URLs, authority, provenance, and freshness."
+    },
+    {
+      "sourceId": "volunteer-volunteermatch-org-79b64c6c",
+      "regionId": "keystone-colorado",
+      "category": "volunteer",
+      "originalUrl": "https://www.volunteermatch.org/",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "No validated item-level record was obtained from the recorded official destination; no landing-page or undated content was published.",
+      "nextAcquisitionPath": "Obtain and validate an official structured endpoint or item-level selector with stable IDs, explicit dates/times/locations, canonical URLs, provenance, and freshness."
+    },
+    {
+      "sourceId": "wolf-trap-foundation",
+      "regionId": "fairfax-county-va",
+      "category": "events",
+      "originalUrl": "https://www.wolftrap.org/calendar",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "No validated item-level record was obtained from the recorded official destination; no landing-page or undated content was published.",
+      "nextAcquisitionPath": "Obtain and validate an official structured endpoint or item-level selector with stable IDs, explicit dates/times/locations, canonical URLs, provenance, and freshness."
     }
-  }
+  ],
+  "retiredAt": "2026-09-30T20:32:55.659678Z"
 }
