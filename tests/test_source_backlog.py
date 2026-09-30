@@ -63,8 +63,8 @@ class SourceBacklogTests(unittest.TestCase):
         root = Path(__file__).parents[1]
         report = _diagnostic_module.build(root, "2026-09-29T00:00:00Z")
         self.assertEqual(report["summary"]["resolvedCount"], 42)
-        self.assertEqual(report["summary"]["unresolvedCount"], 58)
-        self.assertEqual(len(report["sources"]), 58)
+        self.assertEqual(report["summary"]["unresolvedCount"], 57)
+        self.assertEqual(len(report["sources"]), 57)
         self.assertTrue(all(row["blocker"] and row["nextAcquisitionPath"] for row in report["sources"]))
         self.assertTrue(any("discoveryEvidence" in row for row in report["sources"]))
         self.assertTrue(all(row["publicationDecision"].startswith("NOT_PUBLISHED") for row in report["sources"]))

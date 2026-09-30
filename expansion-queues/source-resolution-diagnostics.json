@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
   "kind": "static-source-resolution-diagnostics",
-  "generatedAt": "2026-09-30T10:39:23.710084Z",
+  "generatedAt": "2026-09-30T10:41:40.666390Z",
   "source": "expansion-queues/regional-source-backlog.json",
   "policy": "Diagnostics do not publish records; only validated dated records with location and provenance may enter civic packages.",
   "summary": {
-    "candidateCount": 58,
+    "candidateCount": 57,
     "resolvedCount": 42,
-    "unresolvedCount": 58,
+    "unresolvedCount": 57,
     "blockers": {
       "schema-unverified": 2,
-      "selector-or-endpoint-undiscovered": 56
+      "selector-or-endpoint-undiscovered": 55
     }
   },
   "sources": [
@@ -167,32 +167,6 @@
         "finalUrl": "https://www.boisestatepublicradio.org/community-calendar-search?f0=00000178-b7ab-d01e-aff8-b7fbab860000",
         "candidateEndpointCount": 22,
         "selectorCandidateCount": 28,
-        "schemaStatus": "endpoint-or-selector-needed"
-      }
-    },
-    {
-      "sourceId": "volunteer-boisewatershed-org-b6e8d60b",
-      "regionId": "boise-meridian-idaho",
-      "category": "volunteer",
-      "url": "https://www.boisewatershed.org/about/volunteer/",
-      "publisher": "boisewatershed.org",
-      "adapter": "review-required",
-      "observed": {
-        "httpStatus": 200,
-        "contentType": "text/html; charset=utf-8",
-        "checkedAt": "2026-09-29T17:47:01.475Z"
-      },
-      "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 1 endpoint/link candidates, but no item-level contract validation",
-      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
-      "discoveryEvidence": {
-        "status": "SUCCEEDED",
-        "httpStatus": 200,
-        "contentType": "text/html; charset=utf-8",
-        "finalUrl": "https://www.boisewatershed.org/about/volunteer/",
-        "candidateEndpointCount": 1,
-        "selectorCandidateCount": 0,
         "schemaStatus": "endpoint-or-selector-needed"
       }
     },

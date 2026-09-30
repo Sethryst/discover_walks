@@ -777,12 +777,19 @@
           },
           "url": "https://www.boisewatershed.org/about/volunteer/",
           "workItemId": "source:volunteer-boisewatershed-org-b6e8d60b",
-          "trackingState": "TRACKED_REACHABLE",
+          "trackingState": "INTEGRATED_STATIC",
           "trackingEvidence": {
             "checkedAt": "2026-09-29T17:47:01.475Z",
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
+          },
+          "integrationEvidence": {
+            "integratedAt": "2026-09-30T00:00:00Z",
+            "recordCount": 1,
+            "verifiedSourceFormat": "official embedded calendar JSON",
+            "verifiedSourceUrl": "https://www.boisewatershed.org/about/volunteer/",
+            "notes": "The official page embedded calendar item 3161 with explicit date, time, location, volunteer activity, and registration requirement."
           }
         },
         {
@@ -6189,7 +6196,7 @@
       "UNTRACKED_ACTIONABLE": 22
     },
     "trackingPolicy": "Tracked reachable sources remain in the audit backlog but are removed from the active operator queue until adapter work is requested.",
-    "unresolvedCount": 58,
-    "integratedStaticCount": 44
+    "unresolvedCount": 57,
+    "integratedStaticCount": 45
   }
 }
