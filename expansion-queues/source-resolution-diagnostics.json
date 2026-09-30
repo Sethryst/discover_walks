@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
   "kind": "static-source-resolution-diagnostics",
-  "generatedAt": "2026-09-30T10:45:16.605563Z",
+  "generatedAt": "2026-09-30T10:46:52.698621Z",
   "source": "expansion-queues/regional-source-backlog.json",
   "policy": "Diagnostics do not publish records; only validated dated records with location and provenance may enter civic packages.",
   "summary": {
-    "candidateCount": 55,
+    "candidateCount": 54,
     "resolvedCount": 42,
-    "unresolvedCount": 55,
+    "unresolvedCount": 54,
     "blockers": {
       "schema-unverified": 2,
-      "selector-or-endpoint-undiscovered": 53
+      "selector-or-endpoint-undiscovered": 52
     }
   },
   "sources": [
@@ -142,32 +142,6 @@
         "candidateEndpointCount": 0,
         "selectorCandidateCount": 0,
         "schemaStatus": "not-run"
-      }
-    },
-    {
-      "sourceId": "events-boisestatepublicradio-org-1b57dd9c",
-      "regionId": "boise-meridian-idaho",
-      "category": "events",
-      "url": "https://www.boisestatepublicradio.org/community-calendar-search?f0=00000178-b7ab-d01e-aff8-b7fbab860000",
-      "publisher": "Boise State Public Radio Community Calendar",
-      "adapter": "review-required",
-      "observed": {
-        "httpStatus": 200,
-        "contentType": "text/html;charset=UTF-8",
-        "checkedAt": "2026-09-29T17:47:01.475Z"
-      },
-      "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 22 endpoint/link candidates, but no item-level contract validation",
-      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
-      "discoveryEvidence": {
-        "status": "SUCCEEDED",
-        "httpStatus": 200,
-        "contentType": "text/html;charset=UTF-8",
-        "finalUrl": "https://www.boisestatepublicradio.org/community-calendar-search?f0=00000178-b7ab-d01e-aff8-b7fbab860000",
-        "candidateEndpointCount": 22,
-        "selectorCandidateCount": 28,
-        "schemaStatus": "endpoint-or-selector-needed"
       }
     },
     {

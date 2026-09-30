@@ -731,12 +731,19 @@
           },
           "url": "https://www.boisestatepublicradio.org/community-calendar-search?f0=00000178-b7ab-d01e-aff8-b7fbab860000",
           "workItemId": "source:events-boisestatepublicradio-org-1b57dd9c",
-          "trackingState": "TRACKED_REACHABLE",
+          "trackingState": "INTEGRATED_STATIC",
           "trackingEvidence": {
             "checkedAt": "2026-09-29T17:47:01.475Z",
             "httpStatus": 200,
             "contentType": "text/html;charset=UTF-8",
             "source": "local-batched-validation"
+          },
+          "integrationEvidence": {
+            "integratedAt": "2026-09-30T00:00:00Z",
+            "recordCount": 1,
+            "verifiedSourceFormat": "official HTML event detail page",
+            "verifiedSourceUrl": "https://www.boisestatepublicradio.org/community-calendar-search/event/art-show-in-pursuit-of-light-by-bill-garibyan-14-09-2026-20-28-15",
+            "notes": "Published one non-recurring listing with explicit date, time, venue address, stable detail slug, and official Boise State Public Radio URL; recurring and incomplete-location listings were excluded."
           }
         },
         {
@@ -6210,7 +6217,7 @@
       "UNTRACKED_ACTIONABLE": 22
     },
     "trackingPolicy": "Tracked reachable sources remain in the audit backlog but are removed from the active operator queue until adapter work is requested.",
-    "unresolvedCount": 55,
-    "integratedStaticCount": 47
+    "unresolvedCount": 54,
+    "integratedStaticCount": 48
   }
 }
