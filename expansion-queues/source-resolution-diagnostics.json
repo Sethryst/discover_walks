@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "kind": "static-source-resolution-diagnostics",
-  "generatedAt": "2026-09-30T09:04:34.328371Z",
+  "generatedAt": "2026-09-30T09:05:51.188373Z",
   "source": "expansion-queues/regional-source-backlog.json",
   "policy": "Diagnostics do not publish records; only validated dated records with location and provenance may enter civic packages.",
   "summary": {
@@ -27,9 +27,18 @@
         "checkedAt": "2026-09-29T17:47:01.475Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 2 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "finalUrl": "https://www.ashevillenc.gov/government/",
+        "candidateEndpointCount": 2,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "volunteer-ashevillenc-gov-3ebf2f4c",
@@ -44,9 +53,18 @@
         "checkedAt": null
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery fetch failed, so no structured evidence was available",
+      "nextAcquisitionPath": "Recheck the official URL through a normally reachable public endpoint; do not bypass access controls",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "FAILED",
+        "httpStatus": null,
+        "contentType": null,
+        "finalUrl": null,
+        "candidateEndpointCount": 0,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "not-run"
+      }
     },
     {
       "sourceId": "events-exploreasheville-com-94d72b77",
@@ -61,9 +79,18 @@
         "checkedAt": "2026-09-29T17:47:01.475Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery fetch failed, so no structured evidence was available",
+      "nextAcquisitionPath": "Recheck the official URL through a normally reachable public endpoint; do not bypass access controls",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "FAILED",
+        "httpStatus": null,
+        "contentType": null,
+        "finalUrl": null,
+        "candidateEndpointCount": 0,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "not-run"
+      }
     },
     {
       "sourceId": "events-exploreasheville-com-8e96aa9e",
@@ -78,9 +105,18 @@
         "checkedAt": "2026-09-29T17:47:01.475Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery fetch failed, so no structured evidence was available",
+      "nextAcquisitionPath": "Recheck the official URL through a normally reachable public endpoint; do not bypass access controls",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "FAILED",
+        "httpStatus": null,
+        "contentType": null,
+        "finalUrl": null,
+        "candidateEndpointCount": 0,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "not-run"
+      }
     },
     {
       "sourceId": "meetings-cityofboise-org-3b05a56d",
@@ -95,9 +131,18 @@
         "checkedAt": null
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery fetch failed, so no structured evidence was available",
+      "nextAcquisitionPath": "Recheck the official URL through a normally reachable public endpoint; do not bypass access controls",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "FAILED",
+        "httpStatus": null,
+        "contentType": null,
+        "finalUrl": null,
+        "candidateEndpointCount": 0,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "not-run"
+      }
     },
     {
       "sourceId": "events-boisestatepublicradio-org-1b57dd9c",
@@ -112,9 +157,18 @@
         "checkedAt": "2026-09-29T17:47:01.475Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 22 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html;charset=UTF-8",
+        "finalUrl": "https://www.boisestatepublicradio.org/community-calendar-search?f0=00000178-b7ab-d01e-aff8-b7fbab860000",
+        "candidateEndpointCount": 22,
+        "selectorCandidateCount": 28,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "volunteer-boisewatershed-org-b6e8d60b",
@@ -129,9 +183,18 @@
         "checkedAt": "2026-09-29T17:47:01.475Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 1 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "finalUrl": "https://www.boisewatershed.org/about/volunteer/",
+        "candidateEndpointCount": 1,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "events-meridiancity-org-44f75203",
@@ -146,9 +209,18 @@
         "checkedAt": null
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery fetch failed, so no structured evidence was available",
+      "nextAcquisitionPath": "Recheck the official URL through a normally reachable public endpoint; do not bypass access controls",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "FAILED",
+        "httpStatus": null,
+        "contentType": null,
+        "finalUrl": null,
+        "candidateEndpointCount": 0,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "not-run"
+      }
     },
     {
       "sourceId": "volunteer-boston-gov-98c6b1e6",
@@ -163,9 +235,18 @@
         "checkedAt": "2026-09-29T17:47:01.475Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 11 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "finalUrl": "https://www.boston.gov/departments/parks-and-recreation",
+        "candidateEndpointCount": 11,
+        "selectorCandidateCount": 2,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "events-thebostoncalendar-com-6e034980",
@@ -180,9 +261,18 @@
         "checkedAt": null
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 858 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "finalUrl": "https://www.thebostoncalendar.com/",
+        "candidateEndpointCount": 858,
+        "selectorCandidateCount": 2,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "events-bostonusa-com-7323eab4",
@@ -197,9 +287,18 @@
         "checkedAt": "2026-09-29T17:47:01.475Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 55 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "finalUrl": "https://www.meetboston.com/events/",
+        "candidateEndpointCount": 55,
+        "selectorCandidateCount": 1,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "events-bouldercoloradousa-com-8fb18e01",
@@ -214,9 +313,18 @@
         "checkedAt": "2026-09-29T17:47:01.475Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 50 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "finalUrl": "https://www.bouldercoloradousa.com/events/",
+        "candidateEndpointCount": 50,
+        "selectorCandidateCount": 1,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "events-chicago-gov-44124097",
@@ -231,9 +339,18 @@
         "checkedAt": null
       },
       "blocker": "schema-unverified",
-      "diagnostic": "endpoint is reachable but no validated replay/schema evidence exists",
-      "nextAcquisitionPath": "inspect feed content; require item-level dated events and stable IDs before publishing",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "endpoint is reachable but no validated replay/schema evidence exists; bounded discovery fetch failed, so no structured evidence was available",
+      "nextAcquisitionPath": "Recheck the official URL through a normally reachable public endpoint; do not bypass access controls",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "FAILED",
+        "httpStatus": null,
+        "contentType": null,
+        "finalUrl": null,
+        "candidateEndpointCount": 0,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "not-run"
+      }
     },
     {
       "sourceId": "events-chicago-gov-83a3ca20",
@@ -248,9 +365,18 @@
         "checkedAt": "2026-09-29T17:47:04.696Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 20 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html",
+        "finalUrl": "https://www.chicago.gov/city/en/depts/dca/supp_info/ccc_calendar.html",
+        "candidateEndpointCount": 20,
+        "selectorCandidateCount": 8,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "events-chicagoonthecheap-com-c652aec2",
@@ -265,9 +391,18 @@
         "checkedAt": "2026-09-29T17:47:04.696Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 18 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "finalUrl": "https://chicagoonthecheap.com/events/",
+        "candidateEndpointCount": 18,
+        "selectorCandidateCount": 2,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "volunteer-chicagoparkdistrict-com-ba93a249",
@@ -282,9 +417,18 @@
         "checkedAt": "2026-09-29T17:47:04.696Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 4 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "finalUrl": "https://www.chicagoparkdistrict.com/volunteer",
+        "candidateEndpointCount": 4,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "meetings-chicityclerk-com-959bf3e4",
@@ -299,9 +443,18 @@
         "checkedAt": "2026-09-29T17:47:04.696Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 3 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "finalUrl": "https://www.chicityclerk.com/public-comment-process",
+        "candidateEndpointCount": 3,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "events-denvergov-org-c69e47eb",
@@ -316,9 +469,18 @@
         "checkedAt": "2026-09-29T17:47:04.696Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 29 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "finalUrl": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Public-Event-Film-Permitting/Public-Events-Calendar",
+        "candidateEndpointCount": 29,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "volunteer-nps-gov-20ec7407",
@@ -333,9 +495,18 @@
         "checkedAt": "2026-09-29T17:47:13.030Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 2 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html;charset=UTF-8",
+        "finalUrl": "https://www.nps.gov/wotr/getinvolved/volunteer.htm",
+        "candidateEndpointCount": 2,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "food-for-others",
@@ -350,9 +521,18 @@
         "checkedAt": "2026-09-29T17:47:13.030Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 2 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "finalUrl": "https://foodforothers.org",
+        "candidateEndpointCount": 2,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "events-wolftrap-org-f9ccaf58",
@@ -367,9 +547,18 @@
         "checkedAt": null
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery fetch failed, so no structured evidence was available",
+      "nextAcquisitionPath": "Recheck the official URL through a normally reachable public endpoint; do not bypass access controls",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "FAILED",
+        "httpStatus": null,
+        "contentType": null,
+        "finalUrl": null,
+        "candidateEndpointCount": 0,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "not-run"
+      }
     },
     {
       "sourceId": "wolf-trap-foundation",
@@ -384,9 +573,18 @@
         "checkedAt": null
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery fetch failed, so no structured evidence was available",
+      "nextAcquisitionPath": "Recheck the official URL through a normally reachable public endpoint; do not bypass access controls",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "FAILED",
+        "httpStatus": null,
+        "contentType": null,
+        "finalUrl": null,
+        "candidateEndpointCount": 0,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "not-run"
+      }
     },
     {
       "sourceId": "events-town-keystone-co-us-e3452f18",
@@ -401,9 +599,18 @@
         "checkedAt": null
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery fetch failed, so no structured evidence was available",
+      "nextAcquisitionPath": "Recheck the official URL through a normally reachable public endpoint; do not bypass access controls",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "FAILED",
+        "httpStatus": null,
+        "contentType": null,
+        "finalUrl": null,
+        "candidateEndpointCount": 0,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "not-run"
+      }
     },
     {
       "sourceId": "volunteer-volunteermatch-org-79b64c6c",
@@ -418,9 +625,18 @@
         "checkedAt": null
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 3 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "finalUrl": "https://www.idealist.org/volunteermatch",
+        "candidateEndpointCount": 3,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "volunteer-loudoun-gov-81bf3267",
@@ -435,9 +651,18 @@
         "checkedAt": "2026-09-29T17:47:04.696Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 2 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "finalUrl": "https://www.loudoun.gov/volunteer",
+        "candidateEndpointCount": 2,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "volunteer-nola-gov-c959480f",
@@ -452,9 +677,18 @@
         "checkedAt": null
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery fetch failed, so no structured evidence was available",
+      "nextAcquisitionPath": "Recheck the official URL through a normally reachable public endpoint; do not bypass access controls",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "FAILED",
+        "httpStatus": null,
+        "contentType": null,
+        "finalUrl": null,
+        "candidateEndpointCount": 0,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "not-run"
+      }
     },
     {
       "sourceId": "events-neworleans-com-0da88206",
@@ -469,9 +703,18 @@
         "checkedAt": "2026-09-29T17:47:06.798Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 69 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "finalUrl": "https://www.neworleans.com/events/",
+        "candidateEndpointCount": 69,
+        "selectorCandidateCount": 2,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "events-downtownnorfolk-org-cf7e9296",
@@ -486,9 +729,18 @@
         "checkedAt": null
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 35 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "finalUrl": "https://www.downtownnorfolk.org/explore/calendar",
+        "candidateEndpointCount": 35,
+        "selectorCandidateCount": 1,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "volunteer-norfolk-gov-ff89d6a7",
@@ -503,9 +755,18 @@
         "checkedAt": "2026-09-29T17:47:06.798Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 1 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "finalUrl": "https://www.norfolk.gov/4248/Volunteer",
+        "candidateEndpointCount": 1,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "events-nycforfree-co-3a433d76",
@@ -520,9 +781,18 @@
         "checkedAt": "2026-09-29T17:47:06.798Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 71 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "finalUrl": "https://www.nycforfree.co/events",
+        "candidateEndpointCount": 71,
+        "selectorCandidateCount": 26,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "volunteer-nycgovparks-org-4b7ad625",
@@ -537,9 +807,18 @@
         "checkedAt": null
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery fetch failed, so no structured evidence was available",
+      "nextAcquisitionPath": "Recheck the official URL through a normally reachable public endpoint; do not bypass access controls",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "FAILED",
+        "httpStatus": null,
+        "contentType": null,
+        "finalUrl": null,
+        "candidateEndpointCount": 0,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "not-run"
+      }
     },
     {
       "sourceId": "events-phila-gov-7efb5a03",
@@ -554,9 +833,18 @@
         "checkedAt": "2026-09-29T17:47:06.798Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 5 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "finalUrl": "https://www.phila.gov/departments/philadelphia-parks-recreation/",
+        "candidateEndpointCount": 5,
+        "selectorCandidateCount": 15,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "volunteer-friendsoftheparks-org-5e217463",
@@ -571,9 +859,18 @@
         "checkedAt": null
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery fetch failed, so no structured evidence was available",
+      "nextAcquisitionPath": "Recheck the official URL through a normally reachable public endpoint; do not bypass access controls",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "FAILED",
+        "httpStatus": null,
+        "contentType": null,
+        "finalUrl": null,
+        "candidateEndpointCount": 0,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "not-run"
+      }
     },
     {
       "sourceId": "events-portlandlivingonthecheap-com-be5408f7",
@@ -588,9 +885,18 @@
         "checkedAt": "2026-09-29T17:47:06.798Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 20 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "finalUrl": "https://portlandlivingonthecheap.com/category/free-events/",
+        "candidateEndpointCount": 20,
+        "selectorCandidateCount": 50,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "events-events-portlandonline-us-09e0b6eb",
@@ -605,9 +911,18 @@
         "checkedAt": null
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 26 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "finalUrl": "https://events.portlandonline.us/",
+        "candidateEndpointCount": 26,
+        "selectorCandidateCount": 1,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "meetings-portlandmaine-gov-bc259924",
@@ -622,9 +937,18 @@
         "checkedAt": null
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery fetch failed, so no structured evidence was available",
+      "nextAcquisitionPath": "Recheck the official URL through a normally reachable public endpoint; do not bypass access controls",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "FAILED",
+        "httpStatus": null,
+        "contentType": null,
+        "finalUrl": null,
+        "candidateEndpointCount": 0,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "not-run"
+      }
     },
     {
       "sourceId": "volunteer-portlandmaine-gov-2c137978",
@@ -639,9 +963,18 @@
         "checkedAt": null
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery fetch failed, so no structured evidence was available",
+      "nextAcquisitionPath": "Recheck the official URL through a normally reachable public endpoint; do not bypass access controls",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "FAILED",
+        "httpStatus": null,
+        "contentType": null,
+        "finalUrl": null,
+        "candidateEndpointCount": 0,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "not-run"
+      }
     },
     {
       "sourceId": "events-mainepublic-org-bfb30cd0",
@@ -656,9 +989,18 @@
         "checkedAt": "2026-09-29T17:47:08.895Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 28 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html;charset=UTF-8",
+        "finalUrl": "https://www.mainepublic.org/community-calendar",
+        "candidateEndpointCount": 28,
+        "selectorCandidateCount": 30,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "volunteer-pgparks-com-bf740430",
@@ -673,9 +1015,18 @@
         "checkedAt": "2026-09-29T17:47:08.895Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 9 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "finalUrl": "https://www.pgparks.com/get-involved/volunteer-opportunities",
+        "candidateEndpointCount": 9,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "events-6amcity-com-a7dfd2b6",
@@ -690,9 +1041,18 @@
         "checkedAt": "2026-09-29T17:47:08.895Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 4 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "finalUrl": "https://6amcity.com/web/va/richmond/events",
+        "candidateEndpointCount": 4,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "volunteer-jrps-org-2a3b895f",
@@ -707,9 +1067,18 @@
         "checkedAt": null
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery fetch failed, so no structured evidence was available",
+      "nextAcquisitionPath": "Recheck the official URL through a normally reachable public endpoint; do not bypass access controls",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "FAILED",
+        "httpStatus": null,
+        "contentType": null,
+        "finalUrl": null,
+        "candidateEndpointCount": 0,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "not-run"
+      }
     },
     {
       "sourceId": "events-visitrichmondva-com-1ae28ba3",
@@ -724,9 +1093,18 @@
         "checkedAt": "2026-09-29T17:47:08.895Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 39 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "finalUrl": "https://www.visitrichmondva.com/events/",
+        "candidateEndpointCount": 39,
+        "selectorCandidateCount": 1,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "events-sfrecpark-org-ddd118f6",
@@ -741,9 +1119,18 @@
         "checkedAt": "2026-09-29T17:47:08.895Z"
       },
       "blocker": "schema-unverified",
-      "diagnostic": "endpoint is reachable but no validated replay/schema evidence exists",
-      "nextAcquisitionPath": "inspect feed content; require item-level dated events and stable IDs before publishing",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "endpoint is reachable but no validated replay/schema evidence exists; bounded discovery found 118 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "finalUrl": "https://sfrecpark.org/rss.aspx",
+        "candidateEndpointCount": 118,
+        "selectorCandidateCount": 1,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "meetings-sfbos-org-705d79ff",
@@ -758,9 +1145,18 @@
         "checkedAt": "2026-09-29T17:47:08.895Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 10 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html",
+        "finalUrl": "https://sfbos.archive.sf.gov/participate-and-submit-public-comments",
+        "candidateEndpointCount": 10,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "volunteer-sfparks-org-ddcc85b5",
@@ -777,7 +1173,16 @@
       "blocker": "selector-or-endpoint-undiscovered",
       "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
       "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html",
+        "finalUrl": "https://www.sfparks.org/support-park/volunteer",
+        "candidateEndpointCount": 0,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "events-sfrecpark-org-822dab73",
@@ -792,9 +1197,18 @@
         "checkedAt": "2026-09-29T17:47:08.895Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 55 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "finalUrl": "https://sfrecpark.org/Calendar.aspx",
+        "candidateEndpointCount": 55,
+        "selectorCandidateCount": 7,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "meetings-santafenm-gov-4df17058",
@@ -809,9 +1223,18 @@
         "checkedAt": null
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery fetch failed, so no structured evidence was available",
+      "nextAcquisitionPath": "Recheck the official URL through a normally reachable public endpoint; do not bypass access controls",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "FAILED",
+        "httpStatus": null,
+        "contentType": null,
+        "finalUrl": null,
+        "candidateEndpointCount": 0,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "not-run"
+      }
     },
     {
       "sourceId": "volunteer-santafenm-gov-57a0cd99",
@@ -826,9 +1249,18 @@
         "checkedAt": null
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery fetch failed, so no structured evidence was available",
+      "nextAcquisitionPath": "Recheck the official URL through a normally reachable public endpoint; do not bypass access controls",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "FAILED",
+        "httpStatus": null,
+        "contentType": null,
+        "finalUrl": null,
+        "candidateEndpointCount": 0,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "not-run"
+      }
     },
     {
       "sourceId": "events-santafe-org-8f1eb055",
@@ -843,9 +1275,18 @@
         "checkedAt": "2026-09-29T17:47:08.895Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 32 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "finalUrl": "https://www.santafe.org/visiting-santa-fe/calendar/",
+        "candidateEndpointCount": 32,
+        "selectorCandidateCount": 1,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "events-santafe-org-068ccfff",
@@ -860,9 +1301,18 @@
         "checkedAt": "2026-09-29T17:47:08.895Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 32 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "finalUrl": "https://www.santafe.org/visiting-santa-fe/calendar/",
+        "candidateEndpointCount": 32,
+        "selectorCandidateCount": 1,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "meetings-seattle-gov-3418b89c",
@@ -877,9 +1327,18 @@
         "checkedAt": null
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery fetch failed, so no structured evidence was available",
+      "nextAcquisitionPath": "Recheck the official URL through a normally reachable public endpoint; do not bypass access controls",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "FAILED",
+        "httpStatus": null,
+        "contentType": null,
+        "finalUrl": null,
+        "candidateEndpointCount": 0,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "not-run"
+      }
     },
     {
       "sourceId": "events-seattle-gov-cca4136c",
@@ -894,9 +1353,18 @@
         "checkedAt": "2026-09-29T17:47:13.030Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 1 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "finalUrl": "https://www.seattle.gov/event-calendar",
+        "candidateEndpointCount": 1,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "events-greaterseattleonthecheap-com-7d63f8d3",
@@ -911,9 +1379,18 @@
         "checkedAt": "2026-09-29T17:47:13.030Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 22 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "finalUrl": "https://www.greaterseattleonthecheap.com/events/",
+        "candidateEndpointCount": 22,
+        "selectorCandidateCount": 2,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "events-sedonaaz-gov-605e78d8",
@@ -928,9 +1405,18 @@
         "checkedAt": "2026-09-29T17:47:13.030Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 14 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "finalUrl": "https://www.sedonaaz.gov/your-government/departments-and-programs/parks-recreation/programs/free-to-be-me-drum-circle",
+        "candidateEndpointCount": 14,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "events-visitsedona-com-64ad436c",
@@ -945,9 +1431,18 @@
         "checkedAt": "2026-09-29T17:47:13.030Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 35 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "finalUrl": "https://visitsedona.com/events-calendar/",
+        "candidateEndpointCount": 35,
+        "selectorCandidateCount": 3,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "volunteer-sedonaaz-gov-79ca6cb2",
@@ -962,9 +1457,18 @@
         "checkedAt": "2026-09-29T17:47:13.030Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 12 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=utf-8",
+        "finalUrl": "https://www.sedonaaz.gov/your-government/departments-and-programs/human-resources/volunteer",
+        "candidateEndpointCount": 12,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "events-dpr-dc-gov-67b39fe7",
@@ -979,9 +1483,18 @@
         "checkedAt": "2026-09-29T17:47:13.030Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 13 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "finalUrl": "https://dpr.dc.gov/service/attend-events",
+        "candidateEndpointCount": 13,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     },
     {
       "sourceId": "volunteer-dpr-dc-gov-52180f8a",
@@ -996,9 +1509,18 @@
         "checkedAt": null
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery fetch failed, so no structured evidence was available",
+      "nextAcquisitionPath": "Recheck the official URL through a normally reachable public endpoint; do not bypass access controls",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "FAILED",
+        "httpStatus": null,
+        "contentType": null,
+        "finalUrl": null,
+        "candidateEndpointCount": 0,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "not-run"
+      }
     },
     {
       "sourceId": "meetings-dcouncil-us-4d64fb67",
@@ -1013,9 +1535,18 @@
         "checkedAt": null
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery fetch failed, so no structured evidence was available",
+      "nextAcquisitionPath": "Recheck the official URL through a normally reachable public endpoint; do not bypass access controls",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "FAILED",
+        "httpStatus": null,
+        "contentType": null,
+        "finalUrl": null,
+        "candidateEndpointCount": 0,
+        "selectorCandidateCount": 0,
+        "schemaStatus": "not-run"
+      }
     },
     {
       "sourceId": "events-districtfray-com-d21bcaee",
@@ -1030,9 +1561,18 @@
         "checkedAt": "2026-09-29T17:47:13.030Z"
       },
       "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
+      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 11 endpoint/link candidates, but no item-level contract validation",
+      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
+      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
+      "discoveryEvidence": {
+        "status": "SUCCEEDED",
+        "httpStatus": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "finalUrl": "https://districtfray.com/events/free-events/",
+        "candidateEndpointCount": 11,
+        "selectorCandidateCount": 3,
+        "schemaStatus": "endpoint-or-selector-needed"
+      }
     }
   ]
 }

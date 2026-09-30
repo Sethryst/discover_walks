@@ -66,6 +66,7 @@ class SourceBacklogTests(unittest.TestCase):
         self.assertEqual(report["summary"]["unresolvedCount"], 60)
         self.assertEqual(len(report["sources"]), 60)
         self.assertTrue(all(row["blocker"] and row["nextAcquisitionPath"] for row in report["sources"]))
+        self.assertTrue(any("discoveryEvidence" in row for row in report["sources"]))
         self.assertTrue(all(row["publicationDecision"].startswith("NOT_PUBLISHED") for row in report["sources"]))
 
 
