@@ -5534,12 +5534,19 @@
           },
           "url": "https://www.seattle.gov/event-calendar",
           "workItemId": "source:events-seattle-gov-cca4136c",
-          "trackingState": "TRACKED_REACHABLE",
+          "trackingState": "INTEGRATED_STATIC",
           "trackingEvidence": {
             "checkedAt": "2026-09-29T17:47:13.030Z",
             "httpStatus": 200,
             "contentType": "text/html; charset=utf-8",
             "source": "local-batched-validation"
+          },
+          "integrationEvidence": {
+            "integratedAt": "2026-09-30T00:00:00Z",
+            "recordCount": 26,
+            "verifiedSourceFormat": "official calendar vendor JSON feed embedded by Seattle.gov",
+            "verifiedSourceUrl": "https://www.trumba.com/calendars/seattlegov-city-wide.json",
+            "notes": "Published future non-recurring records with explicit times, locations, stable event IDs, and Seattle.gov permalinks; meetings and volunteer-work listings were excluded."
           }
         },
         {
@@ -6203,7 +6210,7 @@
       "UNTRACKED_ACTIONABLE": 22
     },
     "trackingPolicy": "Tracked reachable sources remain in the audit backlog but are removed from the active operator queue until adapter work is requested.",
-    "unresolvedCount": 56,
-    "integratedStaticCount": 46
+    "unresolvedCount": 55,
+    "integratedStaticCount": 47
   }
 }

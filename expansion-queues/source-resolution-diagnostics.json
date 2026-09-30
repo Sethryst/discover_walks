@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
   "kind": "static-source-resolution-diagnostics",
-  "generatedAt": "2026-09-30T10:43:31.889427Z",
+  "generatedAt": "2026-09-30T10:45:16.605563Z",
   "source": "expansion-queues/regional-source-backlog.json",
   "policy": "Diagnostics do not publish records; only validated dated records with location and provenance may enter civic packages.",
   "summary": {
-    "candidateCount": 56,
+    "candidateCount": 55,
     "resolvedCount": 42,
-    "unresolvedCount": 56,
+    "unresolvedCount": 55,
     "blockers": {
       "schema-unverified": 2,
-      "selector-or-endpoint-undiscovered": 54
+      "selector-or-endpoint-undiscovered": 53
     }
   },
   "sources": [
@@ -1234,32 +1234,6 @@
         "candidateEndpointCount": 0,
         "selectorCandidateCount": 0,
         "schemaStatus": "not-run"
-      }
-    },
-    {
-      "sourceId": "events-seattle-gov-cca4136c",
-      "regionId": "seattle",
-      "category": "events",
-      "url": "https://www.seattle.gov/event-calendar",
-      "publisher": "seattle.gov",
-      "adapter": "review-required",
-      "observed": {
-        "httpStatus": 200,
-        "contentType": "text/html; charset=utf-8",
-        "checkedAt": "2026-09-29T17:47:13.030Z"
-      },
-      "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 1 endpoint/link candidates, but no item-level contract validation",
-      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
-      "discoveryEvidence": {
-        "status": "SUCCEEDED",
-        "httpStatus": 200,
-        "contentType": "text/html; charset=utf-8",
-        "finalUrl": "https://www.seattle.gov/event-calendar",
-        "candidateEndpointCount": 1,
-        "selectorCandidateCount": 0,
-        "schemaStatus": "endpoint-or-selector-needed"
       }
     },
     {
