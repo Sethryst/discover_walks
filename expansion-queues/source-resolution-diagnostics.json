@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
   "kind": "static-source-resolution-diagnostics",
-  "generatedAt": "2026-09-30T10:33:59.885286Z",
+  "generatedAt": "2026-09-30T10:37:08.509196Z",
   "source": "expansion-queues/regional-source-backlog.json",
   "policy": "Diagnostics do not publish records; only validated dated records with location and provenance may enter civic packages.",
   "summary": {
-    "candidateCount": 60,
+    "candidateCount": 59,
     "resolvedCount": 42,
-    "unresolvedCount": 60,
+    "unresolvedCount": 59,
     "blockers": {
       "schema-unverified": 2,
-      "selector-or-endpoint-undiscovered": 58
+      "selector-or-endpoint-undiscovered": 57
     }
   },
   "sources": [
@@ -713,32 +713,6 @@
         "finalUrl": "https://www.neworleans.com/events/",
         "candidateEndpointCount": 69,
         "selectorCandidateCount": 2,
-        "schemaStatus": "endpoint-or-selector-needed"
-      }
-    },
-    {
-      "sourceId": "events-downtownnorfolk-org-cf7e9296",
-      "regionId": "norfolk",
-      "category": "events",
-      "url": "https://www.downtownnorfolk.org/explore/calendar",
-      "publisher": "Downtown Norfolk",
-      "adapter": "review-required",
-      "observed": {
-        "httpStatus": null,
-        "contentType": null,
-        "checkedAt": null
-      },
-      "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 35 endpoint/link candidates, but no item-level contract validation",
-      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
-      "discoveryEvidence": {
-        "status": "SUCCEEDED",
-        "httpStatus": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "finalUrl": "https://www.downtownnorfolk.org/explore/calendar",
-        "candidateEndpointCount": 35,
-        "selectorCandidateCount": 1,
         "schemaStatus": "endpoint-or-selector-needed"
       }
     },

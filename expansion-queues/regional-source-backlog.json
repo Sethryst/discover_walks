@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-27T08:49:42.288422Z",
+  "generatedAt": "2026-09-30T00:00:00Z",
   "kind": "regional-source-review-backlog",
   "omissions": [
     {
@@ -3307,7 +3307,15 @@
             "stability": []
           },
           "url": "https://www.downtownnorfolk.org/explore/calendar",
-          "workItemId": "source:events-downtownnorfolk-org-cf7e9296"
+          "workItemId": "source:events-downtownnorfolk-org-cf7e9296",
+          "trackingState": "INTEGRATED_STATIC",
+          "integrationEvidence": {
+            "integratedAt": "2026-09-30T00:00:00Z",
+            "recordCount": 3,
+            "verifiedSourceFormat": "official HTML event detail pages",
+            "verifiedSourceUrl": "https://www.downtownnorfolk.org/explore/calendar",
+            "notes": "Three current/future detail pages exposed explicit date, time, location, and canonical URLs; the volunteer listing was kept out of the events package."
+          }
         },
         {
           "category": "events",
@@ -6174,6 +6182,7 @@
       "UNTRACKED_ACTIONABLE": 22
     },
     "trackingPolicy": "Tracked reachable sources remain in the audit backlog but are removed from the active operator queue until adapter work is requested.",
-    "unresolvedCount": 60
+    "unresolvedCount": 59,
+    "integratedStaticCount": 43
   }
 }
