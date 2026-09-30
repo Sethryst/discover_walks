@@ -220,6 +220,20 @@
       "status": "BLOCKED_ENDPOINT_NOT_FOUND",
       "evidence": "The recorded official Chicago RSS entrypoint returned HTTP 404 through a normal public request. No replacement press-room content, search snippet, or undated page was treated as an event feed.",
       "nextAcquisitionPath": "Obtain a current official Chicago events RSS/ICS/JSON endpoint or source-specific dated event calendar with stable IDs, explicit dates/times/locations, and freshness."
+    },
+    {
+      "sourceId": "events-sedonaaz-gov-605e78d8",
+      "replacementUrl": "https://www.sedonaaz.gov/your-government/general-information/city-calendar",
+      "status": "BLOCKED_ACCESS_OR_PERMISSION",
+      "evidence": "The official Sedona city-calendar path returned HTTP 403 through a normal public request. No access-control bypass, alternate credential, or third-party mirror was used; no event records were published.",
+      "nextAcquisitionPath": "Obtain a City of Sedona-approved public calendar export/API or a normally reachable official item-level event page with stable IDs, explicit dates/times/locations, and freshness."
+    },
+    {
+      "sourceId": "volunteer-sedonaaz-gov-79ca6cb2",
+      "replacementUrl": "https://www.sedonaaz.gov/your-government/departments-and-programs/parks-recreation/calendar",
+      "status": "BLOCKED_ACCESS_OR_PERMISSION",
+      "evidence": "The official Sedona Parks & Recreation calendar path returned HTTP 403 through a normal public request. No access-control bypass, alternate credential, or third-party mirror was used; no volunteer records were published.",
+      "nextAcquisitionPath": "Obtain a City of Sedona-approved Parks & Recreation volunteer export/API or a normally reachable official item-level opportunity page with stable IDs, explicit dates/times/locations, and freshness."
     }
   ]
 }
