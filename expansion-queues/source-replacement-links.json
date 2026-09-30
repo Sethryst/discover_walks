@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "kind": "source-replacement-links",
+  "generatedAt": "2026-09-29T00:00:00Z",
+  "purpose": "Human-supplied replacement guidance for retired, moved, or blocked backlog source pages. These are discovery leads, not publication evidence.",
+  "policy": {
+    "doNotBypassAccessControls": true,
+    "requireItemLevelSchemaBeforePublishing": true,
+    "preserveOriginalSourceId": true
+  },
+  "replacements": [
+    {"sourceId":"events-chicago-gov-44124097","replacementLabel":"Chicago Mayor's Office Press Room","replacementUrl":null,"status":"discovery_only","note":"Retired RSS entrypoint. Treat the press room as web/news content, not RSS, until a real XML or JSON feed is verified."},
+    {"sourceId":"meetings-cityofboise-org-3b05a56d","replacementLabel":"City of Boise — City Council","replacementUrl":"https://www.cityofboise.org/city-government/city-council/","status":"replacement_needs_validation","note":"Current council destination reported by operator; verify URL and extract dated meeting records."},
+    {"sourceId":"meetings-denvergov-org-461d818b","replacementLabel":"How to Access Denver City Council Meetings","replacementUrl":null,"status":"replacement_needs_validation","note":"Official access, livestream, Zoom, meeting calendar, and public-comment destination; href was not present in the supplied note."},
+    {"sourceId":"volunteer-ashevillenc-gov-3ebf2f4c","replacementLabel":"Asheville Parks & Recreation","replacementUrl":"https://www.ashevillenc.gov/department/parks-recreation/","status":"replacement_needs_validation","note":"Agency moved from the retired parks path."},
+    {"sourceId":"volunteer-denvergov-org-ffc494c0","replacementLabel":"Volunteer with Denver Parks & Recreation","replacementUrl":null,"status":"replacement_needs_validation","note":"Current city landing page routes signups through Engage Denver; href was not present in the supplied note."},
+    {"sourceId":"meetings-nola-gov-b2493356","replacementLabel":"New Orleans City Council","replacementUrl":"https://council.nola.gov/","status":"replacement_needs_validation","note":"Council content moved to the dedicated council subdomain."},
+    {"sourceId":"meetings-phila-gov-a4cb56f4","replacementLabel":"City of Philadelphia","replacementUrl":"https://www.phila.gov/","status":"replacement_needs_validation","note":"Use the current official homepage for agency and service navigation."},
+    {"sourceId":"meetings-portlandmaine-gov-bc259924","replacementLabel":"City of Portland, Maine","replacementUrl":"https://www.portlandmaine.gov/","status":"replacement_needs_validation","note":"Current city homepage; the former government route was reorganized."},
+    {"sourceId":"meetings-princegeorgescountymd-gov-95ea3f6d","replacementLabel":"Prince George's County Council","replacementUrl":null,"status":"replacement_needs_validation","note":"Current council destination reported by operator; href was not present in the supplied note."},
+    {"sourceId":"volunteer-friendsoftheparks-org-5e217463","replacementLabel":"Friends of the Parks","replacementUrl":"https://fotp.org/","status":"replacement_needs_validation","note":"Organization now uses fotp.org and advertises volunteering, cleanups, advocacy, and donations."},
+    {"sourceId":"volunteer-jrps-org-2a3b895f","replacementLabel":"Friends of the James River Park — Volunteer","replacementUrl":null,"status":"replacement_needs_validation","note":"Richmond-area volunteer replacement; href was not present in the supplied note."},
+    {"sourceId":"volunteer-nola-gov-c959480f","replacementLabel":"Park or Rec Center Use Permit","replacementUrl":null,"status":"discovery_only","note":"Permit guidance is not an event feed; do not turn permit instructions into event records."},
+    {"sourceId":"volunteer-portlandmaine-gov-2c137978","replacementLabel":"Parks, Recreation & Facilities","replacementUrl":null,"status":"replacement_needs_validation","note":"Use the current department page; program listings are under Recreation."},
+    {"sourceId":"meetings-santafenm-gov-4df17058","replacementLabel":"City of Santa Fe","replacementUrl":"https://www.santafenm.gov/","status":"replacement_needs_validation","note":"Current city navigation is rooted at the homepage."},
+    {"sourceId":"volunteer-santafenm-gov-57a0cd99","replacementLabel":"Santa Fe Parks and Open Space","replacementUrl":null,"status":"replacement_needs_validation","note":"Reorganized under Public Works / Parks and Open Space; href was not present in the supplied note."},
+    {"sourceId":"meetings-seattle-gov-3418b89c","replacementLabel":"Seattle City Council Meetings","replacementUrl":null,"status":"replacement_needs_validation","note":"Current official council meetings and agendas destination; href was not present in the supplied note."},
+    {"sourceId":"volunteer-seattle-gov-c1758f69","replacementLabel":"Seattle Parks Volunteer Calendar","replacementUrl":null,"status":"replacement_needs_validation","note":"Current official opportunities calendar; href was not present in the supplied note."},
+    {"sourceId":"volunteer-dpr-dc-gov-52180f8a","replacementLabel":"DC Department of Parks and Recreation","replacementUrl":"https://dpr.dc.gov/","status":"replacement_needs_validation","note":"The obsolete volunteer page is replaced by the DPR homepage and program-specific volunteer roles."},
+    {"sourceId":"events-downtown-denver-com-920db7f3","replacementLabel":"Downtown Denver Partnership — Events","replacementUrl":"https://www.downtowndenver.com/event-list/","status":"replacement_needs_validation","note":"Domain and event-list route replaced the old downtown-denver.com path."},
+    {"sourceId":"events-town-keystone-co-us-e3452f18","replacementLabel":"Town of Keystone — Events","replacementUrl":"https://keystoneco.gov/","status":"replacement_needs_validation","note":"Municipal domain changed; distinguish this from Keystone Resort programming."},
+    {"sourceId":"meetings-richmondgov-com-87666ac9","replacementLabel":"RVA.gov","replacementUrl":"https://www.rva.gov/","status":"replacement_needs_validation","note":"Current City of Richmond site avoids the old certificate mismatch."},
+    {"sourceId":"meetings-dcouncil-us-4d64fb67","replacementLabel":"Council of the District of Columbia","replacementUrl":"https://dccouncil.gov/","status":"replacement_needs_validation","note":"Official council domain is dccouncil.gov, not dcouncil.us."},
+    {"sourceId":"events-sfrecpark-org-ddd118f6","replacementLabel":"San Francisco Recreation and Parks RSS","replacementUrl":"https://sfrecpark.org/rss.aspx","status":"schema_unverified","note":"Reachable-looking feed must be sampled for title, dates, timezone, location, canonical URL, GUID, and freshness before ingestion."}
+  ]
+}
