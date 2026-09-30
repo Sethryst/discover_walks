@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "kind": "source-replacement-resolution-audit",
+  "checkedAt": "2026-09-29T23:59:00Z",
+  "policy": "Replacement pages are discovery leads only. No record is published without an official item-level date, location, stable identifier, provenance, and freshness.",
+  "results": [
+    {"sourceId":"meetings-princegeorgescountymd-gov-95ea3f6d","replacementUrl":"https://princegeorgescountymd.legistar.com/Calendar.aspx","status":"INTEGRATED_STATIC","evidence":"Official Legistar calendar returned current 2026 meeting rows with date, time, location, and stable meeting-detail IDs; two records published to the Prince George's County civic package.","nextAcquisitionPath":null},
+    {"sourceId":"events-sfrecpark-org-ddd118f6","replacementUrl":"https://sfrecpark.org/rss.aspx","status":"BLOCKED_SCHEMA","evidence":"HTTP 200 normal HTML page (text/html), not XML RSS/Atom; no feed items or item-level event schema were present.","nextAcquisitionPath":"Obtain a current official SF Rec & Parks RSS/ICS/JSON endpoint or add a verified event-calendar selector."},
+    {"sourceId":"volunteer-nycgovparks-org-4b7ad625","replacementUrl":"https://data.cityofnewyork.us/resource/fudw-fgrp.json","status":"BLOCKED_FRESHNESS","evidence":"Official Socrata metadata exposes event_id, title, date, start_time, end_time, location_description, url, and related location table; sampled records were dated 2019-12, so the inventory does not provide fresh current records for publication.","nextAcquisitionPath":"Identify a current NYC Parks event inventory/API or verified export with recent dated records and joinable locations."},
+    {"sourceId":"events-meridiancity-org-44f75203","replacementUrl":null,"status":"BLOCKED_ACCESS_OR_PERMISSION","evidence":"Operator guidance identifies a third-party Tockify calendar, but no owner-approved export/API was supplied; the old city page is not used to bypass a 403.","nextAcquisitionPath":"Obtain City of Meridian/Tockify owner permission and an official export, feed, or API."},
+    {"sourceId":"events-chicago-gov-44124097","replacementUrl":null,"status":"DISCOVERY_ONLY","evidence":"The replacement is a press room; it is not treated as an event feed or RSS evidence.","nextAcquisitionPath":"Locate an official Chicago events JSON/ICS/RSS endpoint or source-specific dated event calendar."}
+  ]
+}
