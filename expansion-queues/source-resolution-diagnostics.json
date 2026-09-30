@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
   "kind": "static-source-resolution-diagnostics",
-  "generatedAt": "2026-09-30T00:44:32.919430Z",
+  "generatedAt": "2026-09-30T00:45:02.421787Z",
   "source": "expansion-queues/regional-source-backlog.json",
   "policy": "Diagnostics do not publish records; only validated dated records with location and provenance may enter civic packages.",
   "summary": {
-    "candidateCount": 65,
-    "resolvedCount": 37,
-    "unresolvedCount": 65,
+    "candidateCount": 64,
+    "resolvedCount": 38,
+    "unresolvedCount": 64,
     "blockers": {
       "schema-unverified": 2,
-      "selector-or-endpoint-undiscovered": 63
+      "selector-or-endpoint-undiscovered": 62
     }
   },
   "sources": [
@@ -564,23 +564,6 @@
       "category": "volunteer",
       "url": "https://www.nycgovparks.org/events/volunteer",
       "publisher": "nycgovparks.org",
-      "adapter": "review-required",
-      "observed": {
-        "httpStatus": null,
-        "contentType": null,
-        "checkedAt": null
-      },
-      "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
-    },
-    {
-      "sourceId": "meetings-phila-gov-a4cb56f4",
-      "regionId": "philadelphia",
-      "category": "meetings",
-      "url": "https://www.phila.gov/government",
-      "publisher": "phila.gov",
       "adapter": "review-required",
       "observed": {
         "httpStatus": null,
