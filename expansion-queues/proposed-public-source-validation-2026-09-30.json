@@ -1,0 +1,97 @@
+{
+  "generatedAt": "2026-09-30T00:00:00Z",
+  "kind": "proposed-public-source-validation",
+  "policy": "Public reachability is not publication approval; item-level dates, times, locations, canonical URLs, stable identity, provenance, freshness, and a mapped static regional package are required.",
+  "sources": [
+    {
+      "sourceId": "nycparks-bigapps-upcoming-14-days",
+      "regionId": "nyc",
+      "category": "events",
+      "status": "INTEGRATED_STATIC",
+      "officialUrl": "https://www.nycgovparks.org/xml/events_300_rss.json",
+      "format": "JSON",
+      "evidence": "Official NYC Parks BigApps page identifies the upcoming-14-days JSON feed; the feed returned current records with GUIDs, explicit start/end times, locations, and canonical NYC Parks event links.",
+      "nextAcquisitionPath": null
+    },
+    {
+      "sourceId": "bowie-municipal-rss-directory",
+      "regionId": null,
+      "category": "events-and-meetings",
+      "status": "PUBLIC_FEED_DIRECTORY_SCHEMA_PENDING",
+      "officialUrl": "https://www.cityofbowie.org/rss.aspx",
+      "format": "RSS/XML directory",
+      "evidence": "Official City of Bowie RSS directory is publicly reachable and exposes RSSFeed.aspx routes, but no Bowie regional static package exists in this repository and the individual event/meeting feed payloads still require item-level schema validation.",
+      "nextAcquisitionPath": "Select the official municipal events and meetings feed, verify RSS items contain stable links plus explicit dated times and locations, then map Bowie to a static regional package before publication."
+    },
+    {
+      "sourceId": "fort-wayne-municipal-rss-directory",
+      "regionId": null,
+      "category": "events-and-meetings",
+      "status": "PUBLIC_FEED_DIRECTORY_SCHEMA_PENDING",
+      "officialUrl": "https://www.cityoffortwayne.in.gov/rss.aspx",
+      "format": "RSS/XML directory",
+      "evidence": "Official Fort Wayne RSS directory is publicly reachable and exposes municipal board, parks, classes, and city-feed routes, but no Fort Wayne regional static package exists in this repository and item-level event schema/freshness remains unverified.",
+      "nextAcquisitionPath": "Select the official parks/classes and public-meeting feeds, validate stable links, explicit dates/times/locations, and freshness, then map Fort Wayne to a static regional package before publication."
+    },
+    {
+      "sourceId": "broomfield-municipal-rss-directory",
+      "regionId": null,
+      "category": "events-and-meetings",
+      "status": "PUBLIC_FEED_DIRECTORY_SCHEMA_PENDING",
+      "officialUrl": "https://broomfield.org/rss.aspx",
+      "format": "RSS/XML directory",
+      "evidence": "Official Broomfield RSS directory is publicly reachable and exposes city, Parks/Recreation, senior-services, and agenda routes, but no Broomfield regional static package exists in this repository and item-level event schema/freshness remains unverified.",
+      "nextAcquisitionPath": "Select the official Parks/Recreation and agenda feeds, validate stable links, explicit dates/times/locations, and freshness, then map Broomfield to a static regional package before publication."
+    },
+    {
+      "sourceId": "golden-valley-mn-rss-directory",
+      "regionId": null,
+      "category": "events-and-meetings",
+      "status": "PUBLIC_FEED_DIRECTORY_SCHEMA_PENDING",
+      "officialUrl": "https://www.goldenvalleymn.gov/rss.aspx",
+      "format": "RSS/XML directory",
+      "evidence": "Official Golden Valley RSS directory is publicly reachable and exposes city-calendar and civic-update routes, but no Golden Valley regional static package exists in this repository and item-level event schema/freshness remains unverified.",
+      "nextAcquisitionPath": "Select the official city-calendar feed, validate stable links, explicit dates/times/locations, and freshness, then map Golden Valley to a static regional package before publication."
+    },
+    {
+      "sourceId": "open-dc-public-bodies",
+      "regionId": "washington-dc",
+      "category": "meetings",
+      "status": "HTML_DIRECTORY_SCHEMA_PENDING",
+      "officialUrl": "https://www.open-dc.gov/public-bodies/meetings",
+      "format": "HTML directory",
+      "evidence": "Official Open DC public-body meetings directory is reachable, but the sampled page exposed body links rather than a validated item-level meeting feed with stable meeting IDs, explicit dates/times, and locations.",
+      "nextAcquisitionPath": "Inspect official body-level meeting pages for a public ICS/RSS/JSON endpoint or item-level selector, then validate current dated meetings before promotion."
+    },
+    {
+      "sourceId": "arlington-meeting-calendar",
+      "regionId": "arlington-va",
+      "category": "meetings",
+      "status": "BLOCKED_403",
+      "officialUrl": "https://www.arlingtonva.us/Government/Topics/Meeting-Calendar",
+      "format": "HTML calendar",
+      "evidence": "The official Arlington meeting-calendar URL returned HTTP 403 through normal public access. No bypass or alternate access-control path was used.",
+      "nextAcquisitionPath": "Use an operator-provided official export/API or a normally reachable Arlington meeting feed/item page."
+    },
+    {
+      "sourceId": "delaware-public-meetings",
+      "regionId": null,
+      "category": "meetings",
+      "status": "HTML_CALENDAR_SCHEMA_PENDING",
+      "officialUrl": "https://publicmeetings.delaware.gov/",
+      "format": "HTML calendar",
+      "evidence": "Official Delaware public-meetings site is reachable, but the landing response did not itself expose a validated RSS/ICS/JSON feed or item-level meeting schema.",
+      "nextAcquisitionPath": "Inspect the official calendar’s public item endpoint or subscription/export control and require stable IDs, explicit dates/times/locations, canonical URLs, and freshness."
+    },
+    {
+      "sourceId": "james-river-park-calendar",
+      "regionId": "richmond",
+      "category": "volunteer-and-events",
+      "status": "ENDPOINT_DISCOVERED_SCHEMA_PENDING",
+      "officialUrl": "https://jamesriverpark.org/park-calendar/",
+      "format": "EventON/WordPress public calendar",
+      "evidence": "Official James River Park calendar is reachable and exposes public WordPress/EventON configuration, but the sampled page did not include validated item-level payloads with stable IDs, explicit dates/times/locations, and freshness.",
+      "nextAcquisitionPath": "Replay the documented public EventON AJAX endpoint, validate stable event IDs, explicit dates/times/locations, canonical URLs, and freshness, then publish only volunteer records as volunteer and other programming as events."
+    }
+  ]
+}
