@@ -185,6 +185,20 @@
       "status": "INTEGRATED_STATIC",
       "evidence": "Official Portland Parks item pages returned three future volunteer events (Argay Park Volunteer Day, Mill Park Volunteer Day, and Pier Park Stewardship Day) with stable slug URLs, explicit 2026-10-01/02 dates, times, volunteer labels, and named park locations. Three records published to the Portland civic package.",
       "nextAcquisitionPath": null
+    },
+    {
+      "sourceId": "events-bouldercoloradousa-com-8fb18e01",
+      "replacementUrl": "https://www.bouldercoloradousa.com/includes/rest_v2/plugins_events_events_by_date/find/",
+      "status": "BLOCKED_ACCESS_OR_PERMISSION",
+      "evidence": "The official Boulder calendar page documents this site-owned REST path in its JavaScript, but a normal unauthenticated request returned HTTP 403. No bypass, alternate access-control path, or records from the blocked endpoint were used.",
+      "nextAcquisitionPath": "Obtain an owner-approved public export/API or a normally reachable official item-level event page; require stable IDs, explicit dates/times/locations, and freshness."
+    },
+    {
+      "sourceId": "events-santafe-org-8f1eb055",
+      "replacementUrl": "https://www.santafe.org/visiting-santa-fe/calendar/",
+      "status": "BLOCKED_CURRENT_ITEMS",
+      "evidence": "The official Tourism Santa Fe calendar page returned HTTP 200, but its ItemList contained zero event items; the site-owned REST endpoint returned HTTP 403. No event was promoted from the empty list or blocked endpoint.",
+      "nextAcquisitionPath": "Recheck the official calendar when current item-level listings are present, or obtain an owner-approved public export/API with stable IDs, explicit dates/times/locations, and freshness."
     }
   ]
 }
