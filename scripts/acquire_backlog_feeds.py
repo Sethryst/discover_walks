@@ -33,7 +33,10 @@ def main():
             if start <= now: continue
             eid=f'backlog:{r["id"]}:{f.source_id}'
             if eid in existing: continue
-            items.append({'id':eid,'title':f.properties['name'],'date':start.date().isoformat(),'startsAt':starts,'endsAt':f.properties.get('endsAt'),'locationLabel':r['regionName'],'summary':f.properties.get('summary') or f'An event listed by {r["publisher"]}.','officialUrl':f.properties.get('officialUrl') or r['url'],'expiresAt':f'{start.date().isoformat()}T23:59:59Z','source':{'name':r['publisher'],'url':r['url'],'reviewStatus':'adapter-captured'}}); added+=1
+            location = f.properties.get('venueAddress') or f.properties.get('locationLabel') or f.properties.get('location')
+            if not location:
+                continue
+            items.append({'id':eid,'title':f.properties['name'],'date':start.date().isoformat(),'startsAt':starts,'endsAt':f.properties.get('endsAt'),'locationLabel':location,'venueAddress':location,'summary':f.properties.get('summary') or f'An event listed by {r["publisher"]}.','officialUrl':f.properties.get('officialUrl') or r['url'],'expiresAt':f'{start.date().isoformat()}T23:59:59Z','source':{'name':r['publisher'],'url':r['url'],'authorityTier':'official_publisher','reviewStatus':'adapter-captured'}}); added+=1
         if added: path.write_text(json.dumps(data,indent=2,ensure_ascii=False)+'\n')
         print(json.dumps({'source':r['id'],'report':report,'added':added}))
 if __name__=='__main__': main()
