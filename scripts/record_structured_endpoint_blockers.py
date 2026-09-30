@@ -34,6 +34,13 @@ new = [
         "evidence": "The municipal PortlandOnline events root and calendar path both returned HTTP 403 through normal public requests. No bypass, credential use, or third-party mirror was attempted; no records were published.",
         "nextAcquisitionPath": "Obtain a City of Portland-approved public calendar export/API or a normally reachable official item-level event page with stable IDs, explicit dates/times/locations, and freshness.",
     },
+    {
+        "sourceId": "events-dpr-dc-gov-67b39fe7",
+        "replacementUrl": "https://calendar.dc.gov/node/all/events",
+        "status": "BLOCKED_FRESHNESS",
+        "evidence": "The official DC public calendar endpoint returned RSS with stable event URLs, explicit dates/times, and locations, but the sampled current feed item was dated 2013-04-17 and therefore fails the freshness requirement. No historical records were published.",
+        "nextAcquisitionPath": "Recheck the official DC calendar RSS when current/future items are present, or obtain a current DPR event export/API with stable IDs, explicit dates/times/locations, and freshness.",
+    },
 ]
 ids = {item["sourceId"] for item in new}
 payload["results"] = [item for item in payload["results"] if item.get("sourceId") not in ids]
