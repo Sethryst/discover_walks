@@ -34,10 +34,10 @@
     },
     {
       "sourceId": "events-chicago-gov-44124097",
-      "replacementUrl": "https://www.chicago.gov/city/en/rss.html",
-      "status": "BLOCKED_ENDPOINT_NOT_FOUND",
-      "evidence": "The recorded official Chicago RSS entrypoint returned HTTP 404 through a normal public request. No replacement press-room content, search snippet, or undated page was treated as an event feed.",
-      "nextAcquisitionPath": "Obtain a current official Chicago events RSS/ICS/JSON endpoint or source-specific dated event calendar with stable IDs, explicit dates/times/locations, and freshness."
+      "replacementUrl": "https://data.chicago.gov/resource/xgse-8eg7.json",
+      "status": "BLOCKED_FRESHNESS",
+      "evidence": "The official Chicago Special Events Calendar is a public Socrata view backed by xgse-8eg7 with explicit date, start_time, venue, venue_address, event_details, and coordinates. The current public rows sampled were dated 2025, so they fail the 2026 freshness requirement and were not published.",
+      "nextAcquisitionPath": "Recheck xgse-8eg7 for current/future rows and preserve the official dataset URL and field provenance."
     },
     {
       "sourceId": "events-chicago-gov-83a3ca20",
@@ -83,10 +83,10 @@
     },
     {
       "sourceId": "events-dpr-dc-gov-67b39fe7",
-      "replacementUrl": "https://calendar.dc.gov/node/all/events",
+      "replacementUrl": "https://dc.gov/node/feed/events",
       "status": "BLOCKED_FRESHNESS",
-      "evidence": "The official DC public calendar endpoint returned RSS with stable event URLs, explicit dates/times, and locations, but the sampled current feed item was dated 2013-04-17 and therefore fails the freshness requirement. No historical records were published.",
-      "nextAcquisitionPath": "Recheck the official DC calendar RSS when current/future items are present, or obtain a current DPR event export/API with stable IDs, explicit dates/times/locations, and freshness."
+      "evidence": "The official DC Government RSS directory resolves to the public Events feed, which currently contains a valid empty RSS channel. The legacy calendar RSS contains 2013 items and fails freshness; no historical records were published.",
+      "nextAcquisitionPath": "Recheck the official DC Events feed when current items appear, requiring stable links, explicit dates/times, locations, and freshness."
     },
     {
       "sourceId": "events-events-portlandonline-us-09e0b6eb",
@@ -251,10 +251,10 @@
     },
     {
       "sourceId": "meetings-dcouncil-us-4d64fb67",
-      "replacementUrl": "https://dccouncil.gov/wp-json/tribe/events/v1/events",
+      "replacementUrl": "https://dccouncil.gov/events/feed/",
       "status": "ENDPOINT_DISCOVERED_NO_CURRENT_ITEMS",
-      "evidence": "The official DC Council RSS page exposes the Council calendar, and the public site advertises a WordPress Events REST API. A normal JSON request returned HTTP 200 with a valid events schema but zero published items in the current/future window; no record was promoted from archived or undated hearing material.",
-      "nextAcquisitionPath": "Recheck the official Events REST API or Hearing Management System when current published hearings are present, and require stable item IDs, explicit dates, times, and Wilson Building/virtual locations."
+      "evidence": "The official DC Council RSS directory resolves to a public Calendar RSS feed with valid RSS schema and a current lastBuildDate, but the feed contains no current event items. No meeting was fabricated from an empty feed.",
+      "nextAcquisitionPath": "Recheck the official Calendar RSS when current dated meeting items are present; require stable links, explicit dates/times, locations, and freshness."
     },
     {
       "sourceId": "meetings-denvergov-org-461d818b",
@@ -414,8 +414,8 @@
       "sourceId": "volunteer-nycgovparks-org-4b7ad625",
       "replacementUrl": "https://data.cityofnewyork.us/resource/fudw-fgrp.json",
       "status": "BLOCKED_FRESHNESS",
-      "evidence": "Official Socrata metadata exposes event_id, title, date, start_time, end_time, location_description, url, and related location table; sampled records were dated 2019-12, so the inventory does not provide fresh current records for publication.",
-      "nextAcquisitionPath": "Identify a current NYC Parks event inventory/API or verified export with recent dated records and joinable locations."
+      "evidence": "Official NYC Parks Socrata metadata exposes event_id, title, date, start_time, end_time, location_description, url, and the joinable cpcm-i88g location dataset. The current/future query returned no rows and sampled inventory records are historical, so no current volunteer/event records were published.",
+      "nextAcquisitionPath": "Recheck the official Socrata inventory for current/future rows and join cpcm-i88g locations before publication."
     },
     {
       "sourceId": "volunteer-pgparks-com-bf740430",
