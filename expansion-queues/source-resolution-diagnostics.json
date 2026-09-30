@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
   "kind": "static-source-resolution-diagnostics",
-  "generatedAt": "2026-09-30T10:41:40.666390Z",
+  "generatedAt": "2026-09-30T10:43:31.889427Z",
   "source": "expansion-queues/regional-source-backlog.json",
   "policy": "Diagnostics do not publish records; only validated dated records with location and provenance may enter civic packages.",
   "summary": {
-    "candidateCount": 57,
+    "candidateCount": 56,
     "resolvedCount": 42,
-    "unresolvedCount": 57,
+    "unresolvedCount": 56,
     "blockers": {
       "schema-unverified": 2,
-      "selector-or-endpoint-undiscovered": 55
+      "selector-or-endpoint-undiscovered": 54
     }
   },
   "sources": [
@@ -324,32 +324,6 @@
         "candidateEndpointCount": 0,
         "selectorCandidateCount": 0,
         "schemaStatus": "not-run"
-      }
-    },
-    {
-      "sourceId": "events-chicago-gov-83a3ca20",
-      "regionId": "chicago",
-      "category": "events",
-      "url": "https://www.chicago.gov/city/en/depts/dca/supp_info/ccc_calendar.html",
-      "publisher": "chicago.gov",
-      "adapter": "review-required",
-      "observed": {
-        "httpStatus": 200,
-        "contentType": "text/html;charset=utf-8",
-        "checkedAt": "2026-09-29T17:47:04.696Z"
-      },
-      "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery found 20 endpoint/link candidates, but no item-level contract validation",
-      "nextAcquisitionPath": "Replay and validate an official candidate endpoint from the discovery batch; require stable IDs, explicit dates/times/locations, and freshness before publication",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
-      "discoveryEvidence": {
-        "status": "SUCCEEDED",
-        "httpStatus": 200,
-        "contentType": "text/html",
-        "finalUrl": "https://www.chicago.gov/city/en/depts/dca/supp_info/ccc_calendar.html",
-        "candidateEndpointCount": 20,
-        "selectorCandidateCount": 8,
-        "schemaStatus": "endpoint-or-selector-needed"
       }
     },
     {

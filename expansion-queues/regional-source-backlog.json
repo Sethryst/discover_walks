@@ -1428,12 +1428,19 @@
           },
           "url": "https://www.chicago.gov/city/en/depts/dca/supp_info/ccc_calendar.html",
           "workItemId": "source:events-chicago-gov-83a3ca20",
-          "trackingState": "TRACKED_REACHABLE",
+          "trackingState": "INTEGRATED_STATIC",
           "trackingEvidence": {
             "checkedAt": "2026-09-29T17:47:04.696Z",
             "httpStatus": 200,
             "contentType": "text/html;charset=utf-8",
             "source": "local-batched-validation"
+          },
+          "integrationEvidence": {
+            "integratedAt": "2026-09-30T00:00:00Z",
+            "recordCount": 21,
+            "verifiedSourceFormat": "official JSON calendar endpoint",
+            "verifiedSourceUrl": "https://www.chicago.gov/content/city/en/depts/dca/supp_info/events2/jcr:content/parsys/fullcalendar/calendarData",
+            "notes": "Published future non-recurring records with explicit times, addresses, stable numeric IDs, and chicago.gov detail URLs; third-party registration URLs were excluded."
           }
         },
         {
@@ -6196,7 +6203,7 @@
       "UNTRACKED_ACTIONABLE": 22
     },
     "trackingPolicy": "Tracked reachable sources remain in the audit backlog but are removed from the active operator queue until adapter work is requested.",
-    "unresolvedCount": 57,
-    "integratedStaticCount": 45
+    "unresolvedCount": 56,
+    "integratedStaticCount": 46
   }
 }
