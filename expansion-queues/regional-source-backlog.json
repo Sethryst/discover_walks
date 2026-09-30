@@ -6217,6 +6217,41 @@
       "UNTRACKED": 21
     },
     "trackingPolicy": "Tracked reachable sources remain in the audit backlog but are removed from the active operator queue until adapter work is requested.",
+    "resolutionStatusCategories": {
+      "INTEGRATED_STATIC": 16,
+      "ENDPOINT_DISCOVERED_SCHEMA_PENDING": 5,
+      "ENDPOINT_DISCOVERED_NO_CURRENT_ITEMS": 1,
+      "BLOCKED_SCHEMA": 5,
+      "BLOCKED_FRESHNESS": 3,
+      "BLOCKED_ACCESS_OR_PERMISSION": 5,
+      "BLOCKED_403": 1,
+      "BLOCKED_CURRENT_ITEMS": 1,
+      "BLOCKED_CURRENT_SAMPLE": 1,
+      "BLOCKED_ENDPOINT_NOT_FOUND": 1,
+      "BLOCKED_EVENT_FEED_NOT_VERIFIED": 1,
+      "DISCOVERY_ONLY_PERMIT_GUIDANCE": 1
+    },
+    "resolutionCategoryPolicy": {
+      "INTEGRATED_STATIC": "Validated official records are published in the appropriate static regional package.",
+      "ENDPOINT_DISCOVERED_SCHEMA_PENDING": "An official endpoint was found, but item-level fields or the documented request contract still need validation.",
+      "ENDPOINT_DISCOVERED_NO_CURRENT_ITEMS": "An official structured endpoint was verified, but it currently has no publishable current items.",
+      "BLOCKED_SCHEMA": "The official source lacks the required stable ID, explicit date/time, location, or item-level schema.",
+      "BLOCKED_FRESHNESS": "The official source has item-level data, but the sampled records are stale for publication.",
+      "BLOCKED_ACCESS_OR_PERMISSION": "Normal public access or owner authorization is missing; no bypass or mirror is permitted.",
+      "BLOCKED_403": "The official source returned 403 through normal access and requires an operator-provided export/API or reachable page.",
+      "BLOCKED_CURRENT_ITEMS": "The official source is reachable but has no current item-level records to publish.",
+      "BLOCKED_CURRENT_SAMPLE": "The sampled official records are canceled or otherwise not currently publishable.",
+      "BLOCKED_ENDPOINT_NOT_FOUND": "The recorded official endpoint no longer exists and needs a current official replacement.",
+      "BLOCKED_EVENT_FEED_NOT_VERIFIED": "An official calendar page exists, but no publishable event feed or item-level source was verified.",
+      "DISCOVERY_ONLY_PERMIT_GUIDANCE": "The replacement is permit or guidance content, not a scheduled meeting, event, or volunteer feed."
+    },
+    "replacementAuditCoverage": {
+      "auditedRows": 41,
+      "diagnosticCandidates": 54,
+      "unclassifiedDiagnosticRows": 13,
+      "source": "expansion-queues/replacement-resolution-audit-2026-09-29.json",
+      "note": "Audit categories apply only to rows present in the replacement audit; the diagnostics remain authoritative for all 54 candidate rows."
+    },
     "unresolvedCount": 54,
     "integratedStaticCount": 48
   }
