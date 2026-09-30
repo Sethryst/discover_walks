@@ -149,7 +149,7 @@
       "replacementUrl": "https://jamesriverpark.org/park-calendar/",
       "status": "ENDPOINT_DISCOVERED_SCHEMA_PENDING",
       "evidence": "The official Friends of James River Park calendar loads normally and exposes the EventON public REST configuration at the page level, including a site REST base and calendar endpoint parameters. The sampled page did not itself contain item-level event payloads, so no records were published from search snippets or third-party calendar pages.",
-      "nextAcquisitionPath": "Replay the public EventON REST request documented by the page configuration, verify stable event IDs, explicit dates/times/locations, and freshness, then publish only validated volunteer records."
+      "nextAcquisitionPath": "Replay the official EventON AJAX endpoint at https://jamesriverpark.org/wp-admin/admin-ajax.php using the page's eventon_init_load/eventon_search_evo_events actions; verify stable event IDs, explicit dates/times/locations, and freshness, then publish only validated volunteer records."
     },
     {
       "sourceId": "volunteer-dpr-dc-gov-52180f8a",
