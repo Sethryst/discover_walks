@@ -206,6 +206,13 @@
       "status": "BLOCKED_FRESHNESS",
       "evidence": "The official Boise State Public Radio community calendar returned item-level event URLs with stable slugs and explicit event pages, but the current sampled listings were dated 2026-09-29 or earlier at the 2026-09-30 freshness point. No future item was published.",
       "nextAcquisitionPath": "Recheck the official community calendar for a future dated item with explicit start/end times, location, canonical URL, and stable slug before promotion."
+    },
+    {
+      "sourceId": "events-events-portlandonline-us-09e0b6eb",
+      "replacementUrl": "https://events.portlandonline.us/",
+      "status": "BLOCKED_ACCESS_OR_PERMISSION",
+      "evidence": "The municipal PortlandOnline events root and calendar path both returned HTTP 403 through normal public requests. No bypass, credential use, or third-party mirror was attempted; no records were published.",
+      "nextAcquisitionPath": "Obtain a City of Portland-approved public calendar export/API or a normally reachable official item-level event page with stable IDs, explicit dates/times/locations, and freshness."
     }
   ]
 }
