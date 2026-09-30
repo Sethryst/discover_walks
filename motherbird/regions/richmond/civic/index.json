@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "regionId": "richmond",
-  "generatedAt": "2026-08-06T12:41:36.079905Z",
+  "generatedAt": "2026-09-29T23:59:00Z",
   "artifacts": {
     "vote": {
       "generatedAt": "2026-08-07T03:25:17.422721Z",
@@ -69,6 +69,35 @@
       "producer": {
         "name": "Gremlin Lab",
         "version": "development"
+      },
+      "regionId": "richmond",
+      "schemaVersion": 1
+    },
+    "events": {
+      "generatedAt": "2026-09-29T23:59:00Z",
+      "items": [
+        {
+          "date": "2026-09-28",
+          "endsAt": "2026-09-28T20:00:00-04:00",
+          "expiresAt": "2026-09-29T04:00:00Z",
+          "id": "richmond-legistar:1354767:2026-09-28",
+          "locationLabel": "Council Chamber, 2nd Floor - City Hall, Richmond, VA",
+          "officialUrl": "https://richmondva.legistar.com/MeetingDetail.aspx?ID=1354767&GUID=A1E8F936-2014-4EE7-934B-E47C3001605A&Options=info|&Search=",
+          "source": {
+            "authorityTier": "local_government",
+            "name": "City of Richmond",
+            "reviewStatus": "verified",
+            "url": "https://richmondva.legistar.com/Calendar.aspx"
+          },
+          "startsAt": "2026-09-28T18:00:00-04:00",
+          "summary": "City Council meeting listed in the official City of Richmond Legistar calendar.",
+          "title": "City Council",
+          "venueAddress": "Council Chamber, 2nd Floor - City Hall, 900 E. Broad Street, Richmond, VA 23219"
+        }
+      ],
+      "producer": {
+        "name": "Gremlin Lab",
+        "version": "static-source-resolution"
       },
       "regionId": "richmond",
       "schemaVersion": 1

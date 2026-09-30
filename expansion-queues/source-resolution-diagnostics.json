@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
   "kind": "static-source-resolution-diagnostics",
-  "generatedAt": "2026-09-30T00:45:02.421787Z",
+  "generatedAt": "2026-09-30T00:45:40.435540Z",
   "source": "expansion-queues/regional-source-backlog.json",
   "policy": "Diagnostics do not publish records; only validated dated records with location and provenance may enter civic packages.",
   "summary": {
-    "candidateCount": 64,
-    "resolvedCount": 38,
-    "unresolvedCount": 64,
+    "candidateCount": 63,
+    "resolvedCount": 39,
+    "unresolvedCount": 63,
     "blockers": {
       "schema-unverified": 2,
-      "selector-or-endpoint-undiscovered": 62
+      "selector-or-endpoint-undiscovered": 61
     }
   },
   "sources": [
@@ -751,23 +751,6 @@
       "category": "volunteer",
       "url": "https://www.jrps.org/volunteer",
       "publisher": "jrps.org",
-      "adapter": "review-required",
-      "observed": {
-        "httpStatus": null,
-        "contentType": null,
-        "checkedAt": null
-      },
-      "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation",
-      "nextAcquisitionPath": "discover embedded JSON-LD, ICS, or vendor API; otherwise add a source-specific selector",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records"
-    },
-    {
-      "sourceId": "meetings-richmondgov-com-87666ac9",
-      "regionId": "richmond",
-      "category": "meetings",
-      "url": "https://www.richmondgov.com/government",
-      "publisher": "richmondgov.com",
       "adapter": "review-required",
       "observed": {
         "httpStatus": null,
