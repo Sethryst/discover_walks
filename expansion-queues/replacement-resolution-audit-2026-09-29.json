@@ -244,10 +244,10 @@
     },
     {
       "sourceId": "meetings-cityofboise-org-3b05a56d",
-      "replacementUrl": "https://boisecityid.iqm2.com/Citizens/Calendar.aspx",
-      "status": "ENDPOINT_DISCOVERED_SCHEMA_PENDING",
-      "evidence": "The official City of Boise council destination leads to a normally reachable IQM2 calendar shell. The sampled response was HTML and did not expose verifiable item-level meeting rows, stable IDs, or a public JSON/ICS payload, so no meeting was published from inferred cadence or third-party mirrors.",
-      "nextAcquisitionPath": "Identify the IQM2 public calendar's documented item endpoint or stable meeting-detail selector and verify explicit dates, times, City Hall/virtual locations, and IDs."
+      "replacementUrl": "https://boisecityid.iqm2.com/Citizens/Calendar.aspx?From=10/1/2026&To=12/31/2026",
+      "status": "INTEGRATED_STATIC",
+      "evidence": "Official City of Boise IQM2 calendar returned 50 scheduled rows for October–December 2026 with stable meeting-detail IDs, explicit dates/times, and venue/address text; records published to the Boise civic package.",
+      "nextAcquisitionPath": null
     },
     {
       "sourceId": "meetings-dcouncil-us-4d64fb67",

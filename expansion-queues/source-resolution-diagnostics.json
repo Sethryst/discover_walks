@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
   "kind": "static-source-resolution-diagnostics",
-  "generatedAt": "2026-09-30T20:04:07.204911Z",
+  "generatedAt": "2026-09-30T20:15:01.266278Z",
   "source": "expansion-queues/regional-source-backlog.json",
   "policy": "Diagnostics do not publish records; only validated dated records with location and provenance may enter civic packages.",
   "summary": {
-    "candidateCount": 54,
-    "resolvedCount": 48,
-    "unresolvedCount": 54,
+    "candidateCount": 53,
+    "resolvedCount": 49,
+    "unresolvedCount": 53,
     "blockers": {
       "schema-unverified": 2,
-      "selector-or-endpoint-undiscovered": 52
+      "selector-or-endpoint-undiscovered": 51
     }
   },
   "sources": [
@@ -103,32 +103,6 @@
         "httpStatus": 200,
         "contentType": "text/html; charset=utf-8",
         "checkedAt": "2026-09-29T17:47:01.475Z"
-      },
-      "blocker": "selector-or-endpoint-undiscovered",
-      "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery fetch failed, so no structured evidence was available",
-      "nextAcquisitionPath": "Recheck the official URL through a normally reachable public endpoint; do not bypass access controls",
-      "publicationDecision": "NOT_PUBLISHED: no validated dated/location-backed records",
-      "discoveryEvidence": {
-        "status": "FAILED",
-        "httpStatus": null,
-        "contentType": null,
-        "finalUrl": null,
-        "candidateEndpointCount": 0,
-        "selectorCandidateCount": 0,
-        "schemaStatus": "not-run"
-      }
-    },
-    {
-      "sourceId": "meetings-cityofboise-org-3b05a56d",
-      "regionId": "boise-meridian-idaho",
-      "category": "meetings",
-      "url": "https://www.cityofboise.org/city-government/city-council/",
-      "publisher": "cityofboise.org",
-      "adapter": "review-required",
-      "observed": {
-        "httpStatus": null,
-        "contentType": null,
-        "checkedAt": null
       },
       "blocker": "selector-or-endpoint-undiscovered",
       "diagnostic": "landing page is reachable, but no source-specific event selector or dated feed passed contract validation; bounded discovery fetch failed, so no structured evidence was available",

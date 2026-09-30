@@ -520,9 +520,11 @@
           },
           "url": "https://www.cityofboise.org/city-government/city-council/",
           "workItemId": "source:meetings-cityofboise-org-3b05a56d",
-          "resolutionDisposition": "ENDPOINT_DISCOVERED_SCHEMA_PENDING",
-          "resolutionNote": "The official City of Boise council destination leads to a normally reachable IQM2 calendar shell. The sampled response was HTML and did not expose verifiable item-level meeting rows, stable IDs, or a public JSON/ICS payload, so no meeting was published from inferred cadence or third-party mirrors.",
-          "nextAcquisitionPath": "Identify the IQM2 public calendar's documented item endpoint or stable meeting-detail selector and verify explicit dates, times, City Hall/virtual locations, and IDs."
+          "resolutionDisposition": "INTEGRATED_STATIC",
+          "resolutionNote": "Published 50 scheduled dated/location-backed meetings from the official City of Boise IQM2 calendar; stable meeting-detail IDs and venue addresses verified 2026-09-30.",
+          "nextAcquisitionPath": null,
+          "trackingState": "INTEGRATED_STATIC",
+          "integrationEvidence": "Published 50 scheduled dated/location-backed meetings from the official City of Boise IQM2 calendar; stable meeting-detail IDs and venue addresses verified 2026-09-30."
         },
         {
           "category": "events",
@@ -4167,8 +4169,9 @@
     },
     "regionCount": 34,
     "trackingStates": {
+      "INTEGRATED_STATIC": 1,
       "TRACKED_REACHABLE": 33,
-      "UNTRACKED": 21
+      "UNTRACKED": 20
     },
     "trackingPolicy": "Tracked reachable sources remain in the audit backlog but are removed from the active operator queue until adapter work is requested.",
     "resolutionStatusCategories": {
@@ -4206,8 +4209,8 @@
       "source": "expansion-queues/replacement-resolution-audit-2026-09-29.json",
       "note": "Audit categories apply only to rows present in the replacement audit; the diagnostics remain authoritative for all 54 candidate rows."
     },
-    "unresolvedCount": 54,
-    "integratedStaticCount": 48,
+    "unresolvedCount": 53,
+    "integratedStaticCount": 49,
     "excludedIntegratedSources": {
       "count": 48,
       "policy": "INTEGRATED_STATIC sources are excluded from active candidate queues but remain represented in release packages and resolution audits."
