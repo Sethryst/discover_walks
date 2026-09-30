@@ -241,6 +241,13 @@
       "status": "ENDPOINT_DISCOVERED_SCHEMA_PENDING",
       "evidence": "The official Denver calendar page returned HTTP 200 and exposes the Eproval public calendar key 9ce8805d-e5be-4d77-b848-5abdb86c16bc plus the vendor calendar client. A direct guessed POST to the vendor host's /api/v2/public/rpc returned HTTP 405, confirming that the client URI/host handshake is required; no validated item payload was obtained and no records were published from the key or page shell.",
       "nextAcquisitionPath": "Replay the Eproval public-calendar client handshake for the recorded calendar key, capture Calendar_GetPublicCalendarEntries results, and validate stable IDs, explicit dates/times/locations, official detail URLs, and freshness before promotion."
+    },
+    {
+      "sourceId": "events-visitrichmondva-com-1ae28ba3",
+      "replacementUrl": "https://www.visitrichmondva.com/events/",
+      "status": "BLOCKED_SCHEMA",
+      "evidence": "Reachable official Richmond Region Tourism event-detail pages expose schema.org Event records with stable detail URLs and locations, but sampled listings expose date-only startDate/endDate values; times appear only in prose or recurring descriptions. No records were published without explicit structured times.",
+      "nextAcquisitionPath": "Locate an official Richmond calendar/API field or item pages with explicit start/end date-times, then validate freshness and stable detail URLs before promotion."
     }
   ]
 }
