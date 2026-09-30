@@ -15,6 +15,20 @@
   },
   "sources": [
     {
+      "id": "dc-citywide-rss",
+      "name": "DC Government Citywide Events RSS",
+      "provider": "dc_rss_events",
+      "url": "https://calendar.dc.gov/node/all/events",
+      "domains": ["event"],
+      "licenseUrl": "https://oca.dc.gov/page/agency-data-terms-use",
+      "attribution": "District of Columbia Government",
+      "authorityTier": "city_government",
+      "confidence": 0.93,
+      "providerOptions": {"defaultCoordinates": [-77.0365, 38.9072], "minPollSeconds": 1800},
+      "dataClass": "temporal",
+      "visibleValue": "Publishes only DC RSS events with explicit timezone offsets; offset-less items are excluded."
+    },
+    {
       "id": "dc-boundary",
       "name": "Washington DC Administrative Boundary",
       "provider": "arcgis_feature_service",

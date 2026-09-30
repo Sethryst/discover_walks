@@ -15,6 +15,7 @@ from app.pipeline.adapters.philly_events import PhiladelphiaSpecialEventsProvide
 from app.pipeline.adapters.nyc_events import NycEventsProvider
 from app.pipeline.adapters.rss_ics_events import RssIcsEventsProvider
 from app.pipeline.adapters.jsonld_events import JsonLdEventsProvider
+from app.pipeline.adapters.dc_rss_events import DcRssEventsProvider
 from app.pipeline.source_config import SourceConfig
 
 
@@ -35,6 +36,7 @@ class ProviderRegistry:
         "nyc_events": NycEventsProvider,
         "rss_ics_events": RssIcsEventsProvider,
         "jsonld_events": JsonLdEventsProvider,
+        "dc_rss_events": DcRssEventsProvider,
     }
 
     @classmethod
