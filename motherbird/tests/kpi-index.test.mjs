@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import { CITIES } from '../js/constants.js';
 import { collectKpiInventory, poiMetadataKpi, renderEnrichmentHtml, renderKpiHtml } from '../tools/build-kpi-index.mjs';
 
@@ -14,7 +15,8 @@ test('KPI inventory reconciles the frontend and producer source contracts', asyn
   assert.ok(model.endpointRegistry.registrations.every((endpoint) => endpoint.registrationEvidence.includes('Mailbox')));
   assert.equal(model.endpointRegistry.registrations.find((endpoint) => endpoint.id === 'nyc-geoclient-v2').configured, true);
   assert.equal(model.summary.producerRegions, model.configs.length);
-  assert.equal(model.summary.backlogCandidates, 102);
+  const backlog = JSON.parse(await readFile(new URL('../../expansion-queues/regional-source-backlog.json', import.meta.url), 'utf8'));
+  assert.equal(model.summary.backlogCandidates, Number(backlog.summary?.candidateCount || 0));
   assert.equal(model.summary.coreReadyRegions, model.cities.filter((city) => city.missingRequiredFiles.length === 0).length);
   assert.ok(model.cities.every((city) => city.readinessScore >= 0 && city.readinessScore <= 100));
   assert.equal(model.summary.experienceModes, 3);
