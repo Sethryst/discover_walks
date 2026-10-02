@@ -1,14 +1,14 @@
 {
   "candidates": [
     {
-      "canonicalUrl": "https://www.minneapolismn.gov/things-to-do/events/",
+      "canonicalUrl": "https://stpaul.gov/",
       "confidence": 0.55,
       "coverageScope": "minneapolis-st-paul",
       "crawlStatus": "completed",
-      "crawlTimestamp": "2026-10-02T16:07:12.965955Z",
+      "crawlTimestamp": "2026-10-02T16:08:13.973432Z",
       "discoveryEvidence": "National bounded crawler result; review required.",
       "evidenceUrls": [
-        "https://www.minneapolismn.gov/things-to-do/events/"
+        "https://stpaul.gov/"
       ],
       "failureReason": null,
       "httpStatus": 200,
@@ -17,10 +17,55 @@
         "Minneapolis-Saint Paul"
       ],
       "needsHumanReview": true,
-      "originatingOfficialDomain": "minneapolismn.gov",
+      "originatingOfficialDomain": "stpaul.gov",
       "originatingSeed": "expansion-queues/national-region-seeds.csv",
-      "place": "Minneapolis",
-      "providerName": "www.minneapolismn.gov",
+      "place": "Saint Paul",
+      "providerName": "stpaul.gov",
+      "queryFamilies": [
+        "arcgis",
+        "culture",
+        "libraries",
+        "open_data",
+        "parks",
+        "trails",
+        "volunteer"
+      ],
+      "queryId": "nrq-2fcdf8d88ccd",
+      "queryIds": [
+        "nrq-2fcdf8d88ccd",
+        "nrq-384d89c84cc2",
+        "nrq-3f265bd23719",
+        "nrq-6ebd2c522db5",
+        "nrq-84775002fa81",
+        "nrq-c2e9a8d33094",
+        "nrq-eeeb075b37e2"
+      ],
+      "robotsDecision": "allowed",
+      "scoreBreakdown": {},
+      "sourceType": "HTML calendar",
+      "sourceUrl": "https://stpaul.gov/"
+    },
+    {
+      "canonicalUrl": "https://www.stpaul.gov/sitemap.xml?page=1",
+      "confidence": 0.8,
+      "coverageScope": "minneapolis-st-paul",
+      "crawlStatus": "completed",
+      "crawlTimestamp": "2026-10-02T16:08:09.979387Z",
+      "discoveryEvidence": "National bounded crawler result; review required.",
+      "evidenceUrls": [
+        "https://www.stpaul.gov/sitemap.xml?page=1"
+      ],
+      "failureReason": null,
+      "httpStatus": 200,
+      "market": "Minneapolis-Saint Paul",
+      "markets": [
+        "Minneapolis-Saint Paul"
+      ],
+      "needsHumanReview": true,
+      "originatingOfficialDomain": "stpaul.gov",
+      "originatingSeed": "expansion-queues/national-region-seeds.csv",
+      "place": "Saint Paul",
+      "providerName": "www.stpaul.gov",
       "queryFamilies": [
         "arcgis",
         "culture",
@@ -33,26 +78,77 @@
         "trails",
         "volunteer"
       ],
-      "queryId": "nrq-1e2a7d6c6299",
+      "queryId": "nrq-0a79a52ff646",
       "queryIds": [
-        "nrq-1e2a7d6c6299",
-        "nrq-2dbf4bb48b53",
-        "nrq-4c7292bf142f",
-        "nrq-6b2571fe19a9",
-        "nrq-90a842ab2b37",
-        "nrq-a44dbe775cd3",
-        "nrq-c6c3cb539ffb",
-        "nrq-d9808e08b834",
-        "nrq-f3c678b2ad84",
-        "nrq-fb09923ceee1"
+        "nrq-0a79a52ff646",
+        "nrq-2fcdf8d88ccd",
+        "nrq-384d89c84cc2",
+        "nrq-3f265bd23719",
+        "nrq-3fa2d2c97ef1",
+        "nrq-6ebd2c522db5",
+        "nrq-84775002fa81",
+        "nrq-b44696b5652f",
+        "nrq-c2e9a8d33094",
+        "nrq-eeeb075b37e2"
       ],
-      "robotsDecision": "unknown",
+      "robotsDecision": "allowed",
       "scoreBreakdown": {},
-      "sourceType": "HTML calendar",
-      "sourceUrl": "https://www.minneapolismn.gov/things-to-do/events/"
+      "sourceType": "Sitemap",
+      "sourceUrl": "https://www.stpaul.gov/sitemap.xml?page=1"
+    },
+    {
+      "canonicalUrl": "https://www.stpaul.gov/sitemap.xml?page=2",
+      "confidence": 0.8,
+      "coverageScope": "minneapolis-st-paul",
+      "crawlStatus": "completed",
+      "crawlTimestamp": "2026-10-02T16:08:09.979387Z",
+      "discoveryEvidence": "National bounded crawler result; review required.",
+      "evidenceUrls": [
+        "https://www.stpaul.gov/sitemap.xml?page=2"
+      ],
+      "failureReason": null,
+      "httpStatus": 200,
+      "market": "Minneapolis-Saint Paul",
+      "markets": [
+        "Minneapolis-Saint Paul"
+      ],
+      "needsHumanReview": true,
+      "originatingOfficialDomain": "stpaul.gov",
+      "originatingSeed": "expansion-queues/national-region-seeds.csv",
+      "place": "Saint Paul",
+      "providerName": "www.stpaul.gov",
+      "queryFamilies": [
+        "arcgis",
+        "culture",
+        "events",
+        "libraries",
+        "meetings",
+        "open_data",
+        "parks",
+        "rss_ics",
+        "trails",
+        "volunteer"
+      ],
+      "queryId": "nrq-0a79a52ff646",
+      "queryIds": [
+        "nrq-0a79a52ff646",
+        "nrq-2fcdf8d88ccd",
+        "nrq-384d89c84cc2",
+        "nrq-3f265bd23719",
+        "nrq-3fa2d2c97ef1",
+        "nrq-6ebd2c522db5",
+        "nrq-84775002fa81",
+        "nrq-b44696b5652f",
+        "nrq-c2e9a8d33094",
+        "nrq-eeeb075b37e2"
+      ],
+      "robotsDecision": "allowed",
+      "scoreBreakdown": {},
+      "sourceType": "Sitemap",
+      "sourceUrl": "https://www.stpaul.gov/sitemap.xml?page=2"
     }
   ],
-  "generatedAt": "2026-10-02T16:07:15.870991Z",
+  "generatedAt": "2026-10-02T16:08:15.441783Z",
   "kind": "national-candidate-capture",
   "negativeDiscoveries": [],
   "publicationState": "research-only",

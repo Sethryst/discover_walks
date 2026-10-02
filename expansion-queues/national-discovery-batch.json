@@ -1,368 +1,42 @@
 {
   "kind": "national-discovery-batch",
   "limit": 10,
-  "offset": 1280,
+  "offset": 1296,
   "publicationState": "research-only",
   "readOnly": true,
   "results": [
     {
       "attempts": 3,
       "candidateEvidence": {
-        "https://www.minneapolismn.gov/things-to-do/events/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.minneapolismn.gov/things-to-do/events/",
-          "sourceType": "HTML calendar"
+        "https://www.stpaul.gov/sitemap.xml?page=1": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=1",
+          "sourceType": "Sitemap"
+        },
+        "https://www.stpaul.gov/sitemap.xml?page=2": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=2",
+          "sourceType": "Sitemap"
         }
       },
       "candidateUrls": [
-        "https://www.minneapolismn.gov/things-to-do/events/"
+        "https://www.stpaul.gov/sitemap.xml?page=1",
+        "https://www.stpaul.gov/sitemap.xml?page=2"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://minneapolismn.gov/sitemap_index.xml",
+          "https://stpaul.gov/sitemap_index.xml",
           404
         ],
         [
-          "https://www.minneapolismn.gov/things-to-do/events/",
-          "NameError"
-        ],
-        [
-          "https://www.minneapolismn.gov/lo/snow-parking-rules-lao/",
-          "NameError"
-        ],
-        [
-          "https://www.minneapolismn.gov/om/snow-parking-rules-oromo/",
+          "https://stpaul.gov/",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:07:12.965955Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "trails",
-        "humanReview": "not_reviewed",
-        "intent": "trails",
-        "market": "Minneapolis-Saint Paul",
-        "marketId": "minneapolis-st-paul",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "minneapolismn.gov",
-        "place": "Minneapolis",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Minneapolis, MN\" trails outdoor recreation official",
-        "queryFamily": "trails",
-        "queryId": "nrq-1e2a7d6c6299",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "MN",
-        "stateCode": "MN"
-      },
-      "reason": null,
-      "robots": "unknown",
-      "startedAt": "2026-10-02T16:07:11.961570Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://www.minneapolismn.gov/things-to-do/events/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.minneapolismn.gov/things-to-do/events/",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://www.minneapolismn.gov/things-to-do/events/"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://minneapolismn.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://www.minneapolismn.gov/things-to-do/events/",
-          "NameError"
-        ],
-        [
-          "https://www.minneapolismn.gov/lo/snow-parking-rules-lao/",
-          "NameError"
-        ],
-        [
-          "https://www.minneapolismn.gov/om/snow-parking-rules-oromo/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:07:13.918084Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "libraries",
-        "humanReview": "not_reviewed",
-        "intent": "libraries",
-        "market": "Minneapolis-Saint Paul",
-        "marketId": "minneapolis-st-paul",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "minneapolismn.gov",
-        "place": "Minneapolis",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Minneapolis, MN\" library events calendar",
-        "queryFamily": "libraries",
-        "queryId": "nrq-2dbf4bb48b53",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "MN",
-        "stateCode": "MN"
-      },
-      "reason": null,
-      "robots": "unknown",
-      "startedAt": "2026-10-02T16:07:12.965979Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://www.minneapolismn.gov/things-to-do/events/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.minneapolismn.gov/things-to-do/events/",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://www.minneapolismn.gov/things-to-do/events/"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://minneapolismn.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://www.minneapolismn.gov/things-to-do/events/",
-          "NameError"
-        ],
-        [
-          "https://www.minneapolismn.gov/lo/snow-parking-rules-lao/",
-          "NameError"
-        ],
-        [
-          "https://www.minneapolismn.gov/om/snow-parking-rules-oromo/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:07:14.889395Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "volunteer",
-        "humanReview": "not_reviewed",
-        "intent": "volunteer",
-        "market": "Minneapolis-Saint Paul",
-        "marketId": "minneapolis-st-paul",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "minneapolismn.gov",
-        "place": "Minneapolis",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Minneapolis, MN\" volunteer opportunities official",
-        "queryFamily": "volunteer",
-        "queryId": "nrq-4c7292bf142f",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "MN",
-        "stateCode": "MN"
-      },
-      "reason": null,
-      "robots": "unknown",
-      "startedAt": "2026-10-02T16:07:13.903945Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://www.minneapolismn.gov/things-to-do/events/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.minneapolismn.gov/things-to-do/events/",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://www.minneapolismn.gov/things-to-do/events/"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://minneapolismn.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://www.minneapolismn.gov/things-to-do/events/",
-          "NameError"
-        ],
-        [
-          "https://www.minneapolismn.gov/lo/snow-parking-rules-lao/",
-          "NameError"
-        ],
-        [
-          "https://www.minneapolismn.gov/om/snow-parking-rules-oromo/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:07:12.971579Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "parks",
-        "humanReview": "not_reviewed",
-        "intent": "parks",
-        "market": "Minneapolis-Saint Paul",
-        "marketId": "minneapolis-st-paul",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "minneapolismn.gov",
-        "place": "Minneapolis",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Minneapolis, MN\" parks recreation trails official",
-        "queryFamily": "parks",
-        "queryId": "nrq-6b2571fe19a9",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "MN",
-        "stateCode": "MN"
-      },
-      "reason": null,
-      "robots": "unknown",
-      "startedAt": "2026-10-02T16:07:11.958745Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://www.minneapolismn.gov/things-to-do/events/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.minneapolismn.gov/things-to-do/events/",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://www.minneapolismn.gov/things-to-do/events/"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://minneapolismn.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://www.minneapolismn.gov/things-to-do/events/",
-          "NameError"
-        ],
-        [
-          "https://www.minneapolismn.gov/lo/snow-parking-rules-lao/",
-          "NameError"
-        ],
-        [
-          "https://www.minneapolismn.gov/om/snow-parking-rules-oromo/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:07:11.958712Z",
+      "finishedAt": "2026-10-02T16:08:09.979387Z",
       "httpStatus": 200,
       "query": {
         "expectedSourceType": "events",
@@ -382,17 +56,17 @@
           "blocked_robots"
         ],
         "nextAction": "discover official feeds",
-        "officialDomain": "minneapolismn.gov",
-        "place": "Minneapolis",
+        "officialDomain": "stpaul.gov",
+        "place": "Saint Paul",
         "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Minneapolis, MN\" official events calendar",
+        "query": "\"Saint Paul, MN\" official events calendar",
         "queryFamily": "events",
-        "queryId": "nrq-90a842ab2b37",
+        "queryId": "nrq-0a79a52ff646",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.33,
@@ -406,49 +80,53 @@
         "stateCode": "MN"
       },
       "reason": null,
-      "robots": "unknown",
-      "startedAt": "2026-10-02T16:07:10.544079Z",
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:08:07.356828Z",
       "status": "succeeded"
     },
     {
       "attempts": 3,
       "candidateEvidence": {
-        "https://www.minneapolismn.gov/things-to-do/events/": {
+        "https://stpaul.gov/": {
           "confidence": 0.55,
-          "evidenceUrl": "https://www.minneapolismn.gov/things-to-do/events/",
+          "evidenceUrl": "https://stpaul.gov/",
           "sourceType": "HTML calendar"
+        },
+        "https://www.stpaul.gov/sitemap.xml?page=1": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=1",
+          "sourceType": "Sitemap"
+        },
+        "https://www.stpaul.gov/sitemap.xml?page=2": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=2",
+          "sourceType": "Sitemap"
         }
       },
       "candidateUrls": [
-        "https://www.minneapolismn.gov/things-to-do/events/"
+        "https://stpaul.gov/",
+        "https://www.stpaul.gov/sitemap.xml?page=1",
+        "https://www.stpaul.gov/sitemap.xml?page=2"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://minneapolismn.gov/sitemap_index.xml",
+          "https://stpaul.gov/sitemap_index.xml",
           404
         ],
         [
-          "https://www.minneapolismn.gov/things-to-do/events/",
-          "NameError"
-        ],
-        [
-          "https://www.minneapolismn.gov/lo/snow-parking-rules-lao/",
-          "NameError"
-        ],
-        [
-          "https://www.minneapolismn.gov/om/snow-parking-rules-oromo/",
+          "https://stpaul.gov/",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:07:14.864183Z",
+      "finishedAt": "2026-10-02T16:08:13.973432Z",
       "httpStatus": 200,
       "query": {
-        "expectedSourceType": "open_data",
+        "expectedSourceType": "volunteer",
         "humanReview": "not_reviewed",
-        "intent": "open_data",
+        "intent": "volunteer",
         "market": "Minneapolis-Saint Paul",
         "marketId": "minneapolis-st-paul",
         "marketPriority": 2,
@@ -463,17 +141,17 @@
           "blocked_robots"
         ],
         "nextAction": "discover official feeds",
-        "officialDomain": "minneapolismn.gov",
-        "place": "Minneapolis",
+        "officialDomain": "stpaul.gov",
+        "place": "Saint Paul",
         "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Minneapolis, MN\" open data portal",
-        "queryFamily": "open_data",
-        "queryId": "nrq-a44dbe775cd3",
+        "query": "\"Saint Paul, MN\" volunteer opportunities official",
+        "queryFamily": "volunteer",
+        "queryId": "nrq-2fcdf8d88ccd",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.33,
@@ -487,44 +165,212 @@
         "stateCode": "MN"
       },
       "reason": null,
-      "robots": "unknown",
-      "startedAt": "2026-10-02T16:07:13.918106Z",
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:08:12.659311Z",
       "status": "succeeded"
     },
     {
       "attempts": 3,
       "candidateEvidence": {
-        "https://www.minneapolismn.gov/things-to-do/events/": {
+        "https://stpaul.gov/": {
           "confidence": 0.55,
-          "evidenceUrl": "https://www.minneapolismn.gov/things-to-do/events/",
+          "evidenceUrl": "https://stpaul.gov/",
           "sourceType": "HTML calendar"
+        },
+        "https://www.stpaul.gov/sitemap.xml?page=1": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=1",
+          "sourceType": "Sitemap"
+        },
+        "https://www.stpaul.gov/sitemap.xml?page=2": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=2",
+          "sourceType": "Sitemap"
         }
       },
       "candidateUrls": [
-        "https://www.minneapolismn.gov/things-to-do/events/"
+        "https://stpaul.gov/",
+        "https://www.stpaul.gov/sitemap.xml?page=1",
+        "https://www.stpaul.gov/sitemap.xml?page=2"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://minneapolismn.gov/sitemap_index.xml",
+          "https://stpaul.gov/sitemap_index.xml",
           404
         ],
         [
-          "https://www.minneapolismn.gov/things-to-do/events/",
-          "NameError"
-        ],
-        [
-          "https://www.minneapolismn.gov/lo/snow-parking-rules-lao/",
-          "NameError"
-        ],
-        [
-          "https://www.minneapolismn.gov/om/snow-parking-rules-oromo/",
+          "https://stpaul.gov/",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:07:15.813346Z",
+      "finishedAt": "2026-10-02T16:08:11.421576Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "trails",
+        "humanReview": "not_reviewed",
+        "intent": "trails",
+        "market": "Minneapolis-Saint Paul",
+        "marketId": "minneapolis-st-paul",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "stpaul.gov",
+        "place": "Saint Paul",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Saint Paul, MN\" trails outdoor recreation official",
+        "queryFamily": "trails",
+        "queryId": "nrq-384d89c84cc2",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "MN",
+        "stateCode": "MN"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:08:10.109789Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://stpaul.gov/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://stpaul.gov/",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.stpaul.gov/sitemap.xml?page=1": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=1",
+          "sourceType": "Sitemap"
+        },
+        "https://www.stpaul.gov/sitemap.xml?page=2": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=2",
+          "sourceType": "Sitemap"
+        }
+      },
+      "candidateUrls": [
+        "https://stpaul.gov/",
+        "https://www.stpaul.gov/sitemap.xml?page=1",
+        "https://www.stpaul.gov/sitemap.xml?page=2"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://stpaul.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://stpaul.gov/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:08:11.309032Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "parks",
+        "humanReview": "not_reviewed",
+        "intent": "parks",
+        "market": "Minneapolis-Saint Paul",
+        "marketId": "minneapolis-st-paul",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "stpaul.gov",
+        "place": "Saint Paul",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Saint Paul, MN\" parks recreation trails official",
+        "queryFamily": "parks",
+        "queryId": "nrq-3f265bd23719",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "MN",
+        "stateCode": "MN"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:08:09.979418Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.stpaul.gov/sitemap.xml?page=1": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=1",
+          "sourceType": "Sitemap"
+        },
+        "https://www.stpaul.gov/sitemap.xml?page=2": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=2",
+          "sourceType": "Sitemap"
+        }
+      },
+      "candidateUrls": [
+        "https://www.stpaul.gov/sitemap.xml?page=1",
+        "https://www.stpaul.gov/sitemap.xml?page=2"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://stpaul.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://stpaul.gov/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:08:15.257225Z",
       "httpStatus": 200,
       "query": {
         "expectedSourceType": "rss_ics",
@@ -544,17 +390,17 @@
           "blocked_robots"
         ],
         "nextAction": "discover official feeds",
-        "officialDomain": "minneapolismn.gov",
-        "place": "Minneapolis",
+        "officialDomain": "stpaul.gov",
+        "place": "Saint Paul",
         "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Minneapolis, MN\" (RSS OR iCalendar OR ICS) events",
+        "query": "\"Saint Paul, MN\" (RSS OR iCalendar OR ICS) events",
         "queryFamily": "rss_ics",
-        "queryId": "nrq-c6c3cb539ffb",
+        "queryId": "nrq-3fa2d2c97ef1",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.67,
@@ -568,44 +414,212 @@
         "stateCode": "MN"
       },
       "reason": null,
-      "robots": "unknown",
-      "startedAt": "2026-10-02T16:07:14.864205Z",
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:08:13.973458Z",
       "status": "succeeded"
     },
     {
       "attempts": 3,
       "candidateEvidence": {
-        "https://www.minneapolismn.gov/things-to-do/events/": {
+        "https://stpaul.gov/": {
           "confidence": 0.55,
-          "evidenceUrl": "https://www.minneapolismn.gov/things-to-do/events/",
+          "evidenceUrl": "https://stpaul.gov/",
           "sourceType": "HTML calendar"
+        },
+        "https://www.stpaul.gov/sitemap.xml?page=1": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=1",
+          "sourceType": "Sitemap"
+        },
+        "https://www.stpaul.gov/sitemap.xml?page=2": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=2",
+          "sourceType": "Sitemap"
         }
       },
       "candidateUrls": [
-        "https://www.minneapolismn.gov/things-to-do/events/"
+        "https://stpaul.gov/",
+        "https://www.stpaul.gov/sitemap.xml?page=1",
+        "https://www.stpaul.gov/sitemap.xml?page=2"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://minneapolismn.gov/sitemap_index.xml",
+          "https://stpaul.gov/sitemap_index.xml",
           404
         ],
         [
-          "https://www.minneapolismn.gov/things-to-do/events/",
-          "NameError"
-        ],
-        [
-          "https://www.minneapolismn.gov/lo/snow-parking-rules-lao/",
-          "NameError"
-        ],
-        [
-          "https://www.minneapolismn.gov/om/snow-parking-rules-oromo/",
+          "https://stpaul.gov/",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:07:11.961548Z",
+      "finishedAt": "2026-10-02T16:08:14.089583Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "open_data",
+        "humanReview": "not_reviewed",
+        "intent": "open_data",
+        "market": "Minneapolis-Saint Paul",
+        "marketId": "minneapolis-st-paul",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "stpaul.gov",
+        "place": "Saint Paul",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Saint Paul, MN\" open data portal",
+        "queryFamily": "open_data",
+        "queryId": "nrq-6ebd2c522db5",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "MN",
+        "stateCode": "MN"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:08:12.751943Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://stpaul.gov/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://stpaul.gov/",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.stpaul.gov/sitemap.xml?page=1": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=1",
+          "sourceType": "Sitemap"
+        },
+        "https://www.stpaul.gov/sitemap.xml?page=2": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=2",
+          "sourceType": "Sitemap"
+        }
+      },
+      "candidateUrls": [
+        "https://stpaul.gov/",
+        "https://www.stpaul.gov/sitemap.xml?page=1",
+        "https://www.stpaul.gov/sitemap.xml?page=2"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://stpaul.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://stpaul.gov/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:08:12.659285Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "libraries",
+        "humanReview": "not_reviewed",
+        "intent": "libraries",
+        "market": "Minneapolis-Saint Paul",
+        "marketId": "minneapolis-st-paul",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "stpaul.gov",
+        "place": "Saint Paul",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Saint Paul, MN\" library events calendar",
+        "queryFamily": "libraries",
+        "queryId": "nrq-84775002fa81",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "MN",
+        "stateCode": "MN"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:08:11.309060Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.stpaul.gov/sitemap.xml?page=1": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=1",
+          "sourceType": "Sitemap"
+        },
+        "https://www.stpaul.gov/sitemap.xml?page=2": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=2",
+          "sourceType": "Sitemap"
+        }
+      },
+      "candidateUrls": [
+        "https://www.stpaul.gov/sitemap.xml?page=1",
+        "https://www.stpaul.gov/sitemap.xml?page=2"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://stpaul.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://stpaul.gov/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:08:10.109762Z",
       "httpStatus": 200,
       "query": {
         "expectedSourceType": "meetings",
@@ -625,17 +639,17 @@
           "blocked_robots"
         ],
         "nextAction": "discover official feeds",
-        "officialDomain": "minneapolismn.gov",
-        "place": "Minneapolis",
+        "officialDomain": "stpaul.gov",
+        "place": "Saint Paul",
         "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Minneapolis, MN\" public meetings agenda calendar",
+        "query": "\"Saint Paul, MN\" public meetings agenda calendar",
         "queryFamily": "meetings",
-        "queryId": "nrq-d9808e08b834",
+        "queryId": "nrq-b44696b5652f",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.33,
@@ -649,44 +663,48 @@
         "stateCode": "MN"
       },
       "reason": null,
-      "robots": "unknown",
-      "startedAt": "2026-10-02T16:07:10.544597Z",
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:08:07.357328Z",
       "status": "succeeded"
     },
     {
       "attempts": 3,
       "candidateEvidence": {
-        "https://www.minneapolismn.gov/things-to-do/events/": {
+        "https://stpaul.gov/": {
           "confidence": 0.55,
-          "evidenceUrl": "https://www.minneapolismn.gov/things-to-do/events/",
+          "evidenceUrl": "https://stpaul.gov/",
           "sourceType": "HTML calendar"
+        },
+        "https://www.stpaul.gov/sitemap.xml?page=1": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=1",
+          "sourceType": "Sitemap"
+        },
+        "https://www.stpaul.gov/sitemap.xml?page=2": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=2",
+          "sourceType": "Sitemap"
         }
       },
       "candidateUrls": [
-        "https://www.minneapolismn.gov/things-to-do/events/"
+        "https://stpaul.gov/",
+        "https://www.stpaul.gov/sitemap.xml?page=1",
+        "https://www.stpaul.gov/sitemap.xml?page=2"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://minneapolismn.gov/sitemap_index.xml",
+          "https://stpaul.gov/sitemap_index.xml",
           404
         ],
         [
-          "https://www.minneapolismn.gov/things-to-do/events/",
-          "NameError"
-        ],
-        [
-          "https://www.minneapolismn.gov/lo/snow-parking-rules-lao/",
-          "NameError"
-        ],
-        [
-          "https://www.minneapolismn.gov/om/snow-parking-rules-oromo/",
+          "https://stpaul.gov/",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:07:13.903922Z",
+      "finishedAt": "2026-10-02T16:08:12.751923Z",
       "httpStatus": 200,
       "query": {
         "expectedSourceType": "culture",
@@ -706,17 +724,17 @@
           "blocked_robots"
         ],
         "nextAction": "discover official feeds",
-        "officialDomain": "minneapolismn.gov",
-        "place": "Minneapolis",
+        "officialDomain": "stpaul.gov",
+        "place": "Saint Paul",
         "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Minneapolis, MN\" arts culture museum events official",
+        "query": "\"Saint Paul, MN\" arts culture museum events official",
         "queryFamily": "culture",
-        "queryId": "nrq-f3c678b2ad84",
+        "queryId": "nrq-c2e9a8d33094",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.33,
@@ -730,44 +748,48 @@
         "stateCode": "MN"
       },
       "reason": null,
-      "robots": "unknown",
-      "startedAt": "2026-10-02T16:07:12.971597Z",
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:08:11.421598Z",
       "status": "succeeded"
     },
     {
       "attempts": 3,
       "candidateEvidence": {
-        "https://www.minneapolismn.gov/things-to-do/events/": {
+        "https://stpaul.gov/": {
           "confidence": 0.55,
-          "evidenceUrl": "https://www.minneapolismn.gov/things-to-do/events/",
+          "evidenceUrl": "https://stpaul.gov/",
           "sourceType": "HTML calendar"
+        },
+        "https://www.stpaul.gov/sitemap.xml?page=1": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=1",
+          "sourceType": "Sitemap"
+        },
+        "https://www.stpaul.gov/sitemap.xml?page=2": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=2",
+          "sourceType": "Sitemap"
         }
       },
       "candidateUrls": [
-        "https://www.minneapolismn.gov/things-to-do/events/"
+        "https://stpaul.gov/",
+        "https://www.stpaul.gov/sitemap.xml?page=1",
+        "https://www.stpaul.gov/sitemap.xml?page=2"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://minneapolismn.gov/sitemap_index.xml",
+          "https://stpaul.gov/sitemap_index.xml",
           404
         ],
         [
-          "https://www.minneapolismn.gov/things-to-do/events/",
-          "NameError"
-        ],
-        [
-          "https://www.minneapolismn.gov/lo/snow-parking-rules-lao/",
-          "NameError"
-        ],
-        [
-          "https://www.minneapolismn.gov/om/snow-parking-rules-oromo/",
+          "https://stpaul.gov/",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:07:15.870630Z",
+      "finishedAt": "2026-10-02T16:08:15.441315Z",
       "httpStatus": 200,
       "query": {
         "expectedSourceType": "arcgis",
@@ -787,17 +809,17 @@
           "blocked_robots"
         ],
         "nextAction": "discover official feeds",
-        "officialDomain": "minneapolismn.gov",
-        "place": "Minneapolis",
+        "officialDomain": "stpaul.gov",
+        "place": "Saint Paul",
         "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "site:minneapolismn.gov (FeatureServer OR MapServer) parks events",
+        "query": "site:stpaul.gov (FeatureServer OR MapServer) parks events",
         "queryFamily": "arcgis",
-        "queryId": "nrq-fb09923ceee1",
+        "queryId": "nrq-eeeb075b37e2",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.67,
@@ -811,48 +833,48 @@
         "stateCode": "MN"
       },
       "reason": null,
-      "robots": "unknown",
-      "startedAt": "2026-10-02T16:07:14.889413Z",
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:08:14.089605Z",
       "status": "succeeded"
     }
   ],
   "schemaVersion": 2,
   "selectedQueryIds": [
-    "nrq-90a842ab2b37",
-    "nrq-d9808e08b834",
-    "nrq-6b2571fe19a9",
-    "nrq-1e2a7d6c6299",
-    "nrq-2dbf4bb48b53",
-    "nrq-f3c678b2ad84",
-    "nrq-4c7292bf142f",
-    "nrq-a44dbe775cd3",
-    "nrq-c6c3cb539ffb",
-    "nrq-fb09923ceee1"
+    "nrq-0a79a52ff646",
+    "nrq-b44696b5652f",
+    "nrq-3f265bd23719",
+    "nrq-384d89c84cc2",
+    "nrq-84775002fa81",
+    "nrq-c2e9a8d33094",
+    "nrq-2fcdf8d88ccd",
+    "nrq-6ebd2c522db5",
+    "nrq-3fa2d2c97ef1",
+    "nrq-eeeb075b37e2"
   ],
   "sourceQueue": "expansion-queues/national-region-search-queue.json",
   "summary": {
     "attempted": 10,
     "candidateCaptureErrors": null,
-    "candidatesFound": 1,
-    "candidatesNeedingHumanReview": 1,
+    "candidatesFound": 3,
+    "candidatesNeedingHumanReview": 3,
     "domainsCrawled": 1,
     "duplicateUrlsMerged": 0,
     "failed": 0,
-    "failedRequests": 40,
+    "failedRequests": 20,
     "httpSuccesses": 10,
     "pagesCrawled": 30,
     "pagesFetched": 30,
-    "pagesRejected": 40,
+    "pagesRejected": 20,
     "rateLimitedRequests": 0,
     "responses_429": 0,
     "robots_disallowed": 0,
-    "robots_unknown": 10,
+    "robots_unknown": 0,
     "skipped": 0,
     "succeeded": 10,
     "succeededWithCandidates": 10,
     "succeededWithoutCandidates": 0,
     "timeout_network_failures": 0,
-    "uniqueCandidates": 1,
-    "usefulDiscoveries": 1
+    "uniqueCandidates": 3,
+    "usefulDiscoveries": 3
   }
 }
