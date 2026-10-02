@@ -90,6 +90,8 @@ These are observed official paths from the recent batches or direct domain audit
 | `nashville.gov` | `/`, `/departments/parks/events/autumn-seed-hike` | Official homepage links a dated parks event detail; the detail contains date, time, description, venue, and contact but no JSON-LD or validated feed. | Focused HTML candidate; fixture-test selectors and event identity before promotion. |
 | `okc.gov` | `/Events-directory`, `/Community-Recreation`, `/Home/Popular-Topics` | Bounded slice found three official event-adjacent routes; direct audit returned HTTP 403 for the events and recreation pages. | Hold as access-restricted evidence; no event records promoted. |
 | `cityofomaha.org` | Batch offset 1344 | Ten bounded queries completed with no candidate source yield. | Keep as a negative discovery result; rerun only when new official event links or machine-readable evidence appears. |
+| `phoenix.gov` | `/calendar.html`, `/major-events.html`, `/volunteer.html` | Official calendar taxonomy and department pages returned HTTP 200; no JSON-LD Event or public AEM model endpoint was exposed in the direct audit. | Hold as structured HTML discovery evidence; identify item selectors and a stable feed/model contract before promotion. |
+| `providenceri.gov` | Batch offset 1376 | Ten bounded queries completed with no candidate source yield. | Keep as a negative discovery result. |
 
 ## Ingestion pathway decision tree
 

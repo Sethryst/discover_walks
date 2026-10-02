@@ -1,7 +1,7 @@
 {
   "kind": "national-discovery-batch",
   "limit": 10,
-  "offset": 1344,
+  "offset": 1376,
   "publicationState": "research-only",
   "readOnly": true,
   "results": [
@@ -14,509 +14,26 @@
       "errorType": null,
       "failures": [
         [
-          "https://cityofomaha.org/sitemap.xml",
-          403
+          "https://providenceri.gov/sitemap.xml",
+          406
         ],
         [
-          "https://cityofomaha.org/sitemap_index.xml",
-          403
+          "https://providenceri.gov/sitemap_index.xml",
+          406
         ],
         [
-          "https://cityofomaha.org/",
-          403
+          "https://providenceri.gov/",
+          406
         ]
       ],
-      "finishedAt": "2026-10-02T16:11:36.686337Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "open_data",
-        "humanReview": "not_reviewed",
-        "intent": "open_data",
-        "market": "Omaha",
-        "marketId": "omaha",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "cityofomaha.org",
-        "place": "Omaha",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Omaha, NE\" open data portal",
-        "queryFamily": "open_data",
-        "queryId": "nrq-1cd59b7a0a67",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "NE",
-        "stateCode": "NE"
-      },
-      "reason": null,
-      "robots": "unknown",
-      "startedAt": "2026-10-02T16:11:36.247735Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 1,
-      "candidateEvidence": {},
-      "candidateUrls": [],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://cityofomaha.org/sitemap.xml",
-          403
-        ],
-        [
-          "https://cityofomaha.org/sitemap_index.xml",
-          403
-        ],
-        [
-          "https://cityofomaha.org/",
-          403
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:11:35.273891Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "meetings",
-        "humanReview": "not_reviewed",
-        "intent": "meetings",
-        "market": "Omaha",
-        "marketId": "omaha",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "cityofomaha.org",
-        "place": "Omaha",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Omaha, NE\" public meetings agenda calendar",
-        "queryFamily": "meetings",
-        "queryId": "nrq-3b92acc57bb9",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "NE",
-        "stateCode": "NE"
-      },
-      "reason": null,
-      "robots": "unknown",
-      "startedAt": "2026-10-02T16:11:33.807264Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 1,
-      "candidateEvidence": {},
-      "candidateUrls": [],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://cityofomaha.org/sitemap.xml",
-          403
-        ],
-        [
-          "https://cityofomaha.org/sitemap_index.xml",
-          403
-        ],
-        [
-          "https://cityofomaha.org/",
-          403
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:11:37.017519Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "rss_ics",
-        "humanReview": "not_reviewed",
-        "intent": "rss_ics",
-        "market": "Omaha",
-        "marketId": "omaha",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "cityofomaha.org",
-        "place": "Omaha",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Omaha, NE\" (RSS OR iCalendar OR ICS) events",
-        "queryFamily": "rss_ics",
-        "queryId": "nrq-44f78aac93fa",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.67,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": true
-          }
-        },
-        "state": "NE",
-        "stateCode": "NE"
-      },
-      "reason": null,
-      "robots": "unknown",
-      "startedAt": "2026-10-02T16:11:36.627110Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 1,
-      "candidateEvidence": {},
-      "candidateUrls": [],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://cityofomaha.org/sitemap.xml",
-          403
-        ],
-        [
-          "https://cityofomaha.org/sitemap_index.xml",
-          403
-        ],
-        [
-          "https://cityofomaha.org/",
-          403
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:11:36.627088Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "volunteer",
-        "humanReview": "not_reviewed",
-        "intent": "volunteer",
-        "market": "Omaha",
-        "marketId": "omaha",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "cityofomaha.org",
-        "place": "Omaha",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Omaha, NE\" volunteer opportunities official",
-        "queryFamily": "volunteer",
-        "queryId": "nrq-54536f1cb023",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "NE",
-        "stateCode": "NE"
-      },
-      "reason": null,
-      "robots": "unknown",
-      "startedAt": "2026-10-02T16:11:36.216715Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 1,
-      "candidateEvidence": {},
-      "candidateUrls": [],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://cityofomaha.org/sitemap.xml",
-          403
-        ],
-        [
-          "https://cityofomaha.org/sitemap_index.xml",
-          403
-        ],
-        [
-          "https://cityofomaha.org/",
-          403
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:11:36.216690Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "libraries",
-        "humanReview": "not_reviewed",
-        "intent": "libraries",
-        "market": "Omaha",
-        "marketId": "omaha",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "cityofomaha.org",
-        "place": "Omaha",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Omaha, NE\" library events calendar",
-        "queryFamily": "libraries",
-        "queryId": "nrq-80f170594fd7",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "NE",
-        "stateCode": "NE"
-      },
-      "reason": null,
-      "robots": "unknown",
-      "startedAt": "2026-10-02T16:11:35.800631Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 1,
-      "candidateEvidence": {},
-      "candidateUrls": [],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://cityofomaha.org/sitemap.xml",
-          403
-        ],
-        [
-          "https://cityofomaha.org/sitemap_index.xml",
-          403
-        ],
-        [
-          "https://cityofomaha.org/",
-          403
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:11:35.816448Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "parks",
-        "humanReview": "not_reviewed",
-        "intent": "parks",
-        "market": "Omaha",
-        "marketId": "omaha",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "cityofomaha.org",
-        "place": "Omaha",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Omaha, NE\" parks recreation trails official",
-        "queryFamily": "parks",
-        "queryId": "nrq-831c48d73e84",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "NE",
-        "stateCode": "NE"
-      },
-      "reason": null,
-      "robots": "unknown",
-      "startedAt": "2026-10-02T16:11:35.269869Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 1,
-      "candidateEvidence": {},
-      "candidateUrls": [],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://cityofomaha.org/sitemap.xml",
-          403
-        ],
-        [
-          "https://cityofomaha.org/sitemap_index.xml",
-          403
-        ],
-        [
-          "https://cityofomaha.org/",
-          403
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:11:35.269835Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "events",
-        "humanReview": "not_reviewed",
-        "intent": "events",
-        "market": "Omaha",
-        "marketId": "omaha",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "cityofomaha.org",
-        "place": "Omaha",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Omaha, NE\" official events calendar",
-        "queryFamily": "events",
-        "queryId": "nrq-8f737a397a7b",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "NE",
-        "stateCode": "NE"
-      },
-      "reason": null,
-      "robots": "unknown",
-      "startedAt": "2026-10-02T16:11:33.806801Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 1,
-      "candidateEvidence": {},
-      "candidateUrls": [],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://cityofomaha.org/sitemap.xml",
-          403
-        ],
-        [
-          "https://cityofomaha.org/sitemap_index.xml",
-          403
-        ],
-        [
-          "https://cityofomaha.org/",
-          403
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:11:37.060597Z",
+      "finishedAt": "2026-10-02T16:13:10.730652Z",
       "httpStatus": 200,
       "query": {
         "expectedSourceType": "arcgis",
         "humanReview": "not_reviewed",
         "intent": "arcgis",
-        "market": "Omaha",
-        "marketId": "omaha",
+        "market": "Providence",
+        "marketId": "providence",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -529,17 +46,17 @@
           "blocked_robots"
         ],
         "nextAction": "discover official feeds",
-        "officialDomain": "cityofomaha.org",
-        "place": "Omaha",
+        "officialDomain": "providenceri.gov",
+        "place": "Providence",
         "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "site:cityofomaha.org (FeatureServer OR MapServer) parks events",
+        "query": "site:providenceri.gov (FeatureServer OR MapServer) parks events",
         "queryFamily": "arcgis",
-        "queryId": "nrq-9c597175628f",
+        "queryId": "nrq-013e32d75768",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.67,
@@ -549,12 +66,12 @@
             "structured_family": true
           }
         },
-        "state": "NE",
-        "stateCode": "NE"
+        "state": "RI",
+        "stateCode": "RI"
       },
       "reason": null,
       "robots": "unknown",
-      "startedAt": "2026-10-02T16:11:36.686354Z",
+      "startedAt": "2026-10-02T16:13:10.448397Z",
       "status": "succeeded"
     },
     {
@@ -566,26 +83,26 @@
       "errorType": null,
       "failures": [
         [
-          "https://cityofomaha.org/sitemap.xml",
-          403
+          "https://providenceri.gov/sitemap.xml",
+          406
         ],
         [
-          "https://cityofomaha.org/sitemap_index.xml",
-          403
+          "https://providenceri.gov/sitemap_index.xml",
+          406
         ],
         [
-          "https://cityofomaha.org/",
-          403
+          "https://providenceri.gov/",
+          406
         ]
       ],
-      "finishedAt": "2026-10-02T16:11:36.247716Z",
+      "finishedAt": "2026-10-02T16:13:10.692589Z",
       "httpStatus": 200,
       "query": {
-        "expectedSourceType": "culture",
+        "expectedSourceType": "rss_ics",
         "humanReview": "not_reviewed",
-        "intent": "culture",
-        "market": "Omaha",
-        "marketId": "omaha",
+        "intent": "rss_ics",
+        "market": "Providence",
+        "marketId": "providence",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -598,32 +115,32 @@
           "blocked_robots"
         ],
         "nextAction": "discover official feeds",
-        "officialDomain": "cityofomaha.org",
-        "place": "Omaha",
+        "officialDomain": "providenceri.gov",
+        "place": "Providence",
         "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Omaha, NE\" arts culture museum events official",
-        "queryFamily": "culture",
-        "queryId": "nrq-da7a109e78bc",
+        "query": "\"Providence, RI\" (RSS OR iCalendar OR ICS) events",
+        "queryFamily": "rss_ics",
+        "queryId": "nrq-0361f8353b05",
         "seedPriority": 2,
         "sourceConfidence": {
-          "score": 0.33,
+          "score": 0.67,
           "signals": {
             "existing_coverage": false,
             "official_domain": true,
-            "structured_family": false
+            "structured_family": true
           }
         },
-        "state": "NE",
-        "stateCode": "NE"
+        "state": "RI",
+        "stateCode": "RI"
       },
       "reason": null,
       "robots": "unknown",
-      "startedAt": "2026-10-02T16:11:35.816466Z",
+      "startedAt": "2026-10-02T16:13:10.394397Z",
       "status": "succeeded"
     },
     {
@@ -635,26 +152,26 @@
       "errorType": null,
       "failures": [
         [
-          "https://cityofomaha.org/sitemap.xml",
-          403
+          "https://providenceri.gov/sitemap.xml",
+          406
         ],
         [
-          "https://cityofomaha.org/sitemap_index.xml",
-          403
+          "https://providenceri.gov/sitemap_index.xml",
+          406
         ],
         [
-          "https://cityofomaha.org/",
-          403
+          "https://providenceri.gov/",
+          406
         ]
       ],
-      "finishedAt": "2026-10-02T16:11:35.800608Z",
+      "finishedAt": "2026-10-02T16:13:09.866669Z",
       "httpStatus": 200,
       "query": {
         "expectedSourceType": "trails",
         "humanReview": "not_reviewed",
         "intent": "trails",
-        "market": "Omaha",
-        "marketId": "omaha",
+        "market": "Providence",
+        "marketId": "providence",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -667,17 +184,17 @@
           "blocked_robots"
         ],
         "nextAction": "discover official feeds",
-        "officialDomain": "cityofomaha.org",
-        "place": "Omaha",
+        "officialDomain": "providenceri.gov",
+        "place": "Providence",
         "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Omaha, NE\" trails outdoor recreation official",
+        "query": "\"Providence, RI\" trails outdoor recreation official",
         "queryFamily": "trails",
-        "queryId": "nrq-de1d2f8ec76b",
+        "queryId": "nrq-09414870f95e",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.33,
@@ -687,27 +204,510 @@
             "structured_family": false
           }
         },
-        "state": "NE",
-        "stateCode": "NE"
+        "state": "RI",
+        "stateCode": "RI"
       },
       "reason": null,
       "robots": "unknown",
-      "startedAt": "2026-10-02T16:11:35.273912Z",
+      "startedAt": "2026-10-02T16:13:09.561614Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "candidateEvidence": {},
+      "candidateUrls": [],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://providenceri.gov/sitemap.xml",
+          406
+        ],
+        [
+          "https://providenceri.gov/sitemap_index.xml",
+          406
+        ],
+        [
+          "https://providenceri.gov/",
+          406
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:13:10.448381Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "open_data",
+        "humanReview": "not_reviewed",
+        "intent": "open_data",
+        "market": "Providence",
+        "marketId": "providence",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "providenceri.gov",
+        "place": "Providence",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Providence, RI\" open data portal",
+        "queryFamily": "open_data",
+        "queryId": "nrq-1d897da42187",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "RI",
+        "stateCode": "RI"
+      },
+      "reason": null,
+      "robots": "unknown",
+      "startedAt": "2026-10-02T16:13:10.158707Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "candidateEvidence": {},
+      "candidateUrls": [],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://providenceri.gov/sitemap.xml",
+          406
+        ],
+        [
+          "https://providenceri.gov/sitemap_index.xml",
+          406
+        ],
+        [
+          "https://providenceri.gov/",
+          406
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:13:09.561593Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "events",
+        "humanReview": "not_reviewed",
+        "intent": "events",
+        "market": "Providence",
+        "marketId": "providence",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "providenceri.gov",
+        "place": "Providence",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Providence, RI\" official events calendar",
+        "queryFamily": "events",
+        "queryId": "nrq-2798aa1b71b1",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "RI",
+        "stateCode": "RI"
+      },
+      "reason": null,
+      "robots": "unknown",
+      "startedAt": "2026-10-02T16:13:08.898033Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "candidateEvidence": {},
+      "candidateUrls": [],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://providenceri.gov/sitemap.xml",
+          406
+        ],
+        [
+          "https://providenceri.gov/sitemap_index.xml",
+          406
+        ],
+        [
+          "https://providenceri.gov/",
+          406
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:13:10.158691Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "culture",
+        "humanReview": "not_reviewed",
+        "intent": "culture",
+        "market": "Providence",
+        "marketId": "providence",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "providenceri.gov",
+        "place": "Providence",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Providence, RI\" arts culture museum events official",
+        "queryFamily": "culture",
+        "queryId": "nrq-5aa5f0db88a1",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "RI",
+        "stateCode": "RI"
+      },
+      "reason": null,
+      "robots": "unknown",
+      "startedAt": "2026-10-02T16:13:09.866694Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "candidateEvidence": {},
+      "candidateUrls": [],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://providenceri.gov/sitemap.xml",
+          406
+        ],
+        [
+          "https://providenceri.gov/sitemap_index.xml",
+          406
+        ],
+        [
+          "https://providenceri.gov/",
+          406
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:13:09.827838Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "parks",
+        "humanReview": "not_reviewed",
+        "intent": "parks",
+        "market": "Providence",
+        "marketId": "providence",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "providenceri.gov",
+        "place": "Providence",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Providence, RI\" parks recreation trails official",
+        "queryFamily": "parks",
+        "queryId": "nrq-5d6118317926",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "RI",
+        "stateCode": "RI"
+      },
+      "reason": null,
+      "robots": "unknown",
+      "startedAt": "2026-10-02T16:13:09.536532Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "candidateEvidence": {},
+      "candidateUrls": [],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://providenceri.gov/sitemap.xml",
+          406
+        ],
+        [
+          "https://providenceri.gov/sitemap_index.xml",
+          406
+        ],
+        [
+          "https://providenceri.gov/",
+          406
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:13:09.536502Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "meetings",
+        "humanReview": "not_reviewed",
+        "intent": "meetings",
+        "market": "Providence",
+        "marketId": "providence",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "providenceri.gov",
+        "place": "Providence",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Providence, RI\" public meetings agenda calendar",
+        "queryFamily": "meetings",
+        "queryId": "nrq-6241ca071445",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "RI",
+        "stateCode": "RI"
+      },
+      "reason": null,
+      "robots": "unknown",
+      "startedAt": "2026-10-02T16:13:08.898496Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "candidateEvidence": {},
+      "candidateUrls": [],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://providenceri.gov/sitemap.xml",
+          406
+        ],
+        [
+          "https://providenceri.gov/sitemap_index.xml",
+          406
+        ],
+        [
+          "https://providenceri.gov/",
+          406
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:13:10.394375Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "volunteer",
+        "humanReview": "not_reviewed",
+        "intent": "volunteer",
+        "market": "Providence",
+        "marketId": "providence",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "providenceri.gov",
+        "place": "Providence",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Providence, RI\" volunteer opportunities official",
+        "queryFamily": "volunteer",
+        "queryId": "nrq-930c8c25fdf9",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "RI",
+        "stateCode": "RI"
+      },
+      "reason": null,
+      "robots": "unknown",
+      "startedAt": "2026-10-02T16:13:10.110075Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "candidateEvidence": {},
+      "candidateUrls": [],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://providenceri.gov/sitemap.xml",
+          406
+        ],
+        [
+          "https://providenceri.gov/sitemap_index.xml",
+          406
+        ],
+        [
+          "https://providenceri.gov/",
+          406
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:13:10.110052Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "libraries",
+        "humanReview": "not_reviewed",
+        "intent": "libraries",
+        "market": "Providence",
+        "marketId": "providence",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "providenceri.gov",
+        "place": "Providence",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Providence, RI\" library events calendar",
+        "queryFamily": "libraries",
+        "queryId": "nrq-b48b7646952d",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "RI",
+        "stateCode": "RI"
+      },
+      "reason": null,
+      "robots": "unknown",
+      "startedAt": "2026-10-02T16:13:09.827860Z",
       "status": "succeeded"
     }
   ],
   "schemaVersion": 2,
   "selectedQueryIds": [
-    "nrq-8f737a397a7b",
-    "nrq-3b92acc57bb9",
-    "nrq-831c48d73e84",
-    "nrq-de1d2f8ec76b",
-    "nrq-80f170594fd7",
-    "nrq-da7a109e78bc",
-    "nrq-54536f1cb023",
-    "nrq-1cd59b7a0a67",
-    "nrq-44f78aac93fa",
-    "nrq-9c597175628f"
+    "nrq-2798aa1b71b1",
+    "nrq-6241ca071445",
+    "nrq-5d6118317926",
+    "nrq-09414870f95e",
+    "nrq-b48b7646952d",
+    "nrq-5aa5f0db88a1",
+    "nrq-930c8c25fdf9",
+    "nrq-1d897da42187",
+    "nrq-0361f8353b05",
+    "nrq-013e32d75768"
   ],
   "sourceQueue": "expansion-queues/national-region-search-queue.json",
   "summary": {

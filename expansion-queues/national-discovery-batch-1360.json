@@ -1,0 +1,960 @@
+{
+  "kind": "national-discovery-batch",
+  "limit": 10,
+  "offset": 1360,
+  "publicationState": "research-only",
+  "readOnly": true,
+  "results": [
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.phoenix.gov/calendar.html": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.phoenix.gov/calendar.html",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.phoenix.gov/major-events.html": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.phoenix.gov/major-events.html",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.phoenix.gov/volunteer.html": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.phoenix.gov/volunteer.html",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.phoenix.gov/calendar.html",
+        "https://www.phoenix.gov/major-events.html",
+        "https://www.phoenix.gov/volunteer.html"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://phoenix.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.phoenix.gov/calendar.html",
+          "NameError"
+        ],
+        [
+          "https://www.phoenix.gov/volunteer.html",
+          "NameError"
+        ],
+        [
+          "https://www.phoenix.gov/major-events.html",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:13:22.594001Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "volunteer",
+        "humanReview": "not_reviewed",
+        "intent": "volunteer",
+        "market": "Phoenix",
+        "marketId": "phoenix",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "phoenix.gov",
+        "place": "Phoenix",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Phoenix, AZ\" volunteer opportunities official",
+        "queryFamily": "volunteer",
+        "queryId": "nrq-067a78f3d7c1",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "AZ",
+        "stateCode": "AZ"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:13:20.782397Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.phoenix.gov/calendar.html": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.phoenix.gov/calendar.html",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.phoenix.gov/major-events.html": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.phoenix.gov/major-events.html",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.phoenix.gov/calendar.html",
+        "https://www.phoenix.gov/major-events.html"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://phoenix.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.phoenix.gov/calendar.html",
+          "NameError"
+        ],
+        [
+          "https://www.phoenix.gov/volunteer.html",
+          "NameError"
+        ],
+        [
+          "https://www.phoenix.gov/major-events.html",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:13:24.401677Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "rss_ics",
+        "humanReview": "not_reviewed",
+        "intent": "rss_ics",
+        "market": "Phoenix",
+        "marketId": "phoenix",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "phoenix.gov",
+        "place": "Phoenix",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Phoenix, AZ\" (RSS OR iCalendar OR ICS) events",
+        "queryFamily": "rss_ics",
+        "queryId": "nrq-0ebf0ede7568",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.67,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": true
+          }
+        },
+        "state": "AZ",
+        "stateCode": "AZ"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:13:22.594023Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.phoenix.gov/calendar.html": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.phoenix.gov/calendar.html",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.phoenix.gov/major-events.html": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.phoenix.gov/major-events.html",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.phoenix.gov/volunteer.html": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.phoenix.gov/volunteer.html",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.phoenix.gov/calendar.html",
+        "https://www.phoenix.gov/major-events.html",
+        "https://www.phoenix.gov/volunteer.html"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://phoenix.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.phoenix.gov/calendar.html",
+          "NameError"
+        ],
+        [
+          "https://www.phoenix.gov/volunteer.html",
+          "NameError"
+        ],
+        [
+          "https://www.phoenix.gov/major-events.html",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:13:25.029217Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "arcgis",
+        "humanReview": "not_reviewed",
+        "intent": "arcgis",
+        "market": "Phoenix",
+        "marketId": "phoenix",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "phoenix.gov",
+        "place": "Phoenix",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "site:phoenix.gov (FeatureServer OR MapServer) parks events",
+        "queryFamily": "arcgis",
+        "queryId": "nrq-222d8c5da06b",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.67,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": true
+          }
+        },
+        "state": "AZ",
+        "stateCode": "AZ"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:13:23.131346Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.phoenix.gov/calendar.html": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.phoenix.gov/calendar.html",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.phoenix.gov/major-events.html": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.phoenix.gov/major-events.html",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.phoenix.gov/volunteer.html": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.phoenix.gov/volunteer.html",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.phoenix.gov/calendar.html",
+        "https://www.phoenix.gov/major-events.html",
+        "https://www.phoenix.gov/volunteer.html"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://phoenix.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.phoenix.gov/calendar.html",
+          "NameError"
+        ],
+        [
+          "https://www.phoenix.gov/volunteer.html",
+          "NameError"
+        ],
+        [
+          "https://www.phoenix.gov/major-events.html",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:13:21.265470Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "culture",
+        "humanReview": "not_reviewed",
+        "intent": "culture",
+        "market": "Phoenix",
+        "marketId": "phoenix",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "phoenix.gov",
+        "place": "Phoenix",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Phoenix, AZ\" arts culture museum events official",
+        "queryFamily": "culture",
+        "queryId": "nrq-2b450c4eb6a5",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "AZ",
+        "stateCode": "AZ"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:13:19.443152Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.phoenix.gov/calendar.html": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.phoenix.gov/calendar.html",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.phoenix.gov/major-events.html": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.phoenix.gov/major-events.html",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.phoenix.gov/volunteer.html": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.phoenix.gov/volunteer.html",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.phoenix.gov/calendar.html",
+        "https://www.phoenix.gov/major-events.html",
+        "https://www.phoenix.gov/volunteer.html"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://phoenix.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.phoenix.gov/calendar.html",
+          "NameError"
+        ],
+        [
+          "https://www.phoenix.gov/volunteer.html",
+          "NameError"
+        ],
+        [
+          "https://www.phoenix.gov/major-events.html",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:13:20.782371Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "libraries",
+        "humanReview": "not_reviewed",
+        "intent": "libraries",
+        "market": "Phoenix",
+        "marketId": "phoenix",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "phoenix.gov",
+        "place": "Phoenix",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Phoenix, AZ\" library events calendar",
+        "queryFamily": "libraries",
+        "queryId": "nrq-2c140100d8d5",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "AZ",
+        "stateCode": "AZ"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:13:18.961100Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.phoenix.gov/calendar.html": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.phoenix.gov/calendar.html",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.phoenix.gov/major-events.html": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.phoenix.gov/major-events.html",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.phoenix.gov/calendar.html",
+        "https://www.phoenix.gov/major-events.html"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://phoenix.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.phoenix.gov/calendar.html",
+          "NameError"
+        ],
+        [
+          "https://www.phoenix.gov/volunteer.html",
+          "NameError"
+        ],
+        [
+          "https://www.phoenix.gov/major-events.html",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:13:16.966863Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "meetings",
+        "humanReview": "not_reviewed",
+        "intent": "meetings",
+        "market": "Phoenix",
+        "marketId": "phoenix",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "phoenix.gov",
+        "place": "Phoenix",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Phoenix, AZ\" public meetings agenda calendar",
+        "queryFamily": "meetings",
+        "queryId": "nrq-72a14e8db894",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "AZ",
+        "stateCode": "AZ"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:13:14.576480Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.phoenix.gov/calendar.html": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.phoenix.gov/calendar.html",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.phoenix.gov/major-events.html": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.phoenix.gov/major-events.html",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.phoenix.gov/volunteer.html": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.phoenix.gov/volunteer.html",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.phoenix.gov/calendar.html",
+        "https://www.phoenix.gov/major-events.html",
+        "https://www.phoenix.gov/volunteer.html"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://phoenix.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.phoenix.gov/calendar.html",
+          "NameError"
+        ],
+        [
+          "https://www.phoenix.gov/volunteer.html",
+          "NameError"
+        ],
+        [
+          "https://www.phoenix.gov/major-events.html",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:13:18.961075Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "trails",
+        "humanReview": "not_reviewed",
+        "intent": "trails",
+        "market": "Phoenix",
+        "marketId": "phoenix",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "phoenix.gov",
+        "place": "Phoenix",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Phoenix, AZ\" trails outdoor recreation official",
+        "queryFamily": "trails",
+        "queryId": "nrq-7fd92e943de8",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "AZ",
+        "stateCode": "AZ"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:13:17.015516Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.phoenix.gov/calendar.html": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.phoenix.gov/calendar.html",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.phoenix.gov/major-events.html": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.phoenix.gov/major-events.html",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.phoenix.gov/volunteer.html": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.phoenix.gov/volunteer.html",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.phoenix.gov/calendar.html",
+        "https://www.phoenix.gov/major-events.html",
+        "https://www.phoenix.gov/volunteer.html"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://phoenix.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.phoenix.gov/calendar.html",
+          "NameError"
+        ],
+        [
+          "https://www.phoenix.gov/volunteer.html",
+          "NameError"
+        ],
+        [
+          "https://www.phoenix.gov/major-events.html",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:13:23.131321Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "open_data",
+        "humanReview": "not_reviewed",
+        "intent": "open_data",
+        "market": "Phoenix",
+        "marketId": "phoenix",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "phoenix.gov",
+        "place": "Phoenix",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Phoenix, AZ\" open data portal",
+        "queryFamily": "open_data",
+        "queryId": "nrq-9484fdc64a0b",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "AZ",
+        "stateCode": "AZ"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:13:21.265494Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.phoenix.gov/calendar.html": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.phoenix.gov/calendar.html",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.phoenix.gov/major-events.html": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.phoenix.gov/major-events.html",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.phoenix.gov/calendar.html",
+        "https://www.phoenix.gov/major-events.html"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://phoenix.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.phoenix.gov/calendar.html",
+          "NameError"
+        ],
+        [
+          "https://www.phoenix.gov/volunteer.html",
+          "NameError"
+        ],
+        [
+          "https://www.phoenix.gov/major-events.html",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:13:17.015486Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "events",
+        "humanReview": "not_reviewed",
+        "intent": "events",
+        "market": "Phoenix",
+        "marketId": "phoenix",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "phoenix.gov",
+        "place": "Phoenix",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Phoenix, AZ\" official events calendar",
+        "queryFamily": "events",
+        "queryId": "nrq-a3ad67cd8f09",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "AZ",
+        "stateCode": "AZ"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:13:14.575988Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.phoenix.gov/calendar.html": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.phoenix.gov/calendar.html",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.phoenix.gov/major-events.html": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.phoenix.gov/major-events.html",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.phoenix.gov/volunteer.html": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.phoenix.gov/volunteer.html",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.phoenix.gov/calendar.html",
+        "https://www.phoenix.gov/major-events.html",
+        "https://www.phoenix.gov/volunteer.html"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://phoenix.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.phoenix.gov/calendar.html",
+          "NameError"
+        ],
+        [
+          "https://www.phoenix.gov/volunteer.html",
+          "NameError"
+        ],
+        [
+          "https://www.phoenix.gov/major-events.html",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:13:19.443101Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "parks",
+        "humanReview": "not_reviewed",
+        "intent": "parks",
+        "market": "Phoenix",
+        "marketId": "phoenix",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "phoenix.gov",
+        "place": "Phoenix",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Phoenix, AZ\" parks recreation trails official",
+        "queryFamily": "parks",
+        "queryId": "nrq-cb9093f58fb8",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "AZ",
+        "stateCode": "AZ"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:13:16.966895Z",
+      "status": "succeeded"
+    }
+  ],
+  "schemaVersion": 2,
+  "selectedQueryIds": [
+    "nrq-a3ad67cd8f09",
+    "nrq-72a14e8db894",
+    "nrq-cb9093f58fb8",
+    "nrq-7fd92e943de8",
+    "nrq-2c140100d8d5",
+    "nrq-2b450c4eb6a5",
+    "nrq-067a78f3d7c1",
+    "nrq-9484fdc64a0b",
+    "nrq-0ebf0ede7568",
+    "nrq-222d8c5da06b"
+  ],
+  "sourceQueue": "expansion-queues/national-region-search-queue.json",
+  "summary": {
+    "attempted": 10,
+    "candidateCaptureErrors": null,
+    "candidatesFound": 3,
+    "candidatesNeedingHumanReview": 3,
+    "domainsCrawled": 1,
+    "duplicateUrlsMerged": 0,
+    "failed": 0,
+    "failedRequests": 40,
+    "httpSuccesses": 10,
+    "pagesCrawled": 30,
+    "pagesFetched": 30,
+    "pagesRejected": 40,
+    "rateLimitedRequests": 0,
+    "responses_429": 0,
+    "robots_disallowed": 0,
+    "robots_unknown": 0,
+    "skipped": 0,
+    "succeeded": 10,
+    "succeededWithCandidates": 10,
+    "succeededWithoutCandidates": 0,
+    "timeout_network_failures": 0,
+    "uniqueCandidates": 3,
+    "usefulDiscoveries": 3
+  }
+}
