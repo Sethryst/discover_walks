@@ -1,314 +1,51 @@
 {
   "kind": "national-discovery-batch",
-  "limit": 8,
-  "offset": 1424,
+  "limit": 9,
+  "offset": 1456,
   "publicationState": "research-only",
   "readOnly": true,
   "results": [
     {
       "attempts": 3,
       "candidateEvidence": {
-        "https://slc.gov/": {
+        "https://savannahga.gov/352/Athletics": {
           "confidence": 0.55,
-          "evidenceUrl": "https://slc.gov/",
+          "evidenceUrl": "https://savannahga.gov/352/Athletics",
           "sourceType": "HTML calendar"
-        },
-        "https://www.slc.gov/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.slc.gov/",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.slc.gov/wp-sitemap-users-1.xml": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.slc.gov/wp-sitemap-users-1.xml",
-          "sourceType": "Sitemap"
         }
       },
       "candidateUrls": [
-        "https://slc.gov/",
-        "https://www.slc.gov/",
-        "https://www.slc.gov/wp-sitemap-users-1.xml"
+        "https://savannahga.gov/352/Athletics"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://slc.gov/sitemap_index.xml",
+          "https://savannahga.gov/sitemap_index.xml",
           404
         ],
         [
-          "https://slc.gov/",
+          "https://savannahga.gov/4018/Parklets",
           "NameError"
         ],
         [
-          "https://www.slc.gov/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:16:33.094086Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "culture",
-        "humanReview": "not_reviewed",
-        "intent": "culture",
-        "market": "Salt Lake City",
-        "marketId": "salt-lake",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "slc.gov",
-        "place": "Salt Lake City",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Salt Lake City, UT\" arts culture museum events official",
-        "queryFamily": "culture",
-        "queryId": "nrq-04d5cbc22515",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "UT",
-        "stateCode": "UT"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:16:31.458584Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://slc.gov/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://slc.gov/",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.slc.gov/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.slc.gov/",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.slc.gov/wp-sitemap-users-1.xml": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.slc.gov/wp-sitemap-users-1.xml",
-          "sourceType": "Sitemap"
-        }
-      },
-      "candidateUrls": [
-        "https://slc.gov/",
-        "https://www.slc.gov/",
-        "https://www.slc.gov/wp-sitemap-users-1.xml"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://slc.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://slc.gov/",
+          "https://savannahga.gov/352/Athletics",
           "NameError"
         ],
         [
-          "https://www.slc.gov/",
+          "https://savannahga.gov/915/Park-Tree",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:16:32.857986Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "libraries",
-        "humanReview": "not_reviewed",
-        "intent": "libraries",
-        "market": "Salt Lake City",
-        "marketId": "salt-lake",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "slc.gov",
-        "place": "Salt Lake City",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Salt Lake City, UT\" library events calendar",
-        "queryFamily": "libraries",
-        "queryId": "nrq-10036d2b0e90",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "UT",
-        "stateCode": "UT"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:16:31.322368Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://slc.gov/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://slc.gov/",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.slc.gov/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.slc.gov/",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.slc.gov/wp-sitemap-users-1.xml": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.slc.gov/wp-sitemap-users-1.xml",
-          "sourceType": "Sitemap"
-        }
-      },
-      "candidateUrls": [
-        "https://slc.gov/",
-        "https://www.slc.gov/",
-        "https://www.slc.gov/wp-sitemap-users-1.xml"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://slc.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://slc.gov/",
-          "NameError"
-        ],
-        [
-          "https://www.slc.gov/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:16:31.458562Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "parks",
-        "humanReview": "not_reviewed",
-        "intent": "parks",
-        "market": "Salt Lake City",
-        "marketId": "salt-lake",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "slc.gov",
-        "place": "Salt Lake City",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Salt Lake City, UT\" parks recreation trails official",
-        "queryFamily": "parks",
-        "queryId": "nrq-24e72ab78ba7",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "UT",
-        "stateCode": "UT"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:16:29.781880Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://www.slc.gov/wp-sitemap-users-1.xml": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.slc.gov/wp-sitemap-users-1.xml",
-          "sourceType": "Sitemap"
-        }
-      },
-      "candidateUrls": [
-        "https://www.slc.gov/wp-sitemap-users-1.xml"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://slc.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://slc.gov/",
-          "NameError"
-        ],
-        [
-          "https://www.slc.gov/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:16:29.787934Z",
+      "finishedAt": "2026-10-02T16:18:37.308664Z",
       "httpStatus": 200,
       "query": {
         "expectedSourceType": "events",
         "humanReview": "not_reviewed",
         "intent": "events",
-        "market": "Salt Lake City",
-        "marketId": "salt-lake",
+        "market": "Savannah",
+        "marketId": "savannah",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -320,18 +57,18 @@
           "stale_calendar",
           "blocked_robots"
         ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "slc.gov",
-        "place": "Salt Lake City",
+        "nextAction": "discover culture and tourism",
+        "officialDomain": "savannahga.gov",
+        "place": "Savannah",
         "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Salt Lake City, UT\" official events calendar",
+        "query": "\"Savannah, GA\" official events calendar",
         "queryFamily": "events",
-        "queryId": "nrq-33eed40af73c",
+        "queryId": "nrq-086c139134a6",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.33,
@@ -341,51 +78,67 @@
             "structured_family": false
           }
         },
-        "state": "UT",
-        "stateCode": "UT"
+        "state": "GA",
+        "stateCode": "GA"
       },
       "reason": null,
       "robots": "allowed",
-      "startedAt": "2026-10-02T16:16:27.511840Z",
+      "startedAt": "2026-10-02T16:18:31.665723Z",
       "status": "succeeded"
     },
     {
       "attempts": 3,
       "candidateEvidence": {
-        "https://www.slc.gov/wp-sitemap-users-1.xml": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.slc.gov/wp-sitemap-users-1.xml",
-          "sourceType": "Sitemap"
+        "https://savannahga.gov/352/Athletics": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://savannahga.gov/352/Athletics",
+          "sourceType": "HTML calendar"
+        },
+        "https://savannahga.gov/4018/Parklets": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://savannahga.gov/4018/Parklets",
+          "sourceType": "HTML calendar"
+        },
+        "https://savannahga.gov/915/Park-Tree": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://savannahga.gov/915/Park-Tree",
+          "sourceType": "HTML calendar"
         }
       },
       "candidateUrls": [
-        "https://www.slc.gov/wp-sitemap-users-1.xml"
+        "https://savannahga.gov/352/Athletics",
+        "https://savannahga.gov/4018/Parklets",
+        "https://savannahga.gov/915/Park-Tree"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://slc.gov/sitemap_index.xml",
+          "https://savannahga.gov/sitemap_index.xml",
           404
         ],
         [
-          "https://slc.gov/",
+          "https://savannahga.gov/4018/Parklets",
           "NameError"
         ],
         [
-          "https://www.slc.gov/",
+          "https://savannahga.gov/352/Athletics",
+          "NameError"
+        ],
+        [
+          "https://savannahga.gov/915/Park-Tree",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:16:29.781846Z",
+      "finishedAt": "2026-10-02T16:18:45.503077Z",
       "httpStatus": 200,
       "query": {
-        "expectedSourceType": "meetings",
+        "expectedSourceType": "culture",
         "humanReview": "not_reviewed",
-        "intent": "meetings",
-        "market": "Salt Lake City",
-        "marketId": "salt-lake",
+        "intent": "culture",
+        "market": "Savannah",
+        "marketId": "savannah",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -397,18 +150,18 @@
           "stale_calendar",
           "blocked_robots"
         ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "slc.gov",
-        "place": "Salt Lake City",
+        "nextAction": "discover culture and tourism",
+        "officialDomain": "savannahga.gov",
+        "place": "Savannah",
         "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Salt Lake City, UT\" public meetings agenda calendar",
-        "queryFamily": "meetings",
-        "queryId": "nrq-626ad8b109a4",
+        "query": "\"Savannah, GA\" arts culture museum events official",
+        "queryFamily": "culture",
+        "queryId": "nrq-25f4446d3c1d",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.33,
@@ -418,152 +171,67 @@
             "structured_family": false
           }
         },
-        "state": "UT",
-        "stateCode": "UT"
+        "state": "GA",
+        "stateCode": "GA"
       },
       "reason": null,
       "robots": "allowed",
-      "startedAt": "2026-10-02T16:16:27.512300Z",
+      "startedAt": "2026-10-02T16:18:41.418372Z",
       "status": "succeeded"
     },
     {
       "attempts": 3,
       "candidateEvidence": {
-        "https://slc.gov/": {
+        "https://savannahga.gov/352/Athletics": {
           "confidence": 0.55,
-          "evidenceUrl": "https://slc.gov/",
+          "evidenceUrl": "https://savannahga.gov/352/Athletics",
           "sourceType": "HTML calendar"
         },
-        "https://www.slc.gov/": {
+        "https://savannahga.gov/4018/Parklets": {
           "confidence": 0.55,
-          "evidenceUrl": "https://www.slc.gov/",
+          "evidenceUrl": "https://savannahga.gov/4018/Parklets",
           "sourceType": "HTML calendar"
         },
-        "https://www.slc.gov/wp-sitemap-users-1.xml": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.slc.gov/wp-sitemap-users-1.xml",
-          "sourceType": "Sitemap"
+        "https://savannahga.gov/915/Park-Tree": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://savannahga.gov/915/Park-Tree",
+          "sourceType": "HTML calendar"
         }
       },
       "candidateUrls": [
-        "https://slc.gov/",
-        "https://www.slc.gov/",
-        "https://www.slc.gov/wp-sitemap-users-1.xml"
+        "https://savannahga.gov/352/Athletics",
+        "https://savannahga.gov/4018/Parklets",
+        "https://savannahga.gov/915/Park-Tree"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://slc.gov/sitemap_index.xml",
+          "https://savannahga.gov/sitemap_index.xml",
           404
         ],
         [
-          "https://slc.gov/",
+          "https://savannahga.gov/4018/Parklets",
           "NameError"
         ],
         [
-          "https://www.slc.gov/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:16:31.322344Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "trails",
-        "humanReview": "not_reviewed",
-        "intent": "trails",
-        "market": "Salt Lake City",
-        "marketId": "salt-lake",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "slc.gov",
-        "place": "Salt Lake City",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Salt Lake City, UT\" trails outdoor recreation official",
-        "queryFamily": "trails",
-        "queryId": "nrq-7a3a986eca18",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "UT",
-        "stateCode": "UT"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:16:29.787955Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://slc.gov/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://slc.gov/",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.slc.gov/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.slc.gov/",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.slc.gov/wp-sitemap-users-1.xml": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.slc.gov/wp-sitemap-users-1.xml",
-          "sourceType": "Sitemap"
-        }
-      },
-      "candidateUrls": [
-        "https://slc.gov/",
-        "https://www.slc.gov/",
-        "https://www.slc.gov/wp-sitemap-users-1.xml"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://slc.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://slc.gov/",
+          "https://savannahga.gov/352/Athletics",
           "NameError"
         ],
         [
-          "https://www.slc.gov/",
+          "https://savannahga.gov/915/Park-Tree",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:16:34.580674Z",
+      "finishedAt": "2026-10-02T16:18:49.516078Z",
       "httpStatus": 200,
       "query": {
         "expectedSourceType": "open_data",
         "humanReview": "not_reviewed",
         "intent": "open_data",
-        "market": "Salt Lake City",
-        "marketId": "salt-lake",
+        "market": "Savannah",
+        "marketId": "savannah",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -575,18 +243,18 @@
           "stale_calendar",
           "blocked_robots"
         ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "slc.gov",
-        "place": "Salt Lake City",
+        "nextAction": "discover culture and tourism",
+        "officialDomain": "savannahga.gov",
+        "place": "Savannah",
         "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Salt Lake City, UT\" open data portal",
+        "query": "\"Savannah, GA\" open data portal",
         "queryFamily": "open_data",
-        "queryId": "nrq-91e2782ac29f",
+        "queryId": "nrq-457af70a0bd4",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.33,
@@ -596,63 +264,67 @@
             "structured_family": false
           }
         },
-        "state": "UT",
-        "stateCode": "UT"
+        "state": "GA",
+        "stateCode": "GA"
       },
       "reason": null,
       "robots": "allowed",
-      "startedAt": "2026-10-02T16:16:33.094107Z",
+      "startedAt": "2026-10-02T16:18:45.503101Z",
       "status": "succeeded"
     },
     {
       "attempts": 3,
       "candidateEvidence": {
-        "https://slc.gov/": {
+        "https://savannahga.gov/352/Athletics": {
           "confidence": 0.55,
-          "evidenceUrl": "https://slc.gov/",
+          "evidenceUrl": "https://savannahga.gov/352/Athletics",
           "sourceType": "HTML calendar"
         },
-        "https://www.slc.gov/": {
+        "https://savannahga.gov/4018/Parklets": {
           "confidence": 0.55,
-          "evidenceUrl": "https://www.slc.gov/",
+          "evidenceUrl": "https://savannahga.gov/4018/Parklets",
           "sourceType": "HTML calendar"
         },
-        "https://www.slc.gov/wp-sitemap-users-1.xml": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.slc.gov/wp-sitemap-users-1.xml",
-          "sourceType": "Sitemap"
+        "https://savannahga.gov/915/Park-Tree": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://savannahga.gov/915/Park-Tree",
+          "sourceType": "HTML calendar"
         }
       },
       "candidateUrls": [
-        "https://slc.gov/",
-        "https://www.slc.gov/",
-        "https://www.slc.gov/wp-sitemap-users-1.xml"
+        "https://savannahga.gov/352/Athletics",
+        "https://savannahga.gov/4018/Parklets",
+        "https://savannahga.gov/915/Park-Tree"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://slc.gov/sitemap_index.xml",
+          "https://savannahga.gov/sitemap_index.xml",
           404
         ],
         [
-          "https://slc.gov/",
+          "https://savannahga.gov/4018/Parklets",
           "NameError"
         ],
         [
-          "https://www.slc.gov/",
+          "https://savannahga.gov/352/Athletics",
+          "NameError"
+        ],
+        [
+          "https://savannahga.gov/915/Park-Tree",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:16:34.387312Z",
+      "finishedAt": "2026-10-02T16:18:41.210428Z",
       "httpStatus": 200,
       "query": {
-        "expectedSourceType": "volunteer",
+        "expectedSourceType": "parks",
         "humanReview": "not_reviewed",
-        "intent": "volunteer",
-        "market": "Salt Lake City",
-        "marketId": "salt-lake",
+        "intent": "parks",
+        "market": "Savannah",
+        "marketId": "savannah",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -664,18 +336,18 @@
           "stale_calendar",
           "blocked_robots"
         ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "slc.gov",
-        "place": "Salt Lake City",
+        "nextAction": "discover culture and tourism",
+        "officialDomain": "savannahga.gov",
+        "place": "Savannah",
         "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Salt Lake City, UT\" volunteer opportunities official",
-        "queryFamily": "volunteer",
-        "queryId": "nrq-a8efc696a8b4",
+        "query": "\"Savannah, GA\" parks recreation trails official",
+        "queryFamily": "parks",
+        "queryId": "nrq-656847ee78b9",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.33,
@@ -685,47 +357,489 @@
             "structured_family": false
           }
         },
-        "state": "UT",
-        "stateCode": "UT"
+        "state": "GA",
+        "stateCode": "GA"
       },
       "reason": null,
       "robots": "allowed",
-      "startedAt": "2026-10-02T16:16:32.858023Z",
+      "startedAt": "2026-10-02T16:18:37.246807Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://savannahga.gov/352/Athletics": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://savannahga.gov/352/Athletics",
+          "sourceType": "HTML calendar"
+        },
+        "https://savannahga.gov/4018/Parklets": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://savannahga.gov/4018/Parklets",
+          "sourceType": "HTML calendar"
+        },
+        "https://savannahga.gov/915/Park-Tree": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://savannahga.gov/915/Park-Tree",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://savannahga.gov/352/Athletics",
+        "https://savannahga.gov/4018/Parklets",
+        "https://savannahga.gov/915/Park-Tree"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://savannahga.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://savannahga.gov/4018/Parklets",
+          "NameError"
+        ],
+        [
+          "https://savannahga.gov/352/Athletics",
+          "NameError"
+        ],
+        [
+          "https://savannahga.gov/915/Park-Tree",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:18:41.418351Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "trails",
+        "humanReview": "not_reviewed",
+        "intent": "trails",
+        "market": "Savannah",
+        "marketId": "savannah",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover culture and tourism",
+        "officialDomain": "savannahga.gov",
+        "place": "Savannah",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Savannah, GA\" trails outdoor recreation official",
+        "queryFamily": "trails",
+        "queryId": "nrq-678ca8826f60",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "GA",
+        "stateCode": "GA"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:18:37.308684Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://savannahga.gov/352/Athletics": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://savannahga.gov/352/Athletics",
+          "sourceType": "HTML calendar"
+        },
+        "https://savannahga.gov/4018/Parklets": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://savannahga.gov/4018/Parklets",
+          "sourceType": "HTML calendar"
+        },
+        "https://savannahga.gov/915/Park-Tree": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://savannahga.gov/915/Park-Tree",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://savannahga.gov/352/Athletics",
+        "https://savannahga.gov/4018/Parklets",
+        "https://savannahga.gov/915/Park-Tree"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://savannahga.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://savannahga.gov/4018/Parklets",
+          "NameError"
+        ],
+        [
+          "https://savannahga.gov/352/Athletics",
+          "NameError"
+        ],
+        [
+          "https://savannahga.gov/915/Park-Tree",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:18:45.297397Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "libraries",
+        "humanReview": "not_reviewed",
+        "intent": "libraries",
+        "market": "Savannah",
+        "marketId": "savannah",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover culture and tourism",
+        "officialDomain": "savannahga.gov",
+        "place": "Savannah",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Savannah, GA\" library events calendar",
+        "queryFamily": "libraries",
+        "queryId": "nrq-6cc4832c74c3",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "GA",
+        "stateCode": "GA"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:18:41.210450Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://savannahga.gov/352/Athletics": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://savannahga.gov/352/Athletics",
+          "sourceType": "HTML calendar"
+        },
+        "https://savannahga.gov/4018/Parklets": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://savannahga.gov/4018/Parklets",
+          "sourceType": "HTML calendar"
+        },
+        "https://savannahga.gov/915/Park-Tree": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://savannahga.gov/915/Park-Tree",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://savannahga.gov/352/Athletics",
+        "https://savannahga.gov/4018/Parklets",
+        "https://savannahga.gov/915/Park-Tree"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://savannahga.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://savannahga.gov/4018/Parklets",
+          "NameError"
+        ],
+        [
+          "https://savannahga.gov/352/Athletics",
+          "NameError"
+        ],
+        [
+          "https://savannahga.gov/915/Park-Tree",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:18:49.098805Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "volunteer",
+        "humanReview": "not_reviewed",
+        "intent": "volunteer",
+        "market": "Savannah",
+        "marketId": "savannah",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover culture and tourism",
+        "officialDomain": "savannahga.gov",
+        "place": "Savannah",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Savannah, GA\" volunteer opportunities official",
+        "queryFamily": "volunteer",
+        "queryId": "nrq-d2a2bc546b72",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "GA",
+        "stateCode": "GA"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:18:45.297421Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://savannahga.gov/352/Athletics": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://savannahga.gov/352/Athletics",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://savannahga.gov/352/Athletics"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://savannahga.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://savannahga.gov/4018/Parklets",
+          "NameError"
+        ],
+        [
+          "https://savannahga.gov/352/Athletics",
+          "NameError"
+        ],
+        [
+          "https://savannahga.gov/915/Park-Tree",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:18:37.246775Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "meetings",
+        "humanReview": "not_reviewed",
+        "intent": "meetings",
+        "market": "Savannah",
+        "marketId": "savannah",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover culture and tourism",
+        "officialDomain": "savannahga.gov",
+        "place": "Savannah",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Savannah, GA\" public meetings agenda calendar",
+        "queryFamily": "meetings",
+        "queryId": "nrq-d66e6cb815ae",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "GA",
+        "stateCode": "GA"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:18:31.666185Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://savannahga.gov/352/Athletics": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://savannahga.gov/352/Athletics",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://savannahga.gov/352/Athletics"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://savannahga.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://savannahga.gov/4018/Parklets",
+          "NameError"
+        ],
+        [
+          "https://savannahga.gov/352/Athletics",
+          "NameError"
+        ],
+        [
+          "https://savannahga.gov/915/Park-Tree",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:18:52.792055Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "rss_ics",
+        "humanReview": "not_reviewed",
+        "intent": "rss_ics",
+        "market": "Savannah",
+        "marketId": "savannah",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover culture and tourism",
+        "officialDomain": "savannahga.gov",
+        "place": "Savannah",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Savannah, GA\" (RSS OR iCalendar OR ICS) events",
+        "queryFamily": "rss_ics",
+        "queryId": "nrq-dc51e7d8e307",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.67,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": true
+          }
+        },
+        "state": "GA",
+        "stateCode": "GA"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:18:49.098829Z",
       "status": "succeeded"
     }
   ],
   "schemaVersion": 2,
   "selectedQueryIds": [
-    "nrq-33eed40af73c",
-    "nrq-626ad8b109a4",
-    "nrq-24e72ab78ba7",
-    "nrq-7a3a986eca18",
-    "nrq-10036d2b0e90",
-    "nrq-04d5cbc22515",
-    "nrq-a8efc696a8b4",
-    "nrq-91e2782ac29f"
+    "nrq-086c139134a6",
+    "nrq-d66e6cb815ae",
+    "nrq-656847ee78b9",
+    "nrq-678ca8826f60",
+    "nrq-6cc4832c74c3",
+    "nrq-25f4446d3c1d",
+    "nrq-d2a2bc546b72",
+    "nrq-457af70a0bd4",
+    "nrq-dc51e7d8e307"
   ],
   "sourceQueue": "expansion-queues/national-region-search-queue.json",
   "summary": {
-    "attempted": 8,
+    "attempted": 9,
     "candidateCaptureErrors": null,
     "candidatesFound": 3,
     "candidatesNeedingHumanReview": 3,
     "domainsCrawled": 1,
     "duplicateUrlsMerged": 0,
     "failed": 0,
-    "failedRequests": 24,
-    "httpSuccesses": 8,
-    "pagesCrawled": 24,
-    "pagesFetched": 24,
-    "pagesRejected": 24,
+    "failedRequests": 36,
+    "httpSuccesses": 9,
+    "pagesCrawled": 27,
+    "pagesFetched": 27,
+    "pagesRejected": 36,
     "rateLimitedRequests": 0,
     "responses_429": 0,
     "robots_disallowed": 0,
     "robots_unknown": 0,
     "skipped": 0,
-    "succeeded": 8,
-    "succeededWithCandidates": 8,
+    "succeeded": 9,
+    "succeededWithCandidates": 9,
     "succeededWithoutCandidates": 0,
     "timeout_network_failures": 0,
     "uniqueCandidates": 3,

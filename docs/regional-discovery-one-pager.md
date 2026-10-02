@@ -94,6 +94,8 @@ These are observed official paths from the recent batches or direct domain audit
 | `providenceri.gov` | Batch offset 1376 | Ten bounded queries completed with no candidate source yield. | Keep as a negative discovery result. |
 | `durhamnc.gov` | `/Calendar.aspx?EID=10435...`, `/common/modules/iCalendar/iCalendar.aspx?feed=calendar&eventID=10435` | Official CivicEngage detail and iCalendar endpoint returned UID `10435`, explicit `America/New_York` timestamps, location, description, and official detail URL. | Research-ready ICS candidate; replay fixture and adapter test pass. Hold activation pending terms/license and regional release evidence. |
 | `slc.gov` | `/events/`, `/events/feed/` | Official Salt Lake City events page links a non-empty RSS feed; direct audit returned event titles, official detail URLs, and publication timestamps. The separate `/calendar/feed/` was empty. | Research-ready RSS candidate; fixture and adapter test pass. Use only `/events/feed/`; hold activation pending terms/license and regional release evidence. |
+| `chulavistaca.gov` | Batch offset 1440 | Eight bounded queries completed with no candidate source yield. | Keep as a negative discovery result. |
+| `savannahga.gov` | `/352/Athletics`, `/4018/Parklets`, `/915/Park-Tree` | Official pages returned HTTP 200 but were informational department pages with no dated event payload or JSON-LD Event. | Reject for event ingestion; retain as official outlink context only. |
 
 ## Ingestion pathway decision tree
 
