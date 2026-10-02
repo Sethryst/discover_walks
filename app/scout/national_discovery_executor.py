@@ -40,6 +40,7 @@ PATH_HINTS = ("event", "calendar", "meeting", "park", "recreation", "library", "
 EVENT_FAMILIES = {"events", "meetings", "rss_ics", "json_ld", "civicplus", "granicus", "legistar"}
 EVENT_PATH_HINTS = ("event", "calendar", "meeting", "agenda", "rss", "feed", "ics", "api")
 NON_EVENT_PATH_HINTS = ("parking", "feedback", "contact", "login", "privacy", "accessibility")
+FEED_PATH_HINTS = (".rss", "/rss", "/feed", ".ics", "/ical", "icalendar")
 PLATFORM_SUFFIXES = (".arcgis.com", ".govdelivery.com", ".civicplus.com", ".granicus.com")
 QUERY_FAMILY_PATHS = {
     "events": ("/events", "/calendar"), "meetings": ("/meetings", "/calendar"),
@@ -328,7 +329,15 @@ class DiscoveryExecutor:
                 parser = _LinkParser(); parser.feed(body)
                 for raw in parser.links:
                     child = urljoin(url, raw); child = urlunsplit((urlsplit(child).scheme, urlsplit(child).netloc, urlsplit(child).path, urlsplit(child).query, ""))
-                    if child.startswith("https://") and child not in seen: queue.append(child)
+                    if child.startswith("https://") and child not in seen:
+                        child_clean = canonical_candidate_url(child)
+                        child_path = urlsplit(child).path.lower()
+                        child_host = (urlsplit(child).hostname or "").lower()
+                        bounded_host = child_host == domain or child_host.endswith("." + domain) or any(child_host.endswith(s) for s in PLATFORM_SUFFIXES)
+                        if child_clean and bounded_host and any(marker in child_path for marker in FEED_PATH_HINTS) and family_relevant(child_clean, family, machine_readable=True):
+                            candidates.add(child_clean)
+                            evidence[child_clean] = {"evidenceUrl": url, "sourceType": classify_candidate(child_clean, "", ""), "confidence": 0.7}
+                        queue.append(child)
             except HTTPError as exc: statuses.append((url, 429 if exc.code == 429 else exc.code))
             except Exception as exc: statuses.append((url, type(exc).__name__))
         return {"status": 200, "robots": robots, "urls": sorted(candidates), "evidence": evidence, "attempts": len(seen), "crawlStatus": "completed" if seen else "failed", "failures": statuses}
