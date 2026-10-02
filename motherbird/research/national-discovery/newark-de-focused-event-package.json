@@ -1,0 +1,76 @@
+{
+  "active": false,
+  "activeCandidates": [],
+  "candidates": [
+    {
+      "category": "events",
+      "confidence": 0.95,
+      "crawl": {
+        "crawlStatus": "completed",
+        "crawlTimestamp": "2026-10-02T18:00:00Z",
+        "failureReason": null,
+        "httpStatus": 200,
+        "robotsDecision": "allowed"
+      },
+      "dataType": "ICS/iCalendar",
+      "evidenceUrls": [
+        "https://newarkde.gov/Calendar.aspx",
+        "https://newarkde.gov/Calendar.aspx?EID=4894&month=10&year=2026&day=2&calType=0",
+        "https://newarkde.gov/common/modules/iCalendar/iCalendar.aspx?feed=calendar&eventID=4894"
+      ],
+      "id": "national-source-ae34b2dd4d4db79d",
+      "markets": [
+        "Newark, Delaware"
+      ],
+      "originatingOfficialDomains": [
+        "newarkde.gov"
+      ],
+      "originatingSeed": "expansion-queues/national-region-seeds.csv",
+      "publicationState": "research-only",
+      "publisher": "City of Newark Delaware Official Calendar",
+      "queryContext": [
+        {
+          "market": "Newark",
+          "officialDomain": "newarkde.gov",
+          "queryFamily": "events",
+          "queryId": "nrq-db40c15230a1",
+          "seed": "expansion-queues/national-region-seeds.csv"
+        }
+      ],
+      "queryFamilies": [
+        "events",
+        "rss_ics"
+      ],
+      "queryIds": [
+        "nrq-db40c15230a1"
+      ],
+      "researchOnly": true,
+      "reviewState": "needs_human_review",
+      "scoreBreakdown": {
+        "explicit_timezone_location": 0.15,
+        "official_detail_page": 0.3,
+        "reachable_ics": 0.35,
+        "stable_uid": 0.15
+      },
+      "url": "https://newarkde.gov/common/modules/iCalendar/iCalendar.aspx?feed=calendar&eventID=4894"
+    }
+  ],
+  "errors": [],
+  "generatedAt": "2026-10-02T16:28:43.008126Z",
+  "kind": "national-discovery-candidate-package",
+  "publicationState": "research-only",
+  "runtimeLoader": "not-consumed; human promotion required",
+  "schemaVersion": 1,
+  "sourceArtifacts": [
+    "expansion-queues/newark-de-focused-event-capture.json",
+    "expansion-queues/national-region-search-queue.json"
+  ],
+  "summary": {
+    "duplicateUrlsMerged": 0,
+    "excluded": 0,
+    "needsHumanReview": 1,
+    "rejectedInvalid": 0,
+    "researchCandidates": 1,
+    "stagedPackageRecords": 1
+  }
+}

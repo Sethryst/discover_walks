@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 2,
+  "kind": "national-candidate-capture",
+  "readOnly": true,
+  "publicationState": "research-only",
+  "generatedAt": "2026-10-02T18:00:00Z",
+  "candidates": [{
+    "canonicalUrl": "https://newarkde.gov/common/modules/iCalendar/iCalendar.aspx?feed=calendar&eventID=4894",
+    "confidence": 0.95,
+    "coverageScope": "newark-de",
+    "crawlStatus": "completed",
+    "crawlTimestamp": "2026-10-02T18:00:00Z",
+    "discoveryEvidence": "Official Newark CivicEngage detail exposed a reachable iCalendar endpoint with UID 4894, explicit America/New_York timestamps, location, and council meeting description.",
+    "evidenceUrls": ["https://newarkde.gov/Calendar.aspx", "https://newarkde.gov/Calendar.aspx?EID=4894&month=10&year=2026&day=2&calType=0", "https://newarkde.gov/common/modules/iCalendar/iCalendar.aspx?feed=calendar&eventID=4894"],
+    "failureReason": null,
+    "httpStatus": 200,
+    "market": "Newark, Delaware",
+    "markets": ["Newark, Delaware"],
+    "needsHumanReview": true,
+    "originatingOfficialDomain": "newarkde.gov",
+    "originatingSeed": "expansion-queues/national-region-seeds.csv",
+    "place": "Newark",
+    "providerName": "City of Newark Delaware Official Calendar",
+    "queryId": "nrq-db40c15230a1",
+    "queryIds": ["nrq-db40c15230a1"],
+    "queryFamilies": ["events", "rss_ics"],
+    "robotsDecision": "allowed",
+    "scoreBreakdown": {"official_detail_page": 0.3, "reachable_ics": 0.35, "stable_uid": 0.15, "explicit_timezone_location": 0.15},
+    "sourceType": "ICS/iCalendar",
+    "sourceUrl": "https://newarkde.gov/common/modules/iCalendar/iCalendar.aspx?feed=calendar&eventID=4894"
+  }],
+  "negativeDiscoveries": []
+}

@@ -100,6 +100,7 @@ These are observed official paths from the recent batches or direct domain audit
 | `tucsonaz.gov` | `/Events-directory`, `/Departments/Parks-and-Recreation` | Official event-adjacent routes were discovered, but direct audits returned HTTP 403. | Hold as access-restricted evidence; no event records promoted. |
 | `nps.gov` | `/`, `/sitemap/tours.xml`, `/sitemap/trails.xml` | Official homepage and tour/trail sitemaps returned HTTP 200 but do not constitute event records or a validated events feed. | Retain as discovery context only; do not ingest as event sources. |
 | `hartfordct.gov` | `/Events-directory`, `/Residents/Library`, `/Residents/Venues/Parker-Memorial` | Queue values contained leading whitespace and were normalized safely; direct audits of event/library routes returned HTTP 403. | Hold as access-restricted evidence; no event records promoted. |
+| `newarkde.gov` | `/Calendar.aspx?EID=4894...`, `/common/modules/iCalendar/iCalendar.aspx?feed=calendar&eventID=4894` | Official CivicEngage detail and iCalendar endpoint returned UID `4894`, explicit `America/New_York` timestamps, council meeting location, and official detail URL. | Research-ready ICS candidate; fixture and adapter test pass. Hold activation pending terms/license and regional release evidence. |
 
 ## Ingestion pathway decision tree
 

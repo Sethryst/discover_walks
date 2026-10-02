@@ -1,238 +1,58 @@
 {
   "kind": "national-discovery-batch",
-  "limit": 8,
-  "offset": 1520,
+  "limit": 10,
+  "offset": 1552,
   "publicationState": "research-only",
   "readOnly": true,
   "results": [
     {
       "attempts": 3,
       "candidateEvidence": {
-        "https://www.hartfordct.gov/Events-directory": {
+        "https://newarkde.gov/750/Events": {
           "confidence": 0.55,
-          "evidenceUrl": "https://www.hartfordct.gov/Events-directory",
+          "evidenceUrl": "https://newarkde.gov/750/Events",
           "sourceType": "HTML calendar"
         },
-        "https://www.hartfordct.gov/Residents/Library": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.hartfordct.gov/Residents/Library",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial",
+        "https://newarkde.gov/Calendar.aspx": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://newarkde.gov/Calendar.aspx",
           "sourceType": "HTML calendar"
         }
       },
       "candidateUrls": [
-        "https://www.hartfordct.gov/Events-directory",
-        "https://www.hartfordct.gov/Residents/Library",
-        "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial"
+        "https://newarkde.gov/750/Events",
+        "https://newarkde.gov/Calendar.aspx"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://hartfordct.gov/sitemap_index.xml",
+          "https://newarkde.gov/sitemap_index.xml",
           404
         ],
         [
-          "https://www.hartfordct.gov/Events-directory",
+          "https://newarkde.gov/80/Parking",
           "NameError"
         ],
         [
-          "https://www.hartfordct.gov/Residents/Library",
+          "https://newarkde.gov/750/Events",
           "NameError"
         ],
         [
-          "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:25:21.777233Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "volunteer",
-        "humanReview": "not_reviewed",
-        "intent": "volunteer",
-        "market": "Hartford",
-        "marketId": "hartford",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": " Hartfordct.gov",
-        "place": "Hartford",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Hartford, CT\" volunteer opportunities official",
-        "queryFamily": "volunteer",
-        "queryId": "nrq-066d01458305",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.0,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": false,
-            "structured_family": false
-          }
-        },
-        "state": "CT",
-        "stateCode": "CT"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:25:20.565426Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://www.hartfordct.gov/Events-directory": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.hartfordct.gov/Events-directory",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.hartfordct.gov/Residents/Library": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.hartfordct.gov/Residents/Library",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://www.hartfordct.gov/Events-directory",
-        "https://www.hartfordct.gov/Residents/Library",
-        "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://hartfordct.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://www.hartfordct.gov/Events-directory",
-          "NameError"
-        ],
-        [
-          "https://www.hartfordct.gov/Residents/Library",
-          "NameError"
-        ],
-        [
-          "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial",
+          "https://newarkde.gov/Calendar.aspx",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:25:19.247849Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "parks",
-        "humanReview": "not_reviewed",
-        "intent": "parks",
-        "market": "Hartford",
-        "marketId": "hartford",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": " Hartfordct.gov",
-        "place": "Hartford",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Hartford, CT\" parks recreation trails official",
-        "queryFamily": "parks",
-        "queryId": "nrq-28f35f1dfaa5",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.0,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": false,
-            "structured_family": false
-          }
-        },
-        "state": "CT",
-        "stateCode": "CT"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:25:17.698622Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://www.hartfordct.gov/Events-directory": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.hartfordct.gov/Events-directory",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://www.hartfordct.gov/Events-directory"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://hartfordct.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://www.hartfordct.gov/Events-directory",
-          "NameError"
-        ],
-        [
-          "https://www.hartfordct.gov/Residents/Library",
-          "NameError"
-        ],
-        [
-          "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:25:17.698590Z",
+      "finishedAt": "2026-10-02T16:27:25.412470Z",
       "httpStatus": 200,
       "query": {
         "expectedSourceType": "meetings",
         "humanReview": "not_reviewed",
         "intent": "meetings",
-        "market": "Hartford",
-        "marketId": "hartford",
-        "marketPriority": 2,
+        "market": "Newark",
+        "marketId": "newark-delaware",
+        "marketPriority": 3,
         "negativeDiscoveryCodes": [
           "not_official",
           "duplicate_coverage",
@@ -243,275 +63,83 @@
           "stale_calendar",
           "blocked_robots"
         ],
-        "nextAction": "discover official feeds",
-        "officialDomain": " Hartfordct.gov",
-        "place": "Hartford",
-        "placeType": "city",
+        "nextAction": "discover university and civic feeds",
+        "officialDomain": "newarkde.gov",
+        "place": "Newark",
+        "placeType": "university_town",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Hartford, CT\" public meetings agenda calendar",
+        "query": "\"Newark, DE\" public meetings agenda calendar",
         "queryFamily": "meetings",
-        "queryId": "nrq-2c0e897bc68d",
+        "queryId": "nrq-1784bbf608e8",
         "seedPriority": 2,
         "sourceConfidence": {
-          "score": 0.0,
+          "score": 0.33,
           "signals": {
             "existing_coverage": false,
-            "official_domain": false,
+            "official_domain": true,
             "structured_family": false
           }
         },
-        "state": "CT",
-        "stateCode": "CT"
+        "state": "DE",
+        "stateCode": "DE"
       },
       "reason": null,
       "robots": "allowed",
-      "startedAt": "2026-10-02T16:25:14.615426Z",
+      "startedAt": "2026-10-02T16:27:19.850746Z",
       "status": "succeeded"
     },
     {
       "attempts": 3,
       "candidateEvidence": {
-        "https://www.hartfordct.gov/Events-directory": {
+        "https://newarkde.gov/750/Events": {
           "confidence": 0.55,
-          "evidenceUrl": "https://www.hartfordct.gov/Events-directory",
+          "evidenceUrl": "https://newarkde.gov/750/Events",
           "sourceType": "HTML calendar"
         },
-        "https://www.hartfordct.gov/Residents/Library": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.hartfordct.gov/Residents/Library",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial",
+        "https://newarkde.gov/Calendar.aspx": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://newarkde.gov/Calendar.aspx",
           "sourceType": "HTML calendar"
         }
       },
       "candidateUrls": [
-        "https://www.hartfordct.gov/Events-directory",
-        "https://www.hartfordct.gov/Residents/Library",
-        "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial"
+        "https://newarkde.gov/750/Events",
+        "https://newarkde.gov/Calendar.aspx"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://hartfordct.gov/sitemap_index.xml",
+          "https://newarkde.gov/sitemap_index.xml",
           404
         ],
         [
-          "https://www.hartfordct.gov/Events-directory",
+          "https://newarkde.gov/80/Parking",
           "NameError"
         ],
         [
-          "https://www.hartfordct.gov/Residents/Library",
+          "https://newarkde.gov/750/Events",
           "NameError"
         ],
         [
-          "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:25:20.887134Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "culture",
-        "humanReview": "not_reviewed",
-        "intent": "culture",
-        "market": "Hartford",
-        "marketId": "hartford",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": " Hartfordct.gov",
-        "place": "Hartford",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Hartford, CT\" arts culture museum events official",
-        "queryFamily": "culture",
-        "queryId": "nrq-6d7c6f1cf889",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.0,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": false,
-            "structured_family": false
-          }
-        },
-        "state": "CT",
-        "stateCode": "CT"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:25:19.447985Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://www.hartfordct.gov/Events-directory": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.hartfordct.gov/Events-directory",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.hartfordct.gov/Residents/Library": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.hartfordct.gov/Residents/Library",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://www.hartfordct.gov/Events-directory",
-        "https://www.hartfordct.gov/Residents/Library",
-        "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://hartfordct.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://www.hartfordct.gov/Events-directory",
-          "NameError"
-        ],
-        [
-          "https://www.hartfordct.gov/Residents/Library",
-          "NameError"
-        ],
-        [
-          "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial",
+          "https://newarkde.gov/Calendar.aspx",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:25:20.565400Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "libraries",
-        "humanReview": "not_reviewed",
-        "intent": "libraries",
-        "market": "Hartford",
-        "marketId": "hartford",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": " Hartfordct.gov",
-        "place": "Hartford",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Hartford, CT\" library events calendar",
-        "queryFamily": "libraries",
-        "queryId": "nrq-77f97c5be632",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.0,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": false,
-            "structured_family": false
-          }
-        },
-        "state": "CT",
-        "stateCode": "CT"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:25:19.247875Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://www.hartfordct.gov/Events-directory": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.hartfordct.gov/Events-directory",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.hartfordct.gov/Residents/Library": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.hartfordct.gov/Residents/Library",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://www.hartfordct.gov/Events-directory",
-        "https://www.hartfordct.gov/Residents/Library",
-        "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://hartfordct.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://www.hartfordct.gov/Events-directory",
-          "NameError"
-        ],
-        [
-          "https://www.hartfordct.gov/Residents/Library",
-          "NameError"
-        ],
-        [
-          "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:25:19.447961Z",
+      "finishedAt": "2026-10-02T16:27:29.909003Z",
       "httpStatus": 200,
       "query": {
         "expectedSourceType": "trails",
         "humanReview": "not_reviewed",
         "intent": "trails",
-        "market": "Hartford",
-        "marketId": "hartford",
-        "marketPriority": 2,
+        "market": "Newark",
+        "marketId": "newark-delaware",
+        "marketPriority": 3,
         "negativeDiscoveryCodes": [
           "not_official",
           "duplicate_coverage",
@@ -522,77 +150,83 @@
           "stale_calendar",
           "blocked_robots"
         ],
-        "nextAction": "discover official feeds",
-        "officialDomain": " Hartfordct.gov",
-        "place": "Hartford",
-        "placeType": "city",
+        "nextAction": "discover university and civic feeds",
+        "officialDomain": "newarkde.gov",
+        "place": "Newark",
+        "placeType": "university_town",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Hartford, CT\" trails outdoor recreation official",
+        "query": "\"Newark, DE\" trails outdoor recreation official",
         "queryFamily": "trails",
-        "queryId": "nrq-96d11cf7b669",
+        "queryId": "nrq-667e15f5467c",
         "seedPriority": 2,
         "sourceConfidence": {
-          "score": 0.0,
+          "score": 0.33,
           "signals": {
             "existing_coverage": false,
-            "official_domain": false,
+            "official_domain": true,
             "structured_family": false
           }
         },
-        "state": "CT",
-        "stateCode": "CT"
+        "state": "DE",
+        "stateCode": "DE"
       },
       "reason": null,
       "robots": "allowed",
-      "startedAt": "2026-10-02T16:25:17.744709Z",
+      "startedAt": "2026-10-02T16:27:25.412497Z",
       "status": "succeeded"
     },
     {
       "attempts": 3,
       "candidateEvidence": {
-        "https://www.hartfordct.gov/Events-directory": {
+        "https://newarkde.gov/750/Events": {
           "confidence": 0.55,
-          "evidenceUrl": "https://www.hartfordct.gov/Events-directory",
+          "evidenceUrl": "https://newarkde.gov/750/Events",
+          "sourceType": "HTML calendar"
+        },
+        "https://newarkde.gov/Calendar.aspx": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://newarkde.gov/Calendar.aspx",
           "sourceType": "HTML calendar"
         }
       },
       "candidateUrls": [
-        "https://www.hartfordct.gov/Events-directory"
+        "https://newarkde.gov/750/Events",
+        "https://newarkde.gov/Calendar.aspx"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://hartfordct.gov/sitemap_index.xml",
+          "https://newarkde.gov/sitemap_index.xml",
           404
         ],
         [
-          "https://www.hartfordct.gov/Events-directory",
+          "https://newarkde.gov/80/Parking",
           "NameError"
         ],
         [
-          "https://www.hartfordct.gov/Residents/Library",
+          "https://newarkde.gov/750/Events",
           "NameError"
         ],
         [
-          "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial",
+          "https://newarkde.gov/Calendar.aspx",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:25:17.744684Z",
+      "finishedAt": "2026-10-02T16:27:33.459355Z",
       "httpStatus": 200,
       "query": {
-        "expectedSourceType": "events",
+        "expectedSourceType": "libraries",
         "humanReview": "not_reviewed",
-        "intent": "events",
-        "market": "Hartford",
-        "marketId": "hartford",
-        "marketPriority": 2,
+        "intent": "libraries",
+        "market": "Newark",
+        "marketId": "newark-delaware",
+        "marketPriority": 3,
         "negativeDiscoveryCodes": [
           "not_official",
           "duplicate_coverage",
@@ -603,89 +237,170 @@
           "stale_calendar",
           "blocked_robots"
         ],
-        "nextAction": "discover official feeds",
-        "officialDomain": " Hartfordct.gov",
-        "place": "Hartford",
-        "placeType": "city",
+        "nextAction": "discover university and civic feeds",
+        "officialDomain": "newarkde.gov",
+        "place": "Newark",
+        "placeType": "university_town",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Hartford, CT\" official events calendar",
-        "queryFamily": "events",
-        "queryId": "nrq-f240393cf4a3",
+        "query": "\"Newark, DE\" library events calendar",
+        "queryFamily": "libraries",
+        "queryId": "nrq-87ceed4b350a",
         "seedPriority": 2,
         "sourceConfidence": {
-          "score": 0.0,
+          "score": 0.33,
           "signals": {
             "existing_coverage": false,
-            "official_domain": false,
+            "official_domain": true,
             "structured_family": false
           }
         },
-        "state": "CT",
-        "stateCode": "CT"
+        "state": "DE",
+        "stateCode": "DE"
       },
       "reason": null,
       "robots": "allowed",
-      "startedAt": "2026-10-02T16:25:14.614971Z",
+      "startedAt": "2026-10-02T16:27:29.372275Z",
       "status": "succeeded"
     },
     {
       "attempts": 3,
       "candidateEvidence": {
-        "https://www.hartfordct.gov/Events-directory": {
+        "https://newarkde.gov/750/Events": {
           "confidence": 0.55,
-          "evidenceUrl": "https://www.hartfordct.gov/Events-directory",
+          "evidenceUrl": "https://newarkde.gov/750/Events",
           "sourceType": "HTML calendar"
         },
-        "https://www.hartfordct.gov/Residents/Library": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.hartfordct.gov/Residents/Library",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial",
+        "https://newarkde.gov/Calendar.aspx": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://newarkde.gov/Calendar.aspx",
           "sourceType": "HTML calendar"
         }
       },
       "candidateUrls": [
-        "https://www.hartfordct.gov/Events-directory",
-        "https://www.hartfordct.gov/Residents/Library",
-        "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial"
+        "https://newarkde.gov/750/Events",
+        "https://newarkde.gov/Calendar.aspx"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://hartfordct.gov/sitemap_index.xml",
+          "https://newarkde.gov/sitemap_index.xml",
           404
         ],
         [
-          "https://www.hartfordct.gov/Events-directory",
+          "https://newarkde.gov/80/Parking",
           "NameError"
         ],
         [
-          "https://www.hartfordct.gov/Residents/Library",
+          "https://newarkde.gov/750/Events",
           "NameError"
         ],
         [
-          "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial",
+          "https://newarkde.gov/Calendar.aspx",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:25:22.284997Z",
+      "finishedAt": "2026-10-02T16:27:37.437050Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "volunteer",
+        "humanReview": "not_reviewed",
+        "intent": "volunteer",
+        "market": "Newark",
+        "marketId": "newark-delaware",
+        "marketPriority": 3,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover university and civic feeds",
+        "officialDomain": "newarkde.gov",
+        "place": "Newark",
+        "placeType": "university_town",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Newark, DE\" volunteer opportunities official",
+        "queryFamily": "volunteer",
+        "queryId": "nrq-8ef78e4ea179",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "DE",
+        "stateCode": "DE"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:27:33.459385Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://newarkde.gov/750/Events": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://newarkde.gov/750/Events",
+          "sourceType": "HTML calendar"
+        },
+        "https://newarkde.gov/Calendar.aspx": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://newarkde.gov/Calendar.aspx",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://newarkde.gov/750/Events",
+        "https://newarkde.gov/Calendar.aspx"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://newarkde.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://newarkde.gov/80/Parking",
+          "NameError"
+        ],
+        [
+          "https://newarkde.gov/750/Events",
+          "NameError"
+        ],
+        [
+          "https://newarkde.gov/Calendar.aspx",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:27:38.075151Z",
       "httpStatus": 200,
       "query": {
         "expectedSourceType": "open_data",
         "humanReview": "not_reviewed",
         "intent": "open_data",
-        "market": "Hartford",
-        "marketId": "hartford",
-        "marketPriority": 2,
+        "market": "Newark",
+        "marketId": "newark-delaware",
+        "marketPriority": 3,
         "negativeDiscoveryCodes": [
           "not_official",
           "duplicate_coverage",
@@ -696,71 +411,508 @@
           "stale_calendar",
           "blocked_robots"
         ],
-        "nextAction": "discover official feeds",
-        "officialDomain": " Hartfordct.gov",
-        "place": "Hartford",
-        "placeType": "city",
+        "nextAction": "discover university and civic feeds",
+        "officialDomain": "newarkde.gov",
+        "place": "Newark",
+        "placeType": "university_town",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Hartford, CT\" open data portal",
+        "query": "\"Newark, DE\" open data portal",
         "queryFamily": "open_data",
-        "queryId": "nrq-f9f8cc54331f",
+        "queryId": "nrq-a1e623e470ad",
         "seedPriority": 2,
         "sourceConfidence": {
-          "score": 0.0,
+          "score": 0.33,
           "signals": {
             "existing_coverage": false,
-            "official_domain": false,
+            "official_domain": true,
             "structured_family": false
           }
         },
-        "state": "CT",
-        "stateCode": "CT"
+        "state": "DE",
+        "stateCode": "DE"
       },
       "reason": null,
       "robots": "allowed",
-      "startedAt": "2026-10-02T16:25:20.887159Z",
+      "startedAt": "2026-10-02T16:27:34.152096Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://newarkde.gov/750/Events": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://newarkde.gov/750/Events",
+          "sourceType": "HTML calendar"
+        },
+        "https://newarkde.gov/Calendar.aspx": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://newarkde.gov/Calendar.aspx",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://newarkde.gov/750/Events",
+        "https://newarkde.gov/Calendar.aspx"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://newarkde.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://newarkde.gov/80/Parking",
+          "NameError"
+        ],
+        [
+          "https://newarkde.gov/750/Events",
+          "NameError"
+        ],
+        [
+          "https://newarkde.gov/Calendar.aspx",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:27:34.152071Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "culture",
+        "humanReview": "not_reviewed",
+        "intent": "culture",
+        "market": "Newark",
+        "marketId": "newark-delaware",
+        "marketPriority": 3,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover university and civic feeds",
+        "officialDomain": "newarkde.gov",
+        "place": "Newark",
+        "placeType": "university_town",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Newark, DE\" arts culture museum events official",
+        "queryFamily": "culture",
+        "queryId": "nrq-a716d3b82d73",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "DE",
+        "stateCode": "DE"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:27:29.909029Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://newarkde.gov/750/Events": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://newarkde.gov/750/Events",
+          "sourceType": "HTML calendar"
+        },
+        "https://newarkde.gov/Calendar.aspx": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://newarkde.gov/Calendar.aspx",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://newarkde.gov/750/Events",
+        "https://newarkde.gov/Calendar.aspx"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://newarkde.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://newarkde.gov/80/Parking",
+          "NameError"
+        ],
+        [
+          "https://newarkde.gov/750/Events",
+          "NameError"
+        ],
+        [
+          "https://newarkde.gov/Calendar.aspx",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:27:29.372249Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "parks",
+        "humanReview": "not_reviewed",
+        "intent": "parks",
+        "market": "Newark",
+        "marketId": "newark-delaware",
+        "marketPriority": 3,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover university and civic feeds",
+        "officialDomain": "newarkde.gov",
+        "place": "Newark",
+        "placeType": "university_town",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Newark, DE\" parks recreation trails official",
+        "queryFamily": "parks",
+        "queryId": "nrq-ba05f916b0d7",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "DE",
+        "stateCode": "DE"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:27:25.287656Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://newarkde.gov/750/Events": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://newarkde.gov/750/Events",
+          "sourceType": "HTML calendar"
+        },
+        "https://newarkde.gov/Calendar.aspx": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://newarkde.gov/Calendar.aspx",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://newarkde.gov/750/Events",
+        "https://newarkde.gov/Calendar.aspx"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://newarkde.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://newarkde.gov/80/Parking",
+          "NameError"
+        ],
+        [
+          "https://newarkde.gov/750/Events",
+          "NameError"
+        ],
+        [
+          "https://newarkde.gov/Calendar.aspx",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:27:25.287620Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "events",
+        "humanReview": "not_reviewed",
+        "intent": "events",
+        "market": "Newark",
+        "marketId": "newark-delaware",
+        "marketPriority": 3,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover university and civic feeds",
+        "officialDomain": "newarkde.gov",
+        "place": "Newark",
+        "placeType": "university_town",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Newark, DE\" official events calendar",
+        "queryFamily": "events",
+        "queryId": "nrq-db40c15230a1",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "DE",
+        "stateCode": "DE"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:27:19.850286Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://newarkde.gov/750/Events": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://newarkde.gov/750/Events",
+          "sourceType": "HTML calendar"
+        },
+        "https://newarkde.gov/Calendar.aspx": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://newarkde.gov/Calendar.aspx",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://newarkde.gov/750/Events",
+        "https://newarkde.gov/Calendar.aspx"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://newarkde.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://newarkde.gov/80/Parking",
+          "NameError"
+        ],
+        [
+          "https://newarkde.gov/750/Events",
+          "NameError"
+        ],
+        [
+          "https://newarkde.gov/Calendar.aspx",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:27:41.323128Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "rss_ics",
+        "humanReview": "not_reviewed",
+        "intent": "rss_ics",
+        "market": "Newark",
+        "marketId": "newark-delaware",
+        "marketPriority": 3,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover university and civic feeds",
+        "officialDomain": "newarkde.gov",
+        "place": "Newark",
+        "placeType": "university_town",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Newark, DE\" (RSS OR iCalendar OR ICS) events",
+        "queryFamily": "rss_ics",
+        "queryId": "nrq-e9daba430217",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.67,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": true
+          }
+        },
+        "state": "DE",
+        "stateCode": "DE"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:27:37.437075Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://newarkde.gov/750/Events": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://newarkde.gov/750/Events",
+          "sourceType": "HTML calendar"
+        },
+        "https://newarkde.gov/Calendar.aspx": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://newarkde.gov/Calendar.aspx",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://newarkde.gov/750/Events",
+        "https://newarkde.gov/Calendar.aspx"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://newarkde.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://newarkde.gov/80/Parking",
+          "NameError"
+        ],
+        [
+          "https://newarkde.gov/750/Events",
+          "NameError"
+        ],
+        [
+          "https://newarkde.gov/Calendar.aspx",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:27:41.961578Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "arcgis",
+        "humanReview": "not_reviewed",
+        "intent": "arcgis",
+        "market": "Newark",
+        "marketId": "newark-delaware",
+        "marketPriority": 3,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover university and civic feeds",
+        "officialDomain": "newarkde.gov",
+        "place": "Newark",
+        "placeType": "university_town",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "site:newarkde.gov (FeatureServer OR MapServer) parks events",
+        "queryFamily": "arcgis",
+        "queryId": "nrq-ec4c04f1bca0",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.67,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": true
+          }
+        },
+        "state": "DE",
+        "stateCode": "DE"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:27:38.075177Z",
       "status": "succeeded"
     }
   ],
   "schemaVersion": 2,
   "selectedQueryIds": [
-    "nrq-f240393cf4a3",
-    "nrq-2c0e897bc68d",
-    "nrq-28f35f1dfaa5",
-    "nrq-96d11cf7b669",
-    "nrq-77f97c5be632",
-    "nrq-6d7c6f1cf889",
-    "nrq-066d01458305",
-    "nrq-f9f8cc54331f"
+    "nrq-db40c15230a1",
+    "nrq-1784bbf608e8",
+    "nrq-ba05f916b0d7",
+    "nrq-667e15f5467c",
+    "nrq-87ceed4b350a",
+    "nrq-a716d3b82d73",
+    "nrq-8ef78e4ea179",
+    "nrq-a1e623e470ad",
+    "nrq-e9daba430217",
+    "nrq-ec4c04f1bca0"
   ],
   "sourceQueue": "expansion-queues/national-region-search-queue.json",
   "summary": {
-    "attempted": 8,
+    "attempted": 10,
     "candidateCaptureErrors": null,
-    "candidatesFound": 3,
-    "candidatesNeedingHumanReview": 3,
+    "candidatesFound": 2,
+    "candidatesNeedingHumanReview": 2,
     "domainsCrawled": 1,
     "duplicateUrlsMerged": 0,
     "failed": 0,
-    "failedRequests": 32,
-    "httpSuccesses": 8,
-    "pagesCrawled": 24,
-    "pagesFetched": 24,
-    "pagesRejected": 32,
+    "failedRequests": 40,
+    "httpSuccesses": 10,
+    "pagesCrawled": 30,
+    "pagesFetched": 30,
+    "pagesRejected": 40,
     "rateLimitedRequests": 0,
     "responses_429": 0,
     "robots_disallowed": 0,
     "robots_unknown": 0,
     "skipped": 0,
-    "succeeded": 8,
-    "succeededWithCandidates": 8,
+    "succeeded": 10,
+    "succeededWithCandidates": 10,
     "succeededWithoutCandidates": 0,
     "timeout_network_failures": 0,
-    "uniqueCandidates": 3,
-    "usefulDiscoveries": 3
+    "uniqueCandidates": 2,
+    "usefulDiscoveries": 2
   }
 }

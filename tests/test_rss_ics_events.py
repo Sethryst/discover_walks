@@ -69,3 +69,13 @@ class RssIcsEventsTests(unittest.TestCase):
         self.assertEqual(report["acceptedCount"], 1)
         self.assertEqual(features[0].source_id, "STL-53468")
         self.assertEqual(features[0].properties["startsAt"], "2026-10-02T15:00:00Z")
+
+    @patch("app.pipeline.adapters.rss_ics_events.urlopen")
+    def test_newark_de_civicengage_ics_preserves_uid_and_timezone(self, open_url):
+        payload = open("tests/fixtures/newark_de_civicengage_event.ics", encoding="utf-8").read().encode()
+        open_url.return_value = _Response(payload)
+        source = SourceConfig.from_dict({"id": "newark-de-events", "name": "Newark Delaware Official Calendar", "provider": "rss_ics_events", "url": "https://newarkde.gov/common/modules/iCalendar/iCalendar.aspx?feed=calendar&eventID=4894", "domains": ["newarkde.gov"], "licenseUrl": "https://newarkde.gov/", "providerOptions": {"defaultCoordinates": [-75.75, 39.68]}})
+        features, report = RssIcsEventsProvider().acquire(source, {})
+        self.assertEqual(report["acceptedCount"], 1)
+        self.assertEqual(features[0].source_id, "4894")
+        self.assertEqual(features[0].properties["startsAt"], "2026-10-26T23:00:00Z")
