@@ -1,753 +1,51 @@
 {
   "kind": "national-discovery-batch",
   "limit": 10,
-  "offset": 1248,
+  "offset": 1280,
   "publicationState": "research-only",
   "readOnly": true,
   "results": [
     {
       "attempts": 3,
       "candidateEvidence": {
-        "https://www.fortlauderdale.gov/Home/Tabs/Events": {
+        "https://www.minneapolismn.gov/things-to-do/events/": {
           "confidence": 0.55,
-          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Events",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.fortlauderdale.gov/Home/Tabs/Meetings": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
+          "evidenceUrl": "https://www.minneapolismn.gov/things-to-do/events/",
           "sourceType": "HTML calendar"
         }
       },
       "candidateUrls": [
-        "https://www.fortlauderdale.gov/Home/Tabs/Events",
-        "https://www.fortlauderdale.gov/Home/Tabs/Meetings"
+        "https://www.minneapolismn.gov/things-to-do/events/"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://fortlauderdale.gov/sitemap_index.xml",
+          "https://minneapolismn.gov/sitemap_index.xml",
           404
         ],
         [
-          "https://www.fortlauderdale.gov/Home/Tabs/Events",
+          "https://www.minneapolismn.gov/things-to-do/events/",
           "NameError"
         ],
         [
-          "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
+          "https://www.minneapolismn.gov/lo/snow-parking-rules-lao/",
           "NameError"
         ],
         [
-          "https://www.fortlauderdale.gov/Explore-FTL/Parking",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:05:58.619523Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "open_data",
-        "humanReview": "not_reviewed",
-        "intent": "open_data",
-        "market": "Miami-Fort Lauderdale",
-        "marketId": "miami",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "fortlauderdale.gov",
-        "place": "Fort Lauderdale",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Fort Lauderdale, FL\" open data portal",
-        "queryFamily": "open_data",
-        "queryId": "nrq-12a2eb4a5d8e",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "FL",
-        "stateCode": "FL"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:05:56.930829Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://www.fortlauderdale.gov/Home/Tabs/Events": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Events",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.fortlauderdale.gov/Home/Tabs/Meetings": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://www.fortlauderdale.gov/Home/Tabs/Events",
-        "https://www.fortlauderdale.gov/Home/Tabs/Meetings"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://fortlauderdale.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://www.fortlauderdale.gov/Home/Tabs/Events",
-          "NameError"
-        ],
-        [
-          "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
-          "NameError"
-        ],
-        [
-          "https://www.fortlauderdale.gov/Explore-FTL/Parking",
+          "https://www.minneapolismn.gov/om/snow-parking-rules-oromo/",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:05:59.178663Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "rss_ics",
-        "humanReview": "not_reviewed",
-        "intent": "rss_ics",
-        "market": "Miami-Fort Lauderdale",
-        "marketId": "miami",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "fortlauderdale.gov",
-        "place": "Fort Lauderdale",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Fort Lauderdale, FL\" (RSS OR iCalendar OR ICS) events",
-        "queryFamily": "rss_ics",
-        "queryId": "nrq-56fc8ec52f8d",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.67,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": true
-          }
-        },
-        "state": "FL",
-        "stateCode": "FL"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:05:57.979062Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://www.fortlauderdale.gov/Home/Tabs/Events": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Events",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.fortlauderdale.gov/Home/Tabs/Meetings": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://www.fortlauderdale.gov/Home/Tabs/Events",
-        "https://www.fortlauderdale.gov/Home/Tabs/Meetings"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://fortlauderdale.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://www.fortlauderdale.gov/Home/Tabs/Events",
-          "NameError"
-        ],
-        [
-          "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
-          "NameError"
-        ],
-        [
-          "https://www.fortlauderdale.gov/Explore-FTL/Parking",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:05:54.449245Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "events",
-        "humanReview": "not_reviewed",
-        "intent": "events",
-        "market": "Miami-Fort Lauderdale",
-        "marketId": "miami",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "fortlauderdale.gov",
-        "place": "Fort Lauderdale",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Fort Lauderdale, FL\" official events calendar",
-        "queryFamily": "events",
-        "queryId": "nrq-68aa54c71395",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "FL",
-        "stateCode": "FL"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:05:51.370264Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://www.fortlauderdale.gov/Home/Tabs/Events": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Events",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.fortlauderdale.gov/Home/Tabs/Meetings": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://www.fortlauderdale.gov/Home/Tabs/Events",
-        "https://www.fortlauderdale.gov/Home/Tabs/Meetings"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://fortlauderdale.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://www.fortlauderdale.gov/Home/Tabs/Events",
-          "NameError"
-        ],
-        [
-          "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
-          "NameError"
-        ],
-        [
-          "https://www.fortlauderdale.gov/Explore-FTL/Parking",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:05:56.804300Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "libraries",
-        "humanReview": "not_reviewed",
-        "intent": "libraries",
-        "market": "Miami-Fort Lauderdale",
-        "marketId": "miami",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "fortlauderdale.gov",
-        "place": "Fort Lauderdale",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Fort Lauderdale, FL\" library events calendar",
-        "queryFamily": "libraries",
-        "queryId": "nrq-7ddaf098b156",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "FL",
-        "stateCode": "FL"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:05:55.591204Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://www.fortlauderdale.gov/Home/Tabs/Events": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Events",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.fortlauderdale.gov/Home/Tabs/Meetings": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://www.fortlauderdale.gov/Home/Tabs/Events",
-        "https://www.fortlauderdale.gov/Home/Tabs/Meetings"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://fortlauderdale.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://www.fortlauderdale.gov/Home/Tabs/Events",
-          "NameError"
-        ],
-        [
-          "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
-          "NameError"
-        ],
-        [
-          "https://www.fortlauderdale.gov/Explore-FTL/Parking",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:05:59.751358Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "arcgis",
-        "humanReview": "not_reviewed",
-        "intent": "arcgis",
-        "market": "Miami-Fort Lauderdale",
-        "marketId": "miami",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "fortlauderdale.gov",
-        "place": "Fort Lauderdale",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "site:fortlauderdale.gov (FeatureServer OR MapServer) parks events",
-        "queryFamily": "arcgis",
-        "queryId": "nrq-96213bb95446",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.67,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": true
-          }
-        },
-        "state": "FL",
-        "stateCode": "FL"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:05:58.619548Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://www.fortlauderdale.gov/Home/Tabs/Events": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Events",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.fortlauderdale.gov/Home/Tabs/Meetings": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://www.fortlauderdale.gov/Home/Tabs/Events",
-        "https://www.fortlauderdale.gov/Home/Tabs/Meetings"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://fortlauderdale.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://www.fortlauderdale.gov/Home/Tabs/Events",
-          "NameError"
-        ],
-        [
-          "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
-          "NameError"
-        ],
-        [
-          "https://www.fortlauderdale.gov/Explore-FTL/Parking",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:05:57.979041Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "volunteer",
-        "humanReview": "not_reviewed",
-        "intent": "volunteer",
-        "market": "Miami-Fort Lauderdale",
-        "marketId": "miami",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "fortlauderdale.gov",
-        "place": "Fort Lauderdale",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Fort Lauderdale, FL\" volunteer opportunities official",
-        "queryFamily": "volunteer",
-        "queryId": "nrq-a6cf656f5a90",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "FL",
-        "stateCode": "FL"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:05:56.804325Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://www.fortlauderdale.gov/Home/Tabs/Events": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Events",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.fortlauderdale.gov/Home/Tabs/Meetings": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://www.fortlauderdale.gov/Home/Tabs/Events",
-        "https://www.fortlauderdale.gov/Home/Tabs/Meetings"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://fortlauderdale.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://www.fortlauderdale.gov/Home/Tabs/Events",
-          "NameError"
-        ],
-        [
-          "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
-          "NameError"
-        ],
-        [
-          "https://www.fortlauderdale.gov/Explore-FTL/Parking",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:05:56.930784Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "culture",
-        "humanReview": "not_reviewed",
-        "intent": "culture",
-        "market": "Miami-Fort Lauderdale",
-        "marketId": "miami",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "fortlauderdale.gov",
-        "place": "Fort Lauderdale",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Fort Lauderdale, FL\" arts culture museum events official",
-        "queryFamily": "culture",
-        "queryId": "nrq-ae17e8c2e1de",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "FL",
-        "stateCode": "FL"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:05:55.715327Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://www.fortlauderdale.gov/Home/Tabs/Events": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Events",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.fortlauderdale.gov/Home/Tabs/Meetings": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://www.fortlauderdale.gov/Home/Tabs/Events",
-        "https://www.fortlauderdale.gov/Home/Tabs/Meetings"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://fortlauderdale.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://www.fortlauderdale.gov/Home/Tabs/Events",
-          "NameError"
-        ],
-        [
-          "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
-          "NameError"
-        ],
-        [
-          "https://www.fortlauderdale.gov/Explore-FTL/Parking",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:05:55.715305Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "parks",
-        "humanReview": "not_reviewed",
-        "intent": "parks",
-        "market": "Miami-Fort Lauderdale",
-        "marketId": "miami",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "fortlauderdale.gov",
-        "place": "Fort Lauderdale",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Fort Lauderdale, FL\" parks recreation trails official",
-        "queryFamily": "parks",
-        "queryId": "nrq-cebdb03ec9e2",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "FL",
-        "stateCode": "FL"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:05:54.444782Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://www.fortlauderdale.gov/Home/Tabs/Events": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Events",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.fortlauderdale.gov/Home/Tabs/Meetings": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://www.fortlauderdale.gov/Home/Tabs/Events",
-        "https://www.fortlauderdale.gov/Home/Tabs/Meetings"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://fortlauderdale.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://www.fortlauderdale.gov/Home/Tabs/Events",
-          "NameError"
-        ],
-        [
-          "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
-          "NameError"
-        ],
-        [
-          "https://www.fortlauderdale.gov/Explore-FTL/Parking",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:05:55.591181Z",
+      "finishedAt": "2026-10-02T16:07:12.965955Z",
       "httpStatus": 200,
       "query": {
         "expectedSourceType": "trails",
         "humanReview": "not_reviewed",
         "intent": "trails",
-        "market": "Miami-Fort Lauderdale",
-        "marketId": "miami",
+        "market": "Minneapolis-Saint Paul",
+        "marketId": "minneapolis-st-paul",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -760,17 +58,17 @@
           "blocked_robots"
         ],
         "nextAction": "discover official feeds",
-        "officialDomain": "fortlauderdale.gov",
-        "place": "Fort Lauderdale",
+        "officialDomain": "minneapolismn.gov",
+        "place": "Minneapolis",
         "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Fort Lauderdale, FL\" trails outdoor recreation official",
+        "query": "\"Minneapolis, MN\" trails outdoor recreation official",
         "queryFamily": "trails",
-        "queryId": "nrq-d4a2f6976c42",
+        "queryId": "nrq-1e2a7d6c6299",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.33,
@@ -780,61 +78,55 @@
             "structured_family": false
           }
         },
-        "state": "FL",
-        "stateCode": "FL"
+        "state": "MN",
+        "stateCode": "MN"
       },
       "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:05:54.449264Z",
+      "robots": "unknown",
+      "startedAt": "2026-10-02T16:07:11.961570Z",
       "status": "succeeded"
     },
     {
       "attempts": 3,
       "candidateEvidence": {
-        "https://www.fortlauderdale.gov/Home/Tabs/Events": {
+        "https://www.minneapolismn.gov/things-to-do/events/": {
           "confidence": 0.55,
-          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Events",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.fortlauderdale.gov/Home/Tabs/Meetings": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
+          "evidenceUrl": "https://www.minneapolismn.gov/things-to-do/events/",
           "sourceType": "HTML calendar"
         }
       },
       "candidateUrls": [
-        "https://www.fortlauderdale.gov/Home/Tabs/Events",
-        "https://www.fortlauderdale.gov/Home/Tabs/Meetings"
+        "https://www.minneapolismn.gov/things-to-do/events/"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://fortlauderdale.gov/sitemap_index.xml",
+          "https://minneapolismn.gov/sitemap_index.xml",
           404
         ],
         [
-          "https://www.fortlauderdale.gov/Home/Tabs/Events",
+          "https://www.minneapolismn.gov/things-to-do/events/",
           "NameError"
         ],
         [
-          "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
+          "https://www.minneapolismn.gov/lo/snow-parking-rules-lao/",
           "NameError"
         ],
         [
-          "https://www.fortlauderdale.gov/Explore-FTL/Parking",
+          "https://www.minneapolismn.gov/om/snow-parking-rules-oromo/",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:05:54.444749Z",
+      "finishedAt": "2026-10-02T16:07:13.918084Z",
       "httpStatus": 200,
       "query": {
-        "expectedSourceType": "meetings",
+        "expectedSourceType": "libraries",
         "humanReview": "not_reviewed",
-        "intent": "meetings",
-        "market": "Miami-Fort Lauderdale",
-        "marketId": "miami",
+        "intent": "libraries",
+        "market": "Minneapolis-Saint Paul",
+        "marketId": "minneapolis-st-paul",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -847,17 +139,17 @@
           "blocked_robots"
         ],
         "nextAction": "discover official feeds",
-        "officialDomain": "fortlauderdale.gov",
-        "place": "Fort Lauderdale",
+        "officialDomain": "minneapolismn.gov",
+        "place": "Minneapolis",
         "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Fort Lauderdale, FL\" public meetings agenda calendar",
-        "queryFamily": "meetings",
-        "queryId": "nrq-fa942df78eb3",
+        "query": "\"Minneapolis, MN\" library events calendar",
+        "queryFamily": "libraries",
+        "queryId": "nrq-2dbf4bb48b53",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.33,
@@ -867,34 +159,682 @@
             "structured_family": false
           }
         },
-        "state": "FL",
-        "stateCode": "FL"
+        "state": "MN",
+        "stateCode": "MN"
       },
       "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:05:51.370724Z",
+      "robots": "unknown",
+      "startedAt": "2026-10-02T16:07:12.965979Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.minneapolismn.gov/things-to-do/events/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.minneapolismn.gov/things-to-do/events/",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.minneapolismn.gov/things-to-do/events/"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://minneapolismn.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.minneapolismn.gov/things-to-do/events/",
+          "NameError"
+        ],
+        [
+          "https://www.minneapolismn.gov/lo/snow-parking-rules-lao/",
+          "NameError"
+        ],
+        [
+          "https://www.minneapolismn.gov/om/snow-parking-rules-oromo/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:07:14.889395Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "volunteer",
+        "humanReview": "not_reviewed",
+        "intent": "volunteer",
+        "market": "Minneapolis-Saint Paul",
+        "marketId": "minneapolis-st-paul",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "minneapolismn.gov",
+        "place": "Minneapolis",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Minneapolis, MN\" volunteer opportunities official",
+        "queryFamily": "volunteer",
+        "queryId": "nrq-4c7292bf142f",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "MN",
+        "stateCode": "MN"
+      },
+      "reason": null,
+      "robots": "unknown",
+      "startedAt": "2026-10-02T16:07:13.903945Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.minneapolismn.gov/things-to-do/events/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.minneapolismn.gov/things-to-do/events/",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.minneapolismn.gov/things-to-do/events/"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://minneapolismn.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.minneapolismn.gov/things-to-do/events/",
+          "NameError"
+        ],
+        [
+          "https://www.minneapolismn.gov/lo/snow-parking-rules-lao/",
+          "NameError"
+        ],
+        [
+          "https://www.minneapolismn.gov/om/snow-parking-rules-oromo/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:07:12.971579Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "parks",
+        "humanReview": "not_reviewed",
+        "intent": "parks",
+        "market": "Minneapolis-Saint Paul",
+        "marketId": "minneapolis-st-paul",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "minneapolismn.gov",
+        "place": "Minneapolis",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Minneapolis, MN\" parks recreation trails official",
+        "queryFamily": "parks",
+        "queryId": "nrq-6b2571fe19a9",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "MN",
+        "stateCode": "MN"
+      },
+      "reason": null,
+      "robots": "unknown",
+      "startedAt": "2026-10-02T16:07:11.958745Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.minneapolismn.gov/things-to-do/events/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.minneapolismn.gov/things-to-do/events/",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.minneapolismn.gov/things-to-do/events/"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://minneapolismn.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.minneapolismn.gov/things-to-do/events/",
+          "NameError"
+        ],
+        [
+          "https://www.minneapolismn.gov/lo/snow-parking-rules-lao/",
+          "NameError"
+        ],
+        [
+          "https://www.minneapolismn.gov/om/snow-parking-rules-oromo/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:07:11.958712Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "events",
+        "humanReview": "not_reviewed",
+        "intent": "events",
+        "market": "Minneapolis-Saint Paul",
+        "marketId": "minneapolis-st-paul",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "minneapolismn.gov",
+        "place": "Minneapolis",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Minneapolis, MN\" official events calendar",
+        "queryFamily": "events",
+        "queryId": "nrq-90a842ab2b37",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "MN",
+        "stateCode": "MN"
+      },
+      "reason": null,
+      "robots": "unknown",
+      "startedAt": "2026-10-02T16:07:10.544079Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.minneapolismn.gov/things-to-do/events/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.minneapolismn.gov/things-to-do/events/",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.minneapolismn.gov/things-to-do/events/"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://minneapolismn.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.minneapolismn.gov/things-to-do/events/",
+          "NameError"
+        ],
+        [
+          "https://www.minneapolismn.gov/lo/snow-parking-rules-lao/",
+          "NameError"
+        ],
+        [
+          "https://www.minneapolismn.gov/om/snow-parking-rules-oromo/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:07:14.864183Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "open_data",
+        "humanReview": "not_reviewed",
+        "intent": "open_data",
+        "market": "Minneapolis-Saint Paul",
+        "marketId": "minneapolis-st-paul",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "minneapolismn.gov",
+        "place": "Minneapolis",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Minneapolis, MN\" open data portal",
+        "queryFamily": "open_data",
+        "queryId": "nrq-a44dbe775cd3",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "MN",
+        "stateCode": "MN"
+      },
+      "reason": null,
+      "robots": "unknown",
+      "startedAt": "2026-10-02T16:07:13.918106Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.minneapolismn.gov/things-to-do/events/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.minneapolismn.gov/things-to-do/events/",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.minneapolismn.gov/things-to-do/events/"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://minneapolismn.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.minneapolismn.gov/things-to-do/events/",
+          "NameError"
+        ],
+        [
+          "https://www.minneapolismn.gov/lo/snow-parking-rules-lao/",
+          "NameError"
+        ],
+        [
+          "https://www.minneapolismn.gov/om/snow-parking-rules-oromo/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:07:15.813346Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "rss_ics",
+        "humanReview": "not_reviewed",
+        "intent": "rss_ics",
+        "market": "Minneapolis-Saint Paul",
+        "marketId": "minneapolis-st-paul",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "minneapolismn.gov",
+        "place": "Minneapolis",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Minneapolis, MN\" (RSS OR iCalendar OR ICS) events",
+        "queryFamily": "rss_ics",
+        "queryId": "nrq-c6c3cb539ffb",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.67,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": true
+          }
+        },
+        "state": "MN",
+        "stateCode": "MN"
+      },
+      "reason": null,
+      "robots": "unknown",
+      "startedAt": "2026-10-02T16:07:14.864205Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.minneapolismn.gov/things-to-do/events/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.minneapolismn.gov/things-to-do/events/",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.minneapolismn.gov/things-to-do/events/"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://minneapolismn.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.minneapolismn.gov/things-to-do/events/",
+          "NameError"
+        ],
+        [
+          "https://www.minneapolismn.gov/lo/snow-parking-rules-lao/",
+          "NameError"
+        ],
+        [
+          "https://www.minneapolismn.gov/om/snow-parking-rules-oromo/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:07:11.961548Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "meetings",
+        "humanReview": "not_reviewed",
+        "intent": "meetings",
+        "market": "Minneapolis-Saint Paul",
+        "marketId": "minneapolis-st-paul",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "minneapolismn.gov",
+        "place": "Minneapolis",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Minneapolis, MN\" public meetings agenda calendar",
+        "queryFamily": "meetings",
+        "queryId": "nrq-d9808e08b834",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "MN",
+        "stateCode": "MN"
+      },
+      "reason": null,
+      "robots": "unknown",
+      "startedAt": "2026-10-02T16:07:10.544597Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.minneapolismn.gov/things-to-do/events/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.minneapolismn.gov/things-to-do/events/",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.minneapolismn.gov/things-to-do/events/"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://minneapolismn.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.minneapolismn.gov/things-to-do/events/",
+          "NameError"
+        ],
+        [
+          "https://www.minneapolismn.gov/lo/snow-parking-rules-lao/",
+          "NameError"
+        ],
+        [
+          "https://www.minneapolismn.gov/om/snow-parking-rules-oromo/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:07:13.903922Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "culture",
+        "humanReview": "not_reviewed",
+        "intent": "culture",
+        "market": "Minneapolis-Saint Paul",
+        "marketId": "minneapolis-st-paul",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "minneapolismn.gov",
+        "place": "Minneapolis",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Minneapolis, MN\" arts culture museum events official",
+        "queryFamily": "culture",
+        "queryId": "nrq-f3c678b2ad84",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "MN",
+        "stateCode": "MN"
+      },
+      "reason": null,
+      "robots": "unknown",
+      "startedAt": "2026-10-02T16:07:12.971597Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.minneapolismn.gov/things-to-do/events/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.minneapolismn.gov/things-to-do/events/",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.minneapolismn.gov/things-to-do/events/"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://minneapolismn.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.minneapolismn.gov/things-to-do/events/",
+          "NameError"
+        ],
+        [
+          "https://www.minneapolismn.gov/lo/snow-parking-rules-lao/",
+          "NameError"
+        ],
+        [
+          "https://www.minneapolismn.gov/om/snow-parking-rules-oromo/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:07:15.870630Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "arcgis",
+        "humanReview": "not_reviewed",
+        "intent": "arcgis",
+        "market": "Minneapolis-Saint Paul",
+        "marketId": "minneapolis-st-paul",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "minneapolismn.gov",
+        "place": "Minneapolis",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "site:minneapolismn.gov (FeatureServer OR MapServer) parks events",
+        "queryFamily": "arcgis",
+        "queryId": "nrq-fb09923ceee1",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.67,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": true
+          }
+        },
+        "state": "MN",
+        "stateCode": "MN"
+      },
+      "reason": null,
+      "robots": "unknown",
+      "startedAt": "2026-10-02T16:07:14.889413Z",
       "status": "succeeded"
     }
   ],
   "schemaVersion": 2,
   "selectedQueryIds": [
-    "nrq-68aa54c71395",
-    "nrq-fa942df78eb3",
-    "nrq-cebdb03ec9e2",
-    "nrq-d4a2f6976c42",
-    "nrq-7ddaf098b156",
-    "nrq-ae17e8c2e1de",
-    "nrq-a6cf656f5a90",
-    "nrq-12a2eb4a5d8e",
-    "nrq-56fc8ec52f8d",
-    "nrq-96213bb95446"
+    "nrq-90a842ab2b37",
+    "nrq-d9808e08b834",
+    "nrq-6b2571fe19a9",
+    "nrq-1e2a7d6c6299",
+    "nrq-2dbf4bb48b53",
+    "nrq-f3c678b2ad84",
+    "nrq-4c7292bf142f",
+    "nrq-a44dbe775cd3",
+    "nrq-c6c3cb539ffb",
+    "nrq-fb09923ceee1"
   ],
   "sourceQueue": "expansion-queues/national-region-search-queue.json",
   "summary": {
     "attempted": 10,
     "candidateCaptureErrors": null,
-    "candidatesFound": 2,
-    "candidatesNeedingHumanReview": 2,
+    "candidatesFound": 1,
+    "candidatesNeedingHumanReview": 1,
     "domainsCrawled": 1,
     "duplicateUrlsMerged": 0,
     "failed": 0,
@@ -906,13 +846,13 @@
     "rateLimitedRequests": 0,
     "responses_429": 0,
     "robots_disallowed": 0,
-    "robots_unknown": 0,
+    "robots_unknown": 10,
     "skipped": 0,
     "succeeded": 10,
     "succeededWithCandidates": 10,
     "succeededWithoutCandidates": 0,
     "timeout_network_failures": 0,
-    "uniqueCandidates": 2,
-    "usefulDiscoveries": 2
+    "uniqueCandidates": 1,
+    "usefulDiscoveries": 1
   }
 }
