@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 2,
+  "kind": "national-candidate-capture",
+  "readOnly": true,
+  "publicationState": "research-only",
+  "generatedAt": "2026-10-02T16:30:00Z",
+  "candidates": [{
+    "canonicalUrl": "https://www.durhamnc.gov/common/modules/iCalendar/iCalendar.aspx?feed=calendar&eventID=10435",
+    "confidence": 0.95,
+    "coverageScope": "durham",
+    "crawlStatus": "completed",
+    "crawlTimestamp": "2026-10-02T16:30:00Z",
+    "discoveryEvidence": "Official CivicEngage event detail exposed a reachable text/calendar endpoint with UID 10435 and an official detail URL.",
+    "evidenceUrls": ["https://www.durhamnc.gov/Calendar.aspx", "https://www.durhamnc.gov/Calendar.aspx?EID=10435&month=10&year=2026&day=2&calType=0", "https://www.durhamnc.gov/common/modules/iCalendar/iCalendar.aspx?feed=calendar&eventID=10435"],
+    "failureReason": null,
+    "httpStatus": 200,
+    "market": "Durham",
+    "markets": ["Durham"],
+    "needsHumanReview": true,
+    "originatingOfficialDomain": "durhamnc.gov",
+    "originatingSeed": "expansion-queues/national-region-seeds.csv",
+    "place": "Durham",
+    "providerName": "City of Durham Official Calendar",
+    "queryId": "nrq-fec1896a54ef",
+    "queryIds": ["nrq-fec1896a54ef"],
+    "queryFamilies": ["events", "rss_ics"],
+    "robotsDecision": "allowed",
+    "scoreBreakdown": {"official_detail_page": 0.3, "reachable_ics": 0.35, "stable_uid": 0.15, "explicit_timezone_location": 0.15},
+    "sourceType": "ICS/iCalendar",
+    "sourceUrl": "https://www.durhamnc.gov/common/modules/iCalendar/iCalendar.aspx?feed=calendar&eventID=10435"
+  }],
+  "negativeDiscoveries": []
+}

@@ -38,3 +38,14 @@ class RssIcsEventsTests(unittest.TestCase):
         self.assertEqual(features[0].properties["startsAt"], "2026-10-29T19:00:00Z")
         self.assertEqual(features[0].properties["endsAt"], "2026-10-29T22:00:00Z")
         self.assertEqual(features[0].properties["officialUrl"], "https://www.charleston-sc.gov/calendar.aspx?EID=10637")
+
+    @patch("app.pipeline.adapters.rss_ics_events.urlopen")
+    def test_durham_civicengage_ics_preserves_meeting_identity(self, open_url):
+        payload = open("tests/fixtures/durham_civicplus_event.ics", encoding="utf-8").read().encode()
+        open_url.return_value = _Response(payload)
+        source = SourceConfig.from_dict({"id": "durham-civicengage", "name": "Durham Official Calendar", "provider": "rss_ics_events", "url": "https://www.durhamnc.gov/common/modules/iCalendar/iCalendar.aspx?feed=calendar&eventID=10435", "domains": ["durhamnc.gov"], "licenseUrl": "https://www.durhamnc.gov/", "providerOptions": {"defaultCoordinates": [-78.90, 36.00]}})
+        features, report = RssIcsEventsProvider().acquire(source, {})
+        self.assertEqual(report["acceptedCount"], 1)
+        self.assertEqual(features[0].source_id, "10435")
+        self.assertEqual(features[0].properties["startsAt"], "2026-10-05T23:00:00Z")
+        self.assertEqual(features[0].properties["officialUrl"], "https://www.durhamnc.gov/calendar.aspx?EID=10435")
