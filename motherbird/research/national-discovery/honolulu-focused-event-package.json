@@ -1,0 +1,37 @@
+{
+  "active": false,
+  "publicationState": "research-only",
+  "runtimeLoader": "not-consumed; human promotion required",
+  "schemaVersion": 1,
+  "kind": "focused-event-replay-package",
+  "region": "Honolulu",
+  "source": {
+    "id": "hawaii-public-meetings",
+    "provider": "hawaii_public_meetings",
+    "feedUrl": "https://calendar.ehawaii.gov/calendar/upcoming-events.rss",
+    "officialIndex": "https://calendar.ehawaii.gov/calendar/rss.html",
+    "officialDomain": "calendar.ehawaii.gov",
+    "format": "hawaii-rss-description",
+    "timeZone": "Pacific/Honolulu",
+    "robotsDecision": "allowed",
+    "httpStatus": 200
+  },
+  "focusedReplay": {
+    "observedAt": "2026-10-02T20:30:00Z",
+    "feedItems": 50,
+    "acceptedRecords": 50,
+    "stableOfficialLinks": true,
+    "stableEventIds": true,
+    "privacy": "No user location data used; package is domain-scoped and research-only."
+  },
+  "acceptance": {
+    "decision": "HOLD",
+    "reason": "Terms, location extraction, and active-region release gates remain unverified.",
+    "activeRegion": false,
+    "officialOutlinks": true
+  },
+  "sourceArtifacts": [
+    "expansion-queues/national-candidate-capture-2026-10-02-austin-honolulu.json",
+    "expansion-queues/national-candidate-validation-2026-10-02-austin-honolulu.json"
+  ]
+}

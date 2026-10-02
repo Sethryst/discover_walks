@@ -9,7 +9,7 @@
     {"market":"austin","sourceUrl":"https://www.austintexas.gov/events","httpStatus":200,"bytes":159502,"status":"candidate","next":"fixture-test structured event selectors and record official refresh behavior"},
     {"market":"austin","sourceUrl":"https://data.austintexas.gov/widgets/p9ma-z6y9","apiUrl":"https://data.austintexas.gov/resource/p9ma-z6y9.json?$limit=3","httpStatus":200,"bytes":568930,"sampleRows":3,"status":"held","next":"add an Austin-specific bounded Socrata adapter; verify terms, field mapping, official detail links, and pagination"},
     {"market":"honolulu","sourceUrl":"https://www.honolulu.gov/events/","httpStatus":200,"bytes":434725,"status":"candidate","next":"fixture-test event-card selectors, timezone semantics, and official detail links"},
-    {"market":"honolulu","sourceUrl":"https://calendar.ehawaii.gov/calendar/rss.html","feedUrl":"https://calendar.ehawaii.gov/calendar/upcoming-events.rss","httpStatus":200,"bytes":136433,"feedItems":50,"adapterAccepted":0,"status":"held","next":"add a Hawaii-specific RSS adapter for Date/Time fields embedded in descriptions; preserve official detail links and Pacific/Honolulu semantics"}
+    {"market":"honolulu","sourceUrl":"https://calendar.ehawaii.gov/calendar/rss.html","feedUrl":"https://calendar.ehawaii.gov/calendar/upcoming-events.rss","httpStatus":200,"bytes":136433,"feedItems":50,"adapter":"hawaii_public_meetings","adapterAccepted":50,"status":"held","next":"review terms, location extraction, and release gates before any regional activation"}
   ],
-  "summary":{"candidates":4,"httpHealthy":4,"focusedValidated":0,"activated":0,"held":2,"rejected":0}
+  "summary":{"candidates":4,"httpHealthy":4,"focusedValidated":1,"activated":0,"held":2,"rejected":0}
 }
