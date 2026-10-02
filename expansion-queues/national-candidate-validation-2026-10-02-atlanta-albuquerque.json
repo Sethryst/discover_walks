@@ -6,9 +6,9 @@
   "batch": "atlanta-albuquerque",
   "privacy": "No user location data used; validation was domain-scoped to public official URLs.",
   "records": [
-    {"market":"atlanta","sourceUrl":"https://www.atlantaga.gov/government/mayor-s-office/executive-offices/office-of-communications/city-calendar","status":"candidate","next":"fixture-test calendar selectors and verify current/future date coverage"},
-    {"market":"albuquerque-santa-fe","sourceUrl":"https://www.cabq.gov/events/events?b_start%3Aint=0","status":"candidate","next":"fixture-test structured timestamps, official detail links, and timezone semantics"},
-    {"market":"albuquerque-santa-fe","sourceUrl":"https://cabq.legistar.com/","status":"candidate","next":"identify bounded Legistar export/API endpoint and test stable meeting identifiers"}
+    {"market":"atlanta","sourceUrl":"https://www.atlantaga.gov/government/mayor-s-office/executive-offices/office-of-communications/city-calendar","httpStatus":403,"status":"held","blocker":"access_restricted","next":"recheck only with an allowed official endpoint; do not bypass access controls"},
+    {"market":"albuquerque-santa-fe","sourceUrl":"https://www.cabq.gov/events/events?b_start%3Aint=0","httpStatus":200,"bytes":130853,"status":"candidate","next":"fixture-test structured timestamps, official detail links, and timezone semantics"},
+    {"market":"albuquerque-santa-fe","sourceUrl":"https://cabq.legistar.com/","httpStatus":200,"bytes":112138,"status":"candidate","next":"identify bounded Legistar export/API endpoint and test stable meeting identifiers"}
   ],
-  "summary":{"candidates":3,"httpHealthy":3,"focusedValidated":0,"activated":0,"held":0,"rejected":0}
+  "summary":{"candidates":2,"httpHealthy":2,"focusedValidated":0,"activated":0,"held":1,"rejected":0}
 }
