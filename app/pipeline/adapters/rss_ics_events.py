@@ -8,6 +8,8 @@ from email.utils import parsedate_to_datetime
 from typing import Any
 from urllib.request import Request, urlopen
 from xml.etree import ElementTree
+from urllib.parse import urljoin
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 from app.gremlins.base import RetryableGremlinError
 from app.pipeline.adapters.base import SourceAdapter
 from app.pipeline.intermediate import IntermediateFeature
@@ -24,7 +26,7 @@ class RssIcsEventsProvider(SourceAdapter):
             raise RetryableGremlinError(f"RSS/ICS acquisition failed for {source.id}") from exc
         stamp = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
         if b"BEGIN:VCALENDAR" in payload[:4096]:
-            records, raw_format = _parse_ics(payload.decode("utf-8", "replace")), "ics"
+            records, raw_format = _parse_ics(payload.decode("utf-8", "replace"), source.url), "ics"
         else:
             records, raw_format = _parse_xml(payload), "rss-atom"
         features = []
@@ -46,24 +48,42 @@ def _parse_xml(payload: bytes):
         output.append({"name": values.get("title"), "startsAt": _date(raw_date), "timeOffsetExplicit": bool(raw_date and re.search(r"(?:Z|[+-]\d{2}:?\d{2})$", raw_date.strip())), "endsAt": _date(values.get("endDate")), "officialUrl": values.get("link") or values.get("url"), "summary": values.get("description")})
     return output
 
-def _parse_ics(payload: str):
+def _parse_ics(payload: str, base_url: str | None = None):
     lines = re.sub(r"\r?\n[ \t]", "", payload).splitlines()
-    events, current = [], None
+    events, current, default_tzid = [], None, None
     for line in lines:
         if line == "BEGIN:VEVENT": current = {}
         elif line == "END:VEVENT" and current is not None:
-            events.append({"id": current.get("UID"), "name": current.get("SUMMARY"), "startsAt": _date(current.get("DTSTART")), "endsAt": _date(current.get("DTEND")), "officialUrl": current.get("URL"), "summary": current.get("DESCRIPTION"), "venueAddress": current.get("LOCATION")})
+            official_url = current.get("URL")
+            if official_url and base_url:
+                official_url = urljoin(base_url, official_url)
+            events.append({"id": current.get("UID"), "name": current.get("SUMMARY"), "startsAt": _date(current.get("DTSTART"), current.get("__TZID_DTSTART"), default_tzid), "endsAt": _date(current.get("DTEND"), current.get("__TZID_DTEND"), default_tzid), "officialUrl": official_url, "summary": current.get("DESCRIPTION"), "venueAddress": current.get("LOCATION")})
             current = None
         elif current is not None and ":" in line:
             key, value = line.split(":", 1)
-            current[key.split(";", 1)[0]] = value.replace("\\n", " ").replace("\\,", ",")
+            key_parts = key.split(";")
+            base_key = key_parts[0]
+            current[base_key] = value.replace("\\n", " ").replace("\\,", ",")
+            for param in key_parts[1:]:
+                if param.upper().startswith("TZID="):
+                    current[f"__TZID_{base_key}"] = param.split("=", 1)[1]
+            if base_key == "X-WR-TIMEZONE":
+                default_tzid = value.strip()
     return events
 
-def _date(value: str | None):
+def _date(value: str | None, tzid: str | None = None, default_tzid: str | None = None):
     if not value: return None
     try:
         if re.fullmatch(r"\d{8}", value): return datetime.strptime(value, "%Y%m%d").replace(tzinfo=timezone.utc).isoformat().replace("+00:00", "Z")
         if value.endswith("Z"): return datetime.fromisoformat(value[:-1] + "+00:00").isoformat().replace("+00:00", "Z")
+        if re.fullmatch(r"\d{8}T\d{6}", value):
+            local = datetime.strptime(value, "%Y%m%dT%H%M%S")
+            zone_name = tzid or default_tzid
+            if zone_name:
+                try: local = local.replace(tzinfo=ZoneInfo(zone_name))
+                except ZoneInfoNotFoundError: local = local.replace(tzinfo=timezone.utc)
+            else: local = local.replace(tzinfo=timezone.utc)
+            return local.astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
         return parsedate_to_datetime(value).astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
     except (TypeError, ValueError, OverflowError):
         return None

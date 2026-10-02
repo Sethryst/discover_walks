@@ -26,3 +26,15 @@ class RssIcsEventsTests(unittest.TestCase):
         features, _ = RssIcsEventsProvider().acquire(self.source, {})
         self.assertEqual(features[0].source_id, "abc")
         self.assertEqual(features[0].properties["startsAt"], "2026-08-08T12:00:00Z")
+
+    @patch("app.pipeline.adapters.rss_ics_events.urlopen")
+    def test_civicplus_ics_preserves_timezone_and_official_url(self, open_url):
+        payload = open("tests/fixtures/charleston_civicplus_event.ics", encoding="utf-8").read().encode()
+        open_url.return_value = _Response(payload)
+        source = SourceConfig.from_dict({"id": "charleston-civicplus", "name": "Charleston Events", "provider": "rss_ics_events", "url": "https://www.charleston-sc.gov/common/modules/iCalendar/iCalendar.aspx?feed=calendar&eventID=10637", "domains": ["charleston-sc.gov"], "licenseUrl": "https://www.charleston-sc.gov/", "providerOptions": {"defaultCoordinates": [-79.93, 32.78]}})
+        features, report = RssIcsEventsProvider().acquire(source, {})
+        self.assertEqual(report["format"], "ics")
+        self.assertEqual(features[0].source_id, "10637")
+        self.assertEqual(features[0].properties["startsAt"], "2026-10-29T19:00:00Z")
+        self.assertEqual(features[0].properties["endsAt"], "2026-10-29T22:00:00Z")
+        self.assertEqual(features[0].properties["officialUrl"], "https://www.charleston-sc.gov/calendar.aspx?EID=10637")
