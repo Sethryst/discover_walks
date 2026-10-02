@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "kind": "national-candidate-validation",
+  "reviewedAt": "2026-10-02T21:00:00Z",
+  "publicationState": "research-only",
+  "batch": "atlanta-albuquerque",
+  "privacy": "No user location data used; validation was domain-scoped to public official URLs.",
+  "records": [
+    {"market":"atlanta","sourceUrl":"https://www.atlantaga.gov/government/mayor-s-office/executive-offices/office-of-communications/city-calendar","status":"candidate","next":"fixture-test calendar selectors and verify current/future date coverage"},
+    {"market":"albuquerque-santa-fe","sourceUrl":"https://www.cabq.gov/events/events?b_start%3Aint=0","status":"candidate","next":"fixture-test structured timestamps, official detail links, and timezone semantics"},
+    {"market":"albuquerque-santa-fe","sourceUrl":"https://cabq.legistar.com/","status":"candidate","next":"identify bounded Legistar export/API endpoint and test stable meeting identifiers"}
+  ],
+  "summary":{"candidates":3,"httpHealthy":3,"focusedValidated":0,"activated":0,"held":0,"rejected":0}
+}

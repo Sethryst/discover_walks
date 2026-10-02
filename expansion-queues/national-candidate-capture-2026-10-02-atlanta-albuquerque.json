@@ -1,0 +1,41 @@
+{
+  "kind": "national-candidate-capture",
+  "candidates": [
+    {
+      "market": "atlanta",
+      "place": "Atlanta",
+      "queryId": "nrq-d57bd1afc8a2",
+      "sourceUrl": "https://www.atlantaga.gov/government/mayor-s-office/executive-offices/office-of-communications/city-calendar",
+      "providerName": "City of Atlanta City Calendar",
+      "sourceType": "structured_html",
+      "coverageScope": "Municipal and public city-calendar events",
+      "discoveryEvidence": "Official City of Atlanta calendar exposes dated event entries and municipal event navigation.",
+      "confidence": 0.84,
+      "negativeResult": null
+    },
+    {
+      "market": "albuquerque-santa-fe",
+      "place": "Albuquerque",
+      "queryId": "nrq-9c81ac5d3639",
+      "sourceUrl": "https://www.cabq.gov/events/events?b_start%3Aint=0",
+      "providerName": "City of Albuquerque Featured Events",
+      "sourceType": "json_ld_or_structured_html",
+      "coverageScope": "City-sponsored events and open-space programming",
+      "discoveryEvidence": "Official City of Albuquerque page exposes event titles, locations, and ISO-8601 local timestamps.",
+      "confidence": 0.9,
+      "negativeResult": null
+    },
+    {
+      "market": "albuquerque-santa-fe",
+      "place": "Albuquerque",
+      "queryId": "nrq-c005b3d7bc7c",
+      "sourceUrl": "https://cabq.legistar.com/",
+      "providerName": "City of Albuquerque Legistar Calendar",
+      "sourceType": "legistar",
+      "coverageScope": "City council and board meetings",
+      "discoveryEvidence": "Official city Legistar calendar exposes meeting dates, locations, agendas, and export-to-calendar controls.",
+      "confidence": 0.87,
+      "negativeResult": null
+    }
+  ]
+}
