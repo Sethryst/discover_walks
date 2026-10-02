@@ -1,108 +1,67 @@
 {
   "kind": "national-discovery-batch",
   "limit": 10,
-  "offset": 1210,
+  "offset": 1232,
   "publicationState": "research-only",
   "readOnly": true,
   "results": [
     {
-      "attempts": 1,
-      "candidateEvidence": {},
-      "candidateUrls": [],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://cityofhenderson.com/sitemap.xml",
-          403
-        ],
-        [
-          "https://cityofhenderson.com/sitemap_index.xml",
-          403
-        ],
-        [
-          "https://cityofhenderson.com/",
-          403
-        ]
-      ],
-      "finishedAt": "2026-10-02T15:59:36.508036Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "json_ld",
-        "humanReview": "not_reviewed",
-        "intent": "json_ld",
-        "market": "Las Vegas",
-        "marketId": "las-vegas",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "cityofhenderson.com",
-        "place": "Henderson",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://cityofmadison.com/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://cityofmadison.com/",
+          "sourceType": "HTML calendar"
         },
-        "providerStatus": "candidate",
-        "query": "site:cityofhenderson.com JSON-LD Event schema",
-        "queryFamily": "json_ld",
-        "queryId": "nrq-14472d3c76ba",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.67,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": true
-          }
+        "https://www.cityofmadison.com": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.cityofmadison.com",
+          "sourceType": "HTML calendar"
         },
-        "state": "NV",
-        "stateCode": "NV"
+        "https://www.cityofmadison.com/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.cityofmadison.com/",
+          "sourceType": "HTML calendar"
+        }
       },
-      "reason": null,
-      "robots": "unknown",
-      "startedAt": "2026-10-02T15:59:35.823398Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 1,
-      "candidateEvidence": {},
-      "candidateUrls": [],
+      "candidateUrls": [
+        "https://cityofmadison.com/",
+        "https://www.cityofmadison.com",
+        "https://www.cityofmadison.com/"
+      ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://cityofhenderson.com/sitemap.xml",
-          403
+          "https://cityofmadison.com/sitemap.xml",
+          404
         ],
         [
-          "https://cityofhenderson.com/sitemap_index.xml",
-          403
+          "https://cityofmadison.com/sitemap_index.xml",
+          404
         ],
         [
-          "https://cityofhenderson.com/",
-          403
+          "https://cityofmadison.com/",
+          "NameError"
+        ],
+        [
+          "https://www.cityofmadison.com",
+          "NameError"
+        ],
+        [
+          "https://www.cityofmadison.com/",
+          "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T15:59:35.823382Z",
+      "finishedAt": "2026-10-02T16:01:26.049185Z",
       "httpStatus": 200,
       "query": {
-        "expectedSourceType": "civicplus",
+        "expectedSourceType": "volunteer",
         "humanReview": "not_reviewed",
-        "intent": "civicplus",
-        "market": "Las Vegas",
-        "marketId": "las-vegas",
+        "intent": "volunteer",
+        "market": "Madison",
+        "marketId": "madison",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -115,17 +74,17 @@
           "blocked_robots"
         ],
         "nextAction": "discover official feeds",
-        "officialDomain": "cityofhenderson.com",
-        "place": "Henderson",
+        "officialDomain": "cityofmadison.com",
+        "place": "Madison",
         "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "site:cityofhenderson.com CivicPlus calendar events",
-        "queryFamily": "civicplus",
-        "queryId": "nrq-1fb08bb03103",
+        "query": "\"Madison, WI\" volunteer opportunities official",
+        "queryFamily": "volunteer",
+        "queryId": "nrq-11cccc26b053",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.33,
@@ -135,136 +94,168 @@
             "structured_family": false
           }
         },
-        "state": "NV",
-        "stateCode": "NV"
+        "state": "WI",
+        "stateCode": "WI"
       },
       "reason": null,
-      "robots": "unknown",
-      "startedAt": "2026-10-02T15:59:35.155754Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 1,
-      "candidateEvidence": {},
-      "candidateUrls": [],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://cityofhenderson.com/sitemap.xml",
-          403
-        ],
-        [
-          "https://cityofhenderson.com/sitemap_index.xml",
-          403
-        ],
-        [
-          "https://cityofhenderson.com/",
-          403
-        ]
-      ],
-      "finishedAt": "2026-10-02T15:59:35.766343Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "legistar",
-        "humanReview": "not_reviewed",
-        "intent": "legistar",
-        "market": "Las Vegas",
-        "marketId": "las-vegas",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "cityofhenderson.com",
-        "place": "Henderson",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "site:cityofhenderson.com Legistar meetings agenda",
-        "queryFamily": "legistar",
-        "queryId": "nrq-25ed9e7d76d9",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "NV",
-        "stateCode": "NV"
-      },
-      "reason": null,
-      "robots": "unknown",
-      "startedAt": "2026-10-02T15:59:35.106724Z",
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:01:23.239066Z",
       "status": "succeeded"
     },
     {
       "attempts": 3,
       "candidateEvidence": {
-        "https://www.lexingtonky.gov/playing/adopt-park": {
+        "https://cityofmadison.com/": {
           "confidence": 0.55,
-          "evidenceUrl": "https://www.lexingtonky.gov/playing/adopt-park",
+          "evidenceUrl": "https://cityofmadison.com/",
           "sourceType": "HTML calendar"
         },
-        "https://www.lexingtonky.gov/playing/aquatics": {
+        "https://www.cityofmadison.com": {
           "confidence": 0.55,
-          "evidenceUrl": "https://www.lexingtonky.gov/playing/aquatics",
+          "evidenceUrl": "https://www.cityofmadison.com",
           "sourceType": "HTML calendar"
         },
-        "https://www.lexingtonky.gov/playing/arts-events": {
+        "https://www.cityofmadison.com/": {
           "confidence": 0.55,
-          "evidenceUrl": "https://www.lexingtonky.gov/playing/arts-events",
+          "evidenceUrl": "https://www.cityofmadison.com/",
           "sourceType": "HTML calendar"
         }
       },
       "candidateUrls": [
-        "https://www.lexingtonky.gov/playing/adopt-park",
-        "https://www.lexingtonky.gov/playing/aquatics",
-        "https://www.lexingtonky.gov/playing/arts-events"
+        "https://cityofmadison.com/",
+        "https://www.cityofmadison.com",
+        "https://www.cityofmadison.com/"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://lexingtonky.gov/sitemap_index.xml",
+          "https://cityofmadison.com/sitemap.xml",
           404
         ],
         [
-          "https://www.lexingtonky.gov/playing/aquatics",
+          "https://cityofmadison.com/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://cityofmadison.com/",
           "NameError"
         ],
         [
-          "https://www.lexingtonky.gov/playing/adopt-park",
+          "https://www.cityofmadison.com",
           "NameError"
         ],
         [
-          "https://www.lexingtonky.gov/playing/arts-events",
+          "https://www.cityofmadison.com/",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T15:59:39.727302Z",
+      "finishedAt": "2026-10-02T16:01:23.406523Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "libraries",
+        "humanReview": "not_reviewed",
+        "intent": "libraries",
+        "market": "Madison",
+        "marketId": "madison",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "cityofmadison.com",
+        "place": "Madison",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Madison, WI\" library events calendar",
+        "queryFamily": "libraries",
+        "queryId": "nrq-30428e75715e",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "WI",
+        "stateCode": "WI"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:01:20.744057Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://cityofmadison.com/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://cityofmadison.com/",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.cityofmadison.com": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.cityofmadison.com",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.cityofmadison.com/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.cityofmadison.com/",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://cityofmadison.com/",
+        "https://www.cityofmadison.com",
+        "https://www.cityofmadison.com/"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://cityofmadison.com/sitemap.xml",
+          404
+        ],
+        [
+          "https://cityofmadison.com/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://cityofmadison.com/",
+          "NameError"
+        ],
+        [
+          "https://www.cityofmadison.com",
+          "NameError"
+        ],
+        [
+          "https://www.cityofmadison.com/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:01:20.765050Z",
       "httpStatus": 200,
       "query": {
         "expectedSourceType": "trails",
         "humanReview": "not_reviewed",
         "intent": "trails",
-        "market": "Lexington",
-        "marketId": "lexington",
+        "market": "Madison",
+        "marketId": "madison",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -277,17 +268,17 @@
           "blocked_robots"
         ],
         "nextAction": "discover official feeds",
-        "officialDomain": "lexingtonky.gov",
-        "place": "Lexington",
+        "officialDomain": "cityofmadison.com",
+        "place": "Madison",
         "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Lexington, KY\" trails outdoor recreation official",
+        "query": "\"Madison, WI\" trails outdoor recreation official",
         "queryFamily": "trails",
-        "queryId": "nrq-27c3cf6f8e72",
+        "queryId": "nrq-335562ee8a18",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.33,
@@ -297,61 +288,148 @@
             "structured_family": false
           }
         },
-        "state": "KY",
-        "stateCode": "KY"
+        "state": "WI",
+        "stateCode": "WI"
       },
       "reason": null,
       "robots": "allowed",
-      "startedAt": "2026-10-02T15:59:38.808120Z",
+      "startedAt": "2026-10-02T16:01:18.255773Z",
       "status": "succeeded"
     },
     {
       "attempts": 3,
       "candidateEvidence": {
-        "https://www.lexingtonky.gov/playing/aquatics": {
+        "https://cityofmadison.com/": {
           "confidence": 0.55,
-          "evidenceUrl": "https://www.lexingtonky.gov/playing/aquatics",
+          "evidenceUrl": "https://cityofmadison.com/",
           "sourceType": "HTML calendar"
         },
-        "https://www.lexingtonky.gov/playing/arts-events": {
+        "https://www.cityofmadison.com": {
           "confidence": 0.55,
-          "evidenceUrl": "https://www.lexingtonky.gov/playing/arts-events",
+          "evidenceUrl": "https://www.cityofmadison.com",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.cityofmadison.com/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.cityofmadison.com/",
           "sourceType": "HTML calendar"
         }
       },
       "candidateUrls": [
-        "https://www.lexingtonky.gov/playing/aquatics",
-        "https://www.lexingtonky.gov/playing/arts-events"
+        "https://cityofmadison.com/",
+        "https://www.cityofmadison.com",
+        "https://www.cityofmadison.com/"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://lexingtonky.gov/sitemap_index.xml",
+          "https://cityofmadison.com/sitemap.xml",
           404
         ],
         [
-          "https://www.lexingtonky.gov/playing/aquatics",
+          "https://cityofmadison.com/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://cityofmadison.com/",
           "NameError"
         ],
         [
-          "https://www.lexingtonky.gov/playing/adopt-park",
+          "https://www.cityofmadison.com",
           "NameError"
         ],
         [
-          "https://www.lexingtonky.gov/playing/arts-events",
+          "https://www.cityofmadison.com/",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T15:59:38.808103Z",
+      "finishedAt": "2026-10-02T16:01:23.239040Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "culture",
+        "humanReview": "not_reviewed",
+        "intent": "culture",
+        "market": "Madison",
+        "marketId": "madison",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "cityofmadison.com",
+        "place": "Madison",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Madison, WI\" arts culture museum events official",
+        "queryFamily": "culture",
+        "queryId": "nrq-6dac67f6a848",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "WI",
+        "stateCode": "WI"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:01:20.765071Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {},
+      "candidateUrls": [],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://cityofmadison.com/sitemap.xml",
+          404
+        ],
+        [
+          "https://cityofmadison.com/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://cityofmadison.com/",
+          "NameError"
+        ],
+        [
+          "https://www.cityofmadison.com",
+          "NameError"
+        ],
+        [
+          "https://www.cityofmadison.com/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:01:18.255747Z",
       "httpStatus": 200,
       "query": {
         "expectedSourceType": "events",
         "humanReview": "not_reviewed",
         "intent": "events",
-        "market": "Lexington",
-        "marketId": "lexington",
+        "market": "Madison",
+        "marketId": "madison",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -364,17 +442,17 @@
           "blocked_robots"
         ],
         "nextAction": "discover official feeds",
-        "officialDomain": "lexingtonky.gov",
-        "place": "Lexington",
+        "officialDomain": "cityofmadison.com",
+        "place": "Madison",
         "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Lexington, KY\" official events calendar",
+        "query": "\"Madison, WI\" official events calendar",
         "queryFamily": "events",
-        "queryId": "nrq-5f0d57f693d6",
+        "queryId": "nrq-78d1ae753c9b",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.33,
@@ -384,61 +462,148 @@
             "structured_family": false
           }
         },
-        "state": "KY",
-        "stateCode": "KY"
+        "state": "WI",
+        "stateCode": "WI"
       },
       "reason": null,
       "robots": "allowed",
-      "startedAt": "2026-10-02T15:59:36.457091Z",
+      "startedAt": "2026-10-02T16:01:15.093989Z",
       "status": "succeeded"
     },
     {
       "attempts": 3,
       "candidateEvidence": {
-        "https://www.lexingtonky.gov/playing/aquatics": {
+        "https://cityofmadison.com/": {
           "confidence": 0.55,
-          "evidenceUrl": "https://www.lexingtonky.gov/playing/aquatics",
+          "evidenceUrl": "https://cityofmadison.com/",
           "sourceType": "HTML calendar"
         },
-        "https://www.lexingtonky.gov/playing/arts-events": {
+        "https://www.cityofmadison.com": {
           "confidence": 0.55,
-          "evidenceUrl": "https://www.lexingtonky.gov/playing/arts-events",
+          "evidenceUrl": "https://www.cityofmadison.com",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.cityofmadison.com/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.cityofmadison.com/",
           "sourceType": "HTML calendar"
         }
       },
       "candidateUrls": [
-        "https://www.lexingtonky.gov/playing/aquatics",
-        "https://www.lexingtonky.gov/playing/arts-events"
+        "https://cityofmadison.com/",
+        "https://www.cityofmadison.com",
+        "https://www.cityofmadison.com/"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://lexingtonky.gov/sitemap_index.xml",
+          "https://cityofmadison.com/sitemap.xml",
           404
         ],
         [
-          "https://www.lexingtonky.gov/playing/aquatics",
+          "https://cityofmadison.com/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://cityofmadison.com/",
           "NameError"
         ],
         [
-          "https://www.lexingtonky.gov/playing/adopt-park",
+          "https://www.cityofmadison.com",
           "NameError"
         ],
         [
-          "https://www.lexingtonky.gov/playing/arts-events",
+          "https://www.cityofmadison.com/",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T15:59:38.805266Z",
+      "finishedAt": "2026-10-02T16:01:26.213328Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "open_data",
+        "humanReview": "not_reviewed",
+        "intent": "open_data",
+        "market": "Madison",
+        "marketId": "madison",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "cityofmadison.com",
+        "place": "Madison",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Madison, WI\" open data portal",
+        "queryFamily": "open_data",
+        "queryId": "nrq-9a0e6aa3068e",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "WI",
+        "stateCode": "WI"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:01:23.406548Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {},
+      "candidateUrls": [],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://cityofmadison.com/sitemap.xml",
+          404
+        ],
+        [
+          "https://cityofmadison.com/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://cityofmadison.com/",
+          "NameError"
+        ],
+        [
+          "https://www.cityofmadison.com",
+          "NameError"
+        ],
+        [
+          "https://www.cityofmadison.com/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:01:18.236738Z",
       "httpStatus": 200,
       "query": {
         "expectedSourceType": "meetings",
         "humanReview": "not_reviewed",
         "intent": "meetings",
-        "market": "Lexington",
-        "marketId": "lexington",
+        "market": "Madison",
+        "marketId": "madison",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -451,17 +616,17 @@
           "blocked_robots"
         ],
         "nextAction": "discover official feeds",
-        "officialDomain": "lexingtonky.gov",
-        "place": "Lexington",
+        "officialDomain": "cityofmadison.com",
+        "place": "Madison",
         "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Lexington, KY\" public meetings agenda calendar",
+        "query": "\"Madison, WI\" public meetings agenda calendar",
         "queryFamily": "meetings",
-        "queryId": "nrq-661575eedbab",
+        "queryId": "nrq-b7f4647936ba",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.33,
@@ -471,136 +636,71 @@
             "structured_family": false
           }
         },
-        "state": "KY",
-        "stateCode": "KY"
+        "state": "WI",
+        "stateCode": "WI"
       },
       "reason": null,
       "robots": "allowed",
-      "startedAt": "2026-10-02T15:59:36.508053Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 1,
-      "candidateEvidence": {},
-      "candidateUrls": [],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://cityofhenderson.com/sitemap.xml",
-          403
-        ],
-        [
-          "https://cityofhenderson.com/sitemap_index.xml",
-          403
-        ],
-        [
-          "https://cityofhenderson.com/",
-          403
-        ]
-      ],
-      "finishedAt": "2026-10-02T15:59:35.106693Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "socrata",
-        "humanReview": "not_reviewed",
-        "intent": "socrata",
-        "market": "Las Vegas",
-        "marketId": "las-vegas",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "cityofhenderson.com",
-        "place": "Henderson",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "site:cityofhenderson.com site:data.* Socrata dataset events",
-        "queryFamily": "socrata",
-        "queryId": "nrq-8b81813a5606",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.67,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": true
-          }
-        },
-        "state": "NV",
-        "stateCode": "NV"
-      },
-      "reason": null,
-      "robots": "unknown",
-      "startedAt": "2026-10-02T15:59:34.002259Z",
+      "startedAt": "2026-10-02T16:01:15.094490Z",
       "status": "succeeded"
     },
     {
       "attempts": 3,
       "candidateEvidence": {
-        "https://www.lexingtonky.gov/playing/adopt-park": {
+        "https://cityofmadison.com/": {
           "confidence": 0.55,
-          "evidenceUrl": "https://www.lexingtonky.gov/playing/adopt-park",
+          "evidenceUrl": "https://cityofmadison.com/",
           "sourceType": "HTML calendar"
         },
-        "https://www.lexingtonky.gov/playing/aquatics": {
+        "https://www.cityofmadison.com": {
           "confidence": 0.55,
-          "evidenceUrl": "https://www.lexingtonky.gov/playing/aquatics",
+          "evidenceUrl": "https://www.cityofmadison.com",
           "sourceType": "HTML calendar"
         },
-        "https://www.lexingtonky.gov/playing/arts-events": {
+        "https://www.cityofmadison.com/": {
           "confidence": 0.55,
-          "evidenceUrl": "https://www.lexingtonky.gov/playing/arts-events",
+          "evidenceUrl": "https://www.cityofmadison.com/",
           "sourceType": "HTML calendar"
         }
       },
       "candidateUrls": [
-        "https://www.lexingtonky.gov/playing/adopt-park",
-        "https://www.lexingtonky.gov/playing/aquatics",
-        "https://www.lexingtonky.gov/playing/arts-events"
+        "https://cityofmadison.com/",
+        "https://www.cityofmadison.com",
+        "https://www.cityofmadison.com/"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://lexingtonky.gov/sitemap_index.xml",
+          "https://cityofmadison.com/sitemap.xml",
           404
         ],
         [
-          "https://www.lexingtonky.gov/playing/aquatics",
+          "https://cityofmadison.com/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://cityofmadison.com/",
           "NameError"
         ],
         [
-          "https://www.lexingtonky.gov/playing/adopt-park",
+          "https://www.cityofmadison.com",
           "NameError"
         ],
         [
-          "https://www.lexingtonky.gov/playing/arts-events",
+          "https://www.cityofmadison.com/",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T15:59:39.704219Z",
+      "finishedAt": "2026-10-02T16:01:20.744029Z",
       "httpStatus": 200,
       "query": {
         "expectedSourceType": "parks",
         "humanReview": "not_reviewed",
         "intent": "parks",
-        "market": "Lexington",
-        "marketId": "lexington",
+        "market": "Madison",
+        "marketId": "madison",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -613,17 +713,17 @@
           "blocked_robots"
         ],
         "nextAction": "discover official feeds",
-        "officialDomain": "lexingtonky.gov",
-        "place": "Lexington",
+        "officialDomain": "cityofmadison.com",
+        "place": "Madison",
         "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Lexington, KY\" parks recreation trails official",
+        "query": "\"Madison, WI\" parks recreation trails official",
         "queryFamily": "parks",
-        "queryId": "nrq-a3be05d033da",
+        "queryId": "nrq-c2f70b76a597",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.33,
@@ -633,43 +733,71 @@
             "structured_family": false
           }
         },
-        "state": "KY",
-        "stateCode": "KY"
+        "state": "WI",
+        "stateCode": "WI"
       },
       "reason": null,
       "robots": "allowed",
-      "startedAt": "2026-10-02T15:59:38.805288Z",
+      "startedAt": "2026-10-02T16:01:18.236774Z",
       "status": "succeeded"
     },
     {
-      "attempts": 1,
-      "candidateEvidence": {},
-      "candidateUrls": [],
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://cityofmadison.com/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://cityofmadison.com/",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.cityofmadison.com": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.cityofmadison.com",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.cityofmadison.com/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.cityofmadison.com/",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://cityofmadison.com/",
+        "https://www.cityofmadison.com",
+        "https://www.cityofmadison.com/"
+      ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://cityofhenderson.com/sitemap.xml",
-          403
+          "https://cityofmadison.com/sitemap.xml",
+          404
         ],
         [
-          "https://cityofhenderson.com/sitemap_index.xml",
-          403
+          "https://cityofmadison.com/sitemap_index.xml",
+          404
         ],
         [
-          "https://cityofhenderson.com/",
-          403
+          "https://cityofmadison.com/",
+          "NameError"
+        ],
+        [
+          "https://www.cityofmadison.com",
+          "NameError"
+        ],
+        [
+          "https://www.cityofmadison.com/",
+          "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T15:59:35.155736Z",
+      "finishedAt": "2026-10-02T16:01:28.840074Z",
       "httpStatus": 200,
       "query": {
-        "expectedSourceType": "ckan",
+        "expectedSourceType": "arcgis",
         "humanReview": "not_reviewed",
-        "intent": "ckan",
-        "market": "Las Vegas",
-        "marketId": "las-vegas",
+        "intent": "arcgis",
+        "market": "Madison",
+        "marketId": "madison",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -682,17 +810,17 @@
           "blocked_robots"
         ],
         "nextAction": "discover official feeds",
-        "officialDomain": "cityofhenderson.com",
-        "place": "Henderson",
+        "officialDomain": "cityofmadison.com",
+        "place": "Madison",
         "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "site:cityofhenderson.com CKAN API dataset",
-        "queryFamily": "ckan",
-        "queryId": "nrq-e034d2b8588a",
+        "query": "site:cityofmadison.com (FeatureServer OR MapServer) parks events",
+        "queryFamily": "arcgis",
+        "queryId": "nrq-c43f8da240fa",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.67,
@@ -702,16 +830,16 @@
             "structured_family": true
           }
         },
-        "state": "NV",
-        "stateCode": "NV"
+        "state": "WI",
+        "stateCode": "WI"
       },
       "reason": null,
-      "robots": "unknown",
-      "startedAt": "2026-10-02T15:59:34.002721Z",
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:01:26.213349Z",
       "status": "succeeded"
     },
     {
-      "attempts": 1,
+      "attempts": 3,
       "candidateEvidence": {},
       "candidateUrls": [],
       "crawlStatus": "completed",
@@ -719,26 +847,34 @@
       "errorType": null,
       "failures": [
         [
-          "https://cityofhenderson.com/sitemap.xml",
-          403
+          "https://cityofmadison.com/sitemap.xml",
+          404
         ],
         [
-          "https://cityofhenderson.com/sitemap_index.xml",
-          403
+          "https://cityofmadison.com/sitemap_index.xml",
+          404
         ],
         [
-          "https://cityofhenderson.com/",
-          403
+          "https://cityofmadison.com/",
+          "NameError"
+        ],
+        [
+          "https://www.cityofmadison.com",
+          "NameError"
+        ],
+        [
+          "https://www.cityofmadison.com/",
+          "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T15:59:36.457070Z",
+      "finishedAt": "2026-10-02T16:01:28.514871Z",
       "httpStatus": 200,
       "query": {
-        "expectedSourceType": "granicus",
+        "expectedSourceType": "rss_ics",
         "humanReview": "not_reviewed",
-        "intent": "granicus",
-        "market": "Las Vegas",
-        "marketId": "las-vegas",
+        "intent": "rss_ics",
+        "market": "Madison",
+        "marketId": "madison",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -751,47 +887,47 @@
           "blocked_robots"
         ],
         "nextAction": "discover official feeds",
-        "officialDomain": "cityofhenderson.com",
-        "place": "Henderson",
+        "officialDomain": "cityofmadison.com",
+        "place": "Madison",
         "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "site:cityofhenderson.com Granicus meetings agenda",
-        "queryFamily": "granicus",
-        "queryId": "nrq-f11dd6a926eb",
+        "query": "\"Madison, WI\" (RSS OR iCalendar OR ICS) events",
+        "queryFamily": "rss_ics",
+        "queryId": "nrq-fae0670e4f85",
         "seedPriority": 2,
         "sourceConfidence": {
-          "score": 0.33,
+          "score": 0.67,
           "signals": {
             "existing_coverage": false,
             "official_domain": true,
-            "structured_family": false
+            "structured_family": true
           }
         },
-        "state": "NV",
-        "stateCode": "NV"
+        "state": "WI",
+        "stateCode": "WI"
       },
       "reason": null,
-      "robots": "unknown",
-      "startedAt": "2026-10-02T15:59:35.766364Z",
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:01:26.049209Z",
       "status": "succeeded"
     }
   ],
   "schemaVersion": 2,
   "selectedQueryIds": [
-    "nrq-8b81813a5606",
-    "nrq-e034d2b8588a",
-    "nrq-25ed9e7d76d9",
-    "nrq-1fb08bb03103",
-    "nrq-f11dd6a926eb",
-    "nrq-14472d3c76ba",
-    "nrq-5f0d57f693d6",
-    "nrq-661575eedbab",
-    "nrq-a3be05d033da",
-    "nrq-27c3cf6f8e72"
+    "nrq-78d1ae753c9b",
+    "nrq-b7f4647936ba",
+    "nrq-c2f70b76a597",
+    "nrq-335562ee8a18",
+    "nrq-30428e75715e",
+    "nrq-6dac67f6a848",
+    "nrq-11cccc26b053",
+    "nrq-9a0e6aa3068e",
+    "nrq-fae0670e4f85",
+    "nrq-c43f8da240fa"
   ],
   "sourceQueue": "expansion-queues/national-region-search-queue.json",
   "summary": {
@@ -799,22 +935,22 @@
     "candidateCaptureErrors": null,
     "candidatesFound": 3,
     "candidatesNeedingHumanReview": 3,
-    "domainsCrawled": 2,
+    "domainsCrawled": 1,
     "duplicateUrlsMerged": 0,
     "failed": 0,
-    "failedRequests": 34,
+    "failedRequests": 50,
     "httpSuccesses": 10,
-    "pagesCrawled": 18,
-    "pagesFetched": 18,
-    "pagesRejected": 34,
+    "pagesCrawled": 30,
+    "pagesFetched": 30,
+    "pagesRejected": 50,
     "rateLimitedRequests": 0,
     "responses_429": 0,
     "robots_disallowed": 0,
-    "robots_unknown": 6,
+    "robots_unknown": 0,
     "skipped": 0,
     "succeeded": 10,
-    "succeededWithCandidates": 4,
-    "succeededWithoutCandidates": 6,
+    "succeededWithCandidates": 7,
+    "succeededWithoutCandidates": 3,
     "timeout_network_failures": 0,
     "uniqueCandidates": 3,
     "usefulDiscoveries": 3

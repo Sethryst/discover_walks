@@ -1,4 +1,5 @@
 import unittest
+from pathlib import Path
 from unittest.mock import patch
 from app.pipeline.adapters.jsonld_events import JsonLdEventsProvider
 from app.pipeline.source_config import SourceConfig
@@ -25,3 +26,14 @@ class JsonLdEventsTests(unittest.TestCase):
         features, report = JsonLdEventsProvider().acquire(source, {})
         self.assertEqual(features, [])
         self.assertEqual(report["acceptedCount"], 0)
+
+    @patch("app.pipeline.adapters.jsonld_events.urlopen")
+    def test_madison_graph_fixture_preserves_official_event_fields(self, open_url):
+        payload = (Path("tests/fixtures/madison_jsonld_event.html").read_text(encoding="utf-8")).encode()
+        open_url.return_value = type("R", (), {"__enter__": lambda s: s, "__exit__": lambda *a: None, "read": lambda s: payload})()
+        source = SourceConfig.from_dict({"id":"madison-parks", "name":"Madison Parks Events", "provider":"jsonld_events", "url":"https://www.cityofmadison.com/parks/events/2026-10-03/bird-nature-adventures-tenney-park", "domains":["cityofmadison.com"], "licenseUrl":"https://www.cityofmadison.com/", "confidence":0.8, "providerOptions":{"defaultCoordinates":[-89.35,43.08]}})
+        features, report = JsonLdEventsProvider().acquire(source, {})
+        self.assertEqual(report["acceptedCount"], 1)
+        self.assertEqual(features[0].properties["officialUrl"], source.url)
+        self.assertIn("1330 Sherman Ave.", features[0].properties["venueAddress"])
+        self.assertEqual(features[0].properties["startsAt"], "2026-10-03T13:30:00-05:00")
