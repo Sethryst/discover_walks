@@ -65,7 +65,7 @@ These are observed official paths from the recent batches or direct domain audit
 | Domain | Observed outlink / endpoint | Evidence interpretation | Supporting pathway |
 |---|---|---|---|
 | `auroragov.org` | `/things_to_do/events` | Official events landing page; no JSON-LD or ICS evidence in direct HTML audit. | Structured HTML fallback; inspect linked calendar service. |
-| `www.auroragov.org` | `/calendar` | Official calendar page; direct HTML showed no dated JSON-LD. | Investigate platform requests; do not treat page as normalized events yet. |
+| `www.auroragov.org` | `/calendar` | Official calendar page exposes `data-calendar-id="16446438"`, `data-context-id="16446437"`, an export action, and a subscribe-to-iCal/RSS action. The public service responds, but the tested export flow still needs a replayable download response. | Prioritize a bounded Intrafinity/CivicLive adapter; capture the export request/response before ingesting. Do not treat the calendar page itself as normalized events. |
 | `www.auroragov.org` | `/common/controls/General/CalendarPicker/CalendarPickerWS.asmx/js` | Reachable JavaScript service description; exposes `GetCalendarPageList`, `GetCalendarRelatedItemList`, `GetNavItemList`, and `GetServerInfoList`. | New focused adapter candidate after request/response contract capture. |
 | `jeffco.us` | `/129/Meetings-Agendas` | Official meetings/agenda page. | HTML review, then meeting-specific structured endpoint if available. |
 | `jeffco.us` | `/calendar.aspx?CID=14` | Official calendar route with a stable calendar identifier. | Probe calendar payload and date fields; retain source ID from `CID=14`. |
