@@ -83,6 +83,7 @@ These are observed official paths from the recent batches or direct domain audit
 | `clevelandohio.gov` | `/events` | Official events page returned HTTP 200 with substantial HTML but no JSON-LD event block in the direct audit. | Inspect item-level links and any platform request before considering a focused adapter. |
 | `lexingtonky.gov` | `/playing/adopt-park`, `/playing/aquatics`, `/playing/arts-events` | Direct audit found only `schema.org/WebPage` JSON-LD; no dated `Event` records or event feed was exposed. | Reject for event ingestion; retain as official regional outlink/context pages and do not count them as event yield. |
 | `cityofmadison.com` | `/events`, `/parks/events/2026-10-03/bird-nature-adventures-tenney-park` | Official events index linked dated item pages; the inspected item emitted explicit `schema.org/Event` JSON-LD with start time, official URL, organizer, and postal address. | Research-ready JSON-LD candidate; fixture and adapter test pass. Hold activation pending license/terms and regional release evidence. |
+| `fortlauderdale.gov` | `/Home/Tabs/Events`, `/Home/Tabs/Meetings` | Bounded slice found both official routes, but direct audit was denied by the edge service. | Hold as access-restricted discovery evidence; retry only through a permitted browser-like path and do not infer event fields from the blocked response. |
 
 ## Ingestion pathway decision tree
 

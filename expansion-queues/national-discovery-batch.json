@@ -1,532 +1,57 @@
 {
   "kind": "national-discovery-batch",
   "limit": 10,
-  "offset": 1232,
+  "offset": 1248,
   "publicationState": "research-only",
   "readOnly": true,
   "results": [
     {
       "attempts": 3,
       "candidateEvidence": {
-        "https://cityofmadison.com/": {
+        "https://www.fortlauderdale.gov/Home/Tabs/Events": {
           "confidence": 0.55,
-          "evidenceUrl": "https://cityofmadison.com/",
+          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Events",
           "sourceType": "HTML calendar"
         },
-        "https://www.cityofmadison.com": {
+        "https://www.fortlauderdale.gov/Home/Tabs/Meetings": {
           "confidence": 0.55,
-          "evidenceUrl": "https://www.cityofmadison.com",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.cityofmadison.com/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.cityofmadison.com/",
+          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
           "sourceType": "HTML calendar"
         }
       },
       "candidateUrls": [
-        "https://cityofmadison.com/",
-        "https://www.cityofmadison.com",
-        "https://www.cityofmadison.com/"
+        "https://www.fortlauderdale.gov/Home/Tabs/Events",
+        "https://www.fortlauderdale.gov/Home/Tabs/Meetings"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://cityofmadison.com/sitemap.xml",
+          "https://fortlauderdale.gov/sitemap_index.xml",
           404
         ],
         [
-          "https://cityofmadison.com/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://cityofmadison.com/",
+          "https://www.fortlauderdale.gov/Home/Tabs/Events",
           "NameError"
         ],
         [
-          "https://www.cityofmadison.com",
+          "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
           "NameError"
         ],
         [
-          "https://www.cityofmadison.com/",
+          "https://www.fortlauderdale.gov/Explore-FTL/Parking",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:01:26.049185Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "volunteer",
-        "humanReview": "not_reviewed",
-        "intent": "volunteer",
-        "market": "Madison",
-        "marketId": "madison",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "cityofmadison.com",
-        "place": "Madison",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Madison, WI\" volunteer opportunities official",
-        "queryFamily": "volunteer",
-        "queryId": "nrq-11cccc26b053",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "WI",
-        "stateCode": "WI"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:01:23.239066Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://cityofmadison.com/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://cityofmadison.com/",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.cityofmadison.com": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.cityofmadison.com",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.cityofmadison.com/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.cityofmadison.com/",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://cityofmadison.com/",
-        "https://www.cityofmadison.com",
-        "https://www.cityofmadison.com/"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://cityofmadison.com/sitemap.xml",
-          404
-        ],
-        [
-          "https://cityofmadison.com/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://cityofmadison.com/",
-          "NameError"
-        ],
-        [
-          "https://www.cityofmadison.com",
-          "NameError"
-        ],
-        [
-          "https://www.cityofmadison.com/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:01:23.406523Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "libraries",
-        "humanReview": "not_reviewed",
-        "intent": "libraries",
-        "market": "Madison",
-        "marketId": "madison",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "cityofmadison.com",
-        "place": "Madison",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Madison, WI\" library events calendar",
-        "queryFamily": "libraries",
-        "queryId": "nrq-30428e75715e",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "WI",
-        "stateCode": "WI"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:01:20.744057Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://cityofmadison.com/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://cityofmadison.com/",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.cityofmadison.com": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.cityofmadison.com",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.cityofmadison.com/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.cityofmadison.com/",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://cityofmadison.com/",
-        "https://www.cityofmadison.com",
-        "https://www.cityofmadison.com/"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://cityofmadison.com/sitemap.xml",
-          404
-        ],
-        [
-          "https://cityofmadison.com/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://cityofmadison.com/",
-          "NameError"
-        ],
-        [
-          "https://www.cityofmadison.com",
-          "NameError"
-        ],
-        [
-          "https://www.cityofmadison.com/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:01:20.765050Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "trails",
-        "humanReview": "not_reviewed",
-        "intent": "trails",
-        "market": "Madison",
-        "marketId": "madison",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "cityofmadison.com",
-        "place": "Madison",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Madison, WI\" trails outdoor recreation official",
-        "queryFamily": "trails",
-        "queryId": "nrq-335562ee8a18",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "WI",
-        "stateCode": "WI"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:01:18.255773Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://cityofmadison.com/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://cityofmadison.com/",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.cityofmadison.com": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.cityofmadison.com",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.cityofmadison.com/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.cityofmadison.com/",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://cityofmadison.com/",
-        "https://www.cityofmadison.com",
-        "https://www.cityofmadison.com/"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://cityofmadison.com/sitemap.xml",
-          404
-        ],
-        [
-          "https://cityofmadison.com/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://cityofmadison.com/",
-          "NameError"
-        ],
-        [
-          "https://www.cityofmadison.com",
-          "NameError"
-        ],
-        [
-          "https://www.cityofmadison.com/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:01:23.239040Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "culture",
-        "humanReview": "not_reviewed",
-        "intent": "culture",
-        "market": "Madison",
-        "marketId": "madison",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "cityofmadison.com",
-        "place": "Madison",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Madison, WI\" arts culture museum events official",
-        "queryFamily": "culture",
-        "queryId": "nrq-6dac67f6a848",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "WI",
-        "stateCode": "WI"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:01:20.765071Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {},
-      "candidateUrls": [],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://cityofmadison.com/sitemap.xml",
-          404
-        ],
-        [
-          "https://cityofmadison.com/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://cityofmadison.com/",
-          "NameError"
-        ],
-        [
-          "https://www.cityofmadison.com",
-          "NameError"
-        ],
-        [
-          "https://www.cityofmadison.com/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:01:18.255747Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "events",
-        "humanReview": "not_reviewed",
-        "intent": "events",
-        "market": "Madison",
-        "marketId": "madison",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "cityofmadison.com",
-        "place": "Madison",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Madison, WI\" official events calendar",
-        "queryFamily": "events",
-        "queryId": "nrq-78d1ae753c9b",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "WI",
-        "stateCode": "WI"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:01:15.093989Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://cityofmadison.com/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://cityofmadison.com/",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.cityofmadison.com": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.cityofmadison.com",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.cityofmadison.com/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.cityofmadison.com/",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://cityofmadison.com/",
-        "https://www.cityofmadison.com",
-        "https://www.cityofmadison.com/"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://cityofmadison.com/sitemap.xml",
-          404
-        ],
-        [
-          "https://cityofmadison.com/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://cityofmadison.com/",
-          "NameError"
-        ],
-        [
-          "https://www.cityofmadison.com",
-          "NameError"
-        ],
-        [
-          "https://www.cityofmadison.com/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:01:26.213328Z",
+      "finishedAt": "2026-10-02T16:05:58.619523Z",
       "httpStatus": 200,
       "query": {
         "expectedSourceType": "open_data",
         "humanReview": "not_reviewed",
         "intent": "open_data",
-        "market": "Madison",
-        "marketId": "madison",
+        "market": "Miami-Fort Lauderdale",
+        "marketId": "miami",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -539,17 +64,17 @@
           "blocked_robots"
         ],
         "nextAction": "discover official feeds",
-        "officialDomain": "cityofmadison.com",
-        "place": "Madison",
+        "officialDomain": "fortlauderdale.gov",
+        "place": "Fort Lauderdale",
         "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Madison, WI\" open data portal",
+        "query": "\"Fort Lauderdale, FL\" open data portal",
         "queryFamily": "open_data",
-        "queryId": "nrq-9a0e6aa3068e",
+        "queryId": "nrq-12a2eb4a5d8e",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.33,
@@ -559,322 +84,61 @@
             "structured_family": false
           }
         },
-        "state": "WI",
-        "stateCode": "WI"
+        "state": "FL",
+        "stateCode": "FL"
       },
       "reason": null,
       "robots": "allowed",
-      "startedAt": "2026-10-02T16:01:23.406548Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {},
-      "candidateUrls": [],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://cityofmadison.com/sitemap.xml",
-          404
-        ],
-        [
-          "https://cityofmadison.com/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://cityofmadison.com/",
-          "NameError"
-        ],
-        [
-          "https://www.cityofmadison.com",
-          "NameError"
-        ],
-        [
-          "https://www.cityofmadison.com/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:01:18.236738Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "meetings",
-        "humanReview": "not_reviewed",
-        "intent": "meetings",
-        "market": "Madison",
-        "marketId": "madison",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "cityofmadison.com",
-        "place": "Madison",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Madison, WI\" public meetings agenda calendar",
-        "queryFamily": "meetings",
-        "queryId": "nrq-b7f4647936ba",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "WI",
-        "stateCode": "WI"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:01:15.094490Z",
+      "startedAt": "2026-10-02T16:05:56.930829Z",
       "status": "succeeded"
     },
     {
       "attempts": 3,
       "candidateEvidence": {
-        "https://cityofmadison.com/": {
+        "https://www.fortlauderdale.gov/Home/Tabs/Events": {
           "confidence": 0.55,
-          "evidenceUrl": "https://cityofmadison.com/",
+          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Events",
           "sourceType": "HTML calendar"
         },
-        "https://www.cityofmadison.com": {
+        "https://www.fortlauderdale.gov/Home/Tabs/Meetings": {
           "confidence": 0.55,
-          "evidenceUrl": "https://www.cityofmadison.com",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.cityofmadison.com/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.cityofmadison.com/",
+          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
           "sourceType": "HTML calendar"
         }
       },
       "candidateUrls": [
-        "https://cityofmadison.com/",
-        "https://www.cityofmadison.com",
-        "https://www.cityofmadison.com/"
+        "https://www.fortlauderdale.gov/Home/Tabs/Events",
+        "https://www.fortlauderdale.gov/Home/Tabs/Meetings"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://cityofmadison.com/sitemap.xml",
+          "https://fortlauderdale.gov/sitemap_index.xml",
           404
         ],
         [
-          "https://cityofmadison.com/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://cityofmadison.com/",
+          "https://www.fortlauderdale.gov/Home/Tabs/Events",
           "NameError"
         ],
         [
-          "https://www.cityofmadison.com",
+          "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
           "NameError"
         ],
         [
-          "https://www.cityofmadison.com/",
+          "https://www.fortlauderdale.gov/Explore-FTL/Parking",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:01:20.744029Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "parks",
-        "humanReview": "not_reviewed",
-        "intent": "parks",
-        "market": "Madison",
-        "marketId": "madison",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "cityofmadison.com",
-        "place": "Madison",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Madison, WI\" parks recreation trails official",
-        "queryFamily": "parks",
-        "queryId": "nrq-c2f70b76a597",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "WI",
-        "stateCode": "WI"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:01:18.236774Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://cityofmadison.com/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://cityofmadison.com/",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.cityofmadison.com": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.cityofmadison.com",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.cityofmadison.com/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.cityofmadison.com/",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://cityofmadison.com/",
-        "https://www.cityofmadison.com",
-        "https://www.cityofmadison.com/"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://cityofmadison.com/sitemap.xml",
-          404
-        ],
-        [
-          "https://cityofmadison.com/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://cityofmadison.com/",
-          "NameError"
-        ],
-        [
-          "https://www.cityofmadison.com",
-          "NameError"
-        ],
-        [
-          "https://www.cityofmadison.com/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:01:28.840074Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "arcgis",
-        "humanReview": "not_reviewed",
-        "intent": "arcgis",
-        "market": "Madison",
-        "marketId": "madison",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "cityofmadison.com",
-        "place": "Madison",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "site:cityofmadison.com (FeatureServer OR MapServer) parks events",
-        "queryFamily": "arcgis",
-        "queryId": "nrq-c43f8da240fa",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.67,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": true
-          }
-        },
-        "state": "WI",
-        "stateCode": "WI"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:01:26.213349Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {},
-      "candidateUrls": [],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://cityofmadison.com/sitemap.xml",
-          404
-        ],
-        [
-          "https://cityofmadison.com/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://cityofmadison.com/",
-          "NameError"
-        ],
-        [
-          "https://www.cityofmadison.com",
-          "NameError"
-        ],
-        [
-          "https://www.cityofmadison.com/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:01:28.514871Z",
+      "finishedAt": "2026-10-02T16:05:59.178663Z",
       "httpStatus": 200,
       "query": {
         "expectedSourceType": "rss_ics",
         "humanReview": "not_reviewed",
         "intent": "rss_ics",
-        "market": "Madison",
-        "marketId": "madison",
+        "market": "Miami-Fort Lauderdale",
+        "marketId": "miami",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -887,17 +151,17 @@
           "blocked_robots"
         ],
         "nextAction": "discover official feeds",
-        "officialDomain": "cityofmadison.com",
-        "place": "Madison",
+        "officialDomain": "fortlauderdale.gov",
+        "place": "Fort Lauderdale",
         "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Madison, WI\" (RSS OR iCalendar OR ICS) events",
+        "query": "\"Fort Lauderdale, FL\" (RSS OR iCalendar OR ICS) events",
         "queryFamily": "rss_ics",
-        "queryId": "nrq-fae0670e4f85",
+        "queryId": "nrq-56fc8ec52f8d",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.67,
@@ -907,52 +171,748 @@
             "structured_family": true
           }
         },
-        "state": "WI",
-        "stateCode": "WI"
+        "state": "FL",
+        "stateCode": "FL"
       },
       "reason": null,
       "robots": "allowed",
-      "startedAt": "2026-10-02T16:01:26.049209Z",
+      "startedAt": "2026-10-02T16:05:57.979062Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.fortlauderdale.gov/Home/Tabs/Events": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Events",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.fortlauderdale.gov/Home/Tabs/Meetings": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.fortlauderdale.gov/Home/Tabs/Events",
+        "https://www.fortlauderdale.gov/Home/Tabs/Meetings"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://fortlauderdale.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.fortlauderdale.gov/Home/Tabs/Events",
+          "NameError"
+        ],
+        [
+          "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
+          "NameError"
+        ],
+        [
+          "https://www.fortlauderdale.gov/Explore-FTL/Parking",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:05:54.449245Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "events",
+        "humanReview": "not_reviewed",
+        "intent": "events",
+        "market": "Miami-Fort Lauderdale",
+        "marketId": "miami",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "fortlauderdale.gov",
+        "place": "Fort Lauderdale",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Fort Lauderdale, FL\" official events calendar",
+        "queryFamily": "events",
+        "queryId": "nrq-68aa54c71395",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "FL",
+        "stateCode": "FL"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:05:51.370264Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.fortlauderdale.gov/Home/Tabs/Events": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Events",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.fortlauderdale.gov/Home/Tabs/Meetings": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.fortlauderdale.gov/Home/Tabs/Events",
+        "https://www.fortlauderdale.gov/Home/Tabs/Meetings"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://fortlauderdale.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.fortlauderdale.gov/Home/Tabs/Events",
+          "NameError"
+        ],
+        [
+          "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
+          "NameError"
+        ],
+        [
+          "https://www.fortlauderdale.gov/Explore-FTL/Parking",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:05:56.804300Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "libraries",
+        "humanReview": "not_reviewed",
+        "intent": "libraries",
+        "market": "Miami-Fort Lauderdale",
+        "marketId": "miami",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "fortlauderdale.gov",
+        "place": "Fort Lauderdale",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Fort Lauderdale, FL\" library events calendar",
+        "queryFamily": "libraries",
+        "queryId": "nrq-7ddaf098b156",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "FL",
+        "stateCode": "FL"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:05:55.591204Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.fortlauderdale.gov/Home/Tabs/Events": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Events",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.fortlauderdale.gov/Home/Tabs/Meetings": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.fortlauderdale.gov/Home/Tabs/Events",
+        "https://www.fortlauderdale.gov/Home/Tabs/Meetings"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://fortlauderdale.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.fortlauderdale.gov/Home/Tabs/Events",
+          "NameError"
+        ],
+        [
+          "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
+          "NameError"
+        ],
+        [
+          "https://www.fortlauderdale.gov/Explore-FTL/Parking",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:05:59.751358Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "arcgis",
+        "humanReview": "not_reviewed",
+        "intent": "arcgis",
+        "market": "Miami-Fort Lauderdale",
+        "marketId": "miami",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "fortlauderdale.gov",
+        "place": "Fort Lauderdale",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "site:fortlauderdale.gov (FeatureServer OR MapServer) parks events",
+        "queryFamily": "arcgis",
+        "queryId": "nrq-96213bb95446",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.67,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": true
+          }
+        },
+        "state": "FL",
+        "stateCode": "FL"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:05:58.619548Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.fortlauderdale.gov/Home/Tabs/Events": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Events",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.fortlauderdale.gov/Home/Tabs/Meetings": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.fortlauderdale.gov/Home/Tabs/Events",
+        "https://www.fortlauderdale.gov/Home/Tabs/Meetings"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://fortlauderdale.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.fortlauderdale.gov/Home/Tabs/Events",
+          "NameError"
+        ],
+        [
+          "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
+          "NameError"
+        ],
+        [
+          "https://www.fortlauderdale.gov/Explore-FTL/Parking",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:05:57.979041Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "volunteer",
+        "humanReview": "not_reviewed",
+        "intent": "volunteer",
+        "market": "Miami-Fort Lauderdale",
+        "marketId": "miami",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "fortlauderdale.gov",
+        "place": "Fort Lauderdale",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Fort Lauderdale, FL\" volunteer opportunities official",
+        "queryFamily": "volunteer",
+        "queryId": "nrq-a6cf656f5a90",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "FL",
+        "stateCode": "FL"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:05:56.804325Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.fortlauderdale.gov/Home/Tabs/Events": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Events",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.fortlauderdale.gov/Home/Tabs/Meetings": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.fortlauderdale.gov/Home/Tabs/Events",
+        "https://www.fortlauderdale.gov/Home/Tabs/Meetings"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://fortlauderdale.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.fortlauderdale.gov/Home/Tabs/Events",
+          "NameError"
+        ],
+        [
+          "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
+          "NameError"
+        ],
+        [
+          "https://www.fortlauderdale.gov/Explore-FTL/Parking",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:05:56.930784Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "culture",
+        "humanReview": "not_reviewed",
+        "intent": "culture",
+        "market": "Miami-Fort Lauderdale",
+        "marketId": "miami",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "fortlauderdale.gov",
+        "place": "Fort Lauderdale",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Fort Lauderdale, FL\" arts culture museum events official",
+        "queryFamily": "culture",
+        "queryId": "nrq-ae17e8c2e1de",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "FL",
+        "stateCode": "FL"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:05:55.715327Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.fortlauderdale.gov/Home/Tabs/Events": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Events",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.fortlauderdale.gov/Home/Tabs/Meetings": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.fortlauderdale.gov/Home/Tabs/Events",
+        "https://www.fortlauderdale.gov/Home/Tabs/Meetings"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://fortlauderdale.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.fortlauderdale.gov/Home/Tabs/Events",
+          "NameError"
+        ],
+        [
+          "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
+          "NameError"
+        ],
+        [
+          "https://www.fortlauderdale.gov/Explore-FTL/Parking",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:05:55.715305Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "parks",
+        "humanReview": "not_reviewed",
+        "intent": "parks",
+        "market": "Miami-Fort Lauderdale",
+        "marketId": "miami",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "fortlauderdale.gov",
+        "place": "Fort Lauderdale",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Fort Lauderdale, FL\" parks recreation trails official",
+        "queryFamily": "parks",
+        "queryId": "nrq-cebdb03ec9e2",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "FL",
+        "stateCode": "FL"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:05:54.444782Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.fortlauderdale.gov/Home/Tabs/Events": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Events",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.fortlauderdale.gov/Home/Tabs/Meetings": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.fortlauderdale.gov/Home/Tabs/Events",
+        "https://www.fortlauderdale.gov/Home/Tabs/Meetings"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://fortlauderdale.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.fortlauderdale.gov/Home/Tabs/Events",
+          "NameError"
+        ],
+        [
+          "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
+          "NameError"
+        ],
+        [
+          "https://www.fortlauderdale.gov/Explore-FTL/Parking",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:05:55.591181Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "trails",
+        "humanReview": "not_reviewed",
+        "intent": "trails",
+        "market": "Miami-Fort Lauderdale",
+        "marketId": "miami",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "fortlauderdale.gov",
+        "place": "Fort Lauderdale",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Fort Lauderdale, FL\" trails outdoor recreation official",
+        "queryFamily": "trails",
+        "queryId": "nrq-d4a2f6976c42",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "FL",
+        "stateCode": "FL"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:05:54.449264Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.fortlauderdale.gov/Home/Tabs/Events": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Events",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.fortlauderdale.gov/Home/Tabs/Meetings": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.fortlauderdale.gov/Home/Tabs/Events",
+        "https://www.fortlauderdale.gov/Home/Tabs/Meetings"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://fortlauderdale.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.fortlauderdale.gov/Home/Tabs/Events",
+          "NameError"
+        ],
+        [
+          "https://www.fortlauderdale.gov/Home/Tabs/Meetings",
+          "NameError"
+        ],
+        [
+          "https://www.fortlauderdale.gov/Explore-FTL/Parking",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:05:54.444749Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "meetings",
+        "humanReview": "not_reviewed",
+        "intent": "meetings",
+        "market": "Miami-Fort Lauderdale",
+        "marketId": "miami",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "fortlauderdale.gov",
+        "place": "Fort Lauderdale",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Fort Lauderdale, FL\" public meetings agenda calendar",
+        "queryFamily": "meetings",
+        "queryId": "nrq-fa942df78eb3",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "FL",
+        "stateCode": "FL"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:05:51.370724Z",
       "status": "succeeded"
     }
   ],
   "schemaVersion": 2,
   "selectedQueryIds": [
-    "nrq-78d1ae753c9b",
-    "nrq-b7f4647936ba",
-    "nrq-c2f70b76a597",
-    "nrq-335562ee8a18",
-    "nrq-30428e75715e",
-    "nrq-6dac67f6a848",
-    "nrq-11cccc26b053",
-    "nrq-9a0e6aa3068e",
-    "nrq-fae0670e4f85",
-    "nrq-c43f8da240fa"
+    "nrq-68aa54c71395",
+    "nrq-fa942df78eb3",
+    "nrq-cebdb03ec9e2",
+    "nrq-d4a2f6976c42",
+    "nrq-7ddaf098b156",
+    "nrq-ae17e8c2e1de",
+    "nrq-a6cf656f5a90",
+    "nrq-12a2eb4a5d8e",
+    "nrq-56fc8ec52f8d",
+    "nrq-96213bb95446"
   ],
   "sourceQueue": "expansion-queues/national-region-search-queue.json",
   "summary": {
     "attempted": 10,
     "candidateCaptureErrors": null,
-    "candidatesFound": 3,
-    "candidatesNeedingHumanReview": 3,
+    "candidatesFound": 2,
+    "candidatesNeedingHumanReview": 2,
     "domainsCrawled": 1,
     "duplicateUrlsMerged": 0,
     "failed": 0,
-    "failedRequests": 50,
+    "failedRequests": 40,
     "httpSuccesses": 10,
     "pagesCrawled": 30,
     "pagesFetched": 30,
-    "pagesRejected": 50,
+    "pagesRejected": 40,
     "rateLimitedRequests": 0,
     "responses_429": 0,
     "robots_disallowed": 0,
     "robots_unknown": 0,
     "skipped": 0,
     "succeeded": 10,
-    "succeededWithCandidates": 7,
-    "succeededWithoutCandidates": 3,
+    "succeededWithCandidates": 10,
+    "succeededWithoutCandidates": 0,
     "timeout_network_failures": 0,
-    "uniqueCandidates": 3,
-    "usefulDiscoveries": 3
+    "uniqueCandidates": 2,
+    "usefulDiscoveries": 2
   }
 }
