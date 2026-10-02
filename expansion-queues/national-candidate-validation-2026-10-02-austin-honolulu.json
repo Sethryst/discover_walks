@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "kind": "national-candidate-validation",
+  "reviewedAt": "2026-10-02T20:15:00Z",
+  "publicationState": "research-only",
+  "batch": "austin-honolulu",
+  "privacy": "No user location data used; validation was domain-scoped to public official URLs.",
+  "records": [
+    {"market":"austin","sourceUrl":"https://www.austintexas.gov/events","httpStatus":200,"bytes":159502,"status":"candidate","next":"fixture-test structured event selectors and record official refresh behavior"},
+    {"market":"austin","sourceUrl":"https://data.austintexas.gov/widgets/p9ma-z6y9","httpStatus":200,"bytes":568930,"status":"candidate","next":"resolve Socrata dataset identifier/API endpoint, terms, field mapping, and bounded pagination"},
+    {"market":"honolulu","sourceUrl":"https://www.honolulu.gov/events/","httpStatus":200,"bytes":434725,"status":"candidate","next":"fixture-test event-card selectors, timezone semantics, and official detail links"},
+    {"market":"honolulu","sourceUrl":"https://calendar.ehawaii.gov/calendar/rss.html","httpStatus":200,"bytes":136433,"status":"candidate","next":"enumerate RSS child links and replay one feed through the RSS adapter"}
+  ],
+  "summary":{"candidates":4,"httpHealthy":4,"focusedValidated":0,"activated":0,"held":0,"rejected":0}
+}

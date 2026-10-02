@@ -1,0 +1,53 @@
+{
+  "kind": "national-candidate-capture",
+  "candidates": [
+    {
+      "market": "austin",
+      "place": "Austin",
+      "queryId": "nrq-671ee4ed621c",
+      "sourceUrl": "https://www.austintexas.gov/events",
+      "providerName": "City of Austin Events",
+      "sourceType": "structured_html",
+      "coverageScope": "Austin city departments and civic events",
+      "discoveryEvidence": "Official City of Austin events page exposes dated event records and department filters.",
+      "confidence": 0.91,
+      "negativeResult": null
+    },
+    {
+      "market": "austin",
+      "place": "Austin",
+      "queryId": "nrq-fffdd2cedd30",
+      "sourceUrl": "https://data.austintexas.gov/widgets/p9ma-z6y9",
+      "providerName": "City of Austin Open Data ACCD Event Listings",
+      "sourceType": "socrata",
+      "coverageScope": "Austin Convention Center and city-managed venue event listings",
+      "discoveryEvidence": "Official Austin open-data portal exposes dated event rows and a Socrata-backed listing.",
+      "confidence": 0.88,
+      "negativeResult": null
+    },
+    {
+      "market": "honolulu",
+      "place": "Honolulu",
+      "queryId": "nrq-32cbc29c96af",
+      "sourceUrl": "https://www.honolulu.gov/events/",
+      "providerName": "City and County of Honolulu Events",
+      "sourceType": "structured_html",
+      "coverageScope": "Honolulu city and county public meetings, libraries, parks, and civic events",
+      "discoveryEvidence": "Official city/county calendar exposes dated event cards and calendar navigation.",
+      "confidence": 0.83,
+      "negativeResult": null
+    },
+    {
+      "market": "honolulu",
+      "place": "Honolulu",
+      "queryId": "nrq-ae17fc4cb81d",
+      "sourceUrl": "https://calendar.ehawaii.gov/calendar/rss.html",
+      "providerName": "State of Hawaii Public Meetings RSS Index",
+      "sourceType": "rss",
+      "coverageScope": "State agency and public-board calendars relevant to Honolulu",
+      "discoveryEvidence": "Official State of Hawaii calendar page lists RSS links for agency calendars.",
+      "confidence": 0.86,
+      "negativeResult": null
+    }
+  ]
+}
