@@ -1,52 +1,160 @@
 {
   "candidates": [
     {
-      "canonicalUrl": "https://stlouis-mo.gov/",
+      "canonicalUrl": "https://nps.gov/",
       "confidence": 0.55,
-      "coverageScope": "st-louis",
+      "coverageScope": "yellowstone",
       "crawlStatus": "completed",
-      "crawlTimestamp": "2026-10-02T16:19:57.736642Z",
+      "crawlTimestamp": "2026-10-02T16:23:20.678303Z",
       "discoveryEvidence": "National bounded crawler result; review required.",
       "evidenceUrls": [
-        "https://stlouis-mo.gov/"
+        "https://nps.gov/"
       ],
       "failureReason": null,
       "httpStatus": 200,
-      "market": "St. Louis",
+      "market": "Yellowstone",
       "markets": [
-        "St. Louis"
+        "Yellowstone"
       ],
       "needsHumanReview": true,
-      "originatingOfficialDomain": "stlouis-mo.gov",
+      "originatingOfficialDomain": "nps.gov",
       "originatingSeed": "expansion-queues/national-region-seeds.csv",
-      "place": "St. Louis",
-      "providerName": "stlouis-mo.gov",
+      "place": "Yellowstone National Park",
+      "providerName": "nps.gov",
       "queryFamilies": [
         "arcgis",
         "culture",
+        "events",
         "libraries",
+        "meetings",
         "open_data",
         "parks",
+        "rss_ics",
         "trails",
         "volunteer"
       ],
-      "queryId": "nrq-0049c6d09051",
+      "queryId": "nrq-10877a3adb26",
       "queryIds": [
-        "nrq-0049c6d09051",
-        "nrq-74de0c8d0c17",
-        "nrq-77e0913e9e9f",
-        "nrq-84a58678fe57",
-        "nrq-8c5fb5115155",
-        "nrq-f5cb80badd8d",
-        "nrq-fbb327afd083"
+        "nrq-10877a3adb26",
+        "nrq-10cac719c914",
+        "nrq-27dafe16302e",
+        "nrq-328353b068cf",
+        "nrq-3caf92cbd8d7",
+        "nrq-4ae1748ba6a9",
+        "nrq-5cee880a9a62",
+        "nrq-8a7a5146c6f8",
+        "nrq-9e6e506a686d",
+        "nrq-fb2a16f20501"
       ],
       "robotsDecision": "allowed",
       "scoreBreakdown": {},
       "sourceType": "HTML calendar",
-      "sourceUrl": "https://stlouis-mo.gov/"
+      "sourceUrl": "https://nps.gov/"
+    },
+    {
+      "canonicalUrl": "https://www.nps.gov/sitemap/tours.xml",
+      "confidence": 0.8,
+      "coverageScope": "yellowstone",
+      "crawlStatus": "completed",
+      "crawlTimestamp": "2026-10-02T16:23:20.678303Z",
+      "discoveryEvidence": "National bounded crawler result; review required.",
+      "evidenceUrls": [
+        "https://www.nps.gov/sitemap/tours.xml"
+      ],
+      "failureReason": null,
+      "httpStatus": 200,
+      "market": "Yellowstone",
+      "markets": [
+        "Yellowstone"
+      ],
+      "needsHumanReview": true,
+      "originatingOfficialDomain": "nps.gov",
+      "originatingSeed": "expansion-queues/national-region-seeds.csv",
+      "place": "Yellowstone National Park",
+      "providerName": "www.nps.gov",
+      "queryFamilies": [
+        "arcgis",
+        "culture",
+        "events",
+        "libraries",
+        "meetings",
+        "open_data",
+        "parks",
+        "rss_ics",
+        "trails",
+        "volunteer"
+      ],
+      "queryId": "nrq-10877a3adb26",
+      "queryIds": [
+        "nrq-10877a3adb26",
+        "nrq-10cac719c914",
+        "nrq-27dafe16302e",
+        "nrq-328353b068cf",
+        "nrq-3caf92cbd8d7",
+        "nrq-4ae1748ba6a9",
+        "nrq-5cee880a9a62",
+        "nrq-8a7a5146c6f8",
+        "nrq-9e6e506a686d",
+        "nrq-fb2a16f20501"
+      ],
+      "robotsDecision": "allowed",
+      "scoreBreakdown": {},
+      "sourceType": "Sitemap",
+      "sourceUrl": "https://www.nps.gov/sitemap/tours.xml"
+    },
+    {
+      "canonicalUrl": "https://www.nps.gov/sitemap/trails.xml",
+      "confidence": 0.8,
+      "coverageScope": "yellowstone",
+      "crawlStatus": "completed",
+      "crawlTimestamp": "2026-10-02T16:23:20.678303Z",
+      "discoveryEvidence": "National bounded crawler result; review required.",
+      "evidenceUrls": [
+        "https://www.nps.gov/sitemap/trails.xml"
+      ],
+      "failureReason": null,
+      "httpStatus": 200,
+      "market": "Yellowstone",
+      "markets": [
+        "Yellowstone"
+      ],
+      "needsHumanReview": true,
+      "originatingOfficialDomain": "nps.gov",
+      "originatingSeed": "expansion-queues/national-region-seeds.csv",
+      "place": "Yellowstone National Park",
+      "providerName": "www.nps.gov",
+      "queryFamilies": [
+        "arcgis",
+        "culture",
+        "events",
+        "libraries",
+        "meetings",
+        "open_data",
+        "parks",
+        "rss_ics",
+        "trails",
+        "volunteer"
+      ],
+      "queryId": "nrq-10877a3adb26",
+      "queryIds": [
+        "nrq-10877a3adb26",
+        "nrq-10cac719c914",
+        "nrq-27dafe16302e",
+        "nrq-328353b068cf",
+        "nrq-3caf92cbd8d7",
+        "nrq-4ae1748ba6a9",
+        "nrq-5cee880a9a62",
+        "nrq-8a7a5146c6f8",
+        "nrq-9e6e506a686d",
+        "nrq-fb2a16f20501"
+      ],
+      "robotsDecision": "allowed",
+      "scoreBreakdown": {},
+      "sourceType": "Sitemap",
+      "sourceUrl": "https://www.nps.gov/sitemap/trails.xml"
     }
   ],
-  "generatedAt": "2026-10-02T16:20:01.989101Z",
+  "generatedAt": "2026-10-02T16:23:24.135019Z",
   "kind": "national-candidate-capture",
   "negativeDiscoveries": [],
   "publicationState": "research-only",

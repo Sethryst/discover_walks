@@ -1,43 +1,55 @@
 {
   "kind": "national-discovery-batch",
   "limit": 10,
-  "offset": 1472,
+  "offset": 1504,
   "publicationState": "research-only",
   "readOnly": true,
   "results": [
     {
-      "attempts": 1,
+      "attempts": 3,
       "candidateEvidence": {
-        "https://stlouis-mo.gov/": {
+        "https://nps.gov/": {
           "confidence": 0.55,
-          "evidenceUrl": "https://stlouis-mo.gov/",
+          "evidenceUrl": "https://nps.gov/",
           "sourceType": "HTML calendar"
+        },
+        "https://www.nps.gov/sitemap/tours.xml": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.nps.gov/sitemap/tours.xml",
+          "sourceType": "Sitemap"
+        },
+        "https://www.nps.gov/sitemap/trails.xml": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.nps.gov/sitemap/trails.xml",
+          "sourceType": "Sitemap"
         }
       },
       "candidateUrls": [
-        "https://stlouis-mo.gov/"
+        "https://nps.gov/",
+        "https://www.nps.gov/sitemap/tours.xml",
+        "https://www.nps.gov/sitemap/trails.xml"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://stlouis-mo.gov/sitemap_index.xml",
+          "https://nps.gov/sitemap_index.xml",
           404
         ],
         [
-          "https://stlouis-mo.gov/",
+          "https://nps.gov/",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:19:57.736642Z",
+      "finishedAt": "2026-10-02T16:23:20.678303Z",
       "httpStatus": 200,
       "query": {
         "expectedSourceType": "trails",
         "humanReview": "not_reviewed",
         "intent": "trails",
-        "market": "St. Louis",
-        "marketId": "st-louis",
+        "market": "Yellowstone",
+        "marketId": "yellowstone",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -49,18 +61,18 @@
           "stale_calendar",
           "blocked_robots"
         ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "stlouis-mo.gov",
-        "place": "St. Louis",
-        "placeType": "city",
+        "nextAction": "discover federal park feeds",
+        "officialDomain": "nps.gov",
+        "place": "Yellowstone National Park",
+        "placeType": "parks_district",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"St. Louis, MO\" trails outdoor recreation official",
+        "query": "\"Yellowstone National Park, WY\" trails outdoor recreation official",
         "queryFamily": "trails",
-        "queryId": "nrq-0049c6d09051",
+        "queryId": "nrq-10877a3adb26",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.33,
@@ -70,534 +82,59 @@
             "structured_family": false
           }
         },
-        "state": "MO",
-        "stateCode": "MO"
+        "state": "WY",
+        "stateCode": "WY"
       },
       "reason": null,
       "robots": "allowed",
-      "startedAt": "2026-10-02T16:19:56.389334Z",
+      "startedAt": "2026-10-02T16:23:19.538543Z",
       "status": "succeeded"
     },
     {
-      "attempts": 1,
-      "candidateEvidence": {},
-      "candidateUrls": [],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://stlouis-mo.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://stlouis-mo.gov/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:20:01.832708Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "rss_ics",
-        "humanReview": "not_reviewed",
-        "intent": "rss_ics",
-        "market": "St. Louis",
-        "marketId": "st-louis",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "stlouis-mo.gov",
-        "place": "St. Louis",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"St. Louis, MO\" (RSS OR iCalendar OR ICS) events",
-        "queryFamily": "rss_ics",
-        "queryId": "nrq-7462ed747222",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.67,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": true
-          }
-        },
-        "state": "MO",
-        "stateCode": "MO"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:20:00.407154Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 1,
+      "attempts": 3,
       "candidateEvidence": {
-        "https://stlouis-mo.gov/": {
+        "https://nps.gov/": {
           "confidence": 0.55,
-          "evidenceUrl": "https://stlouis-mo.gov/",
+          "evidenceUrl": "https://nps.gov/",
           "sourceType": "HTML calendar"
+        },
+        "https://www.nps.gov/sitemap/tours.xml": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.nps.gov/sitemap/tours.xml",
+          "sourceType": "Sitemap"
+        },
+        "https://www.nps.gov/sitemap/trails.xml": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.nps.gov/sitemap/trails.xml",
+          "sourceType": "Sitemap"
         }
       },
       "candidateUrls": [
-        "https://stlouis-mo.gov/"
+        "https://nps.gov/",
+        "https://www.nps.gov/sitemap/tours.xml",
+        "https://www.nps.gov/sitemap/trails.xml"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://stlouis-mo.gov/sitemap_index.xml",
+          "https://nps.gov/sitemap_index.xml",
           404
         ],
         [
-          "https://stlouis-mo.gov/",
+          "https://nps.gov/",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:20:01.988760Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "arcgis",
-        "humanReview": "not_reviewed",
-        "intent": "arcgis",
-        "market": "St. Louis",
-        "marketId": "st-louis",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "stlouis-mo.gov",
-        "place": "St. Louis",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "site:stlouis-mo.gov (FeatureServer OR MapServer) parks events",
-        "queryFamily": "arcgis",
-        "queryId": "nrq-74de0c8d0c17",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.67,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": true
-          }
-        },
-        "state": "MO",
-        "stateCode": "MO"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:20:00.565198Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 1,
-      "candidateEvidence": {
-        "https://stlouis-mo.gov/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://stlouis-mo.gov/",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://stlouis-mo.gov/"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://stlouis-mo.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://stlouis-mo.gov/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:20:00.407130Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "volunteer",
-        "humanReview": "not_reviewed",
-        "intent": "volunteer",
-        "market": "St. Louis",
-        "marketId": "st-louis",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "stlouis-mo.gov",
-        "place": "St. Louis",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"St. Louis, MO\" volunteer opportunities official",
-        "queryFamily": "volunteer",
-        "queryId": "nrq-77e0913e9e9f",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "MO",
-        "stateCode": "MO"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:19:59.002052Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 1,
-      "candidateEvidence": {
-        "https://stlouis-mo.gov/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://stlouis-mo.gov/",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://stlouis-mo.gov/"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://stlouis-mo.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://stlouis-mo.gov/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:19:59.002032Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "libraries",
-        "humanReview": "not_reviewed",
-        "intent": "libraries",
-        "market": "St. Louis",
-        "marketId": "st-louis",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "stlouis-mo.gov",
-        "place": "St. Louis",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"St. Louis, MO\" library events calendar",
-        "queryFamily": "libraries",
-        "queryId": "nrq-84a58678fe57",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "MO",
-        "stateCode": "MO"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:19:57.601737Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 1,
-      "candidateEvidence": {
-        "https://stlouis-mo.gov/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://stlouis-mo.gov/",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://stlouis-mo.gov/"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://stlouis-mo.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://stlouis-mo.gov/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:19:57.601716Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "parks",
-        "humanReview": "not_reviewed",
-        "intent": "parks",
-        "market": "St. Louis",
-        "marketId": "st-louis",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "stlouis-mo.gov",
-        "place": "St. Louis",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"St. Louis, MO\" parks recreation trails official",
-        "queryFamily": "parks",
-        "queryId": "nrq-8c5fb5115155",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "MO",
-        "stateCode": "MO"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:19:56.252567Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 1,
-      "candidateEvidence": {},
-      "candidateUrls": [],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://stlouis-mo.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://stlouis-mo.gov/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:19:56.252539Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "events",
-        "humanReview": "not_reviewed",
-        "intent": "events",
-        "market": "St. Louis",
-        "marketId": "st-louis",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "stlouis-mo.gov",
-        "place": "St. Louis",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"St. Louis, MO\" official events calendar",
-        "queryFamily": "events",
-        "queryId": "nrq-988dd860f220",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "MO",
-        "stateCode": "MO"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:19:54.463202Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 1,
-      "candidateEvidence": {},
-      "candidateUrls": [],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://stlouis-mo.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://stlouis-mo.gov/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:19:56.389313Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "meetings",
-        "humanReview": "not_reviewed",
-        "intent": "meetings",
-        "market": "St. Louis",
-        "marketId": "st-louis",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "stlouis-mo.gov",
-        "place": "St. Louis",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"St. Louis, MO\" public meetings agenda calendar",
-        "queryFamily": "meetings",
-        "queryId": "nrq-9bd3f2cc33e3",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "MO",
-        "stateCode": "MO"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:19:54.463667Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 1,
-      "candidateEvidence": {
-        "https://stlouis-mo.gov/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://stlouis-mo.gov/",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://stlouis-mo.gov/"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://stlouis-mo.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://stlouis-mo.gov/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:20:00.565181Z",
+      "finishedAt": "2026-10-02T16:23:22.979605Z",
       "httpStatus": 200,
       "query": {
         "expectedSourceType": "open_data",
         "humanReview": "not_reviewed",
         "intent": "open_data",
-        "market": "St. Louis",
-        "marketId": "st-louis",
+        "market": "Yellowstone",
+        "marketId": "yellowstone",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -609,18 +146,18 @@
           "stale_calendar",
           "blocked_robots"
         ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "stlouis-mo.gov",
-        "place": "St. Louis",
-        "placeType": "city",
+        "nextAction": "discover federal park feeds",
+        "officialDomain": "nps.gov",
+        "place": "Yellowstone National Park",
+        "placeType": "parks_district",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"St. Louis, MO\" open data portal",
+        "query": "\"Yellowstone National Park, WY\" open data portal",
         "queryFamily": "open_data",
-        "queryId": "nrq-f5cb80badd8d",
+        "queryId": "nrq-10cac719c914",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.33,
@@ -630,47 +167,59 @@
             "structured_family": false
           }
         },
-        "state": "MO",
-        "stateCode": "MO"
+        "state": "WY",
+        "stateCode": "WY"
       },
       "reason": null,
       "robots": "allowed",
-      "startedAt": "2026-10-02T16:19:59.150015Z",
+      "startedAt": "2026-10-02T16:23:21.848173Z",
       "status": "succeeded"
     },
     {
-      "attempts": 1,
+      "attempts": 3,
       "candidateEvidence": {
-        "https://stlouis-mo.gov/": {
+        "https://nps.gov/": {
           "confidence": 0.55,
-          "evidenceUrl": "https://stlouis-mo.gov/",
+          "evidenceUrl": "https://nps.gov/",
           "sourceType": "HTML calendar"
+        },
+        "https://www.nps.gov/sitemap/tours.xml": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.nps.gov/sitemap/tours.xml",
+          "sourceType": "Sitemap"
+        },
+        "https://www.nps.gov/sitemap/trails.xml": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.nps.gov/sitemap/trails.xml",
+          "sourceType": "Sitemap"
         }
       },
       "candidateUrls": [
-        "https://stlouis-mo.gov/"
+        "https://nps.gov/",
+        "https://www.nps.gov/sitemap/tours.xml",
+        "https://www.nps.gov/sitemap/trails.xml"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://stlouis-mo.gov/sitemap_index.xml",
+          "https://nps.gov/sitemap_index.xml",
           404
         ],
         [
-          "https://stlouis-mo.gov/",
+          "https://nps.gov/",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:19:59.149996Z",
+      "finishedAt": "2026-10-02T16:23:21.826645Z",
       "httpStatus": 200,
       "query": {
         "expectedSourceType": "culture",
         "humanReview": "not_reviewed",
         "intent": "culture",
-        "market": "St. Louis",
-        "marketId": "st-louis",
+        "market": "Yellowstone",
+        "marketId": "yellowstone",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -682,18 +231,18 @@
           "stale_calendar",
           "blocked_robots"
         ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "stlouis-mo.gov",
-        "place": "St. Louis",
-        "placeType": "city",
+        "nextAction": "discover federal park feeds",
+        "officialDomain": "nps.gov",
+        "place": "Yellowstone National Park",
+        "placeType": "parks_district",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"St. Louis, MO\" arts culture museum events official",
+        "query": "\"Yellowstone National Park, WY\" arts culture museum events official",
         "queryFamily": "culture",
-        "queryId": "nrq-fbb327afd083",
+        "queryId": "nrq-27dafe16302e",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.33,
@@ -703,41 +252,636 @@
             "structured_family": false
           }
         },
-        "state": "MO",
-        "stateCode": "MO"
+        "state": "WY",
+        "stateCode": "WY"
       },
       "reason": null,
       "robots": "allowed",
-      "startedAt": "2026-10-02T16:19:57.736660Z",
+      "startedAt": "2026-10-02T16:23:20.691592Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://nps.gov/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://nps.gov/",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.nps.gov/sitemap/tours.xml": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.nps.gov/sitemap/tours.xml",
+          "sourceType": "Sitemap"
+        },
+        "https://www.nps.gov/sitemap/trails.xml": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.nps.gov/sitemap/trails.xml",
+          "sourceType": "Sitemap"
+        }
+      },
+      "candidateUrls": [
+        "https://nps.gov/",
+        "https://www.nps.gov/sitemap/tours.xml",
+        "https://www.nps.gov/sitemap/trails.xml"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://nps.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://nps.gov/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:23:19.536235Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "meetings",
+        "humanReview": "not_reviewed",
+        "intent": "meetings",
+        "market": "Yellowstone",
+        "marketId": "yellowstone",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover federal park feeds",
+        "officialDomain": "nps.gov",
+        "place": "Yellowstone National Park",
+        "placeType": "parks_district",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Yellowstone National Park, WY\" public meetings agenda calendar",
+        "queryFamily": "meetings",
+        "queryId": "nrq-328353b068cf",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "WY",
+        "stateCode": "WY"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:23:18.119349Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://nps.gov/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://nps.gov/",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.nps.gov/sitemap/tours.xml": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.nps.gov/sitemap/tours.xml",
+          "sourceType": "Sitemap"
+        },
+        "https://www.nps.gov/sitemap/trails.xml": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.nps.gov/sitemap/trails.xml",
+          "sourceType": "Sitemap"
+        }
+      },
+      "candidateUrls": [
+        "https://nps.gov/",
+        "https://www.nps.gov/sitemap/tours.xml",
+        "https://www.nps.gov/sitemap/trails.xml"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://nps.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://nps.gov/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:23:19.538523Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "events",
+        "humanReview": "not_reviewed",
+        "intent": "events",
+        "market": "Yellowstone",
+        "marketId": "yellowstone",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover federal park feeds",
+        "officialDomain": "nps.gov",
+        "place": "Yellowstone National Park",
+        "placeType": "parks_district",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Yellowstone National Park, WY\" official events calendar",
+        "queryFamily": "events",
+        "queryId": "nrq-3caf92cbd8d7",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "WY",
+        "stateCode": "WY"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:23:18.118836Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://nps.gov/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://nps.gov/",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.nps.gov/sitemap/tours.xml": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.nps.gov/sitemap/tours.xml",
+          "sourceType": "Sitemap"
+        },
+        "https://www.nps.gov/sitemap/trails.xml": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.nps.gov/sitemap/trails.xml",
+          "sourceType": "Sitemap"
+        }
+      },
+      "candidateUrls": [
+        "https://nps.gov/",
+        "https://www.nps.gov/sitemap/tours.xml",
+        "https://www.nps.gov/sitemap/trails.xml"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://nps.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://nps.gov/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:23:21.848157Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "libraries",
+        "humanReview": "not_reviewed",
+        "intent": "libraries",
+        "market": "Yellowstone",
+        "marketId": "yellowstone",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover federal park feeds",
+        "officialDomain": "nps.gov",
+        "place": "Yellowstone National Park",
+        "placeType": "parks_district",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Yellowstone National Park, WY\" library events calendar",
+        "queryFamily": "libraries",
+        "queryId": "nrq-4ae1748ba6a9",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "WY",
+        "stateCode": "WY"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:23:20.678325Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://nps.gov/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://nps.gov/",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.nps.gov/sitemap/tours.xml": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.nps.gov/sitemap/tours.xml",
+          "sourceType": "Sitemap"
+        },
+        "https://www.nps.gov/sitemap/trails.xml": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.nps.gov/sitemap/trails.xml",
+          "sourceType": "Sitemap"
+        }
+      },
+      "candidateUrls": [
+        "https://nps.gov/",
+        "https://www.nps.gov/sitemap/tours.xml",
+        "https://www.nps.gov/sitemap/trails.xml"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://nps.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://nps.gov/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:23:22.947520Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "volunteer",
+        "humanReview": "not_reviewed",
+        "intent": "volunteer",
+        "market": "Yellowstone",
+        "marketId": "yellowstone",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover federal park feeds",
+        "officialDomain": "nps.gov",
+        "place": "Yellowstone National Park",
+        "placeType": "parks_district",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Yellowstone National Park, WY\" volunteer opportunities official",
+        "queryFamily": "volunteer",
+        "queryId": "nrq-5cee880a9a62",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "WY",
+        "stateCode": "WY"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:23:21.826668Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://nps.gov/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://nps.gov/",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.nps.gov/sitemap/tours.xml": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.nps.gov/sitemap/tours.xml",
+          "sourceType": "Sitemap"
+        },
+        "https://www.nps.gov/sitemap/trails.xml": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.nps.gov/sitemap/trails.xml",
+          "sourceType": "Sitemap"
+        }
+      },
+      "candidateUrls": [
+        "https://nps.gov/",
+        "https://www.nps.gov/sitemap/tours.xml",
+        "https://www.nps.gov/sitemap/trails.xml"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://nps.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://nps.gov/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:23:20.691575Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "parks",
+        "humanReview": "not_reviewed",
+        "intent": "parks",
+        "market": "Yellowstone",
+        "marketId": "yellowstone",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover federal park feeds",
+        "officialDomain": "nps.gov",
+        "place": "Yellowstone National Park",
+        "placeType": "parks_district",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Yellowstone National Park, WY\" parks recreation trails official",
+        "queryFamily": "parks",
+        "queryId": "nrq-8a7a5146c6f8",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "WY",
+        "stateCode": "WY"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:23:19.536266Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://nps.gov/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://nps.gov/",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.nps.gov/sitemap/tours.xml": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.nps.gov/sitemap/tours.xml",
+          "sourceType": "Sitemap"
+        },
+        "https://www.nps.gov/sitemap/trails.xml": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.nps.gov/sitemap/trails.xml",
+          "sourceType": "Sitemap"
+        }
+      },
+      "candidateUrls": [
+        "https://nps.gov/",
+        "https://www.nps.gov/sitemap/tours.xml",
+        "https://www.nps.gov/sitemap/trails.xml"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://nps.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://nps.gov/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:23:24.070002Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "rss_ics",
+        "humanReview": "not_reviewed",
+        "intent": "rss_ics",
+        "market": "Yellowstone",
+        "marketId": "yellowstone",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover federal park feeds",
+        "officialDomain": "nps.gov",
+        "place": "Yellowstone National Park",
+        "placeType": "parks_district",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Yellowstone National Park, WY\" (RSS OR iCalendar OR ICS) events",
+        "queryFamily": "rss_ics",
+        "queryId": "nrq-9e6e506a686d",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.67,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": true
+          }
+        },
+        "state": "WY",
+        "stateCode": "WY"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:23:22.947583Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://nps.gov/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://nps.gov/",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.nps.gov/sitemap/tours.xml": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.nps.gov/sitemap/tours.xml",
+          "sourceType": "Sitemap"
+        },
+        "https://www.nps.gov/sitemap/trails.xml": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.nps.gov/sitemap/trails.xml",
+          "sourceType": "Sitemap"
+        }
+      },
+      "candidateUrls": [
+        "https://nps.gov/",
+        "https://www.nps.gov/sitemap/tours.xml",
+        "https://www.nps.gov/sitemap/trails.xml"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://nps.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://nps.gov/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:23:24.134700Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "arcgis",
+        "humanReview": "not_reviewed",
+        "intent": "arcgis",
+        "market": "Yellowstone",
+        "marketId": "yellowstone",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover federal park feeds",
+        "officialDomain": "nps.gov",
+        "place": "Yellowstone National Park",
+        "placeType": "parks_district",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "site:nps.gov (FeatureServer OR MapServer) parks events",
+        "queryFamily": "arcgis",
+        "queryId": "nrq-fb2a16f20501",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.67,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": true
+          }
+        },
+        "state": "WY",
+        "stateCode": "WY"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:23:22.979621Z",
       "status": "succeeded"
     }
   ],
   "schemaVersion": 2,
   "selectedQueryIds": [
-    "nrq-988dd860f220",
-    "nrq-9bd3f2cc33e3",
-    "nrq-8c5fb5115155",
-    "nrq-0049c6d09051",
-    "nrq-84a58678fe57",
-    "nrq-fbb327afd083",
-    "nrq-77e0913e9e9f",
-    "nrq-f5cb80badd8d",
-    "nrq-7462ed747222",
-    "nrq-74de0c8d0c17"
+    "nrq-3caf92cbd8d7",
+    "nrq-328353b068cf",
+    "nrq-8a7a5146c6f8",
+    "nrq-10877a3adb26",
+    "nrq-4ae1748ba6a9",
+    "nrq-27dafe16302e",
+    "nrq-5cee880a9a62",
+    "nrq-10cac719c914",
+    "nrq-9e6e506a686d",
+    "nrq-fb2a16f20501"
   ],
   "sourceQueue": "expansion-queues/national-region-search-queue.json",
   "summary": {
     "attempted": 10,
     "candidateCaptureErrors": null,
-    "candidatesFound": 1,
-    "candidatesNeedingHumanReview": 1,
+    "candidatesFound": 3,
+    "candidatesNeedingHumanReview": 3,
     "domainsCrawled": 1,
     "duplicateUrlsMerged": 0,
     "failed": 0,
     "failedRequests": 20,
     "httpSuccesses": 10,
-    "pagesCrawled": 10,
-    "pagesFetched": 10,
+    "pagesCrawled": 30,
+    "pagesFetched": 30,
     "pagesRejected": 20,
     "rateLimitedRequests": 0,
     "responses_429": 0,
@@ -745,10 +889,10 @@
     "robots_unknown": 0,
     "skipped": 0,
     "succeeded": 10,
-    "succeededWithCandidates": 7,
-    "succeededWithoutCandidates": 3,
+    "succeededWithCandidates": 10,
+    "succeededWithoutCandidates": 0,
     "timeout_network_failures": 0,
-    "uniqueCandidates": 1,
-    "usefulDiscoveries": 1
+    "uniqueCandidates": 3,
+    "usefulDiscoveries": 3
   }
 }
