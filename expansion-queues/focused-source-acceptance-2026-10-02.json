@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "kind": "focused-source-acceptance-review",
+  "reviewedAt": "2026-10-02T18:30:00Z",
+  "publicationState": "research-only",
+  "active": false,
+  "decisions": [
+    {
+      "candidateId": "stlouis-ics-53468",
+      "source": "https://www.stlouis-mo.gov/customcf/endpoints/events/iCalGen.cfm?eventID=53468",
+      "region": "St. Louis",
+      "endpointVerified": true,
+      "termsLicenseVerified": true,
+      "termsEvidence": "Official St. Louis homepage identifies License: CC BY-SA 2.0 and links the Creative Commons license.",
+      "decision": "APPROVED_WITH_LIMITS",
+      "stage": "RESEARCH_READY",
+      "missingGates": ["mapping", "coordinates", "refreshPolicy", "activeRegionConfig", "releaseEvidence"],
+      "restrictions": ["keep outside active app regions", "retain official detail URL and UID", "normalize America/Chicago explicitly", "do not infer undocumented refresh SLA", "review attribution/share-alike obligations before public activation"]
+    },
+    {
+      "candidateId": "durham-ics-10435",
+      "source": "https://www.durhamnc.gov/common/modules/iCalendar/iCalendar.aspx?feed=calendar&eventID=10435",
+      "region": "Durham",
+      "endpointVerified": true,
+      "termsLicenseVerified": false,
+      "termsEvidence": "Official Credits & Copyright page states content is copyrighted and asks users to contact the City to confirm usage and permission rights.",
+      "decision": "HOLD",
+      "stage": "APPROVED",
+      "blocker": "public reuse permission not established",
+      "nextAction": "obtain written permission or an applicable public-data license before activation"
+    },
+    {
+      "candidateId": "slc-rss-events",
+      "source": "https://www.slc.gov/events/feed/",
+      "region": "Salt Lake City",
+      "endpointVerified": true,
+      "termsLicenseVerified": false,
+      "termsEvidence": "Audited official privacy/accessibility page did not establish a redistribution license for event-feed content.",
+      "decision": "HOLD",
+      "stage": "APPROVED",
+      "blocker": "terms/license not established",
+      "nextAction": "obtain source-specific reuse terms and confirm refresh expectations"
+    },
+    {
+      "candidateId": "newark-de-ics-4894",
+      "source": "https://newarkde.gov/common/modules/iCalendar/iCalendar.aspx?feed=calendar&eventID=4894",
+      "region": "Newark, Delaware",
+      "endpointVerified": true,
+      "termsLicenseVerified": false,
+      "termsEvidence": "Official copyright page was located, but no source-specific redistribution permission was established.",
+      "decision": "HOLD",
+      "stage": "APPROVED",
+      "blocker": "terms/license not established",
+      "nextAction": "confirm permission and source refresh policy before activation"
+    }
+  ],
+  "summary": {"approvedWithLimits": 1, "held": 3, "researchOnly": true, "activated": 0}
+}

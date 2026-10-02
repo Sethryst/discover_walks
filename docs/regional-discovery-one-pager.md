@@ -102,6 +102,10 @@ These are observed official paths from the recent batches or direct domain audit
 | `hartfordct.gov` | `/Events-directory`, `/Residents/Library`, `/Residents/Venues/Parker-Memorial` | Queue values contained leading whitespace and were normalized safely; direct audits of event/library routes returned HTTP 403. | Hold as access-restricted evidence; no event records promoted. |
 | `newarkde.gov` | `/Calendar.aspx?EID=4894...`, `/common/modules/iCalendar/iCalendar.aspx?feed=calendar&eventID=4894` | Official CivicEngage detail and iCalendar endpoint returned UID `4894`, explicit `America/New_York` timestamps, council meeting location, and official detail URL. | Research-ready ICS candidate; fixture and adapter test pass. Hold activation pending terms/license and regional release evidence. |
 
+## Focused acceptance review
+
+The focused-source review at `expansion-queues/focused-source-acceptance-2026-10-02.json` records one limited research-stage approval and three holds. St. Louis is the only audited source with explicit reuse evidence: its official homepage identifies `CC BY-SA 2.0`. Durham’s official copyright page requires contacting the City to confirm usage and permission rights; SLC and Newark remain without source-specific redistribution terms. No source is activation-ready or active.
+
 The national discovery queue is now exhausted at 1,568 planned queries. The remaining Newark tail slice reproduced the official calendar routes and produced no new source type; further expansion should use a new region-seed revision or focused follow-up queue rather than replaying identical queries.
 
 ## Ingestion pathway decision tree
