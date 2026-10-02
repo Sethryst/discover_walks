@@ -114,8 +114,8 @@ class ScrapyNationalBatchSpider(NationalDiscoverySpider):
         self.queries = queries or []
         self.domain_queries = {}
         for query in self.queries:
-            self.domain_queries.setdefault(query["officialDomain"].lower().removeprefix("www."), []).append(query)
-        self.results = {q["officialDomain"].lower().removeprefix("www."): {"queries": [], "records": [], "pages": 0, "failures": [], "robotsDecision": "unknown"} for q in self.queries}
+            self.domain_queries.setdefault(query["officialDomain"].strip().lower().removeprefix("www."), []).append(query)
+        self.results = {q["officialDomain"].strip().lower().removeprefix("www."): {"queries": [], "records": [], "pages": 0, "failures": [], "robotsDecision": "unknown"} for q in self.queries}
         self.max_pages = max_pages
         self.results_sink = results_sink
         self.seen_by_domain = {domain: set() for domain in self.results}
@@ -359,7 +359,7 @@ class DiscoveryExecutor:
     def _run_scrapy(self, queries):
         grouped = {}
         for query in queries:
-            grouped.setdefault(str(query.get("officialDomain", "")).lower().removeprefix("www."), []).append(query)
+            grouped.setdefault(str(query.get("officialDomain", "")).strip().lower().removeprefix("www."), []).append(query)
         process = CrawlerProcess({
             "ROBOTSTXT_OBEY": True,
             "RETRY_ENABLED": True,

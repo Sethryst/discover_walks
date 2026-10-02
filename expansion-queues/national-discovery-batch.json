@@ -1,565 +1,63 @@
 {
   "kind": "national-discovery-batch",
-  "limit": 10,
-  "offset": 1504,
+  "limit": 8,
+  "offset": 1520,
   "publicationState": "research-only",
   "readOnly": true,
   "results": [
     {
       "attempts": 3,
       "candidateEvidence": {
-        "https://nps.gov/": {
+        "https://www.hartfordct.gov/Events-directory": {
           "confidence": 0.55,
-          "evidenceUrl": "https://nps.gov/",
+          "evidenceUrl": "https://www.hartfordct.gov/Events-directory",
           "sourceType": "HTML calendar"
         },
-        "https://www.nps.gov/sitemap/tours.xml": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.nps.gov/sitemap/tours.xml",
-          "sourceType": "Sitemap"
+        "https://www.hartfordct.gov/Residents/Library": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.hartfordct.gov/Residents/Library",
+          "sourceType": "HTML calendar"
         },
-        "https://www.nps.gov/sitemap/trails.xml": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.nps.gov/sitemap/trails.xml",
-          "sourceType": "Sitemap"
+        "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial",
+          "sourceType": "HTML calendar"
         }
       },
       "candidateUrls": [
-        "https://nps.gov/",
-        "https://www.nps.gov/sitemap/tours.xml",
-        "https://www.nps.gov/sitemap/trails.xml"
+        "https://www.hartfordct.gov/Events-directory",
+        "https://www.hartfordct.gov/Residents/Library",
+        "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://nps.gov/sitemap_index.xml",
+          "https://hartfordct.gov/sitemap_index.xml",
           404
         ],
         [
-          "https://nps.gov/",
+          "https://www.hartfordct.gov/Events-directory",
+          "NameError"
+        ],
+        [
+          "https://www.hartfordct.gov/Residents/Library",
+          "NameError"
+        ],
+        [
+          "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:23:20.678303Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "trails",
-        "humanReview": "not_reviewed",
-        "intent": "trails",
-        "market": "Yellowstone",
-        "marketId": "yellowstone",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover federal park feeds",
-        "officialDomain": "nps.gov",
-        "place": "Yellowstone National Park",
-        "placeType": "parks_district",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Yellowstone National Park, WY\" trails outdoor recreation official",
-        "queryFamily": "trails",
-        "queryId": "nrq-10877a3adb26",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "WY",
-        "stateCode": "WY"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:23:19.538543Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://nps.gov/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://nps.gov/",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.nps.gov/sitemap/tours.xml": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.nps.gov/sitemap/tours.xml",
-          "sourceType": "Sitemap"
-        },
-        "https://www.nps.gov/sitemap/trails.xml": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.nps.gov/sitemap/trails.xml",
-          "sourceType": "Sitemap"
-        }
-      },
-      "candidateUrls": [
-        "https://nps.gov/",
-        "https://www.nps.gov/sitemap/tours.xml",
-        "https://www.nps.gov/sitemap/trails.xml"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://nps.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://nps.gov/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:23:22.979605Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "open_data",
-        "humanReview": "not_reviewed",
-        "intent": "open_data",
-        "market": "Yellowstone",
-        "marketId": "yellowstone",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover federal park feeds",
-        "officialDomain": "nps.gov",
-        "place": "Yellowstone National Park",
-        "placeType": "parks_district",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Yellowstone National Park, WY\" open data portal",
-        "queryFamily": "open_data",
-        "queryId": "nrq-10cac719c914",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "WY",
-        "stateCode": "WY"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:23:21.848173Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://nps.gov/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://nps.gov/",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.nps.gov/sitemap/tours.xml": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.nps.gov/sitemap/tours.xml",
-          "sourceType": "Sitemap"
-        },
-        "https://www.nps.gov/sitemap/trails.xml": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.nps.gov/sitemap/trails.xml",
-          "sourceType": "Sitemap"
-        }
-      },
-      "candidateUrls": [
-        "https://nps.gov/",
-        "https://www.nps.gov/sitemap/tours.xml",
-        "https://www.nps.gov/sitemap/trails.xml"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://nps.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://nps.gov/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:23:21.826645Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "culture",
-        "humanReview": "not_reviewed",
-        "intent": "culture",
-        "market": "Yellowstone",
-        "marketId": "yellowstone",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover federal park feeds",
-        "officialDomain": "nps.gov",
-        "place": "Yellowstone National Park",
-        "placeType": "parks_district",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Yellowstone National Park, WY\" arts culture museum events official",
-        "queryFamily": "culture",
-        "queryId": "nrq-27dafe16302e",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "WY",
-        "stateCode": "WY"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:23:20.691592Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://nps.gov/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://nps.gov/",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.nps.gov/sitemap/tours.xml": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.nps.gov/sitemap/tours.xml",
-          "sourceType": "Sitemap"
-        },
-        "https://www.nps.gov/sitemap/trails.xml": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.nps.gov/sitemap/trails.xml",
-          "sourceType": "Sitemap"
-        }
-      },
-      "candidateUrls": [
-        "https://nps.gov/",
-        "https://www.nps.gov/sitemap/tours.xml",
-        "https://www.nps.gov/sitemap/trails.xml"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://nps.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://nps.gov/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:23:19.536235Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "meetings",
-        "humanReview": "not_reviewed",
-        "intent": "meetings",
-        "market": "Yellowstone",
-        "marketId": "yellowstone",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover federal park feeds",
-        "officialDomain": "nps.gov",
-        "place": "Yellowstone National Park",
-        "placeType": "parks_district",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Yellowstone National Park, WY\" public meetings agenda calendar",
-        "queryFamily": "meetings",
-        "queryId": "nrq-328353b068cf",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "WY",
-        "stateCode": "WY"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:23:18.119349Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://nps.gov/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://nps.gov/",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.nps.gov/sitemap/tours.xml": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.nps.gov/sitemap/tours.xml",
-          "sourceType": "Sitemap"
-        },
-        "https://www.nps.gov/sitemap/trails.xml": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.nps.gov/sitemap/trails.xml",
-          "sourceType": "Sitemap"
-        }
-      },
-      "candidateUrls": [
-        "https://nps.gov/",
-        "https://www.nps.gov/sitemap/tours.xml",
-        "https://www.nps.gov/sitemap/trails.xml"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://nps.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://nps.gov/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:23:19.538523Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "events",
-        "humanReview": "not_reviewed",
-        "intent": "events",
-        "market": "Yellowstone",
-        "marketId": "yellowstone",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover federal park feeds",
-        "officialDomain": "nps.gov",
-        "place": "Yellowstone National Park",
-        "placeType": "parks_district",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Yellowstone National Park, WY\" official events calendar",
-        "queryFamily": "events",
-        "queryId": "nrq-3caf92cbd8d7",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "WY",
-        "stateCode": "WY"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:23:18.118836Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://nps.gov/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://nps.gov/",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.nps.gov/sitemap/tours.xml": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.nps.gov/sitemap/tours.xml",
-          "sourceType": "Sitemap"
-        },
-        "https://www.nps.gov/sitemap/trails.xml": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.nps.gov/sitemap/trails.xml",
-          "sourceType": "Sitemap"
-        }
-      },
-      "candidateUrls": [
-        "https://nps.gov/",
-        "https://www.nps.gov/sitemap/tours.xml",
-        "https://www.nps.gov/sitemap/trails.xml"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://nps.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://nps.gov/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:23:21.848157Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "libraries",
-        "humanReview": "not_reviewed",
-        "intent": "libraries",
-        "market": "Yellowstone",
-        "marketId": "yellowstone",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover federal park feeds",
-        "officialDomain": "nps.gov",
-        "place": "Yellowstone National Park",
-        "placeType": "parks_district",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Yellowstone National Park, WY\" library events calendar",
-        "queryFamily": "libraries",
-        "queryId": "nrq-4ae1748ba6a9",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "WY",
-        "stateCode": "WY"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:23:20.678325Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://nps.gov/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://nps.gov/",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.nps.gov/sitemap/tours.xml": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.nps.gov/sitemap/tours.xml",
-          "sourceType": "Sitemap"
-        },
-        "https://www.nps.gov/sitemap/trails.xml": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.nps.gov/sitemap/trails.xml",
-          "sourceType": "Sitemap"
-        }
-      },
-      "candidateUrls": [
-        "https://nps.gov/",
-        "https://www.nps.gov/sitemap/tours.xml",
-        "https://www.nps.gov/sitemap/trails.xml"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://nps.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://nps.gov/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:23:22.947520Z",
+      "finishedAt": "2026-10-02T16:25:21.777233Z",
       "httpStatus": 200,
       "query": {
         "expectedSourceType": "volunteer",
         "humanReview": "not_reviewed",
         "intent": "volunteer",
-        "market": "Yellowstone",
-        "marketId": "yellowstone",
+        "market": "Hartford",
+        "marketId": "hartford",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -571,80 +69,88 @@
           "stale_calendar",
           "blocked_robots"
         ],
-        "nextAction": "discover federal park feeds",
-        "officialDomain": "nps.gov",
-        "place": "Yellowstone National Park",
-        "placeType": "parks_district",
+        "nextAction": "discover official feeds",
+        "officialDomain": " Hartfordct.gov",
+        "place": "Hartford",
+        "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Yellowstone National Park, WY\" volunteer opportunities official",
+        "query": "\"Hartford, CT\" volunteer opportunities official",
         "queryFamily": "volunteer",
-        "queryId": "nrq-5cee880a9a62",
+        "queryId": "nrq-066d01458305",
         "seedPriority": 2,
         "sourceConfidence": {
-          "score": 0.33,
+          "score": 0.0,
           "signals": {
             "existing_coverage": false,
-            "official_domain": true,
+            "official_domain": false,
             "structured_family": false
           }
         },
-        "state": "WY",
-        "stateCode": "WY"
+        "state": "CT",
+        "stateCode": "CT"
       },
       "reason": null,
       "robots": "allowed",
-      "startedAt": "2026-10-02T16:23:21.826668Z",
+      "startedAt": "2026-10-02T16:25:20.565426Z",
       "status": "succeeded"
     },
     {
       "attempts": 3,
       "candidateEvidence": {
-        "https://nps.gov/": {
+        "https://www.hartfordct.gov/Events-directory": {
           "confidence": 0.55,
-          "evidenceUrl": "https://nps.gov/",
+          "evidenceUrl": "https://www.hartfordct.gov/Events-directory",
           "sourceType": "HTML calendar"
         },
-        "https://www.nps.gov/sitemap/tours.xml": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.nps.gov/sitemap/tours.xml",
-          "sourceType": "Sitemap"
+        "https://www.hartfordct.gov/Residents/Library": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.hartfordct.gov/Residents/Library",
+          "sourceType": "HTML calendar"
         },
-        "https://www.nps.gov/sitemap/trails.xml": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.nps.gov/sitemap/trails.xml",
-          "sourceType": "Sitemap"
+        "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial",
+          "sourceType": "HTML calendar"
         }
       },
       "candidateUrls": [
-        "https://nps.gov/",
-        "https://www.nps.gov/sitemap/tours.xml",
-        "https://www.nps.gov/sitemap/trails.xml"
+        "https://www.hartfordct.gov/Events-directory",
+        "https://www.hartfordct.gov/Residents/Library",
+        "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://nps.gov/sitemap_index.xml",
+          "https://hartfordct.gov/sitemap_index.xml",
           404
         ],
         [
-          "https://nps.gov/",
+          "https://www.hartfordct.gov/Events-directory",
+          "NameError"
+        ],
+        [
+          "https://www.hartfordct.gov/Residents/Library",
+          "NameError"
+        ],
+        [
+          "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:23:20.691575Z",
+      "finishedAt": "2026-10-02T16:25:19.247849Z",
       "httpStatus": 200,
       "query": {
         "expectedSourceType": "parks",
         "humanReview": "not_reviewed",
         "intent": "parks",
-        "market": "Yellowstone",
-        "marketId": "yellowstone",
+        "market": "Hartford",
+        "marketId": "hartford",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -656,80 +162,76 @@
           "stale_calendar",
           "blocked_robots"
         ],
-        "nextAction": "discover federal park feeds",
-        "officialDomain": "nps.gov",
-        "place": "Yellowstone National Park",
-        "placeType": "parks_district",
+        "nextAction": "discover official feeds",
+        "officialDomain": " Hartfordct.gov",
+        "place": "Hartford",
+        "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Yellowstone National Park, WY\" parks recreation trails official",
+        "query": "\"Hartford, CT\" parks recreation trails official",
         "queryFamily": "parks",
-        "queryId": "nrq-8a7a5146c6f8",
+        "queryId": "nrq-28f35f1dfaa5",
         "seedPriority": 2,
         "sourceConfidence": {
-          "score": 0.33,
+          "score": 0.0,
           "signals": {
             "existing_coverage": false,
-            "official_domain": true,
+            "official_domain": false,
             "structured_family": false
           }
         },
-        "state": "WY",
-        "stateCode": "WY"
+        "state": "CT",
+        "stateCode": "CT"
       },
       "reason": null,
       "robots": "allowed",
-      "startedAt": "2026-10-02T16:23:19.536266Z",
+      "startedAt": "2026-10-02T16:25:17.698622Z",
       "status": "succeeded"
     },
     {
       "attempts": 3,
       "candidateEvidence": {
-        "https://nps.gov/": {
+        "https://www.hartfordct.gov/Events-directory": {
           "confidence": 0.55,
-          "evidenceUrl": "https://nps.gov/",
+          "evidenceUrl": "https://www.hartfordct.gov/Events-directory",
           "sourceType": "HTML calendar"
-        },
-        "https://www.nps.gov/sitemap/tours.xml": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.nps.gov/sitemap/tours.xml",
-          "sourceType": "Sitemap"
-        },
-        "https://www.nps.gov/sitemap/trails.xml": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.nps.gov/sitemap/trails.xml",
-          "sourceType": "Sitemap"
         }
       },
       "candidateUrls": [
-        "https://nps.gov/",
-        "https://www.nps.gov/sitemap/tours.xml",
-        "https://www.nps.gov/sitemap/trails.xml"
+        "https://www.hartfordct.gov/Events-directory"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://nps.gov/sitemap_index.xml",
+          "https://hartfordct.gov/sitemap_index.xml",
           404
         ],
         [
-          "https://nps.gov/",
+          "https://www.hartfordct.gov/Events-directory",
+          "NameError"
+        ],
+        [
+          "https://www.hartfordct.gov/Residents/Library",
+          "NameError"
+        ],
+        [
+          "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:23:24.070002Z",
+      "finishedAt": "2026-10-02T16:25:17.698590Z",
       "httpStatus": 200,
       "query": {
-        "expectedSourceType": "rss_ics",
+        "expectedSourceType": "meetings",
         "humanReview": "not_reviewed",
-        "intent": "rss_ics",
-        "market": "Yellowstone",
-        "marketId": "yellowstone",
+        "intent": "meetings",
+        "market": "Hartford",
+        "marketId": "hartford",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -741,80 +243,88 @@
           "stale_calendar",
           "blocked_robots"
         ],
-        "nextAction": "discover federal park feeds",
-        "officialDomain": "nps.gov",
-        "place": "Yellowstone National Park",
-        "placeType": "parks_district",
+        "nextAction": "discover official feeds",
+        "officialDomain": " Hartfordct.gov",
+        "place": "Hartford",
+        "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Yellowstone National Park, WY\" (RSS OR iCalendar OR ICS) events",
-        "queryFamily": "rss_ics",
-        "queryId": "nrq-9e6e506a686d",
+        "query": "\"Hartford, CT\" public meetings agenda calendar",
+        "queryFamily": "meetings",
+        "queryId": "nrq-2c0e897bc68d",
         "seedPriority": 2,
         "sourceConfidence": {
-          "score": 0.67,
+          "score": 0.0,
           "signals": {
             "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": true
+            "official_domain": false,
+            "structured_family": false
           }
         },
-        "state": "WY",
-        "stateCode": "WY"
+        "state": "CT",
+        "stateCode": "CT"
       },
       "reason": null,
       "robots": "allowed",
-      "startedAt": "2026-10-02T16:23:22.947583Z",
+      "startedAt": "2026-10-02T16:25:14.615426Z",
       "status": "succeeded"
     },
     {
       "attempts": 3,
       "candidateEvidence": {
-        "https://nps.gov/": {
+        "https://www.hartfordct.gov/Events-directory": {
           "confidence": 0.55,
-          "evidenceUrl": "https://nps.gov/",
+          "evidenceUrl": "https://www.hartfordct.gov/Events-directory",
           "sourceType": "HTML calendar"
         },
-        "https://www.nps.gov/sitemap/tours.xml": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.nps.gov/sitemap/tours.xml",
-          "sourceType": "Sitemap"
+        "https://www.hartfordct.gov/Residents/Library": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.hartfordct.gov/Residents/Library",
+          "sourceType": "HTML calendar"
         },
-        "https://www.nps.gov/sitemap/trails.xml": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.nps.gov/sitemap/trails.xml",
-          "sourceType": "Sitemap"
+        "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial",
+          "sourceType": "HTML calendar"
         }
       },
       "candidateUrls": [
-        "https://nps.gov/",
-        "https://www.nps.gov/sitemap/tours.xml",
-        "https://www.nps.gov/sitemap/trails.xml"
+        "https://www.hartfordct.gov/Events-directory",
+        "https://www.hartfordct.gov/Residents/Library",
+        "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://nps.gov/sitemap_index.xml",
+          "https://hartfordct.gov/sitemap_index.xml",
           404
         ],
         [
-          "https://nps.gov/",
+          "https://www.hartfordct.gov/Events-directory",
+          "NameError"
+        ],
+        [
+          "https://www.hartfordct.gov/Residents/Library",
+          "NameError"
+        ],
+        [
+          "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:23:24.134700Z",
+      "finishedAt": "2026-10-02T16:25:20.887134Z",
       "httpStatus": 200,
       "query": {
-        "expectedSourceType": "arcgis",
+        "expectedSourceType": "culture",
         "humanReview": "not_reviewed",
-        "intent": "arcgis",
-        "market": "Yellowstone",
-        "marketId": "yellowstone",
+        "intent": "culture",
+        "market": "Hartford",
+        "marketId": "hartford",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -826,70 +336,428 @@
           "stale_calendar",
           "blocked_robots"
         ],
-        "nextAction": "discover federal park feeds",
-        "officialDomain": "nps.gov",
-        "place": "Yellowstone National Park",
-        "placeType": "parks_district",
+        "nextAction": "discover official feeds",
+        "officialDomain": " Hartfordct.gov",
+        "place": "Hartford",
+        "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "site:nps.gov (FeatureServer OR MapServer) parks events",
-        "queryFamily": "arcgis",
-        "queryId": "nrq-fb2a16f20501",
+        "query": "\"Hartford, CT\" arts culture museum events official",
+        "queryFamily": "culture",
+        "queryId": "nrq-6d7c6f1cf889",
         "seedPriority": 2,
         "sourceConfidence": {
-          "score": 0.67,
+          "score": 0.0,
           "signals": {
             "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": true
+            "official_domain": false,
+            "structured_family": false
           }
         },
-        "state": "WY",
-        "stateCode": "WY"
+        "state": "CT",
+        "stateCode": "CT"
       },
       "reason": null,
       "robots": "allowed",
-      "startedAt": "2026-10-02T16:23:22.979621Z",
+      "startedAt": "2026-10-02T16:25:19.447985Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.hartfordct.gov/Events-directory": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.hartfordct.gov/Events-directory",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.hartfordct.gov/Residents/Library": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.hartfordct.gov/Residents/Library",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.hartfordct.gov/Events-directory",
+        "https://www.hartfordct.gov/Residents/Library",
+        "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://hartfordct.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.hartfordct.gov/Events-directory",
+          "NameError"
+        ],
+        [
+          "https://www.hartfordct.gov/Residents/Library",
+          "NameError"
+        ],
+        [
+          "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:25:20.565400Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "libraries",
+        "humanReview": "not_reviewed",
+        "intent": "libraries",
+        "market": "Hartford",
+        "marketId": "hartford",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": " Hartfordct.gov",
+        "place": "Hartford",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Hartford, CT\" library events calendar",
+        "queryFamily": "libraries",
+        "queryId": "nrq-77f97c5be632",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.0,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": false,
+            "structured_family": false
+          }
+        },
+        "state": "CT",
+        "stateCode": "CT"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:25:19.247875Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.hartfordct.gov/Events-directory": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.hartfordct.gov/Events-directory",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.hartfordct.gov/Residents/Library": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.hartfordct.gov/Residents/Library",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.hartfordct.gov/Events-directory",
+        "https://www.hartfordct.gov/Residents/Library",
+        "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://hartfordct.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.hartfordct.gov/Events-directory",
+          "NameError"
+        ],
+        [
+          "https://www.hartfordct.gov/Residents/Library",
+          "NameError"
+        ],
+        [
+          "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:25:19.447961Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "trails",
+        "humanReview": "not_reviewed",
+        "intent": "trails",
+        "market": "Hartford",
+        "marketId": "hartford",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": " Hartfordct.gov",
+        "place": "Hartford",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Hartford, CT\" trails outdoor recreation official",
+        "queryFamily": "trails",
+        "queryId": "nrq-96d11cf7b669",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.0,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": false,
+            "structured_family": false
+          }
+        },
+        "state": "CT",
+        "stateCode": "CT"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:25:17.744709Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.hartfordct.gov/Events-directory": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.hartfordct.gov/Events-directory",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.hartfordct.gov/Events-directory"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://hartfordct.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.hartfordct.gov/Events-directory",
+          "NameError"
+        ],
+        [
+          "https://www.hartfordct.gov/Residents/Library",
+          "NameError"
+        ],
+        [
+          "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:25:17.744684Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "events",
+        "humanReview": "not_reviewed",
+        "intent": "events",
+        "market": "Hartford",
+        "marketId": "hartford",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": " Hartfordct.gov",
+        "place": "Hartford",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Hartford, CT\" official events calendar",
+        "queryFamily": "events",
+        "queryId": "nrq-f240393cf4a3",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.0,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": false,
+            "structured_family": false
+          }
+        },
+        "state": "CT",
+        "stateCode": "CT"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:25:14.614971Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.hartfordct.gov/Events-directory": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.hartfordct.gov/Events-directory",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.hartfordct.gov/Residents/Library": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.hartfordct.gov/Residents/Library",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.hartfordct.gov/Events-directory",
+        "https://www.hartfordct.gov/Residents/Library",
+        "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://hartfordct.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.hartfordct.gov/Events-directory",
+          "NameError"
+        ],
+        [
+          "https://www.hartfordct.gov/Residents/Library",
+          "NameError"
+        ],
+        [
+          "https://www.hartfordct.gov/Residents/Venues/Parker-Memorial",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:25:22.284997Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "open_data",
+        "humanReview": "not_reviewed",
+        "intent": "open_data",
+        "market": "Hartford",
+        "marketId": "hartford",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": " Hartfordct.gov",
+        "place": "Hartford",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Hartford, CT\" open data portal",
+        "queryFamily": "open_data",
+        "queryId": "nrq-f9f8cc54331f",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.0,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": false,
+            "structured_family": false
+          }
+        },
+        "state": "CT",
+        "stateCode": "CT"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:25:20.887159Z",
       "status": "succeeded"
     }
   ],
   "schemaVersion": 2,
   "selectedQueryIds": [
-    "nrq-3caf92cbd8d7",
-    "nrq-328353b068cf",
-    "nrq-8a7a5146c6f8",
-    "nrq-10877a3adb26",
-    "nrq-4ae1748ba6a9",
-    "nrq-27dafe16302e",
-    "nrq-5cee880a9a62",
-    "nrq-10cac719c914",
-    "nrq-9e6e506a686d",
-    "nrq-fb2a16f20501"
+    "nrq-f240393cf4a3",
+    "nrq-2c0e897bc68d",
+    "nrq-28f35f1dfaa5",
+    "nrq-96d11cf7b669",
+    "nrq-77f97c5be632",
+    "nrq-6d7c6f1cf889",
+    "nrq-066d01458305",
+    "nrq-f9f8cc54331f"
   ],
   "sourceQueue": "expansion-queues/national-region-search-queue.json",
   "summary": {
-    "attempted": 10,
+    "attempted": 8,
     "candidateCaptureErrors": null,
     "candidatesFound": 3,
     "candidatesNeedingHumanReview": 3,
     "domainsCrawled": 1,
     "duplicateUrlsMerged": 0,
     "failed": 0,
-    "failedRequests": 20,
-    "httpSuccesses": 10,
-    "pagesCrawled": 30,
-    "pagesFetched": 30,
-    "pagesRejected": 20,
+    "failedRequests": 32,
+    "httpSuccesses": 8,
+    "pagesCrawled": 24,
+    "pagesFetched": 24,
+    "pagesRejected": 32,
     "rateLimitedRequests": 0,
     "responses_429": 0,
     "robots_disallowed": 0,
     "robots_unknown": 0,
     "skipped": 0,
-    "succeeded": 10,
-    "succeededWithCandidates": 10,
+    "succeeded": 8,
+    "succeededWithCandidates": 8,
     "succeededWithoutCandidates": 0,
     "timeout_network_failures": 0,
     "uniqueCandidates": 3,

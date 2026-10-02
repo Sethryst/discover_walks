@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 
 from app.scout.national_discovery_executor import (
-    DiscoveryExecutor, NationalDiscoverySpider, classify_candidate, execute,
+    DiscoveryExecutor, NationalDiscoverySpider, ScrapyNationalBatchSpider, classify_candidate, execute,
     extract_candidate_urls, score_candidate, seed_paths_for_queries, family_relevant,
 )
 
@@ -95,6 +95,11 @@ class NationalDiscoveryExecutorTests(unittest.TestCase):
     def test_force_sync_keeps_injected_bounded_fetch_path(self):
         executor = DiscoveryExecutor(force_sync=True, fetcher=lambda query: {"urls": [], "status": 200})
         self.assertFalse(executor._use_scrapy)
+
+    def test_scrapy_batch_normalizes_domain_whitespace(self):
+        spider = ScrapyNationalBatchSpider(queries=[{"officialDomain": " Hartfordct.gov", "queryId": "q"}], results_sink={})
+        self.assertIn("hartfordct.gov", spider.results)
+        self.assertNotIn(" hartfordct.gov", spider.results)
 
     def test_realistic_source_fixtures_and_false_positive_filters(self):
         fixture = Path(__file__).parent / "fixtures" / "national_discovery_sources"

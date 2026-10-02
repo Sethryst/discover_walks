@@ -99,6 +99,7 @@ These are observed official paths from the recent batches or direct domain audit
 | `stlouis-mo.gov` | `/events/eventdetails.cfm?Event_ID=53468`, `/customcf/endpoints/events/iCalGen.cfm?eventID=53468` | Official event detail and iCalendar endpoint returned stable UID `STL-53468`, explicit `America/Chicago` timestamps, organizer, location, and meeting description. | Research-ready ICS candidate; fixture and adapter test pass. Hold activation pending terms/license and regional release evidence. |
 | `tucsonaz.gov` | `/Events-directory`, `/Departments/Parks-and-Recreation` | Official event-adjacent routes were discovered, but direct audits returned HTTP 403. | Hold as access-restricted evidence; no event records promoted. |
 | `nps.gov` | `/`, `/sitemap/tours.xml`, `/sitemap/trails.xml` | Official homepage and tour/trail sitemaps returned HTTP 200 but do not constitute event records or a validated events feed. | Retain as discovery context only; do not ingest as event sources. |
+| `hartfordct.gov` | `/Events-directory`, `/Residents/Library`, `/Residents/Venues/Parker-Memorial` | Queue values contained leading whitespace and were normalized safely; direct audits of event/library routes returned HTTP 403. | Hold as access-restricted evidence; no event records promoted. |
 
 ## Ingestion pathway decision tree
 
