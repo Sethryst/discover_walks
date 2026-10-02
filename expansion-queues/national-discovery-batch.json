@@ -1,702 +1,59 @@
 {
   "kind": "national-discovery-batch",
-  "limit": 10,
-  "offset": 1392,
+  "limit": 8,
+  "offset": 1424,
   "publicationState": "research-only",
   "readOnly": true,
   "results": [
     {
       "attempts": 3,
       "candidateEvidence": {
-        "https://www.durhamnc.gov/4473/Lakeview-Park": {
+        "https://slc.gov/": {
           "confidence": 0.55,
-          "evidenceUrl": "https://www.durhamnc.gov/4473/Lakeview-Park",
+          "evidenceUrl": "https://slc.gov/",
           "sourceType": "HTML calendar"
         },
-        "https://www.durhamnc.gov/633/Fire-Prevention": {
+        "https://www.slc.gov/": {
           "confidence": 0.55,
-          "evidenceUrl": "https://www.durhamnc.gov/633/Fire-Prevention",
+          "evidenceUrl": "https://www.slc.gov/",
           "sourceType": "HTML calendar"
         },
-        "https://www.durhamnc.gov/Calendar.aspx": {
+        "https://www.slc.gov/wp-sitemap-users-1.xml": {
           "confidence": 0.8,
-          "evidenceUrl": "https://www.durhamnc.gov/Calendar.aspx",
-          "sourceType": "HTML calendar"
+          "evidenceUrl": "https://www.slc.gov/wp-sitemap-users-1.xml",
+          "sourceType": "Sitemap"
         }
       },
       "candidateUrls": [
-        "https://www.durhamnc.gov/4473/Lakeview-Park",
-        "https://www.durhamnc.gov/633/Fire-Prevention",
-        "https://www.durhamnc.gov/Calendar.aspx"
+        "https://slc.gov/",
+        "https://www.slc.gov/",
+        "https://www.slc.gov/wp-sitemap-users-1.xml"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://durhamnc.gov/sitemap_index.xml",
+          "https://slc.gov/sitemap_index.xml",
           404
         ],
         [
-          "https://www.durhamnc.gov/Calendar.aspx",
+          "https://slc.gov/",
           "NameError"
         ],
         [
-          "https://www.durhamnc.gov/4473/Lakeview-Park",
-          "NameError"
-        ],
-        [
-          "https://www.durhamnc.gov/633/Fire-Prevention",
+          "https://www.slc.gov/",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:14:16.242066Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "trails",
-        "humanReview": "not_reviewed",
-        "intent": "trails",
-        "market": "Raleigh-Durham",
-        "marketId": "raleigh-durham",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "durhamnc.gov",
-        "place": "Durham",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Durham, NC\" trails outdoor recreation official",
-        "queryFamily": "trails",
-        "queryId": "nrq-1357a026e707",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "NC",
-        "stateCode": "NC"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:14:15.259781Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://www.durhamnc.gov/4473/Lakeview-Park": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.durhamnc.gov/4473/Lakeview-Park",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.durhamnc.gov/633/Fire-Prevention": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.durhamnc.gov/633/Fire-Prevention",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.durhamnc.gov/Calendar.aspx": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.durhamnc.gov/Calendar.aspx",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://www.durhamnc.gov/4473/Lakeview-Park",
-        "https://www.durhamnc.gov/633/Fire-Prevention",
-        "https://www.durhamnc.gov/Calendar.aspx"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://durhamnc.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://www.durhamnc.gov/Calendar.aspx",
-          "NameError"
-        ],
-        [
-          "https://www.durhamnc.gov/4473/Lakeview-Park",
-          "NameError"
-        ],
-        [
-          "https://www.durhamnc.gov/633/Fire-Prevention",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:14:17.250180Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "libraries",
-        "humanReview": "not_reviewed",
-        "intent": "libraries",
-        "market": "Raleigh-Durham",
-        "marketId": "raleigh-durham",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "durhamnc.gov",
-        "place": "Durham",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Durham, NC\" library events calendar",
-        "queryFamily": "libraries",
-        "queryId": "nrq-1ff1a4eaed58",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "NC",
-        "stateCode": "NC"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:14:16.242091Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://www.durhamnc.gov/4473/Lakeview-Park": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.durhamnc.gov/4473/Lakeview-Park",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.durhamnc.gov/633/Fire-Prevention": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.durhamnc.gov/633/Fire-Prevention",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.durhamnc.gov/Calendar.aspx": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.durhamnc.gov/Calendar.aspx",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://www.durhamnc.gov/4473/Lakeview-Park",
-        "https://www.durhamnc.gov/633/Fire-Prevention",
-        "https://www.durhamnc.gov/Calendar.aspx"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://durhamnc.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://www.durhamnc.gov/Calendar.aspx",
-          "NameError"
-        ],
-        [
-          "https://www.durhamnc.gov/4473/Lakeview-Park",
-          "NameError"
-        ],
-        [
-          "https://www.durhamnc.gov/633/Fire-Prevention",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:14:16.250056Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "parks",
-        "humanReview": "not_reviewed",
-        "intent": "parks",
-        "market": "Raleigh-Durham",
-        "marketId": "raleigh-durham",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "durhamnc.gov",
-        "place": "Durham",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Durham, NC\" parks recreation trails official",
-        "queryFamily": "parks",
-        "queryId": "nrq-38338c3c9b9f",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "NC",
-        "stateCode": "NC"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:14:15.255574Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://www.durhamnc.gov/633/Fire-Prevention": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.durhamnc.gov/633/Fire-Prevention",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.durhamnc.gov/Calendar.aspx": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.durhamnc.gov/Calendar.aspx",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://www.durhamnc.gov/633/Fire-Prevention",
-        "https://www.durhamnc.gov/Calendar.aspx"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://durhamnc.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://www.durhamnc.gov/Calendar.aspx",
-          "NameError"
-        ],
-        [
-          "https://www.durhamnc.gov/4473/Lakeview-Park",
-          "NameError"
-        ],
-        [
-          "https://www.durhamnc.gov/633/Fire-Prevention",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:14:19.210198Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "rss_ics",
-        "humanReview": "not_reviewed",
-        "intent": "rss_ics",
-        "market": "Raleigh-Durham",
-        "marketId": "raleigh-durham",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "durhamnc.gov",
-        "place": "Durham",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Durham, NC\" (RSS OR iCalendar OR ICS) events",
-        "queryFamily": "rss_ics",
-        "queryId": "nrq-713b36491ce4",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.67,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": true
-          }
-        },
-        "state": "NC",
-        "stateCode": "NC"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:14:18.229156Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://www.durhamnc.gov/633/Fire-Prevention": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.durhamnc.gov/633/Fire-Prevention",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.durhamnc.gov/Calendar.aspx": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.durhamnc.gov/Calendar.aspx",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://www.durhamnc.gov/633/Fire-Prevention",
-        "https://www.durhamnc.gov/Calendar.aspx"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://durhamnc.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://www.durhamnc.gov/Calendar.aspx",
-          "NameError"
-        ],
-        [
-          "https://www.durhamnc.gov/4473/Lakeview-Park",
-          "NameError"
-        ],
-        [
-          "https://www.durhamnc.gov/633/Fire-Prevention",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:14:15.259762Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "meetings",
-        "humanReview": "not_reviewed",
-        "intent": "meetings",
-        "market": "Raleigh-Durham",
-        "marketId": "raleigh-durham",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "durhamnc.gov",
-        "place": "Durham",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Durham, NC\" public meetings agenda calendar",
-        "queryFamily": "meetings",
-        "queryId": "nrq-71a267301c12",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "NC",
-        "stateCode": "NC"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:14:09.995632Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://www.durhamnc.gov/4473/Lakeview-Park": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.durhamnc.gov/4473/Lakeview-Park",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.durhamnc.gov/633/Fire-Prevention": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.durhamnc.gov/633/Fire-Prevention",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.durhamnc.gov/Calendar.aspx": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.durhamnc.gov/Calendar.aspx",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://www.durhamnc.gov/4473/Lakeview-Park",
-        "https://www.durhamnc.gov/633/Fire-Prevention",
-        "https://www.durhamnc.gov/Calendar.aspx"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://durhamnc.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://www.durhamnc.gov/Calendar.aspx",
-          "NameError"
-        ],
-        [
-          "https://www.durhamnc.gov/4473/Lakeview-Park",
-          "NameError"
-        ],
-        [
-          "https://www.durhamnc.gov/633/Fire-Prevention",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:14:19.326219Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "arcgis",
-        "humanReview": "not_reviewed",
-        "intent": "arcgis",
-        "market": "Raleigh-Durham",
-        "marketId": "raleigh-durham",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "durhamnc.gov",
-        "place": "Durham",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "site:durhamnc.gov (FeatureServer OR MapServer) parks events",
-        "queryFamily": "arcgis",
-        "queryId": "nrq-a9cf710c62fb",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.67,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": true
-          }
-        },
-        "state": "NC",
-        "stateCode": "NC"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:14:18.286512Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://www.durhamnc.gov/4473/Lakeview-Park": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.durhamnc.gov/4473/Lakeview-Park",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.durhamnc.gov/633/Fire-Prevention": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.durhamnc.gov/633/Fire-Prevention",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.durhamnc.gov/Calendar.aspx": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.durhamnc.gov/Calendar.aspx",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://www.durhamnc.gov/4473/Lakeview-Park",
-        "https://www.durhamnc.gov/633/Fire-Prevention",
-        "https://www.durhamnc.gov/Calendar.aspx"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://durhamnc.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://www.durhamnc.gov/Calendar.aspx",
-          "NameError"
-        ],
-        [
-          "https://www.durhamnc.gov/4473/Lakeview-Park",
-          "NameError"
-        ],
-        [
-          "https://www.durhamnc.gov/633/Fire-Prevention",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:14:18.229131Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "volunteer",
-        "humanReview": "not_reviewed",
-        "intent": "volunteer",
-        "market": "Raleigh-Durham",
-        "marketId": "raleigh-durham",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "durhamnc.gov",
-        "place": "Durham",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Durham, NC\" volunteer opportunities official",
-        "queryFamily": "volunteer",
-        "queryId": "nrq-cc6df4cfa030",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "NC",
-        "stateCode": "NC"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:14:17.245853Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://www.durhamnc.gov/4473/Lakeview-Park": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.durhamnc.gov/4473/Lakeview-Park",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.durhamnc.gov/633/Fire-Prevention": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://www.durhamnc.gov/633/Fire-Prevention",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.durhamnc.gov/Calendar.aspx": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.durhamnc.gov/Calendar.aspx",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://www.durhamnc.gov/4473/Lakeview-Park",
-        "https://www.durhamnc.gov/633/Fire-Prevention",
-        "https://www.durhamnc.gov/Calendar.aspx"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://durhamnc.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://www.durhamnc.gov/Calendar.aspx",
-          "NameError"
-        ],
-        [
-          "https://www.durhamnc.gov/4473/Lakeview-Park",
-          "NameError"
-        ],
-        [
-          "https://www.durhamnc.gov/633/Fire-Prevention",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:14:17.245827Z",
+      "finishedAt": "2026-10-02T16:16:33.094086Z",
       "httpStatus": 200,
       "query": {
         "expectedSourceType": "culture",
         "humanReview": "not_reviewed",
         "intent": "culture",
-        "market": "Raleigh-Durham",
-        "marketId": "raleigh-durham",
+        "market": "Salt Lake City",
+        "marketId": "salt-lake",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -709,17 +66,17 @@
           "blocked_robots"
         ],
         "nextAction": "discover official feeds",
-        "officialDomain": "durhamnc.gov",
-        "place": "Durham",
+        "officialDomain": "slc.gov",
+        "place": "Salt Lake City",
         "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Durham, NC\" arts culture museum events official",
+        "query": "\"Salt Lake City, UT\" arts culture museum events official",
         "queryFamily": "culture",
-        "queryId": "nrq-d2dfa61efe52",
+        "queryId": "nrq-04d5cbc22515",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.33,
@@ -729,67 +86,63 @@
             "structured_family": false
           }
         },
-        "state": "NC",
-        "stateCode": "NC"
+        "state": "UT",
+        "stateCode": "UT"
       },
       "reason": null,
       "robots": "allowed",
-      "startedAt": "2026-10-02T16:14:16.250079Z",
+      "startedAt": "2026-10-02T16:16:31.458584Z",
       "status": "succeeded"
     },
     {
       "attempts": 3,
       "candidateEvidence": {
-        "https://www.durhamnc.gov/4473/Lakeview-Park": {
+        "https://slc.gov/": {
           "confidence": 0.55,
-          "evidenceUrl": "https://www.durhamnc.gov/4473/Lakeview-Park",
+          "evidenceUrl": "https://slc.gov/",
           "sourceType": "HTML calendar"
         },
-        "https://www.durhamnc.gov/633/Fire-Prevention": {
+        "https://www.slc.gov/": {
           "confidence": 0.55,
-          "evidenceUrl": "https://www.durhamnc.gov/633/Fire-Prevention",
+          "evidenceUrl": "https://www.slc.gov/",
           "sourceType": "HTML calendar"
         },
-        "https://www.durhamnc.gov/Calendar.aspx": {
+        "https://www.slc.gov/wp-sitemap-users-1.xml": {
           "confidence": 0.8,
-          "evidenceUrl": "https://www.durhamnc.gov/Calendar.aspx",
-          "sourceType": "HTML calendar"
+          "evidenceUrl": "https://www.slc.gov/wp-sitemap-users-1.xml",
+          "sourceType": "Sitemap"
         }
       },
       "candidateUrls": [
-        "https://www.durhamnc.gov/4473/Lakeview-Park",
-        "https://www.durhamnc.gov/633/Fire-Prevention",
-        "https://www.durhamnc.gov/Calendar.aspx"
+        "https://slc.gov/",
+        "https://www.slc.gov/",
+        "https://www.slc.gov/wp-sitemap-users-1.xml"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://durhamnc.gov/sitemap_index.xml",
+          "https://slc.gov/sitemap_index.xml",
           404
         ],
         [
-          "https://www.durhamnc.gov/Calendar.aspx",
+          "https://slc.gov/",
           "NameError"
         ],
         [
-          "https://www.durhamnc.gov/4473/Lakeview-Park",
-          "NameError"
-        ],
-        [
-          "https://www.durhamnc.gov/633/Fire-Prevention",
+          "https://www.slc.gov/",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:14:18.286494Z",
+      "finishedAt": "2026-10-02T16:16:32.857986Z",
       "httpStatus": 200,
       "query": {
-        "expectedSourceType": "open_data",
+        "expectedSourceType": "libraries",
         "humanReview": "not_reviewed",
-        "intent": "open_data",
-        "market": "Raleigh-Durham",
-        "marketId": "raleigh-durham",
+        "intent": "libraries",
+        "market": "Salt Lake City",
+        "marketId": "salt-lake",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -802,17 +155,17 @@
           "blocked_robots"
         ],
         "nextAction": "discover official feeds",
-        "officialDomain": "durhamnc.gov",
-        "place": "Durham",
+        "officialDomain": "slc.gov",
+        "place": "Salt Lake City",
         "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Durham, NC\" open data portal",
-        "queryFamily": "open_data",
-        "queryId": "nrq-fac38079276d",
+        "query": "\"Salt Lake City, UT\" library events calendar",
+        "queryFamily": "libraries",
+        "queryId": "nrq-10036d2b0e90",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.33,
@@ -822,61 +175,140 @@
             "structured_family": false
           }
         },
-        "state": "NC",
-        "stateCode": "NC"
+        "state": "UT",
+        "stateCode": "UT"
       },
       "reason": null,
       "robots": "allowed",
-      "startedAt": "2026-10-02T16:14:17.250196Z",
+      "startedAt": "2026-10-02T16:16:31.322368Z",
       "status": "succeeded"
     },
     {
       "attempts": 3,
       "candidateEvidence": {
-        "https://www.durhamnc.gov/633/Fire-Prevention": {
+        "https://slc.gov/": {
           "confidence": 0.55,
-          "evidenceUrl": "https://www.durhamnc.gov/633/Fire-Prevention",
+          "evidenceUrl": "https://slc.gov/",
           "sourceType": "HTML calendar"
         },
-        "https://www.durhamnc.gov/Calendar.aspx": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.durhamnc.gov/Calendar.aspx",
+        "https://www.slc.gov/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.slc.gov/",
           "sourceType": "HTML calendar"
+        },
+        "https://www.slc.gov/wp-sitemap-users-1.xml": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.slc.gov/wp-sitemap-users-1.xml",
+          "sourceType": "Sitemap"
         }
       },
       "candidateUrls": [
-        "https://www.durhamnc.gov/633/Fire-Prevention",
-        "https://www.durhamnc.gov/Calendar.aspx"
+        "https://slc.gov/",
+        "https://www.slc.gov/",
+        "https://www.slc.gov/wp-sitemap-users-1.xml"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://durhamnc.gov/sitemap_index.xml",
+          "https://slc.gov/sitemap_index.xml",
           404
         ],
         [
-          "https://www.durhamnc.gov/Calendar.aspx",
+          "https://slc.gov/",
           "NameError"
         ],
         [
-          "https://www.durhamnc.gov/4473/Lakeview-Park",
-          "NameError"
-        ],
-        [
-          "https://www.durhamnc.gov/633/Fire-Prevention",
+          "https://www.slc.gov/",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:14:15.255541Z",
+      "finishedAt": "2026-10-02T16:16:31.458562Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "parks",
+        "humanReview": "not_reviewed",
+        "intent": "parks",
+        "market": "Salt Lake City",
+        "marketId": "salt-lake",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "slc.gov",
+        "place": "Salt Lake City",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Salt Lake City, UT\" parks recreation trails official",
+        "queryFamily": "parks",
+        "queryId": "nrq-24e72ab78ba7",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "UT",
+        "stateCode": "UT"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:16:29.781880Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.slc.gov/wp-sitemap-users-1.xml": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.slc.gov/wp-sitemap-users-1.xml",
+          "sourceType": "Sitemap"
+        }
+      },
+      "candidateUrls": [
+        "https://www.slc.gov/wp-sitemap-users-1.xml"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://slc.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://slc.gov/",
+          "NameError"
+        ],
+        [
+          "https://www.slc.gov/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:16:29.787934Z",
       "httpStatus": 200,
       "query": {
         "expectedSourceType": "events",
         "humanReview": "not_reviewed",
         "intent": "events",
-        "market": "Raleigh-Durham",
-        "marketId": "raleigh-durham",
+        "market": "Salt Lake City",
+        "marketId": "salt-lake",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -889,17 +321,17 @@
           "blocked_robots"
         ],
         "nextAction": "discover official feeds",
-        "officialDomain": "durhamnc.gov",
-        "place": "Durham",
+        "officialDomain": "slc.gov",
+        "place": "Salt Lake City",
         "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Durham, NC\" official events calendar",
+        "query": "\"Salt Lake City, UT\" official events calendar",
         "queryFamily": "events",
-        "queryId": "nrq-fec1896a54ef",
+        "queryId": "nrq-33eed40af73c",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.33,
@@ -909,49 +341,391 @@
             "structured_family": false
           }
         },
-        "state": "NC",
-        "stateCode": "NC"
+        "state": "UT",
+        "stateCode": "UT"
       },
       "reason": null,
       "robots": "allowed",
-      "startedAt": "2026-10-02T16:14:09.995160Z",
+      "startedAt": "2026-10-02T16:16:27.511840Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.slc.gov/wp-sitemap-users-1.xml": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.slc.gov/wp-sitemap-users-1.xml",
+          "sourceType": "Sitemap"
+        }
+      },
+      "candidateUrls": [
+        "https://www.slc.gov/wp-sitemap-users-1.xml"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://slc.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://slc.gov/",
+          "NameError"
+        ],
+        [
+          "https://www.slc.gov/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:16:29.781846Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "meetings",
+        "humanReview": "not_reviewed",
+        "intent": "meetings",
+        "market": "Salt Lake City",
+        "marketId": "salt-lake",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "slc.gov",
+        "place": "Salt Lake City",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Salt Lake City, UT\" public meetings agenda calendar",
+        "queryFamily": "meetings",
+        "queryId": "nrq-626ad8b109a4",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "UT",
+        "stateCode": "UT"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:16:27.512300Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://slc.gov/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://slc.gov/",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.slc.gov/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.slc.gov/",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.slc.gov/wp-sitemap-users-1.xml": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.slc.gov/wp-sitemap-users-1.xml",
+          "sourceType": "Sitemap"
+        }
+      },
+      "candidateUrls": [
+        "https://slc.gov/",
+        "https://www.slc.gov/",
+        "https://www.slc.gov/wp-sitemap-users-1.xml"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://slc.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://slc.gov/",
+          "NameError"
+        ],
+        [
+          "https://www.slc.gov/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:16:31.322344Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "trails",
+        "humanReview": "not_reviewed",
+        "intent": "trails",
+        "market": "Salt Lake City",
+        "marketId": "salt-lake",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "slc.gov",
+        "place": "Salt Lake City",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Salt Lake City, UT\" trails outdoor recreation official",
+        "queryFamily": "trails",
+        "queryId": "nrq-7a3a986eca18",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "UT",
+        "stateCode": "UT"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:16:29.787955Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://slc.gov/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://slc.gov/",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.slc.gov/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.slc.gov/",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.slc.gov/wp-sitemap-users-1.xml": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.slc.gov/wp-sitemap-users-1.xml",
+          "sourceType": "Sitemap"
+        }
+      },
+      "candidateUrls": [
+        "https://slc.gov/",
+        "https://www.slc.gov/",
+        "https://www.slc.gov/wp-sitemap-users-1.xml"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://slc.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://slc.gov/",
+          "NameError"
+        ],
+        [
+          "https://www.slc.gov/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:16:34.580674Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "open_data",
+        "humanReview": "not_reviewed",
+        "intent": "open_data",
+        "market": "Salt Lake City",
+        "marketId": "salt-lake",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "slc.gov",
+        "place": "Salt Lake City",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Salt Lake City, UT\" open data portal",
+        "queryFamily": "open_data",
+        "queryId": "nrq-91e2782ac29f",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "UT",
+        "stateCode": "UT"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:16:33.094107Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://slc.gov/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://slc.gov/",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.slc.gov/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.slc.gov/",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.slc.gov/wp-sitemap-users-1.xml": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://www.slc.gov/wp-sitemap-users-1.xml",
+          "sourceType": "Sitemap"
+        }
+      },
+      "candidateUrls": [
+        "https://slc.gov/",
+        "https://www.slc.gov/",
+        "https://www.slc.gov/wp-sitemap-users-1.xml"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://slc.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://slc.gov/",
+          "NameError"
+        ],
+        [
+          "https://www.slc.gov/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:16:34.387312Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "volunteer",
+        "humanReview": "not_reviewed",
+        "intent": "volunteer",
+        "market": "Salt Lake City",
+        "marketId": "salt-lake",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "slc.gov",
+        "place": "Salt Lake City",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Salt Lake City, UT\" volunteer opportunities official",
+        "queryFamily": "volunteer",
+        "queryId": "nrq-a8efc696a8b4",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "UT",
+        "stateCode": "UT"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:16:32.858023Z",
       "status": "succeeded"
     }
   ],
   "schemaVersion": 2,
   "selectedQueryIds": [
-    "nrq-fec1896a54ef",
-    "nrq-71a267301c12",
-    "nrq-38338c3c9b9f",
-    "nrq-1357a026e707",
-    "nrq-1ff1a4eaed58",
-    "nrq-d2dfa61efe52",
-    "nrq-cc6df4cfa030",
-    "nrq-fac38079276d",
-    "nrq-713b36491ce4",
-    "nrq-a9cf710c62fb"
+    "nrq-33eed40af73c",
+    "nrq-626ad8b109a4",
+    "nrq-24e72ab78ba7",
+    "nrq-7a3a986eca18",
+    "nrq-10036d2b0e90",
+    "nrq-04d5cbc22515",
+    "nrq-a8efc696a8b4",
+    "nrq-91e2782ac29f"
   ],
   "sourceQueue": "expansion-queues/national-region-search-queue.json",
   "summary": {
-    "attempted": 10,
+    "attempted": 8,
     "candidateCaptureErrors": null,
     "candidatesFound": 3,
     "candidatesNeedingHumanReview": 3,
     "domainsCrawled": 1,
     "duplicateUrlsMerged": 0,
     "failed": 0,
-    "failedRequests": 40,
-    "httpSuccesses": 10,
-    "pagesCrawled": 30,
-    "pagesFetched": 30,
-    "pagesRejected": 40,
+    "failedRequests": 24,
+    "httpSuccesses": 8,
+    "pagesCrawled": 24,
+    "pagesFetched": 24,
+    "pagesRejected": 24,
     "rateLimitedRequests": 0,
     "responses_429": 0,
     "robots_disallowed": 0,
     "robots_unknown": 0,
     "skipped": 0,
-    "succeeded": 10,
-    "succeededWithCandidates": 10,
+    "succeeded": 8,
+    "succeededWithCandidates": 8,
     "succeededWithoutCandidates": 0,
     "timeout_network_failures": 0,
     "uniqueCandidates": 3,

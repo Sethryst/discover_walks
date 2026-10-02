@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 2,
+  "kind": "national-candidate-capture",
+  "readOnly": true,
+  "publicationState": "research-only",
+  "generatedAt": "2026-10-02T17:00:00Z",
+  "candidates": [{
+    "canonicalUrl": "https://www.slc.gov/events/feed/",
+    "confidence": 0.95,
+    "coverageScope": "salt-lake-city",
+    "crawlStatus": "completed",
+    "crawlTimestamp": "2026-10-02T17:00:00Z",
+    "discoveryEvidence": "Official Salt Lake City events page links a reachable RSS feed with event titles, official detail URLs, and publication timestamps.",
+    "evidenceUrls": ["https://www.slc.gov/events/", "https://www.slc.gov/events/feed/"],
+    "failureReason": null,
+    "httpStatus": 200,
+    "market": "Salt Lake City",
+    "markets": ["Salt Lake City"],
+    "needsHumanReview": true,
+    "originatingOfficialDomain": "slc.gov",
+    "originatingSeed": "expansion-queues/national-region-seeds.csv",
+    "place": "Salt Lake City",
+    "providerName": "Salt Lake City Events",
+    "queryId": "nrq-33eed40af73c",
+    "queryIds": ["nrq-33eed40af73c"],
+    "queryFamilies": ["events", "rss_ics"],
+    "robotsDecision": "allowed",
+    "scoreBreakdown": {"official_feed_link": 0.3, "reachable_rss": 0.35, "official_item_urls": 0.2, "freshness_timestamps": 0.1},
+    "sourceType": "RSS/Atom",
+    "sourceUrl": "https://www.slc.gov/events/feed/"
+  }],
+  "negativeDiscoveries": []
+}

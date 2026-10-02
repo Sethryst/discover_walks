@@ -49,3 +49,13 @@ class RssIcsEventsTests(unittest.TestCase):
         self.assertEqual(features[0].source_id, "10435")
         self.assertEqual(features[0].properties["startsAt"], "2026-10-05T23:00:00Z")
         self.assertEqual(features[0].properties["officialUrl"], "https://www.durhamnc.gov/calendar.aspx?EID=10435")
+
+    @patch("app.pipeline.adapters.rss_ics_events.urlopen")
+    def test_slc_events_feed_preserves_official_item_url(self, open_url):
+        payload = open("tests/fixtures/slc_events_feed.xml", encoding="utf-8").read().encode()
+        open_url.return_value = _Response(payload)
+        source = SourceConfig.from_dict({"id": "slc-events-feed", "name": "Salt Lake City Events", "provider": "rss_ics_events", "url": "https://www.slc.gov/events/feed/", "domains": ["slc.gov"], "licenseUrl": "https://www.slc.gov/", "providerOptions": {"defaultCoordinates": [-111.89, 40.76]}})
+        features, report = RssIcsEventsProvider().acquire(source, {})
+        self.assertEqual(report["format"], "rss-atom")
+        self.assertEqual(report["acceptedCount"], 1)
+        self.assertEqual(features[0].properties["officialUrl"], "https://www.slc.gov/events/2026/09/02/national-public-lands-day/")

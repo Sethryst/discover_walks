@@ -1,0 +1,75 @@
+{
+  "active": false,
+  "activeCandidates": [],
+  "candidates": [
+    {
+      "category": "events",
+      "confidence": 0.95,
+      "crawl": {
+        "crawlStatus": "completed",
+        "crawlTimestamp": "2026-10-02T17:00:00Z",
+        "failureReason": null,
+        "httpStatus": 200,
+        "robotsDecision": "allowed"
+      },
+      "dataType": "RSS/Atom",
+      "evidenceUrls": [
+        "https://www.slc.gov/events/",
+        "https://www.slc.gov/events/feed/"
+      ],
+      "id": "national-source-648f8c32b9e278c1",
+      "markets": [
+        "Salt Lake City"
+      ],
+      "originatingOfficialDomains": [
+        "slc.gov"
+      ],
+      "originatingSeed": "expansion-queues/national-region-seeds.csv",
+      "publicationState": "research-only",
+      "publisher": "Salt Lake City Events",
+      "queryContext": [
+        {
+          "market": "Salt Lake City",
+          "officialDomain": "slc.gov",
+          "queryFamily": "events",
+          "queryId": "nrq-33eed40af73c",
+          "seed": "expansion-queues/national-region-seeds.csv"
+        }
+      ],
+      "queryFamilies": [
+        "events",
+        "rss_ics"
+      ],
+      "queryIds": [
+        "nrq-33eed40af73c"
+      ],
+      "researchOnly": true,
+      "reviewState": "needs_human_review",
+      "scoreBreakdown": {
+        "freshness_timestamps": 0.1,
+        "official_feed_link": 0.3,
+        "official_item_urls": 0.2,
+        "reachable_rss": 0.35
+      },
+      "url": "https://www.slc.gov/events/feed"
+    }
+  ],
+  "errors": [],
+  "generatedAt": "2026-10-02T16:17:22.452444Z",
+  "kind": "national-discovery-candidate-package",
+  "publicationState": "research-only",
+  "runtimeLoader": "not-consumed; human promotion required",
+  "schemaVersion": 1,
+  "sourceArtifacts": [
+    "expansion-queues/slc-focused-event-capture.json",
+    "expansion-queues/national-region-search-queue.json"
+  ],
+  "summary": {
+    "duplicateUrlsMerged": 0,
+    "excluded": 0,
+    "needsHumanReview": 1,
+    "rejectedInvalid": 0,
+    "researchCandidates": 1,
+    "stagedPackageRecords": 1
+  }
+}
