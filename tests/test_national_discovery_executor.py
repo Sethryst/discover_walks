@@ -92,6 +92,10 @@ class NationalDiscoveryExecutorTests(unittest.TestCase):
         self.assertEqual(settings["CONCURRENT_REQUESTS_PER_DOMAIN"], 2)
         self.assertEqual(settings["DOWNLOAD_MAXSIZE"], 1_000_000)
 
+    def test_force_sync_keeps_injected_bounded_fetch_path(self):
+        executor = DiscoveryExecutor(force_sync=True, fetcher=lambda query: {"urls": [], "status": 200})
+        self.assertFalse(executor._use_scrapy)
+
     def test_realistic_source_fixtures_and_false_positive_filters(self):
         fixture = Path(__file__).parent / "fixtures" / "national_discovery_sources"
         self.assertEqual(classify_candidate("https://city.gov/events/feed.xml", "application/rss+xml", (fixture / "rss.xml").read_text()), "RSS/Atom")

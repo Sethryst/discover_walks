@@ -271,9 +271,9 @@ def score_candidate(url, source_type, *, official_link=False, body=""):
 
 def _now(): return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
 class DiscoveryExecutor:
-    def __init__(self, *, workers=2, timeout=15, retries=2, backoff=1.0, fetcher=None):
+    def __init__(self, *, workers=2, timeout=15, retries=2, backoff=1.0, fetcher=None, force_sync=False):
         self.workers, self.timeout, self.retries, self.backoff = max(1, workers), timeout, retries, backoff
-        self._use_scrapy = fetcher is None
+        self._use_scrapy = fetcher is None and not force_sync
         self.fetcher = fetcher or self._fetch
         self._robots, self._robots_lock = {}, Lock()
 
@@ -385,11 +385,12 @@ class DiscoveryExecutor:
                 output.append({"query": query, "domainOutcome": {"domain": domain, "robotsDecision": state.get("robotsDecision", "unknown"), "pagesCrawled": state.get("pages", 0), "failures": state.get("failures", []), "candidateCount": len(records)}, "status": "succeeded" if state.get("pages") else "failed", "reason": "robots_disallowed" if state.get("robotsDecision") == "disallowed" else None, "errorType": None, "robots": state.get("robotsDecision", "unknown"), "error": None, "httpStatus": 200 if state.get("pages") else None, "candidateUrls": sorted({r["url"] for r in records}), "candidates": records, "candidateEvidence": {r["url"]: r for r in records}, "crawlStatus": "completed" if state.get("pages") else "failed", "failures": state.get("failures", []), "attempts": state.get("pages", 0), "pagesCrawled": state.get("pages", 0), "startedAt": _now(), "finishedAt": _now()})
         return sorted(output, key=lambda item: item["query"]["queryId"])
 
-def execute(queue, output, capture_output, offset=0, limit=100, workers=2, timeout=15, retries=2, backoff=1.0):
+def execute(queue, output, capture_output, offset=0, limit=100, workers=2, timeout=15, retries=2, backoff=1.0, engine="scrapy"):
     queue_path, output_path, capture_path = queue, output, capture_output
     queue = json.loads(Path(queue_path).read_text(encoding="utf-8")); all_queries = queue["queries"]
     selected = all_queries[offset:offset + limit]
-    results = DiscoveryExecutor(workers=workers, timeout=timeout, retries=retries, backoff=backoff).run(selected)
+    if engine not in {"scrapy", "sync"}: raise ValueError("engine must be scrapy or sync")
+    results = DiscoveryExecutor(workers=workers, timeout=timeout, retries=retries, backoff=backoff, force_sync=engine == "sync").run(selected)
     candidate_map = {}
     for r in results:
         q = r["query"]
@@ -412,5 +413,5 @@ def execute(queue, output, capture_output, offset=0, limit=100, workers=2, timeo
     return report
 
 def main():
-    p=argparse.ArgumentParser(); p.add_argument("--queue", type=Path, default=Path("expansion-queues/national-region-search-queue.json")); p.add_argument("--output", type=Path, default=Path("expansion-queues/national-discovery-batch.json")); p.add_argument("--capture-output", type=Path, default=Path("expansion-queues/national-candidate-capture.json")); p.add_argument("--offset", type=int, default=0); p.add_argument("--limit", type=int, default=100); p.add_argument("--workers", type=int, default=2); p.add_argument("--timeout", type=float, default=15); p.add_argument("--retries", type=int, default=2); p.add_argument("--backoff", type=float, default=1.0); a=p.parse_args(); r=execute(**vars(a)); print(json.dumps(r["summary"], sort_keys=True))
+    p=argparse.ArgumentParser(); p.add_argument("--queue", type=Path, default=Path("expansion-queues/national-region-search-queue.json")); p.add_argument("--output", type=Path, default=Path("expansion-queues/national-discovery-batch.json")); p.add_argument("--capture-output", type=Path, default=Path("expansion-queues/national-candidate-capture.json")); p.add_argument("--offset", type=int, default=0); p.add_argument("--limit", type=int, default=100); p.add_argument("--workers", type=int, default=2); p.add_argument("--timeout", type=float, default=15); p.add_argument("--retries", type=int, default=2); p.add_argument("--backoff", type=float, default=1.0); p.add_argument("--engine", choices=("scrapy", "sync"), default="scrapy"); a=p.parse_args(); r=execute(**vars(a)); print(json.dumps(r["summary"], sort_keys=True))
 if __name__ == "__main__": main()
