@@ -1,632 +1,43 @@
 {
   "kind": "national-discovery-batch",
   "limit": 10,
-  "offset": 1296,
+  "offset": 1312,
   "publicationState": "research-only",
   "readOnly": true,
   "results": [
     {
-      "attempts": 3,
+      "attempts": 1,
       "candidateEvidence": {
-        "https://www.stpaul.gov/sitemap.xml?page=1": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=1",
-          "sourceType": "Sitemap"
-        },
-        "https://www.stpaul.gov/sitemap.xml?page=2": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=2",
-          "sourceType": "Sitemap"
-        }
-      },
-      "candidateUrls": [
-        "https://www.stpaul.gov/sitemap.xml?page=1",
-        "https://www.stpaul.gov/sitemap.xml?page=2"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://stpaul.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://stpaul.gov/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:08:09.979387Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "events",
-        "humanReview": "not_reviewed",
-        "intent": "events",
-        "market": "Minneapolis-Saint Paul",
-        "marketId": "minneapolis-st-paul",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "stpaul.gov",
-        "place": "Saint Paul",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Saint Paul, MN\" official events calendar",
-        "queryFamily": "events",
-        "queryId": "nrq-0a79a52ff646",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "MN",
-        "stateCode": "MN"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:08:07.356828Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://stpaul.gov/": {
+        "https://nashville.gov/": {
           "confidence": 0.55,
-          "evidenceUrl": "https://stpaul.gov/",
+          "evidenceUrl": "https://nashville.gov/",
           "sourceType": "HTML calendar"
-        },
-        "https://www.stpaul.gov/sitemap.xml?page=1": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=1",
-          "sourceType": "Sitemap"
-        },
-        "https://www.stpaul.gov/sitemap.xml?page=2": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=2",
-          "sourceType": "Sitemap"
         }
       },
       "candidateUrls": [
-        "https://stpaul.gov/",
-        "https://www.stpaul.gov/sitemap.xml?page=1",
-        "https://www.stpaul.gov/sitemap.xml?page=2"
+        "https://nashville.gov/"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://stpaul.gov/sitemap_index.xml",
+          "https://nashville.gov/sitemap_index.xml",
           404
         ],
         [
-          "https://stpaul.gov/",
+          "https://nashville.gov/",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:08:13.973432Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "volunteer",
-        "humanReview": "not_reviewed",
-        "intent": "volunteer",
-        "market": "Minneapolis-Saint Paul",
-        "marketId": "minneapolis-st-paul",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "stpaul.gov",
-        "place": "Saint Paul",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Saint Paul, MN\" volunteer opportunities official",
-        "queryFamily": "volunteer",
-        "queryId": "nrq-2fcdf8d88ccd",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "MN",
-        "stateCode": "MN"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:08:12.659311Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://stpaul.gov/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://stpaul.gov/",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.stpaul.gov/sitemap.xml?page=1": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=1",
-          "sourceType": "Sitemap"
-        },
-        "https://www.stpaul.gov/sitemap.xml?page=2": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=2",
-          "sourceType": "Sitemap"
-        }
-      },
-      "candidateUrls": [
-        "https://stpaul.gov/",
-        "https://www.stpaul.gov/sitemap.xml?page=1",
-        "https://www.stpaul.gov/sitemap.xml?page=2"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://stpaul.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://stpaul.gov/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:08:11.421576Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "trails",
-        "humanReview": "not_reviewed",
-        "intent": "trails",
-        "market": "Minneapolis-Saint Paul",
-        "marketId": "minneapolis-st-paul",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "stpaul.gov",
-        "place": "Saint Paul",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Saint Paul, MN\" trails outdoor recreation official",
-        "queryFamily": "trails",
-        "queryId": "nrq-384d89c84cc2",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "MN",
-        "stateCode": "MN"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:08:10.109789Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://stpaul.gov/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://stpaul.gov/",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.stpaul.gov/sitemap.xml?page=1": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=1",
-          "sourceType": "Sitemap"
-        },
-        "https://www.stpaul.gov/sitemap.xml?page=2": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=2",
-          "sourceType": "Sitemap"
-        }
-      },
-      "candidateUrls": [
-        "https://stpaul.gov/",
-        "https://www.stpaul.gov/sitemap.xml?page=1",
-        "https://www.stpaul.gov/sitemap.xml?page=2"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://stpaul.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://stpaul.gov/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:08:11.309032Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "parks",
-        "humanReview": "not_reviewed",
-        "intent": "parks",
-        "market": "Minneapolis-Saint Paul",
-        "marketId": "minneapolis-st-paul",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "stpaul.gov",
-        "place": "Saint Paul",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Saint Paul, MN\" parks recreation trails official",
-        "queryFamily": "parks",
-        "queryId": "nrq-3f265bd23719",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "MN",
-        "stateCode": "MN"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:08:09.979418Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://www.stpaul.gov/sitemap.xml?page=1": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=1",
-          "sourceType": "Sitemap"
-        },
-        "https://www.stpaul.gov/sitemap.xml?page=2": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=2",
-          "sourceType": "Sitemap"
-        }
-      },
-      "candidateUrls": [
-        "https://www.stpaul.gov/sitemap.xml?page=1",
-        "https://www.stpaul.gov/sitemap.xml?page=2"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://stpaul.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://stpaul.gov/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:08:15.257225Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "rss_ics",
-        "humanReview": "not_reviewed",
-        "intent": "rss_ics",
-        "market": "Minneapolis-Saint Paul",
-        "marketId": "minneapolis-st-paul",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "stpaul.gov",
-        "place": "Saint Paul",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Saint Paul, MN\" (RSS OR iCalendar OR ICS) events",
-        "queryFamily": "rss_ics",
-        "queryId": "nrq-3fa2d2c97ef1",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.67,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": true
-          }
-        },
-        "state": "MN",
-        "stateCode": "MN"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:08:13.973458Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://stpaul.gov/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://stpaul.gov/",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.stpaul.gov/sitemap.xml?page=1": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=1",
-          "sourceType": "Sitemap"
-        },
-        "https://www.stpaul.gov/sitemap.xml?page=2": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=2",
-          "sourceType": "Sitemap"
-        }
-      },
-      "candidateUrls": [
-        "https://stpaul.gov/",
-        "https://www.stpaul.gov/sitemap.xml?page=1",
-        "https://www.stpaul.gov/sitemap.xml?page=2"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://stpaul.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://stpaul.gov/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:08:14.089583Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "open_data",
-        "humanReview": "not_reviewed",
-        "intent": "open_data",
-        "market": "Minneapolis-Saint Paul",
-        "marketId": "minneapolis-st-paul",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "stpaul.gov",
-        "place": "Saint Paul",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Saint Paul, MN\" open data portal",
-        "queryFamily": "open_data",
-        "queryId": "nrq-6ebd2c522db5",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "MN",
-        "stateCode": "MN"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:08:12.751943Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://stpaul.gov/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://stpaul.gov/",
-          "sourceType": "HTML calendar"
-        },
-        "https://www.stpaul.gov/sitemap.xml?page=1": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=1",
-          "sourceType": "Sitemap"
-        },
-        "https://www.stpaul.gov/sitemap.xml?page=2": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=2",
-          "sourceType": "Sitemap"
-        }
-      },
-      "candidateUrls": [
-        "https://stpaul.gov/",
-        "https://www.stpaul.gov/sitemap.xml?page=1",
-        "https://www.stpaul.gov/sitemap.xml?page=2"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://stpaul.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://stpaul.gov/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:08:12.659285Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "libraries",
-        "humanReview": "not_reviewed",
-        "intent": "libraries",
-        "market": "Minneapolis-Saint Paul",
-        "marketId": "minneapolis-st-paul",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "stpaul.gov",
-        "place": "Saint Paul",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Saint Paul, MN\" library events calendar",
-        "queryFamily": "libraries",
-        "queryId": "nrq-84775002fa81",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "MN",
-        "stateCode": "MN"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:08:11.309060Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://www.stpaul.gov/sitemap.xml?page=1": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=1",
-          "sourceType": "Sitemap"
-        },
-        "https://www.stpaul.gov/sitemap.xml?page=2": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=2",
-          "sourceType": "Sitemap"
-        }
-      },
-      "candidateUrls": [
-        "https://www.stpaul.gov/sitemap.xml?page=1",
-        "https://www.stpaul.gov/sitemap.xml?page=2"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://stpaul.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://stpaul.gov/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:08:10.109762Z",
+      "finishedAt": "2026-10-02T16:09:52.864497Z",
       "httpStatus": 200,
       "query": {
         "expectedSourceType": "meetings",
         "humanReview": "not_reviewed",
         "intent": "meetings",
-        "market": "Minneapolis-Saint Paul",
-        "marketId": "minneapolis-st-paul",
+        "market": "Nashville",
+        "marketId": "nashville",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -639,17 +50,17 @@
           "blocked_robots"
         ],
         "nextAction": "discover official feeds",
-        "officialDomain": "stpaul.gov",
-        "place": "Saint Paul",
+        "officialDomain": "nashville.gov",
+        "place": "Nashville",
         "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Saint Paul, MN\" public meetings agenda calendar",
+        "query": "\"Nashville, TN\" public meetings agenda calendar",
         "queryFamily": "meetings",
-        "queryId": "nrq-b44696b5652f",
+        "queryId": "nrq-03e401446d00",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.33,
@@ -659,59 +70,193 @@
             "structured_family": false
           }
         },
-        "state": "MN",
-        "stateCode": "MN"
+        "state": "TN",
+        "stateCode": "TN"
       },
       "reason": null,
       "robots": "allowed",
-      "startedAt": "2026-10-02T16:08:07.357328Z",
+      "startedAt": "2026-10-02T16:09:51.942726Z",
       "status": "succeeded"
     },
     {
-      "attempts": 3,
+      "attempts": 1,
       "candidateEvidence": {
-        "https://stpaul.gov/": {
+        "https://nashville.gov/": {
           "confidence": 0.55,
-          "evidenceUrl": "https://stpaul.gov/",
+          "evidenceUrl": "https://nashville.gov/",
           "sourceType": "HTML calendar"
-        },
-        "https://www.stpaul.gov/sitemap.xml?page=1": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=1",
-          "sourceType": "Sitemap"
-        },
-        "https://www.stpaul.gov/sitemap.xml?page=2": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=2",
-          "sourceType": "Sitemap"
         }
       },
       "candidateUrls": [
-        "https://stpaul.gov/",
-        "https://www.stpaul.gov/sitemap.xml?page=1",
-        "https://www.stpaul.gov/sitemap.xml?page=2"
+        "https://nashville.gov/"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://stpaul.gov/sitemap_index.xml",
+          "https://nashville.gov/sitemap_index.xml",
           404
         ],
         [
-          "https://stpaul.gov/",
+          "https://nashville.gov/",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:08:12.751923Z",
+      "finishedAt": "2026-10-02T16:09:54.075347Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "libraries",
+        "humanReview": "not_reviewed",
+        "intent": "libraries",
+        "market": "Nashville",
+        "marketId": "nashville",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "nashville.gov",
+        "place": "Nashville",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Nashville, TN\" library events calendar",
+        "queryFamily": "libraries",
+        "queryId": "nrq-053b888fa2ed",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "TN",
+        "stateCode": "TN"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:09:53.450287Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "candidateEvidence": {
+        "https://nashville.gov/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://nashville.gov/",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://nashville.gov/"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://nashville.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://nashville.gov/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:09:53.450264Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "parks",
+        "humanReview": "not_reviewed",
+        "intent": "parks",
+        "market": "Nashville",
+        "marketId": "nashville",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "nashville.gov",
+        "place": "Nashville",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Nashville, TN\" parks recreation trails official",
+        "queryFamily": "parks",
+        "queryId": "nrq-1a311edde132",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "TN",
+        "stateCode": "TN"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:09:52.864524Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "candidateEvidence": {
+        "https://nashville.gov/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://nashville.gov/",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://nashville.gov/"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://nashville.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://nashville.gov/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:09:54.046688Z",
       "httpStatus": 200,
       "query": {
         "expectedSourceType": "culture",
         "humanReview": "not_reviewed",
         "intent": "culture",
-        "market": "Minneapolis-Saint Paul",
-        "marketId": "minneapolis-st-paul",
+        "market": "Nashville",
+        "marketId": "nashville",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -724,17 +269,17 @@
           "blocked_robots"
         ],
         "nextAction": "discover official feeds",
-        "officialDomain": "stpaul.gov",
-        "place": "Saint Paul",
+        "officialDomain": "nashville.gov",
+        "place": "Nashville",
         "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Saint Paul, MN\" arts culture museum events official",
+        "query": "\"Nashville, TN\" arts culture museum events official",
         "queryFamily": "culture",
-        "queryId": "nrq-c2e9a8d33094",
+        "queryId": "nrq-3c7495766de5",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.33,
@@ -744,59 +289,47 @@
             "structured_family": false
           }
         },
-        "state": "MN",
-        "stateCode": "MN"
+        "state": "TN",
+        "stateCode": "TN"
       },
       "reason": null,
       "robots": "allowed",
-      "startedAt": "2026-10-02T16:08:11.421598Z",
+      "startedAt": "2026-10-02T16:09:53.478042Z",
       "status": "succeeded"
     },
     {
-      "attempts": 3,
+      "attempts": 1,
       "candidateEvidence": {
-        "https://stpaul.gov/": {
+        "https://nashville.gov/": {
           "confidence": 0.55,
-          "evidenceUrl": "https://stpaul.gov/",
+          "evidenceUrl": "https://nashville.gov/",
           "sourceType": "HTML calendar"
-        },
-        "https://www.stpaul.gov/sitemap.xml?page=1": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=1",
-          "sourceType": "Sitemap"
-        },
-        "https://www.stpaul.gov/sitemap.xml?page=2": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://www.stpaul.gov/sitemap.xml?page=2",
-          "sourceType": "Sitemap"
         }
       },
       "candidateUrls": [
-        "https://stpaul.gov/",
-        "https://www.stpaul.gov/sitemap.xml?page=1",
-        "https://www.stpaul.gov/sitemap.xml?page=2"
+        "https://nashville.gov/"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://stpaul.gov/sitemap_index.xml",
+          "https://nashville.gov/sitemap_index.xml",
           404
         ],
         [
-          "https://stpaul.gov/",
+          "https://nashville.gov/",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:08:15.441315Z",
+      "finishedAt": "2026-10-02T16:09:55.273394Z",
       "httpStatus": 200,
       "query": {
-        "expectedSourceType": "arcgis",
+        "expectedSourceType": "rss_ics",
         "humanReview": "not_reviewed",
-        "intent": "arcgis",
-        "market": "Minneapolis-Saint Paul",
-        "marketId": "minneapolis-st-paul",
+        "intent": "rss_ics",
+        "market": "Nashville",
+        "marketId": "nashville",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -809,17 +342,17 @@
           "blocked_robots"
         ],
         "nextAction": "discover official feeds",
-        "officialDomain": "stpaul.gov",
-        "place": "Saint Paul",
+        "officialDomain": "nashville.gov",
+        "place": "Nashville",
         "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "site:stpaul.gov (FeatureServer OR MapServer) parks events",
-        "queryFamily": "arcgis",
-        "queryId": "nrq-eeeb075b37e2",
+        "query": "\"Nashville, TN\" (RSS OR iCalendar OR ICS) events",
+        "queryFamily": "rss_ics",
+        "queryId": "nrq-8387c9d0e82b",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.67,
@@ -829,41 +362,406 @@
             "structured_family": true
           }
         },
-        "state": "MN",
-        "stateCode": "MN"
+        "state": "TN",
+        "stateCode": "TN"
       },
       "reason": null,
       "robots": "allowed",
-      "startedAt": "2026-10-02T16:08:14.089605Z",
+      "startedAt": "2026-10-02T16:09:54.695732Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "candidateEvidence": {
+        "https://nashville.gov/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://nashville.gov/",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://nashville.gov/"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://nashville.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://nashville.gov/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:09:55.325983Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "arcgis",
+        "humanReview": "not_reviewed",
+        "intent": "arcgis",
+        "market": "Nashville",
+        "marketId": "nashville",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "nashville.gov",
+        "place": "Nashville",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "site:nashville.gov (FeatureServer OR MapServer) parks events",
+        "queryFamily": "arcgis",
+        "queryId": "nrq-9f0bace28797",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.67,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": true
+          }
+        },
+        "state": "TN",
+        "stateCode": "TN"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:09:54.729373Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "candidateEvidence": {
+        "https://nashville.gov/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://nashville.gov/",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://nashville.gov/"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://nashville.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://nashville.gov/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:09:52.869545Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "events",
+        "humanReview": "not_reviewed",
+        "intent": "events",
+        "market": "Nashville",
+        "marketId": "nashville",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "nashville.gov",
+        "place": "Nashville",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Nashville, TN\" official events calendar",
+        "queryFamily": "events",
+        "queryId": "nrq-b7c19366f4a2",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "TN",
+        "stateCode": "TN"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:09:51.942270Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "candidateEvidence": {
+        "https://nashville.gov/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://nashville.gov/",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://nashville.gov/"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://nashville.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://nashville.gov/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:09:53.478023Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "trails",
+        "humanReview": "not_reviewed",
+        "intent": "trails",
+        "market": "Nashville",
+        "marketId": "nashville",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "nashville.gov",
+        "place": "Nashville",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Nashville, TN\" trails outdoor recreation official",
+        "queryFamily": "trails",
+        "queryId": "nrq-d9f5f09c0542",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "TN",
+        "stateCode": "TN"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:09:52.869564Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "candidateEvidence": {
+        "https://nashville.gov/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://nashville.gov/",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://nashville.gov/"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://nashville.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://nashville.gov/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:09:54.729356Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "open_data",
+        "humanReview": "not_reviewed",
+        "intent": "open_data",
+        "market": "Nashville",
+        "marketId": "nashville",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "nashville.gov",
+        "place": "Nashville",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Nashville, TN\" open data portal",
+        "queryFamily": "open_data",
+        "queryId": "nrq-e853125e1695",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "TN",
+        "stateCode": "TN"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:09:54.075363Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "candidateEvidence": {
+        "https://nashville.gov/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://nashville.gov/",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://nashville.gov/"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://nashville.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://nashville.gov/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:09:54.695713Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "volunteer",
+        "humanReview": "not_reviewed",
+        "intent": "volunteer",
+        "market": "Nashville",
+        "marketId": "nashville",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "nashville.gov",
+        "place": "Nashville",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Nashville, TN\" volunteer opportunities official",
+        "queryFamily": "volunteer",
+        "queryId": "nrq-f428be53ed19",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "TN",
+        "stateCode": "TN"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:09:54.046711Z",
       "status": "succeeded"
     }
   ],
   "schemaVersion": 2,
   "selectedQueryIds": [
-    "nrq-0a79a52ff646",
-    "nrq-b44696b5652f",
-    "nrq-3f265bd23719",
-    "nrq-384d89c84cc2",
-    "nrq-84775002fa81",
-    "nrq-c2e9a8d33094",
-    "nrq-2fcdf8d88ccd",
-    "nrq-6ebd2c522db5",
-    "nrq-3fa2d2c97ef1",
-    "nrq-eeeb075b37e2"
+    "nrq-b7c19366f4a2",
+    "nrq-03e401446d00",
+    "nrq-1a311edde132",
+    "nrq-d9f5f09c0542",
+    "nrq-053b888fa2ed",
+    "nrq-3c7495766de5",
+    "nrq-f428be53ed19",
+    "nrq-e853125e1695",
+    "nrq-8387c9d0e82b",
+    "nrq-9f0bace28797"
   ],
   "sourceQueue": "expansion-queues/national-region-search-queue.json",
   "summary": {
     "attempted": 10,
     "candidateCaptureErrors": null,
-    "candidatesFound": 3,
-    "candidatesNeedingHumanReview": 3,
+    "candidatesFound": 1,
+    "candidatesNeedingHumanReview": 1,
     "domainsCrawled": 1,
     "duplicateUrlsMerged": 0,
     "failed": 0,
     "failedRequests": 20,
     "httpSuccesses": 10,
-    "pagesCrawled": 30,
-    "pagesFetched": 30,
+    "pagesCrawled": 10,
+    "pagesFetched": 10,
     "pagesRejected": 20,
     "rateLimitedRequests": 0,
     "responses_429": 0,
@@ -874,7 +772,7 @@
     "succeededWithCandidates": 10,
     "succeededWithoutCandidates": 0,
     "timeout_network_failures": 0,
-    "uniqueCandidates": 3,
-    "usefulDiscoveries": 3
+    "uniqueCandidates": 1,
+    "usefulDiscoveries": 1
   }
 }

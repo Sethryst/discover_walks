@@ -87,6 +87,7 @@ These are observed official paths from the recent batches or direct domain audit
 | `city.milwaukee.gov` | `/`, `/sitemap_1.xml`, `/sitemap_8.xml` | Discovery found official HTML/sitemap routes, but direct requests to the homepage and calendar paths returned HTTP 403. | Hold as access-restricted evidence; no event records promoted. |
 | `minneapolismn.gov` | `/things-to-do/events/` | Official events landing page returned HTTP 200, but the direct audit exposed no JSON-LD Event block or validated feed. | Hold for item-level endpoint discovery; do not ingest the landing page itself. |
 | `stpaul.gov` | `/calendar/`, `/calendar/highland-litter-cleanup` | Official calendar and dated detail page returned HTTP 200; detail text contained explicit start/end date-times, address, and description, but no JSON-LD or feed contract. | Focused HTML candidate; capture stable selectors/pagination and fixture-test before promotion. |
+| `nashville.gov` | `/`, `/departments/parks/events/autumn-seed-hike` | Official homepage links a dated parks event detail; the detail contains date, time, description, venue, and contact but no JSON-LD or validated feed. | Focused HTML candidate; fixture-test selectors and event identity before promotion. |
 
 ## Ingestion pathway decision tree
 
