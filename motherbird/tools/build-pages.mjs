@@ -36,6 +36,8 @@ const publishEntries = [
   'privacy.html',
   'radio.css',
   'regions',
+  'research',
+  'research-lab.html',
   'service-worker.js',
   'shell.css',
   'splash-fix.css',
