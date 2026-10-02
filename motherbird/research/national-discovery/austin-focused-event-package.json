@@ -1,0 +1,36 @@
+{
+  "active": false,
+  "publicationState": "research-only",
+  "runtimeLoader": "not-consumed; human promotion required",
+  "schemaVersion": 1,
+  "kind": "focused-event-replay-package",
+  "region": "Austin",
+  "source": {
+    "id": "austin-accd-events",
+    "provider": "austin_socrata_events",
+    "datasetId": "p9ma-z6y9",
+    "apiUrl": "https://data.austintexas.gov/resource/p9ma-z6y9.json?%24limit=50",
+    "officialView": "https://data.austintexas.gov/widgets/p9ma-z6y9",
+    "officialDomain": "data.austintexas.gov",
+    "format": "socrata-json",
+    "timeSemantics": "unspecified-wall-time",
+    "httpStatus": 200
+  },
+  "focusedReplay": {
+    "observedAt": "2026-10-02T20:45:00Z",
+    "recordsFetched": 50,
+    "acceptedRecords": 50,
+    "stableEventIds": true,
+    "officialOutlinksPreserved": true,
+    "privacy": "No user location data used; package is domain-scoped and research-only."
+  },
+  "acceptance": {
+    "decision": "HOLD",
+    "reason": "Terms, wall-time semantics, third-party outlink policy, and active-region release gates remain unverified.",
+    "activeRegion": false
+  },
+  "sourceArtifacts": [
+    "expansion-queues/national-candidate-capture-2026-10-02-austin-honolulu.json",
+    "expansion-queues/national-candidate-validation-2026-10-02-austin-honolulu.json"
+  ]
+}
