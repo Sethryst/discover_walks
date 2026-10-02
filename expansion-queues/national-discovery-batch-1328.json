@@ -1,0 +1,960 @@
+{
+  "kind": "national-discovery-batch",
+  "limit": 10,
+  "offset": 1328,
+  "publicationState": "research-only",
+  "readOnly": true,
+  "results": [
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.okc.gov/Community-Recreation": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.okc.gov/Community-Recreation",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.okc.gov/Events-directory": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.okc.gov/Events-directory",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.okc.gov/Home/Popular-Topics": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.okc.gov/Home/Popular-Topics",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.okc.gov/Community-Recreation",
+        "https://www.okc.gov/Events-directory",
+        "https://www.okc.gov/Home/Popular-Topics"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://okc.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.okc.gov/Events-directory",
+          "NameError"
+        ],
+        [
+          "https://www.okc.gov/Home/Popular-Topics",
+          "NameError"
+        ],
+        [
+          "https://www.okc.gov/Community-Recreation",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:11:48.234143Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "open_data",
+        "humanReview": "not_reviewed",
+        "intent": "open_data",
+        "market": "Oklahoma City",
+        "marketId": "oklahoma-city",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "okc.gov",
+        "place": "Oklahoma City",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Oklahoma City, OK\" open data portal",
+        "queryFamily": "open_data",
+        "queryId": "nrq-223da03700b6",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "OK",
+        "stateCode": "OK"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:11:47.048704Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.okc.gov/Community-Recreation": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.okc.gov/Community-Recreation",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.okc.gov/Events-directory": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.okc.gov/Events-directory",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.okc.gov/Home/Popular-Topics": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.okc.gov/Home/Popular-Topics",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.okc.gov/Community-Recreation",
+        "https://www.okc.gov/Events-directory",
+        "https://www.okc.gov/Home/Popular-Topics"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://okc.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.okc.gov/Events-directory",
+          "NameError"
+        ],
+        [
+          "https://www.okc.gov/Home/Popular-Topics",
+          "NameError"
+        ],
+        [
+          "https://www.okc.gov/Community-Recreation",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:11:47.948905Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "volunteer",
+        "humanReview": "not_reviewed",
+        "intent": "volunteer",
+        "market": "Oklahoma City",
+        "marketId": "oklahoma-city",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "okc.gov",
+        "place": "Oklahoma City",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Oklahoma City, OK\" volunteer opportunities official",
+        "queryFamily": "volunteer",
+        "queryId": "nrq-3d39e64ceca0",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "OK",
+        "stateCode": "OK"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:11:46.811820Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.okc.gov/Community-Recreation": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.okc.gov/Community-Recreation",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.okc.gov/Events-directory": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.okc.gov/Events-directory",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.okc.gov/Home/Popular-Topics": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.okc.gov/Home/Popular-Topics",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.okc.gov/Community-Recreation",
+        "https://www.okc.gov/Events-directory",
+        "https://www.okc.gov/Home/Popular-Topics"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://okc.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.okc.gov/Events-directory",
+          "NameError"
+        ],
+        [
+          "https://www.okc.gov/Home/Popular-Topics",
+          "NameError"
+        ],
+        [
+          "https://www.okc.gov/Community-Recreation",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:11:45.530045Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "trails",
+        "humanReview": "not_reviewed",
+        "intent": "trails",
+        "market": "Oklahoma City",
+        "marketId": "oklahoma-city",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "okc.gov",
+        "place": "Oklahoma City",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Oklahoma City, OK\" trails outdoor recreation official",
+        "queryFamily": "trails",
+        "queryId": "nrq-46dd2fe55403",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "OK",
+        "stateCode": "OK"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:11:44.296461Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.okc.gov/Community-Recreation": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.okc.gov/Community-Recreation",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.okc.gov/Events-directory": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.okc.gov/Events-directory",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.okc.gov/Home/Popular-Topics": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.okc.gov/Home/Popular-Topics",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.okc.gov/Community-Recreation",
+        "https://www.okc.gov/Events-directory",
+        "https://www.okc.gov/Home/Popular-Topics"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://okc.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.okc.gov/Events-directory",
+          "NameError"
+        ],
+        [
+          "https://www.okc.gov/Home/Popular-Topics",
+          "NameError"
+        ],
+        [
+          "https://www.okc.gov/Community-Recreation",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:11:46.811792Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "libraries",
+        "humanReview": "not_reviewed",
+        "intent": "libraries",
+        "market": "Oklahoma City",
+        "marketId": "oklahoma-city",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "okc.gov",
+        "place": "Oklahoma City",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Oklahoma City, OK\" library events calendar",
+        "queryFamily": "libraries",
+        "queryId": "nrq-5de2d610c31a",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "OK",
+        "stateCode": "OK"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:11:45.475198Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.okc.gov/Community-Recreation": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.okc.gov/Community-Recreation",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.okc.gov/Events-directory": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.okc.gov/Events-directory",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.okc.gov/Home/Popular-Topics": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.okc.gov/Home/Popular-Topics",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.okc.gov/Community-Recreation",
+        "https://www.okc.gov/Events-directory",
+        "https://www.okc.gov/Home/Popular-Topics"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://okc.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.okc.gov/Events-directory",
+          "NameError"
+        ],
+        [
+          "https://www.okc.gov/Home/Popular-Topics",
+          "NameError"
+        ],
+        [
+          "https://www.okc.gov/Community-Recreation",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:11:45.475174Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "parks",
+        "humanReview": "not_reviewed",
+        "intent": "parks",
+        "market": "Oklahoma City",
+        "marketId": "oklahoma-city",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "okc.gov",
+        "place": "Oklahoma City",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Oklahoma City, OK\" parks recreation trails official",
+        "queryFamily": "parks",
+        "queryId": "nrq-611903eed60f",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "OK",
+        "stateCode": "OK"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:11:44.139827Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.okc.gov/Events-directory": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.okc.gov/Events-directory",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.okc.gov/Home/Popular-Topics": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.okc.gov/Home/Popular-Topics",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.okc.gov/Events-directory",
+        "https://www.okc.gov/Home/Popular-Topics"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://okc.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.okc.gov/Events-directory",
+          "NameError"
+        ],
+        [
+          "https://www.okc.gov/Home/Popular-Topics",
+          "NameError"
+        ],
+        [
+          "https://www.okc.gov/Community-Recreation",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:11:44.139790Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "meetings",
+        "humanReview": "not_reviewed",
+        "intent": "meetings",
+        "market": "Oklahoma City",
+        "marketId": "oklahoma-city",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "okc.gov",
+        "place": "Oklahoma City",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Oklahoma City, OK\" public meetings agenda calendar",
+        "queryFamily": "meetings",
+        "queryId": "nrq-6473814e8a06",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "OK",
+        "stateCode": "OK"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:11:42.352859Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.okc.gov/Events-directory": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.okc.gov/Events-directory",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.okc.gov/Home/Popular-Topics": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.okc.gov/Home/Popular-Topics",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.okc.gov/Events-directory",
+        "https://www.okc.gov/Home/Popular-Topics"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://okc.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.okc.gov/Events-directory",
+          "NameError"
+        ],
+        [
+          "https://www.okc.gov/Home/Popular-Topics",
+          "NameError"
+        ],
+        [
+          "https://www.okc.gov/Community-Recreation",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:11:44.296435Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "events",
+        "humanReview": "not_reviewed",
+        "intent": "events",
+        "market": "Oklahoma City",
+        "marketId": "oklahoma-city",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "okc.gov",
+        "place": "Oklahoma City",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Oklahoma City, OK\" official events calendar",
+        "queryFamily": "events",
+        "queryId": "nrq-b7c17a40c0d6",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "OK",
+        "stateCode": "OK"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:11:42.352412Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.okc.gov/Events-directory": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.okc.gov/Events-directory",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.okc.gov/Home/Popular-Topics": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.okc.gov/Home/Popular-Topics",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.okc.gov/Events-directory",
+        "https://www.okc.gov/Home/Popular-Topics"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://okc.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.okc.gov/Events-directory",
+          "NameError"
+        ],
+        [
+          "https://www.okc.gov/Home/Popular-Topics",
+          "NameError"
+        ],
+        [
+          "https://www.okc.gov/Community-Recreation",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:11:49.143302Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "rss_ics",
+        "humanReview": "not_reviewed",
+        "intent": "rss_ics",
+        "market": "Oklahoma City",
+        "marketId": "oklahoma-city",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "okc.gov",
+        "place": "Oklahoma City",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Oklahoma City, OK\" (RSS OR iCalendar OR ICS) events",
+        "queryFamily": "rss_ics",
+        "queryId": "nrq-db2e72353d44",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.67,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": true
+          }
+        },
+        "state": "OK",
+        "stateCode": "OK"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:11:47.948931Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.okc.gov/Community-Recreation": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.okc.gov/Community-Recreation",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.okc.gov/Events-directory": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.okc.gov/Events-directory",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.okc.gov/Home/Popular-Topics": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.okc.gov/Home/Popular-Topics",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.okc.gov/Community-Recreation",
+        "https://www.okc.gov/Events-directory",
+        "https://www.okc.gov/Home/Popular-Topics"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://okc.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.okc.gov/Events-directory",
+          "NameError"
+        ],
+        [
+          "https://www.okc.gov/Home/Popular-Topics",
+          "NameError"
+        ],
+        [
+          "https://www.okc.gov/Community-Recreation",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:11:47.048679Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "culture",
+        "humanReview": "not_reviewed",
+        "intent": "culture",
+        "market": "Oklahoma City",
+        "marketId": "oklahoma-city",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "okc.gov",
+        "place": "Oklahoma City",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Oklahoma City, OK\" arts culture museum events official",
+        "queryFamily": "culture",
+        "queryId": "nrq-e6c40394de7d",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "OK",
+        "stateCode": "OK"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:11:45.530065Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://www.okc.gov/Community-Recreation": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.okc.gov/Community-Recreation",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.okc.gov/Events-directory": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.okc.gov/Events-directory",
+          "sourceType": "HTML calendar"
+        },
+        "https://www.okc.gov/Home/Popular-Topics": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://www.okc.gov/Home/Popular-Topics",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://www.okc.gov/Community-Recreation",
+        "https://www.okc.gov/Events-directory",
+        "https://www.okc.gov/Home/Popular-Topics"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://okc.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://www.okc.gov/Events-directory",
+          "NameError"
+        ],
+        [
+          "https://www.okc.gov/Home/Popular-Topics",
+          "NameError"
+        ],
+        [
+          "https://www.okc.gov/Community-Recreation",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:11:49.617443Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "arcgis",
+        "humanReview": "not_reviewed",
+        "intent": "arcgis",
+        "market": "Oklahoma City",
+        "marketId": "oklahoma-city",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "okc.gov",
+        "place": "Oklahoma City",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "site:okc.gov (FeatureServer OR MapServer) parks events",
+        "queryFamily": "arcgis",
+        "queryId": "nrq-ee7b14644271",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.67,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": true
+          }
+        },
+        "state": "OK",
+        "stateCode": "OK"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:11:48.234176Z",
+      "status": "succeeded"
+    }
+  ],
+  "schemaVersion": 2,
+  "selectedQueryIds": [
+    "nrq-b7c17a40c0d6",
+    "nrq-6473814e8a06",
+    "nrq-611903eed60f",
+    "nrq-46dd2fe55403",
+    "nrq-5de2d610c31a",
+    "nrq-e6c40394de7d",
+    "nrq-3d39e64ceca0",
+    "nrq-223da03700b6",
+    "nrq-db2e72353d44",
+    "nrq-ee7b14644271"
+  ],
+  "sourceQueue": "expansion-queues/national-region-search-queue.json",
+  "summary": {
+    "attempted": 10,
+    "candidateCaptureErrors": null,
+    "candidatesFound": 3,
+    "candidatesNeedingHumanReview": 3,
+    "domainsCrawled": 1,
+    "duplicateUrlsMerged": 0,
+    "failed": 0,
+    "failedRequests": 40,
+    "httpSuccesses": 10,
+    "pagesCrawled": 30,
+    "pagesFetched": 30,
+    "pagesRejected": 40,
+    "rateLimitedRequests": 0,
+    "responses_429": 0,
+    "robots_disallowed": 0,
+    "robots_unknown": 0,
+    "skipped": 0,
+    "succeeded": 10,
+    "succeededWithCandidates": 10,
+    "succeededWithoutCandidates": 0,
+    "timeout_network_failures": 0,
+    "uniqueCandidates": 3,
+    "usefulDiscoveries": 3
+  }
+}

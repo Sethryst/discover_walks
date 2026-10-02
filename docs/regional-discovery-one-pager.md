@@ -88,6 +88,8 @@ These are observed official paths from the recent batches or direct domain audit
 | `minneapolismn.gov` | `/things-to-do/events/` | Official events landing page returned HTTP 200, but the direct audit exposed no JSON-LD Event block or validated feed. | Hold for item-level endpoint discovery; do not ingest the landing page itself. |
 | `stpaul.gov` | `/calendar/`, `/calendar/highland-litter-cleanup` | Official calendar and dated detail page returned HTTP 200; detail text contained explicit start/end date-times, address, and description, but no JSON-LD or feed contract. | Focused HTML candidate; capture stable selectors/pagination and fixture-test before promotion. |
 | `nashville.gov` | `/`, `/departments/parks/events/autumn-seed-hike` | Official homepage links a dated parks event detail; the detail contains date, time, description, venue, and contact but no JSON-LD or validated feed. | Focused HTML candidate; fixture-test selectors and event identity before promotion. |
+| `okc.gov` | `/Events-directory`, `/Community-Recreation`, `/Home/Popular-Topics` | Bounded slice found three official event-adjacent routes; direct audit returned HTTP 403 for the events and recreation pages. | Hold as access-restricted evidence; no event records promoted. |
+| `cityofomaha.org` | Batch offset 1344 | Ten bounded queries completed with no candidate source yield. | Keep as a negative discovery result; rerun only when new official event links or machine-readable evidence appears. |
 
 ## Ingestion pathway decision tree
 

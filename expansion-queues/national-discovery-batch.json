@@ -1,627 +1,39 @@
 {
   "kind": "national-discovery-batch",
   "limit": 10,
-  "offset": 1312,
+  "offset": 1344,
   "publicationState": "research-only",
   "readOnly": true,
   "results": [
     {
       "attempts": 1,
-      "candidateEvidence": {
-        "https://nashville.gov/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://nashville.gov/",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://nashville.gov/"
-      ],
+      "candidateEvidence": {},
+      "candidateUrls": [],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://nashville.gov/sitemap_index.xml",
-          404
+          "https://cityofomaha.org/sitemap.xml",
+          403
         ],
         [
-          "https://nashville.gov/",
-          "NameError"
+          "https://cityofomaha.org/sitemap_index.xml",
+          403
+        ],
+        [
+          "https://cityofomaha.org/",
+          403
         ]
       ],
-      "finishedAt": "2026-10-02T16:09:52.864497Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "meetings",
-        "humanReview": "not_reviewed",
-        "intent": "meetings",
-        "market": "Nashville",
-        "marketId": "nashville",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "nashville.gov",
-        "place": "Nashville",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Nashville, TN\" public meetings agenda calendar",
-        "queryFamily": "meetings",
-        "queryId": "nrq-03e401446d00",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "TN",
-        "stateCode": "TN"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:09:51.942726Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 1,
-      "candidateEvidence": {
-        "https://nashville.gov/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://nashville.gov/",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://nashville.gov/"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://nashville.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://nashville.gov/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:09:54.075347Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "libraries",
-        "humanReview": "not_reviewed",
-        "intent": "libraries",
-        "market": "Nashville",
-        "marketId": "nashville",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "nashville.gov",
-        "place": "Nashville",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Nashville, TN\" library events calendar",
-        "queryFamily": "libraries",
-        "queryId": "nrq-053b888fa2ed",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "TN",
-        "stateCode": "TN"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:09:53.450287Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 1,
-      "candidateEvidence": {
-        "https://nashville.gov/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://nashville.gov/",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://nashville.gov/"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://nashville.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://nashville.gov/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:09:53.450264Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "parks",
-        "humanReview": "not_reviewed",
-        "intent": "parks",
-        "market": "Nashville",
-        "marketId": "nashville",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "nashville.gov",
-        "place": "Nashville",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Nashville, TN\" parks recreation trails official",
-        "queryFamily": "parks",
-        "queryId": "nrq-1a311edde132",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "TN",
-        "stateCode": "TN"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:09:52.864524Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 1,
-      "candidateEvidence": {
-        "https://nashville.gov/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://nashville.gov/",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://nashville.gov/"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://nashville.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://nashville.gov/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:09:54.046688Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "culture",
-        "humanReview": "not_reviewed",
-        "intent": "culture",
-        "market": "Nashville",
-        "marketId": "nashville",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "nashville.gov",
-        "place": "Nashville",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Nashville, TN\" arts culture museum events official",
-        "queryFamily": "culture",
-        "queryId": "nrq-3c7495766de5",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "TN",
-        "stateCode": "TN"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:09:53.478042Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 1,
-      "candidateEvidence": {
-        "https://nashville.gov/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://nashville.gov/",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://nashville.gov/"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://nashville.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://nashville.gov/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:09:55.273394Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "rss_ics",
-        "humanReview": "not_reviewed",
-        "intent": "rss_ics",
-        "market": "Nashville",
-        "marketId": "nashville",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "nashville.gov",
-        "place": "Nashville",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Nashville, TN\" (RSS OR iCalendar OR ICS) events",
-        "queryFamily": "rss_ics",
-        "queryId": "nrq-8387c9d0e82b",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.67,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": true
-          }
-        },
-        "state": "TN",
-        "stateCode": "TN"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:09:54.695732Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 1,
-      "candidateEvidence": {
-        "https://nashville.gov/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://nashville.gov/",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://nashville.gov/"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://nashville.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://nashville.gov/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:09:55.325983Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "arcgis",
-        "humanReview": "not_reviewed",
-        "intent": "arcgis",
-        "market": "Nashville",
-        "marketId": "nashville",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "nashville.gov",
-        "place": "Nashville",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "site:nashville.gov (FeatureServer OR MapServer) parks events",
-        "queryFamily": "arcgis",
-        "queryId": "nrq-9f0bace28797",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.67,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": true
-          }
-        },
-        "state": "TN",
-        "stateCode": "TN"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:09:54.729373Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 1,
-      "candidateEvidence": {
-        "https://nashville.gov/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://nashville.gov/",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://nashville.gov/"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://nashville.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://nashville.gov/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:09:52.869545Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "events",
-        "humanReview": "not_reviewed",
-        "intent": "events",
-        "market": "Nashville",
-        "marketId": "nashville",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "nashville.gov",
-        "place": "Nashville",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Nashville, TN\" official events calendar",
-        "queryFamily": "events",
-        "queryId": "nrq-b7c19366f4a2",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "TN",
-        "stateCode": "TN"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:09:51.942270Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 1,
-      "candidateEvidence": {
-        "https://nashville.gov/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://nashville.gov/",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://nashville.gov/"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://nashville.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://nashville.gov/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:09:53.478023Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "trails",
-        "humanReview": "not_reviewed",
-        "intent": "trails",
-        "market": "Nashville",
-        "marketId": "nashville",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover official feeds",
-        "officialDomain": "nashville.gov",
-        "place": "Nashville",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Nashville, TN\" trails outdoor recreation official",
-        "queryFamily": "trails",
-        "queryId": "nrq-d9f5f09c0542",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "TN",
-        "stateCode": "TN"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:09:52.869564Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 1,
-      "candidateEvidence": {
-        "https://nashville.gov/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://nashville.gov/",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://nashville.gov/"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://nashville.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://nashville.gov/",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:09:54.729356Z",
+      "finishedAt": "2026-10-02T16:11:36.686337Z",
       "httpStatus": 200,
       "query": {
         "expectedSourceType": "open_data",
         "humanReview": "not_reviewed",
         "intent": "open_data",
-        "market": "Nashville",
-        "marketId": "nashville",
+        "market": "Omaha",
+        "marketId": "omaha",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -634,17 +46,17 @@
           "blocked_robots"
         ],
         "nextAction": "discover official feeds",
-        "officialDomain": "nashville.gov",
-        "place": "Nashville",
+        "officialDomain": "cityofomaha.org",
+        "place": "Omaha",
         "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Nashville, TN\" open data portal",
+        "query": "\"Omaha, NE\" open data portal",
         "queryFamily": "open_data",
-        "queryId": "nrq-e853125e1695",
+        "queryId": "nrq-1cd59b7a0a67",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.33,
@@ -654,47 +66,43 @@
             "structured_family": false
           }
         },
-        "state": "TN",
-        "stateCode": "TN"
+        "state": "NE",
+        "stateCode": "NE"
       },
       "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:09:54.075363Z",
+      "robots": "unknown",
+      "startedAt": "2026-10-02T16:11:36.247735Z",
       "status": "succeeded"
     },
     {
       "attempts": 1,
-      "candidateEvidence": {
-        "https://nashville.gov/": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://nashville.gov/",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://nashville.gov/"
-      ],
+      "candidateEvidence": {},
+      "candidateUrls": [],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://nashville.gov/sitemap_index.xml",
-          404
+          "https://cityofomaha.org/sitemap.xml",
+          403
         ],
         [
-          "https://nashville.gov/",
-          "NameError"
+          "https://cityofomaha.org/sitemap_index.xml",
+          403
+        ],
+        [
+          "https://cityofomaha.org/",
+          403
         ]
       ],
-      "finishedAt": "2026-10-02T16:09:54.695713Z",
+      "finishedAt": "2026-10-02T16:11:35.273891Z",
       "httpStatus": 200,
       "query": {
-        "expectedSourceType": "volunteer",
+        "expectedSourceType": "meetings",
         "humanReview": "not_reviewed",
-        "intent": "volunteer",
-        "market": "Nashville",
-        "marketId": "nashville",
+        "intent": "meetings",
+        "market": "Omaha",
+        "marketId": "omaha",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -707,17 +115,17 @@
           "blocked_robots"
         ],
         "nextAction": "discover official feeds",
-        "officialDomain": "nashville.gov",
-        "place": "Nashville",
+        "officialDomain": "cityofomaha.org",
+        "place": "Omaha",
         "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Nashville, TN\" volunteer opportunities official",
-        "queryFamily": "volunteer",
-        "queryId": "nrq-f428be53ed19",
+        "query": "\"Omaha, NE\" public meetings agenda calendar",
+        "queryFamily": "meetings",
+        "queryId": "nrq-3b92acc57bb9",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.33,
@@ -727,52 +135,604 @@
             "structured_family": false
           }
         },
-        "state": "TN",
-        "stateCode": "TN"
+        "state": "NE",
+        "stateCode": "NE"
       },
       "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:09:54.046711Z",
+      "robots": "unknown",
+      "startedAt": "2026-10-02T16:11:33.807264Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "candidateEvidence": {},
+      "candidateUrls": [],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://cityofomaha.org/sitemap.xml",
+          403
+        ],
+        [
+          "https://cityofomaha.org/sitemap_index.xml",
+          403
+        ],
+        [
+          "https://cityofomaha.org/",
+          403
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:11:37.017519Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "rss_ics",
+        "humanReview": "not_reviewed",
+        "intent": "rss_ics",
+        "market": "Omaha",
+        "marketId": "omaha",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "cityofomaha.org",
+        "place": "Omaha",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Omaha, NE\" (RSS OR iCalendar OR ICS) events",
+        "queryFamily": "rss_ics",
+        "queryId": "nrq-44f78aac93fa",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.67,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": true
+          }
+        },
+        "state": "NE",
+        "stateCode": "NE"
+      },
+      "reason": null,
+      "robots": "unknown",
+      "startedAt": "2026-10-02T16:11:36.627110Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "candidateEvidence": {},
+      "candidateUrls": [],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://cityofomaha.org/sitemap.xml",
+          403
+        ],
+        [
+          "https://cityofomaha.org/sitemap_index.xml",
+          403
+        ],
+        [
+          "https://cityofomaha.org/",
+          403
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:11:36.627088Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "volunteer",
+        "humanReview": "not_reviewed",
+        "intent": "volunteer",
+        "market": "Omaha",
+        "marketId": "omaha",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "cityofomaha.org",
+        "place": "Omaha",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Omaha, NE\" volunteer opportunities official",
+        "queryFamily": "volunteer",
+        "queryId": "nrq-54536f1cb023",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "NE",
+        "stateCode": "NE"
+      },
+      "reason": null,
+      "robots": "unknown",
+      "startedAt": "2026-10-02T16:11:36.216715Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "candidateEvidence": {},
+      "candidateUrls": [],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://cityofomaha.org/sitemap.xml",
+          403
+        ],
+        [
+          "https://cityofomaha.org/sitemap_index.xml",
+          403
+        ],
+        [
+          "https://cityofomaha.org/",
+          403
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:11:36.216690Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "libraries",
+        "humanReview": "not_reviewed",
+        "intent": "libraries",
+        "market": "Omaha",
+        "marketId": "omaha",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "cityofomaha.org",
+        "place": "Omaha",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Omaha, NE\" library events calendar",
+        "queryFamily": "libraries",
+        "queryId": "nrq-80f170594fd7",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "NE",
+        "stateCode": "NE"
+      },
+      "reason": null,
+      "robots": "unknown",
+      "startedAt": "2026-10-02T16:11:35.800631Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "candidateEvidence": {},
+      "candidateUrls": [],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://cityofomaha.org/sitemap.xml",
+          403
+        ],
+        [
+          "https://cityofomaha.org/sitemap_index.xml",
+          403
+        ],
+        [
+          "https://cityofomaha.org/",
+          403
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:11:35.816448Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "parks",
+        "humanReview": "not_reviewed",
+        "intent": "parks",
+        "market": "Omaha",
+        "marketId": "omaha",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "cityofomaha.org",
+        "place": "Omaha",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Omaha, NE\" parks recreation trails official",
+        "queryFamily": "parks",
+        "queryId": "nrq-831c48d73e84",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "NE",
+        "stateCode": "NE"
+      },
+      "reason": null,
+      "robots": "unknown",
+      "startedAt": "2026-10-02T16:11:35.269869Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "candidateEvidence": {},
+      "candidateUrls": [],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://cityofomaha.org/sitemap.xml",
+          403
+        ],
+        [
+          "https://cityofomaha.org/sitemap_index.xml",
+          403
+        ],
+        [
+          "https://cityofomaha.org/",
+          403
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:11:35.269835Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "events",
+        "humanReview": "not_reviewed",
+        "intent": "events",
+        "market": "Omaha",
+        "marketId": "omaha",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "cityofomaha.org",
+        "place": "Omaha",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Omaha, NE\" official events calendar",
+        "queryFamily": "events",
+        "queryId": "nrq-8f737a397a7b",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "NE",
+        "stateCode": "NE"
+      },
+      "reason": null,
+      "robots": "unknown",
+      "startedAt": "2026-10-02T16:11:33.806801Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "candidateEvidence": {},
+      "candidateUrls": [],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://cityofomaha.org/sitemap.xml",
+          403
+        ],
+        [
+          "https://cityofomaha.org/sitemap_index.xml",
+          403
+        ],
+        [
+          "https://cityofomaha.org/",
+          403
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:11:37.060597Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "arcgis",
+        "humanReview": "not_reviewed",
+        "intent": "arcgis",
+        "market": "Omaha",
+        "marketId": "omaha",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "cityofomaha.org",
+        "place": "Omaha",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "site:cityofomaha.org (FeatureServer OR MapServer) parks events",
+        "queryFamily": "arcgis",
+        "queryId": "nrq-9c597175628f",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.67,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": true
+          }
+        },
+        "state": "NE",
+        "stateCode": "NE"
+      },
+      "reason": null,
+      "robots": "unknown",
+      "startedAt": "2026-10-02T16:11:36.686354Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "candidateEvidence": {},
+      "candidateUrls": [],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://cityofomaha.org/sitemap.xml",
+          403
+        ],
+        [
+          "https://cityofomaha.org/sitemap_index.xml",
+          403
+        ],
+        [
+          "https://cityofomaha.org/",
+          403
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:11:36.247716Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "culture",
+        "humanReview": "not_reviewed",
+        "intent": "culture",
+        "market": "Omaha",
+        "marketId": "omaha",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "cityofomaha.org",
+        "place": "Omaha",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Omaha, NE\" arts culture museum events official",
+        "queryFamily": "culture",
+        "queryId": "nrq-da7a109e78bc",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "NE",
+        "stateCode": "NE"
+      },
+      "reason": null,
+      "robots": "unknown",
+      "startedAt": "2026-10-02T16:11:35.816466Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "candidateEvidence": {},
+      "candidateUrls": [],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://cityofomaha.org/sitemap.xml",
+          403
+        ],
+        [
+          "https://cityofomaha.org/sitemap_index.xml",
+          403
+        ],
+        [
+          "https://cityofomaha.org/",
+          403
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:11:35.800608Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "trails",
+        "humanReview": "not_reviewed",
+        "intent": "trails",
+        "market": "Omaha",
+        "marketId": "omaha",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "cityofomaha.org",
+        "place": "Omaha",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"Omaha, NE\" trails outdoor recreation official",
+        "queryFamily": "trails",
+        "queryId": "nrq-de1d2f8ec76b",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "NE",
+        "stateCode": "NE"
+      },
+      "reason": null,
+      "robots": "unknown",
+      "startedAt": "2026-10-02T16:11:35.273912Z",
       "status": "succeeded"
     }
   ],
   "schemaVersion": 2,
   "selectedQueryIds": [
-    "nrq-b7c19366f4a2",
-    "nrq-03e401446d00",
-    "nrq-1a311edde132",
-    "nrq-d9f5f09c0542",
-    "nrq-053b888fa2ed",
-    "nrq-3c7495766de5",
-    "nrq-f428be53ed19",
-    "nrq-e853125e1695",
-    "nrq-8387c9d0e82b",
-    "nrq-9f0bace28797"
+    "nrq-8f737a397a7b",
+    "nrq-3b92acc57bb9",
+    "nrq-831c48d73e84",
+    "nrq-de1d2f8ec76b",
+    "nrq-80f170594fd7",
+    "nrq-da7a109e78bc",
+    "nrq-54536f1cb023",
+    "nrq-1cd59b7a0a67",
+    "nrq-44f78aac93fa",
+    "nrq-9c597175628f"
   ],
   "sourceQueue": "expansion-queues/national-region-search-queue.json",
   "summary": {
     "attempted": 10,
     "candidateCaptureErrors": null,
-    "candidatesFound": 1,
-    "candidatesNeedingHumanReview": 1,
+    "candidatesFound": 0,
+    "candidatesNeedingHumanReview": 0,
     "domainsCrawled": 1,
     "duplicateUrlsMerged": 0,
     "failed": 0,
-    "failedRequests": 20,
+    "failedRequests": 30,
     "httpSuccesses": 10,
     "pagesCrawled": 10,
     "pagesFetched": 10,
-    "pagesRejected": 20,
+    "pagesRejected": 30,
     "rateLimitedRequests": 0,
     "responses_429": 0,
     "robots_disallowed": 0,
-    "robots_unknown": 0,
+    "robots_unknown": 10,
     "skipped": 0,
     "succeeded": 10,
-    "succeededWithCandidates": 10,
-    "succeededWithoutCandidates": 0,
+    "succeededWithCandidates": 0,
+    "succeededWithoutCandidates": 10,
     "timeout_network_failures": 0,
-    "uniqueCandidates": 1,
-    "usefulDiscoveries": 1
+    "uniqueCandidates": 0,
+    "usefulDiscoveries": 0
   }
 }
