@@ -77,6 +77,7 @@ These are observed official paths from the recent batches or direct domain audit
 | `lacity.gov` | `/calendar`, `/government/calendar`, `/residents/open-data` | Official calendar/open-data pages from the recent batch. | JSON-LD, RSS/ICS, or catalog adapter after endpoint verification. |
 | `longbeach.gov` | `/events/`, `/park/` | Official event and park routes; `/park/` is not automatically an event source. | Use `/events/` for event discovery; route park data to a separate POI pathway. |
 | `lasvegasnevada.gov` | `/Residents/Events`, `/meetings` | Official event and meeting routes. | Focused HTML/JSON-LD plus meeting-specific adapter; verify official detail links. |
+| `www.a2gov.org` | `/news/rss/` | Reachable RSS endpoint with 259 current items; direct audit shows city news and announcements rather than event records. | Retain as an official supporting/news outlink; do not route through the event adapter unless event-shaped items are separately verified. |
 
 ## Ingestion pathway decision tree
 
