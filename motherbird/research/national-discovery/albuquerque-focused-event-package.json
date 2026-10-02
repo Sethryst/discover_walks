@@ -1,0 +1,34 @@
+{
+  "active": false,
+  "publicationState": "research-only",
+  "runtimeLoader": "not-consumed; human promotion required",
+  "schemaVersion": 1,
+  "kind": "focused-event-replay-package",
+  "region": "Albuquerque",
+  "source": {
+    "id": "albuquerque-city-events",
+    "provider": "albuquerque_html_events",
+    "url": "https://www.cabq.gov/events/events?b_start%3Aint=0",
+    "officialDomain": "cabq.gov",
+    "format": "structured-html-microformat",
+    "timeSemantics": "explicit-offset",
+    "httpStatus": 200
+  },
+  "focusedReplay": {
+    "observedAt": "2026-10-02T21:20:00Z",
+    "recordsObserved": 20,
+    "acceptedRecords": 20,
+    "stableEventIds": true,
+    "officialOutlinksPreserved": true,
+    "privacy": "No user location data used; package is domain-scoped and research-only."
+  },
+  "acceptance": {
+    "decision": "HOLD",
+    "reason": "Terms, freshness policy, and active-region release gates remain unverified.",
+    "activeRegion": false
+  },
+  "sourceArtifacts": [
+    "expansion-queues/national-candidate-capture-2026-10-02-atlanta-albuquerque.json",
+    "expansion-queues/national-candidate-validation-2026-10-02-atlanta-albuquerque.json"
+  ]
+}

@@ -18,6 +18,7 @@ from app.pipeline.adapters.jsonld_events import JsonLdEventsProvider
 from app.pipeline.adapters.dc_rss_events import DcRssEventsProvider
 from app.pipeline.adapters.hawaii_rss_events import HawaiiPublicMeetingsProvider
 from app.pipeline.adapters.austin_socrata_events import AustinSocrataEventsProvider
+from app.pipeline.adapters.albuquerque_html_events import AlbuquerqueHtmlEventsProvider
 from app.pipeline.source_config import SourceConfig
 
 
@@ -41,6 +42,7 @@ class ProviderRegistry:
         "dc_rss_events": DcRssEventsProvider,
         "hawaii_public_meetings": HawaiiPublicMeetingsProvider,
         "austin_socrata_events": AustinSocrataEventsProvider,
+        "albuquerque_html_events": AlbuquerqueHtmlEventsProvider,
     }
 
     @classmethod
