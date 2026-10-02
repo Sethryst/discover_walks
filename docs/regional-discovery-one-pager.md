@@ -133,6 +133,8 @@ An item can move from research-only toward activation only when the evidence pac
 
 The transport-recovery slice at offset 1210 found three additional Lexington candidates. They remain research-only; the interrupted 100-query offset-1100 run produced no accepted artifact and was not used for promotion.
 
+The live replay artifact `expansion-queues/focused-source-validation-2026-10-02.json` confirms four healthy focused endpoints and ten accepted normalized records while preserving the research-only boundary. SLC is held for freshness and terms; St. Louis is limited research-stage approval; Durham and Newark are held for permission/terms.
+
 ## Evidence locations
 
 - Queue and generated search terms: `expansion-queues/national-region-search-queue.json`

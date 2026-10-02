@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "kind": "focused-source-live-validation",
+  "validatedAt": "2026-10-02T18:45:00Z",
+  "publicationState": "research-only",
+  "active": false,
+  "records": [
+    {"id":"slc","source":"https://www.slc.gov/events/feed/","region":"Salt Lake City","health":"healthy","format":"rss-atom","recordCount":7,"acceptedCount":7,"stableIdentity":"adapter fallback hash; upstream item IDs not present","freshness":"held-for-review: observed feed items are dated April/September 2026 relative to 2026-10-02","decision":"HOLD"},
+    {"id":"stl","source":"https://www.stlouis-mo.gov/customcf/endpoints/events/iCalGen.cfm?eventID=53468","region":"St. Louis","health":"healthy","format":"ics","recordCount":1,"acceptedCount":1,"eventIds":["STL-53468"],"officialUrls":["https://www.stlouis-mo.gov/events/eventdetails.cfm?Event_ID=53468"],"decision":"APPROVED_WITH_LIMITS_RESEARCH_ONLY"},
+    {"id":"durham","source":"https://www.durhamnc.gov/common/modules/iCalendar/iCalendar.aspx?feed=calendar&eventID=10435","region":"Durham","health":"healthy","format":"ics","recordCount":1,"acceptedCount":1,"eventIds":["10435"],"officialUrls":["https://www.durhamnc.gov/calendar.aspx?EID=10435"],"decision":"HOLD_TERMS_PERMISSION"},
+    {"id":"newark","source":"https://newarkde.gov/common/modules/iCalendar/iCalendar.aspx?feed=calendar&eventID=4894","region":"Newark, Delaware","health":"healthy","format":"ics","recordCount":1,"acceptedCount":1,"eventIds":["4894"],"officialUrls":["https://newarkde.gov/calendar.aspx?EID=4894"],"decision":"HOLD_TERMS_PERMISSION"}
+  ],
+  "summary":{"healthySources":4,"acceptedRecords":10,"activeSources":0,"researchOnly":true}
+}
