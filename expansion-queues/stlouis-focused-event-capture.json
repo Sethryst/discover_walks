@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 2,
+  "kind": "national-candidate-capture",
+  "readOnly": true,
+  "publicationState": "research-only",
+  "generatedAt": "2026-10-02T17:30:00Z",
+  "candidates": [{
+    "canonicalUrl": "https://www.stlouis-mo.gov/customcf/endpoints/events/iCalGen.cfm?eventID=53468",
+    "confidence": 0.95,
+    "coverageScope": "st-louis",
+    "crawlStatus": "completed",
+    "crawlTimestamp": "2026-10-02T17:30:00Z",
+    "discoveryEvidence": "Official St. Louis event detail exposes a text/calendar endpoint with stable UID STL-53468, explicit America/Chicago timestamps, location, and organizer.",
+    "evidenceUrls": ["https://www.stlouis-mo.gov/", "https://www.stlouis-mo.gov/events/eventdetails.cfm?Event_ID=53468", "https://www.stlouis-mo.gov/customcf/endpoints/events/iCalGen.cfm?eventID=53468"],
+    "failureReason": null,
+    "httpStatus": 200,
+    "market": "St. Louis",
+    "markets": ["St. Louis"],
+    "needsHumanReview": true,
+    "originatingOfficialDomain": "stlouis-mo.gov",
+    "originatingSeed": "expansion-queues/national-region-seeds.csv",
+    "place": "St. Louis",
+    "providerName": "City of St. Louis Official Events",
+    "queryId": "nrq-988dd860f220",
+    "queryIds": ["nrq-988dd860f220"],
+    "queryFamilies": ["events", "rss_ics"],
+    "robotsDecision": "allowed",
+    "scoreBreakdown": {"official_detail_page": 0.3, "reachable_ics": 0.35, "stable_uid": 0.15, "explicit_timezone_location": 0.15},
+    "sourceType": "ICS/iCalendar",
+    "sourceUrl": "https://www.stlouis-mo.gov/customcf/endpoints/events/iCalGen.cfm?eventID=53468"
+  }],
+  "negativeDiscoveries": []
+}

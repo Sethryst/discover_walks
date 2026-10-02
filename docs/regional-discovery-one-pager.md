@@ -96,6 +96,7 @@ These are observed official paths from the recent batches or direct domain audit
 | `slc.gov` | `/events/`, `/events/feed/` | Official Salt Lake City events page links a non-empty RSS feed; direct audit returned event titles, official detail URLs, and publication timestamps. The separate `/calendar/feed/` was empty. | Research-ready RSS candidate; fixture and adapter test pass. Use only `/events/feed/`; hold activation pending terms/license and regional release evidence. |
 | `chulavistaca.gov` | Batch offset 1440 | Eight bounded queries completed with no candidate source yield. | Keep as a negative discovery result. |
 | `savannahga.gov` | `/352/Athletics`, `/4018/Parklets`, `/915/Park-Tree` | Official pages returned HTTP 200 but were informational department pages with no dated event payload or JSON-LD Event. | Reject for event ingestion; retain as official outlink context only. |
+| `stlouis-mo.gov` | `/events/eventdetails.cfm?Event_ID=53468`, `/customcf/endpoints/events/iCalGen.cfm?eventID=53468` | Official event detail and iCalendar endpoint returned stable UID `STL-53468`, explicit `America/Chicago` timestamps, organizer, location, and meeting description. | Research-ready ICS candidate; fixture and adapter test pass. Hold activation pending terms/license and regional release evidence. |
 
 ## Ingestion pathway decision tree
 

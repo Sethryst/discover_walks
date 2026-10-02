@@ -1,423 +1,43 @@
 {
   "kind": "national-discovery-batch",
-  "limit": 9,
-  "offset": 1456,
+  "limit": 10,
+  "offset": 1472,
   "publicationState": "research-only",
   "readOnly": true,
   "results": [
     {
-      "attempts": 3,
+      "attempts": 1,
       "candidateEvidence": {
-        "https://savannahga.gov/352/Athletics": {
+        "https://stlouis-mo.gov/": {
           "confidence": 0.55,
-          "evidenceUrl": "https://savannahga.gov/352/Athletics",
+          "evidenceUrl": "https://stlouis-mo.gov/",
           "sourceType": "HTML calendar"
         }
       },
       "candidateUrls": [
-        "https://savannahga.gov/352/Athletics"
+        "https://stlouis-mo.gov/"
       ],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://savannahga.gov/sitemap_index.xml",
+          "https://stlouis-mo.gov/sitemap_index.xml",
           404
         ],
         [
-          "https://savannahga.gov/4018/Parklets",
-          "NameError"
-        ],
-        [
-          "https://savannahga.gov/352/Athletics",
-          "NameError"
-        ],
-        [
-          "https://savannahga.gov/915/Park-Tree",
+          "https://stlouis-mo.gov/",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:18:37.308664Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "events",
-        "humanReview": "not_reviewed",
-        "intent": "events",
-        "market": "Savannah",
-        "marketId": "savannah",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover culture and tourism",
-        "officialDomain": "savannahga.gov",
-        "place": "Savannah",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Savannah, GA\" official events calendar",
-        "queryFamily": "events",
-        "queryId": "nrq-086c139134a6",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "GA",
-        "stateCode": "GA"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:18:31.665723Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://savannahga.gov/352/Athletics": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://savannahga.gov/352/Athletics",
-          "sourceType": "HTML calendar"
-        },
-        "https://savannahga.gov/4018/Parklets": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://savannahga.gov/4018/Parklets",
-          "sourceType": "HTML calendar"
-        },
-        "https://savannahga.gov/915/Park-Tree": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://savannahga.gov/915/Park-Tree",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://savannahga.gov/352/Athletics",
-        "https://savannahga.gov/4018/Parklets",
-        "https://savannahga.gov/915/Park-Tree"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://savannahga.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://savannahga.gov/4018/Parklets",
-          "NameError"
-        ],
-        [
-          "https://savannahga.gov/352/Athletics",
-          "NameError"
-        ],
-        [
-          "https://savannahga.gov/915/Park-Tree",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:18:45.503077Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "culture",
-        "humanReview": "not_reviewed",
-        "intent": "culture",
-        "market": "Savannah",
-        "marketId": "savannah",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover culture and tourism",
-        "officialDomain": "savannahga.gov",
-        "place": "Savannah",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Savannah, GA\" arts culture museum events official",
-        "queryFamily": "culture",
-        "queryId": "nrq-25f4446d3c1d",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "GA",
-        "stateCode": "GA"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:18:41.418372Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://savannahga.gov/352/Athletics": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://savannahga.gov/352/Athletics",
-          "sourceType": "HTML calendar"
-        },
-        "https://savannahga.gov/4018/Parklets": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://savannahga.gov/4018/Parklets",
-          "sourceType": "HTML calendar"
-        },
-        "https://savannahga.gov/915/Park-Tree": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://savannahga.gov/915/Park-Tree",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://savannahga.gov/352/Athletics",
-        "https://savannahga.gov/4018/Parklets",
-        "https://savannahga.gov/915/Park-Tree"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://savannahga.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://savannahga.gov/4018/Parklets",
-          "NameError"
-        ],
-        [
-          "https://savannahga.gov/352/Athletics",
-          "NameError"
-        ],
-        [
-          "https://savannahga.gov/915/Park-Tree",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:18:49.516078Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "open_data",
-        "humanReview": "not_reviewed",
-        "intent": "open_data",
-        "market": "Savannah",
-        "marketId": "savannah",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover culture and tourism",
-        "officialDomain": "savannahga.gov",
-        "place": "Savannah",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Savannah, GA\" open data portal",
-        "queryFamily": "open_data",
-        "queryId": "nrq-457af70a0bd4",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "GA",
-        "stateCode": "GA"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:18:45.503101Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://savannahga.gov/352/Athletics": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://savannahga.gov/352/Athletics",
-          "sourceType": "HTML calendar"
-        },
-        "https://savannahga.gov/4018/Parklets": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://savannahga.gov/4018/Parklets",
-          "sourceType": "HTML calendar"
-        },
-        "https://savannahga.gov/915/Park-Tree": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://savannahga.gov/915/Park-Tree",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://savannahga.gov/352/Athletics",
-        "https://savannahga.gov/4018/Parklets",
-        "https://savannahga.gov/915/Park-Tree"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://savannahga.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://savannahga.gov/4018/Parklets",
-          "NameError"
-        ],
-        [
-          "https://savannahga.gov/352/Athletics",
-          "NameError"
-        ],
-        [
-          "https://savannahga.gov/915/Park-Tree",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:18:41.210428Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "parks",
-        "humanReview": "not_reviewed",
-        "intent": "parks",
-        "market": "Savannah",
-        "marketId": "savannah",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover culture and tourism",
-        "officialDomain": "savannahga.gov",
-        "place": "Savannah",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Savannah, GA\" parks recreation trails official",
-        "queryFamily": "parks",
-        "queryId": "nrq-656847ee78b9",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "GA",
-        "stateCode": "GA"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:18:37.246807Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://savannahga.gov/352/Athletics": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://savannahga.gov/352/Athletics",
-          "sourceType": "HTML calendar"
-        },
-        "https://savannahga.gov/4018/Parklets": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://savannahga.gov/4018/Parklets",
-          "sourceType": "HTML calendar"
-        },
-        "https://savannahga.gov/915/Park-Tree": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://savannahga.gov/915/Park-Tree",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://savannahga.gov/352/Athletics",
-        "https://savannahga.gov/4018/Parklets",
-        "https://savannahga.gov/915/Park-Tree"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://savannahga.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://savannahga.gov/4018/Parklets",
-          "NameError"
-        ],
-        [
-          "https://savannahga.gov/352/Athletics",
-          "NameError"
-        ],
-        [
-          "https://savannahga.gov/915/Park-Tree",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:18:41.418351Z",
+      "finishedAt": "2026-10-02T16:19:57.736642Z",
       "httpStatus": 200,
       "query": {
         "expectedSourceType": "trails",
         "humanReview": "not_reviewed",
         "intent": "trails",
-        "market": "Savannah",
-        "marketId": "savannah",
+        "market": "St. Louis",
+        "marketId": "st-louis",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -429,18 +49,18 @@
           "stale_calendar",
           "blocked_robots"
         ],
-        "nextAction": "discover culture and tourism",
-        "officialDomain": "savannahga.gov",
-        "place": "Savannah",
+        "nextAction": "discover official feeds",
+        "officialDomain": "stlouis-mo.gov",
+        "place": "St. Louis",
         "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Savannah, GA\" trails outdoor recreation official",
+        "query": "\"St. Louis, MO\" trails outdoor recreation official",
         "queryFamily": "trails",
-        "queryId": "nrq-678ca8826f60",
+        "queryId": "nrq-0049c6d09051",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.33,
@@ -450,322 +70,39 @@
             "structured_family": false
           }
         },
-        "state": "GA",
-        "stateCode": "GA"
+        "state": "MO",
+        "stateCode": "MO"
       },
       "reason": null,
       "robots": "allowed",
-      "startedAt": "2026-10-02T16:18:37.308684Z",
+      "startedAt": "2026-10-02T16:19:56.389334Z",
       "status": "succeeded"
     },
     {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://savannahga.gov/352/Athletics": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://savannahga.gov/352/Athletics",
-          "sourceType": "HTML calendar"
-        },
-        "https://savannahga.gov/4018/Parklets": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://savannahga.gov/4018/Parklets",
-          "sourceType": "HTML calendar"
-        },
-        "https://savannahga.gov/915/Park-Tree": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://savannahga.gov/915/Park-Tree",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://savannahga.gov/352/Athletics",
-        "https://savannahga.gov/4018/Parklets",
-        "https://savannahga.gov/915/Park-Tree"
-      ],
+      "attempts": 1,
+      "candidateEvidence": {},
+      "candidateUrls": [],
       "crawlStatus": "completed",
       "error": null,
       "errorType": null,
       "failures": [
         [
-          "https://savannahga.gov/sitemap_index.xml",
+          "https://stlouis-mo.gov/sitemap_index.xml",
           404
         ],
         [
-          "https://savannahga.gov/4018/Parklets",
-          "NameError"
-        ],
-        [
-          "https://savannahga.gov/352/Athletics",
-          "NameError"
-        ],
-        [
-          "https://savannahga.gov/915/Park-Tree",
+          "https://stlouis-mo.gov/",
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:18:45.297397Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "libraries",
-        "humanReview": "not_reviewed",
-        "intent": "libraries",
-        "market": "Savannah",
-        "marketId": "savannah",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover culture and tourism",
-        "officialDomain": "savannahga.gov",
-        "place": "Savannah",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Savannah, GA\" library events calendar",
-        "queryFamily": "libraries",
-        "queryId": "nrq-6cc4832c74c3",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "GA",
-        "stateCode": "GA"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:18:41.210450Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://savannahga.gov/352/Athletics": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://savannahga.gov/352/Athletics",
-          "sourceType": "HTML calendar"
-        },
-        "https://savannahga.gov/4018/Parklets": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://savannahga.gov/4018/Parklets",
-          "sourceType": "HTML calendar"
-        },
-        "https://savannahga.gov/915/Park-Tree": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://savannahga.gov/915/Park-Tree",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://savannahga.gov/352/Athletics",
-        "https://savannahga.gov/4018/Parklets",
-        "https://savannahga.gov/915/Park-Tree"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://savannahga.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://savannahga.gov/4018/Parklets",
-          "NameError"
-        ],
-        [
-          "https://savannahga.gov/352/Athletics",
-          "NameError"
-        ],
-        [
-          "https://savannahga.gov/915/Park-Tree",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:18:49.098805Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "volunteer",
-        "humanReview": "not_reviewed",
-        "intent": "volunteer",
-        "market": "Savannah",
-        "marketId": "savannah",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover culture and tourism",
-        "officialDomain": "savannahga.gov",
-        "place": "Savannah",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Savannah, GA\" volunteer opportunities official",
-        "queryFamily": "volunteer",
-        "queryId": "nrq-d2a2bc546b72",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "GA",
-        "stateCode": "GA"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:18:45.297421Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://savannahga.gov/352/Athletics": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://savannahga.gov/352/Athletics",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://savannahga.gov/352/Athletics"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://savannahga.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://savannahga.gov/4018/Parklets",
-          "NameError"
-        ],
-        [
-          "https://savannahga.gov/352/Athletics",
-          "NameError"
-        ],
-        [
-          "https://savannahga.gov/915/Park-Tree",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:18:37.246775Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "meetings",
-        "humanReview": "not_reviewed",
-        "intent": "meetings",
-        "market": "Savannah",
-        "marketId": "savannah",
-        "marketPriority": 2,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover culture and tourism",
-        "officialDomain": "savannahga.gov",
-        "place": "Savannah",
-        "placeType": "city",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Savannah, GA\" public meetings agenda calendar",
-        "queryFamily": "meetings",
-        "queryId": "nrq-d66e6cb815ae",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "GA",
-        "stateCode": "GA"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:18:31.666185Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://savannahga.gov/352/Athletics": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://savannahga.gov/352/Athletics",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://savannahga.gov/352/Athletics"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://savannahga.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://savannahga.gov/4018/Parklets",
-          "NameError"
-        ],
-        [
-          "https://savannahga.gov/352/Athletics",
-          "NameError"
-        ],
-        [
-          "https://savannahga.gov/915/Park-Tree",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:18:52.792055Z",
+      "finishedAt": "2026-10-02T16:20:01.832708Z",
       "httpStatus": 200,
       "query": {
         "expectedSourceType": "rss_ics",
         "humanReview": "not_reviewed",
         "intent": "rss_ics",
-        "market": "Savannah",
-        "marketId": "savannah",
+        "market": "St. Louis",
+        "marketId": "st-louis",
         "marketPriority": 2,
         "negativeDiscoveryCodes": [
           "not_official",
@@ -777,18 +114,18 @@
           "stale_calendar",
           "blocked_robots"
         ],
-        "nextAction": "discover culture and tourism",
-        "officialDomain": "savannahga.gov",
-        "place": "Savannah",
+        "nextAction": "discover official feeds",
+        "officialDomain": "stlouis-mo.gov",
+        "place": "St. Louis",
         "placeType": "city",
         "provenance": {
           "discoveryOnly": true,
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Savannah, GA\" (RSS OR iCalendar OR ICS) events",
+        "query": "\"St. Louis, MO\" (RSS OR iCalendar OR ICS) events",
         "queryFamily": "rss_ics",
-        "queryId": "nrq-dc51e7d8e307",
+        "queryId": "nrq-7462ed747222",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.67,
@@ -798,51 +135,620 @@
             "structured_family": true
           }
         },
-        "state": "GA",
-        "stateCode": "GA"
+        "state": "MO",
+        "stateCode": "MO"
       },
       "reason": null,
       "robots": "allowed",
-      "startedAt": "2026-10-02T16:18:49.098829Z",
+      "startedAt": "2026-10-02T16:20:00.407154Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "candidateEvidence": {
+        "https://stlouis-mo.gov/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://stlouis-mo.gov/",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://stlouis-mo.gov/"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://stlouis-mo.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://stlouis-mo.gov/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:20:01.988760Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "arcgis",
+        "humanReview": "not_reviewed",
+        "intent": "arcgis",
+        "market": "St. Louis",
+        "marketId": "st-louis",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "stlouis-mo.gov",
+        "place": "St. Louis",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "site:stlouis-mo.gov (FeatureServer OR MapServer) parks events",
+        "queryFamily": "arcgis",
+        "queryId": "nrq-74de0c8d0c17",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.67,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": true
+          }
+        },
+        "state": "MO",
+        "stateCode": "MO"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:20:00.565198Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "candidateEvidence": {
+        "https://stlouis-mo.gov/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://stlouis-mo.gov/",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://stlouis-mo.gov/"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://stlouis-mo.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://stlouis-mo.gov/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:20:00.407130Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "volunteer",
+        "humanReview": "not_reviewed",
+        "intent": "volunteer",
+        "market": "St. Louis",
+        "marketId": "st-louis",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "stlouis-mo.gov",
+        "place": "St. Louis",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"St. Louis, MO\" volunteer opportunities official",
+        "queryFamily": "volunteer",
+        "queryId": "nrq-77e0913e9e9f",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "MO",
+        "stateCode": "MO"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:19:59.002052Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "candidateEvidence": {
+        "https://stlouis-mo.gov/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://stlouis-mo.gov/",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://stlouis-mo.gov/"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://stlouis-mo.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://stlouis-mo.gov/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:19:59.002032Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "libraries",
+        "humanReview": "not_reviewed",
+        "intent": "libraries",
+        "market": "St. Louis",
+        "marketId": "st-louis",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "stlouis-mo.gov",
+        "place": "St. Louis",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"St. Louis, MO\" library events calendar",
+        "queryFamily": "libraries",
+        "queryId": "nrq-84a58678fe57",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "MO",
+        "stateCode": "MO"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:19:57.601737Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "candidateEvidence": {
+        "https://stlouis-mo.gov/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://stlouis-mo.gov/",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://stlouis-mo.gov/"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://stlouis-mo.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://stlouis-mo.gov/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:19:57.601716Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "parks",
+        "humanReview": "not_reviewed",
+        "intent": "parks",
+        "market": "St. Louis",
+        "marketId": "st-louis",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "stlouis-mo.gov",
+        "place": "St. Louis",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"St. Louis, MO\" parks recreation trails official",
+        "queryFamily": "parks",
+        "queryId": "nrq-8c5fb5115155",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "MO",
+        "stateCode": "MO"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:19:56.252567Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "candidateEvidence": {},
+      "candidateUrls": [],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://stlouis-mo.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://stlouis-mo.gov/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:19:56.252539Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "events",
+        "humanReview": "not_reviewed",
+        "intent": "events",
+        "market": "St. Louis",
+        "marketId": "st-louis",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "stlouis-mo.gov",
+        "place": "St. Louis",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"St. Louis, MO\" official events calendar",
+        "queryFamily": "events",
+        "queryId": "nrq-988dd860f220",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "MO",
+        "stateCode": "MO"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:19:54.463202Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "candidateEvidence": {},
+      "candidateUrls": [],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://stlouis-mo.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://stlouis-mo.gov/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:19:56.389313Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "meetings",
+        "humanReview": "not_reviewed",
+        "intent": "meetings",
+        "market": "St. Louis",
+        "marketId": "st-louis",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "stlouis-mo.gov",
+        "place": "St. Louis",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"St. Louis, MO\" public meetings agenda calendar",
+        "queryFamily": "meetings",
+        "queryId": "nrq-9bd3f2cc33e3",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "MO",
+        "stateCode": "MO"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:19:54.463667Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "candidateEvidence": {
+        "https://stlouis-mo.gov/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://stlouis-mo.gov/",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://stlouis-mo.gov/"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://stlouis-mo.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://stlouis-mo.gov/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:20:00.565181Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "open_data",
+        "humanReview": "not_reviewed",
+        "intent": "open_data",
+        "market": "St. Louis",
+        "marketId": "st-louis",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "stlouis-mo.gov",
+        "place": "St. Louis",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"St. Louis, MO\" open data portal",
+        "queryFamily": "open_data",
+        "queryId": "nrq-f5cb80badd8d",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "MO",
+        "stateCode": "MO"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:19:59.150015Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 1,
+      "candidateEvidence": {
+        "https://stlouis-mo.gov/": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://stlouis-mo.gov/",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://stlouis-mo.gov/"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://stlouis-mo.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://stlouis-mo.gov/",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:19:59.149996Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "culture",
+        "humanReview": "not_reviewed",
+        "intent": "culture",
+        "market": "St. Louis",
+        "marketId": "st-louis",
+        "marketPriority": 2,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover official feeds",
+        "officialDomain": "stlouis-mo.gov",
+        "place": "St. Louis",
+        "placeType": "city",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "\"St. Louis, MO\" arts culture museum events official",
+        "queryFamily": "culture",
+        "queryId": "nrq-fbb327afd083",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.33,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": false
+          }
+        },
+        "state": "MO",
+        "stateCode": "MO"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:19:57.736660Z",
       "status": "succeeded"
     }
   ],
   "schemaVersion": 2,
   "selectedQueryIds": [
-    "nrq-086c139134a6",
-    "nrq-d66e6cb815ae",
-    "nrq-656847ee78b9",
-    "nrq-678ca8826f60",
-    "nrq-6cc4832c74c3",
-    "nrq-25f4446d3c1d",
-    "nrq-d2a2bc546b72",
-    "nrq-457af70a0bd4",
-    "nrq-dc51e7d8e307"
+    "nrq-988dd860f220",
+    "nrq-9bd3f2cc33e3",
+    "nrq-8c5fb5115155",
+    "nrq-0049c6d09051",
+    "nrq-84a58678fe57",
+    "nrq-fbb327afd083",
+    "nrq-77e0913e9e9f",
+    "nrq-f5cb80badd8d",
+    "nrq-7462ed747222",
+    "nrq-74de0c8d0c17"
   ],
   "sourceQueue": "expansion-queues/national-region-search-queue.json",
   "summary": {
-    "attempted": 9,
+    "attempted": 10,
     "candidateCaptureErrors": null,
-    "candidatesFound": 3,
-    "candidatesNeedingHumanReview": 3,
+    "candidatesFound": 1,
+    "candidatesNeedingHumanReview": 1,
     "domainsCrawled": 1,
     "duplicateUrlsMerged": 0,
     "failed": 0,
-    "failedRequests": 36,
-    "httpSuccesses": 9,
-    "pagesCrawled": 27,
-    "pagesFetched": 27,
-    "pagesRejected": 36,
+    "failedRequests": 20,
+    "httpSuccesses": 10,
+    "pagesCrawled": 10,
+    "pagesFetched": 10,
+    "pagesRejected": 20,
     "rateLimitedRequests": 0,
     "responses_429": 0,
     "robots_disallowed": 0,
     "robots_unknown": 0,
     "skipped": 0,
-    "succeeded": 9,
-    "succeededWithCandidates": 9,
-    "succeededWithoutCandidates": 0,
+    "succeeded": 10,
+    "succeededWithCandidates": 7,
+    "succeededWithoutCandidates": 3,
     "timeout_network_failures": 0,
-    "uniqueCandidates": 3,
-    "usefulDiscoveries": 3
+    "uniqueCandidates": 1,
+    "usefulDiscoveries": 1
   }
 }

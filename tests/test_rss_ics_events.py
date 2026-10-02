@@ -59,3 +59,13 @@ class RssIcsEventsTests(unittest.TestCase):
         self.assertEqual(report["format"], "rss-atom")
         self.assertEqual(report["acceptedCount"], 1)
         self.assertEqual(features[0].properties["officialUrl"], "https://www.slc.gov/events/2026/09/02/national-public-lands-day/")
+
+    @patch("app.pipeline.adapters.rss_ics_events.urlopen")
+    def test_stlouis_ics_preserves_central_timezone_and_uid(self, open_url):
+        payload = open("tests/fixtures/stlouis_sunstar_event.ics", encoding="utf-8").read().encode()
+        open_url.return_value = _Response(payload)
+        source = SourceConfig.from_dict({"id": "stlouis-events", "name": "St. Louis Official Events", "provider": "rss_ics_events", "url": "https://www.stlouis-mo.gov/customcf/endpoints/events/iCalGen.cfm?eventID=53468", "domains": ["stlouis-mo.gov"], "licenseUrl": "https://www.stlouis-mo.gov/", "providerOptions": {"defaultCoordinates": [-90.20, 38.63]}})
+        features, report = RssIcsEventsProvider().acquire(source, {})
+        self.assertEqual(report["acceptedCount"], 1)
+        self.assertEqual(features[0].source_id, "STL-53468")
+        self.assertEqual(features[0].properties["startsAt"], "2026-10-02T15:00:00Z")
