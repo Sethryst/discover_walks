@@ -7,7 +7,7 @@
   "privacy": "No user location data used; validation was domain-scoped to public official URLs.",
   "records": [
     {"market":"charlotte","sourceUrl":"https://www.charlottenc.gov/Events-directory","httpStatus":403,"status":"held","blocker":"access_restricted","next":"recheck only with an allowed official endpoint; do not bypass access controls"},
-    {"market":"cleveland","sourceUrl":"https://www.clevelandohio.gov/events","httpStatus":200,"bytes":351614,"status":"candidate","sourceSignal":"Drupal FullCalendar settings JSON with title, event ID, start, and official relative URL fields","next":"extract the embedded event array into a fixture and test stable IDs, explicit timezone policy, and official detail links"}
+    {"market":"cleveland","sourceUrl":"https://www.clevelandohio.gov/events","httpStatus":200,"bytes":351614,"adapter":"cleveland_fullcalendar_events","recordsObserved":462,"adapterAccepted":250,"timeZone":"America/New_York","status":"held","next":"review terms, freshness, and active-region release gates"}
   ],
-  "summary":{"candidates":1,"httpHealthy":1,"focusedValidated":0,"activated":0,"held":1,"rejected":0}
+  "summary":{"candidates":0,"httpHealthy":1,"focusedValidated":1,"activated":0,"held":2,"rejected":0}
 }
