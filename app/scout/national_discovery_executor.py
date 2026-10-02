@@ -75,6 +75,10 @@ class NationalDiscoverySpider(CrawlSpider):
     custom_settings = {
         "ROBOTSTXT_OBEY": True,
         "RETRY_ENABLED": True,
+        # Discovery is HTTPS-only. Do not follow a server redirect onto plain
+        # HTTP, where a dead port-80 listener can stall an otherwise bounded
+        # batch and would violate the candidate transport boundary.
+        "REDIRECT_ENABLED": False,
         "AUTOTHROTTLE_ENABLED": True,
         "AUTOTHROTTLE_START_DELAY": 1.0,
         "AUTOTHROTTLE_MAX_DELAY": 10.0,
@@ -360,6 +364,7 @@ class DiscoveryExecutor:
             "ROBOTSTXT_OBEY": True,
             "RETRY_ENABLED": True,
             "RETRY_TIMES": self.retries,
+            "REDIRECT_ENABLED": False,
             "DOWNLOAD_TIMEOUT": self.timeout,
             "DOWNLOAD_MAXSIZE": MAX_BODY,
             "USER_AGENT": USER_AGENT,

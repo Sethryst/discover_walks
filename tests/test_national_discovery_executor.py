@@ -87,6 +87,7 @@ class NationalDiscoveryExecutorTests(unittest.TestCase):
         settings = NationalDiscoverySpider.custom_settings
         self.assertTrue(settings["ROBOTSTXT_OBEY"])
         self.assertTrue(settings["RETRY_ENABLED"])
+        self.assertFalse(settings["REDIRECT_ENABLED"])
         self.assertTrue(settings["AUTOTHROTTLE_ENABLED"])
         self.assertEqual(settings["CONCURRENT_REQUESTS_PER_DOMAIN"], 2)
         self.assertEqual(settings["DOWNLOAD_MAXSIZE"], 1_000_000)
