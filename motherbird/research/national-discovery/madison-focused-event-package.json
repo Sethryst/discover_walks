@@ -1,0 +1,75 @@
+{
+  "active": false,
+  "activeCandidates": [],
+  "candidates": [
+    {
+      "category": "events",
+      "confidence": 0.9,
+      "crawl": {
+        "crawlStatus": "completed",
+        "crawlTimestamp": "2026-10-02T16:00:00Z",
+        "failureReason": null,
+        "httpStatus": 200,
+        "robotsDecision": "allowed"
+      },
+      "dataType": "JSON-LD Event",
+      "evidenceUrls": [
+        "https://www.cityofmadison.com/events",
+        "https://www.cityofmadison.com/parks/events/2026-10-03/bird-nature-adventures-tenney-park"
+      ],
+      "id": "national-source-30ca2713b8a5653a",
+      "markets": [
+        "Madison"
+      ],
+      "originatingOfficialDomains": [
+        "cityofmadison.com"
+      ],
+      "originatingSeed": "expansion-queues/national-region-seeds.csv",
+      "publicationState": "research-only",
+      "publisher": "City of Madison Parks",
+      "queryContext": [
+        {
+          "market": "Madison",
+          "officialDomain": "cityofmadison.com",
+          "queryFamily": "events",
+          "queryId": "nrq-78d1ae753c9b",
+          "seed": "expansion-queues/national-region-seeds.csv"
+        }
+      ],
+      "queryFamilies": [
+        "events",
+        "json_ld"
+      ],
+      "queryIds": [
+        "nrq-78d1ae753c9b"
+      ],
+      "researchOnly": true,
+      "reviewState": "needs_human_review",
+      "scoreBreakdown": {
+        "explicit_event_jsonld": 0.35,
+        "explicit_time_and_address": 0.2,
+        "official_detail_page": 0.3,
+        "official_outlink": 0.05
+      },
+      "url": "https://www.cityofmadison.com/parks/events/2026-10-03/bird-nature-adventures-tenney-park"
+    }
+  ],
+  "errors": [],
+  "generatedAt": "2026-10-02T16:03:04.175895Z",
+  "kind": "national-discovery-candidate-package",
+  "publicationState": "research-only",
+  "runtimeLoader": "not-consumed; human promotion required",
+  "schemaVersion": 1,
+  "sourceArtifacts": [
+    "expansion-queues/madison-focused-event-capture.json",
+    "expansion-queues/national-region-search-queue.json"
+  ],
+  "summary": {
+    "duplicateUrlsMerged": 0,
+    "excluded": 0,
+    "needsHumanReview": 1,
+    "rejectedInvalid": 0,
+    "researchCandidates": 1,
+    "stagedPackageRecords": 1
+  }
+}

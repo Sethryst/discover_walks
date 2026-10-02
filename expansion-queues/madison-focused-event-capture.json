@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 2,
+  "kind": "national-candidate-capture",
+  "readOnly": true,
+  "publicationState": "research-only",
+  "generatedAt": "2026-10-02T16:00:00Z",
+  "candidates": [
+    {
+      "canonicalUrl": "https://www.cityofmadison.com/parks/events/2026-10-03/bird-nature-adventures-tenney-park",
+      "confidence": 0.9,
+      "coverageScope": "madison",
+      "crawlStatus": "completed",
+      "crawlTimestamp": "2026-10-02T16:00:00Z",
+      "discoveryEvidence": "Official Madison events index linked a dated detail page with explicit schema.org Event JSON-LD.",
+      "evidenceUrls": [
+        "https://www.cityofmadison.com/events",
+        "https://www.cityofmadison.com/parks/events/2026-10-03/bird-nature-adventures-tenney-park"
+      ],
+      "failureReason": null,
+      "httpStatus": 200,
+      "market": "Madison",
+      "markets": ["Madison"],
+      "needsHumanReview": true,
+      "originatingOfficialDomain": "cityofmadison.com",
+      "originatingSeed": "expansion-queues/national-region-seeds.csv",
+      "place": "Madison",
+      "providerName": "City of Madison Parks",
+      "queryId": "nrq-78d1ae753c9b",
+      "queryIds": ["nrq-78d1ae753c9b"],
+      "queryFamilies": ["events", "json_ld"],
+      "robotsDecision": "allowed",
+      "scoreBreakdown": {"official_detail_page": 0.3, "explicit_event_jsonld": 0.35, "explicit_time_and_address": 0.2, "official_outlink": 0.05},
+      "sourceType": "JSON-LD Event",
+      "sourceUrl": "https://www.cityofmadison.com/parks/events/2026-10-03/bird-nature-adventures-tenney-park"
+    }
+  ],
+  "negativeDiscoveries": []
+}
