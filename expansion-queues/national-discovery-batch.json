@@ -1,7 +1,7 @@
 {
   "kind": "national-discovery-batch",
-  "limit": 10,
-  "offset": 1552,
+  "limit": 6,
+  "offset": 1562,
   "publicationState": "research-only",
   "readOnly": true,
   "results": [
@@ -32,11 +32,11 @@
           404
         ],
         [
-          "https://newarkde.gov/80/Parking",
+          "https://newarkde.gov/750/Events",
           "NameError"
         ],
         [
-          "https://newarkde.gov/750/Events",
+          "https://newarkde.gov/80/Parking",
           "NameError"
         ],
         [
@@ -44,12 +44,12 @@
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:27:25.412470Z",
+      "finishedAt": "2026-10-02T16:29:24.372557Z",
       "httpStatus": 200,
       "query": {
-        "expectedSourceType": "meetings",
+        "expectedSourceType": "civicplus",
         "humanReview": "not_reviewed",
-        "intent": "meetings",
+        "intent": "civicplus",
         "market": "Newark",
         "marketId": "newark-delaware",
         "marketPriority": 3,
@@ -72,9 +72,9 @@
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Newark, DE\" public meetings agenda calendar",
-        "queryFamily": "meetings",
-        "queryId": "nrq-1784bbf608e8",
+        "query": "site:newarkde.gov CivicPlus calendar events",
+        "queryFamily": "civicplus",
+        "queryId": "nrq-090fd9a0fd6a",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.33,
@@ -89,7 +89,7 @@
       },
       "reason": null,
       "robots": "allowed",
-      "startedAt": "2026-10-02T16:27:19.850746Z",
+      "startedAt": "2026-10-02T16:29:19.583492Z",
       "status": "succeeded"
     },
     {
@@ -119,11 +119,11 @@
           404
         ],
         [
-          "https://newarkde.gov/80/Parking",
+          "https://newarkde.gov/750/Events",
           "NameError"
         ],
         [
-          "https://newarkde.gov/750/Events",
+          "https://newarkde.gov/80/Parking",
           "NameError"
         ],
         [
@@ -131,12 +131,12 @@
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:27:29.909003Z",
+      "finishedAt": "2026-10-02T16:29:24.676268Z",
       "httpStatus": 200,
       "query": {
-        "expectedSourceType": "trails",
+        "expectedSourceType": "legistar",
         "humanReview": "not_reviewed",
-        "intent": "trails",
+        "intent": "legistar",
         "market": "Newark",
         "marketId": "newark-delaware",
         "marketPriority": 3,
@@ -159,9 +159,9 @@
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Newark, DE\" trails outdoor recreation official",
-        "queryFamily": "trails",
-        "queryId": "nrq-667e15f5467c",
+        "query": "site:newarkde.gov Legistar meetings agenda",
+        "queryFamily": "legistar",
+        "queryId": "nrq-3a6b246be870",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.33,
@@ -176,7 +176,7 @@
       },
       "reason": null,
       "robots": "allowed",
-      "startedAt": "2026-10-02T16:27:25.412497Z",
+      "startedAt": "2026-10-02T16:29:19.258092Z",
       "status": "succeeded"
     },
     {
@@ -206,11 +206,11 @@
           404
         ],
         [
-          "https://newarkde.gov/80/Parking",
+          "https://newarkde.gov/750/Events",
           "NameError"
         ],
         [
-          "https://newarkde.gov/750/Events",
+          "https://newarkde.gov/80/Parking",
           "NameError"
         ],
         [
@@ -218,12 +218,12 @@
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:27:33.459355Z",
+      "finishedAt": "2026-10-02T16:29:29.395608Z",
       "httpStatus": 200,
       "query": {
-        "expectedSourceType": "libraries",
+        "expectedSourceType": "granicus",
         "humanReview": "not_reviewed",
-        "intent": "libraries",
+        "intent": "granicus",
         "market": "Newark",
         "marketId": "newark-delaware",
         "marketPriority": 3,
@@ -246,9 +246,9 @@
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Newark, DE\" library events calendar",
-        "queryFamily": "libraries",
-        "queryId": "nrq-87ceed4b350a",
+        "query": "site:newarkde.gov Granicus meetings agenda",
+        "queryFamily": "granicus",
+        "queryId": "nrq-417976648688",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.33,
@@ -263,7 +263,7 @@
       },
       "reason": null,
       "robots": "allowed",
-      "startedAt": "2026-10-02T16:27:29.372275Z",
+      "startedAt": "2026-10-02T16:29:24.372582Z",
       "status": "succeeded"
     },
     {
@@ -293,11 +293,11 @@
           404
         ],
         [
-          "https://newarkde.gov/80/Parking",
+          "https://newarkde.gov/750/Events",
           "NameError"
         ],
         [
-          "https://newarkde.gov/750/Events",
+          "https://newarkde.gov/80/Parking",
           "NameError"
         ],
         [
@@ -305,12 +305,12 @@
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:27:37.437050Z",
+      "finishedAt": "2026-10-02T16:29:29.505099Z",
       "httpStatus": 200,
       "query": {
-        "expectedSourceType": "volunteer",
+        "expectedSourceType": "json_ld",
         "humanReview": "not_reviewed",
-        "intent": "volunteer",
+        "intent": "json_ld",
         "market": "Newark",
         "marketId": "newark-delaware",
         "marketPriority": 3,
@@ -333,444 +333,9 @@
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "\"Newark, DE\" volunteer opportunities official",
-        "queryFamily": "volunteer",
-        "queryId": "nrq-8ef78e4ea179",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "DE",
-        "stateCode": "DE"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:27:33.459385Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://newarkde.gov/750/Events": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://newarkde.gov/750/Events",
-          "sourceType": "HTML calendar"
-        },
-        "https://newarkde.gov/Calendar.aspx": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://newarkde.gov/Calendar.aspx",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://newarkde.gov/750/Events",
-        "https://newarkde.gov/Calendar.aspx"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://newarkde.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://newarkde.gov/80/Parking",
-          "NameError"
-        ],
-        [
-          "https://newarkde.gov/750/Events",
-          "NameError"
-        ],
-        [
-          "https://newarkde.gov/Calendar.aspx",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:27:38.075151Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "open_data",
-        "humanReview": "not_reviewed",
-        "intent": "open_data",
-        "market": "Newark",
-        "marketId": "newark-delaware",
-        "marketPriority": 3,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover university and civic feeds",
-        "officialDomain": "newarkde.gov",
-        "place": "Newark",
-        "placeType": "university_town",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Newark, DE\" open data portal",
-        "queryFamily": "open_data",
-        "queryId": "nrq-a1e623e470ad",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "DE",
-        "stateCode": "DE"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:27:34.152096Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://newarkde.gov/750/Events": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://newarkde.gov/750/Events",
-          "sourceType": "HTML calendar"
-        },
-        "https://newarkde.gov/Calendar.aspx": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://newarkde.gov/Calendar.aspx",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://newarkde.gov/750/Events",
-        "https://newarkde.gov/Calendar.aspx"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://newarkde.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://newarkde.gov/80/Parking",
-          "NameError"
-        ],
-        [
-          "https://newarkde.gov/750/Events",
-          "NameError"
-        ],
-        [
-          "https://newarkde.gov/Calendar.aspx",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:27:34.152071Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "culture",
-        "humanReview": "not_reviewed",
-        "intent": "culture",
-        "market": "Newark",
-        "marketId": "newark-delaware",
-        "marketPriority": 3,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover university and civic feeds",
-        "officialDomain": "newarkde.gov",
-        "place": "Newark",
-        "placeType": "university_town",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Newark, DE\" arts culture museum events official",
-        "queryFamily": "culture",
-        "queryId": "nrq-a716d3b82d73",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "DE",
-        "stateCode": "DE"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:27:29.909029Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://newarkde.gov/750/Events": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://newarkde.gov/750/Events",
-          "sourceType": "HTML calendar"
-        },
-        "https://newarkde.gov/Calendar.aspx": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://newarkde.gov/Calendar.aspx",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://newarkde.gov/750/Events",
-        "https://newarkde.gov/Calendar.aspx"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://newarkde.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://newarkde.gov/80/Parking",
-          "NameError"
-        ],
-        [
-          "https://newarkde.gov/750/Events",
-          "NameError"
-        ],
-        [
-          "https://newarkde.gov/Calendar.aspx",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:27:29.372249Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "parks",
-        "humanReview": "not_reviewed",
-        "intent": "parks",
-        "market": "Newark",
-        "marketId": "newark-delaware",
-        "marketPriority": 3,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover university and civic feeds",
-        "officialDomain": "newarkde.gov",
-        "place": "Newark",
-        "placeType": "university_town",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Newark, DE\" parks recreation trails official",
-        "queryFamily": "parks",
-        "queryId": "nrq-ba05f916b0d7",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "DE",
-        "stateCode": "DE"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:27:25.287656Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://newarkde.gov/750/Events": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://newarkde.gov/750/Events",
-          "sourceType": "HTML calendar"
-        },
-        "https://newarkde.gov/Calendar.aspx": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://newarkde.gov/Calendar.aspx",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://newarkde.gov/750/Events",
-        "https://newarkde.gov/Calendar.aspx"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://newarkde.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://newarkde.gov/80/Parking",
-          "NameError"
-        ],
-        [
-          "https://newarkde.gov/750/Events",
-          "NameError"
-        ],
-        [
-          "https://newarkde.gov/Calendar.aspx",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:27:25.287620Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "events",
-        "humanReview": "not_reviewed",
-        "intent": "events",
-        "market": "Newark",
-        "marketId": "newark-delaware",
-        "marketPriority": 3,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover university and civic feeds",
-        "officialDomain": "newarkde.gov",
-        "place": "Newark",
-        "placeType": "university_town",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Newark, DE\" official events calendar",
-        "queryFamily": "events",
-        "queryId": "nrq-db40c15230a1",
-        "seedPriority": 2,
-        "sourceConfidence": {
-          "score": 0.33,
-          "signals": {
-            "existing_coverage": false,
-            "official_domain": true,
-            "structured_family": false
-          }
-        },
-        "state": "DE",
-        "stateCode": "DE"
-      },
-      "reason": null,
-      "robots": "allowed",
-      "startedAt": "2026-10-02T16:27:19.850286Z",
-      "status": "succeeded"
-    },
-    {
-      "attempts": 3,
-      "candidateEvidence": {
-        "https://newarkde.gov/750/Events": {
-          "confidence": 0.55,
-          "evidenceUrl": "https://newarkde.gov/750/Events",
-          "sourceType": "HTML calendar"
-        },
-        "https://newarkde.gov/Calendar.aspx": {
-          "confidence": 0.8,
-          "evidenceUrl": "https://newarkde.gov/Calendar.aspx",
-          "sourceType": "HTML calendar"
-        }
-      },
-      "candidateUrls": [
-        "https://newarkde.gov/750/Events",
-        "https://newarkde.gov/Calendar.aspx"
-      ],
-      "crawlStatus": "completed",
-      "error": null,
-      "errorType": null,
-      "failures": [
-        [
-          "https://newarkde.gov/sitemap_index.xml",
-          404
-        ],
-        [
-          "https://newarkde.gov/80/Parking",
-          "NameError"
-        ],
-        [
-          "https://newarkde.gov/750/Events",
-          "NameError"
-        ],
-        [
-          "https://newarkde.gov/Calendar.aspx",
-          "NameError"
-        ]
-      ],
-      "finishedAt": "2026-10-02T16:27:41.323128Z",
-      "httpStatus": 200,
-      "query": {
-        "expectedSourceType": "rss_ics",
-        "humanReview": "not_reviewed",
-        "intent": "rss_ics",
-        "market": "Newark",
-        "marketId": "newark-delaware",
-        "marketPriority": 3,
-        "negativeDiscoveryCodes": [
-          "not_official",
-          "duplicate_coverage",
-          "insufficient_event_fields",
-          "access_restricted",
-          "not_in_scope",
-          "retired_url",
-          "stale_calendar",
-          "blocked_robots"
-        ],
-        "nextAction": "discover university and civic feeds",
-        "officialDomain": "newarkde.gov",
-        "place": "Newark",
-        "placeType": "university_town",
-        "provenance": {
-          "discoveryOnly": true,
-          "seedFile": "expansion-queues/national-region-seeds.csv"
-        },
-        "providerStatus": "candidate",
-        "query": "\"Newark, DE\" (RSS OR iCalendar OR ICS) events",
-        "queryFamily": "rss_ics",
-        "queryId": "nrq-e9daba430217",
+        "query": "site:newarkde.gov JSON-LD Event schema",
+        "queryFamily": "json_ld",
+        "queryId": "nrq-9be8915ba160",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.67,
@@ -785,7 +350,7 @@
       },
       "reason": null,
       "robots": "allowed",
-      "startedAt": "2026-10-02T16:27:37.437075Z",
+      "startedAt": "2026-10-02T16:29:24.676291Z",
       "status": "succeeded"
     },
     {
@@ -815,11 +380,11 @@
           404
         ],
         [
-          "https://newarkde.gov/80/Parking",
+          "https://newarkde.gov/750/Events",
           "NameError"
         ],
         [
-          "https://newarkde.gov/750/Events",
+          "https://newarkde.gov/80/Parking",
           "NameError"
         ],
         [
@@ -827,12 +392,12 @@
           "NameError"
         ]
       ],
-      "finishedAt": "2026-10-02T16:27:41.961578Z",
+      "finishedAt": "2026-10-02T16:29:19.583467Z",
       "httpStatus": 200,
       "query": {
-        "expectedSourceType": "arcgis",
+        "expectedSourceType": "socrata",
         "humanReview": "not_reviewed",
-        "intent": "arcgis",
+        "intent": "socrata",
         "market": "Newark",
         "marketId": "newark-delaware",
         "marketPriority": 3,
@@ -855,9 +420,9 @@
           "seedFile": "expansion-queues/national-region-seeds.csv"
         },
         "providerStatus": "candidate",
-        "query": "site:newarkde.gov (FeatureServer OR MapServer) parks events",
-        "queryFamily": "arcgis",
-        "queryId": "nrq-ec4c04f1bca0",
+        "query": "site:newarkde.gov site:data.* Socrata dataset events",
+        "queryFamily": "socrata",
+        "queryId": "nrq-df4151c62a79",
         "seedPriority": 2,
         "sourceConfidence": {
           "score": 0.67,
@@ -872,44 +437,127 @@
       },
       "reason": null,
       "robots": "allowed",
-      "startedAt": "2026-10-02T16:27:38.075177Z",
+      "startedAt": "2026-10-02T16:29:14.410386Z",
+      "status": "succeeded"
+    },
+    {
+      "attempts": 3,
+      "candidateEvidence": {
+        "https://newarkde.gov/750/Events": {
+          "confidence": 0.55,
+          "evidenceUrl": "https://newarkde.gov/750/Events",
+          "sourceType": "HTML calendar"
+        },
+        "https://newarkde.gov/Calendar.aspx": {
+          "confidence": 0.8,
+          "evidenceUrl": "https://newarkde.gov/Calendar.aspx",
+          "sourceType": "HTML calendar"
+        }
+      },
+      "candidateUrls": [
+        "https://newarkde.gov/750/Events",
+        "https://newarkde.gov/Calendar.aspx"
+      ],
+      "crawlStatus": "completed",
+      "error": null,
+      "errorType": null,
+      "failures": [
+        [
+          "https://newarkde.gov/sitemap_index.xml",
+          404
+        ],
+        [
+          "https://newarkde.gov/750/Events",
+          "NameError"
+        ],
+        [
+          "https://newarkde.gov/80/Parking",
+          "NameError"
+        ],
+        [
+          "https://newarkde.gov/Calendar.aspx",
+          "NameError"
+        ]
+      ],
+      "finishedAt": "2026-10-02T16:29:19.258057Z",
+      "httpStatus": 200,
+      "query": {
+        "expectedSourceType": "ckan",
+        "humanReview": "not_reviewed",
+        "intent": "ckan",
+        "market": "Newark",
+        "marketId": "newark-delaware",
+        "marketPriority": 3,
+        "negativeDiscoveryCodes": [
+          "not_official",
+          "duplicate_coverage",
+          "insufficient_event_fields",
+          "access_restricted",
+          "not_in_scope",
+          "retired_url",
+          "stale_calendar",
+          "blocked_robots"
+        ],
+        "nextAction": "discover university and civic feeds",
+        "officialDomain": "newarkde.gov",
+        "place": "Newark",
+        "placeType": "university_town",
+        "provenance": {
+          "discoveryOnly": true,
+          "seedFile": "expansion-queues/national-region-seeds.csv"
+        },
+        "providerStatus": "candidate",
+        "query": "site:newarkde.gov CKAN API dataset",
+        "queryFamily": "ckan",
+        "queryId": "nrq-e5638fe39e37",
+        "seedPriority": 2,
+        "sourceConfidence": {
+          "score": 0.67,
+          "signals": {
+            "existing_coverage": false,
+            "official_domain": true,
+            "structured_family": true
+          }
+        },
+        "state": "DE",
+        "stateCode": "DE"
+      },
+      "reason": null,
+      "robots": "allowed",
+      "startedAt": "2026-10-02T16:29:14.410887Z",
       "status": "succeeded"
     }
   ],
   "schemaVersion": 2,
   "selectedQueryIds": [
-    "nrq-db40c15230a1",
-    "nrq-1784bbf608e8",
-    "nrq-ba05f916b0d7",
-    "nrq-667e15f5467c",
-    "nrq-87ceed4b350a",
-    "nrq-a716d3b82d73",
-    "nrq-8ef78e4ea179",
-    "nrq-a1e623e470ad",
-    "nrq-e9daba430217",
-    "nrq-ec4c04f1bca0"
+    "nrq-df4151c62a79",
+    "nrq-e5638fe39e37",
+    "nrq-3a6b246be870",
+    "nrq-090fd9a0fd6a",
+    "nrq-417976648688",
+    "nrq-9be8915ba160"
   ],
   "sourceQueue": "expansion-queues/national-region-search-queue.json",
   "summary": {
-    "attempted": 10,
+    "attempted": 6,
     "candidateCaptureErrors": null,
     "candidatesFound": 2,
     "candidatesNeedingHumanReview": 2,
     "domainsCrawled": 1,
     "duplicateUrlsMerged": 0,
     "failed": 0,
-    "failedRequests": 40,
-    "httpSuccesses": 10,
-    "pagesCrawled": 30,
-    "pagesFetched": 30,
-    "pagesRejected": 40,
+    "failedRequests": 24,
+    "httpSuccesses": 6,
+    "pagesCrawled": 18,
+    "pagesFetched": 18,
+    "pagesRejected": 24,
     "rateLimitedRequests": 0,
     "responses_429": 0,
     "robots_disallowed": 0,
     "robots_unknown": 0,
     "skipped": 0,
-    "succeeded": 10,
-    "succeededWithCandidates": 10,
+    "succeeded": 6,
+    "succeededWithCandidates": 6,
     "succeededWithoutCandidates": 0,
     "timeout_network_failures": 0,
     "uniqueCandidates": 2,
