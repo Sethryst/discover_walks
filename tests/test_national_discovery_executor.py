@@ -66,6 +66,7 @@ class NationalDiscoveryExecutorTests(unittest.TestCase):
         self.assertEqual(classify_candidate("https://services.arcgis.com/x/FeatureServer/0", "application/json"), "ArcGIS FeatureServer/MapServer")
         self.assertEqual(classify_candidate("https://x.gov/api/events", "application/json", "[{\"id\": 1}]"), "JSON API")
         self.assertEqual(classify_candidate("https://x.gov/events", "text/html", '{"@type":"Event"}'), "JSON-LD Event")
+        self.assertEqual(classify_candidate("https://x.gov/tribe_events-sitemap.xml", "application/xml", "<urlset></urlset>"), "Sitemap")
 
     def test_family_relevance_filters_civic_false_positives(self):
         self.assertFalse(family_relevant("https://city.gov/residents/parking/", "events"))

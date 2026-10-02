@@ -227,6 +227,7 @@ def _crawl_host_allowed(url, official_domain):
 def classify_candidate(url, content_type="", body=""):
     """Classify a discovered endpoint without treating generic HTML as strong evidence."""
     text = f"{url} {content_type}".lower()
+    if "sitemap" in text or re.search(r"<urlset\b|<sitemapindex\b", body, re.I): return "Sitemap"
     if "text/html" in content_type.lower() or "application/xhtml" in content_type.lower():
         if re.search(r'"@type"\s*:\s*(?:\[\s*)?["\']Event', body, re.I): return "JSON-LD Event"
         return "HTML calendar"
