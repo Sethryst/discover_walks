@@ -81,6 +81,7 @@ These are observed official paths from the recent batches or direct domain audit
 | `charleston-sc.gov` | `/Calendar.aspx?EID=10637&month=10&year=2026&day=2&calType=0` | Official event detail rendered a dated event, time, address, contact, description, and an official “View RSS Feeds” control. | Strong focused HTML candidate; capture a replay fixture and calendar pagination/identity contract before promotion. |
 | `charlottenc.gov` | `/Events-directory` | Official events directory was discovered, but the direct audit returned an access-denied response from the edge service. | Hold for browser-like or permitted replay; do not infer event availability from the blocked response. |
 | `clevelandohio.gov` | `/events` | Official events page returned HTTP 200 with substantial HTML but no JSON-LD event block in the direct audit. | Inspect item-level links and any platform request before considering a focused adapter. |
+| `lexingtonky.gov` | `/playing/adopt-park`, `/playing/aquatics`, `/playing/arts-events` | Bounded slice 1210 found three official recreation/arts event-adjacent pages with HTTP success and no rate-limit responses. | Hold as HTML candidates; inspect item-level event URLs and structured requests before integration. |
 
 ## Ingestion pathway decision tree
 
@@ -104,6 +105,8 @@ An item can move from research-only toward activation only when the evidence pac
 - active region configuration and release evidence.
 
 **Current decision:** promote no new region or event source from the latest four batches. Keep the 50 new candidates staged; quarantine sitemap and generic-page false positives; prioritize the Charleston event-detail contract, Aurora service contract, Jefferson calendar ID, Evanston Revize data request, and Los Angeles/Pasadena event-detail follow-up.
+
+The transport-recovery slice at offset 1210 found three additional Lexington candidates. They remain research-only; the interrupted 100-query offset-1100 run produced no accepted artifact and was not used for promotion.
 
 ## Evidence locations
 
