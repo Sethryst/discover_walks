@@ -324,7 +324,7 @@ class DiscoveryExecutor:
                 event_schema = '"Event"' in body or '"@type":"Event"' in body or '"@type": "Event"' in body
                 if family_relevant(url, family, body, machine_readable=machine or event_schema):
                     candidates.add(url)
-                    evidence[url] = {"evidenceUrl": url, "sourceType": "JSON-LD Event" if event_schema else ("RSS/Atom" if "xml" in ctype or "rss" in ctype else ("ICS/iCalendar" if "calendar" in ctype else "JSON API" if "json" in ctype or "api" in url.lower() else "HTML calendar")), "confidence": 0.8 if machine or event_schema else 0.55}
+                    evidence[url] = {"evidenceUrl": url, "sourceType": classify_candidate(url, ctype, body), "confidence": 0.8 if machine or event_schema else 0.55}
                 parser = _LinkParser(); parser.feed(body)
                 for raw in parser.links:
                     child = urljoin(url, raw); child = urlunsplit((urlsplit(child).scheme, urlsplit(child).netloc, urlsplit(child).path, urlsplit(child).query, ""))
