@@ -98,7 +98,6 @@ export function paintChangeStory(item) {
   }
   layer.addTo(map);
   state.learnChangeLayer = layer;
-  if (ring.length > 2 && map.fitBounds) map.fitBounds(ring, { padding: [28, 28], maxZoom: 14 });
   return layer;
 }
 

@@ -11,6 +11,7 @@ import { ICONS, markerPinHtml, markerVisual } from './poi-icons.js';
 import { civicNoticesFromPack, newsIsAvailable } from './civic-news.js';
 import { showCategoryCoach } from './coach.js';
 import { syncNewsStory } from './learn-change.js';
+import { drawStories } from './stories.js';
 
 export const LAYER_GROUPS = [
   { id: 'walking_network', light: 'recreation', label: 'Walking network', description: 'Routes, crossings, and access conditions', tags: ['trail', 'walkway', 'crossing', 'barrier'] },
@@ -83,6 +84,9 @@ export async function initLayerSystem() {
   renderMapLights();
   renderNewsMarkers();
   renderRouteLights();
+  // Stories bind before persisted Explore lights are loaded. Repaint them
+  // once the saved NEWS state is authoritative so hidden stories stay hidden.
+  drawStories();
 }
 
 function buildAllLayerGroups() {
@@ -191,6 +195,7 @@ function applyLayerChanges({ rerenderFilters = true } = {}) {
   renderCityPois(); renderPersonalPlacesOnMap(); renderNewsMarkers(); renderRouteLights(); updateLayerBadge();
   if (rerenderFilters) renderLayerFilters();
   renderMapLights();
+  drawStories();
   void syncNewsStory();
   void persistLayerState().catch(() => toast('Map choices changed, but could not be saved on this device.'));
 }

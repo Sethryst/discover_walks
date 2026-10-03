@@ -17,7 +17,7 @@ function beaconIcon(story) {
   return L.divIcon({ className: 'story-beacon-wrap', iconSize: [52, 52], iconAnchor: [26, 26], html: `<span class="story-beacon story-beacon--${escapeHtml(story.status)}"><i></i><b>◉</b></span>` });
 }
 
-function drawStories() {
+export function drawStories() {
   if (!state.map) return;
   storyLayer?.remove();
   state.storyRouteLine?.remove();
