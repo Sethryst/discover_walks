@@ -31,7 +31,7 @@ const shell = [
   './data/virginia-pack-splits.json', './data/learn-next-layers.json', './data/learn/index.json', './data/learn/discover/watersheds.json', './data/learn/history/pack-splits.json', './data/learn/history/battlefields.json',
   './data/pedestrian-runtime/nyc_pedestrian_network_estimates/runtime/runtime-graph.json',
   './data/pedestrian-runtime/dvrpc_pedestrian_network_philadelphia_camden/runtime/runtime-graph.json',
-  ...['asheville', 'boston', 'boulder', 'chicago', 'denver', 'new-orleans', 'portland', 'portland-maine', 'san-francisco', 'santa-fe'].map((region) => `./regions/${region}/pois.json`),
+  ...['asheville', 'boston', 'boulder', 'chicago', 'denver', 'new-orleans', 'portland', 'portland-maine', 'san-francisco', 'santa-fe', 'wolf-trap-va'].map((region) => `./regions/${region}/pois.json`),
   ...['alexandria-va', 'arlington-va', 'baltimore', 'boise-meridian-idaho', 'boston', 'boulder', 'chicago', 'columbus', 'corpus-christi', 'denver', 'detroit', 'fairfax-county-va', 'falls-church-va', 'fort-worth', 'keystone-colorado', 'los-angeles', 'loudoun-county-va', 'new-orleans', 'norfolk', 'nyc', 'philadelphia', 'pittsburgh', 'portland', 'portland-maine', 'prince-georges-county-md', 'richmond', 'san-francisco', 'santa-fe', 'seattle', 'sedona-arizona', 'tempe', 'washington-dc'].flatMap((region) => [
     `./regions/${region}/osm/pois.json`, `./regions/${region}/osm/manifest.json`, `./regions/${region}/osm/validation.json`,
     `./regions/${region}/osm/spatial-index-delta.json`, `./regions/${region}/osm/attribution.json`
