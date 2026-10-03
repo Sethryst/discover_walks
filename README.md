@@ -8,6 +8,7 @@ Gremlin Lab is a data-rich walking project with two connected but deliberately s
 
 - [What is here](#what-is-here)
 - [Highlights](#highlights)
+- [Where Walk & Wildlife is available](#where-walk--wildlife-is-available)
 - [Architecture](#architecture)
 - [Routing status](#routing-status)
 - [Development](#development)
@@ -37,6 +38,24 @@ There is no first-party HTTP API. The PWA is a browser application, not a FastAP
 - Browser-based pedestrian routing using compact, lazily loaded graph packages.
 - Resumable routing-cell conversion and publication tooling.
 - A deliberately conservative routing contract: no invented straight-line paths or unverified network connections.
+
+## Where Walk & Wildlife is available
+
+Walk & Wildlife currently offers **70 selectable areas** in the app. Choosing an area changes the map, the search wording, and the places the app searches. The list includes cities, counties, metro areas, and a few destination communities.
+
+### Current areas, alphabetically
+
+Albuquerque · Alexandria · Anchorage · Ann Arbor · Arlington County · Asheville · Atlanta · Austin · Baltimore · Boston · Boise–Meridian–Old Town · Boulder · Charleston · Charlotte · Chicago · Cleveland · Columbus · Corpus Christi · Dallas–Fort Worth · Denver · Detroit · Eugene · Fairfax County · Falls Church · Flagstaff · Fort Worth · Fresno · Hartford · Honolulu · Houston · Indianapolis · Kansas City · Keystone & Summit County · Las Vegas · Lexington · Los Angeles · Loudoun County · Madison · Miami–Fort Lauderdale · Milwaukee · Minneapolis–Saint Paul · Moab · Nashville · New Orleans · New York · Newark · Norfolk · Oklahoma City · Omaha · Philadelphia · Phoenix · Pittsburgh · Portland · Portland (Maine) · Providence · Raleigh–Durham · Richmond · Salt Lake City · San Diego · San Francisco · San Francisco Bay Area · Santa Fe · Savannah · Seattle · Sedona · St. Louis · Tempe · Tucson · Washington · Wolf Trap.
+
+### What “available” means
+
+- The app has a named area users can select from the locality menu.
+- Search is limited to places the app can serve directly for that area; it does not mix outside web pages into the results.
+- Official government, parks, events, and program pages appear separately as clearly marked external links.
+- Regional place data is published as static, checkable packages with source information and validation records.
+- Some areas have richer legacy or civic content than others. New packages are promoted only after their data passes the release checks; areas still waiting on evidence remain in the research queue rather than being presented as complete.
+
+The live experience is available at [Walk & Wildlife on GitHub Pages](https://sethryst.github.io/discover_walks/). The catalogue is maintained in [`motherbird/js/constants.js`](motherbird/js/constants.js), while published regional data lives under [`motherbird/regions/`](motherbird/regions/).
 
 ## Architecture
 
