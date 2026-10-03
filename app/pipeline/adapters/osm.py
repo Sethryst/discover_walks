@@ -59,17 +59,19 @@ class OsmOverpassProvider(SourceAdapter):
     def _request_with_retries(self, source: SourceConfig, query: str) -> dict[str, Any]:
         """Use bounded retries and server-friendly backoff for transient Overpass failures."""
         last_error: Exception | None = None
-        for attempt in range(3):
+        max_attempts = max(1, min(3, int(source.provider_options.get("maxAttempts", 2))))
+        request_timeout = max(10, min(120, int(source.provider_options.get("requestTimeoutSeconds", 45))))
+        for attempt in range(max_attempts):
             try:
                 request = Request(source.url, data=urlencode({"data": query}).encode("utf-8"), headers={"Content-Type": "application/x-www-form-urlencoded", "User-Agent": "Gremlin-Lab/1.0 (regional build pipeline)"})
-                with urlopen(request, timeout=120) as response:
+                with urlopen(request, timeout=request_timeout) as response:
                     payload = json.loads(response.read().decode("utf-8"))
                     if payload.get("remark"):
                         raise OSError(f"Overpass returned an incomplete response: {payload['remark']}")
                     return payload
             except (OSError, json.JSONDecodeError) as exc:
                 last_error = exc
-                if attempt < 2:
+                if attempt < max_attempts - 1:
                     time.sleep(2**attempt)
         raise RetryableGremlinError(f"OSM acquisition failed for {source.id}: {last_error}") from last_error
 
