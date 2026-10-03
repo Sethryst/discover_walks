@@ -1,40 +1,509 @@
 {
   "schema": "regional-navigation/v1",
   "outlinks": {
-    "austin": [{"label":"City of Austin","href":"https://www.austintexas.gov/"},{"label":"Austin Parks and Recreation","href":"https://www.austintexas.gov/parks"},{"label":"Austin events","href":"https://www.austintexas.gov/events"}],
-    "atlanta": [{"label":"City of Atlanta","href":"https://www.atlantaga.gov/"},{"label":"Atlanta parks","href":"https://www.atlantaga.gov/government/departments/department-parks-recreation"},{"label":"Atlanta events","href":"https://www.atlantaga.gov/Home/Components/Calendar/Event/"}],
-    "charlotte": [{"label":"City of Charlotte","href":"https://www.charlottenc.gov/"},{"label":"Mecklenburg County parks","href":"https://parkandrec.mecknc.gov/"},{"label":"Charlotte events","href":"https://www.charlottenc.gov/Growth-and-Development/Planning-and-Development/Events"}],
-    "minneapolis": [{"label":"City of Minneapolis","href":"https://www.minneapolismn.gov/"},{"label":"Minneapolis parks","href":"https://www.minneapolisparks.org/"},{"label":"Minneapolis events","href":"https://www.minneapolismn.gov/get-involved/events/"}],
-    "nashville": [{"label":"Metro Nashville","href":"https://www.nashville.gov/"},{"label":"Nashville parks","href":"https://www.nashville.gov/departments/parks"},{"label":"Nashville events","href":"https://www.nashville.gov/departments/parks/events"}],
-    "phoenix": [{"label":"City of Phoenix","href":"https://www.phoenix.gov/"},{"label":"Phoenix parks","href":"https://www.phoenix.gov/parks"},{"label":"Phoenix events","href":"https://www.phoenix.gov/calendar"}],
-    "salt-lake-city": [{"label":"Salt Lake City","href":"https://www.slc.gov/"},{"label":"Salt Lake City parks","href":"https://www.slc.gov/parks/"},{"label":"Salt Lake City events","href":"https://www.slc.gov/events/"}],
-    "raleigh-durham": [{"label":"City of Raleigh","href":"https://raleighnc.gov/"},{"label":"Raleigh parks","href":"https://raleighnc.gov/parks"},{"label":"Raleigh events","href":"https://raleighnc.gov/parks/events"}],
-    "milwaukee": [{"label":"City of Milwaukee","href":"https://city.milwaukee.gov/"},{"label":"Milwaukee parks","href":"https://county.milwaukee.gov/EN/Parks"},{"label":"Milwaukee events","href":"https://city.milwaukee.gov/Events"}],
-    "st-louis": [{"label":"City of St. Louis","href":"https://www.stlouis-mo.gov/"},{"label":"St. Louis parks","href":"https://www.stlouis-mo.gov/government/departments/parks/"},{"label":"St. Louis events","href":"https://www.stlouis-mo.gov/events/"}],
-    "indianapolis": [{"label":"City of Indianapolis","href":"https://www.indy.gov/"},{"label":"Indianapolis parks","href":"https://www.indy.gov/activity/parks-and-recreation"},{"label":"Indianapolis events","href":"https://www.visitindy.com/events/"}],
-    "miami": [{"label":"Miami-Dade County","href":"https://www.miamidade.gov/"},{"label":"Miami-Dade parks","href":"https://www.miamidade.gov/global/parks/home.page"},{"label":"Miami events","href":"https://www.miamidade.gov/global/events.page"}],
-    "honolulu": [{"label":"City and County of Honolulu","href":"https://www.honolulu.gov/"},{"label":"Honolulu parks","href":"https://www.honolulu.gov/parks/"},{"label":"Honolulu events","href":"https://www.honolulu.gov/calendar.html"}],
-    "flagstaff": [{"label":"City of Flagstaff","href":"https://www.flagstaff.az.gov/"},{"label":"Flagstaff parks","href":"https://www.flagstaff.az.gov/parks"},{"label":"Flagstaff events","href":"https://www.flagstaff.az.gov/calendar.aspx"}],
-    "moab": [{"label":"City of Moab","href":"https://www.moabcity.gov/"},{"label":"Moab parks","href":"https://www.moabcity.gov/parks"},{"label":"Moab events","href":"https://www.moabcity.gov/calendar"}],
-    "lexington": [{"label":"Lexington-Fayette","href":"https://www.lexingtonky.gov/"},{"label":"Lexington parks","href":"https://www.lexingtonky.gov/departments/parks-recreation"},{"label":"Lexington events","href":"https://www.lexingtonky.gov/events"}],
-    "hartford": [{"label":"City of Hartford","href":"https://www.hartfordct.gov/"},{"label":"Hartford parks","href":"https://www.hartfordct.gov/Government/Departments/Development-Services/Parks-Recreation"},{"label":"Hartford events","href":"https://www.hartfordct.gov/events"}],
-    "fresno": [{"label":"City of Fresno","href":"https://www.fresno.gov/"},{"label":"Fresno parks","href":"https://www.fresno.gov/parks/"},{"label":"Fresno events","href":"https://www.fresno.gov/events/"}],
-    "providence": [{"label":"City of Providence","href":"https://www.providenceri.gov/"},{"label":"Providence parks","href":"https://www.providenceri.gov/parks/"},{"label":"Providence events","href":"https://www.providenceri.gov/events/"}],
-    "savannah": [{"label":"City of Savannah","href":"https://www.savannahga.gov/"},{"label":"Savannah parks","href":"https://www.savannahga.gov/parks"},{"label":"Savannah events","href":"https://www.savannahga.gov/Calendar.aspx"}],
-    "charleston": [{"label":"City of Charleston","href":"https://www.charleston-sc.gov/"},{"label":"Charleston parks","href":"https://www.charleston-sc.gov/parks"},{"label":"Charleston events","href":"https://www.charleston-sc.gov/calendar"}],
-    "eugene": [{"label":"City of Eugene","href":"https://www.eugene-or.gov/"},{"label":"Eugene parks","href":"https://www.eugene-or.gov/parks"},{"label":"Eugene events","href":"https://www.eugene-or.gov/calendar.aspx"}],
-    "las-vegas": [{"label":"City of Las Vegas","href":"https://www.lasvegasnevada.gov/"},{"label":"Las Vegas parks","href":"https://www.lasvegasnevada.gov/Residents/Parks-Facilities"},{"label":"Las Vegas events","href":"https://www.lasvegasnevada.gov/Events"}],
-    "tucson": [{"label":"City of Tucson","href":"https://www.tucsonaz.gov/"},{"label":"Tucson parks","href":"https://www.tucsonaz.gov/Departments/Parks-and-Recreation"},{"label":"Tucson events","href":"https://www.tucsonaz.gov/Events"}],
-    "oklahoma-city": [{"label":"City of Oklahoma City","href":"https://www.okc.gov/"},{"label":"Oklahoma City parks","href":"https://www.okc.gov/parks"},{"label":"Oklahoma City events","href":"https://www.okc.gov/events"}],
-    "omaha": [{"label":"City of Omaha","href":"https://www.cityofomaha.org/"},{"label":"Omaha parks","href":"https://parks.cityofomaha.org/"},{"label":"Omaha events","href":"https://www.cityofomaha.org/calendar"}],
-    "madison": [{"label":"City of Madison","href":"https://www.cityofmadison.com/"},{"label":"Madison parks","href":"https://www.cityofmadison.com/parks"},{"label":"Madison events","href":"https://www.cityofmadison.com/events"}],
-    "houston": [{"label":"City of Houston","href":"https://www.houstontx.gov/"},{"label":"Houston parks","href":"https://www.houstontx.gov/parks/"},{"label":"Houston events","href":"https://www.houstontx.gov/events/"}],
-    "kansas-city": [{"label":"City of Kansas City","href":"https://www.kcmo.gov/"},{"label":"Kansas City parks","href":"https://www.kcmo.gov/city-hall/departments/parks-recreation"},{"label":"Kansas City events","href":"https://www.kcmo.gov/community/events"}],
-    "san-diego": [{"label":"City of San Diego","href":"https://www.sandiego.gov/"},{"label":"San Diego parks","href":"https://www.sandiego.gov/park-and-recreation"},{"label":"San Diego events","href":"https://www.sandiego.gov/events"}],
+    "austin": [
+      {
+        "label": "City of Austin",
+        "href": "https://www.austintexas.gov/"
+      },
+      {
+        "label": "Austin Parks and Recreation",
+        "href": "https://www.austintexas.gov/parks"
+      },
+      {
+        "label": "Austin events",
+        "href": "https://www.austintexas.gov/events"
+      }
+    ],
+    "atlanta": [
+      {
+        "label": "City of Atlanta",
+        "href": "https://www.atlantaga.gov/"
+      },
+      {
+        "label": "Atlanta parks",
+        "href": "https://www.atlantaga.gov/government/departments/department-parks-recreation"
+      },
+      {
+        "label": "Atlanta events",
+        "href": "https://www.atlantaga.gov/Home/Components/Calendar/Event/"
+      }
+    ],
+    "charlotte": [
+      {
+        "label": "City of Charlotte",
+        "href": "https://www.charlottenc.gov/"
+      },
+      {
+        "label": "Mecklenburg County parks",
+        "href": "https://parkandrec.mecknc.gov/"
+      },
+      {
+        "label": "Charlotte events",
+        "href": "https://www.charlottenc.gov/Growth-and-Development/Planning-and-Development/Events"
+      }
+    ],
+    "minneapolis": [
+      {
+        "label": "City of Minneapolis",
+        "href": "https://www.minneapolismn.gov/"
+      },
+      {
+        "label": "Minneapolis parks",
+        "href": "https://www.minneapolisparks.org/"
+      },
+      {
+        "label": "Minneapolis events",
+        "href": "https://www.minneapolismn.gov/get-involved/events/"
+      }
+    ],
+    "nashville": [
+      {
+        "label": "Metro Nashville",
+        "href": "https://www.nashville.gov/"
+      },
+      {
+        "label": "Nashville parks",
+        "href": "https://www.nashville.gov/departments/parks"
+      },
+      {
+        "label": "Nashville events",
+        "href": "https://www.nashville.gov/departments/parks/events"
+      }
+    ],
+    "phoenix": [
+      {
+        "label": "City of Phoenix",
+        "href": "https://www.phoenix.gov/"
+      },
+      {
+        "label": "Phoenix parks",
+        "href": "https://www.phoenix.gov/parks"
+      },
+      {
+        "label": "Phoenix events",
+        "href": "https://www.phoenix.gov/calendar"
+      }
+    ],
+    "salt-lake-city": [
+      {
+        "label": "Salt Lake City",
+        "href": "https://www.slc.gov/"
+      },
+      {
+        "label": "Salt Lake City parks",
+        "href": "https://www.slc.gov/parks/"
+      },
+      {
+        "label": "Salt Lake City events",
+        "href": "https://www.slc.gov/events/"
+      }
+    ],
+    "raleigh-durham": [
+      {
+        "label": "City of Raleigh",
+        "href": "https://raleighnc.gov/"
+      },
+      {
+        "label": "Raleigh parks",
+        "href": "https://raleighnc.gov/parks"
+      },
+      {
+        "label": "Raleigh events",
+        "href": "https://raleighnc.gov/parks/events"
+      }
+    ],
+    "milwaukee": [
+      {
+        "label": "City of Milwaukee",
+        "href": "https://city.milwaukee.gov/"
+      },
+      {
+        "label": "Milwaukee parks",
+        "href": "https://county.milwaukee.gov/EN/Parks"
+      },
+      {
+        "label": "Milwaukee events",
+        "href": "https://city.milwaukee.gov/Events"
+      }
+    ],
+    "st-louis": [
+      {
+        "label": "City of St. Louis",
+        "href": "https://www.stlouis-mo.gov/"
+      },
+      {
+        "label": "St. Louis parks",
+        "href": "https://www.stlouis-mo.gov/government/departments/parks/"
+      },
+      {
+        "label": "St. Louis events",
+        "href": "https://www.stlouis-mo.gov/events/"
+      }
+    ],
+    "indianapolis": [
+      {
+        "label": "City of Indianapolis",
+        "href": "https://www.indy.gov/"
+      },
+      {
+        "label": "Indianapolis parks",
+        "href": "https://www.indy.gov/activity/parks-and-recreation"
+      },
+      {
+        "label": "Indianapolis events",
+        "href": "https://www.visitindy.com/events/"
+      }
+    ],
+    "miami": [
+      {
+        "label": "Miami-Dade County",
+        "href": "https://www.miamidade.gov/"
+      },
+      {
+        "label": "Miami-Dade parks",
+        "href": "https://www.miamidade.gov/global/parks/home.page"
+      },
+      {
+        "label": "Miami events",
+        "href": "https://www.miamidade.gov/global/events.page"
+      }
+    ],
+    "honolulu": [
+      {
+        "label": "City and County of Honolulu",
+        "href": "https://www.honolulu.gov/"
+      },
+      {
+        "label": "Honolulu parks",
+        "href": "https://www.honolulu.gov/parks/"
+      },
+      {
+        "label": "Honolulu events",
+        "href": "https://www.honolulu.gov/calendar.html"
+      }
+    ],
+    "flagstaff": [
+      {
+        "label": "City of Flagstaff",
+        "href": "https://www.flagstaff.az.gov/"
+      },
+      {
+        "label": "Flagstaff parks",
+        "href": "https://www.flagstaff.az.gov/parks"
+      },
+      {
+        "label": "Flagstaff events",
+        "href": "https://www.flagstaff.az.gov/calendar.aspx"
+      }
+    ],
+    "moab": [
+      {
+        "label": "City of Moab",
+        "href": "https://www.moabcity.gov/"
+      },
+      {
+        "label": "Moab parks",
+        "href": "https://www.moabcity.gov/parks"
+      },
+      {
+        "label": "Moab events",
+        "href": "https://www.moabcity.gov/calendar"
+      }
+    ],
+    "lexington": [
+      {
+        "label": "Lexington-Fayette",
+        "href": "https://www.lexingtonky.gov/"
+      },
+      {
+        "label": "Lexington parks",
+        "href": "https://www.lexingtonky.gov/departments/parks-recreation"
+      },
+      {
+        "label": "Lexington events",
+        "href": "https://www.lexingtonky.gov/events"
+      }
+    ],
+    "hartford": [
+      {
+        "label": "City of Hartford",
+        "href": "https://www.hartfordct.gov/"
+      },
+      {
+        "label": "Hartford parks",
+        "href": "https://www.hartfordct.gov/Government/Departments/Development-Services/Parks-Recreation"
+      },
+      {
+        "label": "Hartford events",
+        "href": "https://www.hartfordct.gov/events"
+      }
+    ],
+    "fresno": [
+      {
+        "label": "City of Fresno",
+        "href": "https://www.fresno.gov/"
+      },
+      {
+        "label": "Fresno parks",
+        "href": "https://www.fresno.gov/parks/"
+      },
+      {
+        "label": "Fresno events",
+        "href": "https://www.fresno.gov/events/"
+      }
+    ],
+    "providence": [
+      {
+        "label": "City of Providence",
+        "href": "https://www.providenceri.gov/"
+      },
+      {
+        "label": "Providence parks",
+        "href": "https://www.providenceri.gov/parks/"
+      },
+      {
+        "label": "Providence events",
+        "href": "https://www.providenceri.gov/events/"
+      }
+    ],
+    "savannah": [
+      {
+        "label": "City of Savannah",
+        "href": "https://www.savannahga.gov/"
+      },
+      {
+        "label": "Savannah parks",
+        "href": "https://www.savannahga.gov/parks"
+      },
+      {
+        "label": "Savannah events",
+        "href": "https://www.savannahga.gov/Calendar.aspx"
+      }
+    ],
+    "charleston": [
+      {
+        "label": "City of Charleston",
+        "href": "https://www.charleston-sc.gov/"
+      },
+      {
+        "label": "Charleston parks",
+        "href": "https://www.charleston-sc.gov/parks"
+      },
+      {
+        "label": "Charleston events",
+        "href": "https://www.charleston-sc.gov/calendar"
+      }
+    ],
+    "eugene": [
+      {
+        "label": "City of Eugene",
+        "href": "https://www.eugene-or.gov/"
+      },
+      {
+        "label": "Eugene parks",
+        "href": "https://www.eugene-or.gov/parks"
+      },
+      {
+        "label": "Eugene events",
+        "href": "https://www.eugene-or.gov/calendar.aspx"
+      }
+    ],
+    "las-vegas": [
+      {
+        "label": "City of Las Vegas",
+        "href": "https://www.lasvegasnevada.gov/"
+      },
+      {
+        "label": "Las Vegas parks",
+        "href": "https://www.lasvegasnevada.gov/Residents/Parks-Facilities"
+      },
+      {
+        "label": "Las Vegas events",
+        "href": "https://www.lasvegasnevada.gov/Events"
+      }
+    ],
+    "tucson": [
+      {
+        "label": "City of Tucson",
+        "href": "https://www.tucsonaz.gov/"
+      },
+      {
+        "label": "Tucson parks",
+        "href": "https://www.tucsonaz.gov/Departments/Parks-and-Recreation"
+      },
+      {
+        "label": "Tucson events",
+        "href": "https://www.tucsonaz.gov/Events"
+      }
+    ],
+    "oklahoma-city": [
+      {
+        "label": "City of Oklahoma City",
+        "href": "https://www.okc.gov/"
+      },
+      {
+        "label": "Oklahoma City parks",
+        "href": "https://www.okc.gov/parks"
+      },
+      {
+        "label": "Oklahoma City events",
+        "href": "https://www.okc.gov/events"
+      }
+    ],
+    "omaha": [
+      {
+        "label": "City of Omaha",
+        "href": "https://www.cityofomaha.org/"
+      },
+      {
+        "label": "Omaha parks",
+        "href": "https://parks.cityofomaha.org/"
+      },
+      {
+        "label": "Omaha events",
+        "href": "https://www.cityofomaha.org/calendar"
+      }
+    ],
+    "madison": [
+      {
+        "label": "City of Madison",
+        "href": "https://www.cityofmadison.com/"
+      },
+      {
+        "label": "Madison parks",
+        "href": "https://www.cityofmadison.com/parks"
+      },
+      {
+        "label": "Madison events",
+        "href": "https://www.cityofmadison.com/events"
+      }
+    ],
+    "houston": [
+      {
+        "label": "City of Houston",
+        "href": "https://www.houstontx.gov/"
+      },
+      {
+        "label": "Houston parks",
+        "href": "https://www.houstontx.gov/parks/"
+      },
+      {
+        "label": "Houston events",
+        "href": "https://www.houstontx.gov/events/"
+      }
+    ],
+    "kansas-city": [
+      {
+        "label": "City of Kansas City",
+        "href": "https://www.kcmo.gov/"
+      },
+      {
+        "label": "Kansas City parks",
+        "href": "https://www.kcmo.gov/city-hall/departments/parks-recreation"
+      },
+      {
+        "label": "Kansas City events",
+        "href": "https://www.kcmo.gov/community/events"
+      }
+    ],
+    "san-diego": [
+      {
+        "label": "City of San Diego",
+        "href": "https://www.sandiego.gov/"
+      },
+      {
+        "label": "San Diego parks",
+        "href": "https://www.sandiego.gov/park-and-recreation"
+      },
+      {
+        "label": "San Diego events",
+        "href": "https://www.sandiego.gov/events"
+      }
+    ],
     "cleveland": [
-      {"label":"City of Cleveland homepage","href":"https://www.clevelandohio.gov/"},
-      {"label":"Cleveland Metroparks","href":"https://www.clevelandmetroparks.com/"},
-      {"label":"Cleveland events and programs","href":"https://www.clevelandohio.gov/events"}
+      {
+        "label": "City of Cleveland homepage",
+        "href": "https://www.clevelandohio.gov/"
+      },
+      {
+        "label": "Cleveland Metroparks",
+        "href": "https://www.clevelandmetroparks.com/"
+      },
+      {
+        "label": "Cleveland events and programs",
+        "href": "https://www.clevelandohio.gov/events"
+      }
+    ],
+    "ann-arbor": [
+      {
+        "label": "City of Ann Arbor",
+        "href": "https://www.a2gov.org/"
+      },
+      {
+        "label": "Ann Arbor parks",
+        "href": "https://www.a2gov.org/departments/Parks-Recreation/Pages/default.aspx"
+      },
+      {
+        "label": "Ann Arbor events",
+        "href": "https://www.a2gov.org/news/pages/events.aspx"
+      }
+    ],
+    "newark": [
+      {
+        "label": "City of Newark",
+        "href": "https://www.newarknj.gov/"
+      },
+      {
+        "label": "Newark recreation",
+        "href": "https://www.newarknj.gov/government/city-departments/department-of-recreation-cultural-affairs"
+      },
+      {
+        "label": "Newark events",
+        "href": "https://www.newarknj.gov/calendar"
+      }
+    ],
+    "albuquerque": [
+      {
+        "label": "City of Albuquerque",
+        "href": "https://www.cabq.gov/"
+      },
+      {
+        "label": "Albuquerque parks",
+        "href": "https://www.cabq.gov/parksandrecreation"
+      },
+      {
+        "label": "Albuquerque events",
+        "href": "https://www.cabq.gov/events"
+      }
+    ],
+    "dallas-fort-worth": [
+      {
+        "label": "City of Dallas",
+        "href": "https://dallascityhall.com/"
+      },
+      {
+        "label": "Dallas parks",
+        "href": "https://www.dallasparks.org/"
+      },
+      {
+        "label": "Dallas events",
+        "href": "https://dallascityhall.com/government/Pages/events.aspx"
+      }
+    ],
+    "bay-area": [
+      {
+        "label": "San Francisco official homepage",
+        "href": "https://www.sf.gov/"
+      },
+      {
+        "label": "San Francisco Recreation and Parks",
+        "href": "https://sfrecpark.org/"
+      },
+      {
+        "label": "San Francisco events",
+        "href": "https://sf.gov/events"
+      }
     ]
   }
 }
