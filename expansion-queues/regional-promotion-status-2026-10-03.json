@@ -1,0 +1,189 @@
+{
+  "schemaVersion": 1,
+  "kind": "regional-promotion-status",
+  "generatedAt": "2026-10-03T21:38:00Z",
+  "publicationState": "published",
+  "summary": {
+    "trackedMarkets": 26,
+    "promotedMarkets": 18,
+    "blockedMarkets": 8,
+    "liveCatalogueAreas": 71,
+    "verifiedOutlinkAreas": 71
+  },
+  "promoted": [
+    {
+      "id": "jacksonville",
+      "name": "Jacksonville",
+      "status": "published",
+      "evidence": "Fresh cache-only batch manifest validation.valid=true; package copied into motherbird/regions and added to the service-worker shell."
+    },
+    {
+      "id": "tampa",
+      "name": "Tampa",
+      "status": "published",
+      "evidence": "Fresh cache-only batch manifest validation.valid=true; package copied into motherbird/regions and added to the service-worker shell."
+    },
+    {
+      "id": "orlando",
+      "name": "Orlando",
+      "status": "published",
+      "evidence": "Fresh cache-only batch manifest validation.valid=true; package copied into motherbird/regions and added to the service-worker shell."
+    },
+    {
+      "id": "memphis",
+      "name": "Memphis",
+      "status": "published",
+      "evidence": "Fresh cache-only batch manifest validation.valid=true; package copied into motherbird/regions and added to the service-worker shell."
+    },
+    {
+      "id": "louisville",
+      "name": "Louisville",
+      "status": "published",
+      "evidence": "Fresh cache-only batch manifest validation.valid=true; package copied into motherbird/regions and added to the service-worker shell."
+    },
+    {
+      "id": "cincinnati",
+      "name": "Cincinnati",
+      "status": "published",
+      "evidence": "Fresh cache-only batch manifest validation.valid=true; package copied into motherbird/regions and added to the service-worker shell."
+    },
+    {
+      "id": "buffalo",
+      "name": "Buffalo",
+      "status": "published",
+      "evidence": "Fresh cache-only batch manifest validation.valid=true; package copied into motherbird/regions and added to the service-worker shell."
+    },
+    {
+      "id": "sacramento",
+      "name": "Sacramento",
+      "status": "published",
+      "evidence": "Fresh cache-only batch manifest validation.valid=true; package copied into motherbird/regions and added to the service-worker shell."
+    },
+    {
+      "id": "baltimore",
+      "name": "Baltimore",
+      "status": "published",
+      "evidence": "Fresh cache-only batch manifest validation.valid=true; package copied into motherbird/regions and added to the service-worker shell."
+    },
+    {
+      "id": "columbus",
+      "name": "Columbus",
+      "status": "published",
+      "evidence": "Fresh cache-only batch manifest validation.valid=true; package copied into motherbird/regions and added to the service-worker shell."
+    },
+    {
+      "id": "pittsburgh",
+      "name": "Pittsburgh",
+      "status": "published",
+      "evidence": "Fresh cache-only batch manifest validation.valid=true; package copied into motherbird/regions and added to the service-worker shell."
+    },
+    {
+      "id": "richmond",
+      "name": "Richmond",
+      "status": "published",
+      "evidence": "Fresh cache-only batch manifest validation.valid=true; package copied into motherbird/regions and added to the service-worker shell."
+    },
+    {
+      "id": "boise",
+      "name": "Boise",
+      "status": "published",
+      "evidence": "Fresh cache-only batch manifest validation.valid=true; package copied into motherbird/regions and added to the service-worker shell."
+    },
+    {
+      "id": "new-orleans",
+      "name": "New Orleans",
+      "status": "published",
+      "evidence": "Fresh cache-only batch manifest validation.valid=true; package copied into motherbird/regions and added to the service-worker shell."
+    },
+    {
+      "id": "portland",
+      "name": "Portland",
+      "status": "published",
+      "evidence": "Fresh cache-only batch manifest validation.valid=true; package copied into motherbird/regions and added to the service-worker shell."
+    },
+    {
+      "id": "seattle",
+      "name": "Seattle",
+      "status": "published",
+      "evidence": "Fresh cache-only batch manifest validation.valid=true; package copied into motherbird/regions and added to the service-worker shell."
+    },
+    {
+      "id": "detroit",
+      "name": "Detroit",
+      "status": "published",
+      "evidence": "Fresh live OSM build passed validation with 745 POIs; package wired into Motherbird."
+    },
+    {
+      "id": "norfolk",
+      "name": "Norfolk",
+      "status": "published",
+      "evidence": "Fresh live OSM build passed validation with 345 POIs; package wired into Motherbird."
+    }
+  ],
+  "blocked": [
+    {
+      "id": "anchorage",
+      "name": "Anchorage",
+      "status": "blocked",
+      "stage": "native-poi-acquisition",
+      "evidence": "Cache-only OSM gate failed fast with no approved source succeeding.",
+      "nextAction": "Acquire a bounded OSM response for osm-anchorage, then rerun production validation."
+    },
+    {
+      "id": "corpus-christi",
+      "name": "Corpus Christi",
+      "status": "blocked",
+      "stage": "native-poi-acquisition",
+      "evidence": "Cache-only OSM gate failed fast with no approved source succeeding.",
+      "nextAction": "Acquire a bounded OSM response for osm-corpus-christi, then rerun production validation."
+    },
+    {
+      "id": "fort-worth",
+      "name": "Fort Worth",
+      "status": "blocked",
+      "stage": "native-poi-acquisition",
+      "evidence": "Cache-only OSM gate failed fast with no approved source succeeding.",
+      "nextAction": "Acquire a bounded OSM response for osm-fort-worth, then rerun production validation."
+    },
+    {
+      "id": "los-angeles",
+      "name": "Los Angeles",
+      "status": "blocked",
+      "stage": "native-poi-acquisition",
+      "evidence": "Cache-only OSM gate failed fast with no approved source succeeding.",
+      "nextAction": "Acquire a bounded OSM response for osm-los-angeles, then rerun production validation."
+    },
+    {
+      "id": "philadelphia",
+      "name": "Philadelphia",
+      "status": "blocked",
+      "stage": "native-poi-acquisition",
+      "evidence": "Cache-only OSM gate failed fast with no approved source succeeding.",
+      "nextAction": "Acquire a bounded OSM response for osm-philadelphia, then rerun production validation."
+    },
+    {
+      "id": "tempe",
+      "name": "Tempe",
+      "status": "blocked",
+      "stage": "native-poi-acquisition",
+      "evidence": "Cache-only OSM gate failed fast with no approved source succeeding.",
+      "nextAction": "Acquire a bounded OSM response for osm-tempe, then rerun production validation."
+    },
+    {
+      "id": "san-antonio",
+      "name": "San Antonio",
+      "status": "blocked",
+      "stage": "native-poi-acquisition",
+      "evidence": "Live bounded build terminated with no approved source succeeding.",
+      "nextAction": "Retry native OSM acquisition after a fresh Overpass/cache availability check."
+    },
+    {
+      "id": "san-jose",
+      "name": "San Jose",
+      "status": "blocked",
+      "stage": "native-poi-acquisition",
+      "evidence": "Live bounded build terminated with no approved source succeeding.",
+      "nextAction": "Retry native OSM acquisition after a fresh Overpass/cache availability check."
+    }
+  ]
+}
