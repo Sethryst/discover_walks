@@ -1,0 +1,174 @@
+{
+  "checksums": {
+    "pois.json": "sha256:9eccac56f3f54179557fe82f28b830c8945557b99e55f88c62b06eda55523524",
+    "source-scorecard.json": "sha256:cb32ebbf5bfc22d2c64b453eb8e608879b3b133211266d198d4125749f8b1d21",
+    "supplemental/canonical-records.json": "sha256:ae75fea3f9c6b7ae08970c01634f64006063883491453ff0340640428921152c",
+    "supplemental/dedup-groups.json": "sha256:9ea59c99da574feed34fc0617f3f7343d3539fd685ae46ef10fc729aac75a2b1",
+    "supplemental/osm-pois.json": "sha256:4a8aa2e484b7920baa2a684411d619fcdcbe241f6399efb7072db6fc92d4bfe0",
+    "supplemental/validation-report.json": "sha256:468c37620d1948f00850605b3f2b258f01f9dcdf6ab7fe14515d79ff1c982362",
+    "supplemental/weather.json": "sha256:dd26bce2521645bf606569c0a29421aee33f57d3c3fe311d5b4cde93c18f992a"
+  },
+  "generatedAt": "2026-10-03T20:43:53.032934Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "providence",
+  "regionId": "providence",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:43:53.032934Z",
+      "authorityTier": "federal_government",
+      "cachedAt": ".gremlin-cache\\providence\\usgs-water-locations\\2026-10-03T20-43-53.032934Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 499,
+      "emittedRecordCount": 499,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "usgs-water-locations",
+      "licenseUrl": "https://api.waterdata.usgs.gov/docs/",
+      "name": "USGS water monitoring locations",
+      "namedCount": 500,
+      "provider": "usgs_monitoring_locations",
+      "recordCount": 500,
+      "unnamedCount": 0,
+      "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:43:53.032934Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\providence\\ebird-walk-recent\\2026-10-03T20-43-53.032934Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 23,
+      "emittedRecordCount": 23,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "ebird-walk-recent",
+      "licenseUrl": "https://science.ebird.org/en/status-and-trends/products-access-terms-of-use",
+      "name": "eBird recent hotspot observations",
+      "namedCount": 23,
+      "provider": "ebird_recent",
+      "recordCount": 23,
+      "unnamedCount": 0,
+      "url": "https://api.ebird.org/v2/data/obs/geo/recent",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:43:53.032934Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\providence\\osm-providence-walk\\2026-10-03T20-43-53.032934Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 825,
+      "emittedRecordCount": 825,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "osm-providence-walk",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 1200,
+      "provider": "osm_overpass",
+      "recordCount": 1200,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:43:53.032934Z",
+      "authorityTier": "federal_government",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "nws-forecast",
+      "licenseUrl": "https://www.weather.gov/documentation/services-web-api",
+      "name": "National Weather Service forecast and alerts",
+      "namedCount": 0,
+      "provider": "nws",
+      "recordCount": 4,
+      "unnamedCount": 0,
+      "url": "https://api.weather.gov/",
+      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:43:53.032934Z",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "providence-civic",
+      "name": "Providence, Rhode Island civic events",
+      "namedCount": 0,
+      "provider": "civic_rss",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "configured civic provider",
+      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 1347
+    },
+    "valid": true
+  },
+  "warnings": [
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12178941182 merged into osm:node:12178941181; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:12178941181",
+        "osm:node:12178941182"
+      ],
+      "source": "osm-providence-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:164960090 merged into osm:node:2983468908; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:2983468908",
+        "osm:way:164960090"
+      ],
+      "source": "osm-providence-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:214860297 merged into osm:node:7634445655; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:7634445655",
+        "osm:way:214860297"
+      ],
+      "source": "osm-providence-walk"
+    }
+  ]
+}

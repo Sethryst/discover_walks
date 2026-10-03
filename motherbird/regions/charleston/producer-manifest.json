@@ -1,0 +1,291 @@
+{
+  "checksums": {
+    "pois.json": "sha256:084fe8b646716a2317725be24ee69abb0a7aa80653bc4fbc1ebbf9e49e466a68",
+    "source-scorecard.json": "sha256:04b062c540ce4ca6026f7576ed2d96bb2209b876a857147a324ad18b78b6cab4",
+    "supplemental/canonical-records.json": "sha256:6273142a79b50cf5a8bf49259074a503512fd96f9c2cd6cf6e17fa892dbade6e",
+    "supplemental/dedup-groups.json": "sha256:ffc4a26439ce8bf2a7e21de443345b46881c2f676eecfa09b212d6724efb1819",
+    "supplemental/osm-pois.json": "sha256:15b7ced6153bcee7f50a635f3751d1e2f16693c419e1e39931bee5e92afc3dac",
+    "supplemental/validation-report.json": "sha256:4240ae1f31b9a34deea81fc789aca14d5c62b4d101e7270667f42933a3c9ab4e",
+    "supplemental/weather.json": "sha256:9ba6b725e9ab1f2caf6619908aab48d45ea8799b1da35e74e9108cf54a270760"
+  },
+  "generatedAt": "2026-10-03T20:43:53.226938Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "charleston",
+  "regionId": "charleston",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:43:53.226938Z",
+      "authorityTier": "federal_government",
+      "cachedAt": ".gremlin-cache\\charleston\\usgs-water-locations\\2026-10-03T20-43-53.226938Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 500,
+      "emittedRecordCount": 500,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "usgs-water-locations",
+      "licenseUrl": "https://api.waterdata.usgs.gov/docs/",
+      "name": "USGS water monitoring locations",
+      "namedCount": 500,
+      "provider": "usgs_monitoring_locations",
+      "recordCount": 500,
+      "unnamedCount": 0,
+      "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:43:53.226938Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\charleston\\ebird-walk-recent\\2026-10-03T20-43-53.226938Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 26,
+      "emittedRecordCount": 26,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "ebird-walk-recent",
+      "licenseUrl": "https://science.ebird.org/en/status-and-trends/products-access-terms-of-use",
+      "name": "eBird recent hotspot observations",
+      "namedCount": 26,
+      "provider": "ebird_recent",
+      "recordCount": 26,
+      "unnamedCount": 0,
+      "url": "https://api.ebird.org/v2/data/obs/geo/recent",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:43:53.226938Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\charleston\\osm-charleston-walk\\2026-10-03T20-43-53.226938Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 1018,
+      "emittedRecordCount": 1018,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "osm-charleston-walk",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 1200,
+      "provider": "osm_overpass",
+      "recordCount": 1200,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:43:53.226938Z",
+      "authorityTier": "federal_government",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "nws-forecast",
+      "licenseUrl": "https://www.weather.gov/documentation/services-web-api",
+      "name": "National Weather Service forecast and alerts",
+      "namedCount": 0,
+      "provider": "nws",
+      "recordCount": 4,
+      "unnamedCount": 0,
+      "url": "https://api.weather.gov/",
+      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:43:53.226938Z",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "charleston-civic",
+      "name": "Charleston, South Carolina civic events",
+      "namedCount": 0,
+      "provider": "civic_rss",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "configured civic provider",
+      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 1544
+    },
+    "valid": true
+  },
+  "warnings": [
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12520802369 merged into osm:node:12520802368; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:12520802368",
+        "osm:node:12520802369"
+      ],
+      "source": "osm-charleston-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12520802394 merged into osm:node:12520802393; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:12520802393",
+        "osm:node:12520802394"
+      ],
+      "source": "osm-charleston-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12552961620 merged into osm:node:12552961619; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:12552961619",
+        "osm:node:12552961620"
+      ],
+      "source": "osm-charleston-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12554798236 merged into osm:node:12554798235; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:12554798235",
+        "osm:node:12554798236"
+      ],
+      "source": "osm-charleston-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12674245062 merged into osm:node:12554798231; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:12554798231",
+        "osm:node:12674245062"
+      ],
+      "source": "osm-charleston-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13120321908 merged into osm:node:13120321907; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:13120321907",
+        "osm:node:13120321908"
+      ],
+      "source": "osm-charleston-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13156034856 merged into osm:node:13156034855; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:13156034855",
+        "osm:node:13156034856"
+      ],
+      "source": "osm-charleston-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:110451218 merged into osm:node:1236539597; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:1236539597",
+        "osm:way:110451218"
+      ],
+      "source": "osm-charleston-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:263577250 merged into osm:way:263572749; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:way:263572749",
+        "osm:way:263577250"
+      ],
+      "source": "osm-charleston-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:445138782 merged into osm:way:445138776; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:way:445138776",
+        "osm:way:445138782"
+      ],
+      "source": "osm-charleston-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:445138816 merged into osm:way:445138815; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:way:445138815",
+        "osm:way:445138816"
+      ],
+      "source": "osm-charleston-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:445138850 merged into osm:way:445138848; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:way:445138848",
+        "osm:way:445138850"
+      ],
+      "source": "osm-charleston-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:445138885 merged into osm:way:445138848; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:way:445138848",
+        "osm:way:445138885"
+      ],
+      "source": "osm-charleston-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:445866514 merged into osm:way:445866507; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:way:445866507",
+        "osm:way:445866514"
+      ],
+      "source": "osm-charleston-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:446623028 merged into osm:way:446622965; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:way:446622965",
+        "osm:way:446623028"
+      ],
+      "source": "osm-charleston-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:922847938 merged into osm:way:922847937; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:way:922847937",
+        "osm:way:922847938"
+      ],
+      "source": "osm-charleston-walk"
+    }
+  ]
+}

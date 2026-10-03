@@ -1,0 +1,183 @@
+{
+  "checksums": {
+    "pois.json": "sha256:67c4a8b4b94b7e0f67f0a54509d1530036202d93470f5b23939f347f60a161f5",
+    "source-scorecard.json": "sha256:b20dc76ded549ccacb8cb6e9e99ea34c287a7f5ea2819767cc8e93d986eac777",
+    "supplemental/canonical-records.json": "sha256:74c98cb4a633a273826456828853ece58c9a141da634cf2588b624e7671f51ba",
+    "supplemental/dedup-groups.json": "sha256:f427ea9d2f29b020f26bc934167050661d84bc1d1bfbbd5e861a4f977e24988c",
+    "supplemental/osm-pois.json": "sha256:a7d4e57706c4123f9b89a9bc01eb81662ca6040d0e3c3b5e8d681e935288a960",
+    "supplemental/validation-report.json": "sha256:e034b0d9ae5262682c33c253e755d82f945f38185fdc6bb7cb1fc788d6b65e98",
+    "supplemental/weather.json": "sha256:46ca5efae3557e96cdd284fea8d0dad4f5c9dd063fbaa44ec6443605303ea493"
+  },
+  "generatedAt": "2026-10-03T20:43:53.400263Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "savannah",
+  "regionId": "savannah",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:43:53.400263Z",
+      "authorityTier": "federal_government",
+      "cachedAt": ".gremlin-cache\\savannah\\usgs-water-locations\\2026-10-03T20-43-53.400263Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 498,
+      "emittedRecordCount": 498,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "usgs-water-locations",
+      "licenseUrl": "https://api.waterdata.usgs.gov/docs/",
+      "name": "USGS water monitoring locations",
+      "namedCount": 500,
+      "provider": "usgs_monitoring_locations",
+      "recordCount": 500,
+      "unnamedCount": 0,
+      "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:43:53.400263Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\savannah\\ebird-walk-recent\\2026-10-03T20-43-53.400263Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 23,
+      "emittedRecordCount": 23,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "ebird-walk-recent",
+      "licenseUrl": "https://science.ebird.org/en/status-and-trends/products-access-terms-of-use",
+      "name": "eBird recent hotspot observations",
+      "namedCount": 23,
+      "provider": "ebird_recent",
+      "recordCount": 23,
+      "unnamedCount": 0,
+      "url": "https://api.ebird.org/v2/data/obs/geo/recent",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:43:53.400263Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\savannah\\osm-savannah-walk\\2026-10-03T20-43-53.400263Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 441,
+      "emittedRecordCount": 441,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "osm-savannah-walk",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 557,
+      "provider": "osm_overpass",
+      "recordCount": 557,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:43:53.400263Z",
+      "authorityTier": "federal_government",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "nws-forecast",
+      "licenseUrl": "https://www.weather.gov/documentation/services-web-api",
+      "name": "National Weather Service forecast and alerts",
+      "namedCount": 0,
+      "provider": "nws",
+      "recordCount": 4,
+      "unnamedCount": 0,
+      "url": "https://api.weather.gov/",
+      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:43:53.400263Z",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "savannah-civic",
+      "name": "Savannah, Georgia civic events",
+      "namedCount": 0,
+      "provider": "civic_rss",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "configured civic provider",
+      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 962
+    },
+    "valid": true
+  },
+  "warnings": [
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1232493764 merged into osm:node:11432701637; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:11432701637",
+        "osm:way:1232493764"
+      ],
+      "source": "osm-savannah-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1289710984 merged into osm:node:8267305258; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:8267305258",
+        "osm:way:1289710984"
+      ],
+      "source": "osm-savannah-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:635991149 merged into osm:way:394525351; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:way:394525351",
+        "osm:way:635991149"
+      ],
+      "source": "osm-savannah-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:899964145 merged into osm:way:1428312046; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:way:1428312046",
+        "osm:way:899964145"
+      ],
+      "source": "osm-savannah-walk"
+    }
+  ]
+}
