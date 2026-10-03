@@ -1,0 +1,192 @@
+{
+  "checksums": {
+    "pois.json": "sha256:16aaa4f4a9ccddf1eedc646c052af20cdf373f4affdc2c56d446e80736863a0f",
+    "source-scorecard.json": "sha256:6ef535cf3c4977003092bc5f6d1652fbc843e7bc3b38eefbff7c286eb7c74d6e",
+    "supplemental/canonical-records.json": "sha256:9418ca285f39e5d2c9107bee735b7fd00e0ff3e62b354965b45a943e407d4a44",
+    "supplemental/dedup-groups.json": "sha256:6403179f841186fef387908887b6c30842bcca6fcafef309434e27498e08ebda",
+    "supplemental/osm-pois.json": "sha256:67f117f0c542b36651dd52798351863ae7e0cccfa1a3e23afd268a6e8f976b14",
+    "supplemental/validation-report.json": "sha256:30a805404fd1d3243845ab8f81c3eb9149b58310c012dc0c50bf853caa94a9fe",
+    "supplemental/weather.json": "sha256:1ff061600ae5a3e903ba0c254b50c7c161c61b91f300e40824b98fadfbb50b57"
+  },
+  "generatedAt": "2026-10-03T20:41:13.790822Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "omaha",
+  "regionId": "omaha",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:41:13.790822Z",
+      "authorityTier": "federal_government",
+      "cachedAt": ".gremlin-cache\\omaha\\usgs-water-locations\\2026-10-03T20-41-13.790822Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 414,
+      "emittedRecordCount": 414,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "usgs-water-locations",
+      "licenseUrl": "https://api.waterdata.usgs.gov/docs/",
+      "name": "USGS water monitoring locations",
+      "namedCount": 414,
+      "provider": "usgs_monitoring_locations",
+      "recordCount": 414,
+      "unnamedCount": 0,
+      "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:41:13.790822Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\omaha\\ebird-walk-recent\\2026-10-03T20-41-13.790822Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 23,
+      "emittedRecordCount": 23,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "ebird-walk-recent",
+      "licenseUrl": "https://science.ebird.org/en/status-and-trends/products-access-terms-of-use",
+      "name": "eBird recent hotspot observations",
+      "namedCount": 23,
+      "provider": "ebird_recent",
+      "recordCount": 23,
+      "unnamedCount": 0,
+      "url": "https://api.ebird.org/v2/data/obs/geo/recent",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:41:13.790822Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\omaha\\osm-omaha-walk\\2026-10-03T20-41-13.790822Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 798,
+      "emittedRecordCount": 798,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "osm-omaha-walk",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 1200,
+      "provider": "osm_overpass",
+      "recordCount": 1200,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:41:13.790822Z",
+      "authorityTier": "federal_government",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "nws-forecast",
+      "licenseUrl": "https://www.weather.gov/documentation/services-web-api",
+      "name": "National Weather Service forecast and alerts",
+      "namedCount": 0,
+      "provider": "nws",
+      "recordCount": 4,
+      "unnamedCount": 0,
+      "url": "https://api.weather.gov/",
+      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:41:13.790822Z",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "omaha-civic",
+      "name": "Omaha, Nebraska civic events",
+      "namedCount": 0,
+      "provider": "civic_rss",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "configured civic provider",
+      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 1235
+    },
+    "valid": true
+  },
+  "warnings": [
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:179232075 merged into osm:node:12374618860; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:12374618860",
+        "osm:way:179232075"
+      ],
+      "source": "osm-omaha-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:185915433 merged into osm:node:12075873799; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:12075873799",
+        "osm:way:185915433"
+      ],
+      "source": "osm-omaha-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:185915448 merged into osm:node:12075873740; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:12075873740",
+        "osm:way:185915448"
+      ],
+      "source": "osm-omaha-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:185938462 merged into osm:node:12075873931; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:12075873931",
+        "osm:way:185938462"
+      ],
+      "source": "osm-omaha-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:562604149 merged into osm:node:12075873933; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:12075873933",
+        "osm:way:562604149"
+      ],
+      "source": "osm-omaha-walk"
+    }
+  ]
+}

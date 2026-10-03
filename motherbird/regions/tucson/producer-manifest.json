@@ -1,0 +1,156 @@
+{
+  "checksums": {
+    "pois.json": "sha256:ae14f202ec57cc21d1a8d8ec46e841ed5103c56671b41cba8412c811a5dc072e",
+    "source-scorecard.json": "sha256:6434497398187ce0f19f4f6d3dd0046abe4386b4fae2fe73ed1a1fd5dfe65c05",
+    "supplemental/canonical-records.json": "sha256:054088664e64108bdf022d1e8661fa943e28114b7eeb20916322d562984223d6",
+    "supplemental/dedup-groups.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "supplemental/osm-pois.json": "sha256:7bd3431021ef15c8593be12ba32c880737913ee34d5c9b48c0d8043c8b694dbf",
+    "supplemental/validation-report.json": "sha256:5f9c645d6a82e200243596896b5fa925c8cdb21efa78d43682f3f38de626093b",
+    "supplemental/weather.json": "sha256:89c8465dd88eb4db627ef820297b614d9c7d428d731e8282bd89ef1216b725ad"
+  },
+  "generatedAt": "2026-10-03T20:41:13.383878Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "tucson",
+  "regionId": "tucson",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:41:13.383878Z",
+      "authorityTier": "federal_government",
+      "cachedAt": ".gremlin-cache\\tucson\\usgs-water-locations\\2026-10-03T20-41-13.383878Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 500,
+      "emittedRecordCount": 500,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "usgs-water-locations",
+      "licenseUrl": "https://api.waterdata.usgs.gov/docs/",
+      "name": "USGS water monitoring locations",
+      "namedCount": 500,
+      "provider": "usgs_monitoring_locations",
+      "recordCount": 500,
+      "unnamedCount": 0,
+      "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:41:13.383878Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\tucson\\ebird-walk-recent\\2026-10-03T20-41-13.383878Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 35,
+      "emittedRecordCount": 35,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "ebird-walk-recent",
+      "licenseUrl": "https://science.ebird.org/en/status-and-trends/products-access-terms-of-use",
+      "name": "eBird recent hotspot observations",
+      "namedCount": 35,
+      "provider": "ebird_recent",
+      "recordCount": 35,
+      "unnamedCount": 0,
+      "url": "https://api.ebird.org/v2/data/obs/geo/recent",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:41:13.383878Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\tucson\\osm-tucson-walk\\2026-10-03T20-41-13.383878Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 659,
+      "emittedRecordCount": 659,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "osm-tucson-walk",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 1200,
+      "provider": "osm_overpass",
+      "recordCount": 1200,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:41:13.383878Z",
+      "authorityTier": "federal_government",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "nws-forecast",
+      "licenseUrl": "https://www.weather.gov/documentation/services-web-api",
+      "name": "National Weather Service forecast and alerts",
+      "namedCount": 0,
+      "provider": "nws",
+      "recordCount": 4,
+      "unnamedCount": 0,
+      "url": "https://api.weather.gov/",
+      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:41:13.383878Z",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "tucson-civic",
+      "name": "Tucson, Arizona civic events",
+      "namedCount": 0,
+      "provider": "civic_rss",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "configured civic provider",
+      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 1194
+    },
+    "valid": true
+  },
+  "warnings": [
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:442484143 merged into osm:way:34685977; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:way:34685977",
+        "osm:way:442484143"
+      ],
+      "source": "osm-tucson-walk"
+    }
+  ]
+}

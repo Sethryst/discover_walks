@@ -1,0 +1,150 @@
+{
+  "conflictWinner": null,
+  "generatedAt": "2026-10-03T20:41:13.625454Z",
+  "packageKind": "region",
+  "regionId": "oklahoma-city",
+  "schemaVersion": 1,
+  "skippedThisPass": [
+    "GTFS, walk-to-transit routing, and schedules",
+    "Pedestrian crossings, curb ramps, and sidewalk connectivity graph",
+    "NOVA Parks HTML alert scraping and W&OD town gazetteer",
+    "USGS flood/condition engine and NWS CAP trail intersections",
+    "Automatic walk candidates, POI-to-trail graph, record-level provenance store, and publisher refactors",
+    "DCR and 2013 NVRPA geometry as load-bearing sources",
+    "New provider adapters other than durable eBird hotspots"
+  ],
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "dataClass": "durable",
+      "emittedNamedCount": 498,
+      "emittedRecordCount": 498,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "usgs-water-locations",
+      "name": "USGS water monitoring locations",
+      "namedCount": 500,
+      "provider": "usgs_monitoring_locations",
+      "recordCount": 500,
+      "unnamedCount": 0,
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "dataClass": "durable",
+      "emittedNamedCount": 18,
+      "emittedRecordCount": 18,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "ebird-walk-recent",
+      "name": "eBird recent hotspot observations",
+      "namedCount": 18,
+      "provider": "ebird_recent",
+      "recordCount": 18,
+      "unnamedCount": 0,
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "dataClass": "durable",
+      "emittedNamedCount": 632,
+      "emittedRecordCount": 632,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "osm-oklahoma-city-walk",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 1200,
+      "provider": "osm_overpass",
+      "recordCount": 1200,
+      "unnamedCount": 0,
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "nws-forecast",
+      "name": "National Weather Service forecast and alerts",
+      "namedCount": 0,
+      "provider": "nws",
+      "recordCount": 4,
+      "unnamedCount": 0,
+      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "oklahoma-city-civic",
+      "name": "Oklahoma City, Oklahoma civic events",
+      "namedCount": 0,
+      "provider": "civic_rss",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
+    }
+  ],
+  "swallowedTowns": [],
+  "walkCreationReadiness": {
+    "acquiredDataUsefulPercent": 66.8,
+    "canSupportTrailToHistoryParkWildlifeCommunitySequence": false,
+    "canonicalWod": {
+      "present": false,
+      "recordId": null,
+      "sourceSegmentCount": 0
+    },
+    "geographicDensity": "Not scored in this pass; no POI-to-trail graph or candidate generator was added.",
+    "journeys": {
+      "featuredWalkCount": 0,
+      "status": "pending_editorial_build"
+    },
+    "plausibleWalkAnchors": 503,
+    "smallestNextFeature": "Add more editorial Journeys, then consider a tiny POI-within-N-meters-of-trail sidecar if Journey authoring shows a repeated need.",
+    "stillMissing": [
+      "Verified entrances rather than some park centroids",
+      "Consistent drinking-water coverage",
+      "NPS Great Falls rows currently return null geometry; A1/4 supplies the named Great Falls trail lines used by this build",
+      "Huntley Meadows has strong wildlife and amenity anchors, but no named official line survived TRAIL_NAME validation for an initial Journey",
+      "More curated Journeys after the first featured set"
+    ],
+    "trailGeometryTypes": [],
+    "trailLinearRecords": 0,
+    "walkUsefulCategories": {
+      "coffee": 108,
+      "community": 15,
+      "history": 53,
+      "nature": 39,
+      "park": 417,
+      "water": 498,
+      "wildlife": 18
+    },
+    "walkUsefulPublicRecords": 1148,
+    "walkerVisibleGain": "Mother Bird can offer named official parks, trails, wildlife places, history, libraries, community facilities, and access amenities as the material for curated Fairfax walks.",
+    "wildlifeDestinationSources": [
+      "ebird-walk-recent"
+    ]
+  }
+}
