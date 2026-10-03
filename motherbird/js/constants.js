@@ -198,6 +198,16 @@
   'portland-maine': { name: 'Portland', state: 'ME', center: { lat: 43.675, lng: -70.245 }, zoom: 11, dataFile: './regions/portland-maine/pois.json', civicFile: './regions/portland-maine/civic/index.json' },
   'san-francisco': { name: 'San Francisco', state: 'CA', center: { lat: 37.77, lng: -122.435 }, zoom: 11, dataFile: './regions/san-francisco/pois.json', civicFile: './regions/san-francisco/civic/index.json' },
   'santa-fe': { name: 'Santa Fe', state: 'NM', center: { lat: 35.665, lng: -105.96 }, zoom: 11, dataFile: './regions/santa-fe/pois.json', civicFile: './regions/santa-fe/civic/index.json' },
+  austin: { name: 'Austin', state: 'TX', center: { lat: 30.2672, lng: -97.7431 }, zoom: 11, dataFile: './regions/austin/pois.json' },
+  atlanta: { name: 'Atlanta', state: 'GA', center: { lat: 33.7490, lng: -84.3880 }, zoom: 11, dataFile: './regions/atlanta/pois.json' },
+  charlotte: { name: 'Charlotte', state: 'NC', center: { lat: 35.2271, lng: -80.8431 }, zoom: 11, dataFile: './regions/charlotte/pois.json' },
+  minneapolis: { name: 'Minneapolis–Saint Paul', state: 'MN', center: { lat: 44.9778, lng: -93.2650 }, zoom: 10, dataFile: './regions/minneapolis/pois.json' },
+  nashville: { name: 'Nashville', state: 'TN', center: { lat: 36.1627, lng: -86.7816 }, zoom: 11, dataFile: './regions/nashville/pois.json' },
+  phoenix: { name: 'Phoenix', state: 'AZ', center: { lat: 33.4484, lng: -112.0740 }, zoom: 10, dataFile: './regions/phoenix/pois.json' },
+  'salt-lake-city': { name: 'Salt Lake City', state: 'UT', center: { lat: 40.7608, lng: -111.8910 }, zoom: 11, dataFile: './regions/salt-lake-city/pois.json' },
+  'raleigh-durham': { name: 'Raleigh–Durham', state: 'NC', center: { lat: 35.7796, lng: -78.6382 }, zoom: 10, dataFile: './regions/raleigh-durham/pois.json' },
+  milwaukee: { name: 'Milwaukee', state: 'WI', center: { lat: 43.0389, lng: -87.9065 }, zoom: 11, dataFile: './regions/milwaukee/pois.json' },
+  'st-louis': { name: 'St. Louis', state: 'MO', center: { lat: 38.6270, lng: -90.1994 }, zoom: 11, dataFile: './regions/st-louis/pois.json' },
   cleveland: {
     name: 'Cleveland', state: 'OH', center: { lat: 41.4993, lng: -81.6944 }, zoom: 11,
     dataFile: './regions/cleveland/pois.json'

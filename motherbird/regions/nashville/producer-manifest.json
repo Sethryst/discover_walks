@@ -1,0 +1,210 @@
+{
+  "checksums": {
+    "pois.json": "sha256:b7ea09eb94e1dc2ebbd0e3a2d588c037f901b34239227f9acaefcd4b25b2b9ad",
+    "source-scorecard.json": "sha256:a57a7d6af55639dff0ff91d09ac638d16954547276aa19d56167aee7cc11c7cd",
+    "supplemental/canonical-records.json": "sha256:92bc260ffdf92b6ddf30bd133e42a571faa84cd56e15a060439490341cac1238",
+    "supplemental/dedup-groups.json": "sha256:26745c92d331aee2065385cc95a5624c6710fa5c74842355541a7e92312dabdb",
+    "supplemental/osm-pois.json": "sha256:a1c66e587c2c2fbb1bfad4e65a2c9231d9a5830efc3e155c929ed503f1c5d926",
+    "supplemental/validation-report.json": "sha256:f47fa982a68dbf29c47357ade9320f79aac65057d3ddcc8d9fd1b5abbe8a7fce",
+    "supplemental/weather.json": "sha256:d6d23fae6ec325672416061b4507e426b52dfce3af3f36f150510e1f2811af36"
+  },
+  "generatedAt": "2026-10-03T20:24:40.905032Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "nashville",
+  "regionId": "nashville",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:24:40.905032Z",
+      "authorityTier": "federal_government",
+      "cachedAt": ".gremlin-cache\\nashville\\usgs-water-locations\\2026-10-03T20-24-40.905032Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 388,
+      "emittedRecordCount": 388,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "usgs-water-locations",
+      "licenseUrl": "https://api.waterdata.usgs.gov/docs/",
+      "name": "USGS water monitoring locations",
+      "namedCount": 388,
+      "provider": "usgs_monitoring_locations",
+      "recordCount": 388,
+      "unnamedCount": 0,
+      "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:24:40.905032Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\nashville\\ebird-walk-recent\\2026-10-03T20-24-40.905032Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 17,
+      "emittedRecordCount": 17,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "ebird-walk-recent",
+      "licenseUrl": "https://science.ebird.org/en/status-and-trends/products-access-terms-of-use",
+      "name": "eBird recent hotspot observations",
+      "namedCount": 17,
+      "provider": "ebird_recent",
+      "recordCount": 17,
+      "unnamedCount": 0,
+      "url": "https://api.ebird.org/v2/data/obs/geo/recent",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:24:40.905032Z",
+      "authorityTier": "city_government",
+      "cachedAt": ".gremlin-cache\\nashville\\local-open-data\\2026-10-03T20-24-40.905032Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "LineString",
+        "MultiLineString",
+        "MultiPolygon",
+        "Point",
+        "Polygon"
+      ],
+      "geometryTypesSurvived": [],
+      "id": "local-open-data",
+      "licenseUrl": "local://OpenData",
+      "name": "Local municipal OpenData capture — Nashville",
+      "namedCount": 172,
+      "provider": "local_open_data",
+      "recordCount": 2688,
+      "unnamedCount": 2516,
+      "url": "C:\\Users\\igmro\\OneDrive\\Documents\\gremlin_lab\\OpenData\\Tennessee\\Nashville",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:24:40.905032Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\nashville\\osm-nashville-walk\\2026-10-03T20-24-40.905032Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 648,
+      "emittedRecordCount": 648,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "osm-nashville-walk",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 1068,
+      "provider": "osm_overpass",
+      "recordCount": 1068,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:24:40.905032Z",
+      "authorityTier": "federal_government",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "nws-forecast",
+      "licenseUrl": "https://www.weather.gov/documentation/services-web-api",
+      "name": "National Weather Service forecast and alerts",
+      "namedCount": 0,
+      "provider": "nws",
+      "recordCount": 4,
+      "unnamedCount": 0,
+      "url": "https://api.weather.gov/",
+      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:24:40.905032Z",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "nashville-civic",
+      "name": "Nashville, Tennessee civic events",
+      "namedCount": 0,
+      "provider": "civic_rss",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "configured civic provider",
+      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 1053
+    },
+    "valid": true
+  },
+  "warnings": [
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:9900936 merged into osm:node:356878721; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:356878721",
+        "osm:relation:9900936"
+      ],
+      "source": "osm-nashville-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1097928401 merged into osm:node:10053283186; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:10053283186",
+        "osm:way:1097928401"
+      ],
+      "source": "osm-nashville-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:520049608 merged into osm:way:454084729; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:way:454084729",
+        "osm:way:520049608"
+      ],
+      "source": "osm-nashville-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:544575766 merged into osm:node:10778706044; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:10778706044",
+        "osm:way:544575766"
+      ],
+      "source": "osm-nashville-walk"
+    }
+  ]
+}

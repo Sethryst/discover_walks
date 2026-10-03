@@ -1,0 +1,174 @@
+{
+  "checksums": {
+    "pois.json": "sha256:c92a3663080a078362c7fba05ecd09b4df0befade7222b77cb58142f898ea962",
+    "source-scorecard.json": "sha256:ab0af19b44fe8d80f015560f4623ef4837f024ebd8877009238b97190128dd08",
+    "supplemental/canonical-records.json": "sha256:92e8479df8ead424bc044b1a721fed650904ac940691d793993f2d6057bc8d17",
+    "supplemental/dedup-groups.json": "sha256:6bb318c38c0d9626c37606be25dcbf3474ed38ef7018359282c7b9d6fffe8de7",
+    "supplemental/osm-pois.json": "sha256:a86085fc85d9beb2c8f32f3143add92398abb9565c131e202fd2b293f7052056",
+    "supplemental/validation-report.json": "sha256:36b233a70074467d833100fce6451bc4f84348a53dab81f7979ba7ec12f0d4f7",
+    "supplemental/weather.json": "sha256:33c988a39a12cffffa5a410af84508a7fa7be73ecf4c07f3151b3a0830e1a2f3"
+  },
+  "generatedAt": "2026-10-03T20:27:47.984711Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "phoenix",
+  "regionId": "phoenix",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:27:47.984711Z",
+      "authorityTier": "federal_government",
+      "cachedAt": ".gremlin-cache\\phoenix\\usgs-water-locations\\2026-10-03T20-27-47.984711Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 500,
+      "emittedRecordCount": 500,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "usgs-water-locations",
+      "licenseUrl": "https://api.waterdata.usgs.gov/docs/",
+      "name": "USGS water monitoring locations",
+      "namedCount": 500,
+      "provider": "usgs_monitoring_locations",
+      "recordCount": 500,
+      "unnamedCount": 0,
+      "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:27:47.984711Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\phoenix\\ebird-walk-recent\\2026-10-03T20-27-47.984711Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 29,
+      "emittedRecordCount": 29,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "ebird-walk-recent",
+      "licenseUrl": "https://science.ebird.org/en/status-and-trends/products-access-terms-of-use",
+      "name": "eBird recent hotspot observations",
+      "namedCount": 29,
+      "provider": "ebird_recent",
+      "recordCount": 29,
+      "unnamedCount": 0,
+      "url": "https://api.ebird.org/v2/data/obs/geo/recent",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:27:47.984711Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\phoenix\\osm-phoenix-walk\\2026-10-03T20-27-47.984711Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 936,
+      "emittedRecordCount": 936,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "osm-phoenix-walk",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 1200,
+      "provider": "osm_overpass",
+      "recordCount": 1200,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:27:47.984711Z",
+      "authorityTier": "federal_government",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "nws-forecast",
+      "licenseUrl": "https://www.weather.gov/documentation/services-web-api",
+      "name": "National Weather Service forecast and alerts",
+      "namedCount": 0,
+      "provider": "nws",
+      "recordCount": 4,
+      "unnamedCount": 0,
+      "url": "https://api.weather.gov/",
+      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:27:47.984711Z",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "phoenix-civic",
+      "name": "Phoenix, Arizona civic events",
+      "namedCount": 0,
+      "provider": "civic_rss",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "configured civic provider",
+      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 1465
+    },
+    "valid": true
+  },
+  "warnings": [
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10754692491 merged into osm:node:10747230130; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:10747230130",
+        "osm:node:10754692491"
+      ],
+      "source": "osm-phoenix-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5474816437 merged into osm:node:12431891857; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:12431891857",
+        "osm:node:5474816437"
+      ],
+      "source": "osm-phoenix-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5474816438 merged into osm:node:12431891856; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:12431891856",
+        "osm:node:5474816438"
+      ],
+      "source": "osm-phoenix-walk"
+    }
+  ]
+}

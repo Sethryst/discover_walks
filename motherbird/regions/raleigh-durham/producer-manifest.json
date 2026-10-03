@@ -1,0 +1,148 @@
+{
+  "checksums": {
+    "pois.json": "sha256:349fcc84389ec04a948f4c028acaae16014a63b74c49f97f88f87cd5954bf1dc",
+    "source-scorecard.json": "sha256:b00833b980b93b8a4805c5871daec749aec7b8e40bd9d310a9258a1913df7f66",
+    "supplemental/canonical-records.json": "sha256:9c5945c2a0fbdcac0c08ff39b4268a0cf6c4734bd5fd702112e09f4d71210b43",
+    "supplemental/dedup-groups.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "supplemental/osm-pois.json": "sha256:5d39d7002d2d300bc31184c12d4db1c93579071dc29febde0a6ee26f71d2e8a3",
+    "supplemental/validation-report.json": "sha256:1244020577e40529bfaa6771e6395603a8ca7c7a2906ab4ed86a79666eaf995e",
+    "supplemental/weather.json": "sha256:d2a1e1e10438a218c77a6b5da988a91be9344ffc17aabaa1b4ce7046f1452882"
+  },
+  "generatedAt": "2026-10-03T20:27:48.316164Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "raleigh-durham",
+  "regionId": "raleigh-durham",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:27:48.316164Z",
+      "authorityTier": "federal_government",
+      "cachedAt": ".gremlin-cache\\raleigh-durham\\usgs-water-locations\\2026-10-03T20-27-48.316164Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 500,
+      "emittedRecordCount": 500,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "usgs-water-locations",
+      "licenseUrl": "https://api.waterdata.usgs.gov/docs/",
+      "name": "USGS water monitoring locations",
+      "namedCount": 500,
+      "provider": "usgs_monitoring_locations",
+      "recordCount": 500,
+      "unnamedCount": 0,
+      "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:27:48.316164Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\raleigh-durham\\ebird-walk-recent\\2026-10-03T20-27-48.316164Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 35,
+      "emittedRecordCount": 35,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "ebird-walk-recent",
+      "licenseUrl": "https://science.ebird.org/en/status-and-trends/products-access-terms-of-use",
+      "name": "eBird recent hotspot observations",
+      "namedCount": 35,
+      "provider": "ebird_recent",
+      "recordCount": 35,
+      "unnamedCount": 0,
+      "url": "https://api.ebird.org/v2/data/obs/geo/recent",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "source_unavailable",
+      "acquiredAt": "2026-10-03T20:27:48.316164Z",
+      "authorityTier": "community",
+      "dataClass": "durable",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "error": "OSM acquisition failed for osm-raleigh-durham-walk: HTTP Error 429: Too Many Requests",
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "osm-raleigh-durham-walk",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 0,
+      "provider": "osm_overpass",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:27:48.316164Z",
+      "authorityTier": "federal_government",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "nws-forecast",
+      "licenseUrl": "https://www.weather.gov/documentation/services-web-api",
+      "name": "National Weather Service forecast and alerts",
+      "namedCount": 0,
+      "provider": "nws",
+      "recordCount": 4,
+      "unnamedCount": 0,
+      "url": "https://api.weather.gov/",
+      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:27:48.316164Z",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "raleigh-durham-civic",
+      "name": "Raleigh–Durham, North Carolina civic events",
+      "namedCount": 0,
+      "provider": "civic_rss",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "configured civic provider",
+      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 535
+    },
+    "valid": true
+  },
+  "warnings": [
+    {
+      "code": "source_unavailable",
+      "detail": "OSM acquisition failed for osm-raleigh-durham-walk: HTTP Error 429: Too Many Requests",
+      "source": "osm-raleigh-durham-walk"
+    }
+  ]
+}

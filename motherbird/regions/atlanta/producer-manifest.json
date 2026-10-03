@@ -1,0 +1,174 @@
+{
+  "checksums": {
+    "pois.json": "sha256:640d0455c4089e5a5adb122c56916306bc4380d057568f3a64c65f8a7a6cf6af",
+    "source-scorecard.json": "sha256:ea381bc3acc771f23106e9c4d2fa7ec774dae2d0108c67a3f8a05e5623af6c6e",
+    "supplemental/canonical-records.json": "sha256:5b12d26965ddd8028ac36267b74ee0553425ef6c995c78ac7e3ed211ee5fd419",
+    "supplemental/dedup-groups.json": "sha256:30c4db1f0b5f58b9ed3ba21abbbea8d11b8ec5fee824fa54424705ac5eb800c5",
+    "supplemental/osm-pois.json": "sha256:6c32301a36b833750bef91db0bc914b5e8a670b20223e1dd516d8bd9c4eded11",
+    "supplemental/validation-report.json": "sha256:d41c33e22f630d13180beb0f96339b99a88057659ab71b52c22a48cd61e18824",
+    "supplemental/weather.json": "sha256:0e3f63fa203d888b5e091f987300b622ce885ecc28056e5923ae7be871bf5a74"
+  },
+  "generatedAt": "2026-10-03T20:24:40.349548Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "atlanta",
+  "regionId": "atlanta",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:24:40.349548Z",
+      "authorityTier": "federal_government",
+      "cachedAt": ".gremlin-cache\\atlanta\\usgs-water-locations\\2026-10-03T20-24-40.349548Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 500,
+      "emittedRecordCount": 500,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "usgs-water-locations",
+      "licenseUrl": "https://api.waterdata.usgs.gov/docs/",
+      "name": "USGS water monitoring locations",
+      "namedCount": 500,
+      "provider": "usgs_monitoring_locations",
+      "recordCount": 500,
+      "unnamedCount": 0,
+      "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:24:40.349548Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\atlanta\\ebird-walk-recent\\2026-10-03T20-24-40.349548Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 24,
+      "emittedRecordCount": 24,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "ebird-walk-recent",
+      "licenseUrl": "https://science.ebird.org/en/status-and-trends/products-access-terms-of-use",
+      "name": "eBird recent hotspot observations",
+      "namedCount": 24,
+      "provider": "ebird_recent",
+      "recordCount": 24,
+      "unnamedCount": 0,
+      "url": "https://api.ebird.org/v2/data/obs/geo/recent",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:24:40.349548Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\atlanta\\osm-atlanta-walk\\2026-10-03T20-24-40.349548Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 1018,
+      "emittedRecordCount": 1018,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "osm-atlanta-walk",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 1200,
+      "provider": "osm_overpass",
+      "recordCount": 1200,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:24:40.349548Z",
+      "authorityTier": "federal_government",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "nws-forecast",
+      "licenseUrl": "https://www.weather.gov/documentation/services-web-api",
+      "name": "National Weather Service forecast and alerts",
+      "namedCount": 0,
+      "provider": "nws",
+      "recordCount": 4,
+      "unnamedCount": 0,
+      "url": "https://api.weather.gov/",
+      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:24:40.349548Z",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "atlanta-civic",
+      "name": "Atlanta, Georgia civic events",
+      "namedCount": 0,
+      "provider": "civic_rss",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "configured civic provider",
+      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 1542
+    },
+    "valid": true
+  },
+  "warnings": [
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13713794085 merged into osm:node:13709907886; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:13709907886",
+        "osm:node:13713794085"
+      ],
+      "source": "osm-atlanta-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:14180568601 merged into osm:node:11294843569; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:11294843569",
+        "osm:node:14180568601"
+      ],
+      "source": "osm-atlanta-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:34775471 merged into osm:node:358782555; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:358782555",
+        "osm:way:34775471"
+      ],
+      "source": "osm-atlanta-walk"
+    }
+  ]
+}

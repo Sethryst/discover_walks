@@ -1,0 +1,146 @@
+{
+  "checksums": {
+    "pois.json": "sha256:13040340ab1bdd33d03d6c32ea760b26ccdc17068db9b7ed355b66d50299803e",
+    "source-scorecard.json": "sha256:4d854b696b752d6f511578b53ba8c420114883f2bbbf0f677a441ec31f4632a6",
+    "supplemental/canonical-records.json": "sha256:0d832e79821c6f18cb4c7962595406476ca0ea4c226343fe691d475d0f76e534",
+    "supplemental/dedup-groups.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "supplemental/osm-pois.json": "sha256:1ebc658d8dc168bd2942aa99e27faac06b06771eaa3a08df05a49dc3d9bf63fb",
+    "supplemental/validation-report.json": "sha256:d4657ff44a59b95ac12e53cdd38e8ade20777d3ba95f6baa0f7966c5727eb055",
+    "supplemental/weather.json": "sha256:0be3a524f483b3a6ef0b421fef270cdf5e00bc90fb0457f035218ab08cd37c0d"
+  },
+  "generatedAt": "2026-10-03T20:27:48.136293Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "salt-lake-city",
+  "regionId": "salt-lake-city",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:27:48.136293Z",
+      "authorityTier": "federal_government",
+      "cachedAt": ".gremlin-cache\\salt-lake-city\\usgs-water-locations\\2026-10-03T20-27-48.136293Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 500,
+      "emittedRecordCount": 500,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "usgs-water-locations",
+      "licenseUrl": "https://api.waterdata.usgs.gov/docs/",
+      "name": "USGS water monitoring locations",
+      "namedCount": 500,
+      "provider": "usgs_monitoring_locations",
+      "recordCount": 500,
+      "unnamedCount": 0,
+      "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:27:48.136293Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\salt-lake-city\\ebird-walk-recent\\2026-10-03T20-27-48.136293Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 36,
+      "emittedRecordCount": 36,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "ebird-walk-recent",
+      "licenseUrl": "https://science.ebird.org/en/status-and-trends/products-access-terms-of-use",
+      "name": "eBird recent hotspot observations",
+      "namedCount": 36,
+      "provider": "ebird_recent",
+      "recordCount": 36,
+      "unnamedCount": 0,
+      "url": "https://api.ebird.org/v2/data/obs/geo/recent",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:27:48.136293Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\salt-lake-city\\osm-salt-lake-city-walk\\2026-10-03T20-27-48.136293Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 860,
+      "emittedRecordCount": 860,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "osm-salt-lake-city-walk",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 1200,
+      "provider": "osm_overpass",
+      "recordCount": 1200,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:27:48.136293Z",
+      "authorityTier": "federal_government",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "nws-forecast",
+      "licenseUrl": "https://www.weather.gov/documentation/services-web-api",
+      "name": "National Weather Service forecast and alerts",
+      "namedCount": 0,
+      "provider": "nws",
+      "recordCount": 4,
+      "unnamedCount": 0,
+      "url": "https://api.weather.gov/",
+      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:27:48.136293Z",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "salt-lake-city-civic",
+      "name": "Salt Lake City, Utah civic events",
+      "namedCount": 0,
+      "provider": "civic_rss",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "configured civic provider",
+      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 1396
+    },
+    "valid": true
+  },
+  "warnings": []
+}

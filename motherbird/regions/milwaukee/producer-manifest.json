@@ -1,0 +1,192 @@
+{
+  "checksums": {
+    "pois.json": "sha256:05381a3eee6724f5c0fee4952a5768d8d16560bf47cf0ea44f43dc1719f99803",
+    "source-scorecard.json": "sha256:e4c6cbdd24316014e94d55302f0683c388d4e4749d4c8a31215faa7c2b6b7b6f",
+    "supplemental/canonical-records.json": "sha256:3a86384f183da6ba639e8866b5677d4a97378718516887813065725d2bdb9854",
+    "supplemental/dedup-groups.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "supplemental/osm-pois.json": "sha256:38b09798d46a4e608cc29761f68e07ccd5a64384698c56ed2c50e769bc296508",
+    "supplemental/validation-report.json": "sha256:ce024e8952fbac32c6f32b2815cf2d460b25edd82fe1cdf987e986000628bb7e",
+    "supplemental/weather.json": "sha256:f64cc18cc3853152f9520b88fc6bf9de864ef63ba6ece2ccebbe8b4609cdfaec"
+  },
+  "generatedAt": "2026-10-03T20:27:48.533294Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "milwaukee",
+  "regionId": "milwaukee",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:27:48.533294Z",
+      "authorityTier": "federal_government",
+      "cachedAt": ".gremlin-cache\\milwaukee\\usgs-water-locations\\2026-10-03T20-27-48.533294Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 500,
+      "emittedRecordCount": 500,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "usgs-water-locations",
+      "licenseUrl": "https://api.waterdata.usgs.gov/docs/",
+      "name": "USGS water monitoring locations",
+      "namedCount": 500,
+      "provider": "usgs_monitoring_locations",
+      "recordCount": 500,
+      "unnamedCount": 0,
+      "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:27:48.533294Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\milwaukee\\ebird-walk-recent\\2026-10-03T20-27-48.533294Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 36,
+      "emittedRecordCount": 36,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "ebird-walk-recent",
+      "licenseUrl": "https://science.ebird.org/en/status-and-trends/products-access-terms-of-use",
+      "name": "eBird recent hotspot observations",
+      "namedCount": 36,
+      "provider": "ebird_recent",
+      "recordCount": 36,
+      "unnamedCount": 0,
+      "url": "https://api.ebird.org/v2/data/obs/geo/recent",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:27:48.533294Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\milwaukee\\osm-milwaukee-walk\\2026-10-03T20-27-48.533294Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 1041,
+      "emittedRecordCount": 1041,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "osm-milwaukee-walk",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 1200,
+      "provider": "osm_overpass",
+      "recordCount": 1200,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:27:48.533294Z",
+      "authorityTier": "federal_government",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "nws-forecast",
+      "licenseUrl": "https://www.weather.gov/documentation/services-web-api",
+      "name": "National Weather Service forecast and alerts",
+      "namedCount": 0,
+      "provider": "nws",
+      "recordCount": 4,
+      "unnamedCount": 0,
+      "url": "https://api.weather.gov/",
+      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:27:48.533294Z",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "milwaukee-civic",
+      "name": "Milwaukee, Wisconsin civic events",
+      "namedCount": 0,
+      "provider": "civic_rss",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "configured civic provider",
+      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 1577
+    },
+    "valid": true
+  },
+  "warnings": [
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12032130312 merged into osm:node:11927232248; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:11927232248",
+        "osm:node:12032130312"
+      ],
+      "source": "osm-milwaukee-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:101476839 merged into osm:node:4799712468; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:4799712468",
+        "osm:way:101476839"
+      ],
+      "source": "osm-milwaukee-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:403385111 merged into osm:way:403385102; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:way:403385102",
+        "osm:way:403385111"
+      ],
+      "source": "osm-milwaukee-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:53160874 merged into osm:node:5495374986; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:5495374986",
+        "osm:way:53160874"
+      ],
+      "source": "osm-milwaukee-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:68649538 merged into osm:node:5660100889; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:5660100889",
+        "osm:way:68649538"
+      ],
+      "source": "osm-milwaukee-walk"
+    }
+  ]
+}

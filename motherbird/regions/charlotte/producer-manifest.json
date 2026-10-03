@@ -1,0 +1,173 @@
+{
+  "checksums": {
+    "pois.json": "sha256:49d1a895ed76e7b905aebd66ea462192a7cb54ec5d15461c24292d125297e724",
+    "source-scorecard.json": "sha256:f616bd34026063a0f2b44082b2c4bebd184812c0a1a25efac958c3c57cf57f78",
+    "supplemental/canonical-records.json": "sha256:d34a785fffdc89db5dad82616e408325036dacfb4a1bfc7dfb7456c596b21d94",
+    "supplemental/dedup-groups.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "supplemental/osm-pois.json": "sha256:00763bcd157a126e290e97fd424c1b36dfd158e65eb9ea1c81a95cc8af40a745",
+    "supplemental/validation-report.json": "sha256:c4d0231b41d1269360f0ea9710f3d6e5ebaa59e8f007f73d152b938fb31fda03",
+    "supplemental/weather.json": "sha256:186deea93b6313a9f9ed754717cdb3b1a52c90ea048503975b69acae0109671f"
+  },
+  "generatedAt": "2026-10-03T20:24:40.542016Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "charlotte",
+  "regionId": "charlotte",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:24:40.542016Z",
+      "authorityTier": "federal_government",
+      "cachedAt": ".gremlin-cache\\charlotte\\usgs-water-locations\\2026-10-03T20-24-40.542016Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 500,
+      "emittedRecordCount": 500,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "usgs-water-locations",
+      "licenseUrl": "https://api.waterdata.usgs.gov/docs/",
+      "name": "USGS water monitoring locations",
+      "namedCount": 500,
+      "provider": "usgs_monitoring_locations",
+      "recordCount": 500,
+      "unnamedCount": 0,
+      "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:24:40.542016Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\charlotte\\ebird-walk-recent\\2026-10-03T20-24-40.542016Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 20,
+      "emittedRecordCount": 20,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "ebird-walk-recent",
+      "licenseUrl": "https://science.ebird.org/en/status-and-trends/products-access-terms-of-use",
+      "name": "eBird recent hotspot observations",
+      "namedCount": 20,
+      "provider": "ebird_recent",
+      "recordCount": 20,
+      "unnamedCount": 0,
+      "url": "https://api.ebird.org/v2/data/obs/geo/recent",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:24:40.542016Z",
+      "authorityTier": "city_government",
+      "cachedAt": ".gremlin-cache\\charlotte\\local-open-data\\2026-10-03T20-24-40.542016Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "LineString",
+        "MultiLineString",
+        "MultiPolygon",
+        "Point",
+        "Polygon"
+      ],
+      "geometryTypesSurvived": [],
+      "id": "local-open-data",
+      "licenseUrl": "local://OpenData",
+      "name": "Local municipal OpenData capture — Charlotte",
+      "namedCount": 0,
+      "provider": "local_open_data",
+      "recordCount": 146298,
+      "unnamedCount": 146298,
+      "url": "C:\\Users\\igmro\\OneDrive\\Documents\\gremlin_lab\\OpenData\\North Carolina\\Charlotte",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:24:40.542016Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\charlotte\\osm-charlotte-walk\\2026-10-03T20-24-40.542016Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 791,
+      "emittedRecordCount": 791,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "osm-charlotte-walk",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 1200,
+      "provider": "osm_overpass",
+      "recordCount": 1200,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:24:40.542016Z",
+      "authorityTier": "federal_government",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "nws-forecast",
+      "licenseUrl": "https://www.weather.gov/documentation/services-web-api",
+      "name": "National Weather Service forecast and alerts",
+      "namedCount": 0,
+      "provider": "nws",
+      "recordCount": 4,
+      "unnamedCount": 0,
+      "url": "https://api.weather.gov/",
+      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:24:40.542016Z",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "charlotte-civic",
+      "name": "Charlotte, North Carolina civic events",
+      "namedCount": 0,
+      "provider": "civic_rss",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "configured civic provider",
+      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 1311
+    },
+    "valid": true
+  },
+  "warnings": []
+}
