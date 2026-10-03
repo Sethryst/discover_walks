@@ -1,7 +1,7 @@
 // Keep the whole module graph with the shell. Caching only app.js leaves an
 // offline (or briefly disconnected) reload with a blank app when any imported
 // module was not already in the runtime cache.
-const APP_CACHE = 'walk-wildlife-shell-v252'; // expanded focused health telemetry remains research-only
+const APP_CACHE = 'walk-wildlife-shell-v253'; // regional navigation contract
 const TILE_CACHE = 'walk-wildlife-osm-viewed-tiles-v1';
 const LIBRARY_CACHE = 'walk-wildlife-library-v2';
 const COMPANION_CACHE = 'walk-wildlife-companion-media-v2';
@@ -44,6 +44,7 @@ const shell = [
   './regions/washington-dc/spatial/spatial-index-manifest.json', './regions/washington-dc/spatial/pois.flatbush', './regions/washington-dc/spatial/pois.ids.json',
   './regions/washington-dc/spatial/boundaries.flatbush', './regions/washington-dc/spatial/boundaries.ids.json'
  ];
+shell.push('./js/regional-navigation.js', './data/regional-navigation.json');
 const shellPaths = new Set(shell.map((asset) => new URL(asset, self.registration.scope).pathname));
 const libraryAssets = [
   './vendor/qrcode.js', './vendor/leaflet/leaflet.css',

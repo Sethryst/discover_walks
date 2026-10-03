@@ -5,7 +5,8 @@ import { saveJournal, saveJournalOnClose, renderArchive } from './archive.js';
 import { getCurrentLocation, startWalk, stopWalk } from './walk.js';
 import { openBackpack, openJournal, closeSheets, openSheet, renderGeofenceCategoryChips, setArchiveFilter, toast } from './ui.js';
 import { city, searchPois } from './poi.js';
-import { localSearchHits, searchRowHtml, emptySearchHtml, widenSearch } from './search.js';
+import { localSearchHits, searchRowHtml, emptySearchHtml } from './search.js';
+import { initRegionalNavigation } from './regional-navigation.js';
 import { switchCity } from './city.js';
 import { generateTimeBasedPlan, lockSelectedPlanOnMap, changePlan, setPlanningMode } from './planner.js?v=20260926-editable-route-points';
 import { routeOnFoot } from './routing.js';
@@ -412,6 +413,7 @@ function bindWalkControls() {
 }
 
 function bindSearch() {
+  initRegionalNavigation();
   const input = el('mapSearchInput'); const results = el('mapSearchResults');
   if (input) input.placeholder = 'Place, trail, or wildlife';
   let viewportRegionLabel = '';
@@ -432,11 +434,6 @@ function bindSearch() {
       let matches = localSearchHits(query, observations);
       results.innerHTML = matches.length ? matches.map(searchRowHtml).join('') : emptySearchHtml(query, true);
       results.classList.remove('hidden');
-      if (matches.length >= 5) return;
-      const remote = await widenSearch(query);
-      if (token !== searchToken) return;
-      const seen = new Set(matches.map((item) => String(item.id)));
-      remote.forEach((item) => { if (!seen.has(String(item.id))) matches.push(item); });
       results.innerHTML = matches.length ? matches.slice(0, 8).map(searchRowHtml).join('') : emptySearchHtml(query, false);
     })();
   });
