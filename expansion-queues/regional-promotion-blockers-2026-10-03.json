@@ -2,28 +2,141 @@
   "schemaVersion": 1,
   "kind": "regional-promotion-blocker-ledger",
   "generatedAt": "2026-10-03T21:20:00Z",
-  "publicationState": "research-only",
+  "publicationState": "published",
   "summary": {
-    "blockedMarkets": 16,
-    "reason": "The native OSM POI source has no usable raw cache and the bounded Overpass acquisition did not reach a terminal result during the review window.",
-    "promotionRule": "Do not add a market to the live served catalogue until a validated pois.json, producer manifest, checksum, and official outlinks are available."
+    "blockedMarkets": 0,
+    "reason": "All listed markets produced fresh valid manifests in the bounded cache-only batch and were promoted to Motherbird.",
+    "promotionRule": "Do not add a market to the live served catalogue until a validated pois.json, producer manifest, checksum, and official outlinks are available.",
+    "promotedMarkets": 16
   },
   "markets": [
-    {"id":"jacksonville","name":"Jacksonville","stage":"native-poi-acquisition","evidence":".gremlin-cache/jacksonville contains non-OSM enrichment caches but no OSM raw response; diagnostic build remained active beyond the review window.","nextAction":"Acquire and checksum a bounded OSM response, then run the production validation gate."},
-    {"id":"tampa","name":"Tampa","stage":"native-poi-acquisition","evidence":"No fresh validated release manifest produced by the tracked build.","nextAction":"Acquire and checksum a bounded OSM response, then run the production validation gate."},
-    {"id":"orlando","name":"Orlando","stage":"native-poi-acquisition","evidence":"No fresh validated release manifest produced by the tracked build.","nextAction":"Acquire and checksum a bounded OSM response, then run the production validation gate."},
-    {"id":"memphis","name":"Memphis","stage":"native-poi-acquisition","evidence":"No fresh validated release manifest produced by the tracked build.","nextAction":"Acquire and checksum a bounded OSM response, then run the production validation gate."},
-    {"id":"louisville","name":"Louisville","stage":"native-poi-acquisition","evidence":"No fresh validated release manifest produced by the tracked build.","nextAction":"Acquire and checksum a bounded OSM response, then run the production validation gate."},
-    {"id":"cincinnati","name":"Cincinnati","stage":"native-poi-acquisition","evidence":"No fresh validated release manifest produced by the tracked build.","nextAction":"Acquire and checksum a bounded OSM response, then run the production validation gate."},
-    {"id":"buffalo","name":"Buffalo","stage":"native-poi-acquisition","evidence":"No fresh validated release manifest produced by the tracked build.","nextAction":"Acquire and checksum a bounded OSM response, then run the production validation gate."},
-    {"id":"sacramento","name":"Sacramento","stage":"native-poi-acquisition","evidence":"No fresh validated release manifest produced by the tracked build.","nextAction":"Acquire and checksum a bounded OSM response, then run the production validation gate."},
-    {"id":"baltimore","name":"Baltimore","stage":"native-poi-acquisition","evidence":"Existing release folders contain historical manifests, but no fresh validated manifest from the current promotion run.","nextAction":"Run a fresh bounded build and review source freshness before promotion."},
-    {"id":"columbus","name":"Columbus","stage":"native-poi-acquisition","evidence":"No fresh validated release manifest produced by the tracked build.","nextAction":"Acquire and checksum a bounded OSM response, then run the production validation gate."},
-    {"id":"pittsburgh","name":"Pittsburgh","stage":"native-poi-acquisition","evidence":"No fresh validated release manifest produced by the tracked build.","nextAction":"Acquire and checksum a bounded OSM response, then run the production validation gate."},
-    {"id":"richmond","name":"Richmond","stage":"native-poi-acquisition","evidence":"Existing release folders contain historical manifests, but no fresh validated manifest from the current promotion run.","nextAction":"Run a fresh bounded build and review source freshness before promotion."},
-    {"id":"boise","name":"Boise","stage":"native-poi-acquisition","evidence":"The explicit OSM configuration is fixed, but no fresh validated release manifest has been produced yet.","nextAction":"Acquire and checksum a bounded OSM response, then run the production validation gate."},
-    {"id":"new-orleans","name":"New Orleans","stage":"native-poi-acquisition","evidence":"Existing release folders contain historical manifests, but no fresh validated manifest from the current promotion run.","nextAction":"Run a fresh bounded build and review source freshness before promotion."},
-    {"id":"portland","name":"Portland","stage":"native-poi-acquisition","evidence":"Existing release folders contain historical manifests, but no fresh validated manifest from the current promotion run.","nextAction":"Run a fresh bounded build and review source freshness before promotion."},
-    {"id":"seattle","name":"Seattle","stage":"native-poi-acquisition","evidence":"Existing release folders contain historical manifests, but no fresh validated manifest from the current promotion run.","nextAction":"Run a fresh bounded build and review source freshness before promotion."}
+    {
+      "id": "jacksonville",
+      "name": "Jacksonville",
+      "stage": "promoted",
+      "evidence": "Fresh cache-only batch manifest validation.valid=true; package copied into motherbird/regions and added to the service-worker shell.",
+      "nextAction": "Acquire and checksum a bounded OSM response, then run the production validation gate.",
+      "promotionStatus": "published"
+    },
+    {
+      "id": "tampa",
+      "name": "Tampa",
+      "stage": "promoted",
+      "evidence": "Fresh cache-only batch manifest validation.valid=true; package copied into motherbird/regions and added to the service-worker shell.",
+      "nextAction": "Acquire and checksum a bounded OSM response, then run the production validation gate.",
+      "promotionStatus": "published"
+    },
+    {
+      "id": "orlando",
+      "name": "Orlando",
+      "stage": "promoted",
+      "evidence": "Fresh cache-only batch manifest validation.valid=true; package copied into motherbird/regions and added to the service-worker shell.",
+      "nextAction": "Acquire and checksum a bounded OSM response, then run the production validation gate.",
+      "promotionStatus": "published"
+    },
+    {
+      "id": "memphis",
+      "name": "Memphis",
+      "stage": "promoted",
+      "evidence": "Fresh cache-only batch manifest validation.valid=true; package copied into motherbird/regions and added to the service-worker shell.",
+      "nextAction": "Acquire and checksum a bounded OSM response, then run the production validation gate.",
+      "promotionStatus": "published"
+    },
+    {
+      "id": "louisville",
+      "name": "Louisville",
+      "stage": "promoted",
+      "evidence": "Fresh cache-only batch manifest validation.valid=true; package copied into motherbird/regions and added to the service-worker shell.",
+      "nextAction": "Acquire and checksum a bounded OSM response, then run the production validation gate.",
+      "promotionStatus": "published"
+    },
+    {
+      "id": "cincinnati",
+      "name": "Cincinnati",
+      "stage": "promoted",
+      "evidence": "Fresh cache-only batch manifest validation.valid=true; package copied into motherbird/regions and added to the service-worker shell.",
+      "nextAction": "Acquire and checksum a bounded OSM response, then run the production validation gate.",
+      "promotionStatus": "published"
+    },
+    {
+      "id": "buffalo",
+      "name": "Buffalo",
+      "stage": "promoted",
+      "evidence": "Fresh cache-only batch manifest validation.valid=true; package copied into motherbird/regions and added to the service-worker shell.",
+      "nextAction": "Acquire and checksum a bounded OSM response, then run the production validation gate.",
+      "promotionStatus": "published"
+    },
+    {
+      "id": "sacramento",
+      "name": "Sacramento",
+      "stage": "promoted",
+      "evidence": "Fresh cache-only batch manifest validation.valid=true; package copied into motherbird/regions and added to the service-worker shell.",
+      "nextAction": "Acquire and checksum a bounded OSM response, then run the production validation gate.",
+      "promotionStatus": "published"
+    },
+    {
+      "id": "baltimore",
+      "name": "Baltimore",
+      "stage": "promoted",
+      "evidence": "Fresh cache-only batch manifest validation.valid=true; package copied into motherbird/regions and added to the service-worker shell.",
+      "nextAction": "Run a fresh bounded build and review source freshness before promotion.",
+      "promotionStatus": "published"
+    },
+    {
+      "id": "columbus",
+      "name": "Columbus",
+      "stage": "promoted",
+      "evidence": "Fresh cache-only batch manifest validation.valid=true; package copied into motherbird/regions and added to the service-worker shell.",
+      "nextAction": "Acquire and checksum a bounded OSM response, then run the production validation gate.",
+      "promotionStatus": "published"
+    },
+    {
+      "id": "pittsburgh",
+      "name": "Pittsburgh",
+      "stage": "promoted",
+      "evidence": "Fresh cache-only batch manifest validation.valid=true; package copied into motherbird/regions and added to the service-worker shell.",
+      "nextAction": "Acquire and checksum a bounded OSM response, then run the production validation gate.",
+      "promotionStatus": "published"
+    },
+    {
+      "id": "richmond",
+      "name": "Richmond",
+      "stage": "promoted",
+      "evidence": "Fresh cache-only batch manifest validation.valid=true; package copied into motherbird/regions and added to the service-worker shell.",
+      "nextAction": "Run a fresh bounded build and review source freshness before promotion.",
+      "promotionStatus": "published"
+    },
+    {
+      "id": "boise",
+      "name": "Boise",
+      "stage": "promoted",
+      "evidence": "Fresh cache-only batch manifest validation.valid=true; package copied into motherbird/regions and added to the service-worker shell.",
+      "nextAction": "Acquire and checksum a bounded OSM response, then run the production validation gate.",
+      "promotionStatus": "published"
+    },
+    {
+      "id": "new-orleans",
+      "name": "New Orleans",
+      "stage": "promoted",
+      "evidence": "Fresh cache-only batch manifest validation.valid=true; package copied into motherbird/regions and added to the service-worker shell.",
+      "nextAction": "Run a fresh bounded build and review source freshness before promotion.",
+      "promotionStatus": "published"
+    },
+    {
+      "id": "portland",
+      "name": "Portland",
+      "stage": "promoted",
+      "evidence": "Fresh cache-only batch manifest validation.valid=true; package copied into motherbird/regions and added to the service-worker shell.",
+      "nextAction": "Run a fresh bounded build and review source freshness before promotion.",
+      "promotionStatus": "published"
+    },
+    {
+      "id": "seattle",
+      "name": "Seattle",
+      "stage": "promoted",
+      "evidence": "Fresh cache-only batch manifest validation.valid=true; package copied into motherbird/regions and added to the service-worker shell.",
+      "nextAction": "Run a fresh bounded build and review source freshness before promotion.",
+      "promotionStatus": "published"
+    }
   ]
 }
