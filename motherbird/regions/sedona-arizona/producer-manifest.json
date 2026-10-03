@@ -1,0 +1,67 @@
+{
+  "checksums": {
+    "pois.json": "sha256:8a55098f23e62646339b7b1a57d46d2e9617b128e7f7306bb49a5dbab80f8128",
+    "source-scorecard.json": "sha256:384dcd04c0ea2ecdee87baf19b27c73277d2e8e102798a88dcf3f0a4b565d69b",
+    "supplemental/canonical-records.json": "sha256:a021fffa514c3fbae04b52f36a248ef95c46db35956b691160fdfcc4f2efc4b0",
+    "supplemental/dedup-groups.json": "sha256:c4b436f220945efb42c8d980cf0bb935c86589fed52461aeecf17f719a74222b",
+    "supplemental/osm-pois.json": "sha256:b0d77ece1913c453a72220a3bed2afca0445b4f81facc1958f600178c7f90b53",
+    "supplemental/validation-report.json": "sha256:f0e7ce7b5759f0f50b78c28bbdfdb2f4432c8df970653bf6afa60dcc4cf8a6c2"
+  },
+  "generatedAt": "2026-10-03T21:26:50.090783Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "sedona-arizona",
+  "regionId": "sedona-arizona",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:26:50.090783Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\sedona-arizona\\osm-sedona-arizona\\2026-08-27T04-00-00Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 31,
+      "emittedRecordCount": 31,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "osm-sedona-arizona",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 444,
+      "provider": "osm_overpass",
+      "recordCount": 444,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 31
+    },
+    "valid": true
+  },
+  "warnings": [
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1014941051 merged into osm:relation:11139676; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:relation:11139676",
+        "osm:way:1014941051"
+      ],
+      "source": "osm-sedona-arizona"
+    }
+  ]
+}

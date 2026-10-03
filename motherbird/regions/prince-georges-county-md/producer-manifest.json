@@ -1,0 +1,112 @@
+{
+  "checksums": {
+    "pois.json": "sha256:0e4c0a433c2be03f1ba611a791c61ad50fcbc1c3c2d2a8c8de97cec85a27035e",
+    "source-scorecard.json": "sha256:79fe9a2019a5f04b95f3926e97394edfad441509d6c8db1a02834f8e2c72ffb9",
+    "supplemental/canonical-records.json": "sha256:cb8fbc17148bc585b224a2f29f32e5cc90bc5048351a3c1e9ce709757fbd81b9",
+    "supplemental/dedup-groups.json": "sha256:243ac8f31987ec39e7163a64bf7a7f17e2aeff40a6c4d237bf09a22e120f0ab2",
+    "supplemental/osm-pois.json": "sha256:1b3b0fba5bb6de1f84831bde90a3667b77eddf657552bc2b3bd46948f8285121",
+    "supplemental/validation-report.json": "sha256:0f7d17e208b516dcb75c40a2a8d0e39754913daf298dd1faae516e8291edd88f"
+  },
+  "generatedAt": "2026-10-03T21:26:49.857797Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "prince-georges-county-md",
+  "regionId": "prince-georges-county-md",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:26:49.857797Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\prince-georges-county-md\\osm-prince-georges-county-md\\2026-08-27T04-00-00Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 1904,
+      "emittedRecordCount": 1904,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "osm-prince-georges-county-md",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 2000,
+      "provider": "osm_overpass",
+      "recordCount": 2000,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 1904
+    },
+    "valid": true
+  },
+  "warnings": [
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10723795705 merged into osm:node:10710077887; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:10710077887",
+        "osm:node:10723795705"
+      ],
+      "source": "osm-prince-georges-county-md"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12208941230 merged into osm:node:12208941229; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:12208941229",
+        "osm:node:12208941230"
+      ],
+      "source": "osm-prince-georges-county-md"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12208941231 merged into osm:node:12208941229; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:12208941229",
+        "osm:node:12208941231"
+      ],
+      "source": "osm-prince-georges-county-md"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:14112392748 merged into osm:node:13908586202; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:13908586202",
+        "osm:node:14112392748"
+      ],
+      "source": "osm-prince-georges-county-md"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2504835231 merged into osm:node:2504835230; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:2504835230",
+        "osm:node:2504835231"
+      ],
+      "source": "osm-prince-georges-county-md"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9054745885 merged into osm:node:358958405; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:358958405",
+        "osm:node:9054745885"
+      ],
+      "source": "osm-prince-georges-county-md"
+    }
+  ]
+}

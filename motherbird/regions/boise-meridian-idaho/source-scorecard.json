@@ -1,0 +1,77 @@
+{
+  "conflictWinner": null,
+  "generatedAt": "2026-10-03T21:26:47.938461Z",
+  "packageKind": "region",
+  "regionId": "boise-meridian-idaho",
+  "schemaVersion": 1,
+  "skippedThisPass": [
+    "GTFS, walk-to-transit routing, and schedules",
+    "Pedestrian crossings, curb ramps, and sidewalk connectivity graph",
+    "NOVA Parks HTML alert scraping and W&OD town gazetteer",
+    "USGS flood/condition engine and NWS CAP trail intersections",
+    "Automatic walk candidates, POI-to-trail graph, record-level provenance store, and publisher refactors",
+    "DCR and 2013 NVRPA geometry as load-bearing sources",
+    "New provider adapters other than durable eBird hotspots"
+  ],
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "dataClass": "durable",
+      "emittedNamedCount": 465,
+      "emittedRecordCount": 465,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "osm-boise-meridian-idaho",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 862,
+      "provider": "osm_overpass",
+      "recordCount": 862,
+      "unnamedCount": 0,
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    }
+  ],
+  "swallowedTowns": [],
+  "walkCreationReadiness": {
+    "acquiredDataUsefulPercent": 53.9,
+    "canSupportTrailToHistoryParkWildlifeCommunitySequence": false,
+    "canonicalWod": {
+      "present": false,
+      "recordId": null,
+      "sourceSegmentCount": 0
+    },
+    "geographicDensity": "Not scored in this pass; no POI-to-trail graph or candidate generator was added.",
+    "journeys": {
+      "featuredWalkCount": 0,
+      "status": "pending_editorial_build"
+    },
+    "plausibleWalkAnchors": 228,
+    "smallestNextFeature": "Add more editorial Journeys, then consider a tiny POI-within-N-meters-of-trail sidecar if Journey authoring shows a repeated need.",
+    "stillMissing": [
+      "Verified entrances rather than some park centroids",
+      "Consistent drinking-water coverage",
+      "NPS Great Falls rows currently return null geometry; A1/4 supplies the named Great Falls trail lines used by this build",
+      "Huntley Meadows has strong wildlife and amenity anchors, but no named official line survived TRAIL_NAME validation for an initial Journey",
+      "More curated Journeys after the first featured set"
+    ],
+    "trailGeometryTypes": [],
+    "trailLinearRecords": 0,
+    "walkUsefulCategories": {
+      "art": 72,
+      "coffee": 144,
+      "community": 16,
+      "history": 36,
+      "nature": 19,
+      "park": 176,
+      "rest": 1,
+      "water": 1
+    },
+    "walkUsefulPublicRecords": 465,
+    "walkerVisibleGain": "Mother Bird can offer named official parks, trails, wildlife places, history, libraries, community facilities, and access amenities as the material for curated Fairfax walks.",
+    "wildlifeDestinationSources": []
+  }
+}

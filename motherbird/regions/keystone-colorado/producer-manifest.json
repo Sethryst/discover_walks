@@ -1,0 +1,57 @@
+{
+  "checksums": {
+    "pois.json": "sha256:2bbf39b1ff4e429fc4c2839eda0a7e1854fef3c51732f7860d0a137fd153b876",
+    "source-scorecard.json": "sha256:bd46f73622a04801884af73708b6bbe798c1ec92a52d43c586627e730e38184a",
+    "supplemental/canonical-records.json": "sha256:7d4850a68e72a552c6c0e59bf3104673e3ef537d78189be6ccb17b3007426ff2",
+    "supplemental/dedup-groups.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "supplemental/osm-pois.json": "sha256:a570d2f2b11584ced38d5d0566fd891aba2cc18f1aeb13031be6341ce84c7453",
+    "supplemental/validation-report.json": "sha256:aa207f2d98073f62e49563acf1084c25acde41861b1e50cd24a0d7b50ce02519"
+  },
+  "generatedAt": "2026-10-03T21:26:48.864314Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "keystone-colorado",
+  "regionId": "keystone-colorado",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:26:48.864314Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\keystone-colorado\\osm-keystone-colorado\\2026-08-27T04-00-00Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 37,
+      "emittedRecordCount": 37,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "osm-keystone-colorado",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 480,
+      "provider": "osm_overpass",
+      "recordCount": 480,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 37
+    },
+    "valid": true
+  },
+  "warnings": []
+}

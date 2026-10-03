@@ -1,0 +1,76 @@
+{
+  "checksums": {
+    "pois.json": "sha256:7669f8c4feb52cfb127d55454568f37fc38f14f9440ff31f4597e81939d3d14f",
+    "source-scorecard.json": "sha256:61d599ed7bd424e1ccce2f6d8bc8f8456ec79239c8d9a19841fe6fe633edec50",
+    "supplemental/canonical-records.json": "sha256:218ee0fd770e8bcafa82738d9986a3a36ccb625ac4cb912fee2a1ab501982c32",
+    "supplemental/dedup-groups.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "supplemental/osm-pois.json": "sha256:114456f018b9e5604131960d8821f3e6251a0b6e894c506eaf9a196cb8b97a7d",
+    "supplemental/validation-report.json": "sha256:036b1ecff3748699f9165a7ad5a57e72848465591fbb3a848b553e4242543c63"
+  },
+  "generatedAt": "2026-10-03T21:26:47.938461Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "boise-meridian-idaho",
+  "regionId": "boise-meridian-idaho",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:26:47.938461Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\boise-meridian-idaho\\osm-boise-meridian-idaho\\2026-09-27T08-28-19.912059Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 465,
+      "emittedRecordCount": 465,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "osm-boise-meridian-idaho",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 862,
+      "provider": "osm_overpass",
+      "recordCount": 862,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 465
+    },
+    "valid": true
+  },
+  "warnings": [
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9270839491 merged into osm:node:9270839490; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:9270839490",
+        "osm:node:9270839491"
+      ],
+      "source": "osm-boise-meridian-idaho"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1492267219 merged into osm:node:8331608848; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:8331608848",
+        "osm:way:1492267219"
+      ],
+      "source": "osm-boise-meridian-idaho"
+    }
+  ]
+}
