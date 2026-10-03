@@ -406,3 +406,5 @@ body.draw-pane-open .draw-tool-rail { display: flex !important; }
     font-size: 7px !important;
   }
 }
+.top-cluster>.regional-navigation{position:relative;left:auto;top:auto;grid-area:1 / 2}
+@media(max-width:720px){.top-cluster{grid-template-columns:40px max-content 132px}.top-cluster>.regional-navigation{grid-area:1 / 2}.top-cluster>.map-search{grid-area:1 / 3;width:132px}}
