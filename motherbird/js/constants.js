@@ -198,6 +198,8 @@
   'portland-maine': { name: 'Portland', state: 'ME', center: { lat: 43.675, lng: -70.245 }, zoom: 11, dataFile: './regions/portland-maine/pois.json', civicFile: './regions/portland-maine/civic/index.json' },
   'san-francisco': { name: 'San Francisco', state: 'CA', center: { lat: 37.77, lng: -122.435 }, zoom: 11, dataFile: './regions/san-francisco/pois.json', civicFile: './regions/san-francisco/civic/index.json' },
   'santa-fe': { name: 'Santa Fe', state: 'NM', center: { lat: 35.665, lng: -105.96 }, zoom: 11, dataFile: './regions/santa-fe/pois.json', civicFile: './regions/santa-fe/civic/index.json' },
+  indianapolis: { name: 'Indianapolis', state: 'IN', center: { lat: 39.7684, lng: -86.1581 }, zoom: 10, dataFile: './regions/indianapolis/pois.json' },
+  miami: { name: 'Miami–Fort Lauderdale', state: 'FL', center: { lat: 25.7617, lng: -80.1918 }, zoom: 10, dataFile: './regions/miami/pois.json' },
   houston: { name: 'Houston', state: 'TX', center: { lat: 29.7604, lng: -95.3698 }, zoom: 10, dataFile: './regions/houston/pois.json' },
   'kansas-city': { name: 'Kansas City', state: 'MO', center: { lat: 39.0997, lng: -94.5786 }, zoom: 10, dataFile: './regions/kansas-city/pois.json' },
   'san-diego': { name: 'San Diego', state: 'CA', center: { lat: 32.7157, lng: -117.1611 }, zoom: 10, dataFile: './regions/san-diego/pois.json' },

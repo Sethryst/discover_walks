@@ -1,0 +1,157 @@
+{
+  "checksums": {
+    "pois.json": "sha256:6dc54f2640a32a399cb7cee8b85bc44bab0cb82c4408bafb285d088a8a631ee8",
+    "source-scorecard.json": "sha256:b5e3d2b2ff142b5aea591e778644af59b7110757064ea0f8d078211c816f7f11",
+    "supplemental/canonical-records.json": "sha256:75745a48290807d6e79bd57adbe986519d96b94bad36847cff13a667c1de5b3a",
+    "supplemental/dedup-groups.json": "sha256:6f6b97405c18552f24818919093833cb8350cae717a934a19943622fffd1fbb9",
+    "supplemental/osm-pois.json": "sha256:f8737b06b52c815beed1cf9ae5172959a52cb14ccf09a596bf4dc7eb793d8d64",
+    "supplemental/validation-report.json": "sha256:6a333bb2eda36f337e00d8905148120f3d7de384b3631f748e8d84c34237d596",
+    "supplemental/weather.json": "sha256:bc9c712769d6fdc3f989ebdc931e9c6a97e12b1417c49902340cb279cc43f567"
+  },
+  "generatedAt": "2026-10-03T20:31:34.102350Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "miami",
+  "regionId": "miami",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:31:34.102350Z",
+      "authorityTier": "federal_government",
+      "cachedAt": ".gremlin-cache\\miami\\usgs-water-locations\\2026-10-03T20-31-34.102350Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 460,
+      "emittedRecordCount": 460,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "usgs-water-locations",
+      "licenseUrl": "https://api.waterdata.usgs.gov/docs/",
+      "name": "USGS water monitoring locations",
+      "namedCount": 500,
+      "provider": "usgs_monitoring_locations",
+      "recordCount": 500,
+      "unnamedCount": 0,
+      "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:31:34.102350Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\miami\\ebird-walk-recent\\2026-10-03T20-31-34.102350Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 23,
+      "emittedRecordCount": 23,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "ebird-walk-recent",
+      "licenseUrl": "https://science.ebird.org/en/status-and-trends/products-access-terms-of-use",
+      "name": "eBird recent hotspot observations",
+      "namedCount": 23,
+      "provider": "ebird_recent",
+      "recordCount": 23,
+      "unnamedCount": 0,
+      "url": "https://api.ebird.org/v2/data/obs/geo/recent",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "source_unavailable",
+      "acquiredAt": "2026-10-03T20:31:34.102350Z",
+      "authorityTier": "community",
+      "dataClass": "durable",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "error": "OSM acquisition failed for osm-miami-walk: HTTP Error 504: Gateway Timeout",
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "osm-miami-walk",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 0,
+      "provider": "osm_overpass",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:31:34.102350Z",
+      "authorityTier": "federal_government",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "nws-forecast",
+      "licenseUrl": "https://www.weather.gov/documentation/services-web-api",
+      "name": "National Weather Service forecast and alerts",
+      "namedCount": 0,
+      "provider": "nws",
+      "recordCount": 4,
+      "unnamedCount": 0,
+      "url": "https://api.weather.gov/",
+      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:31:34.102350Z",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "miami-civic",
+      "name": "Miami–Fort Lauderdale, Florida civic events",
+      "namedCount": 0,
+      "provider": "civic_rss",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "configured civic provider",
+      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 483
+    },
+    "valid": true
+  },
+  "warnings": [
+    {
+      "code": "source_unavailable",
+      "detail": "OSM acquisition failed for osm-miami-walk: HTTP Error 504: Gateway Timeout",
+      "source": "osm-miami-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "water:usgs-water-locations:USGS-252742080273102 merged into water:usgs-water-locations:USGS-252742080273101; curated/authoritative record retained when available.",
+      "recordIds": [
+        "water:usgs-water-locations:USGS-252742080273101",
+        "water:usgs-water-locations:USGS-252742080273102"
+      ],
+      "source": "usgs-water-locations"
+    }
+  ]
+}

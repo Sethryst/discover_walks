@@ -1,0 +1,183 @@
+{
+  "checksums": {
+    "pois.json": "sha256:dad7ba3c3cfb244ce8e435379414f1ebc2c94ff5ab8e632cd40e54a0c56b9dae",
+    "source-scorecard.json": "sha256:3b992511a5eeb9b1c02ff15eb8ac2481dfcad757729c9b780233c8d2bc1d82e7",
+    "supplemental/canonical-records.json": "sha256:245057248f5cfdd1ada1c272e1b76faec7343cdc03d8f6454db0878d2deb9c40",
+    "supplemental/dedup-groups.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "supplemental/osm-pois.json": "sha256:367b7046ffb978b2b7da3d7704b07e19c13e48a3543f688494817caa058764b3",
+    "supplemental/validation-report.json": "sha256:9c016c0b4a3d0e7451ec63a1084b0ec536b48c9157e1fe46cbac6832159c0969",
+    "supplemental/weather.json": "sha256:f85f5937de17738d70fe2aeabf105656bb40ad3e3e7ef66b874b4314a1d7054e"
+  },
+  "generatedAt": "2026-10-03T20:31:33.732102Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "indianapolis",
+  "regionId": "indianapolis",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:31:33.732102Z",
+      "authorityTier": "federal_government",
+      "cachedAt": ".gremlin-cache\\indianapolis\\usgs-water-locations\\2026-10-03T20-31-33.732102Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 500,
+      "emittedRecordCount": 500,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "usgs-water-locations",
+      "licenseUrl": "https://api.waterdata.usgs.gov/docs/",
+      "name": "USGS water monitoring locations",
+      "namedCount": 500,
+      "provider": "usgs_monitoring_locations",
+      "recordCount": 500,
+      "unnamedCount": 0,
+      "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:31:33.732102Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\indianapolis\\ebird-walk-recent\\2026-10-03T20-31-33.732102Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 30,
+      "emittedRecordCount": 30,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "ebird-walk-recent",
+      "licenseUrl": "https://science.ebird.org/en/status-and-trends/products-access-terms-of-use",
+      "name": "eBird recent hotspot observations",
+      "namedCount": 30,
+      "provider": "ebird_recent",
+      "recordCount": 30,
+      "unnamedCount": 0,
+      "url": "https://api.ebird.org/v2/data/obs/geo/recent",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:31:33.732102Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\indianapolis\\osm-indianapolis-walk\\2026-10-03T20-31-33.732102Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 892,
+      "emittedRecordCount": 892,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "osm-indianapolis-walk",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 1200,
+      "provider": "osm_overpass",
+      "recordCount": 1200,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:31:33.732102Z",
+      "authorityTier": "federal_government",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "nws-forecast",
+      "licenseUrl": "https://www.weather.gov/documentation/services-web-api",
+      "name": "National Weather Service forecast and alerts",
+      "namedCount": 0,
+      "provider": "nws",
+      "recordCount": 4,
+      "unnamedCount": 0,
+      "url": "https://api.weather.gov/",
+      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:31:33.732102Z",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "indianapolis-civic",
+      "name": "Indianapolis, Indiana civic events",
+      "namedCount": 0,
+      "provider": "civic_rss",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "configured civic provider",
+      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 1422
+    },
+    "valid": true
+  },
+  "warnings": [
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5938637881 merged into osm:node:5905595980; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:5905595980",
+        "osm:node:5938637881"
+      ],
+      "source": "osm-indianapolis-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5938637882 merged into osm:node:5905595980; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:5905595980",
+        "osm:node:5938637882"
+      ],
+      "source": "osm-indianapolis-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5938637883 merged into osm:node:5905595980; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:5905595980",
+        "osm:node:5938637883"
+      ],
+      "source": "osm-indianapolis-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:890875643 merged into osm:node:358684451; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:358684451",
+        "osm:way:890875643"
+      ],
+      "source": "osm-indianapolis-walk"
+    }
+  ]
+}
