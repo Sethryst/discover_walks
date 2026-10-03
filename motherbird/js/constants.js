@@ -198,6 +198,8 @@
   'portland-maine': { name: 'Portland', state: 'ME', center: { lat: 43.675, lng: -70.245 }, zoom: 11, dataFile: './regions/portland-maine/pois.json', civicFile: './regions/portland-maine/civic/index.json' },
   'san-francisco': { name: 'San Francisco', state: 'CA', center: { lat: 37.77, lng: -122.435 }, zoom: 11, dataFile: './regions/san-francisco/pois.json', civicFile: './regions/san-francisco/civic/index.json' },
   'santa-fe': { name: 'Santa Fe', state: 'NM', center: { lat: 35.665, lng: -105.96 }, zoom: 11, dataFile: './regions/santa-fe/pois.json', civicFile: './regions/santa-fe/civic/index.json' },
+  hartford: { name: 'Hartford', state: 'CT', center: { lat: 41.7658, lng: -72.6734 }, zoom: 11, dataFile: './regions/hartford/pois.json' },
+  fresno: { name: 'Fresno', state: 'CA', center: { lat: 36.7378, lng: -119.7871 }, zoom: 10, dataFile: './regions/fresno/pois.json' },
   providence: { name: 'Providence', state: 'RI', center: { lat: 41.8240, lng: -71.4128 }, zoom: 11, dataFile: './regions/providence/pois.json' },
   savannah: { name: 'Savannah', state: 'GA', center: { lat: 32.0809, lng: -81.0912 }, zoom: 11, dataFile: './regions/savannah/pois.json' },
   charleston: { name: 'Charleston', state: 'SC', center: { lat: 32.7765, lng: -79.9311 }, zoom: 11, dataFile: './regions/charleston/pois.json' },

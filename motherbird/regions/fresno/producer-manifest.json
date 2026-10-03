@@ -1,0 +1,183 @@
+{
+  "checksums": {
+    "pois.json": "sha256:0d026f098d7e1ed8529caa5fb2cc7d7c01010676f32594e612eca8b7b8602441",
+    "source-scorecard.json": "sha256:481acafa1bdb6fe0edf00bef477c3b53e0a44b91c2e19f162b8c591b2c4c2c54",
+    "supplemental/canonical-records.json": "sha256:15fe7189f50e09ea2032b6612e540b1ebb567f96d27ace9acd8eca22c74e6692",
+    "supplemental/dedup-groups.json": "sha256:7e40f380072203311893d57509931d201c36e233291b9544f2350f2e6c6fea08",
+    "supplemental/osm-pois.json": "sha256:8971788ad1dcd1aadc438e8c7a910df64bb2c6b4c17dac5c3d831ad1e8a05ceb",
+    "supplemental/validation-report.json": "sha256:f2f499bc63315b4a6be02077ef40ba397da3a3c30b66298fc1c483a4d486a2df",
+    "supplemental/weather.json": "sha256:e9a742e36550fff9abd76718f270230dc43ebd5c9ca1cdf482e7ea8fafc8f89d"
+  },
+  "generatedAt": "2026-10-03T20:46:49.275475Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "fresno",
+  "regionId": "fresno",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:46:49.275475Z",
+      "authorityTier": "federal_government",
+      "cachedAt": ".gremlin-cache\\fresno\\usgs-water-locations\\2026-10-03T20-46-49.275475Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 500,
+      "emittedRecordCount": 500,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "usgs-water-locations",
+      "licenseUrl": "https://api.waterdata.usgs.gov/docs/",
+      "name": "USGS water monitoring locations",
+      "namedCount": 500,
+      "provider": "usgs_monitoring_locations",
+      "recordCount": 500,
+      "unnamedCount": 0,
+      "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:46:49.275475Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\fresno\\ebird-walk-recent\\2026-10-03T20-46-49.275475Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 11,
+      "emittedRecordCount": 11,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "ebird-walk-recent",
+      "licenseUrl": "https://science.ebird.org/en/status-and-trends/products-access-terms-of-use",
+      "name": "eBird recent hotspot observations",
+      "namedCount": 11,
+      "provider": "ebird_recent",
+      "recordCount": 11,
+      "unnamedCount": 0,
+      "url": "https://api.ebird.org/v2/data/obs/geo/recent",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:46:49.275475Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\fresno\\osm-fresno-walk\\2026-10-03T20-46-49.275475Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 429,
+      "emittedRecordCount": 429,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "osm-fresno-walk",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 486,
+      "provider": "osm_overpass",
+      "recordCount": 486,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:46:49.275475Z",
+      "authorityTier": "federal_government",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "nws-forecast",
+      "licenseUrl": "https://www.weather.gov/documentation/services-web-api",
+      "name": "National Weather Service forecast and alerts",
+      "namedCount": 0,
+      "provider": "nws",
+      "recordCount": 4,
+      "unnamedCount": 0,
+      "url": "https://api.weather.gov/",
+      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:46:49.275475Z",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "fresno-civic",
+      "name": "Fresno, California civic events",
+      "namedCount": 0,
+      "provider": "civic_rss",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "configured civic provider",
+      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 940
+    },
+    "valid": true
+  },
+  "warnings": [
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:16316681 merged into osm:node:11184744777; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:11184744777",
+        "osm:relation:16316681"
+      ],
+      "source": "osm-fresno-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:16316682 merged into osm:node:11184744778; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:11184744778",
+        "osm:relation:16316682"
+      ],
+      "source": "osm-fresno-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1207048020 merged into osm:node:11184744777; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:11184744777",
+        "osm:way:1207048020"
+      ],
+      "source": "osm-fresno-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1207048021 merged into osm:node:11184744778; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:11184744778",
+        "osm:way:1207048021"
+      ],
+      "source": "osm-fresno-walk"
+    }
+  ]
+}
