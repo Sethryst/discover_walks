@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["kind", "candidates"],
+  "properties": {
+    "kind": {"const": "national-candidate-capture"},
+    "candidates": {"type": "array", "items": {"type": "object", "required": ["market", "place", "queryId", "sourceUrl", "providerName", "sourceType", "coverageScope", "discoveryEvidence", "confidence"], "properties": {"market": {"type": "string"}, "place": {"type": "string"}, "queryId": {"type": "string"}, "sourceUrl": {"type": "string", "format": "uri", "pattern": "^https://"}, "providerName": {"type": "string"}, "sourceType": {"type": "string"}, "coverageScope": {"type": "string"}, "discoveryEvidence": {"type": "string"}, "confidence": {"type": "number", "minimum": 0, "maximum": 1}, "negativeResult": {"type": ["string", "null"]}}}},
+    "negativeDiscoveries": {"type": "array", "items": {"type": "object", "required": ["market", "place", "queryId", "reason", "evidence"], "properties": {"market": {"type": "string"}, "place": {"type": "string"}, "queryId": {"type": "string"}, "reason": {"enum": ["retired_url", "access_restricted", "not_official"]}, "evidence": {"type": "string"}}}}
+  }
+}

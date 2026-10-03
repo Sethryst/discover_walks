@@ -1,0 +1,22 @@
+{
+  "allowedReasonCodes": [
+    "not_official",
+    "duplicate_coverage",
+    "insufficient_event_fields",
+    "access_restricted",
+    "not_in_scope",
+    "retired_url",
+    "stale_calendar",
+    "blocked_robots"
+  ],
+  "kind": "national-negative-discovery-registry",
+  "publicationState": "research-only",
+  "readOnly": true,
+  "records": [
+    {"market":"new-york","place":"New York","queryId":"nrq-8171922ddc46","reason":"access_restricted","evidence":"Official NYC API portal documents an Event Calendar API, but API product access requires sign-in/subscription and no anonymous endpoint was verified.","cooldownUntil":"2026-10-30T00:00:00Z"},
+    {"market":"philadelphia","place":"Philadelphia","queryId":"nrq-b07a1f17b5a7","reason":"access_restricted","evidence":"Official developer portal documents the calendars API, but the public endpoint base/path was not resolved or successfully fetched.","cooldownUntil":"2026-10-30T00:00:00Z"},
+    {"market":"boston","place":"Boston","queryId":"nrq-42eea4275ba7","reason":"not_official","evidence":"Third-party library calendars were excluded pending official-domain confirmation.","cooldownUntil":"2026-10-30T00:00:00Z"},
+    {"market":"chicago","place":"Chicago","queryId":"nrq-097537771220","reason":"access_restricted","evidence":"No publicly verifiable official library calendar endpoint was retained in the first pass.","cooldownUntil":"2026-10-30T00:00:00Z"},
+    {"market":"denver","place":"Boulder","queryId":"nrq-0e262c2773d4","reason":"retired_url","evidence":"No separate public meeting endpoint was retained; the official city events page was used for current meetings.","cooldownUntil":"2026-10-30T00:00:00Z"}
+  ]
+}

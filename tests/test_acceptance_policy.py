@@ -18,3 +18,11 @@ def test_landed_requires_config_and_release_evidence():
     assert assess_candidate(candidate, **kwargs, active_region_config=True)["stage"] == "ACTIVATION_READY"
     assert assess_candidate(candidate, **kwargs, active_region_config=True, release_evidence=True)["stage"] == "LANDED"
 
+def test_limited_approval_requires_verified_endpoint_and_terms():
+    candidate = {"candidateId": "x"}
+    result = assess_candidate(candidate, endpoint_verified=True, terms_verified=True,
+                              limited_approval=True, refresh_verified=False)
+    assert result["outcome"] == "APPROVED_WITH_LIMITS"
+    blocked = assess_candidate(candidate, endpoint_verified=True, terms_verified=True,
+                               limited_approval=True, hard_blockers=["unsafe timezone"])
+    assert blocked["outcome"] == "HOLD"

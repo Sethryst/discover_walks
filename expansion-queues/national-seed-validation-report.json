@@ -1,0 +1,46 @@
+{
+  "errors": [],
+  "marketCount": 56,
+  "placeTypeCounts": {
+    "city": 71,
+    "county": 19,
+    "municipality": 1,
+    "parks_district": 1,
+    "tourism_market": 3,
+    "university_town": 3
+  },
+  "publicationState": "research-only",
+  "seedCount": 98,
+  "valid": true,
+  "warnings": [
+    {
+      "code": "questionable_domain",
+      "line": 88,
+      "value": " Hartfordct.gov"
+    },
+    {
+      "code": "cross_market_place",
+      "markets": [
+        "philadelphia",
+        "washington-dc"
+      ],
+      "place": "montgomery county"
+    },
+    {
+      "code": "cross_market_place",
+      "markets": [
+        "new-york",
+        "newark-delaware"
+      ],
+      "place": "newark"
+    },
+    {
+      "code": "cross_market_place",
+      "markets": [
+        "portland-me",
+        "portland-or"
+      ],
+      "place": "portland"
+    }
+  ]
+}

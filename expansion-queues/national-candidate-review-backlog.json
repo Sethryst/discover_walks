@@ -1,0 +1,124 @@
+{
+  "candidates": [
+    {
+      "canonicalDomain": "austintexas.gov",
+      "canonicalUrl": "https://www.austintexas.gov/events",
+      "confidence": 0.91,
+      "coverageScope": "Austin city departments and civic events",
+      "discoveryEvidence": "Official City of Austin events page exposes dated event records and department filters.",
+      "id": "structured_html-austintexas-gov-f8b98742",
+      "market": "austin",
+      "negativeResult": null,
+      "place": "Austin",
+      "providerName": "City of Austin Events",
+      "queryId": "nrq-671ee4ed621c",
+      "scout": {
+        "category": "structured_html",
+        "dataType": "HTML calendar",
+        "discovery": {
+          "confidence": 0.91,
+          "evidence": "Official City of Austin events page exposes dated event records and department filters.",
+          "origin": "researched",
+          "queryId": "nrq-671ee4ed621c"
+        },
+        "publisher": "City of Austin Events",
+        "url": "https://www.austintexas.gov/events"
+      },
+      "sourceType": "structured_html",
+      "sourceUrl": "https://www.austintexas.gov/events"
+    },
+    {
+      "canonicalDomain": "data.austintexas.gov",
+      "canonicalUrl": "https://data.austintexas.gov/widgets/p9ma-z6y9",
+      "confidence": 0.88,
+      "coverageScope": "Austin Convention Center and city-managed venue event listings",
+      "discoveryEvidence": "Official Austin open-data portal exposes dated event rows and a Socrata-backed listing.",
+      "id": "socrata-data-austintexas-gov-c61b57e9",
+      "market": "austin",
+      "negativeResult": null,
+      "place": "Austin",
+      "providerName": "City of Austin Open Data ACCD Event Listings",
+      "queryId": "nrq-fffdd2cedd30",
+      "scout": {
+        "category": "socrata",
+        "dataType": "HTML calendar",
+        "discovery": {
+          "confidence": 0.88,
+          "evidence": "Official Austin open-data portal exposes dated event rows and a Socrata-backed listing.",
+          "origin": "researched",
+          "queryId": "nrq-fffdd2cedd30"
+        },
+        "publisher": "City of Austin Open Data ACCD Event Listings",
+        "url": "https://data.austintexas.gov/widgets/p9ma-z6y9"
+      },
+      "sourceType": "socrata",
+      "sourceUrl": "https://data.austintexas.gov/widgets/p9ma-z6y9"
+    },
+    {
+      "canonicalDomain": "honolulu.gov",
+      "canonicalUrl": "https://www.honolulu.gov/events",
+      "confidence": 0.83,
+      "coverageScope": "Honolulu city and county public meetings, libraries, parks, and civic events",
+      "discoveryEvidence": "Official city/county calendar exposes dated event cards and calendar navigation.",
+      "id": "structured_html-honolulu-gov-75dc55aa",
+      "market": "honolulu",
+      "negativeResult": null,
+      "place": "Honolulu",
+      "providerName": "City and County of Honolulu Events",
+      "queryId": "nrq-32cbc29c96af",
+      "scout": {
+        "category": "structured_html",
+        "dataType": "HTML calendar",
+        "discovery": {
+          "confidence": 0.83,
+          "evidence": "Official city/county calendar exposes dated event cards and calendar navigation.",
+          "origin": "researched",
+          "queryId": "nrq-32cbc29c96af"
+        },
+        "publisher": "City and County of Honolulu Events",
+        "url": "https://www.honolulu.gov/events"
+      },
+      "sourceType": "structured_html",
+      "sourceUrl": "https://www.honolulu.gov/events/"
+    },
+    {
+      "canonicalDomain": "calendar.ehawaii.gov",
+      "canonicalUrl": "https://calendar.ehawaii.gov/calendar/rss.html",
+      "confidence": 0.86,
+      "coverageScope": "State agency and public-board calendars relevant to Honolulu",
+      "discoveryEvidence": "Official State of Hawaii calendar page lists RSS links for agency calendars.",
+      "id": "rss-calendar-ehawaii-gov-e2ac3436",
+      "market": "honolulu",
+      "negativeResult": null,
+      "place": "Honolulu",
+      "providerName": "State of Hawaii Public Meetings RSS Index",
+      "queryId": "nrq-ae17fc4cb81d",
+      "scout": {
+        "category": "rss",
+        "dataType": "RSS/ICS",
+        "discovery": {
+          "confidence": 0.86,
+          "evidence": "Official State of Hawaii calendar page lists RSS links for agency calendars.",
+          "origin": "researched",
+          "queryId": "nrq-ae17fc4cb81d"
+        },
+        "publisher": "State of Hawaii Public Meetings RSS Index",
+        "url": "https://calendar.ehawaii.gov/calendar/rss.html"
+      },
+      "sourceType": "rss",
+      "sourceUrl": "https://calendar.ehawaii.gov/calendar/rss.html"
+    }
+  ],
+  "errors": [],
+  "kind": "national-candidate-review-backlog",
+  "negativeDiscoveries": [],
+  "publicationState": "research-only",
+  "readOnly": true,
+  "schemaVersion": 1,
+  "source": "expansion-queues\\national-candidate-capture-2026-10-02-austin-honolulu.json",
+  "summary": {
+    "candidateCount": 4,
+    "errorCount": 0,
+    "negativeCount": 0
+  }
+}

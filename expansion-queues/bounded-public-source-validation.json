@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "kind": "bounded-public-source-validation",
+  "publicationState": "local-test-only",
+  "productionConfigChanged": false,
+  "tests": {
+    "command": "python -m unittest tests.test_bounded_release_path tests.test_bounded_public_sources tests.test_event_identity tests.test_public_api_fixtures tests.test_rss_ics_events -v",
+    "passed": 8,
+    "failed": 0
+  },
+  "sources": [
+    {
+      "id": "nyc-parks-socrata",
+      "status": "bounded-pass",
+      "checks": {
+        "wallTimePreserved": true,
+        "oneMonthFreshnessPolicy": true,
+        "fallbackIdDeterministic": true,
+        "fixture": true,
+        "contractTest": true
+      },
+      "restriction": "date_and_time remains unspecified wall time; no UTC normalization"
+    },
+    {
+      "id": "dc-citywide-rss",
+      "status": "bounded-pass",
+      "checks": {
+        "explicitOffsetToUtc": true,
+        "fallbackIdDeterministic": true,
+        "cacheIntervalEnforced": true,
+        "fixture": true,
+        "parserTest": true
+      },
+      "restriction": "items without explicit offsets are not normalized; minimum poll interval is 1800 seconds"
+    }
+  ],
+  "release": {
+    "run": true,
+    "status": "passed",
+    "path": "fixture -> adapter -> normalized events -> deduplication -> release validation",
+    "productionConfigChanged": false,
+    "output": "releases/bounded-public-events/events.json",
+    "recordCount": 2,
+    "publishableSources": ["dc-citywide-rss"],
+    "referenceOnlySources": ["nyc-parks-14-day"],
+    "checks": [
+      "NYC wall-time restriction",
+      "NYC one-month freshness",
+      "DC offset normalization",
+      "DC 1800-second polling",
+      "stable fallback IDs",
+      "duplicate elimination",
+      "APPROVED_WITH_LIMITS restrictions"
+    ]
+  }
+}

@@ -1,0 +1,99 @@
+market_id,market_name,place,state,state_code,place_type,priority,existing_region,official_domain,discovery_status,next_action
+washington-dc,Washington-Arlington-Alexandria,Washington,DC,DC,city,1,true,dc.gov,active,resolve remaining civic gaps
+washington-dc,Washington-Arlington-Alexandria,Arlington,VA,VA,county,1,true,arlingtonva.us,active,expand parks and meetings
+washington-dc,Washington-Arlington-Alexandria,Alexandria,VA,VA,city,1,true,alexandriava.gov,active,expand parks and culture
+washington-dc,Washington-Arlington-Alexandria,Fairfax County,VA,VA,county,1,true,fairfaxcounty.gov,active,expand county calendars
+washington-dc,Washington-Arlington-Alexandria,Loudoun County,VA,VA,county,1,true,loudoun.gov,active,expand county calendars
+washington-dc,Washington-Arlington-Alexandria,Montgomery County,MD,MD,county,1,false,montgomerycountymd.gov,seed,discover official feeds
+washington-dc,Washington-Arlington-Alexandria,Prince George's County,MD,MD,county,1,true,princegeorgescountymd.gov,active,expand civic and volunteer
+new-york,New York,New York,NY,NY,city,1,true,nyc.gov,active,audit borough and parks feeds
+new-york,New York,Newark,NJ,NJ,city,1,false,newarknj.gov,seed,discover official feeds
+new-york,New York,Jersey City,NJ,NJ,city,1,false,jerseycitynj.gov,seed,discover official feeds
+new-york,New York,Westchester County,NY,NY,county,1,false,westchestercountyny.gov,seed,discover official feeds
+new-york,New York,Nassau County,NY,NY,county,1,false,nassaucountyny.gov,seed,discover official feeds
+philadelphia,Philadelphia,Philadelphia,PA,PA,city,1,true,phila.gov,active,fill parks and meetings
+philadelphia,Philadelphia,Camden,NJ,NJ,city,1,false,camdennj.gov,seed,discover official feeds
+philadelphia,Philadelphia,Montgomery County,PA,PA,county,1,false,montgomerycountypa.gov,seed,discover official feeds
+chicago,Chicago,Chicago,IL,IL,city,1,true,chicago.gov,active,recheck migrated RSS and APIs
+chicago,Chicago,Evanston,IL,IL,city,1,false,cityofevanston.org,seed,discover official feeds
+chicago,Chicago,Cook County,IL,IL,county,1,false,cookcountyil.gov,seed,discover official feeds
+boston,Boston,Boston,MA,MA,city,1,true,boston.gov,active,expand libraries and culture
+boston,Boston,Cambridge,MA,MA,city,1,false,cambridgema.gov,seed,discover official feeds
+boston,Boston,Somerville,MA,MA,city,1,false,somervillema.gov,seed,discover official feeds
+boston,Boston,Middlesex County,MA,MA,county,1,false,middlesexsouthregistry.com,seed,verify authoritative county domain
+san-francisco-bay-area,San Francisco Bay Area,San Francisco,CA,CA,city,1,true,sfgov.org,active,replace retired RSS and verify APIs
+san-francisco-bay-area,San Francisco Bay Area,Oakland,CA,CA,city,1,false,oaklandca.gov,seed,discover official feeds
+san-francisco-bay-area,San Francisco Bay Area,San Jose,CA,CA,city,1,false,sanjoseca.gov,seed,discover official feeds
+san-francisco-bay-area,San Francisco Bay Area,Alameda County,CA,CA,county,1,false,acgov.org,seed,discover official feeds
+los-angeles,Los Angeles,Los Angeles,CA,CA,city,1,false,lacity.gov,seed,discover official feeds
+los-angeles,Los Angeles,Long Beach,CA,CA,city,1,false,longbeach.gov,seed,discover official feeds
+los-angeles,Los Angeles,Pasadena,CA,CA,city,1,false,cityofpasadena.net,seed,discover official feeds
+los-angeles,Los Angeles,Los Angeles County,CA,CA,county,1,false,lacounty.gov,seed,discover official feeds
+seattle-tacoma,Seattle-Tacoma,Seattle,WA,WA,city,1,true,seattle.gov,active,expand parks and culture
+seattle-tacoma,Seattle-Tacoma,Tacoma,WA,WA,city,1,false,cityoftacoma.org,seed,discover official feeds
+seattle-tacoma,Seattle-Tacoma,Bellevue,WA,WA,city,1,false,bellevuewa.gov,seed,discover official feeds
+seattle-tacoma,Seattle-Tacoma,King County,WA,WA,county,1,false,kingcounty.gov,seed,discover official feeds
+denver,Denver,Denver,CO,CO,city,1,true,denvergov.org,active,convert Scout leads to source work
+denver,Denver,Aurora,CO,CO,city,1,false,auroragov.org,seed,discover official feeds
+denver,Denver,Boulder,CO,CO,city,1,true,bouldercolorado.gov,active,expand parks and civic feeds
+denver,Denver,Jefferson County,CO,CO,county,1,false,jeffco.us,seed,discover official feeds
+portland-or,Portland,Portland,OR,OR,city,1,false,portland.gov,seed,discover official feeds
+portland-me,Portland,Portland,ME,ME,city,1,true,portlandmaine.gov,active,resolve parks and culture
+baltimore,Baltimore,Baltimore,MD,MD,city,2,false,baltimorecity.gov,seed,discover official feeds
+baltimore,Baltimore,Anne Arundel County,MD,MD,county,2,false,publicworks.aacounty.org,seed,verify authoritative county domain
+richmond,Richmond,Richmond,VA,VA,city,2,true,rva.gov,active,expand meetings and volunteer
+pittsburgh,Pittsburgh,Pittsburgh,PA,PA,city,2,true,pittsburghpa.gov,active,expand parks and culture
+detroit,Detroit,Detroit,MI,MI,city,2,true,detroitmi.gov,active,expand county and civic feeds
+columbus,Columbus,Columbus,OH,OH,city,2,true,columbus.gov,active,expand public meetings
+cleveland,Cleveland,Cleveland,OH,OH,city,2,false,clevelandohio.gov,seed,discover official feeds
+minneapolis-st-paul,Minneapolis-Saint Paul,Minneapolis,MN,MN,city,2,false,minneapolismn.gov,seed,discover official feeds
+minneapolis-st-paul,Minneapolis-Saint Paul,Saint Paul,MN,MN,city,2,false,stpaul.gov,seed,discover official feeds
+nashville,Nashville,Nashville,TN,TN,city,2,false,nashville.gov,seed,discover official feeds
+atlanta,Atlanta,Atlanta,GA,GA,city,2,false,atlantaga.gov,seed,discover official feeds
+charlotte,Charlotte,Charlotte,NC,NC,city,2,false,charlottenc.gov,seed,discover official feeds
+raleigh-durham,Raleigh-Durham,Raleigh,NC,NC,city,2,false,raleighnc.gov,seed,discover official feeds
+raleigh-durham,Raleigh-Durham,Durham,NC,NC,city,2,false,durhamnc.gov,seed,discover official feeds
+new-orleans,New Orleans,New Orleans,LA,LA,city,2,true,nola.gov,active,expand culture and volunteer
+austin,Austin,Austin,TX,TX,city,2,false,austintexas.gov,seed,discover official feeds
+dallas-fort-worth,Dallas-Fort Worth,Dallas,TX,TX,city,2,false,dallascityhall.com,seed,verify current city domain
+dallas-fort-worth,Dallas-Fort Worth,Fort Worth,TX,TX,city,2,true,fortworthtexas.gov,active,add Dallas-side sources
+phoenix,Phoenix,Phoenix,AZ,AZ,city,2,false,phoenix.gov,seed,discover official feeds
+phoenix,Phoenix,Tempe,AZ,AZ,city,2,true,tempe.gov,active,expand metro sources
+salt-lake,Salt Lake City,Salt Lake City,UT,UT,city,2,false,slc.gov,seed,discover official feeds
+boise,Boise,Boise,ID,ID,city,2,true,cityofboise.org,active,expand county and culture
+albuquerque-santa-fe,Albuquerque-Santa Fe,Albuquerque,NM,NM,city,2,false,cabq.gov,seed,discover official feeds
+albuquerque-santa-fe,Albuquerque-Santa Fe,Santa Fe,NM,NM,city,2,true,santafenm.gov,active,add Albuquerque sources
+honolulu,Honolulu,Honolulu,HI,HI,city,2,false,honolulu.gov,seed,discover official feeds
+anchorage,Anchorage,Anchorage,AK,AK,municipality,2,true,muni.org,active,resolve seasonal source gaps
+miami,Miami-Fort Lauderdale,Miami,FL,FL,city,1,false,miamigov.com,seed,verify official civic sources
+miami,Miami-Fort Lauderdale,Fort Lauderdale,FL,FL,city,2,false,fortlauderdale.gov,seed,discover official feeds
+miami,Miami-Fort Lauderdale,Miami-Dade County,FL,FL,county,1,false,miamidade.gov,seed,discover county sources
+houston,Houston,Houston,TX,TX,city,1,false,houstontx.gov,seed,discover official feeds
+houston,Houston,Harris County,TX,TX,county,1,false,harriscountytx.gov,seed,discover county sources
+san-diego,San Diego,San Diego,CA,CA,city,1,false,sandiego.gov,seed,discover official feeds
+san-diego,San Diego,Chula Vista,CA,CA,city,2,false,chulavistaca.gov,seed,discover official feeds
+san-diego,San Diego,San Diego County,CA,CA,county,1,false,sandiegocounty.gov,seed,discover county sources
+las-vegas,Las Vegas,Las Vegas,NV,NV,city,1,false,lasvegasnevada.gov,seed,discover official feeds
+las-vegas,Las Vegas,Henderson,NV,NV,city,2,false,cityofhenderson.com,seed,discover official feeds
+las-vegas,Las Vegas,Clark County,NV,NV,county,1,false,clarkcountynv.gov,seed,discover county sources
+st-louis,St. Louis,St. Louis,MO,MO,city,2,false,stlouis-mo.gov,seed,discover official feeds
+kansas-city,Kansas City,Kansas City,MO,MO,city,2,false,kcmo.gov,seed,discover official feeds
+indianapolis,Indianapolis,Indianapolis,IN,IN,city,2,false,indy.gov,seed,discover official feeds
+milwaukee,Milwaukee,Milwaukee,WI,WI,city,2,false,city.milwaukee.gov,seed,discover official feeds
+omaha,Omaha,Omaha,NE,NE,city,2,false,cityofomaha.org,seed,discover official feeds
+oklahoma-city,Oklahoma City,Oklahoma City,OK,OK,city,2,false,okc.gov,seed,discover official feeds
+tucson,Tucson,Tucson,AZ,AZ,city,2,false,tucsonaz.gov,seed,discover official feeds
+fresno,Fresno,Fresno,CA,CA,city,2,false,fresno.gov,seed,discover official feeds
+providence,Providence,Providence,RI,RI,city,2,false,providenceri.gov,seed,discover official feeds
+hartford,Hartford,Hartford,CT,CT,city,2,false, Hartfordct.gov,seed,discover official feeds
+charleston,Charleston,Charleston,SC,SC,city,2,false,charleston-sc.gov,seed,discover official feeds
+savannah,Savannah,Savannah,GA,GA,city,2,false,savannahga.gov,seed,discover culture and tourism
+lexington,Lexington,Lexington,KY,KY,city,2,false,lexingtonky.gov,seed,discover official feeds
+ann-arbor,Ann Arbor,Ann Arbor,MI,MI,university_town,2,false,a2gov.org,seed,discover university and civic feeds
+madison,Madison,Madison,WI,WI,city,2,false,cityofmadison.com,seed,discover official feeds
+eugene,Eugene,Eugene,OR,OR,university_town,2,false,eugene-or.gov,seed,discover university and outdoor feeds
+flagstaff,Flagstaff,Flagstaff,AZ,AZ,tourism_market,2,false,flagstaffaz.gov,seed,discover outdoor and tourism feeds
+asheville,Asheville,Asheville,NC,NC,tourism_market,2,false,ashevillenc.gov,seed,discover culture and outdoor feeds
+moab,Moab,Moab,UT,UT,tourism_market,3,false,moabcity.org,seed,discover outdoor sources
+yellowstone,Yellowstone,Yellowstone National Park,WY,WY,parks_district,2,false,nps.gov,seed,discover federal park feeds
+newark-delaware,Newark,Newark,DE,DE,university_town,3,false,newarkde.gov,seed,discover university and civic feeds

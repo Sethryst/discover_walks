@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["schemaVersion", "kind", "readOnly", "publicationState", "source", "seedCount", "marketCount", "queryCount", "queryFamilies", "queries"],
+  "properties": {
+    "schemaVersion": {"const": 2},
+    "kind": {"const": "national-region-search-queue"},
+    "readOnly": {"const": true},
+    "source": {"type": "string"},
+    "seedCount": {"type": "integer", "minimum": 1},
+    "queryCount": {"type": "integer", "minimum": 1},
+    "publicationState": {"const": "research-only"},
+    "marketCount": {"type": "integer", "minimum": 1},
+    "queryFamilies": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+    "queries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["marketId", "market", "place", "state", "stateCode", "placeType", "marketPriority", "seedPriority", "officialDomain", "providerStatus", "humanReview", "sourceConfidence", "negativeDiscoveryCodes", "nextAction", "queryId", "query", "queryFamily", "intent", "expectedSourceType", "provenance"],
+        "properties": {
+          "marketId": {"type": "string", "minLength": 1},
+          "market": {"type": "string", "minLength": 1},
+          "place": {"type": "string", "minLength": 1},
+          "state": {"type": "string", "minLength": 1},
+          "stateCode": {"type": "string", "minLength": 2, "maxLength": 2},
+          "placeType": {"enum": ["city", "county", "municipality"]},
+          "marketPriority": {"type": "integer", "minimum": 1, "maximum": 3},
+          "seedPriority": {"type": "integer", "minimum": 1, "maximum": 3},
+          "officialDomain": {"type": "string", "minLength": 1},
+          "providerStatus": {"enum": ["candidate", "discovered", "technically_validated", "content_validated", "approved", "active", "degraded", "paused", "retired"]},
+          "humanReview": {"const": "not_reviewed"},
+          "sourceConfidence": {"type": "object", "required": ["score", "signals"], "properties": {"score": {"type": "number", "minimum": 0, "maximum": 1}, "signals": {"type": "object"}}, "additionalProperties": false},
+          "negativeDiscoveryCodes": {"type": "array", "items": {"type": "string"}},
+          "nextAction": {"type": "string", "minLength": 1},
+          "queryId": {"type": "string", "minLength": 1},
+          "query": {"type": "string", "minLength": 1},
+          "queryFamily": {"type": "string", "minLength": 1},
+          "intent": {"type": "string", "minLength": 1},
+          "expectedSourceType": {"type": "string", "minLength": 1},
+          "provenance": {"type": "object", "required": ["seedFile", "discoveryOnly"], "properties": {"seedFile": {"type": "string"}, "discoveryOnly": {"const": true}}, "additionalProperties": false}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

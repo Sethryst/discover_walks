@@ -68,6 +68,8 @@ This is the single entry point for the repository’s Markdown files. The backlo
 
 - [docs/civic-source-onboarding.md](docs/civic-source-onboarding.md) — civic source onboarding.
 - [docs/civic-expansion-scout.md](docs/civic-expansion-scout.md) — civic expansion scouting.
+- [docs/national-region-discovery-backlog.md](docs/national-region-discovery-backlog.md) — prioritized national metro/place discovery backlog and search contract.
+- [expansion-queues/national-region-seeds.csv](expansion-queues/national-region-seeds.csv) — machine-readable national discovery seeds.
 - [docs/civic-engagement-contract.md](docs/civic-engagement-contract.md) — civic engagement boundaries.
 - [docs/candidate-source-lifecycle.md](docs/candidate-source-lifecycle.md) — source lifecycle states.
 - [docs/candidate-acceptance-policy.md](docs/candidate-acceptance-policy.md) — acceptance criteria for sources.

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["schemaVersion", "kind", "generatedAt", "sourceArtifacts", "publicationState", "active", "activeCandidates", "summary", "candidates", "errors"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "kind": {"const": "national-discovery-candidate-package"},
+    "generatedAt": {"type": "string"},
+    "sourceArtifacts": {"type": "array", "items": {"type": "string"}},
+    "publicationState": {"const": "research-only"},
+    "active": {"const": false},
+    "activeCandidates": {"const": []},
+    "runtimeLoader": {"type": "string"},
+    "summary": {"type": "object"},
+    "candidates": {"type": "array"},
+    "errors": {"type": "array"}
+  },
+  "additionalProperties": false
+}
