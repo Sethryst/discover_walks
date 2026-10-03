@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "kind": "regional-promotion-blocker-ledger",
+  "generatedAt": "2026-10-03T21:36:00Z",
+  "publicationState": "research-only",
+  "summary": {
+    "blockedMarkets": 2,
+    "reason": "The live native OSM acquisition gate completed without an approved source for either new market.",
+    "promotionRule": "Acquire a bounded native POI response and pass validation before adding a market to the live selector."
+  },
+  "markets": [
+    {"id":"san-antonio","name":"San Antonio","stage":"native-poi-acquisition","sourceId":"osm-san-antonio-walk","evidence":"Live bounded build terminated with no approved source succeeding.","nextAction":"Retry native OSM acquisition after a fresh Overpass/cache availability check."},
+    {"id":"san-jose","name":"San Jose","stage":"native-poi-acquisition","sourceId":"osm-san-jose-walk","evidence":"Live bounded build terminated with no approved source succeeding.","nextAction":"Retry native OSM acquisition after a fresh Overpass/cache availability check."}
+  ]
+}
