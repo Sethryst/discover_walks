@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "kind": "regional-promotion-blocker-ledger",
+  "generatedAt": "2026-10-03T21:27:00Z",
+  "publicationState": "research-only",
+  "summary": {
+    "blockedMarkets": 8,
+    "reason": "The cache-only native OSM gate found no usable raw OSM snapshot for these configured markets.",
+    "promotionRule": "Acquire and checksum a bounded native POI response before wiring a package into the live selector."
+  },
+  "markets": [
+    {"id":"anchorage","name":"Anchorage","stage":"native-poi-acquisition","evidence":"Cache-only OSM gate failed fast with no approved source succeeding.","nextAction":"Acquire a bounded OSM response for osm-anchorage, then rerun production validation."},
+    {"id":"corpus-christi","name":"Corpus Christi","stage":"native-poi-acquisition","evidence":"Cache-only OSM gate failed fast with no approved source succeeding.","nextAction":"Acquire a bounded OSM response for osm-corpus-christi, then rerun production validation."},
+    {"id":"detroit","name":"Detroit","stage":"native-poi-acquisition","evidence":"Cache-only OSM gate failed fast with no approved source succeeding.","nextAction":"Acquire a bounded OSM response for osm-detroit, then rerun production validation."},
+    {"id":"fort-worth","name":"Fort Worth","stage":"native-poi-acquisition","evidence":"Cache-only OSM gate failed fast with no approved source succeeding.","nextAction":"Acquire a bounded OSM response for osm-fort-worth, then rerun production validation."},
+    {"id":"los-angeles","name":"Los Angeles","stage":"native-poi-acquisition","evidence":"Cache-only OSM gate failed fast with no approved source succeeding.","nextAction":"Acquire a bounded OSM response for osm-los-angeles, then rerun production validation."},
+    {"id":"norfolk","name":"Norfolk","stage":"native-poi-acquisition","evidence":"Cache-only OSM gate failed fast with no approved source succeeding.","nextAction":"Acquire a bounded OSM response for osm-norfolk, then rerun production validation."},
+    {"id":"philadelphia","name":"Philadelphia","stage":"native-poi-acquisition","evidence":"Cache-only OSM gate failed fast with no approved source succeeding.","nextAction":"Acquire a bounded OSM response for osm-philadelphia, then rerun production validation."},
+    {"id":"tempe","name":"Tempe","stage":"native-poi-acquisition","evidence":"Cache-only OSM gate failed fast with no approved source succeeding.","nextAction":"Acquire a bounded OSM response for osm-tempe, then rerun production validation."}
+  ]
+}
