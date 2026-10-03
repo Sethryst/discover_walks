@@ -99,7 +99,7 @@ def build_region(region_file: Path, output_root: Path, cache_root: Path, produce
             warnings.append({"code": "source_unavailable", "source": "nws-forecast", "detail": str(exc)})
             source_reports.append({"id": "nws-forecast", "name": "National Weather Service forecast and alerts", "url": "https://api.weather.gov/", "provider": "nws", "acquireStatus": "source_unavailable", "recordCount": 0, "namedCount": 0, "unnamedCount": 0, "geometryTypesAcquired": [], "geometryTypesSurvived": [], "dataClass": "temporal", "visibleValue": "Would show short-lived weather and alert context beside a walk; this build could not acquire it.", "error": str(exc), "acquiredAt": timestamp})
     records = [record for domain, features in by_domain.items() for record in GREMLINS[domain].process(features)]
-    if region.get("enrichment", {}).get("wikimedia", {}).get("enabled"):
+    if region.get("enrichment", {}).get("wikimedia", {}).get("enabled") and not only_sources:
         warnings.extend(WikimediaEnricher().enrich(records, cache_root, region["id"], timestamp))
     records, validation_report = validate_records(records, region["bbox"])
     dedup_groups = find_duplicate_candidates(records)
