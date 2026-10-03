@@ -1,0 +1,85 @@
+{
+  "checksums": {
+    "pois.json": "sha256:35e0f96234b59463cace8fe9bdad3223189c5afaa83683ee878200cf76316eee",
+    "source-scorecard.json": "sha256:634f1aa5780ac7621a8c4007da7ab68ba1945265b4188eb6d70aa170cd2843a3",
+    "supplemental/canonical-records.json": "sha256:67782b834eda1d962da8c6ec69afd10e8a0ccafa3ff031a7703d947520acdc03",
+    "supplemental/dedup-groups.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "supplemental/osm-pois.json": "sha256:bd161333c7a316dff2f3863bd01442d38a623e2934c55c80cacf7f960cb6178e",
+    "supplemental/validation-report.json": "sha256:26407f636ccbbc82e79fccca7a466fbe84a332182f2598cf997fb4623fc9c053"
+  },
+  "generatedAt": "2026-10-03T21:31:02.789117Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "norfolk",
+  "regionId": "norfolk",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:31:02.789117Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\norfolk\\osm-norfolk\\2026-10-03T21-31-02.789117Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 345,
+      "emittedRecordCount": 345,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "osm-norfolk",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 385,
+      "provider": "osm_overpass",
+      "recordCount": 385,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 345
+    },
+    "valid": true
+  },
+  "warnings": [
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3785628174 merged into osm:node:3785628173; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:3785628173",
+        "osm:node:3785628174"
+      ],
+      "source": "osm-norfolk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9701183481 merged into osm:node:9701183480; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:9701183480",
+        "osm:node:9701183481"
+      ],
+      "source": "osm-norfolk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1524146829 merged into osm:node:13878233201; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:13878233201",
+        "osm:way:1524146829"
+      ],
+      "source": "osm-norfolk"
+    }
+  ]
+}

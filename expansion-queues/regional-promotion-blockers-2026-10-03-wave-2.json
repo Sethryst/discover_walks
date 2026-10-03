@@ -4,10 +4,10 @@
   "generatedAt": "2026-10-03T21:27:00Z",
   "publicationState": "research-only",
   "summary": {
-    "blockedMarkets": 7,
+    "blockedMarkets": 6,
     "reason": "The cache-only native OSM gate found no usable raw OSM snapshot for these configured markets.",
     "promotionRule": "Acquire and checksum a bounded native POI response before wiring a package into the live selector.",
-    "promotedMarkets": 1
+    "promotedMarkets": 2
   },
   "markets": [
     {
@@ -49,9 +49,10 @@
     {
       "id": "norfolk",
       "name": "Norfolk",
-      "stage": "native-poi-acquisition",
-      "evidence": "Cache-only OSM gate failed fast with no approved source succeeding.",
-      "nextAction": "Acquire a bounded OSM response for osm-norfolk, then rerun production validation."
+      "stage": "promoted",
+      "evidence": "Fresh live OSM build passed validation with 345 POIs; package wired into Motherbird.",
+      "nextAction": "Acquire a bounded OSM response for osm-norfolk, then rerun production validation.",
+      "promotionStatus": "published"
     },
     {
       "id": "philadelphia",

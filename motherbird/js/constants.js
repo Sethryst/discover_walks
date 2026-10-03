@@ -21,7 +21,7 @@
     state: 'VA',
     center: { lat: 36.8508, lng: -76.2859 },
     zoom: 14,
-    dataFile: './data/norfolk-poi.json',
+    dataFile: './regions/norfolk/pois.json',
     supplementalPoiFiles: ['./data/osm/norfolk-osm-poi.json'],
     civicFile: './regions/norfolk/civic/index.json', weatherFile: './regions/norfolk/weather.json'
   },
