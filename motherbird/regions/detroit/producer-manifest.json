@@ -1,0 +1,97 @@
+{
+  "checksums": {
+    "geography/boundary.geojson": "sha256:fb050ac5a7e0061f929cccc460716e7902c0c3ffe8c69cd8683ffec3a6c372d1",
+    "pois.json": "sha256:27c422fe1f50e5a8b7849767d7e6eabbf0b05d588e8bd512d5c09ef1e8063183",
+    "source-scorecard.json": "sha256:f7f0b65df44638d2493a684f3dc1f0cf11afd79eb439688426a80d628264baf3",
+    "supplemental/canonical-records.json": "sha256:6db06bc9cc8151ef684f42d6cb2dba60760477412ecc975467d1c40853e83f66",
+    "supplemental/dedup-groups.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "supplemental/osm-pois.json": "sha256:e68710c8dc54f6dc27d0edd9d0bd792864fd76ddcfd3778aa1397b7b6fe3dc80",
+    "supplemental/validation-report.json": "sha256:476d7fe612a58bee5cbfedf4e1d1bb94a4f5a71a81b879ebbbed1dc3272eb143"
+  },
+  "generatedAt": "2026-10-03T21:28:06.410562Z",
+  "geography": [
+    {
+      "featureCount": 1,
+      "filename": "geography/boundary.geojson",
+      "idField": "id",
+      "nameField": "name",
+      "role": "jurisdiction_boundary",
+      "sourceId": "detroit-boundary"
+    }
+  ],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "detroit",
+  "regionId": "detroit",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:28:06.410562Z",
+      "authorityTier": "city_government",
+      "cachedAt": ".gremlin-cache\\detroit\\detroit-boundary\\2026-10-03T21-28-06.410562Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Polygon"
+      ],
+      "geometryTypesSurvived": [],
+      "id": "detroit-boundary",
+      "layerRole": "jurisdiction_boundary",
+      "licenseUrl": "https://data.detroitmi.gov/",
+      "name": "City of Detroit Boundary",
+      "namedCount": 1,
+      "provider": "arcgis_feature_service",
+      "recordCount": 1,
+      "unnamedCount": 0,
+      "url": "https://services2.arcgis.com/qvkbeam7Wirps6zC/ArcGIS/rest/services/City_of_Detroit_Boundary/FeatureServer/0",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:28:06.410562Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\detroit\\osm-detroit\\2026-10-03T21-28-06.410562Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 745,
+      "emittedRecordCount": 745,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "osm-detroit",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 987,
+      "provider": "osm_overpass",
+      "recordCount": 987,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 745
+    },
+    "valid": true
+  },
+  "warnings": [
+    {
+      "code": "boundary_clip_applied",
+      "detail": "Retained 987 of 1699 features inside detroit-boundary.",
+      "source": "osm-detroit"
+    }
+  ]
+}

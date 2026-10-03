@@ -80,7 +80,7 @@
   },
   detroit: {
     name: 'Detroit', state: 'MI', center: { lat: 42.3527, lng: -83.0990 }, zoom: 11,
-    dataFile: './data/detroit-poi.json',
+    dataFile: './regions/detroit/pois.json',
     boundarySource: { name: 'City of Detroit Boundary', url: 'https://services2.arcgis.com/qvkbeam7Wirps6zC/ArcGIS/rest/services/City_of_Detroit_Boundary/FeatureServer/0' }
   },
   'corpus-christi': {
