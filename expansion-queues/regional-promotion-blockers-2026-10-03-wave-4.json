@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "kind": "regional-promotion-blocker-ledger",
+  "generatedAt": "2026-10-03T22:20:00Z",
+  "publicationState": "research-only",
+  "summary": {
+    "blockedMarkets": 2,
+    "attemptsPerMarket": 3,
+    "reason": "El Paso and Rochester produced no release artifacts after the initial build, one bounded retry, and an approved alternate Overpass endpoint attempt.",
+    "promotionRule": "Promote only a non-empty native POI package with a valid manifest, checksums, and verified official outlinks."
+  },
+  "markets": [
+    {"id":"el-paso","name":"El Paso","stage":"native-poi-acquisition","sourceId":"osm-el-paso-walk","attempts":["overpass-api.de: WinError 10060","overpass-api.de retry: WinError 10060","overpass.kumi.systems: read timeout"],"evidence":"No releases-next/el-paso package, manifest, cache, or usable POI response was produced.","status":"blocked-provisional","nextAction":"Retry after Overpass availability recovers; do not activate the locality until a non-empty validated package exists."},
+    {"id":"rochester","name":"Rochester","stage":"native-poi-acquisition","sourceId":"osm-rochester-walk","attempts":["overpass-api.de: WinError 10060","overpass-api.de retry: WinError 10060","overpass.kumi.systems: read timeout"],"evidence":"No releases-next/rochester package, manifest, cache, or usable POI response was produced.","status":"blocked-provisional","nextAction":"Retry after Overpass availability recovers; do not activate the locality until a non-empty validated package exists."}
+  ]
+}

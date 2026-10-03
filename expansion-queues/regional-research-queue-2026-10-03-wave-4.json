@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "kind": "regional-research-queue",
+  "generatedAt": "2026-10-03T22:20:00Z",
+  "publicationState": "research-only",
+  "sourcePolicy": "Research candidates only; native search packages and external official links remain separate until validated and promoted.",
+  "markets": [
+    {"id":"birmingham-al","name":"Birmingham, Alabama","priority":1,"rationale":"Large uncovered Southern U.S. market with dense parks, trails, libraries, and civic sources.","nextAction":"Queue bounded OSM build and verify city, parks, library, and official tourism outlinks."},
+    {"id":"buffalo","name":"Buffalo, New York","priority":1,"rationale":"Strong Great Lakes walking and waterfront candidate with existing audit evidence to revalidate.","nextAction":"Re-run native package build and reconcile against the blocked audit without promoting stale artifacts."},
+    {"id":"cincinnati","name":"Cincinnati, Ohio","priority":2,"rationale":"Dense riverfront and neighborhood park network; existing audit package can be treated only as research evidence.","nextAction":"Queue fresh native acquisition and official-link verification."},
+    {"id":"pittsburgh","name":"Pittsburgh, Pennsylvania","priority":2,"rationale":"High-value trail, park, history, and library coverage candidate.","nextAction":"Queue bounded native acquisition with separate external-link review."
+    }
+  ]
+}
