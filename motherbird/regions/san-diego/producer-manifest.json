@@ -1,0 +1,264 @@
+{
+  "checksums": {
+    "pois.json": "sha256:dc0005caf0e3b22cc932e1aa6ba414e44595ca412e980371426ee2eef5554161",
+    "source-scorecard.json": "sha256:85bd2acba4f3c7fcb7c744c28296828eb0635a352b77cc29ba658ec9bc0a78dd",
+    "supplemental/canonical-records.json": "sha256:e304ec3d7408593f4ef7b7e0413616867df47285784cc770a5a87dcd0f8584ab",
+    "supplemental/dedup-groups.json": "sha256:56e456564959963d09426e280fae796a01b7f4a03152bb6eca59c46cce6bf422",
+    "supplemental/osm-pois.json": "sha256:5409e5a1fc9ba4f2a755f664a1dd5b9859445dd58cf9101bb29718eb037e2ec6",
+    "supplemental/validation-report.json": "sha256:c620d1ab25c93d65976580db0d83307bbebb6526bd12dea5c598c330ab8a95a1",
+    "supplemental/weather.json": "sha256:be10868e3f8ff8f8a6da102984f796e43ca64115ff7ce95ef08f18c35482067f"
+  },
+  "generatedAt": "2026-10-03T20:31:34.288666Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "san-diego",
+  "regionId": "san-diego",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:31:34.288666Z",
+      "authorityTier": "federal_government",
+      "cachedAt": ".gremlin-cache\\san-diego\\usgs-water-locations\\2026-10-03T20-31-34.288666Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 500,
+      "emittedRecordCount": 500,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "usgs-water-locations",
+      "licenseUrl": "https://api.waterdata.usgs.gov/docs/",
+      "name": "USGS water monitoring locations",
+      "namedCount": 500,
+      "provider": "usgs_monitoring_locations",
+      "recordCount": 500,
+      "unnamedCount": 0,
+      "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:31:34.288666Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\san-diego\\ebird-walk-recent\\2026-10-03T20-31-34.288666Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 65,
+      "emittedRecordCount": 65,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "ebird-walk-recent",
+      "licenseUrl": "https://science.ebird.org/en/status-and-trends/products-access-terms-of-use",
+      "name": "eBird recent hotspot observations",
+      "namedCount": 65,
+      "provider": "ebird_recent",
+      "recordCount": 65,
+      "unnamedCount": 0,
+      "url": "https://api.ebird.org/v2/data/obs/geo/recent",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:31:34.288666Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\san-diego\\osm-san-diego-walk\\2026-10-03T20-31-34.288666Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 1187,
+      "emittedRecordCount": 1187,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "osm-san-diego-walk",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 1200,
+      "provider": "osm_overpass",
+      "recordCount": 1200,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:31:34.288666Z",
+      "authorityTier": "federal_government",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "nws-forecast",
+      "licenseUrl": "https://www.weather.gov/documentation/services-web-api",
+      "name": "National Weather Service forecast and alerts",
+      "namedCount": 0,
+      "provider": "nws",
+      "recordCount": 4,
+      "unnamedCount": 0,
+      "url": "https://api.weather.gov/",
+      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:31:34.288666Z",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "san-diego-civic",
+      "name": "San Diego, California civic events",
+      "namedCount": 0,
+      "provider": "civic_rss",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "configured civic provider",
+      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 1752
+    },
+    "valid": true
+  },
+  "warnings": [
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13731254002 merged into osm:node:13731236601; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:13731236601",
+        "osm:node:13731254002"
+      ],
+      "source": "osm-san-diego-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13731254101 merged into osm:node:13731231101; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:13731231101",
+        "osm:node:13731254101"
+      ],
+      "source": "osm-san-diego-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13733698903 merged into osm:node:13733669502; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:13733669502",
+        "osm:node:13733698903"
+      ],
+      "source": "osm-san-diego-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13733711204 merged into osm:node:13733705201; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:13733705201",
+        "osm:node:13733711204"
+      ],
+      "source": "osm-san-diego-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13736573801 merged into osm:node:13736572601; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:13736572601",
+        "osm:node:13736573801"
+      ],
+      "source": "osm-san-diego-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13736804703 merged into osm:node:13736589702; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:13736589702",
+        "osm:node:13736804703"
+      ],
+      "source": "osm-san-diego-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13736813602 merged into osm:node:13736589702; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:13736589702",
+        "osm:node:13736813602"
+      ],
+      "source": "osm-san-diego-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13831361113 merged into osm:node:13831353594; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:13831353594",
+        "osm:node:13831361113"
+      ],
+      "source": "osm-san-diego-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13831387414 merged into osm:node:13731254401; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:13731254401",
+        "osm:node:13831387414"
+      ],
+      "source": "osm-san-diego-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13831512294 merged into osm:node:13831512293; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:13831512293",
+        "osm:node:13831512294"
+      ],
+      "source": "osm-san-diego-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13831541861 merged into osm:node:13831420806; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:13831420806",
+        "osm:node:13831541861"
+      ],
+      "source": "osm-san-diego-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4931765351 merged into osm:node:4931765349; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:4931765349",
+        "osm:node:4931765351"
+      ],
+      "source": "osm-san-diego-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:814679428 merged into osm:node:10969022121; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:10969022121",
+        "osm:node:814679428"
+      ],
+      "source": "osm-san-diego-walk"
+    }
+  ]
+}

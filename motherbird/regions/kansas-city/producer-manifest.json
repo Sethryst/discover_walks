@@ -1,0 +1,197 @@
+{
+  "checksums": {
+    "pois.json": "sha256:d9c185e03051577d026a7708faf6cb5c35a086e1870703bf3d2e781b3a946bbf",
+    "source-scorecard.json": "sha256:5d9fad259b5108322f47eb6dcf7cb9bdb048c73547ebcd1282628781b2af391d",
+    "supplemental/canonical-records.json": "sha256:73b8954d7836c48152db89195f0e36b06447d5fc209e3bf604ad2165bbeda2b0",
+    "supplemental/dedup-groups.json": "sha256:20245aba89b2bdda462d1bbeee330e17165820546d7eba725038d190dcfc7a67",
+    "supplemental/osm-pois.json": "sha256:b5e19c34b5ebf9eb149e200bf8fe496620c511322499a08277aa975ed86b95d9",
+    "supplemental/validation-report.json": "sha256:491801ee19cc13bc48caf9a68cef05e7418e2b58b739c25fb83b6c89257a3470",
+    "supplemental/weather.json": "sha256:bf05b13c01e2523fa437efe64fa2c4197eb4cc5cc44dc403f442370cbed92ee6"
+  },
+  "generatedAt": "2026-10-03T20:31:33.926810Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "kansas-city",
+  "regionId": "kansas-city",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:31:33.926810Z",
+      "authorityTier": "federal_government",
+      "cachedAt": ".gremlin-cache\\kansas-city\\usgs-water-locations\\2026-10-03T20-31-33.926810Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 497,
+      "emittedRecordCount": 497,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "usgs-water-locations",
+      "licenseUrl": "https://api.waterdata.usgs.gov/docs/",
+      "name": "USGS water monitoring locations",
+      "namedCount": 500,
+      "provider": "usgs_monitoring_locations",
+      "recordCount": 500,
+      "unnamedCount": 0,
+      "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:31:33.926810Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\kansas-city\\ebird-walk-recent\\2026-10-03T20-31-33.926810Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 23,
+      "emittedRecordCount": 23,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "ebird-walk-recent",
+      "licenseUrl": "https://science.ebird.org/en/status-and-trends/products-access-terms-of-use",
+      "name": "eBird recent hotspot observations",
+      "namedCount": 23,
+      "provider": "ebird_recent",
+      "recordCount": 23,
+      "unnamedCount": 0,
+      "url": "https://api.ebird.org/v2/data/obs/geo/recent",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:31:33.926810Z",
+      "authorityTier": "city_government",
+      "cachedAt": ".gremlin-cache\\kansas-city\\local-open-data\\2026-10-03T20-31-33.926810Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [],
+      "id": "local-open-data",
+      "licenseUrl": "local://OpenData",
+      "name": "Local municipal OpenData capture — Kansas City",
+      "namedCount": 0,
+      "provider": "local_open_data",
+      "recordCount": 295,
+      "unnamedCount": 295,
+      "url": "C:\\Users\\igmro\\OneDrive\\Documents\\gremlin_lab\\OpenData\\Missouri\\Kansas City",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:31:33.926810Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\kansas-city\\osm-kansas-city-walk\\2026-10-03T20-31-33.926810Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 969,
+      "emittedRecordCount": 969,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "osm-kansas-city-walk",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 1200,
+      "provider": "osm_overpass",
+      "recordCount": 1200,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:31:33.926810Z",
+      "authorityTier": "federal_government",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "nws-forecast",
+      "licenseUrl": "https://www.weather.gov/documentation/services-web-api",
+      "name": "National Weather Service forecast and alerts",
+      "namedCount": 0,
+      "provider": "nws",
+      "recordCount": 4,
+      "unnamedCount": 0,
+      "url": "https://api.weather.gov/",
+      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:31:33.926810Z",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "kansas-city-civic",
+      "name": "Kansas City, Missouri civic events",
+      "namedCount": 0,
+      "provider": "civic_rss",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "configured civic provider",
+      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 1489
+    },
+    "valid": true
+  },
+  "warnings": [
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:338427485 merged into osm:node:5764089857; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:5764089857",
+        "osm:way:338427485"
+      ],
+      "source": "osm-kansas-city-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:383386422 merged into osm:node:14162594999; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:14162594999",
+        "osm:way:383386422"
+      ],
+      "source": "osm-kansas-city-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:93993977 merged into osm:node:358644676; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:358644676",
+        "osm:way:93993977"
+      ],
+      "source": "osm-kansas-city-walk"
+    }
+  ]
+}

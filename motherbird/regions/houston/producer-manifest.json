@@ -1,0 +1,146 @@
+{
+  "checksums": {
+    "pois.json": "sha256:1f1ec59f991d669b72b5a7048a8b806f27356c4c888b37e627872428df54f36c",
+    "source-scorecard.json": "sha256:807e01c52def09a7628a9c34542e54f134aea508de51ad99600d6f662e0143b0",
+    "supplemental/canonical-records.json": "sha256:1d25a54f7daca1d12c92ccac68cc8ad5148c8ddd5bb6f33c665a9abb163ec2a6",
+    "supplemental/dedup-groups.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "supplemental/osm-pois.json": "sha256:58c3882c0cbdd6ac5418fc45b06efcb46426cd1fa544a439bf2092d0fcf0d3ac",
+    "supplemental/validation-report.json": "sha256:0f8a1d5a94bf38292d6ab36c80ab0db1a85ff936667af12f29527e5b7e9899d9",
+    "supplemental/weather.json": "sha256:d6a5749222afe92131f4fa828813e47ebaf883803d22c6b3acab6a4d00b05cfc"
+  },
+  "generatedAt": "2026-10-03T20:31:33.533064Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "houston",
+  "regionId": "houston",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:31:33.533064Z",
+      "authorityTier": "federal_government",
+      "cachedAt": ".gremlin-cache\\houston\\usgs-water-locations\\2026-10-03T20-31-33.533064Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 500,
+      "emittedRecordCount": 500,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "usgs-water-locations",
+      "licenseUrl": "https://api.waterdata.usgs.gov/docs/",
+      "name": "USGS water monitoring locations",
+      "namedCount": 500,
+      "provider": "usgs_monitoring_locations",
+      "recordCount": 500,
+      "unnamedCount": 0,
+      "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:31:33.533064Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\houston\\ebird-walk-recent\\2026-10-03T20-31-33.533064Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 20,
+      "emittedRecordCount": 20,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "ebird-walk-recent",
+      "licenseUrl": "https://science.ebird.org/en/status-and-trends/products-access-terms-of-use",
+      "name": "eBird recent hotspot observations",
+      "namedCount": 20,
+      "provider": "ebird_recent",
+      "recordCount": 20,
+      "unnamedCount": 0,
+      "url": "https://api.ebird.org/v2/data/obs/geo/recent",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:31:33.533064Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\houston\\osm-houston-walk\\2026-10-03T20-31-33.533064Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 415,
+      "emittedRecordCount": 415,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "osm-houston-walk",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 1200,
+      "provider": "osm_overpass",
+      "recordCount": 1200,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:31:33.533064Z",
+      "authorityTier": "federal_government",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "nws-forecast",
+      "licenseUrl": "https://www.weather.gov/documentation/services-web-api",
+      "name": "National Weather Service forecast and alerts",
+      "namedCount": 0,
+      "provider": "nws",
+      "recordCount": 4,
+      "unnamedCount": 0,
+      "url": "https://api.weather.gov/",
+      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:31:33.533064Z",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "houston-civic",
+      "name": "Houston, Texas civic events",
+      "namedCount": 0,
+      "provider": "civic_rss",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "configured civic provider",
+      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 935
+    },
+    "valid": true
+  },
+  "warnings": []
+}
