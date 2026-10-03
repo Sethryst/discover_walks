@@ -1,0 +1,12 @@
+{
+  "id": "cleveland",
+  "name": "Cleveland, Ohio",
+  "bbox": [41.35, -81.95, 41.65, -81.45],
+  "osm": {"status":"enabled","enabled":true,"bbox":[41.35,-81.95,41.65,-81.45],"sourceId":"osm-cleveland-walk","categories":["park","trail","nature","coffee","library","history"],"refreshPolicy":"monthly","maxRecords":1200},
+  "sources": [
+    {"id":"osm-cleveland-parks","name":"OpenStreetMap Cleveland named parks","provider":"osm_overpass","url":"https://overpass-api.de/api/interpreter","licenseUrl":"https://www.openstreetmap.org/copyright","domains":["nature"],"providerOptions":{"selector":"[\"leisure\"=\"park\"][\"name\"]"},"status":"active","confidence":0.75},
+    {"id":"osm-cleveland-trails","name":"OpenStreetMap Cleveland named pedestrian trails","provider":"osm_overpass","url":"https://overpass-api.de/api/interpreter","licenseUrl":"https://www.openstreetmap.org/copyright","domains":["trails"],"providerOptions":{"selector":"[\"highway\"~\"^(path|footway|pedestrian)$\"][\"name\"]","fullGeometry":true},"status":"active","confidence":0.75},
+    {"id":"osm-cleveland-libraries","name":"OpenStreetMap Cleveland libraries","provider":"osm_overpass","url":"https://overpass-api.de/api/interpreter","licenseUrl":"https://www.openstreetmap.org/copyright","domains":["community"],"providerOptions":{"selector":"[\"amenity\"=\"library\"][\"name\"]"},"status":"active","confidence":0.8},
+    {"id":"osm-cleveland-history","name":"OpenStreetMap Cleveland historic places","provider":"osm_overpass","url":"https://overpass-api.de/api/interpreter","licenseUrl":"https://www.openstreetmap.org/copyright","domains":["history"],"providerOptions":{"selector":"[\"historic\"][\"name\"]"},"status":"active","confidence":0.7}
+  ]
+}

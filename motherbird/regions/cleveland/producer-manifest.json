@@ -1,0 +1,156 @@
+{
+  "checksums": {
+    "pois.json": "sha256:cb6ee795af8f7bd5e0a5b4fc796db6d952d57a9b1ddab2ddc5c35285c6681483",
+    "source-scorecard.json": "sha256:872fcc80a887ea31281cb7b66f0706d69346a55afac2de3e3e103a35df15c62f",
+    "supplemental/canonical-records.json": "sha256:401dc578dda90d38cbdefdbc070e9425de5e2f7d6fc9b74a13b5bf976e593b29",
+    "supplemental/dedup-groups.json": "sha256:2ed72fbaff7ce219aea3897a971726a943f73529480234d8a8fd2d241e58b1ee",
+    "supplemental/osm-pois.json": "sha256:eee83c92710e0bb24e1ee6e21ddf7adfabc70678fdb35f2e85cb3945e641f514",
+    "supplemental/validation-report.json": "sha256:99144cc95dff27887e05d7bb269f94d9a5f321fc393fe0bf65445137a6bec6f7",
+    "supplemental/weather.json": "sha256:e90ece48421fdf85eed748e682bb4cd3585222297368eb7e31c109200534a1f7"
+  },
+  "generatedAt": "2026-10-03T20:23:28.946220Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "cleveland",
+  "regionId": "cleveland",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:23:28.946220Z",
+      "authorityTier": "city_government",
+      "cachedAt": ".gremlin-cache\\cleveland\\local-open-data\\2026-10-03T20-23-28.946220Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "LineString"
+      ],
+      "geometryTypesSurvived": [],
+      "id": "local-open-data",
+      "licenseUrl": "local://OpenData",
+      "name": "Local municipal OpenData capture — Cleveland",
+      "namedCount": 0,
+      "provider": "local_open_data",
+      "recordCount": 1679,
+      "unnamedCount": 1679,
+      "url": "C:\\Users\\igmro\\OneDrive\\Documents\\gremlin_lab\\OpenData\\Ohio\\Cleveland",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:23:28.946220Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\cleveland\\osm-cleveland-walk\\2026-10-03T20-23-28.946220Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 948,
+      "emittedRecordCount": 948,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "osm-cleveland-walk",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 1200,
+      "provider": "osm_overpass",
+      "recordCount": 1200,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:23:28.946220Z",
+      "authorityTier": "federal_government",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "nws-forecast",
+      "licenseUrl": "https://www.weather.gov/documentation/services-web-api",
+      "name": "National Weather Service forecast and alerts",
+      "namedCount": 0,
+      "provider": "nws",
+      "recordCount": 4,
+      "unnamedCount": 0,
+      "url": "https://api.weather.gov/",
+      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T20:23:28.946220Z",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "cleveland-civic",
+      "name": "Cleveland, Ohio civic events",
+      "namedCount": 0,
+      "provider": "civic_rss",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "configured civic provider",
+      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 948
+    },
+    "valid": true
+  },
+  "warnings": [
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:14086124014 merged into osm:node:14086124013; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:14086124013",
+        "osm:node:14086124014"
+      ],
+      "source": "osm-cleveland-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1083075920 merged into osm:way:1083075919; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:way:1083075919",
+        "osm:way:1083075920"
+      ],
+      "source": "osm-cleveland-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1267521419 merged into osm:node:2986138417; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:2986138417",
+        "osm:way:1267521419"
+      ],
+      "source": "osm-cleveland-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1316012584 merged into osm:node:1013326467; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:1013326467",
+        "osm:way:1316012584"
+      ],
+      "source": "osm-cleveland-walk"
+    }
+  ]
+}

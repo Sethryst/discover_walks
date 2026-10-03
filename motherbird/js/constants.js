@@ -198,6 +198,10 @@
   'portland-maine': { name: 'Portland', state: 'ME', center: { lat: 43.675, lng: -70.245 }, zoom: 11, dataFile: './regions/portland-maine/pois.json', civicFile: './regions/portland-maine/civic/index.json' },
   'san-francisco': { name: 'San Francisco', state: 'CA', center: { lat: 37.77, lng: -122.435 }, zoom: 11, dataFile: './regions/san-francisco/pois.json', civicFile: './regions/san-francisco/civic/index.json' },
   'santa-fe': { name: 'Santa Fe', state: 'NM', center: { lat: 35.665, lng: -105.96 }, zoom: 11, dataFile: './regions/santa-fe/pois.json', civicFile: './regions/santa-fe/civic/index.json' },
+  cleveland: {
+    name: 'Cleveland', state: 'OH', center: { lat: 41.4993, lng: -81.6944 }, zoom: 11,
+    dataFile: './regions/cleveland/pois.json'
+  },
   'wolf-trap-va': {
     name: 'Wolf Trap', state: 'VA', center: { lat: 38.9367, lng: -77.2656 }, zoom: 13,
     dataFile: './regions/wolf-trap-va/pois.json',
