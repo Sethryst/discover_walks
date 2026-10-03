@@ -1,0 +1,238 @@
+{
+  "conflictWinner": null,
+  "generatedAt": "2026-10-03T21:25:04.706012Z",
+  "packageKind": "region",
+  "regionId": "seattle",
+  "schemaVersion": 1,
+  "skippedThisPass": [
+    "GTFS, walk-to-transit routing, and schedules",
+    "Pedestrian crossings, curb ramps, and sidewalk connectivity graph",
+    "NOVA Parks HTML alert scraping and W&OD town gazetteer",
+    "USGS flood/condition engine and NWS CAP trail intersections",
+    "Automatic walk candidates, POI-to-trail graph, record-level provenance store, and publisher refactors",
+    "DCR and 2013 NVRPA geometry as load-bearing sources",
+    "New provider adapters other than durable eBird hotspots"
+  ],
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "dataClass": "durable",
+      "emittedNamedCount": 52,
+      "emittedRecordCount": 52,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "events-seattle-net-25130bd8",
+      "name": "Seattle.net community events",
+      "namedCount": 60,
+      "provider": "rss_ics_events",
+      "recordCount": 60,
+      "unnamedCount": 0,
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "dataClass": "durable",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Polygon"
+      ],
+      "geometryTypesSurvived": [],
+      "id": "seattle-boundary",
+      "name": "Seattle Area Polygon",
+      "namedCount": 1,
+      "provider": "arcgis_feature_service",
+      "recordCount": 1,
+      "unnamedCount": 0,
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "dataClass": "durable",
+      "emittedNamedCount": 351,
+      "emittedRecordCount": 351,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "MultiPolygon",
+        "Polygon"
+      ],
+      "geometryTypesSurvived": [
+        "MultiPolygon",
+        "Point",
+        "Polygon"
+      ],
+      "id": "seattle-parks",
+      "name": "Seattle Parks and Recreation Park Boundaries",
+      "namedCount": 352,
+      "provider": "arcgis_feature_service",
+      "recordCount": 352,
+      "unnamedCount": 0,
+      "visibleValue": "Adds named Seattle park polygons as official walking destinations."
+    },
+    {
+      "acquireStatus": "success",
+      "dataClass": "durable",
+      "emittedNamedCount": 584,
+      "emittedRecordCount": 584,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "LineString",
+        "MultiLineString"
+      ],
+      "geometryTypesSurvived": [
+        "LineString",
+        "MultiLineString"
+      ],
+      "id": "seattle-spr-trails",
+      "name": "Seattle Parks and Recreation Trails",
+      "namedCount": 629,
+      "provider": "arcgis_feature_service",
+      "recordCount": 629,
+      "unnamedCount": 0,
+      "visibleValue": "Adds named official SPR trail lines while excluding unnamed fragments."
+    },
+    {
+      "acquireStatus": "success",
+      "dataClass": "durable",
+      "emittedNamedCount": 151,
+      "emittedRecordCount": 151,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "LineString"
+      ],
+      "geometryTypesSurvived": [
+        "LineString"
+      ],
+      "id": "seattle-multiuse-trails",
+      "name": "Seattle Named Multi-use Trails",
+      "namedCount": 160,
+      "provider": "arcgis_feature_service",
+      "recordCount": 160,
+      "unnamedCount": 0,
+      "visibleValue": "Adds named established regional multi-use trail corridors, not general bike lanes."
+    },
+    {
+      "acquireStatus": "success",
+      "dataClass": "durable",
+      "emittedNamedCount": 412,
+      "emittedRecordCount": 412,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "local-open-data",
+      "name": "Local municipal OpenData capture — Seattle",
+      "namedCount": 412,
+      "provider": "local_open_data",
+      "recordCount": 412,
+      "unnamedCount": 0,
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "dataClass": "durable",
+      "emittedNamedCount": 1679,
+      "emittedRecordCount": 1679,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point",
+        "Polygon"
+      ],
+      "id": "osm-seattle",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 1892,
+      "provider": "osm_overpass",
+      "recordCount": 1892,
+      "unnamedCount": 0,
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "nws-forecast",
+      "name": "National Weather Service forecast and alerts",
+      "namedCount": 0,
+      "provider": "nws",
+      "recordCount": 4,
+      "unnamedCount": 0,
+      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "seattle-civic",
+      "name": "Seattle, Washington civic events",
+      "namedCount": 5,
+      "provider": "civic_rss",
+      "recordCount": 5,
+      "unnamedCount": 0,
+      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
+    }
+  ],
+  "swallowedTowns": [],
+  "walkCreationReadiness": {
+    "acquiredDataUsefulPercent": 66.2,
+    "canSupportTrailToHistoryParkWildlifeCommunitySequence": false,
+    "canonicalWod": {
+      "present": false,
+      "recordId": null,
+      "sourceSegmentCount": 0
+    },
+    "geographicDensity": "Not scored in this pass; no POI-to-trail graph or candidate generator was added.",
+    "journeys": {
+      "featuredWalkCount": 0,
+      "status": "pending_editorial_build"
+    },
+    "plausibleWalkAnchors": 963,
+    "smallestNextFeature": "Add more editorial Journeys, then consider a tiny POI-within-N-meters-of-trail sidecar if Journey authoring shows a repeated need.",
+    "stillMissing": [
+      "Verified entrances rather than some park centroids",
+      "Consistent drinking-water coverage",
+      "NPS Great Falls rows currently return null geometry; A1/4 supplies the named Great Falls trail lines used by this build",
+      "Huntley Meadows has strong wildlife and amenity anchors, but no named official line survived TRAIL_NAME validation for an initial Journey",
+      "More curated Journeys after the first featured set"
+    ],
+    "trailGeometryTypes": [
+      "LineString",
+      "MultiLineString"
+    ],
+    "trailLinearRecords": 735,
+    "walkUsefulCategories": {
+      "art": 576,
+      "coffee": 695,
+      "community": 40,
+      "event": 52,
+      "history": 91,
+      "market": 6,
+      "nature": 22,
+      "park": 832,
+      "rest": 5,
+      "water": 2
+    },
+    "walkUsefulPublicRecords": 2321,
+    "walkerVisibleGain": "Mother Bird can offer named official parks, trails, wildlife places, history, libraries, community facilities, and access amenities as the material for curated Fairfax walks.",
+    "wildlifeDestinationSources": []
+  }
+}

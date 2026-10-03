@@ -1,0 +1,254 @@
+{
+  "checksums": {
+    "civic/event-sources.json": "sha256:b9284a0520d0e3e6eaa54424ca33f5abcba07007d5f4232aab29608d4521375c",
+    "civic/events.json": "sha256:7e0708e2aae66bb00bc40620a1f32176acd1268d2aa400e7cecfcb8705f28416",
+    "civic/volunteer-sources.json": "sha256:cfec322cb8029767ae5dbb3ceaaf0db18c11559c3504b05086c8b0a6df9903d1",
+    "civic/vote.json": "sha256:d6b36018e4b73ce1b7d764c257a39ba8f8f0c55813d8fb175aeed262895996fb",
+    "pois.json": "sha256:c558ab2904c5a73f7be7a35558dce791bab00b503ee5120509d7876238638db4",
+    "source-scorecard.json": "sha256:be4e7199823d9c6c917bc7f7da58a0531581330bc9529f37b672b4dec6a4eeef",
+    "supplemental/canonical-records.json": "sha256:1724c313b47f0b70645ae26bf07407c3653b683ecefedc548f13b57aca83361b",
+    "supplemental/dedup-groups.json": "sha256:4de075a5a5cef18310782bb5f2f4164e30ebd476d5a64c43d26d4d5fbe65cba9",
+    "supplemental/osm-pois.json": "sha256:52e4ecd08e0c4ab7ff62594ae49da179a78fe554bf0b27950d1a7cf5f151069c",
+    "supplemental/validation-report.json": "sha256:16bb0af20e924beb89fcc27fd23ec7242f22f40c29263031cf29d3083ae1fc71",
+    "supplemental/weather.json": "sha256:567acc0d213c7e129b47640b91fb05491170b8a963487ce577e4f0a9946f2d8b"
+  },
+  "generatedAt": "2026-10-03T21:25:02.897691Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "portland",
+  "regionId": "portland",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:25:02.897691Z",
+      "authorityTier": "federal_government",
+      "cachedAt": ".gremlin-cache\\portland\\usgs-water-locations\\2026-10-03T21-25-02.897691Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 500,
+      "emittedRecordCount": 500,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "usgs-water-locations",
+      "licenseUrl": "https://api.waterdata.usgs.gov/docs/",
+      "name": "USGS water monitoring locations",
+      "namedCount": 500,
+      "provider": "usgs_monitoring_locations",
+      "recordCount": 500,
+      "unnamedCount": 0,
+      "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:25:02.897691Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\portland\\ebird-walk-recent\\2026-10-03T21-25-02.897691Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 29,
+      "emittedRecordCount": 29,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "ebird-walk-recent",
+      "licenseUrl": "https://science.ebird.org/en/status-and-trends/products-access-terms-of-use",
+      "name": "eBird recent hotspot observations",
+      "namedCount": 29,
+      "provider": "ebird_recent",
+      "recordCount": 29,
+      "unnamedCount": 0,
+      "url": "https://api.ebird.org/v2/data/obs/geo/recent",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:25:02.897691Z",
+      "authorityTier": "city_government",
+      "cachedAt": ".gremlin-cache\\portland\\local-open-data\\2026-10-03T21-25-02.897691Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 318,
+      "emittedRecordCount": 318,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "LineString",
+        "MultiLineString",
+        "MultiPolygon",
+        "Point",
+        "Polygon"
+      ],
+      "geometryTypesSurvived": [
+        "MultiPolygon",
+        "Polygon"
+      ],
+      "id": "local-open-data",
+      "licenseUrl": "local://OpenData",
+      "name": "Local municipal OpenData capture — Portland",
+      "namedCount": 316,
+      "provider": "local_open_data",
+      "recordCount": 3513,
+      "unnamedCount": 3197,
+      "url": "OpenData\\Oregon\\Portland",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:25:02.897691Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\portland\\osm-portland\\2026-08-27T04-00-00Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 968,
+      "emittedRecordCount": 968,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point",
+        "Polygon"
+      ],
+      "id": "osm-portland",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 2000,
+      "provider": "osm_overpass",
+      "recordCount": 2000,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:25:02.897691Z",
+      "authorityTier": "federal_government",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "nws-forecast",
+      "licenseUrl": "https://www.weather.gov/documentation/services-web-api",
+      "name": "National Weather Service forecast and alerts",
+      "namedCount": 0,
+      "provider": "nws",
+      "recordCount": 4,
+      "unnamedCount": 0,
+      "url": "https://api.weather.gov/",
+      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:25:02.897691Z",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "portland-civic",
+      "name": "Portland, OR civic events",
+      "namedCount": 5,
+      "provider": "civic_rss",
+      "recordCount": 5,
+      "unnamedCount": 0,
+      "url": "configured civic provider",
+      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 1814
+    },
+    "valid": true
+  },
+  "warnings": [
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3672891953 merged into osm:node:13359144401; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:13359144401",
+        "osm:node:3672891953"
+      ],
+      "source": "osm-portland"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3746114950 merged into osm:node:3746114949; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:3746114949",
+        "osm:node:3746114950"
+      ],
+      "source": "osm-portland"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3746114951 merged into osm:node:3746114949; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:3746114949",
+        "osm:node:3746114951"
+      ],
+      "source": "osm-portland"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4509374277 merged into osm:node:4509374276; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:4509374276",
+        "osm:node:4509374277"
+      ],
+      "source": "osm-portland"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4509374278 merged into osm:node:4509374276; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:4509374276",
+        "osm:node:4509374278"
+      ],
+      "source": "osm-portland"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4988792756 merged into osm:node:323588287; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:323588287",
+        "osm:node:4988792756"
+      ],
+      "source": "osm-portland"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7505331985 merged into osm:node:7505328384; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:7505328384",
+        "osm:node:7505331985"
+      ],
+      "source": "osm-portland"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:39272213 merged into parks:local-open-data:parks_4cd73e17e0374e8a8425b7a8e991df8d_35:141; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:parks_4cd73e17e0374e8a8425b7a8e991df8d_35:141",
+        "osm:way:39272213"
+      ],
+      "source": "osm-portland"
+    }
+  ]
+}

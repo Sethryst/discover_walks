@@ -1,0 +1,175 @@
+{
+  "checksums": {
+    "pois.json": "sha256:6124160f01aaf61353a8900184d7a5368999a657b3505ff158fba3a63d76c6a6",
+    "source-scorecard.json": "sha256:2f044dada88fe41d7eb9f418f466bb3ffff39ab5822efe3a8c831e6ccc6c4ce6",
+    "supplemental/canonical-records.json": "sha256:a596029783c0a6724d401ea56a9d1e96e763045225d14129a5d5304dc7f1043c",
+    "supplemental/dedup-groups.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "supplemental/osm-pois.json": "sha256:afa113d8c01c2544de40501581f1a75f5aac193c66241288a45da70b89d2d4e1",
+    "supplemental/validation-report.json": "sha256:fb08eaf3944533d0ba5690d95f4cb745566586d92676a8a3c82127640381aac2",
+    "supplemental/weather.json": "sha256:def4638d4e648a04027366d74e7b6b0be4079c208ab720959faca420ecc8df63"
+  },
+  "generatedAt": "2026-10-03T21:24:51.099588Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "boise",
+  "regionId": "boise",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:24:51.099588Z",
+      "authorityTier": "federal_government",
+      "cachedAt": ".gremlin-cache\\boise\\usgs-water-locations\\2026-10-03T21-24-51.099588Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 500,
+      "emittedRecordCount": 500,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "usgs-water-locations",
+      "licenseUrl": "https://api.waterdata.usgs.gov/docs/",
+      "name": "USGS water monitoring locations",
+      "namedCount": 500,
+      "provider": "usgs_monitoring_locations",
+      "recordCount": 500,
+      "unnamedCount": 0,
+      "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:24:51.099588Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\boise\\ebird-walk-recent\\2026-10-03T21-24-51.099588Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 19,
+      "emittedRecordCount": 19,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "ebird-walk-recent",
+      "licenseUrl": "https://science.ebird.org/en/status-and-trends/products-access-terms-of-use",
+      "name": "eBird recent hotspot observations",
+      "namedCount": 19,
+      "provider": "ebird_recent",
+      "recordCount": 19,
+      "unnamedCount": 0,
+      "url": "https://api.ebird.org/v2/data/obs/geo/recent",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:24:51.099588Z",
+      "authorityTier": "city_government",
+      "cachedAt": ".gremlin-cache\\boise\\local-open-data\\2026-10-03T21-24-51.099588Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "LineString",
+        "MultiLineString",
+        "MultiPolygon",
+        "Point",
+        "Polygon"
+      ],
+      "geometryTypesSurvived": [],
+      "id": "local-open-data",
+      "licenseUrl": "local://OpenData",
+      "name": "Local municipal OpenData capture — Boise",
+      "namedCount": 0,
+      "provider": "local_open_data",
+      "recordCount": 424,
+      "unnamedCount": 424,
+      "url": "OpenData\\Idaho\\Boise",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "source_unavailable",
+      "acquiredAt": "2026-10-03T21:24:51.099588Z",
+      "authorityTier": "community",
+      "dataClass": "durable",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "error": "No raw cache available for osm-boise-walk",
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "osm-boise-walk",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 0,
+      "provider": "osm_overpass",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:24:51.099588Z",
+      "authorityTier": "federal_government",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "nws-forecast",
+      "licenseUrl": "https://www.weather.gov/documentation/services-web-api",
+      "name": "National Weather Service forecast and alerts",
+      "namedCount": 0,
+      "provider": "nws",
+      "recordCount": 4,
+      "unnamedCount": 0,
+      "url": "https://api.weather.gov/",
+      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:24:51.099588Z",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "boise-civic",
+      "name": "Boise, Idaho civic events",
+      "namedCount": 0,
+      "provider": "civic_rss",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "configured civic provider",
+      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 519
+    },
+    "valid": true
+  },
+  "warnings": [
+    {
+      "code": "source_unavailable",
+      "detail": "No raw cache available for osm-boise-walk",
+      "source": "osm-boise-walk"
+    }
+  ]
+}

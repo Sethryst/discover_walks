@@ -1,0 +1,148 @@
+{
+  "checksums": {
+    "pois.json": "sha256:bcc93e4f234685025547f18539f2fe55a4f439c4448d7b3bee32e23f16a8a3a9",
+    "source-scorecard.json": "sha256:1354c527e0f11a2c86159c665fe604155aa881fd83b56373954ef112d3e750d0",
+    "supplemental/canonical-records.json": "sha256:4a2855a4deede767009190b66f87019879a646f1a0fc2fef18286b903a0424fc",
+    "supplemental/dedup-groups.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "supplemental/osm-pois.json": "sha256:10bdcff98dab8a2a925ba2799a0392220d0798571a0a754658a2b64dc8d8b64a",
+    "supplemental/validation-report.json": "sha256:d286b737f9a9421db15b12b93b22eddb0fded1d83988590ec07f585d6423a453",
+    "supplemental/weather.json": "sha256:e375bc5d2333a94a3dd739bd73f8e120efc69f4b97f70c2dbcc7ecce22acf168"
+  },
+  "generatedAt": "2026-10-03T21:24:51.137057Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "memphis",
+  "regionId": "memphis",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:24:51.137057Z",
+      "authorityTier": "federal_government",
+      "cachedAt": ".gremlin-cache\\memphis\\usgs-water-locations\\2026-10-03T21-24-51.137057Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 500,
+      "emittedRecordCount": 500,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "usgs-water-locations",
+      "licenseUrl": "https://api.waterdata.usgs.gov/docs/",
+      "name": "USGS water monitoring locations",
+      "namedCount": 500,
+      "provider": "usgs_monitoring_locations",
+      "recordCount": 500,
+      "unnamedCount": 0,
+      "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:24:51.137057Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\memphis\\ebird-walk-recent\\2026-10-03T21-24-51.137057Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 20,
+      "emittedRecordCount": 20,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "ebird-walk-recent",
+      "licenseUrl": "https://science.ebird.org/en/status-and-trends/products-access-terms-of-use",
+      "name": "eBird recent hotspot observations",
+      "namedCount": 20,
+      "provider": "ebird_recent",
+      "recordCount": 20,
+      "unnamedCount": 0,
+      "url": "https://api.ebird.org/v2/data/obs/geo/recent",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "source_unavailable",
+      "acquiredAt": "2026-10-03T21:24:51.137057Z",
+      "authorityTier": "community",
+      "dataClass": "durable",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "error": "No raw cache available for osm-memphis-walk",
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "osm-memphis-walk",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 0,
+      "provider": "osm_overpass",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:24:51.137057Z",
+      "authorityTier": "federal_government",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "nws-forecast",
+      "licenseUrl": "https://www.weather.gov/documentation/services-web-api",
+      "name": "National Weather Service forecast and alerts",
+      "namedCount": 0,
+      "provider": "nws",
+      "recordCount": 4,
+      "unnamedCount": 0,
+      "url": "https://api.weather.gov/",
+      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:24:51.137057Z",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "memphis-civic",
+      "name": "Memphis, Tennessee civic events",
+      "namedCount": 0,
+      "provider": "civic_rss",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "configured civic provider",
+      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 520
+    },
+    "valid": true
+  },
+  "warnings": [
+    {
+      "code": "source_unavailable",
+      "detail": "No raw cache available for osm-memphis-walk",
+      "source": "osm-memphis-walk"
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "checksums": {
+    "pois.json": "sha256:f9dfb7b1cd7211d75addcf841101f1a94c83c29c275c6dd4deeb1772b7c67e1a",
+    "source-scorecard.json": "sha256:cfc29f6f6242e682ca907e3927e5a35a4de5303494294703204edefe1c52540e",
+    "supplemental/canonical-records.json": "sha256:442c1249ba78f82c4bbe726470d5698905b2ab438ff13ebfbd0ffbbfcd88832f",
+    "supplemental/dedup-groups.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "supplemental/osm-pois.json": "sha256:2f38376cdff659e4d3ecf7779462b762c1d623f982941bcd3917b8c69a847e79",
+    "supplemental/validation-report.json": "sha256:06c558e0c9ca7e993e5540555099630032a2c48ca9fe929ba385aab376b95d27",
+    "supplemental/weather.json": "sha256:16555615b6dcdcdc0065ec65443a6a6c6aec03b7ada2cb7ac7e9563370ec1746"
+  },
+  "generatedAt": "2026-10-03T21:25:02.773947Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "orlando",
+  "regionId": "orlando",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:25:02.773947Z",
+      "authorityTier": "federal_government",
+      "cachedAt": ".gremlin-cache\\orlando\\usgs-water-locations\\2026-10-03T21-25-02.773947Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 286,
+      "emittedRecordCount": 286,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "usgs-water-locations",
+      "licenseUrl": "https://api.waterdata.usgs.gov/docs/",
+      "name": "USGS water monitoring locations",
+      "namedCount": 290,
+      "provider": "usgs_monitoring_locations",
+      "recordCount": 290,
+      "unnamedCount": 0,
+      "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:25:02.773947Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\orlando\\ebird-walk-recent\\2026-10-03T21-25-02.773947Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 20,
+      "emittedRecordCount": 20,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "ebird-walk-recent",
+      "licenseUrl": "https://science.ebird.org/en/status-and-trends/products-access-terms-of-use",
+      "name": "eBird recent hotspot observations",
+      "namedCount": 20,
+      "provider": "ebird_recent",
+      "recordCount": 20,
+      "unnamedCount": 0,
+      "url": "https://api.ebird.org/v2/data/obs/geo/recent",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "source_unavailable",
+      "acquiredAt": "2026-10-03T21:25:02.773947Z",
+      "authorityTier": "community",
+      "dataClass": "durable",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "error": "No raw cache available for osm-orlando-walk",
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "osm-orlando-walk",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 0,
+      "provider": "osm_overpass",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:25:02.773947Z",
+      "authorityTier": "federal_government",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "nws-forecast",
+      "licenseUrl": "https://www.weather.gov/documentation/services-web-api",
+      "name": "National Weather Service forecast and alerts",
+      "namedCount": 0,
+      "provider": "nws",
+      "recordCount": 4,
+      "unnamedCount": 0,
+      "url": "https://api.weather.gov/",
+      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:25:02.773947Z",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "orlando-civic",
+      "name": "Orlando, Florida civic events",
+      "namedCount": 0,
+      "provider": "civic_rss",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "configured civic provider",
+      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 306
+    },
+    "valid": true
+  },
+  "warnings": [
+    {
+      "code": "source_unavailable",
+      "detail": "No raw cache available for osm-orlando-walk",
+      "source": "osm-orlando-walk"
+    }
+  ]
+}

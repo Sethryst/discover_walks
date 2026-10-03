@@ -1,0 +1,150 @@
+{
+  "checksums": {
+    "pois.json": "sha256:9917a3b38f6b7fc5e8a2e66e1c0dbe04aae1f9c941053c94c52b1e4375a21711",
+    "source-scorecard.json": "sha256:7072130c23a1ebf9e5c220f7631bd770fe082b35fa2cb18ac0fd158107e455b2",
+    "supplemental/canonical-records.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "supplemental/dedup-groups.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "supplemental/osm-pois.json": "sha256:db0a69ce83d0001728e8dc663d98cedcf30c74f419ffd3d98cde919ad806a3bd",
+    "supplemental/validation-report.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "supplemental/weather.json": "sha256:2f15ffe7155e234200a8ada404550f7f92821b78ac7ec2cfdd492a6b84bc2622"
+  },
+  "generatedAt": "2026-10-03T21:24:51.073934Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "baltimore",
+  "regionId": "baltimore",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "source_unavailable",
+      "acquiredAt": "2026-10-03T21:24:51.073934Z",
+      "authorityTier": "city_government",
+      "dataClass": "durable",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "error": "No raw cache available for baltimore-boundary",
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "baltimore-boundary",
+      "licenseUrl": "https://data.baltimorecity.gov/",
+      "name": "Baltimore City Boundary",
+      "namedCount": 0,
+      "provider": "arcgis_feature_service",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "https://services5.arcgis.com/U5lRs16ODaohcqOy/ArcGIS/rest/services/City_Boundary/FeatureServer/0",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:24:51.073934Z",
+      "authorityTier": "city_government",
+      "cachedAt": ".gremlin-cache\\baltimore\\local-open-data\\2026-10-03T21-24-51.073934Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "LineString",
+        "MultiLineString",
+        "MultiPolygon",
+        "Polygon"
+      ],
+      "geometryTypesSurvived": [],
+      "id": "local-open-data",
+      "licenseUrl": "local://OpenData",
+      "name": "Local municipal OpenData capture — Baltimore",
+      "namedCount": 0,
+      "provider": "local_open_data",
+      "recordCount": 49226,
+      "unnamedCount": 49226,
+      "url": "OpenData\\Maryland\\Baltimore",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "source_unavailable",
+      "acquiredAt": "2026-10-03T21:24:51.073934Z",
+      "authorityTier": "community",
+      "dataClass": "durable",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "error": "source_unavailable: osm-baltimore requires boundary source baltimore-boundary",
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "osm-baltimore",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 0,
+      "provider": "osm_overpass",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:24:51.073934Z",
+      "authorityTier": "federal_government",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "nws-forecast",
+      "licenseUrl": "https://www.weather.gov/documentation/services-web-api",
+      "name": "National Weather Service forecast and alerts",
+      "namedCount": 0,
+      "provider": "nws",
+      "recordCount": 4,
+      "unnamedCount": 0,
+      "url": "https://api.weather.gov/",
+      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:24:51.073934Z",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "baltimore-civic",
+      "name": "Baltimore, Maryland civic events",
+      "namedCount": 0,
+      "provider": "civic_rss",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "configured civic provider",
+      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 0
+    },
+    "valid": true
+  },
+  "warnings": [
+    {
+      "code": "source_unavailable",
+      "detail": "No raw cache available for baltimore-boundary",
+      "source": "baltimore-boundary"
+    },
+    {
+      "code": "source_unavailable",
+      "detail": "source_unavailable: osm-baltimore requires boundary source baltimore-boundary",
+      "source": "osm-baltimore"
+    }
+  ]
+}

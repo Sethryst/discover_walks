@@ -1,0 +1,206 @@
+{
+  "checksums": {
+    "pois.json": "sha256:7eb08661875d9df0aaba76219bf9b358a9fe516c4665e989a9445ff97a618092",
+    "source-scorecard.json": "sha256:7a36eb53b2720052098958d86c760f49df2b698771f6c096e0e5876c0759d546",
+    "supplemental/canonical-records.json": "sha256:44b3c1338ccfb17c275a138339bc9fb43071ff04f672cc6e3ac168d869b73c1b",
+    "supplemental/dedup-groups.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "supplemental/osm-pois.json": "sha256:8a39e022b6a89e453724236d804cf57e554a6bd3f4c4b9f1533fe02856a7ca68",
+    "supplemental/validation-report.json": "sha256:c00c5592ca587a2eac7f15c44edc63fe24a29b14c94b866963f7ec20263a7c5e",
+    "supplemental/weather.json": "sha256:29452562d92cb748f913a9f53376dbfbcf1c4f0922f9396017153a191ab59197"
+  },
+  "generatedAt": "2026-10-03T21:24:51.136980Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "louisville",
+  "regionId": "louisville",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:24:51.136980Z",
+      "authorityTier": "federal_government",
+      "cachedAt": ".gremlin-cache\\louisville\\usgs-water-locations\\2026-10-03T21-24-51.136980Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 500,
+      "emittedRecordCount": 500,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "usgs-water-locations",
+      "licenseUrl": "https://api.waterdata.usgs.gov/docs/",
+      "name": "USGS water monitoring locations",
+      "namedCount": 500,
+      "provider": "usgs_monitoring_locations",
+      "recordCount": 500,
+      "unnamedCount": 0,
+      "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:24:51.136980Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\louisville\\ebird-walk-recent\\2026-10-03T21-24-51.136980Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 26,
+      "emittedRecordCount": 26,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "ebird-walk-recent",
+      "licenseUrl": "https://science.ebird.org/en/status-and-trends/products-access-terms-of-use",
+      "name": "eBird recent hotspot observations",
+      "namedCount": 26,
+      "provider": "ebird_recent",
+      "recordCount": 26,
+      "unnamedCount": 0,
+      "url": "https://api.ebird.org/v2/data/obs/geo/recent",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:24:51.136980Z",
+      "authorityTier": "city_government",
+      "cachedAt": ".gremlin-cache\\louisville\\local-open-data\\2026-10-03T21-24-51.136980Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 315,
+      "emittedRecordCount": 315,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "LineString",
+        "MultiLineString",
+        "MultiPolygon",
+        "Point",
+        "Polygon"
+      ],
+      "geometryTypesSurvived": [
+        "MultiPolygon",
+        "Point",
+        "Polygon"
+      ],
+      "id": "local-open-data",
+      "licenseUrl": "local://OpenData",
+      "name": "Local municipal OpenData capture — Louisville",
+      "namedCount": 522,
+      "provider": "local_open_data",
+      "recordCount": 88071,
+      "unnamedCount": 87549,
+      "url": "OpenData\\Kentucky\\Louisville",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "source_unavailable",
+      "acquiredAt": "2026-10-03T21:24:51.136980Z",
+      "authorityTier": "community",
+      "dataClass": "durable",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "error": "No raw cache available for osm-louisville-walk",
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "osm-louisville-walk",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 0,
+      "provider": "osm_overpass",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:24:51.136980Z",
+      "authorityTier": "federal_government",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "nws-forecast",
+      "licenseUrl": "https://www.weather.gov/documentation/services-web-api",
+      "name": "National Weather Service forecast and alerts",
+      "namedCount": 0,
+      "provider": "nws",
+      "recordCount": 4,
+      "unnamedCount": 0,
+      "url": "https://api.weather.gov/",
+      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:24:51.136980Z",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "louisville-civic",
+      "name": "Louisville, Kentucky civic events",
+      "namedCount": 0,
+      "provider": "civic_rss",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "configured civic provider",
+      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 841
+    },
+    "valid": true
+  },
+  "warnings": [
+    {
+      "code": "source_unavailable",
+      "detail": "No raw cache available for osm-louisville-walk",
+      "source": "osm-louisville-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:jefferson_county_ky_metro_park_points_a5a710fa5d07469ba2d7b39aab3c2db0_4:38 merged into parks:local-open-data:jefferson_county_ky_metro_park_areas_3ce3306260a448d2afc707961ed3f339_0:38; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:jefferson_county_ky_metro_park_areas_3ce3306260a448d2afc707961ed3f339_0:38",
+        "parks:local-open-data:jefferson_county_ky_metro_park_points_a5a710fa5d07469ba2d7b39aab3c2db0_4:38"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:jefferson_county_ky_metro_park_points_a5a710fa5d07469ba2d7b39aab3c2db0_4:59 merged into parks:local-open-data:jefferson_county_ky_metro_park_areas_3ce3306260a448d2afc707961ed3f339_0:59; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:jefferson_county_ky_metro_park_areas_3ce3306260a448d2afc707961ed3f339_0:59",
+        "parks:local-open-data:jefferson_county_ky_metro_park_points_a5a710fa5d07469ba2d7b39aab3c2db0_4:59"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:jefferson_county_ky_metro_park_points_a5a710fa5d07469ba2d7b39aab3c2db0_4:67 merged into parks:local-open-data:jefferson_county_ky_metro_park_areas_3ce3306260a448d2afc707961ed3f339_0:67; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:jefferson_county_ky_metro_park_areas_3ce3306260a448d2afc707961ed3f339_0:67",
+        "parks:local-open-data:jefferson_county_ky_metro_park_points_a5a710fa5d07469ba2d7b39aab3c2db0_4:67"
+      ],
+      "source": "local-open-data"
+    }
+  ]
+}

@@ -1,0 +1,1811 @@
+{
+  "checksums": {
+    "pois.json": "sha256:0619ffe1735d2fe1cb5f0c3559cec8e2333cba3ca6b8ec5232b3e597bbc60d1e",
+    "source-scorecard.json": "sha256:b00c86dd98d33ddacad2c15cd344949301f774afc46b565183ffcef3f28d06dc",
+    "supplemental/canonical-records.json": "sha256:d74ca271479a63e09788611fb6e2ff1199d017501308cb0012cb30471655b833",
+    "supplemental/dedup-groups.json": "sha256:6ea740bd6789fa05671e50a4a635866ff94a96cce644a9d2749e1ee24808b46a",
+    "supplemental/osm-pois.json": "sha256:1d44ea4073fcbb902257b49100563cddd3b3f76ae28806898d9462f92fac7727",
+    "supplemental/validation-report.json": "sha256:e47ba1c6b8a2a2621574a1abd5d902acf4c004d4da692f55b415059632686bb1",
+    "supplemental/weather.json": "sha256:acfaa4b4d0b0e139816fdb8039affaed11ef3dc95d1f14dd6dee4c3b23744d4f"
+  },
+  "generatedAt": "2026-10-03T21:24:51.167798Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "columbus",
+  "regionId": "columbus",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "source_unavailable",
+      "acquiredAt": "2026-10-03T21:24:51.167798Z",
+      "authorityTier": "city_government",
+      "dataClass": "durable",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "error": "No raw cache available for columbus-boundary",
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "columbus-boundary",
+      "licenseUrl": "https://www.columbus.gov/",
+      "name": "Columbus Corporate Boundary",
+      "namedCount": 0,
+      "provider": "arcgis_feature_service",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "https://maps.columbus.gov/arcgis/rest/services/CityServices/KeyLayers/MapServer/2",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:24:51.167798Z",
+      "authorityTier": "city_government",
+      "cachedAt": ".gremlin-cache\\columbus\\local-open-data\\2026-10-03T21-24-51.167798Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 1590,
+      "emittedRecordCount": 1590,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "LineString",
+        "MultiLineString",
+        "MultiPolygon",
+        "Point",
+        "Polygon"
+      ],
+      "geometryTypesSurvived": [
+        "MultiPolygon",
+        "Point",
+        "Polygon"
+      ],
+      "id": "local-open-data",
+      "licenseUrl": "local://OpenData",
+      "name": "Local municipal OpenData capture — Columbus",
+      "namedCount": 546,
+      "provider": "local_open_data",
+      "recordCount": 9757,
+      "unnamedCount": 9211,
+      "url": "OpenData\\Ohio\\Columbus",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "source_unavailable",
+      "acquiredAt": "2026-10-03T21:24:51.167798Z",
+      "authorityTier": "community",
+      "dataClass": "durable",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "error": "source_unavailable: osm-columbus requires boundary source columbus-boundary",
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "osm-columbus",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 0,
+      "provider": "osm_overpass",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:24:51.167798Z",
+      "authorityTier": "federal_government",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "nws-forecast",
+      "licenseUrl": "https://www.weather.gov/documentation/services-web-api",
+      "name": "National Weather Service forecast and alerts",
+      "namedCount": 0,
+      "provider": "nws",
+      "recordCount": 4,
+      "unnamedCount": 0,
+      "url": "https://api.weather.gov/",
+      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:24:51.167798Z",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "columbus-civic",
+      "name": "Columbus, Ohio civic events",
+      "namedCount": 0,
+      "provider": "civic_rss",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "configured civic provider",
+      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 1590
+    },
+    "valid": true
+  },
+  "warnings": [
+    {
+      "code": "source_unavailable",
+      "detail": "No raw cache available for columbus-boundary",
+      "source": "columbus-boundary"
+    },
+    {
+      "code": "source_unavailable",
+      "detail": "source_unavailable: osm-columbus requires boundary source columbus-boundary",
+      "source": "osm-columbus"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10062 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10061; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10061",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10062"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10063 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10061; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10061",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10063"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10064 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10061; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10061",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10064"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10065 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10061; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10061",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10065"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10067 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10061; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10061",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10067"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10069 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10068; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10068",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10069"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10101 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10100; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10100",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10101"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10102 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10100; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10100",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10102"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10103 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10100; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10100",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10103"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10116 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10115; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10115",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10116"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10928 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10927; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10927",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10928"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10939 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10937; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10937",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10939"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10940 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10937; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10937",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10940"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10963 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10961; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10961",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10963"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10964 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10961; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10961",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10964"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10966 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10962; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10962",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10966"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10982 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10980; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10980",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10982"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:112 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:111; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:111",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:112"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:1283 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:1282; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:1282",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:1283"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:1606 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:1605; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:1605",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:1606"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:205 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:204; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:204",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:205"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:212 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:211; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:211",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:212"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:215 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:214; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:214",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:215"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:217 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:216; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:216",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:217"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:219 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:218; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:218",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:219"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:220 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:218; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:218",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:220"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:224 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:223; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:223",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:224"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:232 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10100; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10100",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:232"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:234 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10100; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10100",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:234"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:238 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:237; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:237",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:238"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:248 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:237; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:237",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:248"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:254 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:252; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:252",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:254"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:264 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:263; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:263",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:264"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:267 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:265; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:265",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:267"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:268 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:265; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:265",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:268"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:279 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:278; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:278",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:279"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:280 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:278; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:278",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:280"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:2883 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10930; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10930",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:2883"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:289 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:288; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:288",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:289"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:291 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:290; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:290",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:291"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:296 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:295; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:295",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:296"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:298 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:297; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:297",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:298"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:301 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:300; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:300",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:301"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:32 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10924; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10924",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:32"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:3212 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:3211; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:3211",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:3212"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:3214 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:3213; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:3213",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:3214"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:3219 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:210; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:210",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:3219"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:324 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:323; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:323",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:324"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:33 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10525; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10525",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:33"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:35 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10525; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10525",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:35"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:367 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:366; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:366",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:367"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:372 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:371; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:371",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:372"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:384 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:383; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:383",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:384"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:4163 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:25; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:25",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:4163"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:4168 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:147; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:147",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:4168"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:4170 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:3521; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:3521",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:4170"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:419 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:418; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:418",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:419"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:439 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:438; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:438",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:439"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:442 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:441; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:441",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:442"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:444 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:443; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:443",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:444"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:446 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:445; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:445",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:446"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:492 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:491; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:491",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:492"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:494 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:493; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:493",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:494"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:496 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:495; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:495",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:496"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:498 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:497; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:497",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:498"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:500 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:499; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:499",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:500"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:505 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:504; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:504",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:505"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:506 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:504; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:504",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:506"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:507 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:504; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:504",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:507"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:508 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:504; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:504",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:508"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:510 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:509; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:509",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:510"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:511 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:509; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:509",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:511"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:512 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:509; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:509",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:512"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:517 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:516; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:516",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:517"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:531 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:530; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:530",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:531"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:533 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:532; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:532",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:533"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:535 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:534; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:534",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:535"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:537 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:536; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:536",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:537"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:5442 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:5441; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:5441",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:5442"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:5444 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:5443; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:5443",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:5444"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:548 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:1; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:1",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:548"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:551 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:3; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:3",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:551"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:561 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:560; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:560",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:561"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:564 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:563; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:563",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:564"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:566 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:565; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:565",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:566"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:573 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:140; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:140",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:573"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:574 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:139; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:139",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:574"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:575 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:146; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:146",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:575"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:5761 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:257; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:257",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:5761"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:5762 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:257; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:257",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:5762"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:5763 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:257; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:257",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:5763"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:577 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:164; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:164",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:577"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:579 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:578; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:578",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:579"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:580 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:165; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:165",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:580"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:581 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:191; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:191",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:581"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:583 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:3203; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:3203",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:583"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:585 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:2895; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:2895",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:585"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:6 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:5; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:5",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:6"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:600 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:598; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:598",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:600"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:601 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:598; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:598",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:601"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:612 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:611; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:611",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:612"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:614 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:613; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:613",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:614"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:616 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:615; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:615",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:616"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:618 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:617; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:617",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:618"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:633 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:632; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:632",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:633"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:64 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:559; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:559",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:64"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:640 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:639; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:639",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:640"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:645 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:644; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:644",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:645"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:658 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:657; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:657",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:658"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:665 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:664; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:664",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:665"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:6726 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:57; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:57",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:6726"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:6731 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:602; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:602",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:6731"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:6735 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:38; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:38",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:6735"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:6736 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:38; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:38",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:6736"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:68 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:557; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:557",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:68"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:681 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:680; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:680",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:681"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:685 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:684; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:684",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:685"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:686 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:684; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:684",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:686"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:687 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:684; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:684",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:687"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:688 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:684; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:684",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:688"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:69 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:558; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:558",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:69"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:690 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:689; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:689",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:690"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:702 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:701; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:701",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:702"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7042 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7041; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7041",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7042"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7047 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:255; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:255",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7047"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7048 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:11; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:11",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7048"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7049 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:636; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:636",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7049"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7050 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:65; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:65",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7050"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7051 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:641; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:641",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7051"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7052 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:650; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:650",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7052"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7053 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:122; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:122",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7053"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7054 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:522; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:522",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7054"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7055 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:142; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:142",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7055"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:71 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:70; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:70",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:71"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:713 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:712; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:712",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:713"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:733 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:731; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:731",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:733"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7361 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:61; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:61",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7361"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7362 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:660; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:660",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7362"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7364 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:193; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:193",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7364"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7367 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:221; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:221",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7367"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7372 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:304; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:304",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7372"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7376 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:596; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:596",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7376"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7377 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10107; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10107",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7377"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7379 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:437; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:437",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7379"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7381 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:682; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:682",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7381"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7382 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:543; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:543",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7382"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7386 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:66; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:66",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7386"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7387 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:66; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:66",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7387"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7388 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:66; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:66",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7388"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7393 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:193; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:193",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7393"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7396 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:699; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:699",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7396"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7399 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7366; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7366",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7399"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:740 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:739; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:739",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:740"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7402 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:73; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:73",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7402"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7408 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:576; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:576",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7408"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:744 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7375; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7375",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:744"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:746 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:6085; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:6085",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:746"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:750 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:749; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:749",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:750"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:761 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:760; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:760",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:761"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:768 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:767; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:767",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:768"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7693 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10107; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10107",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7693"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:770 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:769; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:769",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:770"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:772 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:771; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:771",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:772"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:773 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:767; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:767",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:773"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:797 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:796; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:796",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:797"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:804 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:803; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:803",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:804"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:81 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:560; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:560",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:81"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:82 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:562; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:562",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:82"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:84 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:83; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:83",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:84"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:840 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:837; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:837",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:840"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:845 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:530; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:530",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:845"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:846 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:530; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:530",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:846"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:847 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:530; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:530",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:847"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:86 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:563; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:563",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:86"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:881 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:880; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:880",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:881"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:9295 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:302; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:302",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:9295"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:9296 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:302; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:302",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:9296"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:9601 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7374; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:7374",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:9601"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:9643 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:9642; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:9642",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:9643"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:9647 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10519; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10519",
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:9647"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_property_boundaries_692988ef00674bbea6432c6dbfd256c5_4:188 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:704; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:704",
+        "parks:local-open-data:park_property_boundaries_692988ef00674bbea6432c6dbfd256c5_4:188"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_property_boundaries_692988ef00674bbea6432c6dbfd256c5_4:360 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:9615; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:9615",
+        "parks:local-open-data:park_property_boundaries_692988ef00674bbea6432c6dbfd256c5_4:360"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_property_boundaries_692988ef00674bbea6432c6dbfd256c5_4:363 merged into parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10977; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_facilities_3e0d96ea5bc649848adb4c6cd0ec9dab_2:10977",
+        "parks:local-open-data:park_property_boundaries_692988ef00674bbea6432c6dbfd256c5_4:363"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:local-open-data:park_property_boundaries_692988ef00674bbea6432c6dbfd256c5_4:541 merged into parks:local-open-data:park_property_boundaries_692988ef00674bbea6432c6dbfd256c5_4:539; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:park_property_boundaries_692988ef00674bbea6432c6dbfd256c5_4:539",
+        "parks:local-open-data:park_property_boundaries_692988ef00674bbea6432c6dbfd256c5_4:541"
+      ],
+      "source": "local-open-data"
+    }
+  ]
+}

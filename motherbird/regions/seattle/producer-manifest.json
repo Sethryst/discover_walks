@@ -1,0 +1,2464 @@
+{
+  "checksums": {
+    "civic/event-sources.json": "sha256:384dfb50d12abd07400f33413b1c7ca0566b0ee0a4433ea207869998982b2cc1",
+    "civic/events.json": "sha256:aaa9b1fbb580bca6744c5dd959dc0082c4f296a146082f1df7d9b9187489893c",
+    "civic/volunteer-sources.json": "sha256:dbd5c2b9ad506565fce8e493d55facfcdc511e382aacd27eb5b0976d4bce3786",
+    "civic/vote.json": "sha256:3d1cb8c3059044f9c6df718b4e52ffcaec41a7a5cfa292e38d890f9155287173",
+    "geography/boundary.geojson": "sha256:f7d09f66fdbe2f02a4d231baf0d00de3e79e44be308ef19a4be21f7b6935a90f",
+    "pois.json": "sha256:e220c2fa6b9ac9483671539d20932a92e3aeddf19acacd70fbda8f847ec8eb5e",
+    "source-scorecard.json": "sha256:4425f892f3095cf0c4cef3d8959c9fa911430dcd540e7c8d08742c12bff49878",
+    "supplemental/canonical-records.json": "sha256:ef01a21664e3981303d23d3609fa01709a909e47bb194a1443f1bcbc308f05dd",
+    "supplemental/dedup-groups.json": "sha256:02d280529460af545188e0092c54138dcd5957ead6289cb0a510d77538653622",
+    "supplemental/osm-pois.json": "sha256:8d04be6b1412e802161e2db32fb13b837e517db7bf1e74b23ec3adc93c8ae896",
+    "supplemental/validation-report.json": "sha256:65012aa8473cbf9b2b9c51f57cfc6603c017be4feba45db27aaac1af00ae8adf",
+    "supplemental/weather.json": "sha256:02bfea1396069eb5f6b58fcdde2bd7b70e5d8ec1beb1796444e395f95ea5bded"
+  },
+  "generatedAt": "2026-10-03T21:25:04.706012Z",
+  "geography": [
+    {
+      "featureCount": 1,
+      "filename": "geography/boundary.geojson",
+      "idField": "id",
+      "nameField": "name",
+      "role": "jurisdiction_boundary",
+      "sourceId": "seattle-boundary"
+    }
+  ],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "seattle",
+  "regionId": "seattle",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:25:04.706012Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\seattle\\events-seattle-net-25130bd8\\2026-10-03T21-25-04.706012Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 52,
+      "emittedRecordCount": 52,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "events-seattle-net-25130bd8",
+      "licenseUrl": "https://seattle.net/api",
+      "name": "Seattle.net community events",
+      "namedCount": 60,
+      "provider": "rss_ics_events",
+      "recordCount": 60,
+      "unnamedCount": 0,
+      "url": "https://seattle.net/api/events.ics",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:25:04.706012Z",
+      "authorityTier": "city_government",
+      "cachedAt": ".gremlin-cache\\seattle\\seattle-boundary\\2026-09-02T01-44-33.410439Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Polygon"
+      ],
+      "geometryTypesSurvived": [],
+      "id": "seattle-boundary",
+      "layerRole": "jurisdiction_boundary",
+      "licenseUrl": "https://data.seattle.gov/",
+      "name": "Seattle Area Polygon",
+      "namedCount": 1,
+      "provider": "arcgis_feature_service",
+      "recordCount": 1,
+      "unnamedCount": 0,
+      "url": "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/ArcGIS/rest/services/Seattle_Area_Polygon/FeatureServer/0",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:25:04.706012Z",
+      "authorityTier": "city_government",
+      "cachedAt": ".gremlin-cache\\seattle\\seattle-parks\\2026-09-02T01-44-33.410439Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 351,
+      "emittedRecordCount": 351,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "MultiPolygon",
+        "Polygon"
+      ],
+      "geometryTypesSurvived": [
+        "MultiPolygon",
+        "Point",
+        "Polygon"
+      ],
+      "id": "seattle-parks",
+      "licenseUrl": "https://data.seattle.gov/stories/s/City-of-Seattle-Open-Data-Terms-of-Use/v9i2-8v27/",
+      "name": "Seattle Parks and Recreation Park Boundaries",
+      "namedCount": 352,
+      "provider": "arcgis_feature_service",
+      "recordCount": 352,
+      "unnamedCount": 0,
+      "url": "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/ArcGIS/rest/services/Park_Boundaries/FeatureServer/2",
+      "visibleValue": "Adds named Seattle park polygons as official walking destinations."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:25:04.706012Z",
+      "authorityTier": "city_government",
+      "cachedAt": ".gremlin-cache\\seattle\\seattle-spr-trails\\2026-09-02T01-44-33.410439Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 584,
+      "emittedRecordCount": 584,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "LineString",
+        "MultiLineString"
+      ],
+      "geometryTypesSurvived": [
+        "LineString",
+        "MultiLineString"
+      ],
+      "id": "seattle-spr-trails",
+      "licenseUrl": "https://data.seattle.gov/stories/s/City-of-Seattle-Open-Data-Terms-of-Use/v9i2-8v27/",
+      "name": "Seattle Parks and Recreation Trails",
+      "namedCount": 629,
+      "provider": "arcgis_feature_service",
+      "recordCount": 629,
+      "unnamedCount": 0,
+      "url": "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/ArcGIS/rest/services/SPR_Trails_1/FeatureServer/1",
+      "visibleValue": "Adds named official SPR trail lines while excluding unnamed fragments."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:25:04.706012Z",
+      "authorityTier": "city_government",
+      "cachedAt": ".gremlin-cache\\seattle\\seattle-multiuse-trails\\2026-09-02T01-44-33.410439Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 151,
+      "emittedRecordCount": 151,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "LineString"
+      ],
+      "geometryTypesSurvived": [
+        "LineString"
+      ],
+      "id": "seattle-multiuse-trails",
+      "licenseUrl": "https://data.seattle.gov/stories/s/City-of-Seattle-Open-Data-Terms-of-Use/v9i2-8v27/",
+      "name": "Seattle Named Multi-use Trails",
+      "namedCount": 160,
+      "provider": "arcgis_feature_service",
+      "recordCount": 160,
+      "unnamedCount": 0,
+      "url": "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/ArcGIS/rest/services/SDOT_Bike_Facilities/FeatureServer/1",
+      "visibleValue": "Adds named established regional multi-use trail corridors, not general bike lanes."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:25:04.706012Z",
+      "authorityTier": "city_government",
+      "cachedAt": ".gremlin-cache\\seattle\\local-open-data\\2026-10-03T21-25-04.706012Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 412,
+      "emittedRecordCount": 412,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "local-open-data",
+      "licenseUrl": "local://OpenData",
+      "name": "Local municipal OpenData capture — Seattle",
+      "namedCount": 412,
+      "provider": "local_open_data",
+      "recordCount": 412,
+      "unnamedCount": 0,
+      "url": "OpenData\\Washington\\Seattle",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:25:04.706012Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\seattle\\osm-seattle\\2026-09-02T01-44-33.410439Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 1679,
+      "emittedRecordCount": 1679,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point",
+        "Polygon"
+      ],
+      "id": "osm-seattle",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 1892,
+      "provider": "osm_overpass",
+      "recordCount": 1892,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:25:04.706012Z",
+      "authorityTier": "federal_government",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "nws-forecast",
+      "licenseUrl": "https://www.weather.gov/documentation/services-web-api",
+      "name": "National Weather Service forecast and alerts",
+      "namedCount": 0,
+      "provider": "nws",
+      "recordCount": 4,
+      "unnamedCount": 0,
+      "url": "https://api.weather.gov/",
+      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:25:04.706012Z",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "seattle-civic",
+      "name": "Seattle, Washington civic events",
+      "namedCount": 5,
+      "provider": "civic_rss",
+      "recordCount": 5,
+      "unnamedCount": 0,
+      "url": "configured civic provider",
+      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 2321
+    },
+    "valid": true
+  },
+  "warnings": [
+    {
+      "code": "boundary_clip_applied",
+      "detail": "Retained 352 of 352 features inside seattle-boundary.",
+      "source": "seattle-parks"
+    },
+    {
+      "code": "boundary_clip_applied",
+      "detail": "Retained 629 of 629 features inside seattle-boundary.",
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "boundary_clip_applied",
+      "detail": "Retained 160 of 160 features inside seattle-boundary.",
+      "source": "seattle-multiuse-trails"
+    },
+    {
+      "code": "boundary_clip_applied",
+      "detail": "Retained 1892 of 2000 features inside seattle-boundary.",
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "event:events-seattle-net-25130bd8:seattle-net-next-parks-205756497@seattle.net merged into event:events-seattle-net-25130bd8:seattle-net-next-parks-205756347@seattle.net; curated/authoritative record retained when available.",
+      "recordIds": [
+        "event:events-seattle-net-25130bd8:seattle-net-next-parks-205756347@seattle.net",
+        "event:events-seattle-net-25130bd8:seattle-net-next-parks-205756497@seattle.net"
+      ],
+      "source": "events-seattle-net-25130bd8"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "event:events-seattle-net-25130bd8:seattle-net-next-parks-205757553@seattle.net merged into event:events-seattle-net-25130bd8:seattle-net-next-parks-205756347@seattle.net; curated/authoritative record retained when available.",
+      "recordIds": [
+        "event:events-seattle-net-25130bd8:seattle-net-next-parks-205756347@seattle.net",
+        "event:events-seattle-net-25130bd8:seattle-net-next-parks-205757553@seattle.net"
+      ],
+      "source": "events-seattle-net-25130bd8"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "event:events-seattle-net-25130bd8:seattle-net-next-parks-205758846@seattle.net merged into event:events-seattle-net-25130bd8:seattle-net-next-parks-205756347@seattle.net; curated/authoritative record retained when available.",
+      "recordIds": [
+        "event:events-seattle-net-25130bd8:seattle-net-next-parks-205756347@seattle.net",
+        "event:events-seattle-net-25130bd8:seattle-net-next-parks-205758846@seattle.net"
+      ],
+      "source": "events-seattle-net-25130bd8"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "event:events-seattle-net-25130bd8:seattle-net-next-parks-205759919@seattle.net merged into event:events-seattle-net-25130bd8:seattle-net-next-parks-205757614@seattle.net; curated/authoritative record retained when available.",
+      "recordIds": [
+        "event:events-seattle-net-25130bd8:seattle-net-next-parks-205757614@seattle.net",
+        "event:events-seattle-net-25130bd8:seattle-net-next-parks-205759919@seattle.net"
+      ],
+      "source": "events-seattle-net-25130bd8"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "event:events-seattle-net-25130bd8:seattle-net-next-parks-205759935@seattle.net merged into event:events-seattle-net-25130bd8:seattle-net-next-parks-205757614@seattle.net; curated/authoritative record retained when available.",
+      "recordIds": [
+        "event:events-seattle-net-25130bd8:seattle-net-next-parks-205757614@seattle.net",
+        "event:events-seattle-net-25130bd8:seattle-net-next-parks-205759935@seattle.net"
+      ],
+      "source": "events-seattle-net-25130bd8"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "event:events-seattle-net-25130bd8:seattle-net-next-parks-205762445@seattle.net merged into event:events-seattle-net-25130bd8:seattle-net-next-parks-205756347@seattle.net; curated/authoritative record retained when available.",
+      "recordIds": [
+        "event:events-seattle-net-25130bd8:seattle-net-next-parks-205756347@seattle.net",
+        "event:events-seattle-net-25130bd8:seattle-net-next-parks-205762445@seattle.net"
+      ],
+      "source": "events-seattle-net-25130bd8"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "event:events-seattle-net-25130bd8:seattle-net-next-parks-205918834@seattle.net merged into event:events-seattle-net-25130bd8:seattle-net-next-parks-205757614@seattle.net; curated/authoritative record retained when available.",
+      "recordIds": [
+        "event:events-seattle-net-25130bd8:seattle-net-next-parks-205757614@seattle.net",
+        "event:events-seattle-net-25130bd8:seattle-net-next-parks-205918834@seattle.net"
+      ],
+      "source": "events-seattle-net-25130bd8"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "event:events-seattle-net-25130bd8:seattle-net-next-parks-207247718@seattle.net merged into event:events-seattle-net-25130bd8:seattle-net-next-parks-207247717@seattle.net; curated/authoritative record retained when available.",
+      "recordIds": [
+        "event:events-seattle-net-25130bd8:seattle-net-next-parks-207247717@seattle.net",
+        "event:events-seattle-net-25130bd8:seattle-net-next-parks-207247718@seattle.net"
+      ],
+      "source": "events-seattle-net-25130bd8"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:956072 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:33; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:33",
+        "parks:seattle-parks:956072"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:956094 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:63; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:63",
+        "parks:seattle-parks:956094"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:956158 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:102; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:102",
+        "parks:seattle-parks:956158"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:956176 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:366; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:366",
+        "parks:seattle-parks:956176"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:956182 merged into parks:seattle-parks:956144; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:seattle-parks:956144",
+        "parks:seattle-parks:956182"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:956185 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:297; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:297",
+        "parks:seattle-parks:956185"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:956191 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:75; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:75",
+        "parks:seattle-parks:956191"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:956218 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:281; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:281",
+        "parks:seattle-parks:956218"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:956222 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:124; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:124",
+        "parks:seattle-parks:956222"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:956237 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:188; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:188",
+        "parks:seattle-parks:956237"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:956241 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:120; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:120",
+        "parks:seattle-parks:956241"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:956242 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:123; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:123",
+        "parks:seattle-parks:956242"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:956416 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:96; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:96",
+        "parks:seattle-parks:956416"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:956419 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:293; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:293",
+        "parks:seattle-parks:956419"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:956421 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:314; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:314",
+        "parks:seattle-parks:956421"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:956469 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:319; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:319",
+        "parks:seattle-parks:956469"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:956611 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:151; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:151",
+        "parks:seattle-parks:956611"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:956648 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:195; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:195",
+        "parks:seattle-parks:956648"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:956666 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:402; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:402",
+        "parks:seattle-parks:956666"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:956669 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:246; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:246",
+        "parks:seattle-parks:956669"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:956672 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:401; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:401",
+        "parks:seattle-parks:956672"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:956719 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:349; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:349",
+        "parks:seattle-parks:956719"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:956722 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:4; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:4",
+        "parks:seattle-parks:956722"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:956740 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:353; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:353",
+        "parks:seattle-parks:956740"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:956776 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:342; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:342",
+        "parks:seattle-parks:956776"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:957052 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:86; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:86",
+        "parks:seattle-parks:957052"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:957055 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:37; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:37",
+        "parks:seattle-parks:957055"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:957067 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:245; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:245",
+        "parks:seattle-parks:957067"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:957084 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:361; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:361",
+        "parks:seattle-parks:957084"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:957097 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:12; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:12",
+        "parks:seattle-parks:957097"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:957219 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:283; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:283",
+        "parks:seattle-parks:957219"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:957258 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:46; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:46",
+        "parks:seattle-parks:957258"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:957365 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:152; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:152",
+        "parks:seattle-parks:957365"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:957403 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:118; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:118",
+        "parks:seattle-parks:957403"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:957405 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:180; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:180",
+        "parks:seattle-parks:957405"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:957557 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:61; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:61",
+        "parks:seattle-parks:957557"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:957561 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:50; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:50",
+        "parks:seattle-parks:957561"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:957581 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:109; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:109",
+        "parks:seattle-parks:957581"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:957597 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:394; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:394",
+        "parks:seattle-parks:957597"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:957604 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:198; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:198",
+        "parks:seattle-parks:957604"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:957618 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:156; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:156",
+        "parks:seattle-parks:957618"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:957622 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:307; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:307",
+        "parks:seattle-parks:957622"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:957623 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:81; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:81",
+        "parks:seattle-parks:957623"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:957624 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:346; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:346",
+        "parks:seattle-parks:957624"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:957643 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:333; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:333",
+        "parks:seattle-parks:957643"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:957651 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:76; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:76",
+        "parks:seattle-parks:957651"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:957654 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:51; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:51",
+        "parks:seattle-parks:957654"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:957720 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:161; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:161",
+        "parks:seattle-parks:957720"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "parks:seattle-parks:957960 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:403; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:403",
+        "parks:seattle-parks:957960"
+      ],
+      "source": "seattle-parks"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-multiuse-trails:158516 merged into trails:seattle-multiuse-trails:158476; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-multiuse-trails:158476",
+        "trails:seattle-multiuse-trails:158516"
+      ],
+      "source": "seattle-multiuse-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-multiuse-trails:158523 merged into trails:seattle-multiuse-trails:158456; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-multiuse-trails:158456",
+        "trails:seattle-multiuse-trails:158523"
+      ],
+      "source": "seattle-multiuse-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-multiuse-trails:158525 merged into trails:seattle-multiuse-trails:158455; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-multiuse-trails:158455",
+        "trails:seattle-multiuse-trails:158525"
+      ],
+      "source": "seattle-multiuse-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-multiuse-trails:158547 merged into trails:seattle-multiuse-trails:158478; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-multiuse-trails:158478",
+        "trails:seattle-multiuse-trails:158547"
+      ],
+      "source": "seattle-multiuse-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-multiuse-trails:158573 merged into trails:seattle-multiuse-trails:158531; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-multiuse-trails:158531",
+        "trails:seattle-multiuse-trails:158573"
+      ],
+      "source": "seattle-multiuse-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-multiuse-trails:158590 merged into trails:seattle-multiuse-trails:158486; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-multiuse-trails:158486",
+        "trails:seattle-multiuse-trails:158590"
+      ],
+      "source": "seattle-multiuse-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-multiuse-trails:158594 merged into trails:seattle-multiuse-trails:158486; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-multiuse-trails:158486",
+        "trails:seattle-multiuse-trails:158594"
+      ],
+      "source": "seattle-multiuse-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-multiuse-trails:158601 merged into trails:seattle-multiuse-trails:158470; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-multiuse-trails:158470",
+        "trails:seattle-multiuse-trails:158601"
+      ],
+      "source": "seattle-multiuse-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-multiuse-trails:158630 merged into trails:seattle-multiuse-trails:158513; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-multiuse-trails:158513",
+        "trails:seattle-multiuse-trails:158630"
+      ],
+      "source": "seattle-multiuse-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:1253 merged into trails:seattle-spr-trails:1072; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:1072",
+        "trails:seattle-spr-trails:1253"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:1372 merged into trails:seattle-spr-trails:1215; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:1215",
+        "trails:seattle-spr-trails:1372"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:1456 merged into trails:seattle-spr-trails:135; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:135",
+        "trails:seattle-spr-trails:1456"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:151 merged into trails:seattle-spr-trails:1464; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:1464",
+        "trails:seattle-spr-trails:151"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:184 merged into trails:seattle-spr-trails:1115; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:1115",
+        "trails:seattle-spr-trails:184"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:249 merged into trails:seattle-spr-trails:1359; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:1359",
+        "trails:seattle-spr-trails:249"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:270 merged into trails:seattle-spr-trails:1062; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:1062",
+        "trails:seattle-spr-trails:270"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:340 merged into trails:seattle-spr-trails:1140; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:1140",
+        "trails:seattle-spr-trails:340"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:368 merged into trails:seattle-spr-trails:1469; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:1469",
+        "trails:seattle-spr-trails:368"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:372 merged into trails:seattle-spr-trails:177; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:177",
+        "trails:seattle-spr-trails:372"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:376 merged into trails:seattle-spr-trails:21; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:21",
+        "trails:seattle-spr-trails:376"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:383 merged into trails:seattle-spr-trails:1113; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:1113",
+        "trails:seattle-spr-trails:383"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:429 merged into trails:seattle-spr-trails:1349; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:1349",
+        "trails:seattle-spr-trails:429"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:454 merged into trails:seattle-spr-trails:1374; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:1374",
+        "trails:seattle-spr-trails:454"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:457 merged into trails:seattle-spr-trails:1182; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:1182",
+        "trails:seattle-spr-trails:457"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:462 merged into trails:seattle-spr-trails:276; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:276",
+        "trails:seattle-spr-trails:462"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:529 merged into trails:seattle-spr-trails:360; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:360",
+        "trails:seattle-spr-trails:529"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:550 merged into trails:seattle-spr-trails:11; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:11",
+        "trails:seattle-spr-trails:550"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:577 merged into trails:seattle-spr-trails:377; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:377",
+        "trails:seattle-spr-trails:577"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:592 merged into trails:seattle-spr-trails:1310; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:1310",
+        "trails:seattle-spr-trails:592"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:606 merged into trails:seattle-spr-trails:1325; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:1325",
+        "trails:seattle-spr-trails:606"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:731 merged into trails:seattle-spr-trails:725; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:725",
+        "trails:seattle-spr-trails:731"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:749 merged into trails:seattle-spr-trails:1288; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:1288",
+        "trails:seattle-spr-trails:749"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:752 merged into trails:seattle-spr-trails:554; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:554",
+        "trails:seattle-spr-trails:752"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:771 merged into trails:seattle-spr-trails:767; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:767",
+        "trails:seattle-spr-trails:771"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:773 merged into trails:seattle-spr-trails:767; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:767",
+        "trails:seattle-spr-trails:773"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:839 merged into trails:seattle-spr-trails:680; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:680",
+        "trails:seattle-spr-trails:839"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:850 merged into trails:seattle-spr-trails:1027; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:1027",
+        "trails:seattle-spr-trails:850"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:866 merged into trails:seattle-spr-trails:1394; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:1394",
+        "trails:seattle-spr-trails:866"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:906 merged into trails:seattle-spr-trails:1463; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:1463",
+        "trails:seattle-spr-trails:906"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:933 merged into trails:seattle-spr-trails:165; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:165",
+        "trails:seattle-spr-trails:933"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:944 merged into trails:seattle-spr-trails:1113; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:1113",
+        "trails:seattle-spr-trails:944"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:946 merged into trails:seattle-spr-trails:186; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:186",
+        "trails:seattle-spr-trails:946"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:948 merged into trails:seattle-spr-trails:1113; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:1113",
+        "trails:seattle-spr-trails:948"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:949 merged into trails:seattle-spr-trails:377; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:377",
+        "trails:seattle-spr-trails:949"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:950 merged into trails:seattle-spr-trails:767; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:767",
+        "trails:seattle-spr-trails:950"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:96 merged into trails:seattle-spr-trails:660; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:660",
+        "trails:seattle-spr-trails:96"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:970 merged into trails:seattle-spr-trails:1142; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:1142",
+        "trails:seattle-spr-trails:970"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:977 merged into trails:seattle-spr-trails:224; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:224",
+        "trails:seattle-spr-trails:977"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:98 merged into trails:seattle-spr-trails:847; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:847",
+        "trails:seattle-spr-trails:98"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:seattle-spr-trails:99 merged into trails:seattle-spr-trails:849; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:seattle-spr-trails:849",
+        "trails:seattle-spr-trails:99"
+      ],
+      "source": "seattle-spr-trails"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:14109170433 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:202; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:202",
+        "osm:node:14109170433"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2035719674 merged into osm:node:2035719673; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:2035719673",
+        "osm:node:2035719674"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3211770134 merged into osm:node:3211770126; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:3211770126",
+        "osm:node:3211770134"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3211770136 merged into osm:node:3211770135; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:3211770135",
+        "osm:node:3211770136"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3211770138 merged into osm:node:3211770135; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:3211770135",
+        "osm:node:3211770138"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3211770139 merged into osm:node:3211770135; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:3211770135",
+        "osm:node:3211770139"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4359597089 merged into osm:node:13141165534; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:13141165534",
+        "osm:node:4359597089"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4424122605 merged into osm:node:4424122604; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:4424122604",
+        "osm:node:4424122605"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4424122606 merged into osm:node:4424122604; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:4424122604",
+        "osm:node:4424122606"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9846664113 merged into osm:node:9846664112; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:9846664112",
+        "osm:node:9846664113"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:12908403 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:268; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:268",
+        "osm:way:12908403"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:13513921 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:340; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:340",
+        "osm:way:13513921"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:13515109 merged into parks:seattle-parks:956543; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:seattle-parks:956543",
+        "osm:way:13515109"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:13800188 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:378; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:378",
+        "osm:way:13800188"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:13801411 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:316; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:316",
+        "osm:way:13801411"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:14026690 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:372; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:372",
+        "osm:way:14026690"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:25788265 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:98; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:98",
+        "osm:way:25788265"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:25790355 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:64; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:64",
+        "osm:way:25790355"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:26397746 merged into parks:seattle-parks:957447; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:seattle-parks:957447",
+        "osm:way:26397746"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:29897483 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:377; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:377",
+        "osm:way:29897483"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:30199408 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:224; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:224",
+        "osm:way:30199408"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:31652093 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:83; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:83",
+        "osm:way:31652093"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:31658929 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:95; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:95",
+        "osm:way:31658929"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:31659491 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:320; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:320",
+        "osm:way:31659491"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:31696963 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:104; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:104",
+        "osm:way:31696963"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:31870424 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:335; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:335",
+        "osm:way:31870424"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:32123475 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:115; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:115",
+        "osm:way:32123475"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:32526883 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:319; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:319",
+        "osm:way:32526883"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:32527194 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:128; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:128",
+        "osm:way:32527194"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:34150701 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:209; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:209",
+        "osm:way:34150701"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:36413699 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:211; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:211",
+        "osm:way:36413699"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:37623411 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:363; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:363",
+        "osm:way:37623411"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:37623649 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:280; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:280",
+        "osm:way:37623649"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:38655779 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:27; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:27",
+        "osm:way:38655779"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:40819484 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:318; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:318",
+        "osm:way:40819484"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:41293170 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:111; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:111",
+        "osm:way:41293170"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:42512155 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:290; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:290",
+        "osm:way:42512155"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:49232846 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:7; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:7",
+        "osm:way:49232846"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:49321099 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:182; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:182",
+        "osm:way:49321099"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:49734706 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:341; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:341",
+        "osm:way:49734706"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:49749535 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:252; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:252",
+        "osm:way:49749535"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:49749536 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:251; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:251",
+        "osm:way:49749536"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50275547 merged into parks:seattle-parks:955553; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:seattle-parks:955553",
+        "osm:way:50275547"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50275550 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:11; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:11",
+        "osm:way:50275550"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50275554 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:15; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:15",
+        "osm:way:50275554"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50275578 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:12; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:12",
+        "osm:way:50275578"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50275581 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:9; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:9",
+        "osm:way:50275581"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50321775 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:24; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:24",
+        "osm:way:50321775"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50321784 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:22; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:22",
+        "osm:way:50321784"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50321786 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:23; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:23",
+        "osm:way:50321786"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50321788 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:20; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:20",
+        "osm:way:50321788"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50329129 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:36; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:36",
+        "osm:way:50329129"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50329137 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:35; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:35",
+        "osm:way:50329137"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50419095 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:43; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:43",
+        "osm:way:50419095"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50419096 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:42; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:42",
+        "osm:way:50419096"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50419101 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:39; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:39",
+        "osm:way:50419101"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50536564 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:53; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:53",
+        "osm:way:50536564"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50536572 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:50; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:50",
+        "osm:way:50536572"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50536573 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:215; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:215",
+        "osm:way:50536573"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50622236 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:62; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:62",
+        "osm:way:50622236"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50622237 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:61; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:61",
+        "osm:way:50622237"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50622242 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:339; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:339",
+        "osm:way:50622242"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50622252 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:65; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:65",
+        "osm:way:50622252"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:50786465 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:71; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:71",
+        "osm:way:50786465"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:51473916 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:75; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:75",
+        "osm:way:51473916"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:51475862 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:80; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:80",
+        "osm:way:51475862"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:51805184 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:87; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:87",
+        "osm:way:51805184"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:51805194 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:81; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:81",
+        "osm:way:51805194"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:51805195 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:86; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:86",
+        "osm:way:51805195"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:51809145 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:91; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:91",
+        "osm:way:51809145"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:51809148 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:103; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:103",
+        "osm:way:51809148"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:51809157 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:96; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:96",
+        "osm:way:51809157"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:51870591 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:113; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:113",
+        "osm:way:51870591"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:52128531 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:180; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:180",
+        "osm:way:52128531"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:52128532 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:123; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:123",
+        "osm:way:52128532"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:52128533 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:122; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:122",
+        "osm:way:52128533"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:52141605 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:134; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:134",
+        "osm:way:52141605"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:52201954 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:131; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:131",
+        "osm:way:52201954"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:52324866 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:136; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:136",
+        "osm:way:52324866"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:52324868 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:138; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:138",
+        "osm:way:52324868"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:52324870 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:295; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:295",
+        "osm:way:52324870"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:52563647 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:242; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:242",
+        "osm:way:52563647"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:52563649 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:394; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:394",
+        "osm:way:52563649"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:53371551 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:383; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:383",
+        "osm:way:53371551"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:53588536 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:217; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:217",
+        "osm:way:53588536"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:53589176 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:201; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:201",
+        "osm:way:53589176"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:53590572 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:289; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:289",
+        "osm:way:53590572"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:53608260 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:235; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:235",
+        "osm:way:53608260"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:53610784 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:148; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:148",
+        "osm:way:53610784"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:53615747 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:369; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:369",
+        "osm:way:53615747"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:54394873 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:247; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:247",
+        "osm:way:54394873"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:54905008 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:157; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:157",
+        "osm:way:54905008"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:54905017 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:156; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:156",
+        "osm:way:54905017"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:54905018 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:154; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:154",
+        "osm:way:54905018"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:56176610 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:279; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:279",
+        "osm:way:56176610"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:56178741 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:179; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:179",
+        "osm:way:56178741"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:56178744 merged into parks:seattle-parks:956720; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:seattle-parks:956720",
+        "osm:way:56178744"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:56393779 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:212; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:212",
+        "osm:way:56393779"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:56395160 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:410; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:410",
+        "osm:way:56395160"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:56395162 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:198; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:198",
+        "osm:way:56395162"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:56395176 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:193; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:193",
+        "osm:way:56395176"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:56395184 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:333; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:333",
+        "osm:way:56395184"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:56629212 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:202; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:202",
+        "osm:way:56629212"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:56629389 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:207; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:207",
+        "osm:way:56629389"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:57386820 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:365; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:365",
+        "osm:way:57386820"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:57522839 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:222; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:222",
+        "osm:way:57522839"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:57637326 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:237; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:237",
+        "osm:way:57637326"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:57637336 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:283; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:283",
+        "osm:way:57637336"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:57850373 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:238; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:238",
+        "osm:way:57850373"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:57883622 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:240; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:240",
+        "osm:way:57883622"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:57883627 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:245; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:245",
+        "osm:way:57883627"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:57885588 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:263; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:263",
+        "osm:way:57885588"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:58363993 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:286; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:286",
+        "osm:way:58363993"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:59037675 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:266; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:266",
+        "osm:way:59037675"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:59877064 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:278; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:278",
+        "osm:way:59877064"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:59914507 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:285; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:285",
+        "osm:way:59914507"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:60007122 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:293; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:293",
+        "osm:way:60007122"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:60007123 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:298; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:298",
+        "osm:way:60007123"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:60116525 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:306; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:306",
+        "osm:way:60116525"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:60193646 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:313; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:313",
+        "osm:way:60193646"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:60517403 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:322; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:322",
+        "osm:way:60517403"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:60713727 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:403; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:403",
+        "osm:way:60713727"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:62207148 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:219; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:219",
+        "osm:way:62207148"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:66218128 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:356; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:356",
+        "osm:way:66218128"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:66649038 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:338; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:338",
+        "osm:way:66649038"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:66649039 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:342; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:342",
+        "osm:way:66649039"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:66649040 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:337; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:337",
+        "osm:way:66649040"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:66820434 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:345; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:345",
+        "osm:way:66820434"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:66984947 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:352; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:352",
+        "osm:way:66984947"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:69153432 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:370; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:370",
+        "osm:way:69153432"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:69708554 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:373; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:373",
+        "osm:way:69708554"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:69708562 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:374; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:374",
+        "osm:way:69708562"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:75971720 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:353; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:353",
+        "osm:way:75971720"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:8097422 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:127; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:127",
+        "osm:way:8097422"
+      ],
+      "source": "osm-seattle"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:88794169 merged into parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:312; curated/authoritative record retained when available.",
+      "recordIds": [
+        "parks:local-open-data:seattle_parks_and_recreation_park_addresses_v5tj-kqhc:312",
+        "osm:way:88794169"
+      ],
+      "source": "osm-seattle"
+    }
+  ]
+}

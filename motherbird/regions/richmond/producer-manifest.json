@@ -1,0 +1,850 @@
+{
+  "checksums": {
+    "civic/event-sources.json": "sha256:93e7cb7f437d82ea28da9c98b5146109cb20683394d4ca7d87d0b10a10ddd11b",
+    "civic/volunteer-sources.json": "sha256:f4137b7ee9282db3638a7db2a034d4eadb90a213ddb470b4366f9c0452252147",
+    "civic/vote.json": "sha256:54318d618f16e370d6432b79ba9a82c69fbe65434f660cc30d12829a79c84677",
+    "pois.json": "sha256:e8c4650f2a89b20ed3cf9c827e044d056489f85695b18d4fa56b6b45a400c2f6",
+    "source-scorecard.json": "sha256:9a06f5019795f579889ff7d4517d207de75a2a393997cfcca7fa11825b163578",
+    "supplemental/canonical-records.json": "sha256:bae223694ffbc0897af7d7daf66cb39be224d0353b4950cc93dabba9e553e3df",
+    "supplemental/dedup-groups.json": "sha256:7f2295405f4941052d6873d0d563fa6f9ba05f3fad597316ecc99d4d03c91680",
+    "supplemental/osm-pois.json": "sha256:a680d9a9755f252f258e61bbd9e8c777f6f4552f023a4f7ca48510cc9d134bf9",
+    "supplemental/validation-report.json": "sha256:58086db463618d09441bb6fcc7ad20bca8c904153d0f9b67e3c64ab4e3c37d18",
+    "supplemental/weather.json": "sha256:522bdf1f8bfbe9f66461af1f30ceea1ce6e0f113c610673e765967d86a3be324"
+  },
+  "generatedAt": "2026-10-03T21:25:02.811395Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "richmond",
+  "regionId": "richmond",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:25:02.811395Z",
+      "authorityTier": "federal_government",
+      "cachedAt": ".gremlin-cache\\richmond\\usgs-water-locations\\2026-10-03T21-25-02.811395Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 249,
+      "emittedRecordCount": 249,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "usgs-water-locations",
+      "licenseUrl": "https://api.waterdata.usgs.gov/docs/",
+      "name": "USGS water monitoring locations",
+      "namedCount": 249,
+      "provider": "usgs_monitoring_locations",
+      "recordCount": 249,
+      "unnamedCount": 0,
+      "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:25:02.811395Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\richmond\\ebird-walk-recent\\2026-10-03T21-25-02.811395Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 7,
+      "emittedRecordCount": 7,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "ebird-walk-recent",
+      "licenseUrl": "https://science.ebird.org/en/status-and-trends/products-access-terms-of-use",
+      "name": "eBird recent hotspot observations",
+      "namedCount": 7,
+      "provider": "ebird_recent",
+      "recordCount": 7,
+      "unnamedCount": 0,
+      "url": "https://api.ebird.org/v2/data/obs/geo/recent",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "source_unavailable",
+      "acquiredAt": "2026-10-03T21:25:02.811395Z",
+      "authorityTier": "city_government",
+      "dataClass": "durable",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "error": "No raw cache available for richmond-boundary",
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "richmond-boundary",
+      "licenseUrl": "https://www.rva.gov/",
+      "name": "City of Richmond Boundary",
+      "namedCount": 0,
+      "provider": "arcgis_feature_service",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "https://services1.arcgis.com/k3vhq11XkBNeeOfM/ArcGIS/rest/services/City_Boundary/FeatureServer/0",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:25:02.811395Z",
+      "authorityTier": "city_government",
+      "cachedAt": ".gremlin-cache\\richmond\\local-open-data\\2026-10-03T21-25-02.811395Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 50,
+      "emittedRecordCount": 50,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "MultiLineString"
+      ],
+      "geometryTypesSurvived": [
+        "MultiLineString"
+      ],
+      "id": "local-open-data",
+      "licenseUrl": "local://OpenData",
+      "name": "Local municipal OpenData capture — Richmond",
+      "namedCount": 122,
+      "provider": "local_open_data",
+      "recordCount": 122,
+      "unnamedCount": 0,
+      "url": "OpenData\\Virginia\\Richmond",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "source_unavailable",
+      "acquiredAt": "2026-10-03T21:25:02.811395Z",
+      "authorityTier": "community",
+      "dataClass": "durable",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "error": "No raw cache available for osm-richmond",
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "osm-richmond",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 0,
+      "provider": "osm_overpass",
+      "recordCount": 0,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:25:02.811395Z",
+      "authorityTier": "federal_government",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "nws-forecast",
+      "licenseUrl": "https://www.weather.gov/documentation/services-web-api",
+      "name": "National Weather Service forecast and alerts",
+      "namedCount": 0,
+      "provider": "nws",
+      "recordCount": 4,
+      "unnamedCount": 0,
+      "url": "https://api.weather.gov/",
+      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:25:02.811395Z",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "richmond-civic",
+      "name": "Richmond, VA civic events",
+      "namedCount": 3,
+      "provider": "civic_rss",
+      "recordCount": 3,
+      "unnamedCount": 0,
+      "url": "configured civic provider",
+      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 256
+    },
+    "valid": true
+  },
+  "warnings": [
+    {
+      "code": "source_unavailable",
+      "detail": "No raw cache available for richmond-boundary",
+      "source": "richmond-boundary"
+    },
+    {
+      "code": "source_unavailable",
+      "detail": "No raw cache available for osm-richmond",
+      "source": "osm-richmond"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails:23 merged into trails:local-open-data:trails:22; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:22",
+        "trails:local-open-data:trails:23"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails:27 merged into trails:local-open-data:trails:10; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:10",
+        "trails:local-open-data:trails:27"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails:29 merged into trails:local-open-data:trails:28; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:28",
+        "trails:local-open-data:trails:29"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails:3 merged into trails:local-open-data:trails:21; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:21",
+        "trails:local-open-data:trails:3"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails:4 merged into trails:local-open-data:trails:1; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:1",
+        "trails:local-open-data:trails:4"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails:42 merged into trails:local-open-data:trails:41; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:41",
+        "trails:local-open-data:trails:42"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails:43 merged into trails:local-open-data:trails:30; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:30",
+        "trails:local-open-data:trails:43"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails:51 merged into trails:local-open-data:trails:50; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:50",
+        "trails:local-open-data:trails:51"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails:55 merged into trails:local-open-data:trails:54; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:54",
+        "trails:local-open-data:trails:55"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails:6 merged into trails:local-open-data:trails:39; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:39",
+        "trails:local-open-data:trails:6"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails:7 merged into trails:local-open-data:trails:54; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:54",
+        "trails:local-open-data:trails:7"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:0 merged into trails:local-open-data:trails:0; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:0",
+        "trails:local-open-data:trails_bybt-f6be:0"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:1 merged into trails:local-open-data:trails:1; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:1",
+        "trails:local-open-data:trails_bybt-f6be:1"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:10 merged into trails:local-open-data:trails:10; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:10",
+        "trails:local-open-data:trails_bybt-f6be:10"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:11 merged into trails:local-open-data:trails:11; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:11",
+        "trails:local-open-data:trails_bybt-f6be:11"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:12 merged into trails:local-open-data:trails:12; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:12",
+        "trails:local-open-data:trails_bybt-f6be:12"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:13 merged into trails:local-open-data:trails:13; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:13",
+        "trails:local-open-data:trails_bybt-f6be:13"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:14 merged into trails:local-open-data:trails:14; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:14",
+        "trails:local-open-data:trails_bybt-f6be:14"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:15 merged into trails:local-open-data:trails:15; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:15",
+        "trails:local-open-data:trails_bybt-f6be:15"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:16 merged into trails:local-open-data:trails:16; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:16",
+        "trails:local-open-data:trails_bybt-f6be:16"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:17 merged into trails:local-open-data:trails:17; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:17",
+        "trails:local-open-data:trails_bybt-f6be:17"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:18 merged into trails:local-open-data:trails:18; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:18",
+        "trails:local-open-data:trails_bybt-f6be:18"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:19 merged into trails:local-open-data:trails:19; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:19",
+        "trails:local-open-data:trails_bybt-f6be:19"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:2 merged into trails:local-open-data:trails:2; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:2",
+        "trails:local-open-data:trails_bybt-f6be:2"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:20 merged into trails:local-open-data:trails:20; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:20",
+        "trails:local-open-data:trails_bybt-f6be:20"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:21 merged into trails:local-open-data:trails:21; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:21",
+        "trails:local-open-data:trails_bybt-f6be:21"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:22 merged into trails:local-open-data:trails:22; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:22",
+        "trails:local-open-data:trails_bybt-f6be:22"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:23 merged into trails:local-open-data:trails:22; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:22",
+        "trails:local-open-data:trails_bybt-f6be:23"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:24 merged into trails:local-open-data:trails:24; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:24",
+        "trails:local-open-data:trails_bybt-f6be:24"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:25 merged into trails:local-open-data:trails:25; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:25",
+        "trails:local-open-data:trails_bybt-f6be:25"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:26 merged into trails:local-open-data:trails:26; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:26",
+        "trails:local-open-data:trails_bybt-f6be:26"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:27 merged into trails:local-open-data:trails:10; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:10",
+        "trails:local-open-data:trails_bybt-f6be:27"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:28 merged into trails:local-open-data:trails:28; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:28",
+        "trails:local-open-data:trails_bybt-f6be:28"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:29 merged into trails:local-open-data:trails:28; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:28",
+        "trails:local-open-data:trails_bybt-f6be:29"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:3 merged into trails:local-open-data:trails:21; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:21",
+        "trails:local-open-data:trails_bybt-f6be:3"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:30 merged into trails:local-open-data:trails:30; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:30",
+        "trails:local-open-data:trails_bybt-f6be:30"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:31 merged into trails:local-open-data:trails:31; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:31",
+        "trails:local-open-data:trails_bybt-f6be:31"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:32 merged into trails:local-open-data:trails:32; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:32",
+        "trails:local-open-data:trails_bybt-f6be:32"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:33 merged into trails:local-open-data:trails:33; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:33",
+        "trails:local-open-data:trails_bybt-f6be:33"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:34 merged into trails:local-open-data:trails:34; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:34",
+        "trails:local-open-data:trails_bybt-f6be:34"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:35 merged into trails:local-open-data:trails:35; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:35",
+        "trails:local-open-data:trails_bybt-f6be:35"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:36 merged into trails:local-open-data:trails:36; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:36",
+        "trails:local-open-data:trails_bybt-f6be:36"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:37 merged into trails:local-open-data:trails:37; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:37",
+        "trails:local-open-data:trails_bybt-f6be:37"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:38 merged into trails:local-open-data:trails:38; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:38",
+        "trails:local-open-data:trails_bybt-f6be:38"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:39 merged into trails:local-open-data:trails:39; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:39",
+        "trails:local-open-data:trails_bybt-f6be:39"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:4 merged into trails:local-open-data:trails:1; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:1",
+        "trails:local-open-data:trails_bybt-f6be:4"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:40 merged into trails:local-open-data:trails:40; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:40",
+        "trails:local-open-data:trails_bybt-f6be:40"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:41 merged into trails:local-open-data:trails:41; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:41",
+        "trails:local-open-data:trails_bybt-f6be:41"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:42 merged into trails:local-open-data:trails:41; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:41",
+        "trails:local-open-data:trails_bybt-f6be:42"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:43 merged into trails:local-open-data:trails:30; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:30",
+        "trails:local-open-data:trails_bybt-f6be:43"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:44 merged into trails:local-open-data:trails:44; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:44",
+        "trails:local-open-data:trails_bybt-f6be:44"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:45 merged into trails:local-open-data:trails:45; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:45",
+        "trails:local-open-data:trails_bybt-f6be:45"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:46 merged into trails:local-open-data:trails:46; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:46",
+        "trails:local-open-data:trails_bybt-f6be:46"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:47 merged into trails:local-open-data:trails:47; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:47",
+        "trails:local-open-data:trails_bybt-f6be:47"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:48 merged into trails:local-open-data:trails:48; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:48",
+        "trails:local-open-data:trails_bybt-f6be:48"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:49 merged into trails:local-open-data:trails:49; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:49",
+        "trails:local-open-data:trails_bybt-f6be:49"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:5 merged into trails:local-open-data:trails:5; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:5",
+        "trails:local-open-data:trails_bybt-f6be:5"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:50 merged into trails:local-open-data:trails:50; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:50",
+        "trails:local-open-data:trails_bybt-f6be:50"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:51 merged into trails:local-open-data:trails:50; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:50",
+        "trails:local-open-data:trails_bybt-f6be:51"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:52 merged into trails:local-open-data:trails:52; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:52",
+        "trails:local-open-data:trails_bybt-f6be:52"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:53 merged into trails:local-open-data:trails:53; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:53",
+        "trails:local-open-data:trails_bybt-f6be:53"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:54 merged into trails:local-open-data:trails:54; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:54",
+        "trails:local-open-data:trails_bybt-f6be:54"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:55 merged into trails:local-open-data:trails:54; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:54",
+        "trails:local-open-data:trails_bybt-f6be:55"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:56 merged into trails:local-open-data:trails:56; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:56",
+        "trails:local-open-data:trails_bybt-f6be:56"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:57 merged into trails:local-open-data:trails:57; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:57",
+        "trails:local-open-data:trails_bybt-f6be:57"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:58 merged into trails:local-open-data:trails:58; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:58",
+        "trails:local-open-data:trails_bybt-f6be:58"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:59 merged into trails:local-open-data:trails:59; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:59",
+        "trails:local-open-data:trails_bybt-f6be:59"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:6 merged into trails:local-open-data:trails:39; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:39",
+        "trails:local-open-data:trails_bybt-f6be:6"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:60 merged into trails:local-open-data:trails:60; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:60",
+        "trails:local-open-data:trails_bybt-f6be:60"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:7 merged into trails:local-open-data:trails:54; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:54",
+        "trails:local-open-data:trails_bybt-f6be:7"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:8 merged into trails:local-open-data:trails:8; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:8",
+        "trails:local-open-data:trails_bybt-f6be:8"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "trails:local-open-data:trails_bybt-f6be:9 merged into trails:local-open-data:trails:9; curated/authoritative record retained when available.",
+      "recordIds": [
+        "trails:local-open-data:trails:9",
+        "trails:local-open-data:trails_bybt-f6be:9"
+      ],
+      "source": "local-open-data"
+    }
+  ]
+}

@@ -1,0 +1,310 @@
+{
+  "checksums": {
+    "civic/event-sources.json": "sha256:f1c16315d0ac8b1be6d9f5674808380c5dacb513149829c250b067a1ffd329df",
+    "civic/volunteer-sources.json": "sha256:dba330bbdddde9bc13b53c0d92ed2599e85353a5cb095ad896385a3ba8e2273c",
+    "civic/vote.json": "sha256:cd4a314565b4269a25d52a7e8479d0265cdef4620f4bb9a6155ee4ce06534f77",
+    "pois.json": "sha256:1b458d146fb01fe2f56209d846824185f25a2e060c9f9b04c748a3a22d820e59",
+    "source-scorecard.json": "sha256:6dbf63962f466cbbb248362f9f742b379d72a9e8b5dad11641bfb3cb2fdf0752",
+    "supplemental/canonical-records.json": "sha256:7bb011e90228842995212baa3102b2fc9bde572e85e6903260122fd3abc5a575",
+    "supplemental/dedup-groups.json": "sha256:f46ebff770633177e6e33ef662d3eeea530f34fe5c24996c8f91c2fd2bd2e9cd",
+    "supplemental/osm-pois.json": "sha256:4c8577016a9cf9f92b1dafbd969acb5603346993eeb18f1cdb030d3652ebf8eb",
+    "supplemental/validation-report.json": "sha256:0f36432d9f37683c430fe47c99950bfa5bec1b55e13f040002e633c7e23ec398",
+    "supplemental/weather.json": "sha256:95907b5611d023534fb580082efc71f5bee8d4008428837affe6e42ac472426b"
+  },
+  "generatedAt": "2026-10-03T21:25:02.783738Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "20261003",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "20261003"
+  },
+  "region": "new-orleans",
+  "regionId": "new-orleans",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:25:02.783738Z",
+      "authorityTier": "federal_government",
+      "cachedAt": ".gremlin-cache\\new-orleans\\usgs-water-locations\\2026-10-03T21-25-02.783738Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 500,
+      "emittedRecordCount": 500,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "usgs-water-locations",
+      "licenseUrl": "https://api.waterdata.usgs.gov/docs/",
+      "name": "USGS water monitoring locations",
+      "namedCount": 500,
+      "provider": "usgs_monitoring_locations",
+      "recordCount": 500,
+      "unnamedCount": 0,
+      "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:25:02.783738Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\new-orleans\\ebird-walk-recent\\2026-10-03T21-25-02.783738Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 14,
+      "emittedRecordCount": 14,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "ebird-walk-recent",
+      "licenseUrl": "https://science.ebird.org/en/status-and-trends/products-access-terms-of-use",
+      "name": "eBird recent hotspot observations",
+      "namedCount": 14,
+      "provider": "ebird_recent",
+      "recordCount": 14,
+      "unnamedCount": 0,
+      "url": "https://api.ebird.org/v2/data/obs/geo/recent",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:25:02.783738Z",
+      "authorityTier": "city_government",
+      "cachedAt": ".gremlin-cache\\new-orleans\\local-open-data\\2026-10-03T21-25-02.783738Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 258,
+      "emittedRecordCount": 258,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "local-open-data",
+      "licenseUrl": "local://OpenData",
+      "name": "Local municipal OpenData capture — New Orleans",
+      "namedCount": 271,
+      "provider": "local_open_data",
+      "recordCount": 351,
+      "unnamedCount": 80,
+      "url": "OpenData\\Louisiana\\New Orleans",
+      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:25:02.783738Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache\\new-orleans\\osm-new-orleans\\2026-08-27T04-00-00Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 534,
+      "emittedRecordCount": 534,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "osm-new-orleans",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 638,
+      "provider": "osm_overpass",
+      "recordCount": 638,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:25:02.783738Z",
+      "authorityTier": "federal_government",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "nws-forecast",
+      "licenseUrl": "https://www.weather.gov/documentation/services-web-api",
+      "name": "National Weather Service forecast and alerts",
+      "namedCount": 0,
+      "provider": "nws",
+      "recordCount": 4,
+      "unnamedCount": 0,
+      "url": "https://api.weather.gov/",
+      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
+    },
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-03T21:25:02.783738Z",
+      "dataClass": "temporal",
+      "emittedNamedCount": 0,
+      "emittedRecordCount": 0,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [],
+      "geometryTypesSurvived": [],
+      "id": "new-orleans-civic",
+      "name": "New Orleans, LA civic events",
+      "namedCount": 3,
+      "provider": "civic_rss",
+      "recordCount": 3,
+      "unnamedCount": 0,
+      "url": "configured civic provider",
+      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 1305
+    },
+    "valid": true
+  },
+  "warnings": [
+    {
+      "code": "duplicate_reconciled",
+      "detail": "history:local-open-data:hdlc_landmarks_25e8-s5xx:174 merged into history:local-open-data:hdlc_landmarks_25e8-s5xx:100; curated/authoritative record retained when available.",
+      "recordIds": [
+        "history:local-open-data:hdlc_landmarks_25e8-s5xx:100",
+        "history:local-open-data:hdlc_landmarks_25e8-s5xx:174"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "history:local-open-data:hdlc_landmarks_25e8-s5xx:248 merged into history:local-open-data:hdlc_landmarks_25e8-s5xx:100; curated/authoritative record retained when available.",
+      "recordIds": [
+        "history:local-open-data:hdlc_landmarks_25e8-s5xx:100",
+        "history:local-open-data:hdlc_landmarks_25e8-s5xx:248"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "history:local-open-data:hdlc_landmarks_25e8-s5xx:290 merged into history:local-open-data:hdlc_landmarks_25e8-s5xx:14; curated/authoritative record retained when available.",
+      "recordIds": [
+        "history:local-open-data:hdlc_landmarks_25e8-s5xx:14",
+        "history:local-open-data:hdlc_landmarks_25e8-s5xx:290"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "history:local-open-data:hdlc_landmarks_25e8-s5xx:292 merged into history:local-open-data:hdlc_landmarks_25e8-s5xx:258; curated/authoritative record retained when available.",
+      "recordIds": [
+        "history:local-open-data:hdlc_landmarks_25e8-s5xx:258",
+        "history:local-open-data:hdlc_landmarks_25e8-s5xx:292"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "history:local-open-data:hdlc_landmarks_25e8-s5xx:295 merged into history:local-open-data:hdlc_landmarks_25e8-s5xx:224; curated/authoritative record retained when available.",
+      "recordIds": [
+        "history:local-open-data:hdlc_landmarks_25e8-s5xx:224",
+        "history:local-open-data:hdlc_landmarks_25e8-s5xx:295"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "history:local-open-data:hdlc_landmarks_25e8-s5xx:302 merged into history:local-open-data:hdlc_landmarks_25e8-s5xx:271; curated/authoritative record retained when available.",
+      "recordIds": [
+        "history:local-open-data:hdlc_landmarks_25e8-s5xx:271",
+        "history:local-open-data:hdlc_landmarks_25e8-s5xx:302"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "history:local-open-data:hdlc_landmarks_25e8-s5xx:313 merged into history:local-open-data:hdlc_landmarks_25e8-s5xx:308; curated/authoritative record retained when available.",
+      "recordIds": [
+        "history:local-open-data:hdlc_landmarks_25e8-s5xx:308",
+        "history:local-open-data:hdlc_landmarks_25e8-s5xx:313"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "history:local-open-data:hdlc_landmarks_25e8-s5xx:323 merged into history:local-open-data:hdlc_landmarks_25e8-s5xx:274; curated/authoritative record retained when available.",
+      "recordIds": [
+        "history:local-open-data:hdlc_landmarks_25e8-s5xx:274",
+        "history:local-open-data:hdlc_landmarks_25e8-s5xx:323"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "history:local-open-data:hdlc_landmarks_25e8-s5xx:44 merged into history:local-open-data:hdlc_landmarks_25e8-s5xx:143; curated/authoritative record retained when available.",
+      "recordIds": [
+        "history:local-open-data:hdlc_landmarks_25e8-s5xx:143",
+        "history:local-open-data:hdlc_landmarks_25e8-s5xx:44"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "history:local-open-data:hdlc_landmarks_25e8-s5xx:68 merged into history:local-open-data:hdlc_landmarks_25e8-s5xx:177; curated/authoritative record retained when available.",
+      "recordIds": [
+        "history:local-open-data:hdlc_landmarks_25e8-s5xx:177",
+        "history:local-open-data:hdlc_landmarks_25e8-s5xx:68"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "history:local-open-data:hdlc_landmarks_25e8-s5xx:74 merged into history:local-open-data:hdlc_landmarks_25e8-s5xx:143; curated/authoritative record retained when available.",
+      "recordIds": [
+        "history:local-open-data:hdlc_landmarks_25e8-s5xx:143",
+        "history:local-open-data:hdlc_landmarks_25e8-s5xx:74"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "history:local-open-data:hdlc_landmarks_25e8-s5xx:87 merged into history:local-open-data:hdlc_landmarks_25e8-s5xx:235; curated/authoritative record retained when available.",
+      "recordIds": [
+        "history:local-open-data:hdlc_landmarks_25e8-s5xx:235",
+        "history:local-open-data:hdlc_landmarks_25e8-s5xx:87"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "history:local-open-data:hdlc_landmarks_25e8-s5xx:99 merged into history:local-open-data:hdlc_landmarks_25e8-s5xx:177; curated/authoritative record retained when available.",
+      "recordIds": [
+        "history:local-open-data:hdlc_landmarks_25e8-s5xx:177",
+        "history:local-open-data:hdlc_landmarks_25e8-s5xx:99"
+      ],
+      "source": "local-open-data"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:606019028 merged into osm:node:5371624121; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:5371624121",
+        "osm:way:606019028"
+      ],
+      "source": "osm-new-orleans"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:627792952 merged into history:local-open-data:hdlc_landmarks_25e8-s5xx:63; curated/authoritative record retained when available.",
+      "recordIds": [
+        "history:local-open-data:hdlc_landmarks_25e8-s5xx:63",
+        "osm:way:627792952"
+      ],
+      "source": "osm-new-orleans"
+    }
+  ]
+}
