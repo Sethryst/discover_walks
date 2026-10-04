@@ -1,14 +1,20 @@
 {
   "release": "osm-us-nova-dc-pilot-2026-10-04",
-  "status": "blocked",
+  "status": "blocked_pending_local_verification",
   "sourceType": "national_osm_pbf",
   "provider": "Geofabrik",
-  "requestedUrl": "https://download.geofabrik.de/north-america/us-<immutable-release>.osm.pbf",
-  "localPath": ".gremlin-osm/sources/osm/us.osm.pbf",
-  "sha256": null,
-  "bytes": null,
-  "retrievedAt": null,
-  "blocker": "The full-US PBF is absent locally; the historic osm-us-2026-09-07 checksum must not be claimed as this pilot source until the bytes are reacquired and verified.",
+  "requestedUrl": "https://download.geofabrik.de/north-america/us-latest.osm.pbf",
+  "resolvedUrl": "https://download.geofabrik.de/north-america/us-261002.osm.pbf",
+  "localPath": ".gremlin-osm/sources/osm/us-latest-2026-10-04.osm.pbf.part",
+  "sha256": "977CE0BE67CAEA565F228B8AC65672BC115202FA63C2AE612E59CEB9AEEF0416",
+  "bytes": 12181127106,
+  "retrievedAt": "2026-10-04",
+  "serverMetadata": {
+    "etag": "\"2d60d3fc2-65ce37a1ada70\"",
+    "lastModified": "Fri, 02 Oct 2026 22:58:56 GMT",
+    "contentLength": 12181127106
+  },
+  "blocker": "The transfer has the expected byte count and recorded SHA-256, but osmium cannot complete local format/access validation from the OneDrive path. Do not use this file for national filtering until it is revalidated from a stable local filesystem path.",
   "pilotBounds": [-77.54, 38.6, -76.91, 39.06],
   "sharedByCells": true,
   "derivedProducts": ["national-pedestrian-candidates", "va-topology-shard", "dc-topology-shard", "pilot-routing-cells", "pilot-map-artifacts"]

@@ -102,6 +102,21 @@ This evidence is deliberately confined to `.tmp-cache/pilot-build` and is not a
 published registry because the immutable national source manifest is still
 blocked and the required real-world cross-cell route matrix has not yet passed.
 
+## National source acquisition blocker
+
+The approved Geofabrik `us-latest.osm.pbf` request resolved to
+`us-261002.osm.pbf`. The transfer completed at the advertised 12,181,127,106
+bytes and produced SHA-256
+`977CE0BE67CAEA565F228B8AC65672BC115202FA63C2AE612E59CEB9AEEF0416`, with
+the observed ETag and Last-Modified values recorded in the source manifest.
+However, local `osmium` validation from the OneDrive-backed path did not
+complete: the partial-named file was reported as unknown format, while a
+same-byte copied `.osm.pbf` path encountered an access conflict. This is
+evidence of an acquisition/verification blocker, not permission to use the
+file. Revalidate from a stable local path, then freeze the verified bytes and
+rerun national filtering and topology-preserving shard extraction before any
+pilot registry publication.
+
 ## Audit commands run
 
 The focused routing/state tests passed: **16 passed, 1 skipped**. The national
