@@ -1,0 +1,394 @@
+{
+  "format": "motherbird-walking-cell-registry-v1",
+  "release": "osm-us-nova-dc-pilot-2026-10-04",
+  "sourceManifest": "docs/national-routing-pilot-source-manifest-2026-10-04.json",
+  "pilotBounds": [
+    -77.54,
+    38.6,
+    -76.91,
+    39.06
+  ],
+  "overlapPolicy": {
+    "allowed": true,
+    "tieBreak": [
+      "smallest_bounds_area",
+      "cell_id_ascending"
+    ]
+  },
+  "cells": [
+    {
+      "id": "z10-291-391",
+      "cellId": "z10-291-391",
+      "bounds": [
+        -77.6953125,
+        38.822591,
+        -77.34375,
+        39.0959629
+      ],
+      "availability": "routing_available",
+      "sourceRelease": "osm-us-nova-dc-pilot-2026-10-04",
+      "routingNeighbors": [
+        "z10-291-392",
+        "z10-292-391"
+      ],
+      "stitching": {
+        "coordinateConvention": "[lon,lat]",
+        "sharedBoundaryRouting": "neighbor_cell_handoff",
+        "snapToleranceMeters": 3
+      },
+      "artifacts": {
+        "nodes.bin": {
+          "url": "cells/z10-291-391/nodes.bin",
+          "bytes": 9575528,
+          "sha256": "48204d508fdb38c336f4850f0808b045c76e8b734785a0dddc182ec45f250bbf"
+        },
+        "edges.bin": {
+          "url": "cells/z10-291-391/edges.bin",
+          "bytes": 33994448,
+          "sha256": "8e07203e0462894bd3520dd04603ddcbf87c8eff1b5d8fa71bf62db56d71ad84"
+        },
+        "adjacency.bin": {
+          "url": "cells/z10-291-391/adjacency.bin",
+          "bytes": 16789632,
+          "sha256": "bc25c9c805c1dda3ed5ac264803a7ab5ffa5d9962ecb4a5ff2cc5c49ad32badd"
+        },
+        "edge_geometry.bin": {
+          "url": "cells/z10-291-391/edge_geometry.bin",
+          "bytes": 13597784,
+          "sha256": "8f9aaa9d828bf576c16fe0b7dc20dd48ed3585c667f658630e65a123d84db377"
+        },
+        "edge_spatial_index.bin": {
+          "url": "cells/z10-291-391/edge_spatial_index.bin",
+          "bytes": 4326324,
+          "sha256": "3e879cf68dcd10b1f6ec0021c2ffa6ddc0fde212dbac2322b4a7c4214be16234"
+        },
+        "manifest": {
+          "url": "cells/z10-291-391/manifest.json",
+          "bytes": 867,
+          "sha256": "2c6d73b3d080ab35dcd1fbca3472bc71fb7781d2b716a344017582254e691e19"
+        },
+        "graph": {
+          "url": "cells/z10-291-391/runtime-graph.json",
+          "bytes": 218307022,
+          "sha256": "00f8ae3595ca91b6fa5890dbd2a8c97e164abe5ab1fcb556c7cecf1a65ce06e9"
+        },
+        "map": {
+          "url": "map/pilot.pmtiles",
+          "mode": "pmtiles_range"
+        }
+      }
+    },
+    {
+      "id": "z10-291-392",
+      "cellId": "z10-291-392",
+      "bounds": [
+        -77.6953125,
+        38.5481654,
+        -77.34375,
+        38.822591
+      ],
+      "availability": "routing_available",
+      "sourceRelease": "osm-us-nova-dc-pilot-2026-10-04",
+      "routingNeighbors": [
+        "z10-291-391",
+        "z10-292-392"
+      ],
+      "stitching": {
+        "coordinateConvention": "[lon,lat]",
+        "sharedBoundaryRouting": "neighbor_cell_handoff",
+        "snapToleranceMeters": 3
+      },
+      "artifacts": {
+        "nodes.bin": {
+          "url": "cells/z10-291-392/nodes.bin",
+          "bytes": 7113596,
+          "sha256": "090b5ddb8a65fca70a800244e1ac3accb118b241d873aac5f9942f46b595a769"
+        },
+        "edges.bin": {
+          "url": "cells/z10-291-392/edges.bin",
+          "bytes": 24976888,
+          "sha256": "38337065695e0d08ad86578bf40a4b974b596b1f236ee39a64e8c692cd493555"
+        },
+        "adjacency.bin": {
+          "url": "cells/z10-291-392/adjacency.bin",
+          "bytes": 12361964,
+          "sha256": "b32f3b548263f56cfd1e4c8505e7678dbf59d4512c351957985b739900607d10"
+        },
+        "edge_geometry.bin": {
+          "url": "cells/z10-291-392/edge_geometry.bin",
+          "bytes": 9990760,
+          "sha256": "84fb66f89ad44d8aea319fe3350ac7a18565cf15139fd7ec6d2673c99376b04b"
+        },
+        "edge_spatial_index.bin": {
+          "url": "cells/z10-291-392/edge_spatial_index.bin",
+          "bytes": 3246732,
+          "sha256": "b722ae7aaec2fd4cede4d0bbcd7c3ec088b9267b9949d3ced97227a0f3740dad"
+        },
+        "manifest": {
+          "url": "cells/z10-291-392/manifest.json",
+          "bytes": 867,
+          "sha256": "73d5b04f78e81a7e00b6ea1936ecb2c5a97bb3fbffe92ef61b4c23dcd478371e"
+        },
+        "graph": {
+          "url": "cells/z10-291-392/runtime-graph.json",
+          "bytes": 160748948,
+          "sha256": "09f5090055beb9570ece5d483b4b48c9083b9e68da4cebb069dac6bf7ce0896d"
+        },
+        "map": {
+          "url": "map/pilot.pmtiles",
+          "mode": "pmtiles_range"
+        }
+      }
+    },
+    {
+      "id": "z10-292-391",
+      "cellId": "z10-292-391",
+      "bounds": [
+        -77.34375,
+        38.822591,
+        -76.9921875,
+        39.0959629
+      ],
+      "availability": "routing_available",
+      "sourceRelease": "osm-us-nova-dc-pilot-2026-10-04",
+      "routingNeighbors": [
+        "z10-291-391",
+        "z10-292-392",
+        "z10-293-391"
+      ],
+      "stitching": {
+        "coordinateConvention": "[lon,lat]",
+        "sharedBoundaryRouting": "neighbor_cell_handoff",
+        "snapToleranceMeters": 3
+      },
+      "artifacts": {
+        "nodes.bin": {
+          "url": "cells/z10-292-391/nodes.bin",
+          "bytes": 18105872,
+          "sha256": "bd901ca629d87a68de94892b2e44258be917851e1a89b79b943c1d2928e0de1f"
+        },
+        "edges.bin": {
+          "url": "cells/z10-292-391/edges.bin",
+          "bytes": 67065728,
+          "sha256": "9fdfa56e4d7e3a719b6a6c36b52408beacb1274570b1a85d39ff5bbb7dc1e365"
+        },
+        "adjacency.bin": {
+          "url": "cells/z10-292-391/adjacency.bin",
+          "bytes": 32861592,
+          "sha256": "5992b584ceb4d779bcdb5e5fed37c06a2a71a09093ff0c3fea2e8a91193c8216"
+        },
+        "edge_geometry.bin": {
+          "url": "cells/z10-292-391/edge_geometry.bin",
+          "bytes": 26826296,
+          "sha256": "8f572978b75f0c7f0b3f5338b466de3287a49516e64dca29760ae7e730be89b8"
+        },
+        "edge_spatial_index.bin": {
+          "url": "cells/z10-292-391/edge_spatial_index.bin",
+          "bytes": 8132508,
+          "sha256": "6e30f033f7a8a5897f1ce00e317968d6731aa700c1ba68bbd5efd20482c98702"
+        },
+        "manifest": {
+          "url": "cells/z10-292-391/manifest.json",
+          "bytes": 869,
+          "sha256": "01d0e41e80fb072330fe594a9104494e9fda06a651f1c565696414d2992b4039"
+        },
+        "graph": {
+          "url": "cells/z10-292-391/runtime-graph.json",
+          "bytes": 429915697,
+          "sha256": "abd42da543f47696ce42b2d99b949eeb28c179a5fcf8e525df31191d4d4e3c03"
+        },
+        "map": {
+          "url": "map/pilot.pmtiles",
+          "mode": "pmtiles_range"
+        }
+      }
+    },
+    {
+      "id": "z10-292-392",
+      "cellId": "z10-292-392",
+      "bounds": [
+        -77.34375,
+        38.5481654,
+        -76.9921875,
+        38.822591
+      ],
+      "availability": "routing_available",
+      "sourceRelease": "osm-us-nova-dc-pilot-2026-10-04",
+      "routingNeighbors": [
+        "z10-291-392",
+        "z10-292-391",
+        "z10-293-392"
+      ],
+      "stitching": {
+        "coordinateConvention": "[lon,lat]",
+        "sharedBoundaryRouting": "neighbor_cell_handoff",
+        "snapToleranceMeters": 3
+      },
+      "artifacts": {
+        "nodes.bin": {
+          "url": "cells/z10-292-392/nodes.bin",
+          "bytes": 11084972,
+          "sha256": "0b89f9f44e5fd89b3ea60de30094c4668d32e0efaeb91ccc3f335754437c649d"
+        },
+        "edges.bin": {
+          "url": "cells/z10-292-392/edges.bin",
+          "bytes": 39616408,
+          "sha256": "256ddfacd121f2fa57d835d7766dcbe73992780b0f3527b3ee27428f217cb381"
+        },
+        "adjacency.bin": {
+          "url": "cells/z10-292-392/adjacency.bin",
+          "bytes": 19541564,
+          "sha256": "22958b98e1c38ad7db85d858a2d65721e68931af27ed7f69baf3fc30c42e5ecf"
+        },
+        "edge_geometry.bin": {
+          "url": "cells/z10-292-392/edge_geometry.bin",
+          "bytes": 15846568,
+          "sha256": "588e382cd59a3c47b82c6f358ff68333ee1a5fb9065b4cdac58d491503276a01"
+        },
+        "edge_spatial_index.bin": {
+          "url": "cells/z10-292-392/edge_spatial_index.bin",
+          "bytes": 4925896,
+          "sha256": "df30076d69b6e9ecd7f12cad7a84e729e7987534b0c6ab3288f26b45582ae737"
+        },
+        "manifest": {
+          "url": "cells/z10-292-392/manifest.json",
+          "bytes": 867,
+          "sha256": "baf0c2ed1d82c6a2480157a8f46ec1e03ee5458a4cc1482e702431e32edfdb33"
+        },
+        "graph": {
+          "url": "cells/z10-292-392/runtime-graph.json",
+          "bytes": 254417894,
+          "sha256": "32754be75328702aeaf73d3a54a6806b2efb678fbddf1d36f9d69d622375d4b9"
+        },
+        "map": {
+          "url": "map/pilot.pmtiles",
+          "mode": "pmtiles_range"
+        }
+      }
+    },
+    {
+      "id": "z10-293-391",
+      "cellId": "z10-293-391",
+      "bounds": [
+        -76.9921875,
+        38.822591,
+        -76.640625,
+        39.0959629
+      ],
+      "availability": "routing_available",
+      "sourceRelease": "osm-us-nova-dc-pilot-2026-10-04",
+      "routingNeighbors": [
+        "z10-292-391",
+        "z10-293-392"
+      ],
+      "stitching": {
+        "coordinateConvention": "[lon,lat]",
+        "sharedBoundaryRouting": "neighbor_cell_handoff",
+        "snapToleranceMeters": 3
+      },
+      "artifacts": {
+        "nodes.bin": {
+          "url": "cells/z10-293-391/nodes.bin",
+          "bytes": 10872476,
+          "sha256": "6ae7049a89224df78dc15658aa742d489bed070d296faabab97cfdb1d3a69633"
+        },
+        "edges.bin": {
+          "url": "cells/z10-293-391/edges.bin",
+          "bytes": 40405648,
+          "sha256": "3c45532999fcdd75b6adaceb48430ee3ed2bcf8db5e82ca31c139352717ed51c"
+        },
+        "adjacency.bin": {
+          "url": "cells/z10-293-391/adjacency.bin",
+          "bytes": 19786428,
+          "sha256": "22c988ce5801b8200c959255c73a11ef1819e9cfbeeaa6f796e5467e4277e07a"
+        },
+        "edge_geometry.bin": {
+          "url": "cells/z10-293-391/edge_geometry.bin",
+          "bytes": 16162264,
+          "sha256": "2093460be227a8e2274842dc44dc8661d392922ae0b5914e87fc8e79996f75dd"
+        },
+        "edge_spatial_index.bin": {
+          "url": "cells/z10-293-391/edge_spatial_index.bin",
+          "bytes": 5122084,
+          "sha256": "a439c285413f2b94bd1a7f50c9ad63f98968ac65f12f792a6090e859b34f61c0"
+        },
+        "manifest": {
+          "url": "cells/z10-293-391/manifest.json",
+          "bytes": 869,
+          "sha256": "6ce1b8121950e82c8936ba9245c0dc885de12d8acd949d0901bbbebac79338b1"
+        },
+        "graph": {
+          "url": "cells/z10-293-391/runtime-graph.json",
+          "bytes": 256968158,
+          "sha256": "d9657ad74308921a1c9e4b4437e3c16c63bed354260eb5caea37a13e48722a01"
+        },
+        "map": {
+          "url": "map/pilot.pmtiles",
+          "mode": "pmtiles_range"
+        }
+      }
+    },
+    {
+      "id": "z10-293-392",
+      "cellId": "z10-293-392",
+      "bounds": [
+        -76.9921875,
+        38.5481654,
+        -76.640625,
+        38.822591
+      ],
+      "availability": "routing_available",
+      "sourceRelease": "osm-us-nova-dc-pilot-2026-10-04",
+      "routingNeighbors": [
+        "z10-292-392",
+        "z10-293-391"
+      ],
+      "stitching": {
+        "coordinateConvention": "[lon,lat]",
+        "sharedBoundaryRouting": "neighbor_cell_handoff",
+        "snapToleranceMeters": 3
+      },
+      "artifacts": {
+        "nodes.bin": {
+          "url": "cells/z10-293-392/nodes.bin",
+          "bytes": 6175556,
+          "sha256": "ee1105c740806e44b3ff5afe98454bd68e6837b407c693c43fb0f1bb4640adbf"
+        },
+        "edges.bin": {
+          "url": "cells/z10-293-392/edges.bin",
+          "bytes": 21706808,
+          "sha256": "9f0a9086b0e4081469df7ba97ac912eceb4e7a86733ff86794cf5c24b2ac2f31"
+        },
+        "adjacency.bin": {
+          "url": "cells/z10-293-392/adjacency.bin",
+          "bytes": 10741252,
+          "sha256": "b175bdd763f55a14d4151ef38cac9c7889db0cf9c65b47421f1bb5bdfc0bc676"
+        },
+        "edge_geometry.bin": {
+          "url": "cells/z10-293-392/edge_geometry.bin",
+          "bytes": 8682728,
+          "sha256": "3de995506f444aac889f0447938b0fd2f03ba5dce092badfa43e57e773bd06f0"
+        },
+        "edge_spatial_index.bin": {
+          "url": "cells/z10-293-392/edge_spatial_index.bin",
+          "bytes": 2919620,
+          "sha256": "7628c25de86130f003b41356211ae95785534f46dcd4838746292f8de26bef40"
+        },
+        "manifest": {
+          "url": "cells/z10-293-392/manifest.json",
+          "bytes": 868,
+          "sha256": "7e423e4223f958f99bbfc9d65f2f976ef007d9aadcaba1024e1d59013210568e"
+        },
+        "graph": {
+          "url": "cells/z10-293-392/runtime-graph.json",
+          "bytes": 139324226,
+          "sha256": "a19e9cb4bca120d63148b470d08e59343b215eaa86516a503ae701b03f822e66"
+        },
+        "map": {
+          "url": "map/pilot.pmtiles",
+          "mode": "pmtiles_range"
+        }
+      }
+    }
+  ]
+}

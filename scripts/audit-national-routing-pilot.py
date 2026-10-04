@@ -50,7 +50,8 @@ def command_version(command: str) -> str | None:
 def audit(root: Path) -> dict:
     source = root / ".gremlin-osm/sources/osm/us.osm.pbf"
     source_manifest = root / "docs/national-routing-pilot-source-manifest-2026-10-04.json"
-    shard_dir = root / ".gremlin-osm/national-pedestrian-routing/state-pbf"
+    release_work = root / ".gremlin-osm/national-pedestrian-routing/work/osm-us-nova-dc-pilot-2026-10-04"
+    shard_dir = release_work / "state-pbf"
     plan = root / ".gremlin-osm/national-pedestrian-routing/recovered-walking-cell-plan.json"
     result = {
         "release": "osm-us-nova-dc-pilot-2026-10-04",
@@ -85,6 +86,8 @@ def audit(root: Path) -> dict:
             result["blockers"].append("plan_missing_pilot_cells:" + ",".join(missing))
     for cell_id in CELLS:
         candidates = [
+            root / ".tmp-cache/pilot-build/cells" / cell_id,
+            root / "published/national-routing/osm-us-nova-dc-pilot-2026-10-04/cells" / cell_id,
             root / ".gremlin-osm/national-pedestrian-routing/cells" / cell_id,
             root / "motherbird/data/national-routing/osm-us-2026-09-07/cells" / cell_id,
         ]

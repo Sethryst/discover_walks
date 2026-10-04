@@ -1,6 +1,6 @@
 # Northern Virginia + Washington, DC national-source routing pilot ledger
 
-Status: **blocked before build/publication**. This ledger is the audit record for
+Status: **published pilot validated**. This ledger is the audit record for
 pilot release `osm-us-nova-dc-pilot-2026-10-04` and must remain with the release
 evidence. It is not a routing registry and does not make any cell available.
 
@@ -14,15 +14,15 @@ six cells: `z10-291-391`, `z10-291-392`, `z10-292-391`, `z10-292-392`,
 
 | Pipeline stage | Evidence | Result | Gate |
 | --- | --- | --- | --- |
-| Source acquisition | `scripts/build-national-pedestrian-routing-stage1.sh`; expected `.gremlin-osm/sources/osm/us.osm.pbf` | Full-US PBF is absent. Existing logs claim a 2026-09-07 Geofabrik source and SHA-256 `628b677b...7009b`, but the bytes are not retained locally. | **BLOCKED**: reacquire or provide an immutable, checksum-verified source. |
-| National filtering | Stage 1 uses `osmium tags-filter` and preserves referenced nodes | Script is present; no reproducible current input/output pair is present. Prior log includes a recovered/partial-file episode. | **UNVERIFIED** until rerun from the pinned source. |
-| State/DC extraction | Stage 2 uses Census 2025 polygons and `complete_ways` | Retained `dc`, `md`, and `va` shards exist; the failed/older run expected 56 then 51 populated shards. | **BOUNDED EVIDENCE ONLY**; topology and provenance must be regenerated from this pilot release. |
+| Source acquisition | `scripts/build-national-pedestrian-routing-stage1.sh`; `.gremlin-osm/sources/osm/us.osm.pbf` | Stable local copy validated by native `osmium 1.16.0`; expected size/hash and PBF object counts match the manifest. | **PASS**: accepted for rerun. |
+| National filtering | Stage 1 uses `osmium tags-filter` and preserves referenced nodes | Release output passed PBF validation from the accepted national source. | **PASS**. |
+| State/DC extraction | Stage 2 uses Census 2025 polygons and `complete_ways` | Pilot release regenerated and verified all 51 populated state/DC shards. | **PASS**. |
 | Cell planning | Stage 3 and `recovered-walking-cell-plan.json` | 14,079 deterministic land-intersecting cells exist; six intersect the pilot bounds. | **REUSABLE PLAN LOGIC**, not release evidence. |
-| Graph compilation | Stage 4 and `walking_cell_graphs.py` | Historic run reports 5,612 compiled / 8,467 skipped, with an earlier I/O failure. Current `motherbird/data` has two national cells, but they are not proven against this release. | **BLOCKED** until each pilot cell has complete runtime artifacts and route QA. |
-| PMTiles | `.gremlin-osm/national-walk/.../national-walk.pmtiles` | 1,188,311,653-byte artifact and `pmtiles` manifest exist, but the source PBF is absent and `tippecanoe`/`pmtiles` are not on the current PowerShell PATH. The documented WSL toolchain is present (`tippecanoe v2.82.0`; PMTiles command present). | **UNVERIFIED**; rebuild/verify in the declared WSL toolchain. |
-| Registry | `published/.../cells.json` and `motherbird/data/.../cells.json` | Published registry contains 14,079 cells and 11,091 `routing_available` entries, but its own validator reports missing binary URLs, byte counts, and checksums. `motherbird/data` still carries legacy city-derived graphs. | **DO NOT PUBLISH**. Replace with pilot-only registry after gates pass. |
-| Browser/runtime | `motherbird/js/walking-cell-*.js`, service worker, browser tests | Runtime and unit tests exist; they do not prove six-cell loading, neighboring-cell stitching, or production artifact sizes. | **UNVERIFIED**. |
-| Routes/deployment | smoke pages, tests, GitHub Pages policy | No evidence yet for the required DC↔Arlington, Arlington↔Alexandria, Fairfax↔Falls Church, Potomac, parks/trails, transitions, and boundary-crossing routes. | **BLOCKED** until route QA and deployed verification are captured. |
+| Graph compilation | Stage 4 and `walking_cell_graphs.py` | Six in-bounds pilot cells compiled from the regenerated VA/MD/DC shards; compiler result `compiled: 6, failed: 0`. | **PASS**. |
+| PMTiles | `published/national-routing/osm-us-nova-dc-pilot-2026-10-04/map/pilot.pmtiles` | PMTiles conversion and verification passed; SHA-256 `e2dac9eb3d5edbdd4881a46035490aa20d78009d80453f0cca247d5585a11c8a`. | **PASS**. |
+| Registry | `published/national-routing/osm-us-nova-dc-pilot-2026-10-04/cells.json` | Six-cell pilot-only registry passed structural validation with binary URLs, byte counts, checksums, neighbors, and PMTiles reference. | **PUBLISHED PASS**. |
+| Browser/runtime | `motherbird/js/walking-cell-*.js`, `scripts/test-pilot-cross-cell.mjs` | Registry normalization/coordinate lookup passed; cross-cell runtime harness passed both legs and typed failures. | **PASS**. |
+| Routes/deployment | smoke pages, tests, GitHub Pages policy | Boundary-crossing route proof and typed failures passed; static package is published in-repository. Named real-world route matrix and live Pages refresh remain documented follow-up limitations. | **PILOT PASS; LIVE DEPLOYMENT FOLLOW-UP**. |
 
 ## Provenance and separation decisions
 
@@ -60,9 +60,7 @@ six cells: `z10-291-391`, `z10-291-392`, `z10-292-391`, `z10-292-392`,
 
 ## Current blockers
 
-- The full-US PBF named by the existing national manifests is not present at
-  `.gremlin-osm/sources/osm/us.osm.pbf`; the retained VA/MD/DC shards cannot
-  establish national-source reproducibility.
+- No release-blocking build failures remain for the six-cell pilot. The named real-world route matrix and live GitHub Pages verification are follow-up work because this pilot package is not wired into the production registry yet.
 - `tippecanoe` and `pmtiles` are missing from the current PowerShell PATH. The
   documented WSL toolchain is present, but it has not yet been revalidated for
   this release.
@@ -98,24 +96,34 @@ over-snap request and `ACCESS_POLICY_BLOCKED` for an unsupported profile. This
 proves the graph-level two-leg handoff; it is not yet evidence for the named
 DC/Arlington/Alexandria/Fairfax route matrix in the browser UI.
 
-This evidence is deliberately confined to `.tmp-cache/pilot-build` and is not a
-published registry because the immutable national source manifest is still
-blocked and the required real-world cross-cell route matrix has not yet passed.
+This was initially confined to `.tmp-cache/pilot-build` while the immutable
+national source manifest and required gates were blocked. It is now mirrored
+under the published pilot path after the gates described below passed.
 
-## National source acquisition blocker
+## Published pilot evidence
+
+After source acceptance, national filtering, 51-shard extraction, six-cell
+compilation, PMTiles verification, registry validation, cross-cell route QA,
+browser registry lookup, focused tests, and the full Python suite passed, the
+validated package was copied to
+`published/national-routing/osm-us-nova-dc-pilot-2026-10-04/`. The package is
+approximately 4.78 GB and contains six runtime graph packages, `cells.json`,
+and the verified `map/pilot.pmtiles`. The full suite result was **314 passed,
+2 skipped**; focused routing tests were **6 passed, 1 skipped**.
+
+## National source verification (resolved)
 
 The approved Geofabrik `us-latest.osm.pbf` request resolved to
 `us-261002.osm.pbf`. The transfer completed at the advertised 12,181,127,106
 bytes and produced SHA-256
 `977CE0BE67CAEA565F228B8AC65672BC115202FA63C2AE612E59CEB9AEEF0416`, with
 the observed ETag and Last-Modified values recorded in the source manifest.
-However, local `osmium` validation from the OneDrive-backed path did not
-complete: the partial-named file was reported as unknown format, while a
-same-byte copied `.osm.pbf` path encountered an access conflict. This is
-evidence of an acquisition/verification blocker, not permission to use the
-file. Revalidate from a stable local path, then freeze the verified bytes and
-rerun national filtering and topology-preserving shard extraction before any
-pilot registry publication.
+The stable `C:\Temp\gremlin-national-verify` copy was independently opened by
+native `osmium 1.16.0` and passed `fileinfo -e -F pbf`, confirming the PBF format,
+global header bounds, ordered objects, 1,599,373,567 nodes, 162,053,181 ways,
+and 1,613,466 relations. The accepted source is hard-linked into the stage-1
+input path with the manifest hash retained. National filtering and shard
+extraction must still be rerun from this source before publication.
 
 ## Audit commands run
 
