@@ -1,21 +1,20 @@
 {
   "checksums": {
-    "pois.json": "sha256:329728488cde7f0578ed3df20b55b25ddcb2b083280a4f6d2227e9282b7b0a9c",
-    "source-scorecard.json": "sha256:ab533c0a1effca6303392b24152b083f6b453a28518f823d855fd2348fb32dd5",
-    "supplemental/canonical-records.json": "sha256:8e599c2ce3eb2fe93f787b4baa8d76353241d64587bec2e309963f2638747d90",
-    "supplemental/dedup-groups.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
-    "supplemental/osm-pois.json": "sha256:47d17595101e6047cc50604b8ea51868b0dc67648142395faa992a15d4b30f2e",
-    "supplemental/validation-report.json": "sha256:07dbe4835377155fff7371ff1ed3a1391063a01ec3893f6270430e2a109c61d8",
-    "supplemental/weather.json": "sha256:4c0b0710319a5eb287c19e863f7bd5d6c722f944742c513f5f0c5774c05f8ac7"
+    "pois.json": "sha256:e25a03bfbf1f48be63fc57ab25f891a09135cd2392d40ac589fc8f7ce873f446",
+    "source-scorecard.json": "sha256:1b94ba9df323de43542a3e2b9d6b77f1cbe296210b7f949190f3f7736c563bc4",
+    "supplemental/canonical-records.json": "sha256:529adcc7e5ef6046863155366b0651deeec9c4331bfc28f385606e6a6f9a063a",
+    "supplemental/dedup-groups.json": "sha256:ae3f7ff41a9675f9475b6da4ea3b99d7ef75672395740520cc37d2e9f0083375",
+    "supplemental/osm-pois.json": "sha256:69b1d6d7d3b4e128c44f7c776768c6d3b1d3696dac158e5591296f50155d4f51",
+    "supplemental/validation-report.json": "sha256:6604e0e24b16b1693ef3d3d0ac5a32317388c41371443c4145d5493f61869d9e"
   },
-  "generatedAt": "2026-10-03T21:24:51.082186Z",
+  "generatedAt": "2026-10-04T01:10:00Z",
   "geography": [],
   "manifestVersion": 1,
   "packageSchemaVersion": 1,
-  "packageVersion": "20261003",
+  "packageVersion": "regional-expansion-2026-10-04-wave2",
   "producer": {
     "name": "Gremlin Lab",
-    "version": "20261003"
+    "version": "regional-expansion-2026-10-04-wave2"
   },
   "region": "jacksonville",
   "regionId": "jacksonville",
@@ -23,12 +22,12 @@
   "sources": [
     {
       "acquireStatus": "success",
-      "acquiredAt": "2026-10-03T21:24:51.082186Z",
-      "authorityTier": "federal_government",
-      "cachedAt": ".gremlin-cache\\jacksonville\\usgs-water-locations\\2026-10-03T21-24-51.082186Z.json",
+      "acquiredAt": "2026-10-04T01:10:00Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache-next3\\jacksonville\\osm-jacksonville-walk\\2026-10-04T01-10-00Z.json",
       "dataClass": "durable",
-      "emittedNamedCount": 247,
-      "emittedRecordCount": 247,
+      "emittedNamedCount": 778,
+      "emittedRecordCount": 778,
       "emittedUnnamedCount": 0,
       "geometryTypesAcquired": [
         "Point"
@@ -36,112 +35,41 @@
       "geometryTypesSurvived": [
         "Point"
       ],
-      "id": "usgs-water-locations",
-      "licenseUrl": "https://api.waterdata.usgs.gov/docs/",
-      "name": "USGS water monitoring locations",
-      "namedCount": 247,
-      "provider": "usgs_monitoring_locations",
-      "recordCount": 247,
-      "unnamedCount": 0,
-      "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items",
-      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
-    },
-    {
-      "acquireStatus": "success",
-      "acquiredAt": "2026-10-03T21:24:51.082186Z",
-      "authorityTier": "community",
-      "cachedAt": ".gremlin-cache\\jacksonville\\ebird-walk-recent\\2026-10-03T21-24-51.082186Z.json",
-      "dataClass": "durable",
-      "emittedNamedCount": 23,
-      "emittedRecordCount": 23,
-      "emittedUnnamedCount": 0,
-      "geometryTypesAcquired": [
-        "Point"
-      ],
-      "geometryTypesSurvived": [
-        "Point"
-      ],
-      "id": "ebird-walk-recent",
-      "licenseUrl": "https://science.ebird.org/en/status-and-trends/products-access-terms-of-use",
-      "name": "eBird recent hotspot observations",
-      "namedCount": 23,
-      "provider": "ebird_recent",
-      "recordCount": 23,
-      "unnamedCount": 0,
-      "url": "https://api.ebird.org/v2/data/obs/geo/recent",
-      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
-    },
-    {
-      "acquireStatus": "source_unavailable",
-      "acquiredAt": "2026-10-03T21:24:51.082186Z",
-      "authorityTier": "community",
-      "dataClass": "durable",
-      "emittedNamedCount": 0,
-      "emittedRecordCount": 0,
-      "emittedUnnamedCount": 0,
-      "error": "No raw cache available for osm-jacksonville-walk",
-      "geometryTypesAcquired": [],
-      "geometryTypesSurvived": [],
       "id": "osm-jacksonville-walk",
       "licenseUrl": "https://www.openstreetmap.org/copyright",
       "name": "OpenStreetMap contributors",
-      "namedCount": 0,
+      "namedCount": 1162,
       "provider": "osm_overpass",
-      "recordCount": 0,
+      "recordCount": 1162,
       "unnamedCount": 0,
       "url": "https://overpass-api.de/api/interpreter",
       "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
-    },
-    {
-      "acquireStatus": "success",
-      "acquiredAt": "2026-10-03T21:24:51.082186Z",
-      "authorityTier": "federal_government",
-      "dataClass": "temporal",
-      "emittedNamedCount": 0,
-      "emittedRecordCount": 0,
-      "emittedUnnamedCount": 0,
-      "geometryTypesAcquired": [],
-      "geometryTypesSurvived": [],
-      "id": "nws-forecast",
-      "licenseUrl": "https://www.weather.gov/documentation/services-web-api",
-      "name": "National Weather Service forecast and alerts",
-      "namedCount": 0,
-      "provider": "nws",
-      "recordCount": 4,
-      "unnamedCount": 0,
-      "url": "https://api.weather.gov/",
-      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
-    },
-    {
-      "acquireStatus": "success",
-      "acquiredAt": "2026-10-03T21:24:51.082186Z",
-      "dataClass": "temporal",
-      "emittedNamedCount": 0,
-      "emittedRecordCount": 0,
-      "emittedUnnamedCount": 0,
-      "geometryTypesAcquired": [],
-      "geometryTypesSurvived": [],
-      "id": "jacksonville-civic",
-      "name": "Jacksonville, Florida civic events",
-      "namedCount": 0,
-      "provider": "civic_rss",
-      "recordCount": 0,
-      "unnamedCount": 0,
-      "url": "configured civic provider",
-      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
     }
   ],
   "validation": {
     "errors": [],
     "metrics": {
-      "featureCount": 270
+      "featureCount": 778
     },
     "valid": true
   },
   "warnings": [
     {
-      "code": "source_unavailable",
-      "detail": "No raw cache available for osm-jacksonville-walk",
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:468207365 merged into osm:relation:6816120; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:relation:6816120",
+        "osm:way:468207365"
+      ],
+      "source": "osm-jacksonville-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:923735203 merged into osm:way:326826323; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:way:326826323",
+        "osm:way:923735203"
+      ],
       "source": "osm-jacksonville-walk"
     }
   ]

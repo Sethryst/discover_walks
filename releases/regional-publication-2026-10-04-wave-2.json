@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "kind": "regional-publication-record",
+  "generatedAt": "2026-10-04T01:10:00Z",
+  "publicationState": "live-pages-pending-deploy",
+  "sourceBatch": "releases-next3",
+  "externalLinksSeparate": true,
+  "regions": [
+    {"id":"jacksonville","package":"motherbird/regions/jacksonville/pois.json","osmPois":780,"status":"promoted"},
+    {"id":"memphis","package":"motherbird/regions/memphis/pois.json","osmPois":595,"status":"promoted"},
+    {"id":"sacramento","package":"motherbird/regions/sacramento/pois.json","osmPois":1038,"status":"promoted"},
+    {"id":"tampa","package":"motherbird/regions/tampa/pois.json","osmPois":1013,"status":"promoted"}
+  ],
+  "blockers": ["orlando", "louisville"]
+}

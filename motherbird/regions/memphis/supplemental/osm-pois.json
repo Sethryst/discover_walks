@@ -1,5 +1,7 @@
 {
+  "attribution": "© OpenStreetMap contributors",
   "generatedAt": "2026-10-04T01:10:00Z",
+  "license": "ODbL-1.0",
   "pois": [
     {
       "artifact_type": "pin",
@@ -11128,6 +11130,45 @@
     },
     {
       "artifact_type": "pin",
+      "category": "park",
+      "fromOsm": true,
+      "id": "osm:way:1329189639",
+      "lat": 35.335675,
+      "lng": -90.0560994,
+      "name": "Meeman-Shelby Forest State Park",
+      "osmElementId": "1329189639",
+      "osmElementType": "way",
+      "osmTags": {
+        "leisure": "park"
+      },
+      "review": {
+        "dedupGroupId": "dedup:93ea89f09afb56de",
+        "flags": [
+          "duplicate_candidate"
+        ],
+        "validationStatus": "valid"
+      },
+      "source": [
+        {
+          "attribution": "© OpenStreetMap contributors",
+          "elementId": "1329189639",
+          "id": "osm-memphis-walk",
+          "license": "ODbL-1.0",
+          "licenseUrl": "https://www.openstreetmap.org/copyright",
+          "name": "OpenStreetMap contributors",
+          "retrievedAt": "2026-10-04T01:10:00Z",
+          "url": "https://www.openstreetmap.org/way/1329189639"
+        }
+      ],
+      "sourceType": "osm_overpass",
+      "tags": [
+        "osm",
+        "park"
+      ],
+      "type": "park"
+    },
+    {
+      "artifact_type": "pin",
       "category": "history",
       "fromOsm": true,
       "id": "osm:way:1340193903",
@@ -19744,6 +19785,43 @@
       "artifact_type": "pin",
       "category": "park",
       "fromOsm": true,
+      "id": "osm:way:670508901",
+      "lat": 35.162844,
+      "lng": -90.1981275,
+      "name": "Grimsley Park",
+      "osmElementId": "670508901",
+      "osmElementType": "way",
+      "osmTags": {
+        "leisure": "park"
+      },
+      "review": {
+        "dedupGroupId": null,
+        "flags": [],
+        "validationStatus": "valid"
+      },
+      "source": [
+        {
+          "attribution": "© OpenStreetMap contributors",
+          "elementId": "670508901",
+          "id": "osm-memphis-walk",
+          "license": "ODbL-1.0",
+          "licenseUrl": "https://www.openstreetmap.org/copyright",
+          "name": "OpenStreetMap contributors",
+          "retrievedAt": "2026-10-04T01:10:00Z",
+          "url": "https://www.openstreetmap.org/way/670508901"
+        }
+      ],
+      "sourceType": "osm_overpass",
+      "tags": [
+        "osm",
+        "park"
+      ],
+      "type": "park"
+    },
+    {
+      "artifact_type": "pin",
+      "category": "park",
+      "fromOsm": true,
       "id": "osm:way:670510107",
       "lat": 35.1845696,
       "lng": -90.1902256,
@@ -22387,10 +22465,8 @@
       "type": "park"
     }
   ],
-  "producer": {
-    "name": "Gremlin Lab",
-    "version": "regional-expansion-2026-10-04-wave2"
-  },
   "regionId": "memphis",
-  "schemaVersion": 1
+  "schemaVersion": 1,
+  "sourceConfigurationId": "osm-memphis-walk",
+  "sourceVintage": "2026-10-04T01:10:00Z"
 }

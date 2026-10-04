@@ -1,5 +1,7 @@
 {
+  "attribution": "© OpenStreetMap contributors",
   "generatedAt": "2026-10-04T01:10:00Z",
+  "license": "ODbL-1.0",
   "pois": [
     {
       "artifact_type": "pin",
@@ -19833,6 +19835,45 @@
       "artifact_type": "pin",
       "category": "park",
       "fromOsm": true,
+      "id": "osm:way:468207365",
+      "lat": 30.3642152,
+      "lng": -81.5072245,
+      "name": "Ed Austin Regional Park",
+      "osmElementId": "468207365",
+      "osmElementType": "way",
+      "osmTags": {
+        "leisure": "park"
+      },
+      "review": {
+        "dedupGroupId": "dedup:0f8640aced176e12",
+        "flags": [
+          "duplicate_candidate"
+        ],
+        "validationStatus": "valid"
+      },
+      "source": [
+        {
+          "attribution": "© OpenStreetMap contributors",
+          "elementId": "468207365",
+          "id": "osm-jacksonville-walk",
+          "license": "ODbL-1.0",
+          "licenseUrl": "https://www.openstreetmap.org/copyright",
+          "name": "OpenStreetMap contributors",
+          "retrievedAt": "2026-10-04T01:10:00Z",
+          "url": "https://www.openstreetmap.org/way/468207365"
+        }
+      ],
+      "sourceType": "osm_overpass",
+      "tags": [
+        "osm",
+        "park"
+      ],
+      "type": "park"
+    },
+    {
+      "artifact_type": "pin",
+      "category": "park",
+      "fromOsm": true,
       "id": "osm:way:468219689",
       "lat": 30.3528697,
       "lng": -81.5869172,
@@ -29478,6 +29519,45 @@
     },
     {
       "artifact_type": "pin",
+      "category": "park",
+      "fromOsm": true,
+      "id": "osm:way:923735203",
+      "lat": 30.3293346,
+      "lng": -81.6593341,
+      "name": "James Weldon Johnson Park",
+      "osmElementId": "923735203",
+      "osmElementType": "way",
+      "osmTags": {
+        "leisure": "park"
+      },
+      "review": {
+        "dedupGroupId": "dedup:edec1480282230ba",
+        "flags": [
+          "duplicate_candidate"
+        ],
+        "validationStatus": "valid"
+      },
+      "source": [
+        {
+          "attribution": "© OpenStreetMap contributors",
+          "elementId": "923735203",
+          "id": "osm-jacksonville-walk",
+          "license": "ODbL-1.0",
+          "licenseUrl": "https://www.openstreetmap.org/copyright",
+          "name": "OpenStreetMap contributors",
+          "retrievedAt": "2026-10-04T01:10:00Z",
+          "url": "https://www.openstreetmap.org/way/923735203"
+        }
+      ],
+      "sourceType": "osm_overpass",
+      "tags": [
+        "osm",
+        "park"
+      ],
+      "type": "park"
+    },
+    {
+      "artifact_type": "pin",
       "category": "community",
       "fromOsm": true,
       "id": "osm:way:92643878",
@@ -29625,10 +29705,8 @@
       "type": "park"
     }
   ],
-  "producer": {
-    "name": "Gremlin Lab",
-    "version": "regional-expansion-2026-10-04-wave2"
-  },
   "regionId": "jacksonville",
-  "schemaVersion": 1
+  "schemaVersion": 1,
+  "sourceConfigurationId": "osm-jacksonville-walk",
+  "sourceVintage": "2026-10-04T01:10:00Z"
 }

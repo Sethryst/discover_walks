@@ -1,5 +1,7 @@
 {
+  "attribution": "© OpenStreetMap contributors",
   "generatedAt": "2026-10-04T01:10:00Z",
+  "license": "ODbL-1.0",
   "pois": [
     {
       "accessibility": {
@@ -26185,6 +26187,45 @@
       "artifact_type": "pin",
       "category": "park",
       "fromOsm": true,
+      "id": "osm:way:121005412",
+      "lat": 38.7887822,
+      "lng": -121.3575101,
+      "name": "School House Park",
+      "osmElementId": "121005412",
+      "osmElementType": "way",
+      "osmTags": {
+        "leisure": "park"
+      },
+      "review": {
+        "dedupGroupId": "dedup:7dd01c4f455c1642",
+        "flags": [
+          "duplicate_candidate"
+        ],
+        "validationStatus": "valid"
+      },
+      "source": [
+        {
+          "attribution": "© OpenStreetMap contributors",
+          "elementId": "121005412",
+          "id": "osm-sacramento-walk",
+          "license": "ODbL-1.0",
+          "licenseUrl": "https://www.openstreetmap.org/copyright",
+          "name": "OpenStreetMap contributors",
+          "retrievedAt": "2026-10-04T01:10:00Z",
+          "url": "https://www.openstreetmap.org/way/121005412"
+        }
+      ],
+      "sourceType": "osm_overpass",
+      "tags": [
+        "osm",
+        "park"
+      ],
+      "type": "park"
+    },
+    {
+      "artifact_type": "pin",
+      "category": "park",
+      "fromOsm": true,
       "id": "osm:way:121005413",
       "lat": 38.782276,
       "lng": -121.3691508,
@@ -31016,6 +31057,45 @@
         "park"
       ],
       "type": "park"
+    },
+    {
+      "artifact_type": "pin",
+      "category": "history",
+      "fromOsm": true,
+      "id": "osm:way:205143830",
+      "lat": 38.5862862,
+      "lng": -121.5063627,
+      "name": "Martinez Subdivision",
+      "osmElementId": "205143830",
+      "osmElementType": "way",
+      "osmTags": {
+        "historic": "yes"
+      },
+      "review": {
+        "dedupGroupId": "dedup:a74126faa928adc2",
+        "flags": [
+          "duplicate_candidate"
+        ],
+        "validationStatus": "valid"
+      },
+      "source": [
+        {
+          "attribution": "© OpenStreetMap contributors",
+          "elementId": "205143830",
+          "id": "osm-sacramento-walk",
+          "license": "ODbL-1.0",
+          "licenseUrl": "https://www.openstreetmap.org/copyright",
+          "name": "OpenStreetMap contributors",
+          "retrievedAt": "2026-10-04T01:10:00Z",
+          "url": "https://www.openstreetmap.org/way/205143830"
+        }
+      ],
+      "sourceType": "osm_overpass",
+      "tags": [
+        "history",
+        "osm"
+      ],
+      "type": "yes"
     },
     {
       "artifact_type": "pin",
@@ -39085,6 +39165,45 @@
       "artifact_type": "pin",
       "category": "park",
       "fromOsm": true,
+      "id": "osm:way:44487187",
+      "lat": 38.4177445,
+      "lng": -121.4602932,
+      "name": "Lawrence Park",
+      "osmElementId": "44487187",
+      "osmElementType": "way",
+      "osmTags": {
+        "leisure": "park"
+      },
+      "review": {
+        "dedupGroupId": "dedup:653b85af72a3dabf",
+        "flags": [
+          "duplicate_candidate"
+        ],
+        "validationStatus": "valid"
+      },
+      "source": [
+        {
+          "attribution": "© OpenStreetMap contributors",
+          "elementId": "44487187",
+          "id": "osm-sacramento-walk",
+          "license": "ODbL-1.0",
+          "licenseUrl": "https://www.openstreetmap.org/copyright",
+          "name": "OpenStreetMap contributors",
+          "retrievedAt": "2026-10-04T01:10:00Z",
+          "url": "https://www.openstreetmap.org/way/44487187"
+        }
+      ],
+      "sourceType": "osm_overpass",
+      "tags": [
+        "osm",
+        "park"
+      ],
+      "type": "park"
+    },
+    {
+      "artifact_type": "pin",
+      "category": "park",
+      "fromOsm": true,
       "id": "osm:way:44487193",
       "lat": 38.5760759,
       "lng": -121.4914472,
@@ -40068,10 +40187,8 @@
       "type": "park"
     }
   ],
-  "producer": {
-    "name": "Gremlin Lab",
-    "version": "regional-expansion-2026-10-04-wave2"
-  },
   "regionId": "sacramento",
-  "schemaVersion": 1
+  "schemaVersion": 1,
+  "sourceConfigurationId": "osm-sacramento-walk",
+  "sourceVintage": "2026-10-04T01:10:00Z"
 }

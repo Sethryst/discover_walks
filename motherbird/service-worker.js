@@ -1,7 +1,7 @@
 // Keep the whole module graph with the shell. Caching only app.js leaves an
 // offline (or briefly disconnected) reload with a blank app when any imported
 // module was not already in the runtime cache.
-const APP_CACHE = 'walk-wildlife-shell-v281'; // Publish El Paso, Rochester, Buffalo, Cincinnati, and Pittsburgh packages
+const APP_CACHE = 'walk-wildlife-shell-v282'; // Publish wave-two regional packages
 const TILE_CACHE = 'walk-wildlife-osm-viewed-tiles-v1';
 const LIBRARY_CACHE = 'walk-wildlife-library-v2';
 const COMPANION_CACHE = 'walk-wildlife-companion-media-v2';
@@ -184,3 +184,4 @@ self.addEventListener('notificationclick', (event) => {
     await clients.openWindow(targetUrl);
   }));
 });
+shell.push('./regions/jacksonville/pois.json', './regions/memphis/pois.json', './regions/sacramento/pois.json', './regions/tampa/pois.json');

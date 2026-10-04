@@ -113,6 +113,10 @@
   rochester: { name: 'Rochester', state: 'NY', center: { lat: 43.1566, lng: -77.6088 }, zoom: 11, dataFile: './regions/rochester/pois.json' },
   buffalo: { name: 'Buffalo', state: 'NY', center: { lat: 42.8864, lng: -78.8784 }, zoom: 11, dataFile: './regions/buffalo/pois.json' },
   cincinnati: { name: 'Cincinnati', state: 'OH', center: { lat: 39.1031, lng: -84.5120 }, zoom: 11, dataFile: './regions/cincinnati/pois.json' },
+  jacksonville: { name: 'Jacksonville', state: 'FL', center: { lat: 30.3322, lng: -81.6557 }, zoom: 10, dataFile: './regions/jacksonville/pois.json' },
+  memphis: { name: 'Memphis', state: 'TN', center: { lat: 35.1495, lng: -90.0490 }, zoom: 11, dataFile: './regions/memphis/pois.json' },
+  sacramento: { name: 'Sacramento', state: 'CA', center: { lat: 38.5816, lng: -121.4944 }, zoom: 11, dataFile: './regions/sacramento/pois.json' },
+  tampa: { name: 'Tampa', state: 'FL', center: { lat: 27.9506, lng: -82.4572 }, zoom: 11, dataFile: './regions/tampa/pois.json' },
   keystone: {
     name: 'Keystone & Summit County',
     state: 'CO',
