@@ -90,6 +90,14 @@ A bounded PMTiles map artifact was built from the same three retained shards in
 WSL and verified with PMTiles. Its SHA-256 is
 `588230220cf239b07eb007654fce805f639e363c0fbcac610d1d048241f2a1de`.
 
+The staged cross-cell proof `scripts/test-pilot-cross-cell.mjs` routes through
+the shared boundary between `z10-291-391` and `z10-292-391` at
+`[-77.34375, 38.921282]`. Both legs return `ROUTE_FOUND` (789.873 m and
+417.059 m), while the same harness gets `NO_NEARBY_PEDESTRIAN_EDGE` for an
+over-snap request and `ACCESS_POLICY_BLOCKED` for an unsupported profile. This
+proves the graph-level two-leg handoff; it is not yet evidence for the named
+DC/Arlington/Alexandria/Fairfax route matrix in the browser UI.
+
 This evidence is deliberately confined to `.tmp-cache/pilot-build` and is not a
 published registry because the immutable national source manifest is still
 blocked and the required real-world cross-cell route matrix has not yet passed.
