@@ -34,6 +34,7 @@ const publishEntries = [
   'legal.css',
   'manifest.webmanifest',
   'privacy.html',
+  'pilot-routing-test.html',
   'radio.css',
   'regions',
   'research',
