@@ -34,7 +34,7 @@ def neighbors(cells: list[dict], current: dict) -> list[str]:
     return sorted(result)
 
 
-def build(root: Path, plan_path: Path, output: Path) -> dict:
+def build(root: Path, plan_path: Path, output: Path, base_url: str = "") -> dict:
     plan = json.loads(plan_path.read_text(encoding="utf-8"))
     stage = root / ".tmp-cache/pilot-build"
     cells = []
@@ -44,16 +44,21 @@ def build(root: Path, plan_path: Path, output: Path) -> dict:
         if manifest.get("graphVersion") != "motherbird-runtime-graph-v1" or manifest.get("sourceRelease") != RELEASE:
             raise ValueError(f"{cell['id']} is not complete for {RELEASE}")
         artifacts = {}
+        def artifact_url(path: str) -> str:
+            return f"{base_url.rstrip('/')}/{path}" if base_url else path
         for name in ("nodes.bin", "edges.bin", "adjacency.bin", "edge_geometry.bin", "edge_spatial_index.bin"):
             path = directory / name
             if not path.is_file() or path.stat().st_size <= 0:
                 raise ValueError(f"{cell['id']} missing non-empty {name}")
-            artifacts[name] = {"url": f"cells/{cell['id']}/{name}", "bytes": path.stat().st_size, "sha256": digest(path)}
+            relative = f"cells/{cell['id']}/{name}"
+            artifacts[name] = {"url": artifact_url(relative), "bytes": path.stat().st_size, "sha256": digest(path)}
         manifest_path = directory / "manifest.json"
-        artifacts["manifest"] = {"url": f"cells/{cell['id']}/manifest.json", "bytes": manifest_path.stat().st_size, "sha256": digest(manifest_path)}
+        relative_manifest = f"cells/{cell['id']}/manifest.json"
+        artifacts["manifest"] = {"url": artifact_url(relative_manifest), "bytes": manifest_path.stat().st_size, "sha256": digest(manifest_path)}
         graph_path = directory / "runtime-graph.json"
-        artifacts["graph"] = {"url": f"cells/{cell['id']}/runtime-graph.json", "bytes": graph_path.stat().st_size, "sha256": digest(graph_path)}
-        artifacts["map"] = {"url": "map/pilot.pmtiles", "mode": "pmtiles_range"}
+        relative_graph = f"cells/{cell['id']}/runtime-graph.json"
+        artifacts["graph"] = {"url": artifact_url(relative_graph), "bytes": graph_path.stat().st_size, "sha256": digest(graph_path)}
+        artifacts["map"] = {"url": artifact_url("map/pilot.pmtiles"), "mode": "pmtiles_range"}
         cells.append({"id": cell["id"], "cellId": cell["id"], "bounds": cell["bounds"], "availability": "routing_available", "sourceRelease": RELEASE, "routingNeighbors": [], "stitching": {"coordinateConvention": "[lon,lat]", "sharedBoundaryRouting": "neighbor_cell_handoff", "snapToleranceMeters": 3}, "artifacts": artifacts})
     for cell in cells:
         cell["routingNeighbors"] = neighbors(cells, cell)
@@ -68,8 +73,9 @@ def main() -> int:
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument("--plan", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--base-url", default="", help="Absolute artifact URL prefix for browser deployments")
     args = parser.parse_args()
-    registry = build(args.root, args.plan, args.output)
+    registry = build(args.root, args.plan, args.output, args.base_url)
     print(json.dumps({"release": registry["release"], "cells": len(registry["cells"]), "output": str(args.output)}, sort_keys=True))
     return 0
 

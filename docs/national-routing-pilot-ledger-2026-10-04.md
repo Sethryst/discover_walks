@@ -102,6 +102,13 @@ under the published pilot path after the gates described below passed.
 
 ## Published pilot evidence
 
+The validated six-cell payload is also published as the public Hugging Face
+dataset `sethryst/osm-us-nova-dc-pilot-2026-10-04`. It contains 78 remote
+objects totaling 4,780,139,349 bytes. Its registry now uses absolute Hugging
+Face artifact URLs; the remote registry returned HTTP 200 and the first graph
+returned the expected `Content-Length: 218307022`. The national source and all
+51 topology-preserving shards remain local audit inputs, not public payloads.
+
 After source acceptance, national filtering, 51-shard extraction, six-cell
 compilation, PMTiles verification, registry validation, cross-cell route QA,
 browser registry lookup, focused tests, and the full Python suite passed, the
