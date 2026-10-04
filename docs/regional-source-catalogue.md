@@ -132,3 +132,20 @@ The following index mirrors the regions currently represented by the regional na
 | tempe | [Tempe Parks and Recreation](https://www.tempe.gov/government/community-services/recreation-services) |
 | tucson | [City of Tucson](https://www.tucsonaz.gov/) |
 | wolf-trap-va | [Wolf Trap Foundation](https://www.wolftrap.org/) |
+
+## Candidate-source backlog
+
+These are configured or researchable markets that are not yet part of the serviced-region index above. They are deliberately listed as candidates until an official portal, a relevant public dataset, and a non-empty validated package are confirmed.
+
+| Candidate region | Official open-data source to inspect | Official region site | First dataset targets |
+|---|---|---|---|
+| ann-arbor | [Ann Arbor Open Data](https://www.a2gov.org/departments/its/GIS/Pages/Open-Data.aspx) | [City of Ann Arbor](https://www.a2gov.org/) | parks, parks facilities, trails, public art |
+| boise-meridian-idaho | [City of Boise Open Data](https://opendata.cityofboise.org/) | [City of Boise](https://www.cityofboise.org/) | parks, Greenbelt, trails, pathways |
+| durham | [Durham GIS Portal](https://webgis2.durhamnc.gov/portal) | [City of Durham](https://www.durhamnc.gov/) | trails, parks, open space, public facilities |
+| mesa | [Mesa Open Data](https://data.mesaaz.gov/) | [City of Mesa](https://www.mesaaz.gov/) | parks, trails, preserves, recreation facilities |
+| oakland | [Oakland Open Data](https://data.oaklandca.gov/) | [City of Oakland](https://www.oaklandca.gov/) | parks, trails, public art, shoreline access |
+| spokane | [Spokane Open Data](https://data-spokane.opendata.arcgis.com/) | [City of Spokane](https://my.spokanecity.org/) | parks, trails, river access, public facilities |
+| colorado-springs | [Colorado Springs Open Data](https://data.coloradosprings.gov/) | [City of Colorado Springs](https://coloradosprings.gov/) | parks, trails, open space, trailheads |
+| college-station | [College Station Open Data](https://data.cstx.gov/) | [City of College Station](https://www.cstx.gov/) | parks, trails, public art, recreation |
+
+Candidate rows are discovery inputs only. A future build should add a dataset URL, authority, license, geometry/count evidence, and blocker or promotion record before moving a candidate into the serviced-region index.
