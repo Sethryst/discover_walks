@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Northern Virginia / DC routing pilot test</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <style>html,body,#map{height:100%;margin:0}#status{position:absolute;z-index:1000;top:12px;left:12px;background:#fffaf0;padding:10px 14px;border-radius:8px;font:14px system-ui;box-shadow:0 2px 12px #0004}#map{background:#ddd}</style>
+</head>
+<body>
+  <div id="status">Loading published pilot route…</div><div id="map" aria-label="Published pilot route map"></div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script type="module">
+    import { routeRuntimeGraph } from './js/runtime-router.mjs';
+    const base = 'https://huggingface.co/datasets/sethryst/osm-us-nova-dc-pilot-2026-10-04/resolve/main/';
+    const registry = await fetch(`${base}cells.json?v=20261004-hf-pilot-1`).then((r) => r.json());
+    const cell = registry.cells.find((entry) => entry.id === 'z10-292-391');
+    const graph = await fetch(cell.artifacts.graph.url).then((r) => r.json());
+    const origin = [-77.0369, 38.9072]; const destination = [-77.1011, 38.8783];
+    const result = routeRuntimeGraph(graph, { origin, destination, profile: 'ordinary_walking_beta' }, { maxSnapMeters: 250 });
+    const map = L.map('map').setView([38.893, -77.07], 12);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap contributors' }).addTo(map);
+    if (result.status !== 'ROUTE_FOUND') throw new Error(result.status);
+    L.polyline(result.geometry.coordinates.map(([lng, lat]) => [lat, lng]), { color: '#d24b31', weight: 6 }).addTo(map);
+    L.marker([origin[1], origin[0]]).addTo(map).bindTooltip('Washington, DC', { permanent: true });
+    L.marker([destination[1], destination[0]]).addTo(map).bindTooltip('Arlington', { permanent: true });
+    map.fitBounds([[origin[1], origin[0]], [destination[1], destination[0]]], { padding: [30, 30] });
+    document.querySelector('#status').textContent = `ROUTE_FOUND · ${Math.round(result.distance_m)} m · published pilot ${registry.release}`;
+  </script>
+</body>
+</html>
