@@ -1,6 +1,6 @@
 {
   "conflictWinner": null,
-  "generatedAt": "2026-10-03T21:24:51.073841Z",
+  "generatedAt": "2026-10-04T00:35:00Z",
   "packageKind": "region",
   "regionId": "buffalo",
   "schemaVersion": 1,
@@ -17,8 +17,8 @@
     {
       "acquireStatus": "success",
       "dataClass": "durable",
-      "emittedNamedCount": 500,
-      "emittedRecordCount": 500,
+      "emittedNamedCount": 892,
+      "emittedRecordCount": 892,
       "emittedUnnamedCount": 0,
       "geometryTypesAcquired": [
         "Point"
@@ -26,110 +26,18 @@
       "geometryTypesSurvived": [
         "Point"
       ],
-      "id": "usgs-water-locations",
-      "name": "USGS water monitoring locations",
-      "namedCount": 500,
-      "provider": "usgs_monitoring_locations",
-      "recordCount": 500,
-      "unnamedCount": 0,
-      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
-    },
-    {
-      "acquireStatus": "success",
-      "dataClass": "durable",
-      "emittedNamedCount": 30,
-      "emittedRecordCount": 30,
-      "emittedUnnamedCount": 0,
-      "geometryTypesAcquired": [
-        "Point"
-      ],
-      "geometryTypesSurvived": [
-        "Point"
-      ],
-      "id": "ebird-walk-recent",
-      "name": "eBird recent hotspot observations",
-      "namedCount": 30,
-      "provider": "ebird_recent",
-      "recordCount": 30,
-      "unnamedCount": 0,
-      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
-    },
-    {
-      "acquireStatus": "success",
-      "dataClass": "durable",
-      "emittedNamedCount": 671,
-      "emittedRecordCount": 671,
-      "emittedUnnamedCount": 0,
-      "geometryTypesAcquired": [
-        "MultiLineString",
-        "MultiPolygon",
-        "Point"
-      ],
-      "geometryTypesSurvived": [
-        "MultiLineString",
-        "Point"
-      ],
-      "id": "local-open-data",
-      "name": "Local municipal OpenData capture — Buffalo",
-      "namedCount": 13417,
-      "provider": "local_open_data",
-      "recordCount": 129303,
-      "unnamedCount": 115886,
-      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
-    },
-    {
-      "acquireStatus": "source_unavailable",
-      "dataClass": "durable",
-      "emittedNamedCount": 0,
-      "emittedRecordCount": 0,
-      "emittedUnnamedCount": 0,
-      "error": "No raw cache available for osm-buffalo-walk",
-      "geometryTypesAcquired": [],
-      "geometryTypesSurvived": [],
       "id": "osm-buffalo-walk",
       "name": "OpenStreetMap contributors",
-      "namedCount": 0,
+      "namedCount": 1200,
       "provider": "osm_overpass",
-      "recordCount": 0,
+      "recordCount": 1200,
       "unnamedCount": 0,
       "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
-    },
-    {
-      "acquireStatus": "success",
-      "dataClass": "temporal",
-      "emittedNamedCount": 0,
-      "emittedRecordCount": 0,
-      "emittedUnnamedCount": 0,
-      "geometryTypesAcquired": [],
-      "geometryTypesSurvived": [],
-      "id": "nws-forecast",
-      "name": "National Weather Service forecast and alerts",
-      "namedCount": 0,
-      "provider": "nws",
-      "recordCount": 4,
-      "unnamedCount": 0,
-      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
-    },
-    {
-      "acquireStatus": "success",
-      "dataClass": "temporal",
-      "emittedNamedCount": 0,
-      "emittedRecordCount": 0,
-      "emittedUnnamedCount": 0,
-      "geometryTypesAcquired": [],
-      "geometryTypesSurvived": [],
-      "id": "buffalo-civic",
-      "name": "Buffalo, New York civic events",
-      "namedCount": 0,
-      "provider": "civic_rss",
-      "recordCount": 0,
-      "unnamedCount": 0,
-      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
     }
   ],
   "swallowedTowns": [],
   "walkCreationReadiness": {
-    "acquiredDataUsefulPercent": 0.6,
+    "acquiredDataUsefulPercent": 74.3,
     "canSupportTrailToHistoryParkWildlifeCommunitySequence": false,
     "canonicalWod": {
       "present": false,
@@ -141,7 +49,7 @@
       "featuredWalkCount": 0,
       "status": "pending_editorial_build"
     },
-    "plausibleWalkAnchors": 325,
+    "plausibleWalkAnchors": 638,
     "smallestNextFeature": "Add more editorial Journeys, then consider a tiny POI-within-N-meters-of-trail sidecar if Journey authoring shows a repeated need.",
     "stillMissing": [
       "Verified entrances rather than some park centroids",
@@ -150,20 +58,18 @@
       "Huntley Meadows has strong wildlife and amenity anchors, but no named official line survived TRAIL_NAME validation for an initial Journey",
       "More curated Journeys after the first featured set"
     ],
-    "trailGeometryTypes": [
-      "MultiLineString"
-    ],
-    "trailLinearRecords": 376,
+    "trailGeometryTypes": [],
+    "trailLinearRecords": 0,
     "walkUsefulCategories": {
-      "history": 41,
-      "park": 254,
-      "water": 500,
-      "wildlife": 30
+      "coffee": 211,
+      "community": 37,
+      "history": 227,
+      "nature": 32,
+      "park": 374,
+      "water": 11
     },
-    "walkUsefulPublicRecords": 825,
+    "walkUsefulPublicRecords": 892,
     "walkerVisibleGain": "Mother Bird can offer named official parks, trails, wildlife places, history, libraries, community facilities, and access amenities as the material for curated Fairfax walks.",
-    "wildlifeDestinationSources": [
-      "ebird-walk-recent"
-    ]
+    "wildlifeDestinationSources": []
   }
 }

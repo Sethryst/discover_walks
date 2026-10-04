@@ -41,13 +41,15 @@ There is no first-party HTTP API. The PWA is a browser application, not a FastAP
 
 ## Where Walk & Wildlife is available
 
-Walk & Wildlife currently offers **71 selectable areas** in the app. Choosing an area changes the map, the search wording, and the places the app searches. The list includes cities, counties, metro areas, and a few destination communities.
+Walk & Wildlife currently offers **76 selectable areas** in the app. Choosing an area changes the map, the search field, and the places the app searches. The list includes cities, counties, metro areas, and a few destination communities.
 
 ### Current areas, alphabetically
 
 Albuquerque · Alexandria · Anchorage · Ann Arbor · Arlington County · Asheville · Atlanta · Austin · Baltimore · Boston · Boise–Meridian–Old Town · Boulder · Charleston · Charlotte · Chicago · Cleveland · Columbus · Corpus Christi · Dallas–Fort Worth · Denver · Detroit · Eugene · Fairfax County · Falls Church · Flagstaff · Fort Worth · Fresno · Hartford · Honolulu · Houston · Indianapolis · Kansas City · Keystone & Summit County · Las Vegas · Lexington · Los Angeles · Loudoun County · Madison · Miami–Fort Lauderdale · Milwaukee · Minneapolis–Saint Paul · Moab · Nashville · New Orleans · New York · Newark · Norfolk · Oklahoma City · Omaha · Philadelphia · Phoenix · Pittsburgh · Portland · Portland (Maine) · Prince George’s County · Providence · Raleigh–Durham · Richmond · Salt Lake City · San Diego · San Francisco · San Francisco Bay Area · Santa Fe · Savannah · Seattle · Sedona · St. Louis · Tempe · Tucson · Washington · Wolf Trap.
 
 ### What “available” means
+
+The 2026-10-04 regional publication batch adds El Paso, Rochester, Buffalo, Cincinnati, and Pittsburgh with validated native POI packages and separate official-page links.
 
 - The app has a named area users can select from the locality menu.
 - Search is limited to places the app can serve directly for that area; it does not mix outside web pages into the results.

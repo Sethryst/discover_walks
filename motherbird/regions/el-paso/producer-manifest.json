@@ -1,0 +1,76 @@
+{
+  "checksums": {
+    "pois.json": "sha256:b4b7a22d96040dbbc60a7c7f6c836347946ac9c00c1541135fe309636ab379fd",
+    "source-scorecard.json": "sha256:52128b6e7353fcc03672450fa337feec10d591e1baed1bc74465c0fa59125a5b",
+    "supplemental/canonical-records.json": "sha256:f648ea04ed431d7a49fc1ed9ee03c707bc4111fa0b3bce139e399ef12f2ee377",
+    "supplemental/dedup-groups.json": "sha256:24a6d861050c0e64cf68195b9f56aa6e16828b4dc338f3595af56e6f208d0947",
+    "supplemental/osm-pois.json": "sha256:b13215576b31b9a3d2aec43c0e8a27c6aeb296ef2305615c9e430ccef98e5fe8",
+    "supplemental/validation-report.json": "sha256:4c5fbfe6fdffb2e8e46b7321544390d6172c1c4f5d681811d469c276516cf685"
+  },
+  "generatedAt": "2026-10-04T00:35:00Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "regional-expansion-2026-10-04",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "regional-expansion-2026-10-04"
+  },
+  "region": "el-paso",
+  "regionId": "el-paso",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-04T00:35:00Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache-next2\\el-paso\\osm-el-paso-walk\\2026-10-04T00-35-00Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 730,
+      "emittedRecordCount": 730,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "osm-el-paso-walk",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 1200,
+      "provider": "osm_overpass",
+      "recordCount": 1200,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 730
+    },
+    "valid": true
+  },
+  "warnings": [
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:14004939518 merged into osm:node:12403588079; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:12403588079",
+        "osm:node:14004939518"
+      ],
+      "source": "osm-el-paso-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7447207461 merged into osm:node:7447207460; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:7447207460",
+        "osm:node:7447207461"
+      ],
+      "source": "osm-el-paso-walk"
+    }
+  ]
+}

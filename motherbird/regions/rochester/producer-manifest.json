@@ -1,0 +1,67 @@
+{
+  "checksums": {
+    "pois.json": "sha256:3cf134d6197d3a7d0e162725dbf21c110f527a6e09f08036994c4625837a3572",
+    "source-scorecard.json": "sha256:c89adcbdbfd9beeb5dd3311c9ddeaf66542fd83480d6a0943035f8fd025bdd48",
+    "supplemental/canonical-records.json": "sha256:9765f912a6cba9d416f8c61e206cc6ed98e61e3c2d971c471ae0422f7e2239c6",
+    "supplemental/dedup-groups.json": "sha256:f0a90ccf3af5aaca0bc3fe3cc4b0d735e42bdd2fe49aa3a50209875139a5b27d",
+    "supplemental/osm-pois.json": "sha256:b78ce547fddaec74659d690eba96ce701f4aa71d68c2153c8c37378070417938",
+    "supplemental/validation-report.json": "sha256:351e996f66b34d2230330151fca6d803e3938cfefbdca7d06730350cfd9af2b2"
+  },
+  "generatedAt": "2026-10-04T00:35:00Z",
+  "geography": [],
+  "manifestVersion": 1,
+  "packageSchemaVersion": 1,
+  "packageVersion": "regional-expansion-2026-10-04",
+  "producer": {
+    "name": "Gremlin Lab",
+    "version": "regional-expansion-2026-10-04"
+  },
+  "region": "rochester",
+  "regionId": "rochester",
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-04T00:35:00Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache-next2\\rochester\\osm-rochester-walk\\2026-10-04T00-35-00Z.json",
+      "dataClass": "durable",
+      "emittedNamedCount": 670,
+      "emittedRecordCount": 670,
+      "emittedUnnamedCount": 0,
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
+      "id": "osm-rochester-walk",
+      "licenseUrl": "https://www.openstreetmap.org/copyright",
+      "name": "OpenStreetMap contributors",
+      "namedCount": 1200,
+      "provider": "osm_overpass",
+      "recordCount": 1200,
+      "unnamedCount": 0,
+      "url": "https://overpass-api.de/api/interpreter",
+      "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
+    }
+  ],
+  "validation": {
+    "errors": [],
+    "metrics": {
+      "featureCount": 670
+    },
+    "valid": true
+  },
+  "warnings": [
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13481847301 merged into osm:node:13481847201; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:13481847201",
+        "osm:node:13481847301"
+      ],
+      "source": "osm-rochester-walk"
+    }
+  ]
+}

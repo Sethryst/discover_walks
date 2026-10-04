@@ -1,21 +1,20 @@
 {
   "checksums": {
-    "pois.json": "sha256:9be8d29edd568223662c72b0f50ab30ad67255e86f58b667241afdaa854c9c4d",
-    "source-scorecard.json": "sha256:b03eb40327c9118ddaf575b357b79f19fdf890195f4643c94bd17bedd8ecfad4",
-    "supplemental/canonical-records.json": "sha256:a9f6c597faa1067e452a2e80fa75f559b6b915f5a3269e7793c1d31b667daed7",
-    "supplemental/dedup-groups.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
-    "supplemental/osm-pois.json": "sha256:d510047e91864f9f254185d0e400084cec415b1bc2ad9c3492bc6f16caedf6ad",
-    "supplemental/validation-report.json": "sha256:c3996f22a026cdeec179d25c2b9321ce5eb38dd5afc51639e69e6c5e5fff0c7c",
-    "supplemental/weather.json": "sha256:1bb7aad8222852c730ba7307a1f36055404d790bfc6f8be11bb4d5f31c3cc4f3"
+    "pois.json": "sha256:70dfe02cc4ce3817de5a656821d56f4f2183085713ea8513c7e7fcc6c5a20766",
+    "source-scorecard.json": "sha256:3677633b7c023f1b67f9f129226c5911ae89999bbbd461d67d6e0a083e5e9c27",
+    "supplemental/canonical-records.json": "sha256:66bddfbae2c6a7f6bead40759c15e748507821086191b403a2be10042544aee6",
+    "supplemental/dedup-groups.json": "sha256:f56f4daafa2f4a6619b110187155bba427f9280ef9abadbf4f5446ef6e287782",
+    "supplemental/osm-pois.json": "sha256:2848189682e506ac5371b8950161fd8b46c9da88bec16416120ac076d6967878",
+    "supplemental/validation-report.json": "sha256:18c57c6991abe99a4f8033760f2d6b41e38011f1e07c721931e2f3a6b4d5cdf1"
   },
-  "generatedAt": "2026-10-03T21:24:51.134068Z",
+  "generatedAt": "2026-10-04T00:35:00Z",
   "geography": [],
   "manifestVersion": 1,
   "packageSchemaVersion": 1,
-  "packageVersion": "20261003",
+  "packageVersion": "regional-expansion-2026-10-04",
   "producer": {
     "name": "Gremlin Lab",
-    "version": "20261003"
+    "version": "regional-expansion-2026-10-04"
   },
   "region": "cincinnati",
   "regionId": "cincinnati",
@@ -23,12 +22,12 @@
   "sources": [
     {
       "acquireStatus": "success",
-      "acquiredAt": "2026-10-03T21:24:51.134068Z",
-      "authorityTier": "federal_government",
-      "cachedAt": ".gremlin-cache\\cincinnati\\usgs-water-locations\\2026-10-03T21-24-51.134068Z.json",
+      "acquiredAt": "2026-10-04T00:35:00Z",
+      "authorityTier": "community",
+      "cachedAt": ".gremlin-cache-next2\\cincinnati\\osm-cincinnati-walk\\2026-10-04T00-35-00Z.json",
       "dataClass": "durable",
-      "emittedNamedCount": 497,
-      "emittedRecordCount": 497,
+      "emittedNamedCount": 910,
+      "emittedRecordCount": 910,
       "emittedUnnamedCount": 0,
       "geometryTypesAcquired": [
         "Point"
@@ -36,112 +35,41 @@
       "geometryTypesSurvived": [
         "Point"
       ],
-      "id": "usgs-water-locations",
-      "licenseUrl": "https://api.waterdata.usgs.gov/docs/",
-      "name": "USGS water monitoring locations",
-      "namedCount": 500,
-      "provider": "usgs_monitoring_locations",
-      "recordCount": 500,
-      "unnamedCount": 0,
-      "url": "https://api.waterdata.usgs.gov/ogcapi/v0/collections/monitoring-locations/items",
-      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
-    },
-    {
-      "acquireStatus": "success",
-      "acquiredAt": "2026-10-03T21:24:51.134068Z",
-      "authorityTier": "community",
-      "cachedAt": ".gremlin-cache\\cincinnati\\ebird-walk-recent\\2026-10-03T21-24-51.134068Z.json",
-      "dataClass": "durable",
-      "emittedNamedCount": 29,
-      "emittedRecordCount": 29,
-      "emittedUnnamedCount": 0,
-      "geometryTypesAcquired": [
-        "Point"
-      ],
-      "geometryTypesSurvived": [
-        "Point"
-      ],
-      "id": "ebird-walk-recent",
-      "licenseUrl": "https://science.ebird.org/en/status-and-trends/products-access-terms-of-use",
-      "name": "eBird recent hotspot observations",
-      "namedCount": 29,
-      "provider": "ebird_recent",
-      "recordCount": 29,
-      "unnamedCount": 0,
-      "url": "https://api.ebird.org/v2/data/obs/geo/recent",
-      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
-    },
-    {
-      "acquireStatus": "source_unavailable",
-      "acquiredAt": "2026-10-03T21:24:51.134068Z",
-      "authorityTier": "community",
-      "dataClass": "durable",
-      "emittedNamedCount": 0,
-      "emittedRecordCount": 0,
-      "emittedUnnamedCount": 0,
-      "error": "No raw cache available for osm-cincinnati-walk",
-      "geometryTypesAcquired": [],
-      "geometryTypesSurvived": [],
       "id": "osm-cincinnati-walk",
       "licenseUrl": "https://www.openstreetmap.org/copyright",
       "name": "OpenStreetMap contributors",
-      "namedCount": 0,
+      "namedCount": 1200,
       "provider": "osm_overpass",
-      "recordCount": 0,
+      "recordCount": 1200,
       "unnamedCount": 0,
       "url": "https://overpass-api.de/api/interpreter",
       "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
-    },
-    {
-      "acquireStatus": "success",
-      "acquiredAt": "2026-10-03T21:24:51.134068Z",
-      "authorityTier": "federal_government",
-      "dataClass": "temporal",
-      "emittedNamedCount": 0,
-      "emittedRecordCount": 0,
-      "emittedUnnamedCount": 0,
-      "geometryTypesAcquired": [],
-      "geometryTypesSurvived": [],
-      "id": "nws-forecast",
-      "licenseUrl": "https://www.weather.gov/documentation/services-web-api",
-      "name": "National Weather Service forecast and alerts",
-      "namedCount": 0,
-      "provider": "nws",
-      "recordCount": 4,
-      "unnamedCount": 0,
-      "url": "https://api.weather.gov/",
-      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
-    },
-    {
-      "acquireStatus": "success",
-      "acquiredAt": "2026-10-03T21:24:51.134068Z",
-      "dataClass": "temporal",
-      "emittedNamedCount": 0,
-      "emittedRecordCount": 0,
-      "emittedUnnamedCount": 0,
-      "geometryTypesAcquired": [],
-      "geometryTypesSurvived": [],
-      "id": "cincinnati-civic",
-      "name": "Cincinnati, Ohio civic events",
-      "namedCount": 0,
-      "provider": "civic_rss",
-      "recordCount": 0,
-      "unnamedCount": 0,
-      "url": "configured civic provider",
-      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
     }
   ],
   "validation": {
     "errors": [],
     "metrics": {
-      "featureCount": 526
+      "featureCount": 910
     },
     "valid": true
   },
   "warnings": [
     {
-      "code": "source_unavailable",
-      "detail": "No raw cache available for osm-cincinnati-walk",
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13663566501 merged into osm:node:13507496230; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:13507496230",
+        "osm:node:13663566501"
+      ],
+      "source": "osm-cincinnati-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:14239851701 merged into osm:node:14197175882; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:14197175882",
+        "osm:node:14239851701"
+      ],
       "source": "osm-cincinnati-walk"
     }
   ]

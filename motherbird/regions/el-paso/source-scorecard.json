@@ -2,7 +2,7 @@
   "conflictWinner": null,
   "generatedAt": "2026-10-04T00:35:00Z",
   "packageKind": "region",
-  "regionId": "pittsburgh",
+  "regionId": "el-paso",
   "schemaVersion": 1,
   "skippedThisPass": [
     "GTFS, walk-to-transit routing, and schedules",
@@ -17,27 +17,8 @@
     {
       "acquireStatus": "success",
       "dataClass": "durable",
-      "emittedNamedCount": 0,
-      "emittedRecordCount": 0,
-      "emittedUnnamedCount": 0,
-      "geometryTypesAcquired": [
-        "MultiPolygon",
-        "Polygon"
-      ],
-      "geometryTypesSurvived": [],
-      "id": "pittsburgh-boundary",
-      "name": "City of Pittsburgh Boundary",
-      "namedCount": 3,
-      "provider": "arcgis_feature_service",
-      "recordCount": 3,
-      "unnamedCount": 0,
-      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
-    },
-    {
-      "acquireStatus": "success",
-      "dataClass": "durable",
-      "emittedNamedCount": 578,
-      "emittedRecordCount": 578,
+      "emittedNamedCount": 730,
+      "emittedRecordCount": 730,
       "emittedUnnamedCount": 0,
       "geometryTypesAcquired": [
         "Point"
@@ -45,18 +26,18 @@
       "geometryTypesSurvived": [
         "Point"
       ],
-      "id": "osm-pittsburgh",
+      "id": "osm-el-paso-walk",
       "name": "OpenStreetMap contributors",
-      "namedCount": 1106,
+      "namedCount": 1200,
       "provider": "osm_overpass",
-      "recordCount": 1106,
+      "recordCount": 1200,
       "unnamedCount": 0,
       "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
     }
   ],
   "swallowedTowns": [],
   "walkCreationReadiness": {
-    "acquiredDataUsefulPercent": 52.3,
+    "acquiredDataUsefulPercent": 60.8,
     "canSupportTrailToHistoryParkWildlifeCommunitySequence": false,
     "canonicalWod": {
       "present": false,
@@ -68,7 +49,7 @@
       "featuredWalkCount": 0,
       "status": "pending_editorial_build"
     },
-    "plausibleWalkAnchors": 338,
+    "plausibleWalkAnchors": 626,
     "smallestNextFeature": "Add more editorial Journeys, then consider a tiny POI-within-N-meters-of-trail sidecar if Journey authoring shows a repeated need.",
     "stillMissing": [
       "Verified entrances rather than some park centroids",
@@ -80,16 +61,13 @@
     "trailGeometryTypes": [],
     "trailLinearRecords": 0,
     "walkUsefulCategories": {
-      "art": 37,
-      "coffee": 159,
-      "community": 75,
-      "history": 76,
-      "market": 12,
-      "nature": 31,
-      "park": 187,
-      "rest": 1
+      "coffee": 95,
+      "community": 29,
+      "history": 153,
+      "nature": 9,
+      "park": 444
     },
-    "walkUsefulPublicRecords": 578,
+    "walkUsefulPublicRecords": 730,
     "walkerVisibleGain": "Mother Bird can offer named official parks, trails, wildlife places, history, libraries, community facilities, and access amenities as the material for curated Fairfax walks.",
     "wildlifeDestinationSources": []
   }

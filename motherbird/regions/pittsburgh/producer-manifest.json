@@ -1,174 +1,160 @@
 {
   "checksums": {
-    "pois.json": "sha256:aae0b79bfd86389cbfb05a3c2b590b0c361eacb060a81395e12885578e3452f2",
-    "source-scorecard.json": "sha256:ec292d95175327472aad926052ee517c6137a80d1175a2e4b5d49709180e8fb6",
-    "supplemental/canonical-records.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
-    "supplemental/dedup-groups.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
-    "supplemental/osm-pois.json": "sha256:29f81d3cf75b5b2e15f4d8e26ea905f281cad9d123d69dca6cd84e986353c128",
-    "supplemental/validation-report.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
-    "supplemental/weather.json": "sha256:2590149d95723d66652059580e9199306488a86dc274f5bd211dd1518227bf1a"
+    "geography/boundary.geojson": "sha256:2abe19f40b51418ca4e4f8e307c947c03900e6c07a85b0e9ee062912a35db00a",
+    "pois.json": "sha256:64aadd749fbc41ffde43e118fbe5e5d75d767896ef9ebd330dd96a834719aaff",
+    "source-scorecard.json": "sha256:8c706882dffe5565c7cc21ee123d557be65c210385514f7b8c10620e05aeb70f",
+    "supplemental/canonical-records.json": "sha256:f886c88b3e3877aeba17ca6ee6b5dd4b89da9511f551abcfa771151cee97ad6e",
+    "supplemental/dedup-groups.json": "sha256:b1a9853b879226f071ff552199fc20b596dbeaa20211c823b3729c5c8ae929e8",
+    "supplemental/osm-pois.json": "sha256:03452e72ab13f643c0f9d84aa2cd812c3dc0873e06225f2f4c0270cf54568d0d",
+    "supplemental/validation-report.json": "sha256:fa9ece8d7633b0c62fd5f9718b789fd7ab4734fec880003b387269cd9e330de4"
   },
-  "generatedAt": "2026-10-03T21:25:02.788399Z",
-  "geography": [],
+  "generatedAt": "2026-10-04T00:35:00Z",
+  "geography": [
+    {
+      "featureCount": 3,
+      "filename": "geography/boundary.geojson",
+      "idField": "id",
+      "nameField": "name",
+      "role": "jurisdiction_boundary",
+      "sourceId": "pittsburgh-boundary"
+    }
+  ],
   "manifestVersion": 1,
   "packageSchemaVersion": 1,
-  "packageVersion": "20261003",
+  "packageVersion": "regional-expansion-2026-10-04",
   "producer": {
     "name": "Gremlin Lab",
-    "version": "20261003"
+    "version": "regional-expansion-2026-10-04"
   },
   "region": "pittsburgh",
   "regionId": "pittsburgh",
   "schemaVersion": 1,
   "sources": [
     {
-      "acquireStatus": "source_unavailable",
-      "acquiredAt": "2026-10-03T21:25:02.788399Z",
-      "authorityTier": "city_government",
-      "dataClass": "durable",
-      "emittedNamedCount": 0,
-      "emittedRecordCount": 0,
-      "emittedUnnamedCount": 0,
-      "error": "No raw cache available for pittsburgh-boundary",
-      "geometryTypesAcquired": [],
-      "geometryTypesSurvived": [],
-      "id": "pittsburgh-boundary",
-      "licenseUrl": "https://data.wprdc.org/",
-      "name": "City of Pittsburgh Boundary",
-      "namedCount": 0,
-      "provider": "arcgis_feature_service",
-      "recordCount": 0,
-      "unnamedCount": 0,
-      "url": "https://services1.arcgis.com/YZCmUqbcsUpOKfj7/arcgis/rest/services/City_Boundary/FeatureServer/0",
-      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
-    },
-    {
-      "acquireStatus": "source_unavailable",
-      "acquiredAt": "2026-10-03T21:25:02.788399Z",
-      "authorityTier": "city_government",
-      "dataClass": "durable",
-      "emittedNamedCount": 0,
-      "emittedRecordCount": 0,
-      "emittedUnnamedCount": 0,
-      "error": "No raw cache available for pittsburgh-parks",
-      "geometryTypesAcquired": [],
-      "geometryTypesSurvived": [],
-      "id": "pittsburgh-parks",
-      "licenseUrl": "https://data.wprdc.org/",
-      "name": "City of Pittsburgh Parks",
-      "namedCount": 0,
-      "provider": "arcgis_feature_service",
-      "recordCount": 0,
-      "unnamedCount": 0,
-      "url": "https://services1.arcgis.com/vdNDkVykv9vEWFX4/arcgis/rest/services/Parks1/FeatureServer/0",
-      "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
-    },
-    {
       "acquireStatus": "success",
-      "acquiredAt": "2026-10-03T21:25:02.788399Z",
+      "acquiredAt": "2026-10-04T00:35:00Z",
       "authorityTier": "city_government",
-      "cachedAt": ".gremlin-cache\\pittsburgh\\local-open-data\\2026-10-03T21-25-02.788399Z.json",
+      "cachedAt": ".gremlin-cache-next2\\pittsburgh\\pittsburgh-boundary\\2026-10-04T00-35-00Z.json",
       "dataClass": "durable",
       "emittedNamedCount": 0,
       "emittedRecordCount": 0,
       "emittedUnnamedCount": 0,
       "geometryTypesAcquired": [
-        "LineString",
         "MultiPolygon",
         "Polygon"
       ],
       "geometryTypesSurvived": [],
-      "id": "local-open-data",
-      "licenseUrl": "local://OpenData",
-      "name": "Local municipal OpenData capture — Pittsburgh",
-      "namedCount": 0,
-      "provider": "local_open_data",
-      "recordCount": 1430,
-      "unnamedCount": 1430,
-      "url": "OpenData\\Pennsylvania\\Pittsburgh",
+      "id": "pittsburgh-boundary",
+      "layerRole": "jurisdiction_boundary",
+      "licenseUrl": "https://data.wprdc.org/",
+      "name": "City of Pittsburgh Boundary",
+      "namedCount": 3,
+      "provider": "arcgis_feature_service",
+      "recordCount": 3,
+      "unnamedCount": 0,
+      "url": "https://services1.arcgis.com/YZCmUqbcsUpOKfj7/arcgis/rest/services/City_Boundary/FeatureServer/0",
       "visibleValue": "No walker-visible value statement was configured; deprioritize this source."
     },
     {
-      "acquireStatus": "source_unavailable",
-      "acquiredAt": "2026-10-03T21:25:02.788399Z",
+      "acquireStatus": "success",
+      "acquiredAt": "2026-10-04T00:35:00Z",
       "authorityTier": "community",
+      "cachedAt": ".gremlin-cache-next2\\pittsburgh\\osm-pittsburgh\\2026-10-04T00-35-00Z.json",
       "dataClass": "durable",
-      "emittedNamedCount": 0,
-      "emittedRecordCount": 0,
+      "emittedNamedCount": 578,
+      "emittedRecordCount": 578,
       "emittedUnnamedCount": 0,
-      "error": "source_unavailable: osm-pittsburgh requires boundary source pittsburgh-boundary",
-      "geometryTypesAcquired": [],
-      "geometryTypesSurvived": [],
+      "geometryTypesAcquired": [
+        "Point"
+      ],
+      "geometryTypesSurvived": [
+        "Point"
+      ],
       "id": "osm-pittsburgh",
       "licenseUrl": "https://www.openstreetmap.org/copyright",
       "name": "OpenStreetMap contributors",
-      "namedCount": 0,
+      "namedCount": 1106,
       "provider": "osm_overpass",
-      "recordCount": 0,
+      "recordCount": 1106,
       "unnamedCount": 0,
       "url": "https://overpass-api.de/api/interpreter",
       "visibleValue": "Fills named cafes, markets, restaurants, nature, comfort, history, art, or water-access gaps without overriding official geometry."
-    },
-    {
-      "acquireStatus": "success",
-      "acquiredAt": "2026-10-03T21:25:02.788399Z",
-      "authorityTier": "federal_government",
-      "dataClass": "temporal",
-      "emittedNamedCount": 0,
-      "emittedRecordCount": 0,
-      "emittedUnnamedCount": 0,
-      "geometryTypesAcquired": [],
-      "geometryTypesSurvived": [],
-      "id": "nws-forecast",
-      "licenseUrl": "https://www.weather.gov/documentation/services-web-api",
-      "name": "National Weather Service forecast and alerts",
-      "namedCount": 0,
-      "provider": "nws",
-      "recordCount": 4,
-      "unnamedCount": 0,
-      "url": "https://api.weather.gov/",
-      "visibleValue": "Shows a short-lived weather and alert context beside a walk without becoming durable geometry."
-    },
-    {
-      "acquireStatus": "success",
-      "acquiredAt": "2026-10-03T21:25:02.788399Z",
-      "dataClass": "temporal",
-      "emittedNamedCount": 0,
-      "emittedRecordCount": 0,
-      "emittedUnnamedCount": 0,
-      "geometryTypesAcquired": [],
-      "geometryTypesSurvived": [],
-      "id": "pittsburgh-civic",
-      "name": "Pittsburgh, Pennsylvania civic events",
-      "namedCount": 0,
-      "provider": "civic_rss",
-      "recordCount": 0,
-      "unnamedCount": 0,
-      "url": "configured civic provider",
-      "visibleValue": "Shows time-bounded public meetings or events separately from durable walk geometry."
     }
   ],
   "validation": {
     "errors": [],
     "metrics": {
-      "featureCount": 0
+      "featureCount": 578
     },
     "valid": true
   },
   "warnings": [
     {
-      "code": "source_unavailable",
-      "detail": "No raw cache available for pittsburgh-boundary",
-      "source": "pittsburgh-boundary"
+      "code": "boundary_clip_applied",
+      "detail": "Retained 1106 of 1403 features inside pittsburgh-boundary.",
+      "source": "osm-pittsburgh"
     },
     {
-      "code": "source_unavailable",
-      "detail": "No raw cache available for pittsburgh-parks",
-      "source": "pittsburgh-parks"
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10151497918 merged into osm:node:10151497917; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:10151497917",
+        "osm:node:10151497918"
+      ],
+      "source": "osm-pittsburgh"
     },
     {
-      "code": "source_unavailable",
-      "detail": "source_unavailable: osm-pittsburgh requires boundary source pittsburgh-boundary",
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1376916983 merged into osm:node:13030734301; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:13030734301",
+        "osm:node:1376916983"
+      ],
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:14127293428 merged into osm:node:13650920191; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:13650920191",
+        "osm:node:14127293428"
+      ],
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:502923932 merged into osm:node:12622317718; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:12622317718",
+        "osm:way:502923932"
+      ],
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:509223807 merged into osm:node:6421098985; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:node:6421098985",
+        "osm:way:509223807"
+      ],
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:833629681 merged into osm:way:54834750; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:way:54834750",
+        "osm:way:833629681"
+      ],
+      "source": "osm-pittsburgh"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:833629682 merged into osm:way:550018003; curated/authoritative record retained when available.",
+      "recordIds": [
+        "osm:way:550018003",
+        "osm:way:833629682"
+      ],
       "source": "osm-pittsburgh"
     }
   ]

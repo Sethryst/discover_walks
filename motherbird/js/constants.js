@@ -109,6 +109,10 @@
     dataFile: './data/pittsburgh-poi.json',
     boundarySource: { name: 'City of Pittsburgh Boundary', url: 'https://services1.arcgis.com/YZCmUqbcsUpOKfj7/arcgis/rest/services/City_Boundary/FeatureServer/0' }
   },
+  'el-paso': { name: 'El Paso', state: 'TX', center: { lat: 31.7619, lng: -106.4850 }, zoom: 11, dataFile: './regions/el-paso/pois.json' },
+  rochester: { name: 'Rochester', state: 'NY', center: { lat: 43.1566, lng: -77.6088 }, zoom: 11, dataFile: './regions/rochester/pois.json' },
+  buffalo: { name: 'Buffalo', state: 'NY', center: { lat: 42.8864, lng: -78.8784 }, zoom: 11, dataFile: './regions/buffalo/pois.json' },
+  cincinnati: { name: 'Cincinnati', state: 'OH', center: { lat: 39.1031, lng: -84.5120 }, zoom: 11, dataFile: './regions/cincinnati/pois.json' },
   keystone: {
     name: 'Keystone & Summit County',
     state: 'CO',

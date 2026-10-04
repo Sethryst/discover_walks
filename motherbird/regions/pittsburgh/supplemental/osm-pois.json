@@ -1,5 +1,7 @@
 {
+  "attribution": "© OpenStreetMap contributors",
   "generatedAt": "2026-10-04T00:35:00Z",
+  "license": "ODbL-1.0",
   "pois": [
     {
       "artifact_type": "pin",
@@ -30,6 +32,43 @@
           "retrievedAt": "2026-10-04T00:35:00Z",
           "url": "https://www.openstreetmap.org/node/10151497917"
         },
+        {
+          "attribution": "© OpenStreetMap contributors",
+          "elementId": "10151497918",
+          "id": "osm-pittsburgh",
+          "license": "ODbL-1.0",
+          "licenseUrl": "https://www.openstreetmap.org/copyright",
+          "name": "OpenStreetMap contributors",
+          "retrievedAt": "2026-10-04T00:35:00Z",
+          "url": "https://www.openstreetmap.org/node/10151497918"
+        }
+      ],
+      "sourceType": "osm_overpass",
+      "tags": [
+        "history",
+        "osm"
+      ],
+      "type": "monument"
+    },
+    {
+      "artifact_type": "pin",
+      "category": "history",
+      "fromOsm": true,
+      "id": "osm:node:10151497918",
+      "lat": 40.4449233,
+      "lng": -79.915313,
+      "name": "Pillars In Squirrel Hill",
+      "osmElementId": "10151497918",
+      "osmElementType": "node",
+      "osmTags": {
+        "historic": "monument"
+      },
+      "review": {
+        "dedupGroupId": null,
+        "flags": [],
+        "validationStatus": "valid"
+      },
+      "source": [
         {
           "attribution": "© OpenStreetMap contributors",
           "elementId": "10151497918",
@@ -3408,6 +3447,47 @@
       "artifact_type": "pin",
       "category": "coffee",
       "fromOsm": true,
+      "id": "osm:node:1376916983",
+      "lat": 40.4516411,
+      "lng": -79.9319951,
+      "name": "Starbucks",
+      "osmElementId": "1376916983",
+      "osmElementType": "node",
+      "osmTags": {
+        "amenity": "cafe"
+      },
+      "review": {
+        "dedupGroupId": "dedup:3bc3577cd89425e5",
+        "flags": [
+          "duplicate_candidate"
+        ],
+        "validationStatus": "valid"
+      },
+      "source": [
+        {
+          "attribution": "© OpenStreetMap contributors",
+          "elementId": "1376916983",
+          "id": "osm-pittsburgh",
+          "license": "ODbL-1.0",
+          "licenseUrl": "https://www.openstreetmap.org/copyright",
+          "name": "OpenStreetMap contributors",
+          "retrievedAt": "2026-10-04T00:35:00Z",
+          "url": "https://www.openstreetmap.org/node/1376916983"
+        }
+      ],
+      "sourceType": "osm_overpass",
+      "tags": [
+        "coffee",
+        "coffee_shop",
+        "osm"
+      ],
+      "type": "cafe",
+      "walkRelevanceScore": 0
+    },
+    {
+      "artifact_type": "pin",
+      "category": "coffee",
+      "fromOsm": true,
       "hours": "Mo,We,Th,Fr 07:00-18:00; Tu 07:00-20:00; Sa-Su 08:00-18:00",
       "id": "osm:node:13797315735",
       "lat": 40.417329,
@@ -3668,6 +3748,46 @@
           "name": "OpenStreetMap contributors",
           "retrievedAt": "2026-10-04T00:35:00Z",
           "url": "https://www.openstreetmap.org/node/14127271721"
+        }
+      ],
+      "sourceType": "osm_overpass",
+      "tags": [
+        "coffee",
+        "osm"
+      ],
+      "type": "cafe",
+      "walkRelevanceScore": 0
+    },
+    {
+      "artifact_type": "pin",
+      "category": "coffee",
+      "fromOsm": true,
+      "id": "osm:node:14127293428",
+      "lat": 40.4648062,
+      "lng": -79.936009,
+      "name": "The Soft Spot",
+      "osmElementId": "14127293428",
+      "osmElementType": "node",
+      "osmTags": {
+        "amenity": "cafe"
+      },
+      "review": {
+        "dedupGroupId": "dedup:ed0cd569dc4b139c",
+        "flags": [
+          "duplicate_candidate"
+        ],
+        "validationStatus": "valid"
+      },
+      "source": [
+        {
+          "attribution": "© OpenStreetMap contributors",
+          "elementId": "14127293428",
+          "id": "osm-pittsburgh",
+          "license": "ODbL-1.0",
+          "licenseUrl": "https://www.openstreetmap.org/copyright",
+          "name": "OpenStreetMap contributors",
+          "retrievedAt": "2026-10-04T00:35:00Z",
+          "url": "https://www.openstreetmap.org/node/14127293428"
         }
       ],
       "sourceType": "osm_overpass",
@@ -19980,6 +20100,45 @@
     },
     {
       "artifact_type": "pin",
+      "category": "community",
+      "fromOsm": true,
+      "id": "osm:way:502923932",
+      "lat": 40.456394,
+      "lng": -80.0066141,
+      "name": "Carnegie Library of Pittsburgh-Allegheny",
+      "osmElementId": "502923932",
+      "osmElementType": "way",
+      "osmTags": {
+        "access": "yes",
+        "amenity": "library",
+        "wheelchair": "yes"
+      },
+      "review": {
+        "dedupGroupId": null,
+        "flags": [],
+        "validationStatus": "valid"
+      },
+      "source": [
+        {
+          "attribution": "© OpenStreetMap contributors",
+          "elementId": "502923932",
+          "id": "osm-pittsburgh",
+          "license": "ODbL-1.0",
+          "licenseUrl": "https://www.openstreetmap.org/copyright",
+          "name": "OpenStreetMap contributors",
+          "retrievedAt": "2026-10-04T00:35:00Z",
+          "url": "https://www.openstreetmap.org/way/502923932"
+        }
+      ],
+      "sourceType": "osm_overpass",
+      "tags": [
+        "community",
+        "osm"
+      ],
+      "type": "library"
+    },
+    {
+      "artifact_type": "pin",
       "category": "park",
       "fromOsm": true,
       "id": "osm:way:509015111",
@@ -20014,6 +20173,63 @@
         "park"
       ],
       "type": "park"
+    },
+    {
+      "accessibility": {
+        "wheelchair": "yes"
+      },
+      "artifact_type": "pin",
+      "category": "coffee",
+      "fromOsm": true,
+      "hours": "Mo-Su 07:00-18:00",
+      "id": "osm:way:509223807",
+      "lat": 40.4518966,
+      "lng": -80.0176843,
+      "name": "COLOMBINO Coffee",
+      "osmElementId": "509223807",
+      "osmElementType": "way",
+      "osmTags": {
+        "amenity": "cafe",
+        "opening_hours": "Mo-Su 07:00-18:00",
+        "outdoor_seating": "yes",
+        "wheelchair": "yes"
+      },
+      "outdoorSeating": "yes",
+      "review": {
+        "dedupGroupId": "dedup:f189dfc4cd522d56",
+        "flags": [
+          "duplicate_candidate"
+        ],
+        "validationStatus": "valid"
+      },
+      "source": [
+        {
+          "attribution": "© OpenStreetMap contributors",
+          "elementId": "509223807",
+          "id": "osm-pittsburgh",
+          "license": "ODbL-1.0",
+          "licenseUrl": "https://www.openstreetmap.org/copyright",
+          "name": "OpenStreetMap contributors",
+          "retrievedAt": "2026-10-04T00:35:00Z",
+          "url": "https://www.openstreetmap.org/way/509223807"
+        }
+      ],
+      "sourceType": "osm_overpass",
+      "tags": [
+        "breakfast",
+        "coffee",
+        "coffee_shop",
+        "juice",
+        "osm",
+        "tea"
+      ],
+      "type": "cafe",
+      "walkRelevanceReasons": [
+        "outdoor_seating",
+        "accessibility_tagged",
+        "hours_published"
+      ],
+      "walkRelevanceScore": 6
     },
     {
       "artifact_type": "pin",
@@ -22349,6 +22565,92 @@
     },
     {
       "artifact_type": "pin",
+      "category": "history",
+      "fromOsm": true,
+      "historicalContext": {
+        "wikidataId": "Q1266663",
+        "wikipedia": "en:Duquesne Incline"
+      },
+      "id": "osm:way:833629681",
+      "lat": 40.439521,
+      "lng": -80.0178959,
+      "name": "Duquesne Incline",
+      "osmElementId": "833629681",
+      "osmElementType": "way",
+      "osmTags": {
+        "historic": "yes"
+      },
+      "review": {
+        "dedupGroupId": "dedup:73b1fdda45e9dea4",
+        "flags": [
+          "duplicate_candidate"
+        ],
+        "validationStatus": "valid"
+      },
+      "source": [
+        {
+          "attribution": "© OpenStreetMap contributors",
+          "elementId": "833629681",
+          "id": "osm-pittsburgh",
+          "license": "ODbL-1.0",
+          "licenseUrl": "https://www.openstreetmap.org/copyright",
+          "name": "OpenStreetMap contributors",
+          "retrievedAt": "2026-10-04T00:35:00Z",
+          "url": "https://www.openstreetmap.org/way/833629681"
+        }
+      ],
+      "sourceType": "osm_overpass",
+      "tags": [
+        "history",
+        "osm"
+      ],
+      "type": "yes"
+    },
+    {
+      "artifact_type": "pin",
+      "category": "history",
+      "fromOsm": true,
+      "historicalContext": {
+        "wikidataId": "Q1266663",
+        "wikipedia": "en:Duquesne Incline"
+      },
+      "id": "osm:way:833629682",
+      "lat": 40.4387744,
+      "lng": -80.0184455,
+      "name": "Duquesne Incline",
+      "osmElementId": "833629682",
+      "osmElementType": "way",
+      "osmTags": {
+        "historic": "yes"
+      },
+      "review": {
+        "dedupGroupId": "dedup:ab7278de5f8f2b2f",
+        "flags": [
+          "duplicate_candidate"
+        ],
+        "validationStatus": "valid"
+      },
+      "source": [
+        {
+          "attribution": "© OpenStreetMap contributors",
+          "elementId": "833629682",
+          "id": "osm-pittsburgh",
+          "license": "ODbL-1.0",
+          "licenseUrl": "https://www.openstreetmap.org/copyright",
+          "name": "OpenStreetMap contributors",
+          "retrievedAt": "2026-10-04T00:35:00Z",
+          "url": "https://www.openstreetmap.org/way/833629682"
+        }
+      ],
+      "sourceType": "osm_overpass",
+      "tags": [
+        "history",
+        "osm"
+      ],
+      "type": "yes"
+    },
+    {
+      "artifact_type": "pin",
       "category": "park",
       "fromOsm": true,
       "id": "osm:way:836624592",
@@ -22809,10 +23111,8 @@
       "type": "park"
     }
   ],
-  "producer": {
-    "name": "Gremlin Lab",
-    "version": "regional-expansion-2026-10-04"
-  },
   "regionId": "pittsburgh",
-  "schemaVersion": 1
+  "schemaVersion": 1,
+  "sourceConfigurationId": "osm-pittsburgh",
+  "sourceVintage": "2026-10-04T00:35:00Z"
 }
