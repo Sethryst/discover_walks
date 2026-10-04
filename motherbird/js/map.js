@@ -95,6 +95,12 @@ export function initMap() {
     state.plannerSelecting = null;
     event.preventDefault();
     event.stopImmediatePropagation();
+    // Marker-cluster plugins may queue their own popup after the native event;
+    // close any such UI after Leaflet finishes dispatching the gesture.
+    queueMicrotask(() => {
+      state.map?.closePopup?.();
+      state.map?.closeTooltip?.();
+    });
     window.dispatchEvent(new CustomEvent('planner-point-selected', { detail: { type: selected, point } }));
   }, { capture: true });
   // Viewport windowing: only build markers for what's on/near screen, recomputed
