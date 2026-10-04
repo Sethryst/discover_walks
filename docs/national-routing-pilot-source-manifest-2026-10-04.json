@@ -1,0 +1,15 @@
+{
+  "release": "osm-us-nova-dc-pilot-2026-10-04",
+  "status": "blocked",
+  "sourceType": "national_osm_pbf",
+  "provider": "Geofabrik",
+  "requestedUrl": "https://download.geofabrik.de/north-america/us-<immutable-release>.osm.pbf",
+  "localPath": ".gremlin-osm/sources/osm/us.osm.pbf",
+  "sha256": null,
+  "bytes": null,
+  "retrievedAt": null,
+  "blocker": "The full-US PBF is absent locally; the historic osm-us-2026-09-07 checksum must not be claimed as this pilot source until the bytes are reacquired and verified.",
+  "pilotBounds": [-77.54, 38.6, -76.91, 39.06],
+  "sharedByCells": true,
+  "derivedProducts": ["national-pedestrian-candidates", "va-topology-shard", "dc-topology-shard", "pilot-routing-cells", "pilot-map-artifacts"]
+}
