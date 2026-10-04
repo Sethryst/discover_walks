@@ -132,5 +132,5 @@ export function initPrimaryShell() {
   window.addEventListener('primary-panel-close-requested', () => panel.classList.add('hidden'));
   select('explore', { initial: true });
   const region = document.body.dataset.regionName || CITIES[state.activeCity]?.name || 'Fairfax County';
-  document.getElementById('mapSearchInput')?.setAttribute('placeholder', `Search ${region}`);
+  document.getElementById('mapSearchInput')?.setAttribute('placeholder', 'Search');
 }

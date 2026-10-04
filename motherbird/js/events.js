@@ -415,7 +415,7 @@ function bindWalkControls() {
 function bindSearch() {
   initRegionalNavigation();
   const input = el('mapSearchInput'); const results = el('mapSearchResults');
-  if (input) input.placeholder = 'Search this area — places, trails, or wildlife';
+  if (input) input.placeholder = 'Search';
   let viewportRegionLabel = '';
   window.addEventListener('viewport-region-changed', ({ detail }) => {
     viewportRegionLabel = detail?.label || '';

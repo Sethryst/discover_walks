@@ -23,7 +23,7 @@ function renderRegionalNavigation() {
   const label = region.name || id || 'Choose region';
   control.textContent = `${label} ▾`;
   control.setAttribute('aria-label', `Active area: ${label}. Change area`);
-  if (input && !input.value.trim()) input.placeholder = `Search ${label} — places, trails, or wildlife`;
+  if (input && !input.value.trim()) input.placeholder = 'Search';
   const links = catalog?.outlinks?.[id] || [];
   menu.innerHTML = `<strong>Explore in ${escapeHtml(label)}</strong>${links.length ? `<div class="regional-outlinks"><strong>Official pages <span aria-hidden="true">↗</span></strong>${links.map((link) => `<a href="${escapeHtml(link.href)}" target="_blank" rel="noopener">${escapeHtml(link.label)} <span aria-hidden="true">↗</span></a>`).join('')}</div>` : '<p class="regional-outlinks-empty">Official pages will appear here when verified.</p>'}`;
 }

@@ -128,7 +128,7 @@ export async function switchCity(nextCity, recenter = true, { source = 'user' } 
   const regionLabel = cityLabel(nextCity);
   const search = document.getElementById('mapSearchInput');
   if (search) {
-    search.placeholder = `Search ${regionLabel}`;
+    search.placeholder = 'Search';
     if (!search.value.trim() || /^Search /.test(search.value)) search.value = '';
   }
   const drawLabel = document.getElementById('drawRegionLabel');
