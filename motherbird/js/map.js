@@ -81,19 +81,22 @@ export function initMap() {
     if (showNationalPoiDetails(event)) return;
     window.dispatchEvent(new CustomEvent('map-context-requested', { detail: { lat: event.latlng.lat, lng: event.latlng.lng } }));
   });
-  // Some embedded browsers dispatch synthetic clicks on the map container
-  // without forwarding them through Leaflet's delegated handler. Preserve
-  // endpoint selection in that environment by handling the native click only
-  // while marker panes are muted.
+  // Capture endpoint gestures before Leaflet or any marker/cluster handler can
+  // see them. Leaflet dispatches marker clicks before the map click, so a
+  // bubbling handler cannot reliably keep POI popups, cluster expansion, map
+  // context menus, or other overlays from consuming the gesture.
   state.map.getContainer().addEventListener('click', (event) => {
     if (!state.plannerSelecting) return;
     const latlng = state.map.mouseEventToLatLng(event);
     const selected = state.plannerSelecting;
-    if (selected === 'Stop') state.plannerStops = [...(state.plannerStops || []), { lat: latlng.lat, lng: latlng.lng }];
-    else state[`planner${selected}`] = { lat: latlng.lat, lng: latlng.lng };
+    const point = { lat: latlng.lat, lng: latlng.lng };
+    if (selected === 'Stop') state.plannerStops = [...(state.plannerStops || []), point];
+    else state[`planner${selected}`] = point;
     state.plannerSelecting = null;
-    window.dispatchEvent(new CustomEvent('planner-point-selected', { detail: { type: selected, point: { lat: latlng.lat, lng: latlng.lng } } }));
-  }, true);
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    window.dispatchEvent(new CustomEvent('planner-point-selected', { detail: { type: selected, point } }));
+  }, { capture: true });
   // Viewport windowing: only build markers for what's on/near screen, recomputed
   // after panning/zooming settles. Stands in for server-side bbox filtering
   // until the backend described in the recommendations exists.
