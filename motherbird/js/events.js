@@ -352,6 +352,7 @@ function bindWalkControls() {
   }));
   const beginPointSelection = (type) => {
     state.plannerSelecting = type;
+    state.map?.closePopup?.();
     setPlanningMode(true);
     el('startPanel')?.classList.add('hidden');
     el('radialRouteOptionsButton')?.setAttribute('aria-expanded', 'false');

@@ -59,6 +59,12 @@ export function initMap() {
     const color = { news: '#8b3a4a', recreation: '#2d7259', cuisine: '#c65d0e' }[light];
     return L.divIcon({ className: 'place-cluster', html: `<span style="--cluster-color:${color}">${cluster.getChildCount()}</span>`, iconSize: [36,36] });
   } }) : L.layerGroup()).addTo(state.map);
+  // Endpoint selection owns map clicks. POI markers and clusters must not open
+  // popups, pan, or consume the user's endpoint gesture while selecting.
+  state.poiLayer.on('click clusterclick', (event) => {
+    if (!state.plannerSelecting) return;
+    if (event.originalEvent) L.DomEvent.stopPropagation(event.originalEvent);
+  });
   state.historyLayer = state.poiLayer;
   state.trailLayer = L.featureGroup().addTo(state.map);
   state.map.on('click', (event) => {
