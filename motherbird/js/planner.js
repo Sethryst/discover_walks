@@ -1,7 +1,7 @@
-import { state } from './state.js';
+import { state, setPlannerSelecting } from './state.js';
 import { CITIES } from './constants.js';
 import { poiTags } from './poi.js';
-import { routeOnFoot } from './routing.js';
+import { routeOnFoot } from './routing.js?v=20261004-binary-artifacts-5';
 import { escapeHtml } from './utils.js';
 import { toast } from './ui.js';
 import { splitDisconnectedPaths } from './routes.js';
@@ -53,7 +53,7 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
   const center = plannerOrigin();
   const needsMapDestination = ['round-trip', 'point-to-point'].includes(routeMode);
   if (needsMapDestination && !state.plannerEnd) {
-    state.plannerSelecting = 'End';
+    setPlannerSelecting('End');
     toast('Tap a destination on the map to make this a point-to-point walk.');
     return null;
   }
@@ -66,12 +66,27 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
     toast('No candidate places nearby to sketch a walk. Try panning the map or picking an area with places.');
     return null;
   }
-  const points = ['round-trip', 'auto-round-trip'].includes(routeMode) ? [center, ...stops, center] : [center, ...stops];
+  // Point-to-point mode must honor the explicit Start endpoint selected by
+  // the user. Falling back to the map center is appropriate only when no
+  // start was chosen (for legacy/generated plans).
+  const routeOrigin = routeMode === 'point-to-point' ? (state.plannerStart || center) : center;
+  const points = ['round-trip', 'auto-round-trip'].includes(routeMode) ? [center, ...stops, center] : [routeOrigin, ...stops];
   const routed = await routeOnFoot(points, { city: state.activeCity, profile: 'ordinary_walking_beta' }).catch(() => ({ ok: false, status: 'GRAPH_VERSION_UNAVAILABLE' }));
+  if (new URLSearchParams(globalThis.location?.search || '').has('diagnose')) {
+    globalThis.__lastRouteResult = routed;
+    document.body.dataset.routeStatus = routed.ok ? 'ROUTE_FOUND' : (routed.status || 'unknown');
+    document.body.dataset.routeFailure = routed.failure?.reason || routed.failure?.message || '';
+  }
+  if (!routed.ok && new URLSearchParams(globalThis.location?.search || '').has('diagnose')) {
+    toast(`Route ${routed.status}: ${routed.failure?.reason || routed.failure?.message || 'no diagnostic available'}`);
+  }
   if (!routed.ok && routeMode === 'point-to-point') {
     state.plannerEnd = null;
-    state.plannerSelecting = 'End';
-    toast('That destination could not be connected. Tap the map again to choose another point.');
+    setPlannerSelecting('End');
+    const detail = routed.failure?.reason || routed.failure?.message || routed.status;
+    toast(new URLSearchParams(globalThis.location?.search || '').has('diagnose')
+      ? `Route ${routed.status}: ${detail}`
+      : 'That destination could not be connected. Tap the map again to choose another point.');
   }
   const plan = {
     id: `concept-${Date.now()}`, title: title || `${CITIES[state.activeCity]?.name || 'Local'} ${minutes}-minute sketch`,

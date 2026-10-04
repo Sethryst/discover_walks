@@ -1,4 +1,4 @@
-import { state } from './state.js';
+import { state, setPlannerSelecting } from './state.js';
 import { el, escapeHtml } from './utils.js';
 import { displayPoiName } from './poi.js';
 import { walkerDetails } from './place-details.js';
@@ -39,9 +39,9 @@ export function initExplore() {
   document.querySelectorAll('input[name="routeMode"]').forEach((input) => input.addEventListener('change', () => {
     if (input.checked && ['round-trip', 'point-to-point'].includes(input.value)) {
       state.plannerEnd = null;
-      state.plannerSelecting = 'End';
+      setPlannerSelecting('End');
     } else if (input.checked) {
-      state.plannerSelecting = null;
+      setPlannerSelecting(null);
       state.plannerEnd = null;
     }
     updatePlanPreview();

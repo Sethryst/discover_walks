@@ -1,17 +1,18 @@
 import { state } from './state.js';
-import { WalkingCellRegistry } from './walking-cell-registry.js';
+import { WalkingCellRegistry } from './walking-cell-registry.js?v=20261004-binary-artifacts-5';
 
 let registryPromise = null;
 let activation = null;
 
 export function walkingCellManifestUrl() {
-  return globalThis.MOTHER_BIRD_WALKING_CELLS?.manifestUrl
-    || globalThis.document?.querySelector?.('meta[name="motherbird-walking-cell-registry"]')?.content
+  return globalThis.document?.querySelector?.('meta[name="motherbird-walking-cell-registry"]')?.content
+    || globalThis.MOTHER_BIRD_WALKING_CELLS?.manifestUrl
     || null;
 }
 
 export async function activateWalkingCellAt(point, { manifestUrl = walkingCellManifestUrl() } = {}) {
-  if (!manifestUrl || !Number.isFinite(point?.lat) || !Number.isFinite(point?.lng)) return null;
+  if (!manifestUrl) return Object.freeze({ id: null, release: null, availability: 'unavailable', reason: 'NO_WALKING_CELL_MANIFEST' });
+  if (!Number.isFinite(point?.lat) || !Number.isFinite(point?.lng)) return Object.freeze({ id: null, release: null, availability: 'unavailable', reason: 'INVALID_WALKING_CELL_COORDINATE' });
   registryPromise ||= WalkingCellRegistry.load(manifestUrl).catch((error) => { registryPromise = null; throw error; });
   const registry = await registryPromise;
   const cell = registry.find(point.lat, point.lng);

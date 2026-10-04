@@ -47,7 +47,7 @@ function normalizeCell(cell, baseUrl) {
     throw new Error(`Walking-cell ${cell.id} has invalid bounds.`);
   }
   const artifacts = Object.fromEntries(Object.entries(cell.artifacts || {}).map(([kind, artifact]) => {
-    if (!['map', 'poi', 'graph', 'manifest', 'graphManifest', 'nodes', 'edges', 'adjacency', 'edge_geometry', 'edge_spatial_index', 'nodes.bin', 'edges.bin', 'adjacency.bin', 'edge_geometry.bin', 'edge_spatial_index.bin'].includes(kind)) throw new Error(`Walking-cell ${cell.id} has an unsupported artifact kind.`);
+    if (!['map', 'poi', 'graph', 'manifest', 'graphManifest', 'nodes', 'edges', 'adjacency', 'edge_geometry', 'edge_spatial_index', 'edge_metadata', 'edge_metadata.json.gz', 'runtime-graph.json', 'edge_attributes.jsonl.gz', 'nodes.bin', 'edges.bin', 'adjacency.bin', 'edge_geometry.bin', 'edge_spatial_index.bin'].includes(kind)) throw new Error(`Walking-cell ${cell.id} has an unsupported artifact kind.`);
     const path = artifact?.url || artifact?.path;
     if (!path) throw new Error(`Walking-cell ${cell.id} ${kind} artifact has no URL.`);
     const byteRange = normalizeRange(artifact.range || artifact.byteRange);

@@ -1,4 +1,4 @@
-import { state } from './state.js';
+import { state, setPlannerSelecting } from './state.js';
 import { CITIES } from './constants.js';
 import { city } from './poi.js';
 import { debounce } from './utils.js';
@@ -16,8 +16,8 @@ import {
   registerNationalPoiIcons
 } from './national-poi-map.js';
 import { enabledNationalOsmLayerIds, hasEnabledNationalOsmLayers } from './national-osm-layers.js';
-import { activateWalkingCellAt, walkingCellManifestUrl } from './walking-cell-runtime.js';
-import { WalkingCellRegistry } from './walking-cell-registry.js';
+import { activateWalkingCellAt, walkingCellManifestUrl } from './walking-cell-runtime.js?v=20261004-binary-artifacts-5';
+import { WalkingCellRegistry } from './walking-cell-registry.js?v=20261004-binary-artifacts-5';
 import { OpfsRangeSource } from './opfs-range-source.js';
 
 const OSM_ATTRIBUTION = '&copy; OpenStreetMap contributors';
@@ -63,17 +63,36 @@ export function initMap() {
   // popups, pan, or consume the user's endpoint gesture while selecting.
   state.poiLayer.on('click clusterclick', (event) => {
     if (!state.plannerSelecting) return;
-    if (event.originalEvent) L.DomEvent.stopPropagation(event.originalEvent);
+    // Leaflet's layer propagation is separate from DOM bubbling. Mark both
+    // paths stopped so marker and cluster activation cannot become an
+    // endpoint gesture while the planner owns the map.
+    event._stopped = true;
+    if (event.originalEvent) {
+      event.originalEvent._stopped = true;
+      L.DomEvent.stop(event.originalEvent);
+    }
+    state.map.closePopup();
   });
   state.historyLayer = state.poiLayer;
   state.trailLayer = L.featureGroup().addTo(state.map);
   state.map.on('click', (event) => {
     if (state.plannerSelecting) {
+      const target = event.originalEvent?.target;
+      const visiblePoiLayers = state.poiLayer?._featureGroup?.getLayers?.() || state.poiLayer?.getLayers?.() || [];
+      const clickedPoiLayer = visiblePoiLayers.some((layer) => {
+        const latlng = layer.getLatLng?.();
+        if (!latlng || !event.containerPoint) return false;
+        return state.map.latLngToContainerPoint(latlng).distanceTo(event.containerPoint) <= 52;
+      });
+      if (target?.closest?.('.leaflet-marker-icon, .place-cluster, .leaflet-popup') || clickedPoiLayer) {
+        state.map.closePopup();
+        return;
+      }
       const point = { lat: event.latlng.lat, lng: event.latlng.lng };
       if (state.plannerSelecting === 'Stop') state.plannerStops = [...(state.plannerStops || []), point];
       else state[`planner${state.plannerSelecting}`] = point;
       const selected = state.plannerSelecting;
-      state.plannerSelecting = null;
+      setPlannerSelecting(null);
       window.dispatchEvent(new CustomEvent('planner-point-selected', { detail: { type: selected, point } }));
       return;
     }
@@ -92,14 +111,14 @@ export function initMap() {
     const point = { lat: latlng.lat, lng: latlng.lng };
     if (selected === 'Stop') state.plannerStops = [...(state.plannerStops || []), point];
     else state[`planner${selected}`] = point;
-    state.plannerSelecting = null;
+    setPlannerSelecting(null);
     event.preventDefault();
     event.stopImmediatePropagation();
     // Marker-cluster plugins may queue their own popup after the native event;
     // close any such UI after Leaflet finishes dispatching the gesture.
     queueMicrotask(() => {
       state.map?.closePopup?.();
-      state.map?.closeTooltip?.();
+      if (state.map?._tooltip) state.map.closeTooltip();
     });
     window.dispatchEvent(new CustomEvent('planner-point-selected', { detail: { type: selected, point } }));
   }, { capture: true });
@@ -110,7 +129,11 @@ export function initMap() {
     trackActiveViewport();
     const center = state.activeViewportBounds?.center;
     const nearest = center && nearestMappedCity(center);
-    if (nearest && nearest.id !== state.activeCity && nearest.distance < 45000) {
+    // Endpoint selection must remain in the active routing region. A click can
+    // move the viewport close to a neighboring city, but changing the active
+    // city here would replace the registry while the route points are being
+    // collected and make the worker request the wrong graph.
+    if (!state.plannerSelecting && !state.planningMode && nearest && nearest.id !== state.activeCity && nearest.distance < 45000) {
       void import('./city.js').then(({ switchCity }) => switchCity(nearest.id, false, { source: 'map' }));
       return;
     }
@@ -133,7 +156,7 @@ export function initMap() {
     requestAnimationFrame(refreshMapSize);
     window.setTimeout(refreshMapSize, 150);
     if (state.map.getZoom() >= NEIGHBORHOOD_ZOOM) void activateNationalPoiOverlay();
-  });
+  }, { capture: true });
 
   window.addEventListener('resize', debounce(refreshMapSize, 120));
   document.addEventListener('visibilitychange', () => {

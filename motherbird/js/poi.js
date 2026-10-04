@@ -150,7 +150,17 @@ export function renderCityPois() {
       const tags = poiTags(poi);
       const visual = markerVisual({ poi, tags });
       const icon = L.divIcon({ className: '', html: markerPinHtml(visual), iconSize: [27, 27], iconAnchor: [13, 13] });
-      const marker = L.marker([poi.lat, poi.lng], { icon, title: displayPoiName(poi), interactive: !state.planningMode, place: poi }).bindPopup(poiPopup(poi));
+      const marker = L.marker([poi.lat, poi.lng], { icon, title: displayPoiName(poi), interactive: !state.planningMode, place: poi });
+      marker.on('click', (event) => {
+        if (!state.plannerSelecting) return;
+        event._stopped = true;
+        if (event.originalEvent) {
+          event.originalEvent._stopped = true;
+          L.DomEvent.stop(event.originalEvent);
+        }
+        state.map?.closePopup();
+      });
+      marker.bindPopup(poiPopup(poi));
       marker.on('popupopen', (event) => event.popup.getElement()?.querySelector('[data-save-poi]')?.addEventListener('click', () => {
         window.dispatchEvent(new CustomEvent('personal-place-create-requested', { detail: { sourcePoi: poi, location: { lat: poi.lat, lng: poi.lng }, name: displayPoiName(poi) } }));
       }, { once: true }));

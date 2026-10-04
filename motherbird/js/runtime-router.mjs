@@ -10,7 +10,7 @@ export function routeRuntimeGraph(runtime, request, { maxSnapMeters = 150 } = {}
   const profile = request.profile || 'ordinary_walking_beta';
   const profileBit = PROFILE_BITS[profile];
   if (!profileBit) return failure('ACCESS_POLICY_BLOCKED', runtime, { profile });
-  if (!runtime?.nodes?.length || !runtime?.edges?.length || !runtime.spatial_index) {
+  if (!runtime?.nodes?.length || !(runtime?.edges?.count ?? runtime?.edges?.length) || !runtime.spatial_index) {
     return failure('GRAPH_VERSION_UNAVAILABLE', runtime, { profile });
   }
   const origin = point(request.origin);
@@ -36,33 +36,47 @@ export function routeRuntimeGraph(runtime, request, { maxSnapMeters = 150 } = {}
   }
   if (start.edge_index === end.edge_index) return sameEdgeRoute(runtime, start, end, profile);
 
-  const adjacency = buildAdjacency(runtime, profileBit);
+  // Binary cells already carry adjacency. Rebuilding a second array of
+  // 1.5M node buckets here can exhaust a browser worker before routing starts;
+  // filter access policy while traversing the decoded adjacency instead.
+  const adjacency = runtime.adjacency || buildAdjacency(runtime, profileBit);
   const distance = new Map();
   const previous = new Map();
   const queue = new MinHeap();
+  const maxVisitedNodes = Number.isFinite(Number(request.maxVisitedNodes)) ? Number(request.maxVisitedNodes) : Infinity;
+  let visitedNodes = 0;
   for (const seed of endpointCosts(runtime, start)) {
     distance.set(seed.node_index, seed.cost_m);
     previous.set(seed.node_index, { start_seed: seed });
-    queue.push({ node_index: seed.node_index, cost_m: seed.cost_m });
+    queue.push({ node_index: seed.node_index, cost_m: seed.cost_m, priority_m: seed.cost_m + heuristicMeters(runtime, seed.node_index, destination) });
   }
   const goals = new Map(endpointCosts(runtime, end).map((goal) => [goal.node_index, goal]));
   let bestGoal = null;
   while (queue.size) {
     const current = queue.pop();
     if (current.cost_m !== distance.get(current.node_index)) continue;
+    visitedNodes += 1;
+    if (visitedNodes > maxVisitedNodes) return failure('ROUTING_SEARCH_LIMIT', runtime, { profile, visited_nodes: visitedNodes, max_visited_nodes: maxVisitedNodes });
     const goal = goals.get(current.node_index);
     if (goal && (!bestGoal || current.cost_m + goal.cost_m < bestGoal.cost_m)) bestGoal = { ...goal, cost_m: current.cost_m + goal.cost_m };
     if (bestGoal && current.cost_m >= bestGoal.cost_m) break;
-    for (const step of adjacency[current.node_index] || []) {
-      const candidate = current.cost_m + runtime.edges[step.edge_index][4] / 100;
-      if (candidate >= (distance.get(step.node_index) ?? Infinity)) continue;
-      distance.set(step.node_index, candidate);
-      previous.set(step.node_index, { node_index: current.node_index, edge_index: step.edge_index });
-      queue.push({ node_index: step.node_index, cost_m: candidate });
+    const relax = (edgeIndex, nodeIndex) => {
+      if (!(edgeValue(runtime, edgeIndex, 6) & profileBit)) return;
+      const candidate = current.cost_m + edgeValue(runtime, edgeIndex, 4) / 100;
+      if (candidate >= (distance.get(nodeIndex) ?? Infinity)) return;
+      distance.set(nodeIndex, candidate);
+      previous.set(nodeIndex, { node_index: current.node_index, edge_index: edgeIndex });
+      queue.push({ node_index: nodeIndex, cost_m: candidate, priority_m: candidate + heuristicMeters(runtime, nodeIndex, destination) });
+    };
+    if (adjacency.offsets) {
+      const begin = adjacency.offsets[current.node_index]; const end = adjacency.offsets[current.node_index + 1];
+      for (let neighbor = begin; neighbor < end; neighbor += 1) relax(adjacency.edgeIndexes[neighbor], adjacency.nodeIndexes[neighbor]);
+    } else {
+      for (const step of adjacency[current.node_index] || []) relax(step.edge_index, step.node_index);
     }
   }
   if (!bestGoal) return failure('NO_ROUTE_IN_COMPONENT', runtime, {
-    profile, origin_edge_id: runtime.edges[start.edge_index][0], destination_edge_id: runtime.edges[end.edge_index][0]
+    profile, origin_edge_id: edgeId(runtime, start.edge_index), destination_edge_id: edgeId(runtime, end.edge_index)
   });
 
   const steps = [];
@@ -83,22 +97,22 @@ export function routeRuntimeGraph(runtime, request, { maxSnapMeters = 150 } = {}
 
 function sameEdgeRoute(runtime, start, end, profile) {
   const coordinates = betweenSnaps(edgeCoordinates(runtime, start.edge_index), start, end);
-  const distance = Math.abs(start.fraction - end.fraction) * runtime.edges[start.edge_index][3] / 100;
+  const distance = Math.abs(start.fraction - end.fraction) * edgeValue(runtime, start.edge_index, 3) / 100;
   return routeResponse(runtime, profile, coordinates, [start.edge_index], distance, start, end);
 }
 
 function routeResponse(runtime, profile, coordinates, edgeIndexes, distanceMeters, start, end) {
-  const confidences = edgeIndexes.map((index) => runtime.edges[index][7] / 100);
-  const warnings = unique(edgeIndexes.filter((index) => runtime.edges[index][11]).map(() => 'Includes pedestrian geometry whose public access is inferred, not independently verified.'));
+  const confidences = edgeIndexes.map((index) => edgeValue(runtime, index, 7) / 100);
+  const warnings = unique(edgeIndexes.filter((index) => edgeValue(runtime, index, 11)).map(() => 'Includes pedestrian geometry whose public access is inferred, not independently verified.'));
   return {
     ok: true,
     status: 'ROUTE_FOUND',
     profile,
     geometry: { type: 'LineString', coordinates },
-    edge_ids: edgeIndexes.map((index) => runtime.edges[index][0]),
-    edge_types: edgeIndexes.map((index) => runtime.edge_types[runtime.edges[index][5]] || 'unknown'),
-    crossing_edge_ids: edgeIndexes.filter((index) => runtime.edge_types[runtime.edges[index][5]] === 'crossing').map((index) => runtime.edges[index][0]),
-    source_provenance_ids: unique(edgeIndexes.map((index) => runtime.sources[runtime.edges[index][8]]).filter(Boolean)),
+    edge_ids: edgeIndexes.map((index) => edgeId(runtime, index)),
+    edge_types: edgeIndexes.map((index) => runtime.edge_types[edgeValue(runtime, index, 5)] || 'unknown'),
+    crossing_edge_ids: edgeIndexes.filter((index) => runtime.edge_types[edgeValue(runtime, index, 5)] === 'crossing').map((index) => edgeId(runtime, index)),
+    source_provenance_ids: unique(edgeIndexes.map((index) => runtime.sources?.[edgeValue(runtime, index, 8)]).filter(Boolean)),
     distance_m: round(distanceMeters),
     estimated_duration_s: Math.round(distanceMeters / WALKING_METERS_PER_SECOND),
     instructions: buildInstructions(coordinates, distanceMeters, edgeIndexes, runtime),
@@ -127,8 +141,8 @@ function buildInstructions(coordinates, distanceMeters, edgeIndexes, runtime) {
     const turn = normalizeBearingDelta(bearing(previous, current), bearing(current, next));
     if (sinceLast < 12 || Math.abs(turn) < 35) continue;
     const direction = Math.abs(turn) >= 135 ? 'Make a U-turn' : turn > 0 ? 'Turn right' : 'Turn left';
-    const namedEdge = runtime.edges[edgeIndexes[Math.min(index - 1, edgeIndexes.length - 1)]];
-    const edgeName = runtime.source_names?.[namedEdge?.[8]];
+    const namedEdgeIndex = edgeIndexes[Math.min(index - 1, edgeIndexes.length - 1)];
+    const edgeName = runtime.source_names?.[edgeValue(runtime, namedEdgeIndex, 8)];
     const text = edgeName ? `${direction} onto ${edgeName}` : direction;
     instructions.push({ type: direction.includes('U-turn') ? 'uturn' : turn > 0 ? 'right' : 'left', text, street: edgeName || null, distance_m: round(sinceLast), location: current });
     sinceLast = 0;
@@ -159,8 +173,7 @@ function nearestEdge(runtime, coordinate, profileBit, maxSnapMeters) {
   }
   let best = null;
   for (const edgeIndex of candidates) {
-    const edge = runtime.edges[edgeIndex];
-    if (profileBit !== null && !(edge[6] & profileBit)) continue;
+    if (profileBit !== null && !(edgeValue(runtime, edgeIndex, 6) & profileBit)) continue;
     const projected = projectOnLine(coordinate, edgeCoordinates(runtime, edgeIndex));
     if ((!best || projected.distance_m < best.distance_m) && projected.distance_m <= maxSnapMeters) best = { ...projected, edge_index: edgeIndex };
   }
@@ -186,8 +199,30 @@ function projectOnLine(pointValue, coordinates) {
 }
 
 function endpointCosts(runtime, snap) {
-  const edge = runtime.edges[snap.edge_index]; const length = edge[3] / 100;
-  return [{ node_index: edge[1], cost_m: length * snap.fraction }, { node_index: edge[2], cost_m: length * (1 - snap.fraction) }];
+  const length = edgeValue(runtime, snap.edge_index, 3) / 100;
+  return [{ node_index: edgeValue(runtime, snap.edge_index, 1), cost_m: length * snap.fraction }, { node_index: edgeValue(runtime, snap.edge_index, 2), cost_m: length * (1 - snap.fraction) }];
+}
+
+function edgeCoordinates(runtime, edgeIndex) {
+  const offset = edgeValue(runtime, edgeIndex, 9); const count = edgeValue(runtime, edgeIndex, 10); const result = [];
+  for (let index = offset * 2; index < (offset + count) * 2; index += 2) result.push([runtime.geometry[index] / 1e7, runtime.geometry[index + 1] / 1e7]);
+  return result;
+}
+
+function orientedEdgeCoordinates(runtime, edgeIndex, fromNode) {
+  const coordinates = edgeCoordinates(runtime, edgeIndex);
+  return edgeValue(runtime, edgeIndex, 1) === fromNode ? coordinates : coordinates.reverse();
+}
+
+function partialToEndpoint(runtime, snap, nodeIndex) {
+  const coords = edgeCoordinates(runtime, snap.edge_index);
+  return nodeIndex === edgeValue(runtime, snap.edge_index, 1)
+    ? [snap.coordinate, ...coords.slice(0, snap.segment_index + 1).reverse()]
+    : [snap.coordinate, ...coords.slice(snap.segment_index + 1)];
+}
+
+function partialFromEndpoint(runtime, snap, nodeIndex) {
+  return partialToEndpoint(runtime, snap, nodeIndex).reverse();
 }
 
 function buildAdjacency(runtime, bit) {
@@ -198,28 +233,6 @@ function buildAdjacency(runtime, bit) {
     adjacency[edge[2]].push({ node_index: edge[1], edge_index: edgeIndex });
   });
   return adjacency;
-}
-
-function edgeCoordinates(runtime, edgeIndex) {
-  const edge = runtime.edges[edgeIndex]; const result = [];
-  for (let index = edge[9] * 2; index < (edge[9] + edge[10]) * 2; index += 2) result.push([runtime.geometry[index] / 1e7, runtime.geometry[index + 1] / 1e7]);
-  return result;
-}
-
-function orientedEdgeCoordinates(runtime, edgeIndex, fromNode) {
-  const edge = runtime.edges[edgeIndex]; const coordinates = edgeCoordinates(runtime, edgeIndex);
-  return edge[1] === fromNode ? coordinates : coordinates.reverse();
-}
-
-function partialToEndpoint(runtime, snap, nodeIndex) {
-  const edge = runtime.edges[snap.edge_index]; const coords = edgeCoordinates(runtime, snap.edge_index);
-  return nodeIndex === edge[1]
-    ? [snap.coordinate, ...coords.slice(0, snap.segment_index + 1).reverse()]
-    : [snap.coordinate, ...coords.slice(snap.segment_index + 1)];
-}
-
-function partialFromEndpoint(runtime, snap, nodeIndex) {
-  return partialToEndpoint(runtime, snap, nodeIndex).reverse();
 }
 
 function betweenSnaps(coordinates, start, end) {
@@ -252,20 +265,31 @@ function haversine(left, right) {
 }
 function unique(values) { return [...new Set(values)]; }
 function round(value) { return Math.round(value * 1000) / 1000; }
+function edgeValue(runtime, index, field) { return runtime.edges.data ? runtime.edges.data[index * 12 + field] : runtime.edges[index][field]; }
+function edgeId(runtime, index) { return runtime.edges.ids ? (runtime.edges.ids[index] || `edge:${index}`) : runtime.edges[index][0]; }
+function heuristicMeters(runtime, nodeIndex, destination) {
+  const nodes = runtime.nodes;
+  let lat = null; let lon = null;
+  if (nodes?.latE7 && nodes?.lonE7) { lat = nodes.latE7[nodeIndex] / 1e7; lon = nodes.lonE7[nodeIndex] / 1e7; }
+  else if (Array.isArray(nodes?.[nodeIndex])) { lat = nodes[nodeIndex][1] / 1e7; lon = nodes[nodeIndex][2] / 1e7; }
+  if (!Number.isFinite(lat) || !Number.isFinite(lon)) return 0;
+  const dLat = (destination.lat - lat) * 111320; const dLon = (destination.lng - lon) * 111320 * Math.cos(destination.lat * Math.PI / 180);
+  return Math.hypot(dLat, dLon);
+}
 
 class MinHeap {
   constructor() { this.values = []; }
   get size() { return this.values.length; }
   push(value) {
     this.values.push(value); let index = this.values.length - 1;
-    while (index > 0) { const parent = Math.floor((index - 1) / 2); if (this.values[parent].cost_m <= value.cost_m) break; this.values[index] = this.values[parent]; index = parent; }
+    while (index > 0) { const parent = Math.floor((index - 1) / 2); if ((this.values[parent].priority_m ?? this.values[parent].cost_m) <= (value.priority_m ?? value.cost_m)) break; this.values[index] = this.values[parent]; index = parent; }
     this.values[index] = value;
   }
   pop() {
     const root = this.values[0]; const tail = this.values.pop();
     if (this.values.length && tail) {
       let index = 0;
-      while (true) { const left = index * 2 + 1; const right = left + 1; if (left >= this.values.length) break; const child = right < this.values.length && this.values[right].cost_m < this.values[left].cost_m ? right : left; if (this.values[child].cost_m >= tail.cost_m) break; this.values[index] = this.values[child]; index = child; }
+      while (true) { const left = index * 2 + 1; const right = left + 1; if (left >= this.values.length) break; const child = right < this.values.length && (this.values[right].priority_m ?? this.values[right].cost_m) < (this.values[left].priority_m ?? this.values[left].cost_m) ? right : left; if ((this.values[child].priority_m ?? this.values[child].cost_m) >= (tail.priority_m ?? tail.cost_m)) break; this.values[index] = this.values[child]; index = child; }
       this.values[index] = tail;
     }
     return root;

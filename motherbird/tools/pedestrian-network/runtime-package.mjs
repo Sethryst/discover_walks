@@ -113,6 +113,7 @@ export async function writeRuntimePackage(outputDir, runtime, auditEdges = []) {
     edge_types: runtime.edge_types,
     node_count: runtime.nodes.length,
     edge_count: runtime.edges.length,
+    pilot_binary: true,
     artifacts: Object.fromEntries(Object.entries(files).map(([name, contents]) => [name, { bytes: contents.length, sha256: createHash('sha256').update(contents).digest('hex') }]))
   };
   await atomicWrite(path.join(outputDir, 'manifest.json'), Buffer.from(`${JSON.stringify(manifest, null, 2)}\n`));

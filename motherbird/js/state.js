@@ -114,3 +114,17 @@ export const state = {
   // extra maps
   walkDetailMap: null
 };
+
+// POI and cluster layers are deliberately detached while an endpoint gesture
+// is armed. Leaflet's synthetic layer propagation can otherwise turn a POI
+// click into a map click even after DOM propagation has been stopped.
+export function setPlannerSelecting(value) {
+  state.plannerSelecting = value;
+  const layer = state.poiLayer;
+  if (!layer || !state.map) return;
+  if (value) {
+    if (state.map.hasLayer(layer)) state.map.removeLayer(layer);
+  } else if (!state.map.hasLayer(layer)) {
+    layer.addTo(state.map);
+  }
+}

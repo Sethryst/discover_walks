@@ -1,9 +1,10 @@
-import { activateWalkingCellAt } from './walking-cell-runtime.js';
+import { activateWalkingCellAt } from './walking-cell-runtime.js?v=20261004-binary-artifacts-5';
 
 let worker = null;
 let sequence = 0;
 const pending = new Map();
 let activeWalkingCell = null;
+let workerReady = false;
 
 if (typeof window !== 'undefined') window.addEventListener('walking-cell-ready', ({ detail }) => { activeWalkingCell = detail; });
 
@@ -13,6 +14,7 @@ export const ROUTE_FAILURE_MESSAGES = {
   DESTINATION_DISCONNECTED: 'The destination is on a disconnected piece of the pedestrian network.',
   NO_ROUTE_IN_COMPONENT: 'Both points are near pedestrian geometry, but no connected route joins them.',
   ROUTING_TIMEOUT: 'Offline routing timed out while loading or searching the cell.',
+  ROUTING_SEARCH_LIMIT: 'The installed routing shard is too large for a safe browser search.',
   ROUTING_WORKER_ERROR: 'The offline routing worker stopped unexpectedly.',
   GRAPH_ARTIFACT_MISMATCH: 'The installed routing artifact failed its integrity check.',
   ACCESS_POLICY_BLOCKED: 'The installed geometry does not meet the selected access policy.',
@@ -36,7 +38,7 @@ export async function routeOnFoot(points, { city, profile = 'ordinary_walking_be
     }
     catch (error) { return failure('GRAPH_VERSION_UNAVAILABLE', error.message); }
     if (!activeWalkingCell?.id || activeWalkingCell.availability !== 'routing_available') return failure('GRAPH_VERSION_UNAVAILABLE', activeWalkingCell?.reason);
-    const request = (cell, origin = points[index], destination = points[index + 1]) => requestRoute({ city, profile, origin, destination, maxSnapMeters: 250, avoid: { stairs: false, unverified_edges: false }, cell, cellId: cell?.id, cellRelease: cell?.release });
+    const request = (cell, origin = points[index], destination = points[index + 1]) => requestRoute({ city, profile, origin, destination, maxSnapMeters: 250, maxVisitedNodes: 100000, avoid: { stairs: false, unverified_edges: false }, cell, cellId: cell?.id, cellRelease: cell?.release });
     let result = await request(activeWalkingCell);
     const neighborIds = new Set(activeWalkingCell.routingNeighbors || []);
     if (result.ok) legs.push(result);
@@ -128,18 +130,19 @@ function mergeInstructions(legs) {
 function requestRoute(payload) {
   if (typeof Worker === 'undefined') return Promise.resolve(failure('GRAPH_VERSION_UNAVAILABLE'));
   if (!worker) {
-    worker = new Worker('./js/offline-router-worker.js?v=20260927-cell-stitch-v10', { type: 'module' });
+    worker = new Worker('./js/offline-router-worker.js?v=20261004-hf-pilot-adaptive-runtime-v14', { type: 'module' });
     worker.onmessage = ({ data }) => {
       if (data.type === 'progress') { window.dispatchEvent(new CustomEvent('routing-progress', { detail: data })); return; }
-      if (data.type === 'worker-error') { for (const entry of pending.values()) { clearTimeout(entry.timer); entry.resolve(failure('ROUTING_WORKER_ERROR', data.message)); } pending.clear(); return; }
+      if (data.type === 'worker-ready') { workerReady = true; window.dispatchEvent(new CustomEvent('routing-worker-ready', { detail: data })); return; }
+      if (data.type === 'worker-error') { for (const entry of pending.values()) { clearTimeout(entry.timer); entry.resolve(failure('ROUTING_WORKER_ERROR', `${data.message} [phase=${data.phase || 'unknown'}]`)); } pending.clear(); return; }
       const callback = pending.get(data.requestId);
       if (!callback) return;
-      pending.delete(data.requestId); clearTimeout(callback.timer); callback.resolve(data.result);
+      pending.delete(data.requestId); clearTimeout(callback.timer); console.error('routing-result', data.result); callback.resolve(data.result);
     };
     worker.onerror = (event) => {
-      const reason = event.message || `${event.filename || 'worker'}:${event.lineno || 0}:${event.colno || 0}`;
+      const reason = event.message || event.error?.message || event.error?.stack || `${event.filename || 'worker'}:${event.lineno || 0}:${event.colno || 0} [ready=${workerReady}]`;
       for (const entry of pending.values()) { clearTimeout(entry.timer); entry.resolve(failure('ROUTING_WORKER_ERROR', reason)); }
-      pending.clear(); worker = null;
+      pending.clear(); worker = null; workerReady = false;
     };
   }
   const requestId = ++sequence;
@@ -156,4 +159,4 @@ function requestRoute(payload) {
   });
 }
 
-function failure(type, reason = null) { return { ok: false, status: type, failure: { type, message: ROUTE_FAILURE_MESSAGES[type] || 'Offline routing failed.', reason } }; }
+function failure(type, reason = null) { const result = { ok: false, status: type, failure: { type, message: ROUTE_FAILURE_MESSAGES[type] || 'Offline routing failed.', reason } }; console.error('routing-failure', JSON.stringify(result)); return result; }

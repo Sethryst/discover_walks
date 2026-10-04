@@ -1,4 +1,4 @@
-import { state } from './state.js';
+import { state, setPlannerSelecting } from './state.js';
 import { CITIES } from './constants.js';
 import { el, escapeHtml } from './utils.js';
 import { saveJournal, saveJournalOnClose, renderArchive } from './archive.js';
@@ -337,7 +337,7 @@ function bindWalkControls() {
     if (!input.checked) return;
     state.plannerEnd = null;
     state.plannerStops = [];
-    state.plannerSelecting = ['round-trip', 'point-to-point'].includes(input.value) ? 'End' : null;
+    setPlannerSelecting(['round-trip', 'point-to-point'].includes(input.value) ? 'End' : null);
     setPlanningMode(true);
     document.body.classList.toggle('route-selection-active', Boolean(state.plannerSelecting));
     el('sketchTimeOptions')?.classList.toggle('hidden', input.value !== 'auto-round-trip');
@@ -352,7 +352,7 @@ function bindWalkControls() {
     el('radialRouteOptionsButton')?.setAttribute('aria-expanded', 'true');
   }));
   const beginPointSelection = (type) => {
-    state.plannerSelecting = type;
+    setPlannerSelecting(type);
     state.map?.closePopup?.();
     document.body.classList.add('route-selection-active');
     setPlanningMode(true);
