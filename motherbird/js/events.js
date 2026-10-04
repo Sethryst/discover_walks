@@ -339,6 +339,7 @@ function bindWalkControls() {
     state.plannerStops = [];
     state.plannerSelecting = ['round-trip', 'point-to-point'].includes(input.value) ? 'End' : null;
     setPlanningMode(true);
+    document.body.classList.toggle('route-selection-active', Boolean(state.plannerSelecting));
     el('sketchTimeOptions')?.classList.toggle('hidden', input.value !== 'auto-round-trip');
     const selectionHint = el('routeSelectionHint');
     selectionHint?.classList.toggle('hidden', input.value !== 'point-to-point');
