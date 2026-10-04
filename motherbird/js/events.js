@@ -353,6 +353,7 @@ function bindWalkControls() {
   const beginPointSelection = (type) => {
     state.plannerSelecting = type;
     state.map?.closePopup?.();
+    document.body.classList.add('route-selection-active');
     setPlanningMode(true);
     el('startPanel')?.classList.add('hidden');
     el('radialRouteOptionsButton')?.setAttribute('aria-expanded', 'false');
@@ -378,6 +379,7 @@ function bindWalkControls() {
   window.addEventListener('walk-sketch-painted', (event) => renderWalkSketch(event.detail));
   window.addEventListener('planner-point-selected', (event) => {
     const type = event.detail?.type || 'End';
+    document.body.classList.remove('route-selection-active');
     renderRoutePointControls();
     if (type !== 'End') {
       const status = el('routeComposerStatus');
