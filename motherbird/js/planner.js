@@ -47,7 +47,13 @@ export function paintWalkConcept(plan = state.plannedRoute, { fit = true } = {})
   state.plannedRouteLines = routePaths.map((coordinates) => L.polyline(coordinates, { color: '#e63946', weight: 7, opacity: 1, lineCap: 'round', lineJoin: 'round' }).addTo(state.map));
   state.plannedRouteLine = state.plannedRouteLines[0] || null;
   const layers = [...state.planSketchLayer.getLayers(), ...routeCasingLines, ...state.plannedRouteLines];
-  if (fit && layers.length) { const bounds = L.featureGroup(layers).getBounds(); if (bounds.isValid()) state.map.fitBounds(bounds, { padding: [42, 42], maxZoom: 16 }); }
+  if (fit && layers.length) {
+    const bounds = L.featureGroup(layers).getBounds();
+    // The directions card occupies the middle/lower map on mobile. Reserve
+    // that space so the route is fitted into the visible map area instead of
+    // being hidden beneath the card.
+    if (bounds.isValid()) state.map.fitBounds(bounds, { paddingTopLeft: [42, 42], paddingBottomRight: [42, 300], maxZoom: 16 });
+  }
   window.dispatchEvent(new CustomEvent('walk-sketch-painted', { detail: plan }));
   return plan;
 }
