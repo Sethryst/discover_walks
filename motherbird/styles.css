@@ -812,3 +812,11 @@ body.route-selection-active .leaflet-marker-pane,
 body.route-selection-active .leaflet-shadow-pane,
 body.route-selection-active .leaflet-tooltip-pane,
 body.route-selection-active .leaflet-popup-pane { pointer-events: none !important; }
+/* Endpoint selection owns the map gesture. Keep DC clusters and district
+   overlays from visually or interactively interrupting the destination tap. */
+body.route-selection-active .leaflet-marker-pane,
+body.route-selection-active .leaflet-shadow-pane,
+body.route-selection-active .leaflet-overlay-pane {
+  visibility: hidden;
+  pointer-events: none;
+}
