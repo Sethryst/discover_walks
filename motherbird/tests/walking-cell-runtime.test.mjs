@@ -19,6 +19,19 @@ test('registry selects the smallest matching cell entirely on-device', () => {
   assert.equal(registry.cells[1].artifacts.map.url, 'https://static.example/releases/national.pmtiles');
 });
 
+test('registry accepts published runtime-graph artifact names used by pilot shards', () => {
+  const pilotManifest = {
+    format: 'motherbird-walking-cell-registry-v1', release: 'pilot', cells: [
+      { id: 'z11-pilot', bounds: [-77.1, 38.8, -77, 38.9], artifacts: {
+        map: { url: './pilot.pmtiles' },
+        'runtime-graph.json': { url: './z11-pilot/runtime-graph.json' }
+      } }
+    ]
+  };
+  const registry = new WalkingCellRegistry(pilotManifest, 'https://static.example/cells.json');
+  assert.equal(registry.find(38.834, -77.049).artifacts['runtime-graph.json'].url, 'https://static.example/z11-pilot/runtime-graph.json');
+});
+
 test('range fetch omits credentials/location and rejects a full archive response', async () => {
   const calls = [];
   const fetchImpl = async (url, init) => { calls.push({ url, init }); return new Response(new Uint8Array(50), { status: 206 }); };

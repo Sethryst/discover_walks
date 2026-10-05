@@ -53,7 +53,7 @@ function normalizeCell(cell, baseUrl) {
     const byteRange = normalizeRange(artifact.range || artifact.byteRange);
     return [kind, { ...artifact, url: new URL(path, baseUrl).href, byteRange }];
   }));
-  const binaryNames = ['manifest', 'graphManifest', 'nodes', 'edges', 'adjacency', 'edge_geometry', 'edge_spatial_index', 'nodes.bin', 'edges.bin', 'adjacency.bin', 'edge_geometry.bin', 'edge_spatial_index.bin'];
+  const binaryNames = ['manifest', 'graphManifest', 'runtime-graph.json', 'nodes', 'edges', 'adjacency', 'edge_geometry', 'edge_spatial_index', 'nodes.bin', 'edges.bin', 'adjacency.bin', 'edge_geometry.bin', 'edge_spatial_index.bin'];
   const hasBinaryPackage = binaryNames.some((name) => artifacts[name]);
   if (!artifacts.map || (!artifacts.graph && !hasBinaryPackage)) throw new Error(`Walking-cell ${cell.id} requires map and routing artifacts.`);
   return Object.freeze({ ...cell, id: cell.id, bounds: Object.freeze(bounds), artifacts: Object.freeze(artifacts) });
