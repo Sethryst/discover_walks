@@ -6,6 +6,7 @@
   "main": "app.js",
   "scripts": {
     "build": "node tools/build-pages.mjs",
+    "serve:test": "node tools/serve-test.mjs",
     "build:kpi": "node tools/build-kpi-index.mjs",
     "build:vienna-osm": "node tools/build-vienna-osm-pois.mjs vienna",
     "build:municipal-seeds": "node tools/export-municipal-pois.mjs",
