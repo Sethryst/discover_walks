@@ -3,10 +3,10 @@ import { state } from './state.js';
 import { DEFAULT_SETTINGS, CITIES, DEFAULT_CITY_ID } from './constants.js';
 import { normalizeProfile, sitesForProfile } from './utils.js';
 import { toast } from './ui.js';
-import { initMap } from './map.js?v=20261004-routing-selection-silent-4';
+import { initMap } from './map.js?v=20261005-live-route-line-3';
 import { applyStaticAppearance } from './ui.js';
 import { loadAllCityData, refreshCityMap } from './city.js';
-import { initEvents } from './events.js?v=20261004-routing-selection-silent-3';
+import { initEvents } from './events.js?v=20261005-live-route-line-3';
 import { renderArchive } from './archive.js';
 import { normalizedEntitlements } from './entitlements.js';
 import { restoreLocalPoiClosures } from './spatial-closure-reporting.js';
@@ -108,6 +108,17 @@ export async function init() {
   initFieldGuideFilters();
 
   await refreshCityMap(false);
+  // Opt-in live routing verification: exercise the installed planner and
+  // renderer with two coordinates known to lie on the published routing cell.
+  // This is query-gated and does not affect normal visitors.
+  if (new URLSearchParams(globalThis.location?.search || '').get('routecheck') === '1') {
+    state.plannerStart = { lat: 38.8339, lng: -77.0483 };
+    state.plannerEnd = { lat: 38.8349, lng: -77.0473 };
+    const pointToPoint = document.querySelector('input[name="routeMode"][value="point-to-point"]');
+    if (pointToPoint) pointToPoint.checked = true;
+    const { generateTimeBasedPlan } = await import('./planner.js?v=20261005-live-route-line-3');
+    await generateTimeBasedPlan({ title: 'Published routing-cell verification' });
+  }
   // Refresh returns to a neutral map state. Any draft remains stored for an
   // explicit recovery flow; never restart live tracking automatically.
   applyStaticAppearance();
