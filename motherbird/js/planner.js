@@ -2,7 +2,7 @@ import { state } from './state.js';
 import { setPlannerSelecting } from './planner-selection.js?v=20261004-planner-selection-1';
 import { CITIES } from './constants.js';
 import { poiTags } from './poi.js';
-import { routeOnFoot } from './routing.js?v=20261004-binary-artifacts-5';
+import { routeOnFoot } from './routing.js?v=20261005-live-route-line-1';
 import { escapeHtml } from './utils.js';
 import { toast } from './ui.js';
 import { splitDisconnectedPaths } from './routes.js';

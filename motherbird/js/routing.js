@@ -1,4 +1,4 @@
-import { activateWalkingCellAt } from './walking-cell-runtime.js?v=20261004-binary-artifacts-5';
+import { activateWalkingCellAt } from './walking-cell-runtime.js?v=20261005-live-route-line-1';
 
 let worker = null;
 let sequence = 0;
@@ -130,7 +130,7 @@ function mergeInstructions(legs) {
 function requestRoute(payload) {
   if (typeof Worker === 'undefined') return Promise.resolve(failure('GRAPH_VERSION_UNAVAILABLE'));
   if (!worker) {
-    worker = new Worker('./js/offline-router-worker.js?v=20261004-hf-pilot-adaptive-runtime-v14', { type: 'module' });
+    worker = new Worker('./js/offline-router-worker.js?v=20261005-live-route-line-1', { type: 'module' });
     worker.onmessage = ({ data }) => {
       if (data.type === 'progress') { window.dispatchEvent(new CustomEvent('routing-progress', { detail: data })); return; }
       if (data.type === 'worker-ready') { workerReady = true; window.dispatchEvent(new CustomEvent('routing-worker-ready', { detail: data })); return; }

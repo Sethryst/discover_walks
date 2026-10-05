@@ -1,5 +1,5 @@
 import { state } from './state.js';
-import { WalkingCellRegistry } from './walking-cell-registry.js?v=20261004-binary-artifacts-5';
+import { WalkingCellRegistry } from './walking-cell-registry.js?v=20261005-live-route-line-1';
 
 let registryPromise = null;
 let activation = null;
