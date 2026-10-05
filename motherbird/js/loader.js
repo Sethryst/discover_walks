@@ -74,7 +74,8 @@ export async function init() {
     await loadLocalState();
     await enterSingleInstalledRegion();
     await migrateLegacyJournalAudio();
-    const requestedCity = new URLSearchParams(globalThis.location?.search || '').get('city');
+    const params = new URLSearchParams(globalThis.location?.search || '');
+    const requestedCity = params.get('city') || (params.get('routecheck') === '1' ? 'alexandria' : null);
     if (requestedCity && CITIES[requestedCity] && navigator.onLine !== false) {
       state.activeCity = requestedCity;
       state.settings.activeCity = requestedCity;
@@ -128,6 +129,9 @@ export async function init() {
   // renderer after the full map/runtime boot has completed. This is query-
   // gated and does not affect normal visitors.
   if (new URLSearchParams(globalThis.location?.search || '').get('routecheck') === '1') {
+    window.MOTHER_BIRD_WALKING_CELLS = {
+      manifestUrl: './data/national-routing/osm-us-nova-dc-pilot-2026-10-04/cells.json?v=20261005-routing-validation-1'
+    };
     state.plannerStart = { lat: 38.8338858, lng: -77.0482543 };
     state.plannerEnd = { lat: 38.8348141, lng: -77.0508987 };
     const pointToPoint = document.querySelector('input[name="routeMode"][value="point-to-point"]');

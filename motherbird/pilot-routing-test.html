@@ -14,18 +14,21 @@
     import { routeRuntimeGraph } from './js/runtime-router.mjs';
     const base = 'https://huggingface.co/datasets/sethryst/osm-us-nova-dc-pilot-2026-10-04/resolve/main/';
     const registry = await fetch(`${base}cells.json?v=20261004-hf-pilot-1`).then((r) => r.json());
-    const cell = registry.cells.find((entry) => entry.id === 'z10-292-391');
-    const graph = await fetch(cell.artifacts.graph.url).then((r) => r.json());
-    const origin = [-77.0369, 38.9072]; const destination = [-77.1011, 38.8783];
+    const origin = [-77.0482543, 38.8338858]; const destination = [-77.0508987, 38.8348141];
+    const cell = registry.cells.find((entry) => entry.id === 'z11-585-783-q35');
+    if (!cell) throw new Error('Pilot routing shard z11-585-783-q35 is missing from the registry.');
+    const graphArtifact = cell.artifacts['runtime-graph.json'];
+    if (!graphArtifact?.url) throw new Error('Pilot routing shard has no runtime graph artifact.');
+    const graph = await fetch(graphArtifact.url).then((r) => r.json());
     const result = routeRuntimeGraph(graph, { origin, destination, profile: 'ordinary_walking_beta' }, { maxSnapMeters: 250 });
     const map = L.map('map').setView([38.893, -77.07], 12);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap contributors' }).addTo(map);
     if (result.status !== 'ROUTE_FOUND') throw new Error(result.status);
-    L.polyline(result.geometry.coordinates.map(([lng, lat]) => [lat, lng]), { color: '#d24b31', weight: 6 }).addTo(map);
-    L.marker([origin[1], origin[0]]).addTo(map).bindTooltip('Washington, DC', { permanent: true });
-    L.marker([destination[1], destination[0]]).addTo(map).bindTooltip('Arlington', { permanent: true });
+    L.polyline(result.geometry.coordinates.map(([lng, lat]) => [lat, lng]), { color: '#168cff', weight: 8, opacity: 1 }).addTo(map);
+    L.marker([origin[1], origin[0]]).addTo(map).bindTooltip('Alexandria start', { permanent: true });
+    L.marker([destination[1], destination[0]]).addTo(map).bindTooltip('Alexandria destination', { permanent: true });
     map.fitBounds([[origin[1], origin[0]], [destination[1], destination[0]]], { padding: [30, 30] });
-    document.querySelector('#status').textContent = `ROUTE_FOUND · ${Math.round(result.distance_m)} m · published pilot ${registry.release}`;
+    document.querySelector('#status').textContent = `ROUTE_FOUND · ${Math.round(result.distance_m)} m · ${result.geometry.coordinates.length} coordinates · ${cell.id} · published pilot ${registry.release}`;
   </script>
 </body>
 </html>
