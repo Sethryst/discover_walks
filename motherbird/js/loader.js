@@ -108,17 +108,6 @@ export async function init() {
   initFieldGuideFilters();
 
   await refreshCityMap(false);
-  // Opt-in live routing verification: exercise the installed planner and
-  // renderer with two coordinates known to lie on the published routing cell.
-  // This is query-gated and does not affect normal visitors.
-  if (new URLSearchParams(globalThis.location?.search || '').get('routecheck') === '1') {
-    state.plannerStart = { lat: 38.8339, lng: -77.0483 };
-    state.plannerEnd = { lat: 38.8349, lng: -77.0473 };
-    const pointToPoint = document.querySelector('input[name="routeMode"][value="point-to-point"]');
-    if (pointToPoint) pointToPoint.checked = true;
-    const { generateTimeBasedPlan } = await import('./planner.js?v=20261005-live-route-line-3');
-    await generateTimeBasedPlan({ title: 'Published routing-cell verification' });
-  }
   // Refresh returns to a neutral map state. Any draft remains stored for an
   // explicit recovery flow; never restart live tracking automatically.
   applyStaticAppearance();
@@ -133,6 +122,18 @@ export async function init() {
     await initOnlinePane();
   } catch (error) {
     console.warn('Online mode unavailable:', error.message);
+  }
+
+  // Opt-in live routing verification: exercise the installed planner and
+  // renderer after the full map/runtime boot has completed. This is query-
+  // gated and does not affect normal visitors.
+  if (new URLSearchParams(globalThis.location?.search || '').get('routecheck') === '1') {
+    state.plannerStart = { lat: 38.8339, lng: -77.0483 };
+    state.plannerEnd = { lat: 38.8349, lng: -77.0473 };
+    const pointToPoint = document.querySelector('input[name="routeMode"][value="point-to-point"]');
+    if (pointToPoint) pointToPoint.checked = true;
+    const { generateTimeBasedPlan } = await import('./planner.js?v=20261005-live-route-line-3');
+    await generateTimeBasedPlan({ title: 'Published routing-cell verification' });
   }
 
   void initPwaUpdates().catch(() => {});
