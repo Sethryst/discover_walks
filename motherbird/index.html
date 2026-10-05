@@ -109,7 +109,7 @@
     <button class="close-sheet" data-close-sheet aria-label="Close">×</button>
     <span class="sheet-kicker">PRIVATE ON THIS DEVICE</span><h2 id="geoCypherTitle">Audio Notes</h2>
     <p class="geo-cypher-intro">Leave a voice note at a place, or hear one when you enter its circle. Audio stays separate from your journal and remains on this device unless you deliberately share it through Bird Note or a Room.</p>
-    <div class="geo-cypher-actions"><button class="primary-button" id="geoCypherRecordButton" type="button" aria-pressed="false">Drop audio here</button><button class="secondary-button hidden" id="geoCypherCancelResponse" type="button">Cancel response</button></div>
+    <div class="geo-cypher-actions"><button class="primary-button" id="geoCypherRecordButton" type="button" aria-pressed="false">Drop audio here</button><button id="geoCypherButton" type="button" class="secondary-button">Respond with a signed audio note</button><button class="secondary-button hidden" id="geoCypherCancelResponse" type="button">Cancel response</button></div>
     <output id="geoCypherStatus" class="journal-tool-status" aria-live="polite">Drop audio asks for the microphone only when you tap. Use Locate for your phone’s position; desktop testing uses the map center.</output>
     <section id="geoCypherList" class="geo-cypher-list" aria-label="Audio pins"></section>
   </section>
@@ -119,7 +119,7 @@
     <nav class="guide-tabs"><button class="active" data-guide-tab="discover" type="button">Discover</button><button data-guide-tab="learn" type="button">Learn</button></nav>
     <p class="guide-order-note hidden" id="fieldGuideOrderNote"></p><section class="guide-list" id="fieldGuideList" aria-live="polite"></section>
     <section class="share-panel hidden" id="sharePanel">
-      <div class="app-entry" data-app-entry="online">
+      <div class="app-entry" data-app-entry="online" data-guide-tab="online">Online
         <button class="primary-button" id="goOnlineButton" type="button">Online</button>
         <small id="onlineGateNote">Sign in with a passkey to seal a private copy.</small>
         <section class="profile-avatar-settings hidden" id="profileAvatarSettings" aria-labelledby="profileAvatarTitle"><h3 id="profileAvatarTitle">Profile picture</h3><p>Choose a default icon or upload a square photo. It stays on this device.</p><div class="profile-avatar-choices"><button type="button" data-avatar-icon="✦">✦</button><button type="button" data-avatar-icon="🌿">🌿</button><button type="button" data-avatar-icon="🐦">🐦</button><button type="button" data-avatar-icon="☀️">☀️</button></div><label class="secondary-button import-label">Upload photo<input id="profileAvatarInput" type="file" accept="image/png,image/jpeg,image/webp" /></label></section>
@@ -228,8 +228,8 @@
     <div class="radio-console" id="radioPlayer" data-radio-state="paused">
       <div class="radio-on-air"><span class="radio-lamp" aria-hidden="true"></span><div><small id="radioStatus">paused</small><strong id="radioNowPlaying">No transmission selected</strong></div></div>
       <label class="radio-track-picker">Category<select id="radioTrackCategorySelect"><option value="">All categories</option></select></label><label class="radio-track-picker">Track<select id="radioTrackSelect"><option value="">Choose a track</option></select></label>
-      <div class="radio-controls"><button id="radioPreviousButton" class="secondary-button" type="button" aria-label="Previous track"><img src="./icons/skip-back.svg" alt="" /> Previous</button><button id="radioPlayButton" class="radio-main-button" type="button">▶ Listen</button><button id="radioNextButton" class="secondary-button" type="button">Next <img src="./icons/skip-forward.svg" alt="" /></button></div>
-      <div class="radio-controls radio-secondary-controls"><button id="radioQueueButton" class="secondary-button" type="button">Queue selected track</button><button id="radioFavoriteButton" class="secondary-button" type="button" disabled>♡ Favorite</button></div>
+      <div class="radio-controls"><button id="radioPreviousButton" class="secondary-button" type="button" aria-label="Previous track"><img src="./icons/skip-back.svg" alt="" /> Previous</button><button id="radioPlayButton" class="radio-main-button" type="button">▶ Listen</button><button id="radioNextButton" class="secondary-button" type="button">Next <img src="./icons/skip-forward.svg" alt="" /></button><button id="radioShuffleButton" class="secondary-button" type="button">Shuffle</button><button id="radioRepeatButton" class="secondary-button" type="button">Repeat</button></div>
+      <div class="radio-controls radio-secondary-controls"><button id="radioQueueButton" class="secondary-button" type="button">Queue selected track</button><button id="radioSaveButton" class="secondary-button" type="button">Save track</button><button id="radioFavoriteButton" class="secondary-button" type="button" disabled>♡ Favorite</button></div>
       <div class="radio-queue hidden" id="radioQueue" aria-live="polite"></div>
       <button id="radioLibraryButton" class="secondary-button radio-library-button" type="button">♫ Soundtrack library</button><div id="radioLibrary" class="radio-library hidden" aria-live="polite"></div>
     </div><label class="radio-favorites-picker">Track list<select id="radioFavoritesSelect"><option value="">Choose a track</option></select></label><p class="radio-note"><span id="radioStationCount">0 stations available</span> · Favorites stay at the top. The list includes every available track.</p>

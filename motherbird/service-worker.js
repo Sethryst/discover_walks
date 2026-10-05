@@ -1,7 +1,7 @@
 // Keep the whole module graph with the shell. Caching only app.js leaves an
 // offline (or briefly disconnected) reload with a blank app when any imported
 // module was not already in the runtime cache.
-const APP_CACHE = 'walk-wildlife-shell-v295'; // Publish Northern Virginia/DC HF routing pilot
+const APP_CACHE = 'walk-wildlife-shell-v296'; // Publish Northern Virginia/DC HF routing pilot; prior contract walk-wildlife-shell-v193
 const TILE_CACHE = 'walk-wildlife-osm-viewed-tiles-v1';
 const LIBRARY_CACHE = 'walk-wildlife-library-v2';
 const COMPANION_CACHE = 'walk-wildlife-companion-media-v2';
@@ -19,7 +19,7 @@ const shell = [
   './js/entitlements.js', './js/cloud-journal.js', './js/events.js', './js/explore.js', './js/field-edition-loader.js', './js/field-guide.js', './js/messenger-bird.js', './js/maps-folders.js', './js/learn-change.js', './js/learn-explore.js', './js/learn-folders.js', './js/learn-history.js', './js/news-map.js', './js/search.js', './js/geo.js', './js/geofence.js', './js/primary-shell.js', './js/radio.js', './data/radio/labri.json',
   './js/federal-boundaries.js', './js/federal-region-loader.js', './js/federal-region-progress.js', './js/poi-visit-tracking.js', './js/loader.js', './js/coach.js', './js/map.js', './js/observation.js', './js/online.js', './js/planner.js', './js/poi.js', './js/profile.js',
   './js/neighborhoods.js', './js/spatial-index.js', './js/spatial-index-providers.js', './js/spatial-overlay.js', './js/spatial-package-loader.js', './js/spatial-closure-reporting.js', './js/text-to-walk.js',
-  './js/quiet-places.js', './js/region-api.js', './js/region-installer.js', './js/region-manager.js', './js/region-package.js', './js/osm-release.js',
+  './js/quiet-places.js', './js/source-adapters.js', './js/acquisition-package-runtime.js', './js/region-api.js', './js/region-installer.js', './js/region-manager.js', './js/region-package.js', './js/osm-release.js',
   './js/osm-regions.js', './js/national-poi-map.js', './js/national-osm-layers.js', './js/offline-routing-package.mjs', './js/opfs-range-source.js', './js/walking-cell-registry.js', './js/walking-cell-cache.js', './js/walking-cell-runtime.js', './js/personal-edge-scores.js', './js/geo-cypher.js', './js/room-runtime.js', './js/room-renderers.js', './js/spatial-query.js', './js/spatial-model.js',
   './js/region-ui.js', './js/routes.js', './js/stories.js', './js/routing.js', './js/routing-feedback.js', './js/runtime-router.mjs', './js/offline-router-worker.js', './js/seasonal-awareness.js', './js/state.js', './js/storage.js', './js/saved-routes.js',
   './js/ui.js', './js/utils.js', './js/walk.js', './js/walk-artifact.js', './js/walk-context.js', './js/walk-state.js', './js/companion.js', './js/revisit.js', './js/journal-transfer.js', './js/journal-capture.js', './js/map-paint.js', './js/county-additions.js', './js/installed-region-runtime.js', './js/watch-session.js', './js/watch-app.js', './js/device-entry.js', './js/observation-model.js', './js/weather.js', './js/journal-pane.js', './js/quote-context.js', './js/icon-loader.js', './js/poi-icons.js', './js/poi-filter-rules.js', './js/layer-system.js', './js/personal-places.js', './js/planner-selection.js',
@@ -75,7 +75,7 @@ self.addEventListener('install', (event) => event.waitUntil(Promise.all([
       } catch (_) { /* The app can still install if a CDN is briefly unavailable. */ }
     }));
   })
-]).then(() => self.skipWaiting())));
+]));
 
 // An installed PWA keeps using its complete current shell until the page asks
 // the fully-downloaded replacement to activate. IndexedDB is never touched by

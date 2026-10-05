@@ -80,7 +80,7 @@
   },
   detroit: {
     name: 'Detroit', state: 'MI', center: { lat: 42.3527, lng: -83.0990 }, zoom: 11,
-    dataFile: './regions/detroit/pois.json',
+    dataFile: './data/detroit-poi.json',
     boundarySource: { name: 'City of Detroit Boundary', url: 'https://services2.arcgis.com/qvkbeam7Wirps6zC/ArcGIS/rest/services/City_of_Detroit_Boundary/FeatureServer/0' }
   },
   'corpus-christi': {
@@ -122,7 +122,7 @@
     state: 'CO',
     center: { lat: 39.605, lng: -105.946 },
     zoom: 11,
-    dataFile: './regions/keystone-colorado/pois.json',
+    dataFile: './data/keystone-colorado-poi.json',
     supplementalPoiFile: './regions/keystone-colorado/keystone-colorado-poi.json',
     civicFile: './regions/keystone-colorado/civic/index.json', weatherFile: './regions/keystone-colorado/weather.json',
     boundarySource: { name: 'U.S. Census Bureau Keystone census-designated place boundary', url: 'https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/5', where: "STATE = '08' AND BASENAME = 'Keystone'" }
@@ -184,7 +184,7 @@
     state: 'AZ',
     center: { lat: 34.8712, lng: -111.7904 },
     zoom: 13,
-    dataFile: './regions/sedona-arizona/pois.json',
+    dataFile: './data/sedona-arizona-poi.json',
     supplementalPoiFile: './regions/sedona-arizona/sedona-arizona-poi.json',
     civicFile: './regions/sedona-arizona/civic/index.json',
     weatherFile: './regions/sedona-arizona/weather.json',
@@ -192,7 +192,7 @@
   },
   boise: {
     name: 'Boise–Meridian–Old Town', state: 'ID', center: { lat: 43.599, lng: -116.252 }, zoom: 12,
-    dataFile: './regions/boise-meridian-idaho/pois.json', supplementalPoiFile: './regions/boise-meridian-idaho/boise-meridian-idaho-poi.json',
+    dataFile: './data/boise-meridian-idaho-poi.json', supplementalPoiFile: './regions/boise-meridian-idaho/boise-meridian-idaho-poi.json',
     civicFile: './regions/boise-meridian-idaho/civic/index.json', weatherFile: './regions/boise-meridian-idaho/weather.json',
     boundarySource: { name: 'Ada County City Limits — Boise', url: 'https://services1.arcgis.com/WHM6qC35aMtyAAlN/arcgis/rest/services/CityLimitsAndImpactAreas/FeatureServer/1', where: "CITY = 'Boise'" }
   },
