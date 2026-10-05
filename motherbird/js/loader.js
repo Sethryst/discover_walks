@@ -128,8 +128,8 @@ export async function init() {
   // renderer after the full map/runtime boot has completed. This is query-
   // gated and does not affect normal visitors.
   if (new URLSearchParams(globalThis.location?.search || '').get('routecheck') === '1') {
-    state.plannerStart = { lat: 38.8339, lng: -77.0483 };
-    state.plannerEnd = { lat: 38.8349, lng: -77.0473 };
+    state.plannerStart = { lat: 38.8338858, lng: -77.0482543 };
+    state.plannerEnd = { lat: 38.8342025, lng: -77.0479118 };
     const pointToPoint = document.querySelector('input[name="routeMode"][value="point-to-point"]');
     if (pointToPoint) pointToPoint.checked = true;
     const { generateTimeBasedPlan } = await import('./planner.js?v=20261005-live-route-line-3');
