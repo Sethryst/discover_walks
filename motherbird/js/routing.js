@@ -1,4 +1,4 @@
-import { activateWalkingCellAt } from './walking-cell-runtime.js?v=20261005-live-route-line-1';
+import { activateWalkingCellAt } from './walking-cell-runtime.js?v=20261005-live-route-line-2';
 
 let worker = null;
 let sequence = 0;
@@ -38,7 +38,7 @@ export async function routeOnFoot(points, { city, profile = 'ordinary_walking_be
     }
     catch (error) { return failure('GRAPH_VERSION_UNAVAILABLE', error.message); }
     if (!activeWalkingCell?.id || activeWalkingCell.availability !== 'routing_available') return failure('GRAPH_VERSION_UNAVAILABLE', activeWalkingCell?.reason);
-    const request = (cell, origin = points[index], destination = points[index + 1]) => requestRoute({ city, profile, origin, destination, maxSnapMeters: 1500, maxVisitedNodes: 100000, avoid: { stairs: false, unverified_edges: false }, cell, cellId: cell?.id, cellRelease: cell?.release });
+    const request = (cell, origin = points[index], destination = points[index + 1]) => requestRoute({ city, profile, origin, destination, maxSnapMeters: 3000, maxVisitedNodes: 100000, avoid: { stairs: false, unverified_edges: false }, cell, cellId: cell?.id, cellRelease: cell?.release });
     let result = await request(activeWalkingCell);
     const neighborIds = new Set(activeWalkingCell.routingNeighbors || []);
     if (result.ok) legs.push(result);
@@ -130,7 +130,7 @@ function mergeInstructions(legs) {
 function requestRoute(payload) {
   if (typeof Worker === 'undefined') return Promise.resolve(failure('GRAPH_VERSION_UNAVAILABLE'));
   if (!worker) {
-    worker = new Worker('./js/offline-router-worker.js?v=20261005-live-route-line-1', { type: 'module' });
+    worker = new Worker('./js/offline-router-worker.js?v=20261005-live-route-line-2', { type: 'module' });
     worker.onmessage = ({ data }) => {
       if (data.type === 'progress') { window.dispatchEvent(new CustomEvent('routing-progress', { detail: data })); return; }
       if (data.type === 'worker-ready') { workerReady = true; window.dispatchEvent(new CustomEvent('routing-worker-ready', { detail: data })); return; }

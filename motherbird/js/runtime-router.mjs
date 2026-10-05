@@ -171,11 +171,22 @@ function nearestEdge(runtime, coordinate, profileBit, maxSnapMeters) {
   for (let dx = -rings; dx <= rings; dx += 1) for (let dy = -rings; dy <= rings; dy += 1) {
     for (const edgeIndex of runtime.spatial_index.buckets[`${cellX + dx}:${cellY + dy}`] || []) candidates.add(edgeIndex);
   }
+  // Some national cells have valid graph geometry whose generated spatial
+  // buckets do not cover the endpoint bucket. Keep routing usable for those
+  // sparse cells by falling back to the graph's edge list instead of treating
+  // an index miss as “no pedestrian network”.
+  if (!candidates.size && Array.isArray(runtime.edges)) {
+    for (let edgeIndex = 0; edgeIndex < runtime.edges.length; edgeIndex += 1) candidates.add(edgeIndex);
+  }
   let best = null;
-  for (const edgeIndex of candidates) {
-    if (profileBit !== null && !(edgeValue(runtime, edgeIndex, 6) & profileBit)) continue;
+  const consider = (edgeIndex) => {
+    if (profileBit !== null && !(edgeValue(runtime, edgeIndex, 6) & profileBit)) return;
     const projected = projectOnLine(coordinate, edgeCoordinates(runtime, edgeIndex));
     if ((!best || projected.distance_m < best.distance_m) && projected.distance_m <= maxSnapMeters) best = { ...projected, edge_index: edgeIndex };
+  };
+  for (const edgeIndex of candidates) consider(edgeIndex);
+  if (!best && Array.isArray(runtime.edges)) {
+    for (let edgeIndex = 0; edgeIndex < runtime.edges.length; edgeIndex += 1) consider(edgeIndex);
   }
   return best;
 }
