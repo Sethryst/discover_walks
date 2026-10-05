@@ -40,7 +40,11 @@ export function paintWalkConcept(plan = state.plannedRoute, { fit = true } = {})
   state.plannedRouteLines?.forEach((line) => line.remove());
   state.planSketchLayer = L.layerGroup().addTo(state.map);
   plan.stops.forEach((stop, index) => L.marker([stop.lat, stop.lng], { icon: L.divIcon({ className: 'sketch-stop', html: `<span>${index + 1}</span>`, iconSize: [30, 30], iconAnchor: [15, 15] }), title: stop.name }).bindTooltip(stop.name).addTo(state.planSketchLayer));
-  const routePaths = splitDisconnectedPaths(plan.coordinates);
+  const splitPaths = splitDisconnectedPaths(plan.coordinates);
+  // Never let a valid routing result produce directions without a visible
+  // path: if every segment is classified as discontinuous, retain the full
+  // geometry as a fallback overlay.
+  const routePaths = splitPaths.length ? splitPaths : ((plan.coordinates?.length || 0) > 1 ? [plan.coordinates] : []);
   // Use a contrasting casing so the route remains obvious over satellite,
   // OSM, and greenway basemaps instead of disappearing into dark map detail.
   const routeCasingLines = routePaths.map((coordinates) => L.polyline(coordinates, { color: '#fffdf5', weight: 11, opacity: .98, lineCap: 'round', lineJoin: 'round' }).addTo(state.map));
