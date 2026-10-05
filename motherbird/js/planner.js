@@ -47,12 +47,30 @@ export function paintWalkConcept(plan = state.plannedRoute, { fit = true } = {})
   // Never let a valid routing result produce directions without a visible
   // path: if every segment is classified as discontinuous, retain the full
   // geometry as a fallback overlay.
-  const routePaths = splitPaths.length ? splitPaths : ((plan.coordinates?.length || 0) > 1 ? [plan.coordinates] : []);
+  const routePaths = splitPaths.length
+    ? splitPaths
+    : ((plan.coordinates?.length || 0) > 1
+      ? [plan.coordinates]
+      : (state.plannerStart && state.plannerEnd ? [[
+        [state.plannerStart.lat, state.plannerStart.lng],
+        [state.plannerEnd.lat, state.plannerEnd.lng]
+      ]] : []));
   // Use a contrasting casing so the route remains obvious over satellite,
   // OSM, and greenway basemaps instead of disappearing into dark map detail.
   const routeCasingLines = routePaths.map((coordinates) => L.polyline(coordinates, { pane: 'plannerRoutePane', color: '#fffdf5', weight: 11, opacity: .98, lineCap: 'round', lineJoin: 'round' }).addTo(state.map));
   state.plannedRouteLines = routePaths.map((coordinates) => L.polyline(coordinates, { pane: 'plannerRoutePane', color: '#e63946', weight: 7, opacity: 1, lineCap: 'round', lineJoin: 'round' }).addTo(state.map));
   [...routeCasingLines, ...state.plannedRouteLines].forEach((line) => line.bringToFront());
+  state.plannerRouteCasingLines = routeCasingLines;
+  const restoreRouteOverlay = () => {
+    [...(state.plannerRouteCasingLines || []), ...(state.plannedRouteLines || [])].forEach((line) => {
+      if (!state.map.hasLayer(line)) line.addTo(state.map);
+      line.bringToFront();
+    });
+  };
+  if (!state.plannerRouteOverlayBound) {
+    state.plannerRouteOverlayBound = true;
+    state.map.on('moveend zoomend resize', restoreRouteOverlay);
+  }
   state.plannedRouteLine = state.plannedRouteLines[0] || null;
   const layers = [...state.planSketchLayer.getLayers(), ...routeCasingLines, ...state.plannedRouteLines];
   if (fit && layers.length) {
@@ -119,7 +137,7 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
 }
 
 export function choosePlan(id) { return state.planOptions.find((plan) => plan.id === id) || state.plannedRoute; }
-export function changePlan() { state.plannedRoute = null; state.planSketchLayer?.remove(); state.plannedRouteLine?.remove(); state.plannedRouteLines?.forEach((line) => line.remove()); state.plannedRouteLines = []; }
+export function changePlan() { state.plannedRoute = null; state.planSketchLayer?.remove(); state.plannedRouteLine?.remove(); state.plannedRouteLines?.forEach((line) => line.remove()); state.plannerRouteCasingLines?.forEach((line) => line.remove()); state.plannedRouteLines = []; state.plannerRouteCasingLines = []; }
 export function togglePlanVisibility() { /* A single painted sketch replaces graph alternatives. */ }
 export function setPlanningMode(active) { state.planningMode = Boolean(active); }
 export function lockSelectedPlanOnMap() { return paintWalkConcept(state.plannedRoute, { fit: false }); }

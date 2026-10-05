@@ -32,6 +32,8 @@ export const state = {
   curatedRouteLine: null,
   plannedRouteLine: null,
   plannedRouteLines: [],
+  plannerRouteCasingLines: [],
+  plannerRouteOverlayBound: false,
   plannedRoute: null,
   observationLayer: null,
   poiLayer: null,

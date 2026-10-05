@@ -132,7 +132,7 @@ export async function init() {
     state.plannerEnd = { lat: 38.8348141, lng: -77.0508987 };
     const pointToPoint = document.querySelector('input[name="routeMode"][value="point-to-point"]');
     if (pointToPoint) pointToPoint.checked = true;
-    const { generateTimeBasedPlan } = await import('./planner.js?v=20261005-live-route-line-6');
+    const { generateTimeBasedPlan } = await import('./planner.js?v=20261005-live-route-line-7');
     await generateTimeBasedPlan({ title: 'Published routing-cell verification' });
   }
 
