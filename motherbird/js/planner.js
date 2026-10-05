@@ -57,8 +57,8 @@ export function paintWalkConcept(plan = state.plannedRoute, { fit = true } = {})
       ]] : []));
   // Use a contrasting casing so the route remains obvious over satellite,
   // OSM, and greenway basemaps instead of disappearing into dark map detail.
-  const routeCasingLines = routePaths.map((coordinates) => L.polyline(coordinates, { pane: 'plannerRoutePane', color: '#fffdf5', weight: 11, opacity: .98, lineCap: 'round', lineJoin: 'round' }).addTo(state.map));
-  state.plannedRouteLines = routePaths.map((coordinates) => L.polyline(coordinates, { pane: 'plannerRoutePane', color: '#e63946', weight: 7, opacity: 1, lineCap: 'round', lineJoin: 'round' }).addTo(state.map));
+  const routeCasingLines = routePaths.map((coordinates) => L.polyline(coordinates, { pane: 'plannerRoutePane', color: '#123b72', weight: 11, opacity: .98, lineCap: 'round', lineJoin: 'round' }).addTo(state.map));
+  state.plannedRouteLines = routePaths.map((coordinates) => L.polyline(coordinates, { pane: 'plannerRoutePane', color: '#168cff', weight: 8, opacity: 1, lineCap: 'round', lineJoin: 'round' }).addTo(state.map));
   [...routeCasingLines, ...state.plannedRouteLines].forEach((line) => line.bringToFront());
   state.plannerRouteCasingLines = routeCasingLines;
   const restoreRouteOverlay = () => {
