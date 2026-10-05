@@ -39,6 +39,9 @@ export function paintWalkConcept(plan = state.plannedRoute, { fit = true } = {})
   state.plannedRouteLine?.remove();
   state.plannedRouteLines?.forEach((line) => line.remove());
   state.planSketchLayer = L.layerGroup().addTo(state.map);
+  const routePane = state.map.getPane('plannerRoutePane') || state.map.createPane('plannerRoutePane');
+  routePane.style.zIndex = '720';
+  routePane.style.pointerEvents = 'none';
   plan.stops.forEach((stop, index) => L.marker([stop.lat, stop.lng], { icon: L.divIcon({ className: 'sketch-stop', html: `<span>${index + 1}</span>`, iconSize: [30, 30], iconAnchor: [15, 15] }), title: stop.name }).bindTooltip(stop.name).addTo(state.planSketchLayer));
   const splitPaths = splitDisconnectedPaths(plan.coordinates);
   // Never let a valid routing result produce directions without a visible
@@ -47,8 +50,9 @@ export function paintWalkConcept(plan = state.plannedRoute, { fit = true } = {})
   const routePaths = splitPaths.length ? splitPaths : ((plan.coordinates?.length || 0) > 1 ? [plan.coordinates] : []);
   // Use a contrasting casing so the route remains obvious over satellite,
   // OSM, and greenway basemaps instead of disappearing into dark map detail.
-  const routeCasingLines = routePaths.map((coordinates) => L.polyline(coordinates, { color: '#fffdf5', weight: 11, opacity: .98, lineCap: 'round', lineJoin: 'round' }).addTo(state.map));
-  state.plannedRouteLines = routePaths.map((coordinates) => L.polyline(coordinates, { color: '#e63946', weight: 7, opacity: 1, lineCap: 'round', lineJoin: 'round' }).addTo(state.map));
+  const routeCasingLines = routePaths.map((coordinates) => L.polyline(coordinates, { pane: 'plannerRoutePane', color: '#fffdf5', weight: 11, opacity: .98, lineCap: 'round', lineJoin: 'round' }).addTo(state.map));
+  state.plannedRouteLines = routePaths.map((coordinates) => L.polyline(coordinates, { pane: 'plannerRoutePane', color: '#e63946', weight: 7, opacity: 1, lineCap: 'round', lineJoin: 'round' }).addTo(state.map));
+  [...routeCasingLines, ...state.plannedRouteLines].forEach((line) => line.bringToFront());
   state.plannedRouteLine = state.plannedRouteLines[0] || null;
   const layers = [...state.planSketchLayer.getLayers(), ...routeCasingLines, ...state.plannedRouteLines];
   if (fit && layers.length) {
