@@ -38,7 +38,7 @@ export async function routeOnFoot(points, { city, profile = 'ordinary_walking_be
     }
     catch (error) { return failure('GRAPH_VERSION_UNAVAILABLE', error.message); }
     if (!activeWalkingCell?.id || activeWalkingCell.availability !== 'routing_available') return failure('GRAPH_VERSION_UNAVAILABLE', activeWalkingCell?.reason);
-    const request = (cell, origin = points[index], destination = points[index + 1]) => requestRoute({ city, profile, origin, destination, maxSnapMeters: 500, maxVisitedNodes: 100000, avoid: { stairs: false, unverified_edges: false }, cell, cellId: cell?.id, cellRelease: cell?.release });
+    const request = (cell, origin = points[index], destination = points[index + 1]) => requestRoute({ city, profile, origin, destination, maxSnapMeters: 1500, maxVisitedNodes: 100000, avoid: { stairs: false, unverified_edges: false }, cell, cellId: cell?.id, cellRelease: cell?.release });
     let result = await request(activeWalkingCell);
     const neighborIds = new Set(activeWalkingCell.routingNeighbors || []);
     if (result.ok) legs.push(result);
