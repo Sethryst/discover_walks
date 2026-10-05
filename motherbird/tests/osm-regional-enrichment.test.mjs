@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { readFile } from 'node:fs/promises';
+import { access, readdir, readFile } from 'node:fs/promises';
 import test from 'node:test';
 
 import { CITIES } from '../js/constants.js';
@@ -8,11 +8,22 @@ import { isOsmPoi, poiMatchesSelectedTags } from '../js/poi.js';
 import { normalizeRegionDataConfig } from '../js/osm-regions.js';
 import { contextualNearbyPlaces } from '../js/journal-pane.js';
 
-const built = ['alexandria-va', 'arlington-va', 'baltimore', 'boise-meridian-idaho', 'boston', 'boulder', 'chicago', 'columbus', 'corpus-christi', 'denver', 'detroit', 'fairfax-county-va', 'falls-church-va', 'fort-worth', 'keystone-colorado', 'los-angeles', 'loudoun-county-va', 'new-orleans', 'norfolk', 'nyc', 'philadelphia', 'pittsburgh', 'portland', 'portland-maine', 'prince-georges-county-md', 'richmond', 'san-francisco', 'santa-fe', 'seattle', 'sedona-arizona', 'tempe', 'washington-dc', 'wolf-trap-va'];
+const built = (await Promise.all((await readdir(new URL('../regions/', import.meta.url), { withFileTypes: true }))
+  .filter((entry) => entry.isDirectory())
+  .map(async (entry) => {
+    try {
+      await access(new URL(`../regions/${entry.name}/osm/manifest.json`, import.meta.url));
+      return entry.name;
+    } catch (_) {
+      return null;
+    }
+  }))).filter(Boolean).sort();
 
 test('every frontend region has explicit canonical OSM status', () => {
   assert.ok(Object.keys(CITIES).length >= built.length);
-  assert.equal(CITIES['wolf-trap-va'].dataFile, './regions/wolf-trap-va/pois.json');
+  for (const regionId of built) {
+    assert.ok(Object.values(CITIES).some((city) => JSON.stringify(city).includes(`./regions/${regionId}/`)), `Published OSM region ${regionId} must be registered in CITIES.`);
+  }
   assert.equal(CITIES.fairfax.dataFile, './regions/fairfax-county-va/pois.json');
   for (const [id, city] of Object.entries(CITIES)) {
     const config = normalizeRegionDataConfig(id, city);
