@@ -7,6 +7,12 @@ export function setPlannerSelecting(value) {
   state.plannerSelecting = value;
   const layer = state.poiLayer;
   if (!layer || !state.map) return;
+  // Neighborhood/district polygons are informational overlays, but their
+  // Leaflet click handlers can consume endpoint taps in Washington, DC.
+  // Temporarily remove that overlay while the planner owns map gestures.
+  const neighborhoods = state.neighborhoodLayer;
+  if (value) neighborhoods?.remove?.();
+  else if (neighborhoods && !state.map.hasLayer(neighborhoods)) neighborhoods.addTo(state.map);
   if (value) {
     if (state.map.hasLayer(layer)) state.map.removeLayer(layer);
   } else if (!state.map.hasLayer(layer)) {
