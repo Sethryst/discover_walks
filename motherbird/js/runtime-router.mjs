@@ -175,8 +175,9 @@ function nearestEdge(runtime, coordinate, profileBit, maxSnapMeters) {
   // buckets do not cover the endpoint bucket. Keep routing usable for those
   // sparse cells by falling back to the graph's edge list instead of treating
   // an index miss as “no pedestrian network”.
-  if (!candidates.size && Array.isArray(runtime.edges)) {
-    for (let edgeIndex = 0; edgeIndex < runtime.edges.length; edgeIndex += 1) candidates.add(edgeIndex);
+  const edgeCount = Array.isArray(runtime.edges) ? runtime.edges.length : Number(runtime.edges?.count || 0);
+  if (!candidates.size && edgeCount) {
+    for (let edgeIndex = 0; edgeIndex < edgeCount; edgeIndex += 1) candidates.add(edgeIndex);
   }
   let best = null;
   const consider = (edgeIndex) => {
@@ -185,8 +186,8 @@ function nearestEdge(runtime, coordinate, profileBit, maxSnapMeters) {
     if ((!best || projected.distance_m < best.distance_m) && projected.distance_m <= maxSnapMeters) best = { ...projected, edge_index: edgeIndex };
   };
   for (const edgeIndex of candidates) consider(edgeIndex);
-  if (!best && Array.isArray(runtime.edges)) {
-    for (let edgeIndex = 0; edgeIndex < runtime.edges.length; edgeIndex += 1) consider(edgeIndex);
+  if (!best && edgeCount) {
+    for (let edgeIndex = 0; edgeIndex < edgeCount; edgeIndex += 1) consider(edgeIndex);
   }
   return best;
 }
