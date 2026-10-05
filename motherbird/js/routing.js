@@ -38,7 +38,7 @@ export async function routeOnFoot(points, { city, profile = 'ordinary_walking_be
     }
     catch (error) { return failure('GRAPH_VERSION_UNAVAILABLE', error.message); }
     if (!activeWalkingCell?.id || activeWalkingCell.availability !== 'routing_available') return failure('GRAPH_VERSION_UNAVAILABLE', activeWalkingCell?.reason);
-    const request = (cell, origin = points[index], destination = points[index + 1]) => requestRoute({ city, profile, origin, destination, maxSnapMeters: 250, maxVisitedNodes: 100000, avoid: { stairs: false, unverified_edges: false }, cell, cellId: cell?.id, cellRelease: cell?.release });
+    const request = (cell, origin = points[index], destination = points[index + 1]) => requestRoute({ city, profile, origin, destination, maxSnapMeters: 500, maxVisitedNodes: 100000, avoid: { stairs: false, unverified_edges: false }, cell, cellId: cell?.id, cellRelease: cell?.release });
     let result = await request(activeWalkingCell);
     const neighborIds = new Set(activeWalkingCell.routingNeighbors || []);
     if (result.ok) legs.push(result);
@@ -137,7 +137,7 @@ function requestRoute(payload) {
       if (data.type === 'worker-error') { for (const entry of pending.values()) { clearTimeout(entry.timer); entry.resolve(failure('ROUTING_WORKER_ERROR', `${data.message} [phase=${data.phase || 'unknown'}]`)); } pending.clear(); return; }
       const callback = pending.get(data.requestId);
       if (!callback) return;
-      pending.delete(data.requestId); clearTimeout(callback.timer); console.error('routing-result', data.result); callback.resolve(data.result);
+      pending.delete(data.requestId); clearTimeout(callback.timer); callback.resolve(data.result);
     };
     worker.onerror = (event) => {
       const reason = event.message || event.error?.message || event.error?.stack || `${event.filename || 'worker'}:${event.lineno || 0}:${event.colno || 0} [ready=${workerReady}]`;
