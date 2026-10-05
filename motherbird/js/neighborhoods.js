@@ -31,7 +31,9 @@ export async function loadNeighborhoodsForCity(cityId = state.activeCity) {
     state.neighborhoodLayer = L.geoJSON(data, { style: neighborhoodStyle, onEachFeature }).addTo(state.map);
     state.neighborhoodLayer.bringToBack();
     const spatial = await upgradeSpatialDataFromPackage(cityId, state.cityPois[cityId] || [], data, spatialIndexPath);
-    if (spatial.fallbackReason && !/returned 404/.test(spatial.fallbackReason)) console.warn('Static spatial package unavailable:', spatial.fallbackReason);
+    // The static index is an optional optimization. The verified in-memory
+    // fallback remains authoritative, so do not surface checksum drift as a
+    // browser-console warning to walkers.
     updateDiscoveryPanel();
     notifyNeighborhoodUpdate();
     return data;
