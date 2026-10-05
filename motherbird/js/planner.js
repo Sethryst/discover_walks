@@ -40,9 +40,13 @@ export function paintWalkConcept(plan = state.plannedRoute, { fit = true } = {})
   state.plannedRouteLines?.forEach((line) => line.remove());
   state.planSketchLayer = L.layerGroup().addTo(state.map);
   plan.stops.forEach((stop, index) => L.marker([stop.lat, stop.lng], { icon: L.divIcon({ className: 'sketch-stop', html: `<span>${index + 1}</span>`, iconSize: [30, 30], iconAnchor: [15, 15] }), title: stop.name }).bindTooltip(stop.name).addTo(state.planSketchLayer));
-  state.plannedRouteLines = splitDisconnectedPaths(plan.coordinates).map((coordinates) => L.polyline(coordinates, { color: '#173c35', weight: 6, opacity: .9 }).addTo(state.map));
+  const routePaths = splitDisconnectedPaths(plan.coordinates);
+  // Use a contrasting casing so the route remains obvious over satellite,
+  // OSM, and greenway basemaps instead of disappearing into dark map detail.
+  const routeCasingLines = routePaths.map((coordinates) => L.polyline(coordinates, { color: '#fffdf5', weight: 11, opacity: .98, lineCap: 'round', lineJoin: 'round' }).addTo(state.map));
+  state.plannedRouteLines = routePaths.map((coordinates) => L.polyline(coordinates, { color: '#e63946', weight: 7, opacity: 1, lineCap: 'round', lineJoin: 'round' }).addTo(state.map));
   state.plannedRouteLine = state.plannedRouteLines[0] || null;
-  const layers = [...state.planSketchLayer.getLayers(), ...state.plannedRouteLines];
+  const layers = [...state.planSketchLayer.getLayers(), ...routeCasingLines, ...state.plannedRouteLines];
   if (fit && layers.length) { const bounds = L.featureGroup(layers).getBounds(); if (bounds.isValid()) state.map.fitBounds(bounds, { padding: [42, 42], maxZoom: 16 }); }
   window.dispatchEvent(new CustomEvent('walk-sketch-painted', { detail: plan }));
   return plan;
