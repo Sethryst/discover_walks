@@ -73,6 +73,7 @@ export function initJournalPane() {
     card.innerHTML = `<strong>Suggested for this moment</strong><p>“${escapeHtml(suggestion.quote)}”</p><small>— ${escapeHtml(suggestion.attribution)} · ${escapeHtml(suggestion.tag)} · confidence ${Math.round(Number(suggestion.confidence || 0) * 100)}%</small><div><button type="button" data-journal-quote="${escapeHtml(suggestion.quote)}">Add to journal</button><button type="button" data-pin-quote="${escapeHtml(suggestion.quote)}" data-pin-attribution="${escapeHtml(suggestion.attribution)}" data-pin-context="${escapeHtml(suggestion.context || '')}">Pin to top</button></div>`;
     quotePanel.prepend(card);
     quotePanel.classList.remove('hidden');
+    setJournalSheetState('half');
     card.querySelector('[data-journal-quote]')?.addEventListener('click', () => {
       const note = el('journalNote');
       if (!note) return;

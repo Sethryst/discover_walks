@@ -49,7 +49,7 @@ export function addWalkPoint(point) {
       void recordWalkEvent('pause', point, { automatic: true, reason: 'stationary-position-samples' }, undefined, 'active').then((event) => {
         if (event) {
           walk.detectionState.autoPauseEventId = event.id;
-          void suggestContextualQuote({ context: 'long-pause', confidence: 0.9, eventId: event.id });
+          void suggestContextualQuote({ context: 'long-pause', confidence: 0.9, eventId: event.id, walkId: walk.id });
           globalThis.window?.dispatchEvent(new CustomEvent('walk-long-pause-detected'));
         }
       });
@@ -284,7 +284,7 @@ export async function saveWalk() {
   state.walks = [...state.walks.filter((item) => item.id !== finished.id), finished];
   state.knownTrackPoints.push(...finished.points.filter((_, index) => index % 5 === 0));
   resetActiveWalk();
-  void suggestContextualQuote({ context: 'end-of-walk-return', confidence: 0.9, eventId: finished.id });
+  void suggestContextualQuote({ context: 'end-of-walk-return', confidence: 0.9, eventId: finished.id, walkId: finished.id });
   window.dispatchEvent(new CustomEvent('walk-ended', { detail: { id: finished.id } }));
   closeSheets();
   setStatus('Walk saved locally');

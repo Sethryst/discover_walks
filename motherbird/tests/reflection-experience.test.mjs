@@ -3,6 +3,7 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import test from 'node:test';
 import { buildReflectionMoment, promptForWalk, wordCount } from '../js/reflection.js';
+import { quoteContextForPoi, quoteForContext } from '../js/quote-context.js';
 
 const root = path.resolve(import.meta.dirname, '..');
 
@@ -31,4 +32,11 @@ test('journal UI is writing-first while observation remains field capture', asyn
   assert.match(html, /id="photoInput"/);
   assert.doesNotMatch(html, /name="observationAspect"/);
   assert.doesNotMatch(html, /id="observationIconPicker"/);
+});
+
+test('water and crossing features select the existing stream quote context', () => {
+  assert.equal(quoteContextForPoi({ tags: ['creek'] })?.context, 'crossing-stream-water');
+  assert.equal(quoteContextForPoi({ tags: ['footbridge'] })?.context, 'crossing-stream-water');
+  assert.equal(quoteContextForPoi({ category: 'waterway' })?.context, 'crossing-stream-water');
+  assert.equal(quoteForContext('crossing-stream-water', 'stream-test')?.quote, 'No man ever steps in the same river twice.');
 });

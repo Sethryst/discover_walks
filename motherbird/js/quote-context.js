@@ -6,7 +6,11 @@ const MAX_DEDUPE_KEYS = 120;
 
 const CONTEXT_TAGS = Object.freeze({
   'setting-out-trailhead': new Set(['trailhead', 'trail_start', 'trail_entrance']),
-  'crossing-stream-water': new Set(['bridge', 'stream', 'water', 'water_access', 'river', 'lake']),
+  'crossing-stream-water': new Set([
+    'bridge', 'footbridge', 'stream', 'creek', 'water', 'water_access',
+    'river', 'riverbank', 'lake', 'canal', 'canal_access', 'waterway',
+    'wetland', 'crossing_water'
+  ]),
   'entering-park-threshold': new Set(['park', 'nature_reserve', 'protected_area']),
   'entering-woods-forest-canopy': new Set(['forest', 'woods', 'woodland', 'canopy']),
   'wildlife-sighting': new Set(['wildlife', 'birding', 'nature_observation']),
@@ -14,7 +18,10 @@ const CONTEXT_TAGS = Object.freeze({
   'climbing-elevation-gain': new Set(['climb', 'summit', 'mountain'])
 });
 
-function tagsFor(poi) { return new Set((poi?.tags || poi?.categories || []).map((tag) => String(tag).toLowerCase().replace(/\s+/g, '_'))); }
+function tagsFor(poi) {
+  const values = [...(poi?.tags || poi?.categories || []), poi?.category].filter(Boolean);
+  return new Set(values.map((tag) => String(tag).toLowerCase().replace(/\s+/g, '_')));
+}
 
 export function quoteContextForPoi(poi) {
   const tags = tagsFor(poi);
@@ -32,16 +39,17 @@ export function quoteForContext(context, seed = '') {
   return candidates[index];
 }
 
-export async function suggestContextualQuote({ context, poi = null, confidence = 0, eventId = '' } = {}) {
+export async function suggestContextualQuote({ context, poi = null, confidence = 0, eventId = '', walkId = '' } = {}) {
   if (!context || confidence < 0.72) return null;
-  const key = `${state.activeCity || 'unknown'}:${context}:${eventId || poi?.id || 'walk'}`;
+  const activeWalkId = walkId || state.activeWalk?.id || 'walk';
+  const key = `${state.activeCity || 'unknown'}:${activeWalkId}:${context}:${eventId || poi?.id || 'walk'}`;
   const seen = Array.isArray(state.settings?.quoteEventKeys) ? state.settings.quoteEventKeys : [];
   if (seen.includes(key)) return null;
   const quote = quoteForContext(context, eventId || poi?.id || context);
   if (!quote) return null;
   state.settings.quoteEventKeys = [...seen, key].slice(-MAX_DEDUPE_KEYS);
   await db.put('settings', state.settings);
-  const suggestion = { ...quote, context, confidence: Number(confidence.toFixed(2)), eventId: eventId || poi?.id || null, poiId: poi?.id || null };
+  const suggestion = { ...quote, context, confidence: Number(confidence.toFixed(2)), eventId: eventId || poi?.id || null, poiId: poi?.id || null, walkId: activeWalkId === 'walk' ? null : activeWalkId };
   globalThis.window?.dispatchEvent(new CustomEvent('journal-quote-suggestion', { detail: suggestion }));
   return suggestion;
 }
