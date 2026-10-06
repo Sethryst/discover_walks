@@ -40,7 +40,7 @@ export function initExplore() {
   document.querySelectorAll('input[name="routeMode"]').forEach((input) => input.addEventListener('change', () => {
     if (input.checked && ['round-trip', 'point-to-point'].includes(input.value)) {
       state.plannerEnd = null;
-      setPlannerSelecting('End');
+      setPlannerSelecting(input.value === 'point-to-point' && !state.plannerStart && !state.currentPosition ? 'Start' : 'End');
     } else if (input.checked) {
       setPlannerSelecting(null);
       state.plannerEnd = null;

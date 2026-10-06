@@ -89,6 +89,11 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
   const routeMode = selectedRouteMode();
   const center = plannerOrigin();
   const needsMapDestination = ['round-trip', 'point-to-point'].includes(routeMode);
+  if (routeMode === 'point-to-point' && !state.plannerStart && !state.currentPosition) {
+    setPlannerSelecting('Start');
+    toast('Choose a starting point on the map before choosing a destination.');
+    return null;
+  }
   if (needsMapDestination && !state.plannerEnd) {
     setPlannerSelecting('End');
     toast('Tap a destination on the map to make this a point-to-point walk.');

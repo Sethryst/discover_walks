@@ -6,7 +6,7 @@ import { toast } from './ui.js';
 import { initMap } from './map.js?v=20261005-live-route-line-3';
 import { applyStaticAppearance } from './ui.js';
 import { loadAllCityData, refreshCityMap } from './city.js';
-import { initEvents } from './events.js?v=20261005-live-route-line-3';
+import { initEvents } from './events.js?v=20261005-national-routing-ux-1';
 import { renderArchive } from './archive.js';
 import { normalizedEntitlements } from './entitlements.js';
 import { restoreLocalPoiClosures } from './spatial-closure-reporting.js';
@@ -136,7 +136,7 @@ export async function init() {
     state.plannerEnd = { lat: 38.8348141, lng: -77.0508987 };
     const pointToPoint = document.querySelector('input[name="routeMode"][value="point-to-point"]');
     if (pointToPoint) pointToPoint.checked = true;
-    const { generateTimeBasedPlan } = await import('./planner.js?v=20261005-routing-validation-2');
+    const { generateTimeBasedPlan } = await import('./planner.js?v=20261005-national-routing-ux-1');
     await generateTimeBasedPlan({ title: 'Published routing-cell verification' });
   }
 
