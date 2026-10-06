@@ -395,6 +395,12 @@ function bindWalkControls() {
     document.body.classList.remove('route-selection-active');
     renderRoutePointControls();
     if (type !== 'End') {
+      if (type === 'Start') {
+        setPlannerSelecting('End');
+        document.body.classList.add('route-selection-active');
+        el('routeSelectionHint')?.classList.remove('hidden');
+        if (el('routeSelectionHint')) el('routeSelectionHint').textContent = 'Tap the map to choose your destination.';
+      }
       const status = el('routeComposerStatus');
       if (status) status.textContent = type === 'Start' ? 'Start selected. Choose a destination next.' : 'Destination added. Add another or show the route.';
       toast(type === 'Start' ? 'Starting point selected.' : 'Stop added to this walk.');
