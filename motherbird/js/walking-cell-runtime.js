@@ -1,5 +1,5 @@
 import { state } from './state.js';
-import { WalkingCellRegistry } from './walking-cell-registry.js?v=20261006-routing-hardening-2';
+import { WalkingCellRegistry } from './walking-cell-registry.js?v=20261006-routing-recovery-1';
 
 let registryPromise = null;
 let activation = null;
@@ -16,16 +16,18 @@ export function walkingCellManifestUrl() {
     || null;
 }
 
-export async function activateWalkingCellAt(point, { manifestUrl = walkingCellManifestUrl() } = {}) {
+export async function activateWalkingCellAt(point, { manifestUrl = walkingCellManifestUrl(), allowNearestCellLock = false, maxLockMeters = 5000 } = {}) {
   if (!manifestUrl) return Object.freeze({ id: null, release: null, availability: 'unavailable', reason: 'NO_WALKING_CELL_MANIFEST' });
   if (!Number.isFinite(point?.lat) || !Number.isFinite(point?.lng)) return Object.freeze({ id: null, release: null, availability: 'unavailable', reason: 'INVALID_WALKING_CELL_COORDINATE' });
   const registry = await getWalkingCellRegistry(manifestUrl);
   // Prefer the most specific cell, but fall back to an overlapping routable
   // cell when an adaptive shard is map-only or its graph build is unavailable.
   const matches = registry.findAll(point.lat, point.lng);
-  const cell = matches.find((candidate) => candidate.availability !== 'routing_unavailable' && candidate.availability !== 'build_failed') || matches[0];
+  const cellMatch = matches.find((candidate) => candidate.availability !== 'routing_unavailable' && candidate.availability !== 'build_failed');
+  const nearest = !cellMatch && allowNearestCellLock ? registry.findNearest(point.lat, point.lng) : null;
+  const cell = cellMatch || (nearest?.distance_m <= maxLockMeters ? nearest.cell : null) || matches[0];
   if (!cell) {
-    state.walkingCell = Object.freeze({ id: null, release: registry.release, availability: 'unavailable', reason: 'NO_CELL_FOR_COORDINATE', files: {} });
+    state.walkingCell = Object.freeze({ id: null, release: registry.release, availability: 'unavailable', reason: 'NO_CELL_FOR_COORDINATE', nearestCell: nearest?.cell?.id || null, nearestCellDistanceM: nearest?.distance_m ?? null, files: {} });
     return state.walkingCell;
   }
   if (cell.availability === 'routing_unavailable' || cell.availability === 'build_failed') {
@@ -44,6 +46,8 @@ export async function activateWalkingCellAt(point, { manifestUrl = walkingCellMa
       routingNeighbors: Array.isArray(cell.routingNeighbors) ? [...cell.routingNeighbors] : [],
       artifacts: cell.artifacts,
       files: {}
+      ,lockOn: Boolean(nearest && !cellMatch)
+      ,lockOnDistanceM: nearest?.distance_m ?? 0
     });
     state.walkingCell = active;
     window.dispatchEvent(new CustomEvent('walking-cell-ready', { detail: active }));

@@ -38,6 +38,14 @@ export class WalkingCellRegistry {
     // Adaptive shards may overlap. Prefer the most specific cell, then stable ID.
     return matches.sort((a, b) => area(a.bounds) - area(b.bounds) || a.id.localeCompare(b.id));
   }
+
+  findNearest(lat, lng) {
+    validateCoordinate(lat, lng);
+    return this.cells
+      .filter((cell) => cell.availability !== 'routing_unavailable' && cell.availability !== 'build_failed')
+      .map((cell) => ({ cell, distance_m: distanceToBoundsMeters(lat, lng, cell.bounds) }))
+      .sort((a, b) => a.distance_m - b.distance_m || a.cell.id.localeCompare(b.cell.id))[0] || null;
+  }
 }
 
 function normalizeCell(cell, baseUrl) {
@@ -81,6 +89,15 @@ function contains(bounds, lat, lng) {
 function area(bounds) {
   const width = bounds.west <= bounds.east ? bounds.east - bounds.west : 360 - bounds.west + bounds.east;
   return width * (bounds.north - bounds.south);
+}
+
+function distanceToBoundsMeters(lat, lng, bounds) {
+  const clampedLat = Math.max(bounds.south, Math.min(bounds.north, lat));
+  const clampedLng = Math.max(bounds.west, Math.min(bounds.east, lng));
+  const radians = (value) => value * Math.PI / 180;
+  const dLat = (lat - clampedLat) * 111320;
+  const dLng = (lng - clampedLng) * 111320 * Math.cos(radians((lat + clampedLat) / 2));
+  return Math.hypot(dLat, dLng);
 }
 
 function validateCoordinate(lat, lng) {

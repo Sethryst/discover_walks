@@ -15,13 +15,21 @@ export function routeRuntimeGraph(runtime, request, { maxSnapMeters = 150 } = {}
   }
   const origin = point(request.origin);
   const destination = point(request.destination);
-  const originAny = nearestEdge(runtime, origin, null, maxSnapMeters);
-  const destinationAny = nearestEdge(runtime, destination, null, maxSnapMeters);
+  const originNearest = nearestEdge(runtime, origin, null, Infinity);
+  const destinationNearest = nearestEdge(runtime, destination, null, Infinity);
+  const originAny = originNearest?.distance_m <= maxSnapMeters ? originNearest : null;
+  const destinationAny = destinationNearest?.distance_m <= maxSnapMeters ? destinationNearest : null;
   if (!originAny || !destinationAny) {
     return failure('NO_NEARBY_PEDESTRIAN_EDGE', runtime, {
       profile,
       origin_snap_m: originAny?.distance_m ?? null,
-      destination_snap_m: destinationAny?.distance_m ?? null
+      destination_snap_m: destinationAny?.distance_m ?? null,
+      recovery: {
+        action: 'LOCK_TO_NEAREST_EDGE',
+        origin: originNearest?.coordinate || null,
+        destination: destinationNearest?.coordinate || null,
+        max_lock_m: maxSnapMeters
+      }
     });
   }
   const start = nearestEdge(runtime, origin, profileBit, maxSnapMeters);
@@ -166,7 +174,9 @@ function nearestEdge(runtime, coordinate, profileBit, maxSnapMeters) {
   const size = runtime.spatial_index.cell_size_e7;
   const cellX = Math.floor(lonE7 / size); const cellY = Math.floor(latE7 / size);
   const cellMeters = Math.max(40, size / 1e7 * 111_320 * Math.cos(coordinate[1] * Math.PI / 180));
-  const rings = Math.max(1, Math.ceil(maxSnapMeters / cellMeters) + 1);
+  // An unrestricted nearest-edge probe is used only to build a lock-on
+  // suggestion. Never turn Infinity into an unbounded bucket-ring loop.
+  const rings = Number.isFinite(maxSnapMeters) ? Math.max(1, Math.ceil(maxSnapMeters / cellMeters) + 1) : 1;
   const candidates = new Set();
   for (let dx = -rings; dx <= rings; dx += 1) for (let dy = -rings; dy <= rings; dy += 1) {
     for (const edgeIndex of runtime.spatial_index.buckets[`${cellX + dx}:${cellY + dy}`] || []) candidates.add(edgeIndex);

@@ -65,3 +65,11 @@ test('adaptive overlapping cells can form a candidate bridge without metadata', 
   ];
   assert.deepEqual(findCellPath({ cells }, 'coarse', 'fine').map((cell) => cell.id), ['coarse', 'fine']);
 });
+
+test('registry can lock an out-of-bounds point to the nearest routable cell', () => {
+  const registry = new WalkingCellRegistry({ format: 'motherbird-walking-cell-registry-v1', release: 'test', cells: [
+    { id: 'near', bounds: [0, 0, 1, 1], artifacts: { map: { url: './map.pmtiles' }, graph: { url: './graph.json' } } },
+    { id: 'far', bounds: [10, 10, 11, 11], artifacts: { map: { url: './map.pmtiles' }, graph: { url: './graph.json' } } }
+  ] });
+  assert.equal(registry.findNearest(1.01, 0.5).cell.id, 'near');
+});
