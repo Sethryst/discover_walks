@@ -87,6 +87,7 @@ export const state = {
   draftObservationLocation: null,
   draftObservationIcon: 'camera',
   prompted: new Set(),
+  contextQuotePrompted: new Set(),
   poiTags: new Set(),
   archiveFilter: 'all',
   planningMode: false,

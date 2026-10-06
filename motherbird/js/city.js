@@ -91,7 +91,7 @@ export async function loadAllCityData() {
 }
 export async function refreshCityMap(recenter = false) {
   const active = cityLookup();
-  state.observationLayer.clearLayers(); state.prompted.clear();
+  state.observationLayer.clearLayers(); state.prompted.clear(); state.contextQuotePrompted.clear();
   const observations = await db.all('observations');
   observations.filter((observation) => localObservationCity(observation) === state.activeCity).forEach(addObservationMarker);
   if (recenter) state.map.setView([active.center.lat, active.center.lng], active.zoom);

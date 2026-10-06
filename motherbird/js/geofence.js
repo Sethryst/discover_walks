@@ -14,7 +14,26 @@ function checkGeofencesNow(point) {
   const settings = state.settings || {};
   if (settings.enableGeofencing === false) return;
   const defaultRadius = settings.defaultGeofenceRadiusMeters || 50;
+  const contextualRadius = Math.max(120, defaultRadius * 2);
   const pois = state.cityPois[state.activeCity] || [];
+  const walkScope = state.activeWalk?.id || 'location-session';
+  const contextual = pois
+    .filter((poi) => {
+      if (!isWalkablePoi(poi)) return false;
+      const context = quoteContextForPoi(poi);
+      if (!context) return false;
+      const key = `${state.activeCity}:${walkScope}:${poi.id}`;
+      if (state.contextQuotePrompted.has(key)) return false;
+      const effectiveRadius = Math.max(Number(poi.quoteRadius || 0), contextualRadius);
+      return distanceMeters(point, poi) <= effectiveRadius;
+    })
+    .map((poi) => ({ poi, distance: distanceMeters(point, poi) }));
+  contextual.forEach((encounter) => {
+    const key = `${state.activeCity}:${walkScope}:${encounter.poi.id}`;
+    state.contextQuotePrompted.add(key);
+    const context = quoteContextForPoi(encounter.poi);
+    void suggestContextualQuote({ ...context, poi: encounter.poi, eventId: encounter.poi.id, walkId: state.activeWalk?.id || walkScope });
+  });
   const nearby = pois
     .filter((poi) => {
     if (!isWalkablePoi(poi)) return false;
@@ -29,8 +48,6 @@ function checkGeofencesNow(point) {
   nearby.forEach((encounter) => {
     const key = `${state.activeCity}:${encounter.poi.id}`;
     state.prompted.add(key);
-    const context = quoteContextForPoi(encounter.poi);
-    if (context) void suggestContextualQuote({ ...context, poi: encounter.poi, eventId: encounter.poi.id, walkId: state.activeWalk?.id });
     if (state.activeWalk) {
       const tags = poiTags(encounter.poi);
       requestCompanionContext(tags.some((tag) => ['water', 'water_access', 'river', 'lake'].includes(tag)) ? 'water' : tags.some((tag) => tag === 'history' || tag.startsWith('history_')) ? 'historic' : tags.some((tag) => ['wildlife', 'nature'].includes(tag)) ? 'observe' : 'discover');
