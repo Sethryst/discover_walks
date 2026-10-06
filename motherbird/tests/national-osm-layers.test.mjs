@@ -15,7 +15,7 @@ test('saved national OSM choices restore exactly, including intentional all-off'
   assert.deepEqual(enabledNationalOsmLayerIds(saved), ['food']);
 });
 
-test('My Maps controls expose group and individual category toggles', () => {
+test('map controls expose group and individual category toggles', () => {
   const html = nationalOsmLayerControlsHtml(normalizedNationalOsmLayers());
   assert.match(html, /data-national-osm-layer="trail" aria-pressed="true"/);
   assert.match(html, /data-national-osm-layer="crossing"/);
