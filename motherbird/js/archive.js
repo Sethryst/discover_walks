@@ -106,6 +106,7 @@ export async function renderArchive() {
   if (el('journalArchiveSummary')) el('journalArchiveSummary').textContent = `${walks.length} walk${walks.length === 1 ? '' : 's'} · ${miles.toFixed(1)} mi · ${notes.length} note${notes.length === 1 ? '' : 's'}`;
   await renderJournalTimeline();
   await renderJournalHistory();
+  window.dispatchEvent(new CustomEvent('journal-data-changed'));
 }
 
 let voiceObjectUrls = [];

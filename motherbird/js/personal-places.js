@@ -286,10 +286,26 @@ export function renderPersonalPlacesPanel() {
   panel.innerHTML = `${activeWalkCard}<div class="personal-places-intro"><div><p class="eyebrow">MY PLACES</p><h2>Your places</h2><p>Private pins stay on this device. Posted pins keep their attribution.</p></div><button class="primary-button" id="addPersonalPlaceButton" type="button"><img src="./icons/plus.svg" alt="" /> Add location</button></div>${cards}<label>Sort<select id="personalPlaceSort"><option value="nearest">Nearest</option><option value="name">Name</option><option value="importance">Importance</option><option value="newest">Newest</option></select></label>`;
   if (el('personalPlaceSort')) el('personalPlaceSort').value = state.settings.personalPlaceSort || 'nearest';
   void hydrateInlineIcons(panel);
+  void renderLocalDataOrganizers(panel);
 }
 
 function formatWalkDistance(meters = 0) {
   return `${(Number(meters || 0) / 1609.344).toFixed(2)} mi`;
+}
+
+async function renderLocalDataOrganizers(panel) {
+  const [walks, observations, moments, voices] = await Promise.all([
+    db.all('walks'), db.all('observations'), db.all('moments'), db.all('voice_notes')
+  ]);
+  const recent = (items, title, empty, label) => {
+    const rows = [...items].sort((a, b) => Date.parse(b.createdAt || b.startedAt || 0) - Date.parse(a.createdAt || a.startedAt || 0)).slice(0, 8);
+    return `<details class="local-data-drawer"><summary>${escapeHtml(title)} <span>${items.length}</span></summary><div class="local-data-list">${rows.length ? rows.map((item) => `<div class="local-data-row"><strong>${escapeHtml(label(item))}</strong><small>${escapeHtml(new Date(item.createdAt || item.startedAt || Date.now()).toLocaleDateString())}</small></div>`).join('') : `<p class="empty-state">${escapeHtml(empty)}</p>`}</div></details>`;
+  };
+  const container = document.createElement('section');
+  container.className = 'local-data-organizer';
+  container.setAttribute('aria-label', 'Private journal organizer');
+  container.innerHTML = `<p class="eyebrow">PRIVATE JOURNAL</p><h3>Organize your records</h3>${recent(moments.filter((item) => item.type === 'journal' || item.type === 'history'), 'Past journal entries', 'No journal entries yet.', (item) => item.title || 'Field note')}${recent(observations, 'Observations', 'No observations yet.', (item) => item.species || item.title || 'Observation')}${recent(walks, 'Completed walks', 'No completed walks yet.', (item) => `${formatWalkDistance(item.distanceMeters)} walk`)}${recent(voices, 'Voice notes', 'No voice notes yet.', (item) => item.transcript ? item.transcript.slice(0, 80) : 'Voice note')}</section>`;
+  panel.append(container);
 }
 
 function defaultChip(light) {
@@ -680,6 +696,7 @@ function bindPersonalPlaceControls() {
   });
   window.addEventListener('public-markers-changed', () => { renderPersonalPlacesPanel(); renderPersonalPlacesOnMap(); });
   window.addEventListener('walk-display-updated', renderPersonalPlacesPanel);
+  window.addEventListener('journal-data-changed', () => renderPersonalPlacesPanel());
   window.addEventListener('online-profile-changed', async () => { await ensureDefaultPersonalCategory(); personalDataChanged(); });
   window.addEventListener('personal-places-changed', async () => {
     if (state.personalPlaceCategories.length) return;
