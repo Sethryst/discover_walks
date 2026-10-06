@@ -1,7 +1,6 @@
 import { CITIES } from './constants.js';
 import { state } from './state.js';
 import { escapeHtml } from './utils.js';
-import { switchCity } from './city.js';
 
 let catalog = null;
 let activeId = null;
@@ -22,29 +21,16 @@ function renderRegionalNavigation() {
   if (!control || !menu) return;
   const label = region.name || id || 'Choose region';
   control.textContent = `${label} ▾`;
-  control.setAttribute('aria-label', `Active area: ${label}. Change area`);
+  control.setAttribute('aria-label', `Current map area: ${label}. Open official area pages`);
   if (input && !input.value.trim()) input.placeholder = 'Search';
-  const nearbyRegions = ['dc', 'pgcounty', 'fairfax', 'alexandria', 'loudoun'].filter((regionId) => CITIES[regionId]);
-  const regionChoices = nearbyRegions.map((regionId) => {
-    const choice = CITIES[regionId];
-    const selected = regionId === id ? ' aria-current="page"' : '';
-    return `<button type="button" class="regional-choice" data-region-id="${escapeHtml(regionId)}"${selected}>${escapeHtml(choice.name)}, ${escapeHtml(choice.state)}</button>`;
-  }).join('');
   const links = catalog?.outlinks?.[id] || [];
-  menu.innerHTML = `<strong>Explore in ${escapeHtml(label)}</strong><div class="regional-choices" aria-label="Nearby areas">${regionChoices}</div>${links.length ? `<div class="regional-outlinks"><strong>Official pages <span aria-hidden="true">↗</span></strong>${links.map((link) => `<a href="${escapeHtml(link.href)}" target="_blank" rel="noopener">${escapeHtml(link.label)} <span aria-hidden="true">↗</span></a>`).join('')}</div>` : '<p class="regional-outlinks-empty">Official pages will appear here when verified.</p>'}`;
+  menu.innerHTML = `<strong>Official pages for ${escapeHtml(label)}</strong>${links.length ? `<div class="regional-outlinks">${links.map((link) => `<a href="${escapeHtml(link.href)}" target="_blank" rel="noopener">${escapeHtml(link.label)} <span aria-hidden="true">↗</span></a>`).join('')}</div>` : '<p class="regional-outlinks-empty">Official pages will appear here when verified.</p>'}`;
 }
 
 export function initRegionalNavigation() {
   const control = document.getElementById('regionalNavigation');
   const menu = document.getElementById('regionalNavigationMenu');
   control?.addEventListener('click', () => { renderRegionalNavigation(); menu?.classList.toggle('hidden'); });
-  menu?.addEventListener('click', (event) => {
-    const choice = event.target.closest('[data-region-id]');
-    if (!choice) return;
-    menu.classList.add('hidden');
-    window.dispatchEvent(new CustomEvent('regional-navigation-change', { detail: { regionId: choice.dataset.regionId } }));
-  });
-  window.addEventListener('regional-navigation-change', ({ detail }) => { if (detail?.regionId) void switchCity(detail.regionId); });
   window.addEventListener('viewport-region-changed', ({ detail }) => { activeId = detail?.regionId || state.activeCity; renderRegionalNavigation(); });
   document.addEventListener('click', (event) => { if (!event.target.closest('.regional-navigation')) menu?.classList.add('hidden'); });
   void loadRegionalNavigation();

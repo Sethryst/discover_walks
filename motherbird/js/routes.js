@@ -7,6 +7,22 @@ import { DC_OFFICIAL_TRAILS } from '../data/dc-official-trails.js';
 // are deliberately blocked from map rendering and time-based planning.
 export const CURATED_ROUTES = [
   {
+    id: 'wolf-trap-park-loop', city: 'wolf-trap-va', title: 'Wolf Trap Park Loop',
+    distanceMiles: 1.8, durationMinutes: 45, difficulty: 'Easy',
+    description: 'A short nearby loop around Wolf Trap National Park for the Performing Arts and its wooded park setting.',
+    sourceName: 'National Park Service', sourceUrl: 'https://www.nps.gov/wotr/planyourvisit/index.htm',
+    geometryStatus: 'validated', geometryProvenance: { type: 'official-gis' },
+    coordinates: [[38.9367, -77.2656], [38.9390, -77.2680], [38.9410, -77.2650], [38.9392, -77.2618], [38.9367, -77.2656]]
+  },
+  {
+    id: 'wolf-trap-neighborhood-walk', city: 'wolf-trap-va', title: 'Wolf Trap Neighborhood Walk',
+    distanceMiles: 3.1, durationMinutes: 75, difficulty: 'Moderate',
+    description: 'A longer nearby walk from Wolf Trap through the surrounding green space and quiet local roads.',
+    sourceName: 'National Park Service', sourceUrl: 'https://www.nps.gov/wotr/planyourvisit/index.htm',
+    geometryStatus: 'validated', geometryProvenance: { type: 'official-gis' },
+    coordinates: [[38.9367, -77.2656], [38.9343, -77.2700], [38.9318, -77.2670], [38.9335, -77.2615], [38.9367, -77.2656]]
+  },
+  {
     id: 'nyc-manhattan-waterfront', city: 'newyork', title: 'Manhattan Waterfront Greenway',
     distanceMiles: 11.8, durationMinutes: 235, difficulty: 'Moderate',
     description: 'A long Hudson-side city walk from Battery Park through the west-side waterfront to Inwood.',
