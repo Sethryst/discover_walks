@@ -36,22 +36,6 @@
       },
       "credentialEnv": "NYC_GEOCLIENT_SUBSCRIPTION_KEY",
       "dataRole": "Exact-match geocoding for official NYC event addresses"
-    },
-    {
-      "id": "supabase-project",
-      "service": "Supabase project",
-      "provider": "Supabase",
-      "registeredAt": "2026-07-29",
-      "registrationEvidence": "Mailbox account/project receipts reviewed 2026-08-20",
-      "productUrl": "https://supabase.com/dashboard/projects",
-      "binding": {
-        "kind": "runtime",
-        "configPath": "motherbird/supabase-config.js",
-        "workflowPath": ".github/workflows/supabase-heartbeat.yml"
-      },
-      "dataRole": "Optional account authentication, profile synchronization, and minimal activity heartbeat",
-      "schemaStatus": "proposed-not-verified",
-      "schemaEvidence": "A 66-table migration design was found in the mailbox; no applied migration or table inventory was verified."
     }
   ]
 }
