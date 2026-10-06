@@ -15,7 +15,7 @@ import { setPoiVisited } from './poi-visit-tracking.js';
 import { addWalkWaypoint, startWalk } from './walk.js';
 import { initMapsFolders, renderMapsLibrary } from './maps-folders.js';
 import { listSpatialQueries, queryPrompt } from './spatial-query.js?v=20260928-spatial-query-fix';
-import { renderBiodiversityGuide } from './biodiversity.js';
+import { isBiodiversitySupported, renderBiodiversityGuide } from './biodiversity.js';
 
 const FORMAT = 'walk-wildlife-plan-v1';
 let selectedPlaceId = null;
@@ -119,6 +119,11 @@ function observationCard(item) {
 }
 export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') {
   if (tab === 'maps') tab = 'discover';
+  const natureTab = document.querySelector('[data-guide-tab="biodiversity"]');
+  const natureSupported = isBiodiversitySupported();
+  natureTab?.classList.toggle('hidden', !natureSupported);
+  natureTab?.setAttribute('aria-hidden', String(!natureSupported));
+  if (tab === 'biodiversity' && !natureSupported) tab = 'discover';
   state.fieldGuideTab = tab;
   window.dispatchEvent(new CustomEvent('guide-tab-changed', { detail: { tab } }));
   const target = el('fieldGuideList'); if (!target) return;
@@ -439,5 +444,5 @@ export function initFieldGuideFilters() {
     if (tab === 'learn') setLearnScreen('history');
     openSheet('backpackSheet'); await renderFieldGuide(tab);
   })(); });
-  window.addEventListener('city-layer-data-changed', () => { state.fieldGuideData = null; });
+  window.addEventListener('city-layer-data-changed', () => { state.fieldGuideData = null; const tab = isBiodiversitySupported() ? state.fieldGuideTab : (state.fieldGuideTab === 'biodiversity' ? 'discover' : state.fieldGuideTab); if (state.modalOpen === 'backpackSheet') void renderFieldGuide(tab); });
 }

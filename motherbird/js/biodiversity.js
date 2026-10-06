@@ -1,5 +1,6 @@
 import { state } from './state.js';
 let recordsPromise;
+export function isBiodiversitySupported(regionId = state.activeCity) { return String(regionId || '') === 'alexandria'; }
 const esc = (v) => String(v ?? '').replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export function biodiversityDataUrl(regionId = state.activeCity) { return `./regions/${regionId}/biodiversity/records.json`; }
 export async function loadBiodiversity(regionId = state.activeCity) { recordsPromise ||= fetch(biodiversityDataUrl(regionId)).then((r) => { if (!r.ok) throw new Error('No biodiversity sidecar for this region'); return r.json(); }); return recordsPromise; }
