@@ -424,10 +424,21 @@ function stopGpsWatch() {
   state.timerId = null;
 }
 
-async function persistWalkDraft() {
+export async function persistWalkDraft() {
   if (!state.activeWalk) return;
   updateWalkDurations(state.activeWalk);
   await db.put('walk_drafts', { id: DRAFT_ID, updatedAt: new Date().toISOString(), walk: normalizeWalkArtifact(state.activeWalk) });
+}
+
+// Refreshes and backgrounding can happen without another GPS sample. Keep the
+// latest in-memory route durable before the browser hides or tears down the
+// page; the loader offers explicit recovery on the next boot.
+if (typeof window !== 'undefined') {
+  const persistBeforePageLoss = () => { if (state.activeWalk) void persistWalkDraft(); };
+  window.addEventListener('pagehide', persistBeforePageLoss);
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') persistBeforePageLoss();
+  });
 }
 
 function resetActiveWalk() {

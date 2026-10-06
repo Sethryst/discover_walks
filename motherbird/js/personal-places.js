@@ -281,9 +281,15 @@ export function renderPersonalPlacesPanel() {
     }).join('') : '<li class="personal-place-empty">No locations in this category yet.</li>';
     return `<article class="personal-category-card" style="--category-color:${escapeHtml(category.color)}"><header><span class="category-icon"><img data-inline-svg data-icon-fallback="" src="./icons/${escapeHtml(category.icon)}.svg" alt="" /></span><span><h3>${escapeHtml(category.name)}</h3><small>${inCategory.length} place${inCategory.length === 1 ? '' : 's'} · ${visible ? 'shown on map' : 'hidden on map'}</small></span></header>${category.description ? `<p>${escapeHtml(category.description)}</p>` : ''}<label class="personal-map-toggle"><input type="checkbox" data-personal-category-visible="${escapeHtml(category.id)}" ${visible ? 'checked' : ''} /> Show this category on the map</label><ul>${rows}</ul><button class="secondary-button" type="button" data-add-to-personal-category="${escapeHtml(category.id)}">Add location</button></article>`;
   }).join('');
-  panel.innerHTML = `<div class="personal-places-intro"><div><p class="eyebrow">MY PLACES</p><h2>Your places</h2><p>Private pins stay on this device. Posted pins keep their attribution.</p></div><button class="primary-button" id="addPersonalPlaceButton" type="button"><img src="./icons/plus.svg" alt="" /> Add location</button></div>${cards}<label>Sort<select id="personalPlaceSort"><option value="nearest">Nearest</option><option value="name">Name</option><option value="importance">Importance</option><option value="newest">Newest</option></select></label>`;
+  const activeWalk = state.activeWalk;
+  const activeWalkCard = activeWalk ? `<article class="active-walk-card" aria-live="polite"><div><p class="eyebrow">WALK IN PROGRESS</p><h2>${activeWalk.recordingStatus === 'stopped' ? 'Walk awaiting review' : 'Current walk'}</h2><p>${formatWalkDistance(activeWalk.distanceMeters)} recorded · ${activeWalk.points?.length || 0} route points · ${activeWalk.recordingStatus === 'stopped' ? 'safe to review' : 'saving on this device'}</p></div><span class="active-walk-status">${activeWalk.recordingStatus === 'stopped' ? 'Paused' : 'Recording'}</span></article>` : '';
+  panel.innerHTML = `${activeWalkCard}<div class="personal-places-intro"><div><p class="eyebrow">MY PLACES</p><h2>Your places</h2><p>Private pins stay on this device. Posted pins keep their attribution.</p></div><button class="primary-button" id="addPersonalPlaceButton" type="button"><img src="./icons/plus.svg" alt="" /> Add location</button></div>${cards}<label>Sort<select id="personalPlaceSort"><option value="nearest">Nearest</option><option value="name">Name</option><option value="importance">Importance</option><option value="newest">Newest</option></select></label>`;
   if (el('personalPlaceSort')) el('personalPlaceSort').value = state.settings.personalPlaceSort || 'nearest';
   void hydrateInlineIcons(panel);
+}
+
+function formatWalkDistance(meters = 0) {
+  return `${(Number(meters || 0) / 1609.344).toFixed(2)} mi`;
 }
 
 function defaultChip(light) {
@@ -673,6 +679,7 @@ function bindPersonalPlaceControls() {
     setTimeout(() => publicLeafletMarkers.get(marker.id)?.openPopup(), 350);
   });
   window.addEventListener('public-markers-changed', () => { renderPersonalPlacesPanel(); renderPersonalPlacesOnMap(); });
+  window.addEventListener('walk-display-updated', renderPersonalPlacesPanel);
   window.addEventListener('online-profile-changed', async () => { await ensureDefaultPersonalCategory(); personalDataChanged(); });
   window.addEventListener('personal-places-changed', async () => {
     if (state.personalPlaceCategories.length) return;
