@@ -1,0 +1,15 @@
+{
+  "requestStatus": "ready-for-authenticated-submission",
+  "datasetKey": "50c9509d-22c7-4a22-a47d-8c48425ef4a7",
+  "datasetName": "iNaturalist Research-grade Observations",
+  "format": "SIMPLE_CSV",
+  "predicate": {"type":"and","predicates":[
+    {"type":"equals","key":"DATASET_KEY","value":"50c9509d-22c7-4a22-a47d-8c48425ef4a7"},
+    {"type":"equals","key":"BASIS_OF_RECORD","value":"HUMAN_OBSERVATION"},
+    {"type":"equals","key":"OCCURRENCE_STATUS","value":"PRESENT"},
+    {"type":"within","geometry":"POLYGON((-77.145 38.786,-77.037 38.786,-77.037 38.845,-77.145 38.845,-77.145 38.786))"}
+  ]},
+  "requestedFields": ["gbifID","occurrenceID","taxonKey","scientificName","vernacularName","kingdom","class","order","family","genus","species","decimalLatitude","decimalLongitude","coordinateUncertaintyInMeters","geoprivacy","eventDate","month","establishmentMeans","captive","cultivated","media","license","datasetName","qualityGrade"],
+  "submission": {"endpoint":"https://api.gbif.org/v1/occurrence/download/request","authentication":"GBIF username/password required; do not store credentials here","doi":"assigned by GBIF after the download succeeds"},
+  "notes": ["The normalizer remains the enforcement point for captive/cultivated exclusion and coordinate privacy."]
+}

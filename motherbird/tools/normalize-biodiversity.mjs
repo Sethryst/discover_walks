@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 export const DEFAULT_MAX_UNCERTAINTY_METERS = 1000;
+export function validateBiodiversitySidecar(payload) { if (!payload || payload.schemaVersion !== 'biodiversity-sidecar-v1' || !Array.isArray(payload.records)) throw new Error('Invalid biodiversity sidecar envelope'); const required = ['recordId','taxonId','scientificName','regionId','gridCellId','month','observationCount','coordinateUncertainty','source','generatedAt','sourceVintage','boundaryVersion']; for (const [index, record] of payload.records.entries()) { for (const key of required) if (record[key] === undefined) throw new Error(`Record ${index} missing ${key}`); if (!Number.isInteger(record.month) || record.month < 1 || record.month > 12) throw new Error(`Record ${index} has invalid month`); if (!Number.isInteger(record.observationCount) || record.observationCount < 1) throw new Error(`Record ${index} has invalid observationCount`); if (!['public','obscured','sensitive'].includes(record.coordinateUncertainty?.privacyClass)) throw new Error(`Record ${index} has invalid privacyClass`); if (!Array.isArray(record.source?.occurrenceIds)) throw new Error(`Record ${index} missing occurrenceIds`); } return true; }
 export function normalizeOccurrences(rows, { regionId, boundary, maxUncertaintyMeters = DEFAULT_MAX_UNCERTAINTY_METERS, sourceVintage = new Date().toISOString().slice(0, 10), boundaryVersion = 'unspecified', gbifDownloadDoi = null } = {}) {
   const grouped = new Map();
   for (const row of rows) {
@@ -18,10 +19,12 @@ export function normalizeOccurrences(rows, { regionId, boundary, maxUncertaintyM
     if (row.geoprivacy === 'obscured' || row.sensitive === true || row.coordinateUncertaintyInMeters > 1000) item.coordinateUncertainty.privacyClass = 'obscured';
     grouped.set(key, item);
   }
-  return { schemaVersion: 'biodiversity-sidecar-v1', metadata: { regionId, sourceVintage, boundaryVersion, gbifDownloadDoi, generatedAt: new Date().toISOString() }, records: [...grouped.values()] };
+  const result = { schemaVersion: 'biodiversity-sidecar-v1', metadata: { regionId, sourceVintage, boundaryVersion, gbifDownloadDoi, generatedAt: new Date().toISOString() }, records: [...grouped.values()] }; validateBiodiversitySidecar(result); return result;
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(new URL(import.meta.url).pathname)) {
   const [input, output, regionId] = process.argv.slice(2); if (!input || !output || !regionId) throw new Error('Usage: node normalize-biodiversity.mjs input.json output.json region-id');
-  const rows = JSON.parse(await fs.readFile(input, 'utf8')); const result = normalizeOccurrences(rows.records || rows, { regionId }); await fs.writeFile(output, JSON.stringify(result, null, 2) + '\n');
+  const raw = await fs.readFile(input, 'utf8'); const rows = input.endsWith('.tsv') || input.endsWith('.csv') ? parseDelimited(raw, input.endsWith('.tsv') ? '\t' : ',') : JSON.parse(raw); const result = normalizeOccurrences(rows.records || rows, { regionId }); await fs.writeFile(output, JSON.stringify(result, null, 2) + '\n');
 }
+
+function parseDelimited(raw, delimiter) { const [header, ...lines] = raw.trim().split(/\r?\n/); return lines.filter(Boolean).map((line) => { const values = line.split(delimiter); return Object.fromEntries(header.split(delimiter).map((key, index) => [key, values[index] ?? ''])); }); }
