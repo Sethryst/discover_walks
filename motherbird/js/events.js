@@ -334,6 +334,7 @@ function bindWalkControls() {
     document.body.dataset.walkMenuDismissBound = 'true';
     document.addEventListener('click', (event) => {
       if (event.target.closest('#startPanel, #radialRouteOptionsButton, #startChevron')) return;
+      if (state.plannerSelecting || document.body.classList.contains('route-selection-active') || event.target.closest('#map, .leaflet-container')) return;
       const panel = el('startPanel');
       if (panel && !panel.classList.contains('hidden')) {
         panel.classList.add('hidden');

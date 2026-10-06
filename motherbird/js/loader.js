@@ -6,7 +6,7 @@ import { toast } from './ui.js';
 import { initMap } from './map.js?v=20261005-destination-selection-1';
 import { applyStaticAppearance } from './ui.js';
 import { loadAllCityData, refreshCityMap } from './city.js';
-import { initEvents } from './events.js?v=20261005-national-routing-ux-1';
+import { initEvents } from './events.js?v=20261006-point-to-point-selection-1';
 import { renderArchive } from './archive.js';
 import { normalizedEntitlements } from './entitlements.js';
 import { restoreLocalPoiClosures } from './spatial-closure-reporting.js';
