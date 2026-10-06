@@ -113,7 +113,7 @@ def compile_features(features: Iterable[dict[str, Any]], cell: dict[str, Any], r
 
 
 def compile_plan(plan_path: Path, work_dir: Path, *, osmium: str = "osmium", node: str = "node",
-                 limit: int | None = None, cell_id: str | None = None) -> dict[str, int]:
+                 limit: int | None = None, cell_id: str | None = None, force: bool = False) -> dict[str, int]:
     """Compile pending plan cells; completed fingerprints are safely resumable."""
     plan = json.loads(plan_path.read_text(encoding="utf-8"))
     cells = [cell for cell in plan["cells"] if not cell_id or cell["id"] == cell_id]
@@ -126,7 +126,7 @@ def compile_plan(plan_path: Path, work_dir: Path, *, osmium: str = "osmium", nod
         sources = [work_dir / value for value in cell["sourcePbf"]]
         fingerprint = _fingerprint(plan, cell, sources)
         manifest_path = output / "manifest.json"
-        if _completed(manifest_path, output / "runtime-graph.json", fingerprint):
+        if not force and _completed(manifest_path, output / "runtime-graph.json", fingerprint):
             counts["skipped"] += 1
             continue
         output.mkdir(parents=True, exist_ok=True)
@@ -237,10 +237,10 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--plan", required=True, type=Path); parser.add_argument("--work-dir", required=True, type=Path)
     parser.add_argument("--osmium", default="osmium"); parser.add_argument("--node", default="node")
-    parser.add_argument("--limit", type=int); parser.add_argument("--cell-id")
+    parser.add_argument("--limit", type=int); parser.add_argument("--cell-id"); parser.add_argument("--force", action="store_true")
     args = parser.parse_args(argv)
     print(json.dumps(compile_plan(args.plan, args.work_dir, osmium=args.osmium, node=args.node,
-                                  limit=args.limit, cell_id=args.cell_id), sort_keys=True))
+                                  limit=args.limit, cell_id=args.cell_id, force=args.force), sort_keys=True))
     return 0
 
 

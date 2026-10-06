@@ -5,8 +5,8 @@ set -Eeuo pipefail
 # reference-complete walking candidates. A later stage applies access rules,
 # splits ways at junctions/barriers, and writes spatially sharded route graphs.
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-release="${1:-osm-us-2026-09-07}"
-source_pbf="${repo_root}/.gremlin-osm/sources/osm/us.osm.pbf"
+release="${1:-osm-us-2026-10-04}"
+source_pbf="${NATIONAL_ROUTING_SOURCE_PBF:-${repo_root}/.gremlin-osm/sources/osm/us-latest-2026-10-04.osm.pbf}"
 root="${repo_root}/.gremlin-osm/national-pedestrian-routing"
 work_dir="${root}/work/${release}"
 log_dir="${root}/logs"

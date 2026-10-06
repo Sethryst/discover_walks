@@ -130,7 +130,7 @@ export async function init() {
   // gated and does not affect normal visitors.
   if (new URLSearchParams(globalThis.location?.search || '').get('routecheck') === '1') {
     window.MOTHER_BIRD_WALKING_CELLS = {
-      manifestUrl: './data/national-routing/osm-us-nova-dc-pilot-2026-10-04/cells.json?v=20261005-routing-validation-1'
+      manifestUrl: './data/national-routing/osm-us-2026-10-04/cells.json?v=20261005-national-92-1'
     };
     state.plannerStart = { lat: 38.8338858, lng: -77.0482543 };
     state.plannerEnd = { lat: 38.8348141, lng: -77.0508987 };
