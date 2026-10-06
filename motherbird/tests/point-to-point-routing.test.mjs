@@ -16,6 +16,8 @@ test('routing exposes specific cross-cell and boundary failure classes', () => {
   assert.match(routing, /maxVisitedNodes: 300000/);
   assert.match(routing, /requestRouteWithRetry/);
   assert.match(routing, /routeFailureMessage/);
+  assert.match(routing, /ROUTING_GRAPH_UNAVAILABLE/);
+  assert.match(routing, /after a retry/);
   assert.doesNotMatch(planner, /Route unavailable \(\$\{routed\.status\}/);
   assert.doesNotMatch(events, /Route unavailable \(\$\{plan\.graphStatus\}/);
 });

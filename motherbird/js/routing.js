@@ -1,4 +1,4 @@
-import { activateWalkingCellAt, getWalkingCellRegistry } from './walking-cell-runtime.js?v=20261006-routing-hardening-3';
+import { activateWalkingCellAt, getWalkingCellRegistry } from './walking-cell-runtime.js?v=20261006-routing-hardening-4';
 
 let worker = null;
 let sequence = 0;
@@ -15,6 +15,7 @@ export const ROUTE_FAILURE_MESSAGES = {
   NO_ROUTE_IN_COMPONENT: 'Both points are near pedestrian geometry, but no connected route joins them.',
   ROUTING_TIMEOUT: 'Offline routing timed out while loading or searching the cell.',
   ROUTING_SEARCH_LIMIT: 'The installed routing shard is too large for a safe browser search.',
+  ROUTING_GRAPH_UNAVAILABLE: 'This routing graph could not be loaded or searched in the browser after a retry. Try again later or choose a nearby mapped cell.',
   ROUTING_WORKER_ERROR: 'The offline routing worker stopped unexpectedly.',
   GRAPH_ARTIFACT_MISMATCH: 'The installed routing artifact failed its integrity check.',
   ACCESS_POLICY_BLOCKED: 'The installed geometry does not meet the selected access policy.',
@@ -84,11 +85,13 @@ export async function routeOnFoot(points, { city, profile = 'ordinary_walking_be
 
 async function requestRouteWithRetry(payload) {
   let result = await requestRoute(payload);
-  if (result.ok || !['ROUTING_WORKER_ERROR', 'ROUTING_TIMEOUT'].includes(result.status)) return result;
+  if (result.ok || !['ROUTING_WORKER_ERROR', 'ROUTING_TIMEOUT', 'GRAPH_VERSION_UNAVAILABLE'].includes(result.status)) return result;
   // A worker can die during a large graph decode or transient cache read. The
   // request layer resets it; one retry makes the next route attempt useful
   // without allowing an infinite loop of expensive graph loads.
-  return requestRoute(payload);
+  result = await requestRoute(payload);
+  if (result.ok || !['ROUTING_WORKER_ERROR', 'ROUTING_TIMEOUT', 'GRAPH_VERSION_UNAVAILABLE'].includes(result.status)) return result;
+  return failure('ROUTING_GRAPH_UNAVAILABLE', result.failure?.reason || result.failure?.message);
 }
 
 async function stitchCellPath(origin, destination, cells, request, index = 0, current = origin, legs = []) {
@@ -171,7 +174,7 @@ function mergeInstructions(legs) {
 function requestRoute(payload) {
   if (typeof Worker === 'undefined') return Promise.resolve(failure('GRAPH_VERSION_UNAVAILABLE'));
   if (!worker) {
-    worker = new Worker('./js/offline-router-worker.js?v=20261006-routing-hardening-3', { type: 'module' });
+    worker = new Worker('./js/offline-router-worker.js?v=20261006-routing-hardening-4', { type: 'module' });
     worker.onmessage = ({ data }) => {
       if (data.type === 'progress') { window.dispatchEvent(new CustomEvent('routing-progress', { detail: data })); return; }
       if (data.type === 'worker-ready') { workerReady = true; window.dispatchEvent(new CustomEvent('routing-worker-ready', { detail: data })); return; }
