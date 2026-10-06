@@ -26,6 +26,7 @@ import {
 import { companionStateForWalk, setCompanionState } from './companion.js';
 import { walkIsActive } from './walk-state.js';
 import { suggestContextualQuote } from './quote-context.js';
+import { getCurrentPosition, watchPosition, clearWatch, isLocationSimulatorEnabled } from './location-simulator.js';
 
 const DRAFT_ID = 'active-walk';
 
@@ -128,9 +129,9 @@ async function handleGpsPosition(position, shouldPan = false) {
 }
 
 export function getCurrentLocation() {
-  if (!navigator.geolocation) { toast('This browser does not support location.'); return; }
+  if (!navigator.geolocation && !isLocationSimulatorEnabled()) { toast('This browser does not support location.'); return; }
   setStatus('Finding your location...', true);
-  navigator.geolocation.getCurrentPosition(
+  getCurrentPosition(
     (position) => void handleGpsPosition(position, true),
     (error) => { setStatus('Location unavailable'); toast(error.code === 1 ? 'Location permission is needed to record a walk.' : 'Could not get a location. Your draft remains safe; check your signal and try again.'); },
     { enableHighAccuracy: true, timeout: 12000, maximumAge: 10000 }
@@ -406,7 +407,7 @@ async function completeEventById(id, endTime, metadata = {}) {
 function beginGpsWatch() {
   stopGpsWatch();
   state.timerId = setInterval(() => { updateWalkDisplay(); void persistWalkDraft(); }, 1000);
-  state.watchId = navigator.geolocation.watchPosition(
+  state.watchId = watchPosition(
     (position) => void handleGpsPosition(position, state.activeWalk?.points.length === 0),
     () => { setStatus('Location connection paused'); toast('Location connection paused — your current route is still saved.'); },
     { enableHighAccuracy: true, maximumAge: 5000, timeout: 15000 }
@@ -414,7 +415,7 @@ function beginGpsWatch() {
 }
 
 function stopGpsWatch() {
-  if (state.watchId !== null) navigator.geolocation.clearWatch(state.watchId);
+  if (state.watchId !== null) clearWatch(state.watchId);
   state.watchId = null;
   clearInterval(state.timerId);
   state.timerId = null;
