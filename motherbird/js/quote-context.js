@@ -18,6 +18,16 @@ const CONTEXT_TAGS = Object.freeze({
   'climbing-elevation-gain': new Set(['climb', 'summit', 'mountain'])
 });
 
+const CONTEXT_TEXT_PATTERNS = Object.freeze([
+  ['setting-out-trailhead', /trailhead|trail\s*(?:start|entrance)|path\s*entrance/i],
+  ['crossing-stream-water', /footbridge|bridge|stream|creek|river|riverbank|lake|canal|waterway|wetland/i],
+  ['entering-park-threshold', /park|nature\s+reserve|protected\s+area|preserve/i],
+  ['entering-woods-forest-canopy', /forest|woods?|woodland|canopy|grove/i],
+  ['wildlife-sighting', /wildlife|birding|bird\s+(?:sanctuary|watch|area)|nature\s+observation/i],
+  ['overlook-vista', /overlook|vista|viewpoint|lookout|scenic/i],
+  ['climbing-elevation-gain', /climb|summit|mountain|peak|elevation/i]
+]);
+
 function tagsFor(poi) {
   const values = [...(poi?.tags || poi?.categories || []), poi?.category].filter(Boolean);
   return new Set(values.map((tag) => String(tag).toLowerCase().replace(/\s+/g, '_')));
@@ -28,6 +38,11 @@ export function quoteContextForPoi(poi) {
   for (const [context, contextTags] of Object.entries(CONTEXT_TAGS)) {
     const matches = [...contextTags].filter((tag) => tags.has(tag));
     if (matches.length) return { context, confidence: Math.min(0.98, 0.72 + matches.length * 0.1), matchedTags: matches };
+  }
+  const text = [poi?.name, poi?.title, poi?.description, poi?.category].filter(Boolean).join(' ');
+  for (const [context, pattern] of CONTEXT_TEXT_PATTERNS) {
+    const match = text.match(pattern);
+    if (match) return { context, confidence: 0.78, matchedTags: [match[0].toLowerCase()] };
   }
   return null;
 }

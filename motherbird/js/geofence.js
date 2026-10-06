@@ -29,12 +29,12 @@ function checkGeofencesNow(point) {
   nearby.forEach((encounter) => {
     const key = `${state.activeCity}:${encounter.poi.id}`;
     state.prompted.add(key);
+    const context = quoteContextForPoi(encounter.poi);
+    if (context) void suggestContextualQuote({ ...context, poi: encounter.poi, eventId: encounter.poi.id, walkId: state.activeWalk?.id });
     if (state.activeWalk) {
       const tags = poiTags(encounter.poi);
       requestCompanionContext(tags.some((tag) => ['water', 'water_access', 'river', 'lake'].includes(tag)) ? 'water' : tags.some((tag) => tag === 'history' || tag.startsWith('history_')) ? 'historic' : tags.some((tag) => ['wildlife', 'nature'].includes(tag)) ? 'observe' : 'discover');
       globalThis.window?.dispatchEvent(new CustomEvent('walk-poi-encounter', { detail: encounter }));
-      const context = quoteContextForPoi(encounter.poi);
-      if (context) void suggestContextualQuote({ ...context, poi: encounter.poi, eventId: encounter.poi.id, walkId: state.activeWalk.id });
     }
     if (settings.autoJournalGeofences !== false) {
       const id = `geofence:${state.activeCity}:${encounter.poi.id}`;

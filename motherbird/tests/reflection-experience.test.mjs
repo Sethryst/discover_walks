@@ -40,3 +40,15 @@ test('water and crossing features select the existing stream quote context', () 
   assert.equal(quoteContextForPoi({ category: 'waterway' })?.context, 'crossing-stream-water');
   assert.equal(quoteForContext('crossing-stream-water', 'stream-test')?.quote, 'No man ever steps in the same river twice.');
 });
+
+test('all contextual quote scenarios resolve from ordinary place metadata', () => {
+  const cases = [
+    ['Trailhead', 'setting-out-trailhead'],
+    ['City park preserve', 'entering-park-threshold'],
+    ['Pine forest grove', 'entering-woods-forest-canopy'],
+    ['Wildlife bird sanctuary', 'wildlife-sighting'],
+    ['Ridge overlook viewpoint', 'overlook-vista'],
+    ['Mountain summit', 'climbing-elevation-gain']
+  ];
+  for (const [name, context] of cases) assert.equal(quoteContextForPoi({ name })?.context, context, name);
+});
