@@ -1,10 +1,10 @@
 # Open-data crawler portal registry
 
-Generated from `OpenData/portals.csv`; last registry check: **2026-08-26**.
+Generated from `OpenData/portals.csv`; last registry check: **2026-10-06**.
 This is the master discovery list. Catalog rows are places to search for new datasets; direct-layer rows are repeatable allowlisted acquisitions; reference rows document official entry points or providers handled by another adapter.
 
-- 63 total entries across 50 places
-- 59 active crawler inputs: 47 catalogs and 12 direct ArcGIS layers
+- 67 total entries across 54 places
+- 59 active crawler inputs: 51 catalogs and 12 direct ArcGIS layers
 - 4 discovery references retained but skipped by the municipal scraper
 - 413 curated dataset records in `OpenData/datasets.csv`
 
@@ -47,31 +47,35 @@ This is the master discovery list. Catalog rows are places to search for new dat
 | 33 | Kentucky | Louisville | ArcGIS | catalog | Working | [data.louisvilleky.gov](https://data.louisvilleky.gov) | — | 12 | 2026-08-25 | ArcGIS Hub catalog verified; migrated from Socrata label |
 | 34 | Louisiana | New Orleans | Socrata | catalog | Working | [data.nola.gov](https://data.nola.gov) | — | 6 | 2024-05 | — |
 | 35 | Maryland | Baltimore | ArcGIS | catalog | Working | [data.baltimorecity.gov](https://data.baltimorecity.gov) | — | 12 | 2026-08-25 | ArcGIS Hub catalog verified; migrated from Socrata label |
-| 36 | Massachusetts | Cambridge | Socrata | catalog | Working | [data.cambridgema.gov](https://data.cambridgema.gov) | — | 13 | 2026-08-25 | Socrata catalog verified; added 2026-08-25 |
-| 37 | Michigan | Detroit | ArcGIS | catalog | Working | [data.detroitmi.gov](https://data.detroitmi.gov) | — | 11 | 2026-08-25 | ArcGIS Hub catalog verified; migrated from Socrata label |
-| 38 | Minnesota | Minneapolis | ArcGIS | catalog | Working | [opendata.minneapolismn.gov](https://opendata.minneapolismn.gov) | — | 5 | 2026-08-25 | ArcGIS Hub catalog verified; migrated from Socrata label |
-| 39 | Minnesota | Saint Paul | ArcGIS | catalog | Working | [information.stpaul.gov](https://information.stpaul.gov) | — | 1 | 2026-08-25 | ArcGIS Hub catalog verified; migrated from Socrata label |
-| 40 | Missouri | Kansas City | Socrata | catalog | Working | [data.kcmo.org](https://data.kcmo.org) | — | 2 | 2024-05 | — |
-| 41 | New York | Buffalo | Socrata | catalog | Working | [data.buffalony.gov](https://data.buffalony.gov) | — | 36 | 2024-05 | — |
-| 42 | New York | New York City | Socrata | catalog | Working | [data.cityofnewyork.us](https://data.cityofnewyork.us) | — | 37 | 2026-08-25 | Corrected legacy portal URL; verified API catalog |
-| 43 | North Carolina | Charlotte | ArcGIS | catalog | Working | [data.charlottenc.gov](https://data.charlottenc.gov) | — | 11 | 2026-08-25 | ArcGIS Hub catalog verified; migrated from Socrata label |
-| 44 | North Carolina | Durham | ArcGIS | catalog | Working | [webgis2.durhamnc.gov/portal](https://webgis2.durhamnc.gov/portal) | — | 10 | 2026-08-25 | ArcGIS Enterprise Portal API verified; added 2026-08-25 |
-| 45 | North Carolina | Raleigh | ArcGIS | catalog | Working | [data-ral.opendata.arcgis.com](https://data-ral.opendata.arcgis.com) | — | 9 | 2024-05 | — |
-| 46 | Ohio | Cincinnati | Socrata | catalog | Working | [data.cincinnati-oh.gov](https://data.cincinnati-oh.gov) | — | 0 | 2024-05 | — |
-| 47 | Ohio | Cleveland | ArcGIS | catalog | Working | [data.clevelandohio.gov](https://data.clevelandohio.gov) | — | 3 | 2026-08-25 | ArcGIS Hub catalog verified; migrated from Socrata label |
-| 48 | Ohio | Columbus | ArcGIS | catalog | Working | [data-columbus.opendata.arcgis.com](https://data-columbus.opendata.arcgis.com) | — | 4 | 2024-05 | — |
-| 49 | Oregon | Portland | ArcGIS | catalog | Working | [gis-pdx.opendata.arcgis.com](https://gis-pdx.opendata.arcgis.com) | — | 12 | 2024-05 | — |
-| 50 | Pennsylvania | Pittsburgh | ArcGIS | catalog | Working | [pghgishub-pittsburghpa.opendata.arcgis.com](https://pghgishub-pittsburghpa.opendata.arcgis.com) | — | 3 | 2024-05 | — |
-| 51 | Tennessee | Nashville | ArcGIS | catalog | Working | [data.nashville.gov](https://data.nashville.gov) | — | 8 | 2026-08-25 | ArcGIS Hub catalog verified; migrated from Socrata label |
-| 52 | Texas | Austin | Socrata | catalog | Working | [data.austintexas.gov](https://data.austintexas.gov) | — | 24 | 2024-05 | — |
-| 53 | Texas | College Station | Socrata | catalog | Working | [data.cstx.gov](https://data.cstx.gov) | — | 0 | 2026-08-25 | Socrata API verified; corrected platform from supplied ArcGIS label |
-| 54 | Texas | Corpus Christi | ArcGIS | catalog | Working | [gis-cc.opendata.arcgis.com](https://gis-cc.opendata.arcgis.com) | — | 3 | 2026-08-25 | ArcGIS Hub catalog verified; added 2026-08-25 |
-| 55 | Texas | Dallas | Socrata | catalog | Working | [www.dallasopendata.com](https://www.dallasopendata.com) | — | 18 | 2024-05 | — |
-| 56 | Texas | Fort Worth | ArcGIS | catalog | Working | [data.fortworthtexas.gov](https://data.fortworthtexas.gov) | — | 3 | 2026-08-25 | ArcGIS Hub catalog verified; migrated from Socrata label |
-| 57 | Texas | Houston | Socrata | catalog | Working | [data.houstontx.gov](https://data.houstontx.gov) | — | 0 | 2024-05 | — |
-| 58 | Texas | San Antonio | Socrata | catalog | Working | [data.sanantonio.gov](https://data.sanantonio.gov) | — | 0 | 2024-05 | — |
-| 59 | Virginia | Alexandria | ArcGIS | catalog | Working | [geoportal.alexandriava.gov/portal](https://geoportal.alexandriava.gov/portal) | — | 9 | 2026-08-25 | ArcGIS Enterprise Portal API verified; added 2026-08-25 |
-| 60 | Virginia | Arlington County | ArcGIS | catalog | Working | [arlgis.arlingtonva.us/portal](https://arlgis.arlingtonva.us/portal) | — | 0 | 2026-08-25 | Official ArcGIS Enterprise portal verified; includes parks trees ADA ramps and walking network |
-| 61 | Virginia | Richmond | Socrata | catalog | Working | [data.richmondgov.com](https://data.richmondgov.com) | — | 4 | 2024-05 | — |
-| 62 | Washington | Seattle | Socrata | catalog | Working | [data.seattle.gov](https://data.seattle.gov) | — | 4 | 2024-05 | — |
-| 63 | Washington | Spokane | ArcGIS | catalog | Working | [data-spokane.opendata.arcgis.com](https://data-spokane.opendata.arcgis.com) | — | 1 | 2026-08-25 | ArcGIS Hub catalog verified; added 2026-08-25 |
+| 36 | Maryland | Prince George's County | Other | catalog | Research | [gisdata.pgplanning.org/opendata](https://gisdata.pgplanning.org/opendata/) | — | 0 | 2026-10-06 | Official GIS open-data portal; park trails parks dog parks picnic areas National Register and cultural-feature downloads |
+| 37 | Massachusetts | Cambridge | Socrata | catalog | Working | [data.cambridgema.gov](https://data.cambridgema.gov) | — | 13 | 2026-08-25 | Socrata catalog verified; added 2026-08-25 |
+| 38 | Michigan | Ann Arbor | Other | catalog | Research | [data.a2gov.org](https://data.a2gov.org/) | — | 0 | 2026-10-06 | Official City of Ann Arbor Open Data Portal confirmed; walking-relevant sidewalk and champion-tree resources identified, API behavior not yet validated. |
+| 39 | Michigan | Detroit | ArcGIS | catalog | Working | [data.detroitmi.gov](https://data.detroitmi.gov) | — | 11 | 2026-08-25 | ArcGIS Hub catalog verified; migrated from Socrata label |
+| 40 | Minnesota | Minneapolis | ArcGIS | catalog | Working | [opendata.minneapolismn.gov](https://opendata.minneapolismn.gov) | — | 5 | 2026-08-25 | ArcGIS Hub catalog verified; migrated from Socrata label |
+| 41 | Minnesota | Saint Paul | ArcGIS | catalog | Working | [information.stpaul.gov](https://information.stpaul.gov) | — | 1 | 2026-08-25 | ArcGIS Hub catalog verified; migrated from Socrata label |
+| 42 | Missouri | Kansas City | Socrata | catalog | Working | [data.kcmo.org](https://data.kcmo.org) | — | 2 | 2024-05 | — |
+| 43 | New Mexico | Albuquerque | Other | catalog | Research | [www.cabq.gov/abq-data](https://www.cabq.gov/abq-data) | — | 0 | 2026-10-06 | Official ABQ Data landing page confirmed; Open Trails, parks, open space, and public-art targets identified, API behavior not yet validated. |
+| 44 | New York | Buffalo | Socrata | catalog | Working | [data.buffalony.gov](https://data.buffalony.gov) | — | 36 | 2024-05 | — |
+| 45 | New York | New York City | Socrata | catalog | Working | [data.cityofnewyork.us](https://data.cityofnewyork.us) | — | 37 | 2026-08-25 | Corrected legacy portal URL; verified API catalog |
+| 46 | North Carolina | Charlotte | ArcGIS | catalog | Working | [data.charlottenc.gov](https://data.charlottenc.gov) | — | 11 | 2026-08-25 | ArcGIS Hub catalog verified; migrated from Socrata label |
+| 47 | North Carolina | Durham | ArcGIS | catalog | Working | [webgis2.durhamnc.gov/portal](https://webgis2.durhamnc.gov/portal) | — | 10 | 2026-08-25 | ArcGIS Enterprise Portal API verified; added 2026-08-25 |
+| 48 | North Carolina | Raleigh | ArcGIS | catalog | Working | [data-ral.opendata.arcgis.com](https://data-ral.opendata.arcgis.com) | — | 9 | 2024-05 | — |
+| 49 | Ohio | Cincinnati | Socrata | catalog | Working | [data.cincinnati-oh.gov](https://data.cincinnati-oh.gov) | — | 0 | 2024-05 | — |
+| 50 | Ohio | Cleveland | ArcGIS | catalog | Working | [data.clevelandohio.gov](https://data.clevelandohio.gov) | — | 3 | 2026-08-25 | ArcGIS Hub catalog verified; migrated from Socrata label |
+| 51 | Ohio | Columbus | ArcGIS | catalog | Working | [data-columbus.opendata.arcgis.com](https://data-columbus.opendata.arcgis.com) | — | 4 | 2024-05 | — |
+| 52 | Oregon | Portland | ArcGIS | catalog | Working | [gis-pdx.opendata.arcgis.com](https://gis-pdx.opendata.arcgis.com) | — | 12 | 2024-05 | — |
+| 53 | Pennsylvania | Pittsburgh | ArcGIS | catalog | Working | [pghgishub-pittsburghpa.opendata.arcgis.com](https://pghgishub-pittsburghpa.opendata.arcgis.com) | — | 3 | 2024-05 | — |
+| 54 | Tennessee | Nashville | ArcGIS | catalog | Working | [data.nashville.gov](https://data.nashville.gov) | — | 8 | 2026-08-25 | ArcGIS Hub catalog verified; migrated from Socrata label |
+| 55 | Texas | Austin | Socrata | catalog | Working | [data.austintexas.gov](https://data.austintexas.gov) | — | 24 | 2024-05 | — |
+| 56 | Texas | College Station | Socrata | catalog | Working | [data.cstx.gov](https://data.cstx.gov) | — | 0 | 2026-08-25 | Socrata API verified; corrected platform from supplied ArcGIS label |
+| 57 | Texas | Corpus Christi | ArcGIS | catalog | Working | [gis-cc.opendata.arcgis.com](https://gis-cc.opendata.arcgis.com) | — | 3 | 2026-08-25 | ArcGIS Hub catalog verified; added 2026-08-25 |
+| 58 | Texas | Dallas | Socrata | catalog | Working | [www.dallasopendata.com](https://www.dallasopendata.com) | — | 18 | 2024-05 | — |
+| 59 | Texas | Fort Worth | ArcGIS | catalog | Working | [data.fortworthtexas.gov](https://data.fortworthtexas.gov) | — | 3 | 2026-08-25 | ArcGIS Hub catalog verified; migrated from Socrata label |
+| 60 | Texas | Houston | Socrata | catalog | Working | [data.houstontx.gov](https://data.houstontx.gov) | — | 0 | 2024-05 | — |
+| 61 | Texas | San Antonio | Socrata | catalog | Working | [data.sanantonio.gov](https://data.sanantonio.gov) | — | 0 | 2024-05 | — |
+| 62 | Virginia | Alexandria | ArcGIS | catalog | Working | [geoportal.alexandriava.gov/portal](https://geoportal.alexandriava.gov/portal) | — | 9 | 2026-08-25 | ArcGIS Enterprise Portal API verified; added 2026-08-25 |
+| 63 | Virginia | Arlington County | ArcGIS | catalog | Working | [arlgis.arlingtonva.us/portal](https://arlgis.arlingtonva.us/portal) | — | 0 | 2026-08-25 | Official ArcGIS Enterprise portal verified; includes parks trees ADA ramps and walking network |
+| 64 | Virginia | Fairfax County | ArcGIS | catalog | Research | [www.fairfaxcounty.gov/maps/gis-data](https://www.fairfaxcounty.gov/maps/gis-data) | — | 0 | 2026-10-06 | Official GIS open-data landing page; OpenData_A1 exposes county/non-county trails and parks plus historic zoning overlays |
+| 65 | Virginia | Richmond | Socrata | catalog | Working | [data.richmondgov.com](https://data.richmondgov.com) | — | 4 | 2024-05 | — |
+| 66 | Washington | Seattle | Socrata | catalog | Working | [data.seattle.gov](https://data.seattle.gov) | — | 4 | 2024-05 | — |
+| 67 | Washington | Spokane | ArcGIS | catalog | Working | [data-spokane.opendata.arcgis.com](https://data-spokane.opendata.arcgis.com) | — | 1 | 2026-08-25 | ArcGIS Hub catalog verified; added 2026-08-25 |
