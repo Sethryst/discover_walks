@@ -11,6 +11,7 @@ import { initRegionalNavigation } from './regional-navigation.js';
 import { switchCity } from './city.js';
 import { generateTimeBasedPlan, lockSelectedPlanOnMap, changePlan, setPlanningMode } from './planner.js?v=20261005-national-routing-ux-1';
 import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261006-routing-hardening-5';
+import { coordinateLabel, resolveRoutePlaceLabel } from './route-place-labels.js?v=20261006-route-labels-1';
 import { paintWalkPlan, paintCard, previewCard, sendCurrentWalkPlan } from './field-guide.js?v=133-source-catalogue';
 import { wordCount } from './reflection.js';
 import { refreshCompanionState } from './companion.js';
@@ -290,7 +291,7 @@ function renderRoutePointControls() {
   const start = state.plannerStart;
   const stops = state.plannerStops || [];
   const end = state.plannerEnd;
-  const pointLabel = (point) => point ? `${point.lat.toFixed(5)}, ${point.lng.toFixed(5)}` : 'Not selected';
+  const pointLabel = (point) => coordinateLabel(point);
   const startField = el('chooseStartButton');
   const endField = el('chooseEndButton');
   if (startField) startField.innerHTML = `<strong>Start</strong><span>${escapeHtml(pointLabel(start || state.currentPosition))}</span>`;
@@ -381,20 +382,30 @@ function bindWalkControls() {
   el('useCurrentLocationButton')?.addEventListener('click', () => {
     if (!state.currentPosition) { toast('Current location is not available yet.'); return; }
     state.plannerStart = { ...state.currentPosition };
+    renderRoutePointControls();
     toast('Starting point set to your current location.');
   });
   el('swapRoutePointsButton')?.addEventListener('click', () => {
     const start = state.plannerStart || state.currentPosition;
     state.plannerStart = state.plannerEnd;
     state.plannerEnd = start ? { ...start } : null;
+    renderRoutePointControls();
     toast('Start and destination swapped.');
   });
   el('generateWalkButton')?.addEventListener('click', () => void generateTimeBasedPlan());
   window.addEventListener('walk-sketch-painted', (event) => renderWalkSketch(event.detail));
   window.addEventListener('planner-point-selected', (event) => {
     const type = event.detail?.type || 'End';
+    const point = event.detail?.point;
     document.body.classList.remove('route-selection-active');
     renderRoutePointControls();
+    if (point) void resolveRoutePlaceLabel(point).then((label) => {
+      if (!label) return;
+      const target = type === 'Stop' ? (state.plannerStops || []).at(-1) : state[`planner${type}`];
+      if (!target || target.lat !== point.lat || target.lng !== point.lng) return;
+      target.label = label;
+      renderRoutePointControls();
+    });
     if (type !== 'End') {
       if (type === 'Start') {
         setPlannerSelecting('End');

@@ -7,6 +7,7 @@ import { findCellPath } from '../js/routing.js';
 const routing = await readFile(new URL('../js/routing.js', import.meta.url), 'utf8');
 const planner = await readFile(new URL('../js/planner.js', import.meta.url), 'utf8');
 const events = await readFile(new URL('../js/events.js', import.meta.url), 'utf8');
+const routeLabels = await import('../js/route-place-labels.js');
 
 test('routing exposes specific cross-cell and boundary failure classes', () => {
   assert.match(routing, /CROSS_CELL_UNAVAILABLE/);
@@ -20,6 +21,14 @@ test('routing exposes specific cross-cell and boundary failure classes', () => {
   assert.match(routing, /after a retry/);
   assert.doesNotMatch(planner, /Route unavailable \(\$\{routed\.status\}/);
   assert.doesNotMatch(events, /Route unavailable \(\$\{plan\.graphStatus\}/);
+});
+
+test('selected route points render street labels while retaining coordinates', () => {
+  assert.equal(routeLabels.coordinateLabel({ lat: 38.9, lng: -77.04, label: 'Main Street' }), 'Main Street');
+  assert.equal(routeLabels.coordinateLabel({ lat: 38.9, lng: -77.04 }), '38.90000, -77.04000');
+  assert.match(events, /renderRoutePointControls\(\)/);
+  assert.match(events, /resolveRoutePlaceLabel/);
+  assert.match(events, /target\.label = label/);
 });
 
 test('registry returns all overlapping candidates for adaptive routing', () => {
