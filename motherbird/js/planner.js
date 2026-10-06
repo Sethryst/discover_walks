@@ -2,7 +2,7 @@ import { state } from './state.js';
 import { setPlannerSelecting } from './planner-selection.js?v=20261004-planner-selection-1';
 import { CITIES } from './constants.js';
 import { poiTags } from './poi.js';
-import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261006-routing-hardening-3';
+import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261006-routing-hardening-5';
 import { escapeHtml } from './utils.js';
 import { toast } from './ui.js';
 import { splitDisconnectedPaths } from './routes.js';
@@ -26,6 +26,36 @@ function candidateStops(origin, tags) {
     return interest + Number(poi.walkRelevanceScore || 0) - distance;
   };
   return candidates.sort((a, b) => score(b) - score(a) || a.name.localeCompare(b.name));
+}
+
+function normalizeStop(stop, index) {
+  const location = stop?.location || {};
+  const lat = Number.isFinite(Number(stop?.lat)) ? Number(stop.lat) : Number(location.lat);
+  const lng = Number.isFinite(Number(stop?.lng)) ? Number(stop.lng) : Number(location.lng);
+  return Number.isFinite(lat) && Number.isFinite(lng)
+    ? { ...stop, name: stop.name || `Stop ${index + 1}`, lat, lng }
+    : null;
+}
+
+function distanceBetween(a, b) {
+  const latScale = 111;
+  const lngScale = Math.cos((a.lat + b.lat) / 2 * Math.PI / 180) * 111;
+  return Math.hypot((a.lat - b.lat) * latScale, (a.lng - b.lng) * lngScale);
+}
+
+function orderAutoRoundTripStops(stops, origin) {
+  const remaining = [...stops];
+  const ordered = [];
+  let cursor = origin;
+  while (remaining.length) {
+    let bestIndex = 0;
+    for (let index = 1; index < remaining.length; index += 1) {
+      if (distanceBetween(cursor, remaining[index]) < distanceBetween(cursor, remaining[bestIndex])) bestIndex = index;
+    }
+    cursor = remaining.splice(bestIndex, 1)[0];
+    ordered.push(cursor);
+  }
+  return ordered;
 }
 
 function conceptReason(stops) {
@@ -102,10 +132,11 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
     return null;
   }
   const count = minutes <= 20 ? 2 : minutes >= 60 ? 4 : 3;
-  const selectedStops = (state.plannerStops || []).map((point, index) => ({ name: `Stop ${index + 1}`, ...point }));
-  const stops = needsMapDestination
+  const selectedStops = (state.plannerStops || []).map((point, index) => normalizeStop({ name: `Stop ${index + 1}`, ...point }, index)).filter(Boolean);
+  const rawStops = needsMapDestination
     ? [...selectedStops, { name: 'Selected destination', lat: state.plannerEnd.lat, lng: state.plannerEnd.lng }]
-    : (seededStops?.length ? seededStops : candidateStops(center, interests()).slice(0, count));
+    : (seededStops?.length ? seededStops : candidateStops(center, interests()).slice(0, count)).map(normalizeStop).filter(Boolean);
+  const stops = routeMode === 'auto-round-trip' ? orderAutoRoundTripStops(rawStops, center) : rawStops;
   if (!stops.length) {
     toast('No candidate places nearby to sketch a walk. Try panning the map or picking an area with places.');
     return null;

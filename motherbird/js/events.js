@@ -10,7 +10,7 @@ import { localSearchHits, searchRowHtml, emptySearchHtml } from './search.js';
 import { initRegionalNavigation } from './regional-navigation.js';
 import { switchCity } from './city.js';
 import { generateTimeBasedPlan, lockSelectedPlanOnMap, changePlan, setPlanningMode } from './planner.js?v=20261005-national-routing-ux-1';
-import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261006-routing-hardening-3';
+import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261006-routing-hardening-5';
 import { paintWalkPlan, paintCard, previewCard, sendCurrentWalkPlan } from './field-guide.js?v=133-source-catalogue';
 import { wordCount } from './reflection.js';
 import { refreshCompanionState } from './companion.js';

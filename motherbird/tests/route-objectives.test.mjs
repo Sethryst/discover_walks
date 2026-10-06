@@ -1,6 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { objectiveCost, routeExplanation } from '../js/planner.js';
+import { readFile } from 'node:fs/promises';
+
+const plannerSource = await readFile(new URL('../js/planner.js', import.meta.url), 'utf8');
 
 test('the single-sketch planner reports distance without inventing green or shade scores', () => {
   const direct = { distanceMeters: 900, stops: [], coordinates: [[38.9, -77], [38.91, -77.01]] };
@@ -8,4 +11,12 @@ test('the single-sketch planner reports distance without inventing green or shad
   assert.ok(objectiveCost(direct, 'shortest') < objectiveCost(green, 'shortest'));
   assert.equal(objectiveCost(green, 'green'), green.distanceMeters);
   assert.doesNotMatch(routeExplanation(green).join(' '), /shaded|accessible|canopy coverage/i);
+});
+
+test('auto round trips normalize place locations and order stops before routing', () => {
+  assert.match(plannerSource, /normalizeStop/);
+  assert.match(plannerSource, /stop\?\.location/);
+  assert.match(plannerSource, /orderAutoRoundTripStops/);
+  assert.match(plannerSource, /\[center, \.\.\.stops, center\]/);
+  assert.match(plannerSource, /routeOnFoot\(points/);
 });
