@@ -52,6 +52,27 @@ It requests the GBIF **iNaturalist Research-grade Observations** dataset (`50c95
 
 Review predicate, fields, dataset, polygon, and uncertainty policy as code changes. GBIF assigns a DOI after the asynchronous download succeeds. Until then the release is pending, not published. Use the [GBIF occurrence/download documentation](https://techdocs.gbif.org/en/openapi/v1/occurrence) for format and field behavior.
 
+### NOVA polygon candidate
+
+The repository now includes a real public-search candidate produced from a NOVA polygon query:
+
+```text
+motherbird/data/biodiversity-nova-source.json
+motherbird/data/biodiversity-import-report.json
+motherbird/tools/import-biodiversity-nova.mjs
+```
+
+The query polygon is `(-77.6,38.65)` to `(-76.9,39.25)`, with the same dataset, basis-of-record, and present-occurrence filters. GBIF reported 1,323,265 matching rows; the checked-in candidate is the first 300 rows returned by the public search API, then split by the checked-in Alexandria, Arlington, Fairfax County, Falls Church, and Loudoun County geometries plus a temporary Vienna city envelope. This is real source data and real regional assignment, but it is explicitly `candidate-public-search`, not a complete authenticated GBIF release and not a population inventory.
+
+Re-run the splitter with a protected source page or download envelope:
+
+```powershell
+cd motherbird
+npm run import:biodiversity:nova -- <protected-or-staged-nova.json> regions 2026-10-06
+```
+
+Replace the Vienna envelope with reviewed boundary geometry before enabling Vienna. Do not call the candidate complete until all pages or an authenticated GBIF download are accounted for and a DOI/checksum is recorded.
+
 Submission procedure:
 
 1. Authenticate in the GBIF web interface or API client.

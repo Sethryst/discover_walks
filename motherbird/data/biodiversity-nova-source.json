@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "biodiversity-source-snapshot-v1",
+  "sourceAccess": "GBIF public occurrence search API",
+  "datasetKey": "50c9509d-22c7-4a22-a47d-8c48425ef4a7",
+  "datasetName": "iNaturalist Research-grade Observations",
+  "query": {
+    "basisOfRecord": "HUMAN_OBSERVATION",
+    "occurrenceStatus": "PRESENT",
+    "geometry": "POLYGON((-77.6 38.65,-76.9 38.65,-76.9 39.25,-77.6 39.25,-77.6 38.65))",
+    "pageSize": 300,
+    "pageOffset": 0,
+    "matchingRecordCount": 1323265
+  },
+  "retrievedAt": "2026-10-06T20:29:00Z",
+  "coverage": "First 300 records from the NOVA polygon query; this is a candidate snapshot, not a complete authenticated GBIF download.",
+  "downloadDoi": null,
+  "rawArchive": "Held outside the repository; public source page was normalized and split into regional candidates.",
+  "splitRegions": ["alexandria-va", "arlington-va", "fairfax-county-va", "falls-church-va", "loudoun-county-va", "vienna"],
+  "surface": "Nature first click; Learn remains the seasonal interpretation layer."
+}

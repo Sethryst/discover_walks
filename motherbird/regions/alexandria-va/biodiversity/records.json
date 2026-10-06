@@ -1,8 +1,182 @@
 {
   "schemaVersion": "biodiversity-sidecar-v1",
-  "metadata": {"regionId":"alexandria-va","fixture":true,"fixtureNotice":"Illustrative fixture data only; not production observations.","sourceVintage":"fixture-2026-10","boundaryVersion":"alexandria-va-fixture-boundary-v1","generatedAt":"2026-10-06T00:00:00Z"},
+  "metadata": {
+    "regionId": "alexandria-va",
+    "sourceVintage": "2026-10-06",
+    "boundaryVersion": "alexandria-va-boundary-v1",
+    "gbifDownloadDoi": null,
+    "generatedAt": "2026-10-06T20:30:18.984Z",
+    "fixture": false,
+    "sourceAccess": "GBIF occurrence search API",
+    "sourceQuery": "NOVA polygon; see acquisition envelope",
+    "inputRows": 5,
+    "novaImport": true
+  },
   "records": [
-    {"recordId":"fixture-acer-rubrum-05","taxonId":"Acer-rubrum","scientificName":"Acer rubrum","commonName":"Red maple","kingdom":"Plantae","class":"Magnoliopsida","order":"Sapindales","family":"Sapindaceae","genus":"Acer","species":"Acer rubrum","regionId":"alexandria-va","gridCellId":"15T-WN-01","month":5,"observationCount":7,"coordinateUncertainty":{"summaryMeters":100,"privacyClass":"public"},"source":{"provider":"fixture","occurrenceIds":["fixture-occ-001","fixture-occ-002"],"researchGrade":true,"captiveOrCultivatedExcluded":true,"gbifDownloadDoi":null},"representativeImage":{"url":"https://upload.wikimedia.org/wikipedia/commons/2/2f/Acer_rubrum_leaf.jpg","license":"CC BY-SA (illustrative fixture reference)"},"generatedAt":"2026-10-06T00:00:00Z","sourceVintage":"fixture-2026-10","boundaryVersion":"alexandria-va-fixture-boundary-v1"},
-    {"recordId":"fixture-turdus-migratorius-04","taxonId":"Turdus-migratorius","scientificName":"Turdus migratorius","commonName":"American robin","kingdom":"Animalia","class":"Aves","order":"Passeriformes","family":"Turdidae","genus":"Turdus","species":"Turdus migratorius","regionId":"alexandria-va","gridCellId":"15T-WN-01","month":4,"observationCount":12,"coordinateUncertainty":{"summaryMeters":250,"privacyClass":"public"},"source":{"provider":"fixture","occurrenceIds":["fixture-occ-003"],"researchGrade":true,"captiveOrCultivatedExcluded":true,"gbifDownloadDoi":null},"representativeImage":null,"generatedAt":"2026-10-06T00:00:00Z","sourceVintage":"fixture-2026-10","boundaryVersion":"alexandria-va-fixture-boundary-v1"}
+    {
+      "recordId": "aggregate-3884:-7707-7089-1",
+      "taxonId": "7089",
+      "scientificName": "Branta canadensis (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Branta",
+      "species": "Branta canadensis",
+      "regionId": "alexandria-va",
+      "gridCellId": "3884:-7707",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 117,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333226256"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-06T20:30:18.984Z",
+      "sourceVintage": "2026-10-06",
+      "boundaryVersion": "alexandria-va-boundary-v1"
+    },
+    {
+      "recordId": "aggregate-3884:-7706-3454-1",
+      "taxonId": "3454",
+      "scientificName": "Zenaida macroura (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Columbiformes",
+      "family": "Columbidae",
+      "genus": "Zenaida",
+      "species": "Zenaida macroura",
+      "regionId": "alexandria-va",
+      "gridCellId": "3884:-7706",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 117,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333220168"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-06T20:30:18.984Z",
+      "sourceVintage": "2026-10-06",
+      "boundaryVersion": "alexandria-va-boundary-v1"
+    },
+    {
+      "recordId": "aggregate-3884:-7707-9100-1",
+      "taxonId": "9100",
+      "scientificName": "Melospiza melodia (A.Wilson, 1810)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Melospiza",
+      "species": "Melospiza melodia",
+      "regionId": "alexandria-va",
+      "gridCellId": "3884:-7707",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 117,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333075782"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-06T20:30:18.984Z",
+      "sourceVintage": "2026-10-06",
+      "boundaryVersion": "alexandria-va-boundary-v1"
+    },
+    {
+      "recordId": "aggregate-3884:-7707-6930-1",
+      "taxonId": "6930",
+      "scientificName": "Anas platyrhynchos Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Anas",
+      "species": "Anas platyrhynchos",
+      "regionId": "alexandria-va",
+      "gridCellId": "3884:-7707",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 117,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333212824"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-06T20:30:18.984Z",
+      "sourceVintage": "2026-10-06",
+      "boundaryVersion": "alexandria-va-boundary-v1"
+    },
+    {
+      "recordId": "aggregate-3882:-7705-145245-1",
+      "taxonId": "145245",
+      "scientificName": "Setophaga coronata (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Parulidae",
+      "genus": "Setophaga",
+      "species": "Setophaga coronata",
+      "regionId": "alexandria-va",
+      "gridCellId": "3882:-7705",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333053368"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-06T20:30:18.984Z",
+      "sourceVintage": "2026-10-06",
+      "boundaryVersion": "alexandria-va-boundary-v1"
+    }
   ]
 }

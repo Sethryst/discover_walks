@@ -1,20 +1,20 @@
 {
   "schemaVersion": "biodiversity-sidecar-v1",
-  "regionId": "alexandria-va",
-  "label": "alexandria-va",
+  "regionId": "fairfax-county-va",
+  "label": "fairfax-county-va",
   "fixture": false,
   "releaseStatus": "candidate",
   "sourceAccess": "GBIF occurrence search API",
   "sourceQuery": "NOVA polygon; see acquisition envelope",
-  "boundaryVersion": "alexandria-va-boundary-v1",
+  "boundaryVersion": "fairfax-county-va-boundary-v1",
   "grid": {
     "scheme": "equirectangular-degree-grid",
     "cellSizeDegrees": 0.01
   },
-  "recordsUrl": "./regions/alexandria-va/biodiversity/records.json",
+  "recordsUrl": "./regions/fairfax-county-va/biodiversity/records.json",
   "sourceVintage": "2026-10-06",
   "gbifDownloadDoi": null,
-  "generatedAt": "2026-10-06T20:30:18.984Z",
-  "inputRows": 5,
-  "aggregateRecords": 5
+  "generatedAt": "2026-10-06T20:30:18.998Z",
+  "inputRows": 92,
+  "aggregateRecords": 68
 }

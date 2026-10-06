@@ -2,12 +2,12 @@
   "schemaVersion": "biodiversity-region-registry-v1",
   "program": "Northern Virginia",
   "regions": [
-    {"cityId":"alexandria","regionId":"alexandria-va","label":"Alexandria","status":"fixture"},
-    {"cityId":"arlington","regionId":"arlington-va","label":"Arlington County","status":"planned"},
-    {"cityId":"fairfax","regionId":"fairfax-county-va","label":"Fairfax County","status":"planned"},
-    {"cityId":"falls-church","regionId":"falls-church-va","label":"Falls Church","status":"planned"},
-    {"cityId":"loudoun","regionId":"loudoun-county-va","label":"Loudoun County","status":"planned"},
-    {"cityId":"vienna","regionId":"vienna","label":"Vienna","status":"planned"}
+    {"cityId":"alexandria","regionId":"alexandria-va","label":"Alexandria","status":"candidate-public-search"},
+    {"cityId":"arlington","regionId":"arlington-va","label":"Arlington County","status":"candidate-public-search"},
+    {"cityId":"fairfax","regionId":"fairfax-county-va","label":"Fairfax County","status":"candidate-public-search"},
+    {"cityId":"falls-church","regionId":"falls-church-va","label":"Falls Church","status":"candidate-public-search-empty"},
+    {"cityId":"loudoun","regionId":"loudoun-county-va","label":"Loudoun County","status":"candidate-public-search"},
+    {"cityId":"vienna","regionId":"vienna","label":"Vienna","status":"candidate-public-search-empty"}
   ],
   "nationalExpansion": "Add a region entry and its versioned sidecar; do not broaden the UI gate by geography inference."
 }
