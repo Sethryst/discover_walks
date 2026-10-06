@@ -78,17 +78,12 @@ export function initMap() {
   state.trailLayer = L.featureGroup().addTo(state.map);
   state.map.on('click', (event) => {
     if (state.plannerSelecting) {
-      const target = event.originalEvent?.target;
-      const visiblePoiLayers = state.poiLayer?._featureGroup?.getLayers?.() || state.poiLayer?.getLayers?.() || [];
-      const clickedPoiLayer = visiblePoiLayers.some((layer) => {
-        const latlng = layer.getLatLng?.();
-        if (!latlng || !event.containerPoint) return false;
-        return state.map.latLngToContainerPoint(latlng).distanceTo(event.containerPoint) <= 52;
-      });
-      if (target?.closest?.('.leaflet-marker-icon, .place-cluster, .leaflet-popup') || clickedPoiLayer) {
-        state.map.closePopup();
-        return;
-      }
+      // Endpoint selection owns every map click. The POI layer is removed by
+      // setPlannerSelecting(), but a marker/cluster event can still be queued
+      // by Leaflet for the same gesture. Do not discard the map click based on
+      // its original target: that made destination taps appear to do nothing
+      // when the capture handler was bypassed or a stale shell was active.
+      state.map.closePopup();
       const point = { lat: event.latlng.lat, lng: event.latlng.lng };
       if (state.plannerSelecting === 'Stop') state.plannerStops = [...(state.plannerStops || []), point];
       else state[`planner${state.plannerSelecting}`] = point;
