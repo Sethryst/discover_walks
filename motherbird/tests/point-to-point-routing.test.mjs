@@ -40,3 +40,11 @@ test('cell graph finds multi-hop paths and rejects disconnected cells', () => {
   assert.deepEqual(findCellPath({ cells }, 'a', 'c').map((cell) => cell.id), ['a', 'b', 'c']);
   assert.equal(findCellPath({ cells }, 'a', 'z'), null);
 });
+
+test('adaptive overlapping cells can form a candidate bridge without metadata', () => {
+  const cells = [
+    { id: 'coarse', bounds: { west: 0, south: 0, east: 2, north: 2 }, routingNeighbors: [] },
+    { id: 'fine', bounds: { west: 1, south: 0, east: 3, north: 2 }, routingNeighbors: [] }
+  ];
+  assert.deepEqual(findCellPath({ cells }, 'coarse', 'fine').map((cell) => cell.id), ['coarse', 'fine']);
+});

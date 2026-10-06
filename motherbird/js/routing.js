@@ -98,6 +98,12 @@ export function findCellPath(registry, startId, endId) {
     const id = queue.shift(); if (id === endId) break;
     const cell = cells.get(id); if (!cell) continue;
     const neighbors = new Set([...(cell.routingNeighbors || [])]);
+    // Adaptive cells can overlap or meet at a boundary without both sides
+    // carrying neighbor metadata. Treat geometry as a candidate edge; the
+    // stitcher still has to prove that both graphs route to the handoff.
+    for (const candidate of registry.cells) {
+      if (candidate.id !== id && boundaryTransferPoints(cell, candidate).length) neighbors.add(candidate.id);
+    }
     for (const neighbor of neighbors) if (cells.has(neighbor) && !previous.has(neighbor)) { previous.set(neighbor, id); queue.push(neighbor); }
   }
   if (!previous.has(endId)) return null;
@@ -124,6 +130,12 @@ function boundaryTransferPoints(left, right) {
   } else if (Math.abs(a.north - b.south) < 1e-7 || Math.abs(b.north - a.south) < 1e-7) {
     const lat = Math.abs(a.north - b.south) < 1e-7 ? a.north : b.north;
     for (let index = 1; index <= 9; index += 1) points.push({ lat, lng: west + (east - west) * index / 10 });
+  } else if (west <= east && south <= north) {
+    // Adaptive-resolution cells often overlap rather than share an exact
+    // edge. Offer a small deterministic set of interior handoffs.
+    for (let row = 1; row <= 3; row += 1) for (let column = 1; column <= 3; column += 1) {
+      points.push({ lat: south + (north - south) * row / 4, lng: west + (east - west) * column / 4 });
+    }
   }
   return points;
 }
