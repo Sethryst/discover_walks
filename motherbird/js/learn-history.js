@@ -77,8 +77,9 @@ export function sortSitesByDistance(sites, point) {
   return [...sites].sort((left, right) => distanceMeters(point, left) - distanceMeters(point, right));
 }
 
-// Learn content is local to the installed pack. Do not expose Virginia's
-// historical catalogue while the map is parked somewhere else in the US.
+// Learn is driven by the map viewport, not by the currently selected place
+// pack. A regional dataset can therefore remain visible across every area it
+// actually touches without turning the region menu into a switcher.
 export function viewboxContainsPoint(map, item) {
   if (!map?.getBounds || !Number.isFinite(Number(item?.lat)) || !Number.isFinite(Number(item?.lng))) return false;
   try { return map.getBounds().contains([Number(item.lat), Number(item.lng)]); } catch { return false; }
@@ -90,6 +91,22 @@ export function viewboxOverPack(map) {
   try {
     return map.getBounds().intersects([[bbox.south, bbox.west], [bbox.north, bbox.east]]);
   } catch { return false; }
+}
+
+function featureInViewport(map, feature) {
+  if (!map?.getBounds || !feature?.geometry) return false;
+  const points = [];
+  const collect = (value) => Array.isArray(value) && (typeof value[0] === 'number' ? points.push(value) : value.forEach(collect));
+  collect(feature.geometry.coordinates);
+  if (!points.length) return false;
+  const bounds = map.getBounds();
+  const west = bounds.getWest(), east = bounds.getEast(), south = bounds.getSouth(), north = bounds.getNorth();
+  return points.some(([lng, lat]) => lng >= west && lng <= east && lat >= south && lat <= north) || points.some(([lng, lat]) => lat >= south && lat <= north && lng >= west && lng <= east);
+}
+
+function battlefieldInViewport(map, battle) {
+  if (!map?.getBounds || !Number.isFinite(Number(battle?.lat)) || !Number.isFinite(Number(battle?.lng))) return false;
+  return map.getBounds().contains([Number(battle.lat), Number(battle.lng)]);
 }
 
 export function rectangleFromBbox(bbox) {
@@ -429,20 +446,8 @@ export async function renderLearnHistory(target, point) {
   if (learnScreen !== 'topo' && state.historicalTopoLayer) stopHistoricalTopo();
   if (learnScreen === 'home') {
     setLearnSheetMin(false);
-    if (!viewboxOverPack(state.map)) {
-      target.innerHTML = '<section class="learn-history"><p class="empty-state">Move the map over this installed pack to open its Learn layers.</p></section>';
-      state.learnBoundsLayer?.remove(); state.learnBoundsLayer = null;
-      return;
-    }
     target.innerHTML = learnHomeHtml();
     state.learnBoundsLayer?.remove(); state.learnBoundsLayer = null;
-    return;
-  }
-  if (!viewboxOverPack(state.map)) {
-    setLearnSheetMin(false);
-    target.innerHTML = '<section class="learn-history"><p class="empty-state">This Learn layer is local to the installed pack. Move the map over it to continue.</p></section>';
-    state.learnBoundsLayer?.remove(); state.learnBoundsLayer = null;
-    stopHistoricalTopo();
     return;
   }
   if (learnScreen === 'topo') {
@@ -451,7 +456,7 @@ export async function renderLearnHistory(target, point) {
   const pois = state.cityPois[state.activeCity] || [];
   if (learnScreen === 'watersheds') {
     const catalog = await loadWatersheds();
-    const features = catalog.features || [];
+    const features = (catalog.features || []).filter((feature) => featureInViewport(state.map, feature));
     const selected = features.find((feature) => feature.properties?.id === activeWatershedId) || null;
     setLearnSheetMin(!!selected);
     const inside = selected ? placesInWatershed(pois, selected).filter(isWalkNatureSite) : [];
@@ -461,7 +466,7 @@ export async function renderLearnHistory(target, point) {
   }
   if (learnScreen === 'battlefields') {
     const catalog = await loadBattlefields();
-    const eras = catalog.eras || [];
+    const eras = (catalog.eras || []).map((item) => ({ ...item, years: (item.years || []).map((year) => ({ ...year, battles: (year.battles || []).filter((battle) => battlefieldInViewport(state.map, battle)) })).filter((year) => year.battles.length) })).filter((item) => item.years.length);
     const era = eras.find((item) => item.id === activeEraId) || null;
     const year = era?.years?.find((item) => Number(item.year) === Number(activeYear)) || null;
     const battle = year?.battles?.find((item) => item.id === activeBattleId) || null;
