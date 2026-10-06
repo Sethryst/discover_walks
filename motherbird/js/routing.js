@@ -1,4 +1,4 @@
-import { activateWalkingCellAt, getWalkingCellRegistry } from './walking-cell-runtime.js?v=20261006-multihop-routing-1';
+import { activateWalkingCellAt, getWalkingCellRegistry } from './walking-cell-runtime.js?v=20261006-routing-hardening-1';
 
 let worker = null;
 let sequence = 0;
@@ -20,6 +20,7 @@ export const ROUTE_FAILURE_MESSAGES = {
   ACCESS_POLICY_BLOCKED: 'The installed geometry does not meet the selected access policy.',
   ACCESSIBILITY_DATA_INSUFFICIENT: 'Ramp, stair, or grade evidence is insufficient for a verified accessible route.',
   GRAPH_VERSION_UNAVAILABLE: 'We could not calculate that walk right now.',
+  NO_CELL_FOR_COORDINATE: 'One endpoint is outside the installed routing coverage. Pan to an installed area or choose a nearer point.',
   CROSS_CELL_UNAVAILABLE: 'The selected points are in different routing cells that are not connected in the installed cell graph. Choose points inside the same mapped cell, or install the adjacent routing cell before retrying.',
   BOUNDARY_STITCH_FAILED: 'Both points are mapped, but the pedestrian network does not have a verified handoff across their cell boundary. Try points on the same side of the boundary or choose a nearer crossing.',
   INVALID_ROUTE_REQUEST: 'The route request could not be read.'
@@ -39,13 +40,15 @@ export async function routeOnFoot(points, { city, profile = 'ordinary_walking_be
       activeWalkingCell = originCell;
     }
     catch (error) { return failure('GRAPH_VERSION_UNAVAILABLE', error.message); }
-    if (!activeWalkingCell?.id || activeWalkingCell.availability !== 'routing_available') return failure('GRAPH_VERSION_UNAVAILABLE', activeWalkingCell?.reason);
-    const request = (cell, origin = points[index], destination = points[index + 1]) => requestRoute({ city, profile, origin, destination, maxSnapMeters: 3000, maxVisitedNodes: 100000, avoid: { stairs: false, unverified_edges: false }, cell, cellId: cell?.id, cellRelease: cell?.release });
+    if (!activeWalkingCell?.id) return failure('NO_CELL_FOR_COORDINATE', activeWalkingCell?.reason);
+    if (activeWalkingCell.availability !== 'routing_available') return failure('GRAPH_VERSION_UNAVAILABLE', activeWalkingCell?.reason);
+    const request = (cell, origin = points[index], destination = points[index + 1]) => requestRoute({ city, profile, origin, destination, maxSnapMeters: 3000, maxVisitedNodes: 300000, avoid: { stairs: false, unverified_edges: false }, cell, cellId: cell?.id, cellRelease: cell?.release });
     let result = await request(activeWalkingCell);
     const neighborIds = new Set([...(activeWalkingCell.routingNeighbors || []), ...(destinationCell?.routingNeighbors || [])]);
     if (result.ok) legs.push(result);
     else if (destinationCell?.id && destinationCell.id !== activeWalkingCell.id && destinationCell.availability === 'routing_available') {
-      const registry = await getWalkingCellRegistry();
+      let registry;
+      try { registry = await getWalkingCellRegistry(); } catch (error) { return failure('GRAPH_VERSION_UNAVAILABLE', error.message); }
       const cellPath = findCellPath(registry, activeWalkingCell.id, destinationCell.id);
       if (!cellPath || (cellPath.length === 2 && !neighborIds.has(destinationCell.id))) return failure('CROSS_CELL_UNAVAILABLE', `${activeWalkingCell.id} -> ${destinationCell.id}`);
       const stitched = await stitchCellPath(points[index], points[index + 1], cellPath, request);
@@ -155,7 +158,7 @@ function mergeInstructions(legs) {
 function requestRoute(payload) {
   if (typeof Worker === 'undefined') return Promise.resolve(failure('GRAPH_VERSION_UNAVAILABLE'));
   if (!worker) {
-    worker = new Worker('./js/offline-router-worker.js?v=20261006-multihop-routing-1', { type: 'module' });
+    worker = new Worker('./js/offline-router-worker.js?v=20261006-routing-hardening-1', { type: 'module' });
     worker.onmessage = ({ data }) => {
       if (data.type === 'progress') { window.dispatchEvent(new CustomEvent('routing-progress', { detail: data })); return; }
       if (data.type === 'worker-ready') { workerReady = true; window.dispatchEvent(new CustomEvent('routing-worker-ready', { detail: data })); return; }

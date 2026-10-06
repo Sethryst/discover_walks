@@ -29,10 +29,14 @@ export class WalkingCellRegistry {
   }
 
   find(lat, lng) {
+    return this.findAll(lat, lng)[0] || null;
+  }
+
+  findAll(lat, lng) {
     validateCoordinate(lat, lng);
     const matches = this.cells.filter((cell) => contains(cell.bounds, lat, lng));
     // Adaptive shards may overlap. Prefer the most specific cell, then stable ID.
-    return matches.sort((a, b) => area(a.bounds) - area(b.bounds) || a.id.localeCompare(b.id))[0] || null;
+    return matches.sort((a, b) => area(a.bounds) - area(b.bounds) || a.id.localeCompare(b.id));
   }
 }
 

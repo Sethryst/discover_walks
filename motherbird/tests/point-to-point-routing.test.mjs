@@ -12,6 +12,16 @@ test('routing exposes specific cross-cell and boundary failure classes', () => {
   assert.match(routing, /CROSS_CELL_UNAVAILABLE/);
   assert.match(routing, /BOUNDARY_STITCH_FAILED/);
   assert.match(routing, /destinationCell\?\.routingNeighbors/);
+  assert.match(routing, /NO_CELL_FOR_COORDINATE/);
+  assert.match(routing, /maxVisitedNodes: 300000/);
+});
+
+test('registry returns all overlapping candidates for adaptive routing', () => {
+  const registry = new WalkingCellRegistry({ format: 'motherbird-walking-cell-registry-v1', release: 'test', cells: [
+    { id: 'fine', bounds: [0, 0, 1, 1], artifacts: { map: { url: './map.pmtiles' }, graph: { url: './graph.json' } } },
+    { id: 'coarse', bounds: [-1, -1, 2, 2], artifacts: { map: { url: './map.pmtiles' }, graph: { url: './graph.json' } } }
+  ] });
+  assert.deepEqual(registry.findAll(.5, .5).map((cell) => cell.id), ['fine', 'coarse']);
 });
 
 test('planner preserves endpoints and ignores stale concurrent generations', () => {

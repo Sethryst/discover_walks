@@ -5,7 +5,7 @@ import { WalkingCellCache } from './walking-cell-cache.js';
 const graphs = new Map();
 const graphLoads = new Map();
 const persistentCache = new WalkingCellCache();
-const MAX_GRAPH_CACHE_BYTES = 160 * 1024 * 1024;
+const MAX_GRAPH_CACHE_BYTES = 256 * 1024 * 1024;
 let graphCacheBytes = 0;
 const reportWorkerError = (error) => self.postMessage({ type: 'worker-error', message: error?.message || String(error), stack: error?.stack || null, phase: workerPhase });
 let workerPhase = 'idle';
