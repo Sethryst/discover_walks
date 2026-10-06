@@ -1,0 +1,2454 @@
+{
+  "accepted": 833,
+  "generatedAt": "2026-10-06T19:26:04.766302Z",
+  "regionId": "eugene",
+  "rejected": 4,
+  "schemaVersion": 1,
+  "warnings": [
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM relation 13967408 is outside the configured bbox.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 667405148 is outside the configured bbox.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 683019978 is outside the configured bbox.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 695503557 is outside the configured bbox.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10141380102 matched authoritative osm:node:10141380102; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10187467713 matched authoritative osm:node:10187467713; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10203505419 matched authoritative osm:node:10203505419; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10249123775 matched authoritative osm:node:10249123775; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10595414559 matched authoritative osm:node:10595414559; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10602165653 matched authoritative osm:node:10602165653; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10647876772 matched authoritative osm:node:10647876772; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10682155371 matched authoritative osm:node:10682155371; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10969861777 matched authoritative osm:node:10969861777; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10974256351 matched authoritative osm:node:10974256351; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10974256352 matched authoritative osm:node:10974256352; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10974256363 matched authoritative osm:node:10974256363; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10992439224 matched authoritative osm:node:10992439224; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11013342496 matched authoritative osm:node:11013342496; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11067344307 matched authoritative osm:node:11067344307; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11120932605 matched authoritative osm:node:11120932605; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11256588398 matched authoritative osm:node:11256588398; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11599083669 matched authoritative osm:node:11599083669; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11991406752 matched authoritative osm:node:11991406752; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12094621895 matched authoritative osm:node:12094621895; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12095572829 matched authoritative osm:node:12095572829; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12634700321 matched authoritative osm:node:12634700321; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12634700322 matched authoritative osm:node:12634700322; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12634700326 matched authoritative osm:node:12634700326; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12634700327 matched authoritative osm:node:12634700327; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12634700328 matched authoritative osm:node:12634700328; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12634700329 matched authoritative osm:node:12634700329; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12634700330 matched authoritative osm:node:12634700330; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12634700331 matched authoritative osm:node:12634700331; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12634700332 matched authoritative osm:node:12634700332; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13165705274 matched authoritative osm:node:13165705274; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13194584301 matched authoritative osm:node:13194584301; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13541469701 matched authoritative osm:node:13541469701; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:14040100882 matched authoritative osm:node:14040100882; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:14066224934 matched authoritative osm:node:14066224934; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:14111339830 matched authoritative osm:node:14111339830; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:14121125008 matched authoritative osm:node:14121125008; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:14129930908 matched authoritative osm:node:14129930908; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:14218339276 matched authoritative osm:node:14218339276; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1704928724 matched authoritative osm:node:1704928724; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2094387482 matched authoritative osm:node:2094387482; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2233788066 matched authoritative osm:node:2233788066; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2262313571 matched authoritative osm:node:2262313571; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2346561310 matched authoritative osm:node:2346561310; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2402986088 matched authoritative osm:node:2402986088; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2402986233 matched authoritative osm:node:2402986233; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2521601714 matched authoritative osm:node:2521601714; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2521601720 matched authoritative osm:node:2521601720; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2521645484 matched authoritative osm:node:2521645484; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2527513290 matched authoritative osm:node:2527513290; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2701156583 matched authoritative osm:node:2701156583; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2804428950 matched authoritative osm:node:2804428950; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2873797527 matched authoritative osm:node:2873797527; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2875562086 matched authoritative osm:node:2875562086; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2875576994 matched authoritative osm:node:2875576994; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2876687855 matched authoritative osm:node:2876687855; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2878945013 matched authoritative osm:node:2878945013; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3383874223 matched authoritative osm:node:3383874223; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3447974197 matched authoritative osm:node:3447974197; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3515284075 matched authoritative osm:node:3515284075; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3527396470 matched authoritative osm:node:3527396470; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3529070766 matched authoritative osm:node:3529070766; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357276546 matched authoritative osm:node:357276546; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357283302 matched authoritative osm:node:357283302; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357286694 matched authoritative osm:node:357286694; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357286916 matched authoritative osm:node:357286916; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357328479 matched authoritative osm:node:357328479; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357329621 matched authoritative osm:node:357329621; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357329624 matched authoritative osm:node:357329624; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357345911 matched authoritative osm:node:357345911; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357350090 matched authoritative osm:node:357350090; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3655177192 matched authoritative osm:node:3655177192; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4041128077 matched authoritative osm:node:4041128077; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:410842549 matched authoritative osm:node:410842549; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4193718970 matched authoritative osm:node:4193718970; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4206384823 matched authoritative osm:node:4206384823; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4335877968 matched authoritative osm:node:4335877968; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4585845868 matched authoritative osm:node:4585845868; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4715116912 matched authoritative osm:node:4715116912; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4744045581 matched authoritative osm:node:4744045581; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4744234246 matched authoritative osm:node:4744234246; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4856705087 matched authoritative osm:node:4856705087; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5089502859 matched authoritative osm:node:5089502859; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5114210580 matched authoritative osm:node:5114210580; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5578691338 matched authoritative osm:node:5578691338; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5702963466 matched authoritative osm:node:5702963466; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5702980622 matched authoritative osm:node:5702980622; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5867134222 matched authoritative osm:node:5867134222; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5870097436 matched authoritative osm:node:5870097436; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5895183011 matched authoritative osm:node:5895183011; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5898444677 matched authoritative osm:node:5898444677; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6196336216 matched authoritative osm:node:6196336216; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6243016725 matched authoritative osm:node:6243016725; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6254582631 matched authoritative osm:node:6254582631; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6254587147 matched authoritative osm:node:6254587147; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6254599999 matched authoritative osm:node:6254599999; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6563622787 matched authoritative osm:node:6563622787; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6839068285 matched authoritative osm:node:6839068285; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6946430885 matched authoritative osm:node:6946430885; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7131888767 matched authoritative osm:node:7131888767; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7131956986 matched authoritative osm:node:7131956986; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7131958913 matched authoritative osm:node:7131958913; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7132095105 matched authoritative osm:node:7132095105; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7143766688 matched authoritative osm:node:7143766688; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7149735302 matched authoritative osm:node:7149735302; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7149817140 matched authoritative osm:node:7149817140; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7159226504 matched authoritative osm:node:7159226504; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7209636791 matched authoritative osm:node:7209636791; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7209708511 matched authoritative osm:node:7209708511; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7304258210 matched authoritative osm:node:7304258210; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7357172041 matched authoritative osm:node:7357172041; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7430998504 matched authoritative osm:node:7430998504; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7576305970 matched authoritative osm:node:7576305970; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7797147885 matched authoritative osm:node:7797147885; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7865927849 matched authoritative osm:node:7865927849; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7996164347 matched authoritative osm:node:7996164347; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:8023461277 matched authoritative osm:node:8023461277; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:8038862987 matched authoritative osm:node:8038862987; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:8144427249 matched authoritative osm:node:8144427249; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:8150346923 matched authoritative osm:node:8150346923; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9076202364 matched authoritative osm:node:9076202364; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9668960976 matched authoritative osm:node:9668960976; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9784267522 matched authoritative osm:node:9784267522; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:10963227 matched authoritative osm:relation:10963227; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:10963228 matched authoritative osm:relation:10963228; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:10963229 matched authoritative osm:relation:10963229; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:11026596 matched authoritative osm:relation:11026596; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:12621934 matched authoritative osm:relation:12621934; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:12622562 matched authoritative osm:relation:12622562; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:12622563 matched authoritative osm:relation:12622563; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:12622693 matched authoritative osm:relation:12622693; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:13019153 matched authoritative osm:relation:13019153; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:13967407 matched authoritative osm:relation:13967407; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:14974634 matched authoritative osm:relation:14974634; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:15397643 matched authoritative osm:relation:15397643; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:5644585 matched authoritative osm:relation:5644585; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:5645932 matched authoritative osm:relation:5645932; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:5649427 matched authoritative osm:relation:5649427; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:5919208 matched authoritative osm:relation:5919208; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:5941358 matched authoritative osm:relation:5941358; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:5955958 matched authoritative osm:relation:5955958; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:6705450 matched authoritative osm:relation:6705450; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:6705462 matched authoritative osm:relation:6705462; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:6758986 matched authoritative osm:relation:6758986; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:7785753 matched authoritative osm:relation:7785753; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:8819622 matched authoritative osm:relation:8819622; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1012479109 matched authoritative osm:way:1012479109; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1044122807 matched authoritative osm:way:1044122807; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:107098094 matched authoritative osm:way:107098094; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:107098111 matched authoritative osm:way:107098111; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1076896761 matched authoritative osm:way:1076896761; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1079522628 matched authoritative osm:way:1079522628; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:108064141 matched authoritative osm:way:108064141; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:108064148 matched authoritative osm:way:108064148; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1085616355 matched authoritative osm:way:1085616355; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1095316232 matched authoritative osm:way:1095316232; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1095867104 matched authoritative osm:way:1095867104; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1104537278 matched authoritative osm:way:1104537278; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1104537304 matched authoritative osm:way:1104537304; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1104537317 matched authoritative osm:way:1104537317; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1104537320 matched authoritative osm:way:1104537320; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1104537348 matched authoritative osm:way:1104537348; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1104537357 matched authoritative osm:way:1104537357; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1104537371 matched authoritative osm:way:1104537371; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1104537388 matched authoritative osm:way:1104537388; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1104537389 matched authoritative osm:way:1104537389; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1104537430 matched authoritative osm:way:1104537430; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1104537435 matched authoritative osm:way:1104537435; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1104537448 matched authoritative osm:way:1104537448; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1104537463 matched authoritative osm:way:1104537463; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1104537471 matched authoritative osm:way:1104537471; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1104537499 matched authoritative osm:way:1104537499; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1104537511 matched authoritative osm:way:1104537511; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1104537549 matched authoritative osm:way:1104537549; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1104537565 matched authoritative osm:way:1104537565; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1104537569 matched authoritative osm:way:1104537569; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1104537571 matched authoritative osm:way:1104537571; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1104537592 matched authoritative osm:way:1104537592; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1104537665 matched authoritative osm:way:1104537665; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1104537721 matched authoritative osm:way:1104537721; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1104537722 matched authoritative osm:way:1104537722; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1104537730 matched authoritative osm:way:1104537730; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1104537733 matched authoritative osm:way:1104537733; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1104537746 matched authoritative osm:way:1104537746; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1104537782 matched authoritative osm:way:1104537782; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1104817993 matched authoritative osm:way:1104817993; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1104851206 matched authoritative osm:way:1104851206; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1115842888 matched authoritative osm:way:1115842888; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1122212666 matched authoritative osm:way:1122212666; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1124490567 matched authoritative osm:way:1124490567; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1137808495 matched authoritative osm:way:1137808495; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1137808502 matched authoritative osm:way:1137808502; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1146873660 matched authoritative osm:way:1146873660; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1153386683 matched authoritative osm:way:1153386683; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1160304911 matched authoritative osm:way:1160304911; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1162290490 matched authoritative osm:way:1162290490; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:122087574 matched authoritative osm:way:122087574; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:122155583 matched authoritative osm:way:122155583; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:122155585 matched authoritative osm:way:122155585; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:122156144 matched authoritative osm:way:122156144; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1222339076 matched authoritative osm:way:1222339076; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1222641456 matched authoritative osm:way:1222641456; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:122745332 matched authoritative osm:way:122745332; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:122889535 matched authoritative osm:way:122889535; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:123493968 matched authoritative osm:way:123493968; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1238772618 matched authoritative osm:way:1238772618; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:124946158 matched authoritative osm:way:124946158; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:124946573 matched authoritative osm:way:124946573; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:124947203 matched authoritative osm:way:124947203; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:124947373 matched authoritative osm:way:124947373; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:124947480 matched authoritative osm:way:124947480; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:124950785 matched authoritative osm:way:124950785; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1254776004 matched authoritative osm:way:1254776004; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1296565704 matched authoritative osm:way:1296565704; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1299698168 matched authoritative osm:way:1299698168; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1306937781 matched authoritative osm:way:1306937781; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1310820936 matched authoritative osm:way:1310820935; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1352265848 matched authoritative osm:way:1352265848; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1357903900 matched authoritative osm:way:1357903900; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1364381736 matched authoritative osm:way:1364381736; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1364381737 matched authoritative osm:way:1364381737; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1364707084 matched authoritative osm:way:1364707084; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1449938700 matched authoritative osm:way:1449938700; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1547134621 matched authoritative osm:way:1547134620; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1551413581 matched authoritative osm:way:1551413581; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:199277853 matched authoritative osm:way:199277853; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:199279457 matched authoritative osm:way:199279457; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:200655037 matched authoritative osm:way:200655037; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:200655086 matched authoritative osm:way:200655086; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:200655103 matched authoritative osm:way:200655103; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:200655119 matched authoritative osm:way:200655119; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:200655134 matched authoritative osm:way:200655134; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:200655151 matched authoritative osm:way:200655151; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:200655172 matched authoritative osm:way:200655172; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:200655178 matched authoritative osm:way:200655178; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:201158554 matched authoritative osm:way:201158554; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:201175812 matched authoritative osm:way:201175812; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:202173980 matched authoritative osm:way:202173980; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:202174034 matched authoritative osm:way:202174034; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:202177716 matched authoritative osm:way:202177716; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:202178716 matched authoritative osm:way:202178716; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:202178718 matched authoritative osm:way:202178718; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:202179157 matched authoritative osm:way:202179157; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:202332585 matched authoritative osm:way:202332585; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:202388169 matched authoritative osm:way:202388169; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:202391089 matched authoritative osm:way:202391089; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:213726232 matched authoritative osm:way:213726232; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:215650911 matched authoritative osm:way:215650911; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:215982760 matched authoritative osm:way:215982760; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:216231499 matched authoritative osm:way:216231499; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:216854111 matched authoritative osm:way:216854111; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:216854112 matched authoritative osm:way:216854112; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:216886456 matched authoritative osm:way:216886456; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:216886457 matched authoritative osm:way:216886457; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:216910545 matched authoritative osm:way:216910545; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:216913463 matched authoritative osm:way:216913463; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:216999598 matched authoritative osm:way:216999598; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:217178157 matched authoritative osm:way:217178157; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:217182817 matched authoritative osm:way:217182817; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:217346169 matched authoritative osm:way:217346169; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:217894639 matched authoritative osm:way:217894639; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:221387774 matched authoritative osm:way:221387774; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:221500325 matched authoritative osm:way:221500325; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:225880022 matched authoritative osm:way:225880022; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:229032892 matched authoritative osm:way:229032892; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:231949704 matched authoritative osm:way:231949704; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:231949705 matched authoritative osm:way:231949705; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:243834120 matched authoritative osm:way:243834120; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:243839459 matched authoritative osm:way:243839459; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:243876296 matched authoritative osm:way:243876296; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:244502261 matched authoritative osm:way:244502261; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:244852889 matched authoritative osm:way:244852889; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:244977193 matched authoritative osm:way:244977193; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:244983219 matched authoritative osm:way:244983219; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:245135766 matched authoritative osm:way:245135766; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:245553561 matched authoritative osm:way:245553561; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:253295779 matched authoritative osm:way:253295779; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:263156355 matched authoritative osm:way:263156355; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:264236409 matched authoritative osm:way:264236409; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:266746620 matched authoritative osm:way:266746620; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:277456563 matched authoritative osm:way:277456563; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:277456570 matched authoritative osm:way:277456570; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:281888671 matched authoritative osm:way:281888671; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:282111366 matched authoritative osm:way:282111366; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:282126658 matched authoritative osm:way:282126658; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:283246334 matched authoritative osm:way:283246334; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:283863396 matched authoritative osm:way:283863396; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:303534356 matched authoritative osm:way:303534356; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:313721164 matched authoritative osm:way:313721164; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:313850470 matched authoritative osm:way:313850470; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:338900032 matched authoritative osm:way:338900032; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:338900035 matched authoritative osm:way:338900035; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:338900060 matched authoritative osm:way:338900060; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:345274759 matched authoritative osm:way:345274759; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:345420176 matched authoritative osm:way:345420176; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:358724134 matched authoritative osm:way:358724134; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:375997390 matched authoritative osm:way:375997390; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:376015808 matched authoritative osm:way:376015808; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:378836312 matched authoritative osm:way:378836312; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:378838393 matched authoritative osm:way:378838393; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:378838394 matched authoritative osm:way:378838394; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:378840570 matched authoritative osm:way:378840570; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:378840571 matched authoritative osm:way:378840571; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:378848843 matched authoritative osm:way:378848843; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:378887073 matched authoritative osm:way:378887073; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:378887521 matched authoritative osm:way:378887521; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:378954484 matched authoritative osm:way:378954484; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:378954492 matched authoritative osm:way:378954492; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:379170584 matched authoritative osm:way:379170584; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:379170586 matched authoritative osm:way:379170586; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:379488111 matched authoritative osm:way:379488111; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:379502787 matched authoritative osm:way:379502787; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:379503172 matched authoritative osm:way:379503172; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:379700761 matched authoritative osm:way:379700761; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:379700764 matched authoritative osm:way:379700764; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:388362565 matched authoritative osm:way:388362565; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:394479153 matched authoritative osm:way:394479153; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:394521214 matched authoritative osm:way:394521214; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:394523419 matched authoritative osm:way:394523419; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:394523420 matched authoritative osm:way:394523420; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:394523429 matched authoritative osm:way:394523429; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:395703315 matched authoritative osm:way:395703315; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:395712082 matched authoritative osm:way:395712082; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:395742287 matched authoritative osm:way:395742287; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:395985343 matched authoritative osm:way:395985343; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:395987583 matched authoritative osm:way:395987583; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:396096395 matched authoritative osm:way:396096395; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:396143012 matched authoritative osm:way:396143012; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:414520035 matched authoritative osm:way:414520035; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:420982688 matched authoritative osm:way:420982688; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:421453808 matched authoritative osm:way:421453808; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:421581916 matched authoritative osm:way:421581916; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:424883136 matched authoritative osm:way:424883136; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:447900958 matched authoritative osm:way:447900958; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:447986762 matched authoritative osm:way:447986762; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:447986763 matched authoritative osm:way:447986763; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:449155756 matched authoritative osm:way:449155756; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:452876560 matched authoritative osm:way:452876560; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:452879059 matched authoritative osm:way:452879059; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:454451490 matched authoritative osm:way:454451490; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:469499718 matched authoritative osm:way:469499718; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:479569176 matched authoritative osm:way:479569176; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:479583248 matched authoritative osm:way:479583248; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:479595383 matched authoritative osm:way:479595383; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:481488468 matched authoritative osm:way:481488468; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:527108264 matched authoritative osm:way:527108264; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:528564363 matched authoritative osm:way:528564363; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:528902419 matched authoritative osm:way:528902419; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:529932757 matched authoritative osm:way:529932757; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:529932758 matched authoritative osm:way:529932758; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:532857634 matched authoritative osm:way:532857634; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:532874580 matched authoritative osm:way:532874580; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:532884321 matched authoritative osm:way:532884321; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:533077089 matched authoritative osm:way:533077089; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:533078548 matched authoritative osm:way:533078548; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:535510386 matched authoritative osm:way:535510386; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:538960107 matched authoritative osm:way:538960107; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:544730905 matched authoritative osm:way:544730905; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:583539778 matched authoritative osm:way:583539778; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:588304999 matched authoritative osm:way:588304999; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:588730146 matched authoritative osm:way:588730146; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:589279681 matched authoritative osm:way:589279681; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:589279685 matched authoritative osm:way:589279685; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:592483203 matched authoritative osm:way:592483203; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:592483204 matched authoritative osm:way:592483204; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:592483205 matched authoritative osm:way:592483205; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:610923109 matched authoritative osm:way:610923109; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:617893015 matched authoritative osm:way:617893015; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:618051900 matched authoritative osm:way:618051900; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:618051902 matched authoritative osm:way:618051902; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:618051906 matched authoritative osm:way:618051906; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:618051908 matched authoritative osm:way:618051908; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:618051909 matched authoritative osm:way:618051909; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:618051913 matched authoritative osm:way:618051913; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:618058113 matched authoritative osm:way:618058113; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:618058115 matched authoritative osm:way:618058115; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:618071454 matched authoritative osm:way:618071454; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:620148654 matched authoritative osm:way:620148654; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:620397476 matched authoritative osm:way:620397476; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:667074855 matched authoritative osm:way:667074855; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:667583745 matched authoritative osm:way:667583745; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:667979015 matched authoritative osm:way:667979015; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:667982952 matched authoritative osm:way:667982952; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:668181819 matched authoritative osm:way:668181819; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:679545720 matched authoritative osm:way:679545720; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:679559109 matched authoritative osm:way:679559109; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:680123973 matched authoritative osm:way:680123973; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:680134016 matched authoritative osm:way:680134016; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:680162327 matched authoritative osm:way:680162327; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:686973956 matched authoritative osm:way:686973956; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:688206269 matched authoritative osm:way:688206269; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:688434251 matched authoritative osm:way:688434251; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:689492474 matched authoritative osm:way:689492474; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:697265470 matched authoritative osm:way:697265470; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:697923536 matched authoritative osm:way:697923536; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:719543503 matched authoritative osm:way:719543503; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:719543504 matched authoritative osm:way:719543504; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:730103056 matched authoritative osm:way:730103056; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:755780606 matched authoritative osm:way:755780606; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:756469652 matched authoritative osm:way:756469652; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:763225361 matched authoritative osm:way:763225361; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:763225614 matched authoritative osm:way:763225614; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:763227943 matched authoritative osm:way:763227943; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:765197226 matched authoritative osm:way:765197226; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:765235389 matched authoritative osm:way:765235389; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:766773528 matched authoritative osm:way:766773528; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:767743948 matched authoritative osm:way:767743948; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:768971690 matched authoritative osm:way:768971690; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:771110244 matched authoritative osm:way:771110244; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:781652533 matched authoritative osm:way:781652533; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:787850137 matched authoritative osm:way:787850137; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:793336374 matched authoritative osm:way:793336374; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:793336405 matched authoritative osm:way:793336405; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:793343283 matched authoritative osm:way:793343283; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:793648027 matched authoritative osm:way:793648027; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:794483762 matched authoritative osm:node:7576305970; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:795030289 matched authoritative osm:way:795030288; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:795030291 matched authoritative osm:way:795030288; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:795030292 matched authoritative osm:way:795030288; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:795030306 matched authoritative osm:way:795030305; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:795456173 matched authoritative osm:way:795456173; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:807343145 matched authoritative osm:way:807343145; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:820346982 matched authoritative osm:way:820346982; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:823221390 matched authoritative osm:way:823221390; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:824038016 matched authoritative osm:way:824038016; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:826312044 matched authoritative osm:way:826312044; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:827743513 matched authoritative osm:way:827743513; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:827973553 matched authoritative osm:way:827973553; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:829450689 matched authoritative osm:way:829450689; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:837974978 matched authoritative osm:way:1310820935; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:839097778 matched authoritative osm:way:1310820935; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:839134731 matched authoritative osm:way:839134731; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:840008490 matched authoritative osm:way:840008490; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:840676558 matched authoritative osm:way:840676558; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:842541371 matched authoritative osm:way:842541371; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:842567442 matched authoritative osm:way:842567442; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:842954926 matched authoritative osm:way:842954926; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:846616155 matched authoritative osm:way:846616155; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:848208862 matched authoritative osm:way:848208862; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:848208864 matched authoritative osm:way:848208864; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:860270565 matched authoritative osm:way:860270565; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:860270566 matched authoritative osm:way:860270566; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:861211047 matched authoritative osm:way:861211047; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:861214713 matched authoritative osm:way:861214713; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:863233668 matched authoritative osm:way:863233668; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:865731301 matched authoritative osm:way:865731301; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:865802461 matched authoritative osm:way:865802461; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:866443104 matched authoritative osm:way:866443103; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:867472230 matched authoritative osm:way:867472230; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:867909197 matched authoritative osm:way:867909197; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:871784049 matched authoritative osm:way:871784049; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:871796702 matched authoritative osm:way:871796702; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:872056072 matched authoritative osm:way:872056072; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:875646583 matched authoritative osm:way:875646583; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:875651992 matched authoritative osm:way:875651992; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:881513127 matched authoritative osm:way:881513127; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:885324075 matched authoritative osm:way:885324075; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:888020455 matched authoritative osm:way:888020455; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:908567290 matched authoritative osm:way:908567290; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:908567297 matched authoritative osm:way:908567297; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:910330366 matched authoritative osm:way:910330366; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:911054971 matched authoritative osm:way:911054971; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:911055449 matched authoritative osm:way:911055449; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:918105189 matched authoritative osm:way:918105189; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:918105190 matched authoritative osm:way:918105190; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:921124783 matched authoritative osm:way:122901733; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:934373385 matched authoritative osm:way:934373385; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:934413841 matched authoritative osm:way:934413841; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:934439539 matched authoritative osm:way:934439539; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:934442876 matched authoritative osm:way:934442876; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:934457844 matched authoritative osm:way:934457844; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:934458213 matched authoritative osm:way:934458213; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:934460131 matched authoritative osm:way:934460131; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:934494900 matched authoritative osm:way:934494900; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:943959137 matched authoritative osm:way:943959137; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:947935648 matched authoritative osm:way:947935647; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:948851959 matched authoritative osm:way:948851959; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:966255815 matched authoritative osm:way:966255815; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:966255816 matched authoritative osm:way:966255816; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:972418506 matched authoritative osm:way:972418506; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:974158585 matched authoritative osm:way:974158585; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:987225802 matched authoritative osm:way:987225802; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:987240227 matched authoritative osm:way:987240227; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:987240237 matched authoritative osm:way:987240237; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:997217508 matched authoritative osm:way:997217508; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-eugene-walk"
+    }
+  ]
+}

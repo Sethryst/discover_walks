@@ -1,0 +1,41 @@
+{
+  "artifacts": [
+    "pois.json",
+    "merged-pois.json",
+    "validation.json",
+    "spatial-index-delta.json",
+    "attribution.json"
+  ],
+  "checksums": {
+    "attribution.json": "sha256:8b1fd69707011760353cf1bbb066f6f3cb442f6a12907312ea99d0a8f2a49cd9",
+    "merged-pois.json": "sha256:d947c4e4422a2918354a903dd031150de052b304d4f6675c20ee9378ce258b9c",
+    "pois.json": "sha256:9ee26a9a4e7c5cd3d48a827f5165a8af921387845cc965feceaa5fbcf21aec53",
+    "spatial-index-delta.json": "sha256:98de6350fc1990b95ab1f1787b512a9c0ace2b570e6fe09ffa477a54bec9b1e2",
+    "validation.json": "sha256:6d332699e66337e29825880ccb19424d576e258cad7885ebdc23f1857907f061"
+  },
+  "generatedAt": "2026-10-06T19:26:04.766302Z",
+  "recordCountsByCategory": {
+    "coffee": 216,
+    "community": 6,
+    "garden": 18,
+    "history": 422,
+    "library": 29,
+    "market": 1,
+    "park": 345,
+    "public_art": 1,
+    "restaurant": 7,
+    "trail": 154
+  },
+  "regionId": "milwaukee",
+  "schemaVersion": 1,
+  "source": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "name": "OpenStreetMap",
+    "rawResponseSha256": "sha256:de6d9e0058af1855ed096371024cab06ec3a819dbfe82fbfd1ef3edc6324f4a3",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "sourceConfigurationId": "osm-milwaukee-walk",
+  "sourceVintage": "2026-10-03T20:27:56Z"
+}

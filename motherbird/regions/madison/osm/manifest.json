@@ -1,0 +1,39 @@
+{
+  "artifacts": [
+    "pois.json",
+    "merged-pois.json",
+    "validation.json",
+    "spatial-index-delta.json",
+    "attribution.json"
+  ],
+  "checksums": {
+    "attribution.json": "sha256:5b4102bee06546130437d4d5788e97e08e8eaecc69330159239c468a2b891bbb",
+    "merged-pois.json": "sha256:527551452568aad67256e6dcef4d903b81ddb1d9775c1f7a6044ff180bb87c68",
+    "pois.json": "sha256:c0127291c610c844bcc80d9c5691f013fada8408af803a55d7cad93d2bf42772",
+    "spatial-index-delta.json": "sha256:2ddf83882185a235f51a4e1d307b1f6aae5d48339ef85cd6ef0ff5bbbb7ce3d8",
+    "validation.json": "sha256:c7765d531e5b2a4a921a31945d9076d08c177ae506e041ad946583212eb4cb66"
+  },
+  "generatedAt": "2026-10-06T19:26:04.766302Z",
+  "recordCountsByCategory": {
+    "coffee": 136,
+    "community": 7,
+    "garden": 81,
+    "history": 135,
+    "library": 30,
+    "park": 536,
+    "public_art": 2,
+    "trail": 268
+  },
+  "regionId": "madison",
+  "schemaVersion": 1,
+  "source": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "name": "OpenStreetMap",
+    "rawResponseSha256": "sha256:4837e734339c9bf2beb810b1a5168b88ba959433a1ccde6436478802273ac0d6",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "sourceConfigurationId": "osm-madison-walk",
+  "sourceVintage": "2026-10-03T20:41:15Z"
+}

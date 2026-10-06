@@ -1,10 +1,60 @@
 {
-  "accepted": 1714,
-  "generatedAt": "2026-08-27T04:00:00Z",
+  "accepted": 742,
+  "generatedAt": "2026-10-06T19:26:04.766302Z",
   "regionId": "loudoun-county-va",
   "rejected": 30,
   "schemaVersion": 1,
   "warnings": [
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM relation 1185439 is outside the configured bbox.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM relation 1906504 is outside the configured bbox.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM relation 1957705 is outside the configured bbox.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM relation 1959531 is outside the configured bbox.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM relation 1991044 is outside the configured bbox.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM relation 4209449 is outside the configured bbox.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM relation 4209450 is outside the configured bbox.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM relation 5575363 is outside the configured bbox.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM relation 11347424 is outside the configured bbox.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM relation 21075181 is outside the configured bbox.",
+      "source": "osm-loudoun-county-va"
+    },
     {
       "code": "out_of_bounds",
       "detail": "OSM way 25504868 is outside the configured bbox.",
@@ -106,73 +156,628 @@
       "source": "osm-loudoun-county-va"
     },
     {
-      "code": "out_of_bounds",
-      "detail": "OSM relation 1185439 is outside the configured bbox.",
-      "source": "osm-loudoun-county-va"
-    },
-    {
-      "code": "out_of_bounds",
-      "detail": "OSM relation 1906504 is outside the configured bbox.",
-      "source": "osm-loudoun-county-va"
-    },
-    {
-      "code": "out_of_bounds",
-      "detail": "OSM relation 1957705 is outside the configured bbox.",
-      "source": "osm-loudoun-county-va"
-    },
-    {
-      "code": "out_of_bounds",
-      "detail": "OSM relation 1959531 is outside the configured bbox.",
-      "source": "osm-loudoun-county-va"
-    },
-    {
-      "code": "out_of_bounds",
-      "detail": "OSM relation 1991044 is outside the configured bbox.",
-      "source": "osm-loudoun-county-va"
-    },
-    {
-      "code": "out_of_bounds",
-      "detail": "OSM relation 4209449 is outside the configured bbox.",
-      "source": "osm-loudoun-county-va"
-    },
-    {
-      "code": "out_of_bounds",
-      "detail": "OSM relation 4209450 is outside the configured bbox.",
-      "source": "osm-loudoun-county-va"
-    },
-    {
-      "code": "out_of_bounds",
-      "detail": "OSM relation 5575363 is outside the configured bbox.",
-      "source": "osm-loudoun-county-va"
-    },
-    {
-      "code": "out_of_bounds",
-      "detail": "OSM relation 11347424 is outside the configured bbox.",
-      "source": "osm-loudoun-county-va"
-    },
-    {
-      "code": "out_of_bounds",
-      "detail": "OSM relation 21075181 is outside the configured bbox.",
+      "code": "boundary_clip_applied",
+      "detail": "Excluded 1003 named OSM records outside the installed regional boundary.",
       "source": "osm-loudoun-county-va"
     },
     {
       "code": "duplicate_reconciled",
-      "detail": "osm:way:1061058942 matched authoritative osm:way:1061058941; authoritative fields were retained and OSM provenance appended.",
+      "detail": "osm:node:10311338819 matched authoritative osm:node:10311338819; authoritative fields were retained and OSM provenance appended.",
       "source": "osm-loudoun-county-va"
     },
     {
       "code": "duplicate_reconciled",
-      "detail": "osm:way:1061058944 matched authoritative osm:way:1061058943; authoritative fields were retained and OSM provenance appended.",
+      "detail": "osm:node:10587955298 matched authoritative osm:node:10587955298; authoritative fields were retained and OSM provenance appended.",
       "source": "osm-loudoun-county-va"
     },
     {
       "code": "duplicate_reconciled",
-      "detail": "osm:way:1061058945 matched authoritative osm:way:1061058943; authoritative fields were retained and OSM provenance appended.",
+      "detail": "osm:node:10888597919 matched authoritative osm:node:10888597919; authoritative fields were retained and OSM provenance appended.",
       "source": "osm-loudoun-county-va"
     },
     {
       "code": "duplicate_reconciled",
-      "detail": "osm:way:1061070977 matched authoritative osm:way:1061070976; authoritative fields were retained and OSM provenance appended.",
+      "detail": "osm:node:10990168332 matched authoritative osm:node:10990168332; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11048024905 matched authoritative osm:node:11048024905; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11076076279 matched authoritative osm:node:11076076279; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11200423843 matched authoritative osm:node:11200423843; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11201213261 matched authoritative osm:node:11201213261; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11201213327 matched authoritative osm:node:11201213327; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11306121513 matched authoritative osm:node:11306121513; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1143925039 matched authoritative osm:node:1143925039; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11466831167 matched authoritative osm:node:11466831167; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11909614164 matched authoritative osm:node:11909614164; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11918158017 matched authoritative osm:node:11918158017; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12063892361 matched authoritative osm:node:12063892361; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12092236969 matched authoritative osm:node:12092236969; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12862725401 matched authoritative osm:node:12862725401; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12997587101 matched authoritative osm:node:12997587101; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:14113598320 matched authoritative osm:node:14113598320; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1468730371 matched authoritative osm:node:1468730371; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1548178322 matched authoritative osm:node:1548178322; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1619634225 matched authoritative osm:node:1619634225; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1707815923 matched authoritative osm:node:1707815923; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1707815957 matched authoritative osm:node:1707815957; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1707825628 matched authoritative osm:node:1707825628; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1707845568 matched authoritative osm:node:1707845568; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1707845569 matched authoritative osm:node:1707845569; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1707847297 matched authoritative osm:node:1707847297; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1709016793 matched authoritative osm:node:1709016793; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1786791305 matched authoritative osm:node:1786791305; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1787596141 matched authoritative osm:node:1787596141; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2013543524 matched authoritative osm:node:2013543524; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2318219257 matched authoritative osm:node:2318219257; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2340717654 matched authoritative osm:node:2340717654; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2404923297 matched authoritative osm:node:2404923297; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2517905602 matched authoritative osm:node:2517905602; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2685248061 matched authoritative osm:node:2685248061; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2698984928 matched authoritative osm:node:2698984928; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2914930384 matched authoritative osm:node:2914930384; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2995981814 matched authoritative osm:node:2995981814; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3054650847 matched authoritative osm:node:3054650847; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3181928278 matched authoritative osm:node:3181928278; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3200095126 matched authoritative osm:node:3200095126; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3413155789 matched authoritative osm:node:3413155789; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3413156599 matched authoritative osm:node:3413156599; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3413156607 matched authoritative osm:node:3413156607; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3413156622 matched authoritative osm:node:3413156622; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3413208609 matched authoritative osm:node:3413208609; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3413208634 matched authoritative osm:node:3413208634; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3413208659 matched authoritative osm:node:3413208659; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3413208671 matched authoritative osm:node:3413208671; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:356597652 matched authoritative osm:node:356597652; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:356597668 matched authoritative osm:node:356597668; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:356597686 matched authoritative osm:node:356597686; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:356597731 matched authoritative osm:node:356597731; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:356597737 matched authoritative osm:node:356597737; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:356597756 matched authoritative osm:node:356597756; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:356597784 matched authoritative osm:node:356597784; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:356597800 matched authoritative osm:node:356597800; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:356597915 matched authoritative osm:node:356597915; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:356597933 matched authoritative osm:node:356597933; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:356597972 matched authoritative osm:node:356597972; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:356597977 matched authoritative osm:node:356597977; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:356598012 matched authoritative osm:node:356598012; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:356605158 matched authoritative osm:node:356605158; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:356605165 matched authoritative osm:node:356605165; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:367980976 matched authoritative osm:node:367980976; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4110760301 matched authoritative osm:node:4110760301; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4344842077 matched authoritative osm:node:4344842077; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4487876269 matched authoritative osm:node:4487876269; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4543885909 matched authoritative osm:node:4543885909; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4858693165 matched authoritative osm:node:4858693165; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4895020383 matched authoritative osm:node:4895020383; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4930683857 matched authoritative osm:node:4930683857; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5312902242 matched authoritative osm:node:5312902242; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5312902255 matched authoritative osm:node:5312902255; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5312902265 matched authoritative osm:node:5312902265; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5358020258 matched authoritative osm:node:5358020258; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:542887951 matched authoritative osm:node:542887951; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5497241020 matched authoritative osm:node:5497241020; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:564729386 matched authoritative osm:node:564729386; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:572844900 matched authoritative osm:node:572844900; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5731037362 matched authoritative osm:node:5731037362; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6051160692 matched authoritative osm:node:6051160692; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6088479594 matched authoritative osm:node:6088479594; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6088479602 matched authoritative osm:node:6088479602; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6139278004 matched authoritative osm:node:6139278004; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6139278006 matched authoritative osm:node:6139278006; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6141301719 matched authoritative osm:node:6141301719; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6231632497 matched authoritative osm:node:6231632497; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6301812448 matched authoritative osm:node:6301812448; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6500110786 matched authoritative osm:node:6500110786; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6517942833 matched authoritative osm:node:6517942833; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:654587958 matched authoritative osm:node:654587958; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6789608135 matched authoritative osm:node:6789608135; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6835876208 matched authoritative osm:node:6835876208; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6916860488 matched authoritative osm:node:6916860488; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6994036294 matched authoritative osm:node:6994036294; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6996903493 matched authoritative osm:node:6996903493; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7280576764 matched authoritative osm:node:7280576764; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:746919660 matched authoritative osm:node:746919660; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7684169546 matched authoritative osm:node:7684169546; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7768164307 matched authoritative osm:node:7768164307; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7963644201 matched authoritative osm:node:7963644201; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:8210482716 matched authoritative osm:node:8210482716; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:8335866316 matched authoritative osm:node:8335866316; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:8444333552 matched authoritative osm:node:8444333552; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9126708502 matched authoritative osm:node:9126708502; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9188098215 matched authoritative osm:node:9188098215; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9758304130 matched authoritative osm:node:9758304130; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9892325713 matched authoritative osm:node:9892325713; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:11356727 matched authoritative osm:relation:11356727; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:11359396 matched authoritative osm:relation:11359396; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:11916891 matched authoritative osm:relation:11916891; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:13121035 matched authoritative osm:relation:13121035; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:13195766 matched authoritative osm:relation:13195766; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:16251608 matched authoritative osm:relation:16251608; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:19868843 matched authoritative osm:relation:19868843; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:2124180 matched authoritative osm:relation:2124180; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:6311355 matched authoritative osm:relation:6311355; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:relation:6991199 matched authoritative osm:relation:6991199; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1012470869 matched authoritative osm:way:1012470869; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1024413218 matched authoritative osm:way:1024413218; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1043615977 matched authoritative osm:way:1043615977; authoritative fields were retained and OSM provenance appended.",
       "source": "osm-loudoun-county-va"
     },
     {
@@ -183,6 +788,41 @@
     {
       "code": "duplicate_reconciled",
       "detail": "osm:way:1062154152 matched authoritative osm:way:1062154150; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1094624449 matched authoritative osm:way:1094624449; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1096117273 matched authoritative osm:way:1096117273; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1098685398 matched authoritative osm:way:1098685398; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1099430208 matched authoritative osm:way:1099430208; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1105627834 matched authoritative osm:way:1105627834; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1105631296 matched authoritative osm:way:1105631296; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1105632173 matched authoritative osm:way:1105632173; authoritative fields were retained and OSM provenance appended.",
       "source": "osm-loudoun-county-va"
     },
     {
@@ -247,47 +887,142 @@
     },
     {
       "code": "duplicate_reconciled",
-      "detail": "osm:way:116779756 matched authoritative osm:way:116779755; authoritative fields were retained and OSM provenance appended.",
+      "detail": "osm:way:115446654 matched authoritative osm:way:115446654; authoritative fields were retained and OSM provenance appended.",
       "source": "osm-loudoun-county-va"
     },
     {
       "code": "duplicate_reconciled",
-      "detail": "osm:way:119872382 matched authoritative osm:way:119872349; authoritative fields were retained and OSM provenance appended.",
+      "detail": "osm:way:116044459 matched authoritative osm:way:116044459; authoritative fields were retained and OSM provenance appended.",
       "source": "osm-loudoun-county-va"
     },
     {
       "code": "duplicate_reconciled",
-      "detail": "osm:way:132398159 matched authoritative osm:way:132398155; authoritative fields were retained and OSM provenance appended.",
+      "detail": "osm:way:1171031020 matched authoritative osm:way:1171031020; authoritative fields were retained and OSM provenance appended.",
       "source": "osm-loudoun-county-va"
     },
     {
       "code": "duplicate_reconciled",
-      "detail": "osm:way:132398302 matched authoritative osm:way:132398301; authoritative fields were retained and OSM provenance appended.",
+      "detail": "osm:way:1172877406 matched authoritative osm:way:1172877406; authoritative fields were retained and OSM provenance appended.",
       "source": "osm-loudoun-county-va"
     },
     {
       "code": "duplicate_reconciled",
-      "detail": "osm:way:1327128614 matched authoritative osm:way:1327128611; authoritative fields were retained and OSM provenance appended.",
+      "detail": "osm:way:1174887339 matched authoritative osm:way:1174887339; authoritative fields were retained and OSM provenance appended.",
       "source": "osm-loudoun-county-va"
     },
     {
       "code": "duplicate_reconciled",
-      "detail": "osm:way:1352468035 matched authoritative osm:way:132309165; authoritative fields were retained and OSM provenance appended.",
+      "detail": "osm:way:1180226951 matched authoritative osm:way:1180226951; authoritative fields were retained and OSM provenance appended.",
       "source": "osm-loudoun-county-va"
     },
     {
       "code": "duplicate_reconciled",
-      "detail": "osm:way:1413971177 matched authoritative osm:way:1204295804; authoritative fields were retained and OSM provenance appended.",
+      "detail": "osm:way:1220144545 matched authoritative osm:way:1220144545; authoritative fields were retained and OSM provenance appended.",
       "source": "osm-loudoun-county-va"
     },
     {
       "code": "duplicate_reconciled",
-      "detail": "osm:way:1413971178 matched authoritative osm:way:1204295804; authoritative fields were retained and OSM provenance appended.",
+      "detail": "osm:way:1284651581 matched authoritative osm:way:1284651581; authoritative fields were retained and OSM provenance appended.",
       "source": "osm-loudoun-county-va"
     },
     {
       "code": "duplicate_reconciled",
-      "detail": "osm:way:1431339644 matched authoritative osm:way:1431339643; authoritative fields were retained and OSM provenance appended.",
+      "detail": "osm:way:1288995939 matched authoritative osm:way:1288995939; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1301763861 matched authoritative osm:way:1301763861; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1324095378 matched authoritative osm:way:1324095378; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1324685600 matched authoritative osm:way:1324685600; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:133677135 matched authoritative osm:way:133677135; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:133677696 matched authoritative osm:way:133677696; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:1345178068 matched authoritative osm:way:1345178068; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:141160511 matched authoritative osm:way:141160511; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:141160512 matched authoritative osm:way:141160512; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:141444425 matched authoritative osm:way:141444425; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:141564813 matched authoritative osm:way:141564813; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:142059433 matched authoritative osm:way:142059433; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:142060273 matched authoritative osm:way:142060273; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:142060758 matched authoritative osm:way:142060758; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:142062492 matched authoritative osm:way:142062492; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:142909529 matched authoritative osm:way:142909529; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:144372453 matched authoritative osm:way:144372453; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:146810622 matched authoritative osm:way:146810622; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:147732700 matched authoritative osm:way:147732700; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:148902463 matched authoritative osm:way:148902463; authoritative fields were retained and OSM provenance appended.",
       "source": "osm-loudoun-county-va"
     },
     {
@@ -302,32 +1037,222 @@
     },
     {
       "code": "duplicate_reconciled",
-      "detail": "osm:way:1498341205 matched authoritative osm:way:1498341204; authoritative fields were retained and OSM provenance appended.",
+      "detail": "osm:way:1499583380 matched authoritative osm:way:1499583380; authoritative fields were retained and OSM provenance appended.",
       "source": "osm-loudoun-county-va"
     },
     {
       "code": "duplicate_reconciled",
-      "detail": "osm:way:1507996621 matched authoritative osm:way:1507996620; authoritative fields were retained and OSM provenance appended.",
+      "detail": "osm:way:150999410 matched authoritative osm:way:150999410; authoritative fields were retained and OSM provenance appended.",
       "source": "osm-loudoun-county-va"
     },
     {
       "code": "duplicate_reconciled",
-      "detail": "osm:way:1526526614 matched authoritative osm:way:1526526613; authoritative fields were retained and OSM provenance appended.",
+      "detail": "osm:way:151181362 matched authoritative osm:way:151181362; authoritative fields were retained and OSM provenance appended.",
       "source": "osm-loudoun-county-va"
     },
     {
       "code": "duplicate_reconciled",
-      "detail": "osm:way:1526526615 matched authoritative osm:way:1526526613; authoritative fields were retained and OSM provenance appended.",
+      "detail": "osm:way:151895866 matched authoritative osm:way:151895866; authoritative fields were retained and OSM provenance appended.",
       "source": "osm-loudoun-county-va"
     },
     {
       "code": "duplicate_reconciled",
-      "detail": "osm:way:166648354 matched authoritative osm:way:1155573049; authoritative fields were retained and OSM provenance appended.",
+      "detail": "osm:way:157730214 matched authoritative osm:way:157730214; authoritative fields were retained and OSM provenance appended.",
       "source": "osm-loudoun-county-va"
     },
     {
       "code": "duplicate_reconciled",
-      "detail": "osm:way:173696891 matched authoritative osm:way:173696890; authoritative fields were retained and OSM provenance appended.",
+      "detail": "osm:way:157743162 matched authoritative osm:way:157743162; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:157753906 matched authoritative osm:way:157753906; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:158621098 matched authoritative osm:way:158621098; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:158621129 matched authoritative osm:way:158621129; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:167641794 matched authoritative osm:way:167641794; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:173523868 matched authoritative osm:way:173523868; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:198973666 matched authoritative osm:way:198973666; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:198982522 matched authoritative osm:way:198982522; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:214269372 matched authoritative osm:way:214269372; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:217366514 matched authoritative osm:way:217366514; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:225000058 matched authoritative osm:way:225000058; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:225000059 matched authoritative osm:way:225000059; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:225004664 matched authoritative osm:way:225004664; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:225269006 matched authoritative osm:way:225269006; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:232394704 matched authoritative osm:way:232394704; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:248158871 matched authoritative osm:way:248158871; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:255119465 matched authoritative osm:way:255119465; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:256520412 matched authoritative osm:way:256520412; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:279281900 matched authoritative osm:way:279281900; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:280923136 matched authoritative osm:way:280923136; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:284323052 matched authoritative osm:way:284323052; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:289069573 matched authoritative osm:way:289069573; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:289069574 matched authoritative osm:way:289069574; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:300958311 matched authoritative osm:way:300958311; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:300970766 matched authoritative osm:way:300970766; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:300971735 matched authoritative osm:way:300971735; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:301092712 matched authoritative osm:way:301092712; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:305360852 matched authoritative osm:way:305360852; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:331728433 matched authoritative osm:way:331728433; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:331728435 matched authoritative osm:way:331728435; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:331728436 matched authoritative osm:way:331728436; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:345150628 matched authoritative osm:way:345150628; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:352670825 matched authoritative osm:way:352670825; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:395633704 matched authoritative osm:way:395633704; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:43599063 matched authoritative osm:way:43599063; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:43688174 matched authoritative osm:way:43688174; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:45065830 matched authoritative osm:way:45065830; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:459249722 matched authoritative osm:way:459249722; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:461367641 matched authoritative osm:way:461367641; authoritative fields were retained and OSM provenance appended.",
       "source": "osm-loudoun-county-va"
     },
     {
@@ -337,12 +1262,182 @@
     },
     {
       "code": "duplicate_reconciled",
-      "detail": "osm:way:512103871 matched authoritative osm:way:1450422817; authoritative fields were retained and OSM provenance appended.",
+      "detail": "osm:way:475233661 matched authoritative osm:way:475233661; authoritative fields were retained and OSM provenance appended.",
       "source": "osm-loudoun-county-va"
     },
     {
       "code": "duplicate_reconciled",
-      "detail": "osm:way:565585227 matched authoritative osm:node:5446885564; authoritative fields were retained and OSM provenance appended.",
+      "detail": "osm:way:475233662 matched authoritative osm:way:475233662; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:48160950 matched authoritative osm:way:48160950; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:48234672 matched authoritative osm:way:48234672; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:508302750 matched authoritative osm:way:508302750; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:508726920 matched authoritative osm:way:508726920; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:531125647 matched authoritative osm:way:531125647; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:535063406 matched authoritative osm:way:535063406; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:535063620 matched authoritative osm:way:535063620; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:535063996 matched authoritative osm:way:535063996; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:537037963 matched authoritative osm:way:537037963; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:537037964 matched authoritative osm:way:537037964; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:544604518 matched authoritative osm:way:544604518; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:552154807 matched authoritative osm:way:552154807; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:552155536 matched authoritative osm:way:552155536; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:555009473 matched authoritative osm:way:555009473; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:556065724 matched authoritative osm:way:556065724; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:556068664 matched authoritative osm:way:556068664; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:556073910 matched authoritative osm:way:556073910; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:556075560 matched authoritative osm:way:556075560; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:556599696 matched authoritative osm:way:556599696; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:560404962 matched authoritative osm:way:560404962; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:560843478 matched authoritative osm:way:560843478; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:562325945 matched authoritative osm:way:562325945; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:566858524 matched authoritative osm:way:566858524; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:567652641 matched authoritative osm:way:567652641; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:59762587 matched authoritative osm:way:59762587; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:608660695 matched authoritative osm:way:608660695; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:620343664 matched authoritative osm:way:620343664; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:620344126 matched authoritative osm:way:620344126; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:622370372 matched authoritative osm:way:622370372; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:628455341 matched authoritative osm:way:628455341; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:628455343 matched authoritative osm:way:628455343; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:628456533 matched authoritative osm:way:628456533; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:648852189 matched authoritative osm:way:648852189; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:650719522 matched authoritative osm:way:650719522; authoritative fields were retained and OSM provenance appended.",
       "source": "osm-loudoun-county-va"
     },
     {
@@ -352,22 +1447,192 @@
     },
     {
       "code": "duplicate_reconciled",
-      "detail": "osm:way:720658067 matched authoritative osm:way:119872349; authoritative fields were retained and OSM provenance appended.",
+      "detail": "osm:way:652527663 matched authoritative osm:way:652527663; authoritative fields were retained and OSM provenance appended.",
       "source": "osm-loudoun-county-va"
     },
     {
       "code": "duplicate_reconciled",
-      "detail": "osm:way:79818153 matched authoritative osm:way:173227996; authoritative fields were retained and OSM provenance appended.",
+      "detail": "osm:way:652997642 matched authoritative osm:way:652997642; authoritative fields were retained and OSM provenance appended.",
       "source": "osm-loudoun-county-va"
     },
     {
       "code": "duplicate_reconciled",
-      "detail": "osm:way:805813462 matched authoritative trails:loudoun-named-trails:95192; authoritative fields were retained and OSM provenance appended.",
+      "detail": "osm:way:653306802 matched authoritative osm:way:653306802; authoritative fields were retained and OSM provenance appended.",
       "source": "osm-loudoun-county-va"
     },
     {
       "code": "duplicate_reconciled",
-      "detail": "osm:way:819226621 matched authoritative osm:way:424624339; authoritative fields were retained and OSM provenance appended.",
+      "detail": "osm:way:653306806 matched authoritative osm:way:653306806; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:653306808 matched authoritative osm:way:653306808; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:653306809 matched authoritative osm:way:653306809; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:653310435 matched authoritative osm:way:653310435; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:653310436 matched authoritative osm:way:653310436; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:653310437 matched authoritative osm:way:653310437; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:653310448 matched authoritative osm:way:653310448; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:65489892 matched authoritative osm:way:65489892; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:657672582 matched authoritative osm:way:657672582; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:658864083 matched authoritative osm:way:658864083; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:661308042 matched authoritative osm:way:661308042; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:667315600 matched authoritative osm:way:667315600; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:684981654 matched authoritative osm:way:684981654; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:685982192 matched authoritative osm:way:685982192; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:692450678 matched authoritative osm:way:692450678; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:692839917 matched authoritative osm:way:692839917; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:708949357 matched authoritative osm:way:708949357; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:727170879 matched authoritative osm:way:727170879; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:727170882 matched authoritative osm:way:727170882; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:727902737 matched authoritative osm:way:727902737; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:750633176 matched authoritative osm:way:750633176; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:755292561 matched authoritative osm:way:755292561; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:764307555 matched authoritative osm:way:764307555; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:788577330 matched authoritative osm:way:788577330; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:796311957 matched authoritative osm:way:796311957; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:798014752 matched authoritative osm:way:798014752; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:821990719 matched authoritative osm:way:821990719; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:831077572 matched authoritative osm:way:831077572; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:831077575 matched authoritative osm:way:831077575; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:831383583 matched authoritative osm:way:831383583; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:831383590 matched authoritative osm:way:831383590; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:831383591 matched authoritative osm:way:831383591; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:832098276 matched authoritative osm:way:832098276; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:833546059 matched authoritative osm:way:833546059; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:870967508 matched authoritative osm:way:870967508; authoritative fields were retained and OSM provenance appended.",
       "source": "osm-loudoun-county-va"
     },
     {
@@ -377,22 +1642,67 @@
     },
     {
       "code": "duplicate_reconciled",
-      "detail": "osm:way:892461151 matched authoritative osm:way:892461150; authoritative fields were retained and OSM provenance appended.",
+      "detail": "osm:way:894595747 matched authoritative osm:way:894595747; authoritative fields were retained and OSM provenance appended.",
       "source": "osm-loudoun-county-va"
     },
     {
       "code": "duplicate_reconciled",
-      "detail": "osm:way:925792361 matched authoritative osm:way:137131931; authoritative fields were retained and OSM provenance appended.",
+      "detail": "osm:way:914173400 matched authoritative osm:way:914173400; authoritative fields were retained and OSM provenance appended.",
       "source": "osm-loudoun-county-va"
     },
     {
       "code": "duplicate_reconciled",
-      "detail": "osm:way:940158581 matched authoritative osm:way:940158580; authoritative fields were retained and OSM provenance appended.",
+      "detail": "osm:way:949511445 matched authoritative osm:way:949511445; authoritative fields were retained and OSM provenance appended.",
       "source": "osm-loudoun-county-va"
     },
     {
       "code": "duplicate_reconciled",
-      "detail": "osm:way:975190015 matched authoritative osm:way:975190014; authoritative fields were retained and OSM provenance appended.",
+      "detail": "osm:way:955160791 matched authoritative osm:way:955160791; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:955162881 matched authoritative osm:way:955162881; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:956634781 matched authoritative osm:way:956634781; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:964335458 matched authoritative osm:way:964335458; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:965734639 matched authoritative osm:way:965734639; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:970459291 matched authoritative osm:way:970459291; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:975284851 matched authoritative osm:way:975284851; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:985514916 matched authoritative osm:way:985514916; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:985960120 matched authoritative osm:way:985960120; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-loudoun-county-va"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:99215685 matched authoritative osm:way:99215685; authoritative fields were retained and OSM provenance appended.",
       "source": "osm-loudoun-county-va"
     }
   ]

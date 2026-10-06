@@ -1,0 +1,39 @@
+{
+  "artifacts": [
+    "pois.json",
+    "merged-pois.json",
+    "validation.json",
+    "spatial-index-delta.json",
+    "attribution.json"
+  ],
+  "checksums": {
+    "attribution.json": "sha256:5b4102bee06546130437d4d5788e97e08e8eaecc69330159239c468a2b891bbb",
+    "merged-pois.json": "sha256:2634586f755fc3813681979f7da708390a163a5a37f6a13b46ac8858dbe2a363",
+    "pois.json": "sha256:854541d398307aab8191cf166a26aab27e3989c7bb570e4ca23edbeed63a2871",
+    "spatial-index-delta.json": "sha256:a35e4d5b45e873f6e3d9433fb41f33b661b05dda3cfe5f5cbfae700ebc800d58",
+    "validation.json": "sha256:24e6382b3fc23ea59a5f7aa39c28eb12680692e8f630ed63c3ec03636e094529"
+  },
+  "generatedAt": "2026-10-06T19:26:04.766302Z",
+  "recordCountsByCategory": {
+    "coffee": 279,
+    "garden": 16,
+    "history": 54,
+    "library": 17,
+    "park": 327,
+    "public_art": 1,
+    "restaurant": 1,
+    "trail": 502
+  },
+  "regionId": "las-vegas",
+  "schemaVersion": 1,
+  "source": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "name": "OpenStreetMap",
+    "rawResponseSha256": "sha256:61eecfd82e263a149247aa5f842bcb955136ab168cf730956f2484166606ac68",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "sourceConfigurationId": "osm-las-vegas-walk",
+  "sourceVintage": "2026-10-03T20:41:15Z"
+}

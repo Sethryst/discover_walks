@@ -1,7 +1,7 @@
 // Keep the whole module graph with the shell. Caching only app.js leaves an
 // offline (or briefly disconnected) reload with a blank app when any imported
 // module was not already in the runtime cache.
-const APP_CACHE = 'walk-wildlife-shell-v328'; // Render selected route points with street labels
+const APP_CACHE = 'walk-wildlife-shell-v329'; // Add attachment-region OSM packages and official source navigation
 const TILE_CACHE = 'walk-wildlife-osm-viewed-tiles-v1';
 const LIBRARY_CACHE = 'walk-wildlife-library-v2';
 const COMPANION_CACHE = 'walk-wildlife-companion-media-v2';
@@ -32,11 +32,11 @@ const shell = [
   './data/pedestrian-runtime/nyc_pedestrian_network_estimates/runtime/runtime-graph.json',
   './data/pedestrian-runtime/dvrpc_pedestrian_network_philadelphia_camden/runtime/runtime-graph.json',
   ...['asheville', 'boston', 'boulder', 'chicago', 'cleveland', 'denver', 'new-orleans', 'portland', 'portland-maine', 'san-francisco', 'santa-fe', 'wolf-trap-va'].map((region) => `./regions/${region}/pois.json`),
-  ...['alexandria-va', 'arlington-va', 'baltimore', 'boise-meridian-idaho', 'boston', 'boulder', 'chicago', 'columbus', 'corpus-christi', 'denver', 'detroit', 'fairfax-county-va', 'falls-church-va', 'fort-worth', 'keystone-colorado', 'los-angeles', 'loudoun-county-va', 'new-orleans', 'norfolk', 'nyc', 'philadelphia', 'pittsburgh', 'portland', 'portland-maine', 'prince-georges-county-md', 'richmond', 'san-francisco', 'santa-fe', 'seattle', 'sedona-arizona', 'tempe', 'washington-dc'].flatMap((region) => [
+  ...['alexandria-va', 'arlington-va', 'baltimore', 'boise-meridian-idaho', 'boston', 'boulder', 'chicago', 'columbus', 'corpus-christi', 'denver', 'detroit', 'eugene', 'fairfax-county-va', 'falls-church-va', 'fort-worth', 'keystone-colorado', 'las-vegas', 'loudoun-county-va', 'madison', 'milwaukee', 'new-orleans', 'norfolk', 'nyc', 'philadelphia', 'pittsburgh', 'portland', 'portland-maine', 'prince-georges-county-md', 'providence', 'richmond', 'san-francisco', 'santa-fe', 'seattle', 'sedona-arizona', 'tempe', 'washington-dc'].flatMap((region) => [
     `./regions/${region}/osm/pois.json`, `./regions/${region}/osm/manifest.json`, `./regions/${region}/osm/validation.json`,
     `./regions/${region}/osm/spatial-index-delta.json`, `./regions/${region}/osm/attribution.json`
   ]),
-  ...['alexandria-va', 'arlington-va', 'baltimore', 'boise-meridian-idaho', 'boston', 'boulder', 'chicago', 'columbus', 'corpus-christi', 'denver', 'detroit', 'fairfax-county-va', 'falls-church-va', 'fort-worth', 'keystone-colorado', 'los-angeles', 'loudoun-county-va', 'new-orleans', 'pittsburgh', 'portland', 'portland-maine', 'prince-georges-county-md', 'san-francisco', 'santa-fe', 'seattle', 'sedona-arizona', 'tempe', 'washington-dc'].map((region) => `./regions/${region}/osm/merged-pois.json`),
+  ...['alexandria-va', 'arlington-va', 'baltimore', 'boise-meridian-idaho', 'boston', 'boulder', 'chicago', 'columbus', 'corpus-christi', 'denver', 'detroit', 'eugene', 'fairfax-county-va', 'falls-church-va', 'fort-worth', 'keystone-colorado', 'las-vegas', 'loudoun-county-va', 'madison', 'milwaukee', 'new-orleans', 'pittsburgh', 'portland', 'portland-maine', 'prince-georges-county-md', 'providence', 'san-francisco', 'santa-fe', 'seattle', 'sedona-arizona', 'tempe', 'washington-dc'].map((region) => `./regions/${region}/osm/merged-pois.json`),
   './regions/washington-dc/geography/neighborhoods.geojson', './regions/washington-dc/geography/source.json',
   './regions/fairfax-county-va/pois.json', './regions/fairfax-county-va/journeys.json', './regions/fairfax-county-va/edges.json',
   './regions/fairfax-county-va/discover.json', './regions/fairfax-county-va/learn.json', './regions/fairfax-county-va/capabilities.json', './regions/fairfax-county-va/civic/index.json',
@@ -75,7 +75,7 @@ self.addEventListener('install', (event) => event.waitUntil(Promise.all([
       } catch (_) { /* The app can still install if a CDN is briefly unavailable. */ }
     }));
   })
-]));
+])));
 
 // An installed PWA keeps using its complete current shell until the page asks
 // the fully-downloaded replacement to activate. IndexedDB is never touched by

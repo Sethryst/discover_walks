@@ -1,7 +1,46 @@
 {
   "canonicalSource": "app/regions",
-  "generatedAt": "2026-08-27T03:36:38.955352Z",
+  "generatedAt": "2026-10-06T19:27:03.636479Z",
   "regions": [
+    {
+      "artifactStatus": "ready",
+      "bbox": [
+        34.85,
+        -106.85,
+        35.3,
+        -106.3
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          34.85,
+          -106.85,
+          35.3,
+          -106.3
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/albuquerque",
+      "primaryPoiSources": [],
+      "recordCount": 0,
+      "recordCountsByCategory": {},
+      "regionId": "albuquerque",
+      "sourceConfigurationId": "osm-albuquerque-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 0,
+        "rejected": 0
+      },
+      "validationWarnings": []
+    },
     {
       "artifactStatus": "ready",
       "bbox": [
@@ -24,22 +63,21 @@
       "journeySource": null,
       "legacySupplementalSources": [],
       "osmStatus": "enabled",
-      "packagePath": "motherbird/regions/alexandria-va/osm",
+      "packagePath": "releases/alexandria-va",
       "primaryPoiSources": [
         "alexandria-parks",
         "alexandria-park-trails"
       ],
-      "recordCount": 312,
+      "recordCount": 206,
       "recordCountsByCategory": {
-        "coffee": 53,
-        "community": 5,
-        "garden": 5,
-        "history": 37,
-        "library": 7,
-        "park": 115,
-        "public_art": 13,
-        "rest": 3,
-        "trail": 74
+        "art": 10,
+        "coffee": 60,
+        "community": 6,
+        "history": 29,
+        "market": 4,
+        "nature": 5,
+        "park": 90,
+        "rest": 2
       },
       "regionId": "alexandria-va",
       "sourceConfigurationId": "osm-alexandria-va",
@@ -50,13 +88,13 @@
       },
       "unavailableReason": null,
       "validation": {
-        "flagged": 8,
-        "rejected": 6
+        "flagged": 4,
+        "rejected": 0
       },
       "validationWarnings": []
     },
     {
-      "artifactStatus": "missing",
+      "artifactStatus": "ready",
       "bbox": [
         60.73302,
         -150.43597,
@@ -72,12 +110,12 @@
           -148.46243
         ]
       },
-      "checksumStatus": "missing",
+      "checksumStatus": "valid",
       "civicSource": null,
       "journeySource": null,
       "legacySupplementalSources": [],
       "osmStatus": "unavailable",
-      "packagePath": "motherbird/regions/anchorage/osm",
+      "packagePath": "releases/anchorage",
       "primaryPoiSources": [],
       "recordCount": 0,
       "recordCountsByCategory": {},
@@ -88,6 +126,45 @@
         "status": "unavailable"
       },
       "unavailableReason": "OSM build failed at 2026-08-27T04:00:00Z: configured Overpass query timed out after bounded retries; an incomplete empty response was rejected.",
+      "validation": {
+        "flagged": 0,
+        "rejected": 0
+      },
+      "validationWarnings": []
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
+        42.15,
+        -83.95,
+        42.45,
+        -83.55
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          42.15,
+          -83.95,
+          42.45,
+          -83.55
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/ann-arbor",
+      "primaryPoiSources": [],
+      "recordCount": 0,
+      "recordCountsByCategory": {},
+      "regionId": "ann-arbor",
+      "sourceConfigurationId": "osm-ann-arbor-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
       "validation": {
         "flagged": 0,
         "rejected": 0
@@ -116,23 +193,21 @@
       "journeySource": null,
       "legacySupplementalSources": [],
       "osmStatus": "enabled",
-      "packagePath": "motherbird/regions/arlington-va/osm",
+      "packagePath": "releases/arlington-va",
       "primaryPoiSources": [
         "arlington-county-parks",
         "arlington-bike-routes"
       ],
-      "recordCount": 1479,
+      "recordCount": 460,
       "recordCountsByCategory": {
-        "coffee": 290,
-        "community": 12,
-        "garden": 28,
-        "history": 291,
-        "library": 31,
-        "park": 279,
-        "public_art": 170,
-        "rest": 14,
-        "trail": 362,
-        "water": 2
+        "art": 40,
+        "coffee": 108,
+        "community": 14,
+        "history": 129,
+        "market": 6,
+        "nature": 11,
+        "park": 147,
+        "rest": 5
       },
       "regionId": "arlington-va",
       "sourceConfigurationId": "osm-arlington-va",
@@ -143,13 +218,13 @@
       },
       "unavailableReason": null,
       "validation": {
-        "flagged": 64,
-        "rejected": 36
+        "flagged": 3,
+        "rejected": 0
       },
       "validationWarnings": []
     },
     {
-      "artifactStatus": "missing",
+      "artifactStatus": "ready",
       "bbox": [
         35.47,
         -82.66,
@@ -165,7 +240,7 @@
           -82.42
         ]
       },
-      "checksumStatus": "missing",
+      "checksumStatus": "valid",
       "civicSource": "app/regions/civic/asheville.json",
       "journeySource": null,
       "legacySupplementalSources": [],
@@ -182,7 +257,92 @@
       },
       "unavailableReason": "OSM build failed at 2026-08-27T04:00:00Z: OSM acquisition failed for osm-asheville: HTTP Error 429: Too Many Requests",
       "validation": {
-        "flagged": 1,
+        "flagged": 0,
+        "rejected": 0
+      },
+      "validationWarnings": []
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
+        33.55,
+        -84.65,
+        34.05,
+        -84.15
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          33.55,
+          -84.65,
+          34.05,
+          -84.15
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/atlanta",
+      "primaryPoiSources": [],
+      "recordCount": 1021,
+      "recordCountsByCategory": {
+        "coffee": 374,
+        "community": 18,
+        "history": 199,
+        "nature": 24,
+        "park": 400,
+        "water": 6
+      },
+      "regionId": "atlanta",
+      "sourceConfigurationId": "osm-atlanta-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 2,
+        "rejected": 0
+      },
+      "validationWarnings": []
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
+        30.05,
+        -97.95,
+        30.55,
+        -97.55
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          30.05,
+          -97.95,
+          30.55,
+          -97.55
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/austin",
+      "primaryPoiSources": [],
+      "recordCount": 0,
+      "recordCountsByCategory": {},
+      "regionId": "austin",
+      "sourceConfigurationId": "osm-austin-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 0,
         "rejected": 0
       },
       "validationWarnings": []
@@ -209,20 +369,10 @@
       "journeySource": null,
       "legacySupplementalSources": [],
       "osmStatus": "enabled",
-      "packagePath": "motherbird/regions/baltimore/osm",
+      "packagePath": "releases/baltimore",
       "primaryPoiSources": [],
-      "recordCount": 1853,
-      "recordCountsByCategory": {
-        "coffee": 123,
-        "community": 17,
-        "garden": 62,
-        "history": 225,
-        "library": 42,
-        "park": 384,
-        "public_art": 256,
-        "rest": 26,
-        "trail": 718
-      },
+      "recordCount": 0,
+      "recordCountsByCategory": {},
       "regionId": "baltimore",
       "sourceConfigurationId": "osm-baltimore",
       "spatialIndex": {
@@ -232,8 +382,47 @@
       },
       "unavailableReason": null,
       "validation": {
-        "flagged": 331,
-        "rejected": 15
+        "flagged": 0,
+        "rejected": 0
+      },
+      "validationWarnings": []
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
+        37.15,
+        -122.65,
+        38.25,
+        -121.55
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          37.15,
+          -122.65,
+          38.25,
+          -121.55
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/bay-area",
+      "primaryPoiSources": [],
+      "recordCount": 0,
+      "recordCountsByCategory": {},
+      "regionId": "bay-area",
+      "sourceConfigurationId": "osm-bay-area-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 0,
+        "rejected": 0
       },
       "validationWarnings": []
     },
@@ -259,18 +448,17 @@
       "journeySource": null,
       "legacySupplementalSources": [],
       "osmStatus": "enabled",
-      "packagePath": "motherbird/regions/boise-meridian-idaho/osm",
+      "packagePath": "releases/boise-meridian-idaho",
       "primaryPoiSources": [],
-      "recordCount": 830,
+      "recordCount": 467,
       "recordCountsByCategory": {
-        "coffee": 128,
-        "garden": 19,
+        "art": 73,
+        "coffee": 145,
+        "community": 16,
         "history": 36,
-        "library": 16,
-        "park": 167,
-        "public_art": 73,
-        "rest": 13,
-        "trail": 377,
+        "nature": 19,
+        "park": 176,
+        "rest": 1,
         "water": 1
       },
       "regionId": "boise-meridian-idaho",
@@ -282,10 +470,51 @@
       },
       "unavailableReason": null,
       "validation": {
-        "flagged": 92,
-        "rejected": 16
+        "flagged": 9,
+        "rejected": 0
       },
       "validationWarnings": []
+    },
+    {
+      "artifactStatus": "missing",
+      "bbox": [
+        43.35,
+        -116.55,
+        43.85,
+        -115.95
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          43.35,
+          -116.55,
+          43.85,
+          -115.95
+        ]
+      },
+      "checksumStatus": "missing",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": null,
+      "primaryPoiSources": [],
+      "recordCount": 0,
+      "recordCountsByCategory": {},
+      "regionId": "boise",
+      "sourceConfigurationId": "osm-boise-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 0,
+        "rejected": 0
+      },
+      "validationWarnings": [
+        "enabled_without_built_artifact"
+      ]
     },
     {
       "artifactStatus": "ready",
@@ -314,13 +543,14 @@
       "recordCount": 1995,
       "recordCountsByCategory": {
         "coffee": 504,
-        "community": 12,
         "garden": 18,
-        "history": 404,
+        "history": 402,
         "library": 209,
+        "market": 12,
         "park": 521,
         "public_art": 227,
         "rest": 9,
+        "restaurant": 2,
         "trail": 85,
         "water": 6
       },
@@ -389,6 +619,139 @@
       "validationWarnings": []
     },
     {
+      "artifactStatus": "missing",
+      "bbox": [
+        42.7,
+        -79.2,
+        43.25,
+        -78.55
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          42.7,
+          -79.2,
+          43.25,
+          -78.55
+        ]
+      },
+      "checksumStatus": "missing",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": null,
+      "primaryPoiSources": [],
+      "recordCount": 0,
+      "recordCountsByCategory": {},
+      "regionId": "buffalo",
+      "sourceConfigurationId": "osm-buffalo-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 0,
+        "rejected": 0
+      },
+      "validationWarnings": [
+        "enabled_without_built_artifact"
+      ]
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
+        32.6,
+        -80.25,
+        33.1,
+        -79.55
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          32.6,
+          -80.25,
+          33.1,
+          -79.55
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/charleston",
+      "primaryPoiSources": [],
+      "recordCount": 1034,
+      "recordCountsByCategory": {
+        "coffee": 133,
+        "community": 24,
+        "history": 682,
+        "nature": 48,
+        "park": 140,
+        "water": 7
+      },
+      "regionId": "charleston",
+      "sourceConfigurationId": "osm-charleston-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 0,
+        "rejected": 0
+      },
+      "validationWarnings": []
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
+        35.0,
+        -81.05,
+        35.55,
+        -80.55
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          35.0,
+          -81.05,
+          35.55,
+          -80.55
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/charlotte",
+      "primaryPoiSources": [],
+      "recordCount": 791,
+      "recordCountsByCategory": {
+        "coffee": 268,
+        "community": 37,
+        "history": 93,
+        "nature": 54,
+        "park": 325,
+        "water": 14
+      },
+      "regionId": "charlotte",
+      "sourceConfigurationId": "osm-charlotte-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 3,
+        "rejected": 0
+      },
+      "validationWarnings": []
+    },
+    {
       "artifactStatus": "ready",
       "bbox": [
         41.64,
@@ -436,6 +799,93 @@
       "validation": {
         "flagged": 841,
         "rejected": 3
+      },
+      "validationWarnings": []
+    },
+    {
+      "artifactStatus": "missing",
+      "bbox": [
+        39.0,
+        -84.85,
+        39.45,
+        -84.15
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          39.0,
+          -84.85,
+          39.45,
+          -84.15
+        ]
+      },
+      "checksumStatus": "missing",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": null,
+      "primaryPoiSources": [],
+      "recordCount": 0,
+      "recordCountsByCategory": {},
+      "regionId": "cincinnati",
+      "sourceConfigurationId": "osm-cincinnati-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 0,
+        "rejected": 0
+      },
+      "validationWarnings": [
+        "enabled_without_built_artifact"
+      ]
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
+        41.35,
+        -81.95,
+        41.65,
+        -81.45
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          41.35,
+          -81.95,
+          41.65,
+          -81.45
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/cleveland",
+      "primaryPoiSources": [],
+      "recordCount": 952,
+      "recordCountsByCategory": {
+        "coffee": 251,
+        "community": 67,
+        "history": 116,
+        "nature": 139,
+        "park": 377,
+        "water": 2
+      },
+      "regionId": "cleveland",
+      "sourceConfigurationId": "osm-cleveland-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 2,
+        "rejected": 0
       },
       "validationWarnings": []
     },
@@ -543,6 +993,45 @@
     {
       "artifactStatus": "ready",
       "bbox": [
+        32.45,
+        -97.1,
+        33.25,
+        -96.35
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          32.45,
+          -97.1,
+          33.25,
+          -96.35
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/dallas-fort-worth",
+      "primaryPoiSources": [],
+      "recordCount": 0,
+      "recordCountsByCategory": {},
+      "regionId": "dallas-fort-worth",
+      "sourceConfigurationId": "osm-dallas-fort-worth-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 0,
+        "rejected": 0
+      },
+      "validationWarnings": []
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
         39.55,
         -105.16,
         39.91,
@@ -642,58 +1131,158 @@
       "validationWarnings": []
     },
     {
-      "artifactStatus": "ready",
+      "artifactStatus": "missing",
       "bbox": [
-        38.52,
-        -77.54,
-        39.07,
-        -76.78
+        31.55,
+        -106.65,
+        31.95,
+        -106.15
       ],
       "boundarySource": {
         "type": "bbox",
         "value": [
-          38.52,
-          -77.54,
-          39.07,
-          -76.78
+          31.55,
+          -106.65,
+          31.95,
+          -106.15
+        ]
+      },
+      "checksumStatus": "missing",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": null,
+      "primaryPoiSources": [],
+      "recordCount": 0,
+      "recordCountsByCategory": {},
+      "regionId": "el-paso",
+      "sourceConfigurationId": "osm-el-paso-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 0,
+        "rejected": 0
+      },
+      "validationWarnings": [
+        "enabled_without_built_artifact"
+      ]
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
+        43.85,
+        -123.35,
+        44.25,
+        -122.85
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          43.85,
+          -123.35,
+          44.25,
+          -122.85
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/eugene",
+      "primaryPoiSources": [],
+      "recordCount": 522,
+      "recordCountsByCategory": {
+        "coffee": 154,
+        "community": 9,
+        "history": 70,
+        "nature": 32,
+        "park": 252,
+        "water": 5
+      },
+      "regionId": "eugene",
+      "sourceConfigurationId": "osm-eugene-walk",
+      "spatialIndex": {
+        "path": "motherbird/regions/eugene/osm/spatial-index-delta.json",
+        "records": 833,
+        "status": "delta_ready"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 2,
+        "rejected": 0
+      },
+      "validationWarnings": []
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
+        38.6039,
+        -77.5371,
+        39.0577,
+        -77.0413
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          38.6039,
+          -77.5371,
+          39.0577,
+          -77.0413
         ]
       },
       "checksumStatus": "valid",
       "civicSource": "app/regions/civic/fairfax-county-va.json",
-      "journeySource": null,
+      "journeySource": "app/regions/fairfax-county-va-journeys.json",
       "legacySupplementalSources": [],
       "osmStatus": "enabled",
-      "packagePath": "motherbird/regions/fairfax-county-va/osm",
+      "packagePath": "releases/fairfax-county-va",
       "primaryPoiSources": [
         "fairfax-county-parks",
         "fairfax-county-trails",
+        "fairfax-non-county-trails",
+        "fairfax-non-county-parks",
+        "fairfax-historic-sites",
+        "fairfax-libraries",
+        "fairfax-community-centers",
+        "fairfax-government-centers",
         "fairfax-county-sidewalks",
         "fairfax-county-restrooms",
-        "fairfax-county-park-amenities"
+        "fairfax-county-park-amenities",
+        "fairfax-vbwt-sites",
+        "fairfax-ebird-hotspots",
+        "fairfax-nps-public-trails",
+        "nps-wolf-trap",
+        "usgs-wolf-trap-water-locations",
+        "ebird-wolf-trap-recent-hotspots"
       ],
-      "recordCount": 2000,
+      "recordCount": 908,
       "recordCountsByCategory": {
-        "coffee": 754,
-        "community": 58,
-        "garden": 30,
-        "history": 501,
-        "library": 45,
-        "park": 146,
-        "public_art": 448,
-        "rest": 17,
-        "water": 1
+        "art": 18,
+        "coffee": 246,
+        "history": 113,
+        "market": 363,
+        "nature": 119,
+        "park": 3,
+        "rest": 6,
+        "restaurant": 30,
+        "water": 10
       },
       "regionId": "fairfax-county-va",
       "sourceConfigurationId": "osm-fairfax-county-va",
       "spatialIndex": {
         "path": "motherbird/regions/fairfax-county-va/osm/spatial-index-delta.json",
-        "records": 2000,
+        "records": 2596,
         "status": "delta_ready"
       },
       "unavailableReason": null,
       "validation": {
-        "flagged": 6,
-        "rejected": 0
+        "flagged": 0,
+        "rejected": 688
       },
       "validationWarnings": []
     },
@@ -752,6 +1341,45 @@
     {
       "artifactStatus": "ready",
       "bbox": [
+        35.0,
+        -111.85,
+        35.45,
+        -111.35
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          35.0,
+          -111.85,
+          35.45,
+          -111.35
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/flagstaff",
+      "primaryPoiSources": [],
+      "recordCount": 0,
+      "recordCountsByCategory": {},
+      "regionId": "flagstaff",
+      "sourceConfigurationId": "osm-flagstaff-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 0,
+        "rejected": 0
+      },
+      "validationWarnings": []
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
         32.55053,
         -97.60034,
         33.04916,
@@ -803,6 +1431,315 @@
     {
       "artifactStatus": "ready",
       "bbox": [
+        36.55,
+        -119.95,
+        36.95,
+        -119.45
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          36.55,
+          -119.95,
+          36.95,
+          -119.45
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/fresno",
+      "primaryPoiSources": [],
+      "recordCount": 433,
+      "recordCountsByCategory": {
+        "coffee": 141,
+        "community": 18,
+        "history": 40,
+        "nature": 11,
+        "park": 223
+      },
+      "regionId": "fresno",
+      "sourceConfigurationId": "osm-fresno-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 1,
+        "rejected": 0
+      },
+      "validationWarnings": []
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
+        41.6,
+        -73.0,
+        42.05,
+        -72.35
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          41.6,
+          -73.0,
+          42.05,
+          -72.35
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/hartford",
+      "primaryPoiSources": [],
+      "recordCount": 1052,
+      "recordCountsByCategory": {
+        "coffee": 151,
+        "community": 42,
+        "history": 213,
+        "nature": 12,
+        "park": 630,
+        "water": 4
+      },
+      "regionId": "hartford",
+      "sourceConfigurationId": "osm-hartford-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 10,
+        "rejected": 1
+      },
+      "validationWarnings": []
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
+        21.2,
+        -158.3,
+        21.75,
+        -157.65
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          21.2,
+          -158.3,
+          21.75,
+          -157.65
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/honolulu",
+      "primaryPoiSources": [],
+      "recordCount": 0,
+      "recordCountsByCategory": {},
+      "regionId": "honolulu",
+      "sourceConfigurationId": "osm-honolulu-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 0,
+        "rejected": 0
+      },
+      "validationWarnings": []
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
+        29.45,
+        -95.9,
+        30.15,
+        -94.95
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          29.45,
+          -95.9,
+          30.15,
+          -94.95
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/houston",
+      "primaryPoiSources": [],
+      "recordCount": 415,
+      "recordCountsByCategory": {
+        "coffee": 154,
+        "community": 14,
+        "history": 43,
+        "nature": 30,
+        "park": 173,
+        "water": 1
+      },
+      "regionId": "houston",
+      "sourceConfigurationId": "osm-houston-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 0,
+        "rejected": 0
+      },
+      "validationWarnings": []
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
+        39.55,
+        -86.45,
+        40.05,
+        -85.85
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          39.55,
+          -86.45,
+          40.05,
+          -85.85
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/indianapolis",
+      "primaryPoiSources": [],
+      "recordCount": 896,
+      "recordCountsByCategory": {
+        "coffee": 214,
+        "community": 48,
+        "history": 90,
+        "nature": 47,
+        "park": 492,
+        "water": 5
+      },
+      "regionId": "indianapolis",
+      "sourceConfigurationId": "osm-indianapolis-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 2,
+        "rejected": 0
+      },
+      "validationWarnings": []
+    },
+    {
+      "artifactStatus": "missing",
+      "bbox": [
+        30.05,
+        -82.1,
+        30.65,
+        -81.25
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          30.05,
+          -82.1,
+          30.65,
+          -81.25
+        ]
+      },
+      "checksumStatus": "missing",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": null,
+      "primaryPoiSources": [],
+      "recordCount": 0,
+      "recordCountsByCategory": {},
+      "regionId": "jacksonville",
+      "sourceConfigurationId": "osm-jacksonville-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 0,
+        "rejected": 0
+      },
+      "validationWarnings": [
+        "enabled_without_built_artifact"
+      ]
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
+        38.75,
+        -94.85,
+        39.45,
+        -94.2
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          38.75,
+          -94.85,
+          39.45,
+          -94.2
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/kansas-city",
+      "primaryPoiSources": [],
+      "recordCount": 972,
+      "recordCountsByCategory": {
+        "coffee": 249,
+        "community": 56,
+        "history": 237,
+        "nature": 30,
+        "park": 382,
+        "water": 18
+      },
+      "regionId": "kansas-city",
+      "sourceConfigurationId": "osm-kansas-city-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 1,
+        "rejected": 3
+      },
+      "validationWarnings": []
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
         39.53,
         -106.1,
         39.72,
@@ -847,6 +1784,91 @@
       "validation": {
         "flagged": 50,
         "rejected": 19
+      },
+      "validationWarnings": []
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
+        35.85,
+        -115.55,
+        36.45,
+        -114.85
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          35.85,
+          -115.55,
+          36.45,
+          -114.85
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/las-vegas",
+      "primaryPoiSources": [],
+      "recordCount": 696,
+      "recordCountsByCategory": {
+        "coffee": 279,
+        "community": 17,
+        "history": 56,
+        "nature": 16,
+        "park": 328
+      },
+      "regionId": "las-vegas",
+      "sourceConfigurationId": "osm-las-vegas-walk",
+      "spatialIndex": {
+        "path": "motherbird/regions/las-vegas/osm/spatial-index-delta.json",
+        "records": 1197,
+        "status": "delta_ready"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 1,
+        "rejected": 0
+      },
+      "validationWarnings": []
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
+        37.85,
+        -84.75,
+        38.2,
+        -84.25
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          37.85,
+          -84.75,
+          38.2,
+          -84.25
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/lexington",
+      "primaryPoiSources": [],
+      "recordCount": 0,
+      "recordCountsByCategory": {},
+      "regionId": "lexington",
+      "sourceConfigurationId": "osm-lexington-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 0,
+        "rejected": 0
       },
       "validationWarnings": []
     },
@@ -923,35 +1945,372 @@
       "journeySource": "app/regions/loudoun-county-va-journeys.json",
       "legacySupplementalSources": [],
       "osmStatus": "enabled",
-      "packagePath": "motherbird/regions/loudoun-county-va/osm",
+      "packagePath": "releases/loudoun-county-va",
       "primaryPoiSources": [
         "loudoun-named-trails",
-        "loudoun-wod-trail"
+        "loudoun-wod-trail",
+        "loudoun-prcs-parks"
       ],
-      "recordCount": 1714,
+      "recordCount": 325,
       "recordCountsByCategory": {
-        "coffee": 120,
-        "community": 16,
-        "garden": 14,
-        "history": 122,
-        "library": 24,
-        "park": 340,
-        "public_art": 30,
-        "rest": 55,
-        "trail": 990,
-        "water": 3
+        "art": 15,
+        "coffee": 84,
+        "community": 12,
+        "history": 53,
+        "market": 5,
+        "nature": 7,
+        "park": 149
       },
       "regionId": "loudoun-county-va",
       "sourceConfigurationId": "osm-loudoun-county-va",
       "spatialIndex": {
         "path": "motherbird/regions/loudoun-county-va/osm/spatial-index-delta.json",
-        "records": 1714,
+        "records": 742,
         "status": "delta_ready"
       },
       "unavailableReason": null,
       "validation": {
-        "flagged": 48,
-        "rejected": 30
+        "flagged": 0,
+        "rejected": 1
+      },
+      "validationWarnings": []
+    },
+    {
+      "artifactStatus": "missing",
+      "bbox": [
+        38.05,
+        -85.95,
+        38.45,
+        -85.35
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          38.05,
+          -85.95,
+          38.45,
+          -85.35
+        ]
+      },
+      "checksumStatus": "missing",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": null,
+      "primaryPoiSources": [],
+      "recordCount": 0,
+      "recordCountsByCategory": {},
+      "regionId": "louisville",
+      "sourceConfigurationId": "osm-louisville-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 0,
+        "rejected": 0
+      },
+      "validationWarnings": [
+        "enabled_without_built_artifact"
+      ]
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
+        42.9,
+        -89.65,
+        43.25,
+        -89.15
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          42.9,
+          -89.65,
+          43.25,
+          -89.15
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/madison",
+      "primaryPoiSources": [],
+      "recordCount": 930,
+      "recordCountsByCategory": {
+        "coffee": 136,
+        "community": 30,
+        "history": 137,
+        "nature": 81,
+        "park": 539,
+        "water": 7
+      },
+      "regionId": "madison",
+      "sourceConfigurationId": "osm-madison-walk",
+      "spatialIndex": {
+        "path": "motherbird/regions/madison/osm/spatial-index-delta.json",
+        "records": 1195,
+        "status": "delta_ready"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 3,
+        "rejected": 0
+      },
+      "validationWarnings": []
+    },
+    {
+      "artifactStatus": "missing",
+      "bbox": [
+        34.85,
+        -90.25,
+        35.35,
+        -89.55
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          34.85,
+          -90.25,
+          35.35,
+          -89.55
+        ]
+      },
+      "checksumStatus": "missing",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": null,
+      "primaryPoiSources": [],
+      "recordCount": 0,
+      "recordCountsByCategory": {},
+      "regionId": "memphis",
+      "sourceConfigurationId": "osm-memphis-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 0,
+        "rejected": 0
+      },
+      "validationWarnings": [
+        "enabled_without_built_artifact"
+      ]
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
+        25.45,
+        -80.55,
+        26.45,
+        -80.0
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          25.45,
+          -80.55,
+          26.45,
+          -80.0
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/miami",
+      "primaryPoiSources": [],
+      "recordCount": 0,
+      "recordCountsByCategory": {},
+      "regionId": "miami",
+      "sourceConfigurationId": "osm-miami-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 0,
+        "rejected": 40
+      },
+      "validationWarnings": []
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
+        42.8,
+        -88.25,
+        43.25,
+        -87.75
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          42.8,
+          -88.25,
+          43.25,
+          -87.75
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/milwaukee",
+      "primaryPoiSources": [],
+      "recordCount": 1046,
+      "recordCountsByCategory": {
+        "coffee": 216,
+        "community": 29,
+        "history": 431,
+        "nature": 18,
+        "park": 346,
+        "water": 6
+      },
+      "regionId": "milwaukee",
+      "sourceConfigurationId": "osm-milwaukee-walk",
+      "spatialIndex": {
+        "path": "motherbird/regions/milwaukee/osm/spatial-index-delta.json",
+        "records": 1199,
+        "status": "delta_ready"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 1,
+        "rejected": 0
+      },
+      "validationWarnings": []
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
+        44.65,
+        -93.0,
+        45.15,
+        -92.85
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          44.65,
+          -93.0,
+          45.15,
+          -92.85
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/minneapolis",
+      "primaryPoiSources": [],
+      "recordCount": 0,
+      "recordCountsByCategory": {},
+      "regionId": "minneapolis",
+      "sourceConfigurationId": "osm-minneapolis-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 0,
+        "rejected": 0
+      },
+      "validationWarnings": []
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
+        38.45,
+        -109.85,
+        38.85,
+        -109.25
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          38.45,
+          -109.85,
+          38.85,
+          -109.25
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/moab",
+      "primaryPoiSources": [],
+      "recordCount": 0,
+      "recordCountsByCategory": {},
+      "regionId": "moab",
+      "sourceConfigurationId": "osm-moab-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 0,
+        "rejected": 0
+      },
+      "validationWarnings": []
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
+        35.95,
+        -87.05,
+        36.45,
+        -86.45
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          35.95,
+          -87.05,
+          36.45,
+          -86.45
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/nashville",
+      "primaryPoiSources": [],
+      "recordCount": 652,
+      "recordCountsByCategory": {
+        "coffee": 179,
+        "community": 38,
+        "history": 47,
+        "nature": 47,
+        "park": 329,
+        "water": 12
+      },
+      "regionId": "nashville",
+      "sourceConfigurationId": "osm-nashville-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 4,
+        "rejected": 0
       },
       "validationWarnings": []
     },
@@ -1002,6 +2361,45 @@
       "validation": {
         "flagged": 118,
         "rejected": 4
+      },
+      "validationWarnings": []
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
+        40.6,
+        -74.35,
+        40.9,
+        -73.95
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          40.6,
+          -74.35,
+          40.9,
+          -73.95
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/newark",
+      "primaryPoiSources": [],
+      "recordCount": 0,
+      "recordCountsByCategory": {},
+      "regionId": "newark",
+      "sourceConfigurationId": "osm-newark-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 0,
+        "rejected": 0
       },
       "validationWarnings": []
     },
@@ -1077,17 +2475,23 @@
       "journeySource": null,
       "legacySupplementalSources": [],
       "osmStatus": "enabled",
-      "packagePath": "motherbird/regions/nyc/osm",
+      "packagePath": "releases/nyc",
       "primaryPoiSources": [
+        "nyc-parks-properties",
         "ebird-nyc-recent-hotspots",
         "nyc-city-events"
       ],
-      "recordCount": 927,
+      "recordCount": 1998,
       "recordCountsByCategory": {
-        "coffee": 300,
-        "library": 27,
-        "nature": 300,
-        "park": 300
+        "art": 124,
+        "coffee": 1272,
+        "community": 57,
+        "history": 269,
+        "market": 39,
+        "nature": 32,
+        "park": 166,
+        "rest": 27,
+        "water": 12
       },
       "regionId": "nyc",
       "sourceConfigurationId": "osm-nyc",
@@ -1102,6 +2506,138 @@
         "rejected": 0
       },
       "validationWarnings": []
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
+        35.25,
+        -97.85,
+        35.75,
+        -97.15
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          35.25,
+          -97.85,
+          35.75,
+          -97.15
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/oklahoma-city",
+      "primaryPoiSources": [],
+      "recordCount": 638,
+      "recordCountsByCategory": {
+        "coffee": 109,
+        "community": 15,
+        "history": 53,
+        "nature": 40,
+        "park": 421
+      },
+      "regionId": "oklahoma-city",
+      "sourceConfigurationId": "osm-oklahoma-city-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 0,
+        "rejected": 2
+      },
+      "validationWarnings": []
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
+        41.05,
+        -96.3,
+        41.55,
+        -95.75
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          41.05,
+          -96.3,
+          41.55,
+          -95.75
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/omaha",
+      "primaryPoiSources": [],
+      "recordCount": 803,
+      "recordCountsByCategory": {
+        "coffee": 172,
+        "community": 32,
+        "history": 77,
+        "nature": 69,
+        "park": 446,
+        "water": 7
+      },
+      "regionId": "omaha",
+      "sourceConfigurationId": "osm-omaha-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 2,
+        "rejected": 0
+      },
+      "validationWarnings": []
+    },
+    {
+      "artifactStatus": "missing",
+      "bbox": [
+        28.25,
+        -81.65,
+        28.75,
+        -81.15
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          28.25,
+          -81.65,
+          28.75,
+          -81.15
+        ]
+      },
+      "checksumStatus": "missing",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": null,
+      "primaryPoiSources": [],
+      "recordCount": 0,
+      "recordCountsByCategory": {},
+      "regionId": "orlando",
+      "sourceConfigurationId": "osm-orlando-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 0,
+        "rejected": 0
+      },
+      "validationWarnings": [
+        "enabled_without_built_artifact"
+      ]
     },
     {
       "artifactStatus": "ready",
@@ -1148,6 +2684,51 @@
       "unavailableReason": null,
       "validation": {
         "flagged": 0,
+        "rejected": 0
+      },
+      "validationWarnings": []
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
+        33.25,
+        -112.35,
+        33.85,
+        -111.65
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          33.25,
+          -112.35,
+          33.85,
+          -111.65
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/phoenix",
+      "primaryPoiSources": [],
+      "recordCount": 939,
+      "recordCountsByCategory": {
+        "coffee": 577,
+        "community": 26,
+        "history": 122,
+        "nature": 58,
+        "park": 156
+      },
+      "regionId": "phoenix",
+      "sourceConfigurationId": "osm-phoenix-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 1,
         "rejected": 0
       },
       "validationWarnings": []
@@ -1364,6 +2945,92 @@
     {
       "artifactStatus": "ready",
       "bbox": [
+        41.65,
+        -71.65,
+        42.0,
+        -71.25
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          41.65,
+          -71.65,
+          42.0,
+          -71.25
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/providence",
+      "primaryPoiSources": [],
+      "recordCount": 828,
+      "recordCountsByCategory": {
+        "coffee": 194,
+        "community": 63,
+        "history": 195,
+        "nature": 39,
+        "park": 334,
+        "water": 3
+      },
+      "regionId": "providence",
+      "sourceConfigurationId": "osm-providence-walk",
+      "spatialIndex": {
+        "path": "motherbird/regions/providence/osm/spatial-index-delta.json",
+        "records": 1181,
+        "status": "delta_ready"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 9,
+        "rejected": 1
+      },
+      "validationWarnings": []
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
+        35.55,
+        -79.25,
+        36.25,
+        -78.35
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          35.55,
+          -79.25,
+          36.25,
+          -78.35
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/raleigh-durham",
+      "primaryPoiSources": [],
+      "recordCount": 0,
+      "recordCountsByCategory": {},
+      "regionId": "raleigh-durham",
+      "sourceConfigurationId": "osm-raleigh-durham-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 0,
+        "rejected": 0
+      },
+      "validationWarnings": []
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
         37.42,
         -77.58,
         37.64,
@@ -1398,6 +3065,221 @@
         "path": "motherbird/regions/richmond/osm/spatial-index-delta.json",
         "records": 284,
         "status": "delta_ready"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 0,
+        "rejected": 0
+      },
+      "validationWarnings": []
+    },
+    {
+      "artifactStatus": "missing",
+      "bbox": [
+        43.0,
+        -77.95,
+        43.35,
+        -77.35
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          43.0,
+          -77.95,
+          43.35,
+          -77.35
+        ]
+      },
+      "checksumStatus": "missing",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": null,
+      "primaryPoiSources": [],
+      "recordCount": 0,
+      "recordCountsByCategory": {},
+      "regionId": "rochester",
+      "sourceConfigurationId": "osm-rochester-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 0,
+        "rejected": 0
+      },
+      "validationWarnings": [
+        "enabled_without_built_artifact"
+      ]
+    },
+    {
+      "artifactStatus": "missing",
+      "bbox": [
+        38.35,
+        -121.75,
+        38.85,
+        -121.05
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          38.35,
+          -121.75,
+          38.85,
+          -121.05
+        ]
+      },
+      "checksumStatus": "missing",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": null,
+      "primaryPoiSources": [],
+      "recordCount": 0,
+      "recordCountsByCategory": {},
+      "regionId": "sacramento",
+      "sourceConfigurationId": "osm-sacramento-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 0,
+        "rejected": 0
+      },
+      "validationWarnings": [
+        "enabled_without_built_artifact"
+      ]
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
+        40.45,
+        -112.15,
+        40.95,
+        -111.65
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          40.45,
+          -112.15,
+          40.95,
+          -111.65
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/salt-lake-city",
+      "primaryPoiSources": [],
+      "recordCount": 860,
+      "recordCountsByCategory": {
+        "coffee": 301,
+        "community": 31,
+        "history": 142,
+        "nature": 41,
+        "park": 332,
+        "water": 13
+      },
+      "regionId": "salt-lake-city",
+      "sourceConfigurationId": "osm-salt-lake-city-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 1,
+        "rejected": 0
+      },
+      "validationWarnings": []
+    },
+    {
+      "artifactStatus": "missing",
+      "bbox": [
+        29.15,
+        -98.85,
+        29.75,
+        -98.15
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          29.15,
+          -98.85,
+          29.75,
+          -98.15
+        ]
+      },
+      "checksumStatus": "missing",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": null,
+      "primaryPoiSources": [],
+      "recordCount": 0,
+      "recordCountsByCategory": {},
+      "regionId": "san-antonio",
+      "sourceConfigurationId": "osm-san-antonio-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 0,
+        "rejected": 0
+      },
+      "validationWarnings": [
+        "enabled_without_built_artifact"
+      ]
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
+        32.5,
+        -117.35,
+        33.15,
+        -116.85
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          32.5,
+          -117.35,
+          33.15,
+          -116.85
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/san-diego",
+      "primaryPoiSources": [],
+      "recordCount": 1200,
+      "recordCountsByCategory": {
+        "coffee": 762,
+        "community": 53,
+        "history": 186,
+        "nature": 51,
+        "park": 145,
+        "water": 3
+      },
+      "regionId": "san-diego",
+      "sourceConfigurationId": "osm-san-diego-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
       },
       "unavailableReason": null,
       "validation": {
@@ -1458,6 +3340,47 @@
       "validationWarnings": []
     },
     {
+      "artifactStatus": "missing",
+      "bbox": [
+        37.15,
+        -122.15,
+        37.55,
+        -121.55
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          37.15,
+          -122.15,
+          37.55,
+          -121.55
+        ]
+      },
+      "checksumStatus": "missing",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": null,
+      "primaryPoiSources": [],
+      "recordCount": 0,
+      "recordCountsByCategory": {},
+      "regionId": "san-jose",
+      "sourceConfigurationId": "osm-san-jose-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 0,
+        "rejected": 0
+      },
+      "validationWarnings": [
+        "enabled_without_built_artifact"
+      ]
+    },
+    {
       "artifactStatus": "ready",
       "bbox": [
         35.55,
@@ -1484,10 +3407,10 @@
       "recordCount": 726,
       "recordCountsByCategory": {
         "coffee": 75,
-        "community": 3,
         "garden": 15,
         "history": 120,
         "library": 21,
+        "market": 3,
         "park": 115,
         "public_art": 86,
         "rest": 12,
@@ -1504,6 +3427,52 @@
       "validation": {
         "flagged": 154,
         "rejected": 5
+      },
+      "validationWarnings": []
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
+        31.85,
+        -81.35,
+        32.25,
+        -80.75
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          31.85,
+          -81.35,
+          32.25,
+          -80.75
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/savannah",
+      "primaryPoiSources": [],
+      "recordCount": 445,
+      "recordCountsByCategory": {
+        "coffee": 73,
+        "community": 20,
+        "history": 108,
+        "nature": 20,
+        "park": 214,
+        "water": 10
+      },
+      "regionId": "savannah",
+      "sourceConfigurationId": "osm-savannah-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 3,
+        "rejected": 2
       },
       "validationWarnings": []
     },
@@ -1529,21 +3498,15 @@
       "journeySource": null,
       "legacySupplementalSources": [],
       "osmStatus": "enabled",
-      "packagePath": "motherbird/regions/seattle/osm",
-      "primaryPoiSources": [],
-      "recordCount": 1996,
-      "recordCountsByCategory": {
-        "coffee": 701,
-        "community": 6,
-        "garden": 22,
-        "history": 105,
-        "library": 41,
-        "park": 264,
-        "public_art": 622,
-        "rest": 7,
-        "trail": 226,
-        "water": 2
-      },
+      "packagePath": "releases/seattle",
+      "primaryPoiSources": [
+        "events-seattle-net-25130bd8",
+        "seattle-parks",
+        "seattle-spr-trails",
+        "seattle-multiuse-trails"
+      ],
+      "recordCount": 0,
+      "recordCountsByCategory": {},
       "regionId": "seattle",
       "sourceConfigurationId": "osm-seattle",
       "spatialIndex": {
@@ -1553,8 +3516,8 @@
       },
       "unavailableReason": null,
       "validation": {
-        "flagged": 141,
-        "rejected": 4
+        "flagged": 0,
+        "rejected": 0
       },
       "validationWarnings": []
     },
@@ -1610,6 +3573,93 @@
     {
       "artifactStatus": "ready",
       "bbox": [
+        38.35,
+        -90.85,
+        38.9,
+        -90.0
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          38.35,
+          -90.85,
+          38.9,
+          -90.0
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/st-louis",
+      "primaryPoiSources": [],
+      "recordCount": 888,
+      "recordCountsByCategory": {
+        "coffee": 191,
+        "community": 35,
+        "history": 297,
+        "nature": 28,
+        "park": 283,
+        "water": 54
+      },
+      "regionId": "st-louis",
+      "sourceConfigurationId": "osm-st-louis-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 0,
+        "rejected": 0
+      },
+      "validationWarnings": []
+    },
+    {
+      "artifactStatus": "missing",
+      "bbox": [
+        27.7,
+        -82.8,
+        28.2,
+        -82.15
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          27.7,
+          -82.8,
+          28.2,
+          -82.15
+        ]
+      },
+      "checksumStatus": "missing",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": null,
+      "primaryPoiSources": [],
+      "recordCount": 0,
+      "recordCountsByCategory": {},
+      "regionId": "tampa",
+      "sourceConfigurationId": "osm-tampa-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 0,
+        "rejected": 0
+      },
+      "validationWarnings": [
+        "enabled_without_built_artifact"
+      ]
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
         33.32005,
         -111.97848,
         33.46532,
@@ -1660,6 +3710,52 @@
     {
       "artifactStatus": "ready",
       "bbox": [
+        31.95,
+        -111.15,
+        32.45,
+        -110.65
+      ],
+      "boundarySource": {
+        "type": "bbox",
+        "value": [
+          31.95,
+          -111.15,
+          32.45,
+          -110.65
+        ]
+      },
+      "checksumStatus": "valid",
+      "civicSource": null,
+      "journeySource": null,
+      "legacySupplementalSources": [],
+      "osmStatus": "enabled",
+      "packagePath": "releases/tucson",
+      "primaryPoiSources": [],
+      "recordCount": 660,
+      "recordCountsByCategory": {
+        "coffee": 132,
+        "community": 24,
+        "history": 194,
+        "nature": 63,
+        "park": 245,
+        "water": 2
+      },
+      "regionId": "tucson",
+      "sourceConfigurationId": "osm-tucson-walk",
+      "spatialIndex": {
+        "reason": "No published spatial index directory.",
+        "status": "unavailable"
+      },
+      "unavailableReason": null,
+      "validation": {
+        "flagged": 1,
+        "rejected": 0
+      },
+      "validationWarnings": []
+    },
+    {
+      "artifactStatus": "ready",
+      "bbox": [
         38.79,
         -77.12,
         39.02,
@@ -1679,70 +3775,21 @@
       "journeySource": "app/regions/washington-dc-journeys.json",
       "legacySupplementalSources": [],
       "osmStatus": "enabled",
-      "packagePath": "motherbird/regions/washington-dc/osm",
-      "primaryPoiSources": [],
-      "recordCount": 1996,
-      "recordCountsByCategory": {
-        "coffee": 541,
-        "community": 27,
-        "garden": 50,
-        "history": 469,
-        "library": 62,
-        "park": 301,
-        "public_art": 422,
-        "rest": 13,
-        "trail": 110,
-        "water": 1
-      },
+      "packagePath": "releases/washington-dc",
+      "primaryPoiSources": [
+        "dc-citywide-rss",
+        "dc-dpr-parks",
+        "dc-bike-trails",
+        "dc-nps-public-trails",
+        "dc-nps-events"
+      ],
+      "recordCount": 0,
+      "recordCountsByCategory": {},
       "regionId": "washington-dc",
       "sourceConfigurationId": "osm-washington-dc",
       "spatialIndex": {
         "path": "motherbird/regions/washington-dc/osm/spatial-index-delta.json",
         "records": 1996,
-        "status": "delta_ready"
-      },
-      "unavailableReason": null,
-      "validation": {
-        "flagged": 45,
-        "rejected": 4
-      },
-      "validationWarnings": []
-    },
-    {
-      "artifactStatus": "ready",
-      "bbox": [
-        38.91,
-        -77.3,
-        38.98,
-        -77.22
-      ],
-      "boundarySource": {
-        "type": "bbox",
-        "value": [
-          38.91,
-          -77.3,
-          38.98,
-          -77.22
-        ]
-      },
-      "checksumStatus": "valid",
-      "civicSource": "app/regions/civic/wolf-trap-va.json",
-      "journeySource": null,
-      "legacySupplementalSources": [],
-      "osmStatus": "enabled",
-      "packagePath": "motherbird/regions/wolf-trap-va/osm",
-      "primaryPoiSources": [
-        "nps-wolf-trap",
-        "usgs-wolf-trap-water-locations",
-        "ebird-wolf-trap-recent-hotspots"
-      ],
-      "recordCount": 0,
-      "recordCountsByCategory": {},
-      "regionId": "wolf-trap-va",
-      "sourceConfigurationId": "osm-wolf-trap-va",
-      "spatialIndex": {
-        "path": "motherbird/regions/wolf-trap-va/osm/spatial-index-delta.json",
-        "records": 0,
         "status": "delta_ready"
       },
       "unavailableReason": null,
@@ -1755,9 +3802,9 @@
   ],
   "schemaVersion": 1,
   "summary": {
-    "built": 33,
-    "configuredRegions": 35,
-    "enabled": 33,
+    "built": 68,
+    "configuredRegions": 83,
+    "enabled": 81,
     "unavailable": 2
   }
 }

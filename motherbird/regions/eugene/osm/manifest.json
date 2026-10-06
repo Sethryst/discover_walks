@@ -1,0 +1,38 @@
+{
+  "artifacts": [
+    "pois.json",
+    "merged-pois.json",
+    "validation.json",
+    "spatial-index-delta.json",
+    "attribution.json"
+  ],
+  "checksums": {
+    "attribution.json": "sha256:316af1c46370b887fc5e841bc0bd2053debe80976c9dcc6c0c9bed5f7dc58f04",
+    "merged-pois.json": "sha256:505fc4f685961f52119044c2adb89a66448035595e0e3dca6fb21f31e58bae8c",
+    "pois.json": "sha256:3fd5d00f714fc031ba05c7b94f6d3d0a5669d0df39b1b4f9fc0cb3ba00d9b5a6",
+    "spatial-index-delta.json": "sha256:1802a7b127b7adef079c112ecfbc4689ce8c2e4e65ddc3f90039e220e33d0b57",
+    "validation.json": "sha256:8b5c7c2ad2cfe51c61940a4922e478fc2b4e888dc4dcab73ea4c5e5099ffca3d"
+  },
+  "generatedAt": "2026-10-06T19:26:04.766302Z",
+  "recordCountsByCategory": {
+    "coffee": 154,
+    "community": 5,
+    "garden": 32,
+    "history": 70,
+    "library": 9,
+    "park": 250,
+    "trail": 313
+  },
+  "regionId": "eugene",
+  "schemaVersion": 1,
+  "source": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "name": "OpenStreetMap",
+    "rawResponseSha256": "sha256:84ea8946c6bc9a7a8351d6caa8866ebb52a3a6768afce57cc29a7155f0f0fe9e",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "sourceConfigurationId": "osm-eugene-walk",
+  "sourceVintage": "2026-10-03T20:46:21Z"
+}

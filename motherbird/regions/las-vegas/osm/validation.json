@@ -1,0 +1,3449 @@
+{
+  "accepted": 1197,
+  "generatedAt": "2026-10-06T19:26:04.766302Z",
+  "regionId": "las-vegas",
+  "rejected": 3,
+  "schemaVersion": 1,
+  "warnings": [
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 357834012 is outside the configured bbox.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 532067222 is outside the configured bbox.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "out_of_bounds",
+      "detail": "OSM way 548937431 is outside the configured bbox.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "max_records_reached",
+      "detail": "The bounded Overpass response reached maxRecords=1200.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10060252530 matched authoritative osm:node:10060252530; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10080865276 matched authoritative osm:node:10080865276; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10080865278 matched authoritative osm:node:10080865278; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10088281770 matched authoritative osm:node:10088281770; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10229695665 matched authoritative osm:node:10229695665; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10301952829 matched authoritative osm:node:10301952829; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10547767899 matched authoritative osm:node:10547767899; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10567130437 matched authoritative osm:node:10567130437; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10599416339 matched authoritative osm:node:10599416339; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10600154578 matched authoritative osm:node:10600154578; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10617322899 matched authoritative osm:node:10617322899; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10719856820 matched authoritative osm:node:10719856820; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10719856821 matched authoritative osm:node:10719856821; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10719856834 matched authoritative osm:node:10719856834; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10733261853 matched authoritative osm:node:10733261853; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10740120058 matched authoritative osm:node:10740120058; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10742055277 matched authoritative osm:node:10742055277; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10742240867 matched authoritative osm:node:10742240867; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10742377688 matched authoritative osm:node:10742377688; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10742403728 matched authoritative osm:node:10742403728; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10742479334 matched authoritative osm:node:10742479334; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10743719839 matched authoritative osm:node:10743719839; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10743719848 matched authoritative osm:node:10743719848; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10744108778 matched authoritative osm:node:10744108778; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10774571919 matched authoritative osm:node:10774571919; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10815091439 matched authoritative osm:node:10815091439; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10853500662 matched authoritative osm:node:10853500662; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:10879320286 matched authoritative osm:node:10879320286; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11053998329 matched authoritative osm:node:11053998329; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11069708371 matched authoritative osm:node:11069708371; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11222981017 matched authoritative osm:node:11222981017; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11256126008 matched authoritative osm:node:11256126008; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11329511824 matched authoritative osm:node:11329511824; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11329989544 matched authoritative osm:node:11329989544; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11365482851 matched authoritative osm:node:11365482851; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11418706835 matched authoritative osm:node:11418706835; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11418706857 matched authoritative osm:node:11418706857; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11480744802 matched authoritative osm:node:11480744802; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11483998013 matched authoritative osm:node:11483998013; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11502047404 matched authoritative osm:node:11502047404; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11506791632 matched authoritative osm:node:11506791632; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11506827411 matched authoritative osm:node:11506827411; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11510205638 matched authoritative osm:node:11510205638; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11510205649 matched authoritative osm:node:11510205649; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11510205655 matched authoritative osm:node:11510205655; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11510294044 matched authoritative osm:node:11510294044; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11510304071 matched authoritative osm:node:11510304071; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11510304073 matched authoritative osm:node:11510304073; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11510316457 matched authoritative osm:node:11510316457; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11511453014 matched authoritative osm:node:11511453014; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11512131381 matched authoritative osm:node:11512131381; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11513107426 matched authoritative osm:node:11513107426; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11586123763 matched authoritative osm:node:11586123763; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1160411456 matched authoritative osm:node:1160411456; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1161676753 matched authoritative osm:node:1161676753; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1161677945 matched authoritative osm:node:1161677945; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11639971859 matched authoritative osm:node:11639971859; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11655878069 matched authoritative osm:node:11655878069; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11659073140 matched authoritative osm:node:11659073140; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11662126368 matched authoritative osm:node:11662126368; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11662175201 matched authoritative osm:node:11662175201; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11669570376 matched authoritative osm:node:11669570376; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11669988258 matched authoritative osm:node:11669988258; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11783992757 matched authoritative osm:node:11783992757; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11795642952 matched authoritative osm:node:11795642952; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11845441269 matched authoritative osm:node:11845441269; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11885159644 matched authoritative osm:node:11885159644; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11944226457 matched authoritative osm:node:11944226457; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11944226464 matched authoritative osm:node:11944226464; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:11952212594 matched authoritative osm:node:11952212594; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12090890658 matched authoritative osm:node:12090890658; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12091345279 matched authoritative osm:node:12091345279; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12109257956 matched authoritative osm:node:12109257956; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12113068109 matched authoritative osm:node:12113068109; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12136888832 matched authoritative osm:node:12136888832; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12137029925 matched authoritative osm:node:12137029925; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12372748548 matched authoritative osm:node:12372748548; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12376552036 matched authoritative osm:node:12376552036; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12400346737 matched authoritative osm:node:12400346737; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12400346738 matched authoritative osm:node:12400346738; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12400346761 matched authoritative osm:node:12400346761; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12400346771 matched authoritative osm:node:12400346771; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12407196270 matched authoritative osm:node:12407196270; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12407196283 matched authoritative osm:node:12407196283; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12409038609 matched authoritative osm:node:12409038609; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12425903101 matched authoritative osm:node:12425903101; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12466279361 matched authoritative osm:node:12466279361; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12466279362 matched authoritative osm:node:12466279362; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12466289380 matched authoritative osm:node:12466289380; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12466293960 matched authoritative osm:node:12466293960; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12466295147 matched authoritative osm:node:12466295147; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12466295148 matched authoritative osm:node:12466295148; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12466295149 matched authoritative osm:node:12466295149; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12466295150 matched authoritative osm:node:12466295150; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12466295151 matched authoritative osm:node:12466295151; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12466295152 matched authoritative osm:node:12466295152; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12466298204 matched authoritative osm:node:12466298204; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12472728901 matched authoritative osm:node:12472728901; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12492910884 matched authoritative osm:node:12492910884; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12495355968 matched authoritative osm:node:12495355968; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12505733880 matched authoritative osm:node:12505733880; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12507420479 matched authoritative osm:node:12507420479; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12507420480 matched authoritative osm:node:12507420480; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12517742670 matched authoritative osm:node:12517742670; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12521596672 matched authoritative osm:node:12521596672; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12522252578 matched authoritative osm:node:12522252578; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12525741147 matched authoritative osm:node:12525741147; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12525778121 matched authoritative osm:node:12525778121; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12531266131 matched authoritative osm:node:12531266131; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12548032240 matched authoritative osm:node:12548032240; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12569784503 matched authoritative osm:node:12569784503; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12569784882 matched authoritative osm:node:12569784882; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12586112684 matched authoritative osm:node:12586112684; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12594211812 matched authoritative osm:node:12594211812; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12600168216 matched authoritative osm:node:12600168216; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12606291304 matched authoritative osm:node:12606291304; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12608752562 matched authoritative osm:node:12608752562; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12608768090 matched authoritative osm:node:12608768090; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12617518412 matched authoritative osm:node:12617518412; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12617518425 matched authoritative osm:node:12617518425; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12619852935 matched authoritative osm:node:12619852935; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12637808928 matched authoritative osm:node:12637808928; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12639674400 matched authoritative osm:node:12639674400; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12639689872 matched authoritative osm:node:12639689872; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12695647546 matched authoritative osm:node:12695647546; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12697936201 matched authoritative osm:node:12697936201; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12697953701 matched authoritative osm:node:12697953701; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12745748977 matched authoritative osm:node:12745748977; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12760016667 matched authoritative osm:node:12760016667; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12766255091 matched authoritative osm:node:12766255091; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12766255148 matched authoritative osm:node:12766255148; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12776463773 matched authoritative osm:node:12776463773; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12776527319 matched authoritative osm:node:12776527319; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12779853610 matched authoritative osm:node:12779853610; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12779853703 matched authoritative osm:node:12779853703; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12810858011 matched authoritative osm:node:12810858011; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12841112706 matched authoritative osm:node:12841112706; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12842691981 matched authoritative osm:node:12842691981; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12842793701 matched authoritative osm:node:12842793701; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12843104970 matched authoritative osm:node:12843104970; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12843104971 matched authoritative osm:node:12843104971; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:12910882930 matched authoritative osm:node:12910882930; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13062628138 matched authoritative osm:node:13062628138; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13087346028 matched authoritative osm:node:13087346028; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13113416401 matched authoritative osm:node:13113416401; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13116255270 matched authoritative osm:node:13116255270; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13116298161 matched authoritative osm:node:13116298161; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13119533841 matched authoritative osm:node:13119533841; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13126213783 matched authoritative osm:node:13126213783; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13159184974 matched authoritative osm:node:13159184974; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13159184977 matched authoritative osm:node:13159184977; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13159184978 matched authoritative osm:node:13159184978; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13159184979 matched authoritative osm:node:13159184979; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13205619120 matched authoritative osm:node:13205619120; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13205877145 matched authoritative osm:node:13205877145; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13232163324 matched authoritative osm:node:13232163324; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13232194876 matched authoritative osm:node:13232194876; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13235971284 matched authoritative osm:node:13235971284; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13256759325 matched authoritative osm:node:13256759325; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13256759326 matched authoritative osm:node:13256759326; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13290208227 matched authoritative osm:node:13290208227; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13290208235 matched authoritative osm:node:13290208235; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13290208236 matched authoritative osm:node:13290208236; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13316537149 matched authoritative osm:node:13316537149; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13373113239 matched authoritative osm:node:13373113239; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13396938318 matched authoritative osm:node:13396938318; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13409229707 matched authoritative osm:node:13409229707; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13411456068 matched authoritative osm:node:13411456068; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13436512401 matched authoritative osm:node:13436512401; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13442924837 matched authoritative osm:node:13442924837; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13460860486 matched authoritative osm:node:13460860486; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13460860491 matched authoritative osm:node:13460860491; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13477795437 matched authoritative osm:node:13477795437; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13504863705 matched authoritative osm:node:13504863705; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13505337314 matched authoritative osm:node:13505337314; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13505337317 matched authoritative osm:node:13505337317; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13668108901 matched authoritative osm:node:13668108901; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13748975991 matched authoritative osm:node:13748975991; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13753686901 matched authoritative osm:node:13753686901; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13781686401 matched authoritative osm:node:13781686401; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13793214918 matched authoritative osm:node:13793214918; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13846104560 matched authoritative osm:node:13846104560; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13846104574 matched authoritative osm:node:13846104574; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13872995872 matched authoritative osm:node:13872995872; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13932617601 matched authoritative osm:node:13932617601; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13946720401 matched authoritative osm:node:13946720401; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:13993714946 matched authoritative osm:node:13993714946; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:14047610301 matched authoritative osm:node:14047610301; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:14090844910 matched authoritative osm:node:14090844910; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:14090957176 matched authoritative osm:node:14090957176; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:14121437619 matched authoritative osm:node:14121437619; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:14121460124 matched authoritative osm:node:14121460124; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:14121930401 matched authoritative osm:node:14121930401; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:14142453102 matched authoritative osm:node:14142453102; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1700027497 matched authoritative osm:node:1700027497; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1720351296 matched authoritative osm:node:1720351296; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1777734168 matched authoritative osm:node:1777734168; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1941747523 matched authoritative osm:node:1941747523; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1941756558 matched authoritative osm:node:1941756558; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1941763853 matched authoritative osm:node:1941763853; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1941765088 matched authoritative osm:node:1941765088; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:1941815811 matched authoritative osm:node:1941815811; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2162916504 matched authoritative osm:node:2162916504; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2169479541 matched authoritative osm:node:2169479541; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2352852282 matched authoritative osm:node:2352852282; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2434655203 matched authoritative osm:node:2434655203; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2574819240 matched authoritative osm:node:2574819240; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2600834873 matched authoritative osm:node:2600834873; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2612597269 matched authoritative osm:node:2612597269; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2746582645 matched authoritative osm:node:2746582645; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2763012186 matched authoritative osm:node:2763012186; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:2857344200 matched authoritative osm:node:2857344200; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3271196826 matched authoritative osm:node:3271196826; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357548561 matched authoritative osm:node:357548561; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357552667 matched authoritative osm:node:357552667; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357553040 matched authoritative osm:node:357553040; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357553043 matched authoritative osm:node:357553043; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357553090 matched authoritative osm:node:357553090; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357553144 matched authoritative osm:node:357553144; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357554205 matched authoritative osm:node:357554205; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357554814 matched authoritative osm:node:357554814; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357559736 matched authoritative osm:node:357559736; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357567699 matched authoritative osm:node:357567699; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357567706 matched authoritative osm:node:357567706; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357567723 matched authoritative osm:node:357567723; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357567748 matched authoritative osm:node:357567748; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357567789 matched authoritative osm:node:357567789; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357567792 matched authoritative osm:node:357567792; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357567816 matched authoritative osm:node:357567816; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357567838 matched authoritative osm:node:357567838; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357567878 matched authoritative osm:node:357567878; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357567903 matched authoritative osm:node:357567903; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357567909 matched authoritative osm:node:357567909; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357567984 matched authoritative osm:node:357567984; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357567994 matched authoritative osm:node:357567994; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357568005 matched authoritative osm:node:357568005; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357568021 matched authoritative osm:node:357568021; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357568054 matched authoritative osm:node:357568054; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357568056 matched authoritative osm:node:357568056; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357568111 matched authoritative osm:node:357568111; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357568115 matched authoritative osm:node:357568115; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357568121 matched authoritative osm:node:357568121; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357568145 matched authoritative osm:node:357568145; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357568160 matched authoritative osm:node:357568160; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357568176 matched authoritative osm:node:357568176; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357568244 matched authoritative osm:node:357568244; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:357568249 matched authoritative osm:node:357568249; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:3835158066 matched authoritative osm:node:3835158066; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4015588723 matched authoritative osm:node:4015588723; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4017094155 matched authoritative osm:node:4017094155; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4017094163 matched authoritative osm:node:4017094163; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4017094167 matched authoritative osm:node:4017094167; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4017094172 matched authoritative osm:node:4017094172; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4020584216 matched authoritative osm:node:4020584216; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4020584231 matched authoritative osm:node:4020584231; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4308164738 matched authoritative osm:node:4308164738; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4450379296 matched authoritative osm:node:4450379296; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:455186899 matched authoritative osm:node:455186899; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4571144925 matched authoritative osm:node:4571144925; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4610714684 matched authoritative osm:node:4610714684; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4631867900 matched authoritative osm:node:4631867900; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4668653107 matched authoritative osm:node:4668653107; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4668653128 matched authoritative osm:node:4668653128; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4668653129 matched authoritative osm:node:4668653129; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4668671251 matched authoritative osm:node:4668671251; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4668671252 matched authoritative osm:node:4668671252; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4668688398 matched authoritative osm:node:4668688398; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4668742162 matched authoritative osm:node:4668742162; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4669431058 matched authoritative osm:node:4669431058; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4669476606 matched authoritative osm:node:4669476606; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4742179561 matched authoritative osm:node:4742179561; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:4810807528 matched authoritative osm:node:4810807528; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5255306716 matched authoritative osm:node:5255306716; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5286980217 matched authoritative osm:node:5286980217; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5312460064 matched authoritative osm:node:5312460064; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5329686488 matched authoritative osm:node:5329686488; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5329692669 matched authoritative osm:node:5329692669; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5359014861 matched authoritative osm:node:5359014861; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5393724345 matched authoritative osm:node:5393724345; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5421566523 matched authoritative osm:node:5421566523; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5590708424 matched authoritative osm:node:5590708424; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5600708035 matched authoritative osm:node:5600708035; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5732923525 matched authoritative osm:node:5732923525; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5741952023 matched authoritative osm:node:5741952023; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:5741993222 matched authoritative osm:node:5741993222; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6025803177 matched authoritative osm:node:6025803177; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6025803178 matched authoritative osm:node:6025803178; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6091215763 matched authoritative osm:node:6091215763; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6126819417 matched authoritative osm:node:6126819417; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6188889685 matched authoritative osm:node:6188889685; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6318736289 matched authoritative osm:node:6318736289; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6340697786 matched authoritative osm:node:6340697786; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6750720516 matched authoritative osm:node:6750720516; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6750720517 matched authoritative osm:node:6750720517; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6750720518 matched authoritative osm:node:6750720518; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6750720519 matched authoritative osm:node:6750720519; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6750720520 matched authoritative osm:node:6750720520; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6750720521 matched authoritative osm:node:6750720521; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6750720522 matched authoritative osm:node:6750720522; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:6899938486 matched authoritative osm:node:6899938486; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7021329810 matched authoritative osm:node:7021329810; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7021632588 matched authoritative osm:node:7021632588; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7212526086 matched authoritative osm:node:7212526086; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7616916081 matched authoritative osm:node:7616916081; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:7640946462 matched authoritative osm:node:7640946462; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:8174581560 matched authoritative osm:node:8174581560; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:8199680779 matched authoritative osm:node:8199680779; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:8241550206 matched authoritative osm:node:8241550206; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:8402470017 matched authoritative osm:node:8402470017; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:8402522519 matched authoritative osm:node:8402522519; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:8461704084 matched authoritative osm:node:8461704084; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:8462132693 matched authoritative osm:node:8462132693; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:8491890153 matched authoritative osm:node:8491890153; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:8568261448 matched authoritative osm:node:8568261448; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:8573137298 matched authoritative osm:node:8573137298; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:8573137299 matched authoritative osm:node:8573137299; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:8747450443 matched authoritative osm:node:8747450443; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:8780022617 matched authoritative osm:node:8780022617; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9054805946 matched authoritative osm:node:9054805946; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9152445929 matched authoritative osm:node:9152445929; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9288884957 matched authoritative osm:node:9288884957; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9434514136 matched authoritative osm:node:9434514136; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9458506817 matched authoritative osm:node:9458506817; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:959119872 matched authoritative osm:node:959119872; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:959119979 matched authoritative osm:node:959119979; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9719036590 matched authoritative osm:node:9719036590; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9719070374 matched authoritative osm:node:9719070374; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9750102954 matched authoritative osm:node:9750102954; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9783679195 matched authoritative osm:node:9783679195; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9837604953 matched authoritative osm:node:9837604953; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9962514037 matched authoritative osm:node:9962514037; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9966400137 matched authoritative osm:node:9966400137; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9968214882 matched authoritative osm:node:9968214882; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9977894254 matched authoritative osm:node:9977894254; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:node:9982006176 matched authoritative osm:node:9982006176; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:116650397 matched authoritative osm:way:116650397; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:128575915 matched authoritative osm:way:128575915; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:129478115 matched authoritative osm:way:129478115; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:129860665 matched authoritative osm:way:129860665; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:129894892 matched authoritative osm:way:129894892; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:130062098 matched authoritative osm:way:130062098; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:130186598 matched authoritative osm:way:130186598; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:130208318 matched authoritative osm:way:130208318; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:130208327 matched authoritative osm:way:130208327; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:130208329 matched authoritative osm:way:130208329; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:130208338 matched authoritative osm:way:130208338; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:130583008 matched authoritative osm:way:130583008; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:130590858 matched authoritative osm:way:130590858; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:130591875 matched authoritative osm:way:130591875; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:130591901 matched authoritative osm:way:130591901; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:130676179 matched authoritative osm:way:130676179; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:130681925 matched authoritative osm:way:130681925; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:130771394 matched authoritative osm:way:130771394; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:130776871 matched authoritative osm:way:130776871; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:130789328 matched authoritative osm:way:130789328; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:130789546 matched authoritative osm:way:130789546; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:130798811 matched authoritative osm:way:130798811; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:130798812 matched authoritative osm:way:130798812; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:130803788 matched authoritative osm:way:130803788; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:131075234 matched authoritative osm:way:131075234; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:131078509 matched authoritative osm:way:131078509; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:131113283 matched authoritative osm:way:131113283; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:131120987 matched authoritative osm:way:131120987; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:131120997 matched authoritative osm:way:131120997; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:131686102 matched authoritative osm:way:131686102; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:131695841 matched authoritative osm:way:131695841; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:131695843 matched authoritative osm:way:131695843; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:131697158 matched authoritative osm:way:131697158; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:131697162 matched authoritative osm:way:131697162; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:131766124 matched authoritative osm:way:131766124; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:131766148 matched authoritative osm:way:131766148; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:131766159 matched authoritative osm:way:131766159; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:131782571 matched authoritative osm:way:131782571; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:131797103 matched authoritative osm:way:131797103; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:131797113 matched authoritative osm:way:131797113; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:132121244 matched authoritative osm:way:132121244; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:132121508 matched authoritative osm:way:132121508; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:132848449 matched authoritative osm:way:132848449; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:132848451 matched authoritative osm:way:132848451; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:132873315 matched authoritative osm:way:132873315; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:135958464 matched authoritative osm:way:135958464; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:143931649 matched authoritative osm:way:143931649; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:144461360 matched authoritative osm:way:144461360; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:144461364 matched authoritative osm:way:144461364; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:144461367 matched authoritative osm:way:144461367; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:145036604 matched authoritative osm:way:145036604; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:145388209 matched authoritative osm:way:145388207; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:145388215 matched authoritative osm:way:145388210; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:145388217 matched authoritative osm:way:145388213; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:145388219 matched authoritative osm:way:145388212; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:145388220 matched authoritative osm:way:145388218; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:145388223 matched authoritative osm:way:145388206; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:145397975 matched authoritative osm:way:145397973; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:145397993 matched authoritative osm:way:145397982; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:145398002 matched authoritative osm:way:145398000; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:145398007 matched authoritative osm:way:145398005; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:145398009 matched authoritative osm:way:145397998; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:146587558 matched authoritative osm:way:146587558; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:147239054 matched authoritative osm:way:147239054; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:147395932 matched authoritative osm:way:147395932; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:150399827 matched authoritative osm:way:150399827; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:150535772 matched authoritative osm:way:150535772; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:150564985 matched authoritative osm:way:150564985; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:150567886 matched authoritative osm:way:150567886; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:159924144 matched authoritative osm:way:159924144; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:164841090 matched authoritative osm:way:164841090; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:164952237 matched authoritative osm:way:164952237; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:164952432 matched authoritative osm:way:164952432; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:164959722 matched authoritative osm:way:164959722; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:164959724 matched authoritative osm:way:164959724; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:167234627 matched authoritative osm:way:167234627; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:171194932 matched authoritative osm:way:171194932; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:171194939 matched authoritative osm:way:171194939; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:172250693 matched authoritative osm:way:172250693; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:172250696 matched authoritative osm:way:172250696; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:172250697 matched authoritative osm:way:172250697; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:179891485 matched authoritative osm:way:179891485; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:179891489 matched authoritative osm:way:179891489; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:179893583 matched authoritative osm:way:179893583; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:179893584 matched authoritative osm:way:179893584; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:179988090 matched authoritative osm:way:179988090; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:179988093 matched authoritative osm:way:179988093; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:179988129 matched authoritative osm:way:179988129; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:179988132 matched authoritative osm:way:179988132; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:179988190 matched authoritative osm:way:179988190; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:180771080 matched authoritative osm:way:180771080; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:180771081 matched authoritative osm:way:180771081; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:181480699 matched authoritative osm:way:181480699; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:181480701 matched authoritative osm:way:181480701; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:182527015 matched authoritative osm:way:182527015; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:183116229 matched authoritative osm:way:183116229; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:189325445 matched authoritative osm:way:189325445; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:195703852 matched authoritative osm:way:195703852; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:196809375 matched authoritative osm:way:196809375; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:202177940 matched authoritative osm:way:202177940; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:202777820 matched authoritative osm:way:202777820; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:203313299 matched authoritative osm:way:203313299; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:203323433 matched authoritative osm:way:203323433; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:203559544 matched authoritative osm:way:203559537; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:203559550 matched authoritative osm:way:203559537; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:204511077 matched authoritative osm:way:204511065; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:204736403 matched authoritative osm:way:204736403; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:206891151 matched authoritative osm:way:206891151; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:210546119 matched authoritative osm:way:210546119; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:212668970 matched authoritative osm:way:212668970; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:214910871 matched authoritative osm:way:214910871; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:215052003 matched authoritative osm:way:215052003; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:216710100 matched authoritative osm:way:216710100; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:218624178 matched authoritative osm:way:218624178; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:220068651 matched authoritative osm:way:220068651; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:222428375 matched authoritative osm:way:222428375; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:225648582 matched authoritative osm:way:225648581; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:225648586 matched authoritative osm:way:225648581; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:226516648 matched authoritative osm:way:226516648; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:236664875 matched authoritative osm:way:236664875; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:247752659 matched authoritative osm:way:247752659; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:247753024 matched authoritative osm:way:247753024; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:251219924 matched authoritative osm:way:251219924; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:268714771 matched authoritative osm:way:268714771; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:272727990 matched authoritative osm:way:272727990; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:272842192 matched authoritative osm:way:272842192; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:273166548 matched authoritative osm:way:273166548; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:27443685 matched authoritative osm:way:27443685; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:27443757 matched authoritative osm:way:27443757; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:27500457 matched authoritative osm:way:27500457; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:27500924 matched authoritative osm:way:27500924; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:27503738 matched authoritative osm:way:27503738; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:27523574 matched authoritative osm:way:27523574; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:27524898 matched authoritative osm:way:27524898; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:27525010 matched authoritative osm:way:27525010; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:27550019 matched authoritative osm:way:27550019; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:27550059 matched authoritative osm:way:27550059; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:27550420 matched authoritative osm:way:27550420; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:27550460 matched authoritative osm:way:27550460; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:27574785 matched authoritative osm:way:27574785; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:27574788 matched authoritative osm:way:27574788; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:27613753 matched authoritative osm:way:27613753; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:27613831 matched authoritative osm:way:27613831; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:27614060 matched authoritative osm:way:27614060; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:27614064 matched authoritative osm:way:27614064; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:27620983 matched authoritative osm:way:27620983; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:27629640 matched authoritative osm:way:27629640; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:27696774 matched authoritative osm:way:27696774; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:27696892 matched authoritative osm:way:27696892; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:27696976 matched authoritative osm:way:27696976; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:27726753 matched authoritative osm:way:27726753; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:27726840 matched authoritative osm:way:27726840; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:27738412 matched authoritative osm:way:27738412; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:27853306 matched authoritative osm:way:27853306; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:27854563 matched authoritative osm:way:27854563; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:27856378 matched authoritative osm:way:27856378; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:27925857 matched authoritative osm:way:27925857; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:281751707 matched authoritative osm:way:281751707; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:285152076 matched authoritative osm:way:285152076; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:289175482 matched authoritative osm:way:289175482; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:293552449 matched authoritative osm:way:293552449; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:308291919 matched authoritative osm:way:308291919; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:314669488 matched authoritative osm:way:314669488; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:316303724 matched authoritative osm:way:316303724; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:321044766 matched authoritative osm:way:321044766; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:321074755 matched authoritative osm:way:321074755; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:322944151 matched authoritative osm:way:322944151; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:32387842 matched authoritative osm:way:32387842; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:325840058 matched authoritative osm:way:325840058; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:32653122 matched authoritative osm:way:32653122; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:328935200 matched authoritative osm:way:328935200; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:376910042 matched authoritative osm:way:376910042; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:377405302 matched authoritative osm:way:377405302; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:385074172 matched authoritative osm:way:385074172; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:397354223 matched authoritative osm:way:397354223; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:397861243 matched authoritative osm:way:397861243; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:397861246 matched authoritative osm:way:397861246; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:397861248 matched authoritative osm:way:397861248; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:398002523 matched authoritative osm:way:398002523; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:421588068 matched authoritative osm:way:421588068; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:425896160 matched authoritative osm:way:425896160; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:446973748 matched authoritative osm:way:446973748; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:456548932 matched authoritative osm:way:456548932; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:458886629 matched authoritative osm:way:458886629; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:459043072 matched authoritative osm:way:459043072; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:461244038 matched authoritative osm:way:461244038; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:461503931 matched authoritative osm:way:461503931; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:461504130 matched authoritative osm:way:461504129; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:461504133 matched authoritative osm:way:461504132; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:461504134 matched authoritative osm:way:461504132; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:461504136 matched authoritative osm:way:461504135; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:461962920 matched authoritative osm:way:461962920; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:462406883 matched authoritative osm:way:462406883; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:463100755 matched authoritative osm:way:463100755; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:463339491 matched authoritative osm:way:463339491; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:463340542 matched authoritative osm:way:463340542; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:463487049 matched authoritative osm:way:463487049; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:463489938 matched authoritative osm:way:463489938; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:464454153 matched authoritative osm:way:464454153; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:464455362 matched authoritative osm:way:464455362; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:464771534 matched authoritative osm:way:464771534; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:464791310 matched authoritative osm:way:464791310; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:466281459 matched authoritative osm:way:466281459; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:466543210 matched authoritative osm:way:466543210; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:466543739 matched authoritative osm:way:466543739; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:466544814 matched authoritative osm:way:466544814; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:466545013 matched authoritative osm:way:466545013; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:468514881 matched authoritative osm:way:468514881; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:468555531 matched authoritative osm:way:468555531; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:468555543 matched authoritative osm:way:468555543; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:468556640 matched authoritative osm:way:468556640; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:468557949 matched authoritative osm:way:468557949; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:468562198 matched authoritative osm:way:468562198; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:468563027 matched authoritative osm:way:468563027; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:468706025 matched authoritative osm:way:468706025; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:468706026 matched authoritative osm:way:468706026; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:468706027 matched authoritative osm:way:468706027; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:468706028 matched authoritative osm:way:468706028; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:468706029 matched authoritative osm:way:468706029; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:468706030 matched authoritative osm:way:468706030; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:468782660 matched authoritative osm:way:468782660; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:469217443 matched authoritative osm:way:469217443; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:469351179 matched authoritative osm:way:469351179; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:469798647 matched authoritative osm:way:469798647; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:479542717 matched authoritative osm:way:479542717; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:479543023 matched authoritative osm:way:479543023; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:484638199 matched authoritative osm:way:484638199; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:486635279 matched authoritative osm:way:486635279; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:486635714 matched authoritative osm:way:486635714; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:486637410 matched authoritative osm:way:486637410; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:487077248 matched authoritative osm:way:487077248; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:487524504 matched authoritative osm:way:487524504; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:488980341 matched authoritative osm:way:488980341; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:492023220 matched authoritative osm:way:492023220; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:493781318 matched authoritative osm:way:493781318; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:503332841 matched authoritative osm:way:503332841; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:510664266 matched authoritative osm:way:510664266; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:526397979 matched authoritative osm:way:526397979; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:527182555 matched authoritative osm:way:527182555; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:532521752 matched authoritative osm:way:532521752; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:538619049 matched authoritative osm:way:538619049; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:543178410 matched authoritative osm:way:543178410; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:543421811 matched authoritative osm:way:543421811; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:543638212 matched authoritative osm:way:180771080; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:544360887 matched authoritative osm:way:544360887; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:545591366 matched authoritative osm:way:545591366; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:545591367 matched authoritative osm:way:545591367; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:547314041 matched authoritative osm:way:547314041; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:548234623 matched authoritative osm:way:548234623; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:549672601 matched authoritative osm:way:549672601; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:550929478 matched authoritative osm:way:550929478; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:551501434 matched authoritative osm:way:551501434; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:552200578 matched authoritative osm:way:552200578; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:552234499 matched authoritative osm:way:552234499; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:552526545 matched authoritative osm:way:552526545; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:552742694 matched authoritative osm:way:552742694; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:552742909 matched authoritative osm:way:552742909; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:552744241 matched authoritative osm:way:552744241; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:552744300 matched authoritative osm:way:552744300; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:555790227 matched authoritative osm:way:555790227; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:556145360 matched authoritative osm:way:556145360; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:558884291 matched authoritative osm:way:558884291; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:559207444 matched authoritative osm:way:559207444; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:562610366 matched authoritative osm:way:562610366; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:562613683 matched authoritative osm:way:562613683; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:575287205 matched authoritative osm:way:575287205; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:579681000 matched authoritative osm:way:579681000; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:582105138 matched authoritative osm:way:582105138; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:583118865 matched authoritative osm:way:583118865; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:583118866 matched authoritative osm:way:583118866; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:583800724 matched authoritative osm:way:583800724; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:583804394 matched authoritative osm:way:583804394; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:583895786 matched authoritative osm:way:583895786; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:584815400 matched authoritative osm:way:584815400; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:584968578 matched authoritative osm:way:584968578; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:585227156 matched authoritative osm:way:585227156; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:597093203 matched authoritative osm:way:597093203; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:597095208 matched authoritative osm:way:597095208; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:603953762 matched authoritative osm:way:603953762; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:606860600 matched authoritative osm:way:606860600; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:608689523 matched authoritative osm:way:608689523; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:608691791 matched authoritative osm:way:608691791; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:608692270 matched authoritative osm:way:608692270; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:608692658 matched authoritative osm:way:608692658; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:611640361 matched authoritative osm:way:611640361; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:620498140 matched authoritative osm:way:620498140; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:620983697 matched authoritative osm:way:620983697; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:620983698 matched authoritative osm:way:620983698; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:621570018 matched authoritative osm:way:621570018; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:63514021 matched authoritative osm:way:63514021; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:640436068 matched authoritative osm:way:640436068; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:641384009 matched authoritative osm:way:641384009; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:648278649 matched authoritative osm:way:648278649; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:653774500 matched authoritative osm:way:653774500; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:653774502 matched authoritative osm:way:653774502; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:653774503 matched authoritative osm:way:653774503; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:653777570 matched authoritative osm:way:653777570; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:653777571 matched authoritative osm:way:653777571; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:659265988 matched authoritative osm:way:659265988; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:660052550 matched authoritative osm:way:660052550; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:660061426 matched authoritative osm:way:660061426; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:671904080 matched authoritative osm:way:671904080; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:671907842 matched authoritative osm:way:671907842; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:671908211 matched authoritative osm:way:671908211; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:675282759 matched authoritative osm:way:675282759; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:675303131 matched authoritative osm:way:675303131; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:676939848 matched authoritative osm:way:676939848; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:676940879 matched authoritative osm:way:676940879; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:676940880 matched authoritative osm:way:676940880; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:684478548 matched authoritative osm:way:684478548; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:685300723 matched authoritative osm:way:685300723; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:693967377 matched authoritative osm:way:693967377; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:699905597 matched authoritative osm:way:699905597; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:699905618 matched authoritative osm:way:699905618; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:699905619 matched authoritative osm:way:699905619; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:704730373 matched authoritative osm:way:704730373; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:725474279 matched authoritative osm:way:725474279; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:728287429 matched authoritative osm:way:728287429; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:730873889 matched authoritative osm:way:730873889; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:730877263 matched authoritative osm:way:730877263; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:740034780 matched authoritative osm:way:740034780; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:746399710 matched authoritative osm:way:746399710; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:747162110 matched authoritative osm:way:747162110; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:751365210 matched authoritative osm:way:751365210; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:753472693 matched authoritative osm:way:204665258; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:758860648 matched authoritative osm:way:758860648; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:758860649 matched authoritative osm:way:758860649; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:764143544 matched authoritative osm:way:764143544; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:771130027 matched authoritative osm:way:771130026; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:771552728 matched authoritative osm:way:771552728; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:772092314 matched authoritative osm:way:772092314; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:779285661 matched authoritative osm:way:779285661; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:782033422 matched authoritative osm:way:782033420; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:789364941 matched authoritative osm:way:789364941; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:794648732 matched authoritative osm:way:794648732; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:80341616 matched authoritative osm:way:80341616; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:818107485 matched authoritative osm:way:818107485; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:818529705 matched authoritative osm:way:818529705; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:848669634 matched authoritative osm:way:848669634; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:849642472 matched authoritative osm:way:849642472; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:849974218 matched authoritative osm:way:849974218; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:849974241 matched authoritative osm:way:849974241; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:850623193 matched authoritative osm:way:850623193; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:850641210 matched authoritative osm:way:850641210; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:851301274 matched authoritative osm:way:851301274; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:852021886 matched authoritative osm:way:852021886; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:878789962 matched authoritative osm:way:878789961; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:99283229 matched authoritative osm:way:99283229; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    },
+    {
+      "code": "duplicate_reconciled",
+      "detail": "osm:way:99462683 matched authoritative osm:way:99462683; authoritative fields were retained and OSM provenance appended.",
+      "source": "osm-las-vegas-walk"
+    }
+  ]
+}

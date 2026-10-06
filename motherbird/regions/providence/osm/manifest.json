@@ -1,0 +1,38 @@
+{
+  "artifacts": [
+    "pois.json",
+    "merged-pois.json",
+    "validation.json",
+    "spatial-index-delta.json",
+    "attribution.json"
+  ],
+  "checksums": {
+    "attribution.json": "sha256:b5d0d42c3e1c257480c8c26bb2cd275be22c44cd06e7cc86e33f861b2d8565d9",
+    "merged-pois.json": "sha256:7888299b0f44c3aa4f013b0a146fe3d09073f7bb1c1fefc0a87b8bc77d6c4727",
+    "pois.json": "sha256:37766d2f5e9b95ca0788a200ca809a6780a075870d0110f904dac58b4de34ba4",
+    "spatial-index-delta.json": "sha256:bb8f815380afd2a7bf05212a8e5f17a5de0f0c410a24b7696a87314337ebfeb2",
+    "validation.json": "sha256:ae71eec010a939692538e676ab27b27fdda2d62c5a6b35692cf8a1852afdf1b4"
+  },
+  "generatedAt": "2026-10-06T19:26:04.766302Z",
+  "recordCountsByCategory": {
+    "coffee": 194,
+    "community": 3,
+    "garden": 39,
+    "history": 195,
+    "library": 63,
+    "park": 325,
+    "trail": 362
+  },
+  "regionId": "providence",
+  "schemaVersion": 1,
+  "source": {
+    "attribution": "© OpenStreetMap contributors",
+    "license": "ODbL-1.0",
+    "licenseUrl": "https://www.openstreetmap.org/copyright",
+    "name": "OpenStreetMap",
+    "rawResponseSha256": "sha256:6c1d7edea2769d073f047fc2ac4981266096fa18a6c5c366180deee7163bda96",
+    "url": "https://overpass-api.de/api/interpreter"
+  },
+  "sourceConfigurationId": "osm-providence-walk",
+  "sourceVintage": "2026-10-03T20:43:21Z"
+}

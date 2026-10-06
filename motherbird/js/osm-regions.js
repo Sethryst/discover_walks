@@ -14,7 +14,7 @@ const BUILT = new Set([
   'corpus-christi', 'denver', 'detroit', 'fairfax-county-va', 'falls-church-va', 'fort-worth', 'keystone-colorado',
   'los-angeles', 'loudoun-county-va', 'new-orleans', 'norfolk', 'nyc', 'philadelphia', 'pittsburgh', 'portland',
   'portland-maine', 'prince-georges-county-md', 'richmond', 'san-francisco', 'santa-fe', 'seattle', 'sedona-arizona',
-  'tempe', 'washington-dc'
+  'eugene', 'las-vegas', 'madison', 'milwaukee', 'providence', 'tempe', 'washington-dc'
 ]);
 
 export function runtimeOsmConfig(cityId, city = {}) {
