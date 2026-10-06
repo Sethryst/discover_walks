@@ -26,6 +26,10 @@ export const ROUTE_FAILURE_MESSAGES = {
   INVALID_ROUTE_REQUEST: 'The route request could not be read.'
 };
 
+export function routeFailureMessage(result) {
+  return result?.failure?.message || ROUTE_FAILURE_MESSAGES[result?.status] || 'We could not find a walkable route there. Try moving one or both points slightly onto a mapped path.';
+}
+
 export async function routeOnFoot(points, { city, profile = 'ordinary_walking_beta' } = {}) {
   if (!Array.isArray(points) || points.length < 2) return failure('INVALID_ROUTE_REQUEST');
   const legs = [];

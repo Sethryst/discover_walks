@@ -2,7 +2,7 @@ import { state } from './state.js';
 import { setPlannerSelecting } from './planner-selection.js?v=20261004-planner-selection-1';
 import { CITIES } from './constants.js';
 import { poiTags } from './poi.js';
-import { routeOnFoot } from './routing.js?v=20261006-multihop-routing-1';
+import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261006-routing-hardening-2';
 import { escapeHtml } from './utils.js';
 import { toast } from './ui.js';
 import { splitDisconnectedPaths } from './routes.js';
@@ -130,13 +130,13 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
     // walker can retry or change one endpoint deliberately.
     setPlannerSelecting('End');
     const detail = routed.failure?.reason || routed.failure?.message || routed.status;
-    toast(`Route unavailable (${routed.status}): ${routed.failure?.message || detail}`);
+    toast(`We couldn't find a walkable route there. ${routeFailureMessage(routed)}`);
   }
   const plan = {
     id: `concept-${Date.now()}`, title: title || `${CITIES[state.activeCity]?.name || 'Local'} ${minutes}-minute sketch`,
     reason: reason || conceptReason(stops), city: state.activeCity, routeMode, estimatedDurationMinutes: minutes,
     stops, coordinates: routed.ok ? routed.coordinates : [], journeyId,
-    ...(routed.ok ? { distanceMeters: routed.distanceMeters, distanceMiles: Number((routed.distanceMeters / 1609.344).toFixed(2)), graphVersion: routed.graphVersion, cellId: routed.cellId, cellRelease: routed.cellRelease, edgeIds: routed.edgeIds, instructions: routed.instructions } : { graphStatus: routed.status || 'GRAPH_VERSION_UNAVAILABLE', failureMessage: routed.failure?.message || null })
+    ...(routed.ok ? { distanceMeters: routed.distanceMeters, distanceMiles: Number((routed.distanceMeters / 1609.344).toFixed(2)), graphStatus: null, graphVersion: routed.graphVersion, cellId: routed.cellId, cellRelease: routed.cellRelease, edgeIds: routed.edgeIds, instructions: routed.instructions } : { graphStatus: routed.status || 'GRAPH_VERSION_UNAVAILABLE', failureMessage: routeFailureMessage(routed) })
   };
   state.plannedRoute = plan; state.planOptions = [plan];
   paintWalkConcept(plan);

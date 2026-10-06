@@ -15,6 +15,9 @@ test('routing exposes specific cross-cell and boundary failure classes', () => {
   assert.match(routing, /NO_CELL_FOR_COORDINATE/);
   assert.match(routing, /maxVisitedNodes: 300000/);
   assert.match(routing, /requestRouteWithRetry/);
+  assert.match(routing, /routeFailureMessage/);
+  assert.doesNotMatch(planner, /Route unavailable \(\$\{routed\.status\}/);
+  assert.doesNotMatch(events, /Route unavailable \(\$\{plan\.graphStatus\}/);
 });
 
 test('registry returns all overlapping candidates for adaptive routing', () => {
@@ -29,7 +32,8 @@ test('planner preserves endpoints and ignores stale concurrent generations', () 
   assert.doesNotMatch(planner, /state\.plannerEnd = null/);
   assert.match(planner, /requestGeneration = \+\+generation/);
   assert.match(planner, /requestGeneration !== generation/);
-  assert.match(events, /Route unavailable \(\$\{plan\.graphStatus\}/);
+  assert.match(events, /We could not find a walkable route there/);
+  assert.doesNotMatch(events, /Route unavailable \(\$\{plan\.graphStatus\}/);
 });
 
 test('cell registry metadata supports explicit neighboring-cell decisions', () => {

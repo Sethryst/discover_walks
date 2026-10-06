@@ -10,7 +10,7 @@ import { localSearchHits, searchRowHtml, emptySearchHtml } from './search.js';
 import { initRegionalNavigation } from './regional-navigation.js';
 import { switchCity } from './city.js';
 import { generateTimeBasedPlan, lockSelectedPlanOnMap, changePlan, setPlanningMode } from './planner.js?v=20261005-national-routing-ux-1';
-import { routeOnFoot } from './routing.js';
+import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261006-routing-hardening-2';
 import { paintWalkPlan, paintCard, previewCard, sendCurrentWalkPlan } from './field-guide.js?v=133-source-catalogue';
 import { wordCount } from './reflection.js';
 import { refreshCompanionState } from './companion.js';
@@ -278,7 +278,7 @@ function renderWalkSketch(plan) {
     instructions.innerHTML = steps.length
       ? steps.map((step) => `<li>${escapeHtml(step.text)}${step.distance_m ? ` · ${Math.round(step.distance_m)} m` : ''}</li>`).join('')
       : `<li class="directions-unavailable">${escapeHtml(plan.graphStatus
-        ? `Route unavailable (${plan.graphStatus}): ${plan.failureMessage || 'The installed pedestrian network could not connect these points.'}`
+        ? plan.failureMessage || 'We could not find a walkable route there. Try moving one or both points slightly onto a mapped path.'
         : 'Turn-by-turn directions are not available for this route.')}</li>`;
   }
   el('walkSketch').classList.remove('hidden');
