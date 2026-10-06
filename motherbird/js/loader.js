@@ -28,6 +28,7 @@ import { initRadialMenu } from './radial-menu.js';
 import { initStories } from './stories.js';
 import { initRadio } from './radio.js?v=20260928-radio-controls-v3';
 import { recoverWalkDraft, discardWalk } from './walk.js';
+import { initBiodiversity } from './biodiversity.js';
 
 export async function init() {
   if (!document.querySelector('link[href*="splash-fix.css"]')) {
@@ -111,6 +112,7 @@ export async function init() {
   await initPersonalPlaces();
   await initLayerSystem();
   initFieldGuideFilters();
+  initBiodiversity();
 
   await refreshCityMap(false);
   // Refresh returns to a neutral map state. Any draft remains stored for an

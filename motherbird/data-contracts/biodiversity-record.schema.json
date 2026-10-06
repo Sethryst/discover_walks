@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sethryst.github.io/discover_walks/contracts/biodiversity-record-v1.schema.json",
+  "title": "Motherbird biodiversity aggregate v1",
+  "type": "object",
+  "required": ["recordId", "taxonId", "scientificName", "regionId", "gridCellId", "month", "observationCount", "coordinateUncertainty", "source", "generatedAt", "sourceVintage", "boundaryVersion"],
+  "properties": {
+    "recordId": {"type": "string"}, "taxonId": {"type": "string"}, "scientificName": {"type": "string"}, "commonName": {"type": ["string", "null"]},
+    "kingdom": {"type": ["string", "null"]}, "class": {"type": ["string", "null"]}, "order": {"type": ["string", "null"]}, "family": {"type": ["string", "null"]}, "genus": {"type": ["string", "null"]}, "species": {"type": ["string", "null"]},
+    "regionId": {"type": "string"}, "gridCellId": {"type": "string"}, "month": {"type": "integer", "minimum": 1, "maximum": 12}, "observationCount": {"type": "integer", "minimum": 1},
+    "coordinateUncertainty": {"type": "object", "required": ["summaryMeters", "privacyClass"], "properties": {"summaryMeters": {"type": "number", "minimum": 0}, "privacyClass": {"enum": ["public", "obscured", "sensitive"]}}},
+    "source": {"type": "object", "required": ["provider", "occurrenceIds", "researchGrade", "captiveOrCultivatedExcluded"], "properties": {"provider": {"type": "string"}, "occurrenceIds": {"type": "array", "items": {"type": "string"}}, "researchGrade": {"type": "boolean"}, "captiveOrCultivatedExcluded": {"type": "boolean"}, "gbifDownloadDoi": {"type": ["string", "null"]}}},
+    "representativeImage": {"type": ["object", "null"], "properties": {"url": {"type": "string", "format": "uri"}, "license": {"type": "string"}}},
+    "generatedAt": {"type": "string", "format": "date-time"}, "sourceVintage": {"type": "string"}, "boundaryVersion": {"type": "string"}
+  },
+  "additionalProperties": true
+}
