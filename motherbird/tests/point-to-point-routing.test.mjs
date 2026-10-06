@@ -14,6 +14,7 @@ test('routing exposes specific cross-cell and boundary failure classes', () => {
   assert.match(routing, /destinationCell\?\.routingNeighbors/);
   assert.match(routing, /NO_CELL_FOR_COORDINATE/);
   assert.match(routing, /maxVisitedNodes: 300000/);
+  assert.match(routing, /requestRouteWithRetry/);
 });
 
 test('registry returns all overlapping candidates for adaptive routing', () => {

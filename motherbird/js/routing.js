@@ -1,4 +1,4 @@
-import { activateWalkingCellAt, getWalkingCellRegistry } from './walking-cell-runtime.js?v=20261006-routing-hardening-1';
+import { activateWalkingCellAt, getWalkingCellRegistry } from './walking-cell-runtime.js?v=20261006-routing-hardening-2';
 
 let worker = null;
 let sequence = 0;
@@ -42,7 +42,7 @@ export async function routeOnFoot(points, { city, profile = 'ordinary_walking_be
     catch (error) { return failure('GRAPH_VERSION_UNAVAILABLE', error.message); }
     if (!activeWalkingCell?.id) return failure('NO_CELL_FOR_COORDINATE', activeWalkingCell?.reason);
     if (activeWalkingCell.availability !== 'routing_available') return failure('GRAPH_VERSION_UNAVAILABLE', activeWalkingCell?.reason);
-    const request = (cell, origin = points[index], destination = points[index + 1]) => requestRoute({ city, profile, origin, destination, maxSnapMeters: 3000, maxVisitedNodes: 300000, avoid: { stairs: false, unverified_edges: false }, cell, cellId: cell?.id, cellRelease: cell?.release });
+    const request = (cell, origin = points[index], destination = points[index + 1]) => requestRouteWithRetry({ city, profile, origin, destination, maxSnapMeters: 3000, maxVisitedNodes: 300000, avoid: { stairs: false, unverified_edges: false }, cell, cellId: cell?.id, cellRelease: cell?.release });
     let result = await request(activeWalkingCell);
     const neighborIds = new Set([...(activeWalkingCell.routingNeighbors || []), ...(destinationCell?.routingNeighbors || [])]);
     if (result.ok) legs.push(result);
@@ -76,6 +76,15 @@ export async function routeOnFoot(points, { city, profile = 'ordinary_walking_be
     policyVersion: legs[0].policy_version,
     confidence: { minimum: Math.min(...legs.map((leg) => leg.confidence.minimum)), average: legs.reduce((sum, leg) => sum + leg.confidence.average, 0) / legs.length }
   };
+}
+
+async function requestRouteWithRetry(payload) {
+  let result = await requestRoute(payload);
+  if (result.ok || !['ROUTING_WORKER_ERROR', 'ROUTING_TIMEOUT'].includes(result.status)) return result;
+  // A worker can die during a large graph decode or transient cache read. The
+  // request layer resets it; one retry makes the next route attempt useful
+  // without allowing an infinite loop of expensive graph loads.
+  return requestRoute(payload);
 }
 
 async function stitchCellPath(origin, destination, cells, request, index = 0, current = origin, legs = []) {
@@ -158,7 +167,7 @@ function mergeInstructions(legs) {
 function requestRoute(payload) {
   if (typeof Worker === 'undefined') return Promise.resolve(failure('GRAPH_VERSION_UNAVAILABLE'));
   if (!worker) {
-    worker = new Worker('./js/offline-router-worker.js?v=20261006-routing-hardening-1', { type: 'module' });
+    worker = new Worker('./js/offline-router-worker.js?v=20261006-routing-hardening-2', { type: 'module' });
     worker.onmessage = ({ data }) => {
       if (data.type === 'progress') { window.dispatchEvent(new CustomEvent('routing-progress', { detail: data })); return; }
       if (data.type === 'worker-ready') { workerReady = true; window.dispatchEvent(new CustomEvent('routing-worker-ready', { detail: data })); return; }
