@@ -7,6 +7,7 @@ const DEFAULT_STARRED = [
   { id: 'journal', label: 'Journal', icon: '▦' },
   { id: 'walk-field-guide', label: 'Field Guide', icon: '🎒' }
 ];
+let radialMenuInitialized = false;
 
 export function getStarredActions() {
   return Array.isArray(state.settings?.starredRadialActions)
@@ -112,6 +113,8 @@ export function toggleRadialMenu(force) {
 }
 
 export function initRadialMenu() {
+  if (radialMenuInitialized) return;
+  radialMenuInitialized = true;
   const btn = el('radialWalkButton');
   const pauseBtn = el('radialPauseButton');
   const chevron = el('radialChevron');
@@ -121,9 +124,9 @@ export function initRadialMenu() {
     if (!walk) {
       await startWalk({ routeMode: 'tracking' });
     } else if (walk.paused) {
-      resumeWalk();
+      await resumeWalk();
     } else {
-      pauseWalk();
+      await pauseWalk();
     }
     updateRadialWalkButton();
   });

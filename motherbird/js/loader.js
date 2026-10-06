@@ -24,6 +24,7 @@ import { initNationalOsmLayers } from './national-osm-layers.js';
 import { initGeoCypher } from './geo-cypher.js';
 import { initPwaUpdates } from './pwa-update.js';
 import { initPrimaryShell } from './primary-shell.js';
+import { initRadialMenu } from './radial-menu.js';
 import { initStories } from './stories.js';
 import { initRadio } from './radio.js?v=20260928-radio-controls-v3';
 import { recoverWalkDraft, discardWalk } from './walk.js';
@@ -96,6 +97,9 @@ export async function init() {
   // The walk planner is core map functionality. Bind it before optional
   // stories, radio, and companion layers can abort startup on bad local data.
   initEvents();
+  // Bind the already-visible radial control before optional boot work can
+  // leave a slow browser with an inert Start walk button.
+  initRadialMenu();
   initStories();
   await initRadio();
   await initGeoCypher();
