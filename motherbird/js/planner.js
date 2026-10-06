@@ -2,7 +2,7 @@ import { state } from './state.js';
 import { setPlannerSelecting } from './planner-selection.js?v=20261004-planner-selection-1';
 import { CITIES } from './constants.js';
 import { poiTags } from './poi.js';
-import { routeOnFoot } from './routing.js?v=20261005-live-route-line-2';
+import { routeOnFoot } from './routing.js?v=20261006-point-to-point-1';
 import { escapeHtml } from './utils.js';
 import { toast } from './ui.js';
 import { splitDisconnectedPaths } from './routes.js';
@@ -10,6 +10,7 @@ import { splitDisconnectedPaths } from './routes.js';
 function selectedMinutes() { return Number(document.querySelector('input[name="walkTime"]:checked')?.value || 30); }
 function selectedRouteMode() { return document.querySelector('input[name="routeMode"]:checked')?.value || 'round-trip'; }
 function plannerOrigin() { return state.plannerStart || state.currentPosition || state.map?.getCenter() || CITIES[state.activeCity].center; }
+let generation = 0;
 
 function interests() {
   const pressed = [...document.querySelectorAll('[data-start-interest][aria-pressed="true"]')].map((button) => button.dataset.startInterest);
@@ -85,6 +86,7 @@ export function paintWalkConcept(plan = state.plannedRoute, { fit = true } = {})
 }
 
 export async function generateTimeBasedPlan({ stops: seededStops = null, title = null, reason = null, journeyId = null } = {}) {
+  const requestGeneration = ++generation;
   const minutes = selectedMinutes();
   const routeMode = selectedRouteMode();
   const center = plannerOrigin();
@@ -114,6 +116,7 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
   const routeOrigin = routeMode === 'point-to-point' ? (state.plannerStart || center) : center;
   const points = ['round-trip', 'auto-round-trip'].includes(routeMode) ? [center, ...stops, center] : [routeOrigin, ...stops];
   const routed = await routeOnFoot(points, { city: state.activeCity, profile: 'ordinary_walking_beta' }).catch(() => ({ ok: false, status: 'GRAPH_VERSION_UNAVAILABLE' }));
+  if (requestGeneration !== generation) return null;
   if (new URLSearchParams(globalThis.location?.search || '').has('diagnose')) {
     globalThis.__lastRouteResult = routed;
     document.body.dataset.routeStatus = routed.ok ? 'ROUTE_FOUND' : (routed.status || 'unknown');
@@ -123,18 +126,17 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
     toast(`Route ${routed.status}: ${routed.failure?.reason || routed.failure?.message || 'no diagnostic available'}`);
   }
   if (!routed.ok && routeMode === 'point-to-point') {
-    state.plannerEnd = null;
+    // Preserve both selected endpoints after a failed calculation so the
+    // walker can retry or change one endpoint deliberately.
     setPlannerSelecting('End');
     const detail = routed.failure?.reason || routed.failure?.message || routed.status;
-    toast(new URLSearchParams(globalThis.location?.search || '').has('diagnose')
-      ? `Route ${routed.status}: ${detail}`
-      : 'That destination could not be connected. Tap the map again to choose another point.');
+    toast(`Route unavailable (${routed.status}): ${routed.failure?.message || detail}`);
   }
   const plan = {
     id: `concept-${Date.now()}`, title: title || `${CITIES[state.activeCity]?.name || 'Local'} ${minutes}-minute sketch`,
     reason: reason || conceptReason(stops), city: state.activeCity, routeMode, estimatedDurationMinutes: minutes,
     stops, coordinates: routed.ok ? routed.coordinates : [], journeyId,
-    ...(routed.ok ? { distanceMeters: routed.distanceMeters, distanceMiles: Number((routed.distanceMeters / 1609.344).toFixed(2)), graphVersion: routed.graphVersion, cellId: routed.cellId, cellRelease: routed.cellRelease, edgeIds: routed.edgeIds, instructions: routed.instructions } : { graphStatus: routed.status || 'GRAPH_VERSION_UNAVAILABLE' })
+    ...(routed.ok ? { distanceMeters: routed.distanceMeters, distanceMiles: Number((routed.distanceMeters / 1609.344).toFixed(2)), graphVersion: routed.graphVersion, cellId: routed.cellId, cellRelease: routed.cellRelease, edgeIds: routed.edgeIds, instructions: routed.instructions } : { graphStatus: routed.status || 'GRAPH_VERSION_UNAVAILABLE', failureMessage: routed.failure?.message || null })
   };
   state.plannedRoute = plan; state.planOptions = [plan];
   paintWalkConcept(plan);

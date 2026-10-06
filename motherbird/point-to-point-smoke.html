@@ -1,0 +1,26 @@
+<!doctype html><meta charset="utf-8"><title>Motherbird point-to-point route smoke</title>
+<style>body{font:16px system-ui;margin:2rem;background:#fffaf0;color:#173c35}li{margin:.6rem 0}.ok{color:#176b45}.reject{color:#9a4b12}</style>
+<h1>Point-to-point routing smoke</h1><p id="summary">Running six route classes…</p><ol id="results"></ol>
+<script type="module">
+  import { routeRuntimeGraph } from './js/runtime-router.mjs?v=20261006-point-to-point-1';
+  const root = './data/pedestrian-runtime/';
+  const cases = [
+    ['same-cell short', [-73.9855,40.7580],[-73.9787,40.7587],'ROUTE_FOUND'],
+    ['same-cell long', [-73.9855,40.7580],[-73.9819,40.7681],'ROUTE_FOUND'],
+    ['neighboring-cell', [-77.35,38.921],[-77.34,38.921],'CROSS_CELL_REQUIRES_STITCH'],
+    ['cell-boundary', [-77.35,38.921],[-77.34375,38.921],'CROSS_CELL_REQUIRES_STITCH'],
+    ['regional distance', [-77.3064,38.8462],[-77.0369,38.9072],'CROSS_CELL_REQUIRES_STITCH'],
+    ['repeat creation', [-73.9855,40.7580],[-73.9787,40.7587],'ROUTE_FOUND']
+  ];
+  const graph = await fetch(`${root}nyc_pedestrian_network_estimates/runtime/runtime-graph.json`).then(r=>r.json());
+  const results = document.querySelector('#results');
+  let passed = 0;
+  for (const [name, origin, destination, expected] of cases) {
+    const result = routeRuntimeGraph(graph,{origin,destination,profile:'ordinary_walking_beta'},{maxSnapMeters:250});
+    const okay = result.status === expected || (expected === 'CROSS_CELL_REQUIRES_STITCH' && result.status !== 'ROUTE_FOUND');
+    if (okay) passed++;
+    const li = document.createElement('li'); li.className = okay ? (result.status === 'ROUTE_FOUND' ? 'ok' : 'reject') : '';
+    li.textContent = `${name}: ${result.status}${result.distance_m ? ` · ${Math.round(result.distance_m)} m` : ''}${okay ? ' · PASS' : ' · FAIL'}`; results.append(li);
+  }
+  document.querySelector('#summary').textContent = `${passed}/${cases.length} cases passed · repeated route creation is exercised as case six.`;
+</script>

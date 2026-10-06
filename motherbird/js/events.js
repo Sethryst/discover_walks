@@ -278,7 +278,7 @@ function renderWalkSketch(plan) {
     instructions.innerHTML = steps.length
       ? steps.map((step) => `<li>${escapeHtml(step.text)}${step.distance_m ? ` · ${Math.round(step.distance_m)} m` : ''}</li>`).join('')
       : `<li class="directions-unavailable">${escapeHtml(plan.graphStatus
-        ? 'We could not calculate that walk right now. Try selecting points a little closer together.'
+        ? `Route unavailable (${plan.graphStatus}): ${plan.failureMessage || 'The installed pedestrian network could not connect these points.'}`
         : 'Turn-by-turn directions are not available for this route.')}</li>`;
   }
   el('walkSketch').classList.remove('hidden');
