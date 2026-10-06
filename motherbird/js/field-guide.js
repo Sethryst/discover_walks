@@ -15,6 +15,7 @@ import { setPoiVisited } from './poi-visit-tracking.js';
 import { addWalkWaypoint, startWalk } from './walk.js';
 import { initMapsFolders, renderMapsLibrary } from './maps-folders.js';
 import { listSpatialQueries, queryPrompt } from './spatial-query.js?v=20260928-spatial-query-fix';
+import { renderBiodiversityGuide } from './biodiversity.js';
 
 const FORMAT = 'walk-wildlife-plan-v1';
 let selectedPlaceId = null;
@@ -145,6 +146,11 @@ export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') 
   if (tab === 'online' || tab === 'export') {
     el('fieldGuideOrderNote')?.classList.add('hidden');
     if (tab === 'online') window.dispatchEvent(new CustomEvent('online-panel-render-requested'));
+    return;
+  }
+  if (tab === 'biodiversity') {
+    el('fieldGuideOrderNote')?.classList.add('hidden');
+    await renderBiodiversityGuide(target);
     return;
   }
   const data = await guideData();
