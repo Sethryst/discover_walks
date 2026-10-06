@@ -37,15 +37,15 @@ export async function routeOnFoot(points, { city, profile = 'ordinary_walking_be
   for (let index = 0; index < points.length - 1; index += 1) {
     let destinationCell = null;
     try {
-      activeWalkingCell = await activateWalkingCellAt(points[index]);
+      activeWalkingCell = await activateWalkingCellAt(points[index], { allowNearestCellLock: true });
       const originCell = activeWalkingCell;
       // Load the destination index as well so a boundary leg can use the
       // neighboring package when the origin package cannot connect it.
-      destinationCell = await activateWalkingCellAt(points[index + 1]);
+      destinationCell = await activateWalkingCellAt(points[index + 1], { allowNearestCellLock: true });
       activeWalkingCell = originCell;
     }
     catch (error) { return failure('GRAPH_VERSION_UNAVAILABLE', error.message); }
-    if (!activeWalkingCell?.id) return failure('NO_CELL_FOR_COORDINATE', activeWalkingCell?.reason);
+    if (!activeWalkingCell?.id) return failure('NO_CELL_FOR_COORDINATE', activeWalkingCell?.reason, activeWalkingCell);
     if (activeWalkingCell.availability !== 'routing_available') return failure('GRAPH_VERSION_UNAVAILABLE', activeWalkingCell?.reason);
     const request = (cell, origin = points[index], destination = points[index + 1]) => requestRouteWithRetry({ city, profile, origin, destination, maxSnapMeters: 3000, maxVisitedNodes: 300000, avoid: { stairs: false, unverified_edges: false }, cell, cellId: cell?.id, cellRelease: cell?.release });
     let result = await request(activeWalkingCell);
