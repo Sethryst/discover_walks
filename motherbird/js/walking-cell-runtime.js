@@ -4,6 +4,12 @@ import { WalkingCellRegistry } from './walking-cell-registry.js?v=20261005-live-
 let registryPromise = null;
 let activation = null;
 
+export async function getWalkingCellRegistry(manifestUrl = walkingCellManifestUrl()) {
+  if (!manifestUrl) throw new Error('NO_WALKING_CELL_MANIFEST');
+  registryPromise ||= WalkingCellRegistry.load(manifestUrl).catch((error) => { registryPromise = null; throw error; });
+  return registryPromise;
+}
+
 export function walkingCellManifestUrl() {
   return globalThis.document?.querySelector?.('meta[name="motherbird-walking-cell-registry"]')?.content
     || globalThis.MOTHER_BIRD_WALKING_CELLS?.manifestUrl
@@ -13,8 +19,7 @@ export function walkingCellManifestUrl() {
 export async function activateWalkingCellAt(point, { manifestUrl = walkingCellManifestUrl() } = {}) {
   if (!manifestUrl) return Object.freeze({ id: null, release: null, availability: 'unavailable', reason: 'NO_WALKING_CELL_MANIFEST' });
   if (!Number.isFinite(point?.lat) || !Number.isFinite(point?.lng)) return Object.freeze({ id: null, release: null, availability: 'unavailable', reason: 'INVALID_WALKING_CELL_COORDINATE' });
-  registryPromise ||= WalkingCellRegistry.load(manifestUrl).catch((error) => { registryPromise = null; throw error; });
-  const registry = await registryPromise;
+  const registry = await getWalkingCellRegistry(manifestUrl);
   const cell = registry.find(point.lat, point.lng);
   if (!cell) {
     state.walkingCell = Object.freeze({ id: null, release: registry.release, availability: 'unavailable', reason: 'NO_CELL_FOR_COORDINATE', files: {} });

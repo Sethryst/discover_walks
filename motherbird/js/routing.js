@@ -1,4 +1,4 @@
-import { activateWalkingCellAt } from './walking-cell-runtime.js?v=20261006-point-to-point-1';
+import { activateWalkingCellAt, getWalkingCellRegistry } from './walking-cell-runtime.js?v=20261006-multihop-routing-1';
 
 let worker = null;
 let sequence = 0;
@@ -44,13 +44,13 @@ export async function routeOnFoot(points, { city, profile = 'ordinary_walking_be
     let result = await request(activeWalkingCell);
     const neighborIds = new Set([...(activeWalkingCell.routingNeighbors || []), ...(destinationCell?.routingNeighbors || [])]);
     if (result.ok) legs.push(result);
-    else if (destinationCell?.id && destinationCell.id !== activeWalkingCell.id
-      && neighborIds.has(destinationCell.id) && destinationCell.availability === 'routing_available') {
-      const stitched = await stitchBoundaryLeg(points[index], points[index + 1], activeWalkingCell, destinationCell, request);
-      if (!stitched) return failure('BOUNDARY_STITCH_FAILED', `${activeWalkingCell.id} -> ${destinationCell.id}`);
+    else if (destinationCell?.id && destinationCell.id !== activeWalkingCell.id && destinationCell.availability === 'routing_available') {
+      const registry = await getWalkingCellRegistry();
+      const cellPath = findCellPath(registry, activeWalkingCell.id, destinationCell.id);
+      if (!cellPath || (cellPath.length === 2 && !neighborIds.has(destinationCell.id))) return failure('CROSS_CELL_UNAVAILABLE', `${activeWalkingCell.id} -> ${destinationCell.id}`);
+      const stitched = await stitchCellPath(points[index], points[index + 1], cellPath, request);
+      if (!stitched) return failure('BOUNDARY_STITCH_FAILED', cellPath.map((cell) => cell.id).join(' -> '));
       legs.push(...stitched);
-    } else if (destinationCell?.id && destinationCell.id !== activeWalkingCell.id) {
-      return failure('CROSS_CELL_UNAVAILABLE', `${activeWalkingCell.id} -> ${destinationCell.id}`);
     } else return result;
   }
   const coordinates = [];
@@ -75,24 +75,33 @@ export async function routeOnFoot(points, { city, profile = 'ordinary_walking_be
   };
 }
 
-async function stitchBoundaryLeg(origin, destination, originCell, destinationCell, request) {
-  const candidates = boundaryTransferPoints(originCell, destinationCell);
-  let best = null;
-  for (const transfer of candidates) {
-    const first = await request(originCell, origin, transfer);
-    if (!first.ok) continue;
-    const second = await request(destinationCell, transfer, destination);
-    if (!second.ok) continue;
-    const firstEnd = first.geometry?.coordinates?.at(-1);
-    const secondStart = second.geometry?.coordinates?.[0];
-    if (!firstEnd || !secondStart
-      || distanceMeters(firstEnd, [transfer.lng, transfer.lat]) > 25
-      || distanceMeters(secondStart, [transfer.lng, transfer.lat]) > 25
-      || distanceMeters(firstEnd, secondStart) > 25) continue;
-    const score = first.distance_m + second.distance_m;
-    if (!best || score < best.score) best = { score, legs: [first, second] };
+async function stitchCellPath(origin, destination, cells, request, index = 0, current = origin, legs = []) {
+  if (index === cells.length - 1) {
+    const last = await request(cells[index], current, destination);
+    return last.ok ? [...legs, last] : null;
   }
-  return best?.legs || null;
+  for (const transfer of boundaryTransferPoints(cells[index], cells[index + 1])) {
+    const first = await request(cells[index], current, transfer);
+    if (!first.ok) continue;
+    const firstEnd = first.geometry?.coordinates?.at(-1);
+    if (!firstEnd || distanceMeters(firstEnd, [transfer.lng, transfer.lat]) > 25) continue;
+    const stitched = await stitchCellPath(origin, destination, cells, request, index + 1, transfer, [...legs, first]);
+    if (stitched) return stitched;
+  }
+  return null;
+}
+
+export function findCellPath(registry, startId, endId) {
+  const cells = new Map(registry.cells.map((cell) => [cell.id, cell]));
+  const queue = [startId]; const previous = new Map([[startId, null]]);
+  while (queue.length) {
+    const id = queue.shift(); if (id === endId) break;
+    const cell = cells.get(id); if (!cell) continue;
+    const neighbors = new Set([...(cell.routingNeighbors || [])]);
+    for (const neighbor of neighbors) if (cells.has(neighbor) && !previous.has(neighbor)) { previous.set(neighbor, id); queue.push(neighbor); }
+  }
+  if (!previous.has(endId)) return null;
+  const path = []; for (let id = endId; id; id = previous.get(id)) path.unshift(cells.get(id)); return path;
 }
 
 function distanceMeters(a, b) {
@@ -134,7 +143,7 @@ function mergeInstructions(legs) {
 function requestRoute(payload) {
   if (typeof Worker === 'undefined') return Promise.resolve(failure('GRAPH_VERSION_UNAVAILABLE'));
   if (!worker) {
-    worker = new Worker('./js/offline-router-worker.js?v=20261006-point-to-point-1', { type: 'module' });
+    worker = new Worker('./js/offline-router-worker.js?v=20261006-multihop-routing-1', { type: 'module' });
     worker.onmessage = ({ data }) => {
       if (data.type === 'progress') { window.dispatchEvent(new CustomEvent('routing-progress', { detail: data })); return; }
       if (data.type === 'worker-ready') { workerReady = true; window.dispatchEvent(new CustomEvent('routing-worker-ready', { detail: data })); return; }

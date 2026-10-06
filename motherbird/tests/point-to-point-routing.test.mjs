@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { WalkingCellRegistry } from '../js/walking-cell-registry.js';
+import { findCellPath } from '../js/routing.js';
 
 const routing = await readFile(new URL('../js/routing.js', import.meta.url), 'utf8');
 const planner = await readFile(new URL('../js/planner.js', import.meta.url), 'utf8');
@@ -27,4 +28,15 @@ test('cell registry metadata supports explicit neighboring-cell decisions', () =
   ] }, 'https://example.test/cells.json');
   assert.equal(registry.find(1, -1).routingNeighbors[0], 'east');
   assert.equal(registry.find(1, 1).routingNeighbors[0], 'west');
+});
+
+test('cell graph finds multi-hop paths and rejects disconnected cells', () => {
+  const cells = [
+    { id: 'a', bounds: [0, 0, 1, 1], routingNeighbors: ['b'] },
+    { id: 'b', bounds: [1, 0, 2, 1], routingNeighbors: ['a', 'c'] },
+    { id: 'c', bounds: [2, 0, 3, 1], routingNeighbors: ['b'] },
+    { id: 'z', bounds: [10, 0, 11, 1], routingNeighbors: [] }
+  ];
+  assert.deepEqual(findCellPath({ cells }, 'a', 'c').map((cell) => cell.id), ['a', 'b', 'c']);
+  assert.equal(findCellPath({ cells }, 'a', 'z'), null);
 });
