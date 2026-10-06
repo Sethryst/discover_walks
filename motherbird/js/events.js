@@ -401,6 +401,8 @@ function bindWalkControls() {
         document.body.classList.add('route-selection-active');
         el('routeSelectionHint')?.classList.remove('hidden');
         if (el('routeSelectionHint')) el('routeSelectionHint').textContent = 'Tap the map to choose your destination.';
+        el('startPanel')?.classList.remove('hidden');
+        el('radialRouteOptionsButton')?.setAttribute('aria-expanded', 'true');
       }
       const status = el('routeComposerStatus');
       if (status) status.textContent = type === 'Start' ? 'Start selected. Choose a destination next.' : 'Destination added. Add another or show the route.';
