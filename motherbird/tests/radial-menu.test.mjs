@@ -22,3 +22,20 @@ test('the deployed shell cache is invalidated with the radial binding fix', asyn
   const worker = await readFile(new URL('../service-worker.js', import.meta.url), 'utf8');
   assert.match(worker, /const APP_CACHE = 'walk-wildlife-shell-v319'/);
 });
+
+test('developer simulated walks activate local GPS before starting capture', async () => {
+  const simulator = await readFile(new URL('location-simulator.js', root), 'utf8');
+  const walk = await readFile(new URL('walk.js', root), 'utf8');
+  assert.match(simulator, /simulatedPreset = select\.value/);
+  assert.match(simulator, /setSessionValue\(simulatedPreset\)/);
+  assert.match(simulator, /dispatchPosition\(\);[\s\S]*?startWalk\(\{ routeMode: 'tracking' \}\)/);
+  assert.match(walk, /color: '#168cff'/);
+  assert.match(walk, /isLocationSimulatorEnabled\(\)[\s\S]*?fitBounds\(state\.routeLine\.getBounds\(\)/);
+});
+
+test('developer tools are explicitly local-only and collapsible', async () => {
+  const simulator = await readFile(new URL('location-simulator.js', root), 'utf8');
+  assert.match(simulator, /<details id="locationSimulatorDetails">/);
+  assert.match(simulator, /DEVTOOLS · LOCAL ONLY/);
+  assert.match(simulator, /hostname === 'localhost'/);
+});

@@ -82,8 +82,11 @@ export function addWalkPoint(point) {
   const detections = detectTrackEvents({ walk, point: smoothed, previousPoint: last, knownTrackPoints: state.knownTrackPoints, nowMs: now });
   detections.forEach((event) => void recordWalkEvent(event.type, event.location, event.metadata, event.timestamp));
 
-  if (!state.routeLine) state.routeLine = L.polyline([], { color: '#245448', weight: 5, opacity: .85 }).addTo(state.map);
+  if (!state.routeLine) state.routeLine = L.polyline([], { color: '#168cff', weight: 8, opacity: 1, lineCap: 'round', lineJoin: 'round' }).addTo(state.map);
   state.routeLine.addLatLng([smoothed.lat, smoothed.lng]);
+  if (isLocationSimulatorEnabled() && walk.points.length > 1 && state.map?.fitBounds) {
+    state.map.fitBounds(state.routeLine.getBounds(), { padding: [90, 90], maxZoom: 18, animate: false });
+  }
   updateWalkDisplay();
   void persistWalkDraft();
 }
@@ -220,7 +223,7 @@ export async function startWalk({ routeMode = 'tracking' } = {}) {
   });
   ensurePauseButton();
   state.routeLine?.remove();
-  state.routeLine = L.polyline([], { color: '#245448', weight: 5, opacity: .85 }).addTo(state.map);
+  state.routeLine = L.polyline([], { color: '#168cff', weight: 8, opacity: 1, lineCap: 'round', lineJoin: 'round' }).addTo(state.map);
   el('walkButton').setAttribute('disabled', '');
   el('endWalkButton').classList.remove('hidden');
   setStatus('Recording your walk', true);

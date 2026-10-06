@@ -823,6 +823,10 @@ body.route-selection-active .leaflet-overlay-pane {
 /* Development-only location simulator; the module never mounts this panel in production. */
 .location-simulator-panel { position: fixed; z-index: 3000; right: 1rem; bottom: 1rem; width: min(22rem, calc(100vw - 2rem)); max-height: min(80vh, 42rem); overflow: auto; display: grid; gap: .55rem; padding: 1rem; color: #17211d; background: #fffdf6; border: 2px solid #d97706; border-radius: 12px; box-shadow: 0 8px 28px #0003; font: 14px/1.35 system-ui, sans-serif; }
 .location-simulator-panel strong { font-size: 1rem; }
+.location-simulator-panel details { display: grid; gap: .55rem; }
+.location-simulator-panel summary { cursor: pointer; display: flex; align-items: baseline; justify-content: space-between; gap: .75rem; list-style-position: inside; }
+.location-simulator-panel details:not([open]) { gap: 0; }
+.location-simulator-panel details:not([open]) summary { margin: 0; }
 .simulator-warning { color: #b45309; font-size: .72rem; font-weight: 800; letter-spacing: .08em; }
 .location-simulator-panel label { display: grid; gap: .2rem; }
 .location-simulator-panel select, .location-simulator-panel button { min-height: 2.2rem; padding: .35rem .5rem; font: inherit; }

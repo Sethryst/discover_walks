@@ -13,17 +13,27 @@ function sessionValue() { try { return simulatorEnabled && globalThis.sessionSto
 function setSessionValue(value) { try { if (simulatorEnabled && globalThis.sessionStorage) value === null ? globalThis.sessionStorage.removeItem(STORAGE_KEY) : globalThis.sessionStorage.setItem(STORAGE_KEY, value); } catch { /* Private/test contexts may disable storage; memory remains authoritative. */ } }
 let simulatedPreset = sessionValue();
 let nextWatchId = 0;
+let simulatedSample = 0;
 const watches = new Map();
 let networkSimulation = 'normal';
 let playbackTimer = null;
 let originalFetch = null;
 export function simulatedPosition(preset) { const point = LOCATION_PRESETS[preset]; if (!point) throw new Error(`Unknown location preset: ${preset}`); return { coords: { latitude: point.lat, longitude: point.lng, accuracy: 10 }, timestamp: Date.now() }; }
+function simulatedWalkPosition(preset) {
+  const point = LOCATION_PRESETS[preset];
+  if (!point) throw new Error(`Unknown location preset: ${preset}`);
+  simulatedSample += 1;
+  // Roughly 13 m per sample, bounded to a small local path and below the
+  // walk speed guard. Coordinates never leave this browser or session storage.
+  const offset = Math.min(simulatedSample, 20) * 0.00014;
+  return { coords: { latitude: point.lat + Math.sin(simulatedSample * 0.55) * 0.00006, longitude: point.lng + offset, accuracy: 10 }, timestamp: Date.now() };
+}
 export function isLocationSimulatorEnabled() { return simulatorEnabled; }
 export function isSimulationActive() { return simulatorEnabled && Boolean(simulatedPreset); }
 export function getSimulatedPreset() { return simulatedPreset; }
-export function clearSimulation() { stopLocationPlayback(); simulatedPreset = null; setSessionValue(null); if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('location-updated', { detail: null })); }
+export function clearSimulation() { stopLocationPlayback(); simulatedPreset = null; simulatedSample = 0; setSessionValue(null); if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('location-updated', { detail: null })); }
 export function getCurrentPosition(success, error) { if (isSimulationActive()) return success(simulatedPosition(simulatedPreset)); return navigator.geolocation.getCurrentPosition(success, error, { enableHighAccuracy: true, timeout: 12000, maximumAge: 10000 }); }
-export function watchPosition(success, error, options) { if (!isSimulationActive()) return navigator.geolocation.watchPosition(success, error, options); const id = ++nextWatchId; watches.set(id, setInterval(() => success(simulatedPosition(simulatedPreset)), 5000)); queueMicrotask(() => success(simulatedPosition(simulatedPreset))); return id; }
+export function watchPosition(success, error, options) { if (!isSimulationActive()) return navigator.geolocation.watchPosition(success, error, options); const id = ++nextWatchId; watches.set(id, setInterval(() => success(simulatedWalkPosition(simulatedPreset)), 5000)); queueMicrotask(() => success(simulatedPosition(simulatedPreset))); return id; }
 export function clearWatch(id) { if (watches.has(id)) { clearInterval(watches.get(id)); watches.delete(id); } else navigator.geolocation.clearWatch(id); }
 export function stopLocationPlayback() { if (playbackTimer) clearInterval(playbackTimer); playbackTimer = null; }
 export function startLocationPlayback(presets = ['alexandria', 'dc', 'fairfax'], intervalMs = 1500) { stopLocationPlayback(); let index = 0; const emit = () => { simulatedPreset = presets[index % presets.length]; setSessionValue(simulatedPreset); dispatchPosition(); index += 1; }; emit(); playbackTimer = setInterval(emit, intervalMs); return stopLocationPlayback; }
@@ -61,13 +71,23 @@ function dispatchPosition() { window.dispatchEvent(new CustomEvent('location-upd
 function renderPanel() {
   if (!simulatorEnabled) return;
   const panel = document.createElement('aside'); panel.id = 'locationSimulatorPanel'; panel.className = 'location-simulator-panel';
-  panel.innerHTML = `<strong>Location simulator</strong><span class="simulator-warning">SIMULATED LOCATION</span><label>Preset<select id="locationSimulatorPreset">${Object.entries(LOCATION_PRESETS).map(([id, point]) => `<option value="${id}">${point.name}</option>`).join('')}</select></label><div class="simulator-actions"><button type="button" id="useSimulatedLocationButton">Use simulated location</button><button type="button" id="moveSimulatedLocationButton">Move location</button><button type="button" id="playLocationSimulationButton">Play location route</button><button type="button" id="clearSimulatedLocationButton">Clear simulation</button></div><output id="locationSimulatorCoordinates">No simulation active</output><small>Accuracy: <span id="locationSimulatorAccuracy">—</span></small><hr><strong>Offline diagnostics</strong><label>Network test<select id="networkSimulationSelect"><option value="normal">Normal network</option><option value="offline">Offline</option><option value="slow-3g">Slow 3G</option><option value="flaky">Intermittent</option></select></label><output id="offlineStorageReport">Storage not checked</output><div class="simulator-actions"><button type="button" id="refreshOfflineStorageButton">Refresh diagnostics</button><button type="button" id="exportOfflineDiagnosticsButton">Export privacy-safe report</button><button type="button" id="clearTileCacheButton">Clear tile cache</button><button type="button" id="clearSyncQueueButton">Clear sync queue</button></div>`;
+  panel.innerHTML = `<details id="locationSimulatorDetails"><summary><strong>Location simulator</strong><span class="simulator-warning">DEVTOOLS · LOCAL ONLY</span></summary><label>Preset<select id="locationSimulatorPreset">${Object.entries(LOCATION_PRESETS).map(([id, point]) => `<option value="${id}">${point.name}</option>`).join('')}</select></label><div class="simulator-actions"><button type="button" id="useSimulatedLocationButton">Use simulated location</button><button type="button" id="moveSimulatedLocationButton">Move location</button><button type="button" id="playLocationSimulationButton">Play location route</button><button type="button" id="startSimulatedWalkButton">Start simulated walk</button><button type="button" id="clearSimulatedLocationButton">Clear simulation</button></div><output id="locationSimulatorCoordinates">No simulation active</output><small>Accuracy: <span id="locationSimulatorAccuracy">—</span></small><hr><strong>Offline diagnostics</strong><label>Network test<select id="networkSimulationSelect"><option value="normal">Normal network</option><option value="offline">Offline</option><option value="slow-3g">Slow 3G</option><option value="flaky">Intermittent</option></select></label><output id="offlineStorageReport">Storage not checked</output><div class="simulator-actions"><button type="button" id="refreshOfflineStorageButton">Refresh diagnostics</button><button type="button" id="exportOfflineDiagnosticsButton">Export privacy-safe report</button><button type="button" id="clearTileCacheButton">Clear tile cache</button><button type="button" id="clearSyncQueueButton">Clear sync queue</button></div></details>`;
   document.body.append(panel); const select = panel.querySelector('#locationSimulatorPreset'); select.value = simulatedPreset || 'dc';
   const update = () => { const point = isSimulationActive() ? LOCATION_PRESETS[simulatedPreset] : null; panel.querySelector('#locationSimulatorCoordinates').textContent = point ? `${point.lat.toFixed(4)}, ${point.lng.toFixed(4)}` : 'No simulation active'; panel.querySelector('#locationSimulatorAccuracy').textContent = point ? '10 m' : '—'; document.body.classList.toggle('simulated-location-active', Boolean(point)); };
   window.addEventListener('location-updated', update);
   const activate = () => { simulatedPreset = select.value; setSessionValue(simulatedPreset); dispatchPosition(); update(); };
   panel.querySelector('#useSimulatedLocationButton').onclick = activate; panel.querySelector('#moveSimulatedLocationButton').onclick = activate;
   panel.querySelector('#playLocationSimulationButton').onclick = () => startLocationPlayback();
+  panel.querySelector('#startSimulatedWalkButton').onclick = async () => {
+    // Developer walk capture must never fall through to hardware geolocation:
+    // activate the local preset first, then let walk.js consume that position.
+    simulatedPreset = select.value;
+    setSessionValue(simulatedPreset);
+    dispatchPosition();
+    update();
+    const { startWalk } = await import('./walk.js');
+    await startWalk({ routeMode: 'tracking' });
+  };
   panel.querySelector('#networkSimulationSelect').onchange = (event) => { setNetworkSimulation(event.target.value); panel.dataset.networkSimulation = event.target.value; };
   panel.querySelector('#clearSimulatedLocationButton').onclick = () => { clearSimulation(); update(); };
   panel.querySelector('#clearTileCacheButton').onclick = async () => { await clearOfflineScope('tiles'); panel.querySelector('#offlineStorageReport').textContent = 'Tile cache cleared locally.'; };
