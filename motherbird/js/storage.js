@@ -92,7 +92,7 @@ export const db = (() => {
     });
   }
 
-  async function open({ beforeRiskyMigration } = {}) {
+  async function open({ beforeRiskyMigration, timeoutMs = 1500 } = {}) {
     if (typeof indexedDB === 'undefined') {
       database = null;
       return;
@@ -108,7 +108,7 @@ export const db = (() => {
         database = null;
         console.warn('Local database upgrade is blocked; continuing with temporary in-memory storage.');
         resolve();
-      }, 5000);
+      }, timeoutMs);
       const request = indexedDB.open(DATABASE_NAME, DATABASE_VERSION);
       request.onupgradeneeded = (event) => {
         database = request.result;

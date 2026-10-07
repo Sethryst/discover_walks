@@ -1,4 +1,4 @@
-import db from './storage.js?v=20260925-routing-binary';
+import db from './storage.js?v=20261007-startup-persistence-1';
 import { state } from './state.js';
 import { DEFAULT_SETTINGS, CITIES, DEFAULT_CITY_ID } from './constants.js';
 import { normalizeProfile, sitesForProfile } from './utils.js';
@@ -6,7 +6,6 @@ import { toast } from './ui.js';
 import { initMap } from './map.js?v=20261006-dc-default-view-1';
 import { applyStaticAppearance } from './ui.js';
 import { loadAllCityData, refreshCityMap } from './city.js?v=20261007-regional-worker-path-2';
-import { initEvents } from './events.js?v=20261006-point-to-point-selection-1';
 import { renderArchive } from './archive.js';
 import { normalizedEntitlements } from './entitlements.js';
 import { restoreLocalPoiClosures } from './spatial-closure-reporting.js';
@@ -35,9 +34,6 @@ export async function init() {
   const splashStatus = document.getElementById('appSplashStatus');
   const setSplashStatus = (message) => { if (splashStatus) splashStatus.textContent = message; };
   setSplashStatus('Getting your pencils sharpened…');
-  // Check for a replacement worker before startup work can fail. Otherwise a
-  // stale broken shell can prevent the update path from ever running.
-  void initPwaUpdates().catch((error) => console.warn('App update check unavailable:', error.message));
   if (!document.querySelector('link[href*="splash-fix.css"]')) {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
@@ -78,26 +74,16 @@ export async function init() {
     // IndexedDB can hard-block startup on a stale or suspended tab. Keep the
     // map usable while persistence is repaired; db's memory fallback still
     // supports the current session.
-    const persistenceDisabledForBoot = true;
-    if (!persistenceDisabledForBoot) await db.open({ beforeRiskyMigration: async (details) => {
+    await db.open({ timeoutMs: 1500, beforeRiskyMigration: async (details) => {
       if (!confirm('Walk & Wildlife needs a local data upgrade. Download a private backup first? Cancel skips the backup and continues.')) return;
       const backup = await db.createPreMigrationBackup(details);
       const url = URL.createObjectURL(backup);
       const link = document.createElement('a'); link.href = url; link.download = `walk-wildlife-before-database-v${details.toVersion}.json`; link.click();
       setTimeout(() => URL.revokeObjectURL(url), 0);
     } });
-    if (persistenceDisabledForBoot) {
-      state.profile = normalizeProfile({});
-      state.settings = { ...DEFAULT_SETTINGS };
-      state.activeCity = DEFAULT_CITY_ID;
-      state.walks = [];
-      state.savedRoutes = [];
-      state.knownTrackPoints = [];
-    } else {
-      await loadLocalState();
-      await enterSingleInstalledRegion();
-      await migrateLegacyJournalAudio();
-    }
+    await loadLocalState();
+    await enterSingleInstalledRegion();
+    void migrateLegacyJournalAudio().catch((error) => console.warn('Journal audio migration unavailable:', error.message));
     const params = new URLSearchParams(globalThis.location?.search || '');
     const requestedCity = params.get('city') || (params.get('routecheck') === '1' ? 'alexandria' : null);
     if (requestedCity && CITIES[requestedCity] && navigator.onLine !== false) {
@@ -128,7 +114,6 @@ export async function init() {
   requestAnimationFrame(() => state.map?.invalidateSize({ pan: false }));
   // The walk planner is core map functionality. Bind it before optional
   // stories, radio, and companion layers can abort startup on bad local data.
-  initEvents();
   requestAnimationFrame(() => { state.map?.invalidateSize({ pan: false }); dismissSplash(); });
   // Bind the already-visible radial control before optional boot work can
   // leave a slow browser with an inert Start walk button.
@@ -146,6 +131,7 @@ export async function init() {
     return null;
   });
   void (async () => {
+    await optionalBoot('walk controls', () => import('./events.js?v=20261007-startup-events-1').then(({ initEvents }) => initEvents()));
     await optionalBoot('radio', initRadio);
     await optionalBoot('geo-cypher', initGeoCypher);
     removePrimaryControlFallbacks();
@@ -164,14 +150,15 @@ export async function init() {
   // Refresh returns to a neutral map state. Any draft remains stored for an
   // explicit recovery flow; never restart live tracking automatically.
   applyStaticAppearance();
-  await renderArchive();
-  await offerWalkDraftRecovery();
-  startCoachMarks();
+  void renderArchive().catch((error) => console.warn('Archive render unavailable:', error.message));
+  void offerWalkDraftRecovery().catch((error) => console.warn('Walk recovery unavailable:', error.message));
+  void Promise.resolve().then(() => startCoachMarks()).catch((error) => console.warn('Coach marks unavailable:', error.message));
 
   if (splash) requestAnimationFrame(dismissSplash);
 
   // No auth/onboarding sheet at launch. Only Go online starts a ceremony.
   void optionalBoot('online pane', initOnlinePane);
+  void optionalBoot('app updates', initPwaUpdates);
 
   // Opt-in live routing verification: exercise the installed planner and
   // renderer after the full map/runtime boot has completed. This is query-
