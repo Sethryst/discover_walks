@@ -37,7 +37,7 @@ test('ambient planning returns a verified direct route and optional alternatives
     destination,
     routeOnFoot: fakeRoute,
     context: { availableMinutes: 60, destination },
-    discoveryStops: [{ id: 'history-1', name: 'Old marker', lat: 38.905, lng: -77.09 }],
+    discoveryStops: [{ id: 'history-1', name: 'Old marker', tags: ['history'], lat: 38.905, lng: -77.09 }],
     quietStops: [{ id: 'park-1', name: 'Greenway', lat: 38.905, lng: -77.09 }]
   });
   assert.ok(result.primary);
@@ -45,6 +45,7 @@ test('ambient planning returns a verified direct route and optional alternatives
   assert.equal(result.routes.every((route) => route.coordinates), true);
   assert.ok(result.routes.some((route) => route.archetype === 'direct'));
   assert.ok(result.routes.some((route) => route.archetype === 'discovery'));
+  assert.equal(result.routes.find((route) => route.archetype === 'discovery')?.facts.discoveryFocus, 'historic-cultural');
 });
 
 test('ambient candidate generation preserves one discovery and one quiet option', async () => {

@@ -30,7 +30,8 @@ export function aggregateRouteFeatures(route, sidecar, poiRecords = [], corridor
   const records = new Map((sidecar.edges || sidecar.edgeFeatures || []).map((edge) => [String(edge.edgeId || edge.id), edge]));
   const catalog = new Map((corridorCatalogue || []).filter((corridor) => corridor?.status === 'verified').map((corridor) => [String(corridor.id), corridor]));
   const corridorIds = new Set();
-  const corridorLengths = new Map();
+  const corridorEdges = new Map();
+  const corridorNames = new Map();
   const signalTotals = { nature: 0, history: 0, culture: 0, quiet: 0, greenway: 0, waterAdjacent: 0, majorRoadExposure: 0, stairs: 0, surfaceKnown: 0 };
   const provenance = new Set();
   let minimumConfidence = 1;
@@ -50,15 +51,21 @@ export function aggregateRouteFeatures(route, sidecar, poiRecords = [], corridor
       const corridor = catalog.get(corridorId);
       if (!corridor) continue;
       corridorIds.add(corridorId);
-      corridorLengths.set(corridorId, Math.max(corridorLengths.get(corridorId) || 0, length));
+      const edgeSet = corridorEdges.get(corridorId) || new Set();
+      edgeSet.add(edgeId);
+      corridorEdges.set(corridorId, edgeSet);
+      corridorNames.set(corridorId, String(corridor.name || corridorId));
       for (const signal of corridor.signals || corridorRef.signals || []) signalTotals[signal] = Math.max(signalTotals[signal] || 0, length);
       for (const sourceId of corridor.sourceIds || []) provenance.add(String(sourceId));
     }
     for (const signal of Object.keys(signalTotals)) {
       const value = Number(edge.signals?.[signal] || 0);
-      signalTotals[signal] = signal === 'majorRoadExposure' || signal === 'stairs' ? signalTotals[signal] + value : Math.max(signalTotals[signal], value);
+      signalTotals[signal] = Math.max(signalTotals[signal], value);
     }
   }
+  const corridorLengths = Object.fromEntries([...corridorEdges.entries()]
+    .sort(([left], [right]) => left.localeCompare(right))
+    .map(([corridorId, edgeSet]) => [corridorId, [...edgeSet].reduce((sum, edgeId) => sum + Number(records.get(edgeId)?.lengthMeters || 0), 0)]));
   const pois = (poiRecords || []).filter((poi) => route?.stops?.some((stop) => String(stop.id || stop.name) === String(poi.id || poi.name)) && isTrustedPoi(poi));
   const poiCounts = { total: pois.length, history: 0, culture: 0, nature: 0 };
   pois.forEach((poi) => { for (const tag of poi.tags || [poi.category]) if (tag in poiCounts) poiCounts[tag] += 1; });
@@ -66,13 +73,13 @@ export function aggregateRouteFeatures(route, sidecar, poiRecords = [], corridor
     valid: true,
     edgeCount: edgeIds.length,
     corridorIds: [...corridorIds].sort(),
-    corridorLengths: Object.fromEntries([...corridorLengths.entries()].sort()),
+    corridorLengths,
     signalTotals,
     poiCounts,
     sourceProvenanceIds: [...provenance].sort(),
     confidence: { minimum: edgeIds.length ? minimumConfidence : 0, lengthWeighted: confidenceLength ? confidenceWeight / confidenceLength : 0 },
     warnings,
-    facts: { corridorIds: [...corridorIds].sort(), corridorCount: corridorIds.size, poiCount: poiCounts.total, extraMinutes: Number(route?.directDurationMinutes ? Math.max(0, Number(route.durationSeconds || 0) / 60 - route.directDurationMinutes) : 0) }
+    facts: { corridorIds: [...corridorIds].sort(), corridorCount: corridorIds.size, corridorName: corridorNames.get([...corridorIds].sort()[0]) || null, corridorMeters: Object.values(corridorLengths).reduce((sum, meters) => sum + Number(meters || 0), 0), poiCount: poiCounts.total, extraMinutes: Number(route?.directDurationMinutes ? Math.max(0, Number(route.durationSeconds || 0) / 60 - route.directDurationMinutes) : 0) }
   };
 }
 

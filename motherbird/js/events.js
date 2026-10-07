@@ -9,7 +9,7 @@ import { city, poiTags, searchPois } from './poi.js';
 import { localSearchHits, searchRowHtml, emptySearchHtml } from './search.js';
 import { initRegionalNavigation } from './regional-navigation.js';
 import { switchCity } from './city.js';
-import { generateTimeBasedPlan, lockSelectedPlanOnMap, changePlan, selectPlan, setPlanningMode } from './planner.js?v=20261007-ambient-routing-1';
+import { generateTimeBasedPlan, lockSelectedPlanOnMap, changePlan, selectPlan, setPlanningMode } from './planner.js?v=20261007-ambient-planner-2';
 import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261007-ambient-routing-1';
 import { coordinateLabel, resolveRoutePlaceLabel } from './route-place-labels.js?v=20261006-route-labels-1';
 import { paintWalkPlan, paintCard, previewCard, sendCurrentWalkPlan } from './field-guide.js?v=133-source-catalogue';
@@ -26,7 +26,7 @@ import { restartCoachMarks } from './coach.js';
 import { savePlannedRoute } from './saved-routes.js';
 import { recordSessionRoutingOutcome } from './routing-feedback.js';
 import { openRoomForPlace } from './room-runtime.js';
-import { buildInWalkSuggestion } from './ambient-mip.js?v=20261007-ambient-12';
+import { buildInWalkSuggestion } from './ambient-mip.js?v=20261007-ambient-13';
 
 const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];
 function ambientResponse(plan, signal) { return { archetype: plan?.archetype, traits: plan?.ambientTraits || [], [signal]: true }; }

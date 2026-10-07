@@ -1,6 +1,6 @@
 const STORAGE_KEY = 'motherbird.ambient-route-learning.v1';
 const MAX_EVIDENCE_AGE_DAYS = 90;
-import { aggregateRouteFeatures } from './mip-features.js?v=20261007-mip-features-3';
+import { aggregateRouteFeatures } from './mip-features.js?v=20261007-mip-features-4';
 
 export const AMBIENT_ARCHETYPES = Object.freeze(['direct', 'discovery', 'quiet']);
 
@@ -27,7 +27,7 @@ export async function generateAmbientOptions({ origin, destination, routeOnFoot,
     const profile = archetype === 'quiet' && context.stepFreeRequested === true ? 'accessible_verified' : 'ordinary_walking_beta';
     const result = await safeRoute(routeOnFoot, [origin, stop, destination], routeOptions(profile));
     if (!result.ok || (profile === 'accessible_verified' && result.accessibilityVerified !== true && result.accessibilityEvidence !== 'verified')) continue;
-    routes.push(enrichAmbientRoute({ ...result, avoidEdges: routeOptions(profile).avoidEdges, id: `ambient-${archetype}-${stop.id || stop.name || routes.length}`, archetype, directDurationMinutes: directMinutes, stops: [stop], facts: { poiCount: archetype === 'discovery' && isTrustedPoi(stop) ? 1 : 0, mappedPlaceCount: archetype === 'discovery' ? 1 : 0, extraMinutes: Math.max(0, Number(result.durationSeconds || 0) / 60 - directMinutes) } }, sidecar, poiRecords, corridorCatalogue));
+    routes.push(enrichAmbientRoute({ ...result, avoidEdges: routeOptions(profile).avoidEdges, id: `ambient-${archetype}-${stop.id || stop.name || routes.length}`, archetype, directDurationMinutes: directMinutes, stops: [stop], facts: { discoveryFocus: archetype === 'discovery' ? discoveryFocus(stop) : null, poiCount: archetype === 'discovery' && isTrustedPoi(stop) ? 1 : 0, mappedPlaceCount: archetype === 'discovery' ? 1 : 0, extraMinutes: Math.max(0, Number(result.durationSeconds || 0) / 60 - directMinutes) } }, sidecar, poiRecords, corridorCatalogue));
   }
   const intention = inferWalkingIntention({ ...context, destination }, memoryScores(memory));
   const ranked = rankAmbientRoutes(routes, { intention: intention.primary, memory, maxMinutes: context.availableMinutes || Infinity });
@@ -202,12 +202,18 @@ function normalizeMemory(memory = {}, now) {
 function enrichAmbientRoute(route, sidecar, poiRecords, corridorCatalogue) {
   if (!sidecar) return { ...route, ambientTraits: route.ambientTraits || routeTraits(route) };
   const features = aggregateRouteFeatures(route, sidecar, poiRecords, corridorCatalogue);
-  return { ...route, features, ambientTraits: [...features.corridorIds.map((id) => `corridor:${id}`), ...Object.entries(features.signalTotals).filter(([, value]) => Number(value) > 0).map(([key]) => `signal:${key}`), ...routeTraits(route)], facts: { ...route.facts, ...features.facts, corridorName: features.corridorIds[0] || route.facts?.corridorName, corridorMeters: Object.values(features.corridorLengths).reduce((sum, meters) => sum + Number(meters || 0), 0), poiCount: features.poiCounts.total || route.facts?.poiCount || 0 } };
+  return { ...route, features, ambientTraits: [...features.corridorIds.map((id) => `corridor:${id}`), ...Object.entries(features.signalTotals).filter(([, value]) => Number(value) > 0).map(([key]) => `signal:${key}`), ...(route.facts?.discoveryFocus ? [`focus:${route.facts.discoveryFocus}`] : []), ...routeTraits(route)], facts: { ...route.facts, ...features.facts, corridorName: features.facts.corridorName || route.facts?.corridorName, corridorMeters: features.facts.corridorMeters || Object.values(features.corridorLengths).reduce((sum, meters) => sum + Number(meters || 0), 0), poiCount: features.poiCounts.total || route.facts?.poiCount || 0 } };
 }
 
 function formatMeters(meters) { return Number(meters) >= 1000 ? `${(Number(meters) / 1000).toFixed(1)} km` : `${Math.round(Number(meters))} m`; }
 function clamp(value, min, max) { return Math.max(min, Math.min(max, value)); }
 function normalizeTraits(traits) { return [...new Set((Array.isArray(traits) ? traits : []).map((trait) => String(trait).trim().toLowerCase()).filter((trait) => /^[a-z0-9:_-]{2,64}$/.test(trait)))]; }
 function routeTraits(route) { return normalizeTraits((route.stops || []).flatMap((stop) => stop.tags || [stop.category]).map((tag) => `poi:${tag}`)); }
+function discoveryFocus(stop) {
+  const tags = new Set((stop?.tags || [stop?.category]).map((tag) => String(tag || '').toLowerCase()));
+  if (['history', 'historic', 'culture', 'cultural', 'museum', 'monument'].some((tag) => tags.has(tag))) return 'historic-cultural';
+  if (['trail', 'park', 'nature', 'wildlife', 'water', 'greenway'].some((tag) => tags.has(tag))) return 'nature-trail';
+  return 'place';
+}
 function isTrustedPoi(poi) { return poi?.review?.validationStatus === 'valid' || poi?.unverified === false || sourceUrl(poi?.source) || sourceUrl(poi?.provenance) || typeof poi?.sourceUrl === 'string'; }
 function sourceUrl(source) { return Array.isArray(source) ? source.some((item) => sourceUrl(item)) : typeof source === 'string' ? /^https?:\/\//i.test(source) : Boolean(source?.url && /^https?:\/\//i.test(source.url)); }

@@ -23,6 +23,13 @@ Candidate presence is not provenance. Ambient copy says “reviewed place” onl
 when the POI has explicit validation or source evidence; otherwise it uses the
 neutral “mapped place” wording.
 
+Discovery candidates carry a bounded factual focus (`nature-trail`,
+`historic-cultural`, or `place`) inferred from their mapped tags. This changes
+the optional label and local ranking context only; it does not create a user
+selectable mode or make a route more feasible. Corridor feature aggregation
+also sums each verified corridor's unique route edges once and keeps its
+catalogue name for explanation facts.
+
 Quiet/comfort is not treated as accessibility. Ambient quiet candidates use the
 ordinary walking profile unless an explicit `stepFreeRequested` context is
 provided; only that explicit request may select `accessible_verified`. Unknown

@@ -7,7 +7,7 @@ const sidecar = {
   schemaVersion: 1, graphVersion: 'g1', cellId: 'c1', routingRelease: 'r1',
   edges: [
     { edgeId: 'e1', lengthMeters: 100, confidence: .9, corridorRefs: [{ id: 'wod', signals: ['greenway'] }], sourceIds: ['osm:e1'] },
-    { edgeId: 'e2', lengthMeters: 80, confidence: .8, signals: { quiet: 1 }, sourceIds: ['osm:e2'] }
+    { edgeId: 'e2', lengthMeters: 80, confidence: .8, signals: { quiet: 1 }, corridorRefs: [{ id: 'wod', signals: ['greenway'] }], sourceIds: ['osm:e2'] }
   ]
 };
 
@@ -19,9 +19,11 @@ test('sidecar validation fails closed on graph, release, and checksum mismatch',
 });
 
 test('aggregation counts unique route edges and ignores candidate corridors', () => {
-  const features = aggregateRouteFeatures(route, sidecar, [], [{ id: 'wod', status: 'verified', sourceIds: ['official:wod'] }, { id: 'candidate', status: 'candidate' }]);
+  const features = aggregateRouteFeatures(route, sidecar, [], [{ id: 'wod', name: 'W&OD Trail', status: 'verified', sourceIds: ['official:wod'] }, { id: 'candidate', status: 'candidate' }]);
   assert.deepEqual(features.corridorIds, ['wod']);
   assert.equal(features.edgeCount, 2);
+  assert.equal(features.corridorLengths.wod, 180);
+  assert.equal(features.facts.corridorName, 'W&OD Trail');
   assert.deepEqual(features.sourceProvenanceIds, ['official:wod', 'osm:e1', 'osm:e2']);
   const ignored = aggregateRouteFeatures(route, sidecar, [], [{ id: 'wod', status: 'candidate' }]);
   assert.deepEqual(ignored.corridorIds, []);
