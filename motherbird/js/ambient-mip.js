@@ -25,8 +25,8 @@ export async function generateAmbientOptions({ origin, destination, routeOnFoot,
     routes.push(enrichAmbientRoute({ ...result, id: `ambient-${archetype}-${stop.id || stop.name || routes.length}`, archetype, directDurationMinutes: directMinutes, stops: [stop], facts: { poiCount: archetype === 'discovery' ? 1 : 0, extraMinutes: Math.max(0, Number(result.durationSeconds || 0) / 60 - directMinutes) } }, sidecar, poiRecords, corridorCatalogue));
     if (routes.filter((route) => route.archetype === archetype).length >= 1) continue;
   }
-  const intention = inferWalkingIntention({ ...context, destination }, memory);
-  const ranked = rankAmbientRoutes(routes, { intention: intention.primary, memory: memoryScores(memory), maxMinutes: context.availableMinutes || Infinity });
+  const intention = inferWalkingIntention({ ...context, destination }, memoryScores(memory));
+  const ranked = rankAmbientRoutes(routes, { intention: intention.primary, memory, maxMinutes: context.availableMinutes || Infinity });
   return { ...ranked, intention };
 }
 
@@ -69,10 +69,12 @@ export function rankAmbientRoutes(routes, { intention = null, memory = {}, maxMi
     const extraMinutes = Math.max(0, Number(route.durationSeconds || 0) / 60 - Number(route.directDurationMinutes || 0));
     const discovery = Number(route.features?.discovery || route.features?.interest || route.facts?.poiCount || 0);
     const quiet = Number(route.features?.quiet || route.facts?.quietScore || 0);
-    const learned = Number(memory[archetype] || 0);
+    const learned = Number(memoryScores(memory)[archetype] || 0);
+    const traitMemory = memoryTraitScores(memory);
+    const traitScore = Math.min(0.75, (route.ambientTraits || []).reduce((sum, trait) => sum + Number(traitMemory[trait] || 0), 0) * 0.15);
     // Local evidence is deliberately bounded: it can reorder already-valid
     // candidates, but never compensate for a failed route or hard constraint.
-    const score = weights.discovery * discovery + weights.quiet * quiet - weights.duration * extraMinutes + learned * 0.45 + (intention === archetype ? 0.75 : 0);
+    const score = weights.discovery * discovery + weights.quiet * quiet - weights.duration * extraMinutes + learned * 0.45 + traitScore + (intention === archetype ? 0.75 : 0);
     return { ...route, archetype, quantizedScore: Math.round(score * 1000), _score: score };
   }).sort((a, b) => b.quantizedScore - a.quantizedScore || Number(a.distanceMeters || 0) - Number(b.distanceMeters || 0) || String(a.id).localeCompare(String(b.id)));
   const primary = ranked[0] || null;
@@ -109,7 +111,9 @@ export function buildInWalkSuggestion({ plan, alternatives = [], offered = false
       : candidate.archetype === 'quiet'
         ? 'A mapped comfort option is available ahead.'
         : 'There is another verified route available ahead.';
-  return { id: `ambient-suggestion-${candidate.id}`, candidateId: candidate.id, text: extra > 0 ? `${fact} It adds about ${Math.round(extra)} minutes.` : fact, archetype: candidate.archetype };
+  const suggestion = { id: `ambient-suggestion-${candidate.id}`, candidateId: candidate.id, text: extra > 0 ? `${fact} It adds about ${Math.round(extra)} minutes.` : fact, archetype: candidate.archetype };
+  if (candidate.ambientTraits?.length) suggestion.traits = candidate.ambientTraits;
+  return suggestion;
 }
 
 export function recordAmbientResponse(memory, response, now = Date.now()) {
@@ -123,6 +127,13 @@ export function recordAmbientResponse(memory, response, now = Date.now()) {
   current.observations += 1;
   current.updatedAt = now;
   next.archetypes[archetype] = current;
+  for (const trait of normalizeTraits(response?.traits)) {
+    const currentTrait = next.traits[trait] || { evidence: 0, observations: 0, updatedAt: now };
+    currentTrait.evidence = clamp(currentTrait.evidence * 0.9 + signal, -3, 3);
+    currentTrait.observations += 1;
+    currentTrait.updatedAt = now;
+    next.traits[trait] = currentTrait;
+  }
   return next;
 }
 
@@ -151,22 +162,35 @@ export function memoryScores(memory, now = Date.now()) {
   return Object.fromEntries(AMBIENT_ARCHETYPES.map((key) => [key, normalized.archetypes[key].evidence]));
 }
 
+export function memoryTraitScores(memory, now = Date.now()) {
+  const normalized = normalizeMemory(memory, now);
+  return Object.fromEntries(Object.entries(normalized.traits).map(([key, value]) => [key, value.evidence]));
+}
+
 function normalizeMemory(memory = {}, now) {
   const archetypes = {};
+  const traits = {};
   for (const key of AMBIENT_ARCHETYPES) {
     const value = memory.archetypes?.[key] || {};
     const ageDays = Math.max(0, (now - Number(value.updatedAt || now)) / 86400000);
     const decay = Math.pow(0.5, ageDays / MAX_EVIDENCE_AGE_DAYS);
     archetypes[key] = { evidence: clamp(Number(value.evidence || 0) * decay, -3, 3), observations: Number(value.observations || 0), updatedAt: Number(value.updatedAt || now) };
   }
-  return { schemaVersion: 1, archetypes };
+  for (const [key, value] of Object.entries(memory.traits || {})) {
+    const ageDays = Math.max(0, (now - Number(value?.updatedAt || now)) / 86400000);
+    const decay = Math.pow(0.5, ageDays / MAX_EVIDENCE_AGE_DAYS);
+    traits[String(key)] = { evidence: clamp(Number(value?.evidence || 0) * decay, -3, 3), observations: Number(value?.observations || 0), updatedAt: Number(value?.updatedAt || now) };
+  }
+  return { schemaVersion: 1, archetypes, traits };
 }
 
 function enrichAmbientRoute(route, sidecar, poiRecords, corridorCatalogue) {
-  if (!sidecar) return route;
+  if (!sidecar) return { ...route, ambientTraits: route.ambientTraits || routeTraits(route) };
   const features = aggregateRouteFeatures(route, sidecar, poiRecords, corridorCatalogue);
-  return { ...route, features, facts: { ...route.facts, ...features.facts, corridorName: features.corridorIds[0] || route.facts?.corridorName, corridorMeters: Object.values(features.corridorLengths).reduce((sum, meters) => sum + Number(meters || 0), 0), poiCount: features.poiCounts.total || route.facts?.poiCount || 0 } };
+  return { ...route, features, ambientTraits: [...features.corridorIds.map((id) => `corridor:${id}`), ...Object.entries(features.signalTotals).filter(([, value]) => Number(value) > 0).map(([key]) => `signal:${key}`), ...routeTraits(route)], facts: { ...route.facts, ...features.facts, corridorName: features.corridorIds[0] || route.facts?.corridorName, corridorMeters: Object.values(features.corridorLengths).reduce((sum, meters) => sum + Number(meters || 0), 0), poiCount: features.poiCounts.total || route.facts?.poiCount || 0 } };
 }
 
 function formatMeters(meters) { return Number(meters) >= 1000 ? `${(Number(meters) / 1000).toFixed(1)} km` : `${Math.round(Number(meters))} m`; }
 function clamp(value, min, max) { return Math.max(min, Math.min(max, value)); }
+function normalizeTraits(traits) { return [...new Set((Array.isArray(traits) ? traits : []).map((trait) => String(trait).trim().toLowerCase()).filter((trait) => /^[a-z0-9:_-]{2,64}$/.test(trait)))]; }
+function routeTraits(route) { return normalizeTraits((route.stops || []).flatMap((stop) => stop.tags || [stop.category]).map((tag) => `poi:${tag}`)); }

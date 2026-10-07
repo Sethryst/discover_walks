@@ -6,7 +6,7 @@ import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261007-ambien
 import { escapeHtml } from './utils.js';
 import { toast } from './ui.js';
 import { splitDisconnectedPaths } from './routes.js';
-import { buildAmbientExplanation, generateAmbientOptions, installAmbientLearningListener, readAmbientMemory, memoryScores } from './ambient-mip.js?v=20261007-ambient-3';
+import { buildAmbientExplanation, generateAmbientOptions, installAmbientLearningListener, readAmbientMemory } from './ambient-mip.js?v=20261007-ambient-4';
 
 function selectedMinutes() { return Number(document.querySelector('input[name="walkTime"]:checked')?.value || 30); }
 function selectedRouteMode() { return document.querySelector('input[name="routeMode"]:checked')?.value || 'round-trip'; }
@@ -152,7 +152,7 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
     const nearby = candidateStops(routeOrigin, []).slice(0, 6).filter((stop) => distanceBetween(routeOrigin, stop) < 8);
     const discoveryStops = selectedStops.length ? selectedStops : nearby.filter((stop) => poiTags(stop).some((tag) => ['trail', 'park', 'nature', 'history', 'culture', 'water'].includes(tag))).slice(0, 2);
     const quietStops = nearby.filter((stop) => poiTags(stop).some((tag) => ['park', 'trail', 'nature', 'quiet'].includes(tag))).slice(0, 2);
-    const ambient = await generateAmbientOptions({ origin: routeOrigin, destination: state.plannerEnd, routeOnFoot, context: { availableMinutes: minutes, destination: state.plannerEnd, currentPaceMps: state.walk?.paceMps, routeHistoryCount: state.walks?.length || 0, rememberedPlaceCount: state.personalPlaces?.length || 0 }, memory: memoryScores(localMemory), discoveryStops, quietStops });
+    const ambient = await generateAmbientOptions({ origin: routeOrigin, destination: state.plannerEnd, routeOnFoot, context: { availableMinutes: minutes, destination: state.plannerEnd, currentPaceMps: state.walk?.paceMps, routeHistoryCount: state.walks?.length || 0, rememberedPlaceCount: state.personalPlaces?.length || 0 }, memory: localMemory, discoveryStops, quietStops });
     if (requestGeneration !== generation) return null;
     if (ambient.routes.length) {
       const plans = ambient.routes.slice(0, 3).map((routed, index) => ({
@@ -162,7 +162,7 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
         stops: routed.stops || [{ name: 'Selected destination', lat: state.plannerEnd.lat, lng: state.plannerEnd.lng }], coordinates: routed.coordinates,
         distanceMeters: routed.distanceMeters, distanceMiles: Number((routed.distanceMeters / 1609.344).toFixed(2)), graphStatus: null, graphVersion: routed.graphVersion,
         cellId: routed.cellId, cellRelease: routed.cellRelease, edgeIds: routed.edgeIds, instructions: routed.instructions, destination: state.plannerEnd,
-        archetype: routed.archetype, facts: routed.facts, ambientIntention: ambient.intention
+        archetype: routed.archetype, facts: routed.facts, ambientTraits: routed.ambientTraits || [], ambientIntention: ambient.intention
       }));
       state.planOptions = plans; state.plannedRoute = ambient.primary ? plans.find((plan) => plan.id === ambient.primary.id) || plans[0] : plans[0];
       paintWalkConcept(state.plannedRoute);
@@ -206,7 +206,7 @@ export function selectPlan(id) {
   if (!plan) return null;
   state.plannedRoute = plan;
   paintWalkConcept(plan, { fit: false });
-  window.dispatchEvent(new CustomEvent('ambient-route-response', { detail: { archetype: plan.archetype, accepted: true } }));
+  window.dispatchEvent(new CustomEvent('ambient-route-response', { detail: { archetype: plan.archetype, traits: plan.ambientTraits || [], accepted: true } }));
   return plan;
 }
 export function changePlan() { state.plannedRoute = null; state.planSketchLayer?.remove(); state.plannedRouteLine?.remove(); state.plannedRouteLines?.forEach((line) => line.remove()); state.plannerRouteCasingLines?.forEach((line) => line.remove()); state.plannedRouteLines = []; state.plannerRouteCasingLines = []; }

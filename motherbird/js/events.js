@@ -26,9 +26,10 @@ import { restartCoachMarks } from './coach.js';
 import { savePlannedRoute } from './saved-routes.js';
 import { recordSessionRoutingOutcome } from './routing-feedback.js';
 import { openRoomForPlace } from './room-runtime.js';
-import { buildInWalkSuggestion } from './ambient-mip.js?v=20261007-ambient-3';
+import { buildInWalkSuggestion } from './ambient-mip.js?v=20261007-ambient-4';
 
 const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];
+function ambientResponse(plan, signal) { return { archetype: plan?.archetype, traits: plan?.ambientTraits || [], [signal]: true }; }
 
 export function initEvents() {
   // Bind the user-walk controls before optional journal/companion surfaces.
@@ -36,7 +37,7 @@ export function initEvents() {
   bindWalkControls();
   window.addEventListener('walk-position-received', ({ detail }) => void updateActiveManeuver(detail));
   window.addEventListener('walk-ended', () => {
-    if (state.plannedRoute?.archetype) window.dispatchEvent(new CustomEvent('ambient-route-response', { detail: { archetype: state.plannedRoute.archetype, completed: true } }));
+    if (state.plannedRoute?.archetype) window.dispatchEvent(new CustomEvent('ambient-route-response', { detail: ambientResponse(state.plannedRoute, 'completed') }));
   });
   initJournalPane();
   window.addEventListener('journal-data-changed', () => void renderArchive());
@@ -62,7 +63,7 @@ export function initEvents() {
   });
   bindMessengerBird();
   window.addEventListener('walk-poi-encounter', (event) => {
-    if (state.plannedRoute?.archetype === 'discovery') window.dispatchEvent(new CustomEvent('ambient-route-response', { detail: { archetype: 'discovery', visited: true } }));
+    if (state.plannedRoute?.archetype === 'discovery') window.dispatchEvent(new CustomEvent('ambient-route-response', { detail: ambientResponse(state.plannedRoute, 'visited') }));
     void import('./walk.js').then(({ recordPoiEncounter }) => recordPoiEncounter(event.detail?.poi, event.detail?.distance));
   });
   window.addEventListener('backpack-open-requested', openBackpack);
@@ -134,7 +135,7 @@ async function acceptAmbientSuggestion(suggestion, position) {
 
 function finishAmbientSuggestion(suggestion, response) {
   el('ambientWalkSuggestion')?.classList.add('hidden');
-  window.dispatchEvent(new CustomEvent('ambient-route-response', { detail: { archetype: suggestion.archetype, [response]: true } }));
+  window.dispatchEvent(new CustomEvent('ambient-route-response', { detail: { archetype: suggestion.archetype, traits: suggestion.traits || [], [response]: true } }));
 }
 
 function nearestRouteDistance(point, coordinates) {
@@ -472,7 +473,7 @@ function bindWalkControls() {
   el('dismissWalkSketch')?.addEventListener('click', () => { changePlan(); setPlanningMode(false); el('walkSketch').classList.add('hidden'); });
   el('startPlannedWalkButton')?.addEventListener('click', async () => {
     if (!state.plannedRoute) return; lockSelectedPlanOnMap(); el('walkSketch').classList.remove('hidden');
-    if (state.plannedRoute.archetype) window.dispatchEvent(new CustomEvent('ambient-route-response', { detail: { archetype: state.plannedRoute.archetype, accepted: true } }));
+    if (state.plannedRoute.archetype) window.dispatchEvent(new CustomEvent('ambient-route-response', { detail: ambientResponse(state.plannedRoute, 'accepted') }));
     setPlanningMode(false); await startWalk({ routeMode: state.plannedRoute.routeMode || 'tracking' });
   });
   el('sendWalkPlanButton')?.addEventListener('click', () => void sendCurrentWalkPlan());
@@ -481,7 +482,7 @@ function bindWalkControls() {
     const title = window.prompt('Name this route', state.plannedRoute.title || 'Saved route');
     if (title === null) return;
     const notes = window.prompt('Add route notes (optional)', '') ?? '';
-    try { await savePlannedRoute(state.plannedRoute, { title, notes }); if (state.plannedRoute.archetype) window.dispatchEvent(new CustomEvent('ambient-route-response', { detail: { archetype: state.plannedRoute.archetype, saved: true } })); toast('Route saved in My Places.'); }
+    try { await savePlannedRoute(state.plannedRoute, { title, notes }); if (state.plannedRoute.archetype) window.dispatchEvent(new CustomEvent('ambient-route-response', { detail: ambientResponse(state.plannedRoute, 'saved') })); toast('Route saved in My Places.'); }
     catch (error) { toast(error.message || 'Route could not be saved.'); }
   });
   el('companionButton')?.addEventListener('click', async () => {

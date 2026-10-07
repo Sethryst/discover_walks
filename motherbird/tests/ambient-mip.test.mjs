@@ -9,6 +9,7 @@ import {
   installAmbientLearningListener,
   recordAmbientResponse,
   memoryScores,
+  memoryTraitScores,
   readAmbientMemory
 } from '../js/ambient-mip.js';
 
@@ -97,4 +98,11 @@ test('repeated accepted discovery walks change ranking without changing feasibil
   const unavailable = await generateAmbientOptions({ origin, destination, routeOnFoot: async (points) => points.length > 2 ? { ok: false, status: 'NO_ROUTE_IN_COMPONENT' } : routeOnFoot(points), context: { availableMinutes: 60 }, memory: memoryScores(memory, now + 4 * 86400000), discoveryStops: [{ id: 'museum', name: 'Museum', lat: 38.905, lng: -77.09 }] });
   assert.equal(unavailable.primary.archetype, 'direct');
   assert.ok(unavailable.routes.every((route) => route.ok));
+});
+
+test('route traits are local, decayed, and ranking-only', () => {
+  const now = Date.parse('2026-10-07T00:00:00Z');
+  let memory = recordAmbientResponse({}, { archetype: 'discovery', traits: ['poi:greenway'], accepted: true }, now);
+  assert.equal(memoryTraitScores(memory, now)['poi:greenway'], 1);
+  assert.ok(memoryTraitScores({ traits: { 'poi:greenway': { evidence: 2, observations: 2, updatedAt: now - 90 * 86400000 } } }, now)['poi:greenway'] < 2);
 });
