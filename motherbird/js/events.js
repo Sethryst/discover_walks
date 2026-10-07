@@ -26,7 +26,7 @@ import { restartCoachMarks } from './coach.js';
 import { savePlannedRoute } from './saved-routes.js';
 import { recordSessionRoutingOutcome } from './routing-feedback.js';
 import { openRoomForPlace } from './room-runtime.js';
-import { buildInWalkSuggestion } from './ambient-mip.js?v=20261007-ambient-6';
+import { buildInWalkSuggestion } from './ambient-mip.js?v=20261007-ambient-7';
 
 const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];
 function ambientResponse(plan, signal) { return { archetype: plan?.archetype, traits: plan?.ambientTraits || [], [signal]: true }; }
@@ -126,7 +126,7 @@ async function acceptAmbientSuggestion(suggestion, position) {
   if (!current || !candidate) return;
   const destination = current.destination || state.plannerEnd || candidate.destination || candidate.stops?.at(-1);
   const points = [{ lat: position.lat, lng: position.lng }, ...(candidate.stops || []), ...(destination ? [destination] : [])];
-  const routed = await routeOnFoot(points, { city: current.city, profile: candidate.archetype === 'quiet' ? 'accessible_verified' : 'ordinary_walking_beta' });
+  const routed = await routeOnFoot(points, { city: current.city, profile: candidate.profile || 'ordinary_walking_beta' });
   if (!routed.ok) { container.querySelector('p').textContent = 'That option is no longer available here.'; return; }
   state.plannedRoute = { ...candidate, coordinates: routed.coordinates, distanceMeters: routed.distanceMeters, durationSeconds: routed.durationSeconds, instructions: routed.instructions, edgeIds: routed.edgeIds, graphVersion: routed.graphVersion, cellId: routed.cellId, cellRelease: routed.cellRelease };
   finishAmbientSuggestion(suggestion, 'accepted');

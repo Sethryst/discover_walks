@@ -15,6 +15,12 @@ walk, ignoring a suggestion, or rejecting one. It is a soft ranking signal: it
 cannot make an invalid graph route feasible, bypass an access policy, or replace
 closure/accessibility evidence.
 
+Quiet/comfort is not treated as accessibility. Ambient quiet candidates use the
+ordinary walking profile unless an explicit `stepFreeRequested` context is
+provided; only that explicit request may select `accessible_verified`. Unknown
+surface, width, stair, or barrier evidence is never converted into an
+accessibility claim by local preference learning.
+
 During an active walk, at most one alternative is offered. The prompt is
 fact-backed and optional; accepting it re-routes from the current location
 through the verified router before changing the active plan. Ignore and reject

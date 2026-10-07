@@ -61,7 +61,10 @@ test('ambient candidate generation preserves one discovery and one quiet option'
     quietStops: [{ id: 'greenway', lat: 38.907, lng: -77.092 }]
   });
   assert.deepEqual(result.routes.map((route) => route.archetype).sort(), ['direct', 'discovery', 'quiet']);
-  assert.equal(calls.filter((call) => call.options.profile === 'accessible_verified').length, 1);
+  assert.equal(calls.filter((call) => call.options.profile === 'accessible_verified').length, 0);
+  assert.equal(calls.some((call) => call.options.profile === 'ordinary_walking_beta' && call.points.some((point) => point.id === 'greenway')), true);
+  const stepFree = await generateAmbientOptions({ origin, destination, routeOnFoot: async (points, options) => ({ ok: true, durationSeconds: 1800, distanceMeters: 2400, edgeIds: ['x'], coordinates: points.map((point) => [point.lat, point.lng]), profile: options.profile }), context: { availableMinutes: 60, stepFreeRequested: true }, quietStops: [{ id: 'greenway', lat: 38.907, lng: -77.092 }] });
+  assert.equal(stepFree.routes.find((route) => route.archetype === 'quiet')?.profile, 'accessible_verified');
 });
 
 test('ambient alternatives are pairwise archetype-diverse', () => {

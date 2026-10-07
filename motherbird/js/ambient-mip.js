@@ -23,7 +23,7 @@ export async function generateAmbientOptions({ origin, destination, routeOnFoot,
   ];
   for (const { stop, archetype } of candidateStops) {
     if (routes.some((route) => route.archetype === archetype)) continue;
-    const profile = archetype === 'quiet' ? 'accessible_verified' : 'ordinary_walking_beta';
+    const profile = archetype === 'quiet' && context.stepFreeRequested === true ? 'accessible_verified' : 'ordinary_walking_beta';
     const result = await safeRoute(routeOnFoot, [origin, stop, destination], { profile });
     if (!result.ok) continue;
     routes.push(enrichAmbientRoute({ ...result, id: `ambient-${archetype}-${stop.id || stop.name || routes.length}`, archetype, directDurationMinutes: directMinutes, stops: [stop], facts: { poiCount: archetype === 'discovery' ? 1 : 0, extraMinutes: Math.max(0, Number(result.durationSeconds || 0) / 60 - directMinutes) } }, sidecar, poiRecords, corridorCatalogue));

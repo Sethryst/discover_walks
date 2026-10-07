@@ -6,7 +6,7 @@ import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261007-ambien
 import { escapeHtml } from './utils.js';
 import { toast } from './ui.js';
 import { splitDisconnectedPaths } from './routes.js';
-import { buildAmbientExplanation, generateAmbientOptions, installAmbientLearningListener, readAmbientMemory } from './ambient-mip.js?v=20261007-ambient-6';
+import { buildAmbientExplanation, generateAmbientOptions, installAmbientLearningListener, readAmbientMemory } from './ambient-mip.js?v=20261007-ambient-7';
 
 function selectedMinutes() { return Number(document.querySelector('input[name="walkTime"]:checked')?.value || 30); }
 function selectedRouteMode() { return document.querySelector('input[name="routeMode"]:checked')?.value || 'round-trip'; }
@@ -163,7 +163,7 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
         stops: routed.stops || [{ name: 'Selected destination', lat: state.plannerEnd.lat, lng: state.plannerEnd.lng }], coordinates: routed.coordinates,
         distanceMeters: routed.distanceMeters, distanceMiles: Number((routed.distanceMeters / 1609.344).toFixed(2)), graphStatus: null, graphVersion: routed.graphVersion,
         cellId: routed.cellId, cellRelease: routed.cellRelease, edgeIds: routed.edgeIds, instructions: routed.instructions, destination: state.plannerEnd,
-        archetype: routed.archetype, facts: routed.facts, ambientTraits: routed.ambientTraits || [], ambientIntention: ambient.intention
+        archetype: routed.archetype, profile: routed.profile || 'ordinary_walking_beta', facts: routed.facts, ambientTraits: routed.ambientTraits || [], ambientIntention: ambient.intention
       }));
       state.planOptions = plans; state.plannedRoute = ambient.primary ? plans.find((plan) => plan.id === ambient.primary.id) || plans[0] : plans[0];
       paintWalkConcept(state.plannedRoute);
