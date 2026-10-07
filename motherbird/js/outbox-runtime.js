@@ -10,7 +10,7 @@ export function retryDelayMs(retryCount, baseDelayMs = OUTBOX_BASE_DELAY_MS) {
 
 export async function listReadyOutbox(now = Date.now()) {
   const records = await db.all('outbox');
-  return records.filter((record) => record.status === 'queued' && (!record.nextAttemptAt || Date.parse(record.nextAttemptAt) <= now))
+  return records.filter((record) => (record.status === 'queued' || (record.status === 'processing' && Number(record.leaseUntil || 0) <= now)) && (!record.nextAttemptAt || Date.parse(record.nextAttemptAt) <= now))
     .sort((left, right) => Date.parse(left.createdAt || 0) - Date.parse(right.createdAt || 0) || left.id.localeCompare(right.id));
 }
 
@@ -18,7 +18,7 @@ export async function markOutboxFailure(id, error, now = Date.now()) {
   const current = await db.get('outbox', id);
   if (!current) return null;
   const retryCount = Number(current.retryCount || 0) + 1;
-  return db.updateOutbox(id, { status: 'queued', retryCount, failureReason: String(error?.message || error || 'Unknown failure'), nextAttemptAt: new Date(now + retryDelayMs(retryCount)).toISOString() });
+  return db.updateOutbox(id, { status: 'queued', leaseOwner: null, leaseUntil: null, retryCount, failureReason: String(error?.message || error || 'Unknown failure').slice(0, 240), nextAttemptAt: new Date(now + retryDelayMs(retryCount)).toISOString() });
 }
 
 export async function markOutboxConflict(id, conflictState, reason = 'Conflict requires review') {

@@ -32,3 +32,12 @@ test('walking-cell metadata uses the shared storage coordinator', () => {
   assert.match(cellCache, /db\.all\('walking_cell_metadata'/);
   assert.doesNotMatch(cellCache, /indexedDB\.open/);
 });
+
+test('outbox contract includes atomic leases and bounded failure text', async () => {
+  const storage = await readFile(new URL('../js/storage.js', import.meta.url), 'utf8');
+  const runtime = await readFile(new URL('../js/outbox-runtime.js', import.meta.url), 'utf8');
+  assert.match(storage, /claimOutbox/);
+  assert.match(storage, /leaseOwner/);
+  assert.match(storage, /leaseUntil/);
+  assert.match(runtime, /\.slice\(0, 240\)/);
+});
