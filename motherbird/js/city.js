@@ -12,7 +12,23 @@ import { normalizeRegionDataConfig } from './osm-regions.js';
 import { activateInstalledRegionRuntime } from './installed-region-runtime.js';
 import { activateCountyAdditions } from './county-additions.js';
 
+function perfMark(name, detail = {}) {
+  if (!globalThis.performance?.mark) return;
+  performance.mark(name, { detail });
+  if (globalThis.console?.debug) console.debug(`[motherbird:perf] ${name}`, detail);
+}
+
+function perfMeasure(name, start, detail = {}) {
+  if (!globalThis.performance?.measure) return;
+  try {
+    const measure = performance.measure(name, start);
+    if (globalThis.console?.info) console.info(`[motherbird:perf] ${name}`, { duration: Math.round(measure.duration), ...detail });
+  } catch { /* instrumentation must never affect loading */ }
+}
+
 export async function loadCityData(cityId) {
+  const bootStart = `city-data:${cityId}:start`;
+  perfMark(bootStart, { cityId });
   const config = normalizeRegionDataConfig(cityId, CITIES[cityId]);
   const saved = (await db.all('points_of_interest')).filter((poi) => poi.city === cityId);
   const metadata = await db.get('poi_metadata', `${cityId}-seed`);
@@ -23,14 +39,18 @@ export async function loadCityData(cityId) {
   }
   const response = await fetch(config.dataFile);
   if (!response.ok) throw new Error(`${cityLabel(cityId)} places data could not be loaded.`);
+  perfMark(`city-data:${cityId}:response`, { bytes: Number(response.headers.get('content-length')) || 0 });
   const seed = await response.json();
+  perfMeasure(`city-data:${cityId}:fetch-and-parse`, bootStart, { records: (seed.pois || seed.pointsOfInterest || []).length });
   const seedVersion = seed.generatedAt || seed.metadata?.generatedAt || seed.metadata?.version || seed.schemaVersion || 1;
   const seedAttribution = seed.metadata?.attribution || seed.producer?.name || 'Gremlin Lab';
   const basePois = (seed.pois || seed.pointsOfInterest || []).map((poi) => migratePoi(poi, cityId));
+  perfMark(`city-data:${cityId}:transformed`, { records: basePois.length });
 
   if (!metadata || metadata.version !== seedVersion || !saved.length) {
     const newPois = basePois;
     await writeInBatches('points_of_interest', newPois);
+    perfMark(`city-data:${cityId}:stored`, { records: newPois.length });
     const nextIds = new Set(newPois.map((poi) => poi.id));
     await removeInBatches('points_of_interest', saved.filter((poi) => !nextIds.has(poi.id)).map((poi) => poi.id));
     await db.put('poi_metadata', { id: `${cityId}-seed`, version: seedVersion, attribution: seedAttribution, trailSegments: metadata?.trailSegments || seed.trailSegments || [] });
@@ -40,6 +60,7 @@ export async function loadCityData(cityId) {
     state.cityPois[cityId] = saved.map((poi) => migratePoi(poi, cityId));
     state.trailSegments[cityId] = metadata.trailSegments || [];
   }
+  perfMeasure(`city-data:${cityId}:complete`, bootStart, { records: state.cityPois[cityId]?.length || 0 });
 }
 
 const IDLE = globalThis.requestIdleCallback || ((callback) => setTimeout(callback, 0));
@@ -64,6 +85,8 @@ export function loadCityEnrichment(cityId = state.activeCity) {
   return new Promise((resolve) => IDLE(() => void loadCityEnrichmentNow(cityId).then(resolve).catch((error) => { console.warn('Regional enrichment unavailable:', error.message); resolve(false); })));
 }
 async function loadCityEnrichmentNow(cityId) {
+  const enrichmentStart = `city-enrichment:${cityId}:start`;
+  perfMark(enrichmentStart, { cityId });
   const config = normalizeRegionDataConfig(cityId, CITIES[cityId]);
   if (!config || state.cityEnrichmentLoaded?.[cityId] || navigator.onLine === false) return false;
   state.cityEnrichmentLoaded ||= {};
@@ -74,6 +97,7 @@ async function loadCityEnrichmentNow(cityId) {
       const response = await fetch(config.edgeFile);
       if (response.ok) {
         const pack = await response.json();
+        perfMeasure(`city-enrichment:${cityId}:edges-parse`, enrichmentStart, { file: config.edgeFile, edges: (pack.edges || []).length });
         edgeSegments = (pack.edges || []).flatMap((edge) => {
           const geometry = edge.geometry || {};
           const coordinates = geometry.type === 'LineString' ? [geometry.coordinates] : geometry.type === 'MultiLineString' ? geometry.coordinates : [];
@@ -89,6 +113,7 @@ async function loadCityEnrichmentNow(cityId) {
       const response = await fetch(file);
       if (!response.ok) continue;
       const pack = await response.json();
+      perfMark(`city-enrichment:${cityId}:file-parsed`, { file, records: pack?.journeys?.length || pack?.pois?.length || pack?.pointsOfInterest?.length || 0 });
       supplements.push(...(pack?.journeys?.length ? pack.journeys.filter(validJourney).map((journey) => ({ ...journey, category: 'journey', type: 'journey' })) : pack?.pois || pack?.pointsOfInterest || []));
       await pause();
     } catch { /* an optional layer should never block the map */ }
@@ -99,6 +124,7 @@ async function loadCityEnrichmentNow(cityId) {
   const merged = [...byId.values()];
   const additions = merged.filter((poi) => !current.some((item) => item.id === poi.id));
   await writeInBatches('points_of_interest', additions);
+  perfMark(`city-enrichment:${cityId}:stored`, { additions: additions.length, merged: merged.length, edgeSegments: edgeSegments.length });
   if (edgeSegments.length) {
     state.trailSegments[cityId] = edgeSegments;
     const metadata = await db.get('poi_metadata', `${cityId}-seed`);
@@ -106,9 +132,9 @@ async function loadCityEnrichmentNow(cityId) {
   }
   state.cityPois[cityId] = merged;
   if (cityId === state.activeCity) {
-    renderCityExplorer(); renderCityPois();
     window.dispatchEvent(new CustomEvent('city-layer-data-changed'));
   }
+  perfMeasure(`city-enrichment:${cityId}:complete`, enrichmentStart, { merged: merged.length, edgeSegments: edgeSegments.length });
   return true;
 }
 export async function loadAllCityData() {

@@ -137,6 +137,7 @@ export function poiMatchesSelectedTags(poi, selectedTags = new Set()) {
 }
 export function renderCityPois({ preserveInteraction = true } = {}) {
   if (!state.poiLayer) return;
+  const renderStart = globalThis.performance?.now?.() || 0;
   const openPopupSource = preserveInteraction ? state.map?._popup?._source : null;
   const openPopupId = openPopupSource?.options?.place?.id;
   state.poiLayer.clearLayers(); state.trailLayer.clearLayers();
@@ -183,6 +184,13 @@ export function renderCityPois({ preserveInteraction = true } = {}) {
     if (replacement) requestAnimationFrame(() => replacement.openPopup());
   }
   state.historyRadiusLayer?.clearLayers();
+  if (globalThis.console?.info && renderStart) console.info('[motherbird:perf] render-city-pois', {
+    duration: Math.round(performance.now() - renderStart),
+    candidates: pois.length,
+    markers: markers.length,
+    trails: segments.length,
+    trailPaths: segments.reduce((count, segment) => count + (segment.coordinates?.length || 0), 0)
+  });
 }
 
 function paintGroup(poi) {

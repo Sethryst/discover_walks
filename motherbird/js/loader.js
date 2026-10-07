@@ -31,6 +31,7 @@ import { recoverWalkDraft, discardWalk } from './walk.js';
 import { initBiodiversity } from './biodiversity.js';
 
 export async function init() {
+  performance.mark?.('motherbird:init:start');
   const splashStatus = document.getElementById('appSplashStatus');
   const setSplashStatus = (message) => { if (splashStatus) splashStatus.textContent = message; };
   setSplashStatus('Getting your pencils sharpened…');
@@ -90,6 +91,7 @@ export async function init() {
     await applyOfflineBootConditions();
     setSplashStatus('Unfolding the map…');
     await loadAllCityData();
+    performance.measure?.('motherbird:init:city-data', 'motherbird:init:start');
   } catch (error) {
     console.error(error);
     toast('Local storage or places data could not open in this browser.');
@@ -123,6 +125,12 @@ export async function init() {
   initBiodiversity();
 
   await refreshCityMap(false);
+  performance.measure?.('motherbird:init:ready', 'motherbird:init:start');
+  console.info?.('[motherbird:perf] startup-ready', {
+    duration: Math.round(performance.getEntriesByName('motherbird:init:ready').at(-1)?.duration || 0),
+    city: state.activeCity,
+    pois: state.cityPois[state.activeCity]?.length || 0
+  });
   // Refresh returns to a neutral map state. Any draft remains stored for an
   // explicit recovery flow; never restart live tracking automatically.
   applyStaticAppearance();
