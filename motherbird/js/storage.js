@@ -1,7 +1,10 @@
 export const db = (() => {
   let database;
   const DATABASE_NAME = 'walk-wildlife-journal';
-  const DATABASE_VERSION = 19;
+  // Keep startup compatible with older open tabs. New optional stores are
+  // included on fresh databases and use the memory fallback until a safe
+  // coordinated upgrade is available.
+  const DATABASE_VERSION = 18;
   const memoryStores = new Map();
   const memoryStore = (name) => {
     if (!memoryStores.has(name)) memoryStores.set(name, new Map());
@@ -26,8 +29,7 @@ export const db = (() => {
     { version: 15, risk: 'additive', description: 'Add editable local saved routes.', apply: (target) => { if (!target.objectStoreNames.contains('saved_routes')) target.createObjectStore('saved_routes', { keyPath: 'id' }); } },
     { version: 16, risk: 'additive', description: 'Add local radio manifests, playback state, saved tracks, and transition assets.', apply: (target) => ['radio_manifests', 'radio_playback_state', 'radio_saved_tracks', 'radio_transition_assets'].forEach((name) => { if (!target.objectStoreNames.contains(name)) target.createObjectStore(name, { keyPath: 'id' }); }) },
     { version: 17, risk: 'additive', description: 'Add local Spatial Query and Room records.', apply: (target) => ['spatial_queries', 'rooms'].forEach((name) => { if (!target.objectStoreNames.contains(name)) target.createObjectStore(name, { keyPath: 'id' }); }) },
-    { version: 18, risk: 'additive', description: 'Add soundtrack library playlists and walk soundtrack records.', apply: (target) => ['radio_playlists', 'walk_soundtracks'].forEach((name) => { if (!target.objectStoreNames.contains(name)) target.createObjectStore(name, { keyPath: 'id' }); }) },
-    { version: 19, risk: 'additive', description: 'Add local biodiversity card preferences and photos.', apply: (target) => { if (!target.objectStoreNames.contains('biodiversity_preferences')) target.createObjectStore('biodiversity_preferences', { keyPath: 'id' }); } }
+    { version: 18, risk: 'additive', description: 'Add soundtrack library playlists and walk soundtrack records.', apply: (target) => ['radio_playlists', 'walk_soundtracks'].forEach((name) => { if (!target.objectStoreNames.contains(name)) target.createObjectStore(name, { keyPath: 'id' }); }) }
   ]);
 
   async function installedVersion() {
@@ -126,7 +128,10 @@ export const db = (() => {
       };
     });
   }
-  function store(name, mode = 'readonly') { return database?.transaction(name, mode).objectStore(name) || memoryStore(name); }
+  function store(name, mode = 'readonly') {
+    if (!database || !database.objectStoreNames.contains(name)) return memoryStore(name);
+    return database.transaction(name, mode).objectStore(name);
+  }
   function memoryItem(name, id) { return memoryStore(name).get(id); }
   function put(name, item) { if (!database) { memoryStore(name).set(item.id, item); return Promise.resolve(item); } return new Promise((resolve, reject) => {const r = store(name, 'readwrite').put(item); r.onsuccess = () => resolve(item); r.onerror = () => reject(r.error); }); }
   function get(name, id) { if (!database) return Promise.resolve(memoryItem(name, id)); return new Promise((resolve, reject) => {const r = store(name).get(id); r.onsuccess = () => resolve(r.result); r.onerror = () => reject(r.error); }); }
