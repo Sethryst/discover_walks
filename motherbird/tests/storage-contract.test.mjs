@@ -27,3 +27,12 @@ test('outbox enqueue is idempotent for stable operation IDs', async () => {
   assert.equal(updated.status, 'failed');
   assert.equal((await db.get('outbox', first.id)).retryCount, 1);
 });
+
+test('migration backup contains local store records and never reports telemetry payloads', async () => {
+  const backup = await db.createPreMigrationBackup({ fromVersion: 19, toVersion: 20 });
+  const parsed = JSON.parse(await backup.text());
+  assert.equal(parsed.format, 'walk-wildlife-indexeddb-backup');
+  assert.equal(parsed.database, 'walk-wildlife-journal');
+  assert.ok(Array.isArray(parsed.stores.settings));
+  assert.equal(Object.hasOwn(parsed, 'transitions'), false);
+});
