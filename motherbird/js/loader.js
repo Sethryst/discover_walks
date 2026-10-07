@@ -34,7 +34,7 @@ export async function init() {
   if (!document.querySelector('link[href*="splash-fix.css"]')) {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = './splash-fix.css?v=72';
+    link.href = './splash-fix.css?v=73';
     document.head.appendChild(link);
   }
   const splash = document.getElementById('appSplash');
@@ -60,7 +60,7 @@ export async function init() {
     globalThis.visualViewport?.removeEventListener('scroll', pinSplashToVisibleViewport);
     globalThis.removeEventListener('resize', pinSplashToVisibleViewport);
   };
-  setTimeout(dismissSplash, 2500);
+  setTimeout(dismissSplash, 1200);
   // Keep the visible app chrome usable even if optional data packages fail to
   // load. Geo Cypher is initialized lazily here so its record button is also
   // available on browsers that finish booting slowly.
@@ -98,6 +98,7 @@ export async function init() {
   // The walk planner is core map functionality. Bind it before optional
   // stories, radio, and companion layers can abort startup on bad local data.
   initEvents();
+  requestAnimationFrame(dismissSplash);
   // Bind the already-visible radial control before optional boot work can
   // leave a slow browser with an inert Start walk button.
   initRadialMenu();

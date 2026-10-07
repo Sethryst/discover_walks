@@ -31,15 +31,15 @@
   <link rel="stylesheet" href="./vendor/leaflet-markercluster/MarkerCluster.Default.css" />
   <link rel="stylesheet" href="./vendor/leaflet-geoman/leaflet-geoman.css" />
   <link rel="stylesheet" href="./vendor/maplibre-gl.css" />
-    <link rel="stylesheet" href="./styles.css?v=20261006-my-places-boundary-v1" />
+    <link rel="stylesheet" href="./styles.css?v=20261006-my-places-boundary-v2" />
     <link rel="stylesheet" href="./radio.css?v=20260928-radio-controls-v4" />
   <link rel="stylesheet" href="./shell.css?v=4" />
-  <link rel="stylesheet" href="./splash-fix.css?v=68" />
+  <link rel="stylesheet" href="./splash-fix.css?v=69" />
   <title>Walk & Wildlife</title>
 </head>
 <body>
   <div class="app-splash" id="appSplash" aria-hidden="true"><img src="./assets/splash-screen.jpeg" alt="" /></div>
-  <script>setTimeout(() => document.getElementById('appSplash')?.classList.add('app-splash--done'), 3200);</script>
+  <script>setTimeout(() => document.getElementById('appSplash')?.classList.add('app-splash--done'), 900);</script>
   <main class="app-shell">
     <nav class="primary-nav" aria-label="Main navigation"><button id="exploreTab" type="button" data-primary-tab="explore" class="active" aria-current="page">Explore</button><button id="libraryTab" type="button" data-primary-tab="library">Library</button><button id="meTab" type="button" data-primary-tab="me">Me</button></nav>
     <aside class="primary-panel hidden" id="primaryPanel" aria-live="polite"><header><h2 id="primaryPanelTitle">Walk</h2><button type="button" id="closePrimaryPanel" aria-label="Close">×</button></header><div id="primaryPanelActions"></div></aside>
@@ -250,7 +250,7 @@
   </section>
   <script type="module">import { openStory } from './js/stories.js'; window.openStory = openStory; const buttons=[...document.querySelectorAll('[data-story-open]')]; buttons.forEach((button) => button.addEventListener('click', () => openStory(button.dataset.storyOpen))); const filter=document.getElementById('storyScopeFilter'); filter?.addEventListener('change',()=>{const value=filter.value; buttons.filter((button)=>button.closest('.news-story-list')).forEach((button)=>{button.hidden=value==='national' ? !button.dataset.storyOpen.includes('the-wagon') : value==='local' && button.dataset.storyOpen.includes('the-wagon');}); document.getElementById('nationalStoryEmpty')?.classList.toggle('hidden',value!=='national');});</script>
   <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
-        <script src="./vendor/qrcode.js"></script><script src="./vendor/leaflet/leaflet.js"></script><script src="./vendor/leaflet-markercluster/leaflet.markercluster.js"></script><script src="./vendor/leaflet-geoman/leaflet-geoman.min.js"></script><script src="./vendor/turf/turf.min.js"></script><script src="./vendor/maplibre-gl.js"></script><script src="./vendor/pmtiles.js"></script><script async src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.105.0"></script><script src="https://w.soundcloud.com/player/api.js"></script><script src="./supabase-config.js"></script><script type="module" src="./app.js?v=20261006-location-simulator-1"></script>
+        <script src="./vendor/qrcode.js"></script><script src="./vendor/leaflet/leaflet.js"></script><script src="./vendor/leaflet-markercluster/leaflet.markercluster.js"></script><script src="./vendor/leaflet-geoman/leaflet-geoman.min.js"></script><script src="./vendor/turf/turf.min.js"></script><script src="./vendor/maplibre-gl.js"></script><script src="./vendor/pmtiles.js"></script><script async src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.105.0"></script><script src="https://w.soundcloud.com/player/api.js"></script><script src="./supabase-config.js"></script><script type="module" src="./app.js?v=20261006-location-simulator-2"></script>
 </body>
 </html>
 
