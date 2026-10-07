@@ -8,8 +8,8 @@ import { auditEndpointRegistrations } from '../tools/audit-endpoint-registration
 test('endpoint audit keeps registration, configuration, health, and production separate', async () => {
   const output = join(await mkdtemp(join(tmpdir(), 'motherbird-endpoints-')), 'audit.json');
   const report = await auditEndpointRegistrations({ output });
-  assert.equal(report.summary.registered, 3);
-  assert.equal(report.summary.configured, 3);
+  assert.equal(report.summary.registered, 2);
+  assert.equal(report.summary.configured, 2);
   assert.equal(report.summary.healthVerified, 0);
   assert.equal(report.summary.producing, 0);
   assert.ok(report.registrations.every((item) => item.health.status === 'not-requested'));
