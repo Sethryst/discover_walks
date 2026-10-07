@@ -44,6 +44,20 @@ export async function init() {
     document.head.appendChild(link);
   }
   const splash = document.getElementById('appSplash');
+  const storageStatusMessages = {
+    checking: 'Device journal is loading',
+    durable: 'Changes are safely saved on this device',
+    temporary: 'This session is temporary until device storage recovers',
+    recovering: 'Another tab is finishing a database update',
+    failed: 'Device journal storage needs attention',
+    'quota-exceeded': 'Device storage quota is full'
+  };
+  const stopStorageStatus = db.onPersistenceState?.((event) => {
+    const message = storageStatusMessages[event.state];
+    if (message) document.body.dataset.storageState = event.state;
+    if (event.state === 'quota-exceeded') toast(message);
+    else if (event.state === 'failed') toast(message);
+  });
   const pinSplashToVisibleViewport = () => {
     if (!splash || splash.classList.contains('app-splash--done')) return;
     splash.style.position = 'fixed';
@@ -116,8 +130,9 @@ export async function init() {
     console.error(error);
     const message = /places data could not be loaded|Regional data request failed/i.test(error?.message || '')
       ? 'The regional map data could not load. Check your connection and reload.'
-      : 'Local storage could not open in this browser. Check storage permissions and reload.';
+      : (storageStatusMessages[db.persistenceState?.()] || 'Device journal storage needs attention');
     toast(message);
+    stopStorageStatus?.();
     return;
   }
 
