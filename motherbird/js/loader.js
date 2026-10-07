@@ -118,19 +118,27 @@ export async function init() {
   // leave a slow browser with an inert Start walk button.
   initRadialMenu();
   initStories();
-  await initRadio();
-  await initGeoCypher();
-  removePrimaryControlFallbacks();
   initPrimaryShell();
-  await activateInstalledRegionRuntime();
-  await initCountyAdditions();
-  await initMapPaint();
-  await initPersonalPlaces();
-  await initLayerSystem();
   initFieldGuideFilters();
   initBiodiversity();
 
+  // The core map is ready now. Optional local/network features must not hold
+  // the whole app hostage behind a slow manifest, migration, or region fetch.
   await refreshCityMap(false);
+  const optionalBoot = (label, task) => Promise.resolve().then(task).catch((error) => {
+    console.warn(`[motherbird:optional-boot] ${label} unavailable:`, error?.message || error);
+    return null;
+  });
+  void (async () => {
+    await optionalBoot('radio', initRadio);
+    await optionalBoot('geo-cypher', initGeoCypher);
+    removePrimaryControlFallbacks();
+    await optionalBoot('installed-region', activateInstalledRegionRuntime);
+    await optionalBoot('county additions', initCountyAdditions);
+    await optionalBoot('map paint', initMapPaint);
+    await optionalBoot('personal places', initPersonalPlaces);
+    await optionalBoot('layer system', initLayerSystem);
+  })();
   performance.measure?.('motherbird:init:ready', 'motherbird:init:start');
   console.info?.('[motherbird:perf] startup-ready', {
     duration: Math.round(performance.getEntriesByName('motherbird:init:ready').at(-1)?.duration || 0),
@@ -146,12 +154,8 @@ export async function init() {
 
   if (splash) requestAnimationFrame(dismissSplash);
 
-  try {
-    // No auth/onboarding sheet at launch. Only Go online starts a ceremony.
-    await initOnlinePane();
-  } catch (error) {
-    console.warn('Online mode unavailable:', error.message);
-  }
+  // No auth/onboarding sheet at launch. Only Go online starts a ceremony.
+  void optionalBoot('online pane', initOnlinePane);
 
   // Opt-in live routing verification: exercise the installed planner and
   // renderer after the full map/runtime boot has completed. This is query-
