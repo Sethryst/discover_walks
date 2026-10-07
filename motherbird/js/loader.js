@@ -5,7 +5,7 @@ import { normalizeProfile, sitesForProfile } from './utils.js';
 import { toast } from './ui.js';
 import { initMap } from './map.js?v=20261006-dc-default-view-1';
 import { applyStaticAppearance } from './ui.js';
-import { loadAllCityData, refreshCityMap } from './city.js';
+import { loadAllCityData, loadCityEnrichment, refreshCityMap } from './city.js';
 import { initEvents } from './events.js?v=20261006-point-to-point-selection-1';
 import { renderArchive } from './archive.js';
 import { normalizedEntitlements } from './entitlements.js';
@@ -102,6 +102,9 @@ export async function init() {
   initMap();
   setSplashStatus('Initializing the map…');
   requestAnimationFrame(() => state.map?.invalidateSize({ pan: false }));
+  // The base map is useful immediately. Large journeys, trails, and OSM
+  // packages are parsed and persisted only after the first frame is visible.
+  void loadCityEnrichment(state.activeCity);
   // The walk planner is core map functionality. Bind it before optional
   // stories, radio, and companion layers can abort startup on bad local data.
   initEvents();

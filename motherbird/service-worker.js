@@ -1,7 +1,7 @@
 // Keep the whole module graph with the shell. Caching only app.js leaves an
 // offline (or briefly disconnected) reload with a blank app when any imported
 // module was not already in the runtime cache.
-const APP_CACHE = 'walk-wildlife-shell-v347'; // Loading status and map layout refresh
+const APP_CACHE = 'walk-wildlife-shell-v348'; // Defer heavy regional enrichment until after first paint
 const TILE_CACHE = 'walk-wildlife-osm-viewed-tiles-v1';
 const LIBRARY_CACHE = 'walk-wildlife-library-v2';
 const COMPANION_CACHE = 'walk-wildlife-companion-media-v2';
@@ -38,7 +38,10 @@ const shell = [
   ]),
   ...['alexandria-va', 'arlington-va', 'baltimore', 'boise-meridian-idaho', 'boston', 'boulder', 'chicago', 'columbus', 'corpus-christi', 'denver', 'detroit', 'eugene', 'fairfax-county-va', 'falls-church-va', 'fort-worth', 'keystone-colorado', 'las-vegas', 'loudoun-county-va', 'madison', 'milwaukee', 'new-orleans', 'pittsburgh', 'portland', 'portland-maine', 'prince-georges-county-md', 'providence', 'san-francisco', 'santa-fe', 'seattle', 'sedona-arizona', 'tempe', 'washington-dc'].map((region) => `./regions/${region}/osm/merged-pois.json`),
   './regions/washington-dc/geography/neighborhoods.geojson', './regions/washington-dc/geography/source.json',
-  './regions/fairfax-county-va/pois.json', './regions/fairfax-county-va/journeys.json', './regions/fairfax-county-va/edges.json',
+  // Large regional enrichments are fetched on demand after first paint. Keep
+  // them out of install-time precache so PWA install is not a multi-megabyte
+  // blocking download.
+  './regions/fairfax-county-va/pois.json',
   './regions/fairfax-county-va/discover.json', './regions/fairfax-county-va/learn.json', './regions/fairfax-county-va/capabilities.json', './regions/fairfax-county-va/civic/index.json',
   './assets/fox-idle.gif', './assets/fox-walk.gif', './assets/cloud-idle.gif', './assets/cloud-walk.gif', './assets/compass.gif',
   './regions/washington-dc/spatial/spatial-index-manifest.json', './regions/washington-dc/spatial/pois.flatbush', './regions/washington-dc/spatial/pois.ids.json',
