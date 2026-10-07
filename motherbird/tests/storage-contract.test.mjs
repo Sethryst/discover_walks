@@ -18,3 +18,12 @@ test('unsupported IndexedDB falls back to temporary memory storage and records d
   assert.equal(report.databaseName, 'walk-wildlife-journal');
   assert.ok(report.transitions.length >= 1);
 });
+
+test('outbox enqueue is idempotent for stable operation IDs', async () => {
+  const first = await db.enqueueOutbox({ id: 'storage-test-operation', kind: 'settings', payload: { value: 1 } });
+  const second = await db.enqueueOutbox({ id: 'storage-test-operation', kind: 'settings', payload: { value: 2 } });
+  assert.deepEqual(second.payload, first.payload);
+  const updated = await db.updateOutbox(first.id, { status: 'failed', retryCount: 1, failureReason: 'test' });
+  assert.equal(updated.status, 'failed');
+  assert.equal((await db.get('outbox', first.id)).retryCount, 1);
+});
