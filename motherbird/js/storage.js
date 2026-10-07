@@ -98,6 +98,14 @@ export const db = (() => {
     const risky = pendingMigrations(fromVersion).filter(({ risk }) => risk === 'risky');
     if (risky.length && beforeRiskyMigration) await beforeRiskyMigration({ fromVersion, toVersion: DATABASE_VERSION, migrations: risky.map(({ version, description }) => ({ version, description })) });
     return new Promise((resolve, reject) => {
+      // A crashed or suspended tab can leave an IndexedDB upgrade blocked
+      // forever. Do not hold the visible app behind that browser-global lock;
+      // continue with the in-memory fallback and let a later reload retry.
+      const fallbackTimer = setTimeout(() => {
+        database = null;
+        console.warn('Local database upgrade is blocked; continuing with temporary in-memory storage.');
+        resolve();
+      }, 5000);
       const request = indexedDB.open(DATABASE_NAME, DATABASE_VERSION);
       request.onupgradeneeded = (event) => {
         database = request.result;
@@ -116,8 +124,8 @@ export const db = (() => {
         // prototype. A future public transport can publish signed manifests
         // without coupling raw media to the journal or profile backup paths.
       };
-      request.onsuccess = () => { database = attachVersionChangeHandler(request.result); resolve(); };
-      request.onerror = () => reject(request.error);
+      request.onsuccess = () => { clearTimeout(fallbackTimer); database = attachVersionChangeHandler(request.result); resolve(); };
+      request.onerror = () => { clearTimeout(fallbackTimer); reject(request.error); };
       request.onblocked = () => {
         // Existing app tabs receive the versionchange event above and close
         // their connection. Keep waiting for the upgrade instead of failing
