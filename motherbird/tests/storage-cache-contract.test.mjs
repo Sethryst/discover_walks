@@ -50,3 +50,9 @@ test('migration backup includes optional Cache Storage and OPFS asset collectors
   assert.match(storage, /restoreBackup/);
   assert.match(storage, /safeBackupPath/);
 });
+
+test('location simulator does not persist through sessionStorage', async () => {
+  const source = await readFile(new URL('../js/location-simulator.js', import.meta.url), 'utf8');
+  assert.doesNotMatch(source, /sessionStorage/);
+  assert.match(source, /preferences:location-simulator/);
+});

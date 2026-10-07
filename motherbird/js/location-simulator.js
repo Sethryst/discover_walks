@@ -9,9 +9,13 @@ const simulatorEnabled = typeof location !== 'undefined' && (location.hostname =
 // memory from LOCATION_PRESETS so simulated GPS is never serialized or sent.
 export const SIMULATOR_SESSION_KEY = 'walk-wildlife:location-simulator:preset';
 const STORAGE_KEY = SIMULATOR_SESSION_KEY;
-function sessionValue() { try { return simulatorEnabled && globalThis.sessionStorage?.getItem(STORAGE_KEY); } catch { return null; } }
-function setSessionValue(value) { try { if (simulatorEnabled && globalThis.sessionStorage) value === null ? globalThis.sessionStorage.removeItem(STORAGE_KEY) : globalThis.sessionStorage.setItem(STORAGE_KEY, value); } catch { /* Private/test contexts may disable storage; memory remains authoritative. */ } }
-let simulatedPreset = sessionValue();
+const PREF_ID = 'preferences:location-simulator';
+let simulatedPreset = null;
+let preferenceDbPromise = null;
+async function preferenceDb() { if (!preferenceDbPromise) preferenceDbPromise = import('./storage.js').then(({ default: db }) => db); return preferenceDbPromise; }
+async function hydrateSimulatorPreference() { if (!simulatorEnabled) return; try { simulatedPreset = (await (await preferenceDb()).get('settings', PREF_ID))?.preset || null; } catch { simulatedPreset = null; } }
+function setSessionValue(value) { if (!simulatorEnabled) return; void preferenceDb().then((db) => value === null ? db.remove('settings', PREF_ID) : db.put('settings', { id: PREF_ID, preset: value })).catch(() => {}); }
+void hydrateSimulatorPreference();
 let nextWatchId = 0;
 let simulatedSample = 0;
 const watches = new Map();
