@@ -72,6 +72,7 @@ export async function init() {
   // load. Geo Cypher is initialized lazily here so its record button is also
   // available on browsers that finish booting slowly.
   const removePrimaryControlFallbacks = initPrimaryControls();
+  const deferRegionalDataForBoot = true;
   try {
     setSplashStatus('Opening your journal…');
     // IndexedDB can hard-block startup on a stale or suspended tab. Keep the
@@ -97,7 +98,9 @@ export async function init() {
     }
     await applyOfflineBootConditions();
     setSplashStatus('Unfolding the map…');
-    await loadAllCityData();
+    // Keep the shell responsive even when a regional JSON package is too
+    // large or malformed for this browser to parse during startup.
+    if (!deferRegionalDataForBoot) await loadAllCityData();
     performance.measure?.('motherbird:init:city-data', 'motherbird:init:start');
   } catch (error) {
     console.error(error);
@@ -128,7 +131,7 @@ export async function init() {
 
   // The core map is ready now. Optional local/network features must not hold
   // the whole app hostage behind a slow manifest, migration, or region fetch.
-  await refreshCityMap(false);
+  if (!deferRegionalDataForBoot) await refreshCityMap(false);
   const optionalBoot = (label, task) => Promise.resolve().then(task).catch((error) => {
     console.warn(`[motherbird:optional-boot] ${label} unavailable:`, error?.message || error);
     return null;
