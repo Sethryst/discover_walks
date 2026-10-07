@@ -84,5 +84,7 @@ are explicitly test-only records and are not published as corridor evidence.
 pairs inside the pilot boundary. `motherbird/tools/mip-blind-evaluation.mjs`
 turns generated valid candidates into a deterministic review packet, removes
 route IDs and archetype labels, and validates the six-point human rubric. The
-packet is an evaluation instrument only: no human ratings have been recorded,
-and no scoring weights have been tuned from it.
+`generateBlindPacket()` accepts the real per-pair candidate generator so the
+packet can be produced without hand-assembling results. It remains an
+evaluation instrument only: no human ratings have been recorded, and no
+scoring weights have been tuned from it.

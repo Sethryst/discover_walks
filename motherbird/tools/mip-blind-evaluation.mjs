@@ -60,6 +60,14 @@ export function createBlindPacket(pairs, generatedResults, { seed = 'ambient-mip
   };
 }
 
+export async function generateBlindPacket({ pairs = loadEvaluationPairs(), generateForPair, seed = 'ambient-mip-blind-v1' } = {}) {
+  if (typeof generateForPair !== 'function') throw new TypeError('BLIND_EVALUATION_REQUIRES_CANDIDATE_GENERATOR');
+  validateEvaluationPairs(pairs);
+  const generatedResults = [];
+  for (const pair of pairs) generatedResults.push({ pairId: pair.id, candidates: await generateForPair(pair) });
+  return createBlindPacket(pairs, generatedResults, { seed });
+}
+
 export function validateBlindRatings(packet, ratings) {
   const allowedCases = new Set((packet?.cases || []).map((item) => item.caseId));
   const allowedLabels = new Set((packet?.cases || []).flatMap((item) => item.candidates.map((candidate) => candidate.label)));
