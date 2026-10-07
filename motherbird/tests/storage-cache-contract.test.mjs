@@ -82,3 +82,10 @@ test('spatial sync prefers the shared outbox coordinator', async () => {
   assert.match(source, /store\.enqueueOutbox/);
   assert.match(source, /kind: 'spatial-sync'/);
 });
+
+test('backup UI exposes the complete storage backup path', async () => {
+  const source = await readFile(new URL('../js/backup.js', import.meta.url), 'utf8');
+  assert.match(source, /exportStorageBackup/);
+  assert.match(source, /db\.restoreBackup/);
+  assert.match(source, /exportStorageButton/);
+});

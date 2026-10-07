@@ -45,6 +45,12 @@ export async function exportJournal(format = 'json') {
   toast(format === 'csv' ? 'Readable journal CSV downloaded.' : 'Complete journal backup downloaded.');
 }
 
+export async function exportStorageBackup() {
+  const backup = await db.createPreMigrationBackup({ source: 'user-export' });
+  downloadFile(await backup.text(), 'application/json', `walk-wildlife-storage-${dayKey()}.json`);
+  toast('Complete device storage backup downloaded.');
+}
+
 function conflictLabel(conflict) {
   return conflict.local.title || conflict.local.name || conflict.local.species || conflict.incoming.title || conflict.incoming.name || conflict.incoming.species || conflict.id;
 }
@@ -105,7 +111,9 @@ async function applyPendingImport(mode) {
 export async function importJournal(event) {
   const file = event.target.files[0]; event.target.value = ''; if (!file) return;
   try {
-    const backup = normalizeJournalBackup(JSON.parse(await file.text()));
+    const raw = JSON.parse(await file.text());
+    if (raw?.format === 'walk-wildlife-storage-backup') { const result = await db.restoreBackup(raw); toast(`Storage backup restored · ${result.offline.caches.restored + result.offline.opfs.restored} offline assets recovered.`); location.reload(); return; }
+    const backup = normalizeJournalBackup(raw);
     await stageJournalImport(backup, file.name);
   } catch (error) { toast(error.message || 'That backup could not be previewed.'); }
 }
@@ -189,7 +197,7 @@ export async function restoreCloudJournalBackup() {
 
 export function initBackupControls() {
   const panel = document.createElement('div'); panel.className = 'backup-controls';
-  panel.innerHTML = '<p class="sheet-kicker">YOUR BACKUP</p><p>Export a complete private backup or a readable CSV. Import starts with a preview; Merge preserves this device by default.</p><div class="backup-actions"><button class="secondary-button" id="exportDataButton" type="button">Export JSON</button><button class="secondary-button" id="exportCsvButton" type="button">Export CSV</button><label class="secondary-button import-label">Preview import<input id="importDataInput" type="file" accept="application/json,.json" /></label></div><section class="cloud-backup-controls" aria-labelledby="cloudBackupTitle"><strong id="cloudBackupTitle">Field Edition cloud backup</strong><p id="cloudBackupStatus">Checking Field Edition access…</p><label>Backup passphrase <input id="cloudBackupPassphrase" type="password" autocomplete="off" minlength="8" placeholder="Not sent to the server" /></label><small>One encrypted snapshot is stored. The server cannot read it, and the passphrase cannot be recovered.</small><div class="backup-actions"><button class="secondary-button" id="saveCloudBackupButton" type="button">Replace cloud backup</button><button class="secondary-button" id="restoreCloudBackupButton" type="button">Preview cloud restore</button></div></section><section class="journal-import-preview hidden" id="journalImportPreview" aria-live="polite"></section>';
+  panel.innerHTML = '<p class="sheet-kicker">YOUR BACKUP</p><p>Export a complete private device backup or a readable journal CSV. Journal imports are previewed; storage backups restore local records and offline assets.</p><div class="backup-actions"><button class="secondary-button" id="exportDataButton" type="button">Export journal JSON</button><button class="secondary-button" id="exportStorageButton" type="button">Export full device</button><button class="secondary-button" id="exportCsvButton" type="button">Export CSV</button><label class="secondary-button import-label">Import backup<input id="importDataInput" type="file" accept="application/json,.json" /></label></div><section class="cloud-backup-controls" aria-labelledby="cloudBackupTitle"><strong id="cloudBackupTitle">Field Edition cloud backup</strong><p id="cloudBackupStatus">Checking Field Edition access…</p><label>Backup passphrase <input id="cloudBackupPassphrase" type="password" autocomplete="off" minlength="8" placeholder="Not sent to the server" /></label><small>One encrypted snapshot is stored. The server cannot read it, and the passphrase cannot be recovered.</small><div class="backup-actions"><button class="secondary-button" id="saveCloudBackupButton" type="button">Replace cloud backup</button><button class="secondary-button" id="restoreCloudBackupButton" type="button">Preview cloud restore</button></div></section><section class="journal-import-preview hidden" id="journalImportPreview" aria-live="polite"></section>';
   el('clearDataButton').before(panel);
   el('exportDataButton').textContent = 'Export journal (JSON)';
   el('exportCsvButton').textContent = 'Export journal (CSV)';
@@ -198,6 +206,7 @@ export function initBackupControls() {
   el('saveCloudBackupButton').textContent = 'Replace encrypted backup';
   el('restoreCloudBackupButton').textContent = 'Preview encrypted restore';
   el('exportDataButton').addEventListener('click', () => void exportJournal('json'));
+  el('exportStorageButton').addEventListener('click', () => void exportStorageBackup().catch((error) => toast(error.message || 'Could not create the device backup.')));
   el('exportCsvButton').addEventListener('click', () => void exportJournal('csv'));
   el('importDataInput').addEventListener('change', importJournal);
   el('saveCloudBackupButton').addEventListener('click', () => void saveCloudJournalBackup().catch((error) => toast(error.message || 'Could not save the cloud backup.')));
