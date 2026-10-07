@@ -61,6 +61,12 @@ for (const entry of publishEntries) {
   await cp(source, resolve(outputDirectory, entry), { recursive: true });
 }
 
+// This is an obsolete 1.2 GB routing release. The app uses the current
+// 2026-10-04 manifests and remote/runtime routing paths; shipping the old
+// archive makes the GitHub Pages artifact take so long to upload that newer
+// deployments remain stuck behind it.
+await rm(resolve(outputDirectory, 'data', 'national-routing', 'osm-us-2026-09-07'), { recursive: true, force: true });
+
 // Make every Pages build detectable by the service-worker update check. The
 // source worker keeps a readable fallback version for local development, while
 // deployed builds use the Git commit (or a timestamp outside CI) as the shell
