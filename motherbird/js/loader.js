@@ -29,6 +29,7 @@ import { initRadio } from './radio.js?v=20260928-radio-controls-v3';
 import { recoverWalkDraft, discardWalk } from './walk.js';
 import { initBiodiversity } from './biodiversity.js';
 import { initRegionalNavigation } from './regional-navigation.js';
+import { initStorageDiagnostics } from './storage-diagnostics.js';
 
 export async function init() {
   const telemetry = (stage, details = {}) => globalThis.__MOTHERBIRD_STARTUP_MARK__?.(stage, details);
@@ -70,6 +71,7 @@ export async function init() {
   // load. Geo Cypher is initialized lazily here so its record button is also
   // available on browsers that finish booting slowly.
   const removePrimaryControlFallbacks = initPrimaryControls();
+  initStorageDiagnostics();
   const deferRegionalDataForBoot = true;
   try {
     setSplashStatus('Opening your journal…');
