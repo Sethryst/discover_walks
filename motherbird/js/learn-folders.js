@@ -4,21 +4,14 @@ import db from './storage.js';
 
 export const LEARN_GROUPS = [
   { id: 'history', label: 'History', color: '#7a2d1d', art: 'band', children: [
-    { id: 'history', label: 'VA history sites' },
-    { id: 'battlefields', label: 'Battlefields' },
-    { id: 'markers', label: 'Historic markers' },
-    { id: 'marks', label: 'Survey marks' },
-    { id: 'topo', label: 'Historic topo maps' }
+    { id: 'history', label: 'History sites' },
+    { id: 'topo', label: 'Historic topo maps' },
+    { id: 'battlefields', label: 'Historic battlefields' }
   ]},
-  { id: 'water', label: 'Water', color: '#1d4f7a', art: 'wave', children: [
+  { id: 'nature', label: 'Nature', color: '#2d7259', art: 'ridge', children: [
     { id: 'watersheds', label: 'Watersheds' },
-    { id: 'names', label: 'Named streams' }
-  ]},
-  { id: 'land', label: 'Land', color: '#2d7259', art: 'ridge', children: [
-    { id: 'protected', label: 'Who protects this land' },
-    { id: 'trees', label: 'Champion trees' }
-  ]},
-  { id: 'life', label: 'Life', color: '#4a6b2f', art: 'leaf', children: [
+    { id: 'names', label: 'Named landscape' },
+    { id: 'protected', label: 'Protected land' },
     { id: 'wildlife', label: 'Wildlife recorded here' }
   ]}
 ];
@@ -68,7 +61,7 @@ export function learnLibraryHtml() {
 }
 
 function groupIdFromTitle(title) {
-  return ({ History: 'history', Water: 'water', Land: 'land', Life: 'life' })[title] || null;
+  return ({ History: 'history', Nature: 'nature' })[title] || null;
 }
 
 function bindLearnLibrary() {
@@ -99,12 +92,6 @@ function bindLearnLibrary() {
       });
     }
   });
-  window.setInterval(() => {
-    const root = document.querySelector('#fieldGuideList .learn-history');
-    if (!root || root.classList.contains('learn-library')) return;
-    const ids = [...root.querySelectorAll('[data-learn-open]')].map((button) => button.dataset.learnOpen);
-    if (ids.includes('history') && ids.includes('watersheds') && ids.length >= 5) root.outerHTML = learnLibraryHtml();
-  }, 500);
 }
 
 bindLearnLibrary();

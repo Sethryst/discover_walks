@@ -6,11 +6,11 @@ import { installedPackBounds } from './offline-view.js';
 
 export const LEARN_INDEX_URL = './data/learn/index.json';
 export const LEARN_SPLITS_URL = './data/learn/history/pack-splits.json';
-export const LEARN_SPLITS_FALLBACK_URL = './data/virginia-pack-splits.json';
+export const LEARN_SPLITS_FALLBACK_URL = './data/learn/history/pack-splits.json';
 export const LEARN_VIEWS = Object.freeze(['discover', 'history']);
 export const LEARN_FOLDERS = Object.freeze([
-  { id: 'discover', label: 'Still to discover', children: ['sites', 'watersheds', 'streams'] },
-  { id: 'history', label: 'History', children: ['sites', 'eras', 'splits'] }
+  { id: 'nature', label: 'Nature', children: ['watersheds', 'names', 'protected', 'wildlife'] },
+  { id: 'history', label: 'History', children: ['sites', 'topo', 'battlefields'] }
 ]);
 
 let splitsCache = null;
@@ -168,7 +168,7 @@ function childSlot(folderId, child) {
 }
 
 export function learnFolderHtml(folder, sites) {
-  const open = folder.id === 'discover' ? 'open' : '';
+  const open = folder.id === 'nature' ? 'open' : '';
   const empty = folder.id === 'history' ? 'No checked history sites in this pack yet.' : 'No unchecked history sites remain in this pack.';
   const visited = folder.id === 'history';
   const list = sites.length ? sites.map((poi) => siteCard(poi, visited)).join('') : `<p class="empty-state">${empty}</p>`;
@@ -177,9 +177,9 @@ export function learnFolderHtml(folder, sites) {
 }
 
 export function learnHistoryHtml({ progress, folders, remaining = [], seen = [] }) {
-  const discover = folders?.find((folder) => folder.id === 'discover') || { id: 'discover', label: 'Still to discover', children: [] };
+  const discover = folders?.find((folder) => folder.id === 'nature') || { id: 'nature', label: 'Nature', children: [] };
   const history = folders?.find((folder) => folder.id === 'history') || { id: 'history', label: 'History', children: [] };
-  return `<section class="learn-history"><button type="button" class="secondary-button" data-learn-home="1">Back</button><p class="learn-progress">${progress.visited} of ${progress.total} history sites checked. ${progress.remaining} still to discover.</p>${learnFolderHtml(discover, remaining)}${learnFolderHtml(history, seen)}</section>`;
+  return `<section class="learn-history"><button type="button" class="secondary-button" data-learn-home="1">Back</button>${learnFolderHtml(discover, remaining)}${learnFolderHtml(history, seen)}</section>`;
 }
 
 export function setLearnView(view) { learnView = LEARN_VIEWS.includes(view) ? view : 'discover'; return learnView; }
@@ -498,6 +498,4 @@ export async function renderLearnHistory(target, point) {
   const visibleRemaining = split.remaining.filter((poi) => viewboxContainsPoint(state.map, poi));
   const visibleSeen = split.seen.filter((poi) => viewboxContainsPoint(state.map, poi));
   target.innerHTML = learnHistoryHtml({ progress, folders, remaining: sortSitesByDistance(visibleRemaining, point).slice(0, 40), seen: sortSitesByDistance(visibleSeen, point).slice(0, 40) });
-  const catalog = await loadVirginiaSplits();
-  paintVirginiaSplits({ map: state.map, leaflet: globalThis.L, packs: catalog.packs || [], activeId: state.activeCity, progress });
 }

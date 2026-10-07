@@ -53,13 +53,13 @@ test('Learn HTML names the two parent folders', () => {
   const html = learnHistoryHtml({
     progress: { visited: 1, remaining: 1, total: 2 },
     folders: [
-      { id: 'discover', label: 'Still to discover', children: [{ id: 'watersheds', label: 'Watersheds', status: 'research', file: 'watersheds.json' }] },
+      { id: 'nature', label: 'Nature', children: [{ id: 'watersheds', label: 'Watersheds', status: 'research', file: 'watersheds.json' }] },
       { id: 'history', label: 'History', children: [{ id: 'eras', label: 'Historic eras', status: 'research', file: 'eras.json' }] }
     ],
     remaining: [marker],
     seen: [museum]
   });
-  assert.match(html, /Still to discover/);
+  assert.match(html, /Nature/);
   assert.match(html, /History/);
   assert.match(html, /A historic marker/);
   assert.match(html, /Fairfax Museum/);
