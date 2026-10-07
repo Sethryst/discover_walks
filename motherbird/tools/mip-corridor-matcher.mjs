@@ -23,7 +23,8 @@ export function matchOfficialCorridor(source, graphEdges, {
   const strict = assignSamples(samples, edges, matchMeters);
   const matched = strict.matchedCount ? strict : assignSamples(samples, edges, fallbackMeters);
   const threshold = strict.matchedCount ? matchMeters : fallbackMeters;
-  const matchedEdgeIds = stableUnique(matched.assignments.map((assignment) => assignment.edge.id));
+  const matchedAssignments = matched.assignments.filter(Boolean);
+  const matchedEdgeIds = stableUnique(matchedAssignments.map((assignment) => assignment.edge.id));
   const matchedLength = matchedEdgeIds.reduce((total, id) => total + (edges.find((edge) => edge.id === id)?.lengthMeters || 0), 0);
   const coverage = samples.length ? matched.matchedCount / samples.length : 0;
   const gaps = unbridgedGaps(samples, matched.assignments, threshold);
@@ -38,8 +39,8 @@ export function matchOfficialCorridor(source, graphEdges, {
     bearingDifferenceDegrees: round(median(matched.bearings)),
     unbridgedGapsMeters: gaps.map(round),
     thresholdMeters: threshold,
-    continuity: continuity(matchedEdgeIds, edges),
-    confidence: confidence({ coverage, offsets: matched.offsets, gaps, continuity: continuity(matchedEdgeIds, edges) })
+    continuity: continuity(matchedAssignments.map((assignment) => assignment.edge.id), edges),
+    confidence: confidence({ coverage, offsets: matched.offsets, gaps, continuity: continuity(matchedAssignments.map((assignment) => assignment.edge.id), edges) })
   };
   const status = quality.confidence >= 0.8 && coverage >= 0.8 && quality.medianOffsetMeters <= 10 && !gaps.some((gap) => gap > 150)
     ? 'verified'

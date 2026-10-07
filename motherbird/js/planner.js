@@ -6,7 +6,7 @@ import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261007-ambien
 import { escapeHtml } from './utils.js';
 import { toast } from './ui.js';
 import { splitDisconnectedPaths } from './routes.js';
-import { generateAmbientOptions, installAmbientLearningListener, readAmbientMemory, memoryScores } from './ambient-mip.js?v=20261007-ambient-1';
+import { buildAmbientExplanation, generateAmbientOptions, installAmbientLearningListener, readAmbientMemory, memoryScores } from './ambient-mip.js?v=20261007-ambient-2';
 
 function selectedMinutes() { return Number(document.querySelector('input[name="walkTime"]:checked')?.value || 30); }
 function selectedRouteMode() { return document.querySelector('input[name="routeMode"]:checked')?.value || 'round-trip'; }
@@ -157,7 +157,7 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
     if (ambient.routes.length) {
       const plans = ambient.routes.slice(0, 3).map((routed, index) => ({
         id: routed.id, title: index === 0 ? (title || 'A good walk from here') : (routed.archetype === 'discovery' ? 'More to notice' : 'Quieter where mapped'),
-        reason: routed.archetype === 'direct' ? 'A direct walk to your destination.' : routed.archetype === 'discovery' ? 'Includes a reviewed place without requiring a setup choice.' : 'Uses the mapped comfort/accessibility evidence available for this route.',
+        reason: buildAmbientExplanation(routed),
         city: state.activeCity, routeMode, estimatedDurationMinutes: Math.round(Number(routed.durationSeconds || 0) / 60),
         stops: routed.stops || [{ name: 'Selected destination', lat: state.plannerEnd.lat, lng: state.plannerEnd.lng }], coordinates: routed.coordinates,
         distanceMeters: routed.distanceMeters, distanceMiles: Number((routed.distanceMeters / 1609.344).toFixed(2)), graphStatus: null, graphVersion: routed.graphVersion,

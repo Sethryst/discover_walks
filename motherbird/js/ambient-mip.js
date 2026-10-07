@@ -1,5 +1,6 @@
 const STORAGE_KEY = 'motherbird.ambient-route-learning.v1';
 const MAX_EVIDENCE_AGE_DAYS = 90;
+import { aggregateRouteFeatures } from './mip-features.js?v=20261007-mip-features-1';
 
 export const AMBIENT_ARCHETYPES = Object.freeze(['direct', 'discovery', 'quiet']);
 
@@ -11,17 +12,17 @@ const DEFAULT_WEIGHTS = Object.freeze({
 
 /** Route a bounded set of candidates. Every candidate is verified by the
  * supplied routing function before it can be ranked or explained. */
-export async function generateAmbientOptions({ origin, destination, routeOnFoot, context = {}, memory = {}, discoveryStops = [], quietStops = [] } = {}) {
+export async function generateAmbientOptions({ origin, destination, routeOnFoot, context = {}, memory = {}, discoveryStops = [], quietStops = [], sidecar = null, poiRecords = [], corridorCatalogue = [] } = {}) {
   if (typeof routeOnFoot !== 'function' || !origin || !destination) return { primary: null, alternatives: [], routes: [] };
   const direct = await safeRoute(routeOnFoot, [origin, destination], { profile: 'ordinary_walking_beta' });
   const directMinutes = direct.ok ? Number(direct.durationSeconds || 0) / 60 : 0;
-  const routes = direct.ok ? [{ ...direct, id: 'ambient-direct', archetype: 'direct', directDurationMinutes: directMinutes, facts: { extraMinutes: 0 } }] : [];
+  const routes = direct.ok ? [enrichAmbientRoute({ ...direct, id: 'ambient-direct', archetype: 'direct', directDurationMinutes: directMinutes, facts: { extraMinutes: 0 } }, sidecar, poiRecords, corridorCatalogue)] : [];
   for (const stop of [...discoveryStops, ...quietStops].filter(Boolean).slice(0, 6)) {
     const archetype = quietStops.includes(stop) ? 'quiet' : 'discovery';
     const profile = archetype === 'quiet' ? 'accessible_verified' : 'ordinary_walking_beta';
     const result = await safeRoute(routeOnFoot, [origin, stop, destination], { profile });
     if (!result.ok) continue;
-    routes.push({ ...result, id: `ambient-${archetype}-${stop.id || stop.name || routes.length}`, archetype, directDurationMinutes: directMinutes, stops: [stop], facts: { poiCount: archetype === 'discovery' ? 1 : 0, extraMinutes: Math.max(0, Number(result.durationSeconds || 0) / 60 - directMinutes) } });
+    routes.push(enrichAmbientRoute({ ...result, id: `ambient-${archetype}-${stop.id || stop.name || routes.length}`, archetype, directDurationMinutes: directMinutes, stops: [stop], facts: { poiCount: archetype === 'discovery' ? 1 : 0, extraMinutes: Math.max(0, Number(result.durationSeconds || 0) / 60 - directMinutes) } }, sidecar, poiRecords, corridorCatalogue));
     if (routes.filter((route) => route.archetype === archetype).length >= 1) continue;
   }
   const intention = inferWalkingIntention({ ...context, destination }, memory);
@@ -45,9 +46,12 @@ export function inferWalkingIntention(context = {}, memory = {}) {
     directEvidence: Number(memory.direct || 0)
   };
   const candidates = [
-    { archetype: 'direct', score: signals.timePressure * 2 + signals.directEvidence },
-    { archetype: 'discovery', score: (1 - signals.timePressure) + signals.discoveryEvidence },
-    { archetype: 'quiet', score: signals.quietEvidence + (context.currentPaceMps && context.currentPaceMps < 1.1 ? 0.25 : 0) }
+    // A direct route is the conservative default. Discovery and quiet only
+    // outrank it after repeated local evidence or a strong current-context
+    // signal; one absent signal must never become a personality claim.
+    { archetype: 'direct', score: 0.5 + signals.timePressure * 2 + signals.directEvidence },
+    { archetype: 'discovery', score: (signals.discoveryEvidence > 0.25 ? 1 : 0.15) + signals.discoveryEvidence * 0.5 - signals.timePressure * 0.5 },
+    { archetype: 'quiet', score: (signals.quietEvidence > 0.25 ? 0.75 : 0) + signals.quietEvidence * 0.5 + (context.currentPaceMps && context.currentPaceMps < 1.1 ? 0.25 : 0) }
   ].sort((a, b) => b.score - a.score || AMBIENT_ARCHETYPES.indexOf(a.archetype) - AMBIENT_ARCHETYPES.indexOf(b.archetype));
   return { primary: candidates[0].archetype, confidence: Math.min(0.75, 0.35 + Math.max(0, candidates[0].score - candidates[1].score) * 0.15), signals, candidates };
 }
@@ -153,6 +157,12 @@ function normalizeMemory(memory = {}, now) {
     archetypes[key] = { evidence: clamp(Number(value.evidence || 0) * decay, -3, 3), observations: Number(value.observations || 0), updatedAt: Number(value.updatedAt || now) };
   }
   return { schemaVersion: 1, archetypes };
+}
+
+function enrichAmbientRoute(route, sidecar, poiRecords, corridorCatalogue) {
+  if (!sidecar) return route;
+  const features = aggregateRouteFeatures(route, sidecar, poiRecords, corridorCatalogue);
+  return { ...route, features, facts: { ...route.facts, ...features.facts, corridorName: features.corridorIds[0] || route.facts?.corridorName, corridorMeters: Object.values(features.corridorLengths).reduce((sum, meters) => sum + Number(meters || 0), 0), poiCount: features.poiCounts.total || route.facts?.poiCount || 0 } };
 }
 
 function formatMeters(meters) { return Number(meters) >= 1000 ? `${(Number(meters) / 1000).toFixed(1)} km` : `${Math.round(Number(meters))} m`; }

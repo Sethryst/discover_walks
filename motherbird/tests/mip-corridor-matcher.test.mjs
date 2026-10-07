@@ -26,3 +26,9 @@ test('corridor report sorts records and keeps status counts explicit', () => {
   assert.deepEqual(report.corridors.map((corridor) => corridor.id), ['a', 'z']);
   assert.deepEqual(report.summary, { total: 2, verified: 1, candidate: 0, rejected: 1 });
 });
+
+test('unmatched official samples fail closed instead of crashing', () => {
+  const result = matchOfficialCorridor({ id: 'partial', coordinates: [[-77.2, 38.8], [-77.1, 38.8]] }, [graphEdges[0]]);
+  assert.equal(result.status, 'rejected');
+  assert.ok(result.quality.matchedSampleCount < result.quality.sampleCount);
+});
