@@ -9,7 +9,7 @@ import { splitDisconnectedPaths } from './routes.js';
 
 function selectedMinutes() { return Number(document.querySelector('input[name="walkTime"]:checked')?.value || 30); }
 function selectedRouteMode() { return document.querySelector('input[name="routeMode"]:checked')?.value || 'round-trip'; }
-function plannerOrigin() { return state.plannerStart || state.currentPosition || state.map?.getCenter() || CITIES[state.activeCity].center; }
+function plannerOrigin() { return state.plannerStart || state.currentPosition || state.lastPosition || state.map?.getCenter() || CITIES[state.activeCity].center; }
 let generation = 0;
 
 function interests() {
@@ -146,7 +146,7 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
   // start was chosen (for legacy/generated plans).
   const routeOrigin = routeMode === 'point-to-point' ? (state.plannerStart || center) : center;
   const points = ['round-trip', 'auto-round-trip'].includes(routeMode) ? [center, ...stops, center] : [routeOrigin, ...stops];
-  const routed = await routeOnFoot(points, { city: state.activeCity, profile: 'ordinary_walking_beta' }).catch(() => ({ ok: false, status: 'GRAPH_VERSION_UNAVAILABLE' }));
+  const routed = await routeOnFoot(points, { city: state.activeCity, profile: 'ordinary_walking_beta' }).catch((error) => ({ ok: false, status: 'ROUTING_WORKER_ERROR', failure: { message: error?.message || 'Offline routing failed.' } }));
   if (requestGeneration !== generation) return null;
   if (new URLSearchParams(globalThis.location?.search || '').has('diagnose')) {
     globalThis.__lastRouteResult = routed;
@@ -170,6 +170,7 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
     ...(routed.ok ? { distanceMeters: routed.distanceMeters, distanceMiles: Number((routed.distanceMeters / 1609.344).toFixed(2)), graphStatus: null, graphVersion: routed.graphVersion, cellId: routed.cellId, cellRelease: routed.cellRelease, edgeIds: routed.edgeIds, instructions: routed.instructions } : { graphStatus: routed.status || 'GRAPH_VERSION_UNAVAILABLE', failureMessage: routeFailureMessage(routed) })
   };
   state.plannedRoute = plan; state.planOptions = [plan];
+  state.routePlanningFailures = routed.ok ? [] : [...(state.routePlanningFailures || []), routed];
   paintWalkConcept(plan);
   return plan;
 }
