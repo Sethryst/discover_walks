@@ -15,6 +15,19 @@ test('official line matching is deterministic and reports verified evidence', ()
   assert.ok(result.quality.coverageFraction >= 0.8);
 });
 
+test('official matching remains deterministic with unrelated graph clutter', () => {
+  const clutter = Array.from({ length: 400 }, (_, index) => ({
+    id: `unrelated-${index}`,
+    from: 1000 + index,
+    to: 2000 + index,
+    coordinates: [[-77.45 + (index % 20) * 0.002, 38.95 + Math.floor(index / 20) * 0.002], [-77.449, 38.951]],
+    lengthMeters: 100
+  }));
+  const result = matchOfficialCorridor({ id: 'wod-cluttered', sourceId: 'official-wod', coordinates: [[-77.2, 38.80001], [-77.18, 38.80001]] }, [...clutter, ...graphEdges], { bbox: PILOT_BBOX });
+  assert.equal(result.status, 'verified');
+  assert.deepEqual(result.quality.matchedEdgeIds, ['edge-1', 'edge-2']);
+});
+
 test('flowline adjacency is not trail alignment', () => {
   const result = matchFlowlineAdjacency({ id: 'difficult-run', name: 'Difficult Run', coordinates: [[-77.2, 38.8004], [-77.18, 38.8004]] }, graphEdges, { bbox: PILOT_BBOX, minMeters: 30, maxMeters: 75 });
   assert.equal(result.label, 'creek-adjacent');

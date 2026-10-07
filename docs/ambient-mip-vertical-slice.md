@@ -34,3 +34,17 @@ The first slice still does not publish a fabricated W&OD sidecar. The checked-in
 Vienna W&OD source is available, but the exact compiled pilot cell must be
 matched and reviewed before publishing an end-user artifact. The emitter and
 deterministic fixtures are in place for that build step.
+
+## W&OD evidence audit
+
+On 2026-10-07, the Vienna source was checked against the compiled
+`z10-292-391` graph, the cell containing the source coordinates. The matcher
+found 15 of 78 10-meter samples (0.1923 coverage), a 7.3-meter median offset,
+failed continuity, and unbridged gaps well above the 150-meter verification
+threshold. The result is therefore `rejected`; no W&OD edge sidecar was
+published. The neighboring-cell probe is not evidence for this source and is
+not used in the decision.
+
+The matcher now uses a deterministic local edge grid for build-time candidate
+lookup. This changes only search efficiency; thresholds, nearest-edge choice,
+continuity, and fail-closed status are unchanged.

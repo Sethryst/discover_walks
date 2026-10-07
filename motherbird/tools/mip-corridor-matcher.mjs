@@ -70,8 +70,9 @@ export function matchFlowlineAdjacency(flowline, graphEdges, {
   const coordinates = clipLine(flowline?.geometry?.coordinates || flowline?.coordinates || [], bbox);
   const samples = densifyLine(coordinates, sampleMeters);
   const edges = normalizeEdges(graphEdges).filter((edge) => edge.geometry.length > 1 && lineIntersectsBbox(edge.geometry, bbox));
+  const edgeGrid = buildEdgeGrid(edges, maxMeters);
   const assignments = samples.map((sample) => {
-    const candidates = edges.map((edge) => ({ edge, ...nearestPointOnLine(sample, edge.geometry) }))
+    const candidates = candidateEdges(sample, edgeGrid).map((edge) => ({ edge, ...nearestPointOnLine(sample, edge.geometry) }))
       .filter((candidate) => candidate.distanceMeters >= minMeters && candidate.distanceMeters <= maxMeters)
       .sort((a, b) => a.distanceMeters - b.distanceMeters || a.edge.id.localeCompare(b.edge.id));
     return candidates[0] || null;
@@ -164,15 +165,50 @@ function normalizeEdges(edges) {
 }
 
 function assignSamples(samples, edges, maxMeters) {
+  const edgeGrid = buildEdgeGrid(edges, maxMeters);
   const assignments = []; const offsets = []; const bearings = [];
   for (const sample of samples) {
-    const best = edges.map((edge) => ({ edge, ...nearestPointOnLine(sample, edge.geometry) }))
+    const best = candidateEdges(sample, edgeGrid).map((edge) => ({ edge, ...nearestPointOnLine(sample, edge.geometry) }))
       .filter((item) => item.distanceMeters <= maxMeters)
       .sort((a, b) => a.distanceMeters - b.distanceMeters || a.edge.id.localeCompare(b.edge.id))[0];
     if (!best) { assignments.push(null); continue; }
     assignments.push(best); offsets.push(best.distanceMeters); bearings.push(best.bearingDifferenceDegrees);
   }
   return { assignments, offsets, bearings, matchedCount: offsets.length };
+}
+
+// Matching is a build-time operation over large compiled cells. Keep each
+// sample local without changing the deterministic nearest-edge decision.
+function buildEdgeGrid(edges, maxMeters) {
+  const cellDegrees = Math.max(0.0001, Number(maxMeters || 25) / 111000);
+  const grid = new Map();
+  const key = (x, y) => `${x}:${y}`;
+  for (const edge of edges) {
+    const coordinates = edge.geometry || [];
+    if (!coordinates.length) continue;
+    const lngs = coordinates.map((point) => point[0]);
+    const lats = coordinates.map((point) => point[1]);
+    const minX = Math.floor((Math.min(...lngs) - cellDegrees) / cellDegrees);
+    const maxX = Math.floor((Math.max(...lngs) + cellDegrees) / cellDegrees);
+    const minY = Math.floor((Math.min(...lats) - cellDegrees) / cellDegrees);
+    const maxY = Math.floor((Math.max(...lats) + cellDegrees) / cellDegrees);
+    for (let x = minX; x <= maxX; x += 1) for (let y = minY; y <= maxY; y += 1) {
+      const bucket = grid.get(key(x, y)) || [];
+      bucket.push(edge);
+      grid.set(key(x, y), bucket);
+    }
+  }
+  return { cellDegrees, grid, key };
+}
+
+function candidateEdges(point, edgeGrid) {
+  const x = Math.floor(point[0] / edgeGrid.cellDegrees);
+  const y = Math.floor(point[1] / edgeGrid.cellDegrees);
+  const candidates = new Map();
+  for (let dx = -1; dx <= 1; dx += 1) for (let dy = -1; dy <= 1; dy += 1) {
+    for (const edge of edgeGrid.grid.get(edgeGrid.key(x + dx, y + dy)) || []) candidates.set(edge.id, edge);
+  }
+  return [...candidates.values()];
 }
 
 function continuity(ids, edges) {
