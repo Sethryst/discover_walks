@@ -4,13 +4,13 @@ import { readFile } from 'node:fs/promises';
 import db from '../js/storage.js';
 
 test('database upgrades are explicit additive migrations and expose backup preflight', async () => {
-  assert.equal(db.version, 20);
-  assert.equal(db.migrationPlan(19)[0].version, 20);
-  assert.match(db.migrationPlan(19)[0].description, /outbox/i);
+  assert.equal(db.version, 21);
+  assert.equal(db.migrationPlan(20)[0].version, 21);
+  assert.match(db.migrationPlan(20)[0].description, /walking-cell|outbox/i);
   const source = await readFile(new URL('../js/storage.js', import.meta.url), 'utf8');
   const loader = await readFile(new URL('../js/loader.js', import.meta.url), 'utf8');
   assert.match(source, /beforeRiskyMigration/);
-  assert.match(source, /walk-wildlife-indexeddb-backup/);
+  assert.match(source, /walk-wildlife-storage-backup/);
   assert.match(loader, /createPreMigrationBackup/);
   assert.doesNotMatch(source.match(/const migrations[\s\S]*?\n  \]\);/)?.[0] || '', /\.delete\(|\.clear\(/);
 });
