@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "biodiversity-nova-import-v1",
+  "generatedAt": "2026-10-07T00:11:56.827Z",
+  "sourceVintage": "2026-10-06",
+  "sourceAccess": "GBIF occurrence search API",
+  "sourceQuery": "NOVA polygon; see acquisition envelope",
+  "inputRows": 10200,
+  "unassigned": 5561,
+  "regions": [
+    {
+      "cityId": "alexandria",
+      "regionId": "alexandria-va",
+      "inputRows": 403,
+      "aggregateRecords": 167,
+      "occurrenceIds": 262,
+      "boundaryVersion": "alexandria-va-boundary-v1"
+    },
+    {
+      "cityId": "arlington",
+      "regionId": "arlington-va",
+      "inputRows": 484,
+      "aggregateRecords": 224,
+      "occurrenceIds": 290,
+      "boundaryVersion": "arlington-va-boundary-v1"
+    },
+    {
+      "cityId": "fairfax",
+      "regionId": "fairfax-county-va",
+      "inputRows": 3203,
+      "aggregateRecords": 1263,
+      "occurrenceIds": 2865,
+      "boundaryVersion": "fairfax-county-va-boundary-v1"
+    },
+    {
+      "cityId": "falls-church",
+      "regionId": "falls-church-va",
+      "inputRows": 5,
+      "aggregateRecords": 5,
+      "occurrenceIds": 5,
+      "boundaryVersion": "falls-church-va-boundary-v1"
+    },
+    {
+      "cityId": "loudoun",
+      "regionId": "loudoun-county-va",
+      "inputRows": 544,
+      "aggregateRecords": 283,
+      "occurrenceIds": 441,
+      "boundaryVersion": "loudoun-county-va-boundary-v1"
+    },
+    {
+      "cityId": "vienna",
+      "regionId": "vienna",
+      "inputRows": 0,
+      "aggregateRecords": 0,
+      "occurrenceIds": 0,
+      "boundaryVersion": "vienna-city-envelope-v1"
+    }
+  ]
+}

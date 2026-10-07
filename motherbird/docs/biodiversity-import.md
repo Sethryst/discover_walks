@@ -62,7 +62,9 @@ motherbird/data/biodiversity-import-report.json
 motherbird/tools/import-biodiversity-nova.mjs
 ```
 
-The query polygon is `(-77.6,38.65)` to `(-76.9,39.25)`, with the same dataset, basis-of-record, and present-occurrence filters. GBIF reported 1,323,265 matching rows; the checked-in candidate is the first 300 rows returned by the public search API, then split by the checked-in Alexandria, Arlington, Fairfax County, Falls Church, and Loudoun County geometries plus a temporary Vienna city envelope. This is real source data and real regional assignment, but it is explicitly `candidate-public-search`, not a complete authenticated GBIF release and not a population inventory.
+The query polygon is `(-77.6,38.65)` to `(-76.9,39.25)`, with the same dataset, basis-of-record, and present-occurrence filters. GBIF reported 1,323,265 matching rows; the current checked-in candidate acquisition fetched 10,200 rows through the public search API, then split them by the checked-in Alexandria, Arlington, Fairfax County, Falls Church, and Loudoun County geometries plus a temporary Vienna city envelope. This is real source data and real regional assignment, but it is explicitly `candidate-public-search`, not a complete authenticated GBIF release and not a population inventory.
+
+To refresh the bounded public candidate, run `npm run fetch:biodiversity:nova -- data/biodiversity-nova-source.json 10000`, then run `npm run import:biodiversity:nova -- data/biodiversity-nova-source.json regions YYYY-MM-DD`. The fetcher stores only a provenance manifest in the repository; raw occurrence rows stay outside the repository because they contain source-level location and metadata.
 
 Re-run the splitter with a protected source page or download envelope:
 
