@@ -48,3 +48,12 @@ not used in the decision.
 The matcher now uses a deterministic local edge grid for build-time candidate
 lookup. This changes only search efficiency; thresholds, nearest-edge choice,
 continuity, and fail-closed status are unchanged.
+
+## Blind evaluation packet
+
+`motherbird/data/mip-blind-evaluation-pairs.json` fixes ten origin/destination
+pairs inside the pilot boundary. `motherbird/tools/mip-blind-evaluation.mjs`
+turns generated valid candidates into a deterministic review packet, removes
+route IDs and archetype labels, and validates the six-point human rubric. The
+packet is an evaluation instrument only: no human ratings have been recorded,
+and no scoring weights have been tuned from it.
