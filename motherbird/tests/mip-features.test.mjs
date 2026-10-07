@@ -27,6 +27,13 @@ test('aggregation counts unique route edges and ignores candidate corridors', ()
   assert.deepEqual(ignored.corridorIds, []);
 });
 
+test('POI explanations require explicit trusted provenance', () => {
+  const untrusted = aggregateRouteFeatures(route, sidecar, [{ id: 'poi-1', category: 'park' }], []);
+  const trusted = aggregateRouteFeatures(route, sidecar, [{ id: 'poi-1', category: 'park', source: 'https://example.test/poi' }], []);
+  assert.equal(untrusted.poiCounts.total, 0);
+  assert.equal(trusted.poiCounts.total, 1);
+});
+
 test('weights change ranking only and hard feasibility remains authoritative', () => {
   const features = aggregateRouteFeatures(route, sidecar, [], [{ id: 'wod', status: 'verified' }]);
   assert.equal(scoreMIPRoute(route, features, 'discovery', { maxMinutes: 20 }).feasible, true);

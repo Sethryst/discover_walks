@@ -26,7 +26,7 @@ import { restartCoachMarks } from './coach.js';
 import { savePlannedRoute } from './saved-routes.js';
 import { recordSessionRoutingOutcome } from './routing-feedback.js';
 import { openRoomForPlace } from './room-runtime.js';
-import { buildInWalkSuggestion } from './ambient-mip.js?v=20261007-ambient-10';
+import { buildInWalkSuggestion } from './ambient-mip.js?v=20261007-ambient-11';
 
 const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];
 function ambientResponse(plan, signal) { return { archetype: plan?.archetype, traits: plan?.ambientTraits || [], [signal]: true }; }
@@ -126,7 +126,8 @@ async function offerAmbientSuggestion(position) {
       let routed;
       try { routed = await routeOnFoot([{ lat: position.lat, lng: position.lng }, nearby], { city: state.activeCity, profile: 'ordinary_walking_beta', avoidEdges: state.routingConstraints?.avoidEdges || state.avoidEdges || [] }); } catch { routed = { ok: false }; }
       if (routed.ok) {
-        const candidate = { ...routed, id: `ambient-tracking-${nearby.id || nearby.name}`, archetype: 'discovery', profile: 'ordinary_walking_beta', stops: [nearby], facts: { nearby: true, poiCount: 1, extraMinutes: Math.max(0, Number(routed.durationSeconds || 0) / 60) } };
+        const trusted = nearby?.review?.validationStatus === 'valid' || nearby?.unverified === false || typeof nearby?.sourceUrl === 'string' || (Array.isArray(nearby?.source) ? nearby.source.some((source) => typeof source === 'string' && /^https?:\/\//i.test(source)) : typeof nearby?.source === 'string' && /^https?:\/\//i.test(nearby.source));
+        const candidate = { ...routed, id: `ambient-tracking-${nearby.id || nearby.name}`, archetype: 'discovery', profile: 'ordinary_walking_beta', stops: [nearby], facts: { nearby: true, poiCount: trusted ? 1 : 0, mappedPlaceCount: 1, extraMinutes: Math.max(0, Number(routed.durationSeconds || 0) / 60) } };
         state.planOptions = [candidate];
         suggestion = buildInWalkSuggestion({ plan: { id: 'ambient-tracking', archetype: 'direct' }, alternatives: [candidate], offered: false });
       }

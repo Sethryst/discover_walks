@@ -19,6 +19,10 @@ Reviewed-POI encounters contribute a bounded visited signal for whichever
 ambient archetype was actually active; the event does not infer a general place
 or emotion preference from a single encounter.
 
+Candidate presence is not provenance. Ambient copy says “reviewed place” only
+when the POI has explicit validation or source evidence; otherwise it uses the
+neutral “mapped place” wording.
+
 Quiet/comfort is not treated as accessibility. Ambient quiet candidates use the
 ordinary walking profile unless an explicit `stepFreeRequested` context is
 provided; only that explicit request may select `accessible_verified`. Unknown

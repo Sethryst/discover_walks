@@ -1,6 +1,6 @@
 const STORAGE_KEY = 'motherbird.ambient-route-learning.v1';
 const MAX_EVIDENCE_AGE_DAYS = 90;
-import { aggregateRouteFeatures } from './mip-features.js?v=20261007-mip-features-2';
+import { aggregateRouteFeatures } from './mip-features.js?v=20261007-mip-features-3';
 
 export const AMBIENT_ARCHETYPES = Object.freeze(['direct', 'discovery', 'quiet']);
 
@@ -27,7 +27,7 @@ export async function generateAmbientOptions({ origin, destination, routeOnFoot,
     const profile = archetype === 'quiet' && context.stepFreeRequested === true ? 'accessible_verified' : 'ordinary_walking_beta';
     const result = await safeRoute(routeOnFoot, [origin, stop, destination], routeOptions(profile));
     if (!result.ok) continue;
-    routes.push(enrichAmbientRoute({ ...result, avoidEdges: routeOptions(profile).avoidEdges, id: `ambient-${archetype}-${stop.id || stop.name || routes.length}`, archetype, directDurationMinutes: directMinutes, stops: [stop], facts: { poiCount: archetype === 'discovery' ? 1 : 0, extraMinutes: Math.max(0, Number(result.durationSeconds || 0) / 60 - directMinutes) } }, sidecar, poiRecords, corridorCatalogue));
+    routes.push(enrichAmbientRoute({ ...result, avoidEdges: routeOptions(profile).avoidEdges, id: `ambient-${archetype}-${stop.id || stop.name || routes.length}`, archetype, directDurationMinutes: directMinutes, stops: [stop], facts: { poiCount: archetype === 'discovery' && isTrustedPoi(stop) ? 1 : 0, mappedPlaceCount: archetype === 'discovery' ? 1 : 0, extraMinutes: Math.max(0, Number(result.durationSeconds || 0) / 60 - directMinutes) } }, sidecar, poiRecords, corridorCatalogue));
   }
   const intention = inferWalkingIntention({ ...context, destination }, memoryScores(memory));
   const ranked = rankAmbientRoutes(routes, { intention: intention.primary, memory, maxMinutes: context.availableMinutes || Infinity });
@@ -104,6 +104,7 @@ export function buildAmbientExplanation(route) {
   const parts = [];
   if (facts.corridorName && Number(facts.corridorMeters) > 0) parts.push(`${formatMeters(facts.corridorMeters)} of ${facts.corridorName}`);
   if (Number(facts.poiCount) > 0) parts.push(`${facts.poiCount} reviewed place${facts.poiCount === 1 ? '' : 's'}`);
+  else if (Number(facts.mappedPlaceCount) > 0) parts.push(`${facts.mappedPlaceCount} mapped place${facts.mappedPlaceCount === 1 ? '' : 's'}`);
   if (Number(facts.extraMinutes) > 0) parts.push(`${Math.round(facts.extraMinutes)} extra minute${Math.round(facts.extraMinutes) === 1 ? '' : 's'}`);
   if (route.archetype === 'direct') return 'A direct walk to get you there.';
   return parts.length ? `Adds ${parts.join(' and ')}.` : route.archetype === 'quiet' ? 'A lower-exposure option where mapped evidence supports it.' : 'A route with verified places to notice.';
@@ -116,6 +117,8 @@ export function buildInWalkSuggestion({ plan, alternatives = [], offered = false
   const extra = Number(candidate.facts?.extraMinutes || 0);
   const fact = candidate.facts?.nearby && candidate.archetype === 'discovery' && Number(candidate.facts?.poiCount || 0) > 0
     ? 'A reviewed place is available nearby.'
+    : candidate.facts?.nearby && candidate.archetype === 'discovery' && Number(candidate.facts?.mappedPlaceCount || 0) > 0
+      ? 'A mapped place is available nearby.'
     : candidate.archetype === 'discovery' && Number(candidate.facts?.poiCount || 0) > 0
       ? 'A reviewed place is available ahead.'
     : candidate.archetype === 'quiet' && Number(candidate.features?.quiet || 0) > 0
@@ -206,3 +209,5 @@ function formatMeters(meters) { return Number(meters) >= 1000 ? `${(Number(meter
 function clamp(value, min, max) { return Math.max(min, Math.min(max, value)); }
 function normalizeTraits(traits) { return [...new Set((Array.isArray(traits) ? traits : []).map((trait) => String(trait).trim().toLowerCase()).filter((trait) => /^[a-z0-9:_-]{2,64}$/.test(trait)))]; }
 function routeTraits(route) { return normalizeTraits((route.stops || []).flatMap((stop) => stop.tags || [stop.category]).map((tag) => `poi:${tag}`)); }
+function isTrustedPoi(poi) { return poi?.review?.validationStatus === 'valid' || poi?.unverified === false || sourceUrl(poi?.source) || sourceUrl(poi?.provenance) || typeof poi?.sourceUrl === 'string'; }
+function sourceUrl(source) { return Array.isArray(source) ? source.some((item) => sourceUrl(item)) : typeof source === 'string' ? /^https?:\/\//i.test(source) : Boolean(source?.url && /^https?:\/\//i.test(source.url)); }

@@ -59,7 +59,7 @@ export function aggregateRouteFeatures(route, sidecar, poiRecords = [], corridor
       signalTotals[signal] = signal === 'majorRoadExposure' || signal === 'stairs' ? signalTotals[signal] + value : Math.max(signalTotals[signal], value);
     }
   }
-  const pois = (poiRecords || []).filter((poi) => route?.stops?.some((stop) => String(stop.id || stop.name) === String(poi.id || poi.name)) && !poi.unverified);
+  const pois = (poiRecords || []).filter((poi) => route?.stops?.some((stop) => String(stop.id || stop.name) === String(poi.id || poi.name)) && isTrustedPoi(poi));
   const poiCounts = { total: pois.length, history: 0, culture: 0, nature: 0 };
   pois.forEach((poi) => { for (const tag of poi.tags || [poi.category]) if (tag in poiCounts) poiCounts[tag] += 1; });
   return {
@@ -112,3 +112,5 @@ function samePoint(a, b) { return Array.isArray(a) && Array.isArray(b) && a.leng
 function clamp(value, min, max) { return Math.max(min, Math.min(max, value)); }
 function stripChecksum(value) { const { checksum: _checksum, ...withoutChecksum } = value || {}; return withoutChecksum; }
 function stableChecksum(value) { let hash = 2166136261; for (const character of JSON.stringify(value)) { hash ^= character.charCodeAt(0); hash = Math.imul(hash, 16777619); } return `fnv1a-${(hash >>> 0).toString(16).padStart(8, '0')}`; }
+function isTrustedPoi(poi) { return poi?.review?.validationStatus === 'valid' || poi?.unverified === false || sourceUrl(poi?.source) || sourceUrl(poi?.provenance) || typeof poi?.sourceUrl === 'string'; }
+function sourceUrl(source) { return Array.isArray(source) ? source.some((item) => sourceUrl(item)) : typeof source === 'string' ? /^https?:\/\//i.test(source) : Boolean(source?.url && /^https?:\/\//i.test(source.url)); }
