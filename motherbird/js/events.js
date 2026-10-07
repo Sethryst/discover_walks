@@ -575,7 +575,13 @@ function bindRegions() {
 function bindDeviceControls() {
   el('clearDataButton')?.addEventListener('click', async () => {
     if (!confirm('Clear walks, journal notes, settings, and private places from this device?')) return;
-    await db.clearAll(); localStorage.clear(); sessionStorage.clear(); location.reload();
+    await db.clearAll();
+    const ownedKeys = ['gremlin-radio-favorites-v1', 'gremlin-radio-mini-position-v1', 'walk-wildlife:location-simulator:preset', 'walk-wildlife:passkey'];
+    for (const key of ownedKeys) { try { localStorage.removeItem(key); } catch {} try { sessionStorage.removeItem(key); } catch {} }
+    try { for (const name of await caches.keys()) if (/^(walk-wildlife-|motherbird-)/i.test(name)) await caches.delete(name); } catch {}
+    try { await new Promise((resolve) => { const request = indexedDB.deleteDatabase('motherbird-walking-cell-cache'); request.onsuccess = request.onerror = request.onblocked = resolve; }); } catch {}
+    try { const root = await navigator.storage?.getDirectory?.(); const regions = await root?.getDirectoryHandle?.('motherbird-regions'); if (regions) for await (const entry of regions.values()) await regions.removeEntry(entry.name, { recursive: true }); } catch {}
+    location.reload();
   });
   window.addEventListener('walk-ended', () => void renderArchive());
 }

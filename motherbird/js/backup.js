@@ -72,10 +72,9 @@ function selectedConflictResolutions() {
 }
 
 async function writeTransferData(data, { replace = false } = {}) {
-  if (replace) await db.clearAll();
-  for (const store of JOURNAL_TRANSFER_STORES) {
-    for (const item of data[store] || []) await db.put(store, item);
-  }
+  const recordsByStore = Object.fromEntries(JOURNAL_TRANSFER_STORES.map((store) => [store, data[store] || []]));
+  if (replace) await db.replaceMany(recordsByStore);
+  else await db.putMany(recordsByStore);
   state.profile = normalizeProfile(data.profile?.[0] || await createMigratedProfile());
   state.settings = { ...DEFAULT_SETTINGS, ...(data.settings?.[0] || {}) };
   if (!CITIES[state.settings.activeCity]?.dataFile) state.settings.activeCity = DEFAULT_CITY_ID;
