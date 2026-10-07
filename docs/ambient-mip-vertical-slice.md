@@ -48,13 +48,14 @@ deterministic fixtures are in place for that build step.
 
 ## W&OD evidence audit
 
-On 2026-10-07, the Vienna source was checked against the compiled
-`z10-292-391` graph, the cell containing the source coordinates. The matcher
-found 15 of 78 10-meter samples (0.1923 coverage), a 7.3-meter median offset,
-failed continuity, and unbridged gaps well above the 150-meter verification
-threshold. The result is therefore `rejected`; no W&OD edge sidecar was
-published. The neighboring-cell probe is not evidence for this source and is
-not used in the decision.
+On 2026-10-07, the Vienna source was checked against the published
+`osm-us-nova-dc-pilot-2026-10-04` `z10-292-391` graph, the cell containing the
+source coordinates. All five source chapters were rejected: two had full
+sample coverage but failed graph continuity, one had 69.23% coverage with a
+failed continuity check, and the remaining chapters had 19.23% and 4.52%
+coverage with gaps up to 693 meters. No W&OD edge sidecar was published. The
+neighboring-cell probe is not evidence for this source and is not used in the
+decision.
 
 The matcher now uses a deterministic local edge grid for build-time candidate
 lookup. This changes only search efficiency; thresholds, nearest-edge choice,
