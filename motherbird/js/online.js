@@ -14,8 +14,6 @@ import { readSupabaseHeartbeat } from './heartbeat.js';
 import { normalizedEntitlements } from './entitlements.js';
 import { activeFieldEditionSubscription } from './cloud-journal.js';
 
-const PASSKEY_ENROLLED_KEY = 'walk-wildlife.passkey-enrolled';
-const APP_SESSION_KEY = 'walk-wildlife.app-session';
 const PUBLIC_MARKER_FIELDS = 'id,creator_id,creator_username,pack_id,name,description,latitude,longitude,light,chip_id,personal_category_label,status,upvote_count,created_at,updated_at';
 let publicMarkerEventsBound = false;
 
@@ -276,7 +274,7 @@ export async function registerPasskey() {
   }
   const { error } = await state.online.client.auth.registerPasskey();
   if (error) { toast(error.message || 'Could not add Face ID.'); return false; }
-  localStorage.setItem(PASSKEY_ENROLLED_KEY, '1');
+  await db.put('settings', { id: 'preferences:authentication', passkeyEnrolled: true, updatedAt: Date.now() });
   toast('Face ID passkey added. You can use it next time you sign in.');
   return true;
 }

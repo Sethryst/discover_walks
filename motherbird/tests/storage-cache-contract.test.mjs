@@ -62,3 +62,9 @@ test('offline diagnostics do not export cached request URLs', async () => {
   assert.doesNotMatch(source, /sample:\s*keys/);
   assert.match(source, /report\.caches\.push\(\{ name, entries: keys\.length \}\)/);
 });
+
+test('authentication preference writes use the storage layer', async () => {
+  const source = await readFile(new URL('../js/online.js', import.meta.url), 'utf8');
+  assert.doesNotMatch(source, /localStorage/);
+  assert.match(source, /preferences:authentication/);
+});
