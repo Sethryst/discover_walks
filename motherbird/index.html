@@ -38,7 +38,7 @@
   <title>Walk & Wildlife</title>
 </head>
 <body>
-  <div class="app-splash" id="appSplash" aria-hidden="true"><img src="./assets/splash-screen.jpeg" alt="" /></div>
+  <div class="app-splash" id="appSplash" aria-hidden="true"><img src="./assets/splash-screen.jpeg" alt="" /><div class="app-splash-status" role="status" aria-live="polite"><span class="app-splash-status-dot" aria-hidden="true"></span><span id="appSplashStatus">Unfolding your journal…</span></div></div>
   <script>setTimeout(() => document.getElementById('appSplash')?.classList.add('app-splash--done'), 900);</script>
   <main class="app-shell">
     <nav class="primary-nav" aria-label="Main navigation"><button id="exploreTab" type="button" data-primary-tab="explore" class="active" aria-current="page">Explore</button><button id="libraryTab" type="button" data-primary-tab="library">Library</button><button id="meTab" type="button" data-primary-tab="me">Me</button></nav>
@@ -250,7 +250,7 @@
   </section>
   <script type="module">import { openStory } from './js/stories.js'; window.openStory = openStory; const buttons=[...document.querySelectorAll('[data-story-open]')]; buttons.forEach((button) => button.addEventListener('click', () => openStory(button.dataset.storyOpen))); const filter=document.getElementById('storyScopeFilter'); filter?.addEventListener('change',()=>{const value=filter.value; buttons.filter((button)=>button.closest('.news-story-list')).forEach((button)=>{button.hidden=value==='national' ? !button.dataset.storyOpen.includes('the-wagon') : value==='local' && button.dataset.storyOpen.includes('the-wagon');}); document.getElementById('nationalStoryEmpty')?.classList.toggle('hidden',value!=='national');});</script>
   <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
-        <script src="./vendor/qrcode.js"></script><script src="./vendor/leaflet/leaflet.js"></script><script src="./vendor/leaflet-markercluster/leaflet.markercluster.js"></script><script src="./vendor/leaflet-geoman/leaflet-geoman.min.js"></script><script src="./vendor/turf/turf.min.js"></script><script src="./vendor/maplibre-gl.js"></script><script src="./vendor/pmtiles.js"></script><script async src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.105.0"></script><script src="https://w.soundcloud.com/player/api.js"></script><script src="./supabase-config.js"></script><script type="module" src="./app.js?v=20261006-location-simulator-2"></script>
+        <script src="./vendor/qrcode.js"></script><script src="./vendor/leaflet/leaflet.js"></script><script src="./vendor/leaflet-markercluster/leaflet.markercluster.js"></script><script src="./vendor/leaflet-geoman/leaflet-geoman.min.js"></script><script src="./vendor/turf/turf.min.js"></script><script src="./vendor/maplibre-gl.js"></script><script src="./vendor/pmtiles.js"></script><script async src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.105.0"></script><script src="https://w.soundcloud.com/player/api.js"></script><script src="./supabase-config.js"></script><script type="module" src="./app.js?v=20261006-loading-status-map-refresh-1"></script>
 </body>
 </html>
 

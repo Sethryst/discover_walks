@@ -31,6 +31,9 @@ import { recoverWalkDraft, discardWalk } from './walk.js';
 import { initBiodiversity } from './biodiversity.js';
 
 export async function init() {
+  const splashStatus = document.getElementById('appSplashStatus');
+  const setSplashStatus = (message) => { if (splashStatus) splashStatus.textContent = message; };
+  setSplashStatus('Getting your pencils sharpened…');
   if (!document.querySelector('link[href*="splash-fix.css"]')) {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
@@ -66,6 +69,7 @@ export async function init() {
   // available on browsers that finish booting slowly.
   const removePrimaryControlFallbacks = initPrimaryControls();
   try {
+    setSplashStatus('Opening your journal…');
     await db.open({ beforeRiskyMigration: async (details) => {
       if (!confirm('Walk & Wildlife needs a local data upgrade. Download a private backup first? Cancel skips the backup and continues.')) return;
       const backup = await db.createPreMigrationBackup(details);
@@ -84,6 +88,7 @@ export async function init() {
       await db.put('settings', state.settings);
     }
     await applyOfflineBootConditions();
+    setSplashStatus('Unfolding the map…');
     await loadAllCityData();
   } catch (error) {
     console.error(error);
@@ -95,10 +100,12 @@ export async function init() {
   // walk bar, or radio behind a slow/corrupt layer-settings read.
   void initNationalOsmLayers().catch((error) => console.warn('National layer settings unavailable:', error.message));
   initMap();
+  setSplashStatus('Initializing the map…');
+  requestAnimationFrame(() => state.map?.invalidateSize({ pan: false }));
   // The walk planner is core map functionality. Bind it before optional
   // stories, radio, and companion layers can abort startup on bad local data.
   initEvents();
-  requestAnimationFrame(dismissSplash);
+  requestAnimationFrame(() => { state.map?.invalidateSize({ pan: false }); dismissSplash(); });
   // Bind the already-visible radial control before optional boot work can
   // leave a slow browser with an inert Start walk button.
   initRadialMenu();

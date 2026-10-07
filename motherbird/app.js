@@ -2,6 +2,8 @@
 
 import('./js/loader.js?v=20261006-routing-hardening-3').then(({ init }) => init()).catch((error) => {
   console.error('Walk & Wildlife startup failed:', error);
+  document.getElementById('appSplashStatus')?.replaceChildren(document.createTextNode('The map needs another moment — try reload'));
+  document.getElementById('appSplash')?.classList.add('app-splash--done');
   const toast = document.getElementById('toast');
   if (toast) {
     toast.textContent = new URLSearchParams(location.search).has('diagnose')
