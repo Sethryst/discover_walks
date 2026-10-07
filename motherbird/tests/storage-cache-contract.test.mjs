@@ -47,4 +47,6 @@ test('migration backup includes optional Cache Storage and OPFS asset collectors
   assert.match(storage, /collectCacheAssets/);
   assert.match(storage, /collectOpfsAssets/);
   assert.match(storage, /walk-wildlife-storage-backup/);
+  assert.match(storage, /restoreBackup/);
+  assert.match(storage, /safeBackupPath/);
 });
