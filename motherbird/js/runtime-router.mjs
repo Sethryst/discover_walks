@@ -10,11 +10,15 @@ export function routeRuntimeGraph(runtime, request, { maxSnapMeters = 150 } = {}
   const profile = request.profile || 'ordinary_walking_beta';
   const profileBit = PROFILE_BITS[profile];
   if (!profileBit) return failure('ACCESS_POLICY_BLOCKED', runtime, { profile });
+  if (request.graphVersion && runtime.graph_version && request.graphVersion !== runtime.graph_version) {
+    return failure('GRAPH_ARTIFACT_MISMATCH', runtime, { requested_graph_version: request.graphVersion, graph_version: runtime.graph_version });
+  }
   if (!runtime?.nodes?.length || !(runtime?.edges?.count ?? runtime?.edges?.length) || !runtime.spatial_index) {
     return failure('GRAPH_VERSION_UNAVAILABLE', runtime, { profile });
   }
   const origin = point(request.origin);
   const destination = point(request.destination);
+  const avoidEdges = new Set((request.avoidEdges || []).map(String));
   const originNearest = nearestEdge(runtime, origin, null, Infinity);
   const destinationNearest = nearestEdge(runtime, destination, null, Infinity);
   const originAny = originNearest?.distance_m <= maxSnapMeters ? originNearest : null;
@@ -42,6 +46,7 @@ export function routeRuntimeGraph(runtime, request, { maxSnapMeters = 150 } = {}
       blocked_endpoint: !start ? 'origin' : 'destination'
     });
   }
+  if (avoidEdges.has(String(edgeId(runtime, start.edge_index))) || avoidEdges.has(String(edgeId(runtime, end.edge_index)))) return failure('ACCESS_POLICY_BLOCKED', runtime, { reason: 'avoid_edges_intersect_endpoint' });
   if (start.edge_index === end.edge_index) return sameEdgeRoute(runtime, start, end, profile);
 
   // Binary cells already carry adjacency. Rebuilding a second array of
@@ -70,6 +75,7 @@ export function routeRuntimeGraph(runtime, request, { maxSnapMeters = 150 } = {}
     if (bestGoal && current.cost_m >= bestGoal.cost_m) break;
     const relax = (edgeIndex, nodeIndex) => {
       if (!(edgeValue(runtime, edgeIndex, 6) & profileBit)) return;
+      if (avoidEdges.has(String(edgeId(runtime, edgeIndex)))) return;
       const candidate = current.cost_m + edgeValue(runtime, edgeIndex, 4) / 100;
       if (candidate >= (distance.get(nodeIndex) ?? Infinity)) return;
       distance.set(nodeIndex, candidate);
@@ -100,6 +106,9 @@ export function routeRuntimeGraph(runtime, request, { maxSnapMeters = 150 } = {}
   for (const step of steps) appendCoordinates(coordinates, orientedEdgeCoordinates(runtime, step.edge_index, step.from));
   appendCoordinates(coordinates, partialFromEndpoint(runtime, end, bestGoal.node_index));
   const edgeIndexes = unique([start.edge_index, ...steps.map((step) => step.edge_index), end.edge_index]);
+  if (edgeIndexes.some((index) => avoidEdges.has(String(edgeId(runtime, index))))) {
+    return failure('ACCESS_POLICY_BLOCKED', runtime, { reason: 'avoid_edges_intersect_route' });
+  }
   return routeResponse(runtime, profile, coordinates, edgeIndexes, bestGoal.cost_m, start, end);
 }
 

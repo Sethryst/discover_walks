@@ -9,8 +9,8 @@ import { city, searchPois } from './poi.js';
 import { localSearchHits, searchRowHtml, emptySearchHtml } from './search.js';
 import { initRegionalNavigation } from './regional-navigation.js';
 import { switchCity } from './city.js';
-import { generateTimeBasedPlan, lockSelectedPlanOnMap, changePlan, setPlanningMode } from './planner.js?v=20261005-national-routing-ux-1';
-import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261006-routing-hardening-5';
+import { generateTimeBasedPlan, lockSelectedPlanOnMap, changePlan, selectPlan, setPlanningMode } from './planner.js?v=20261007-ambient-routing-1';
+import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261007-ambient-routing-1';
 import { coordinateLabel, resolveRoutePlaceLabel } from './route-place-labels.js?v=20261006-route-labels-1';
 import { paintWalkPlan, paintCard, previewCard, sendCurrentWalkPlan } from './field-guide.js?v=133-source-catalogue';
 import { wordCount } from './reflection.js';
@@ -260,6 +260,11 @@ function renderWalkSketch(plan) {
   if (!plan) return;
   el('sketchTitle').textContent = plan.title || 'Walk sketch';
   el('sketchReason').textContent = plan.reason || 'A concept from named places in this installed pack.';
+  const alternatives = el('ambientRouteAlternatives');
+  const options = (state.planOptions || []).filter((option) => option.id !== plan.id);
+  alternatives.classList.toggle('hidden', !options.length);
+  alternatives.innerHTML = options.map((option) => `<button type="button" class="secondary-button ambient-route-alternative" data-ambient-route-id="${escapeHtml(option.id)}">${escapeHtml(option.title || 'Another route')}</button>`).join('');
+  alternatives.querySelectorAll('[data-ambient-route-id]').forEach((button) => button.addEventListener('click', () => { const next = selectPlan(button.dataset.ambientRouteId); if (next) renderWalkSketch(next); }));
   el('sketchStops').innerHTML = (plan.stops || []).map((stop) => `<li>${escapeHtml(stop.name || 'Named stop')}</li>`).join('');
   const cutThrough = el('cutThroughPrompt');
   if (cutThrough) {

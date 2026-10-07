@@ -50,6 +50,14 @@ test('runtime graph routes from nearest edges and returns provenance, confidence
   assert.equal(routeRuntimeGraph(runtime, { profile: 'ordinary_walking_beta', origin: [-75, 41], destination: [-73.9981, 40.7] }, { maxSnapMeters: 30 }).status, 'NO_NEARBY_PEDESTRIAN_EDGE');
 });
 
+test('optional route contract fails closed on graph mismatch and avoids an edge', () => {
+  const graph = buildPedestrianGraph(source(), dataset, { snapToleranceMeters: 0 });
+  const runtime = buildRuntimeGraph(graph, dataset, { builtAt: '2026-08-27T00:00:00.000Z' });
+  assert.equal(routeRuntimeGraph(runtime, { profile: 'ordinary_walking_beta', graphVersion: 'wrong-graph', origin: [-74, 40.7], destination: [-73.998, 40.7] }, { maxSnapMeters: 30 }).status, 'GRAPH_ARTIFACT_MISMATCH');
+  const avoided = routeRuntimeGraph(runtime, { profile: 'ordinary_walking_beta', avoidEdges: ['runtime_fixture:a:0:0'], origin: [-74, 40.7], destination: [-73.998, 40.7] }, { maxSnapMeters: 30 });
+  assert.notEqual(avoided.status, 'ROUTE_FOUND');
+});
+
 test('runtime package writes compact graph, adjacency, geometry, index, attributes, and manifest artifacts', async () => {
   const graph = buildPedestrianGraph(source(), dataset, { snapToleranceMeters: 0 });
   const runtime = buildRuntimeGraph(graph, dataset, { builtAt: '2026-08-27T00:00:00.000Z' });

@@ -2,15 +2,17 @@ import { state } from './state.js';
 import { setPlannerSelecting } from './planner-selection.js?v=20261004-planner-selection-1';
 import { CITIES } from './constants.js';
 import { poiTags } from './poi.js';
-import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261006-routing-hardening-5';
+import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261007-ambient-routing-1';
 import { escapeHtml } from './utils.js';
 import { toast } from './ui.js';
 import { splitDisconnectedPaths } from './routes.js';
+import { generateAmbientOptions, installAmbientLearningListener, readAmbientMemory, memoryScores } from './ambient-mip.js?v=20261007-ambient-1';
 
 function selectedMinutes() { return Number(document.querySelector('input[name="walkTime"]:checked')?.value || 30); }
 function selectedRouteMode() { return document.querySelector('input[name="routeMode"]:checked')?.value || 'round-trip'; }
 function plannerOrigin() { return state.plannerStart || state.currentPosition || state.lastPosition || state.map?.getCenter() || CITIES[state.activeCity].center; }
 let generation = 0;
+installAmbientLearningListener();
 
 function interests() {
   const pressed = [...document.querySelectorAll('[data-start-interest][aria-pressed="true"]')].map((button) => button.dataset.startInterest);
@@ -145,6 +147,29 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
   // the user. Falling back to the map center is appropriate only when no
   // start was chosen (for legacy/generated plans).
   const routeOrigin = routeMode === 'point-to-point' ? (state.plannerStart || center) : center;
+  if (routeMode === 'point-to-point' && state.plannerEnd && !seededStops?.length) {
+    const localMemory = readAmbientMemory();
+    const nearby = candidateStops(routeOrigin, []).slice(0, 6).filter((stop) => distanceBetween(routeOrigin, stop) < 8);
+    const discoveryStops = selectedStops.length ? selectedStops : nearby.filter((stop) => poiTags(stop).some((tag) => ['trail', 'park', 'nature', 'history', 'culture', 'water'].includes(tag))).slice(0, 2);
+    const quietStops = nearby.filter((stop) => poiTags(stop).some((tag) => ['park', 'trail', 'nature', 'quiet'].includes(tag))).slice(0, 2);
+    const ambient = await generateAmbientOptions({ origin: routeOrigin, destination: state.plannerEnd, routeOnFoot, context: { availableMinutes: minutes, destination: state.plannerEnd, currentPaceMps: state.walk?.paceMps }, memory: memoryScores(localMemory), discoveryStops, quietStops });
+    if (requestGeneration !== generation) return null;
+    if (ambient.routes.length) {
+      const plans = ambient.routes.slice(0, 3).map((routed, index) => ({
+        id: routed.id, title: index === 0 ? (title || 'A good walk from here') : (routed.archetype === 'discovery' ? 'More to notice' : 'Quieter where mapped'),
+        reason: routed.archetype === 'direct' ? 'A direct walk to your destination.' : routed.archetype === 'discovery' ? 'Includes a reviewed place without requiring a setup choice.' : 'Uses the mapped comfort/accessibility evidence available for this route.',
+        city: state.activeCity, routeMode, estimatedDurationMinutes: Math.round(Number(routed.durationSeconds || 0) / 60),
+        stops: routed.stops || [{ name: 'Selected destination', lat: state.plannerEnd.lat, lng: state.plannerEnd.lng }], coordinates: routed.coordinates,
+        distanceMeters: routed.distanceMeters, distanceMiles: Number((routed.distanceMeters / 1609.344).toFixed(2)), graphStatus: null, graphVersion: routed.graphVersion,
+        cellId: routed.cellId, cellRelease: routed.cellRelease, edgeIds: routed.edgeIds, instructions: routed.instructions,
+        archetype: routed.archetype, facts: routed.facts, ambientIntention: ambient.intention
+      }));
+      state.planOptions = plans; state.plannedRoute = ambient.primary ? plans.find((plan) => plan.id === ambient.primary.id) || plans[0] : plans[0];
+      paintWalkConcept(state.plannedRoute);
+      window.dispatchEvent(new CustomEvent('ambient-routes-ready', { detail: { options: plans, intention: ambient.intention } }));
+      return state.plannedRoute;
+    }
+  }
   const points = ['round-trip', 'auto-round-trip'].includes(routeMode) ? [center, ...stops, center] : [routeOrigin, ...stops];
   const routed = await routeOnFoot(points, { city: state.activeCity, profile: 'ordinary_walking_beta' }).catch((error) => ({ ok: false, status: 'ROUTING_WORKER_ERROR', failure: { message: error?.message || 'Offline routing failed.' } }));
   if (requestGeneration !== generation) return null;
@@ -176,6 +201,14 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
 }
 
 export function choosePlan(id) { return state.planOptions.find((plan) => plan.id === id) || state.plannedRoute; }
+export function selectPlan(id) {
+  const plan = choosePlan(id);
+  if (!plan) return null;
+  state.plannedRoute = plan;
+  paintWalkConcept(plan, { fit: false });
+  window.dispatchEvent(new CustomEvent('ambient-route-response', { detail: { archetype: plan.archetype, accepted: true } }));
+  return plan;
+}
 export function changePlan() { state.plannedRoute = null; state.planSketchLayer?.remove(); state.plannedRouteLine?.remove(); state.plannedRouteLines?.forEach((line) => line.remove()); state.plannerRouteCasingLines?.forEach((line) => line.remove()); state.plannedRouteLines = []; state.plannerRouteCasingLines = []; }
 export function togglePlanVisibility() { /* A single painted sketch replaces graph alternatives. */ }
 export function setPlanningMode(active) { state.planningMode = Boolean(active); }

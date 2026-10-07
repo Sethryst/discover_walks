@@ -31,23 +31,37 @@ export function routeFailureMessage(result) {
   return result?.failure?.message || ROUTE_FAILURE_MESSAGES[result?.status] || 'We could not find a walkable route there. Try moving one or both points slightly onto a mapped path.';
 }
 
-export async function routeOnFoot(points, { city, profile = 'ordinary_walking_beta' } = {}) {
-  if (!Array.isArray(points) || points.length < 2) return failure('INVALID_ROUTE_REQUEST');
+/**
+ * Additive routing contract. MIP may ask for a profile or an avoid set, but
+ * the worker remains the sole producer of route geometry. Unknown optional
+ * fields are deliberately carried through so callers can record the exact
+ * request without changing legacy behavior.
+ */
+export async function routeOnFoot(points, {
+  city,
+  profile = 'ordinary_walking_beta',
+  vias = null,
+  avoidEdges = [],
+  graphVersion = null,
+  cellRelease = null
+} = {}) {
+  const routePoints = Array.isArray(vias) && vias.length >= 2 ? vias : points;
+  if (!Array.isArray(routePoints) || routePoints.length < 2) return failure('INVALID_ROUTE_REQUEST');
   const legs = [];
-  for (let index = 0; index < points.length - 1; index += 1) {
+  for (let index = 0; index < routePoints.length - 1; index += 1) {
     let destinationCell = null;
     try {
-      activeWalkingCell = await activateWalkingCellAt(points[index], { allowNearestCellLock: true });
+      activeWalkingCell = await activateWalkingCellAt(routePoints[index], { allowNearestCellLock: true });
       const originCell = activeWalkingCell;
       // Load the destination index as well so a boundary leg can use the
       // neighboring package when the origin package cannot connect it.
-      destinationCell = await activateWalkingCellAt(points[index + 1], { allowNearestCellLock: true });
+      destinationCell = await activateWalkingCellAt(routePoints[index + 1], { allowNearestCellLock: true });
       activeWalkingCell = originCell;
     }
     catch (error) { return failure('GRAPH_VERSION_UNAVAILABLE', error.message); }
     if (!activeWalkingCell?.id) return failure('NO_CELL_FOR_COORDINATE', activeWalkingCell?.reason, activeWalkingCell);
     if (activeWalkingCell.availability !== 'routing_available') return failure('GRAPH_VERSION_UNAVAILABLE', activeWalkingCell?.reason);
-    const request = (cell, origin = points[index], destination = points[index + 1]) => requestRouteWithRetry({ city, profile, origin, destination, maxSnapMeters: 3000, maxVisitedNodes: 300000, avoid: { stairs: false, unverified_edges: false }, cell, cellId: cell?.id, cellRelease: cell?.release });
+    const request = (cell, origin = routePoints[index], destination = routePoints[index + 1]) => requestRouteWithRetry({ city, profile, origin, destination, maxSnapMeters: 3000, maxVisitedNodes: 300000, avoid: { stairs: false, unverified_edges: false }, avoidEdges, graphVersion, cell, cellId: cell?.id, cellRelease: cellRelease || cell?.release });
     let result = await request(activeWalkingCell);
     const neighborIds = new Set([...(activeWalkingCell.routingNeighbors || []), ...(destinationCell?.routingNeighbors || [])]);
     if (result.ok) legs.push(result);
@@ -174,7 +188,7 @@ function mergeInstructions(legs) {
 function requestRoute(payload) {
   if (typeof Worker === 'undefined') return Promise.resolve(failure('GRAPH_VERSION_UNAVAILABLE'));
   if (!worker) {
-    worker = new Worker('./js/offline-router-worker.js?v=20261006-routing-hardening-4', { type: 'module' });
+    worker = new Worker('./js/offline-router-worker.js?v=20261007-ambient-routing-1', { type: 'module' });
     worker.onmessage = ({ data }) => {
       if (data.type === 'progress') { window.dispatchEvent(new CustomEvent('routing-progress', { detail: data })); return; }
       if (data.type === 'worker-ready') { workerReady = true; window.dispatchEvent(new CustomEvent('routing-worker-ready', { detail: data })); return; }
