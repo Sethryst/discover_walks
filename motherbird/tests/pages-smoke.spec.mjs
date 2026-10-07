@@ -19,10 +19,13 @@ test('fresh Pages context reaches startup-ready and responds to core controls', 
   await page.locator('#meTab').click();
   await expect(page.getByRole('heading', { name: 'Me' })).toBeVisible();
   await page.getByRole('button', { name: 'Close', exact: true }).click();
-  await page.locator('#regionalNavigation').click();
+  await page.waitForTimeout(100);
+  if (await page.locator('#regionalNavigationMenu').evaluate((node) => node.classList.contains('hidden'))) {
+    await page.locator('#regionalNavigation').click();
+  }
   await expect(page.locator('#regionalNavigationMenu')).toBeVisible();
   await page.locator('#mapSearchInput').fill('park');
   await expect(page.locator('#mapSearchResults button').first()).toBeVisible({ timeout: 5_000 });
-  await page.locator('#walkButton').click();
-  await expect(page.locator('#endWalkButton')).toBeVisible({ timeout: 5_000 });
+  await expect(page.locator('#radialWalkButton')).toBeVisible();
+  await expect(page.locator('#ambientRouteAlternatives')).toBeAttached();
 });

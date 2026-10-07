@@ -77,9 +77,11 @@ const buildVersion = (process.env.GITHUB_SHA || new Date().toISOString())
 const serviceWorkerPath = resolve(outputDirectory, 'service-worker.js');
 const serviceWorker = await readFile(serviceWorkerPath, 'utf8');
 const versionedFiles = [];
+const vendorDirectory = resolve(outputDirectory, 'vendor');
 async function collectFiles(directory) {
   for (const entry of await (await import('node:fs/promises')).readdir(directory, { withFileTypes: true })) {
     const path = resolve(directory, entry.name);
+    if (path === vendorDirectory || path.startsWith(`${vendorDirectory}${process.platform === 'win32' ? '\\' : '/'}`)) continue;
     if (entry.isDirectory()) await collectFiles(path);
     else if (/\.(?:html|js|css|webmanifest)$/.test(entry.name)) versionedFiles.push(path);
   }

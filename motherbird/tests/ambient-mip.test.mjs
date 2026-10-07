@@ -6,8 +6,10 @@ import {
   distinctEnough,
   generateAmbientOptions,
   inferWalkingIntention,
+  installAmbientLearningListener,
   recordAmbientResponse,
-  memoryScores
+  memoryScores,
+  readAmbientMemory
 } from '../js/ambient-mip.js';
 
 const origin = { lat: 38.9, lng: -77.1 };
@@ -67,4 +69,15 @@ test('in-walk suggestion is one-shot, optional, and fact-backed', () => {
     text: 'A reviewed place is available ahead. It adds about 6 minutes.'
   });
   assert.equal(buildInWalkSuggestion({ plan: { id: 'direct' }, alternatives: [suggestion], offered: true }), null);
+});
+
+test('explicit and implicit responses are persisted only to the supplied local store', () => {
+  const values = new Map();
+  const storage = { getItem: (key) => values.get(key) || null, setItem: (key, value) => values.set(key, value) };
+  const target = new EventTarget();
+  installAmbientLearningListener(target, storage);
+  target.dispatchEvent(new CustomEvent('ambient-route-response', { detail: { archetype: 'quiet', ignored: true } }));
+  target.dispatchEvent(new CustomEvent('ambient-route-response', { detail: { archetype: 'quiet', completed: true } }));
+  assert.equal(readAmbientMemory(storage).archetypes.quiet.observations, 2);
+  assert.equal(values.size, 1);
 });

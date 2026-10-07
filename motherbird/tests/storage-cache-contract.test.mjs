@@ -25,6 +25,7 @@ test('Pages build derives deployed cache identity from the commit/build ID and e
   assert.match(builder, /process\.env\.GITHUB_SHA/);
   assert.match(builder, /MOTHERBIRD_PRECACHE_BUDGET_BYTES/);
   assert.match(builder, /precacheBytes > precacheBudgetBytes/);
+  assert.match(builder, /vendorDirectory/);
 });
 
 test('walking-cell metadata uses the shared storage coordinator', () => {
