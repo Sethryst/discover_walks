@@ -77,7 +77,10 @@ for (const file of files) {
       : ['default'];
 
 
-    const targetFile = path.resolve(path.dirname(file), /\.m?js$/.test(match[3]) ? match[3] : `${match[3]}.js`);
+    // Query strings are valid browser cache-busters, not part of the local
+    // filesystem path used by this audit.
+    const importPath = match[3].split('?')[0];
+    const targetFile = path.resolve(path.dirname(file), /\.m?js$/.test(importPath) ? importPath : `${importPath}.js`);
 
 
     for (const name of imported) {

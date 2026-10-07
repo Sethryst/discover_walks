@@ -1,7 +1,7 @@
 // Keep the whole module graph with the shell. Caching only app.js leaves an
 // offline (or briefly disconnected) reload with a blank app when any imported
 // module was not already in the runtime cache.
-const APP_CACHE = 'walk-wildlife-shell-v354'; // Keep large regional enrichment out of startup
+const APP_CACHE = 'walk-wildlife-shell-v355'; // Keep large regional enrichment out of startup
 const TILE_CACHE = 'walk-wildlife-osm-viewed-tiles-v1';
 const LIBRARY_CACHE = 'walk-wildlife-library-v2';
 const COMPANION_CACHE = 'walk-wildlife-companion-media-v2';
@@ -53,7 +53,7 @@ const shell = [
 shell.push('./js/regional-navigation.js', './data/regional-navigation.json');
 const shellPaths = new Set(shell.map((asset) => new URL(asset, self.registration.scope).pathname));
 const libraryAssets = [
-  './vendor/qrcode.js', './vendor/leaflet/leaflet.css',
+  './vendor/leaflet/leaflet.css',
   './vendor/leaflet/leaflet.js',
   './vendor/leaflet-markercluster/MarkerCluster.css',
   './vendor/leaflet-markercluster/MarkerCluster.Default.css',

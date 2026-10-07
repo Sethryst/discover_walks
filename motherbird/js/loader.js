@@ -35,6 +35,9 @@ export async function init() {
   const splashStatus = document.getElementById('appSplashStatus');
   const setSplashStatus = (message) => { if (splashStatus) splashStatus.textContent = message; };
   setSplashStatus('Getting your pencils sharpened…');
+  // Check for a replacement worker before startup work can fail. Otherwise a
+  // stale broken shell can prevent the update path from ever running.
+  void initPwaUpdates().catch((error) => console.warn('App update check unavailable:', error.message));
   if (!document.querySelector('link[href*="splash-fix.css"]')) {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
@@ -94,7 +97,10 @@ export async function init() {
     performance.measure?.('motherbird:init:city-data', 'motherbird:init:start');
   } catch (error) {
     console.error(error);
-    toast('Local storage or places data could not open in this browser.');
+    const message = /places data could not be loaded|Regional data request failed/i.test(error?.message || '')
+      ? 'The regional map data could not load. Check your connection and reload.'
+      : 'Local storage could not open in this browser. Check storage permissions and reload.';
+    toast(message);
     return;
   }
 
@@ -162,7 +168,6 @@ export async function init() {
     await generateTimeBasedPlan({ title: 'Published routing-cell verification' });
   }
 
-  void initPwaUpdates().catch(() => {});
 }
 
 async function offerWalkDraftRecovery() {

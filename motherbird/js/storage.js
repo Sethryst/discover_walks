@@ -1,7 +1,7 @@
 export const db = (() => {
   let database;
   const DATABASE_NAME = 'walk-wildlife-journal';
-  const DATABASE_VERSION = 18;
+  const DATABASE_VERSION = 19;
   const memoryStores = new Map();
   const memoryStore = (name) => {
     if (!memoryStores.has(name)) memoryStores.set(name, new Map());
