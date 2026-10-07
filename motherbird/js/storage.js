@@ -107,7 +107,7 @@ export const db = (() => {
       const fallbackTimer = setTimeout(() => {
         database = null;
         console.warn('Local database upgrade is blocked; continuing with temporary in-memory storage.');
-        resolve();
+        resolve(false);
       }, timeoutMs);
       const request = indexedDB.open(DATABASE_NAME, DATABASE_VERSION);
       request.onupgradeneeded = (event) => {
@@ -127,7 +127,7 @@ export const db = (() => {
         // prototype. A future public transport can publish signed manifests
         // without coupling raw media to the journal or profile backup paths.
       };
-      request.onsuccess = () => { clearTimeout(fallbackTimer); database = attachVersionChangeHandler(request.result); resolve(); };
+      request.onsuccess = () => { clearTimeout(fallbackTimer); database = attachVersionChangeHandler(request.result); resolve(true); };
       request.onerror = () => { clearTimeout(fallbackTimer); reject(request.error); };
       request.onblocked = () => {
         // Existing app tabs receive the versionchange event above and close
@@ -172,6 +172,6 @@ export const db = (() => {
       catch (error) { transaction.abort(); reject(error); }
     });
   }
-  return { open, put, putMany, get, all, remove, clearAll, migrationPlan, createPreMigrationBackup, version: DATABASE_VERSION };
+  return { open, put, putMany, get, all, remove, clearAll, migrationPlan, createPreMigrationBackup, version: DATABASE_VERSION, isDurable: () => Boolean(database) };
 })();
 export default db;

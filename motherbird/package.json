@@ -7,6 +7,7 @@
   "scripts": {
     "build": "node tools/build-pages.mjs",
     "serve:test": "node tools/serve-test.mjs",
+    "test:pages-smoke": "playwright test tests/pages-smoke.spec.mjs",
     "build:kpi": "node tools/build-kpi-index.mjs",
     "build:vienna-osm": "node tools/build-vienna-osm-pois.mjs vienna",
     "build:municipal-seeds": "node tools/export-municipal-pois.mjs",
@@ -90,5 +91,8 @@
     "@turf/turf": "^7.4.0",
     "flatbush": "4.6.2",
     "rbush": "4.0.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0"
   }
 }

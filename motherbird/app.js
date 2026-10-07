@@ -1,6 +1,21 @@
 /* Discover Walks Journal — local-first walking, history, and nature journal. */
+const startupStartedAt = performance.now();
+const startupTelemetry = (stage, details = {}) => {
+  const event = { stage, elapsedMs: Math.round(performance.now() - startupStartedAt), ...details };
+  globalThis.__MOTHERBIRD_STARTUP__ ||= { startedAt: new Date().toISOString(), stages: [] };
+  globalThis.__MOTHERBIRD_STARTUP__.stages.push(event);
+  console.info('[motherbird:startup]', event);
+  return event;
+};
+startupTelemetry('document');
+globalThis.__MOTHERBIRD_STARTUP_MARK__ = startupTelemetry;
+startupTelemetry('app.js');
 
-import('./js/loader.js?v=20261007-startup-recovery-1').then(({ init }) => init()).catch((error) => {
+import('./js/loader.js?v=20261007-startup-recovery-1').then(({ init }) => {
+  startupTelemetry('loader imported');
+  return init();
+}).catch((error) => {
+  startupTelemetry('startup failed', { failure: error?.message || String(error) });
   console.error('Walk & Wildlife startup failed:', error);
   document.getElementById('appSplashStatus')?.replaceChildren(document.createTextNode('The map needs another moment — try reload'));
   document.getElementById('appSplash')?.classList.add('app-splash--done');

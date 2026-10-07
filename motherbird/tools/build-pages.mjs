@@ -1,4 +1,4 @@
-import { access, cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { access, cp, mkdir, readFile, rm, stat, writeFile } from 'node:fs/promises';
 import { constants } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -76,13 +76,41 @@ const buildVersion = (process.env.GITHUB_SHA || new Date().toISOString())
   .slice(0, 24);
 const serviceWorkerPath = resolve(outputDirectory, 'service-worker.js');
 const serviceWorker = await readFile(serviceWorkerPath, 'utf8');
+const versionedFiles = [];
+async function collectFiles(directory) {
+  for (const entry of await (await import('node:fs/promises')).readdir(directory, { withFileTypes: true })) {
+    const path = resolve(directory, entry.name);
+    if (entry.isDirectory()) await collectFiles(path);
+    else if (/\.(?:html|js|css|webmanifest)$/.test(entry.name)) versionedFiles.push(path);
+  }
+}
+await collectFiles(outputDirectory);
+for (const path of versionedFiles) {
+  const source = await readFile(path, 'utf8');
+  await writeFile(path, source.replace(/([?&]v=)[^&"']+/g, `$1${buildVersion}`));
+}
 await writeFile(
   serviceWorkerPath,
   serviceWorker.replace(/const APP_CACHE = 'walk-wildlife-shell-[^']+';/, `const APP_CACHE = 'walk-wildlife-shell-${buildVersion}';`)
 );
+
+const precacheBudgetBytes = Number(process.env.MOTHERBIRD_PRECACHE_BUDGET_BYTES || 20 * 1024 * 1024);
+const installAssets = installShellForBudget(serviceWorker);
+const precacheBytes = (await Promise.all(installAssets.map(async (asset) => {
+  try { return (await stat(resolve(outputDirectory, asset))).size; } catch { return 0; }
+}))).reduce((sum, bytes) => sum + bytes, 0);
+if (precacheBytes > precacheBudgetBytes) throw new Error(`Install-time precache is ${precacheBytes} bytes, above ${precacheBudgetBytes}-byte budget.`);
+console.log(`Install-time precache: ${precacheBytes} bytes / ${precacheBudgetBytes}`);
 
 await access(resolve(outputDirectory, 'index.html'), constants.R_OK);
 await writeFile(resolve(outputDirectory, '.nojekyll'), '');
 await buildKpiIndex(resolve(outputDirectory, 'kpi'));
 
 console.log(`Built GitHub Pages site: ${outputDirectory}`);
+
+function installShellForBudget(workerSource) {
+  const match = workerSource.match(/const shell = \[(.*?)\];/s);
+  if (!match) return [];
+  return [...match[1].matchAll(/'([^']+)'/g)].map(([, asset]) => asset)
+    .filter((asset) => !asset.startsWith('./regions/') && !/(^|\/)(?:[^/]*-)?poi(?:s)?\.json$|(^|\/)records\.json$|(^|\/)cells\.json$|neighborhoods\.geojson$|runtime-graph\.json$|(?:fox|cloud|compass|splash)/i.test(asset));
+}

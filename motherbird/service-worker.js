@@ -53,7 +53,7 @@ shell.push('./js/regional-navigation.js', './data/regional-navigation.json');
 // Large regional packs and routing artifacts are loaded only when a region
 // or route is actually opened. Precaching them makes a service-worker update
 // download tens of megabytes and can leave mobile browsers looking frozen.
-const installShell = shell.filter((asset) => !/(^|\/)(?:[^/]*-)?poi(?:s)?\.json$|(^|\/)records\.json$|(^|\/)cells\.json$|neighborhoods\.geojson$|runtime-graph\.json$/i.test(asset));
+const installShell = shell.filter((asset) => !asset.startsWith('./regions/') && !/(^|\/)(?:[^/]*-)?poi(?:s)?\.json$|(^|\/)records\.json$|(^|\/)cells\.json$|neighborhoods\.geojson$|runtime-graph\.json$|(?:fox|cloud|compass|splash)/i.test(asset));
 const shellPaths = new Set(installShell.map((asset) => new URL(asset, self.registration.scope).pathname));
 const libraryAssets = [
   './vendor/leaflet/leaflet.css',

@@ -30,6 +30,7 @@ import { recoverWalkDraft, discardWalk } from './walk.js';
 import { initBiodiversity } from './biodiversity.js';
 
 export async function init() {
+  const telemetry = (stage, details = {}) => globalThis.__MOTHERBIRD_STARTUP_MARK__?.(stage, details);
   performance.mark?.('motherbird:init:start');
   const splashStatus = document.getElementById('appSplashStatus');
   const setSplashStatus = (message) => { if (splashStatus) splashStatus.textContent = message; };
@@ -81,6 +82,17 @@ export async function init() {
       const link = document.createElement('a'); link.href = url; link.download = `walk-wildlife-before-database-v${details.toVersion}.json`; link.click();
       setTimeout(() => URL.revokeObjectURL(url), 0);
     } });
+    const durableStorage = Boolean(db.isDurable?.());
+    telemetry('persistence', { durable: durableStorage });
+    if (!durableStorage) {
+      toast('Local journal storage is temporarily unavailable; this session is still usable. Retrying shortly…');
+      setTimeout(async () => {
+        const recovered = await db.open({ timeoutMs: 1500 }).catch(() => false);
+        const durable = Boolean(db.isDurable?.()) && recovered !== false;
+        telemetry('persistence retry', { durable });
+        if (durable) toast('Local journal storage is available again.');
+      }, 5000);
+    }
     await loadLocalState();
     await enterSingleInstalledRegion();
     void migrateLegacyJournalAudio().catch((error) => console.warn('Journal audio migration unavailable:', error.message));
@@ -110,6 +122,7 @@ export async function init() {
   // walk bar, or radio behind a slow/corrupt layer-settings read.
   void initNationalOsmLayers().catch((error) => console.warn('National layer settings unavailable:', error.message));
   initMap();
+  telemetry('map');
   setSplashStatus('Initializing the map…');
   requestAnimationFrame(() => state.map?.invalidateSize({ pan: false }));
   // The walk planner is core map functionality. Bind it before optional
@@ -118,6 +131,7 @@ export async function init() {
   // Bind the already-visible radial control before optional boot work can
   // leave a slow browser with an inert Start walk button.
   initRadialMenu();
+  telemetry('controls');
   initStories();
   initPrimaryShell();
   initFieldGuideFilters();
@@ -142,6 +156,7 @@ export async function init() {
     await optionalBoot('layer system', initLayerSystem);
   })();
   performance.measure?.('motherbird:init:ready', 'motherbird:init:start');
+  telemetry('startup-ready', { city: state.activeCity, durableStorage: Boolean(db.isDurable?.()) });
   console.info?.('[motherbird:perf] startup-ready', {
     duration: Math.round(performance.getEntriesByName('motherbird:init:ready').at(-1)?.duration || 0),
     city: state.activeCity,
