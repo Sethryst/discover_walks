@@ -10,9 +10,10 @@ import { savePlannedRoute } from './saved-routes.js';
 import { createSpatialQuery, listSpatialQueries, queryPrompt, saveSpatialQuery } from './spatial-query.js?v=20260928-spatial-query-fix';
 
 const DRAW_COLOR = '#76558b';
+const HIDDEN_ARTIFACTS_ID = 'preferences:map-paint';
 function readHiddenArtifacts() {
   try {
-    const saved = JSON.parse(typeof localStorage === 'undefined' ? '[]' : (localStorage.getItem('hiddenMapArtifacts') || '[]'));
+    const saved = JSON.parse(globalThis.localStorage?.getItem('hiddenMapArtifacts') || '[]');
     return new Set(Array.isArray(saved) ? saved : []);
   } catch {
     return new Set();
@@ -20,8 +21,7 @@ function readHiddenArtifacts() {
 }
 
 function saveHiddenArtifacts() {
-  try { if (typeof localStorage !== 'undefined') localStorage.setItem('hiddenMapArtifacts', JSON.stringify([...hiddenArtifacts])); }
-  catch { /* Map drawing stays usable when browser storage is unavailable. */ }
+  void db.put('settings', { id: HIDDEN_ARTIFACTS_ID, hiddenArtifacts: [...hiddenArtifacts] }).catch(() => {});
 }
 
 const hiddenArtifacts = readHiddenArtifacts();
@@ -269,6 +269,11 @@ function exportMapArtifacts() {
 }
 
 export async function initMapPaint() {
+  const savedPreferences = await db.get('settings', HIDDEN_ARTIFACTS_ID);
+  if (Array.isArray(savedPreferences?.hiddenArtifacts)) {
+    hiddenArtifacts.clear();
+    savedPreferences.hiddenArtifacts.forEach((id) => hiddenArtifacts.add(String(id)));
+  }
   const button = el('mapPencilButton');
   if (!state.map) return;
   const drawTools = document.querySelector('.draw-shapes');
