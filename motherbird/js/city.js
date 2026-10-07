@@ -51,7 +51,11 @@ function readRegionalJson(file) {
   const id = ++regionalDataRequest;
   return new Promise((resolve, reject) => {
     regionalDataPending.set(id, { resolve, reject });
-    regionalDataWorker.postMessage({ id, url: file });
+    // Regional config paths are rooted at the app document. The worker's
+    // own base URL is /js/, so passing "./regions/..." directly would make
+    // it request /js/regions/... and fail in the deployed app.
+    const url = new URL(file, document.baseURI).href;
+    regionalDataWorker.postMessage({ id, url });
   });
 }
 
