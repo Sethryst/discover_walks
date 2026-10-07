@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 
 const url = process.env.MOTHERBIRD_SMOKE_URL || 'https://sethryst.github.io/discover_walks/';
 const deadline = 30_000;
+const startupBudgetMs = 10_000;
 
 test('fresh Pages context reaches startup-ready and responds to core controls', async ({ page }) => {
   const uncaught = [];
@@ -9,6 +10,8 @@ test('fresh Pages context reaches startup-ready and responds to core controls', 
   page.on('console', (message) => { if (message.type() === 'error') uncaught.push(message.text()); });
   await page.goto(`${url}${url.includes('?') ? '&' : '?'}canary=${Date.now()}`, { waitUntil: 'domcontentloaded' });
   await expect.poll(async () => page.evaluate(() => globalThis.__MOTHERBIRD_STARTUP__?.stages?.some((stage) => stage.stage === 'startup-ready')), { timeout: deadline }).toBe(true);
+  const startupDuration = await page.evaluate(() => { const stages = globalThis.__MOTHERBIRD_STARTUP__?.stages || []; return stages.find((stage) => stage.stage === 'startup-ready')?.elapsedMs || Infinity; });
+  expect(startupDuration, `startup-ready exceeded ${startupBudgetMs}ms`).toBeLessThanOrEqual(startupBudgetMs);
   expect(uncaught, `uncaught browser errors: ${uncaught.join(' | ')}`).toEqual([]);
   await expect(page.locator('#appSplash')).toHaveClass(/app-splash--done/, { timeout: 5_000 });
   await page.locator('#libraryTab').click();
