@@ -1,0 +1,513 @@
+{
+  "schemaVersion": 1,
+  "kind": "regional-source-coverage-audit",
+  "generatedFrom": "expansion-queues/regional-source-backlog.json",
+  "publicationState": "static-review-only",
+  "method": "Backlog coverage estimates; missing categories are planning signals, not completeness claims. News is explicitly marked untracked rather than inferred empty.",
+  "priorityOrder": [
+    "lowest-coverage",
+    "event-gap",
+    "news-inventory-follow-up"
+  ],
+  "summary": {
+    "regionCount": 34,
+    "newsStatus": "untracked",
+    "eventGapRegions": 25
+  },
+  "regions": [
+    {
+      "regionId": "baltimore",
+      "name": "Baltimore, Maryland",
+      "coveragePercent": 0,
+      "missingCategories": [
+        "events",
+        "meetings",
+        "volunteer",
+        "parks",
+        "libraries",
+        "recreation",
+        "culturalActivities",
+        "publicSpaces"
+      ],
+      "newsStatus": "not-tracked-in-backlog",
+      "eventsGap": true,
+      "publicPois": 0
+    },
+    {
+      "regionId": "columbus",
+      "name": "Columbus, Ohio",
+      "coveragePercent": 0,
+      "missingCategories": [
+        "events",
+        "meetings",
+        "volunteer",
+        "parks",
+        "libraries",
+        "recreation",
+        "culturalActivities",
+        "publicSpaces"
+      ],
+      "newsStatus": "not-tracked-in-backlog",
+      "eventsGap": true,
+      "publicPois": 0
+    },
+    {
+      "regionId": "corpus-christi",
+      "name": "Corpus Christi, Texas",
+      "coveragePercent": 0,
+      "missingCategories": [
+        "events",
+        "meetings",
+        "volunteer",
+        "parks",
+        "libraries",
+        "recreation",
+        "culturalActivities",
+        "publicSpaces"
+      ],
+      "newsStatus": "not-tracked-in-backlog",
+      "eventsGap": true,
+      "publicPois": 0
+    },
+    {
+      "regionId": "detroit",
+      "name": "Detroit, Michigan",
+      "coveragePercent": 0,
+      "missingCategories": [
+        "events",
+        "meetings",
+        "volunteer",
+        "parks",
+        "libraries",
+        "recreation",
+        "culturalActivities",
+        "publicSpaces"
+      ],
+      "newsStatus": "not-tracked-in-backlog",
+      "eventsGap": true,
+      "publicPois": 0
+    },
+    {
+      "regionId": "fort-worth",
+      "name": "Fort Worth, Texas",
+      "coveragePercent": 0,
+      "missingCategories": [
+        "events",
+        "meetings",
+        "volunteer",
+        "parks",
+        "libraries",
+        "recreation",
+        "culturalActivities",
+        "publicSpaces"
+      ],
+      "newsStatus": "not-tracked-in-backlog",
+      "eventsGap": true,
+      "publicPois": 0
+    },
+    {
+      "regionId": "los-angeles",
+      "name": "Los Angeles, California",
+      "coveragePercent": 0,
+      "missingCategories": [
+        "events",
+        "meetings",
+        "volunteer",
+        "parks",
+        "libraries",
+        "recreation",
+        "culturalActivities",
+        "publicSpaces"
+      ],
+      "newsStatus": "not-tracked-in-backlog",
+      "eventsGap": true,
+      "publicPois": 0
+    },
+    {
+      "regionId": "tempe",
+      "name": "Tempe, Arizona",
+      "coveragePercent": 0,
+      "missingCategories": [
+        "events",
+        "meetings",
+        "volunteer",
+        "parks",
+        "libraries",
+        "recreation",
+        "culturalActivities",
+        "publicSpaces"
+      ],
+      "newsStatus": "not-tracked-in-backlog",
+      "eventsGap": true,
+      "publicPois": 0
+    },
+    {
+      "regionId": "anchorage",
+      "name": "Anchorage, Alaska",
+      "coveragePercent": 0,
+      "missingCategories": [
+        "events",
+        "meetings",
+        "volunteer",
+        "parks",
+        "libraries",
+        "recreation",
+        "culturalActivities",
+        "publicSpaces"
+      ],
+      "newsStatus": "not-tracked-in-backlog",
+      "eventsGap": true,
+      "publicPois": 9
+    },
+    {
+      "regionId": "pittsburgh",
+      "name": "Pittsburgh, Pennsylvania",
+      "coveragePercent": 12.5,
+      "missingCategories": [
+        "events",
+        "meetings",
+        "volunteer",
+        "libraries",
+        "recreation",
+        "culturalActivities",
+        "publicSpaces"
+      ],
+      "newsStatus": "not-tracked-in-backlog",
+      "eventsGap": true,
+      "publicPois": 0
+    },
+    {
+      "regionId": "prince-georges-county-md",
+      "name": "Prince George's County, Maryland",
+      "coveragePercent": 25,
+      "missingCategories": [
+        "meetings",
+        "parks",
+        "libraries",
+        "recreation",
+        "culturalActivities",
+        "publicSpaces"
+      ],
+      "newsStatus": "not-tracked-in-backlog",
+      "eventsGap": false,
+      "publicPois": 38
+    },
+    {
+      "regionId": "falls-church-va",
+      "name": "City of Falls Church, Virginia",
+      "coveragePercent": 25,
+      "missingCategories": [
+        "events",
+        "meetings",
+        "volunteer",
+        "libraries",
+        "culturalActivities",
+        "publicSpaces"
+      ],
+      "newsStatus": "not-tracked-in-backlog",
+      "eventsGap": true,
+      "publicPois": 120
+    },
+    {
+      "regionId": "seattle",
+      "name": "Seattle, Washington",
+      "coveragePercent": 37.5,
+      "missingCategories": [
+        "meetings",
+        "volunteer",
+        "libraries",
+        "culturalActivities",
+        "publicSpaces"
+      ],
+      "newsStatus": "not-tracked-in-backlog",
+      "eventsGap": false,
+      "publicPois": 53
+    },
+    {
+      "regionId": "loudoun-county-va",
+      "name": "Loudoun County, Virginia",
+      "coveragePercent": 37.5,
+      "missingCategories": [
+        "events",
+        "meetings",
+        "volunteer",
+        "libraries",
+        "publicSpaces"
+      ],
+      "newsStatus": "not-tracked-in-backlog",
+      "eventsGap": true,
+      "publicPois": 371
+    },
+    {
+      "regionId": "san-francisco",
+      "name": "San Francisco, CA",
+      "coveragePercent": 50,
+      "missingCategories": [
+        "events",
+        "meetings",
+        "volunteer",
+        "parks"
+      ],
+      "newsStatus": "not-tracked-in-backlog",
+      "eventsGap": true,
+      "publicPois": 407
+    },
+    {
+      "regionId": "arlington-va",
+      "name": "Arlington County, Virginia",
+      "coveragePercent": 50,
+      "missingCategories": [
+        "events",
+        "meetings",
+        "volunteer",
+        "libraries"
+      ],
+      "newsStatus": "not-tracked-in-backlog",
+      "eventsGap": true,
+      "publicPois": 610
+    },
+    {
+      "regionId": "richmond",
+      "name": "Richmond, VA",
+      "coveragePercent": 50,
+      "missingCategories": [
+        "events",
+        "meetings",
+        "volunteer",
+        "parks"
+      ],
+      "newsStatus": "not-tracked-in-backlog",
+      "eventsGap": true,
+      "publicPois": 1036
+    },
+    {
+      "regionId": "new-orleans",
+      "name": "New Orleans, LA",
+      "coveragePercent": 50,
+      "missingCategories": [
+        "events",
+        "meetings",
+        "volunteer",
+        "parks"
+      ],
+      "newsStatus": "not-tracked-in-backlog",
+      "eventsGap": true,
+      "publicPois": 1113
+    },
+    {
+      "regionId": "chicago",
+      "name": "Chicago, IL",
+      "coveragePercent": 50,
+      "missingCategories": [
+        "events",
+        "meetings",
+        "volunteer",
+        "parks"
+      ],
+      "newsStatus": "not-tracked-in-backlog",
+      "eventsGap": true,
+      "publicPois": 3452
+    },
+    {
+      "regionId": "asheville",
+      "name": "Asheville, NC",
+      "coveragePercent": 62.5,
+      "missingCategories": [
+        "events",
+        "meetings",
+        "volunteer"
+      ],
+      "newsStatus": "not-tracked-in-backlog",
+      "eventsGap": true,
+      "publicPois": 115
+    },
+    {
+      "regionId": "norfolk",
+      "name": "Norfolk, VA",
+      "coveragePercent": 62.5,
+      "missingCategories": [
+        "meetings",
+        "libraries",
+        "culturalActivities"
+      ],
+      "newsStatus": "not-tracked-in-backlog",
+      "eventsGap": false,
+      "publicPois": 188
+    },
+    {
+      "regionId": "alexandria-va",
+      "name": "Alexandria, Virginia",
+      "coveragePercent": 62.5,
+      "missingCategories": [
+        "events",
+        "volunteer",
+        "libraries"
+      ],
+      "newsStatus": "not-tracked-in-backlog",
+      "eventsGap": true,
+      "publicPois": 353
+    },
+    {
+      "regionId": "portland-maine",
+      "name": "Portland, ME",
+      "coveragePercent": 62.5,
+      "missingCategories": [
+        "events",
+        "meetings",
+        "volunteer"
+      ],
+      "newsStatus": "not-tracked-in-backlog",
+      "eventsGap": true,
+      "publicPois": 520
+    },
+    {
+      "regionId": "santa-fe",
+      "name": "Santa Fe, NM",
+      "coveragePercent": 62.5,
+      "missingCategories": [
+        "events",
+        "meetings",
+        "volunteer"
+      ],
+      "newsStatus": "not-tracked-in-backlog",
+      "eventsGap": true,
+      "publicPois": 1023
+    },
+    {
+      "regionId": "keystone-colorado",
+      "name": "Keystone & Summit County, CO",
+      "coveragePercent": 62.5,
+      "missingCategories": [
+        "events",
+        "meetings",
+        "volunteer"
+      ],
+      "newsStatus": "not-tracked-in-backlog",
+      "eventsGap": true,
+      "publicPois": 1173
+    },
+    {
+      "regionId": "boulder",
+      "name": "Boulder, CO",
+      "coveragePercent": 62.5,
+      "missingCategories": [
+        "events",
+        "meetings",
+        "volunteer"
+      ],
+      "newsStatus": "not-tracked-in-backlog",
+      "eventsGap": true,
+      "publicPois": 2292
+    },
+    {
+      "regionId": "boston",
+      "name": "Boston, MA",
+      "coveragePercent": 62.5,
+      "missingCategories": [
+        "meetings",
+        "volunteer",
+        "parks"
+      ],
+      "newsStatus": "not-tracked-in-backlog",
+      "eventsGap": false,
+      "publicPois": 3067
+    },
+    {
+      "regionId": "portland",
+      "name": "Portland, OR",
+      "coveragePercent": 62.5,
+      "missingCategories": [
+        "meetings",
+        "volunteer",
+        "parks"
+      ],
+      "newsStatus": "not-tracked-in-backlog",
+      "eventsGap": false,
+      "publicPois": 4990
+    },
+    {
+      "regionId": "denver",
+      "name": "Denver, CO",
+      "coveragePercent": 62.5,
+      "missingCategories": [
+        "events",
+        "meetings",
+        "volunteer"
+      ],
+      "newsStatus": "not-tracked-in-backlog",
+      "eventsGap": true,
+      "publicPois": 5370
+    },
+    {
+      "regionId": "sedona-arizona",
+      "name": "Sedona, Arizona",
+      "coveragePercent": 75,
+      "missingCategories": [
+        "events",
+        "meetings"
+      ],
+      "newsStatus": "not-tracked-in-backlog",
+      "eventsGap": true,
+      "publicPois": 696
+    },
+    {
+      "regionId": "boise-meridian-idaho",
+      "name": "Boise, Meridian & Old Town, Idaho",
+      "coveragePercent": 75,
+      "missingCategories": [
+        "meetings",
+        "parks"
+      ],
+      "newsStatus": "not-tracked-in-backlog",
+      "eventsGap": false,
+      "publicPois": 977
+    },
+    {
+      "regionId": "fairfax-county-va",
+      "name": "Fairfax County, Virginia",
+      "coveragePercent": 75,
+      "missingCategories": [
+        "events",
+        "volunteer"
+      ],
+      "newsStatus": "not-tracked-in-backlog",
+      "eventsGap": true,
+      "publicPois": 2383
+    },
+    {
+      "regionId": "philadelphia",
+      "name": "Philadelphia, PA",
+      "coveragePercent": 75,
+      "missingCategories": [
+        "meetings",
+        "parks"
+      ],
+      "newsStatus": "not-tracked-in-backlog",
+      "eventsGap": false,
+      "publicPois": 2516
+    },
+    {
+      "regionId": "nyc",
+      "name": "New York City, NY",
+      "coveragePercent": 75,
+      "missingCategories": [
+        "meetings",
+        "recreation"
+      ],
+      "newsStatus": "not-tracked-in-backlog",
+      "eventsGap": false,
+      "publicPois": 10939
+    },
+    {
+      "regionId": "washington-dc",
+      "name": "Washington, DC",
+      "coveragePercent": 87.5,
+      "missingCategories": [
+        "meetings"
+      ],
+      "newsStatus": "not-tracked-in-backlog",
+      "eventsGap": false,
+      "publicPois": 2217
+    }
+  ]
+}

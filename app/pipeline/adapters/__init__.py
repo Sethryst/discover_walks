@@ -3,5 +3,6 @@
 from app.pipeline.adapters.overpass import OverpassAdapter
 from app.pipeline.adapters.arcgis import ArcGisFeatureServiceProvider
 from app.pipeline.adapters.geojson import GeoJsonProvider
+from app.pipeline.adapters.inaturalist import INaturalistProvider
 
-__all__ = ["ArcGisFeatureServiceProvider", "GeoJsonProvider", "OverpassAdapter"]
+__all__ = ["ArcGisFeatureServiceProvider", "GeoJsonProvider", "INaturalistProvider", "OverpassAdapter"]
