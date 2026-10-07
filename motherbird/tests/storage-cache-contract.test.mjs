@@ -41,3 +41,10 @@ test('outbox contract includes atomic leases and bounded failure text', async ()
   assert.match(storage, /leaseUntil/);
   assert.match(runtime, /\.slice\(0, 240\)/);
 });
+
+test('migration backup includes optional Cache Storage and OPFS asset collectors', async () => {
+  const storage = await readFile(new URL('../js/storage.js', import.meta.url), 'utf8');
+  assert.match(storage, /collectCacheAssets/);
+  assert.match(storage, /collectOpfsAssets/);
+  assert.match(storage, /walk-wildlife-storage-backup/);
+});
