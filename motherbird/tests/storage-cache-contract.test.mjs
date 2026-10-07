@@ -4,6 +4,8 @@ import { readFile } from 'node:fs/promises';
 
 const worker = await readFile(new URL('../service-worker.js', import.meta.url), 'utf8');
 const builder = await readFile(new URL('../tools/build-pages.mjs', import.meta.url), 'utf8');
+const storage = await readFile(new URL('../js/storage.js', import.meta.url), 'utf8');
+const cellCache = await readFile(new URL('../js/walking-cell-cache.js', import.meta.url), 'utf8');
 
 test('service worker keeps large regional and routing artifacts out of install precache', () => {
   assert.match(worker, /const APP_CACHE = 'walk-wildlife-shell-v361';/);
@@ -22,4 +24,11 @@ test('Pages build derives deployed cache identity from the commit/build ID and e
   assert.match(builder, /process\.env\.GITHUB_SHA/);
   assert.match(builder, /MOTHERBIRD_PRECACHE_BUDGET_BYTES/);
   assert.match(builder, /precacheBytes > precacheBudgetBytes/);
+});
+
+test('walking-cell metadata uses the shared storage coordinator', () => {
+  assert.match(storage, /walking_cell_metadata/);
+  assert.match(cellCache, /db\.put\('walking_cell_metadata'/);
+  assert.match(cellCache, /db\.all\('walking_cell_metadata'/);
+  assert.doesNotMatch(cellCache, /indexedDB\.open/);
 });

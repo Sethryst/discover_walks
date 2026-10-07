@@ -2,12 +2,12 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import db from '../js/storage.js';
 
-test('storage exposes the explicit durability contract and version 20 outbox migration', () => {
+test('storage exposes the explicit durability contract and version 21 walking-cell migration', () => {
   assert.equal(db.databaseName, 'walk-wildlife-journal');
-  assert.equal(db.version, 20);
+  assert.equal(db.version, 21);
   assert.ok(['checking', 'durable', 'temporary', 'recovering', 'failed', 'quota-exceeded'].includes(db.persistenceState()));
-  assert.equal(db.migrationPlan(19)[0].version, 20);
-  assert.match(db.migrationPlan(19)[0].description, /outbox/i);
+  assert.equal(db.migrationPlan(20)[0].version, 21);
+  assert.match(db.migrationPlan(20)[0].description, /walking-cell/i);
 });
 
 test('unsupported IndexedDB falls back to temporary memory storage and records diagnostics', async () => {
