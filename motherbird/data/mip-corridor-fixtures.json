@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Deterministic matcher fixtures only; these records are not published corridor evidence.",
+  "negativeOfficialRiverCrossing": {
+    "id": "official-line-crossing-without-bridge",
+    "kind": "official-trail",
+    "sourceId": "fixture:official-river-crossing",
+    "coordinates": [[-77.2, 38.8], [-77.18, 38.8]],
+    "expectedStatus": "rejected",
+    "graphEdges": [
+      { "id": "river-bank-west", "from": 1, "to": 2, "coordinates": [[-77.2, 38.799], [-77.195, 38.799]], "lengthMeters": 450 },
+      { "id": "river-bank-east", "from": 3, "to": 4, "coordinates": [[-77.185, 38.801], [-77.18, 38.801]], "lengthMeters": 450 }
+    ]
+  },
+  "difficultRunAdjacency": {
+    "id": "difficult-run",
+    "kind": "flowline",
+    "sourceId": "fixture:difficult-run",
+    "coordinates": [[-77.2, 38.8], [-77.18, 38.8]],
+    "expectedLabel": "creek-adjacent",
+    "graphEdges": [
+      { "id": "difficult-run-trail", "from": 1, "to": 2, "coordinates": [[-77.2, 38.8004], [-77.18, 38.8004]], "lengthMeters": 870 }
+    ]
+  }
+}

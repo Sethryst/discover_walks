@@ -74,6 +74,10 @@ The matcher now uses a deterministic local edge grid for build-time candidate
 lookup. This changes only search efficiency; thresholds, nearest-edge choice,
 continuity, and fail-closed status are unchanged.
 
+`motherbird/data/mip-corridor-fixtures.json` contains the negative river
+crossing and Difficult Run adjacency fixtures used by the matcher tests. They
+are explicitly test-only records and are not published as corridor evidence.
+
 ## Blind evaluation packet
 
 `motherbird/data/mip-blind-evaluation-pairs.json` fixes ten origin/destination

@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import test from 'node:test';
 import { buildCorridorReport, buildEdgeFeatureSidecar, matchFlowlineAdjacency, matchOfficialCorridor, PILOT_BBOX } from '../tools/mip-corridor-matcher.mjs';
 
@@ -6,6 +7,7 @@ const graphEdges = [
   { id: 'edge-1', from: 1, to: 2, coordinates: [[-77.2, 38.8], [-77.19, 38.8]], lengthMeters: 870 },
   { id: 'edge-2', from: 2, to: 3, coordinates: [[-77.19, 38.8], [-77.18, 38.8]], lengthMeters: 870 }
 ];
+const fixtures = JSON.parse(fs.readFileSync(new URL('../data/mip-corridor-fixtures.json', import.meta.url), 'utf8'));
 
 test('official line matching is deterministic and reports verified evidence', () => {
   const result = matchOfficialCorridor({ id: 'wod-trail', name: 'W&OD Trail', sourceId: 'official-wod', coordinates: [[-77.2, 38.80001], [-77.18, 38.80001]] }, graphEdges, { bbox: PILOT_BBOX });
@@ -32,6 +34,19 @@ test('flowline adjacency is not trail alignment', () => {
   const result = matchFlowlineAdjacency({ id: 'difficult-run', name: 'Difficult Run', coordinates: [[-77.2, 38.8004], [-77.18, 38.8004]] }, graphEdges, { bbox: PILOT_BBOX, minMeters: 30, maxMeters: 75 });
   assert.equal(result.label, 'creek-adjacent');
   assert.match(result.quality.note, /not trail alignment/);
+});
+
+test('checked-in river crossing fixture rejects an official line without a bridge', () => {
+  const fixture = fixtures.negativeOfficialRiverCrossing;
+  const result = matchOfficialCorridor(fixture, fixture.graphEdges, { bbox: PILOT_BBOX });
+  assert.equal(result.status, fixture.expectedStatus);
+});
+
+test('checked-in Difficult Run fixture remains creek adjacency only', () => {
+  const fixture = fixtures.difficultRunAdjacency;
+  const result = matchFlowlineAdjacency(fixture, fixture.graphEdges, { bbox: PILOT_BBOX, minMeters: 30, maxMeters: 75 });
+  assert.equal(result.label, fixture.expectedLabel);
+  assert.equal(result.kind, 'flowline-adjacency');
 });
 
 test('corridor report sorts records and keeps status counts explicit', () => {
