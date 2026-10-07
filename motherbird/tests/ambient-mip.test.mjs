@@ -81,3 +81,20 @@ test('explicit and implicit responses are persisted only to the supplied local s
   assert.equal(readAmbientMemory(storage).archetypes.quiet.observations, 2);
   assert.equal(values.size, 1);
 });
+
+test('repeated accepted discovery walks change ranking without changing feasibility', async () => {
+  const routeOnFoot = async (points) => points.length > 2
+    ? { ok: true, durationSeconds: 2100, distanceMeters: 2800, edgeIds: ['discovery-a', 'discovery-b'], coordinates: points.map((point) => [point.lat, point.lng]), graphVersion: 'g1', features: { discovery: 1 } }
+    : { ok: true, durationSeconds: 1500, distanceMeters: 2100, edgeIds: ['direct-a'], coordinates: points.map((point) => [point.lat, point.lng]), graphVersion: 'g1' };
+  let memory = {};
+  const now = Date.parse('2026-10-07T00:00:00Z');
+  const initial = await generateAmbientOptions({ origin, destination, routeOnFoot, context: { availableMinutes: 60 }, discoveryStops: [{ id: 'museum', name: 'Museum', lat: 38.905, lng: -77.09 }] });
+  assert.equal(initial.primary.archetype, 'direct');
+  for (let index = 0; index < 4; index += 1) memory = recordAmbientResponse(memory, { archetype: 'discovery', accepted: true }, now + index * 86400000);
+  const learned = await generateAmbientOptions({ origin, destination, routeOnFoot, context: { availableMinutes: 60 }, memory: memoryScores(memory, now + 4 * 86400000), discoveryStops: [{ id: 'museum', name: 'Museum', lat: 38.905, lng: -77.09 }] });
+  assert.equal(learned.primary.archetype, 'discovery');
+  assert.ok(learned.routes.every((route) => route.ok));
+  const unavailable = await generateAmbientOptions({ origin, destination, routeOnFoot: async (points) => points.length > 2 ? { ok: false, status: 'NO_ROUTE_IN_COMPONENT' } : routeOnFoot(points), context: { availableMinutes: 60 }, memory: memoryScores(memory, now + 4 * 86400000), discoveryStops: [{ id: 'museum', name: 'Museum', lat: 38.905, lng: -77.09 }] });
+  assert.equal(unavailable.primary.archetype, 'direct');
+  assert.ok(unavailable.routes.every((route) => route.ok));
+});

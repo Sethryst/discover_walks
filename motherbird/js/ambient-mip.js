@@ -40,7 +40,8 @@ export function inferWalkingIntention(context = {}, memory = {}) {
   const signals = {
     destination: context.destination ? 1 : 0,
     timePressure: minutes <= 20 ? 1 : 0,
-    familiar: Number(context.routeHistoryCount || 0) > 2 ? 0.25 : 0,
+    familiar: Math.min(0.25, Math.max(0, Number(context.routeHistoryCount || 0)) * 0.05),
+    rememberedPlaces: Math.min(0.25, Math.max(0, Number(context.rememberedPlaceCount || 0)) * 0.05),
     discoveryEvidence: Number(memory.discovery || 0),
     quietEvidence: Number(memory.quiet || 0),
     directEvidence: Number(memory.direct || 0)
@@ -49,8 +50,8 @@ export function inferWalkingIntention(context = {}, memory = {}) {
     // A direct route is the conservative default. Discovery and quiet only
     // outrank it after repeated local evidence or a strong current-context
     // signal; one absent signal must never become a personality claim.
-    { archetype: 'direct', score: 0.5 + signals.timePressure * 2 + signals.directEvidence },
-    { archetype: 'discovery', score: (signals.discoveryEvidence > 0.25 ? 1 : 0.15) + signals.discoveryEvidence * 0.5 - signals.timePressure * 0.5 },
+    { archetype: 'direct', score: 0.5 + signals.timePressure * 2 + signals.directEvidence + signals.familiar },
+    { archetype: 'discovery', score: (signals.discoveryEvidence > 0.25 ? 1 : 0.15) + signals.discoveryEvidence * 0.5 + signals.rememberedPlaces - signals.timePressure * 0.5 },
     { archetype: 'quiet', score: (signals.quietEvidence > 0.25 ? 0.75 : 0) + signals.quietEvidence * 0.5 + (context.currentPaceMps && context.currentPaceMps < 1.1 ? 0.25 : 0) }
   ].sort((a, b) => b.score - a.score || AMBIENT_ARCHETYPES.indexOf(a.archetype) - AMBIENT_ARCHETYPES.indexOf(b.archetype));
   return { primary: candidates[0].archetype, confidence: Math.min(0.75, 0.35 + Math.max(0, candidates[0].score - candidates[1].score) * 0.15), signals, candidates };
@@ -66,10 +67,12 @@ export function rankAmbientRoutes(routes, { intention = null, memory = {}, maxMi
     const archetype = route.archetype || 'direct';
     const weights = DEFAULT_WEIGHTS[archetype] || DEFAULT_WEIGHTS.direct;
     const extraMinutes = Math.max(0, Number(route.durationSeconds || 0) / 60 - Number(route.directDurationMinutes || 0));
-    const discovery = Number(route.features?.discovery || route.features?.interest || 0);
-    const quiet = Number(route.features?.quiet || 0);
+    const discovery = Number(route.features?.discovery || route.features?.interest || route.facts?.poiCount || 0);
+    const quiet = Number(route.features?.quiet || route.facts?.quietScore || 0);
     const learned = Number(memory[archetype] || 0);
-    const score = weights.discovery * discovery + weights.quiet * quiet - weights.duration * extraMinutes + learned * 0.2 + (intention === archetype ? 0.5 : 0);
+    // Local evidence is deliberately bounded: it can reorder already-valid
+    // candidates, but never compensate for a failed route or hard constraint.
+    const score = weights.discovery * discovery + weights.quiet * quiet - weights.duration * extraMinutes + learned * 0.45 + (intention === archetype ? 0.75 : 0);
     return { ...route, archetype, quantizedScore: Math.round(score * 1000), _score: score };
   }).sort((a, b) => b.quantizedScore - a.quantizedScore || Number(a.distanceMeters || 0) - Number(b.distanceMeters || 0) || String(a.id).localeCompare(String(b.id)));
   const primary = ranked[0] || null;

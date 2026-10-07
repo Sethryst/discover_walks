@@ -26,7 +26,7 @@ import { restartCoachMarks } from './coach.js';
 import { savePlannedRoute } from './saved-routes.js';
 import { recordSessionRoutingOutcome } from './routing-feedback.js';
 import { openRoomForPlace } from './room-runtime.js';
-import { buildInWalkSuggestion } from './ambient-mip.js?v=20261007-ambient-2';
+import { buildInWalkSuggestion } from './ambient-mip.js?v=20261007-ambient-3';
 
 const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];
 
