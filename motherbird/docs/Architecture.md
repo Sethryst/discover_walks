@@ -38,6 +38,7 @@ index.html + styles.css
 - **Current map data path:** `constants.CITIES[*].dataFile` → `data/*-poi.json` → `city.loadCityData()` → IndexedDB `points_of_interest` → `poi.renderCityPois()`.
 - **Region package path:** `loader.init()` → `region-ui.initRegionAutomation()` → `regions/vienna/*` → IndexedDB `regions`, `region_pois`, and `region_buckets`. It currently reports/install status but does not replace the map’s city seed path.
 - **Offline cache:** `service-worker.js` precaches a small shell, caches Leaflet styles, and caches map tiles only after they are viewed. Update `APP_CACHE` whenever changing the precached shell list.
+- **Client storage contract:** `js/storage.js` coordinates the version-21 IndexedDB stores, memory fallback, migration preflight backups, atomic batch writes, leased outbox claims, and diagnostics. Walking-cell metadata, preferences, friend tickets, and spatial operations use this coordinator. Cache Storage and OPFS assets are included in storage backup/restore with bounded runtime cache budgets.
 - **Cloud boundary:** `online.js` reads only `window.WALK_WILDLIFE_SUPABASE` injected by `supabase-config.js`; do not put privileged Supabase keys in this repo.
 
 See [DataFlow.md](DataFlow.md) for feature-level flows and [CodebaseMap.md](CodebaseMap.md) before changing a module.
