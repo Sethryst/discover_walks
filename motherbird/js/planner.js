@@ -6,7 +6,7 @@ import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261007-ambien
 import { escapeHtml } from './utils.js';
 import { toast } from './ui.js';
 import { splitDisconnectedPaths } from './routes.js';
-import { buildAmbientExplanation, generateAmbientOptions, installAmbientLearningListener, readAmbientMemory } from './ambient-mip.js?v=20261007-ambient-5';
+import { buildAmbientExplanation, generateAmbientOptions, installAmbientLearningListener, readAmbientMemory } from './ambient-mip.js?v=20261007-ambient-6';
 
 function selectedMinutes() { return Number(document.querySelector('input[name="walkTime"]:checked')?.value || 30); }
 function selectedRouteMode() { return document.querySelector('input[name="routeMode"]:checked')?.value || 'round-trip'; }

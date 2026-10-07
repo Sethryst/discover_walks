@@ -17,13 +17,16 @@ export async function generateAmbientOptions({ origin, destination, routeOnFoot,
   const direct = await safeRoute(routeOnFoot, [origin, destination], { profile: 'ordinary_walking_beta' });
   const directMinutes = direct.ok ? Number(direct.durationSeconds || 0) / 60 : 0;
   const routes = direct.ok ? [enrichAmbientRoute({ ...direct, id: 'ambient-direct', archetype: 'direct', directDurationMinutes: directMinutes, facts: { extraMinutes: 0 } }, sidecar, poiRecords, corridorCatalogue)] : [];
-  for (const stop of [...discoveryStops, ...quietStops].filter(Boolean).slice(0, 6)) {
-    const archetype = quietStops.includes(stop) ? 'quiet' : 'discovery';
+  const candidateStops = [
+    ...discoveryStops.filter(Boolean).slice(0, 3).map((stop) => ({ stop, archetype: 'discovery' })),
+    ...quietStops.filter(Boolean).slice(0, 3).map((stop) => ({ stop, archetype: 'quiet' }))
+  ];
+  for (const { stop, archetype } of candidateStops) {
+    if (routes.some((route) => route.archetype === archetype)) continue;
     const profile = archetype === 'quiet' ? 'accessible_verified' : 'ordinary_walking_beta';
     const result = await safeRoute(routeOnFoot, [origin, stop, destination], { profile });
     if (!result.ok) continue;
     routes.push(enrichAmbientRoute({ ...result, id: `ambient-${archetype}-${stop.id || stop.name || routes.length}`, archetype, directDurationMinutes: directMinutes, stops: [stop], facts: { poiCount: archetype === 'discovery' ? 1 : 0, extraMinutes: Math.max(0, Number(result.durationSeconds || 0) / 60 - directMinutes) } }, sidecar, poiRecords, corridorCatalogue));
-    if (routes.filter((route) => route.archetype === archetype).length >= 1) continue;
   }
   const intention = inferWalkingIntention({ ...context, destination }, memoryScores(memory));
   const ranked = rankAmbientRoutes(routes, { intention: intention.primary, memory, maxMinutes: context.availableMinutes || Infinity });
@@ -78,7 +81,13 @@ export function rankAmbientRoutes(routes, { intention = null, memory = {}, maxMi
     return { ...route, archetype, quantizedScore: Math.round(score * 1000), _score: score };
   }).sort((a, b) => b.quantizedScore - a.quantizedScore || Number(a.distanceMeters || 0) - Number(b.distanceMeters || 0) || String(a.id).localeCompare(String(b.id)));
   const primary = ranked[0] || null;
-  return { primary, alternatives: ranked.filter((route) => route !== primary && distinctEnough(route, primary)).slice(0, 2), routes: ranked };
+  const alternatives = [];
+  for (const route of ranked) {
+    if (route === primary || !distinctEnough(route, primary)) continue;
+    if (alternatives.every((alternative) => distinctEnough(route, alternative))) alternatives.push(route);
+    if (alternatives.length === 2) break;
+  }
+  return { primary, alternatives, routes: ranked };
 }
 
 export function distinctEnough(left, right, overlapLimit = 0.6) {

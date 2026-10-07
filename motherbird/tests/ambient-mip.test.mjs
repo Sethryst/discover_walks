@@ -10,7 +10,8 @@ import {
   recordAmbientResponse,
   memoryScores,
   memoryTraitScores,
-  readAmbientMemory
+  readAmbientMemory,
+  rankAmbientRoutes
 } from '../js/ambient-mip.js';
 
 const origin = { lat: 38.9, lng: -77.1 };
@@ -44,6 +45,34 @@ test('ambient planning returns a verified direct route and optional alternatives
   assert.equal(result.routes.every((route) => route.coordinates), true);
   assert.ok(result.routes.some((route) => route.archetype === 'direct'));
   assert.ok(result.routes.some((route) => route.archetype === 'discovery'));
+});
+
+test('ambient candidate generation preserves one discovery and one quiet option', async () => {
+  const calls = [];
+  const result = await generateAmbientOptions({
+    origin,
+    destination,
+    routeOnFoot: async (points, options) => {
+      calls.push({ points, options });
+      return { ok: true, durationSeconds: points.length > 2 ? 2000 : 1500, distanceMeters: points.length > 2 ? 2800 : 2100, edgeIds: points.length > 2 ? [String(points[1].id || 'via'), 'shared'] : ['direct'], coordinates: points.map((point) => [point.lat, point.lng]), graphVersion: 'test-graph' };
+    },
+    context: { availableMinutes: 60 },
+    discoveryStops: [{ id: 'museum', lat: 38.905, lng: -77.09 }, { id: 'park', lat: 38.906, lng: -77.091 }],
+    quietStops: [{ id: 'greenway', lat: 38.907, lng: -77.092 }]
+  });
+  assert.deepEqual(result.routes.map((route) => route.archetype).sort(), ['direct', 'discovery', 'quiet']);
+  assert.equal(calls.filter((call) => call.options.profile === 'accessible_verified').length, 1);
+});
+
+test('ambient alternatives are pairwise archetype-diverse', () => {
+  const routes = [
+    { id: 'direct', ok: true, archetype: 'direct', edgeIds: ['a', 'b'], durationSeconds: 100 },
+    { id: 'discovery-1', ok: true, archetype: 'discovery', edgeIds: ['c', 'd'], durationSeconds: 200, features: { discovery: 2 } },
+    { id: 'discovery-2', ok: true, archetype: 'discovery', edgeIds: ['e', 'f'], durationSeconds: 201, features: { discovery: 1 } },
+    { id: 'quiet', ok: true, archetype: 'quiet', edgeIds: ['g', 'h'], durationSeconds: 250, features: { quiet: 2 } }
+  ];
+  const ranked = rankAmbientRoutes(routes);
+  assert.equal(new Set(ranked.alternatives.map((route) => route.archetype)).size, ranked.alternatives.length);
 });
 
 test('intention remains conservative and local evidence is decayed', () => {
