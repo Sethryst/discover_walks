@@ -36,10 +36,18 @@ export class WalkingCellCache {
       blob = await response.blob();
       await verifyArtifact(blob, artifact, kind, release, cell);
       const directory = await this.#directory(release, cell.id, true);
-      const handle = await directory.getFileHandle(fileName(kind), { create: true });
-      const writable = await handle.createWritable();
-      try { await writable.write(blob); await writable.close(); }
-      catch (error) { await writable.abort?.(); throw error; }
+      const finalName = fileName(kind);
+      const temporaryName = `.${finalName}.${globalThis.crypto?.randomUUID?.() || Date.now()}.part`;
+      const temporaryHandle = await directory.getFileHandle(temporaryName, { create: true });
+      const writable = await temporaryHandle.createWritable();
+      try { await writable.write(blob); await writable.close(); } catch (error) { await writable.abort?.(); await directory.removeEntry(temporaryName).catch(() => {}); throw error; }
+      const written = await temporaryHandle.getFile();
+      await verifyArtifact(written, artifact, kind, release, cell);
+      try {
+        if (typeof temporaryHandle.move === 'function') await temporaryHandle.move(directory, finalName);
+        else { const finalHandle = await directory.getFileHandle(finalName, { create: true }); const finalWritable = await finalHandle.createWritable(); await finalWritable.write(written); await finalWritable.close(); await directory.removeEntry(temporaryName); }
+      } catch (error) { await directory.removeEntry(temporaryName).catch(() => {}); throw error; }
+      const handle = await directory.getFileHandle(finalName);
       await this.#touch(release, cell.id, kind, blob.size);
       await this.#evictIfNeeded(`${release}/${cell.id}/${kind}`);
       return handle.getFile();

@@ -43,6 +43,13 @@ test('range fetch omits credentials/location and rejects a full archive response
   await assert.rejects(() => fetchArtifact(async () => new Response(new Uint8Array(50), { status: 200 }), artifact), /did not honor/);
 });
 
+test('walking-cell writes use temporary OPFS files before finalizing', async () => {
+  const source = await (await import('node:fs/promises')).readFile(new URL('../js/walking-cell-cache.js', import.meta.url), 'utf8');
+  assert.match(source, /\.part/);
+  assert.match(source, /temporaryHandle\.getFile/);
+  assert.match(source, /removeEntry\(temporaryName\)/);
+});
+
 test('OPFS paths are release/cell scoped and personal scores do not mutate topology', () => {
   assert.equal(opfsPath('2026-09', 'fine', 'graph'), 'walking-cells/2026-09/fine/routing-graph.json');
   const edges = Object.freeze(['a', 'b']);
