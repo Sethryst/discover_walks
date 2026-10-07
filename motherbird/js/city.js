@@ -26,6 +26,35 @@ function perfMeasure(name, start, detail = {}) {
   } catch { /* instrumentation must never affect loading */ }
 }
 
+let regionalDataWorker;
+let regionalDataRequest = 0;
+const regionalDataPending = new Map();
+
+function readRegionalJson(file) {
+  if (typeof Worker === 'undefined') return fetch(file).then((response) => response.json());
+  regionalDataWorker ||= (() => {
+    const worker = new Worker(new URL('./regional-data-worker.js', import.meta.url), { type: 'module' });
+    worker.onmessage = ({ data }) => {
+      const pending = regionalDataPending.get(data.id);
+      if (!pending) return;
+      regionalDataPending.delete(data.id);
+      if (data.ok) pending.resolve(data.pack);
+      else pending.reject(new Error(data.error));
+    };
+    worker.onerror = (error) => {
+      for (const pending of regionalDataPending.values()) pending.reject(error.error || error);
+      regionalDataPending.clear();
+      regionalDataWorker = null;
+    };
+    return worker;
+  })();
+  const id = ++regionalDataRequest;
+  return new Promise((resolve, reject) => {
+    regionalDataPending.set(id, { resolve, reject });
+    regionalDataWorker.postMessage({ id, url: file });
+  });
+}
+
 export async function loadCityData(cityId) {
   const bootStart = `city-data:${cityId}:start`;
   perfMark(bootStart, { cityId });
@@ -37,10 +66,13 @@ export async function loadCityData(cityId) {
     state.trailSegments[cityId] = metadata?.trailSegments || [];
     return;
   }
-  const response = await fetch(config.dataFile);
-  if (!response.ok) throw new Error(`${cityLabel(cityId)} places data could not be loaded.`);
-  perfMark(`city-data:${cityId}:response`, { bytes: Number(response.headers.get('content-length')) || 0 });
-  const seed = await response.json();
+  let seed;
+  try {
+    seed = await readRegionalJson(config.dataFile);
+  } catch (error) {
+    throw new Error(`${cityLabel(cityId)} places data could not be loaded: ${error.message}`);
+  }
+  perfMark(`city-data:${cityId}:response`);
   perfMeasure(`city-data:${cityId}:fetch-and-parse`, bootStart, { records: (seed.pois || seed.pointsOfInterest || []).length });
   const seedVersion = seed.generatedAt || seed.metadata?.generatedAt || seed.metadata?.version || seed.schemaVersion || 1;
   const seedAttribution = seed.metadata?.attribution || seed.producer?.name || 'Gremlin Lab';
@@ -94,9 +126,8 @@ async function loadCityEnrichmentNow(cityId) {
   let edgeSegments = [];
   if (config.edgeFile) {
     try {
-      const response = await fetch(config.edgeFile);
-      if (response.ok) {
-        const pack = await response.json();
+      const pack = await readRegionalJson(config.edgeFile);
+      {
         perfMeasure(`city-enrichment:${cityId}:edges-parse`, enrichmentStart, { file: config.edgeFile, edges: (pack.edges || []).length });
         edgeSegments = (pack.edges || []).flatMap((edge) => {
           const geometry = edge.geometry || {};
@@ -110,9 +141,7 @@ async function loadCityEnrichmentNow(cityId) {
   let supplements = [];
   for (const file of files) {
     try {
-      const response = await fetch(file);
-      if (!response.ok) continue;
-      const pack = await response.json();
+      const pack = await readRegionalJson(file);
       perfMark(`city-enrichment:${cityId}:file-parsed`, { file, records: pack?.journeys?.length || pack?.pois?.length || pack?.pointsOfInterest?.length || 0 });
       supplements.push(...(pack?.journeys?.length ? pack.journeys.filter(validJourney).map((journey) => ({ ...journey, category: 'journey', type: 'journey' })) : pack?.pois || pack?.pointsOfInterest || []));
       await pause();
