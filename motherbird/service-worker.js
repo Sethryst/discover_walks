@@ -1,10 +1,12 @@
 // Keep the whole module graph with the shell. Caching only app.js leaves an
 // offline (or briefly disconnected) reload with a blank app when any imported
 // module was not already in the runtime cache.
-const APP_CACHE = 'walk-wildlife-shell-v360'; // Keep large regional enrichment out of startup
+const APP_CACHE = 'walk-wildlife-shell-v361'; // Keep large regional enrichment out of startup
 const TILE_CACHE = 'walk-wildlife-osm-viewed-tiles-v1';
 const LIBRARY_CACHE = 'walk-wildlife-library-v2';
 const COMPANION_CACHE = 'walk-wildlife-companion-media-v2';
+const CACHE_ENTRY_BUDGETS = Object.freeze({ [TILE_CACHE]: 250, [LIBRARY_CACHE]: 120, [COMPANION_CACHE]: 24 });
+async function trimCache(cache, name) { const budget = CACHE_ENTRY_BUDGETS[name]; if (!budget) return; const keys = await cache.keys(); for (const key of keys.slice(0, Math.max(0, keys.length - budget))) await cache.delete(key); }
 const libraryPath = new URL('./vendor/', self.registration.scope).pathname;
 const shell = [
   ...['anchor', 'book-open', 'bookmark', 'coffee', 'download', 'droplet', 'eye', 'globe', 'newspaper', 'star', 'tree', 'walk', 'navigation', 'search', 'skip-back', 'skip-forward'].map((icon) => `./icons/${icon}.svg`),
@@ -131,7 +133,7 @@ self.addEventListener('fetch', (event) => {
       const saved = await cache.match(event.request);
       if (saved) return saved;
       const response = await fetch(event.request);
-      if (response.ok || response.type === 'opaque') cache.put(event.request, response.clone());
+      if (response.ok || response.type === 'opaque') { await cache.put(event.request, response.clone()); await trimCache(cache, TILE_CACHE); }
       return response;
     }));
     return;
@@ -153,7 +155,7 @@ self.addEventListener('fetch', (event) => {
       const saved = await cache.match(event.request);
       if (saved) return saved;
       const response = await fetch(event.request);
-      if (response.ok || response.type === 'opaque') cache.put(event.request, response.clone());
+      if (response.ok || response.type === 'opaque') { await cache.put(event.request, response.clone()); await trimCache(cache, LIBRARY_CACHE); }
       return response;
     }));
     return;

@@ -6,10 +6,12 @@ const worker = await readFile(new URL('../service-worker.js', import.meta.url), 
 const builder = await readFile(new URL('../tools/build-pages.mjs', import.meta.url), 'utf8');
 
 test('service worker keeps large regional and routing artifacts out of install precache', () => {
-  assert.match(worker, /const APP_CACHE = 'walk-wildlife-shell-v/);
+  assert.match(worker, /const APP_CACHE = 'walk-wildlife-shell-v361';/);
   assert.match(worker, /const installShell = shell\.filter/);
   assert.match(worker, /runtime-graph/);
   assert.match(worker, /pmtiles/);
+  assert.match(worker, /CACHE_ENTRY_BUDGETS/);
+  assert.match(worker, /await cache\.put\(event\.request, response\.clone\(\)\)/);
 });
 
 test('offline diagnostics module is part of the application shell', () => {
