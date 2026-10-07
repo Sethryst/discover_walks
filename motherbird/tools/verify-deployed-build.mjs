@@ -1,0 +1,10 @@
+const base = process.argv[2];
+const expected = (process.env.GITHUB_SHA || '').replace(/[^a-zA-Z0-9]/g, '').slice(0, 24);
+if (!base || !expected) throw new Error('Usage: node tools/verify-deployed-build.mjs <Pages URL> with GITHUB_SHA set.');
+const url = new URL('service-worker.js?verify=' + Date.now(), base.endsWith('/') ? base : `${base}/`);
+const response = await fetch(url);
+if (!response.ok) throw new Error(`Could not fetch deployed service worker: HTTP ${response.status}`);
+const source = await response.text();
+const actual = source.match(/const APP_CACHE = 'walk-wildlife-shell-([^']+)'/)?.[1] || '';
+if (actual !== expected) throw new Error(`Pages cache identity is stale: expected ${expected}, received ${actual || 'missing'}`);
+console.log(`Verified deployed Pages cache identity: ${actual}`);

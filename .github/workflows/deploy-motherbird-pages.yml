@@ -72,6 +72,12 @@ jobs:
           MOTHERBIRD_SMOKE_URL: ${{ steps.deployment.outputs.page_url }}
         run: npm run test:pages-smoke
 
+      - name: Verify deployed cache identity
+        working-directory: motherbird
+        env:
+          GITHUB_SHA: ${{ github.sha }}
+        run: npm run verify:deployed-build -- "${{ steps.deployment.outputs.page_url }}"
+
       - name: Upload browser diagnostics on failure
         if: failure()
         uses: actions/upload-artifact@v4
