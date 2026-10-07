@@ -24,7 +24,7 @@ export const LAYER_GROUPS = [
 ];
 
 const STATIC_LABELS = {
-  walkway: 'Walkways', crossing: 'Crossings', barrier: 'Barriers', nature: 'Nature', scenic: 'Scenic places', recreation: 'Recreation', rest: 'Rest & comfort', historic: 'Historic places', civic: 'Civic places', transit: 'Transit', argentinian: 'Argentinian', british: 'British', crepe: 'Crepe', greek: 'Greek', latin_american: 'Latin American', tea: 'Tea', turkish: 'Turkish',
+  walkway: 'Walkways', crossing: 'Crossings', barrier: 'Barriers', nature: 'Nature', scenic: 'Scenic places', recreation: 'Recreation', rest: 'Rest & comfort', historic: 'Historic places', civic: 'Civic places', transit: 'Transit', argentinian: 'Argentinian', british: 'British', crepe: 'Crepe', greek: 'Greek', latin_american: 'Latin American', tea: 'Tea', turkish: 'Turkish', 'biodiversity:birds': 'Birds', 'biodiversity:plants': 'Plants', 'biodiversity:mammals': 'Mammals', 'biodiversity:insects': 'Insects & invertebrates', 'biodiversity:fungi': 'Fungi & lichens', 'biodiversity:reptiles': 'Reptiles & amphibians', 'biodiversity:other': 'Other life',
   drinking_water: 'Water fountains', water_fountain: 'Water fountains', water: 'Water', waste_basket: 'Trash receptacles', trash: 'Trash receptacles', bench: 'Benches', shelter: 'Shade shelters', shade: 'Shade', restrooms: 'Restrooms', accessible_parking: 'Accessible parking', restaurant: 'Restaurants', fast_food: 'Quick-service food', mexican: 'Mexican food', filipino: 'Filipino food', coffee: 'Coffee shops', coffee_shop: 'Coffee shops', cafe: 'Cafés', food_cart: 'Food carts', bakery: 'Bakeries', trail: 'Trails', parking: 'Parking', bicycle_parking: 'Bike racks', bike_rack: 'Bike racks', osm: 'OpenStreetMap places'
 };
 
@@ -160,7 +160,8 @@ export function renderLayerFilters() {
   root.innerHTML = groups.map((group) => {
     const expanded = state.layerUiState.expanded[group.id] !== false;
     const enabledCount = group.options.filter((option) => state.layerFilters[option.kind][option.id] !== false).length;
-    return `<section class="layer-filter-group" data-layer-group="${escapeHtml(group.id)}"><header><button class="layer-collapse" type="button" data-layer-collapse="${escapeHtml(group.id)}" aria-expanded="${expanded}"><span>${escapeHtml(group.label)}</span><small>(${enabledCount}/${group.options.length} shown)</small><b aria-hidden="true">⌄</b></button></header><div class="layer-options ${expanded ? '' : 'hidden'}">${group.options.length ? group.options.map(renderLayerOption).join('') : '<p class="layer-empty">Create a personal collection to add it here.</p>'}</div></section>`;
+    const categoryEnabled = enabledCount > 0;
+    return `<section class="layer-filter-group" data-layer-group="${escapeHtml(group.id)}"><header><button class="layer-collapse" type="button" data-layer-collapse="${escapeHtml(group.id)}" aria-expanded="${expanded}"><span>${escapeHtml(group.label)}</span><small>(${enabledCount}/${group.options.length} shown)</small><b aria-hidden="true">⌄</b></button><button class="layer-category-toggle ${categoryEnabled ? 'on' : 'off'}" type="button" data-layer-group-toggle="${escapeHtml(group.id)}" aria-pressed="${categoryEnabled}">${categoryEnabled ? 'Hide category' : 'Show category'}</button></header><div class="layer-options ${expanded ? '' : 'hidden'}">${group.options.length ? group.options.map(renderLayerOption).join('') : '<p class="layer-empty">Create a personal collection to add it here.</p>'}</div></section>`;
   }).join('') || `<p class="layer-empty">${query ? 'No filters match that search.' : 'Select a category first.'}</p>`;
   updateLayerStatus();
 }
@@ -536,6 +537,15 @@ function bindLayerControls() {
   el('poiTagFilters')?.addEventListener('click', (event) => {
     const master = event.target.closest('[data-master-light]');
     if (master) { toggleLight(master.dataset.masterLight); return; }
+    const groupToggle = event.target.closest('[data-layer-group-toggle]');
+    if (groupToggle) {
+      const group = buildAllLayerGroups().find((candidate) => candidate.id === groupToggle.dataset.layerGroup);
+      if (!group) return;
+      const enable = group.options.some((option) => state.layerFilters[option.kind][option.id] === false);
+      group.options.forEach((option) => { state.layerFilters[option.kind][option.id] = enable; });
+      applyLayerChanges();
+      return;
+    }
     const filter = event.target.closest('[data-layer-filter]');
     if (filter) {
       const [kind, ...idParts] = filter.dataset.layerFilter.split(':');
