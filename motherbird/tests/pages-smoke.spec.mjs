@@ -20,7 +20,6 @@ test('fresh Pages context reaches startup-ready and responds to core controls', 
   await expect(page.locator('#regionalNavigationMenu')).toBeVisible();
   await page.locator('#mapSearchInput').fill('park');
   await expect(page.locator('#mapSearchResults button').first()).toBeVisible({ timeout: 5_000 });
-  const startWalk = page.locator('#walkButton:visible').or(page.locator('#radialWalkButton:visible'));
-  await startWalk.first().click();
+  await page.locator('#walkButton').click();
   await expect(page.locator('#endWalkButton')).toBeVisible({ timeout: 5_000 });
 });
