@@ -64,7 +64,10 @@ jobs:
 
       - name: Install Playwright browser
         working-directory: motherbird
-        run: npx playwright install --with-deps chromium
+        # ubuntu-latest already provides the Chromium runtime libraries. Avoid
+        # a second apt transaction here: it can hold the Pages deploy job
+        # indefinitely after the site itself has already been published.
+        run: npx playwright install chromium
 
       - name: Run deployed fresh-browser canary
         working-directory: motherbird
