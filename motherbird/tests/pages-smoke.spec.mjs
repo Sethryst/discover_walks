@@ -25,7 +25,7 @@ test('fresh Pages context reaches startup-ready and responds to core controls', 
   }
   await expect(page.locator('#regionalNavigationMenu')).toBeVisible();
   await page.locator('#mapSearchInput').fill('park');
-  await expect(page.locator('#mapSearchResults button').first()).toBeVisible({ timeout: 5_000 });
+  await expect(page.locator('#mapSearchResults button').first()).toBeVisible({ timeout: deadline });
   await expect(page.locator('#radialWalkButton')).toBeVisible();
   await expect(page.locator('#ambientRouteAlternatives')).toBeAttached();
 });
