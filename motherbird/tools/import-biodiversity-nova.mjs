@@ -46,8 +46,8 @@ for (const row of rows) {
   const lat = Number(row.decimalLatitude);
   const lon = Number(row.decimalLongitude);
   if (!Number.isFinite(lat) || !Number.isFinite(lon)) continue;
-  const region = definitions.find((d) => d.contains(lat, lon));
-  if (region) assignments.get(region.regionId).push(row);
+  const matches = definitions.filter((d) => d.contains(lat, lon));
+  if (matches.length) matches.forEach((region) => assignments.get(region.regionId).push(row));
   else unassigned++;
 }
 
