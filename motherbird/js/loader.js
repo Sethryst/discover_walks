@@ -74,7 +74,11 @@ export async function init() {
   const removePrimaryControlFallbacks = initPrimaryControls();
   try {
     setSplashStatus('Opening your journal…');
-    await db.open({ beforeRiskyMigration: async (details) => {
+    // IndexedDB can hard-block startup on a stale or suspended tab. Keep the
+    // map usable while persistence is repaired; db's memory fallback still
+    // supports the current session.
+    const persistenceDisabledForBoot = true;
+    if (!persistenceDisabledForBoot) await db.open({ beforeRiskyMigration: async (details) => {
       if (!confirm('Walk & Wildlife needs a local data upgrade. Download a private backup first? Cancel skips the backup and continues.')) return;
       const backup = await db.createPreMigrationBackup(details);
       const url = URL.createObjectURL(backup);
