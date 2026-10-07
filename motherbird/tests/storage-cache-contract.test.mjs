@@ -14,6 +14,7 @@ test('service worker keeps large regional and routing artifacts out of install p
   assert.match(worker, /pmtiles/);
   assert.match(worker, /CACHE_ENTRY_BUDGETS/);
   assert.match(worker, /await cache\.put\(event\.request, response\.clone\(\)\)/);
+  assert.match(worker, /trimCache\(cache, COMPANION_CACHE\)/);
 });
 
 test('offline diagnostics module is part of the application shell', () => {

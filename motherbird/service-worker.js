@@ -144,7 +144,7 @@ self.addEventListener('fetch', (event) => {
       const saved = await cache.match(event.request);
       if (saved) return saved;
       const response = await fetch(event.request);
-      if (response.ok) await cache.put(event.request, response.clone());
+      if (response.ok) { await cache.put(event.request, response.clone()); await trimCache(cache, COMPANION_CACHE); }
       return response;
     }));
     return;
