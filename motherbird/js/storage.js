@@ -2,6 +2,7 @@ export const db = (() => {
   let database;
   const DATABASE_NAME = 'walk-wildlife-journal';
   const DATABASE_VERSION = 19;
+  const upgradeChannel = typeof window !== 'undefined' && typeof BroadcastChannel === 'function' ? new BroadcastChannel('walk-wildlife-journal-db') : null;
   const memoryStores = new Map();
   const memoryStore = (name) => {
     if (!memoryStores.has(name)) memoryStores.set(name, new Map());
@@ -53,9 +54,17 @@ export const db = (() => {
       // open leaves the upgrade request blocked and otherwise aborts startup.
       connection.close();
       if (database === connection) database = null;
+      upgradeChannel?.postMessage({ type: 'released', version: connection.version });
     };
     return connection;
   }
+
+  upgradeChannel?.addEventListener('message', (event) => {
+    if (event.data?.type !== 'release-for-upgrade' || !database) return;
+    database.close();
+    database = null;
+    console.info('Released the local journal connection for another tab\'s database upgrade.');
+  });
 
   async function backupValue(value) {
     if (value instanceof Blob) {
@@ -97,18 +106,27 @@ export const db = (() => {
       database = null;
       return;
     }
-    const fromVersion = await withTimeout(installedVersion(), 0);
+    // databases() is metadata-only and avoids opening a second connection
+    // before the real upgrade request. Older browsers simply skip the
+    // optional preflight; all migrations remain guarded by oldVersion.
+    const fromVersion = indexedDB.databases
+      ? Number((await withTimeout(indexedDB.databases(), [], 500)).find((entry) => entry.name === DATABASE_NAME)?.version || 0)
+      : 0;
     const risky = pendingMigrations(fromVersion).filter(({ risk }) => risk === 'risky');
     if (risky.length && beforeRiskyMigration) await beforeRiskyMigration({ fromVersion, toVersion: DATABASE_VERSION, migrations: risky.map(({ version, description }) => ({ version, description })) });
     return new Promise((resolve, reject) => {
       // A crashed or suspended tab can leave an IndexedDB upgrade blocked
       // forever. Do not hold the visible app behind that browser-global lock;
       // continue with the in-memory fallback and let a later reload retry.
-      const fallbackTimer = setTimeout(() => {
+      let settled = false;
+      const finishFallback = (message) => {
+        if (settled) return;
+        settled = true;
         database = null;
-        console.warn('Local database upgrade is blocked; continuing with temporary in-memory storage.');
+        console.warn(message);
         resolve(false);
-      }, timeoutMs);
+      };
+      const fallbackTimer = setTimeout(() => finishFallback('Local database upgrade is blocked; continuing with temporary in-memory storage.'), timeoutMs);
       const request = indexedDB.open(DATABASE_NAME, DATABASE_VERSION);
       request.onupgradeneeded = (event) => {
         database = request.result;
@@ -127,13 +145,14 @@ export const db = (() => {
         // prototype. A future public transport can publish signed manifests
         // without coupling raw media to the journal or profile backup paths.
       };
-      request.onsuccess = () => { clearTimeout(fallbackTimer); database = attachVersionChangeHandler(request.result); resolve(true); };
-      request.onerror = () => { clearTimeout(fallbackTimer); reject(request.error); };
+      request.onsuccess = () => { clearTimeout(fallbackTimer); settled = true; database = attachVersionChangeHandler(request.result); resolve(true); };
+      request.onerror = () => { clearTimeout(fallbackTimer); if (!settled) { settled = true; reject(request.error); } };
       request.onblocked = () => {
-        // Existing app tabs receive the versionchange event above and close
-        // their connection. Keep waiting for the upgrade instead of failing
-        // the entire startup path while that happens.
-        console.warn('Waiting for another Walk & Wildlife tab to release the local database upgrade.');
+        // Ask other current-version tabs to close immediately. Do not make
+        // first paint wait for a suspended/old tab; the scheduled retry can
+        // complete the upgrade once the lock disappears.
+        upgradeChannel?.postMessage({ type: 'release-for-upgrade', version: DATABASE_VERSION });
+        finishFallback('Local database upgrade is blocked by another tab; continuing with temporary in-memory storage and scheduling a retry.');
       };
     });
   }
