@@ -86,9 +86,18 @@ export async function init() {
       const link = document.createElement('a'); link.href = url; link.download = `walk-wildlife-before-database-v${details.toVersion}.json`; link.click();
       setTimeout(() => URL.revokeObjectURL(url), 0);
     } });
-    await loadLocalState();
-    await enterSingleInstalledRegion();
-    await migrateLegacyJournalAudio();
+    if (persistenceDisabledForBoot) {
+      state.profile = normalizeProfile({});
+      state.settings = { ...DEFAULT_SETTINGS };
+      state.activeCity = DEFAULT_CITY_ID;
+      state.walks = [];
+      state.savedRoutes = [];
+      state.knownTrackPoints = [];
+    } else {
+      await loadLocalState();
+      await enterSingleInstalledRegion();
+      await migrateLegacyJournalAudio();
+    }
     const params = new URLSearchParams(globalThis.location?.search || '');
     const requestedCity = params.get('city') || (params.get('routecheck') === '1' ? 'alexandria' : null);
     if (requestedCity && CITIES[requestedCity] && navigator.onLine !== false) {
