@@ -8,8 +8,8 @@ test('KPI inventory reconciles the frontend and producer source contracts', asyn
   const model = await collectKpiInventory();
   assert.equal(model.summary.selectableRegions, Object.keys(CITIES).length);
   assert.equal(model.summary.configuredEndpoints, model.sources.length);
-  assert.equal(model.summary.registeredAccounts, 3);
-  assert.equal(model.summary.registeredConfigured, 3);
+  assert.equal(model.summary.registeredAccounts, 2);
+  assert.equal(model.summary.registeredConfigured, 2);
   assert.equal(model.summary.registeredHealthy, model.endpointRegistry.registrations.filter((endpoint) => endpoint.healthStatus === 'verified').length);
   assert.equal(model.summary.registeredProducing, 0);
   assert.ok(model.endpointRegistry.registrations.every((endpoint) => endpoint.registrationEvidence.includes('Mailbox')));
