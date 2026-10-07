@@ -11,8 +11,15 @@ test('fresh Pages context reaches startup-ready and responds to core controls', 
   await expect.poll(async () => page.evaluate(() => globalThis.__MOTHERBIRD_STARTUP__?.stages?.some((stage) => stage.stage === 'startup-ready')), { timeout: deadline }).toBe(true);
   expect(uncaught, `uncaught browser errors: ${uncaught.join(' | ')}`).toEqual([]);
   await expect(page.locator('#appSplash')).toHaveClass(/app-splash--done/, { timeout: 5_000 });
-  for (const selector of ['#libraryTab', '#meTab', '#regionalNavigation', '#mapSearchInput', '#walkButton']) {
-    await expect(page.locator(selector)).toBeVisible();
-    await page.locator(selector).click();
-  }
+  await page.locator('#libraryTab').click();
+  await expect(page.getByRole('heading', { name: 'Library' })).toBeVisible();
+  await page.locator('#meTab').click();
+  await expect(page.getByRole('heading', { name: 'Me' })).toBeVisible();
+  await page.getByRole('button', { name: 'Close', exact: true }).click();
+  await page.locator('#regionalNavigation').click();
+  await expect(page.locator('#regionalNavigationMenu')).toBeVisible();
+  await page.locator('#mapSearchInput').fill('park');
+  await expect(page.locator('#mapSearchResults button').first()).toBeVisible({ timeout: 5_000 });
+  await page.locator('#walkButton').click();
+  await expect(page.locator('#endWalkButton')).toBeVisible({ timeout: 5_000 });
 });

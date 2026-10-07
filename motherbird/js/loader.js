@@ -28,6 +28,7 @@ import { initStories } from './stories.js';
 import { initRadio } from './radio.js?v=20260928-radio-controls-v3';
 import { recoverWalkDraft, discardWalk } from './walk.js';
 import { initBiodiversity } from './biodiversity.js';
+import { initRegionalNavigation } from './regional-navigation.js';
 
 export async function init() {
   const telemetry = (stage, details = {}) => globalThis.__MOTHERBIRD_STARTUP_MARK__?.(stage, details);
@@ -131,6 +132,7 @@ export async function init() {
   // Bind the already-visible radial control before optional boot work can
   // leave a slow browser with an inert Start walk button.
   initRadialMenu();
+  initRegionalNavigation();
   telemetry('controls');
   initStories();
   initPrimaryShell();

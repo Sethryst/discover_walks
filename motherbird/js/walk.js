@@ -134,11 +134,14 @@ async function handleGpsPosition(position, shouldPan = false) {
 export function getCurrentLocation() {
   if (!navigator.geolocation && !isLocationSimulatorEnabled()) { toast('This browser does not support location.'); return; }
   setStatus('Finding your location...', true);
-  getCurrentPosition(
+  try { getCurrentPosition(
     (position) => void handleGpsPosition(position, true),
     (error) => { setStatus('Location unavailable'); toast(error.code === 1 ? 'Location permission is needed to record a walk.' : 'Could not get a location. Your draft remains safe; check your signal and try again.'); },
     { enableHighAccuracy: true, timeout: 12000, maximumAge: 10000 }
-  );
+  ); } catch (error) {
+    setStatus('Location unavailable');
+    toast(`Could not request your location: ${error?.message || 'browser permission is unavailable'}.`);
+  }
 }
 
 export function ensurePauseButton() {

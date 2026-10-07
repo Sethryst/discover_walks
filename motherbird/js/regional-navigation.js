@@ -4,6 +4,7 @@ import { escapeHtml } from './utils.js';
 
 let catalog = null;
 let activeId = null;
+let initialized = false;
 
 export function officialLinksForRegion(catalogue, regionId) {
   const links = catalogue?.outlinks?.[regionId];
@@ -35,10 +36,22 @@ function renderRegionalNavigation() {
 }
 
 export function initRegionalNavigation() {
+  if (initialized) return;
+  initialized = true;
   const control = document.getElementById('regionalNavigation');
   const menu = document.getElementById('regionalNavigationMenu');
-  control?.addEventListener('click', () => { renderRegionalNavigation(); menu?.classList.toggle('hidden'); });
+  control?.addEventListener('click', (event) => {
+    event.stopPropagation();
+    renderRegionalNavigation();
+    const open = menu?.classList.toggle('hidden') === false;
+    control.setAttribute('aria-expanded', String(open));
+  });
   window.addEventListener('viewport-region-changed', ({ detail }) => { activeId = detail?.regionId || state.activeCity; renderRegionalNavigation(); });
-  document.addEventListener('click', (event) => { if (!event.target.closest('.regional-navigation')) menu?.classList.add('hidden'); });
+  document.addEventListener('click', (event) => {
+    if (!event.target.closest('.regional-navigation')) {
+      menu?.classList.add('hidden');
+      control?.setAttribute('aria-expanded', 'false');
+    }
+  });
   void loadRegionalNavigation();
 }
