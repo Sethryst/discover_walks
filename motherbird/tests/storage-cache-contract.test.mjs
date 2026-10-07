@@ -68,3 +68,10 @@ test('authentication preference writes use the storage layer', async () => {
   assert.doesNotMatch(source, /localStorage/);
   assert.match(source, /preferences:authentication/);
 });
+
+test('friend-walk tickets use the shared leased outbox', async () => {
+  const source = await readFile(new URL('../js/friend-walk.js', import.meta.url), 'utf8');
+  assert.match(source, /db\.enqueueOutbox/);
+  assert.match(source, /db\.claimOutbox/);
+  assert.doesNotMatch(source, /db\.put\('settings', item\)/);
+});

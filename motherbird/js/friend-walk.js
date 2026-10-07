@@ -75,8 +75,8 @@ export async function addFriendTicket(kind, body) {
   if (!validFriendBody(kind, body)) throw new Error('Invalid friend-walk note, drawing, or pin.');
   const ticket = { id: crypto.randomUUID(), t: new Date().toISOString(), user: state.online.session.user.id, kind, body };
   const ciphertext = await sealJson(ticket, active.key, `friend-ticket:${active.id}:${ticket.id}`);
-  const item = { id: `friend-outbox:${ticket.id}`, sessionId: active.id, ticketId: ticket.id, ciphertext };
-  await db.put('settings', item);
+  const item = { id: `friend-outbox:${ticket.id}`, kind: 'friend-walk-ticket', sessionId: active.id, ticketId: ticket.id, ciphertext };
+  await db.enqueueOutbox(item);
   active.tickets = sortFriendTickets([...active.tickets, ticket]); renderTickets();
   if (navigator.onLine === false) { status('Ticket sealed on this device. It will send when you reconnect.'); return; }
   await flushTickets();
@@ -84,10 +84,12 @@ export async function addFriendTicket(kind, body) {
 }
 async function flushTickets() {
   if (!active || navigator.onLine === false) return;
-  for (const item of (await db.all('settings')).filter((row) => row.id.startsWith('friend-outbox:') && row.sessionId === active.id)) {
-    const { error } = await state.online.client.from('friend_walk_tickets').insert({ id: item.ticketId, session_id: active.id, user_id: state.online.session.user.id, ciphertext: item.ciphertext });
-    if (error && error.code !== '23505') throw error;
-    await db.remove('settings', item.id);
+  for (const item of (await db.all('outbox')).filter((row) => row.kind === 'friend-walk-ticket' && row.sessionId === active.id)) {
+    const claimed = await db.claimOutbox(item.id);
+    if (!claimed) continue;
+    const { error } = await state.online.client.from('friend_walk_tickets').insert({ id: claimed.ticketId, session_id: active.id, user_id: state.online.session.user.id, ciphertext: claimed.ciphertext });
+    if (error && error.code !== '23505') { await db.updateOutbox(claimed.id, { status: 'queued', leaseOwner: null, leaseUntil: null, failureReason: String(error.message || 'Friend ticket upload failed').slice(0, 240) }); throw error; }
+    await db.remove('outbox', claimed.id);
   }
 }
 function renderTickets() {
