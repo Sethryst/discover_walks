@@ -44,6 +44,9 @@ export const db = (() => {
 
   function pendingMigrations(fromVersion) { return migrations.filter(({ version }) => version > fromVersion && version <= DATABASE_VERSION); }
   function migrationPlan(fromVersion = 0) { return pendingMigrations(fromVersion).map(({ version, risk, description }) => ({ version, risk, description })); }
+  function withTimeout(promise, fallback, timeoutMs = 5000) {
+    return Promise.race([promise, new Promise((resolve) => setTimeout(() => resolve(fallback), timeoutMs))]);
+  }
   function attachVersionChangeHandler(connection) {
     connection.onversionchange = () => {
       // Let another tab complete a schema upgrade. Keeping an old connection
@@ -94,7 +97,7 @@ export const db = (() => {
       database = null;
       return;
     }
-    const fromVersion = await installedVersion();
+    const fromVersion = await withTimeout(installedVersion(), 0);
     const risky = pendingMigrations(fromVersion).filter(({ risk }) => risk === 'risky');
     if (risky.length && beforeRiskyMigration) await beforeRiskyMigration({ fromVersion, toVersion: DATABASE_VERSION, migrations: risky.map(({ version, description }) => ({ version, description })) });
     return new Promise((resolve, reject) => {
