@@ -120,6 +120,35 @@ export function buildCorridorReport(corridors, { graphVersion, cellId, routingRe
   };
 }
 
+/** Emit the edge-keyed sidecar only from verified corridor matches. Candidate
+ * and rejected evidence remains available in the report, never in ranking. */
+export function buildEdgeFeatureSidecar({ corridors = [], graphVersion, cellId, routingRelease, sourceManifest = null, bbox = PILOT_BBOX, builtAt = '1970-01-01T00:00:00.000Z' } = {}) {
+  const verified = corridors.filter((corridor) => corridor?.status === 'verified');
+  const edges = new Map();
+  for (const corridor of verified) {
+    for (const edgeId of corridor.quality?.matchedEdgeIds || []) {
+      const record = edges.get(String(edgeId)) || { edgeId: String(edgeId), corridorRefs: [], sourceIds: [], label: 'official', confidence: Number(corridor.quality?.confidence || 0), matchQuality: corridor.quality, freshness: 'current' };
+      if (!record.corridorRefs.some((ref) => ref.id === corridor.id)) record.corridorRefs.push({ id: corridor.id, signals: corridor.signals || [] });
+      record.sourceIds = [...new Set([...record.sourceIds, ...(corridor.sourceIds || [])])].sort();
+      record.confidence = Math.min(record.confidence, Number(corridor.quality?.confidence || 0));
+      record.lengthMeters = Math.max(Number(record.lengthMeters || 0), Number(corridor.quality?.matchedLengthMeters || 0) / Math.max(1, corridor.quality?.matchedEdgeIds?.length || 1));
+      edges.set(String(edgeId), record);
+    }
+  }
+  const sidecar = {
+    schemaVersion: 1,
+    graphVersion: graphVersion || null,
+    cellId: cellId || null,
+    routingRelease: routingRelease || null,
+    sourceManifest,
+    bbox: [...bbox],
+    buildTimestamp: builtAt,
+    corridorReferences: verified.map((corridor) => ({ id: corridor.id, name: corridor.name, status: corridor.status, sourceIds: corridor.sourceIds || [], sourceUrl: corridor.sourceUrl || null })).sort((a, b) => a.id.localeCompare(b.id)),
+    edges: [...edges.values()].sort((a, b) => a.edgeId.localeCompare(b.edgeId))
+  };
+  return { ...sidecar, checksum: stableChecksum(sidecar) };
+}
+
 function normalizeEdges(edges) {
   return (Array.isArray(edges) ? edges : []).map((edge, index) => {
     const geometry = edge.geometry?.coordinates || edge.coordinates || [];
@@ -219,3 +248,4 @@ function interpolate(from, to, fraction) { return [from[0] + (to[0] - from[0]) *
 function median(values) { if (!values.length) return 0; const sorted = [...values].sort((a, b) => a - b); const middle = Math.floor(sorted.length / 2); return sorted.length % 2 ? sorted[middle] : (sorted[middle - 1] + sorted[middle]) / 2; }
 function stableUnique(values) { return [...new Set(values)].sort((a, b) => a.localeCompare(b)); }
 function round(value, digits = 1) { const factor = 10 ** digits; return Math.round((Number(value) || 0) * factor) / factor; }
+function stableChecksum(value) { let hash = 2166136261; for (const character of JSON.stringify(value)) { hash ^= character.charCodeAt(0); hash = Math.imul(hash, 16777619); } return `fnv1a-${(hash >>> 0).toString(16).padStart(8, '0')}`; }

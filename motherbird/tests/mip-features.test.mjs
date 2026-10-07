@@ -4,7 +4,7 @@ import { aggregateRouteFeatures, composeVerifiedLegs, detectUTurn, scoreMIPRoute
 
 const route = { ok: true, graphVersion: 'g1', cellId: 'c1', cellRelease: 'r1', edgeIds: ['e1', 'e2', 'e2'], durationSeconds: 900, directDurationMinutes: 10, stops: [{ id: 'poi-1' }] };
 const sidecar = {
-  schemaVersion: 1, graphVersion: 'g1', cellId: 'c1', routingRelease: 'r1', checksum: 'ok',
+  schemaVersion: 1, graphVersion: 'g1', cellId: 'c1', routingRelease: 'r1',
   edges: [
     { edgeId: 'e1', lengthMeters: 100, confidence: .9, corridorRefs: [{ id: 'wod', signals: ['greenway'] }], sourceIds: ['osm:e1'] },
     { edgeId: 'e2', lengthMeters: 80, confidence: .8, signals: { quiet: 1 }, sourceIds: ['osm:e2'] }
@@ -15,6 +15,7 @@ test('sidecar validation fails closed on graph, release, and checksum mismatch',
   assert.deepEqual(validateEdgeFeatureSidecar(sidecar, { graphVersion: 'g1', cellId: 'c1', routingRelease: 'r1' }), { valid: true });
   assert.equal(validateEdgeFeatureSidecar(sidecar, { graphVersion: 'old' }).reason, 'GRAPH_VERSION_MISMATCH');
   assert.equal(validateEdgeFeatureSidecar({ ...sidecar, checksumValid: false }).reason, 'CHECKSUM_INVALID');
+  assert.equal(validateEdgeFeatureSidecar({ ...sidecar, checksum: 'fnv1a-deadbeef' }).reason, 'CHECKSUM_INVALID');
 });
 
 test('aggregation counts unique route edges and ignores candidate corridors', () => {

@@ -12,7 +12,7 @@ export function validateEdgeFeatureSidecar(sidecar, expected = {}) {
   if (expected.graphVersion && sidecar.graphVersion !== expected.graphVersion) return { valid: false, reason: 'GRAPH_VERSION_MISMATCH' };
   if (expected.cellId && sidecar.cellId !== expected.cellId) return { valid: false, reason: 'CELL_ID_MISMATCH' };
   if (expected.routingRelease && sidecar.routingRelease !== expected.routingRelease) return { valid: false, reason: 'RELEASE_MISMATCH' };
-  if (sidecar.checksumValid === false || (expected.checksum && sidecar.checksum !== expected.checksum)) return { valid: false, reason: 'CHECKSUM_INVALID' };
+  if (sidecar.checksumValid === false || (expected.checksum && sidecar.checksum !== expected.checksum) || (sidecar.checksum && stableChecksum(stripChecksum(sidecar)) !== sidecar.checksum)) return { valid: false, reason: 'CHECKSUM_INVALID' };
   return { valid: true };
 }
 
@@ -110,3 +110,5 @@ export function detectUTurn(edgeIds) {
 function emptyFeatures(warnings) { return { valid: false, edgeCount: 0, corridorIds: [], corridorLengths: {}, signalTotals: {}, poiCounts: { total: 0 }, sourceProvenanceIds: [], confidence: { minimum: 0, lengthWeighted: 0 }, warnings, facts: { corridorIds: [], corridorCount: 0, poiCount: 0, extraMinutes: 0 } }; }
 function samePoint(a, b) { return Array.isArray(a) && Array.isArray(b) && a.length === b.length && a.every((value, index) => value === b[index]); }
 function clamp(value, min, max) { return Math.max(min, Math.min(max, value)); }
+function stripChecksum(value) { const { checksum: _checksum, ...withoutChecksum } = value || {}; return withoutChecksum; }
+function stableChecksum(value) { let hash = 2166136261; for (const character of JSON.stringify(value)) { hash ^= character.charCodeAt(0); hash = Math.imul(hash, 16777619); } return `fnv1a-${(hash >>> 0).toString(16).padStart(8, '0')}`; }

@@ -1,6 +1,6 @@
 const STORAGE_KEY = 'motherbird.ambient-route-learning.v1';
 const MAX_EVIDENCE_AGE_DAYS = 90;
-import { aggregateRouteFeatures } from './mip-features.js?v=20261007-mip-features-1';
+import { aggregateRouteFeatures } from './mip-features.js?v=20261007-mip-features-2';
 
 export const AMBIENT_ARCHETYPES = Object.freeze(['direct', 'discovery', 'quiet']);
 

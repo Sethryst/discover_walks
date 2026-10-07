@@ -25,7 +25,12 @@ official trail alignment separate from flowline adjacency. Official lines are
 matched to graph edges with bounded offsets and continuity checks; flowlines can
 only produce `creek-adjacent` evidence and never `waterfront trail` evidence.
 
-The first slice intentionally does not publish a fabricated W&OD sidecar. A
-verified corridor artifact must be generated from an actual official source and
-the exact compiled pilot cell; the matcher and deterministic fixtures are in
-place for that build step.
+The same module now emits a version-bound, checksummed edge sidecar from
+verified matches only. `motherbird/js/mip-features.js` rejects sidecars whose
+schema, graph, cell, release, or checksum does not match the route artifact;
+candidate and rejected corridors cannot enter route aggregation or ranking.
+
+The first slice still does not publish a fabricated W&OD sidecar. The checked-in
+Vienna W&OD source is available, but the exact compiled pilot cell must be
+matched and reviewed before publishing an end-user artifact. The emitter and
+deterministic fixtures are in place for that build step.
