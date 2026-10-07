@@ -12,6 +12,10 @@ test('service worker keeps large regional and routing artifacts out of install p
   assert.match(worker, /pmtiles/);
 });
 
+test('offline diagnostics module is part of the application shell', () => {
+  assert.match(worker, /\.\/js\/storage-diagnostics\.js/);
+});
+
 test('Pages build derives deployed cache identity from the commit/build ID and enforces a budget', () => {
   assert.match(builder, /process\.env\.GITHUB_SHA/);
   assert.match(builder, /MOTHERBIRD_PRECACHE_BUDGET_BYTES/);
