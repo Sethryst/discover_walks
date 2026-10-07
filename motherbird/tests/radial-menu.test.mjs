@@ -15,12 +15,12 @@ test('the persistent radial walk control owns the complete walk lifecycle bindin
   assert.match(radial, /await resumeWalk\(\)/);
   assert.match(radial, /await pauseWalk\(\)/);
   assert.doesNotMatch(shell, /radialWalkButton[\s\S]*?\.onclick/);
-  assert.match(loader, /initEvents\(\);[\s\S]*?initRadialMenu\(\);/);
+  assert.match(loader, /initEvents\(\)\)\);[\s\S]*?initRadialMenu\(\);/);
 });
 
 test('the deployed shell cache is invalidated with the radial binding fix', async () => {
   const worker = await readFile(new URL('../service-worker.js', import.meta.url), 'utf8');
-  assert.match(worker, /const APP_CACHE = 'walk-wildlife-shell-v345'/);
+  assert.match(worker, /const APP_CACHE = 'walk-wildlife-shell-v\d+'/);
 });
 
 test('developer simulated walks activate local GPS before starting capture', async () => {

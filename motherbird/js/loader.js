@@ -165,6 +165,7 @@ export async function init() {
   });
   void (async () => {
     await optionalBoot('walk controls', () => import('./events.js?v=20261007-startup-events-1').then(({ initEvents }) => initEvents()));
+    initRadialMenu();
     await optionalBoot('radio', initRadio);
     await optionalBoot('geo-cypher', initGeoCypher);
     removePrimaryControlFallbacks();
