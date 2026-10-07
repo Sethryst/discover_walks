@@ -44,6 +44,15 @@ export const db = (() => {
 
   function pendingMigrations(fromVersion) { return migrations.filter(({ version }) => version > fromVersion && version <= DATABASE_VERSION); }
   function migrationPlan(fromVersion = 0) { return pendingMigrations(fromVersion).map(({ version, risk, description }) => ({ version, risk, description })); }
+  function attachVersionChangeHandler(connection) {
+    connection.onversionchange = () => {
+      // Let another tab complete a schema upgrade. Keeping an old connection
+      // open leaves the upgrade request blocked and otherwise aborts startup.
+      connection.close();
+      if (database === connection) database = null;
+    };
+    return connection;
+  }
 
   async function backupValue(value) {
     if (value instanceof Blob) {
@@ -107,9 +116,14 @@ export const db = (() => {
         // prototype. A future public transport can publish signed manifests
         // without coupling raw media to the journal or profile backup paths.
       };
-      request.onsuccess = () => { database = request.result; resolve(); };
+      request.onsuccess = () => { database = attachVersionChangeHandler(request.result); resolve(); };
       request.onerror = () => reject(request.error);
-      request.onblocked = () => reject(new Error('Close other Walk & Wildlife tabs so the local data upgrade can finish.'));
+      request.onblocked = () => {
+        // Existing app tabs receive the versionchange event above and close
+        // their connection. Keep waiting for the upgrade instead of failing
+        // the entire startup path while that happens.
+        console.warn('Waiting for another Walk & Wildlife tab to release the local database upgrade.');
+      };
     });
   }
   function store(name, mode = 'readonly') { return database?.transaction(name, mode).objectStore(name) || memoryStore(name); }
