@@ -5,7 +5,7 @@ import { normalizeProfile, sitesForProfile } from './utils.js';
 import { toast } from './ui.js';
 import { initMap } from './map.js?v=20261006-dc-default-view-1';
 import { applyStaticAppearance } from './ui.js';
-import { loadAllCityData, refreshCityMap } from './city.js';
+import { loadAllCityData, refreshCityMap } from './city.js?v=20261007-regional-worker-path-2';
 import { initEvents } from './events.js?v=20261006-point-to-point-selection-1';
 import { renderArchive } from './archive.js';
 import { normalizedEntitlements } from './entitlements.js';
