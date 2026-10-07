@@ -34,7 +34,7 @@
 .coach-pointer::after{content:"";position:absolute;right:-1px;top:50%;border:5px solid transparent;border-left:8px solid #e8740f;transform:translateY(-50%)}
 .map-intro-hint{z-index:4200!important;color:#173c35;background:#fffaf0!important;opacity:1!important}
 .map-intro-hint p{color:#173c35!important;min-height:1.3em}
-.journal-open .map-intro-hint,.backpack-open .map-intro-hint,.journal-open .coach-spotlight,.backpack-open .coach-spotlight,.journal-open .coach-pointer,.backpack-open .coach-pointer{display:none !important}
+.journal-open .map-intro-hint,.backpack-open .map-intro-hint,.shell-library .map-intro-hint,.shell-me .map-intro-hint,.shell-walk .map-intro-hint,.journal-open .coach-spotlight,.backpack-open .coach-spotlight,.shell-library .coach-spotlight,.shell-me .coach-spotlight,.shell-walk .coach-spotlight,.journal-open .coach-pointer,.backpack-open .coach-pointer,.shell-library .coach-pointer,.shell-me .coach-pointer,.shell-walk .coach-pointer{display:none !important}
 .learn-history{display:grid;gap:8px}
 .learn-progress{margin:0;font:600 .78rem/1.35 system-ui,sans-serif;color:#173c35}
 .learn-views{display:flex;gap:6px}

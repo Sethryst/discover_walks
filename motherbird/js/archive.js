@@ -92,21 +92,28 @@ export async function saveQuickJournal(event) {
   toast('Added to your journal.');
   await renderArchive();
 }
+let renderingArchive = false;
 export async function renderArchive() {
-  let items = await allArchiveItems();
-  if (state.archiveFilter === 'walk') items = items.filter((item) => item.type === 'walk' || item.type === 'journal');
-  if (state.archiveFilter === 'observation') items = items.filter((item) => item.type === 'observation');
-  const html = items.length ? items.map(momentCard).join('') : '<div class="empty-state">No matching moments yet. Start a walk or write from the map.</div>';
-  if (el('archiveList')) el('archiveList').innerHTML = html;
-  if (el('journalOverlayArchiveList')) el('journalOverlayArchiveList').innerHTML = html;
-  const all = await allArchiveItems();
-  const walks = all.filter((item) => item.type === 'walk');
-  const notes = all.filter((item) => item.type === 'journal' || item.type === 'observation');
-  const miles = walks.reduce((sum, walk) => sum + Number(walk.distanceMeters || 0) / 1609.344, 0);
-  if (el('journalArchiveSummary')) el('journalArchiveSummary').textContent = `${walks.length} walk${walks.length === 1 ? '' : 's'} · ${miles.toFixed(1)} mi · ${notes.length} note${notes.length === 1 ? '' : 's'}`;
-  await renderJournalTimeline();
-  await renderJournalHistory();
-  window.dispatchEvent(new CustomEvent('journal-data-changed'));
+  if (renderingArchive) return;
+  renderingArchive = true;
+  try {
+    let items = await allArchiveItems();
+    if (state.archiveFilter === 'walk') items = items.filter((item) => item.type === 'walk' || item.type === 'journal');
+    if (state.archiveFilter === 'observation') items = items.filter((item) => item.type === 'observation');
+    const html = items.length ? items.map(momentCard).join('') : '<div class="empty-state">No matching moments yet. Start a walk or write from the map.</div>';
+    if (el('archiveList')) el('archiveList').innerHTML = html;
+    if (el('journalOverlayArchiveList')) el('journalOverlayArchiveList').innerHTML = html;
+    const all = await allArchiveItems();
+    const walks = all.filter((item) => item.type === 'walk');
+    const notes = all.filter((item) => item.type === 'journal' || item.type === 'observation');
+    const miles = walks.reduce((sum, walk) => sum + Number(walk.distanceMeters || 0) / 1609.344, 0);
+    if (el('journalArchiveSummary')) el('journalArchiveSummary').textContent = `${walks.length} walk${walks.length === 1 ? '' : 's'} · ${miles.toFixed(1)} mi · ${notes.length} note${notes.length === 1 ? '' : 's'}`;
+    await renderJournalTimeline();
+    await renderJournalHistory();
+    window.dispatchEvent(new CustomEvent('journal-data-changed'));
+  } finally {
+    renderingArchive = false;
+  }
 }
 
 let voiceObjectUrls = [];
