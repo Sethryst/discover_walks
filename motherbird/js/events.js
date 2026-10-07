@@ -26,7 +26,7 @@ import { restartCoachMarks } from './coach.js';
 import { savePlannedRoute } from './saved-routes.js';
 import { recordSessionRoutingOutcome } from './routing-feedback.js';
 import { openRoomForPlace } from './room-runtime.js';
-import { buildInWalkSuggestion } from './ambient-mip.js?v=20261007-ambient-9';
+import { buildInWalkSuggestion } from './ambient-mip.js?v=20261007-ambient-10';
 
 const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];
 function ambientResponse(plan, signal) { return { archetype: plan?.archetype, traits: plan?.ambientTraits || [], [signal]: true }; }
@@ -63,7 +63,7 @@ export function initEvents() {
   });
   bindMessengerBird();
   window.addEventListener('walk-poi-encounter', (event) => {
-    if (state.plannedRoute?.archetype === 'discovery') window.dispatchEvent(new CustomEvent('ambient-route-response', { detail: ambientResponse(state.plannedRoute, 'visited') }));
+    if (state.plannedRoute?.archetype && event.detail?.poi) window.dispatchEvent(new CustomEvent('ambient-route-response', { detail: ambientResponse(state.plannedRoute, 'visited') }));
     void import('./walk.js').then(({ recordPoiEncounter }) => recordPoiEncounter(event.detail?.poi, event.detail?.distance));
   });
   window.addEventListener('backpack-open-requested', openBackpack);

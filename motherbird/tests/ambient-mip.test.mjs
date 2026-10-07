@@ -117,6 +117,13 @@ test('explicit and implicit responses are persisted only to the supplied local s
   assert.equal(values.size, 1);
 });
 
+test('visited evidence can update any ambient archetype without making a preference claim', () => {
+  const memory = recordAmbientResponse({}, { archetype: 'quiet', visited: true, traits: ['poi:park'] });
+  assert.equal(memory.archetypes.quiet.evidence, 1);
+  assert.equal(memory.traits['poi:park'].evidence, 1);
+  assert.equal(memory.archetypes.discovery.evidence, 0);
+});
+
 test('repeated accepted discovery walks change ranking without changing feasibility', async () => {
   const routeOnFoot = async (points) => points.length > 2
     ? { ok: true, durationSeconds: 2100, distanceMeters: 2800, edgeIds: ['discovery-a', 'discovery-b'], coordinates: points.map((point) => [point.lat, point.lng]), graphVersion: 'g1', features: { discovery: 1 } }

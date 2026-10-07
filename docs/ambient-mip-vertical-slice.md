@@ -15,6 +15,10 @@ walk, ignoring a suggestion, or rejecting one. It is a soft ranking signal: it
 cannot make an invalid graph route feasible, bypass an access policy, or replace
 closure/accessibility evidence.
 
+Reviewed-POI encounters contribute a bounded visited signal for whichever
+ambient archetype was actually active; the event does not infer a general place
+or emotion preference from a single encounter.
+
 Quiet/comfort is not treated as accessibility. Ambient quiet candidates use the
 ordinary walking profile unless an explicit `stepFreeRequested` context is
 provided; only that explicit request may select `accessible_verified`. Unknown
