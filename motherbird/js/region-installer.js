@@ -13,28 +13,31 @@ export class RegionInstaller {
 
     try {
       await validatePmtiles(regionPackage);
+      await this.db.put('regions', { id: regionId, name: regionPackage.name, status: 'installing', installStartedAt: new Date().toISOString(), metadata: regionPackage.manifest });
       await this.opfs.ensureDirectory(installDir.split("/"));
       await this.opfs.writeFile(`${installDir}/${regionId}.pmtiles`, regionPackage.pmtilesBlob);
-      await this.db.put('regions', {
+      const metadata = {
         id: regionId,
         name: regionPackage.name,
         installedAt: new Date().toISOString(),
         metadata: regionPackage.manifest,
         status: 'installed'
-      });
-      await this.db.put('region_pois', {
+      };
+      const pois = {
         id: regionId,
         regionId,
         pois: regionPackage.poiData?.pois || []
-      });
-      await this.db.put('region_buckets', {
+      };
+      const buckets = {
         id: regionId,
         regionId,
         buckets: regionPackage.bucketsData || {}
-      });
+      };
+      const records = { regions: [metadata], region_pois: [pois], region_buckets: [buckets] };
       if (regionPackage.fieldEditionData) {
-        await this.db.put('field_editions', { id: regionId, regionId, ...regionPackage.fieldEditionData });
+        records.field_editions = [{ id: regionId, regionId, ...regionPackage.fieldEditionData }];
       }
+      await putRecords(this.db, records);
       return {
         id: regionId,
         name: regionPackage.name,
@@ -44,6 +47,7 @@ export class RegionInstaller {
       };
     } catch (error) {
       await this.opfs.remove(installDir);
+      await removeRecords(this.db, regionId).catch(() => {});
       throw error;
     }
   }
@@ -51,7 +55,7 @@ export class RegionInstaller {
   async discoverInstalled() {
     const entries = await this.db.all('regions');
     return entries
-      .filter((entry) => entry && entry.id)
+      .filter((entry) => entry && entry.id && entry.status === 'installed')
       .map((entry) => ({ id: entry.id, name: entry.name || entry.id, installed: true }));
   }
 
@@ -81,7 +85,7 @@ export class RegionInstaller {
     const poiEntry = await this.db.get('region_pois', regionId);
     const bucketEntry = await this.db.get('region_buckets', regionId);
     const fieldEditionEntry = await this.db.get('field_editions', regionId);
-    if (!metadata) return null;
+    if (!metadata || metadata.status !== 'installed') return null;
 
     return {
       id: regionId,
@@ -101,6 +105,12 @@ export class RegionInstaller {
     };
   }
 
+  async remove(regionId) {
+    if (!regionId) throw new Error('Region id is required');
+    await this.opfs.remove(`regions/${regionId}`);
+    await removeRecords(this.db, regionId);
+  }
+
   _createDefaultOpfs() {
     if (globalThis.navigator?.storage?.getDirectory) {
       return new BrowserOpfsStorage();
@@ -112,6 +122,16 @@ export class RegionInstaller {
       async remove() {}
     };
   }
+}
+
+async function putRecords(db, records) {
+  if (typeof db.putMany === 'function') return db.putMany(records);
+  for (const [store, values] of Object.entries(records)) for (const value of values) await db.put(store, value);
+}
+
+async function removeRecords(db, regionId) {
+  if (typeof db.putMany === 'function') return db.putMany({}, { regions: [regionId], region_pois: [regionId], region_buckets: [regionId], field_editions: [regionId] });
+  for (const store of ['regions', 'region_pois', 'region_buckets', 'field_editions']) await db.remove(store, regionId);
 }
 
 async function validateArtifactBlob(blob, declaredSha256) {
