@@ -86,12 +86,12 @@ export async function init() {
     const durableStorage = Boolean(db.isDurable?.());
     telemetry('persistence', { durable: durableStorage });
     if (!durableStorage) {
-      toast('Local journal storage is temporarily unavailable; this session is still usable. Retrying shortly…');
+      toast('Device journal database is busy in another tab; this session is usable and will retry automatically.');
       setTimeout(async () => {
         const recovered = await db.open({ timeoutMs: 1500 }).catch(() => false);
         const durable = Boolean(db.isDurable?.()) && recovered !== false;
         telemetry('persistence retry', { durable });
-        if (durable) toast('Local journal storage is available again.');
+        if (durable) toast('Device journal database is available again; this session is saved durably.');
       }, 5000);
     }
     await loadLocalState();

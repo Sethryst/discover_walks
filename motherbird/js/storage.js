@@ -1,5 +1,8 @@
 export const db = (() => {
   let database;
+  let openPromise = null;
+  let persistenceState = 'unavailable';
+  const persistenceListeners = new Set();
   const DATABASE_NAME = 'walk-wildlife-journal';
   const DATABASE_VERSION = 19;
   const upgradeChannel = typeof window !== 'undefined' && typeof BroadcastChannel === 'function' ? new BroadcastChannel('walk-wildlife-journal-db') : null;
@@ -8,6 +11,11 @@ export const db = (() => {
     if (!memoryStores.has(name)) memoryStores.set(name, new Map());
     return memoryStores.get(name);
   };
+  function setPersistenceState(next, details = {}) {
+    persistenceState = next;
+    persistenceListeners.forEach((listener) => listener({ state: next, ...details }));
+    if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('persistence-state-changed', { detail: { state: next, ...details } }));
+  }
   const LEGACY_STORES = [
     'walks', 'observations', 'moments', 'profile', 'settings', 'points_of_interest',
     'poi_metadata', 'regions', 'region_pois', 'region_buckets', 'field_editions',
@@ -54,6 +62,7 @@ export const db = (() => {
       // open leaves the upgrade request blocked and otherwise aborts startup.
       connection.close();
       if (database === connection) database = null;
+      setPersistenceState('recovering', { reason: 'versionchange' });
       upgradeChannel?.postMessage({ type: 'released', version: connection.version });
     };
     return connection;
@@ -102,10 +111,18 @@ export const db = (() => {
   }
 
   async function open({ beforeRiskyMigration, timeoutMs = 1500 } = {}) {
+    if (openPromise) return openPromise;
+    openPromise = openInternal({ beforeRiskyMigration, timeoutMs }).finally(() => { openPromise = null; });
+    return openPromise;
+  }
+
+  async function openInternal({ beforeRiskyMigration, timeoutMs = 1500 } = {}) {
     if (typeof indexedDB === 'undefined') {
       database = null;
+      setPersistenceState('unavailable', { reason: 'indexeddb-unsupported' });
       return;
     }
+    setPersistenceState('checking');
     // databases() is metadata-only and avoids opening a second connection
     // before the real upgrade request. Older browsers simply skip the
     // optional preflight; all migrations remain guarded by oldVersion.
@@ -124,6 +141,7 @@ export const db = (() => {
         settled = true;
         database = null;
         console.warn(message);
+        setPersistenceState('temporary', { reason: 'upgrade-blocked' });
         resolve(false);
       };
       const fallbackTimer = setTimeout(() => finishFallback('Local database upgrade is blocked; continuing with temporary in-memory storage.'), timeoutMs);
@@ -145,8 +163,8 @@ export const db = (() => {
         // prototype. A future public transport can publish signed manifests
         // without coupling raw media to the journal or profile backup paths.
       };
-      request.onsuccess = () => { clearTimeout(fallbackTimer); settled = true; database = attachVersionChangeHandler(request.result); resolve(true); };
-      request.onerror = () => { clearTimeout(fallbackTimer); if (!settled) { settled = true; reject(request.error); } };
+      request.onsuccess = async () => { clearTimeout(fallbackTimer); settled = true; database = attachVersionChangeHandler(request.result); await flushMemoryStores(); setPersistenceState('durable'); resolve(true); };
+      request.onerror = () => { clearTimeout(fallbackTimer); if (!settled) { settled = true; setPersistenceState('unavailable', { reason: request.error?.name || 'open-error' }); reject(request.error); } };
       request.onblocked = () => {
         // Ask other current-version tabs to close immediately. Do not make
         // first paint wait for a suspended/old tab; the scheduled retry can
@@ -155,6 +173,12 @@ export const db = (() => {
         finishFallback('Local database upgrade is blocked by another tab; continuing with temporary in-memory storage and scheduling a retry.');
       };
     });
+  }
+  async function flushMemoryStores() {
+    if (!database || !memoryStores.size) return;
+    const recordsByStore = Object.fromEntries([...memoryStores.entries()].map(([name, records]) => [name, [...records.values()]]));
+    await putMany(recordsByStore);
+    memoryStores.clear();
   }
   function store(name, mode = 'readonly') {
     if (!database || !database.objectStoreNames.contains(name)) return memoryStore(name);
@@ -191,6 +215,7 @@ export const db = (() => {
       catch (error) { transaction.abort(); reject(error); }
     });
   }
-  return { open, put, putMany, get, all, remove, clearAll, migrationPlan, createPreMigrationBackup, version: DATABASE_VERSION, isDurable: () => Boolean(database) };
+  if (typeof window !== 'undefined') window.addEventListener('pagehide', () => { if (database) { database.close(); database = null; } });
+  return { open, put, putMany, get, all, remove, clearAll, migrationPlan, createPreMigrationBackup, version: DATABASE_VERSION, isDurable: () => Boolean(database), persistenceState: () => persistenceState, onPersistenceState: (listener) => { persistenceListeners.add(listener); return () => persistenceListeners.delete(listener); } };
 })();
 export default db;
