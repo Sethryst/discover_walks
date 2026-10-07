@@ -81,7 +81,7 @@ export function scoreMIPRoute(route, features, profile = 'ordinary', constraints
   const maxMinutes = Number(constraints.maxMinutes ?? Infinity);
   if (!route?.ok || durationSeconds > maxMinutes * 60) return { feasible: false, reason: 'DURATION_LIMIT' };
   if (features?.valid === false) return { feasible: false, reason: 'FEATURES_INVALID' };
-  if (profile === 'accessible_verified' && ((features?.signalTotals?.stairs || 0) > 0 || route?.accessibilityVerified === false)) return { feasible: false, reason: 'ACCESSIBILITY_CONSTRAINT' };
+  if (profile === 'accessible_verified' && ((features?.signalTotals?.stairs || 0) > 0 || route?.accessibilityVerified !== true && route?.accessibilityEvidence !== 'verified')) return { feasible: false, reason: 'ACCESSIBILITY_CONSTRAINT' };
   const f = features?.signalTotals || {};
   const p = profile === 'discovery' || profile === 'nature' ? (f.nature + f.greenway + f.waterAdjacent) : profile === 'history' || profile === 'culture' ? (f.history + f.culture) : profile === 'quiet' ? (f.quiet + f.greenway - f.majorRoadExposure) : 0;
   const score = p - Number(constraints.extraMinutesWeight || 0.25) * Math.max(0, durationSeconds / 60 - Number(route.directDurationMinutes || 0));

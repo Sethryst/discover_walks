@@ -39,6 +39,8 @@ test('weights change ranking only and hard feasibility remains authoritative', (
   assert.equal(scoreMIPRoute(route, features, 'discovery', { maxMinutes: 20 }).feasible, true);
   assert.equal(scoreMIPRoute(route, features, 'discovery', { maxMinutes: 10 }).feasible, false);
   assert.equal(scoreMIPRoute({ ...route, accessibilityVerified: false }, features, 'accessible_verified').feasible, false);
+  assert.equal(scoreMIPRoute(route, features, 'accessible_verified').feasible, false);
+  assert.equal(scoreMIPRoute({ ...route, accessibilityVerified: true }, features, 'accessible_verified').feasible, true);
 });
 
 test('leg composition preserves exact points, edge sequence, metadata, and detects a short U-turn spur', () => {

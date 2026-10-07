@@ -26,7 +26,7 @@ export async function generateAmbientOptions({ origin, destination, routeOnFoot,
     if (routes.some((route) => route.archetype === archetype)) continue;
     const profile = archetype === 'quiet' && context.stepFreeRequested === true ? 'accessible_verified' : 'ordinary_walking_beta';
     const result = await safeRoute(routeOnFoot, [origin, stop, destination], routeOptions(profile));
-    if (!result.ok) continue;
+    if (!result.ok || (profile === 'accessible_verified' && result.accessibilityVerified !== true && result.accessibilityEvidence !== 'verified')) continue;
     routes.push(enrichAmbientRoute({ ...result, avoidEdges: routeOptions(profile).avoidEdges, id: `ambient-${archetype}-${stop.id || stop.name || routes.length}`, archetype, directDurationMinutes: directMinutes, stops: [stop], facts: { poiCount: archetype === 'discovery' && isTrustedPoi(stop) ? 1 : 0, mappedPlaceCount: archetype === 'discovery' ? 1 : 0, extraMinutes: Math.max(0, Number(result.durationSeconds || 0) / 60 - directMinutes) } }, sidecar, poiRecords, corridorCatalogue));
   }
   const intention = inferWalkingIntention({ ...context, destination }, memoryScores(memory));

@@ -27,7 +27,11 @@ Quiet/comfort is not treated as accessibility. Ambient quiet candidates use the
 ordinary walking profile unless an explicit `stepFreeRequested` context is
 provided; only that explicit request may select `accessible_verified`. Unknown
 surface, width, stair, or barrier evidence is never converted into an
-accessibility claim by local preference learning.
+accessibility claim by local preference learning. For an explicit step-free
+request, unknown accessibility evidence fails closed: the verified router must
+mark the route `accessibilityVerified` or provide equivalent
+`accessibilityEvidence: "verified"`. Personalization can rank an eligible
+route, but it cannot make an unverified or otherwise infeasible route eligible.
 
 During an active walk, at most one alternative is offered. The prompt is
 fact-backed and optional; accepting it re-routes from the current location
