@@ -31,6 +31,11 @@ available, it may route one nearby reviewed place as a lightweight discovery
 suggestion. It does not require a destination or setup, and the same one-shot
 accept/ignore/reject behavior applies.
 
+Ambient route generation forwards active `avoidEdges`, graph-version, and cell
+release constraints to every routing attempt, including an in-walk reroute.
+Personal evidence can reorder the returned valid candidates but cannot bypass a
+closure or route-artifact mismatch.
+
 The build-time matcher in `motherbird/tools/mip-corridor-matcher.mjs` keeps
 official trail alignment separate from flowline adjacency. Official lines are
 matched to graph edges with bounded offsets and continuity checks; flowlines can

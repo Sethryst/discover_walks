@@ -26,7 +26,7 @@ import { restartCoachMarks } from './coach.js';
 import { savePlannedRoute } from './saved-routes.js';
 import { recordSessionRoutingOutcome } from './routing-feedback.js';
 import { openRoomForPlace } from './room-runtime.js';
-import { buildInWalkSuggestion } from './ambient-mip.js?v=20261007-ambient-8';
+import { buildInWalkSuggestion } from './ambient-mip.js?v=20261007-ambient-9';
 
 const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];
 function ambientResponse(plan, signal) { return { archetype: plan?.archetype, traits: plan?.ambientTraits || [], [signal]: true }; }
@@ -86,7 +86,7 @@ async function updateActiveManeuver(position) {
       const plan = state.plannedRoute;
       const points = [{ lat: position.lat, lng: position.lng }, ...(plan.stops || []).map((stop) => ({ lat: stop.lat, lng: stop.lng }))];
       if (plan.routeMode === 'round-trip' || plan.routeMode === 'auto-round-trip') points.push(points[0]);
-      const rerouted = await routeOnFoot(points, { city: plan.city, profile: 'ordinary_walking_beta' });
+      const rerouted = await routeOnFoot(points, { city: plan.city, profile: plan.profile || 'ordinary_walking_beta', avoidEdges: plan.avoidEdges || [] });
       if (rerouted.ok) {
         lastRerouteAt = Date.now();
         state.plannedRoute = { ...plan, coordinates: rerouted.coordinates, instructions: rerouted.instructions, distanceMeters: rerouted.distanceMeters, graphVersion: rerouted.graphVersion };
@@ -124,7 +124,7 @@ async function offerAmbientSuggestion(position) {
     const nearby = stops[0]?.poi;
     if (nearby) {
       let routed;
-      try { routed = await routeOnFoot([{ lat: position.lat, lng: position.lng }, nearby], { city: state.activeCity, profile: 'ordinary_walking_beta' }); } catch { routed = { ok: false }; }
+      try { routed = await routeOnFoot([{ lat: position.lat, lng: position.lng }, nearby], { city: state.activeCity, profile: 'ordinary_walking_beta', avoidEdges: state.routingConstraints?.avoidEdges || state.avoidEdges || [] }); } catch { routed = { ok: false }; }
       if (routed.ok) {
         const candidate = { ...routed, id: `ambient-tracking-${nearby.id || nearby.name}`, archetype: 'discovery', profile: 'ordinary_walking_beta', stops: [nearby], facts: { nearby: true, poiCount: 1, extraMinutes: Math.max(0, Number(routed.durationSeconds || 0) / 60) } };
         state.planOptions = [candidate];
@@ -147,7 +147,7 @@ async function acceptAmbientSuggestion(suggestion, position) {
   if (!candidate) return;
   const destination = current.destination || state.plannerEnd || candidate.destination;
   const points = [{ lat: position.lat, lng: position.lng }, ...(candidate.stops || []), ...(destination ? [destination] : [])];
-  const routed = await routeOnFoot(points, { city: current.city, profile: candidate.profile || 'ordinary_walking_beta' });
+  const routed = await routeOnFoot(points, { city: current.city, profile: candidate.profile || 'ordinary_walking_beta', avoidEdges: candidate.avoidEdges || current.avoidEdges || [] });
   if (!routed.ok) { container.querySelector('p').textContent = 'That option is no longer available here.'; return; }
   state.plannedRoute = { ...candidate, coordinates: routed.coordinates, distanceMeters: routed.distanceMeters, durationSeconds: routed.durationSeconds, instructions: routed.instructions, edgeIds: routed.edgeIds, graphVersion: routed.graphVersion, cellId: routed.cellId, cellRelease: routed.cellRelease };
   finishAmbientSuggestion(suggestion, 'accepted');

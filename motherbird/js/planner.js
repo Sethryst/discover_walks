@@ -6,7 +6,7 @@ import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261007-ambien
 import { escapeHtml } from './utils.js';
 import { toast } from './ui.js';
 import { splitDisconnectedPaths } from './routes.js';
-import { buildAmbientExplanation, generateAmbientOptions, installAmbientLearningListener, readAmbientMemory } from './ambient-mip.js?v=20261007-ambient-8';
+import { buildAmbientExplanation, generateAmbientOptions, installAmbientLearningListener, readAmbientMemory } from './ambient-mip.js?v=20261007-ambient-9';
 
 function selectedMinutes() { return Number(document.querySelector('input[name="walkTime"]:checked')?.value || 30); }
 function selectedRouteMode() { return document.querySelector('input[name="routeMode"]:checked')?.value || 'round-trip'; }
@@ -152,7 +152,7 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
     const nearby = candidateStops(routeOrigin, []).slice(0, 6).filter((stop) => distanceBetween(routeOrigin, stop) < 8);
     const discoveryStops = selectedStops.length ? selectedStops : nearby.filter((stop) => poiTags(stop).some((tag) => ['trail', 'park', 'nature', 'history', 'culture', 'water'].includes(tag))).slice(0, 2);
     const quietStops = nearby.filter((stop) => poiTags(stop).some((tag) => ['park', 'trail', 'nature', 'quiet'].includes(tag))).slice(0, 2);
-    const ambient = await generateAmbientOptions({ origin: routeOrigin, destination: state.plannerEnd, routeOnFoot, context: { availableMinutes: minutes, destination: state.plannerEnd, currentPaceMps: state.walk?.paceMps, routeHistoryCount: state.walks?.length || 0, rememberedPlaceCount: state.personalPlaces?.length || 0 }, memory: localMemory, discoveryStops, quietStops });
+    const ambient = await generateAmbientOptions({ origin: routeOrigin, destination: state.plannerEnd, routeOnFoot, context: { availableMinutes: minutes, destination: state.plannerEnd, currentPaceMps: state.walk?.paceMps, routeHistoryCount: state.walks?.length || 0, rememberedPlaceCount: state.personalPlaces?.length || 0, avoidEdges: state.routingConstraints?.avoidEdges || state.avoidEdges || [], graphVersion: state.routingConstraints?.graphVersion || null, cellRelease: state.routingConstraints?.cellRelease || null }, memory: localMemory, discoveryStops, quietStops });
     if (requestGeneration !== generation) return null;
     if (ambient.routes.length) {
       const optionRoutes = ambient.primary ? [ambient.primary, ...(ambient.alternatives || [])] : ambient.routes;
@@ -162,7 +162,7 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
         city: state.activeCity, routeMode, estimatedDurationMinutes: Math.round(Number(routed.durationSeconds || 0) / 60),
         stops: routed.stops || [{ name: 'Selected destination', lat: state.plannerEnd.lat, lng: state.plannerEnd.lng }], coordinates: routed.coordinates,
         distanceMeters: routed.distanceMeters, distanceMiles: Number((routed.distanceMeters / 1609.344).toFixed(2)), graphStatus: null, graphVersion: routed.graphVersion,
-        cellId: routed.cellId, cellRelease: routed.cellRelease, edgeIds: routed.edgeIds, instructions: routed.instructions, destination: state.plannerEnd,
+        cellId: routed.cellId, cellRelease: routed.cellRelease, edgeIds: routed.edgeIds, avoidEdges: routed.avoidEdges || [], instructions: routed.instructions, destination: state.plannerEnd,
         archetype: routed.archetype, profile: routed.profile || 'ordinary_walking_beta', facts: routed.facts, ambientTraits: routed.ambientTraits || [], ambientIntention: ambient.intention
       }));
       state.planOptions = plans; state.plannedRoute = ambient.primary ? plans.find((plan) => plan.id === ambient.primary.id) || plans[0] : plans[0];
