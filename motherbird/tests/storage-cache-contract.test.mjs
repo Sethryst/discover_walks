@@ -56,3 +56,9 @@ test('location simulator does not persist through sessionStorage', async () => {
   assert.doesNotMatch(source, /sessionStorage/);
   assert.match(source, /preferences:location-simulator/);
 });
+
+test('offline diagnostics do not export cached request URLs', async () => {
+  const source = await readFile(new URL('../js/location-simulator.js', import.meta.url), 'utf8');
+  assert.doesNotMatch(source, /sample:\s*keys/);
+  assert.match(source, /report\.caches\.push\(\{ name, entries: keys\.length \}\)/);
+});
