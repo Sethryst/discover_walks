@@ -3,7 +3,7 @@ import { state } from './state.js';
 import { DEFAULT_SETTINGS, CITIES, DEFAULT_CITY_ID } from './constants.js';
 import { normalizeProfile, sitesForProfile } from './utils.js';
 import { toast } from './ui.js';
-import { initMap } from './map.js?v=20261005-destination-selection-1';
+import { initMap } from './map.js?v=20261006-dc-default-view-1';
 import { applyStaticAppearance } from './ui.js';
 import { loadAllCityData, refreshCityMap } from './city.js';
 import { initEvents } from './events.js?v=20261006-point-to-point-selection-1';

@@ -23,6 +23,7 @@ import { OpfsRangeSource } from './opfs-range-source.js';
 
 const OSM_ATTRIBUTION = '&copy; OpenStreetMap contributors';
 const NEIGHBORHOOD_ZOOM = 15;
+const DEFAULT_MAP_VIEW = Object.freeze({ lat: 38.9072, lng: -77.0369, zoom: NEIGHBORHOOD_ZOOM });
 const mapLibreZoom = () => Math.max(0, (state.map?.getZoom() || 0) - 1);
 const cityDistanceMeters = (a, b) => Math.hypot((a.lat - b.lat) * 111000, (a.lng - b.lng) * 88000);
 
@@ -37,10 +38,10 @@ export function initMap() {
   const active = city();
   const view = state.offlineView;
   const offlineCenter = view?.range?.type === 'radius' ? view.range.center : view?.range?.bbox ? { lat: (view.range.bbox.south + view.range.bbox.north) / 2, lng: (view.range.bbox.west + view.range.bbox.east) / 2 } : null;
-  const initialPosition = offlineCenter || state.currentPosition || state.lastPosition || active.center;
+  const initialPosition = offlineCenter || state.currentPosition || state.lastPosition || DEFAULT_MAP_VIEW;
   // When location permission is granted at startup, begin at the actual
   // location—not the regional centroid—and keep enough zoom for a walk.
-  const initialZoom = view?.zoom ?? ((state.currentPosition || state.lastPosition) ? Math.max(active.zoom, 15) : active.zoom);
+  const initialZoom = view?.zoom ?? ((state.currentPosition || state.lastPosition) ? Math.max(active.zoom, NEIGHBORHOOD_ZOOM) : DEFAULT_MAP_VIEW.zoom);
   state.map = L.map('map', { zoomControl: false, attributionControl: true, zoomAnimation: false, fadeAnimation: false, markerZoomAnimation: false, inertia: false }).setView([initialPosition.lat, initialPosition.lng], initialZoom);
   // Resizing or rotating the viewport must never change the user's map zoom.
   window.addEventListener('resize', () => {
