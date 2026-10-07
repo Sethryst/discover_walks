@@ -90,6 +90,7 @@ test('intention remains conservative and local evidence is decayed', () => {
 test('alternative gate and explanations stay factual', () => {
   assert.equal(distinctEnough({ archetype: 'discovery', edgeIds: ['a', 'b'] }, { archetype: 'quiet', edgeIds: ['a', 'b'] }), false);
   assert.equal(buildAmbientExplanation({ archetype: 'discovery', facts: { corridorName: 'W&OD', corridorMeters: 1200, poiCount: 1, extraMinutes: 8 } }), 'Adds 1.2 km of W&OD and 1 reviewed place and 8 extra minutes.');
+  assert.match(buildInWalkSuggestion({ plan: { id: 'direct' }, alternatives: [{ id: 'nearby', archetype: 'discovery', facts: { nearby: true, poiCount: 1 } }] }).text, /nearby/);
 });
 
 test('in-walk suggestion is one-shot, optional, and fact-backed', () => {

@@ -113,8 +113,10 @@ export function buildInWalkSuggestion({ plan, alternatives = [], offered = false
   const candidate = alternatives.find((route) => route.id !== plan.id && route.archetype !== 'direct') || alternatives[0];
   if (!candidate) return null;
   const extra = Number(candidate.facts?.extraMinutes || 0);
-  const fact = candidate.archetype === 'discovery' && Number(candidate.facts?.poiCount || 0) > 0
-    ? 'A reviewed place is available ahead.'
+  const fact = candidate.facts?.nearby && candidate.archetype === 'discovery' && Number(candidate.facts?.poiCount || 0) > 0
+    ? 'A reviewed place is available nearby.'
+    : candidate.archetype === 'discovery' && Number(candidate.facts?.poiCount || 0) > 0
+      ? 'A reviewed place is available ahead.'
     : candidate.archetype === 'quiet' && Number(candidate.features?.quiet || 0) > 0
       ? 'A lower-exposure mapped option is available ahead.'
       : candidate.archetype === 'quiet'

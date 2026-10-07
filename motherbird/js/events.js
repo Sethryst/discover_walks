@@ -5,7 +5,7 @@ import { el, escapeHtml } from './utils.js';
 import { saveJournal, saveJournalOnClose, renderArchive } from './archive.js';
 import { getCurrentLocation, startWalk, stopWalk } from './walk.js';
 import { openBackpack, openJournal, closeSheets, openSheet, renderGeofenceCategoryChips, setArchiveFilter, toast } from './ui.js';
-import { city, searchPois } from './poi.js';
+import { city, poiTags, searchPois } from './poi.js';
 import { localSearchHits, searchRowHtml, emptySearchHtml } from './search.js';
 import { initRegionalNavigation } from './regional-navigation.js';
 import { switchCity } from './city.js';
@@ -26,7 +26,7 @@ import { restartCoachMarks } from './coach.js';
 import { savePlannedRoute } from './saved-routes.js';
 import { recordSessionRoutingOutcome } from './routing-feedback.js';
 import { openRoomForPlace } from './room-runtime.js';
-import { buildInWalkSuggestion } from './ambient-mip.js?v=20261007-ambient-7';
+import { buildInWalkSuggestion } from './ambient-mip.js?v=20261007-ambient-8';
 
 const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];
 function ambientResponse(plan, signal) { return { archetype: plan?.archetype, traits: plan?.ambientTraits || [], [signal]: true }; }
@@ -74,8 +74,9 @@ let lastRerouteAt = 0;
 let activeInstructionIndex = 1;
 async function updateActiveManeuver(position) {
   const target = el('activeManeuver'); const plan = state.plannedRoute; const instructions = plan?.instructions || [];
-  if (!target || !instructions.length || !state.activeWalk) return;
-  offerAmbientSuggestion(position);
+  if (!state.activeWalk) return;
+  void offerAmbientSuggestion(position);
+  if (!target || !instructions.length) return;
   if (target.dataset.routeId !== plan.id) { target.dataset.routeId = plan.id; activeInstructionIndex = 1; }
   const routeDistance = nearestRouteDistance(position, state.plannedRoute.coordinates || []);
   if (routeDistance > 75 && !rerouting && Date.now() - lastRerouteAt > 10000) {
@@ -108,10 +109,30 @@ async function updateActiveManeuver(position) {
   target.textContent = `${next.text} in about ${Math.max(0, distance)} m`;
 }
 
-function offerAmbientSuggestion(position) {
+async function offerAmbientSuggestion(position) {
   const walk = state.activeWalk; const plan = state.plannedRoute; const container = el('ambientWalkSuggestion');
-  if (!walk || !plan || !container || walk.ambientSuggestionOffered) return;
-  const suggestion = buildInWalkSuggestion({ plan, alternatives: (state.planOptions || []).filter((option) => option.id !== plan.id), offered: false });
+  if (!walk || !container || walk.ambientSuggestionOffered || walk.ambientSuggestionPending) return;
+  walk.ambientSuggestionPending = true;
+  let suggestion = buildInWalkSuggestion({ plan: plan || { id: 'ambient-tracking', archetype: 'direct' }, alternatives: (state.planOptions || []).filter((option) => option.id !== plan?.id), offered: false });
+  if (!suggestion && !plan) {
+    const stops = (state.cityPois?.[state.activeCity] || [])
+      .filter((poi) => Number.isFinite(Number(poi.lat)) && Number.isFinite(Number(poi.lng)))
+      .filter((poi) => poiTags(poi).some((tag) => ['trail', 'park', 'nature', 'history', 'culture', 'water'].includes(tag)))
+      .map((poi) => ({ poi, distance: Math.hypot((Number(poi.lat) - position.lat) * 111, (Number(poi.lng) - position.lng) * 88) }))
+      .filter(({ distance }) => distance <= 2)
+      .sort((a, b) => a.distance - b.distance || String(a.poi.name).localeCompare(String(b.poi.name)));
+    const nearby = stops[0]?.poi;
+    if (nearby) {
+      let routed;
+      try { routed = await routeOnFoot([{ lat: position.lat, lng: position.lng }, nearby], { city: state.activeCity, profile: 'ordinary_walking_beta' }); } catch { routed = { ok: false }; }
+      if (routed.ok) {
+        const candidate = { ...routed, id: `ambient-tracking-${nearby.id || nearby.name}`, archetype: 'discovery', profile: 'ordinary_walking_beta', stops: [nearby], facts: { nearby: true, poiCount: 1, extraMinutes: Math.max(0, Number(routed.durationSeconds || 0) / 60) } };
+        state.planOptions = [candidate];
+        suggestion = buildInWalkSuggestion({ plan: { id: 'ambient-tracking', archetype: 'direct' }, alternatives: [candidate], offered: false });
+      }
+    }
+  }
+  walk.ambientSuggestionPending = false;
   if (!suggestion) return;
   walk.ambientSuggestionOffered = true;
   container.classList.remove('hidden');
@@ -122,9 +143,9 @@ function offerAmbientSuggestion(position) {
 }
 
 async function acceptAmbientSuggestion(suggestion, position) {
-  const container = el('ambientWalkSuggestion'); const current = state.plannedRoute; const candidate = (state.planOptions || []).find((option) => option.id === suggestion.candidateId);
-  if (!current || !candidate) return;
-  const destination = current.destination || state.plannerEnd || candidate.destination || candidate.stops?.at(-1);
+  const container = el('ambientWalkSuggestion'); const current = state.plannedRoute || { city: state.activeCity, routeMode: 'tracking', stops: [] }; const candidate = (state.planOptions || []).find((option) => option.id === suggestion.candidateId);
+  if (!candidate) return;
+  const destination = current.destination || state.plannerEnd || candidate.destination;
   const points = [{ lat: position.lat, lng: position.lng }, ...(candidate.stops || []), ...(destination ? [destination] : [])];
   const routed = await routeOnFoot(points, { city: current.city, profile: candidate.profile || 'ordinary_walking_beta' });
   if (!routed.ok) { container.querySelector('p').textContent = 'That option is no longer available here.'; return; }

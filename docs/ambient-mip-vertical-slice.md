@@ -26,6 +26,11 @@ fact-backed and optional; accepting it re-routes from the current location
 through the verified router before changing the active plan. Ignore and reject
 responses are local negative evidence, not claims about the user's feelings.
 
+The tracking-only `Start walk` path also participates: after a GPS position is
+available, it may route one nearby reviewed place as a lightweight discovery
+suggestion. It does not require a destination or setup, and the same one-shot
+accept/ignore/reject behavior applies.
+
 The build-time matcher in `motherbird/tools/mip-corridor-matcher.mjs` keeps
 official trail alignment separate from flowline adjacency. Official lines are
 matched to graph edges with bounded offsets and continuity checks; flowlines can
