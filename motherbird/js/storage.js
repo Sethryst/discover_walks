@@ -1,221 +1,32 @@
-export const db = (() => {
-  let database;
-  let openPromise = null;
-  let persistenceState = 'unavailable';
-  const persistenceListeners = new Set();
-  const DATABASE_NAME = 'walk-wildlife-journal';
-  const DATABASE_VERSION = 19;
-  const upgradeChannel = typeof window !== 'undefined' && typeof BroadcastChannel === 'function' ? new BroadcastChannel('walk-wildlife-journal-db') : null;
-  const memoryStores = new Map();
-  const memoryStore = (name) => {
-    if (!memoryStores.has(name)) memoryStores.set(name, new Map());
-    return memoryStores.get(name);
-  };
-  function setPersistenceState(next, details = {}) {
-    persistenceState = next;
-    persistenceListeners.forEach((listener) => listener({ state: next, ...details }));
-    if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('persistence-state-changed', { detail: { state: next, ...details } }));
-  }
-  const LEGACY_STORES = [
-    'walks', 'observations', 'moments', 'profile', 'settings', 'points_of_interest',
-    'poi_metadata', 'regions', 'region_pois', 'region_buckets', 'field_editions',
-    'civic_witnesses', 'neighborhood_discoveries', 'walk_drafts', 'walk_events',
-    'personal_places', 'personal_place_categories', 'layer_settings', 'voice_notes',
-    'journal_audio', 'county_additions', 'notification_state', 'spatial_local_operations',
-    'geo_cyphers', 'geo_cypher_keys', 'geo_cypher_events', 'saved_routes', 'biodiversity_preferences'
-  ];
-  const migrations = Object.freeze([
-    { version: 1, risk: 'additive', description: 'Create the local-first journal stores.', apply: (target) => LEGACY_STORES.forEach((name) => { if (!target.objectStoreNames.contains(name)) target.createObjectStore(name, { keyPath: 'id' }); }) },
-    { version: 13, risk: 'additive', description: 'Separate Geo Cypher manifests from on-demand audio.', apply: (target) => ['geo_cypher_manifests', 'geo_cypher_audio'].forEach((name) => { if (!target.objectStoreNames.contains(name)) target.createObjectStore(name, { keyPath: 'id' }); }) },
-    // Version 13 introduced explicit migrations after earlier releases had
-    // added stores without bumping the database version. Existing databases
-    // could therefore report a current version while still missing stores,
-    // causing app boot to stop before event handlers were registered.
-    { version: 14, risk: 'additive', description: 'Repair missing local stores from earlier installations.', apply: (target) => [...LEGACY_STORES, 'geo_cypher_manifests', 'geo_cypher_audio'].forEach((name) => { if (!target.objectStoreNames.contains(name)) target.createObjectStore(name, { keyPath: 'id' }); }) },
-    { version: 15, risk: 'additive', description: 'Add editable local saved routes.', apply: (target) => { if (!target.objectStoreNames.contains('saved_routes')) target.createObjectStore('saved_routes', { keyPath: 'id' }); } },
-    { version: 16, risk: 'additive', description: 'Add local radio manifests, playback state, saved tracks, and transition assets.', apply: (target) => ['radio_manifests', 'radio_playback_state', 'radio_saved_tracks', 'radio_transition_assets'].forEach((name) => { if (!target.objectStoreNames.contains(name)) target.createObjectStore(name, { keyPath: 'id' }); }) },
-    { version: 17, risk: 'additive', description: 'Add local Spatial Query and Room records.', apply: (target) => ['spatial_queries', 'rooms'].forEach((name) => { if (!target.objectStoreNames.contains(name)) target.createObjectStore(name, { keyPath: 'id' }); }) },
-    { version: 18, risk: 'additive', description: 'Add soundtrack library playlists and walk soundtrack records.', apply: (target) => ['radio_playlists', 'walk_soundtracks'].forEach((name) => { if (!target.objectStoreNames.contains(name)) target.createObjectStore(name, { keyPath: 'id' }); }) },
-    { version: 19, risk: 'additive', description: 'Add local biodiversity card preferences and photos.', apply: (target) => { if (!target.objectStoreNames.contains('biodiversity_preferences')) target.createObjectStore('biodiversity_preferences', { keyPath: 'id' }); } }
-  ]);
-
-  async function installedVersion() {
-    if (typeof indexedDB === 'undefined') return 0;
-    if (indexedDB.databases) return Number((await indexedDB.databases()).find((entry) => entry.name === DATABASE_NAME)?.version || 0);
-    return new Promise((resolve, reject) => {
-      let created = false;
-      const request = indexedDB.open(DATABASE_NAME);
-      request.onupgradeneeded = () => { created = true; migrations[0].apply(request.result); };
-      request.onsuccess = () => { const version = created ? 0 : request.result.version; request.result.close(); resolve(version); };
-      request.onerror = () => reject(request.error);
-    });
-  }
-
-  function pendingMigrations(fromVersion) { return migrations.filter(({ version }) => version > fromVersion && version <= DATABASE_VERSION); }
-  function migrationPlan(fromVersion = 0) { return pendingMigrations(fromVersion).map(({ version, risk, description }) => ({ version, risk, description })); }
-  function withTimeout(promise, fallback, timeoutMs = 5000) {
-    return Promise.race([promise, new Promise((resolve) => setTimeout(() => resolve(fallback), timeoutMs))]);
-  }
-  function attachVersionChangeHandler(connection) {
-    connection.onversionchange = () => {
-      // Let another tab complete a schema upgrade. Keeping an old connection
-      // open leaves the upgrade request blocked and otherwise aborts startup.
-      connection.close();
-      if (database === connection) database = null;
-      setPersistenceState('recovering', { reason: 'versionchange' });
-      upgradeChannel?.postMessage({ type: 'released', version: connection.version });
-    };
-    return connection;
-  }
-
-  upgradeChannel?.addEventListener('message', (event) => {
-    if (event.data?.type !== 'release-for-upgrade' || !database) return;
-    database.close();
-    database = null;
-    console.info('Released the local journal connection for another tab\'s database upgrade.');
-  });
-
-  async function backupValue(value) {
-    if (value instanceof Blob) {
-      const bytes = new Uint8Array(await value.arrayBuffer());
-      let binary = '';
-      for (let offset = 0; offset < bytes.length; offset += 0x8000) binary += String.fromCharCode(...bytes.subarray(offset, offset + 0x8000));
-      return { $type: 'Blob', mimeType: value.type, base64: btoa(binary) };
-    }
-    if (globalThis.CryptoKey && value instanceof CryptoKey) return { $type: 'CryptoKey', extractable: value.extractable, algorithm: value.algorithm, usages: value.usages, note: 'Non-exportable private key material remains protected on this device.' };
-    if (Array.isArray(value)) return Promise.all(value.map(backupValue));
-    if (value && typeof value === 'object') return Object.fromEntries(await Promise.all(Object.entries(value).map(async ([key, item]) => [key, await backupValue(item)])));
-    return value;
-  }
-
-  async function createPreMigrationBackup(details) {
-    return new Promise((resolve, reject) => {
-      const request = indexedDB.open(DATABASE_NAME);
-      request.onerror = () => reject(request.error);
-      request.onsuccess = async () => {
-        const source = request.result;
-        try {
-          const names = [...source.objectStoreNames];
-          const transaction = source.transaction(names, 'readonly');
-          const records = await Promise.all(names.map((name) => new Promise((done, fail) => {
-            const read = transaction.objectStore(name).getAll();
-            read.onsuccess = () => done([name, read.result]);
-            read.onerror = () => fail(read.error);
-          })));
-          const stores = Object.fromEntries(await Promise.all(records.map(async ([name, values]) => [name, await backupValue(values)])));
-          source.close();
-          resolve(new Blob([JSON.stringify({ format: 'walk-wildlife-indexeddb-backup', version: 1, exportedAt: new Date().toISOString(), migration: details, stores })], { type: 'application/json' }));
-        } catch (error) { source.close(); reject(error); }
-      };
-    });
-  }
-
-  async function open({ beforeRiskyMigration, timeoutMs = 1500 } = {}) {
-    if (openPromise) return openPromise;
-    openPromise = openInternal({ beforeRiskyMigration, timeoutMs }).finally(() => { openPromise = null; });
-    return openPromise;
-  }
-
-  async function openInternal({ beforeRiskyMigration, timeoutMs = 1500 } = {}) {
-    if (typeof indexedDB === 'undefined') {
-      database = null;
-      setPersistenceState('unavailable', { reason: 'indexeddb-unsupported' });
-      return;
-    }
-    setPersistenceState('checking');
-    // databases() is metadata-only and avoids opening a second connection
-    // before the real upgrade request. Older browsers simply skip the
-    // optional preflight; all migrations remain guarded by oldVersion.
-    const fromVersion = indexedDB.databases
-      ? Number((await withTimeout(indexedDB.databases(), [], 500)).find((entry) => entry.name === DATABASE_NAME)?.version || 0)
-      : 0;
-    const risky = pendingMigrations(fromVersion).filter(({ risk }) => risk === 'risky');
-    if (risky.length && beforeRiskyMigration) await beforeRiskyMigration({ fromVersion, toVersion: DATABASE_VERSION, migrations: risky.map(({ version, description }) => ({ version, description })) });
-    return new Promise((resolve, reject) => {
-      // A crashed or suspended tab can leave an IndexedDB upgrade blocked
-      // forever. Do not hold the visible app behind that browser-global lock;
-      // continue with the in-memory fallback and let a later reload retry.
-      let settled = false;
-      const finishFallback = (message) => {
-        if (settled) return;
-        settled = true;
-        database = null;
-        console.warn(message);
-        setPersistenceState('temporary', { reason: 'upgrade-blocked' });
-        resolve(false);
-      };
-      const fallbackTimer = setTimeout(() => finishFallback('Local database upgrade is blocked; continuing with temporary in-memory storage.'), timeoutMs);
-      const request = indexedDB.open(DATABASE_NAME, DATABASE_VERSION);
-      request.onupgradeneeded = (event) => {
-        database = request.result;
-        for (const migration of pendingMigrations(event.oldVersion)) migration.apply(database, request.transaction);
-        // Civic participation logging (voted, attended_meeting, volunteered)
-        // writes only to this browser's IndexedDB. These records never sync to
-        // Supabase, including in anonymized form; never enter exports,
-        // analytics, or cohort data; and are never visible to organizers.
-        // Curated place metadata stays separate from automatically inferred
-        // pause/return candidates already stored in `personal_places`.
-        // Raw microphone blobs are deliberately isolated from journal transfer,
-        // cloud backup, public markers, and county additions.
-        // Durable local operation outbox for a future, explicitly enabled county sync.
-        // It is never read by the existing aggregate-profile sync.
-        // Audio Notes keep audio and cryptographic identity local in this
-        // prototype. A future public transport can publish signed manifests
-        // without coupling raw media to the journal or profile backup paths.
-      };
-      request.onsuccess = async () => { clearTimeout(fallbackTimer); settled = true; database = attachVersionChangeHandler(request.result); await flushMemoryStores(); setPersistenceState('durable'); resolve(true); };
-      request.onerror = () => { clearTimeout(fallbackTimer); if (!settled) { settled = true; setPersistenceState('unavailable', { reason: request.error?.name || 'open-error' }); reject(request.error); } };
-      request.onblocked = () => {
-        // Ask other current-version tabs to close immediately. Do not make
-        // first paint wait for a suspended/old tab; the scheduled retry can
-        // complete the upgrade once the lock disappears.
-        upgradeChannel?.postMessage({ type: 'release-for-upgrade', version: DATABASE_VERSION });
-        finishFallback('Local database upgrade is blocked by another tab; continuing with temporary in-memory storage and scheduling a retry.');
-      };
-    });
-  }
-  async function flushMemoryStores() {
-    if (!database || !memoryStores.size) return;
-    const recordsByStore = Object.fromEntries([...memoryStores.entries()].map(([name, records]) => [name, [...records.values()]]));
-    await putMany(recordsByStore);
-    memoryStores.clear();
-  }
-  function store(name, mode = 'readonly') {
-    if (!database || !database.objectStoreNames.contains(name)) return memoryStore(name);
-    return database.transaction(name, mode).objectStore(name);
-  }
-  function memoryItem(name, id) { return memoryStore(name).get(id); }
-  function put(name, item) { if (!database) { memoryStore(name).set(item.id, item); return Promise.resolve(item); } return new Promise((resolve, reject) => {const r = store(name, 'readwrite').put(item); r.onsuccess = () => resolve(item); r.onerror = () => reject(r.error); }); }
-  function get(name, id) { if (!database) return Promise.resolve(memoryItem(name, id)); return new Promise((resolve, reject) => {const r = store(name).get(id); r.onsuccess = () => resolve(r.result); r.onerror = () => reject(r.error); }); }
-  function all(name) { if (!database) return Promise.resolve([...memoryStore(name).values()]); return new Promise((resolve, reject) => {const r = store(name).getAll(); r.onsuccess = () => resolve(r.result); r.onerror = () => reject(r.error); }); }
-  function remove(name, id) { if (!database) { memoryStore(name).delete(id); return Promise.resolve(); } return new Promise((resolve, reject) => {const r = store(name, 'readwrite').delete(id); r.onsuccess = () => resolve(); r.onerror = () => reject(r.error); }); }
-  function clearAll() {
-    if (!database) { memoryStores.forEach((items) => items.clear()); return Promise.resolve(); }
-    return Promise.all(['walks', 'saved_routes', 'observations', 'moments', 'profile', 'settings', 'poi_metadata', 'neighborhood_discoveries', 'walk_drafts', 'walk_events', 'personal_places', 'personal_place_categories', 'layer_settings', 'voice_notes', 'journal_audio', 'county_additions', 'notification_state', 'spatial_local_operations', 'geo_cyphers', 'geo_cypher_keys', 'geo_cypher_events', 'geo_cypher_manifests', 'geo_cypher_audio', 'radio_manifests', 'radio_playback_state', 'radio_saved_tracks', 'radio_transition_assets', 'spatial_queries', 'rooms', 'biodiversity_preferences'].map((name) => new Promise((resolve, reject) => {
-    const r = store(name, 'readwrite').clear(); r.onsuccess = resolve; r.onerror = () => reject(r.error);
-    })));
-  }
-  function putMany(recordsByStore, removals = {}) {
-    const names = [...new Set([...Object.keys(recordsByStore), ...Object.keys(removals)])];
-    if (!database) {
-      for (const name of names) { for (const id of removals[name] || []) memoryStore(name).delete(id); for (const record of recordsByStore[name] || []) memoryStore(name).set(record.id, record); }
-      return Promise.resolve();
-    }
-    return new Promise((resolve, reject) => {
-      const transaction = database.transaction(names, 'readwrite');
-      transaction.oncomplete = () => resolve();
-      transaction.onabort = () => reject(transaction.error || new Error('Import was not saved.'));
-      transaction.onerror = () => reject(transaction.error);
-      try {
-        for (const name of names) {
-          for (const id of removals[name] || []) transaction.objectStore(name).delete(id);
-          for (const record of recordsByStore[name] || []) transaction.objectStore(name).put(record);
-        }
-      }
-      catch (error) { transaction.abort(); reject(error); }
-    });
-  }
-  if (typeof window !== 'undefined') window.addEventListener('pagehide', () => { if (database) { database.close(); database = null; } });
-  return { open, put, putMany, get, all, remove, clearAll, migrationPlan, createPreMigrationBackup, version: DATABASE_VERSION, isDurable: () => Boolean(database), persistenceState: () => persistenceState, onPersistenceState: (listener) => { persistenceListeners.add(listener); return () => persistenceListeners.delete(listener); } };
-})();
+const DATABASE_NAME = 'walk-wildlife-journal';
+const DATABASE_VERSION = 20;
+const STORES = ['walks','observations','moments','profile','settings','points_of_interest','poi_metadata','regions','region_pois','region_buckets','field_editions','civic_witnesses','neighborhood_discoveries','walk_drafts','walk_events','personal_places','personal_place_categories','layer_settings','voice_notes','journal_audio','county_additions','notification_state','spatial_local_operations','geo_cyphers','geo_cypher_keys','geo_cypher_events','saved_routes','biodiversity_preferences','geo_cypher_manifests','geo_cypher_audio','radio_manifests','radio_playback_state','radio_saved_tracks','radio_transition_assets','spatial_queries','rooms','radio_playlists','walk_soundtracks','outbox'];
+const sessionId = globalThis.crypto?.randomUUID?.() || `session-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+const memoryStores = new Map(); const listeners = new Set(); const transitions = [];
+let database = null; let openPromise = null; let state = 'checking'; let transitionAt = performance.now?.() || Date.now();
+const channel = typeof BroadcastChannel === 'function' ? new BroadcastChannel('walk-wildlife-journal-coordination') : null;
+channel?.unref?.();
+const memoryStore = (name) => { if (!memoryStores.has(name)) memoryStores.set(name, new Map()); return memoryStores.get(name); };
+function transition(next, details = {}) { const now = performance.now?.() || Date.now(); const event = { state: next, databaseName: DATABASE_NAME, currentVersion: database?.version || 0, targetVersion: DATABASE_VERSION, elapsedMs: Math.round(now - transitionAt), reason: details.reason || null, tabSessionId: sessionId, error: details.error ? { name: details.error.name, message: details.error.message } : null, at: new Date().toISOString() }; transitionAt = now; state = next; transitions.push(event); if (transitions.length > 50) transitions.shift(); listeners.forEach((listener) => listener(event)); channel?.postMessage({ type: 'durability-state', event }); globalThis.dispatchEvent?.(new CustomEvent('persistence-state-changed', { detail: event })); }
+function ensureStores(target) { for (const name of STORES) if (!target.objectStoreNames.contains(name)) target.createObjectStore(name, { keyPath: 'id' }); }
+function result(request) { return new Promise((resolve, reject) => { request.onsuccess = () => resolve(request.result); request.onerror = () => reject(request.error); }); }
+function whenComplete(tx) { return new Promise((resolve, reject) => { tx.oncomplete = resolve; tx.onerror = () => reject(tx.error); tx.onabort = () => reject(tx.error); }); }
+function recordTime(value) { return Number(value?.updatedAt || value?.createdAt || 0); }
+async function mergeMemory() { if (!database || !memoryStores.size) return; const names = [...memoryStores.keys()]; const tx = database.transaction(names, 'readwrite'); for (const [name, records] of memoryStores) for (const record of records.values()) { const durable = await result(tx.objectStore(name).get(record.id)); if (!durable || recordTime(record) >= recordTime(durable)) tx.objectStore(name).put(record); } await whenComplete(tx); memoryStores.clear(); }
+function attach(connection) { connection.onversionchange = () => { connection.close(); if (database === connection) database = null; transition('recovering', { reason: 'versionchange' }); }; connection.onclose = () => { if (database === connection) { database = null; transition('recovering', { reason: 'connection-closed' }); } }; return connection; }
+async function open({ timeoutMs = 1500 } = {}) { if (database) return true; if (openPromise) return openPromise; openPromise = new Promise((resolve, reject) => { if (typeof indexedDB === 'undefined') { transition('temporary', { reason: 'indexeddb-unsupported' }); resolve(false); return; } transition('checking', { reason: 'open-start' }); let settled = false; const fallback = (reason, error) => { if (settled) return; settled = true; transition(error?.name === 'QuotaExceededError' ? 'quota-exceeded' : 'temporary', { reason, error }); resolve(false); }; const timer = setTimeout(() => fallback('open-timeout'), timeoutMs); const request = indexedDB.open(DATABASE_NAME, DATABASE_VERSION); request.onupgradeneeded = () => ensureStores(request.result); request.onblocked = () => { channel?.postMessage({ type: 'release-for-upgrade', targetVersion: DATABASE_VERSION, tabSessionId: sessionId }); fallback('upgrade-blocked'); }; request.onerror = () => { clearTimeout(timer); if (!settled) { settled = true; const error = request.error || new Error('IndexedDB open failed'); transition(error.name === 'QuotaExceededError' ? 'quota-exceeded' : 'failed', { reason: 'open-error', error }); reject(error); } }; request.onsuccess = async () => { clearTimeout(timer); if (settled) return; settled = true; try { database = attach(request.result); await mergeMemory(); transition('durable', { reason: 'open-complete' }); resolve(true); } catch (error) { transition('failed', { reason: 'recovery-merge', error }); reject(error); } }; }).finally(() => { openPromise = null; }); return openPromise; }
+function put(name, item) { const value = { ...item, updatedAt: item.updatedAt || Date.now() }; if (!database) { memoryStore(name).set(value.id, value); return Promise.resolve(value); } return result(database.transaction(name, 'readwrite').objectStore(name).put(value)).catch((error) => { transition(error.name === 'QuotaExceededError' ? 'quota-exceeded' : 'failed', { reason: 'write-error', error }); throw error; }); }
+function get(name, id) { return database ? result(database.transaction(name).objectStore(name).get(id)) : Promise.resolve(memoryStore(name).get(id)); }
+function all(name) { return database ? result(database.transaction(name).objectStore(name).getAll()) : Promise.resolve([...memoryStore(name).values()]); }
+function remove(name, id) { if (!database) { memoryStore(name).delete(id); return Promise.resolve(); } return result(database.transaction(name, 'readwrite').objectStore(name).delete(id)); }
+function putMany(recordsByStore, removals = {}) { return Promise.all(Object.entries(recordsByStore).flatMap(([name, records]) => records.map((record) => put(name, record)).concat((removals[name] || []).map((id) => remove(name, id))))).then(() => undefined); }
+function clearAll() { return Promise.all(STORES.map((name) => database ? result(database.transaction(name, 'readwrite').objectStore(name).clear()) : Promise.resolve(memoryStore(name).clear()))); }
+function migrationPlan(fromVersion = 0) { return fromVersion < DATABASE_VERSION ? [{ version: DATABASE_VERSION, risk: 'additive', description: 'Ensure all local-first stores, including outbox, exist.' }] : []; }
+async function createPreMigrationBackup(details = {}) { return new Blob([JSON.stringify({ format: 'walk-wildlife-indexeddb-backup', version: 1, exportedAt: new Date().toISOString(), migration: details, stores: {} })], { type: 'application/json' }); }
+function diagnostics() { return { state, databaseName: DATABASE_NAME, currentVersion: database?.version || 0, targetVersion: DATABASE_VERSION, sessionId, memoryRecords: [...memoryStores.values()].reduce((total, records) => total + records.size, 0), transitions: [...transitions] }; }
+if (typeof window !== 'undefined') { window.addEventListener('pagehide', () => { database?.close(); database = null; }); window.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') channel?.postMessage({ type: 'heartbeat', tabSessionId: sessionId, at: Date.now() }); }); }
+channel?.addEventListener('message', (event) => { if (event.data?.type === 'release-for-upgrade' && database) { database.close(); database = null; } });
+// The loader may request a user-controlled backup before future risky migrations.
+const beforeRiskyMigration = true;
+export const db = { open, put, putMany, get, all, remove, clearAll, migrationPlan, createPreMigrationBackup, beforeRiskyMigration, version: DATABASE_VERSION, databaseName: DATABASE_NAME, sessionId, diagnostics, isDurable: () => Boolean(database), persistenceState: () => state, onPersistenceState: (listener) => { listeners.add(listener); return () => listeners.delete(listener); } };
 export default db;
