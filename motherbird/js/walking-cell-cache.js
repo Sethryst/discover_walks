@@ -16,7 +16,7 @@ export class WalkingCellCache {
       await this.#touch(release, cellId, kind, file.size);
       return file;
     }
-    catch (error) { if (error?.name === 'NotFoundError') return null; throw error; }
+    catch (error) { if (error?.name === 'NotFoundError') { await this.#forget(release, cellId, kind).catch(() => {}); return null; } throw storageError('MISSING_ARTIFACT', `Walking-cell artifact is missing: ${release}/${cellId}/${kind}.`, error); }
   }
 
   async ensure(release, cell, kind) {
@@ -121,25 +121,27 @@ export function opfsPath(release, cellId, kind) {
 }
 
 async function verifySha256(blob, declared) {
-  if (!globalThis.crypto?.subtle) throw new Error('Artifact checksum verification is unavailable.');
+  if (!globalThis.crypto?.subtle) throw storageError('DATABASE_UNAVAILABLE', 'Artifact checksum verification is unavailable.');
   const actual = [...new Uint8Array(await crypto.subtle.digest('SHA-256', await blob.arrayBuffer()))].map((value) => value.toString(16).padStart(2, '0')).join('');
-  if (actual !== String(declared).replace(/^sha256:/i, '').toLowerCase()) throw new Error('Cell artifact checksum does not match.');
+  if (actual !== String(declared).replace(/^sha256:/i, '').toLowerCase()) throw storageError('CHECKSUM_MISMATCH', 'Cell artifact checksum does not match.');
 }
 
 async function verifyArtifact(blob, artifact, kind, release, cell) {
-  if (artifact.bytes != null && blob.size !== Number(artifact.bytes)) throw new Error(`${cell.id} ${kind} artifact size does not match its manifest.`);
-  if (artifact.byteRange && blob.size !== artifact.byteRange.length) throw new Error(`${cell.id} ${kind} range is incomplete.`);
+  if (artifact.bytes != null && blob.size !== Number(artifact.bytes)) throw storageError('CHECKSUM_MISMATCH', `${cell.id} ${kind} artifact size does not match its manifest.`);
+  if (artifact.byteRange && blob.size !== artifact.byteRange.length) throw storageError('CHECKSUM_MISMATCH', `${cell.id} ${kind} range is incomplete.`);
   if (artifact.sha256) await verifySha256(blob, artifact.sha256);
   if (kind === 'graph') await verifyGraph(blob, release, cell);
 }
 
 async function verifyGraph(blob, release, cell) {
   let graph;
-  try { graph = JSON.parse(await blob.text()); } catch (_) { throw new Error('Cell routing graph JSON is malformed.'); }
-  if (graph?.schema_version !== 1 || graph?.format !== 'motherbird-runtime-graph-v1') throw new Error('Cell routing graph version is unsupported.');
+  try { graph = JSON.parse(await blob.text()); } catch (_) { throw storageError('MALFORMED_ARTIFACT', 'Cell routing graph JSON is malformed.'); }
+  if (graph?.schema_version !== 1 || graph?.format !== 'motherbird-runtime-graph-v1') throw storageError('MALFORMED_ARTIFACT', 'Cell routing graph version is unsupported.');
   const expectedDataset = `${release}:${cell.id}`;
-  if (graph.source_version !== release || graph.dataset_id !== expectedDataset) throw new Error('Cell routing graph metadata does not match its registry entry.');
+  if (graph.source_version !== release || graph.dataset_id !== expectedDataset) throw storageError('CHECKSUM_MISMATCH', 'Cell routing graph metadata does not match its registry entry.');
 }
+
+function storageError(code, message, cause) { const error = new Error(message, cause ? { cause } : undefined); error.code = code; return error; }
 
 function safePart(value) {
   const part = String(value || '').replace(/[^A-Za-z0-9._-]/g, '_').slice(0, 128);

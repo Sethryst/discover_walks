@@ -50,6 +50,11 @@ test('walking-cell writes use temporary OPFS files before finalizing', async () 
   assert.match(source, /removeEntry\(temporaryName\)/);
 });
 
+test('walking-cell corruption paths expose structured recovery codes', async () => {
+  const source = await (await import('node:fs/promises')).readFile(new URL('../js/walking-cell-cache.js', import.meta.url), 'utf8');
+  for (const code of ['MISSING_ARTIFACT', 'CHECKSUM_MISMATCH', 'MALFORMED_ARTIFACT', 'DATABASE_UNAVAILABLE']) assert.match(source, new RegExp(code));
+});
+
 test('OPFS paths are release/cell scoped and personal scores do not mutate topology', () => {
   assert.equal(opfsPath('2026-09', 'fine', 'graph'), 'walking-cells/2026-09/fine/routing-graph.json');
   const edges = Object.freeze(['a', 'b']);
