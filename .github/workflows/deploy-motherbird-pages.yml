@@ -43,6 +43,7 @@ jobs:
         working-directory: motherbird
         run: |
           npm test -- --runInBand
+          npm run test:storage-contract
           node --test tests/kpi-index.test.mjs
 
       - name: Build Motherbird
@@ -70,3 +71,13 @@ jobs:
         env:
           MOTHERBIRD_SMOKE_URL: ${{ steps.deployment.outputs.page_url }}
         run: npm run test:pages-smoke
+
+      - name: Upload browser diagnostics on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: motherbird-deployment-diagnostics
+          path: |
+            motherbird/test-results/
+            motherbird/playwright-report/
+          if-no-files-found: ignore
