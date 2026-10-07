@@ -90,6 +90,21 @@ export function buildAmbientExplanation(route) {
   return parts.length ? `Adds ${parts.join(' and ')}.` : route.archetype === 'quiet' ? 'A lower-exposure option where mapped evidence supports it.' : 'A route with verified places to notice.';
 }
 
+export function buildInWalkSuggestion({ plan, alternatives = [], offered = false } = {}) {
+  if (offered || !plan || !alternatives.length) return null;
+  const candidate = alternatives.find((route) => route.id !== plan.id && route.archetype !== 'direct') || alternatives[0];
+  if (!candidate) return null;
+  const extra = Number(candidate.facts?.extraMinutes || 0);
+  const fact = candidate.archetype === 'discovery' && Number(candidate.facts?.poiCount || 0) > 0
+    ? 'A reviewed place is available ahead.'
+    : candidate.archetype === 'quiet' && Number(candidate.features?.quiet || 0) > 0
+      ? 'A lower-exposure mapped option is available ahead.'
+      : candidate.archetype === 'quiet'
+        ? 'A mapped comfort option is available ahead.'
+        : 'There is another verified route available ahead.';
+  return { id: `ambient-suggestion-${candidate.id}`, candidateId: candidate.id, text: extra > 0 ? `${fact} It adds about ${Math.round(extra)} minutes.` : fact, archetype: candidate.archetype };
+}
+
 export function recordAmbientResponse(memory, response, now = Date.now()) {
   const next = normalizeMemory(memory, now);
   const archetype = String(response?.archetype || '');

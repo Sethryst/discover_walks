@@ -26,6 +26,7 @@ import { restartCoachMarks } from './coach.js';
 import { savePlannedRoute } from './saved-routes.js';
 import { recordSessionRoutingOutcome } from './routing-feedback.js';
 import { openRoomForPlace } from './room-runtime.js';
+import { buildInWalkSuggestion } from './ambient-mip.js?v=20261007-ambient-1';
 
 const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];
 
@@ -34,6 +35,9 @@ export function initEvents() {
   // Those surfaces may be unavailable during a first boot or migration.
   bindWalkControls();
   window.addEventListener('walk-position-received', ({ detail }) => void updateActiveManeuver(detail));
+  window.addEventListener('walk-ended', () => {
+    if (state.plannedRoute?.archetype) window.dispatchEvent(new CustomEvent('ambient-route-response', { detail: { archetype: state.plannedRoute.archetype, completed: true } }));
+  });
   initJournalPane();
   window.addEventListener('journal-data-changed', () => void renderArchive());
   bindSheets(); bindLocationControls(); bindCompanionMenu(); bindSearch(); bindJournal(); bindDeviceControls();
@@ -57,7 +61,10 @@ export function initEvents() {
     openRadioForContext({ roomId: title?.dataset?.roomId || null, stationIds });
   });
   bindMessengerBird();
-  window.addEventListener('walk-poi-encounter', (event) => void import('./walk.js').then(({ recordPoiEncounter }) => recordPoiEncounter(event.detail?.poi, event.detail?.distance)));
+  window.addEventListener('walk-poi-encounter', (event) => {
+    if (state.plannedRoute?.archetype === 'discovery') window.dispatchEvent(new CustomEvent('ambient-route-response', { detail: { archetype: 'discovery', visited: true } }));
+    void import('./walk.js').then(({ recordPoiEncounter }) => recordPoiEncounter(event.detail?.poi, event.detail?.distance));
+  });
   window.addEventListener('backpack-open-requested', openBackpack);
 }
 
@@ -67,6 +74,7 @@ let activeInstructionIndex = 1;
 async function updateActiveManeuver(position) {
   const target = el('activeManeuver'); const plan = state.plannedRoute; const instructions = plan?.instructions || [];
   if (!target || !instructions.length || !state.activeWalk) return;
+  offerAmbientSuggestion(position);
   if (target.dataset.routeId !== plan.id) { target.dataset.routeId = plan.id; activeInstructionIndex = 1; }
   const routeDistance = nearestRouteDistance(position, state.plannedRoute.coordinates || []);
   if (routeDistance > 75 && !rerouting && Date.now() - lastRerouteAt > 10000) {
@@ -97,6 +105,36 @@ async function updateActiveManeuver(position) {
   const [lon, lat] = next.location || [];
   const distance = Math.round(Math.hypot((position.lat - lat) * 111000, (position.lng - lon) * 88000));
   target.textContent = `${next.text} in about ${Math.max(0, distance)} m`;
+}
+
+function offerAmbientSuggestion(position) {
+  const walk = state.activeWalk; const plan = state.plannedRoute; const container = el('ambientWalkSuggestion');
+  if (!walk || !plan || !container || walk.ambientSuggestionOffered) return;
+  const suggestion = buildInWalkSuggestion({ plan, alternatives: (state.planOptions || []).filter((option) => option.id !== plan.id), offered: false });
+  if (!suggestion) return;
+  walk.ambientSuggestionOffered = true;
+  container.classList.remove('hidden');
+  container.innerHTML = `<p>${escapeHtml(suggestion.text)}</p><div><button type="button" class="primary-button" data-ambient-suggestion-accept>Try it</button><button type="button" class="secondary-button" data-ambient-suggestion-ignore>Not now</button><button type="button" class="plain-button" data-ambient-suggestion-reject>Don’t suggest this</button></div>`;
+  container.querySelector('[data-ambient-suggestion-accept]')?.addEventListener('click', () => void acceptAmbientSuggestion(suggestion, position));
+  container.querySelector('[data-ambient-suggestion-ignore]')?.addEventListener('click', () => finishAmbientSuggestion(suggestion, 'ignored'));
+  container.querySelector('[data-ambient-suggestion-reject]')?.addEventListener('click', () => finishAmbientSuggestion(suggestion, 'rejected'));
+}
+
+async function acceptAmbientSuggestion(suggestion, position) {
+  const container = el('ambientWalkSuggestion'); const current = state.plannedRoute; const candidate = (state.planOptions || []).find((option) => option.id === suggestion.candidateId);
+  if (!current || !candidate) return;
+  const destination = current.destination || state.plannerEnd || candidate.destination || candidate.stops?.at(-1);
+  const points = [{ lat: position.lat, lng: position.lng }, ...(candidate.stops || []), ...(destination ? [destination] : [])];
+  const routed = await routeOnFoot(points, { city: current.city, profile: candidate.archetype === 'quiet' ? 'accessible_verified' : 'ordinary_walking_beta' });
+  if (!routed.ok) { container.querySelector('p').textContent = 'That option is no longer available here.'; return; }
+  state.plannedRoute = { ...candidate, coordinates: routed.coordinates, distanceMeters: routed.distanceMeters, durationSeconds: routed.durationSeconds, instructions: routed.instructions, edgeIds: routed.edgeIds, graphVersion: routed.graphVersion, cellId: routed.cellId, cellRelease: routed.cellRelease };
+  finishAmbientSuggestion(suggestion, 'accepted');
+  window.dispatchEvent(new CustomEvent('walk-sketch-painted', { detail: state.plannedRoute }));
+}
+
+function finishAmbientSuggestion(suggestion, response) {
+  el('ambientWalkSuggestion')?.classList.add('hidden');
+  window.dispatchEvent(new CustomEvent('ambient-route-response', { detail: { archetype: suggestion.archetype, [response]: true } }));
 }
 
 function nearestRouteDistance(point, coordinates) {
@@ -434,6 +472,7 @@ function bindWalkControls() {
   el('dismissWalkSketch')?.addEventListener('click', () => { changePlan(); setPlanningMode(false); el('walkSketch').classList.add('hidden'); });
   el('startPlannedWalkButton')?.addEventListener('click', async () => {
     if (!state.plannedRoute) return; lockSelectedPlanOnMap(); el('walkSketch').classList.remove('hidden');
+    if (state.plannedRoute.archetype) window.dispatchEvent(new CustomEvent('ambient-route-response', { detail: { archetype: state.plannedRoute.archetype, accepted: true } }));
     setPlanningMode(false); await startWalk({ routeMode: state.plannedRoute.routeMode || 'tracking' });
   });
   el('sendWalkPlanButton')?.addEventListener('click', () => void sendCurrentWalkPlan());
@@ -442,7 +481,7 @@ function bindWalkControls() {
     const title = window.prompt('Name this route', state.plannedRoute.title || 'Saved route');
     if (title === null) return;
     const notes = window.prompt('Add route notes (optional)', '') ?? '';
-    try { await savePlannedRoute(state.plannedRoute, { title, notes }); toast('Route saved in My Places.'); }
+    try { await savePlannedRoute(state.plannedRoute, { title, notes }); if (state.plannedRoute.archetype) window.dispatchEvent(new CustomEvent('ambient-route-response', { detail: { archetype: state.plannedRoute.archetype, saved: true } })); toast('Route saved in My Places.'); }
     catch (error) { toast(error.message || 'Route could not be saved.'); }
   });
   el('companionButton')?.addEventListener('click', async () => {

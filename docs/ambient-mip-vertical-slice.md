@@ -9,9 +9,16 @@ set of reviewed nearby discovery and mapped comfort candidates. Only successful
 automatically; distinct alternatives remain available from the route card.
 
 Ranking is deterministic and may use temporary device-local evidence. Evidence
-decays over 90 days and is updated only from explicit route responses. It is a
-soft ranking signal: it cannot make an invalid graph route feasible, bypass an
-access policy, or replace closure/accessibility evidence.
+decays over 90 days and is updated from explicit responses plus bounded
+observations such as starting, saving, visiting a suggested place, completing a
+walk, ignoring a suggestion, or rejecting one. It is a soft ranking signal: it
+cannot make an invalid graph route feasible, bypass an access policy, or replace
+closure/accessibility evidence.
+
+During an active walk, at most one alternative is offered. The prompt is
+fact-backed and optional; accepting it re-routes from the current location
+through the verified router before changing the active plan. Ignore and reject
+responses are local negative evidence, not claims about the user's feelings.
 
 The build-time matcher in `motherbird/tools/mip-corridor-matcher.mjs` keeps
 official trail alignment separate from flowline adjacency. Official lines are

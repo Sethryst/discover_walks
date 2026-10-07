@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
   buildAmbientExplanation,
+  buildInWalkSuggestion,
   distinctEnough,
   generateAmbientOptions,
   inferWalkingIntention,
@@ -54,4 +55,16 @@ test('intention remains conservative and local evidence is decayed', () => {
 test('alternative gate and explanations stay factual', () => {
   assert.equal(distinctEnough({ archetype: 'discovery', edgeIds: ['a', 'b'] }, { archetype: 'quiet', edgeIds: ['a', 'b'] }), false);
   assert.equal(buildAmbientExplanation({ archetype: 'discovery', facts: { corridorName: 'W&OD', corridorMeters: 1200, poiCount: 1, extraMinutes: 8 } }), 'Adds 1.2 km of W&OD and 1 reviewed place and 8 extra minutes.');
+});
+
+test('in-walk suggestion is one-shot, optional, and fact-backed', () => {
+  const suggestion = buildInWalkSuggestion({
+    plan: { id: 'direct', archetype: 'direct' },
+    alternatives: [{ id: 'discovery-1', archetype: 'discovery', facts: { poiCount: 1, extraMinutes: 6 } }]
+  });
+  assert.deepEqual(suggestion, {
+    id: 'ambient-suggestion-discovery-1', candidateId: 'discovery-1', archetype: 'discovery',
+    text: 'A reviewed place is available ahead. It adds about 6 minutes.'
+  });
+  assert.equal(buildInWalkSuggestion({ plan: { id: 'direct' }, alternatives: [suggestion], offered: true }), null);
 });
