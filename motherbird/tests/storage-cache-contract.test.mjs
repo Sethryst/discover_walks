@@ -75,3 +75,9 @@ test('friend-walk tickets use the shared leased outbox', async () => {
   assert.match(source, /db\.claimOutbox/);
   assert.doesNotMatch(source, /db\.put\('settings', item\)/);
 });
+
+test('spatial sync prefers the shared outbox coordinator', async () => {
+  const source = await readFile(new URL('../js/spatial-sync-outbox.js', import.meta.url), 'utf8');
+  assert.match(source, /store\.enqueueOutbox/);
+  assert.match(source, /kind: 'spatial-sync'/);
+});
