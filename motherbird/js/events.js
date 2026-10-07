@@ -26,7 +26,7 @@ import { restartCoachMarks } from './coach.js';
 import { savePlannedRoute } from './saved-routes.js';
 import { recordSessionRoutingOutcome } from './routing-feedback.js';
 import { openRoomForPlace } from './room-runtime.js';
-import { buildInWalkSuggestion } from './ambient-mip.js?v=20261007-ambient-4';
+import { buildInWalkSuggestion } from './ambient-mip.js?v=20261007-ambient-5';
 
 const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];
 function ambientResponse(plan, signal) { return { archetype: plan?.archetype, traits: plan?.ambientTraits || [], [signal]: true }; }
