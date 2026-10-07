@@ -571,6 +571,13 @@ function bindLayerControls() {
   window.addEventListener('public-markers-changed', () => { ensureLayerDefaults(); applyLayerChanges({ rerenderFilters: false }); });
   window.addEventListener('layer-state-dirty', () => applyLayerChanges());
   window.addEventListener('map-viewport-changed', () => { renderMapLights(); renderRouteLights(); });
+  // Regional enrichment is opt-in. Opening Explore is the first deliberate
+  // request for the large journeys/trails/OSM payloads; never parse them
+  // while the app is booting or while a walk is already in progress.
+  window.addEventListener('map-workspace-changed', ({ detail }) => {
+    if (detail?.destination !== 'explore' || !detail.open || state.activeWalk?.recordingStatus === 'recording') return;
+    void import('./city.js').then(({ loadCityEnrichment }) => loadCityEnrichment(state.activeCity));
+  });
   window.addEventListener('city-layer-data-changed', async () => {
     civicAvailability = await loadCivicAvailability();
     await refreshPublicMarkers(state.activeCity);

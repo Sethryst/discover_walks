@@ -153,7 +153,6 @@ export async function switchCity(nextCity, recenter = true, { source = 'user' } 
   state.poiTags.clear();
   await db.put('settings', state.settings);
   await refreshCityMap(recenter);
-  void loadCityEnrichment(nextCity);
   const regionLabel = cityLabel(nextCity);
   const search = document.getElementById('mapSearchInput');
   if (search) {
