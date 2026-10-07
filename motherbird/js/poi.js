@@ -135,8 +135,10 @@ export function poiMatchesSelectedTags(poi, selectedTags = new Set()) {
   const tags = poiTags(poi);
   return [...selectedTags].some((tag) => tag === 'osm' ? isOsmPoi(poi) : tags.includes(tag));
 }
-export function renderCityPois() {
+export function renderCityPois({ preserveInteraction = true } = {}) {
   if (!state.poiLayer) return;
+  const openPopupSource = preserveInteraction ? state.map?._popup?._source : null;
+  const openPopupId = openPopupSource?.options?.place?.id;
   state.poiLayer.clearLayers(); state.trailLayer.clearLayers();
   const pois = state.cityPois[state.activeCity] || [];
   const visiblePois = pois
@@ -173,6 +175,12 @@ export function renderCityPois() {
   const segments = state.trailSegments[state.activeCity] || [];
   if (state.layerLights?.recreation && state.layerFilters?.public?.trail !== false) {
     segments.forEach((segment) => segment.coordinates.forEach((coordinates) => L.polyline(coordinates.map(([lng, lat]) => [lat, lng]), { color: '#2d7259', weight: 5, opacity: .82 }).bindTooltip(segment.name || 'Named trail').addTo(state.trailLayer)));
+  }
+  // Enrichment can arrive while someone is reading a place. Reopen the same
+  // popup after the atomic layer swap so the user does not lose their context.
+  if (openPopupId != null && state.map) {
+    const replacement = markers.find((marker) => String(marker.options.place?.id) === String(openPopupId));
+    if (replacement) requestAnimationFrame(() => replacement.openPopup());
   }
   state.historyRadiusLayer?.clearLayers();
 }
