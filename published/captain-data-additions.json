@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "kind": "captain-data-additions",
+  "generatedAt": "2026-10-07T00:00:00Z",
+  "publicationState": "static-strategy",
+  "decisionRule": "Prefer a small, source-backed data product that changes what a walker can do or notice over a large undifferentiated catalogue.",
+  "rankedAdditions": [
+    {
+      "rank": 1,
+      "id": "curated-walking-loops",
+      "edition": "Route-ready regional walks",
+      "walkerValue": 5,
+      "coverageLeverage": 4,
+      "evidenceQuality": 5,
+      "implementationCost": 3,
+      "whyNow": "The app already has journey loading, route selection, entrance markers, and map rendering; the missing value is a small set of editor-reviewed loops with entrances, cautions, and source evidence.",
+      "firstRelease": "Six DC/Fairfax loops across distinct neighborhoods and landscapes.",
+      "acceptance": "Every loop has a bounded geometry, verified entrance, distance/time estimate, accessibility note, seasonal caution, and source record.",
+      "status": "BUILD_NEXT"
+    },
+    {
+      "rank": 2,
+      "id": "place-change-and-closure-signals",
+      "edition": "Official Now / Place / Change",
+      "walkerValue": 5,
+      "coverageLeverage": 5,
+      "evidenceQuality": 5,
+      "implementationCost": 3,
+      "whyNow": "The News UI and civic package contract already exist, but source availability is inconsistent; a bounded official-source registry with expiry and visible freshness would make the existing News surface reliable.",
+      "firstRelease": "Parks, trail closures, construction, and public-space notices for the ten most-used regions.",
+      "acceptance": "Each notice has an official URL, location, effective/expiry semantics, source authority, and an explicit empty state when no current notice exists.",
+      "status": "RESEARCH_AND_BUILD"
+    },
+    {
+      "rank": 3,
+      "id": "walking-comfort-and-access",
+      "edition": "Comfort-aware walking layer",
+      "walkerValue": 5,
+      "coverageLeverage": 4,
+      "evidenceQuality": 4,
+      "implementationCost": 3,
+      "whyNow": "The map and filters already recognize water, restrooms, benches, shade, crossings, barriers, and accessibility tags; normalizing these into route-relevant amenities produces immediate practical value.",
+      "firstRelease": "Verified restrooms, drinking water, benches, shade, accessible entrances, crossings, and known barriers around published loops.",
+      "acceptance": "Records distinguish mapped presence from verified availability and retain source/date; routing never infers accessibility from absence of a barrier.",
+      "status": "BUILD_AFTER_LOOPS"
+    },
+    {
+      "rank": 4,
+      "id": "water-corridors",
+      "edition": "Follow this creek",
+      "walkerValue": 4,
+      "coverageLeverage": 4,
+      "evidenceQuality": 5,
+      "implementationCost": 3,
+      "whyNow": "The app already has watershed learning and water layers; clipped NHD flowlines would turn a static basin fact into a named corridor and route companion.",
+      "firstRelease": "Difficult Run, Accotink Creek, Scotts Run, Pimmit Run, and Four Mile Run.",
+      "acceptance": "Named flowlines are clipped to the region, carry source vintage and URL, and are rendered as discoverable lines rather than point floods.",
+      "status": "RESEARCH_READY"
+    },
+    {
+      "rank": 5,
+      "id": "seasonal-nature-signals",
+      "edition": "Nature recorded here, refreshed",
+      "walkerValue": 4,
+      "coverageLeverage": 5,
+      "evidenceQuality": 4,
+      "implementationCost": 2,
+      "whyNow": "Biodiversity is already a first-class Learn surface with local notes and an iNaturalist handoff; expanding the static sidecar coverage is lower-cost than inventing a new product surface.",
+      "firstRelease": "Use GBIF/iNaturalist/eBird only for regional, time-qualified records with clear historical/community wording.",
+      "acceptance": "No record implies current presence; every card carries source, observation vintage, and the existing uncertainty language.",
+      "status": "IN_FLIGHT"
+    },
+    {
+      "rank": 6,
+      "id": "offline-pedestrian-routing",
+      "edition": "Offline route confidence",
+      "walkerValue": 5,
+      "coverageLeverage": 5,
+      "evidenceQuality": 5,
+      "implementationCost": 5,
+      "whyNow": "It is strategically foundational for regional packages, but its exporter/worker/validation work is larger than the additions above.",
+      "firstRelease": "One validated DC/Fairfax package with typed unavailable/no-route failures and offline reload verification.",
+      "acceptance": "No straight-line fallback, graph checksums pass, worker search is bounded, and routing works with network disabled.",
+      "status": "FOUNDATION_PROGRAM"
+    }
+  ],
+  "captainCall": {
+    "nextBuild": "curated-walking-loops",
+    "parallelResearch": ["place-change-and-closure-signals", "walking-comfort-and-access"],
+    "doNotDoYet": ["nationally broad news crawling without an official-source contract", "large POI expansion without a walker encounter", "current-presence claims from biodiversity records", "runtime dependence on remote routing"],
+    "reason": "The first three choices compound: a route gives the user a reason to walk, current signals keep it trustworthy, and comfort/access data makes it usable in real conditions."
+  }
+}
