@@ -34,10 +34,21 @@ async function savePreference(regionId, recordId, patch) {
 function filtered(data, prefs, filters) {
   const query = filters.query.toLowerCase();
   return data.records.filter((r) => filters.showHidden || !prefs.get(r.recordId)?.hidden)
+    .filter((r) => state.layerFilters?.public?.[biodiversityCategoryFor(r)] !== false)
     .filter((r) => filters.month === 'all' || r.month === Number(filters.month))
     .filter((r) => filters.group === 'all' || r.kingdom === filters.group)
     .filter((r) => !query || `${r.commonName || ''} ${r.scientificName} ${r.kingdom || ''}`.toLowerCase().includes(query))
     .sort((a, b) => filters.sort === 'name' ? (a.commonName || a.scientificName).localeCompare(b.commonName || b.scientificName) : filters.sort === 'month' ? a.month - b.month || b.observationCount - a.observationCount : b.observationCount - a.observationCount || a.scientificName.localeCompare(b.scientificName));
+}
+export function biodiversityCategoryFor(record) {
+  const value = String(record?.class || '').toLowerCase();
+  if (value === 'aves') return 'biodiversity:birds';
+  if (value === 'mammalia') return 'biodiversity:mammals';
+  if (value === 'insecta' || value === 'arachnida' || value === 'malacostraca') return 'biodiversity:insects';
+  if (value === 'testudines' || value === 'reptilia' || value === 'amphibia') return 'biodiversity:reptiles';
+  if (String(record?.kingdom) === 'Plantae') return 'biodiversity:plants';
+  if (String(record?.kingdom) === 'Fungi' || /lichen/i.test(String(record?.class || ''))) return 'biodiversity:fungi';
+  return 'biodiversity:other';
 }
 function card(record, pref) {
   const title = pref?.title || record.commonName || record.scientificName;

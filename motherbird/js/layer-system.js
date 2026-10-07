@@ -14,6 +14,7 @@ import { syncNewsStory } from './learn-change.js';
 import { drawStories } from './stories.js';
 
 export const LAYER_GROUPS = [
+  { id: 'nature_observations', light: 'recreation', label: 'Nature observations', description: 'iNaturalist community records by source taxon group', tags: ['biodiversity:birds', 'biodiversity:plants', 'biodiversity:mammals', 'biodiversity:insects', 'biodiversity:fungi', 'biodiversity:reptiles', 'biodiversity:other'] },
   { id: 'walking_network', light: 'recreation', label: 'Walking network', description: 'Routes, crossings, and access conditions', tags: ['trail', 'walkway', 'crossing', 'barrier'] },
   { id: 'nature_water', light: 'recreation', label: 'Nature & water', description: 'Nature, water, scenery, and recreation', tags: ['nature', 'water', 'scenic', 'recreation', 'park', 'wildlife', 'water_access', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad'] },
   { id: 'places_services', light: 'recreation', label: 'Places & services', description: 'Rest, civic places, transit, and food & drink', tags: ['rest', 'bench', 'shelter', 'shade', 'restrooms', 'historic', 'civic', 'transit', 'market', 'farmers_market', 'restaurant', 'fast_food', 'coffee', 'coffee_shop', 'cafe', 'food_cart', 'bakery'] },
@@ -111,7 +112,7 @@ export function buildLayerGroups() {
 }
 
 function shouldShowEmptyStandard(id) {
-  return ['trail', 'walkway', 'crossing', 'barrier', 'nature', 'water', 'scenic', 'recreation', 'rest', 'historic', 'civic', 'transit', 'restaurant', 'coffee', 'library', 'wifi', 'public_art', 'community', 'osm', 'argentinian', 'british', 'crepe', 'greek', 'latin_american', 'tea', 'turkish'].includes(id);
+  return ['trail', 'walkway', 'crossing', 'barrier', 'nature', 'water', 'scenic', 'recreation', 'rest', 'historic', 'civic', 'transit', 'restaurant', 'coffee', 'library', 'wifi', 'public_art', 'community', 'osm', 'argentinian', 'british', 'crepe', 'greek', 'latin_american', 'tea', 'turkish'].includes(id) || id.startsWith('biodiversity:');
 }
 
 function publicOption(id, sourceLabel, pois) {
@@ -140,7 +141,7 @@ function ensureLayerDefaults() {
     if (!(group.id in state.layerUiState.expanded)) state.layerUiState.expanded[group.id] = true;
     for (const option of group.options) {
       const bucket = state.layerFilters[option.kind];
-      if (!(option.id in bucket)) bucket[option.id] = option.kind === 'public' ? (option.id === 'event' ? state.layerLights.news : recreationTag(option.id) || isFoodFilterTag(option.id)) : true;
+      if (!(option.id in bucket)) bucket[option.id] = option.kind === 'public' ? (option.id.startsWith('biodiversity:') ? false : (option.id === 'event' ? state.layerLights.news : recreationTag(option.id) || isFoodFilterTag(option.id))) : true;
     }
   }
   for (const id of ['__routes', '__volunteer']) if (!(id in state.layerFilters.public)) state.layerFilters.public[id] = id === '__routes';
