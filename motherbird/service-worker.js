@@ -1,7 +1,7 @@
 // Keep the whole module graph with the shell. Caching only app.js leaves an
 // offline (or briefly disconnected) reload with a blank app when any imported
 // module was not already in the runtime cache.
-const APP_CACHE = 'walk-wildlife-shell-v355'; // Keep large regional enrichment out of startup
+const APP_CACHE = 'walk-wildlife-shell-v356'; // Keep large regional enrichment out of startup
 const TILE_CACHE = 'walk-wildlife-osm-viewed-tiles-v1';
 const LIBRARY_CACHE = 'walk-wildlife-library-v2';
 const COMPANION_CACHE = 'walk-wildlife-companion-media-v2';
@@ -51,7 +51,11 @@ const shell = [
 // pack to install-time precache: that turns a shell update into a large,
 // unrelated download for devices that may only ever use one region.
 shell.push('./js/regional-navigation.js', './data/regional-navigation.json');
-const shellPaths = new Set(shell.map((asset) => new URL(asset, self.registration.scope).pathname));
+// Large regional packs and routing artifacts are loaded only when a region
+// or route is actually opened. Precaching them makes a service-worker update
+// download tens of megabytes and can leave mobile browsers looking frozen.
+const installShell = shell.filter((asset) => !/(^|\/)(?:[^/]*-)?poi(?:s)?\.json$|(^|\/)records\.json$|(^|\/)cells\.json$|neighborhoods\.geojson$|runtime-graph\.json$/i.test(asset));
+const shellPaths = new Set(installShell.map((asset) => new URL(asset, self.registration.scope).pathname));
 const libraryAssets = [
   './vendor/leaflet/leaflet.css',
   './vendor/leaflet/leaflet.js',
@@ -72,7 +76,7 @@ const libraryAssets = [
 
 
 self.addEventListener('install', (event) => event.waitUntil(Promise.all([
-  caches.open(APP_CACHE).then((cache) => cache.addAll(shell)),
+  caches.open(APP_CACHE).then((cache) => cache.addAll(installShell)),
   caches.open(LIBRARY_CACHE).then(async (cache) => {
     await Promise.all(libraryAssets.map(async (asset) => {
       try {
