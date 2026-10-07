@@ -36,3 +36,9 @@ test('migration backup contains local store records and never reports telemetry 
   assert.ok(Array.isArray(parsed.stores.settings));
   assert.equal(Object.hasOwn(parsed, 'transitions'), false);
 });
+
+test('storage source observes connection error and transaction abort lifecycle events', async () => {
+  const source = await (await import('node:fs/promises')).readFile(new URL('../js/storage.js', import.meta.url), 'utf8');
+  assert.match(source, /reason: 'connection-error'/);
+  assert.match(source, /reason: 'transaction-abort'/);
+});
