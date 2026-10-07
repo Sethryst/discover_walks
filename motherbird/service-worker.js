@@ -84,7 +84,7 @@ self.addEventListener('install', (event) => event.waitUntil(Promise.all([
       } catch (_) { /* The app can still install if a CDN is briefly unavailable. */ }
     }));
   })
-])));
+])).then(() => self.skipWaiting())));
 
 // An installed PWA keeps using its complete current shell until the page asks
 // the fully-downloaded replacement to activate. IndexedDB is never touched by
@@ -103,7 +103,15 @@ self.addEventListener('activate', (event) => event.waitUntil(
         ))
         .map((key) => caches.delete(key))
     )),
-    self.clients.claim()
+    self.clients.claim(),
+    self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((windows) => {
+      // Post first for current builds; navigate is the compatibility fallback
+      // for tabs running an older app.js that does not know FORCE_RELOAD.
+      return Promise.all(windows.map((client) => {
+        client.postMessage({ type: 'FORCE_RELOAD', reason: 'new-app-cache' });
+        return client.navigate(client.url).catch(() => null);
+      }));
+    })
   ])
 ));
 

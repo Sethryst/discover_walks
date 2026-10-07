@@ -1,5 +1,11 @@
 /* Discover Walks Journal — local-first walking, history, and nature journal. */
 const startupStartedAt = performance.now();
+let forcedReload = false;
+if ('serviceWorker' in navigator) navigator.serviceWorker.addEventListener('message', (event) => {
+  if (event.data?.type !== 'FORCE_RELOAD' || forcedReload) return;
+  forcedReload = true;
+  window.location.reload();
+});
 const startupTelemetry = (stage, details = {}) => {
   const event = { stage, elapsedMs: Math.round(performance.now() - startupStartedAt), ...details };
   globalThis.__MOTHERBIRD_STARTUP__ ||= { startedAt: new Date().toISOString(), stages: [] };
