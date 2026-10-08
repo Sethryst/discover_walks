@@ -12,15 +12,17 @@ import { civicNoticesFromPack, newsIsAvailable } from './civic-news.js';
 import { showCategoryCoach } from './coach.js';
 import { syncNewsStory } from './learn-change.js';
 import { drawStories } from './stories.js';
+import { setNationalOsmFamily } from './national-osm-layers.js';
 
 export const LAYER_GROUPS = [
-  { id: 'nature_observations', light: 'recreation', label: 'Nature observations', description: 'iNaturalist community records by source taxon group', tags: ['biodiversity:birds', 'biodiversity:plants', 'biodiversity:mammals', 'biodiversity:insects', 'biodiversity:fungi', 'biodiversity:reptiles', 'biodiversity:other'] },
+  { id: 'nature_observations', light: 'recreation', label: 'Nature & observations', description: 'Wildlife and biodiversity observations', tags: ['biodiversity:birds', 'biodiversity:plants', 'biodiversity:mammals', 'biodiversity:insects', 'biodiversity:fungi', 'biodiversity:reptiles', 'biodiversity:other'] },
   { id: 'walking_network', light: 'recreation', label: 'Walking network', description: 'Routes, crossings, and access conditions', tags: ['trail', 'walkway', 'crossing', 'barrier'] },
   { id: 'nature_water', light: 'recreation', label: 'Nature & water', description: 'Nature, water, scenery, and recreation', tags: ['nature', 'water', 'scenic', 'recreation', 'park', 'wildlife', 'water_access', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad'] },
-  { id: 'places_services', light: 'recreation', label: 'Places & services', description: 'Rest, civic places, transit, and food & drink', tags: ['rest', 'bench', 'shelter', 'shade', 'restrooms', 'historic', 'civic', 'transit', 'market', 'farmers_market', 'restaurant', 'fast_food', 'coffee', 'coffee_shop', 'cafe', 'food_cart', 'bakery'] },
-  { id: 'culture', light: 'news', label: 'History, art & culture', description: 'Public stories and creative places', tags: ['history', 'history_landmark', 'history_monument', 'history_museum', 'history_cemetery', 'history_marker', 'art', 'public_art'] },
+  { id: 'places_services', light: 'recreation', label: 'Rest & comfort', description: 'Useful places along the walk', tags: ['rest', 'bench', 'shelter', 'shade', 'restrooms', 'transit'] },
+  { id: 'culture', light: 'news', label: 'News & culture', description: 'Events, history, art, and public stories', tags: ['event', 'history', 'history_landmark', 'history_monument', 'history_museum', 'history_cemetery', 'history_marker', 'art', 'public_art', 'historic', 'civic'] },
   { id: 'community', light: 'news', label: 'Community & essentials', description: 'Public services and shared spaces', tags: ['community', 'facility', 'library', 'recreation_center', 'pantry', 'wifi'] },
-  { id: 'more', light: 'cuisine', label: 'More map layers', description: 'OpenStreetMap places and additional regional categories', tags: ['osm', 'argentinian', 'british', 'crepe', 'greek', 'latin_american', 'tea', 'turkish'] }
+  { id: 'cuisine', light: 'cuisine', label: 'Cuisine', description: 'Food, drinks, and places to stop', tags: ['market', 'farmers_market', 'restaurant', 'fast_food', 'coffee', 'coffee_shop', 'cafe', 'food_cart', 'bakery', 'argentinian', 'british', 'crepe', 'greek', 'latin_american', 'tea', 'turkish'] },
+  { id: 'more', light: 'cuisine', label: 'More map layers', description: 'OpenStreetMap places and additional regional categories', tags: ['osm'] }
 ];
 
 const STATIC_LABELS = {
@@ -112,7 +114,7 @@ export function buildLayerGroups() {
 }
 
 function shouldShowEmptyStandard(id) {
-  return ['trail', 'walkway', 'crossing', 'barrier', 'nature', 'water', 'scenic', 'recreation', 'rest', 'historic', 'civic', 'transit', 'restaurant', 'coffee', 'library', 'wifi', 'public_art', 'community', 'osm', 'argentinian', 'british', 'crepe', 'greek', 'latin_american', 'tea', 'turkish'].includes(id) || id.startsWith('biodiversity:');
+  return ['event', 'history', 'art', 'public_art', 'trail', 'walkway', 'crossing', 'barrier', 'nature', 'water', 'scenic', 'recreation', 'rest', 'historic', 'civic', 'transit', 'restaurant', 'coffee', 'library', 'wifi', 'community', 'facility', 'recreation_center', 'pantry', 'osm', 'argentinian', 'british', 'crepe', 'greek', 'latin_american', 'tea', 'turkish'].includes(id) || id.startsWith('biodiversity:');
 }
 
 function publicOption(id, sourceLabel, pois) {
@@ -141,7 +143,12 @@ function ensureLayerDefaults() {
     if (!(group.id in state.layerUiState.expanded)) state.layerUiState.expanded[group.id] = true;
     for (const option of group.options) {
       const bucket = state.layerFilters[option.kind];
-      if (!(option.id in bucket)) bucket[option.id] = option.kind === 'public' ? (option.id.startsWith('biodiversity:') ? false : (option.id === 'event' ? state.layerLights.news : recreationTag(option.id) || isFoodFilterTag(option.id))) : true;
+      if (!(option.id in bucket)) {
+        const groupLight = LAYER_GROUPS.find((group) => group.tags.includes(option.id))?.light;
+        bucket[option.id] = option.kind === 'public'
+          ? (option.id.startsWith('biodiversity:') ? false : state.layerLights[groupLight || (isFoodFilterTag(option.id) ? 'cuisine' : 'news')] !== false)
+          : true;
+      }
     }
   }
   for (const id of ['__routes', '__volunteer']) if (!(id in state.layerFilters.public)) state.layerFilters.public[id] = id === '__routes';
@@ -315,9 +322,9 @@ function lightModel() {
   const personalPins = curatedPersonalPlaces().filter((place) => !place.packId || place.packId === state.activeCity);
   const personal = state.personalPlaceCategories.map((category) => ({ id: category.id, label: category.name, tags: [], kind: 'personal' }));
   return [
-    { id: 'news', label: 'NEWS', icon: 'newspaper', available: newsAvailable(), chips: [], entries: newsEntries, hasChevron: false },
-    { id: 'recreation', label: 'REC', icon: 'tree', available: recreation.length > 0, chips: recreation, hasChevron: false },
-    { id: 'cuisine', label: 'CUISINE', icon: 'utensils', available: cuisine.length > 0, chips: cuisine, hasChevron: false },
+    { id: 'news', label: 'NEWS', icon: 'newspaper', available: true, chips: [], entries: newsEntries, hasChevron: false },
+    { id: 'recreation', label: 'REC', icon: 'tree', available: true, chips: recreation, hasChevron: false },
+    { id: 'cuisine', label: 'CUISINE', icon: 'utensils', available: true, chips: cuisine, hasChevron: false },
     { id: 'personal', label: state.personalPlaceSelecting ? 'USE THIS SPOT' : 'MY PLACES', available: false, chips: personal, hasChevron: true }
   ].filter((light) => light.available);
 }
@@ -372,8 +379,7 @@ function toggleLight(id) {
   if (!model) return;
   const enabled = !state.layerLights[id];
   state.layerLights[id] = enabled;
-  if (id === 'news') state.layerFilters.public.event = enabled;
-  model.chips.forEach((chip) => setChip(chip, enabled));
+  setNationalOsmFamily(id, enabled);
   applyLayerChanges();
 }
 

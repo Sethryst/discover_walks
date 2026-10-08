@@ -5,10 +5,16 @@ import { escapeHtml } from './utils.js';
 
 export const NATIONAL_OSM_LAYER_DEFAULTS = Object.freeze(['trail', 'nature']);
 export const NATIONAL_OSM_LAYER_GROUPS = Object.freeze([
-  { id: 'walking', label: 'Walking network', categoryIds: ['trail', 'walkway', 'crossing', 'barrier'] },
-  { id: 'nature', label: 'Nature & water', categoryIds: ['nature', 'waterfront', 'scenic', 'recreation'] },
-  { id: 'destinations', label: 'Places & services', categoryIds: ['rest', 'historic', 'civic', 'transit', 'food'] }
+  { id: 'news', label: 'News & culture', categoryIds: ['historic', 'civic'] },
+  { id: 'recreation', label: 'Rec · Walking network & nature', categoryIds: ['trail', 'walkway', 'crossing', 'barrier', 'nature', 'waterfront', 'scenic', 'recreation', 'rest', 'transit'] },
+  { id: 'cuisine', label: 'Cuisine', categoryIds: ['food'] }
 ]);
+
+const NATIONAL_FAMILY_CATEGORIES = Object.freeze({
+  news: ['historic', 'civic'],
+  recreation: ['trail', 'walkway', 'crossing', 'barrier', 'nature', 'waterfront', 'scenic', 'recreation', 'rest', 'transit'],
+  cuisine: ['food']
+});
 
 const categoryById = new Map(NATIONAL_POI_CATEGORIES.map((category) => [category.id, category]));
 
@@ -19,7 +25,14 @@ export function normalizedNationalOsmLayers(saved = null) {
 }
 
 export function enabledNationalOsmLayerIds(settings = state.nationalOsmLayers) {
-  return NATIONAL_POI_CATEGORIES.filter(({ id }) => settings?.[id] === true).map(({ id }) => id);
+  return NATIONAL_POI_CATEGORIES.filter(({ id }) => settings?.[id] === true && state.layerLights?.[nationalFamilyFor(id)] !== false).map(({ id }) => id);
+}
+
+function nationalFamilyFor(id) { return Object.entries(NATIONAL_FAMILY_CATEGORIES).find(([, ids]) => ids.includes(id))?.[0] || 'recreation'; }
+
+export function setNationalOsmFamily(family) {
+  if (!NATIONAL_FAMILY_CATEGORIES[family]) return;
+  window.dispatchEvent(new CustomEvent('national-osm-layers-changed', { detail: { enabled: enabledNationalOsmLayerIds() } }));
 }
 
 export function hasEnabledNationalOsmLayers(settings = state.nationalOsmLayers) {
