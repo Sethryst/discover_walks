@@ -6,7 +6,7 @@ import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261007-ambien
 import { escapeHtml } from './utils.js';
 import { toast } from './ui.js';
 import { splitDisconnectedPaths } from './routes.js';
-import { buildAmbientExplanation, generateAmbientOptions, installAmbientLearningListener, readAmbientMemory } from './ambient-mip.js?v=20261007-ambient-13';
+import { buildAmbientExplanation, generateAmbientOptions, installAmbientLearningListener, readAmbientMemory } from './ambient-mip.js?v=20261007-walk-moods-1';
 
 function selectedMinutes() { return Number(document.querySelector('input[name="walkTime"]:checked')?.value || 30); }
 function selectedRouteMode() { return document.querySelector('input[name="routeMode"]:checked')?.value || 'round-trip'; }
@@ -75,7 +75,8 @@ export function paintWalkConcept(plan = state.plannedRoute, { fit = true } = {})
   const routePane = state.map.getPane('plannerRoutePane') || state.map.createPane('plannerRoutePane');
   routePane.style.zIndex = '720';
   routePane.style.pointerEvents = 'none';
-  plan.stops.forEach((stop, index) => L.marker([stop.lat, stop.lng], { icon: L.divIcon({ className: 'sketch-stop', html: `<span>${index + 1}</span>`, iconSize: [30, 30], iconAnchor: [15, 15] }), title: stop.name }).bindTooltip(stop.name).addTo(state.planSketchLayer));
+  const mood = plan.archetype || 'direct';
+  plan.stops.forEach((stop, index) => L.marker([stop.lat, stop.lng], { icon: L.divIcon({ className: `sketch-stop sketch-stop--${mood}`, html: `<span>${index + 1}</span>`, iconSize: [30, 30], iconAnchor: [15, 15] }), title: stop.name }).bindTooltip(stop.name).addTo(state.planSketchLayer));
   const splitPaths = splitDisconnectedPaths(plan.coordinates);
   // Never let a valid routing result produce directions without a visible
   // path: if every segment is classified as discontinuous, retain the full
@@ -90,8 +91,11 @@ export function paintWalkConcept(plan = state.plannedRoute, { fit = true } = {})
       ]] : []));
   // Use a contrasting casing so the route remains obvious over satellite,
   // OSM, and greenway basemaps instead of disappearing into dark map detail.
-  const routeCasingLines = routePaths.map((coordinates) => L.polyline(coordinates, { pane: 'plannerRoutePane', color: '#123b72', weight: 11, opacity: .98, lineCap: 'round', lineJoin: 'round' }).addTo(state.map));
-  state.plannedRouteLines = routePaths.map((coordinates) => L.polyline(coordinates, { pane: 'plannerRoutePane', color: '#168cff', weight: 8, opacity: 1, lineCap: 'round', lineJoin: 'round' }).addTo(state.map));
+  if (mood === 'discovery') ensureDiscoveryGradient(state.map);
+  const routeColors = { direct: '#59C36A', discovery: 'url(#walkDiscoveryGradient)', quiet: '#168AAD' };
+  const casingColors = { direct: '#1f6b43', discovery: '#0d5570', quiet: '#123b72' };
+  const routeCasingLines = routePaths.map((coordinates) => L.polyline(coordinates, { pane: 'plannerRoutePane', color: casingColors[mood] || casingColors.direct, weight: 11, opacity: .98, lineCap: 'round', lineJoin: 'round', dashArray: mood === 'quiet' ? '10 8' : null }).addTo(state.map));
+  state.plannedRouteLines = routePaths.map((coordinates) => L.polyline(coordinates, { pane: 'plannerRoutePane', color: routeColors[mood] || routeColors.direct, weight: 8, opacity: 1, lineCap: 'round', lineJoin: 'round', dashArray: mood === 'quiet' ? '10 8' : null }).addTo(state.map));
   [...routeCasingLines, ...state.plannedRouteLines].forEach((line) => line.bringToFront());
   state.plannerRouteCasingLines = routeCasingLines;
   const restoreRouteOverlay = () => {
@@ -209,6 +213,14 @@ export function selectPlan(id) {
   paintWalkConcept(plan, { fit: false });
   window.dispatchEvent(new CustomEvent('ambient-route-response', { detail: { archetype: plan.archetype, traits: plan.ambientTraits || [], accepted: true } }));
   return plan;
+}
+
+function ensureDiscoveryGradient(map) {
+  const svg = map.getPanes().overlayPane?.querySelector('svg');
+  if (!svg || svg.querySelector('#walkDiscoveryGradient')) return;
+  const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+  defs.innerHTML = '<linearGradient id="walkDiscoveryGradient" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#168AAD"/><stop offset="100%" stop-color="#59C36A"/></linearGradient>';
+  svg.prepend(defs);
 }
 export function changePlan() { state.plannedRoute = null; state.planSketchLayer?.remove(); state.plannedRouteLine?.remove(); state.plannedRouteLines?.forEach((line) => line.remove()); state.plannerRouteCasingLines?.forEach((line) => line.remove()); state.plannedRouteLines = []; state.plannerRouteCasingLines = []; }
 export function togglePlanVisibility() { /* A single painted sketch replaces graph alternatives. */ }

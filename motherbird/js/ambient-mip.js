@@ -91,6 +91,31 @@ export function rankAmbientRoutes(routes, { intention = null, memory = {}, maxMi
   return { primary, alternatives, routes: ranked };
 }
 
+/** Convert verified route results into the compact model rendered by the walk UI. */
+export function buildRouteRecommendations(routes = [], { recommendedId = null } = {}) {
+  const order = { direct: 0, discovery: 1, quiet: 2 };
+  const direct = routes.find((route) => route?.archetype === 'direct') || routes[0];
+  const directMinutes = Number(direct?.durationSeconds || 0) / 60;
+  return [...routes].filter((route) => route?.archetype && AMBIENT_ARCHETYPES.includes(route.archetype))
+    .sort((a, b) => (order[a.archetype] ?? 9) - (order[b.archetype] ?? 9))
+    .map((route) => {
+      const archetype = route.archetype;
+      const durationMinutes = Math.max(0, Math.round(Number(route.durationSeconds || route.estimatedDurationMinutes * 60 || 0) / 60));
+      const distanceMiles = Number(route.distanceMiles || (Number(route.distanceMeters || 0) / 1609.344));
+      const facts = route.facts || {};
+      const noticedCount = Math.max(0, Math.round(Number(facts.poiCount || facts.mappedPlaceCount || (route.stops || []).length || 0)));
+      const extraMinutes = Math.max(0, Math.round(Number(facts.extraMinutes ?? durationMinutes - directMinutes)));
+      return {
+        id: route.id, archetype,
+        title: archetype === 'direct' ? 'Go there' : archetype === 'discovery' ? 'Notice more' : 'Take it quieter',
+        subtitle: archetype === 'direct' ? 'Direct route' : archetype === 'discovery' ? 'Discovery loop' : 'Quiet alternative',
+        recommended: route.id === recommendedId, durationMinutes, distanceMiles: Number(distanceMiles.toFixed(1)), extraMinutes, noticedCount,
+        noticeLabels: archetype === 'discovery' ? ['NOTICE', ...(facts.discoveryFocus === 'nature-trail' ? ['NATURE'] : facts.discoveryFocus === 'historic-cultural' ? ['CIVIC'] : [])] : [],
+        explanation: buildAmbientExplanation(route), route
+      };
+    });
+}
+
 export function distinctEnough(left, right, overlapLimit = 0.6) {
   if (!left || !right) return true;
   const a = new Set((left.edgeIds || []).map(String)); const b = new Set((right.edgeIds || []).map(String));

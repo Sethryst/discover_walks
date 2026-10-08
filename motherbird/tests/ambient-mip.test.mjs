@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
   buildAmbientExplanation,
+  buildRouteRecommendations,
   buildInWalkSuggestion,
   distinctEnough,
   generateAmbientOptions,
@@ -96,6 +97,19 @@ test('alternative gate and explanations stay factual', () => {
   assert.equal(buildAmbientExplanation({ archetype: 'discovery', facts: { corridorName: 'W&OD', corridorMeters: 1200, poiCount: 1, extraMinutes: 8 } }), 'Adds 1.2 km of W&OD and 1 reviewed place and 8 extra minutes.');
   assert.equal(buildAmbientExplanation({ archetype: 'discovery', facts: { mappedPlaceCount: 1, extraMinutes: 8 } }), 'Adds 1 mapped place and 8 extra minutes.');
   assert.match(buildInWalkSuggestion({ plan: { id: 'direct' }, alternatives: [{ id: 'nearby', archetype: 'discovery', facts: { nearby: true, poiCount: 1 } }] }).text, /nearby/);
+});
+
+test('route recommendation cards expose the three walking moods and measured tradeoffs', () => {
+  const cards = buildRouteRecommendations([
+    { id: 'direct', archetype: 'direct', durationSeconds: 1080, distanceMeters: 1200 },
+    { id: 'discovery', archetype: 'discovery', durationSeconds: 1620, distanceMeters: 1800, facts: { poiCount: 3, extraMinutes: 9, discoveryFocus: 'nature-trail' } },
+    { id: 'quiet', archetype: 'quiet', durationSeconds: 1320, distanceMeters: 1500 }
+  ], { recommendedId: 'discovery' });
+  assert.deepEqual(cards.map((card) => card.title), ['Go there', 'Notice more', 'Take it quieter']);
+  assert.equal(cards[1].extraMinutes, 9);
+  assert.equal(cards[1].noticedCount, 3);
+  assert.deepEqual(cards[1].noticeLabels, ['NOTICE', 'NATURE']);
+  assert.equal(cards[1].recommended, true);
 });
 
 test('in-walk suggestion is one-shot, optional, and fact-backed', () => {

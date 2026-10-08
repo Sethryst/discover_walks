@@ -26,7 +26,7 @@ import { restartCoachMarks } from './coach.js';
 import { savePlannedRoute } from './saved-routes.js';
 import { recordSessionRoutingOutcome } from './routing-feedback.js';
 import { openRoomForPlace } from './room-runtime.js';
-import { buildInWalkSuggestion } from './ambient-mip.js?v=20261007-ambient-13';
+import { buildInWalkSuggestion, buildRouteRecommendations } from './ambient-mip.js?v=20261007-walk-moods-1';
 
 const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];
 function ambientResponse(plan, signal) { return { archetype: plan?.archetype, traits: plan?.ambientTraits || [], [signal]: true }; }
@@ -321,6 +321,19 @@ function renderWalkSketch(plan) {
   if (!plan) return;
   el('sketchTitle').textContent = plan.title || 'Walk sketch';
   el('sketchReason').textContent = plan.reason || 'A concept from named places in this installed pack.';
+  let recommendationCards = el('routeRecommendationCards');
+  if (!recommendationCards) {
+    recommendationCards = document.createElement('div');
+    recommendationCards.id = 'routeRecommendationCards';
+    recommendationCards.className = 'route-recommendation-cards';
+    recommendationCards.setAttribute('aria-label', 'Choose the kind of walk');
+    el('sketchReason')?.after(recommendationCards);
+  }
+  if (recommendationCards) {
+    const recommendations = buildRouteRecommendations(state.planOptions || [plan], { recommendedId: state.planOptions?.[0]?.id || plan.id });
+    recommendationCards.innerHTML = recommendations.map((card) => `<button type="button" class="route-recommendation-card route-recommendation-card--${card.archetype} ${card.id === plan.id ? 'is-selected' : ''}" data-ambient-route-id="${escapeHtml(card.id)}" aria-pressed="${card.id === plan.id}"><span class="route-card-topline"><span class="route-card-swatch" aria-hidden="true"></span><small>${escapeHtml(card.subtitle)}</small>${card.recommended ? '<span class="route-card-badge">Recommended</span>' : ''}</span><strong>${escapeHtml(card.title)}</strong><span class="route-card-metrics">${card.durationMinutes} min · ${card.distanceMiles.toFixed(1)} mi</span><span class="route-card-tradeoff">${card.archetype === 'direct' ? 'Fastest way to arrive' : card.archetype === 'discovery' ? `+${card.extraMinutes} min → ${card.noticedCount} thing${card.noticedCount === 1 ? '' : 's'} to notice` : 'Lower-exposure route where mapped evidence supports it'}</span>${card.noticeLabels.length ? `<span class="route-card-labels">${card.noticeLabels.map((label) => `<em>${label}</em>`).join('')}</span>` : ''}</button>`).join('');
+    recommendationCards.querySelectorAll('[data-ambient-route-id]').forEach((button) => button.addEventListener('click', () => { const next = selectPlan(button.dataset.ambientRouteId); if (next) renderWalkSketch(next); }));
+  }
   const alternatives = el('ambientRouteAlternatives');
   const options = (state.planOptions || []).filter((option) => option.id !== plan.id);
   alternatives.classList.toggle('hidden', !options.length);

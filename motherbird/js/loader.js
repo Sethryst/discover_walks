@@ -164,7 +164,7 @@ export async function init() {
     return null;
   });
   void (async () => {
-    await optionalBoot('walk controls', () => import('./events.js?v=20261007-startup-events-1').then(({ initEvents }) => initEvents()));
+    await optionalBoot('walk controls', () => import('./events.js?v=20261007-walk-moods-1').then(({ initEvents }) => initEvents()));
     initRadialMenu();
     await optionalBoot('radio', initRadio);
     await optionalBoot('geo-cypher', initGeoCypher);
