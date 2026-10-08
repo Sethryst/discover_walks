@@ -355,12 +355,25 @@ function renderWalkSketch(plan) {
   const instructions = el('walkInstructions');
   if (instructions) {
     const steps = plan.instructions || [];
+    const nextStep = steps.find((step, index) => index > 0 && step?.text) || steps.find((step) => step?.text);
+    const activeManeuver = el('activeManeuver');
+    if (activeManeuver) {
+      activeManeuver.dataset.routeId = plan.id;
+      activeManeuver.textContent = nextStep ? `Next: ${nextStep.text}${nextStep.distance_m ? ` · ${Math.round(nextStep.distance_m)} m` : ''}` : 'Follow the mapped route.';
+    }
     instructions.innerHTML = steps.length
       ? steps.map((step) => `<li>${escapeHtml(step.text)}${step.distance_m ? ` · ${Math.round(step.distance_m)} m` : ''}</li>`).join('')
       : `<li class="directions-unavailable">${escapeHtml(plan.graphStatus
         ? plan.failureMessage || 'We could not find a walkable route there. Try moving one or both points slightly onto a mapped path.'
         : 'Turn-by-turn directions are not available for this route.')}</li>`;
   }
+  // Once a route exists, clear the point-picking composer so the map and its
+  // route cards have the available visual space. Reopening Walk options is
+  // still available if the user dismisses this sketch and plans again.
+  el('startPanel')?.classList.add('hidden');
+  el('radialRouteOptionsButton')?.setAttribute('aria-expanded', 'false');
+  document.body.classList.remove('route-selection-active');
+  setPlanningMode(false);
   el('walkSketch').classList.remove('hidden');
 }
 

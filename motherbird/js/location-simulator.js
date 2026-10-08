@@ -13,7 +13,15 @@ const PREF_ID = 'preferences:location-simulator';
 let simulatedPreset = null;
 let preferenceDbPromise = null;
 async function preferenceDb() { if (!preferenceDbPromise) preferenceDbPromise = import('./storage.js').then(({ default: db }) => db); return preferenceDbPromise; }
-async function hydrateSimulatorPreference() { if (!simulatorEnabled) return; try { simulatedPreset = (await (await preferenceDb()).get('settings', PREF_ID))?.preset || null; } catch { simulatedPreset = null; } }
+async function hydrateSimulatorPreference() {
+  if (!simulatorEnabled) return;
+  try {
+    const savedPreset = (await (await preferenceDb()).get('settings', PREF_ID))?.preset || null;
+    // A user can activate the simulator before IndexedDB finishes hydrating.
+    // Never let that async read erase the freshly selected preset.
+    if (simulatedPreset === null) simulatedPreset = savedPreset;
+  } catch { /* The panel remains usable without a saved preference. */ }
+}
 function setSessionValue(value) { if (!simulatorEnabled) return; void preferenceDb().then((db) => value === null ? db.remove('settings', PREF_ID) : db.put('settings', { id: PREF_ID, preset: value })).catch(() => {}); }
 void hydrateSimulatorPreference();
 let nextWatchId = 0;
