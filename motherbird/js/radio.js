@@ -91,8 +91,6 @@ function render() {
   const favorite = el('radioFavoriteButton'); if (favorite) { favorite.disabled = !state.current; const isFavorite = state.current && state.favorites.has(state.current.id); favorite.textContent = isFavorite ? '♥ Favorited' : '♡ Favorite'; favorite.setAttribute('aria-pressed', String(Boolean(isFavorite))); }
   const stations = availableStations();
   if (el('radioStationCount')) el('radioStationCount').textContent = `${stations.length} station${stations.length === 1 ? '' : 's'} available`;
-  const picker = el('radioFavoritesSelect');
-  if (picker) { const tracks = (state.manifest.tracks || []).filter(sourceEnabled); const favorites = tracks.filter((track) => state.favorites.has(String(track.id))); const rest = tracks.filter((track) => !state.favorites.has(String(track.id))); const option = (track) => `<option value="${escapeHtml(track.id)}">${escapeHtml(track.title || track.id)}</option>`; picker.innerHTML = '<option value="">Choose a track</option>' + (favorites.length ? `<optgroup label="Favorites">${favorites.map(option).join('')}</optgroup>` : '') + `<optgroup label="All tracks">${rest.map(option).join('')}</optgroup>`; picker.value = tracks.some((track) => String(track.id) === String(state.current?.id)) ? state.current.id : ''; }
   renderTrackSelect(); renderQueue();
   updatePlayButtons();
 }
@@ -180,9 +178,6 @@ function bind() {
   el('radioTrackSelect')?.addEventListener('change', (event) => { const track = (state.manifest.tracks || []).find((item) => String(item.id) === String(event.target.value)); if (track) { state.channelId = track.channel || state.channelId; state.current = track; render(); void playTrack(track); } });
   el('radioTrackCategorySelect')?.addEventListener('change', (event) => { state.trackCategory = event.target.value; render(); });
   el('radioFavoriteButton')?.addEventListener('click', toggleFavorite);
-  el('radioFavoritesSelect')?.addEventListener('change', (event) => {
-    const track = (state.manifest.tracks || []).find((item) => String(item.id) === String(event.target.value)); if (!track) return; state.channelId = track.channel || state.channelId; state.current = track; render(); void playTrack(track);
-  });
   el('radioLiveSources')?.addEventListener('change', () => toggleSource('live')); el('radioLocalSources')?.addEventListener('change', () => toggleSource('local'));
   el('radioSoundcloudSelect')?.addEventListener('change', (event) => { const frame = el('radioSoundcloudFrame'); if (frame) { soundcloudWidget = null; frame.src = soundcloudEmbedUrl(event.target.value); frame.addEventListener('load', bindSoundcloudWidget, { once: true }); } });
   el('radioSoundcloudTrackSelect')?.addEventListener('change', (event) => { if (soundcloudWidget) soundcloudWidget.skip(Number(event.target.value)); });
