@@ -278,6 +278,46 @@ function togglePanel(buttonId, panelId) {
   panel.classList.toggle('hidden', !opening); button.setAttribute('aria-expanded', String(opening));
 }
 
+async function moveRoutedPlanToMyPlaces(plan) {
+  const id = 'walk-draft-' + (plan.id || Date.now());
+  try {
+    await savePlannedRoute(plan, { id, title: plan.title || 'Walk draft', notes: plan.reason || 'Routed walk ready for configuration.', draft: true });
+    window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'maps', forceOpen: true } }));
+    toast('Route added to My Places. Configure it there before starting.');
+  } catch (error) {
+    toast(error.message || 'Route could not be added to My Places.');
+  }
+}
+
+function decorateWalkPlanner() {
+  const panel = el('startPanel');
+  if (!panel || panel.dataset.walkPlannerDecorated) return;
+  panel.dataset.walkPlannerDecorated = 'true';
+  const intro = document.createElement('div');
+  intro.className = 'walk-planner-copy';
+  intro.innerHTML = '<p class="walk-planner-kicker">Choose a walk shape</p><p class="walk-planner-intro">Pick one, then generate the route.</p>';
+  panel.prepend(intro);
+  const timeLegend = panel.querySelector('#sketchTimeOptions legend');
+  if (timeLegend) timeLegend.textContent = 'Walk length';
+  const labels = {
+    'round-trip': ['Go to a place', 'Choose a destination and return.'],
+    'auto-round-trip': ['Discover nearby', 'Build a short loop through nearby places.'],
+    'point-to-point': ['Go somewhere', 'Choose a start and destination.']
+  };
+  panel.querySelectorAll('input[name="routeMode"]').forEach((input) => {
+    const label = input.closest('label');
+    const copy = labels[input.value];
+    if (!label || !copy) return;
+    label.classList.add('route-mode-card');
+    label.replaceChildren(input);
+    const span = document.createElement('span');
+    span.innerHTML = '<strong>' + copy[0] + '</strong><small>' + copy[1] + '</small>';
+    label.append(span);
+  });
+  const generate = el('generateWalkButton');
+  if (generate) generate.textContent = 'Generate walk';
+}
+
 function bindLocationControls() {
   el('locateButton')?.addEventListener('click', getCurrentLocation);
   el('locateChevron')?.addEventListener('click', () => togglePanel('locateChevron', 'locatePanel'));
@@ -421,6 +461,7 @@ function bindWalkControls() {
   // top edge stays reserved for search and location controls.
   const bottomWalkBar = el('radialStack');
   const startPanel = el('startPanel');
+  decorateWalkPlanner();
   if (bottomWalkBar && startPanel && !bottomWalkBar.contains(startPanel)) bottomWalkBar.append(startPanel);
   el('walkButton')?.addEventListener('click', async () => { if (!state.activeWalk) await startWalk({ routeMode: 'tracking' }); });
   el('endWalkButton')?.addEventListener('click', () => void stopWalk());
@@ -506,7 +547,11 @@ function bindWalkControls() {
     toast('Start and destination swapped.');
   });
   el('generateWalkButton')?.addEventListener('click', () => void generateTimeBasedPlan());
-  window.addEventListener('walk-sketch-painted', (event) => renderWalkSketch(event.detail));
+  window.addEventListener('walk-sketch-painted', (event) => {
+    const plan = event.detail;
+    renderWalkSketch(plan);
+    if (plan?.coordinates?.length >= 2) void moveRoutedPlanToMyPlaces(plan);
+  });
   window.addEventListener('planner-point-selected', (event) => {
     const type = event.detail?.type || 'End';
     const point = event.detail?.point;

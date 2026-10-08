@@ -6,6 +6,7 @@ import { closeSheets, openSheet, toast } from './ui.js';
 import { hydrateInlineIcons } from './icon-loader.js';
 import { markerPinHtml, markerVisual } from './poi-icons.js';
 import { requestCompanionContext } from './companion.js';
+import { updateSavedRoute, deleteSavedRoute } from './saved-routes.js';
 import {
   postPublicMarker,
   publicMarkerIdentityReady,
@@ -284,6 +285,8 @@ export function renderPersonalPlacesPanel() {
   const activeWalk = state.activeWalk;
   const activeWalkCard = activeWalk ? `<article class="active-walk-card" aria-live="polite"><div><p class="eyebrow">WALK IN PROGRESS</p><h2>${activeWalk.recordingStatus === 'stopped' ? 'Walk awaiting review' : 'Current walk'}</h2><p>${formatWalkDistance(activeWalk.distanceMeters)} recorded · ${activeWalk.points?.length || 0} route points · ${activeWalk.recordingStatus === 'stopped' ? 'safe to review' : 'saving on this device'}</p></div><span class="active-walk-status">${activeWalk.recordingStatus === 'stopped' ? 'Paused' : 'Recording'}</span></article>` : '';
   panel.innerHTML = `${activeWalkCard}<div class="personal-places-intro"><div><p class="eyebrow">MY PLACES</p><h2>Your places</h2><p>Private pins stay on this device. Posted pins keep their attribution.</p></div><button class="primary-button" id="addPersonalPlaceButton" type="button"><img src="./icons/plus.svg" alt="" /> Add location</button></div>${cards}<label>Sort<select id="personalPlaceSort"><option value="nearest">Nearest</option><option value="name">Name</option><option value="importance">Importance</option><option value="newest">Newest</option></select></label>`;
+  const savedRoutes = (state.savedRoutes || []).map((route) => '<article class="personal-category-card saved-route-card"><header><span class="category-icon"><img src="./icons/route.svg" alt="" /></span><span><h3>' + escapeHtml(route.title || 'Saved walk') + '</h3><small>' + escapeHtml(route.draft ? 'Draft · configure before starting' : 'Saved walk') + ' · ' + route.coordinates.length + ' route points</small></span></header><p>' + escapeHtml(route.notes || 'A routed walk saved on this device.') + '</p><div class="route-config-actions"><button class="secondary-button" type="button" data-edit-saved-route="' + escapeHtml(route.id) + '">Configure</button><button class="text-button danger-button" type="button" data-delete-saved-route="' + escapeHtml(route.id) + '">Remove</button></div></article>').join('');
+  if (savedRoutes) panel.insertAdjacentHTML('afterbegin', '<section class="saved-routes-panel"><p class="eyebrow">ROUTED WALKS</p>' + savedRoutes + '</section>');
   if (el('personalPlaceSort')) el('personalPlaceSort').value = state.settings.personalPlaceSort || 'nearest';
   void hydrateInlineIcons(panel);
   void renderLocalDataOrganizers(panel);
@@ -662,6 +665,18 @@ function bindPersonalPlaceControls() {
     if (event.target.closest('#importPersonalPlacesButton')) { window.dispatchEvent(new CustomEvent('filter-import-requested')); return; }
     const add = event.target.closest('[data-add-to-personal-category]'); if (add) { openPersonalPlaceForm({ categoryId: add.dataset.addToPersonalCategory }); return; }
     const editPlace = event.target.closest('[data-edit-personal-place]'); if (editPlace) { openPersonalPlaceForm({ editId: editPlace.dataset.editPersonalPlace }); return; }
+    const editRoute = event.target.closest('[data-edit-saved-route]'); if (editRoute) {
+      const route = state.savedRoutes.find((item) => item.id === editRoute.dataset.editSavedRoute); if (!route) return;
+      const title = window.prompt('Walk name', route.title); if (title === null) return;
+      const notes = window.prompt('Walk notes', route.notes || '') ?? route.notes;
+      void updateSavedRoute(route.id, { title, notes, draft: false }).then(() => toast('Walk configured in My Places.'));
+      return;
+    }
+    const deleteRoute = event.target.closest('[data-delete-saved-route]'); if (deleteRoute) {
+      if (!window.confirm('Remove this routed walk from My Places?')) return;
+      void deleteSavedRoute(deleteRoute.dataset.deleteSavedRoute).then(() => toast('Routed walk removed.'));
+      return;
+    }
     const withdraw = event.target.closest('[data-withdraw-owned-marker]'); if (withdraw) { void withdrawOwnedMarker(withdraw.dataset.withdrawOwnedMarker); return; }
     const remove = event.target.closest('[data-uncategorize-personal-place]'); if (remove) void uncategorize(remove.dataset.uncategorizePersonalPlace);
   });
@@ -672,6 +687,7 @@ function bindPersonalPlaceControls() {
     personalDataChanged(); window.dispatchEvent(new CustomEvent('layer-state-dirty'));
   });
   el('personalPlaceForm')?.addEventListener('submit', (event) => void savePersonalPlace(event));
+  window.addEventListener('saved-routes-changed', () => renderPersonalPlacesPanel());
   el('personalPlaceForm')?.addEventListener('change', (event) => {
     if (event.target.name === 'categoryTreeChoice') el('personalPlaceCategory').value = event.target.value;
     if (event.target.matches('input[name="personalPlaceDestination"]')) populateChipSelect(event.target.value, defaultChip(event.target.value));

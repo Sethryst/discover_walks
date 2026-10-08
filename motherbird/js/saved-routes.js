@@ -13,6 +13,7 @@ export function normalizeSavedRoute(route = {}, now = new Date().toISOString()) 
     color: /^#[0-9a-f]{6}$/i.test(route.color || '') ? route.color : '#173c35',
     routeMode: String(route.routeMode || 'round-trip'),
     discoverCategoryId: route.discoverCategoryId ? String(route.discoverCategoryId) : null,
+    draft: route.draft === true,
     distanceMeters: Number.isFinite(Number(route.distanceMeters)) ? Number(route.distanceMeters) : null,
     durationSeconds: Number.isFinite(Number(route.durationSeconds)) ? Number(route.durationSeconds) : null,
     coordinates,
