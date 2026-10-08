@@ -319,6 +319,7 @@ function bindCompanionMenu() {
 
 function renderWalkSketch(plan) {
   if (!plan) return;
+  setRouteFocusMode(true);
   el('sketchTitle').textContent = plan.title || 'Walk sketch';
   el('sketchReason').textContent = plan.reason || 'A concept from named places in this installed pack.';
   let recommendationCards = el('routeRecommendationCards');
@@ -370,11 +371,31 @@ function renderWalkSketch(plan) {
   // Once a route exists, clear the point-picking composer so the map and its
   // route cards have the available visual space. Reopening Walk options is
   // still available if the user dismisses this sketch and plans again.
+  el('walkSketch').classList.remove('hidden');
+}
+
+function setRouteFocusMode(active) {
+  document.body.classList.toggle('route-focus-mode', Boolean(active));
+  if (!active) return;
+
+  // Close stateful surfaces as well as hiding their triggers. This prevents a
+  // journal, workspace, or quick-access panel opened just before routing from
+  // sitting behind the mapped route and forcing the user to discover another
+  // close button.
+  closeSheets();
+  el('primaryPanel')?.classList.add('hidden');
+  el('mapWorkspacePanel')?.classList.add('hidden');
+  el('radialWheelMenu')?.classList.add('hidden');
+  el('regionalNavigationMenu')?.classList.add('hidden');
+  el('mapSearchResults')?.classList.add('hidden');
+  el('fieldGuideDropdown')?.classList.add('hidden');
+  el('journalNavDropdown')?.classList.add('hidden');
+  el('walkInstructionsDetails')?.removeAttribute('open');
   el('startPanel')?.classList.add('hidden');
   el('radialRouteOptionsButton')?.setAttribute('aria-expanded', 'false');
-  document.body.classList.remove('route-selection-active');
+  el('startChevron')?.setAttribute('aria-expanded', 'false');
+  document.body.classList.remove('route-selection-active', 'map-workspace-open', 'draw-pane-open', 'draw-tools-collapsed');
   setPlanningMode(false);
-  el('walkSketch').classList.remove('hidden');
 }
 
 function renderRoutePointControls() {
@@ -518,7 +539,7 @@ function bindWalkControls() {
     el('radialRouteOptionsButton')?.setAttribute('aria-expanded', 'true');
     toast('Destination added. Review the route options, then show the route.');
   });
-  el('dismissWalkSketch')?.addEventListener('click', () => { changePlan(); setPlanningMode(false); el('walkSketch').classList.add('hidden'); });
+  el('dismissWalkSketch')?.addEventListener('click', () => { changePlan(); setPlanningMode(false); setRouteFocusMode(false); el('walkSketch').classList.add('hidden'); });
   el('startPlannedWalkButton')?.addEventListener('click', async () => {
     if (!state.plannedRoute) return; lockSelectedPlanOnMap(); el('walkSketch').classList.remove('hidden');
     if (state.plannedRoute.archetype) window.dispatchEvent(new CustomEvent('ambient-route-response', { detail: ambientResponse(state.plannedRoute, 'accepted') }));
