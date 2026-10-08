@@ -3,7 +3,6 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { WalkingCellRegistry } from '../js/walking-cell-registry.js';
 import { findCellPath } from '../js/routing.js';
-import { splitDisconnectedRoute } from '../js/routes.js';
 
 const routing = await readFile(new URL('../js/routing.js', import.meta.url), 'utf8');
 const planner = await readFile(new URL('../js/planner.js', import.meta.url), 'utf8');
@@ -54,14 +53,13 @@ test('point-to-point planning is destination-bounded instead of capped at the de
   assert.match(planner, /routeMode === 'point-to-point' \? 'A route to your destination'/);
 });
 
-test('disconnected route geometry exposes an explicit coverage gap', () => {
-  const result = splitDisconnectedRoute([[38.9, -77.04], [38.9004, -77.0404], [38.905, -77.045], [38.9054, -77.0454]]);
-  assert.equal(result.paths.length, 2);
-  assert.equal(result.gaps.length, 1);
-  assert.deepEqual(result.gaps[0].from, [38.9004, -77.0404]);
-  assert.deepEqual(result.gaps[0].to, [38.905, -77.045]);
-  assert.match(planner, /Map coverage gap · this segment is not verified/);
-  assert.match(events, /dashed amber segment is not verified/);
+test('point-to-point painting keeps returned geometry continuous', () => {
+  assert.match(planner, /const routePaths = \(plan\.coordinates\?\.length \|\| 0\) > 1/);
+  assert.match(planner, /\? \[plan\.coordinates\]/);
+  assert.doesNotMatch(planner, /splitDisconnectedRoute/);
+  assert.doesNotMatch(planner, /As the crow flies/);
+  assert.doesNotMatch(events, /As the crow flies/);
+  assert.doesNotMatch(events, /dashed amber/);
 });
 
 test('cell registry metadata supports explicit neighboring-cell decisions', () => {

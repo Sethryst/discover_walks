@@ -5,7 +5,6 @@ import { poiTags } from './poi.js';
 import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261007-ambient-routing-1';
 import { escapeHtml } from './utils.js';
 import { toast } from './ui.js';
-import { splitDisconnectedRoute } from './routes.js';
 import { buildAmbientExplanation, generateAmbientOptions, installAmbientLearningListener, readAmbientMemory } from './ambient-mip.js?v=20261007-walk-moods-1';
 
 function selectedMinutes() { return Number(document.querySelector('input[name="walkTime"]:checked')?.value || 30); }
@@ -79,19 +78,17 @@ export function paintWalkConcept(plan = state.plannedRoute, { fit = true } = {})
   routePane.style.pointerEvents = 'none';
   const mood = plan.archetype || 'direct';
   plan.stops.forEach((stop, index) => L.marker([stop.lat, stop.lng], { icon: L.divIcon({ className: `sketch-stop sketch-stop--${mood}`, html: `<span>${index + 1}</span>`, iconSize: [30, 30], iconAnchor: [15, 15] }), title: stop.name }).bindTooltip(stop.name).addTo(state.planSketchLayer));
-  const { paths: splitPaths, gaps } = splitDisconnectedRoute(plan.coordinates);
-  plan.graphCoverageGaps = gaps;
-  // Never let a valid routing result produce directions without a visible
-  // path: if every segment is classified as discontinuous, retain the full
-  // geometry as a fallback overlay.
-  const routePaths = splitPaths.length
-    ? splitPaths
-    : (!gaps.length && (plan.coordinates?.length || 0) > 1
-      ? [plan.coordinates]
-      : (!gaps.length && state.plannerStart && state.plannerEnd ? [[
-        [state.plannerStart.lat, state.plannerStart.lng],
-        [state.plannerEnd.lat, state.plannerEnd.lng]
-      ]] : []));
+  // Paint the route response as one continuous returned geometry. A large
+  // coordinate jump can indicate incomplete graph coverage, but splitting it
+  // here creates a blank that falsely suggests the whole route disappeared.
+  // The router's geometry remains the source of truth; do not invent a
+  // separate crow-flies or warning overlay.
+  const routePaths = (plan.coordinates?.length || 0) > 1
+    ? [plan.coordinates]
+    : (state.plannerStart && state.plannerEnd ? [[
+      [state.plannerStart.lat, state.plannerStart.lng],
+      [state.plannerEnd.lat, state.plannerEnd.lng]
+    ]] : []);
   // Use a contrasting casing so the route remains obvious over satellite,
   // OSM, and greenway basemaps instead of disappearing into dark map detail.
   if (mood === 'discovery') ensureDiscoveryGradient(state.map);
@@ -99,7 +96,6 @@ export function paintWalkConcept(plan = state.plannedRoute, { fit = true } = {})
   const casingColors = { direct: '#1f6b43', discovery: '#0d5570', quiet: '#123b72' };
   const routeCasingLines = routePaths.map((coordinates) => L.polyline(coordinates, { pane: 'plannerRoutePane', color: casingColors[mood] || casingColors.direct, weight: 11, opacity: .98, lineCap: 'round', lineJoin: 'round', dashArray: mood === 'quiet' ? '10 8' : null }).addTo(state.map));
   state.plannedRouteLines = routePaths.map((coordinates) => L.polyline(coordinates, { pane: 'plannerRoutePane', color: routeColors[mood] || routeColors.direct, weight: 8, opacity: 1, lineCap: 'round', lineJoin: 'round', dashArray: mood === 'quiet' ? '10 8' : null }).addTo(state.map));
-  const gapLines = gaps.map((gap) => L.polyline([gap.from, gap.to], { pane: 'plannerRoutePane', color: '#c87924', weight: 7, opacity: .95, dashArray: '3 9', lineCap: 'round', lineJoin: 'round' }).bindTooltip('Map coverage gap · this segment is not verified').addTo(state.map));
   [...routeCasingLines, ...state.plannedRouteLines].forEach((line) => line.bringToFront());
   state.plannerRouteCasingLines = routeCasingLines;
   state.plannerRouteGapLines = gapLines;
@@ -114,7 +110,7 @@ export function paintWalkConcept(plan = state.plannedRoute, { fit = true } = {})
     state.map.on('moveend zoomend resize', restoreRouteOverlay);
   }
   state.plannedRouteLine = state.plannedRouteLines[0] || null;
-  const layers = [...state.planSketchLayer.getLayers(), ...routeCasingLines, ...state.plannedRouteLines, ...gapLines];
+  const layers = [...state.planSketchLayer.getLayers(), ...routeCasingLines, ...state.plannedRouteLines];
   if (fit && layers.length) {
     const bounds = L.featureGroup(layers).getBounds();
     // The directions card occupies the middle/lower map on mobile. Reserve

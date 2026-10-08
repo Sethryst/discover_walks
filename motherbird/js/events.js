@@ -322,14 +322,6 @@ function renderWalkSketch(plan) {
   setRouteFocusMode(true);
   el('sketchTitle').textContent = plan.title || 'Walk sketch';
   el('sketchReason').textContent = plan.reason || 'A concept from named places in this installed pack.';
-  const coverageNotice = el('routeCoverageNotice');
-  if (coverageNotice) {
-    const gaps = plan.graphCoverageGaps || [];
-    coverageNotice.classList.toggle('hidden', !gaps.length);
-    coverageNotice.textContent = gaps.length
-      ? `Map coverage gap${gaps.length === 1 ? '' : 's'} detected. The dashed amber segment is not verified for walking.`
-      : '';
-  }
   let recommendationCards = el('routeRecommendationCards');
   if (!recommendationCards) {
     recommendationCards = document.createElement('div');
