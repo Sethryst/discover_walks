@@ -33,6 +33,7 @@ export const state = {
   plannedRouteLine: null,
   plannedRouteLines: [],
   plannerRouteCasingLines: [],
+  plannerRouteGapLines: [],
   plannerRouteOverlayBound: false,
   plannedRoute: null,
   observationLayer: null,

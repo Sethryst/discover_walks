@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { WalkingCellRegistry } from '../js/walking-cell-registry.js';
 import { findCellPath } from '../js/routing.js';
+import { splitDisconnectedRoute } from '../js/routes.js';
 
 const routing = await readFile(new URL('../js/routing.js', import.meta.url), 'utf8');
 const planner = await readFile(new URL('../js/planner.js', import.meta.url), 'utf8');
@@ -45,6 +46,22 @@ test('planner preserves endpoints and ignores stale concurrent generations', () 
   assert.match(planner, /requestGeneration !== generation/);
   assert.match(events, /We could not find a walkable route there/);
   assert.doesNotMatch(events, /Route unavailable \(\$\{plan\.graphStatus\}/);
+});
+
+test('point-to-point planning is destination-bounded instead of capped at the default sketch time', () => {
+  assert.match(planner, /const availableMinutes = routeMode === 'point-to-point' \? Infinity : minutes/);
+  assert.match(planner, /context: \{ availableMinutes, destination:/);
+  assert.match(planner, /routeMode === 'point-to-point' \? 'A route to your destination'/);
+});
+
+test('disconnected route geometry exposes an explicit coverage gap', () => {
+  const result = splitDisconnectedRoute([[38.9, -77.04], [38.9004, -77.0404], [38.905, -77.045], [38.9054, -77.0454]]);
+  assert.equal(result.paths.length, 2);
+  assert.equal(result.gaps.length, 1);
+  assert.deepEqual(result.gaps[0].from, [38.9004, -77.0404]);
+  assert.deepEqual(result.gaps[0].to, [38.905, -77.045]);
+  assert.match(planner, /Map coverage gap · this segment is not verified/);
+  assert.match(events, /dashed amber segment is not verified/);
 });
 
 test('cell registry metadata supports explicit neighboring-cell decisions', () => {

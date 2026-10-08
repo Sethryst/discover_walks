@@ -173,18 +173,24 @@ export function showCuratedRoute(routeId) {
 // Some official GIS features are multipart. Flattening their paths creates a
 // false straight segment between the end of one path and the start of the
 // next. Keep large discontinuities as separate rendered paths instead.
-export function splitDisconnectedPaths(coordinates) {
+export function splitDisconnectedRoute(coordinates, thresholdMeters = 250) {
   const paths = [];
+  const gaps = [];
   let current = [];
   for (const coordinate of coordinates || []) {
     const previous = current.at(-1);
     const jumpMeters = previous ? Math.hypot((coordinate[0] - previous[0]) * 111000, (coordinate[1] - previous[1]) * 88000) : 0;
-    if (previous && jumpMeters > 250) {
+    if (previous && jumpMeters > thresholdMeters) {
       if (current.length > 1) paths.push(current);
+      gaps.push({ from: previous, to: coordinate, distanceMeters: jumpMeters });
       current = [];
     }
     current.push(coordinate);
   }
   if (current.length > 1) paths.push(current);
-  return paths;
+  return { paths, gaps };
+}
+
+export function splitDisconnectedPaths(coordinates) {
+  return splitDisconnectedRoute(coordinates).paths;
 }
