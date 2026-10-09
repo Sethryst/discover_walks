@@ -25,7 +25,7 @@ import { initPwaUpdates } from './pwa-update.js';
 import { initPrimaryShell } from './primary-shell.js';
 import { initRadialMenu } from './radial-menu.js';
 import { initStories } from './stories.js';
-import { initRadio } from './radio.js?v=20260928-radio-controls-v3';
+import { initRadio } from './radio.js?v=20261009-radio-controls-1';
 import { recoverWalkDraft, discardWalk } from './walk.js';
 import { initBiodiversity } from './biodiversity.js';
 import { initRegionalNavigation } from './regional-navigation.js';
