@@ -249,7 +249,11 @@ export const MAX_DRIVE_SPEED_MPS = 70;
   'wolf-trap-va': {
     name: 'Wolf Trap', state: 'VA', center: { lat: 38.9367, lng: -77.2656 }, zoom: 13,
     dataFile: './regions/wolf-trap-va/pois.json',
-    civicFile: './regions/vienna/civic/index.json'
+    civicFile: './regions/vienna/civic/index.json',
+    // Kept as a runtime source so existing Wolf Trap links and data remain
+    // valid, but surfaced under its parent regions instead of as a region.
+    isSource: true,
+    sourceParentIds: ['fairfax', 'vienna']
   }
 };
 Object.entries(CITIES).forEach(([cityId, city]) => { city.osm = runtimeOsmConfig(cityId, city); });

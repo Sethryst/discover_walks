@@ -723,12 +723,16 @@ function bindJournal() {
 
 function regionCards() {
   const favorites = new Set(state.settings.favoriteRegionIds || []);
-  return Object.entries(CITIES).filter(([, pack]) => pack.dataFile).sort(([leftId, left], [rightId, right]) => Number(favorites.has(rightId)) - Number(favorites.has(leftId)) || left.name.localeCompare(right.name));
+  return Object.entries(CITIES).filter(([, pack]) => pack.dataFile && !pack.isSource).sort(([leftId, left], [rightId, right]) => Number(favorites.has(rightId)) - Number(favorites.has(leftId)) || left.name.localeCompare(right.name));
 }
 
 function renderRegions() {
   const favorites = new Set(state.settings.favoriteRegionIds || []);
-  el('regionList').innerHTML = regionCards().map(([id, pack]) => `<article class="region-row ${id === state.activeCity ? 'active' : ''}"><button type="button" data-region="${id}"><strong>${escapeHtml(pack.name)}</strong><small>${escapeHtml(pack.state || '')}</small></button><button class="region-star" type="button" data-region-star="${id}" aria-label="${favorites.has(id) ? 'Remove favorite' : 'Favorite'} ${escapeHtml(pack.name)}">${favorites.has(id) ? '★' : '☆'}</button></article>`).join('');
+  el('regionList').innerHTML = regionCards().map(([id, pack]) => {
+    const sources = Object.entries(CITIES).filter(([, source]) => source.isSource && source.sourceParentIds?.includes(id));
+    const sourceMenu = sources.length ? `<details class="region-sources" ${sources.some(([sourceId]) => sourceId === state.activeCity) ? 'open' : ''}><summary>Sources</summary>${sources.map(([sourceId, source]) => `<button type="button" class="region-source-row ${sourceId === state.activeCity ? 'active' : ''}" data-region="${sourceId}"><strong>${escapeHtml(source.name)}</strong><small>Source · ${escapeHtml(source.state || '')}</small></button>`).join('')}</details>` : '';
+    return `<article class="region-row ${id === state.activeCity ? 'active' : ''}"><button type="button" data-region="${id}"><strong>${escapeHtml(pack.name)}</strong><small>${escapeHtml(pack.state || '')}</small></button><button class="region-star" type="button" data-region-star="${id}" aria-label="${favorites.has(id) ? 'Remove favorite' : 'Favorite'} ${escapeHtml(pack.name)}">${favorites.has(id) ? '★' : '☆'}</button>${sourceMenu}</article>`;
+  }).join('');
 }
 
 function bindRegions() {
