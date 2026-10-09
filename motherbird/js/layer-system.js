@@ -163,13 +163,19 @@ export function renderLayerFilters() {
   if (!root) return;
   ensureLayerDefaults();
   const query = searchQuery.trim().toLowerCase();
-  const groups = buildLayerGroups().map((group) => ({ ...group, options: group.options.filter((option) => !query || `${option.label} ${option.description}`.toLowerCase().includes(query)) })).filter((group) => group.options.length || (!query && group.id === 'personal_places'));
-  root.innerHTML = groups.map((group) => {
+  const groups = buildAllLayerGroups().map((group) => ({ ...group, options: group.options.filter((option) => !query || `${option.label} ${option.description}`.toLowerCase().includes(query)) })).filter((group) => group.options.length || (!query && group.id === 'personal_places'));
+  const groupHtml = (group) => {
     const expanded = state.layerUiState.expanded[group.id] !== false;
     const enabledCount = group.options.filter((option) => state.layerFilters[option.kind][option.id] !== false).length;
     const categoryEnabled = enabledCount > 0;
     return `<section class="layer-filter-group" data-layer-group="${escapeHtml(group.id)}"><header><button class="layer-collapse" type="button" data-layer-collapse="${escapeHtml(group.id)}" aria-expanded="${expanded}"><span>${escapeHtml(group.label)}</span><small>(${enabledCount}/${group.options.length} shown)</small><b aria-hidden="true">⌄</b></button><button class="layer-category-toggle ${categoryEnabled ? 'on' : 'off'}" type="button" data-layer-group-toggle="${escapeHtml(group.id)}" aria-pressed="${categoryEnabled}">${categoryEnabled ? 'Hide category' : 'Show category'}</button></header><div class="layer-options ${expanded ? '' : 'hidden'}">${group.options.length ? group.options.map(renderLayerOption).join('') : '<p class="layer-empty">Create a personal collection to add it here.</p>'}</div></section>`;
-  }).join('') || `<p class="layer-empty">${query ? 'No filters match that search.' : 'Select a category first.'}</p>`;
+  };
+  const families = [
+    ['news', 'NEWS'],
+    ['recreation', 'REC'],
+    ['cuisine', 'CUISINE']
+  ].map(([id, label]) => ({ id, label, groups: groups.filter((group) => group.light === id) })).filter((family) => family.groups.length);
+  root.innerHTML = families.map((family) => `<section class="advanced-filter-family" data-advanced-family="${family.id}"><h4>${family.label}</h4>${family.groups.map(groupHtml).join('')}</section>`).join('') || `<p class="layer-empty">${query ? 'No filters match that search.' : 'Select a category first.'}</p>`;
   updateLayerStatus();
 }
 
