@@ -6,7 +6,8 @@ import { closeSheets, openSheet, toast } from './ui.js';
 import { hydrateInlineIcons } from './icon-loader.js';
 import { markerPinHtml, markerVisual } from './poi-icons.js';
 import { requestCompanionContext } from './companion.js';
-import { updateSavedRoute, deleteSavedRoute, normalizeRouteSections } from './saved-routes.js';
+import { updateSavedRoute, deleteSavedRoute, savedRouteEditorHtml } from './saved-routes.js';
+import { renderWorkspacePanel, createWorkspace } from './workspace.js';
 import {
   postPublicMarker,
   publicMarkerIdentityReady,
@@ -295,18 +296,22 @@ export function renderPersonalPlacesPanel() {
   markerSection.dataset.myPlacesSectionPanel = 'markers';
   while (panel.firstChild) markerSection.append(panel.firstChild);
   panel.append(markerSection);
-  const activeSection = state.settings.myPlacesSection || 'markers';
+  const activeSection = state.settings.myPlacesSection || 'workspace';
   const chips = document.createElement('div');
   chips.className = 'my-places-chips';
   chips.setAttribute('role', 'tablist');
-  chips.innerHTML = '<button type="button" role="tab" aria-selected="' + (activeSection === 'walks') + '" data-my-places-section="walks">Walks' + (state.settings.myPlacesWalkNotice ? '<span class="my-places-notice" aria-label="New routed walk">1</span>' : '') + '</button><button type="button" role="tab" aria-selected="' + (activeSection === 'annotations') + '" data-my-places-section="annotations">Annotations</button><button type="button" role="tab" aria-selected="' + (activeSection === 'markers') + '" data-my-places-section="markers">Markers</button>';
+  chips.innerHTML = '<button type="button" role="tab" aria-selected="' + (activeSection === 'workspace') + '" data-my-places-section="workspace">My Workspace</button><button type="button" role="tab" aria-selected="' + (activeSection === 'walks') + '" data-my-places-section="walks">Walks' + (state.settings.myPlacesWalkNotice ? '<span class="my-places-notice" aria-label="New routed walk">1</span>' : '') + '</button><button type="button" role="tab" aria-selected="' + (activeSection === 'annotations') + '" data-my-places-section="annotations">Annotations</button><button type="button" role="tab" aria-selected="' + (activeSection === 'markers') + '" data-my-places-section="markers">Markers</button>';
   panel.prepend(chips);
-  const savedRoutes = (state.savedRoutes || []).map((route) => '<article class="personal-category-card saved-route-card"><header><span class="category-icon"><img src="./icons/route.svg" alt="" /></span><span><h3>' + escapeHtml(route.title || 'Saved walk') + '</h3><small>' + escapeHtml(route.draft ? 'Draft · configure before starting' : 'Saved walk') + ' · ' + (route.coordinates || []).length + ' route points · ' + (route.sections || []).length + ' sections</small></span></header><p>' + escapeHtml(route.notes || 'A routed walk saved on this device.') + '</p>' + (route.sections?.length ? '<ol class="saved-route-sections">' + route.sections.map((section) => '<li>' + escapeHtml(section.title) + '</li>').join('') + '</ol>' : '') + savedRouteCustomizationHtml(route) + '<div class="route-config-actions"><button class="secondary-button" type="button" data-edit-saved-route="' + escapeHtml(route.id) + '">Configure</button><button class="text-button danger-button" type="button" data-delete-saved-route="' + escapeHtml(route.id) + '">Remove</button></div></article>').join('');
+  const savedRoutes = (state.savedRoutes || []).map((route) => '<article class="personal-category-card saved-route-card"><header><span class="category-icon"><img src="./icons/route.svg" alt="" /></span><span><h3>' + escapeHtml(route.title || 'Saved walk') + '</h3><small>' + escapeHtml(route.draft ? 'Draft · configure before starting' : 'Saved walk') + ' · ' + (route.coordinates || []).length + ' route points · ' + (route.sections || []).length + ' sections</small></span></header><p>' + escapeHtml(route.notes || 'A routed walk saved on this device.') + '</p><ol class="saved-route-sections">' + (route.sections || []).map((section) => '<li><strong>' + escapeHtml(section.title) + '</strong><small> · ' + escapeHtml(section.status || 'upcoming') + (section.distanceMeters ? ` · ${Math.round(section.distanceMeters)} m` : '') + '</small></li>').join('') + '</ol>' + savedRouteCustomizationHtml(route) + savedRouteEditorHtml(route) + '<div class="route-config-actions"><button class="text-button danger-button" type="button" data-delete-saved-route="' + escapeHtml(route.id) + '">Remove</button></div></article>').join('');
   const routesSection = document.createElement('section');
   routesSection.className = 'my-places-section saved-routes-panel';
   routesSection.dataset.myPlacesSectionPanel = 'walks';
   routesSection.innerHTML = '<p class="eyebrow">WALKS</p>' + (savedRoutes || '<p class="empty-state">No routed walks yet. Generate one to add it here.</p>');
   panel.insertBefore(routesSection, markerSection);
+  const workspaceSection = document.createElement('section');
+  workspaceSection.className = 'my-places-section workspace-panel';
+  workspaceSection.dataset.myPlacesSectionPanel = 'workspace';
+  panel.insertBefore(workspaceSection, routesSection);
   const annotationsSection = document.createElement('section');
   annotationsSection.className = 'my-places-section';
   annotationsSection.dataset.myPlacesSectionPanel = 'annotations';
@@ -316,6 +321,7 @@ export function renderPersonalPlacesPanel() {
   if (el('personalPlaceSort')) el('personalPlaceSort').value = state.settings.personalPlaceSort || 'nearest';
   void hydrateInlineIcons(panel);
   void renderLocalDataOrganizers(panel);
+  void renderWorkspacePanel(workspaceSection);
 }
 
 function formatWalkDistance(meters = 0) {
@@ -712,15 +718,14 @@ function bindPersonalPlaceControls() {
     if (event.target.closest('#importPersonalPlacesButton')) { window.dispatchEvent(new CustomEvent('filter-import-requested')); return; }
     const add = event.target.closest('[data-add-to-personal-category]'); if (add) { openPersonalPlaceForm({ categoryId: add.dataset.addToPersonalCategory }); return; }
     const editPlace = event.target.closest('[data-edit-personal-place]'); if (editPlace) { openPersonalPlaceForm({ editId: editPlace.dataset.editPersonalPlace }); return; }
-    const editRoute = event.target.closest('[data-edit-saved-route]'); if (editRoute) {
-      const route = state.savedRoutes.find((item) => item.id === editRoute.dataset.editSavedRoute); if (!route) return;
-      const title = window.prompt('Walk name', route.title); if (title === null) return;
-      const notes = window.prompt('Walk notes', route.notes || '') ?? route.notes;
-      const sections = window.prompt('Route sections (one per line)', (route.sections || []).map((section) => section.title).join('\n'));
-      if (sections === null) return;
-      void updateSavedRoute(route.id, { title, notes, sections: normalizeRouteSections(sections), draft: false }).then(() => toast('Walk configured in My Places.'));
-      return;
-    }
+    if (event.target.closest('[data-create-workspace]')) { const name = window.prompt('Workspace name', 'My Workspace'); if (name?.trim()) void createWorkspace(name.trim()).then(() => renderPersonalPlacesPanel()); return; }
+    const filter = event.target.closest('[data-workspace-filter]'); if (filter) { const section = event.target.closest('[data-my-places-section-panel="workspace"]'); if (section) void renderWorkspacePanel(section, { filter: filter.dataset.workspaceFilter }); return; }
+    const sectionAdd = event.target.closest('[data-section-add]'); if (sectionAdd) { const list = sectionAdd.closest('form')?.querySelector('[data-route-sections]'); if (list) list.insertAdjacentHTML('beforeend', `<div class="route-section-row" draggable="true" data-route-section-row><div class="route-section-grip" aria-hidden="true">⋮⋮</div><div class="route-section-fields"><label>New section<input name="sectionTitle" maxlength="100" value="New section" /></label><label>Stops <input name="sectionStops" placeholder="Place names, comma separated" /></label><label>Section notes<textarea name="sectionNotes" rows="2" maxlength="500"></textarea></label></div><div class="route-section-actions"><button type="button" class="text-button" data-section-up>↑</button><button type="button" class="text-button" data-section-down>↓</button><button type="button" class="text-button danger-button" data-section-remove>Remove</button></div></div>`); return; }
+    const row = event.target.closest('[data-route-section-row]');
+    if (row && event.target.closest('[data-section-remove]')) { row.remove(); return; }
+    if (row && event.target.closest('[data-section-up]')) { row.previousElementSibling?.before(row); return; }
+    if (row && event.target.closest('[data-section-down]')) { row.nextElementSibling?.after(row); return; }
+    const suggest = event.target.closest('[data-section-suggest]'); if (suggest) { suggest.closest('form')?.querySelector('[data-section-suggestions]')?.replaceChildren(document.createTextNode('Optional ideas: split a quiet approach from the discovery loop, shorten the active section, or keep this section as-is. Suggestions never change the route until you save.')); return; }
     const deleteRoute = event.target.closest('[data-delete-saved-route]'); if (deleteRoute) {
       if (!window.confirm('Remove this routed walk from My Places?')) return;
       void deleteSavedRoute(deleteRoute.dataset.deleteSavedRoute).then(() => toast('Routed walk removed.'));
@@ -728,6 +733,13 @@ function bindPersonalPlaceControls() {
     }
     const withdraw = event.target.closest('[data-withdraw-owned-marker]'); if (withdraw) { void withdrawOwnedMarker(withdraw.dataset.withdrawOwnedMarker); return; }
     const remove = event.target.closest('[data-uncategorize-personal-place]'); if (remove) void uncategorize(remove.dataset.uncategorizePersonalPlace);
+  });
+  el('personalPlacesPanel')?.addEventListener('submit', (event) => {
+    const form = event.target.closest('[data-saved-route-editor]'); if (!form) return;
+    event.preventDefault();
+    const route = state.savedRoutes.find((item) => item.id === form.dataset.savedRouteEditor); if (!route) return;
+    const sections = [...form.querySelectorAll('[data-route-section-row]')].map((row, index) => ({ id: route.sections?.[index]?.id || `section-${Date.now()}-${index + 1}`, title: row.querySelector('[name="sectionTitle"]')?.value || `Section ${index + 1}`, notes: row.querySelector('[name="sectionNotes"]')?.value || '', stops: (row.querySelector('[name="sectionStops"]')?.value || '').split(',').map((value) => value.trim()).filter(Boolean), coordinates: route.sections?.[index]?.coordinates || [], geometry: route.sections?.[index]?.geometry || null, distanceMeters: route.sections?.[index]?.distanceMeters ?? null, durationSeconds: route.sections?.[index]?.durationSeconds ?? null, status: route.sections?.[index]?.status || 'upcoming' }));
+    void updateSavedRoute(route.id, { title: form.querySelector('[name="title"]')?.value || route.title, notes: form.querySelector('[name="notes"]')?.value || '', sections, draft: false }).then(() => toast('Route workspace saved.'));
   });
   el('personalPlacesPanel')?.addEventListener('change', (event) => {
     if (event.target.id === 'personalPlaceSort') { state.settings.personalPlaceSort = event.target.value; void db.put('settings', state.settings); renderPersonalPlacesPanel(); return; }

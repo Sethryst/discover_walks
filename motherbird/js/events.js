@@ -27,6 +27,8 @@ import { savePlannedRoute } from './saved-routes.js';
 import { recordSessionRoutingOutcome } from './routing-feedback.js';
 import { openRoomForPlace } from './room-runtime.js';
 import { buildInWalkSuggestion, buildRouteRecommendations } from './ambient-mip.js?v=20261007-walk-moods-1';
+import { renderPersonalPlacesPanel } from './personal-places.js';
+import { renderWorkspacePanel } from './workspace.js';
 
 const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];
 function ambientResponse(plan, signal) { return { archetype: plan?.archetype, traits: plan?.ambientTraits || [], [signal]: true }; }
@@ -191,6 +193,11 @@ function setMapWorkspace(destination = '', { toggle = true, forceOpen = false } 
   });
   document.querySelectorAll('[data-map-panel]').forEach((section) => section.classList.toggle('hidden', section.dataset.mapPanel !== next));
   if (next) el('mapWorkspaceTitle').textContent = next === 'maps' ? 'My Places' : next[0].toUpperCase() + next.slice(1);
+  if (next === 'maps') {
+    renderPersonalPlacesPanel();
+    const workspaceTarget = el('personalPlacesPanel');
+    if (workspaceTarget && !workspaceTarget.children.length) void renderWorkspacePanel(workspaceTarget);
+  }
   window.dispatchEvent(new CustomEvent('map-workspace-changed', { detail: { destination: next, open: Boolean(next) } }));
 }
 

@@ -12,7 +12,7 @@ import { restoreLocalPoiClosures } from './spatial-closure-reporting.js';
 import { initFieldGuideFilters } from './field-guide.js?v=133-source-catalogue';
 import { initPersonalPlaces } from './personal-places.js';
 import { initLayerSystem } from './layer-system.js';
-import { initMapPaint } from './map-paint.js?v=20260929-startup-fix-2';
+import { initMapPaint } from './map-paint.js?v=20261009-workspace-drag-1';
 import { activateInstalledRegionRuntime } from './installed-region-runtime.js';
 import { initCountyAdditions } from './county-additions.js';
 import { applyOfflineBootConditions } from './offline-view.js';
@@ -30,6 +30,8 @@ import { recoverWalkDraft, discardWalk } from './walk.js';
 import { initBiodiversity } from './biodiversity.js';
 import { initRegionalNavigation } from './regional-navigation.js';
 import { initStorageDiagnostics } from './storage-diagnostics.js';
+import { loadWorkspaceState, initWorkspaceRuntime } from './workspace.js';
+import { normalizeSavedRoute } from './saved-routes.js';
 
 export async function init() {
   const telemetry = (stage, details = {}) => globalThis.__MOTHERBIRD_STARTUP_MARK__?.(stage, details);
@@ -111,6 +113,8 @@ export async function init() {
       }, 5000);
     }
     await loadLocalState();
+    await loadWorkspaceState();
+    initWorkspaceRuntime();
     await enterSingleInstalledRegion();
     void migrateLegacyJournalAudio().catch((error) => console.warn('Journal audio migration unavailable:', error.message));
     const params = new URLSearchParams(globalThis.location?.search || '');
@@ -164,7 +168,7 @@ export async function init() {
     return null;
   });
   void (async () => {
-    await optionalBoot('walk controls', () => import('./events.js?v=20261007-walk-moods-1').then(({ initEvents }) => initEvents()));
+    await optionalBoot('walk controls', () => import('./events.js?v=20261009-workspace-1').then(({ initEvents }) => initEvents()));
     initRadialMenu();
     await optionalBoot('radio', initRadio);
     await optionalBoot('geo-cypher', initGeoCypher);
@@ -271,7 +275,10 @@ export async function loadLocalState() {
   state.activeCity = state.settings.activeCity;
   state.lastPosition = validSavedPosition(state.settings.lastPosition) ? { ...state.settings.lastPosition } : null;
   state.walks = savedWalks;
-  state.savedRoutes = savedRoutes;
+  state.savedRoutes = savedRoutes.map((route) => {
+    try { return normalizeSavedRoute(route, route.updatedAt || route.createdAt || new Date().toISOString()); }
+    catch { return route; }
+  });
   state.knownTrackPoints = savedWalks.flatMap((walk) => (walk.points || []).filter((_, index) => index % 5 === 0));
   await restoreLocalPoiClosures();
   await Promise.all([db.put('profile', state.profile), db.put('settings', state.settings)]);

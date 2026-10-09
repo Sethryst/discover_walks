@@ -78,6 +78,7 @@
 #myMapsPanel .learn-groups{margin:4px 0 8px}
 #personalPlacesPanel{display:none}
 #myMapsPanel .advanced-filters{margin-top:8px}
+#mapWorkspacePanel[data-destination="maps"] #personalPlacesPanel{display:block}
 .guide-list:has(.maps-library){grid-template-columns:1fr}
 .help-sheet{overflow-y:auto}
 .help-intro{margin:4px 0 12px;font-size:.82rem;color:#4d635c}

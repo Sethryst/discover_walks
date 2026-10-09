@@ -4,6 +4,9 @@ export const state = {
   settings: null,
   walks: [],
   savedRoutes: [],
+  workspaces: [],
+  workspaceLinks: [],
+  activeWorkspaceId: null,
   observations: [],
   moments: [],
 

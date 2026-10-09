@@ -11,9 +11,7 @@ const actions = {
   ],
   library: [
     { id: 'library-field-guide', label: 'Field Guide', icon: './icons/book-open.svg', run: () => void openBackpack() },
-    { id: 'journal', label: 'Journal', icon: './icons/grid.svg', run: () => void openJournal() },
-    { id: 'observe', label: 'Observations & audio notes', icon: './icons/camera.svg', run: () => { openSheet('journalSheet'); document.getElementById('observeButton')?.click(); } },
-    { id: 'saved-places', label: 'Saved walks & places', icon: './icons/map-pin.svg', run: () => window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'maps', forceOpen: true } })) },
+    { id: 'my-workspace', label: 'My Workspace', icon: './icons/book-open.svg', run: () => { state.settings.myPlacesSection = 'workspace'; window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'maps', forceOpen: true } })); } },
   ],
   me: [
     { id: 'me-companion', label: 'Companion', icon: './icons/heart.svg', run: () => window.dispatchEvent(new CustomEvent('companion-menu-requested')) },
