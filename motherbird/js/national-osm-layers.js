@@ -47,20 +47,29 @@ export async function initNationalOsmLayers() {
 }
 
 export function nationalOsmLayerControlsHtml(settings = state.nationalOsmLayers) {
-  return NATIONAL_OSM_LAYER_GROUPS.map((group) => {
+  return NATIONAL_OSM_LAYER_GROUPS.map((group) => nationalOsmGroupHtml(group, settings)).join('');
+}
+
+function nationalOsmGroupHtml(group, settings) {
     const categories = group.categoryIds.map((id) => categoryById.get(id)).filter(Boolean);
     const enabled = categories.filter(({ id }) => settings?.[id] === true).length;
     return `<section class="national-osm-layer-group" data-national-osm-group="${escapeHtml(group.id)}"><h4>${escapeHtml(group.label)} <small>(${enabled}/${categories.length} shown)</small></h4><div class="national-osm-layer-chips">${categories.map((category) => {
       const selected = settings?.[category.id] === true;
       return `<button type="button" class="national-osm-layer-chip ${selected ? 'on' : 'off'}" style="--chip-color:${escapeHtml(category.color)}" data-national-osm-layer="${escapeHtml(category.id)}" aria-pressed="${selected}">${escapeHtml(category.label)}</button>`;
     }).join('')}</div></section>`;
-  }).join('');
+}
+
+export function nationalOsmFamilyControlsHtml(familyId, settings = state.nationalOsmLayers) {
+  const group = NATIONAL_OSM_LAYER_GROUPS.find(({ id }) => id === familyId);
+  return group ? nationalOsmGroupHtml(group, settings) : '';
 }
 
 export function renderNationalOsmLayerControls() {
   const root = document.getElementById('nationalOsmLayerControls');
-  if (!root) return;
-  root.innerHTML = nationalOsmLayerControlsHtml();
+  if (root) root.innerHTML = nationalOsmLayerControlsHtml();
+  document.querySelectorAll('[data-national-osm-family]').forEach((target) => {
+    target.innerHTML = nationalOsmFamilyControlsHtml(target.dataset.nationalOsmFamily);
+  });
 }
 
 async function persistAndApply() {

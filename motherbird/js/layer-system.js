@@ -12,7 +12,7 @@ import { civicNoticesFromPack, newsIsAvailable } from './civic-news.js';
 import { showCategoryCoach } from './coach.js';
 import { syncNewsStory } from './learn-change.js';
 import { drawStories } from './stories.js';
-import { setNationalOsmFamily } from './national-osm-layers.js';
+import { nationalOsmFamilyControlsHtml, setNationalOsmFamily } from './national-osm-layers.js';
 
 export const LAYER_GROUPS = [
   { id: 'nature_observations', light: 'recreation', label: 'Nature & observations', description: 'Wildlife and biodiversity observations', tags: ['biodiversity:birds', 'biodiversity:plants', 'biodiversity:mammals', 'biodiversity:insects', 'biodiversity:fungi', 'biodiversity:reptiles', 'biodiversity:other'] },
@@ -77,7 +77,7 @@ export async function initLayerSystem() {
     state.layerFilters = { public: { ...state.offlineView.layers.public }, personal: { ...state.offlineView.layers.personal } };
     state.layerLights = { ...state.layerLights, ...state.offlineView.layers.lights };
   }
-  state.layerUiState = { expanded: { ...(savedUi?.expanded || {}) } };
+  state.layerUiState = { expanded: { ...(savedUi?.expanded || {}) }, familyExpanded: { news: true, recreation: false, cuisine: false, ...(savedUi?.familyExpanded || {}) } };
   civicAvailability = await loadCivicAvailability();
   if (!state.offlineView && savedFilters?.lights?.news == null) state.layerLights.news = newsAvailable();
   ensureLayerDefaults();
@@ -175,7 +175,11 @@ export function renderLayerFilters() {
     ['recreation', 'REC'],
     ['cuisine', 'CUISINE']
   ].map(([id, label]) => ({ id, label, groups: groups.filter((group) => group.light === id) })).filter((family) => family.groups.length);
-  root.innerHTML = families.map((family) => `<section class="advanced-filter-family" data-advanced-family="${family.id}"><h4>${family.label}</h4>${family.groups.map(groupHtml).join('')}</section>`).join('') || `<p class="layer-empty">${query ? 'No filters match that search.' : 'Select a category first.'}</p>`;
+  root.innerHTML = families.map((family) => {
+    const expanded = state.layerUiState.familyExpanded[family.id] !== false;
+    const nationalFamily = family.id === 'recreation' ? 'recreation' : family.id;
+    return `<section class="advanced-filter-family ${expanded ? 'is-expanded' : ''}" data-advanced-family="${family.id}"><button class="advanced-family-toggle" type="button" data-advanced-family-toggle="${family.id}" aria-expanded="${expanded}"><span>${family.label}</span><small>${family.groups.reduce((total, group) => total + group.options.length, 0)} filters</small><b aria-hidden="true">⌄</b></button><div class="advanced-family-content ${expanded ? '' : 'hidden'}">${family.groups.map(groupHtml).join('')}<div class="national-osm-family" data-national-osm-family="${nationalFamily}">${nationalOsmFamilyControlsHtml(nationalFamily)}</div></div></section>`;
+  }).join('') || `<p class="layer-empty">${query ? 'No filters match that search.' : 'Select a category first.'}</p>`;
   updateLayerStatus();
 }
 
@@ -201,7 +205,7 @@ async function persistLayerState() {
   const updatedAt = new Date().toISOString();
   await Promise.all([
     db.put('layer_settings', { id: 'current-filters', version: 2, public: { ...state.layerFilters.public }, personal: { ...state.layerFilters.personal }, lights: { ...state.layerLights }, updatedAt }),
-    db.put('layer_settings', { id: 'layer-ui-state', version: 1, expanded: { ...state.layerUiState.expanded }, updatedAt })
+    db.put('layer_settings', { id: 'layer-ui-state', version: 2, expanded: { ...state.layerUiState.expanded }, familyExpanded: { ...state.layerUiState.familyExpanded }, updatedAt })
   ]);
 }
 
@@ -545,6 +549,12 @@ function bindLayerControls() {
   el('personalPlacesVisibility')?.addEventListener('click', () => toggleLight('personal'));
   el('mapLights')?.addEventListener('dblclick', (event) => event.stopPropagation());
   el('poiTagFilters')?.addEventListener('click', (event) => {
+    const familyToggle = event.target.closest('[data-advanced-family-toggle]');
+    if (familyToggle) {
+      const id = familyToggle.dataset.advancedFamilyToggle;
+      state.layerUiState.familyExpanded[id] = !(state.layerUiState.familyExpanded[id] !== false);
+      renderLayerFilters(); void persistLayerState(); return;
+    }
     const master = event.target.closest('[data-master-light]');
     if (master) { toggleLight(master.dataset.masterLight); return; }
     const groupToggle = event.target.closest('[data-layer-group-toggle]');
