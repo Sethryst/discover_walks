@@ -5,7 +5,8 @@
                   export const POINTS_PER_OBSERVATION = 15;
                   export const STREAK_BONUS_PER_DAY = 5;
                   export const MAX_GPS_ACCURACY_METERS = 50;
-                  export const MAX_WALK_SPEED_MPS = 15;
+export const MAX_WALK_SPEED_MPS = 15;
+export const MAX_DRIVE_SPEED_MPS = 70;
 
                   export const CITIES = {
   arlington: {

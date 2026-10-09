@@ -178,6 +178,7 @@ export async function openWalkDetail(id) {
   if (!sheet) { sheet = document.createElement('section'); sheet.id = 'walkDetailSheet'; sheet.className = 'sheet tall-sheet hidden'; sheet.setAttribute('role', 'dialog'); sheet.setAttribute('aria-modal', 'true'); document.body.append(sheet); }
   const soundtrackTracks = (soundtrack?.trackIds || []).map((trackId) => savedTracks.find((track) => String(track.id) === String(trackId)) || { id: trackId, title: trackId });
   sheet.innerHTML = `<button class="close-sheet" data-close-walk-detail aria-label="Close">x</button><span class="sheet-kicker">SAVED WALK</span><h2>${escapeHtml(shortDate(walk.startedAt))} walk</h2><div class="walk-detail-stats"><div><strong>${formatDistance(walk.distanceMeters)}</strong><span>Miles</span></div><div><strong>${formatDuration(walk.elapsedDurationSeconds ?? walk.durationSeconds)}</strong><span>Elapsed</span></div><div><strong>${formatDuration(walk.movingDurationSeconds || 0)}</strong><span>Moving</span></div></div><div id="walkDetailMap" class="walk-detail-map"></div><button class="secondary-button wide-button" id="replayWalkButton" type="button">Replay recorded route</button>${soundtrackTracks.length ? `<section class="walk-reflection"><p class="sheet-kicker">SOUNDTRACK</p><p>${escapeHtml(soundtrackTracks.map((track) => track.title || track.id).join(' · '))}</p></section>` : ''}${eventRows ? `<section class="walk-review-events"><div><strong>Walk events</strong><span>${walk.events.length} factual artifact${walk.events.length === 1 ? '' : 's'}</span></div><ul>${eventRows}</ul></section>` : ''}${linkedObservations.length ? `<section class="walk-reflection"><p class="sheet-kicker">OBSERVATIONS</p><p>${escapeHtml(linkedObservations.map((item) => item.title || item.species).join(' · '))}</p></section>` : ''}${reflection ? `<section class="walk-reflection"><p class="sheet-kicker">${escapeHtml(reflection.title)}</p><p>${escapeHtml(reflection.note)}</p></section>` : '<p class="empty-state">No reflection was saved for this walk.</p>'}`;
+  if ((walk.inferredSegments || []).length) sheet.insertAdjacentHTML('beforeend', `<p class="walk-reconstruction-note">Dashed amber lines are reconstructed from the route graph; solid green lines were recorded by GPS.</p>`);
   let replayTimer = null;
   sheet.querySelector('[data-close-walk-detail]').addEventListener('click', () => { clearInterval(replayTimer); state.walkDetailMap?.remove(); state.walkDetailMap = null; closeSheets(); }); openSheet('walkDetailSheet');
   setTimeout(() => {
@@ -188,6 +189,9 @@ export async function openWalkDetail(id) {
       const latLngs = points.map((point) => [point.lat, point.lng]);
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(state.walkDetailMap);
       L.polyline(latLngs, { color: '#245448', weight: 5 }).addTo(state.walkDetailMap);
+      (walk.inferredSegments || []).forEach((segment) => {
+        if (segment.coordinates?.length > 1) L.polyline(segment.coordinates.map(([lat, lng]) => [lat, lng]), { color: '#c98627', weight: 5, dashArray: '8 8', opacity: .95 }).addTo(state.walkDetailMap);
+      });
       state.walkDetailMap.fitBounds(latLngs, { padding: [22, 22], maxZoom: 17 });
       const marker = L.circleMarker(latLngs[0], { radius: 7, color: '#fff', weight: 2, fillColor: '#7ca900', fillOpacity: 1 }).addTo(state.walkDetailMap);
       el('replayWalkButton').addEventListener('click', () => {

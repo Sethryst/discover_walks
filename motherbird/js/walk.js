@@ -5,7 +5,8 @@ import {
   CITIES,
   chosenPackIds,
   MAX_GPS_ACCURACY_METERS,
-  MAX_WALK_SPEED_MPS
+  MAX_WALK_SPEED_MPS,
+  MAX_DRIVE_SPEED_MPS
 } from './constants.js';
 import { el, uid } from './utils.js';
 import { checkGeofences } from './geofence.js';
@@ -27,6 +28,7 @@ import { companionStateForWalk, setCompanionState } from './companion.js';
 import { walkIsActive } from './walk-state.js';
 import { suggestContextualQuote } from './quote-context.js';
 import { getCurrentPosition, watchPosition, clearWatch, isLocationSimulatorEnabled } from './location-simulator.js';
+import { gapBetween, reconstructedDistance, reconstructedPoints } from './route-gap-reconstruction.js';
 
 const DRAFT_ID = 'active-walk';
 
@@ -40,7 +42,8 @@ export function addWalkPoint(point) {
   const now = Number(point.capturedAtMs) || Date.now();
   if (lastRaw) {
     const elapsedSeconds = Math.max(1, (now - lastRaw.capturedAtMs) / 1000);
-    if (distanceMeters(lastRaw, point) / elapsedSeconds > MAX_WALK_SPEED_MPS) return;
+    const speedLimit = walk.transportMode === 'driving' ? MAX_DRIVE_SPEED_MPS : MAX_WALK_SPEED_MPS;
+    if (distanceMeters(lastRaw, point) / elapsedSeconds > speedLimit) return;
   }
   walk.lastRawPoint = { ...point, capturedAtMs: now };
 
@@ -122,8 +125,49 @@ export function handlePosition(position, shouldPan = false) {
   const weakSignal = !Number.isFinite(point.accuracy) || point.accuracy > MAX_GPS_ACCURACY_METERS;
   if (weakSignal) { setStatus(`GPS signal weak (${Math.round(point.accuracy || 0)} m) - route not updated`); return; }
   setStatus(state.activeWalk ? (state.activeWalk.paused ? 'Walk paused' : 'Recording your walk') : 'Location found', Boolean(state.activeWalk && !state.activeWalk.paused));
-  if (state.activeWalk) addWalkPoint(point);
+  if (state.activeWalk) void addPositionWithGapRecovery(point);
   checkGeofences(point);
+}
+
+async function addPositionWithGapRecovery(point) {
+  const walk = state.activeWalk;
+  const previous = walk?.points?.at(-1);
+  if (previous && gapBetween(previous, point)) await reconstructRouteGap(previous, point);
+  addWalkPoint(point);
+}
+
+async function reconstructRouteGap(previous, current) {
+  const walk = state.activeWalk;
+  if (!walk || walk.paused || walk.recordingStatus !== 'recording') return false;
+  try {
+    const { routeOnFoot } = await import('./routing.js');
+    const profile = walk.transportMode === 'driving' ? 'driving_beta' : 'ordinary_walking_beta';
+    const routed = await routeOnFoot([
+      { lat: previous.lat, lng: previous.lng },
+      { lat: current.lat, lng: current.lng }
+    ], { city: walk.city || state.activeCity, profile });
+    if (!routed.ok || state.activeWalk?.id !== walk.id) return false;
+    const inferred = reconstructedPoints(routed.coordinates, previous, current);
+    walk.inferredSegments ||= [];
+    walk.inferredSegments.push({
+      id: uid('inferred-segment'), source: 'route-graph', profile,
+      from: copyLocation(previous), to: copyLocation(current),
+      coordinates: routed.coordinates.map(([lat, lng]) => [lat, lng]),
+      distanceMeters: reconstructedDistance(routed.coordinates),
+      capturedAt: new Date().toISOString(), confidence: routed.confidence || null,
+      graphVersion: routed.graphVersion || null
+    });
+    walk.points.push(...inferred);
+    walk.distanceMeters += reconstructedDistance(routed.coordinates);
+    walk.endLocation = copyLocation(inferred.at(-1) || previous);
+    walk.lastRawPoint = { ...current, capturedAtMs: Number(current.capturedAtMs) || Date.now() };
+    if (state.routeLine) inferred.forEach((item) => state.routeLine.addLatLng([item.lat, item.lng]));
+    await persistWalkDraft();
+    return true;
+  } catch {
+    // Never replace an unavailable graph with a fabricated straight line.
+    return false;
+  }
 }
 
 async function handleGpsPosition(position, shouldPan = false) {
@@ -215,14 +259,16 @@ export async function addWalkWaypoint(poi) {
   return true;
 }
 
-export async function startWalk({ routeMode = 'tracking' } = {}) {
+export async function startWalk({ routeMode = 'tracking', transportMode = null } = {}) {
   if (state.activeWalk) return state.activeWalk;
   if (!navigator.geolocation) { toast('Location is not supported in this browser.'); return null; }
+  const selectedTransport = transportMode || document.querySelector('[name="transportMode"]')?.value || 'walking';
   state.activeWalk = createWalkArtifact({
     id: uid('walk'),
     city: state.activeCity,
     routeMode,
-    plannedRouteId: state.plannedRoute?.id || null
+    plannedRouteId: state.plannedRoute?.id || null,
+    transportMode: selectedTransport
   });
   ensurePauseButton();
   state.routeLine?.remove();

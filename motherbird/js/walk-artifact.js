@@ -1,6 +1,6 @@
 import { distanceMeters } from './geo.js';
 
-export const WALK_SCHEMA_VERSION = 2;
+export const WALK_SCHEMA_VERSION = 3;
 export const WALK_EVENT_TYPES = Object.freeze([
   'pause',
   'return',
@@ -11,7 +11,7 @@ export const WALK_EVENT_TYPES = Object.freeze([
   'poi-encounter'
 ]);
 
-export function createWalkArtifact({ id, city, startedAt = new Date().toISOString(), routeMode = 'tracking', plannedRouteId = null } = {}) {
+export function createWalkArtifact({ id, city, startedAt = new Date().toISOString(), routeMode = 'tracking', plannedRouteId = null, transportMode = 'walking' } = {}) {
   if (!id) throw new Error('A walk id is required.');
   return {
     schemaVersion: WALK_SCHEMA_VERSION,
@@ -30,6 +30,7 @@ export function createWalkArtifact({ id, city, startedAt = new Date().toISOStrin
     saved: false,
     savedAt: null,
     routeMode,
+    transportMode: transportMode === 'driving' ? 'driving' : 'walking',
     plannedRouteId,
     events: [],
     associatedPlaceIds: [],
@@ -55,13 +56,14 @@ export function normalizeWalkArtifact(walk = {}) {
   const startedAt = walk.startedAt || new Date().toISOString();
   const elapsed = Number(walk.elapsedDurationSeconds ?? walk.durationSeconds) || 0;
   return {
-    ...createWalkArtifact({ id: walk.id || 'unknown-walk', city: walk.city, startedAt, routeMode: walk.routeMode || 'tracking', plannedRouteId: walk.plannedRouteId || null }),
+    ...createWalkArtifact({ id: walk.id || 'unknown-walk', city: walk.city, startedAt, routeMode: walk.routeMode || 'tracking', plannedRouteId: walk.plannedRouteId || null, transportMode: walk.transportMode || 'walking' }),
     ...walk,
     schemaVersion: WALK_SCHEMA_VERSION,
     elapsedDurationSeconds: elapsed,
     durationSeconds: elapsed,
     movingDurationSeconds: Number(walk.movingDurationSeconds) || 0,
     points: Array.isArray(walk.points) ? walk.points : [],
+    inferredSegments: Array.isArray(walk.inferredSegments) ? walk.inferredSegments : [],
     events: Array.isArray(walk.events) ? walk.events : [],
     associatedPlaceIds: uniqueStrings(walk.associatedPlaceIds),
     poiEncounters: Array.isArray(walk.poiEncounters) ? walk.poiEncounters : [],

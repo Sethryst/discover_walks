@@ -38,6 +38,7 @@
   <title>Walk & Wildlife</title>
 </head>
 <body>
+  <label class="transport-mode-control">Record as <select name="transportMode" aria-label="Travel mode"><option value="walking">On foot</option><option value="driving">By car</option></select></label>
   <div class="app-splash" id="appSplash" aria-hidden="true"><img src="./assets/splash-screen.jpeg" alt="" /><div class="app-splash-status" role="status" aria-live="polite"><span class="app-splash-status-dot" aria-hidden="true"></span><span id="appSplashStatus">Unfolding your journal…</span></div></div>
   <script>setTimeout(() => document.getElementById('appSplash')?.classList.add('app-splash--done'), 900);</script>
   <main class="app-shell">

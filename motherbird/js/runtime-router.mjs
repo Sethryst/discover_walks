@@ -2,7 +2,8 @@ const PROFILE_BITS = {
   research: 1 << 0,
   ordinary_walking_beta: 1 << 1,
   verified_access: 1 << 2,
-  accessible_verified: 1 << 3
+  accessible_verified: 1 << 3,
+  driving_beta: 1 << 4
 };
 const WALKING_METERS_PER_SECOND = 1.35;
 

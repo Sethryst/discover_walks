@@ -19,7 +19,7 @@
     "publish:missing-region-seeds": "node tools/publish-missing-region-seeds.mjs",
     "audit:endpoints": "node tools/audit-endpoint-registrations.mjs",
     "audit:endpoints:live": "node tools/audit-endpoint-registrations.mjs --live --record",
-    "test": "node --test tests/fairfax-user-journey.test.mjs tests/route-objectives.test.mjs tests/route-truth.test.mjs tests/walking-cell-runtime.test.mjs tests/point-to-point-routing.test.mjs",
+    "test": "node --test tests/fairfax-user-journey.test.mjs tests/route-objectives.test.mjs tests/route-truth.test.mjs tests/walking-cell-runtime.test.mjs tests/point-to-point-routing.test.mjs tests/route-gap-reconstruction.test.mjs",
     "test:all": "node --test tests/*.test.mjs",
     "test:location-simulator": "node --test ../tests/location-simulator.test.mjs",
     "audit:imports": "node tools/audit-imports.mjs",
