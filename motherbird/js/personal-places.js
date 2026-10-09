@@ -692,6 +692,7 @@ function bindPersonalPlaceControls() {
       state.settings.myPlacesSection = section;
       if (section === 'walks') state.settings.myPlacesWalkNotice = false;
       void db.put('settings', state.settings);
+      if (section === 'walks') sectionButton.querySelector('.my-places-notice')?.remove();
       el('personalPlacesPanel')?.querySelectorAll('[data-my-places-section]').forEach((button) => button.setAttribute('aria-selected', String(button.dataset.myPlacesSection === section)));
       el('personalPlacesPanel')?.querySelectorAll('[data-my-places-section-panel]').forEach((panel) => panel.classList.toggle('hidden', panel.dataset.myPlacesSectionPanel !== section));
       return;

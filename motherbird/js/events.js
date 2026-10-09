@@ -288,6 +288,7 @@ async function moveRoutedPlanToMyPlaces(plan) {
     state.settings.myPlacesWalkNotice = true;
     state.settings.myPlacesSection = 'walks';
     await db.put('settings', state.settings);
+    window.dispatchEvent(new CustomEvent('personal-places-changed'));
     window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'maps', forceOpen: true } }));
     toast('Route added to My Places. Configure it there before starting.');
   } catch (error) {
@@ -301,7 +302,7 @@ function decorateWalkPlanner() {
   panel.dataset.walkPlannerDecorated = 'true';
   const intro = document.createElement('div');
   intro.className = 'walk-planner-copy';
-  intro.innerHTML = '<p class="walk-planner-kicker">Choose a walk shape</p><p class="walk-planner-intro">Pick one, then generate the route.</p>';
+  intro.innerHTML = '<p class="walk-planner-kicker">Choose a walk shape</p><p class="walk-planner-intro">Pick one, then generate the route.</p><p class="walk-selection-order">Point to point: select <strong>Start</strong> first, then choose a destination.</p>';
   panel.prepend(intro);
   const timeLegend = panel.querySelector('#sketchTimeOptions legend');
   if (timeLegend) timeLegend.textContent = 'Walk length';
@@ -455,8 +456,20 @@ function renderRoutePointControls() {
   const pointLabel = (point) => coordinateLabel(point);
   const startField = el('chooseStartButton');
   const endField = el('chooseEndButton');
+  const startSelected = Boolean(start || state.currentPosition);
+  const awaitingStart = state.plannerSelecting === 'Start';
+  const startRow = startField?.closest('.route-endpoint-row');
+  const endRow = endField?.closest('.route-endpoint-row');
+  startRow?.classList.toggle('is-awaiting-selection', awaitingStart);
+  endRow?.classList.toggle('is-locked', !startSelected);
+  if (startField) startField.classList.toggle('is-awaiting-selection', awaitingStart);
+  if (endField) {
+    endField.disabled = !startSelected;
+    endField.setAttribute('aria-disabled', String(!startSelected));
+    endField.classList.toggle('is-locked', !startSelected);
+  }
   if (startField) startField.innerHTML = `<strong>Start</strong><span>${escapeHtml(pointLabel(start || state.currentPosition))}</span>`;
-  if (endField) endField.innerHTML = `<strong>Destination</strong><span>${escapeHtml(pointLabel(end))}</span>`;
+  if (endField) endField.innerHTML = `<strong>Destination</strong><span>${escapeHtml(startSelected ? pointLabel(end) : 'Select Start first')}</span>`;
   list.innerHTML = [
     `<li><strong>Start</strong><span>${escapeHtml(pointLabel(start || state.currentPosition))}</span></li>`,
     ...stops.map((point, index) => `<li><strong>Stop ${index + 1}</strong><span>${escapeHtml(pointLabel(point))}</span></li>`),
@@ -539,11 +552,12 @@ function bindWalkControls() {
     toast(type === 'Start' ? 'Tap the map to choose your starting point.' : type === 'Stop' ? 'Tap the map to add a stop.' : 'Tap the map to choose your destination.');
   };
   el('chooseStartButton')?.addEventListener('click', () => beginPointSelection('Start'));
-  el('chooseEndButton')?.addEventListener('click', () => beginPointSelection('End'));
+  el('chooseEndButton')?.addEventListener('click', () => { if (!state.plannerStart && !state.currentPosition) { toast('Select a starting point first.'); return; } beginPointSelection('End'); });
   el('addStopButton')?.addEventListener('click', () => beginPointSelection('Stop'));
   el('useCurrentLocationButton')?.addEventListener('click', () => {
     if (!state.currentPosition) { toast('Current location is not available yet.'); return; }
     state.plannerStart = { ...state.currentPosition };
+    setPlannerSelecting('End');
     renderRoutePointControls();
     toast('Starting point set to your current location.');
   });
@@ -583,6 +597,7 @@ function bindWalkControls() {
       if (type === 'Start') {
         setPlannerSelecting('End');
         document.body.classList.add('route-selection-active');
+        renderRoutePointControls();
         el('routeSelectionHint')?.classList.remove('hidden');
         if (el('routeSelectionHint')) el('routeSelectionHint').textContent = 'Tap the map to choose your destination.';
         el('startPanel')?.classList.remove('hidden');

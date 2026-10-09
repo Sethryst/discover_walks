@@ -409,6 +409,22 @@ function renderRouteLights() {
     splitDisconnectedPaths(route.coordinates).forEach((coordinates) => {
       const line = L.polyline(coordinates, { color: route.saved ? '#8b5e3c' : '#173c35', weight: route.saved ? 4 : 5, opacity: .82, dashArray: route.saved ? null : '9 6' });
       line.bindTooltip(escapeHtml(route.title || route.name || 'Saved walk'));
+      if (route.saved) {
+        line.bindPopup(`<div class="saved-walk-map-popup"><strong>${escapeHtml(route.title || 'Recorded walk')}</strong><small>Selecting this walk shows its saved route.</small><button type="button" class="danger-button" data-delete-recorded-walk="${escapeHtml(route.id)}">Delete walk</button></div>`);
+        line.on('popupopen', ({ popup }) => {
+          popup.getElement()?.querySelector('[data-delete-recorded-walk]')?.addEventListener('click', async () => {
+            const walkId = popup.getElement()?.querySelector('[data-delete-recorded-walk]')?.dataset.deleteRecordedWalk;
+            if (!walkId || !window.confirm('Delete this recorded walk from your library?')) return;
+            await db.remove('walks', walkId);
+            state.walks = state.walks.filter((walk) => walk.id !== walkId);
+            state.knownTrackPoints = state.walks.flatMap((walk) => (walk.points || []).filter((_, index) => index % 5 === 0));
+            popup.remove();
+            renderRouteLights();
+            window.dispatchEvent(new CustomEvent('walks-changed'));
+            toast('Recorded walk deleted.');
+          }, { once: true });
+        });
+      }
       line.addTo(state.routeLightLayer);
     });
   });
