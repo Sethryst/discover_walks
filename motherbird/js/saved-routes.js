@@ -4,6 +4,14 @@ import { uid } from './utils.js';
 
 export function normalizeSavedRoute(route = {}, now = new Date().toISOString()) {
   const coordinates = Array.isArray(route.coordinates) ? route.coordinates.filter((point) => Array.isArray(point) && point.length >= 2).map(([lat, lng]) => [Number(lat), Number(lng)]) : [];
+  const stops = Array.isArray(route.stops) ? route.stops.map((stop, index) => ({
+    id: String(stop.id || `stop-${index + 1}`), name: String(stop.name || `Stop ${index + 1}`).trim().slice(0, 100),
+    lat: Number(stop.lat), lng: Number(stop.lng)
+  })).filter((stop) => Number.isFinite(stop.lat) && Number.isFinite(stop.lng)) : [];
+  const sections = Array.isArray(route.sections) ? route.sections.map((section, index) => ({
+    id: String(section.id || `section-${index + 1}`), title: String(section.title || `Section ${index + 1}`).trim().slice(0, 100),
+    notes: String(section.notes || '').trim().slice(0, 500)
+  })).filter((section) => section.title) : [];
   if (coordinates.length < 2) throw new Error('A saved route needs at least two points.');
   return {
     id: String(route.id || uid('saved-route')), city: String(route.city || state.activeCity || ''),
@@ -19,12 +27,21 @@ export function normalizeSavedRoute(route = {}, now = new Date().toISOString()) 
       archetype: String(option.archetype || ''), coordinates: Array.isArray(option.coordinates) ? option.coordinates : [],
       distanceMeters: Number(option.distanceMeters || 0), durationSeconds: Number(option.durationSeconds || 0)
     })).filter((option) => option.id && option.coordinates.length >= 2) : [],
+    stops, sections,
     distanceMeters: Number.isFinite(Number(route.distanceMeters)) ? Number(route.distanceMeters) : null,
     durationSeconds: Number.isFinite(Number(route.durationSeconds)) ? Number(route.durationSeconds) : null,
     coordinates,
     destination: route.destination && Number.isFinite(Number(route.destination.lat)) && Number.isFinite(Number(route.destination.lng)) ? { lat: Number(route.destination.lat), lng: Number(route.destination.lng) } : null,
     createdAt: route.createdAt || now, updatedAt: now, saved: true
   };
+}
+
+export function normalizeRouteSections(value = []) {
+  const entries = Array.isArray(value) ? value : String(value || '').split(/\r?\n/);
+  return entries.map((section, index) => typeof section === 'string'
+    ? { id: `section-${Date.now()}-${index + 1}`, title: section.trim(), notes: '' }
+    : { id: String(section.id || `section-${Date.now()}-${index + 1}`), title: String(section.title || '').trim(), notes: String(section.notes || '').trim() })
+    .filter((section) => section.title).slice(0, 30);
 }
 
 export async function savePlannedRoute(plan, fields = {}) {

@@ -3,7 +3,7 @@ import db from './storage.js';
 import { el, escapeHtml } from './utils.js';
 import { closeSheets, toast } from './ui.js';
 import { curatedPersonalPlaces, normalizePersonalCategory, openPersonalPlaceForm } from './personal-places.js';
-import { updateSavedRoute, deleteSavedRoute } from './saved-routes.js';
+import { updateSavedRoute, deleteSavedRoute, normalizeRouteSections } from './saved-routes.js';
 
 const DEFAULT_COLOR = '#E8740F';
 let openMapsFolderId = null;
@@ -37,7 +37,7 @@ function mapsPlaceCard(place, color) {
 }
 
 function mapsRouteCard(route) {
-  return `<article class="guide-card learn-entry maps-route" style="--learn-color:${escapeHtml(route.color || DEFAULT_COLOR)}"><small>${escapeHtml(route.routeMode || 'round-trip')} · ${route.coordinates.length} points</small><h3>${escapeHtml(route.title || 'Saved route')}</h3>${route.notes ? `<p>${escapeHtml(route.notes)}</p>` : ''}<div class="learn-site-actions"><button class="secondary-button" type="button" data-edit-saved-route="${escapeHtml(route.id)}">Edit</button><button class="text-button" type="button" data-delete-saved-route="${escapeHtml(route.id)}">Delete</button></div></article>`;
+  return `<article class="guide-card learn-entry maps-route" style="--learn-color:${escapeHtml(route.color || DEFAULT_COLOR)}"><small>${escapeHtml(route.routeMode || 'round-trip')} · ${route.coordinates.length} points · ${(route.sections || []).length} sections</small><h3>${escapeHtml(route.title || 'Saved route')}</h3>${route.notes ? `<p>${escapeHtml(route.notes)}</p>` : ''}${route.sections?.length ? `<ol class="saved-route-sections">${route.sections.map((section) => `<li>${escapeHtml(section.title)}</li>`).join('')}</ol>` : ''}<div class="learn-site-actions"><button class="secondary-button" type="button" data-edit-saved-route="${escapeHtml(route.id)}">Edit</button><button class="text-button" type="button" data-delete-saved-route="${escapeHtml(route.id)}">Delete</button></div></article>`;
 }
 
 function mapsFolderForm(parentId) {
@@ -135,7 +135,9 @@ export function initMapsFolders() {
       const notes = window.prompt('Route notes', route.notes || '') ?? route.notes;
       const color = window.prompt('Route color (hex)', route.color || '#173c35') ?? route.color;
       const icon = window.prompt('Route icon name', route.icon || 'route') ?? route.icon;
-      void updateSavedRoute(route.id, { title, notes, color, icon }).then(() => { renderMapsLibrary(); toast('Route updated.'); });
+      const sections = window.prompt('Route sections (one per line)', (route.sections || []).map((section) => section.title).join('\n'));
+      if (sections === null) return;
+      void updateSavedRoute(route.id, { title, notes, color, icon, sections: normalizeRouteSections(sections) }).then(() => { renderMapsLibrary(); toast('Route updated.'); });
       return;
     }
     const deleteRoute = event.target.closest('[data-delete-saved-route]');

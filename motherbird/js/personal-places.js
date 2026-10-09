@@ -6,7 +6,7 @@ import { closeSheets, openSheet, toast } from './ui.js';
 import { hydrateInlineIcons } from './icon-loader.js';
 import { markerPinHtml, markerVisual } from './poi-icons.js';
 import { requestCompanionContext } from './companion.js';
-import { updateSavedRoute, deleteSavedRoute } from './saved-routes.js';
+import { updateSavedRoute, deleteSavedRoute, normalizeRouteSections } from './saved-routes.js';
 import {
   postPublicMarker,
   publicMarkerIdentityReady,
@@ -301,7 +301,7 @@ export function renderPersonalPlacesPanel() {
   chips.setAttribute('role', 'tablist');
   chips.innerHTML = '<button type="button" role="tab" aria-selected="' + (activeSection === 'walks') + '" data-my-places-section="walks">Walks' + (state.settings.myPlacesWalkNotice ? '<span class="my-places-notice" aria-label="New routed walk">1</span>' : '') + '</button><button type="button" role="tab" aria-selected="' + (activeSection === 'annotations') + '" data-my-places-section="annotations">Annotations</button><button type="button" role="tab" aria-selected="' + (activeSection === 'markers') + '" data-my-places-section="markers">Markers</button>';
   panel.prepend(chips);
-  const savedRoutes = (state.savedRoutes || []).map((route) => '<article class="personal-category-card saved-route-card"><header><span class="category-icon"><img src="./icons/route.svg" alt="" /></span><span><h3>' + escapeHtml(route.title || 'Saved walk') + '</h3><small>' + escapeHtml(route.draft ? 'Draft · configure before starting' : 'Saved walk') + ' · ' + (route.coordinates || []).length + ' route points</small></span></header><p>' + escapeHtml(route.notes || 'A routed walk saved on this device.') + '</p>' + savedRouteCustomizationHtml(route) + '<div class="route-config-actions"><button class="secondary-button" type="button" data-edit-saved-route="' + escapeHtml(route.id) + '">Configure</button><button class="text-button danger-button" type="button" data-delete-saved-route="' + escapeHtml(route.id) + '">Remove</button></div></article>').join('');
+  const savedRoutes = (state.savedRoutes || []).map((route) => '<article class="personal-category-card saved-route-card"><header><span class="category-icon"><img src="./icons/route.svg" alt="" /></span><span><h3>' + escapeHtml(route.title || 'Saved walk') + '</h3><small>' + escapeHtml(route.draft ? 'Draft · configure before starting' : 'Saved walk') + ' · ' + (route.coordinates || []).length + ' route points · ' + (route.sections || []).length + ' sections</small></span></header><p>' + escapeHtml(route.notes || 'A routed walk saved on this device.') + '</p>' + (route.sections?.length ? '<ol class="saved-route-sections">' + route.sections.map((section) => '<li>' + escapeHtml(section.title) + '</li>').join('') + '</ol>' : '') + savedRouteCustomizationHtml(route) + '<div class="route-config-actions"><button class="secondary-button" type="button" data-edit-saved-route="' + escapeHtml(route.id) + '">Configure</button><button class="text-button danger-button" type="button" data-delete-saved-route="' + escapeHtml(route.id) + '">Remove</button></div></article>').join('');
   const routesSection = document.createElement('section');
   routesSection.className = 'my-places-section saved-routes-panel';
   routesSection.dataset.myPlacesSectionPanel = 'walks';
@@ -716,7 +716,9 @@ function bindPersonalPlaceControls() {
       const route = state.savedRoutes.find((item) => item.id === editRoute.dataset.editSavedRoute); if (!route) return;
       const title = window.prompt('Walk name', route.title); if (title === null) return;
       const notes = window.prompt('Walk notes', route.notes || '') ?? route.notes;
-      void updateSavedRoute(route.id, { title, notes, draft: false }).then(() => toast('Walk configured in My Places.'));
+      const sections = window.prompt('Route sections (one per line)', (route.sections || []).map((section) => section.title).join('\n'));
+      if (sections === null) return;
+      void updateSavedRoute(route.id, { title, notes, sections: normalizeRouteSections(sections), draft: false }).then(() => toast('Walk configured in My Places.'));
       return;
     }
     const deleteRoute = event.target.closest('[data-delete-saved-route]'); if (deleteRoute) {
