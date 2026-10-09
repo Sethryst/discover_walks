@@ -261,6 +261,11 @@ function localCategory(place) {
   return state.personalPlaceCategories.find((category) => category.id === (place.categoryId || place.category_id));
 }
 
+function savedRouteCustomizationHtml(route) {
+  if (!route.routeOptions?.length) return '';
+  return '<div class="route-customizations"><small>Route style</small>' + route.routeOptions.map((option) => '<button type="button" class="route-customization-chip" data-saved-route-option="' + escapeHtml(route.id) + ':' + escapeHtml(option.id) + '">' + escapeHtml(option.title || option.archetype || 'Alternative') + '</button>').join('') + '</div>';
+}
+
 export function renderPersonalPlacesPanel() {
   const panel = el('personalPlacesPanel');
   if (!panel) return;
@@ -285,8 +290,29 @@ export function renderPersonalPlacesPanel() {
   const activeWalk = state.activeWalk;
   const activeWalkCard = activeWalk ? `<article class="active-walk-card" aria-live="polite"><div><p class="eyebrow">WALK IN PROGRESS</p><h2>${activeWalk.recordingStatus === 'stopped' ? 'Walk awaiting review' : 'Current walk'}</h2><p>${formatWalkDistance(activeWalk.distanceMeters)} recorded · ${activeWalk.points?.length || 0} route points · ${activeWalk.recordingStatus === 'stopped' ? 'safe to review' : 'saving on this device'}</p></div><span class="active-walk-status">${activeWalk.recordingStatus === 'stopped' ? 'Paused' : 'Recording'}</span></article>` : '';
   panel.innerHTML = `${activeWalkCard}<div class="personal-places-intro"><div><p class="eyebrow">MY PLACES</p><h2>Your places</h2><p>Private pins stay on this device. Posted pins keep their attribution.</p></div><button class="primary-button" id="addPersonalPlaceButton" type="button"><img src="./icons/plus.svg" alt="" /> Add location</button></div>${cards}<label>Sort<select id="personalPlaceSort"><option value="nearest">Nearest</option><option value="name">Name</option><option value="importance">Importance</option><option value="newest">Newest</option></select></label>`;
-  const savedRoutes = (state.savedRoutes || []).map((route) => '<article class="personal-category-card saved-route-card"><header><span class="category-icon"><img src="./icons/route.svg" alt="" /></span><span><h3>' + escapeHtml(route.title || 'Saved walk') + '</h3><small>' + escapeHtml(route.draft ? 'Draft · configure before starting' : 'Saved walk') + ' · ' + route.coordinates.length + ' route points</small></span></header><p>' + escapeHtml(route.notes || 'A routed walk saved on this device.') + '</p><div class="route-config-actions"><button class="secondary-button" type="button" data-edit-saved-route="' + escapeHtml(route.id) + '">Configure</button><button class="text-button danger-button" type="button" data-delete-saved-route="' + escapeHtml(route.id) + '">Remove</button></div></article>').join('');
-  if (savedRoutes) panel.insertAdjacentHTML('afterbegin', '<section class="saved-routes-panel"><p class="eyebrow">ROUTED WALKS</p>' + savedRoutes + '</section>');
+  const markerSection = document.createElement('section');
+  markerSection.className = 'my-places-section';
+  markerSection.dataset.myPlacesSectionPanel = 'markers';
+  while (panel.firstChild) markerSection.append(panel.firstChild);
+  panel.append(markerSection);
+  const activeSection = state.settings.myPlacesSection || 'markers';
+  const chips = document.createElement('div');
+  chips.className = 'my-places-chips';
+  chips.setAttribute('role', 'tablist');
+  chips.innerHTML = '<button type="button" role="tab" aria-selected="' + (activeSection === 'walks') + '" data-my-places-section="walks">Walks' + (state.settings.myPlacesWalkNotice ? '<span class="my-places-notice" aria-label="New routed walk">1</span>' : '') + '</button><button type="button" role="tab" aria-selected="' + (activeSection === 'annotations') + '" data-my-places-section="annotations">Annotations</button><button type="button" role="tab" aria-selected="' + (activeSection === 'markers') + '" data-my-places-section="markers">Markers</button>';
+  panel.prepend(chips);
+  const savedRoutes = (state.savedRoutes || []).map((route) => '<article class="personal-category-card saved-route-card"><header><span class="category-icon"><img src="./icons/route.svg" alt="" /></span><span><h3>' + escapeHtml(route.title || 'Saved walk') + '</h3><small>' + escapeHtml(route.draft ? 'Draft · configure before starting' : 'Saved walk') + ' · ' + (route.coordinates || []).length + ' route points</small></span></header><p>' + escapeHtml(route.notes || 'A routed walk saved on this device.') + '</p>' + savedRouteCustomizationHtml(route) + '<div class="route-config-actions"><button class="secondary-button" type="button" data-edit-saved-route="' + escapeHtml(route.id) + '">Configure</button><button class="text-button danger-button" type="button" data-delete-saved-route="' + escapeHtml(route.id) + '">Remove</button></div></article>').join('');
+  const routesSection = document.createElement('section');
+  routesSection.className = 'my-places-section saved-routes-panel';
+  routesSection.dataset.myPlacesSectionPanel = 'walks';
+  routesSection.innerHTML = '<p class="eyebrow">WALKS</p>' + (savedRoutes || '<p class="empty-state">No routed walks yet. Generate one to add it here.</p>');
+  panel.insertBefore(routesSection, markerSection);
+  const annotationsSection = document.createElement('section');
+  annotationsSection.className = 'my-places-section';
+  annotationsSection.dataset.myPlacesSectionPanel = 'annotations';
+  annotationsSection.innerHTML = '<p class="empty-state">Annotations will appear here as you draw on the map.</p>';
+  panel.append(annotationsSection);
+  panel.querySelectorAll('[data-my-places-section-panel]').forEach((section) => section.classList.toggle('hidden', section.dataset.myPlacesSectionPanel !== activeSection));
   if (el('personalPlaceSort')) el('personalPlaceSort').value = state.settings.personalPlaceSort || 'nearest';
   void hydrateInlineIcons(panel);
   void renderLocalDataOrganizers(panel);
@@ -308,7 +334,8 @@ async function renderLocalDataOrganizers(panel) {
   container.className = 'local-data-organizer';
   container.setAttribute('aria-label', 'Private journal organizer');
   container.innerHTML = `<p class="eyebrow">PRIVATE JOURNAL</p><h3>Organize your records</h3>${recent(moments.filter((item) => item.type === 'journal' || item.type === 'history'), 'Past journal entries', 'No journal entries yet.', (item) => item.title || 'Field note')}${recent(observations, 'Observations', 'No observations yet.', (item) => item.species || item.title || 'Observation')}${recent(walks, 'Completed walks', 'No completed walks yet.', (item) => `${formatWalkDistance(item.distanceMeters)} walk`)}${recent(voices, 'Voice notes', 'No voice notes yet.', (item) => item.transcript ? item.transcript.slice(0, 80) : 'Voice note')}</section>`;
-  panel.append(container);
+  const annotations = panel.querySelector('[data-my-places-section-panel="annotations"]');
+  (annotations || panel).append(container);
 }
 
 function defaultChip(light) {
@@ -660,6 +687,25 @@ export async function upsertImportedPersonalData(categories = [], places = [], d
 
 function bindPersonalPlaceControls() {
   el('personalPlacesPanel')?.addEventListener('click', (event) => {
+    const sectionButton = event.target.closest('[data-my-places-section]'); if (sectionButton) {
+      const section = sectionButton.dataset.myPlacesSection;
+      state.settings.myPlacesSection = section;
+      if (section === 'walks') state.settings.myPlacesWalkNotice = false;
+      void db.put('settings', state.settings);
+      el('personalPlacesPanel')?.querySelectorAll('[data-my-places-section]').forEach((button) => button.setAttribute('aria-selected', String(button.dataset.myPlacesSection === section)));
+      el('personalPlacesPanel')?.querySelectorAll('[data-my-places-section-panel]').forEach((panel) => panel.classList.toggle('hidden', panel.dataset.myPlacesSectionPanel !== section));
+      return;
+    }
+    const routeOption = event.target.closest('[data-saved-route-option]'); if (routeOption) {
+      const value = routeOption.dataset.savedRouteOption;
+      const separator = value.indexOf(':');
+      const routeId = value.slice(0, separator);
+      const optionId = value.slice(separator + 1);
+      const route = state.savedRoutes.find((item) => item.id === routeId);
+      const option = route?.routeOptions?.find((item) => item.id === optionId);
+      if (route && option) window.dispatchEvent(new CustomEvent('saved-route-option-selected', { detail: { route, option } }));
+      return;
+    }
     if (event.target.closest('#addPersonalPlaceButton')) { openPersonalPlaceForm(); return; }
     if (event.target.closest('#exportPersonalPlacesButton')) { exportPersonalPlaces(); return; }
     if (event.target.closest('#importPersonalPlacesButton')) { window.dispatchEvent(new CustomEvent('filter-import-requested')); return; }

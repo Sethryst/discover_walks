@@ -281,7 +281,13 @@ function togglePanel(buttonId, panelId) {
 async function moveRoutedPlanToMyPlaces(plan) {
   const id = 'walk-draft-' + (plan.id || Date.now());
   try {
-    await savePlannedRoute(plan, { id, title: plan.title || 'Walk draft', notes: plan.reason || 'Routed walk ready for configuration.', draft: true });
+    await savePlannedRoute(plan, {
+      id, title: plan.title || 'Walk draft', notes: plan.reason || 'Routed walk ready for configuration.', draft: true,
+      routeOptions: (state.planOptions || []).map((option) => ({ id: option.id, title: option.title, subtitle: option.subtitle, archetype: option.archetype, coordinates: option.coordinates, distanceMeters: option.distanceMeters, durationSeconds: option.durationSeconds }))
+    });
+    state.settings.myPlacesWalkNotice = true;
+    state.settings.myPlacesSection = 'walks';
+    await db.put('settings', state.settings);
     window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'maps', forceOpen: true } }));
     toast('Route added to My Places. Configure it there before starting.');
   } catch (error) {
@@ -300,11 +306,12 @@ function decorateWalkPlanner() {
   const timeLegend = panel.querySelector('#sketchTimeOptions legend');
   if (timeLegend) timeLegend.textContent = 'Walk length';
   const labels = {
-    'round-trip': ['Go to a place', 'Choose a destination and return.'],
-    'auto-round-trip': ['Discover nearby', 'Build a short loop through nearby places.'],
-    'point-to-point': ['Go somewhere', 'Choose a start and destination.']
+    'point-to-point': ['Point to point', 'Choose a start and destination.'],
+    'round-trip': ['Round trip to point', 'Choose a destination and return.'],
+    'auto-round-trip': ['Auto round trip', 'Build a loop through nearby places.']
   };
-  panel.querySelectorAll('input[name="routeMode"]').forEach((input) => {
+  const routeFieldset = panel.querySelector('.sketch-route-options');
+  [...panel.querySelectorAll('input[name="routeMode"]')].sort((a, b) => ['point-to-point', 'round-trip', 'auto-round-trip'].indexOf(a.value) - ['point-to-point', 'round-trip', 'auto-round-trip'].indexOf(b.value)).forEach((input) => {
     const label = input.closest('label');
     const copy = labels[input.value];
     if (!label || !copy) return;
@@ -313,6 +320,7 @@ function decorateWalkPlanner() {
     const span = document.createElement('span');
     span.innerHTML = '<strong>' + copy[0] + '</strong><small>' + copy[1] + '</small>';
     label.append(span);
+    routeFieldset?.append(label);
   });
   const generate = el('generateWalkButton');
   if (generate) generate.textContent = 'Generate walk';
@@ -550,7 +558,14 @@ function bindWalkControls() {
   window.addEventListener('walk-sketch-painted', (event) => {
     const plan = event.detail;
     renderWalkSketch(plan);
-    if (plan?.coordinates?.length >= 2) void moveRoutedPlanToMyPlaces(plan);
+    if (plan?.coordinates?.length >= 2 && !plan.fromSavedRouteOption) void moveRoutedPlanToMyPlaces(plan);
+  });
+  window.addEventListener('saved-route-option-selected', ({ detail }) => {
+    if (!detail?.route || !detail?.option) return;
+    state.plannedRoute = { ...detail.route, ...detail.option, id: detail.route.id, draft: false, fromSavedRouteOption: true };
+    lockSelectedPlanOnMap();
+    el('walkSketch')?.classList.remove('hidden');
+    renderWalkSketch(state.plannedRoute);
   });
   window.addEventListener('planner-point-selected', (event) => {
     const type = event.detail?.type || 'End';

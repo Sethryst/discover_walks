@@ -14,6 +14,11 @@ export function normalizeSavedRoute(route = {}, now = new Date().toISOString()) 
     routeMode: String(route.routeMode || 'round-trip'),
     discoverCategoryId: route.discoverCategoryId ? String(route.discoverCategoryId) : null,
     draft: route.draft === true,
+    routeOptions: Array.isArray(route.routeOptions) ? route.routeOptions.map((option) => ({
+      id: String(option.id || ''), title: String(option.title || ''), subtitle: String(option.subtitle || ''),
+      archetype: String(option.archetype || ''), coordinates: Array.isArray(option.coordinates) ? option.coordinates : [],
+      distanceMeters: Number(option.distanceMeters || 0), durationSeconds: Number(option.durationSeconds || 0)
+    })).filter((option) => option.id && option.coordinates.length >= 2) : [],
     distanceMeters: Number.isFinite(Number(route.distanceMeters)) ? Number(route.distanceMeters) : null,
     durationSeconds: Number.isFinite(Number(route.durationSeconds)) ? Number(route.durationSeconds) : null,
     coordinates,
