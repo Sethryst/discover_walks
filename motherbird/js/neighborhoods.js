@@ -14,6 +14,10 @@ export function initNeighborhoodDiscovery() {
   el('resetNeighborhoodsButton')?.addEventListener('click', resetNeighborhoodDiscoveries);
 }
 
+export function shouldDisplayNeighborhoodLayer(cityId = state.activeCity) {
+  return cityId !== 'dc';
+}
+
 export async function loadNeighborhoodsForCity(cityId = state.activeCity) {
   state.neighborhoodLayer?.remove(); state.neighborhoodLayer = null; state.neighborhoodData = null; state.discoveredNeighborhoodIds = new Set();
   el('neighborhoodDiscoveryPanel')?.classList.add('hidden');
@@ -28,8 +32,11 @@ export async function loadNeighborhoodsForCity(cityId = state.activeCity) {
     const saved = await db.all('neighborhood_discoveries');
     state.discoveredNeighborhoodIds = new Set(saved.filter((item) => item.cityId === cityId).map((item) => item.neighborhoodId));
     state.neighborhoodData = data;
-    state.neighborhoodLayer = L.geoJSON(data, { style: neighborhoodStyle, onEachFeature }).addTo(state.map);
-    state.neighborhoodLayer.bringToBack();
+    state.neighborhoodLayer = L.geoJSON(data, { style: neighborhoodStyle, onEachFeature });
+    if (shouldDisplayNeighborhoodLayer(cityId)) {
+      state.neighborhoodLayer.addTo(state.map);
+      state.neighborhoodLayer.bringToBack();
+    }
     const spatial = await upgradeSpatialDataFromPackage(cityId, state.cityPois[cityId] || [], data, spatialIndexPath);
     // The static index is an optional optimization. The verified in-memory
     // fallback remains authoritative, so do not surface checksum drift as a

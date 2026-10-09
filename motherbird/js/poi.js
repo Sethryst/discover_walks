@@ -137,10 +137,10 @@ export function poiMatchesSelectedTags(poi, selectedTags = new Set()) {
 }
 export function renderCityPois({ preserveInteraction = true } = {}) {
   if (!state.poiLayer) return;
-  // DC keeps every POI in the backing store, but its dense urban map should
-  // show the individual places instead of a visual aggregate cluster.
+  // Keep the complete POI backing store while using the normal marker-cluster
+  // presentation for every city. Neighborhood area layers are managed separately.
   if (state.poiLayer.options && Object.prototype.hasOwnProperty.call(state.poiLayer.options, 'disableClusteringAtZoom')) {
-    state.poiLayer.options.disableClusteringAtZoom = state.activeCity === 'dc' ? 0 : 17;
+    state.poiLayer.options.disableClusteringAtZoom = 17;
   }
   const renderStart = globalThis.performance?.now?.() || 0;
   const openPopupSource = preserveInteraction ? state.map?._popup?._source : null;

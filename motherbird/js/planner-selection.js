@@ -1,4 +1,5 @@
 import { state } from './state.js';
+import { shouldDisplayNeighborhoodLayer } from './neighborhoods.js';
 
 // Keep endpoint gestures isolated from Leaflet's synthetic POI/cluster events.
 // The helper has its own versioned module so a stale state.js shell response
@@ -12,7 +13,7 @@ export function setPlannerSelecting(value) {
   // Temporarily remove that overlay while the planner owns map gestures.
   const neighborhoods = state.neighborhoodLayer;
   if (value) neighborhoods?.remove?.();
-  else if (neighborhoods && !state.map.hasLayer(neighborhoods)) neighborhoods.addTo(state.map);
+  else if (shouldDisplayNeighborhoodLayer() && neighborhoods && !state.map.hasLayer(neighborhoods)) neighborhoods.addTo(state.map);
   if (value) {
     if (state.map.hasLayer(layer)) state.map.removeLayer(layer);
   } else if (!state.map.hasLayer(layer)) {
