@@ -9,7 +9,7 @@ import { city, poiTags, searchPois } from './poi.js';
 import { localSearchHits, searchRowHtml, emptySearchHtml } from './search.js';
 import { initRegionalNavigation } from './regional-navigation.js';
 import { switchCity } from './city.js';
-import { generateTimeBasedPlan, lockSelectedPlanOnMap, changePlan, selectPlan, setPlanningMode } from './planner.js?v=20261007-ambient-planner-2';
+import { generateTimeBasedPlan, lockSelectedPlanOnMap, changePlan, selectPlan, setPlanningMode } from './planner.js?v=20261009-route-lab-1';
 import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261007-ambient-routing-1';
 import { coordinateLabel, resolveRoutePlaceLabel } from './route-place-labels.js?v=20261006-route-labels-1';
 import { paintWalkPlan, paintCard, previewCard, sendCurrentWalkPlan } from './field-guide.js?v=133-source-catalogue';
@@ -408,7 +408,7 @@ function renderWalkSketch(plan) {
     const activeManeuver = el('activeManeuver');
     if (activeManeuver) {
       activeManeuver.dataset.routeId = plan.id;
-      activeManeuver.textContent = nextStep ? `Next: ${nextStep.text}${nextStep.distance_m ? ` · ${Math.round(nextStep.distance_m)} m` : ''}` : 'Follow the mapped route.';
+      activeManeuver.textContent = nextStep ? `Next: ${nextStep.text}${nextStep.distance_m ? ` · ${Math.round(nextStep.distance_m)} m` : ''}` : (plan.graphStatus ? `Route unavailable · ${plan.failureMessage || 'try a nearby mapped path'}` : 'Follow the mapped route.');
     }
     instructions.innerHTML = steps.length
       ? steps.map((step) => `<li>${escapeHtml(step.text)}${step.distance_m ? ` · ${Math.round(step.distance_m)} m` : ''}</li>`).join('')

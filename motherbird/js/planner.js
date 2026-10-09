@@ -98,6 +98,10 @@ export function paintWalkConcept(plan = state.plannedRoute, { fit = true } = {})
   state.plannedRouteLines = routePaths.map((coordinates) => L.polyline(coordinates, { pane: 'plannerRoutePane', color: routeColors[mood] || routeColors.direct, weight: 8, opacity: 1, lineCap: 'round', lineJoin: 'round', dashArray: mood === 'quiet' ? '10 8' : null }).addTo(state.map));
   [...routeCasingLines, ...state.plannedRouteLines].forEach((line) => line.bringToFront());
   state.plannerRouteCasingLines = routeCasingLines;
+  // Gap overlays are optional diagnostics. Keep the slot explicit even when
+  // no gap analysis was requested so a normal route (including auto loops)
+  // can finish painting and fitting the map without a dangling reference.
+  const gapLines = [];
   state.plannerRouteGapLines = gapLines;
   const restoreRouteOverlay = () => {
     [...(state.plannerRouteCasingLines || []), ...(state.plannedRouteLines || []), ...(state.plannerRouteGapLines || [])].forEach((line) => {
@@ -144,9 +148,15 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
   }
   const count = minutes <= 20 ? 2 : minutes >= 60 ? 4 : 3;
   const selectedStops = (state.plannerStops || []).map((point, index) => normalizeStop({ name: `Stop ${index + 1}`, ...point }, index)).filter(Boolean);
+  const autoCandidates = candidateStops(center, interests());
+  const autoRadiusKm = Math.max(1.5, minutes * 0.08);
+  const nearbyAutoCandidates = autoCandidates.filter((stop) => {
+    const normalized = normalizeStop(stop, 0);
+    return normalized && distanceBetween(center, normalized) <= autoRadiusKm;
+  });
   const rawStops = needsMapDestination
     ? [...selectedStops, { name: 'Selected destination', lat: state.plannerEnd.lat, lng: state.plannerEnd.lng }]
-    : (seededStops?.length ? seededStops : candidateStops(center, interests()).slice(0, count)).map(normalizeStop).filter(Boolean);
+    : (seededStops?.length ? seededStops : (nearbyAutoCandidates.length >= count ? nearbyAutoCandidates : autoCandidates).slice(0, count)).map(normalizeStop).filter(Boolean);
   const stops = routeMode === 'auto-round-trip' ? orderAutoRoundTripStops(rawStops, center) : rawStops;
   if (!stops.length) {
     toast('No candidate places nearby to sketch a walk. Try panning the map or picking an area with places.');

@@ -1,26 +1,71 @@
-<!doctype html><meta charset="utf-8"><title>Motherbird point-to-point route smoke</title>
-<style>body{font:16px system-ui;margin:2rem;background:#fffaf0;color:#173c35}li{margin:.6rem 0}.ok{color:#176b45}.reject{color:#9a4b12}</style>
-<h1>Point-to-point routing smoke</h1><p id="summary">Running six route classes…</p><ol id="results"></ol>
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Motherbird route lab</title>
+<link rel="stylesheet" href="./vendor/leaflet/leaflet.css">
+<style>
+  :root { color-scheme: light; --ink:#173c35; --paper:#fffaf0; --line:#d8d0c0; --ok:#176b45; --warn:#9a4b12; }
+  * { box-sizing:border-box } body { margin:0; background:var(--paper); color:var(--ink); font:15px/1.45 system-ui,sans-serif }
+  main { width:min(1180px,calc(100% - 28px)); margin:auto; padding:24px 0 42px }
+  header { display:flex; justify-content:space-between; gap:16px; align-items:end; margin-bottom:16px }
+  h1 { margin:0; font:700 clamp(2rem,5vw,3.5rem)/.95 Georgia,serif }
+  .lede { max-width:680px; color:#5e6e66; margin:.6rem 0 0 } button { border:1px solid var(--ink); border-radius:9px; padding:9px 12px; background:var(--ink); color:var(--paper); font:inherit; font-weight:700; cursor:pointer }
+  .summary { padding:12px 14px; border:1px solid var(--line); border-radius:12px; background:#fffdf8; margin-bottom:14px }
+  .lab { display:grid; grid-template-columns:minmax(0,1fr) minmax(280px,390px); gap:14px } #map { min-height:560px; border:1px solid var(--line); border-radius:14px; overflow:hidden; background:#e8efe5 }
+  .results { display:grid; gap:9px; align-content:start } .result { border:1px solid var(--line); border-left:6px solid #a5aea7; border-radius:11px; padding:11px 12px; background:#fffdf8 }
+  .result.pass { border-left-color:var(--ok) } .result.fail { border-left-color:#b13d2d } .result h2 { font:700 1rem Georgia,serif; margin:0 0 3px } .result p { margin:0; color:#5e6e66; font-size:.86rem }
+  .badge { display:inline-block; margin-left:6px; border-radius:999px; padding:2px 7px; background:#e3efe5; color:var(--ok); font-size:.72rem; font-weight:800 } .badge.warn { background:#fff0dc; color:var(--warn) }
+  .legend { display:flex; flex-wrap:wrap; gap:7px 12px; margin-top:10px; color:#5e6e66; font-size:.78rem } .swatch { display:inline-block; width:20px; height:4px; vertical-align:middle; margin-right:4px; border-radius:2px }
+  @media(max-width:800px) { header { display:block } header button { margin-top:12px } .lab { grid-template-columns:1fr } #map { min-height:420px } }
+</style>
+<main>
+  <header><div><div>ROUTING QA · BATCH VIEW</div><h1>Route lab</h1><p class="lede">Run several route shapes in one pass. Successful geometry is drawn on the map so a passing status also has a visible result.</p></div><button id="run" type="button">Run all route cases</button></header>
+  <div class="summary" id="summary">Preparing route cases…</div>
+  <section class="lab"><div><div id="map" aria-label="Route test map"></div><div class="legend" id="legend"></div></div><div class="results" id="results" aria-live="polite"></div></section>
+</main>
+<script src="./vendor/leaflet/leaflet.js"></script>
 <script type="module">
-  import { routeRuntimeGraph } from './js/runtime-router.mjs?v=20261006-point-to-point-1';
+  import { routeRuntimeGraph } from './js/runtime-router.mjs?v=20261009-route-lab-1';
   const root = './data/pedestrian-runtime/';
   const cases = [
-    ['same-cell short', [-73.9855,40.7580],[-73.9787,40.7587],'ROUTE_FOUND'],
-    ['same-cell long', [-73.9855,40.7580],[-73.9819,40.7681],'ROUTE_FOUND'],
-    ['neighboring-cell', [-77.35,38.921],[-77.34,38.921],'CROSS_CELL_REQUIRES_STITCH'],
-    ['cell-boundary', [-77.35,38.921],[-77.34375,38.921],'CROSS_CELL_REQUIRES_STITCH'],
-    ['regional distance', [-77.3064,38.8462],[-77.0369,38.9072],'CROSS_CELL_REQUIRES_STITCH'],
-    ['repeat creation', [-73.9855,40.7580],[-73.9787,40.7587],'ROUTE_FOUND']
+    { id:'same-cell-short', title:'Point to point · short', type:'point-to-point', color:'#176b45', points:[[-73.9855,40.7580],[-73.9787,40.7587]], expected:'ROUTE_FOUND' },
+    { id:'round-trip', title:'Round trip · return to origin', type:'round-trip', color:'#1769aa', points:[[-73.9855,40.7580],[-73.9787,40.7587],[-73.9855,40.7580]], expected:'ROUTE_FOUND' },
+    { id:'multi-stop', title:'Multi-stop · three waypoints', type:'multi-stop', color:'#9a5b12', points:[[-73.9855,40.7580],[-73.9819,40.7681],[-73.9787,40.7587]], expected:'ROUTE_FOUND' },
+    { id:'same-cell-long', title:'Point to point · long', type:'point-to-point', color:'#176b45', points:[[-73.9855,40.7580],[-73.9819,40.7681]], expected:'ROUTE_FOUND' },
+    { id:'cross-cell', title:'Cross-cell boundary guard', type:'cross-cell', color:'#8d3f2b', points:[[-77.35,38.921],[-77.34,38.921]], expected:'NOT_FOUND' },
+    { id:'repeat', title:'Repeat · route creation regression', type:'repeat', color:'#76558b', points:[[-73.9855,40.7580],[-73.9787,40.7587]], expected:'ROUTE_FOUND' }
   ];
-  const graph = await fetch(`${root}nyc_pedestrian_network_estimates/runtime/runtime-graph.json`).then(r=>r.json());
-  const results = document.querySelector('#results');
-  let passed = 0;
-  for (const [name, origin, destination, expected] of cases) {
-    const result = routeRuntimeGraph(graph,{origin,destination,profile:'ordinary_walking_beta'},{maxSnapMeters:250});
-    const okay = result.status === expected || (expected === 'CROSS_CELL_REQUIRES_STITCH' && result.status !== 'ROUTE_FOUND');
-    if (okay) passed++;
-    const li = document.createElement('li'); li.className = okay ? (result.status === 'ROUTE_FOUND' ? 'ok' : 'reject') : '';
-    li.textContent = `${name}: ${result.status}${result.distance_m ? ` · ${Math.round(result.distance_m)} m` : ''}${okay ? ' · PASS' : ' · FAIL'}`; results.append(li);
+  const map = L.map('map').setView([40.762, -73.983], 14);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution:'© OpenStreetMap contributors' }).addTo(map);
+  const rootLayer = L.layerGroup().addTo(map);
+  const graph = await fetch(`${root}nyc_pedestrian_network_estimates/runtime/runtime-graph.json`).then((response) => { if (!response.ok) throw new Error(`Graph request failed (${response.status})`); return response.json(); });
+  function routeCase(definition) {
+    const legs = [];
+    for (let index = 0; index < definition.points.length - 1; index += 1) {
+      const result = routeRuntimeGraph(graph, { origin: definition.points[index], destination: definition.points[index + 1], profile:'ordinary_walking_beta' }, { maxSnapMeters:250 });
+      if (result.status !== 'ROUTE_FOUND') return { status: result.status, distance: 0, coordinates: [] };
+      legs.push(result);
+    }
+    return { status:'ROUTE_FOUND', distance:legs.reduce((sum, leg) => sum + (leg.distance_m || 0), 0), coordinates:legs.flatMap((leg, index) => (index ? leg.geometry.coordinates.slice(1) : leg.geometry.coordinates)) };
   }
-  document.querySelector('#summary').textContent = `${passed}/${cases.length} cases passed · repeated route creation is exercised as case six.`;
+  function renderResult(definition, result) {
+    const expectedPass = definition.expected === result.status || (definition.expected === 'NOT_FOUND' && result.status !== 'ROUTE_FOUND');
+    if (result.coordinates.length > 1) {
+      L.polyline(result.coordinates.map(([lng, lat]) => [lat, lng]), { color:definition.color, weight:5, opacity:.86 }).bindTooltip(definition.title).addTo(rootLayer);
+      definition.points.forEach(([lng, lat], index) => L.circleMarker([lat, lng], { radius: index === 0 ? 6 : 4, color:definition.color, fillColor:'#fffaf0', fillOpacity:1, weight:2 }).addTo(rootLayer));
+    }
+    const item = document.createElement('article'); item.className = `result ${expectedPass ? 'pass' : 'fail'}`;
+    item.innerHTML = `<h2>${definition.title}<span class="badge ${expectedPass ? '' : 'warn'}">${expectedPass ? 'PASS' : 'FAIL'}</span></h2><p>${definition.type} · ${result.status}${result.distance ? ` · ${Math.round(result.distance)} m` : ''}${result.coordinates.length ? ' · geometry displayed' : ''}</p>`;
+    document.querySelector('#results').append(item); return expectedPass;
+  }
+  async function runAll() {
+    const button = document.querySelector('#run'); button.disabled = true; button.textContent = 'Running…'; rootLayer.clearLayers(); document.querySelector('#results').replaceChildren();
+    const results = cases.map(routeCase); const passed = results.reduce((count, result, index) => count + Number(renderResult(cases[index], result)), 0);
+    document.querySelector('#summary').textContent = `${passed}/${cases.length} cases passed · ${results.filter((result) => result.coordinates.length > 1).length} route geometries displayed · ${new Set(cases.map((definition) => definition.type)).size} route types in one batch.`;
+    const visible = results.filter((result) => result.coordinates.length > 1).flatMap((result) => result.coordinates.map(([lng, lat]) => [lat, lng])); if (visible.length) map.fitBounds(L.latLngBounds(visible), { padding:[28,28] });
+    button.disabled = false; button.textContent = 'Run all route cases';
+  }
+  document.querySelector('#legend').innerHTML = cases.map((definition) => `<span><i class="swatch" style="background:${definition.color}"></i>${definition.type}</span>`).join('');
+  document.querySelector('#run').addEventListener('click', () => void runAll().catch((error) => { document.querySelector('#summary').textContent = `Route lab failed: ${error.message}`; document.querySelector('#run').disabled = false; }));
+  void runAll();
 </script>
