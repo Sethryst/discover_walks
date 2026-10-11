@@ -12,6 +12,7 @@ import { el, uid } from './utils.js';
 import { checkGeofences } from './geofence.js';
 import { toast, setStatus, openJournal, closeSheets } from './ui.js';
 import db from './storage.js';
+import { linkSavedRecord } from './workspace.js';
 import { updateProfile } from './profile.js';
 import { renderArchive } from './archive.js';
 import { refreshLiveConditions } from './weather.js';
@@ -331,6 +332,8 @@ export async function saveWalk() {
   ]);
   await updatePersonalPlaceCandidates(finished);
   state.walks = [...state.walks.filter((item) => item.id !== finished.id), finished];
+  await linkSavedRecord('walk', finished.id);
+  window.dispatchEvent(new CustomEvent('walks-changed'));
   state.knownTrackPoints.push(...finished.points.filter((_, index) => index % 5 === 0));
   resetActiveWalk();
   void suggestContextualQuote({ context: 'end-of-walk-return', confidence: 0.9, eventId: finished.id, walkId: finished.id });

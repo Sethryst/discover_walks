@@ -1,6 +1,7 @@
 import { state } from './state.js';
 import db from './storage.js';
 import { uid, escapeHtml } from './utils.js';
+import { linkSavedRecord, deleteWorkspaceRecord } from './workspace.js';
 
 export function normalizeSavedRoute(route = {}, now = new Date().toISOString()) {
   const coordinates = Array.isArray(route.coordinates) ? route.coordinates.filter((point) => Array.isArray(point) && point.length >= 2).map(([lat, lng]) => [Number(lat), Number(lng)]) : [];
@@ -72,6 +73,7 @@ export async function savePlannedRoute(plan, fields = {}) {
   const route = normalizeSavedRoute({ ...plan, ...fields, id: fields.id || null, coordinates: plan.coordinates });
   await db.put('saved_routes', route);
   state.savedRoutes = [...state.savedRoutes.filter((item) => item.id !== route.id), route];
+  await linkSavedRecord('route', route.id);
   window.dispatchEvent(new CustomEvent('saved-routes-changed'));
   return route;
 }
@@ -82,8 +84,23 @@ export async function updateSavedRoute(id, fields = {}) {
   return savePlannedRoute(existing, { ...fields, id });
 }
 
+const pendingAutoSaves = new Map();
+export async function ensurePlannedRouteSaved(plan, options = []) {
+  if (!plan?.coordinates || plan.coordinates.length < 2) throw new Error('Generate a walkable route first.');
+  // Planner option IDs (e.g. ambient-direct) are reused on every generation.
+  // Identity belongs to this plan instance, not the option's display ID.
+  const id = plan.workspaceRouteId || (plan.workspaceRouteId = plan.saved || plan.fromSavedRouteOption ? plan.id : uid('walk-draft'));
+  if (pendingAutoSaves.has(id)) return pendingAutoSaves.get(id);
+  const save = (async () => {
+    const existing = state.savedRoutes.find((route) => route.id === id) || await db.get('saved_routes', id);
+    if (existing) { await linkSavedRecord('route', id); return existing; }
+    return savePlannedRoute(plan, { id, title: plan.title || 'Walk draft', notes: plan.reason || '', draft: true, routeOptions: options.length ? options : plan.routeOptions || [] });
+  })();
+  pendingAutoSaves.set(id, save);
+  try { const route = await save; plan.workspaceSaved = true; return route; }
+  finally { pendingAutoSaves.delete(id); }
+}
+
 export async function deleteSavedRoute(id) {
-  await db.remove('saved_routes', id);
-  state.savedRoutes = state.savedRoutes.filter((route) => route.id !== id);
-  window.dispatchEvent(new CustomEvent('saved-routes-changed'));
+  await deleteWorkspaceRecord('route', id, 'saved_routes');
 }

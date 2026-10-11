@@ -703,6 +703,13 @@ function bindPersonalPlaceControls() {
       el('personalPlacesPanel')?.querySelectorAll('[data-my-places-section-panel]').forEach((panel) => panel.classList.toggle('hidden', panel.dataset.myPlacesSectionPanel !== section));
       return;
     }
+    const configure = event.target.closest('[data-edit-saved-route]'); if (configure) {
+      state.settings.myPlacesSection = 'walks';
+      renderPersonalPlacesPanel();
+      const editor = [...el('personalPlacesPanel').querySelectorAll('[data-saved-route-editor]')].find((form) => form.dataset.savedRouteEditor === configure.dataset.editSavedRoute);
+      if (editor) { editor.closest('details').open = true; editor.scrollIntoView({ block: 'nearest' }); }
+      return;
+    }
     const routeOption = event.target.closest('[data-saved-route-option]'); if (routeOption) {
       const value = routeOption.dataset.savedRouteOption;
       const separator = value.indexOf(':');

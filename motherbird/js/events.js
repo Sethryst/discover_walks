@@ -23,7 +23,7 @@ import { openGeoCypher } from './geo-cypher.js';
 import { openRadioForContext } from './radio.js?v=20261009-radio-controls-2';
 import { initMessengerBird } from './messenger-bird.js';
 import { restartCoachMarks } from './coach.js';
-import { savePlannedRoute } from './saved-routes.js';
+import { ensurePlannedRouteSaved } from './saved-routes.js';
 import { recordSessionRoutingOutcome } from './routing-feedback.js';
 import { openRoomForPlace } from './room-runtime.js';
 import { buildInWalkSuggestion, buildRouteRecommendations } from './ambient-mip.js?v=20261007-walk-moods-1';
@@ -285,21 +285,20 @@ function togglePanel(buttonId, panelId) {
   panel.classList.toggle('hidden', !opening); button.setAttribute('aria-expanded', String(opening));
 }
 
-async function moveRoutedPlanToMyPlaces(plan) {
-  const id = 'walk-draft-' + (plan.id || Date.now());
+async function moveRoutedPlanToMyPlaces(plan, { open = false } = {}) {
   try {
-    await savePlannedRoute(plan, {
-      id, title: plan.title || 'Walk draft', notes: plan.reason || 'Routed walk ready for configuration.', draft: true,
-      routeOptions: (state.planOptions || []).map((option) => ({ id: option.id, title: option.title, subtitle: option.subtitle, archetype: option.archetype, coordinates: option.coordinates, distanceMeters: option.distanceMeters, durationSeconds: option.durationSeconds }))
-    });
-    state.settings.myPlacesWalkNotice = true;
-    state.settings.myPlacesSection = 'walks';
+    await ensurePlannedRouteSaved(plan, state.planOptions || []);
+    if (!open) return;
+    setRouteFocusMode(false);
+    el('walkSketch')?.classList.add('hidden');
+    state.settings.myPlacesWalkNotice = false;
+    state.settings.myPlacesSection = 'workspace';
     await db.put('settings', state.settings);
     window.dispatchEvent(new CustomEvent('personal-places-changed'));
     window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'maps', forceOpen: true } }));
-    toast('Route added to My Places. Configure it there before starting.');
+    toast('Route saved in My Workspace.');
   } catch (error) {
-    toast(error.message || 'Route could not be added to My Places.');
+    toast(error.message || 'Route could not be saved. Use View in workspace to retry.');
   }
 }
 
@@ -579,7 +578,7 @@ function bindWalkControls() {
   window.addEventListener('walk-sketch-painted', (event) => {
     const plan = event.detail;
     renderWalkSketch(plan);
-    if (plan?.coordinates?.length >= 2 && !plan.fromSavedRouteOption) void moveRoutedPlanToMyPlaces(plan);
+    if (plan?.coordinates?.length >= 2 && !plan.fromSavedRouteOption && !plan.workspaceSaved) void moveRoutedPlanToMyPlaces(plan);
   });
   window.addEventListener('saved-route-option-selected', ({ detail }) => {
     if (!detail?.route || !detail?.option) return;
@@ -630,11 +629,7 @@ function bindWalkControls() {
   el('sendWalkPlanButton')?.addEventListener('click', () => void sendCurrentWalkPlan());
   el('saveWalkPlanButton')?.addEventListener('click', async () => {
     if (!state.plannedRoute) return;
-    const title = window.prompt('Name this route', state.plannedRoute.title || 'Saved route');
-    if (title === null) return;
-    const notes = window.prompt('Add route notes (optional)', '') ?? '';
-    try { await savePlannedRoute(state.plannedRoute, { title, notes }); if (state.plannedRoute.archetype) window.dispatchEvent(new CustomEvent('ambient-route-response', { detail: ambientResponse(state.plannedRoute, 'saved') })); toast('Route saved in My Places.'); }
-    catch (error) { toast(error.message || 'Route could not be saved.'); }
+    await moveRoutedPlanToMyPlaces(state.plannedRoute, { open: true });
   });
   el('companionButton')?.addEventListener('click', async () => {
     const current = COSTUMES.map((name) => name.toLowerCase()).indexOf(state.settings.companionWalker || 'inky'); const next = COSTUMES[(current + 1) % COSTUMES.length];

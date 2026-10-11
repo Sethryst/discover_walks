@@ -1,0 +1,24 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Workspace local test fixture</title>
+<p id="status">Preparing local-only workspace fixture…</p>
+<a href="/">Open app</a>
+<script type="module">
+  // Manual browser regression fixture: never seed data on the published site.
+  if (location.hostname !== '127.0.0.1' && location.hostname !== 'localhost') throw new Error('Local test only');
+  const { default: db } = await import('../js/storage.js');
+  const { state } = await import('../js/state.js');
+  const { loadWorkspaceState } = await import('../js/workspace.js');
+  const { ensurePlannedRouteSaved } = await import('../js/saved-routes.js');
+  await db.open();
+  state.savedRoutes = await db.all('saved_routes');
+  await loadWorkspaceState();
+  const route = await ensurePlannedRouteSaved({
+    workspaceRouteId: 'browser-test-route', id: 'ambient-direct', title: 'Browser test · Dupont walk',
+    routeMode: 'point-to-point', coordinates: [[38.9096, -77.0435], [38.9073, -77.0365]],
+    distanceMeters: 700, durationSeconds: 600, reasoning: 'Synthetic local test geometry'
+  });
+  await db.put('moments', { id: 'browser-test-drawing', type: 'drawing', title: 'Browser test · Map annotation', body: { shape: 'Line' }, createdAt: new Date().toISOString() });
+  await db.put('observations', { id: 'browser-test-observation', species: 'Browser test · Sparrow', createdAt: new Date().toISOString() });
+  document.querySelector('#status').textContent = `Saved ${route.title} and test observation/annotation locally. Open Library → My Workspace to verify, then reload.`;
+</script>

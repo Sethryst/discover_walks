@@ -1,4 +1,5 @@
-import db from './storage.js?v=20261007-startup-persistence-1';
+// All capture and workspace modules must share the connection opened here.
+import db from './storage.js';
 import { state } from './state.js';
 import { DEFAULT_SETTINGS, CITIES, DEFAULT_CITY_ID } from './constants.js';
 import { normalizeProfile, sitesForProfile } from './utils.js';

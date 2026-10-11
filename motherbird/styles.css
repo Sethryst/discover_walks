@@ -886,6 +886,8 @@ body[data-storage-state="temporary"]:after{content:'Temporary device storage';po
 .workspace-timeline { display: grid; gap: .65rem; }
 .workspace-record { display: grid; grid-template-columns: 2rem 1fr auto; align-items: center; gap: .7rem; padding: .8rem; border: 1px solid color-mix(in srgb, var(--ink, #173c35) 12%, transparent); border-radius: 14px; background: rgba(255,255,255,.72); }
 .workspace-record h3, .workspace-record p { margin: .15rem 0; }
+.workspace-record > [data-workspace-delete] { grid-column: 3; min-height: 44px; }
+.workspace-record > div:nth-child(2) { min-width: 0; overflow-wrap: anywhere; }
 .workspace-record p { color: var(--muted, #6f7168); font-size: .88rem; }
 .workspace-record small { text-transform: uppercase; letter-spacing: .08em; font-size: .68rem; color: var(--muted, #6f7168); }
 .workspace-record-icon { display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; background: #eef0e5; color: var(--ink, #173c35); font-size: 1.25rem; }
