@@ -904,3 +904,29 @@ body[data-storage-state="temporary"]:after{content:'Temporary device storage';po
 .route-section-suggestions { color: var(--muted, #6f7168); font-size: .84rem; }
 .pin-drop-target { outline: 3px dashed #e8740f; outline-offset: -6px; }
 .draw-pin-grid button[draggable="true"] { cursor: grab; }
+
+/* Hardware-like interaction feedback; kept outside the shared theme so the theme
+   remains color/type-only and each surface retains ownership of its layout. */
+:is(button, a, summary):not(:disabled) {
+  transition: transform 100ms ease, box-shadow 100ms ease, filter 140ms ease,
+    background-color 140ms ease, color 140ms ease;
+}
+:is(button, a, summary):not(:disabled):hover {
+  filter: brightness(1.04);
+  transform: translateY(-1px);
+}
+:is(button, a, summary):not(:disabled):active {
+  filter: brightness(.98);
+  transform: translateY(2px);
+  box-shadow: none !important;
+}
+.radio-console[data-radio-state="playing"] .radio-lamp {
+  animation: radio-lamp-pulse 1.8s steps(2, end) infinite;
+}
+@keyframes radio-lamp-pulse {
+  50% { opacity: .62; box-shadow: 0 0 3px var(--radio-rust); }
+}
+@media (prefers-reduced-motion: reduce) {
+  :is(button, a, summary):not(:disabled) { transition: none; }
+  .radio-console[data-radio-state="playing"] .radio-lamp { animation: none; }
+}
