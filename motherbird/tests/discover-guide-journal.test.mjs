@@ -35,6 +35,19 @@ test('generated recommendation strings are suppressed and active walks accept Le
   assert.match(walk, /await persistWalkDraft\(\)/);
 });
 
+test('Field Guide Learn actions are wired to route painting and map exploration', async () => {
+  const guide = await readFile(new URL('../js/field-guide.js', import.meta.url), 'utf8');
+  const learn = await readFile(new URL('../js/learn-history.js', import.meta.url), 'utf8');
+  assert.match(learn, /data-learn-walk/);
+  assert.match(learn, /data-learn-water-journey/);
+  assert.match(learn, /data-learn-plan-point/);
+  assert.match(learn, /data-learn-explore-map/);
+  assert.match(guide, /export async function paintLearnPoint/);
+  assert.match(guide, /const learnPlanPoint = event\.target\.closest\('\[data-learn-plan-point\]'\)/);
+  assert.match(guide, /const learnWalk = event\.target\.closest\('\[data-learn-walk\]'\)/);
+  assert.match(guide, /const waterJourney = event\.target\.closest\('\[data-learn-water-journey\]'\)/);
+});
+
 test('the shell removes redundant legacy Field Guide and Messenger controls', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
   assert.doesNotMatch(html, /id="settingsButton"/);

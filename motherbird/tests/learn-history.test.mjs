@@ -8,6 +8,7 @@ import {
   rectangleFromBbox,
   fillForRemaining,
   learnHistoryHtml,
+  learnHomeHtml,
   viewboxContainsPoint,
   historicalTopoHtml,
   battlefieldHtml,
@@ -81,4 +82,9 @@ test('Every Learn detail surface offers a next walking action', () => {
   assert.match(historicalTopoHtml(), /data-learn-explore-map/);
   assert.match(battlefieldHtml({ eras: [], battle: { name: 'Ox Hill', lat: 38.86, lng: -77.37, note: 'A story.' }, year: { year: 1862 } }), /data-learn-plan-point/);
   assert.match(lensHtml({ id: 'names', sourceName: 'GNIS', sourceUrl: 'https://example.test', items: [] }, { name: 'Accotink Creek', kind: 'Stream', lat: 38.79, lng: -77.22, note: 'A stream.' }), /Walk this story/);
+});
+
+test('Learn home exposes every installed topic', () => {
+  const html = learnHomeHtml();
+  for (const topic of ['Watersheds', 'Named landscape', 'Protected land', 'Wildlife recorded here', 'History sites', 'Historic topo maps', 'Historic battlefields']) assert.match(html, new RegExp(topic));
 });
