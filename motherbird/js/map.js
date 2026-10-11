@@ -670,6 +670,7 @@ function exitFieldEdition() {
 export function renderUserLocation(point, pan = false) {
   state.currentPosition = point;
   document.body.classList.add('location-available');
+  if (!state.map) return;
   document.getElementById('locateButton')?.setAttribute('aria-label', 'Center on my location');
   window.dispatchEvent(new CustomEvent('field-edition-location'));
   const icon = L.divIcon({ className: '', html: '<div class="user-marker" role="img" aria-label="Your location"></div>', iconSize: [18, 18], iconAnchor: [9, 9] });
@@ -677,5 +678,13 @@ export function renderUserLocation(point, pan = false) {
   else state.userMarker.setLatLng([point.lat, point.lng]);
   if (pan) state.map.panTo([point.lat, point.lng]);
 }
+
+// The local location simulator uses the same browser event boundary as a GPS
+// update. Apply it immediately so route planning can use the simulated fix
+// before a recording session is started.
+if (typeof window !== 'undefined') window.addEventListener('location-updated', ({ detail }) => {
+  if (!detail?.coords) return;
+  renderUserLocation({ lat: detail.coords.latitude, lng: detail.coords.longitude, accuracy: detail.coords.accuracy }, false);
+});
 
 if (typeof document !== 'undefined') document.getElementById('exitFieldEditionButton')?.addEventListener('click', exitFieldEdition);

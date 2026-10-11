@@ -7,6 +7,7 @@ import { findCellPath } from '../js/routing.js';
 const routing = await readFile(new URL('../js/routing.js', import.meta.url), 'utf8');
 const planner = await readFile(new URL('../js/planner.js', import.meta.url), 'utf8');
 const events = await readFile(new URL('../js/events.js', import.meta.url), 'utf8');
+const map = await readFile(new URL('../js/map.js', import.meta.url), 'utf8');
 const routeLabels = await import('../js/route-place-labels.js');
 
 test('routing exposes specific cross-cell and boundary failure classes', () => {
@@ -60,6 +61,13 @@ test('point-to-point painting keeps returned geometry continuous', () => {
   assert.doesNotMatch(planner, /As the crow flies/);
   assert.doesNotMatch(events, /As the crow flies/);
   assert.doesNotMatch(events, /dashed amber/);
+});
+
+test('simulated location feeds the planner before a walk is started', () => {
+  assert.match(map, /location-updated/);
+  assert.match(map, /detail\.coords\.latitude/);
+  assert.match(map, /state\.currentPosition = point/);
+  assert.match(planner, /state\.currentPosition/);
 });
 
 test('cell registry metadata supports explicit neighboring-cell decisions', () => {
