@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "biodiversity-sidecar-v1",
+  "cityId": "fort-worth",
+  "regionId": "fort-worth",
+  "label": "Fort Worth",
+  "releaseState": "sidecar-available",
+  "sourceAccess": "GBIF authenticated download",
+  "sourceVintage": "2026-10-10",
+  "freshnessLabel": "Freshness: 2026-10-10",
+  "coverageClass": "sparse",
+  "coverageLabel": "Sparse coverage",
+  "coverageNote": "No qualifying rows are currently published for this region; this is not evidence of absence.",
+  "acquisitionWorkflow": {
+    "mode": "authenticated-download",
+    "endpoint": "https://api.gbif.org/v1/occurrence/download/request",
+    "reason": "Large region; occurrence search caps pages at 300 and offsets at 100000."
+  },
+  "qualityReview": {
+    "status": "not-reviewed"
+  },
+  "gateReason": null,
+  "recordsUrl": "./regions/fort-worth/biodiversity/records.json"
+}

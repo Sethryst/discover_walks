@@ -1,11 +1,9 @@
 import { state } from './state.js';
 import { db } from './storage.js';
+import { BIODIVERSITY_BY_CITY } from './biodiversity-registry.js';
 
 const recordsPromises = new Map();
 const preferencesPromises = new Map();
-export const NOVA_BIODIVERSITY_REGIONS = new Set(['alexandria', 'arlington', 'fairfax', 'falls-church', 'loudoun', 'vienna']);
-export const PUBLISHED_BIODIVERSITY_REGIONS = new Set(['alexandria', 'arlington', 'fairfax', 'loudoun']);
-const REGION_PATHS = { alexandria: 'alexandria-va', arlington: 'arlington-va', fairfax: 'fairfax-county-va', 'falls-church': 'falls-church-va', loudoun: 'loudoun-county-va', vienna: 'vienna' };
 const esc = (v) => String(v ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const key = (region, record) => `${region}::${record}`;
 const groups = [
@@ -15,8 +13,11 @@ const groups = [
   ['other', 'Fungi & other life', 'Fungi and records outside the main groupings.', (r) => !['Plantae', 'Animalia'].includes(r.kingdom)]
 ];
 
-export function isBiodiversitySupported(regionId = state.activeCity) { return PUBLISHED_BIODIVERSITY_REGIONS.has(String(regionId || '')); }
-export function biodiversityDataUrl(regionId = state.activeCity) { return `./regions/${REGION_PATHS[regionId] || regionId}/biodiversity/records.json`; }
+export const NOVA_BIODIVERSITY_REGIONS = new Set(['alexandria', 'arlington', 'fairfax', 'falls-church', 'loudoun', 'vienna']);
+export const PUBLISHED_BIODIVERSITY_REGIONS = new Set([...BIODIVERSITY_BY_CITY].filter(([, region]) => region.releaseState !== 'gated').map(([cityId]) => cityId));
+export function biodiversityRegion(regionId = state.activeCity) { return BIODIVERSITY_BY_CITY.get(String(regionId || '')); }
+export function isBiodiversitySupported(regionId = state.activeCity) { return Boolean(biodiversityRegion(regionId)?.releaseState !== 'gated'); }
+export function biodiversityDataUrl(regionId = state.activeCity) { return `./${biodiversityRegion(regionId)?.sidecarPath || `regions/${regionId}/biodiversity/records.json`}`; }
 export async function loadBiodiversity(regionId = state.activeCity) {
   if (!isBiodiversitySupported(regionId)) throw new Error('No biodiversity release is available for this area.');
   if (!recordsPromises.has(regionId)) recordsPromises.set(regionId, fetch(biodiversityDataUrl(regionId)).then((r) => { if (!r.ok) throw new Error('No biodiversity sidecar for this region'); return r.json(); }));
@@ -74,7 +75,7 @@ export async function renderBiodiversityGuide(target) {
     try {
       const [data, prefs] = await Promise.all([loadBiodiversity(regionId), preferences(regionId)]); const filters = { month: 'all', group: 'all', sort: 'count', query: '', showHidden: false }; const workspace = host.querySelector('[data-biodiversity-workspace]'); workspace.hidden = false;
       host.querySelector('[data-biodiversity-controls]').innerHTML = `<label>Month<select data-biodiversity-month><option value="all">Any month</option>${Array.from({ length: 12 }, (_, i) => `<option value="${i + 1}">${i + 1}</option>`).join('')}</select></label><label>Group<select data-biodiversity-group><option value="all">All groups</option><option value="Plantae">Plants</option><option value="Animalia">Animals</option><option value="Fungi">Fungi</option></select></label><label>Sort<select data-biodiversity-sort><option value="count">Most recorded</option><option value="name">Name</option><option value="month">Month</option></select></label><label class="biodiversity-search">Find<input data-biodiversity-search placeholder="Species or group"></label><label class="biodiversity-toggle"><input type="checkbox" data-biodiversity-show-hidden> Show hidden</label>`;
-      const update = () => { const rows = filtered(data, prefs, filters); host.querySelector('[data-biodiversity-summary]').textContent = `${rows.length} visible of ${data.records.length} regional cards · ${prefs.size} local edits`; host.querySelector('[data-biodiversity-cards]').innerHTML = grouped(rows, prefs); host.querySelector('[data-biodiversity-status]').textContent = data.metadata?.sourceAccess ? `${data.metadata.sourceAccess} · local edits stay on this device` : (data.metadata?.fixtureNotice || 'Loaded from a static regional sidecar.'); };
+      const update = () => { const rows = filtered(data, prefs, filters); const metadata = data.metadata || {}; host.querySelector('[data-biodiversity-summary]').innerHTML = `<strong>${rows.length} visible of ${data.records.length} regional cards</strong> · ${prefs.size} local edits <span class="coverage-badge coverage-badge--${esc(metadata.coverageClass || 'sparse')}">${esc(metadata.coverageLabel || 'Coverage not rated')}</span><br><small>${esc(metadata.freshnessLabel || `Source vintage: ${metadata.sourceVintage || 'unknown'}`)}</small>`; host.querySelector('[data-biodiversity-cards]').innerHTML = grouped(rows, prefs); host.querySelector('[data-biodiversity-status]').textContent = [metadata.sourceAccess, metadata.coverageLabel, metadata.freshnessLabel, 'local edits stay on this device'].filter(Boolean).join(' · '); };
       host.querySelector('[data-biodiversity-controls]').addEventListener('change', (event) => { const el = event.target; if (el.matches('[data-biodiversity-month]')) filters.month = el.value; if (el.matches('[data-biodiversity-group]')) filters.group = el.value; if (el.matches('[data-biodiversity-sort]')) filters.sort = el.value; if (el.matches('[data-biodiversity-show-hidden]')) filters.showHidden = el.checked; update(); });
       host.querySelector('[data-biodiversity-search]').addEventListener('input', (event) => { filters.query = event.target.value; update(); });
       host.addEventListener('click', async (event) => { const hide = event.target.closest('[data-biodiversity-hide]'); if (hide) { const id = hide.dataset.biodiversityHide; const next = await savePreference(regionId, id, { hidden: !prefs.get(id)?.hidden }); prefs.set(id, next); update(); return; } const edit = event.target.closest('[data-biodiversity-edit]'); if (!edit) return; const record = data.records.find((r) => r.recordId === edit.dataset.biodiversityEdit); if (!record) return; host.insertAdjacentHTML('beforeend', editor(record, prefs.get(record.recordId))); const dialog = host.querySelector(`[data-biodiversity-editor="${CSS.escape(record.recordId)}"]`); dialog.showModal(); dialog.querySelector('form').addEventListener('submit', async (submitEvent) => { if (submitEvent.submitter?.value !== 'save') { dialog.remove(); return; } submitEvent.preventDefault(); const form = submitEvent.currentTarget; const photo = form.photo.files?.[0] ? await readFile(form.photo.files[0]) : null; const next = await savePreference(regionId, record.recordId, { title: form.title.value.trim(), note: form.note.value.trim(), hidden: form.hidden.checked, ...(form.removePhoto?.checked ? { photoDataUrl: null } : photo ? { photoDataUrl: photo } : {}) }); prefs.set(record.recordId, next); dialog.close(); dialog.remove(); update(); }); }); update();

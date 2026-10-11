@@ -10,7 +10,31 @@
     "sourceAccess": "GBIF occurrence search API",
     "sourceQuery": "NOVA polygon; see acquisition envelope",
     "inputRows": 403,
-    "novaImport": true
+    "novaImport": true,
+    "schemaVersion": "biodiversity-sidecar-v1",
+    "freshnessClass": "fresh",
+    "freshnessLabel": "Freshness: 2026-10-06",
+    "coverageClass": "sparse",
+    "coverageLabel": "Sparse coverage",
+    "releaseState": "sidecar-available",
+    "gateReason": null,
+    "safeguards": {
+      "coordinateUncertaintyFiltering": true,
+      "captiveOrCultivatedExcluded": true,
+      "privacyAwareAggregation": true,
+      "sourceVintageTracked": true,
+      "imageLicenseMetadataTracked": true
+    },
+    "qualityReview": {
+      "status": "not-reviewed"
+    },
+    "acquisitionWorkflow": {
+      "mode": "occurrence-search",
+      "endpoint": "https://api.gbif.org/v1/occurrence/search",
+      "pageSize": 300,
+      "maxOffset": 100000
+    },
+    "coverageNote": null
   },
   "records": [
     {

@@ -150,6 +150,14 @@ export const MAX_DRIVE_SPEED_MPS = 70;
     civicFile: './regions/fairfax-county-va/civic/index.json',
     packId: 'fairfax'
   },
+  vienna: {
+    name: 'Vienna',
+    state: 'VA',
+    center: { lat: 38.9012, lng: -77.2653 },
+    zoom: 13,
+    dataFile: './regions/vienna/vienna-poi.json',
+    civicFile: './regions/vienna/civic/index.json'
+  },
   alexandria: {
     name: 'Alexandria',
     state: 'VA',

@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "biodiversity-sidecar-v1",
+  "metadata": {
+    "schemaVersion": "biodiversity-sidecar-v1",
+    "regionId": "albuquerque",
+    "sourceVintage": "2026-10-10",
+    "generatedAt": "2026-10-10T00:00:00.000Z",
+    "sourceAccess": "GBIF authenticated download",
+    "sourceQuery": "Region boundary query; authenticated download required for large regions.",
+    "boundaryVersion": "albuquerque-boundary-v1",
+    "gbifDownloadDoi": null,
+    "inputRows": 0,
+    "freshnessClass": "fresh",
+    "freshnessLabel": "Freshness: 2026-10-10",
+    "coverageClass": "sparse",
+    "coverageLabel": "Sparse coverage",
+    "releaseState": "sidecar-available",
+    "gateReason": null,
+    "safeguards": {
+      "coordinateUncertaintyFiltering": true,
+      "captiveOrCultivatedExcluded": true,
+      "privacyAwareAggregation": true,
+      "sourceVintageTracked": true,
+      "imageLicenseMetadataTracked": true
+    },
+    "qualityReview": {
+      "status": "not-reviewed"
+    },
+    "acquisitionWorkflow": {
+      "mode": "authenticated-download",
+      "endpoint": "https://api.gbif.org/v1/occurrence/download/request",
+      "reason": "Large region; occurrence search caps pages at 300 and offsets at 100000."
+    },
+    "coverageNote": "No qualifying rows are currently published for this region; this is not evidence of absence."
+  },
+  "records": []
+}

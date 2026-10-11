@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "biodiversity-sidecar-v1",
+  "metadata": {
+    "schemaVersion": "biodiversity-sidecar-v1",
+    "regionId": "milwaukee",
+    "sourceVintage": "2026-10-10",
+    "generatedAt": "2026-10-10T00:00:00.000Z",
+    "sourceAccess": "GBIF occurrence search API",
+    "sourceQuery": "Region boundary query; authenticated download required for large regions.",
+    "boundaryVersion": "milwaukee-boundary-v1",
+    "gbifDownloadDoi": null,
+    "inputRows": 0,
+    "freshnessClass": "fresh",
+    "freshnessLabel": "Freshness: 2026-10-10",
+    "coverageClass": "sparse",
+    "coverageLabel": "Sparse coverage",
+    "releaseState": "sidecar-available",
+    "gateReason": null,
+    "safeguards": {
+      "coordinateUncertaintyFiltering": true,
+      "captiveOrCultivatedExcluded": true,
+      "privacyAwareAggregation": true,
+      "sourceVintageTracked": true,
+      "imageLicenseMetadataTracked": true
+    },
+    "qualityReview": {
+      "status": "not-reviewed"
+    },
+    "acquisitionWorkflow": {
+      "mode": "occurrence-search",
+      "endpoint": "https://api.gbif.org/v1/occurrence/search",
+      "pageSize": 300,
+      "maxOffset": 100000
+    },
+    "coverageNote": "No qualifying rows are currently published for this region; this is not evidence of absence."
+  },
+  "records": []
+}

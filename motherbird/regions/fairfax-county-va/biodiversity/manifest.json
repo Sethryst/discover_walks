@@ -1,20 +1,24 @@
 {
   "schemaVersion": "biodiversity-sidecar-v1",
+  "cityId": "fairfax",
   "regionId": "fairfax-county-va",
-  "label": "fairfax-county-va",
-  "fixture": false,
-  "releaseStatus": "candidate",
+  "label": "Fairfax County",
+  "releaseState": "sidecar-available",
   "sourceAccess": "GBIF occurrence search API",
-  "sourceQuery": "NOVA polygon; see acquisition envelope",
-  "boundaryVersion": "fairfax-county-va-boundary-v1",
-  "grid": {
-    "scheme": "equirectangular-degree-grid",
-    "cellSizeDegrees": 0.01
-  },
-  "recordsUrl": "./regions/fairfax-county-va/biodiversity/records.json",
   "sourceVintage": "2026-10-06",
-  "gbifDownloadDoi": null,
-  "generatedAt": "2026-10-07T00:18:21.408Z",
-  "inputRows": 3203,
-  "aggregateRecords": 1263
+  "freshnessLabel": "Freshness: 2026-10-06",
+  "coverageClass": "rich",
+  "coverageLabel": "Rich coverage",
+  "coverageNote": null,
+  "acquisitionWorkflow": {
+    "mode": "occurrence-search",
+    "endpoint": "https://api.gbif.org/v1/occurrence/search",
+    "pageSize": 300,
+    "maxOffset": 100000
+  },
+  "qualityReview": {
+    "status": "not-reviewed"
+  },
+  "gateReason": null,
+  "recordsUrl": "./regions/fairfax-county-va/biodiversity/records.json"
 }

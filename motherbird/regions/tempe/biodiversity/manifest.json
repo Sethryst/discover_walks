@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "biodiversity-sidecar-v1",
+  "cityId": "tempe",
+  "regionId": "tempe",
+  "label": "Tempe",
+  "releaseState": "sidecar-available",
+  "sourceAccess": "GBIF occurrence search API",
+  "sourceVintage": "2026-10-10",
+  "freshnessLabel": "Freshness: 2026-10-10",
+  "coverageClass": "sparse",
+  "coverageLabel": "Sparse coverage",
+  "coverageNote": "No qualifying rows are currently published for this region; this is not evidence of absence.",
+  "acquisitionWorkflow": {
+    "mode": "occurrence-search",
+    "endpoint": "https://api.gbif.org/v1/occurrence/search",
+    "pageSize": 300,
+    "maxOffset": 100000
+  },
+  "qualityReview": {
+    "status": "not-reviewed"
+  },
+  "gateReason": null,
+  "recordsUrl": "./regions/tempe/biodiversity/records.json"
+}

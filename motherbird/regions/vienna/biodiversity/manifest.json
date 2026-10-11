@@ -1,20 +1,26 @@
 {
   "schemaVersion": "biodiversity-sidecar-v1",
+  "cityId": "vienna",
   "regionId": "vienna",
-  "label": "vienna",
-  "fixture": false,
-  "releaseStatus": "candidate",
+  "label": "Vienna",
+  "releaseState": "published",
   "sourceAccess": "GBIF occurrence search API",
-  "sourceQuery": "NOVA polygon; see acquisition envelope",
-  "boundaryVersion": "vienna-city-envelope-v1",
-  "grid": {
-    "scheme": "equirectangular-degree-grid",
-    "cellSizeDegrees": 0.01
-  },
-  "recordsUrl": "./regions/vienna/biodiversity/records.json",
   "sourceVintage": "2026-10-06",
-  "gbifDownloadDoi": null,
-  "generatedAt": "2026-10-07T00:18:21.434Z",
-  "inputRows": 159,
-  "aggregateRecords": 101
+  "freshnessLabel": "Freshness: 2026-10-06",
+  "coverageClass": "sparse",
+  "coverageLabel": "Sparse coverage",
+  "coverageNote": null,
+  "acquisitionWorkflow": {
+    "mode": "occurrence-search",
+    "endpoint": "https://api.gbif.org/v1/occurrence/search",
+    "pageSize": 300,
+    "maxOffset": 100000
+  },
+  "qualityReview": {
+    "status": "passed",
+    "reviewedAt": "2026-10-10T00:00:00.000Z",
+    "reviewer": "static-release-review"
+  },
+  "gateReason": null,
+  "recordsUrl": "./regions/vienna/biodiversity/records.json"
 }
