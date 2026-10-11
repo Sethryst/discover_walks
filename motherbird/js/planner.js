@@ -65,6 +65,20 @@ function orderAutoRoundTripStops(stops, origin) {
   return ordered;
 }
 
+function fallbackAutoRoundTripStop(origin, minutes) {
+  // A POI is helpful context, not a prerequisite for a walk. Give the
+  // router a nearby exploratory waypoint when the region has no places.
+  const distanceKm = Math.min(1.2, Math.max(0.35, minutes * 0.015));
+  const bearing = Math.PI / 4;
+  const lngScale = Math.max(0.25, Math.cos(origin.lat * Math.PI / 180));
+  return {
+    name: 'Exploration waypoint',
+    lat: origin.lat + (Math.cos(bearing) * distanceKm / 111),
+    lng: origin.lng + (Math.sin(bearing) * distanceKm / (111 * lngScale)),
+    generated: true
+  };
+}
+
 function conceptReason(stops) {
   const tags = [...new Set(stops.flatMap(poiTags))];
   const ground = tags.includes('trail') ? 'trail and named-place ground' : tags.some((tag) => ['park', 'nature', 'wildlife'].includes(tag)) ? 'green and wildlife ground' : 'neighborhood place ground';
@@ -162,9 +176,13 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
   });
   const rawStops = needsMapDestination
     ? [...selectedStops, { name: 'Selected destination', lat: state.plannerEnd.lat, lng: state.plannerEnd.lng }]
-    : (seededStops?.length ? seededStops : (nearbyAutoCandidates.length >= count ? nearbyAutoCandidates : autoCandidates).slice(0, count)).map(normalizeStop).filter(Boolean);
+    : (seededStops?.length
+      ? seededStops
+      : (nearbyAutoCandidates.length >= count ? nearbyAutoCandidates : autoCandidates).slice(0, count)
+        .concat(autoCandidates.length ? [] : [fallbackAutoRoundTripStop(center, minutes)]))
+      .map(normalizeStop).filter(Boolean);
   const stops = routeMode === 'auto-round-trip' ? orderAutoRoundTripStops(rawStops, center) : rawStops;
-  if (!stops.length) {
+  if (!stops.length && routeMode !== 'auto-round-trip') {
     toast('No candidate places nearby to sketch a walk. Try panning the map or picking an area with places.');
     return null;
   }
