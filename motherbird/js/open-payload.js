@@ -2,7 +2,7 @@ import { state } from './state.js';
 import { CITIES } from './constants.js';
 import { el } from './utils.js';
 import { openSheet, toast } from './ui.js';
-import { normalizeWalkPlan, paintWalkPlan, renderFieldGuide } from './field-guide.js?v=137-all-learn-actions';
+import { normalizeWalkPlan, paintWalkPlan, renderFieldGuide } from './field-guide.js?v=138-nearby-walk-fallback';
 import { parseFilterImport, flattenImportedFilters } from './layer-system.js';
 import { normalizeCountyAddition, installCountyAddition, COUNTY_ADDITION_FORMAT } from './county-additions.js';
 import { importJournalSubset, openPersonalSeal, reportOnlineError } from './online-pane.js';

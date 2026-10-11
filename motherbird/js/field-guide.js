@@ -232,6 +232,15 @@ function renderSavedDiscoverExperiences() {
 function planForCard(card) {
   return { pack_id: state.activeCity, title: card.title, reason: card.reason, stop_place_ids: card.stopPlaceIds || [], ...(card.journeyId ? { journeyId: card.journeyId } : {}) };
 }
+async function resolveGuideCard(cardId) {
+  const data = await guideData();
+  const authored = data.discover.find((item) => item.id === cardId);
+  if (authored) return authored;
+  const nearbyId = String(cardId || '').startsWith('nearby:') ? String(cardId).slice('nearby:'.length) : null;
+  if (!nearbyId) return null;
+  const poi = (state.cityPois[state.activeCity] || []).find((item) => String(item.id) === nearbyId);
+  return poi ? { id: String(cardId), kind: 'nearby', title: `Explore ${poi.name}`, reason: 'A nearby place to explore on foot. Pick your own safe walking route to this stop.', stopPlaceIds: [String(poi.id)] } : null;
+}
 export function normalizeWalkPlan(value) {
   const plan = typeof value === 'string' ? JSON.parse(value) : value;
   if (!plan || plan.format !== FORMAT || !plan.pack_id || !plan.title || !Array.isArray(plan.stop_place_ids)) throw new Error('Choose a valid .walkplan file.');
@@ -324,8 +333,7 @@ async function routePlannedPreview(plan) {
   window.dispatchEvent(new CustomEvent('walk-sketch-painted', { detail: state.plannedRoute }));
 }
 export async function paintCard(cardId) {
-  const data = await guideData();
-  const card = data.discover.find((item) => item.id === cardId); if (!card) return;
+  const card = await resolveGuideCard(cardId); if (!card) { toast('This walk is no longer available in the current pack.'); return null; }
   const plan = paintWalkPlan({ format: FORMAT, ...planForCard(card) });
   const stop = card.stopPlaceIds?.map((id) => (state.cityPois[state.activeCity] || []).find((poi) => String(poi.id) === String(id))).find(Boolean);
   if (stop) {
@@ -335,8 +343,7 @@ export async function paintCard(cardId) {
   return plan;
 }
 export async function previewCard(cardId) {
-  const data = await guideData();
-  const card = data.discover.find((item) => item.id === cardId); if (!card) return;
+  const card = await resolveGuideCard(cardId); if (!card) { toast('This walk is no longer available in the current pack.'); return; }
   const stop = card.stopPlaceIds?.map((id) => (state.cityPois[state.activeCity] || []).find((poi) => String(poi.id) === String(id))).find(Boolean);
   if (!stop || !state.map) { toast('This walk has no map location to preview yet.'); return; }
   state.fieldGuidePreviewMarker?.remove();
