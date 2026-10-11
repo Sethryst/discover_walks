@@ -165,17 +165,23 @@ function boundaryTransferPoints(left, right) {
   const west = Math.max(a.west, b.west); const east = Math.min(a.east, b.east);
   if (south > north || west > east) return [];
   const points = [];
-  if (Math.abs(a.east - b.west) < 1e-7 || Math.abs(b.east - a.west) < 1e-7) {
+  if (Math.abs(south - north) < 1e-7 && Math.abs(west - east) < 1e-7) {
+    // Some buffered graph packages meet at a logical corner while the actual
+    // shared pedestrian node sits inside the buffered overlap. Let both
+    // workers snap to that junction instead of probing only the empty corner.
+    // Probe the small buffered overlap as well. The exact logical corner can
+    // be off-network even when both cell graphs share a nearby pedestrian
+    // node (especially when source tiles were clipped independently).
+    for (const [latOffset, lngOffset] of [[-0.0002, 0.0014], [-0.0004, 0.0014], [0, 0.0014], [-0.0002, 0.0007], [-0.0002, 0.002]]) {
+      points.push({ lat: south + latOffset, lng: west + lngOffset, handoffToleranceMeters: 250 });
+    }
+    points.push({ lat: south, lng: west, handoffToleranceMeters: 250 });
+  } else if (Math.abs(a.east - b.west) < 1e-7 || Math.abs(b.east - a.west) < 1e-7) {
     const lng = Math.abs(a.east - b.west) < 1e-7 ? a.east : b.east;
     for (let index = 1; index <= 9; index += 1) points.push({ lat: south + (north - south) * index / 10, lng });
   } else if (Math.abs(a.north - b.south) < 1e-7 || Math.abs(b.north - a.south) < 1e-7) {
     const lat = Math.abs(a.north - b.south) < 1e-7 ? a.north : b.north;
     for (let index = 1; index <= 9; index += 1) points.push({ lat, lng: west + (east - west) * index / 10 });
-  } else if (Math.abs(south - north) < 1e-7 && Math.abs(west - east) < 1e-7) {
-    // Some buffered graph packages meet at a logical corner while the actual
-    // shared pedestrian node sits inside the buffered overlap. Let both
-    // workers snap to that junction instead of probing only the empty corner.
-    points.push({ lat: south, lng: west, handoffToleranceMeters: 250 });
   } else if (west <= east && south <= north) {
     // Adaptive-resolution cells often overlap rather than share an exact
     // edge. Offer a small deterministic set of interior handoffs.

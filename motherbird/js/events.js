@@ -195,7 +195,7 @@ async function setMapWorkspace(destination = '', { toggle = true, forceOpen = fa
   if (next) el('mapWorkspaceTitle').textContent = next === 'maps' ? 'My Places' : next[0].toUpperCase() + next.slice(1);
   if (next === 'maps') {
     renderPersonalPlacesPanel();
-    const workspaceTarget = el('personalPlacesPanel');
+    const workspaceTarget = el('personalPlacesPanel')?.querySelector('[data-my-places-section-panel="workspace"]');
     if (workspaceTarget) await renderWorkspacePanel(workspaceTarget);
   }
   window.dispatchEvent(new CustomEvent('map-workspace-changed', { detail: { destination: next, open: Boolean(next) } }));
