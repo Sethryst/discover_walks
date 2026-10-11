@@ -1,20 +1,32 @@
 {
   "schemaVersion": "biodiversity-sidecar-v1",
   "metadata": {
-    "schemaVersion": "biodiversity-sidecar-v1",
     "regionId": "new-orleans",
-    "sourceVintage": "2026-10-10",
-    "generatedAt": "2026-10-10T00:00:00.000Z",
-    "sourceAccess": "GBIF occurrence search API",
-    "sourceQuery": "Region boundary query; authenticated download required for large regions.",
-    "boundaryVersion": "new-orleans-boundary-v1",
+    "sourceVintage": "2026-10-11",
+    "boundaryVersion": "new-orleans-center-envelope-v1",
     "gbifDownloadDoi": null,
-    "inputRows": 0,
+    "generatedAt": "2026-10-11T01:53:30.957Z",
+    "fixture": false,
+    "sourceAccess": "GBIF occurrence search API",
+    "sourceQuery": "POLYGON((-90.45902310767829 29.619999999999997,-89.65097689232172 29.619999999999997,-89.65097689232172 30.32,-90.45902310767829 30.32,-90.45902310767829 29.619999999999997))",
+    "inputRows": 300,
+    "matchingRecordCount": 103128,
+    "coverageNote": null,
+    "schemaVersion": "biodiversity-sidecar-v1",
+    "acquisitionWorkflow": {
+      "mode": "occurrence-search",
+      "endpoint": "https://api.gbif.org/v1/occurrence/search",
+      "pageSize": 300,
+      "maxOffset": 100000
+    },
     "freshnessClass": "fresh",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
     "releaseState": "sidecar-available",
+    "qualityReview": {
+      "status": "not-reviewed"
+    },
     "gateReason": null,
     "safeguards": {
       "coordinateUncertaintyFiltering": true,
@@ -22,17 +34,5786 @@
       "privacyAwareAggregation": true,
       "sourceVintageTracked": true,
       "imageLicenseMetadataTracked": true
-    },
-    "qualityReview": {
-      "status": "not-reviewed"
-    },
-    "acquisitionWorkflow": {
-      "mode": "occurrence-search",
-      "endpoint": "https://api.gbif.org/v1/occurrence/search",
-      "pageSize": 300,
-      "maxOffset": 100000
-    },
-    "coverageNote": "No qualifying rows are currently published for this region; this is not evidence of absence."
+    }
   },
-  "records": []
+  "records": [
+    {
+      "recordId": "aggregate-2997:-9028-12890-1",
+      "taxonId": "12890",
+      "scientificName": "Catharus guttatus (Pallas, 1811)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Turdidae",
+      "genus": "Catharus",
+      "species": "Catharus guttatus",
+      "regionId": "new-orleans",
+      "gridCellId": "2997:-9028",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 343,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333595860"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2998:-9010-5063-1",
+      "taxonId": "5063",
+      "scientificName": "Anhinga anhinga (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Suliformes",
+      "family": "Anhingidae",
+      "genus": "Anhinga",
+      "species": "Anhinga anhinga",
+      "regionId": "new-orleans",
+      "gridCellId": "2998:-9010",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333179872",
+          "https://www.inaturalist.org/observations/334153960"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3027:-8994-81804-1",
+      "taxonId": "81804",
+      "scientificName": "Sabal minor (Jacq.) Pers.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Liliopsida",
+      "order": "Arecales",
+      "family": "Arecaceae",
+      "genus": "Sabal",
+      "species": "Sabal minor",
+      "regionId": "new-orleans",
+      "gridCellId": "3027:-8994",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333050606",
+          "https://www.inaturalist.org/observations/333050916"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3027:-8996-144455-1",
+      "taxonId": "144455",
+      "scientificName": "Ardea alba Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Ardea",
+      "species": "Ardea alba",
+      "regionId": "new-orleans",
+      "gridCellId": "3027:-8996",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 14,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333304647"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3027:-8996-4665-1",
+      "taxonId": "4665",
+      "scientificName": "Falco sparverius Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Falconiformes",
+      "family": "Falconidae",
+      "genus": "Falco",
+      "species": "Falco sparverius",
+      "regionId": "new-orleans",
+      "gridCellId": "3027:-8996",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 721,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333496188"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2993:-9020-16010-1",
+      "taxonId": "16010",
+      "scientificName": "Myiarchus cinerascens (Lawrence, 1851)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Tyrannidae",
+      "genus": "Myiarchus",
+      "species": "Myiarchus cinerascens",
+      "regionId": "new-orleans",
+      "gridCellId": "2993:-9020",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 222,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333595859"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3027:-8996-2548-1",
+      "taxonId": "2548",
+      "scientificName": "Megaceryle alcyon (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Coraciiformes",
+      "family": "Alcedinidae",
+      "genus": "Megaceryle",
+      "species": "Megaceryle alcyon",
+      "regionId": "new-orleans",
+      "gridCellId": "3027:-8996",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333304787"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3002:-9027-144814-1",
+      "taxonId": "144814",
+      "scientificName": "Poecile carolinensis (Audubon, 1834)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Paridae",
+      "genus": "Poecile",
+      "species": "Poecile carolinensis",
+      "regionId": "new-orleans",
+      "gridCellId": "3002:-9027",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 101,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333206509"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3028:-8995-64093-1",
+      "taxonId": "64093",
+      "scientificName": "Salvia lyrata L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Lamiales",
+      "family": "Lamiaceae",
+      "genus": "Salvia",
+      "species": "Salvia lyrata",
+      "regionId": "new-orleans",
+      "gridCellId": "3028:-8995",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333054149"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2992:-9012-1587239-1",
+      "taxonId": "1587239",
+      "scientificName": "Hemileuca Walker, 1855",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Lepidoptera",
+      "family": "Saturniidae",
+      "genus": "Hemileuca",
+      "species": null,
+      "regionId": "new-orleans",
+      "gridCellId": "2992:-9012",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333083528"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2996:-9006-48662-1",
+      "taxonId": "48662",
+      "scientificName": "Danaus plexippus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Lepidoptera",
+      "family": "Nymphalidae",
+      "genus": "Danaus",
+      "species": "Danaus plexippus",
+      "regionId": "new-orleans",
+      "gridCellId": "2996:-9006",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 14,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333027388"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3028:-8992-127269-1",
+      "taxonId": "127269",
+      "scientificName": "Cirsium horridulum Michx.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Cirsium",
+      "species": "Cirsium horridulum",
+      "regionId": "new-orleans",
+      "gridCellId": "3028:-8992",
+      "month": 1,
+      "observationCount": 4,
+      "coordinateUncertainty": {
+        "summaryMeters": 122,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333045110",
+          "https://www.inaturalist.org/observations/333045296",
+          "https://www.inaturalist.org/observations/335996926",
+          "https://www.inaturalist.org/observations/334572585"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3027:-8996-4334-1",
+      "taxonId": "4334",
+      "scientificName": "Pelecanus erythrorhynchos Gmelin, 1789",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Pelecanidae",
+      "genus": "Pelecanus",
+      "species": "Pelecanus erythrorhynchos",
+      "regionId": "new-orleans",
+      "gridCellId": "3027:-8996",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 721,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333496192"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3027:-8996-4956-1",
+      "taxonId": "4956",
+      "scientificName": "Ardea herodias Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Ardea",
+      "species": "Ardea herodias",
+      "regionId": "new-orleans",
+      "gridCellId": "3027:-8996",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 721,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333496193",
+          "https://www.inaturalist.org/observations/333304572"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3031:-8973-4956-1",
+      "taxonId": "4956",
+      "scientificName": "Ardea herodias Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Ardea",
+      "species": "Ardea herodias",
+      "regionId": "new-orleans",
+      "gridCellId": "3031:-8973",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 50,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333104177"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2992:-9013-6893-1",
+      "taxonId": "6893",
+      "scientificName": "Dendrocygna autumnalis (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Dendrocygna",
+      "species": "Dendrocygna autumnalis",
+      "regionId": "new-orleans",
+      "gridCellId": "2992:-9013",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 12,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333038298",
+          "https://www.inaturalist.org/observations/334051744"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3027:-8996-4937-1",
+      "taxonId": "4937",
+      "scientificName": "Egretta caerulea (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Egretta",
+      "species": "Egretta caerulea",
+      "regionId": "new-orleans",
+      "gridCellId": "3027:-8996",
+      "month": 1,
+      "observationCount": 3,
+      "coordinateUncertainty": {
+        "summaryMeters": 996,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333496191",
+          "https://www.inaturalist.org/observations/335996921",
+          "https://www.inaturalist.org/observations/336015748"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2996:-9006-58917-1",
+      "taxonId": "58917",
+      "scientificName": "Geranium carolinianum L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Geraniales",
+      "family": "Geraniaceae",
+      "genus": "Geranium",
+      "species": "Geranium carolinianum",
+      "regionId": "new-orleans",
+      "gridCellId": "2996:-9006",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333200697"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3002:-9019-116999-1",
+      "taxonId": "116999",
+      "scientificName": "Pandion haliaetus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Accipitriformes",
+      "family": "Pandionidae",
+      "genus": "Pandion",
+      "species": "Pandion haliaetus",
+      "regionId": "new-orleans",
+      "gridCellId": "3002:-9019",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333386911"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2996:-9005-144455-1",
+      "taxonId": "144455",
+      "scientificName": "Ardea alba Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Ardea",
+      "species": "Ardea alba",
+      "regionId": "new-orleans",
+      "gridCellId": "2996:-9005",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333446615"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2993:-9020-145249-1",
+      "taxonId": "145249",
+      "scientificName": "Setophaga discolor (Vieillot, 1809)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Parulidae",
+      "genus": "Setophaga",
+      "species": "Setophaga discolor",
+      "regionId": "new-orleans",
+      "gridCellId": "2993:-9020",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 535,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333595858"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2997:-9013-128652-1",
+      "taxonId": "128652",
+      "scientificName": "Salvia coccinea Buc'hoz ex Etl.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Lamiales",
+      "family": "Lamiaceae",
+      "genus": "Salvia",
+      "species": "Salvia coccinea",
+      "regionId": "new-orleans",
+      "gridCellId": "2997:-9013",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333580746"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3026:-8996-116999-1",
+      "taxonId": "116999",
+      "scientificName": "Pandion haliaetus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Accipitriformes",
+      "family": "Pandionidae",
+      "genus": "Pandion",
+      "species": "Pandion haliaetus",
+      "regionId": "new-orleans",
+      "gridCellId": "3026:-8996",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 31,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333386301"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2998:-9011-3454-1",
+      "taxonId": "3454",
+      "scientificName": "Zenaida macroura (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Columbiformes",
+      "family": "Columbidae",
+      "genus": "Zenaida",
+      "species": "Zenaida macroura",
+      "regionId": "new-orleans",
+      "gridCellId": "2998:-9011",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333211894"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2997:-9028-10479-1",
+      "taxonId": "10479",
+      "scientificName": "Chondestes grammacus (Say, 1822)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Chondestes",
+      "species": "Chondestes grammacus",
+      "regionId": "new-orleans",
+      "gridCellId": "2997:-9028",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 299,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333595862"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3009:-9044-4956-1",
+      "taxonId": "4956",
+      "scientificName": "Ardea herodias Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Ardea",
+      "species": "Ardea herodias",
+      "regionId": "new-orleans",
+      "gridCellId": "3009:-9044",
+      "month": 1,
+      "observationCount": 3,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334364055",
+          "https://www.inaturalist.org/observations/334364166",
+          "https://www.inaturalist.org/observations/334364011"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2992:-9011-226886-1",
+      "taxonId": "226886",
+      "scientificName": "Pandeleteius hilaris (Herbst, 1797)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Coleoptera",
+      "family": "Curculionidae",
+      "genus": "Pandeleteius",
+      "species": "Pandeleteius hilaris",
+      "regionId": "new-orleans",
+      "gridCellId": "2992:-9011",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334243663"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2998:-9010-49972-1",
+      "taxonId": "49972",
+      "scientificName": "Battus philenor (Linnaeus, 1771)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Lepidoptera",
+      "family": "Papilionidae",
+      "genus": "Battus",
+      "species": "Battus philenor",
+      "regionId": "new-orleans",
+      "gridCellId": "2998:-9010",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 14,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335610048"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3013:-8988-42134-1",
+      "taxonId": "42134",
+      "scientificName": "Sus scrofa Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Artiodactyla",
+      "family": "Suidae",
+      "genus": "Sus",
+      "species": "Sus scrofa",
+      "regionId": "new-orleans",
+      "gridCellId": "3013:-8988",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 333,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335715321"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2992:-9013-49569-1",
+      "taxonId": "49569",
+      "scientificName": "Tillandsia usneoides (L.) L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Liliopsida",
+      "order": "Poales",
+      "family": "Bromeliaceae",
+      "genus": "Tillandsia",
+      "species": "Tillandsia usneoides",
+      "regionId": "new-orleans",
+      "gridCellId": "2992:-9013",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333871179"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3026:-8996-4793-1",
+      "taxonId": "4793",
+      "scientificName": "Charadrius vociferus Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Charadriiformes",
+      "family": "Charadriidae",
+      "genus": "Charadrius",
+      "species": "Charadrius vociferus",
+      "regionId": "new-orleans",
+      "gridCellId": "3026:-8996",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 122,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335357095",
+          "https://www.inaturalist.org/observations/335357096"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3026:-8996-144539-1",
+      "taxonId": "144539",
+      "scientificName": "Thalasseus maximus (Boddaert, 1783)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Charadriiformes",
+      "family": "Laridae",
+      "genus": "Thalasseus",
+      "species": "Thalasseus maximus",
+      "regionId": "new-orleans",
+      "gridCellId": "3026:-8996",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 122,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336195856",
+          "https://www.inaturalist.org/observations/335985277"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3026:-8996-4328-1",
+      "taxonId": "4328",
+      "scientificName": "Pelecanus occidentalis Linnaeus, 1766",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Pelecanidae",
+      "genus": "Pelecanus",
+      "species": "Pelecanus occidentalis",
+      "regionId": "new-orleans",
+      "gridCellId": "3026:-8996",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 122,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336195852",
+          "https://www.inaturalist.org/observations/335357102"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2995:-9005-50931-1",
+      "taxonId": "50931",
+      "scientificName": "Strymon melinus Hübner, 1818",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Lepidoptera",
+      "family": "Lycaenidae",
+      "genus": "Strymon",
+      "species": "Strymon melinus",
+      "regionId": "new-orleans",
+      "gridCellId": "2995:-9005",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333871418"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3002:-9027-6930-1",
+      "taxonId": "6930",
+      "scientificName": "Anas platyrhynchos Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Anas",
+      "species": "Anas platyrhynchos",
+      "regionId": "new-orleans",
+      "gridCellId": "3002:-9027",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 425,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333885053"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2995:-9005-52757-1",
+      "taxonId": "52757",
+      "scientificName": "Polistes fuscatus (Fabricius, 1793)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Hymenoptera",
+      "family": "Eumenidae",
+      "genus": "Polistes",
+      "species": "Polistes fuscatus",
+      "regionId": "new-orleans",
+      "gridCellId": "2995:-9005",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333979029"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2992:-9013-46017-1",
+      "taxonId": "46017",
+      "scientificName": "Sciurus carolinensis Gmelin, 1788",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Rodentia",
+      "family": "Sciuridae",
+      "genus": "Sciurus",
+      "species": "Sciurus carolinensis",
+      "regionId": "new-orleans",
+      "gridCellId": "2992:-9013",
+      "month": 1,
+      "observationCount": 3,
+      "coordinateUncertainty": {
+        "summaryMeters": 27,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335095060",
+          "https://www.inaturalist.org/observations/336176027",
+          "https://www.inaturalist.org/observations/334615454"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2987:-9001-48484-1",
+      "taxonId": "48484",
+      "scientificName": "Harmonia axyridis (Pallas, 1773)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Coleoptera",
+      "family": "Coccinellidae",
+      "genus": "Harmonia",
+      "species": "Harmonia axyridis",
+      "regionId": "new-orleans",
+      "gridCellId": "2987:-9001",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 16,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333979904"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2992:-9012-84300-1",
+      "taxonId": "84300",
+      "scientificName": "Sambucus canadensis L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Dipsacales",
+      "family": "Viburnaceae",
+      "genus": "Sambucus",
+      "species": "Sambucus canadensis",
+      "regionId": "new-orleans",
+      "gridCellId": "2992:-9012",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334616410"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2992:-9028-4956-1",
+      "taxonId": "4956",
+      "scientificName": "Ardea herodias Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Ardea",
+      "species": "Ardea herodias",
+      "regionId": "new-orleans",
+      "gridCellId": "2992:-9028",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334665193"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2992:-9012-53059-1",
+      "taxonId": "53059",
+      "scientificName": "Galium aparine L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Gentianales",
+      "family": "Rubiaceae",
+      "genus": "Galium",
+      "species": "Galium aparine",
+      "regionId": "new-orleans",
+      "gridCellId": "2992:-9012",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334745229"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2995:-9005-48550-1",
+      "taxonId": "48550",
+      "scientificName": "Phoebis sennae (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Lepidoptera",
+      "family": "Pieridae",
+      "genus": "Phoebis",
+      "species": "Phoebis sennae",
+      "regionId": "new-orleans",
+      "gridCellId": "2995:-9005",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 14,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333872115"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3026:-8996-4665-1",
+      "taxonId": "4665",
+      "scientificName": "Falco sparverius Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Falconiformes",
+      "family": "Falconidae",
+      "genus": "Falco",
+      "species": "Falco sparverius",
+      "regionId": "new-orleans",
+      "gridCellId": "3026:-8996",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 122,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334572589"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3026:-8996-4334-1",
+      "taxonId": "4334",
+      "scientificName": "Pelecanus erythrorhynchos Gmelin, 1789",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Pelecanidae",
+      "genus": "Pelecanus",
+      "species": "Pelecanus erythrorhynchos",
+      "regionId": "new-orleans",
+      "gridCellId": "3026:-8996",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 122,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335357090"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3026:-8996-144455-1",
+      "taxonId": "144455",
+      "scientificName": "Ardea alba Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Ardea",
+      "species": "Ardea alba",
+      "regionId": "new-orleans",
+      "gridCellId": "3026:-8996",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 14,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333304823"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3027:-8996-4938-1",
+      "taxonId": "4938",
+      "scientificName": "Egretta tricolor (Statius Muller, 1776)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Egretta",
+      "species": "Egretta tricolor",
+      "regionId": "new-orleans",
+      "gridCellId": "3027:-8996",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 996,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335996920"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2992:-9012-116461-1",
+      "taxonId": "116461",
+      "scientificName": "Anolis sagrei Duméril & Bibron, 1837",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Squamata",
+      "order": null,
+      "family": "Dactyloidae",
+      "genus": "Anolis",
+      "species": "Anolis sagrei",
+      "regionId": "new-orleans",
+      "gridCellId": "2992:-9012",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335624508",
+          "https://www.inaturalist.org/observations/335720750"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3026:-8996-4756-1",
+      "taxonId": "4756",
+      "scientificName": "Cathartes aura (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Accipitriformes",
+      "family": "Cathartidae",
+      "genus": "Cathartes",
+      "species": "Cathartes aura",
+      "regionId": "new-orleans",
+      "gridCellId": "3026:-8996",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 122,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335357091",
+          "https://www.inaturalist.org/observations/335357094"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3027:-9040-144455-1",
+      "taxonId": "144455",
+      "scientificName": "Ardea alba Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Ardea",
+      "species": "Ardea alba",
+      "regionId": "new-orleans",
+      "gridCellId": "3027:-9040",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334902469"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3009:-9044-144455-1",
+      "taxonId": "144455",
+      "scientificName": "Ardea alba Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Ardea",
+      "species": "Ardea alba",
+      "regionId": "new-orleans",
+      "gridCellId": "3009:-9044",
+      "month": 1,
+      "observationCount": 3,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334364461",
+          "https://www.inaturalist.org/observations/334363984",
+          "https://www.inaturalist.org/observations/334363862"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3005:-8989-4665-1",
+      "taxonId": "4665",
+      "scientificName": "Falco sparverius Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Falconiformes",
+      "family": "Falconidae",
+      "genus": "Falco",
+      "species": "Falco sparverius",
+      "regionId": "new-orleans",
+      "gridCellId": "3005:-8989",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 207,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334776569"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2979:-9014-904170-1",
+      "taxonId": "904170",
+      "scientificName": "Agkistrodon piscivorus (Lacépède, 1789)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Squamata",
+      "order": null,
+      "family": "Viperidae",
+      "genus": "Agkistrodon",
+      "species": "Agkistrodon piscivorus",
+      "regionId": "new-orleans",
+      "gridCellId": "2979:-9014",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334289024"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2994:-9008-57636-1",
+      "taxonId": "57636",
+      "scientificName": "Pteris vittata L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Polypodiopsida",
+      "order": "Polypodiales",
+      "family": "Pteridaceae",
+      "genus": "Pteris",
+      "species": "Pteris vittata",
+      "regionId": "new-orleans",
+      "gridCellId": "2994:-9008",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 10,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333810116"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3028:-8992-78976-1",
+      "taxonId": "78976",
+      "scientificName": "Salvinia × molesta D.S.Mitch.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Polypodiopsida",
+      "order": "Salviniales",
+      "family": "Salviniaceae",
+      "genus": "Salvinia",
+      "species": "Salvinia molesta",
+      "regionId": "new-orleans",
+      "gridCellId": "3028:-8992",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 122,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334572581",
+          "https://www.inaturalist.org/observations/334572580"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2992:-9013-84994-1",
+      "taxonId": "84994",
+      "scientificName": "Acanthocephala declivis (Say, 1832)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Hemiptera",
+      "family": "Coreidae",
+      "genus": "Acanthocephala",
+      "species": "Acanthocephala declivis",
+      "regionId": "new-orleans",
+      "gridCellId": "2992:-9013",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334869364"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3028:-8992-4956-1",
+      "taxonId": "4956",
+      "scientificName": "Ardea herodias Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Ardea",
+      "species": "Ardea herodias",
+      "regionId": "new-orleans",
+      "gridCellId": "3028:-8992",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 68,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335996924"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3026:-8996-4956-1",
+      "taxonId": "4956",
+      "scientificName": "Ardea herodias Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Ardea",
+      "species": "Ardea herodias",
+      "regionId": "new-orleans",
+      "gridCellId": "3026:-8996",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 122,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334572587",
+          "https://www.inaturalist.org/observations/334572588"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3006:-8981-4334-1",
+      "taxonId": "4334",
+      "scientificName": "Pelecanus erythrorhynchos Gmelin, 1789",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Pelecanidae",
+      "genus": "Pelecanus",
+      "species": "Pelecanus erythrorhynchos",
+      "regionId": "new-orleans",
+      "gridCellId": "3006:-8981",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 39,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334887504"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2992:-9013-116461-1",
+      "taxonId": "116461",
+      "scientificName": "Anolis sagrei Duméril & Bibron, 1837",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Squamata",
+      "order": null,
+      "family": "Dactyloidae",
+      "genus": "Anolis",
+      "species": "Anolis sagrei",
+      "regionId": "new-orleans",
+      "gridCellId": "2992:-9013",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335719735"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2992:-9013-34517-1",
+      "taxonId": "34517",
+      "scientificName": "Hemidactylus parvimaculatus Deraniyagala, 1953",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Squamata",
+      "order": null,
+      "family": "Gekkonidae",
+      "genus": "Hemidactylus",
+      "species": "Hemidactylus parvimaculatus",
+      "regionId": "new-orleans",
+      "gridCellId": "2992:-9013",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 33,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335863726"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2996:-9012-53034-1",
+      "taxonId": "53034",
+      "scientificName": "Ambrosia trifida L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Ambrosia",
+      "species": "Ambrosia trifida",
+      "regionId": "new-orleans",
+      "gridCellId": "2996:-9012",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334243390"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3000:-9010-26159-1",
+      "taxonId": "26159",
+      "scientificName": "Alligator mississippiensis (Daudin, 1801)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Crocodylia",
+      "order": null,
+      "family": "Alligatoridae",
+      "genus": "Alligator",
+      "species": "Alligator mississippiensis",
+      "regionId": "new-orleans",
+      "gridCellId": "3000:-9010",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 15,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333662507"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3002:-9027-5020-1",
+      "taxonId": "5020",
+      "scientificName": "Butorides virescens (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Butorides",
+      "species": "Butorides virescens",
+      "regionId": "new-orleans",
+      "gridCellId": "3002:-9027",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 222,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333977440"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2992:-9013-69172-1",
+      "taxonId": "69172",
+      "scientificName": "Pilea microphylla (L.) Liebm.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Rosales",
+      "family": "Urticaceae",
+      "genus": "Pilea",
+      "species": "Pilea microphylla",
+      "regionId": "new-orleans",
+      "gridCellId": "2992:-9013",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 12,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334760179",
+          "https://www.inaturalist.org/observations/334756057"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2989:-9013-1095846-1",
+      "taxonId": "1095846",
+      "scientificName": "Bidens alba (L.) DC.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Bidens",
+      "species": "Bidens alba",
+      "regionId": "new-orleans",
+      "gridCellId": "2989:-9013",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334395988"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2991:-9028-4938-1",
+      "taxonId": "4938",
+      "scientificName": "Egretta tricolor (Statius Muller, 1776)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Egretta",
+      "species": "Egretta tricolor",
+      "regionId": "new-orleans",
+      "gridCellId": "2991:-9028",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334665321"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3008:-8989-5020-1",
+      "taxonId": "5020",
+      "scientificName": "Butorides virescens (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Butorides",
+      "species": "Butorides virescens",
+      "regionId": "new-orleans",
+      "gridCellId": "3008:-8989",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 229,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334131092"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2992:-9021-349271-1",
+      "taxonId": "349271",
+      "scientificName": "Impatiens hawkeri W.Bull",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Ericales",
+      "family": "Balsaminaceae",
+      "genus": "Impatiens",
+      "species": "Impatiens hawkeri",
+      "regionId": "new-orleans",
+      "gridCellId": "2992:-9021",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 7,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334882476"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3015:-8987-64017-1",
+      "taxonId": "64017",
+      "scientificName": "Arundo donax L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Liliopsida",
+      "order": "Poales",
+      "family": "Poaceae",
+      "genus": "Arundo",
+      "species": "Arundo donax",
+      "regionId": "new-orleans",
+      "gridCellId": "3015:-8987",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 61,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335718478"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2993:-9013-6893-1",
+      "taxonId": "6893",
+      "scientificName": "Dendrocygna autumnalis (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Dendrocygna",
+      "species": "Dendrocygna autumnalis",
+      "regionId": "new-orleans",
+      "gridCellId": "2993:-9013",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335754199",
+          "https://www.inaturalist.org/observations/333896740"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2998:-9009-1095846-1",
+      "taxonId": "1095846",
+      "scientificName": "Bidens alba (L.) DC.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Bidens",
+      "species": "Bidens alba",
+      "regionId": "new-orleans",
+      "gridCellId": "2998:-9009",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 25,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334988249"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2993:-9009-698726-1",
+      "taxonId": "698726",
+      "scientificName": "Pleopeltis michauxiana (Weath.) Hickey & Sprunt",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Polypodiopsida",
+      "order": "Polypodiales",
+      "family": "Polypodiaceae",
+      "genus": "Pleopeltis",
+      "species": "Pleopeltis michauxiana",
+      "regionId": "new-orleans",
+      "gridCellId": "2993:-9009",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 17,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335442119"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3009:-9044-26159-1",
+      "taxonId": "26159",
+      "scientificName": "Alligator mississippiensis (Daudin, 1801)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Crocodylia",
+      "order": null,
+      "family": "Alligatoridae",
+      "genus": "Alligator",
+      "species": "Alligator mississippiensis",
+      "regionId": "new-orleans",
+      "gridCellId": "3009:-9044",
+      "month": 1,
+      "observationCount": 3,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334363802",
+          "https://www.inaturalist.org/observations/334363705",
+          "https://www.inaturalist.org/observations/334363777"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2992:-9012-698726-1",
+      "taxonId": "698726",
+      "scientificName": "Pleopeltis michauxiana (Weath.) Hickey & Sprunt",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Polypodiopsida",
+      "order": "Polypodiales",
+      "family": "Polypodiaceae",
+      "genus": "Pleopeltis",
+      "species": "Pleopeltis michauxiana",
+      "regionId": "new-orleans",
+      "gridCellId": "2992:-9012",
+      "month": 1,
+      "observationCount": 3,
+      "coordinateUncertainty": {
+        "summaryMeters": 17,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335405688",
+          "https://www.inaturalist.org/observations/335632914",
+          "https://www.inaturalist.org/observations/334746008"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3005:-8989-29327-1",
+      "taxonId": "29327",
+      "scientificName": "Nerodia cyclopion (Duméril, Bibron & Duméril, 1854)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Squamata",
+      "order": null,
+      "family": "Colubridae",
+      "genus": "Nerodia",
+      "species": "Nerodia cyclopion",
+      "regionId": "new-orleans",
+      "gridCellId": "3005:-8989",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 207,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335718483"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2992:-9012-59035-1",
+      "taxonId": "59035",
+      "scientificName": "Solanum americanum Mill.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Solanales",
+      "family": "Solanaceae",
+      "genus": "Solanum",
+      "species": "Solanum americanum",
+      "regionId": "new-orleans",
+      "gridCellId": "2992:-9012",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 22,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335985991"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3002:-9041-164985-1",
+      "taxonId": "164985",
+      "scientificName": "Lygodium japonicum (Thunb.) Sw.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Polypodiopsida",
+      "order": "Schizaeales",
+      "family": "Lygodiaceae",
+      "genus": "Lygodium",
+      "species": "Lygodium japonicum",
+      "regionId": "new-orleans",
+      "gridCellId": "3002:-9041",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335418059"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2987:-9001-127669-1",
+      "taxonId": "127669",
+      "scientificName": "Jadera haematoloma (Herrich-Schäffer, 1847)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Hemiptera",
+      "family": "Rhopalidae",
+      "genus": "Jadera",
+      "species": "Jadera haematoloma",
+      "regionId": "new-orleans",
+      "gridCellId": "2987:-9001",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 10,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333979889"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3026:-8996-144537-1",
+      "taxonId": "144537",
+      "scientificName": "Hydroprogne caspia (Pallas, 1770)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Charadriiformes",
+      "family": "Laridae",
+      "genus": "Hydroprogne",
+      "species": "Hydroprogne caspia",
+      "regionId": "new-orleans",
+      "gridCellId": "3026:-8996",
+      "month": 1,
+      "observationCount": 3,
+      "coordinateUncertainty": {
+        "summaryMeters": 122,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336195851",
+          "https://www.inaturalist.org/observations/336195857",
+          "https://www.inaturalist.org/observations/336195850"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2998:-9011-4956-1",
+      "taxonId": "4956",
+      "scientificName": "Ardea herodias Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Ardea",
+      "species": "Ardea herodias",
+      "regionId": "new-orleans",
+      "gridCellId": "2998:-9011",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334219093"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3015:-8987-9744-1",
+      "taxonId": "9744",
+      "scientificName": "Agelaius phoeniceus (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Icteridae",
+      "genus": "Agelaius",
+      "species": "Agelaius phoeniceus",
+      "regionId": "new-orleans",
+      "gridCellId": "3015:-8987",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 61,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335718479"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3002:-9041-84300-1",
+      "taxonId": "84300",
+      "scientificName": "Sambucus canadensis L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Dipsacales",
+      "family": "Viburnaceae",
+      "genus": "Sambucus",
+      "species": "Sambucus canadensis",
+      "regionId": "new-orleans",
+      "gridCellId": "3002:-9041",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335418070"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2978:-9012-49666-1",
+      "taxonId": "49666",
+      "scientificName": "Taxodium distichum (L.) Rich.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Pinopsida",
+      "order": "Pinales",
+      "family": "Cupressaceae",
+      "genus": "Taxodium",
+      "species": "Taxodium distichum",
+      "regionId": "new-orleans",
+      "gridCellId": "2978:-9012",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 11,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334052633"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2992:-9012-49569-1",
+      "taxonId": "49569",
+      "scientificName": "Tillandsia usneoides (L.) L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Liliopsida",
+      "order": "Poales",
+      "family": "Bromeliaceae",
+      "genus": "Tillandsia",
+      "species": "Tillandsia usneoides",
+      "regionId": "new-orleans",
+      "gridCellId": "2992:-9012",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334868898"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2996:-9007-48662-1",
+      "taxonId": "48662",
+      "scientificName": "Danaus plexippus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Lepidoptera",
+      "family": "Nymphalidae",
+      "genus": "Danaus",
+      "species": "Danaus plexippus",
+      "regionId": "new-orleans",
+      "gridCellId": "2996:-9007",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 13,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334886218"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2995:-9005-47219-1",
+      "taxonId": "47219",
+      "scientificName": "Apis mellifera Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Hymenoptera",
+      "family": "Apidae",
+      "genus": "Apis",
+      "species": "Apis mellifera",
+      "regionId": "new-orleans",
+      "gridCellId": "2995:-9005",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333979127"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3027:-8996-4364-1",
+      "taxonId": "4364",
+      "scientificName": "Larus delawarensis Ord, 1815",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Charadriiformes",
+      "family": "Laridae",
+      "genus": "Larus",
+      "species": "Larus delawarensis",
+      "regionId": "new-orleans",
+      "gridCellId": "3027:-8996",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 996,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335996922"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2992:-9012-55745-1",
+      "taxonId": "55745",
+      "scientificName": "Trifolium repens L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Fabales",
+      "family": "Fabaceae",
+      "genus": "Trifolium",
+      "species": "Trifolium repens",
+      "regionId": "new-orleans",
+      "gridCellId": "2992:-9012",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334746105",
+          "https://www.inaturalist.org/observations/334745291"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3013:-8988-4328-1",
+      "taxonId": "4328",
+      "scientificName": "Pelecanus occidentalis Linnaeus, 1766",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Pelecanidae",
+      "genus": "Pelecanus",
+      "species": "Pelecanus occidentalis",
+      "regionId": "new-orleans",
+      "gridCellId": "3013:-8988",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 333,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335715316",
+          "https://www.inaturalist.org/observations/335715315"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2992:-9012-84405-1",
+      "taxonId": "84405",
+      "scientificName": "Calyptocarpus vialis Less.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Calyptocarpus",
+      "species": "Calyptocarpus vialis",
+      "regionId": "new-orleans",
+      "gridCellId": "2992:-9012",
+      "month": 1,
+      "observationCount": 3,
+      "coordinateUncertainty": {
+        "summaryMeters": 35,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334745499",
+          "https://www.inaturalist.org/observations/334745608",
+          "https://www.inaturalist.org/observations/334742210"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3027:-8996-5305-1",
+      "taxonId": "5305",
+      "scientificName": "Haliaeetus leucocephalus (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Accipitriformes",
+      "family": "Accipitridae",
+      "genus": "Haliaeetus",
+      "species": "Haliaeetus leucocephalus",
+      "regionId": "new-orleans",
+      "gridCellId": "3027:-8996",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 996,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335996923"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3026:-8996-4457-1",
+      "taxonId": "4457",
+      "scientificName": "Sterna forsteri Nuttall, 1834",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Charadriiformes",
+      "family": "Laridae",
+      "genus": "Sterna",
+      "species": "Sterna forsteri",
+      "regionId": "new-orleans",
+      "gridCellId": "3026:-8996",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 122,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336195859"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2992:-9013-545305-1",
+      "taxonId": "545305",
+      "scientificName": "Cardamine occulta Hornem.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Brassicales",
+      "family": "Brassicaceae",
+      "genus": "Cardamine",
+      "species": "Cardamine occulta",
+      "regionId": "new-orleans",
+      "gridCellId": "2992:-9013",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335719772"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2992:-9012-411086-1",
+      "taxonId": "411086",
+      "scientificName": "Ardea ibis Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Bubulcus",
+      "species": "Bubulcus ibis",
+      "regionId": "new-orleans",
+      "gridCellId": "2992:-9012",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 14,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334636910",
+          "https://www.inaturalist.org/observations/334993694"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2996:-9004-36514-1",
+      "taxonId": "36514",
+      "scientificName": "Anolis carolinensis Voigt, 1832",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Squamata",
+      "order": null,
+      "family": "Dactyloidae",
+      "genus": "Anolis",
+      "species": "Anolis carolinensis",
+      "regionId": "new-orleans",
+      "gridCellId": "2996:-9004",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 14,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334654333"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2992:-9013-55745-1",
+      "taxonId": "55745",
+      "scientificName": "Trifolium repens L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Fabales",
+      "family": "Fabaceae",
+      "genus": "Trifolium",
+      "species": "Trifolium repens",
+      "regionId": "new-orleans",
+      "gridCellId": "2992:-9013",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334952011"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2995:-9007-116461-1",
+      "taxonId": "116461",
+      "scientificName": "Anolis sagrei Duméril & Bibron, 1837",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Squamata",
+      "order": null,
+      "family": "Dactyloidae",
+      "genus": "Anolis",
+      "species": "Anolis sagrei",
+      "regionId": "new-orleans",
+      "gridCellId": "2995:-9007",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333897511"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2979:-9014-125677-1",
+      "taxonId": "125677",
+      "scientificName": "Smilax bona-nox L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Liliopsida",
+      "order": "Liliales",
+      "family": "Smilacaceae",
+      "genus": "Smilax",
+      "species": "Smilax bona-nox",
+      "regionId": "new-orleans",
+      "gridCellId": "2979:-9014",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335883638"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3005:-8989-26159-1",
+      "taxonId": "26159",
+      "scientificName": "Alligator mississippiensis (Daudin, 1801)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Crocodylia",
+      "order": null,
+      "family": "Alligatoridae",
+      "genus": "Alligator",
+      "species": "Alligator mississippiensis",
+      "regionId": "new-orleans",
+      "gridCellId": "3005:-8989",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 207,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335718481"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3009:-9044-41663-1",
+      "taxonId": "41663",
+      "scientificName": "Procyon lotor (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Carnivora",
+      "family": "Procyonidae",
+      "genus": "Procyon",
+      "species": "Procyon lotor",
+      "regionId": "new-orleans",
+      "gridCellId": "3009:-9044",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334363075"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3028:-8994-64093-1",
+      "taxonId": "64093",
+      "scientificName": "Salvia lyrata L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Lamiales",
+      "family": "Lamiaceae",
+      "genus": "Salvia",
+      "species": "Salvia lyrata",
+      "regionId": "new-orleans",
+      "gridCellId": "3028:-8994",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 524,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333697300"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3013:-8988-4626-1",
+      "taxonId": "4626",
+      "scientificName": "Gavia immer (Brunnich, 1764)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Gaviiformes",
+      "family": "Gaviidae",
+      "genus": "Gavia",
+      "species": "Gavia immer",
+      "regionId": "new-orleans",
+      "gridCellId": "3013:-8988",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 333,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335715318"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3026:-8996-5034-1",
+      "taxonId": "5034",
+      "scientificName": "Botaurus lentiginosus (Rackett, 1813)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Botaurus",
+      "species": "Botaurus lentiginosus",
+      "regionId": "new-orleans",
+      "gridCellId": "3026:-8996",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 122,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335357099"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3028:-9040-144455-1",
+      "taxonId": "144455",
+      "scientificName": "Ardea alba Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Ardea",
+      "species": "Ardea alba",
+      "regionId": "new-orleans",
+      "gridCellId": "3028:-9040",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335877327"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3003:-8997-53640-1",
+      "taxonId": "53640",
+      "scientificName": "Quercus nigra L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Fagales",
+      "family": "Fagaceae",
+      "genus": "Quercus",
+      "species": "Quercus nigra",
+      "regionId": "new-orleans",
+      "gridCellId": "3003:-8997",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334394779"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3002:-9040-225240-1",
+      "taxonId": "225240",
+      "scientificName": "Montezumina modesta (Brunner von Wattenwyl, 1878)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Orthoptera",
+      "family": "Tettigoniidae",
+      "genus": "Montezumina",
+      "species": "Montezumina modesta",
+      "regionId": "new-orleans",
+      "gridCellId": "3002:-9040",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335418119"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3026:-8996-1454382-1",
+      "taxonId": "1454382",
+      "scientificName": "Nannopterum auritum (R.P.Lesson, 1831)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Suliformes",
+      "family": "Phalacrocoracidae",
+      "genus": "Phalacrocorax",
+      "species": "Phalacrocorax auritus",
+      "regionId": "new-orleans",
+      "gridCellId": "3026:-8996",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 122,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336195855"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2966:-9002-16016-1",
+      "taxonId": "16016",
+      "scientificName": "Myiarchus tyrannulus (Statius Muller, 1776)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Tyrannidae",
+      "genus": "Myiarchus",
+      "species": "Myiarchus tyrannulus",
+      "regionId": "new-orleans",
+      "gridCellId": "2966:-9002",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 15,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335499836"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3030:-9039-205814-1",
+      "taxonId": "205814",
+      "scientificName": "Lethocerus uhleri (Montandon, 1896)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Hemiptera",
+      "family": "Belostomatidae",
+      "genus": "Lethocerus",
+      "species": "Lethocerus uhleri",
+      "regionId": "new-orleans",
+      "gridCellId": "3030:-9039",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 7,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334235844"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2993:-9013-67435-1",
+      "taxonId": "67435",
+      "scientificName": "Urbanus proteus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Lepidoptera",
+      "family": "Hesperiidae",
+      "genus": "Urbanus",
+      "species": "Urbanus proteus",
+      "regionId": "new-orleans",
+      "gridCellId": "2993:-9013",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334660174"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2996:-9007-144455-1",
+      "taxonId": "144455",
+      "scientificName": "Ardea alba Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Ardea",
+      "species": "Ardea alba",
+      "regionId": "new-orleans",
+      "gridCellId": "2996:-9007",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334154031"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2992:-9010-54590-1",
+      "taxonId": "54590",
+      "scientificName": "Clathrus columnatus Bosc",
+      "commonName": null,
+      "kingdom": "Fungi",
+      "class": "Agaricomycetes",
+      "order": "Phallales",
+      "family": "Phallaceae",
+      "genus": "Clathrus",
+      "species": "Clathrus columnatus",
+      "regionId": "new-orleans",
+      "gridCellId": "2992:-9010",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334301640"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3026:-8996-4938-1",
+      "taxonId": "4938",
+      "scientificName": "Egretta tricolor (Statius Muller, 1776)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Egretta",
+      "species": "Egretta tricolor",
+      "regionId": "new-orleans",
+      "gridCellId": "3026:-8996",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 122,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336195860"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2996:-9020-54573-1",
+      "taxonId": "54573",
+      "scientificName": "Schizophyllum commune Fr.",
+      "commonName": null,
+      "kingdom": "Fungi",
+      "class": "Agaricomycetes",
+      "order": "Agaricales",
+      "family": "Schizophyllaceae",
+      "genus": "Schizophyllum",
+      "species": "Schizophyllum commune",
+      "regionId": "new-orleans",
+      "gridCellId": "2996:-9020",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334242518"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2995:-9005-155106-1",
+      "taxonId": "155106",
+      "scientificName": "Eristalis dimidiata (Wiedemann, 1830)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Diptera",
+      "family": "Syrphidae",
+      "genus": "Eristalis",
+      "species": "Eristalis dimidiata",
+      "regionId": "new-orleans",
+      "gridCellId": "2995:-9005",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333978536"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2996:-9021-36514-1",
+      "taxonId": "36514",
+      "scientificName": "Anolis carolinensis Voigt, 1832",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Squamata",
+      "order": null,
+      "family": "Dactyloidae",
+      "genus": "Anolis",
+      "species": "Anolis carolinensis",
+      "regionId": "new-orleans",
+      "gridCellId": "2996:-9021",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334104200"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2978:-9012-36514-1",
+      "taxonId": "36514",
+      "scientificName": "Anolis carolinensis Voigt, 1832",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Squamata",
+      "order": null,
+      "family": "Dactyloidae",
+      "genus": "Anolis",
+      "species": "Anolis carolinensis",
+      "regionId": "new-orleans",
+      "gridCellId": "2978:-9012",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334051345"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3028:-8992-144455-1",
+      "taxonId": "144455",
+      "scientificName": "Ardea alba Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Ardea",
+      "species": "Ardea alba",
+      "regionId": "new-orleans",
+      "gridCellId": "3028:-8992",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 122,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334572583"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2992:-9012-69172-1",
+      "taxonId": "69172",
+      "scientificName": "Pilea microphylla (L.) Liebm.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Rosales",
+      "family": "Urticaceae",
+      "genus": "Pilea",
+      "species": "Pilea microphylla",
+      "regionId": "new-orleans",
+      "gridCellId": "2992:-9012",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334616310"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2998:-9010-473-1",
+      "taxonId": "473",
+      "scientificName": "Fulica americana Gmelin, 1789",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Gruiformes",
+      "family": "Rallidae",
+      "genus": "Fulica",
+      "species": "Fulica americana",
+      "regionId": "new-orleans",
+      "gridCellId": "2998:-9010",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334382302"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2996:-9015-482818-1",
+      "taxonId": "482818",
+      "scientificName": "Chironomus crassicaudatus Malloch, 1915",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Diptera",
+      "family": "Chironomidae",
+      "genus": "Chironomus",
+      "species": "Chironomus crassicaudatus",
+      "regionId": "new-orleans",
+      "gridCellId": "2996:-9015",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335145153"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2992:-9012-53151-1",
+      "taxonId": "53151",
+      "scientificName": "Medicago polymorpha L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Fabales",
+      "family": "Fabaceae",
+      "genus": "Medicago",
+      "species": "Medicago polymorpha",
+      "regionId": "new-orleans",
+      "gridCellId": "2992:-9012",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334745362"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2996:-9010-53269-1",
+      "taxonId": "53269",
+      "scientificName": "Sonchus asper (L.) Hill",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Sonchus",
+      "species": "Sonchus asper",
+      "regionId": "new-orleans",
+      "gridCellId": "2996:-9010",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 16,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335077588"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2996:-9006-169872-1",
+      "taxonId": "169872",
+      "scientificName": "Tradescantia pallida (Rose) D.R.Hunt",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Liliopsida",
+      "order": "Commelinales",
+      "family": "Commelinaceae",
+      "genus": "Tradescantia",
+      "species": "Tradescantia pallida",
+      "regionId": "new-orleans",
+      "gridCellId": "2996:-9006",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 22,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334981895"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3009:-9044-962637-1",
+      "taxonId": "962637",
+      "scientificName": "Pontederia crassipes Mart.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Liliopsida",
+      "order": "Commelinales",
+      "family": "Pontederiaceae",
+      "genus": "Pontederia",
+      "species": "Pontederia crassipes",
+      "regionId": "new-orleans",
+      "gridCellId": "3009:-9044",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334363568"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2996:-9009-17008-1",
+      "taxonId": "17008",
+      "scientificName": "Sayornis phoebe (Latham, 1790)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Tyrannidae",
+      "genus": "Sayornis",
+      "species": "Sayornis phoebe",
+      "regionId": "new-orleans",
+      "gridCellId": "2996:-9009",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 7,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335116489"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3005:-8989-904170-1",
+      "taxonId": "904170",
+      "scientificName": "Agkistrodon piscivorus (Lacépède, 1789)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Squamata",
+      "order": null,
+      "family": "Viperidae",
+      "genus": "Agkistrodon",
+      "species": "Agkistrodon piscivorus",
+      "regionId": "new-orleans",
+      "gridCellId": "3005:-8989",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 207,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335718482"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3009:-9044-120006-1",
+      "taxonId": "120006",
+      "scientificName": "Ilex decidua Walter",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Aquifoliales",
+      "family": "Aquifoliaceae",
+      "genus": "Ilex",
+      "species": "Ilex decidua",
+      "regionId": "new-orleans",
+      "gridCellId": "3009:-9044",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334365266"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2998:-9010-204094-1",
+      "taxonId": "204094",
+      "scientificName": "Cairina moschata var. domestica",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Cairina",
+      "species": "Cairina moschata",
+      "regionId": "new-orleans",
+      "gridCellId": "2998:-9010",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335646698",
+          "https://www.inaturalist.org/observations/334026406"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2992:-9013-235550-1",
+      "taxonId": "235550",
+      "scientificName": "Danaus plexippus plexippus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Lepidoptera",
+      "family": "Nymphalidae",
+      "genus": "Danaus",
+      "species": "Danaus plexippus",
+      "regionId": "new-orleans",
+      "gridCellId": "2992:-9013",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335856677"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2991:-9011-333264-1",
+      "taxonId": "333264",
+      "scientificName": "Lucilia cuprina (Wiedemann, 1830)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Diptera",
+      "family": "Calliphoridae",
+      "genus": "Lucilia",
+      "species": "Lucilia cuprina",
+      "regionId": "new-orleans",
+      "gridCellId": "2991:-9011",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336008279"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2996:-9004-1095846-1",
+      "taxonId": "1095846",
+      "scientificName": "Bidens alba (L.) DC.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Bidens",
+      "species": "Bidens alba",
+      "regionId": "new-orleans",
+      "gridCellId": "2996:-9004",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 39,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335218318"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2998:-9010-49569-1",
+      "taxonId": "49569",
+      "scientificName": "Tillandsia usneoides (L.) L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Liliopsida",
+      "order": "Poales",
+      "family": "Bromeliaceae",
+      "genus": "Tillandsia",
+      "species": "Tillandsia usneoides",
+      "regionId": "new-orleans",
+      "gridCellId": "2998:-9010",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 42,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334994629"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2993:-9013-165118-1",
+      "taxonId": "165118",
+      "scientificName": "Malvaviscus penduliflorus Moc. & Sessé ex DC.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Malvales",
+      "family": "Malvaceae",
+      "genus": "Malvaviscus",
+      "species": "Malvaviscus penduliflorus",
+      "regionId": "new-orleans",
+      "gridCellId": "2993:-9013",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334528702"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2998:-9011-49658-1",
+      "taxonId": "49658",
+      "scientificName": "Liquidambar styraciflua L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Saxifragales",
+      "family": "Altingiaceae",
+      "genus": "Liquidambar",
+      "species": "Liquidambar styraciflua",
+      "regionId": "new-orleans",
+      "gridCellId": "2998:-9011",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 14,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334102614"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2993:-9013-46017-1",
+      "taxonId": "46017",
+      "scientificName": "Sciurus carolinensis Gmelin, 1788",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Rodentia",
+      "family": "Sciuridae",
+      "genus": "Sciurus",
+      "species": "Sciurus carolinensis",
+      "regionId": "new-orleans",
+      "gridCellId": "2993:-9013",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 150,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336180003"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2997:-9013-118968-1",
+      "taxonId": "118968",
+      "scientificName": "Allograpta obliqua (Say, 1823)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Diptera",
+      "family": "Syrphidae",
+      "genus": "Allograpta",
+      "species": "Allograpta obliqua",
+      "regionId": "new-orleans",
+      "gridCellId": "2997:-9013",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335611507"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3006:-8981-4328-1",
+      "taxonId": "4328",
+      "scientificName": "Pelecanus occidentalis Linnaeus, 1766",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Pelecanidae",
+      "genus": "Pelecanus",
+      "species": "Pelecanus occidentalis",
+      "regionId": "new-orleans",
+      "gridCellId": "3006:-8981",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 39,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334887507"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2999:-9026-3936-1",
+      "taxonId": "3936",
+      "scientificName": "Scolopax minor J.F.Gmelin, 1789",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Charadriiformes",
+      "family": "Scolopacidae",
+      "genus": "Scolopax",
+      "species": "Scolopax minor",
+      "regionId": "new-orleans",
+      "gridCellId": "2999:-9026",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334351661"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2978:-9012-26799-1",
+      "taxonId": "26799",
+      "scientificName": "Amphiuma tridactylum Cuvier, 1827",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Amphibia",
+      "order": "Caudata",
+      "family": "Amphiumidae",
+      "genus": "Amphiuma",
+      "species": "Amphiuma tridactylum",
+      "regionId": "new-orleans",
+      "gridCellId": "2978:-9012",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334356035"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2992:-9012-58917-1",
+      "taxonId": "58917",
+      "scientificName": "Geranium carolinianum L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Geraniales",
+      "family": "Geraniaceae",
+      "genus": "Geranium",
+      "species": "Geranium carolinianum",
+      "regionId": "new-orleans",
+      "gridCellId": "2992:-9012",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334868552"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3006:-8981-5305-1",
+      "taxonId": "5305",
+      "scientificName": "Haliaeetus leucocephalus (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Accipitriformes",
+      "family": "Accipitridae",
+      "genus": "Haliaeetus",
+      "species": "Haliaeetus leucocephalus",
+      "regionId": "new-orleans",
+      "gridCellId": "3006:-8981",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 39,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334887506"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3005:-8989-54900-1",
+      "taxonId": "54900",
+      "scientificName": "Papilio polyxenes asterius Stoll, 1782",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Lepidoptera",
+      "family": "Papilionidae",
+      "genus": "Papilio",
+      "species": "Papilio polyxenes",
+      "regionId": "new-orleans",
+      "gridCellId": "3005:-8989",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 207,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335718485"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3002:-9027-145245-1",
+      "taxonId": "145245",
+      "scientificName": "Setophaga coronata (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Parulidae",
+      "genus": "Setophaga",
+      "species": "Setophaga coronata",
+      "regionId": "new-orleans",
+      "gridCellId": "3002:-9027",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 296,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333660573"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2991:-9012-1558593-1",
+      "taxonId": "1558593",
+      "scientificName": "Campiglossa picciola",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Diptera",
+      "family": "Tephritidae",
+      "genus": "Campiglossa",
+      "species": "Campiglossa picciola",
+      "regionId": "new-orleans",
+      "gridCellId": "2991:-9012",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335144814"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2993:-9013-3751-1",
+      "taxonId": "3751",
+      "scientificName": "Eudocimus albus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Threskiornithidae",
+      "genus": "Eudocimus",
+      "species": "Eudocimus albus",
+      "regionId": "new-orleans",
+      "gridCellId": "2993:-9013",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 12,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333897321"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2996:-9007-235550-1",
+      "taxonId": "235550",
+      "scientificName": "Danaus plexippus plexippus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Lepidoptera",
+      "family": "Nymphalidae",
+      "genus": "Danaus",
+      "species": "Danaus plexippus",
+      "regionId": "new-orleans",
+      "gridCellId": "2996:-9007",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333892077"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2993:-9008-83070-1",
+      "taxonId": "83070",
+      "scientificName": "Gelsemium sempervirens (L.) J.St.-Hil.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Gentianales",
+      "family": "Gelsemiaceae",
+      "genus": "Gelsemium",
+      "species": "Gelsemium sempervirens",
+      "regionId": "new-orleans",
+      "gridCellId": "2993:-9008",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 16,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335094173"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2992:-9013-59035-1",
+      "taxonId": "59035",
+      "scientificName": "Solanum americanum Mill.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Solanales",
+      "family": "Solanaceae",
+      "genus": "Solanum",
+      "species": "Solanum americanum",
+      "regionId": "new-orleans",
+      "gridCellId": "2992:-9013",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 35,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334753290"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2998:-9010-7089-1",
+      "taxonId": "7089",
+      "scientificName": "Branta canadensis (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Branta",
+      "species": "Branta canadensis",
+      "regionId": "new-orleans",
+      "gridCellId": "2998:-9010",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335960256"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3013:-8988-145245-1",
+      "taxonId": "145245",
+      "scientificName": "Setophaga coronata (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Parulidae",
+      "genus": "Setophaga",
+      "species": "Setophaga coronata",
+      "regionId": "new-orleans",
+      "gridCellId": "3013:-8988",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 333,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335715311"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3000:-9010-122767-1",
+      "taxonId": "122767",
+      "scientificName": "Columba livia var. domestica J.F.Gmelin, 1789",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Columbiformes",
+      "family": "Columbidae",
+      "genus": "Columba",
+      "species": "Columba livia",
+      "regionId": "new-orleans",
+      "gridCellId": "3000:-9010",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 12,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335494303"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2994:-9011-55459-1",
+      "taxonId": "55459",
+      "scientificName": "Lamium amplexicaule L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Lamiales",
+      "family": "Lamiaceae",
+      "genus": "Lamium",
+      "species": "Lamium amplexicaule",
+      "regionId": "new-orleans",
+      "gridCellId": "2994:-9011",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 7,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334653582"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2992:-9013-82231-1",
+      "taxonId": "82231",
+      "scientificName": "Periplaneta americana (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Blattodea",
+      "family": "Blattidae",
+      "genus": "Periplaneta",
+      "species": "Periplaneta americana",
+      "regionId": "new-orleans",
+      "gridCellId": "2992:-9013",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 20,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335072556"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2978:-9012-49569-1",
+      "taxonId": "49569",
+      "scientificName": "Tillandsia usneoides (L.) L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Liliopsida",
+      "order": "Poales",
+      "family": "Bromeliaceae",
+      "genus": "Tillandsia",
+      "species": "Tillandsia usneoides",
+      "regionId": "new-orleans",
+      "gridCellId": "2978:-9012",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 11,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334051252"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2992:-9012-164985-1",
+      "taxonId": "164985",
+      "scientificName": "Lygodium japonicum (Thunb.) Sw.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Polypodiopsida",
+      "order": "Schizaeales",
+      "family": "Lygodiaceae",
+      "genus": "Lygodium",
+      "species": "Lygodium japonicum",
+      "regionId": "new-orleans",
+      "gridCellId": "2992:-9012",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 27,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335508373"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3002:-9011-48662-1",
+      "taxonId": "48662",
+      "scientificName": "Danaus plexippus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Lepidoptera",
+      "family": "Nymphalidae",
+      "genus": "Danaus",
+      "species": "Danaus plexippus",
+      "regionId": "new-orleans",
+      "gridCellId": "3002:-9011",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 429,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336133843"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2992:-9012-53858-1",
+      "taxonId": "53858",
+      "scientificName": "Solanum tuberosum L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Solanales",
+      "family": "Solanaceae",
+      "genus": "Solanum",
+      "species": "Solanum tuberosum",
+      "regionId": "new-orleans",
+      "gridCellId": "2992:-9012",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 35,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334637143"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2996:-9007-4999-1",
+      "taxonId": "4999",
+      "scientificName": "Nyctanassa violacea (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Nyctanassa",
+      "species": "Nyctanassa violacea",
+      "regionId": "new-orleans",
+      "gridCellId": "2996:-9007",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333898470"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2992:-9013-49150-1",
+      "taxonId": "49150",
+      "scientificName": "Dione vanillae (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Lepidoptera",
+      "family": "Nymphalidae",
+      "genus": "Dione",
+      "species": "Dione vanillae",
+      "regionId": "new-orleans",
+      "gridCellId": "2992:-9013",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335856652"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3030:-9039-69813-1",
+      "taxonId": "69813",
+      "scientificName": "Sagittaria lancifolia L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Liliopsida",
+      "order": "Alismatales",
+      "family": "Alismataceae",
+      "genus": "Sagittaria",
+      "species": "Sagittaria lancifolia",
+      "regionId": "new-orleans",
+      "gridCellId": "3030:-9039",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 364,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334239325"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2964:-8997-9528-1",
+      "taxonId": "9528",
+      "scientificName": "Sturnella magna (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Icteridae",
+      "genus": "Sturnella",
+      "species": "Sturnella magna",
+      "regionId": "new-orleans",
+      "gridCellId": "2964:-8997",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 15,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335850351"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2991:-9013-130888-1",
+      "taxonId": "130888",
+      "scientificName": "Erechtites hieraciifolius (L.) Raf. ex DC.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Erechtites",
+      "species": "Erechtites hieraciifolius",
+      "regionId": "new-orleans",
+      "gridCellId": "2991:-9013",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335839491"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3027:-9040-122767-1",
+      "taxonId": "122767",
+      "scientificName": "Columba livia var. domestica J.F.Gmelin, 1789",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Columbiformes",
+      "family": "Columbidae",
+      "genus": "Columba",
+      "species": "Columba livia",
+      "regionId": "new-orleans",
+      "gridCellId": "3027:-9040",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335877231"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3028:-8992-42223-1",
+      "taxonId": "42223",
+      "scientificName": "Odocoileus virginianus (Zimmermann, 1780)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Artiodactyla",
+      "family": "Cervidae",
+      "genus": "Odocoileus",
+      "species": "Odocoileus virginianus",
+      "regionId": "new-orleans",
+      "gridCellId": "3028:-8992",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 122,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334572584"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3026:-8996-144496-1",
+      "taxonId": "144496",
+      "scientificName": "Gallinago delicata (Ord, 1825)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Charadriiformes",
+      "family": "Scolopacidae",
+      "genus": "Gallinago",
+      "species": "Gallinago delicata",
+      "regionId": "new-orleans",
+      "gridCellId": "3026:-8996",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 122,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334572586"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2997:-9013-116461-1",
+      "taxonId": "116461",
+      "scientificName": "Anolis sagrei Duméril & Bibron, 1837",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Squamata",
+      "order": null,
+      "family": "Dactyloidae",
+      "genus": "Anolis",
+      "species": "Anolis sagrei",
+      "regionId": "new-orleans",
+      "gridCellId": "2997:-9013",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335088242"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2996:-9007-49569-1",
+      "taxonId": "49569",
+      "scientificName": "Tillandsia usneoides (L.) L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Liliopsida",
+      "order": "Poales",
+      "family": "Bromeliaceae",
+      "genus": "Tillandsia",
+      "species": "Tillandsia usneoides",
+      "regionId": "new-orleans",
+      "gridCellId": "2996:-9007",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335107499"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2992:-9012-56822-1",
+      "taxonId": "56822",
+      "scientificName": "Bowlesia incana Ruiz & Pav.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Apiales",
+      "family": "Apiaceae",
+      "genus": "Bowlesia",
+      "species": "Bowlesia incana",
+      "regionId": "new-orleans",
+      "gridCellId": "2992:-9012",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 15,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335985931"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2996:-9004-127066-1",
+      "taxonId": "127066",
+      "scientificName": "Youngia japonica (L.) DC.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Youngia",
+      "species": "Youngia japonica",
+      "regionId": "new-orleans",
+      "gridCellId": "2996:-9004",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 19,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335216050"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2998:-9010-47219-1",
+      "taxonId": "47219",
+      "scientificName": "Apis mellifera Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Hymenoptera",
+      "family": "Apidae",
+      "genus": "Apis",
+      "species": "Apis mellifera",
+      "regionId": "new-orleans",
+      "gridCellId": "2998:-9010",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334105305"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2996:-9007-57636-1",
+      "taxonId": "57636",
+      "scientificName": "Pteris vittata L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Polypodiopsida",
+      "order": "Polypodiales",
+      "family": "Pteridaceae",
+      "genus": "Pteris",
+      "species": "Pteris vittata",
+      "regionId": "new-orleans",
+      "gridCellId": "2996:-9007",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335218458"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-2993:-9028-144479-1",
+      "taxonId": "144479",
+      "scientificName": "Gallinula galeata (Lichtenstein & Mhc, 1818)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Gruiformes",
+      "family": "Rallidae",
+      "genus": "Gallinula",
+      "species": "Gallinula chloropus",
+      "regionId": "new-orleans",
+      "gridCellId": "2993:-9028",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334663744"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3005:-8989-2548-1",
+      "taxonId": "2548",
+      "scientificName": "Megaceryle alcyon (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Coraciiformes",
+      "family": "Alcedinidae",
+      "genus": "Megaceryle",
+      "species": "Megaceryle alcyon",
+      "regionId": "new-orleans",
+      "gridCellId": "3005:-8989",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 207,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334131091"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:30.957Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "new-orleans-center-envelope-v1"
+    }
+  ]
 }

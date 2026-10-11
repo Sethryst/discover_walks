@@ -1,20 +1,32 @@
 {
   "schemaVersion": "biodiversity-sidecar-v1",
   "metadata": {
-    "schemaVersion": "biodiversity-sidecar-v1",
     "regionId": "el-paso",
-    "sourceVintage": "2026-10-10",
-    "generatedAt": "2026-10-10T00:00:00.000Z",
-    "sourceAccess": "GBIF occurrence search API",
-    "sourceQuery": "Region boundary query; authenticated download required for large regions.",
-    "boundaryVersion": "el-paso-boundary-v1",
+    "sourceVintage": "2026-10-11",
+    "boundaryVersion": "el-paso-center-envelope-v1",
     "gbifDownloadDoi": null,
-    "inputRows": 0,
+    "generatedAt": "2026-10-11T01:53:19.534Z",
+    "fixture": false,
+    "sourceAccess": "GBIF occurrence search API",
+    "sourceQuery": "POLYGON((-106.89664706437422 31.4119,-106.07335293562578 31.4119,-106.07335293562578 32.1119,-106.89664706437422 32.1119,-106.89664706437422 31.4119))",
+    "inputRows": 300,
+    "matchingRecordCount": 73436,
+    "coverageNote": null,
+    "schemaVersion": "biodiversity-sidecar-v1",
+    "acquisitionWorkflow": {
+      "mode": "occurrence-search",
+      "endpoint": "https://api.gbif.org/v1/occurrence/search",
+      "pageSize": 300,
+      "maxOffset": 100000
+    },
     "freshnessClass": "fresh",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
     "releaseState": "sidecar-available",
+    "qualityReview": {
+      "status": "not-reviewed"
+    },
     "gateReason": null,
     "safeguards": {
       "coordinateUncertaintyFiltering": true,
@@ -22,17 +34,5102 @@
       "privacyAwareAggregation": true,
       "sourceVintageTracked": true,
       "imageLicenseMetadataTracked": true
-    },
-    "qualityReview": {
-      "status": "not-reviewed"
-    },
-    "acquisitionWorkflow": {
-      "mode": "occurrence-search",
-      "endpoint": "https://api.gbif.org/v1/occurrence/search",
-      "pageSize": 300,
-      "maxOffset": 100000
-    },
-    "coverageNote": "No qualifying rows are currently published for this region; this is not evidence of absence."
+    }
   },
-  "records": []
+  "records": [
+    {
+      "recordId": "aggregate-3163:-10632-59119-1",
+      "taxonId": "59119",
+      "scientificName": "Pontia protodice (Boisduval & Leconte, 1830)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Lepidoptera",
+      "family": "Pieridae",
+      "genus": "Pontia",
+      "species": "Pontia protodice",
+      "regionId": "el-paso",
+      "gridCellId": "3163:-10632",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 31,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333335346"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.533Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3178:-10653-4981-1",
+      "taxonId": "4981",
+      "scientificName": "Nycticorax nycticorax (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Nycticorax",
+      "species": "Nycticorax nycticorax",
+      "regionId": "el-paso",
+      "gridCellId": "3178:-10653",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 181,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333523285"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.533Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3191:-10652-47895-1",
+      "taxonId": "47895",
+      "scientificName": "Opuntia macrocentra Engelm.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Cactaceae",
+      "genus": "Opuntia",
+      "species": "Opuntia macrocentra",
+      "regionId": "el-paso",
+      "gridCellId": "3191:-10652",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 205,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333329505"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.533Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3191:-10652-9176-1",
+      "taxonId": "9176",
+      "scientificName": "Zonotrichia leucophrys (J.R.Forster, 1772)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Zonotrichia",
+      "species": "Zonotrichia leucophrys",
+      "regionId": "el-paso",
+      "gridCellId": "3191:-10652",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 205,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333329508"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.533Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3174:-10653-312598-1",
+      "taxonId": "312598",
+      "scientificName": "Eurema mexicana (Boisduval, 1836)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Lepidoptera",
+      "family": "Pieridae",
+      "genus": "Eurema",
+      "species": "Eurema mexicana",
+      "regionId": "el-paso",
+      "gridCellId": "3174:-10653",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333336718"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.533Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3191:-10652-199840-1",
+      "taxonId": "199840",
+      "scientificName": "Haemorhous mexicanus (P.L.Statius Müller, 1776)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Fringillidae",
+      "genus": "Haemorhous",
+      "species": "Haemorhous mexicanus",
+      "regionId": "el-paso",
+      "gridCellId": "3191:-10652",
+      "month": 1,
+      "observationCount": 3,
+      "coordinateUncertainty": {
+        "summaryMeters": 205,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333329504",
+          "https://www.inaturalist.org/observations/333329510",
+          "https://www.inaturalist.org/observations/333329506"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.533Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3178:-10653-72458-1",
+      "taxonId": "72458",
+      "scientificName": "Actitis macularius (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Charadriiformes",
+      "family": "Scolopacidae",
+      "genus": "Actitis",
+      "species": "Actitis macularius",
+      "regionId": "el-paso",
+      "gridCellId": "3178:-10653",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 183,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333523276"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.533Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3191:-10652-240437-1",
+      "taxonId": "240437",
+      "scientificName": "Echinocactus horizonthalonius subsp. horizonthalonius",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Cactaceae",
+      "genus": "Echinocactus",
+      "species": "Echinocactus horizonthalonius",
+      "regionId": "el-paso",
+      "gridCellId": "3191:-10652",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 205,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333329521"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3192:-10652-49325-1",
+      "taxonId": "49325",
+      "scientificName": "Fouquieria splendens Engelm.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Ericales",
+      "family": "Fouquieriaceae",
+      "genus": "Fouquieria",
+      "species": "Fouquieria splendens",
+      "regionId": "el-paso",
+      "gridCellId": "3192:-10652",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333318835"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3179:-10629-48662-1",
+      "taxonId": "48662",
+      "scientificName": "Danaus plexippus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Lepidoptera",
+      "family": "Nymphalidae",
+      "genus": "Danaus",
+      "species": "Danaus plexippus",
+      "regionId": "el-paso",
+      "gridCellId": "3179:-10629",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 51,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333039475"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3191:-10652-13858-1",
+      "taxonId": "13858",
+      "scientificName": "Passer domesticus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passeridae",
+      "genus": "Passer",
+      "species": "Passer domesticus",
+      "regionId": "el-paso",
+      "gridCellId": "3191:-10652",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 205,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333329509"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3178:-10653-485176-1",
+      "taxonId": "485176",
+      "scientificName": "Mareca americana (J.F.Gmelin, 1789)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Mareca",
+      "species": "Mareca americana",
+      "regionId": "el-paso",
+      "gridCellId": "3178:-10653",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 162,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333523281",
+          "https://www.inaturalist.org/observations/334455069"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3182:-10657-180008-1",
+      "taxonId": "180008",
+      "scientificName": "Otospermophilus variegatus (Erxleben, 1777)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Rodentia",
+      "family": "Sciuridae",
+      "genus": "Otospermophilus",
+      "species": "Otospermophilus variegatus",
+      "regionId": "el-paso",
+      "gridCellId": "3182:-10657",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 15,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333061953"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3178:-10653-4956-1",
+      "taxonId": "4956",
+      "scientificName": "Ardea herodias Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Ardea",
+      "species": "Ardea herodias",
+      "regionId": "el-paso",
+      "gridCellId": "3178:-10653",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 138,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333523282"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3191:-10652-314298-1",
+      "taxonId": "314298",
+      "scientificName": "Echinocereus dasyacanthus subsp. dasyacanthus",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Cactaceae",
+      "genus": "Echinocereus",
+      "species": "Echinocereus dasyacanthus",
+      "regionId": "el-paso",
+      "gridCellId": "3191:-10652",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 205,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333329515",
+          "https://www.inaturalist.org/observations/333329518"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3174:-10641-485176-1",
+      "taxonId": "485176",
+      "scientificName": "Mareca americana (J.F.Gmelin, 1789)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Mareca",
+      "species": "Mareca americana",
+      "regionId": "el-paso",
+      "gridCellId": "3174:-10641",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 40,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333313445"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3178:-10653-4836-1",
+      "taxonId": "4836",
+      "scientificName": "Himantopus mexicanus (P.L.S.Müller, 1776)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Charadriiformes",
+      "family": "Recurvirostridae",
+      "genus": "Himantopus",
+      "species": "Himantopus mexicanus",
+      "regionId": "el-paso",
+      "gridCellId": "3178:-10653",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 183,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333523265",
+          "https://www.inaturalist.org/observations/334455070"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3178:-10653-473-1",
+      "taxonId": "473",
+      "scientificName": "Fulica americana Gmelin, 1789",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Gruiformes",
+      "family": "Rallidae",
+      "genus": "Fulica",
+      "species": "Fulica americana",
+      "regionId": "el-paso",
+      "gridCellId": "3178:-10653",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 183,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333523280"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3175:-10647-56017-1",
+      "taxonId": "56017",
+      "scientificName": "Tamarix aphylla (L.) H.Karst.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Tamaricaceae",
+      "genus": "Tamarix",
+      "species": "Tamarix aphylla",
+      "regionId": "el-paso",
+      "gridCellId": "3175:-10647",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333179540"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3191:-10652-145289-1",
+      "taxonId": "145289",
+      "scientificName": "Melozone fusca (Swainson, 1827)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Melozone",
+      "species": "Melozone fusca",
+      "regionId": "el-paso",
+      "gridCellId": "3191:-10652",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 205,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333329523"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3174:-10653-55626-1",
+      "taxonId": "55626",
+      "scientificName": "Pieris rapae (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Lepidoptera",
+      "family": "Pieridae",
+      "genus": "Pieris",
+      "species": "Pieris rapae",
+      "regionId": "el-paso",
+      "gridCellId": "3174:-10653",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333321562"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3174:-10641-1454382-1",
+      "taxonId": "1454382",
+      "scientificName": "Nannopterum auritum (R.P.Lesson, 1831)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Suliformes",
+      "family": "Phalacrocoracidae",
+      "genus": "Phalacrocorax",
+      "species": "Phalacrocorax auritus",
+      "regionId": "el-paso",
+      "gridCellId": "3174:-10641",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 13,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333313868"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3178:-10653-558439-1",
+      "taxonId": "558439",
+      "scientificName": "Mareca strepera (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Mareca",
+      "species": "Mareca strepera",
+      "regionId": "el-paso",
+      "gridCellId": "3178:-10653",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 183,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333523269"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3178:-10653-145245-1",
+      "taxonId": "145245",
+      "scientificName": "Setophaga coronata (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Parulidae",
+      "genus": "Setophaga",
+      "species": "Setophaga coronata",
+      "regionId": "el-paso",
+      "gridCellId": "3178:-10653",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 106,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333523277"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3191:-10652-43115-1",
+      "taxonId": "43115",
+      "scientificName": "Sylvilagus audubonii (Baird, 1858)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Lagomorpha",
+      "family": "Leporidae",
+      "genus": "Sylvilagus",
+      "species": "Sylvilagus audubonii",
+      "regionId": "el-paso",
+      "gridCellId": "3191:-10652",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 205,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333329514"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3178:-10653-7109-1",
+      "taxonId": "7109",
+      "scientificName": "Lophodytes cucullatus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Lophodytes",
+      "species": "Lophodytes cucullatus",
+      "regionId": "el-paso",
+      "gridCellId": "3178:-10653",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 183,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333523262"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3174:-10653-51748-1",
+      "taxonId": "51748",
+      "scientificName": "Danaus gilippus thersippus (H.Bates, 1863)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Lepidoptera",
+      "family": "Nymphalidae",
+      "genus": "Danaus",
+      "species": "Danaus gilippus",
+      "regionId": "el-paso",
+      "gridCellId": "3174:-10653",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333324069"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3178:-10653-9176-1",
+      "taxonId": "9176",
+      "scientificName": "Zonotrichia leucophrys (J.R.Forster, 1772)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Zonotrichia",
+      "species": "Zonotrichia leucophrys",
+      "regionId": "el-paso",
+      "gridCellId": "3178:-10653",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 71,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333523283"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3191:-10652-273618-1",
+      "taxonId": "273618",
+      "scientificName": "Cylindropuntia imbricata (Haw.) F.M.Knuth",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Cactaceae",
+      "genus": "Cylindropuntia",
+      "species": "Cylindropuntia imbricata",
+      "regionId": "el-paso",
+      "gridCellId": "3191:-10652",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 205,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333329528"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3178:-10648-167305-1",
+      "taxonId": "167305",
+      "scientificName": "Porophyllum scoparium A.Gray",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Porophyllum",
+      "species": "Porophyllum scoparium",
+      "regionId": "el-paso",
+      "gridCellId": "3178:-10648",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 11,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333350694"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3191:-10652-9081-1",
+      "taxonId": "9081",
+      "scientificName": "Cardinalis sinuatus Bonaparte, 1838",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Cardinalidae",
+      "genus": "Cardinalis",
+      "species": "Cardinalis sinuatus",
+      "regionId": "el-paso",
+      "gridCellId": "3191:-10652",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 205,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333329524"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3177:-10651-68205-1",
+      "taxonId": "68205",
+      "scientificName": "Larrea tridentata (DC.) Coult.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Zygophyllales",
+      "family": "Zygophyllaceae",
+      "genus": "Larrea",
+      "species": "Larrea tridentata",
+      "regionId": "el-paso",
+      "gridCellId": "3177:-10651",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333359986"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3191:-10652-3460-1",
+      "taxonId": "3460",
+      "scientificName": "Zenaida asiatica (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Columbiformes",
+      "family": "Columbidae",
+      "genus": "Zenaida",
+      "species": "Zenaida asiatica",
+      "regionId": "el-paso",
+      "gridCellId": "3191:-10652",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 205,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333329513"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3163:-10632-53843-1",
+      "taxonId": "53843",
+      "scientificName": "Brephidium exilis (Boisduval, 1852)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Lepidoptera",
+      "family": "Lycaenidae",
+      "genus": "Brephidium",
+      "species": "Brephidium exilis",
+      "regionId": "el-paso",
+      "gridCellId": "3163:-10632",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 15,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333335453"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3177:-10650-58113-1",
+      "taxonId": "58113",
+      "scientificName": "Atriplex canescens (Pursh) Nutt.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Amaranthaceae",
+      "genus": "Atriplex",
+      "species": "Atriplex canescens",
+      "regionId": "el-paso",
+      "gridCellId": "3177:-10650",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333027638"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3186:-10662-296087-1",
+      "taxonId": "296087",
+      "scientificName": "Porcellio laevis Latreille, 1804",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Malacostraca",
+      "order": "Isopoda",
+      "family": "Porcellionidae",
+      "genus": "Porcellio",
+      "species": "Porcellio laevis",
+      "regionId": "el-paso",
+      "gridCellId": "3186:-10662",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333475743"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3180:-10650-47845-1",
+      "taxonId": "47845",
+      "scientificName": "Koeberlinia spinosa Zucc.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Brassicales",
+      "family": "Koeberliniaceae",
+      "genus": "Koeberlinia",
+      "species": "Koeberlinia spinosa",
+      "regionId": "el-paso",
+      "gridCellId": "3180:-10650",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333157716"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3174:-10641-6993-1",
+      "taxonId": "6993",
+      "scientificName": "Bucephala albeola (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Bucephala",
+      "species": "Bucephala albeola",
+      "regionId": "el-paso",
+      "gridCellId": "3174:-10641",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 44,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333313213"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3191:-10652-47788-1",
+      "taxonId": "47788",
+      "scientificName": "Yucca baccata Torr.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Liliopsida",
+      "order": "Asparagales",
+      "family": "Asparagaceae",
+      "genus": "Yucca",
+      "species": "Yucca baccata",
+      "regionId": "el-paso",
+      "gridCellId": "3191:-10652",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 205,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333329520"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3177:-10651-160364-1",
+      "taxonId": "160364",
+      "scientificName": "Cevallia sinuata Lag.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Cornales",
+      "family": "Loasaceae",
+      "genus": "Cevallia",
+      "species": "Cevallia sinuata",
+      "regionId": "el-paso",
+      "gridCellId": "3177:-10651",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333359994"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3177:-10650-52108-1",
+      "taxonId": "52108",
+      "scientificName": "Baccharis sarothroides A.Gray",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Baccharis",
+      "species": "Baccharis sarothroides",
+      "regionId": "el-paso",
+      "gridCellId": "3177:-10650",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333028493"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3168:-10643-9607-1",
+      "taxonId": "9607",
+      "scientificName": "Quiscalus mexicanus (Gmelin, 1788)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Icteridae",
+      "genus": "Quiscalus",
+      "species": "Quiscalus mexicanus",
+      "regionId": "el-paso",
+      "gridCellId": "3168:-10643",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 15,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336255204",
+          "https://www.inaturalist.org/observations/333931294"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3168:-10643-558438-1",
+      "taxonId": "558438",
+      "scientificName": "Spatula clypeata (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Spatula",
+      "species": "Spatula clypeata",
+      "regionId": "el-paso",
+      "gridCellId": "3168:-10643",
+      "month": 1,
+      "observationCount": 7,
+      "coordinateUncertainty": {
+        "summaryMeters": 398,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335811635",
+          "https://www.inaturalist.org/observations/336255200",
+          "https://www.inaturalist.org/observations/335811626",
+          "https://www.inaturalist.org/observations/335811643",
+          "https://www.inaturalist.org/observations/336255191",
+          "https://www.inaturalist.org/observations/336698753",
+          "https://www.inaturalist.org/observations/336698764"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3178:-10653-9535-1",
+      "taxonId": "9535",
+      "scientificName": "Sturnella neglecta Audubon, 1844",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Icteridae",
+      "genus": "Sturnella",
+      "species": "Sturnella neglecta",
+      "regionId": "el-paso",
+      "gridCellId": "3178:-10653",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 121,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333523270"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3178:-10654-7486-1",
+      "taxonId": "7486",
+      "scientificName": "Salpinctes obsoletus (Say, 1822)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Troglodytidae",
+      "genus": "Salpinctes",
+      "species": "Salpinctes obsoletus",
+      "regionId": "el-paso",
+      "gridCellId": "3178:-10654",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334455079"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3175:-10637-55556-1",
+      "taxonId": "55556",
+      "scientificName": "Oncopeltus fasciatus (Dallas, 1852)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Hemiptera",
+      "family": "Lygaeidae",
+      "genus": "Oncopeltus",
+      "species": "Oncopeltus fasciatus",
+      "regionId": "el-paso",
+      "gridCellId": "3175:-10637",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335383227"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3182:-10657-9083-1",
+      "taxonId": "9083",
+      "scientificName": "Cardinalis cardinalis (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Cardinalidae",
+      "genus": "Cardinalis",
+      "species": "Cardinalis cardinalis",
+      "regionId": "el-paso",
+      "gridCellId": "3182:-10657",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333756783"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3190:-10650-42220-1",
+      "taxonId": "42220",
+      "scientificName": "Odocoileus hemionus (Rafinesque, 1817)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Artiodactyla",
+      "family": "Cervidae",
+      "genus": "Odocoileus",
+      "species": "Odocoileus hemionus",
+      "regionId": "el-paso",
+      "gridCellId": "3190:-10650",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334297418"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3177:-10650-3460-1",
+      "taxonId": "3460",
+      "scientificName": "Zenaida asiatica (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Columbiformes",
+      "family": "Columbidae",
+      "genus": "Zenaida",
+      "species": "Zenaida asiatica",
+      "regionId": "el-paso",
+      "gridCellId": "3177:-10650",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335679926"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3178:-10653-4793-1",
+      "taxonId": "4793",
+      "scientificName": "Charadrius vociferus Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Charadriiformes",
+      "family": "Charadriidae",
+      "genus": "Charadrius",
+      "species": "Charadrius vociferus",
+      "regionId": "el-paso",
+      "gridCellId": "3178:-10653",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 15,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334455080"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3175:-10641-49591-1",
+      "taxonId": "49591",
+      "scientificName": "Lepomis macrochirus Rafinesque, 1819",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": null,
+      "order": "Perciformes",
+      "family": "Centrarchidae",
+      "genus": "Lepomis",
+      "species": "Lepomis macrochirus",
+      "regionId": "el-paso",
+      "gridCellId": "3175:-10641",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 15,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335246650"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3185:-10658-58072-1",
+      "taxonId": "58072",
+      "scientificName": "Descurainia pinnata (Walter) Britton",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Brassicales",
+      "family": "Brassicaceae",
+      "genus": "Descurainia",
+      "species": "Descurainia pinnata",
+      "regionId": "el-paso",
+      "gridCellId": "3185:-10658",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 14,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334384497"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3168:-10643-4940-1",
+      "taxonId": "4940",
+      "scientificName": "Egretta thula (Molina, 1782)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Egretta",
+      "species": "Egretta thula",
+      "regionId": "el-paso",
+      "gridCellId": "3168:-10643",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 398,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335811636"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3168:-10643-123676-1",
+      "taxonId": "123676",
+      "scientificName": "Anas crecca carolinensis J.F.Gmelin, 1789",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Anas",
+      "species": "Anas carolinensis",
+      "regionId": "el-paso",
+      "gridCellId": "3168:-10643",
+      "month": 1,
+      "observationCount": 6,
+      "coordinateUncertainty": {
+        "summaryMeters": 398,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335811640",
+          "https://www.inaturalist.org/observations/335811641",
+          "https://www.inaturalist.org/observations/335811629",
+          "https://www.inaturalist.org/observations/335811638",
+          "https://www.inaturalist.org/observations/335811639",
+          "https://www.inaturalist.org/observations/335811628"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3168:-10643-4836-1",
+      "taxonId": "4836",
+      "scientificName": "Himantopus mexicanus (P.L.S.Müller, 1776)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Charadriiformes",
+      "family": "Recurvirostridae",
+      "genus": "Himantopus",
+      "species": "Himantopus mexicanus",
+      "regionId": "el-paso",
+      "gridCellId": "3168:-10643",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333931292"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3182:-10657-4665-1",
+      "taxonId": "4665",
+      "scientificName": "Falco sparverius Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Falconiformes",
+      "family": "Falconidae",
+      "genus": "Falco",
+      "species": "Falco sparverius",
+      "regionId": "el-paso",
+      "gridCellId": "3182:-10657",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334731146"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3168:-10643-4793-1",
+      "taxonId": "4793",
+      "scientificName": "Charadrius vociferus Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Charadriiformes",
+      "family": "Charadriidae",
+      "genus": "Charadrius",
+      "species": "Charadrius vociferus",
+      "regionId": "el-paso",
+      "gridCellId": "3168:-10643",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 398,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335811637"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3182:-10657-1986-1",
+      "taxonId": "1986",
+      "scientificName": "Geococcyx californianus (Lesson, 1829)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Cuculiformes",
+      "family": "Cuculidae",
+      "genus": "Geococcyx",
+      "species": "Geococcyx californianus",
+      "regionId": "el-paso",
+      "gridCellId": "3182:-10657",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334871886"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3163:-10631-1493097-1",
+      "taxonId": "1493097",
+      "scientificName": "Strombocarpa pubescens (Benth.) A.Gray",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Fabales",
+      "family": "Fabaceae",
+      "genus": "Prosopis",
+      "species": "Prosopis pubescens",
+      "regionId": "el-paso",
+      "gridCellId": "3163:-10631",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334690192"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3163:-10631-58113-1",
+      "taxonId": "58113",
+      "scientificName": "Atriplex canescens (Pursh) Nutt.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Amaranthaceae",
+      "genus": "Atriplex",
+      "species": "Atriplex canescens",
+      "regionId": "el-paso",
+      "gridCellId": "3163:-10631",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335362700",
+          "https://www.inaturalist.org/observations/335362585"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3168:-10643-122767-1",
+      "taxonId": "122767",
+      "scientificName": "Columba livia var. domestica J.F.Gmelin, 1789",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Columbiformes",
+      "family": "Columbidae",
+      "genus": "Columba",
+      "species": "Columba livia",
+      "regionId": "el-paso",
+      "gridCellId": "3168:-10643",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 15,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336255205"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3178:-10646-58113-1",
+      "taxonId": "58113",
+      "scientificName": "Atriplex canescens (Pursh) Nutt.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Amaranthaceae",
+      "genus": "Atriplex",
+      "species": "Atriplex canescens",
+      "regionId": "el-paso",
+      "gridCellId": "3178:-10646",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333494510"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3168:-10643-19349-1",
+      "taxonId": "19349",
+      "scientificName": "Myiopsitta monachus (Boddaert, 1783)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Psittaciformes",
+      "family": "Psittacidae",
+      "genus": "Myiopsitta",
+      "species": "Myiopsitta monachus",
+      "regionId": "el-paso",
+      "gridCellId": "3168:-10643",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333931293"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3168:-10643-473-1",
+      "taxonId": "473",
+      "scientificName": "Fulica americana Gmelin, 1789",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Gruiformes",
+      "family": "Rallidae",
+      "genus": "Fulica",
+      "species": "Fulica americana",
+      "regionId": "el-paso",
+      "gridCellId": "3168:-10643",
+      "month": 1,
+      "observationCount": 3,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333931290",
+          "https://www.inaturalist.org/observations/336255198",
+          "https://www.inaturalist.org/observations/336255185"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3193:-10645-3460-1",
+      "taxonId": "3460",
+      "scientificName": "Zenaida asiatica (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Columbiformes",
+      "family": "Columbidae",
+      "genus": "Zenaida",
+      "species": "Zenaida asiatica",
+      "regionId": "el-paso",
+      "gridCellId": "3193:-10645",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336163365"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3182:-10657-6993-1",
+      "taxonId": "6993",
+      "scientificName": "Bucephala albeola (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Bucephala",
+      "species": "Bucephala albeola",
+      "regionId": "el-paso",
+      "gridCellId": "3182:-10657",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333757068",
+          "https://www.inaturalist.org/observations/333757009"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3168:-10643-6993-1",
+      "taxonId": "6993",
+      "scientificName": "Bucephala albeola (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Bucephala",
+      "species": "Bucephala albeola",
+      "regionId": "el-paso",
+      "gridCellId": "3168:-10643",
+      "month": 1,
+      "observationCount": 8,
+      "coordinateUncertainty": {
+        "summaryMeters": 398,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335811627",
+          "https://www.inaturalist.org/observations/336255202",
+          "https://www.inaturalist.org/observations/336285061",
+          "https://www.inaturalist.org/observations/336285066",
+          "https://www.inaturalist.org/observations/336285068",
+          "https://www.inaturalist.org/observations/336285052",
+          "https://www.inaturalist.org/observations/336550092",
+          "https://www.inaturalist.org/observations/336550097"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3192:-10652-83105-1",
+      "taxonId": "83105",
+      "scientificName": "Agave lechuguilla Torr.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Liliopsida",
+      "order": "Asparagales",
+      "family": "Asparagaceae",
+      "genus": "Agave",
+      "species": "Agave lechuguilla",
+      "regionId": "el-paso",
+      "gridCellId": "3192:-10652",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334877615"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3177:-10653-13858-1",
+      "taxonId": "13858",
+      "scientificName": "Passer domesticus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passeridae",
+      "genus": "Passer",
+      "species": "Passer domesticus",
+      "regionId": "el-paso",
+      "gridCellId": "3177:-10653",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 15,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334455082"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3177:-10640-4364-1",
+      "taxonId": "4364",
+      "scientificName": "Larus delawarensis Ord, 1815",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Charadriiformes",
+      "family": "Laridae",
+      "genus": "Larus",
+      "species": "Larus delawarensis",
+      "regionId": "el-paso",
+      "gridCellId": "3177:-10640",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 11,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334310657"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3176:-10651-424821-1",
+      "taxonId": "424821",
+      "scientificName": "Copestylum avidum (Osten Sacken, 1877)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Diptera",
+      "family": "Syrphidae",
+      "genus": "Copestylum",
+      "species": "Copestylum avidum",
+      "regionId": "el-paso",
+      "gridCellId": "3176:-10651",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336007428"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3177:-10652-68205-1",
+      "taxonId": "68205",
+      "scientificName": "Larrea tridentata (DC.) Coult.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Zygophyllales",
+      "family": "Zygophyllaceae",
+      "genus": "Larrea",
+      "species": "Larrea tridentata",
+      "regionId": "el-paso",
+      "gridCellId": "3177:-10652",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 723,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336007366"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3175:-10646-18236-1",
+      "taxonId": "18236",
+      "scientificName": "Colaptes auratus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Piciformes",
+      "family": "Picidae",
+      "genus": "Colaptes",
+      "species": "Colaptes auratus",
+      "regionId": "el-paso",
+      "gridCellId": "3175:-10646",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 122,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336255206"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3168:-10643-10470-1",
+      "taxonId": "10470",
+      "scientificName": "Xanthocephalus xanthocephalus (Bonaparte, 1826)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Icteridae",
+      "genus": "Xanthocephalus",
+      "species": "Xanthocephalus xanthocephalus",
+      "regionId": "el-paso",
+      "gridCellId": "3168:-10643",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 15,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334455083",
+          "https://www.inaturalist.org/observations/333931287"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3192:-10652-240441-1",
+      "taxonId": "240441",
+      "scientificName": "Echinocereus chloranthus var. chloranthus",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Cactaceae",
+      "genus": "Echinocereus",
+      "species": "Echinocereus viridiflorus",
+      "regionId": "el-paso",
+      "gridCellId": "3192:-10652",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334877641",
+          "https://www.inaturalist.org/observations/334877560"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3181:-10654-274361-1",
+      "taxonId": "274361",
+      "scientificName": "Opuntia azurea Rose",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Cactaceae",
+      "genus": "Opuntia",
+      "species": "Opuntia phaeacantha",
+      "regionId": "el-paso",
+      "gridCellId": "3181:-10654",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333905266"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3168:-10643-7044-1",
+      "taxonId": "7044",
+      "scientificName": "Aythya collaris (Donovan, 1809)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Aythya",
+      "species": "Aythya collaris",
+      "regionId": "el-paso",
+      "gridCellId": "3168:-10643",
+      "month": 1,
+      "observationCount": 4,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333931288",
+          "https://www.inaturalist.org/observations/336285073",
+          "https://www.inaturalist.org/observations/336285072",
+          "https://www.inaturalist.org/observations/336550091"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3182:-10657-10094-1",
+      "taxonId": "10094",
+      "scientificName": "Junco hyemalis (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Junco",
+      "species": "Junco hyemalis",
+      "regionId": "el-paso",
+      "gridCellId": "3182:-10657",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333756840"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3175:-10641-19975-1",
+      "taxonId": "19975",
+      "scientificName": "Athene cunicularia (Molina, 1782)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Strigiformes",
+      "family": "Strigidae",
+      "genus": "Athene",
+      "species": "Athene cunicularia",
+      "regionId": "el-paso",
+      "gridCellId": "3175:-10641",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 25,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335493064"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3178:-10653-9607-1",
+      "taxonId": "9607",
+      "scientificName": "Quiscalus mexicanus (Gmelin, 1788)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Icteridae",
+      "genus": "Quiscalus",
+      "species": "Quiscalus mexicanus",
+      "regionId": "el-paso",
+      "gridCellId": "3178:-10653",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 15,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333523273"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3168:-10643-3454-1",
+      "taxonId": "3454",
+      "scientificName": "Zenaida macroura (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Columbiformes",
+      "family": "Columbidae",
+      "genus": "Zenaida",
+      "species": "Zenaida macroura",
+      "regionId": "el-paso",
+      "gridCellId": "3168:-10643",
+      "month": 1,
+      "observationCount": 3,
+      "coordinateUncertainty": {
+        "summaryMeters": 398,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335811632",
+          "https://www.inaturalist.org/observations/335811634",
+          "https://www.inaturalist.org/observations/335811631"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3168:-10643-145245-1",
+      "taxonId": "145245",
+      "scientificName": "Setophaga coronata (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Parulidae",
+      "genus": "Setophaga",
+      "species": "Setophaga coronata",
+      "regionId": "el-paso",
+      "gridCellId": "3168:-10643",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 15,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336255203",
+          "https://www.inaturalist.org/observations/333931295"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3193:-10645-122767-1",
+      "taxonId": "122767",
+      "scientificName": "Columba livia var. domestica J.F.Gmelin, 1789",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Columbiformes",
+      "family": "Columbidae",
+      "genus": "Columba",
+      "species": "Columba livia",
+      "regionId": "el-paso",
+      "gridCellId": "3193:-10645",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 7,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336165779"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3178:-10653-7601-1",
+      "taxonId": "7601",
+      "scientificName": "Cistothorus palustris (A.Wilson, 1810)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Troglodytidae",
+      "genus": "Cistothorus",
+      "species": "Cistothorus palustris",
+      "regionId": "el-paso",
+      "gridCellId": "3178:-10653",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 126,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333523274"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3182:-10657-10470-1",
+      "taxonId": "10470",
+      "scientificName": "Xanthocephalus xanthocephalus (Bonaparte, 1826)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Icteridae",
+      "genus": "Xanthocephalus",
+      "species": "Xanthocephalus xanthocephalus",
+      "regionId": "el-paso",
+      "gridCellId": "3182:-10657",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334731350",
+          "https://www.inaturalist.org/observations/334871923"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3176:-10649-122767-1",
+      "taxonId": "122767",
+      "scientificName": "Columba livia var. domestica J.F.Gmelin, 1789",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Columbiformes",
+      "family": "Columbidae",
+      "genus": "Columba",
+      "species": "Columba livia",
+      "regionId": "el-paso",
+      "gridCellId": "3176:-10649",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335552644"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3193:-10647-82471-1",
+      "taxonId": "82471",
+      "scientificName": "Echinocereus fendleri subsp. fendleri",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Cactaceae",
+      "genus": "Echinocereus",
+      "species": "Echinocereus fendleri",
+      "regionId": "el-paso",
+      "gridCellId": "3193:-10647",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336163258"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3168:-10643-236935-1",
+      "taxonId": "236935",
+      "scientificName": "Anas platyrhynchos f. domesticus",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Anas",
+      "species": "Anas platyrhynchos",
+      "regionId": "el-paso",
+      "gridCellId": "3168:-10643",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 52,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333931285",
+          "https://www.inaturalist.org/observations/333929424"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3191:-10652-162172-1",
+      "taxonId": "162172",
+      "scientificName": "Echinocactus horizonthalonius Lem.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Cactaceae",
+      "genus": "Echinocactus",
+      "species": "Echinocactus horizonthalonius",
+      "regionId": "el-paso",
+      "gridCellId": "3191:-10652",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336261160"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3174:-10641-58085-1",
+      "taxonId": "58085",
+      "scientificName": "Sisymbrium irio L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Brassicales",
+      "family": "Brassicaceae",
+      "genus": "Sisymbrium",
+      "species": "Sisymbrium irio",
+      "regionId": "el-paso",
+      "gridCellId": "3174:-10641",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333904290"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3193:-10646-162172-1",
+      "taxonId": "162172",
+      "scientificName": "Echinocactus horizonthalonius Lem.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Cactaceae",
+      "genus": "Echinocactus",
+      "species": "Echinocactus horizonthalonius",
+      "regionId": "el-paso",
+      "gridCellId": "3193:-10646",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336144910"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3175:-10641-62829-1",
+      "taxonId": "62829",
+      "scientificName": "Parkinsonia aculeata L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Fabales",
+      "family": "Fabaceae",
+      "genus": "Parkinsonia",
+      "species": "Parkinsonia aculeata",
+      "regionId": "el-paso",
+      "gridCellId": "3175:-10641",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 7,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333898431"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3182:-10657-850859-1",
+      "taxonId": "850859",
+      "scientificName": "Oxyura jamaicensis (J.F.Gmelin, 1789)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Oxyura",
+      "species": "Oxyura jamaicensis",
+      "regionId": "el-paso",
+      "gridCellId": "3182:-10657",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334731249"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3171:-10632-58561-1",
+      "taxonId": "58561",
+      "scientificName": "Libytheana carinenta Cramer, 1779",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Lepidoptera",
+      "family": "Nymphalidae",
+      "genus": "Libytheana",
+      "species": "Libytheana carinenta",
+      "regionId": "el-paso",
+      "gridCellId": "3171:-10632",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334689930"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3177:-10653-14850-1",
+      "taxonId": "14850",
+      "scientificName": "Sturnus vulgaris Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Sturnidae",
+      "genus": "Sturnus",
+      "species": "Sturnus vulgaris",
+      "regionId": "el-paso",
+      "gridCellId": "3177:-10653",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334455081"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3177:-10653-1289601-1",
+      "taxonId": "1289601",
+      "scientificName": "Nannopterum brasilianum (J.F.Gmelin, 1789)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Suliformes",
+      "family": "Phalacrocoracidae",
+      "genus": "Phalacrocorax",
+      "species": "Phalacrocorax brasilianus",
+      "regionId": "el-paso",
+      "gridCellId": "3177:-10653",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 15,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333523266"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3191:-10651-76353-1",
+      "taxonId": "76353",
+      "scientificName": "Cirsium ochrocentrum A.Gray",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Cirsium",
+      "species": "Cirsium ochrocentrum",
+      "regionId": "el-paso",
+      "gridCellId": "3191:-10651",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335261472"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3185:-10662-39782-1",
+      "taxonId": "39782",
+      "scientificName": "Trachemys scripta (Thunberg In Schoepff, 1792)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Testudines",
+      "order": null,
+      "family": "Emydidae",
+      "genus": "Trachemys",
+      "species": "Trachemys scripta",
+      "regionId": "el-paso",
+      "gridCellId": "3185:-10662",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333769672"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3184:-10656-78264-1",
+      "taxonId": "78264",
+      "scientificName": "Opuntia engelmannii Salm-Dyck ex Engelm.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Cactaceae",
+      "genus": "Opuntia",
+      "species": "Opuntia engelmannii",
+      "regionId": "el-paso",
+      "gridCellId": "3184:-10656",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 22,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336003616"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3192:-10652-43115-1",
+      "taxonId": "43115",
+      "scientificName": "Sylvilagus audubonii (Baird, 1858)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Lagomorpha",
+      "family": "Leporidae",
+      "genus": "Sylvilagus",
+      "species": "Sylvilagus audubonii",
+      "regionId": "el-paso",
+      "gridCellId": "3192:-10652",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 1,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335394090"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3178:-10650-169777-1",
+      "taxonId": "169777",
+      "scientificName": "Tiquilia greggii (Torr. & A.Gray) A.T.Richardson",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Boraginales",
+      "family": "Ehretiaceae",
+      "genus": "Tiquilia",
+      "species": "Tiquilia greggii",
+      "regionId": "el-paso",
+      "gridCellId": "3178:-10650",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334250902"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3168:-10643-485176-1",
+      "taxonId": "485176",
+      "scientificName": "Mareca americana (J.F.Gmelin, 1789)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Mareca",
+      "species": "Mareca americana",
+      "regionId": "el-paso",
+      "gridCellId": "3168:-10643",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 398,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335811642"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3191:-10650-240441-1",
+      "taxonId": "240441",
+      "scientificName": "Echinocereus chloranthus var. chloranthus",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Cactaceae",
+      "genus": "Echinocereus",
+      "species": "Echinocereus viridiflorus",
+      "regionId": "el-paso",
+      "gridCellId": "3191:-10650",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 7,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335261514"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3176:-10628-18236-1",
+      "taxonId": "18236",
+      "scientificName": "Colaptes auratus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Piciformes",
+      "family": "Picidae",
+      "genus": "Colaptes",
+      "species": "Colaptes auratus",
+      "regionId": "el-paso",
+      "gridCellId": "3176:-10628",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335117630"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3182:-10657-1289388-1",
+      "taxonId": "1289388",
+      "scientificName": "Corthylio calendula (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Regulidae",
+      "genus": "Regulus",
+      "species": "Regulus calendula",
+      "regionId": "el-paso",
+      "gridCellId": "3182:-10657",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333756881",
+          "https://www.inaturalist.org/observations/334731170"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3178:-10654-160364-1",
+      "taxonId": "160364",
+      "scientificName": "Cevallia sinuata Lag.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Cornales",
+      "family": "Loasaceae",
+      "genus": "Cevallia",
+      "species": "Cevallia sinuata",
+      "regionId": "el-paso",
+      "gridCellId": "3178:-10654",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334455072"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3168:-10643-39782-1",
+      "taxonId": "39782",
+      "scientificName": "Trachemys scripta (Thunberg In Schoepff, 1792)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Testudines",
+      "order": null,
+      "family": "Emydidae",
+      "genus": "Trachemys",
+      "species": "Trachemys scripta",
+      "regionId": "el-paso",
+      "gridCellId": "3168:-10643",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333931289",
+          "https://www.inaturalist.org/observations/336550090"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3182:-10657-17009-1",
+      "taxonId": "17009",
+      "scientificName": "Sayornis saya (Bonaparte, 1825)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Tyrannidae",
+      "genus": "Sayornis",
+      "species": "Sayornis saya",
+      "regionId": "el-paso",
+      "gridCellId": "3182:-10657",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333757113"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3178:-10653-827372-1",
+      "taxonId": "827372",
+      "scientificName": "Anas diazi Ridgway, 1886",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Anas",
+      "species": "Anas diazi",
+      "regionId": "el-paso",
+      "gridCellId": "3178:-10653",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 183,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333523279"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3177:-10651-47219-1",
+      "taxonId": "47219",
+      "scientificName": "Apis mellifera Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Hymenoptera",
+      "family": "Apidae",
+      "genus": "Apis",
+      "species": "Apis mellifera",
+      "regionId": "el-paso",
+      "gridCellId": "3177:-10651",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 14,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335800449",
+          "https://www.inaturalist.org/observations/335630689"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3176:-10651-322357-1",
+      "taxonId": "322357",
+      "scientificName": "Eupeodes volucris Osten Sacken, 1877",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Diptera",
+      "family": "Syrphidae",
+      "genus": "Eupeodes",
+      "species": "Eupeodes volucris",
+      "regionId": "el-paso",
+      "gridCellId": "3176:-10651",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335800060",
+          "https://www.inaturalist.org/observations/336360882"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3182:-10657-9420-1",
+      "taxonId": "9420",
+      "scientificName": "Pipilo maculatus Swainson, 1827",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Pipilo",
+      "species": "Pipilo maculatus",
+      "regionId": "el-paso",
+      "gridCellId": "3182:-10657",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334731193"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3164:-10631-1406-1",
+      "taxonId": "1406",
+      "scientificName": "Callipepla gambelii (Gambel, 1843)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Galliformes",
+      "family": "Odontophoridae",
+      "genus": "Callipepla",
+      "species": "Callipepla gambelii",
+      "regionId": "el-paso",
+      "gridCellId": "3164:-10631",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 31,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334732408"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3182:-10657-9176-1",
+      "taxonId": "9176",
+      "scientificName": "Zonotrichia leucophrys (J.R.Forster, 1772)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Zonotrichia",
+      "species": "Zonotrichia leucophrys",
+      "regionId": "el-paso",
+      "gridCellId": "3182:-10657",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 1,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334800876"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3191:-10650-78386-1",
+      "taxonId": "78386",
+      "scientificName": "Pellaea truncata Goodd.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Polypodiopsida",
+      "order": "Polypodiales",
+      "family": "Pteridaceae",
+      "genus": "Pellaea",
+      "species": "Pellaea truncata",
+      "regionId": "el-paso",
+      "gridCellId": "3191:-10650",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335261490"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3192:-10652-240437-1",
+      "taxonId": "240437",
+      "scientificName": "Echinocactus horizonthalonius subsp. horizonthalonius",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Cactaceae",
+      "genus": "Echinocactus",
+      "species": "Echinocactus horizonthalonius",
+      "regionId": "el-paso",
+      "gridCellId": "3192:-10652",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 78,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334877186"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3177:-10650-122767-1",
+      "taxonId": "122767",
+      "scientificName": "Columba livia var. domestica J.F.Gmelin, 1789",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Columbiformes",
+      "family": "Columbidae",
+      "genus": "Columba",
+      "species": "Columba livia",
+      "regionId": "el-paso",
+      "gridCellId": "3177:-10650",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335402084"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3168:-10643-4205-1",
+      "taxonId": "4205",
+      "scientificName": "Podiceps nigricollis C.L.Brehm, 1831",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Podicipediformes",
+      "family": "Podicipedidae",
+      "genus": "Podiceps",
+      "species": "Podiceps nigricollis",
+      "regionId": "el-paso",
+      "gridCellId": "3168:-10643",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336285074",
+          "https://www.inaturalist.org/observations/336255196"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3164:-10632-1493097-1",
+      "taxonId": "1493097",
+      "scientificName": "Strombocarpa pubescens (Benth.) A.Gray",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Fabales",
+      "family": "Fabaceae",
+      "genus": "Prosopis",
+      "species": "Prosopis pubescens",
+      "regionId": "el-paso",
+      "gridCellId": "3164:-10632",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 508,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335827010"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3182:-10657-558426-1",
+      "taxonId": "558426",
+      "scientificName": "Anser caerulescens (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Anser",
+      "species": "Anser caerulescens",
+      "regionId": "el-paso",
+      "gridCellId": "3182:-10657",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334871818"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3191:-10650-273618-1",
+      "taxonId": "273618",
+      "scientificName": "Cylindropuntia imbricata (Haw.) F.M.Knuth",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Cactaceae",
+      "genus": "Cylindropuntia",
+      "species": "Cylindropuntia imbricata",
+      "regionId": "el-paso",
+      "gridCellId": "3191:-10650",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334514538"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3169:-10643-558426-1",
+      "taxonId": "558426",
+      "scientificName": "Anser caerulescens (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Anser",
+      "species": "Anser caerulescens",
+      "regionId": "el-paso",
+      "gridCellId": "3169:-10643",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 31,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336255184"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3182:-10657-42051-1",
+      "taxonId": "42051",
+      "scientificName": "Canis latrans Say, 1823",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Carnivora",
+      "family": "Canidae",
+      "genus": "Canis",
+      "species": "Canis latrans",
+      "regionId": "el-paso",
+      "gridCellId": "3182:-10657",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334731289"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3196:-10659-122767-1",
+      "taxonId": "122767",
+      "scientificName": "Columba livia var. domestica J.F.Gmelin, 1789",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Columbiformes",
+      "family": "Columbidae",
+      "genus": "Columba",
+      "species": "Columba livia",
+      "regionId": "el-paso",
+      "gridCellId": "3196:-10659",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335096849"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3166:-10638-19349-1",
+      "taxonId": "19349",
+      "scientificName": "Myiopsitta monachus (Boddaert, 1783)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Psittaciformes",
+      "family": "Psittacidae",
+      "genus": "Myiopsitta",
+      "species": "Myiopsitta monachus",
+      "regionId": "el-paso",
+      "gridCellId": "3166:-10638",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 10,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335545915"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3182:-10657-17013-1",
+      "taxonId": "17013",
+      "scientificName": "Sayornis nigricans (Swainson, 1827)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Tyrannidae",
+      "genus": "Sayornis",
+      "species": "Sayornis nigricans",
+      "regionId": "el-paso",
+      "gridCellId": "3182:-10657",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333756935"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3171:-10632-50786-1",
+      "taxonId": "50786",
+      "scientificName": "Vanessa annabella (Field, 1971)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Lepidoptera",
+      "family": "Nymphalidae",
+      "genus": "Vanessa",
+      "species": "Vanessa annabella",
+      "regionId": "el-paso",
+      "gridCellId": "3171:-10632",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 14,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335435933"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3168:-10643-6930-1",
+      "taxonId": "6930",
+      "scientificName": "Anas platyrhynchos Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Anas",
+      "species": "Anas platyrhynchos",
+      "regionId": "el-paso",
+      "gridCellId": "3168:-10643",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336285067"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3183:-10652-9420-1",
+      "taxonId": "9420",
+      "scientificName": "Pipilo maculatus Swainson, 1827",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Pipilo",
+      "species": "Pipilo maculatus",
+      "regionId": "el-paso",
+      "gridCellId": "3183:-10652",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 102,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335377007"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3191:-10652-167827-1",
+      "taxonId": "167827",
+      "scientificName": "Rhus microphylla Engelm.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Sapindales",
+      "family": "Anacardiaceae",
+      "genus": "Rhus",
+      "species": "Rhus microphylla",
+      "regionId": "el-paso",
+      "gridCellId": "3191:-10652",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 205,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333329527"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3176:-10651-52158-1",
+      "taxonId": "52158",
+      "scientificName": "Schistocerca nitens (Thunberg, 1815)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Orthoptera",
+      "family": "Acrididae",
+      "genus": "Schistocerca",
+      "species": "Schistocerca nitens",
+      "regionId": "el-paso",
+      "gridCellId": "3176:-10651",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 11,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335720403"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3168:-10643-4246-1",
+      "taxonId": "4246",
+      "scientificName": "Podilymbus podiceps (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Podicipediformes",
+      "family": "Podicipedidae",
+      "genus": "Podilymbus",
+      "species": "Podilymbus podiceps",
+      "regionId": "el-paso",
+      "gridCellId": "3168:-10643",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336285058",
+          "https://www.inaturalist.org/observations/336255190"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3193:-10645-3454-1",
+      "taxonId": "3454",
+      "scientificName": "Zenaida macroura (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Columbiformes",
+      "family": "Columbidae",
+      "genus": "Zenaida",
+      "species": "Zenaida macroura",
+      "regionId": "el-paso",
+      "gridCellId": "3193:-10645",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 7,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336165763"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3182:-10657-506117-1",
+      "taxonId": "506117",
+      "scientificName": "Aphelocoma woodhouseii (S.F.Baird, 1858)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Corvidae",
+      "genus": "Aphelocoma",
+      "species": "Aphelocoma woodhouseii",
+      "regionId": "el-paso",
+      "gridCellId": "3182:-10657",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334871850"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3190:-10650-1282701-1",
+      "taxonId": "1282701",
+      "scientificName": "Cercocarpus breviflorus A.Gray",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Rosales",
+      "family": "Rosaceae",
+      "genus": "Cercocarpus",
+      "species": "Cercocarpus breviflorus",
+      "regionId": "el-paso",
+      "gridCellId": "3190:-10650",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334514684"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3169:-10631-170387-1",
+      "taxonId": "170387",
+      "scientificName": "Yucca elata (Engelm.) Engelm.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Liliopsida",
+      "order": "Asparagales",
+      "family": "Asparagaceae",
+      "genus": "Yucca",
+      "species": "Yucca elata",
+      "regionId": "el-paso",
+      "gridCellId": "3169:-10631",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335300736"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3163:-10631-53843-1",
+      "taxonId": "53843",
+      "scientificName": "Brephidium exilis (Boisduval, 1852)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Lepidoptera",
+      "family": "Lycaenidae",
+      "genus": "Brephidium",
+      "species": "Brephidium exilis",
+      "regionId": "el-paso",
+      "gridCellId": "3163:-10631",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334690415"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3168:-10643-333822-1",
+      "taxonId": "333822",
+      "scientificName": "Anser cygnoides f. domesticus",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Anser",
+      "species": "Anser cygnoides",
+      "regionId": "el-paso",
+      "gridCellId": "3168:-10643",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 15,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336255199"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3168:-10643-9100-1",
+      "taxonId": "9100",
+      "scientificName": "Melospiza melodia (A.Wilson, 1810)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Melospiza",
+      "species": "Melospiza melodia",
+      "regionId": "el-paso",
+      "gridCellId": "3168:-10643",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336255186"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3168:-10643-199840-1",
+      "taxonId": "199840",
+      "scientificName": "Haemorhous mexicanus (P.L.Statius Müller, 1776)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Fringillidae",
+      "genus": "Haemorhous",
+      "species": "Haemorhous mexicanus",
+      "regionId": "el-paso",
+      "gridCellId": "3168:-10643",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 15,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333928751"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3182:-10657-558438-1",
+      "taxonId": "558438",
+      "scientificName": "Spatula clypeata (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Spatula",
+      "species": "Spatula clypeata",
+      "regionId": "el-paso",
+      "gridCellId": "3182:-10657",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334731319"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3176:-10651-3460-1",
+      "taxonId": "3460",
+      "scientificName": "Zenaida asiatica (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Columbiformes",
+      "family": "Columbidae",
+      "genus": "Zenaida",
+      "species": "Zenaida asiatica",
+      "regionId": "el-paso",
+      "gridCellId": "3176:-10651",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336269444"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3193:-10646-49325-1",
+      "taxonId": "49325",
+      "scientificName": "Fouquieria splendens Engelm.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Ericales",
+      "family": "Fouquieriaceae",
+      "genus": "Fouquieria",
+      "species": "Fouquieria splendens",
+      "regionId": "el-paso",
+      "gridCellId": "3193:-10646",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 7,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336144899"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3168:-10643-7089-1",
+      "taxonId": "7089",
+      "scientificName": "Branta canadensis (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Branta",
+      "species": "Branta canadensis",
+      "regionId": "el-paso",
+      "gridCellId": "3168:-10643",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336255193"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3168:-10643-7603-1",
+      "taxonId": "7603",
+      "scientificName": "Auriparus flaviceps (Sundevall, 1850)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Remizidae",
+      "genus": "Auriparus",
+      "species": "Auriparus flaviceps",
+      "regionId": "el-paso",
+      "gridCellId": "3168:-10643",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336550105"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3176:-10651-56083-1",
+      "taxonId": "56083",
+      "scientificName": "Armadillidium vulgare (Latreille, 1804)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Malacostraca",
+      "order": "Isopoda",
+      "family": "Armadillidiidae",
+      "genus": "Armadillidium",
+      "species": "Armadillidium vulgare",
+      "regionId": "el-paso",
+      "gridCellId": "3176:-10651",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336299610"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3168:-10643-979757-1",
+      "taxonId": "979757",
+      "scientificName": "Leiothlypis celata (Say, 1822)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Parulidae",
+      "genus": "Leiothlypis",
+      "species": "Leiothlypis celata",
+      "regionId": "el-paso",
+      "gridCellId": "3168:-10643",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336550108",
+          "https://www.inaturalist.org/observations/336550106"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3163:-10632-9092-1",
+      "taxonId": "9092",
+      "scientificName": "Melospiza lincolnii (Audubon, 1834)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Melospiza",
+      "species": "Melospiza lincolnii",
+      "regionId": "el-paso",
+      "gridCellId": "3163:-10632",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336849876"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3185:-10658-588723-1",
+      "taxonId": "588723",
+      "scientificName": "Lasiopogon glomerulatus (Harv.) Hilliard",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Lasiopogon",
+      "species": "Lasiopogon glomerulatus",
+      "regionId": "el-paso",
+      "gridCellId": "3185:-10658",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 15,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334384374"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3175:-10641-99544-1",
+      "taxonId": "99544",
+      "scientificName": "Dorosoma cepedianum (Lesueur, 1818)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": null,
+      "order": "Clupeiformes",
+      "family": "Clupeidae",
+      "genus": "Dorosoma",
+      "species": "Dorosoma cepedianum",
+      "regionId": "el-paso",
+      "gridCellId": "3175:-10641",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335246651"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3182:-10654-41880-1",
+      "taxonId": "41880",
+      "scientificName": "Mephitis mephitis (Schreber, 1776)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Carnivora",
+      "family": "Mephitidae",
+      "genus": "Mephitis",
+      "species": "Mephitis mephitis",
+      "regionId": "el-paso",
+      "gridCellId": "3182:-10654",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 21,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336606390"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3168:-10643-13858-1",
+      "taxonId": "13858",
+      "scientificName": "Passer domesticus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passeridae",
+      "genus": "Passer",
+      "species": "Passer domesticus",
+      "regionId": "el-paso",
+      "gridCellId": "3168:-10643",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336550110"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3163:-10631-841204-1",
+      "taxonId": "841204",
+      "scientificName": "Citrullus amarus Schrad.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Cucurbitales",
+      "family": "Cucurbitaceae",
+      "genus": "Citrullus",
+      "species": "Citrullus amarus",
+      "regionId": "el-paso",
+      "gridCellId": "3163:-10631",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336382588"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:19.534Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "el-paso-center-envelope-v1"
+    }
+  ]
 }

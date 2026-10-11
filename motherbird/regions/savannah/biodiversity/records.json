@@ -1,20 +1,32 @@
 {
   "schemaVersion": "biodiversity-sidecar-v1",
   "metadata": {
-    "schemaVersion": "biodiversity-sidecar-v1",
     "regionId": "savannah",
-    "sourceVintage": "2026-10-10",
-    "generatedAt": "2026-10-10T00:00:00.000Z",
-    "sourceAccess": "GBIF occurrence search API",
-    "sourceQuery": "Region boundary query; authenticated download required for large regions.",
-    "boundaryVersion": "savannah-boundary-v1",
+    "sourceVintage": "2026-10-11",
+    "boundaryVersion": "savannah-center-envelope-v1",
     "gbifDownloadDoi": null,
-    "inputRows": 0,
+    "generatedAt": "2026-10-11T01:53:38.740Z",
+    "fixture": false,
+    "sourceAccess": "GBIF occurrence search API",
+    "sourceQuery": "POLYGON((-81.50427730995634 31.7309,-80.67812269004366 31.7309,-80.67812269004366 32.4309,-81.50427730995634 32.4309,-81.50427730995634 31.7309))",
+    "inputRows": 300,
+    "matchingRecordCount": 123532,
+    "coverageNote": null,
+    "schemaVersion": "biodiversity-sidecar-v1",
+    "acquisitionWorkflow": {
+      "mode": "occurrence-search",
+      "endpoint": "https://api.gbif.org/v1/occurrence/search",
+      "pageSize": 300,
+      "maxOffset": 100000
+    },
     "freshnessClass": "fresh",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
     "releaseState": "sidecar-available",
+    "qualityReview": {
+      "status": "not-reviewed"
+    },
     "gateReason": null,
     "safeguards": {
       "coordinateUncertaintyFiltering": true,
@@ -22,17 +34,5032 @@
       "privacyAwareAggregation": true,
       "sourceVintageTracked": true,
       "imageLicenseMetadataTracked": true
-    },
-    "qualityReview": {
-      "status": "not-reviewed"
-    },
-    "acquisitionWorkflow": {
-      "mode": "occurrence-search",
-      "endpoint": "https://api.gbif.org/v1/occurrence/search",
-      "pageSize": 300,
-      "maxOffset": 100000
-    },
-    "coverageNote": "No qualifying rows are currently published for this region; this is not evidence of absence."
+    }
   },
-  "records": []
+  "records": [
+    {
+      "recordId": "aggregate-3198:-8085-4328-1",
+      "taxonId": "4328",
+      "scientificName": "Pelecanus occidentalis Linnaeus, 1766",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Pelecanidae",
+      "genus": "Pelecanus",
+      "species": "Pelecanus occidentalis",
+      "regionId": "savannah",
+      "gridCellId": "3198:-8085",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 15,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333209271"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3189:-8120-120009-1",
+      "taxonId": "120009",
+      "scientificName": "Hypericum hypericoides (L.) Crantz",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Malpighiales",
+      "family": "Hypericaceae",
+      "genus": "Hypericum",
+      "species": "Hypericum hypericoides",
+      "regionId": "savannah",
+      "gridCellId": "3189:-8120",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 7,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333348916"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3215:-8111-26159-1",
+      "taxonId": "26159",
+      "scientificName": "Alligator mississippiensis (Daudin, 1801)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Crocodylia",
+      "order": null,
+      "family": "Alligatoridae",
+      "genus": "Alligator",
+      "species": "Alligator mississippiensis",
+      "regionId": "savannah",
+      "gridCellId": "3215:-8111",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 40,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333191947"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3214:-8124-127066-1",
+      "taxonId": "127066",
+      "scientificName": "Youngia japonica (L.) DC.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Youngia",
+      "species": "Youngia japonica",
+      "regionId": "savannah",
+      "gridCellId": "3214:-8124",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333223669"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3189:-8120-49569-1",
+      "taxonId": "49569",
+      "scientificName": "Tillandsia usneoides (L.) L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Liliopsida",
+      "order": "Poales",
+      "family": "Bromeliaceae",
+      "genus": "Tillandsia",
+      "species": "Tillandsia usneoides",
+      "regionId": "savannah",
+      "gridCellId": "3189:-8120",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 14,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333347890"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3216:-8112-12024-1",
+      "taxonId": "12024",
+      "scientificName": "Lanius ludovicianus Linnaeus, 1766",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Laniidae",
+      "genus": "Lanius",
+      "species": "Lanius ludovicianus",
+      "regionId": "savannah",
+      "gridCellId": "3216:-8112",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 61,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333368408"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3215:-8111-6933-1",
+      "taxonId": "6933",
+      "scientificName": "Anas acuta Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Anas",
+      "species": "Anas acuta",
+      "regionId": "savannah",
+      "gridCellId": "3215:-8111",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 259,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333194872"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3216:-8112-26159-1",
+      "taxonId": "26159",
+      "scientificName": "Alligator mississippiensis (Daudin, 1801)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Crocodylia",
+      "order": null,
+      "family": "Alligatoridae",
+      "genus": "Alligator",
+      "species": "Alligator mississippiensis",
+      "regionId": "savannah",
+      "gridCellId": "3216:-8112",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 20,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333192120"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3213:-8125-7089-1",
+      "taxonId": "7089",
+      "scientificName": "Branta canadensis (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Branta",
+      "species": "Branta canadensis",
+      "regionId": "savannah",
+      "gridCellId": "3213:-8125",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333034122"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3215:-8112-144479-1",
+      "taxonId": "144479",
+      "scientificName": "Gallinula galeata (Lichtenstein & Mhc, 1818)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Gruiformes",
+      "family": "Rallidae",
+      "genus": "Gallinula",
+      "species": "Gallinula chloropus",
+      "regionId": "savannah",
+      "gridCellId": "3215:-8112",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 58,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333191878"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3216:-8112-4940-1",
+      "taxonId": "4940",
+      "scientificName": "Egretta thula (Molina, 1782)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Egretta",
+      "species": "Egretta thula",
+      "regionId": "savannah",
+      "gridCellId": "3216:-8112",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 122,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333194833",
+          "https://www.inaturalist.org/observations/335549725"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3208:-8094-144455-1",
+      "taxonId": "144455",
+      "scientificName": "Ardea alba Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Ardea",
+      "species": "Ardea alba",
+      "regionId": "savannah",
+      "gridCellId": "3208:-8094",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333206564"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3189:-8120-49399-1",
+      "taxonId": "49399",
+      "scientificName": "Juniperus virginiana L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Pinopsida",
+      "order": "Pinales",
+      "family": "Cupressaceae",
+      "genus": "Juniperus",
+      "species": "Juniperus virginiana",
+      "regionId": "savannah",
+      "gridCellId": "3189:-8120",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333349124"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3215:-8111-6937-1",
+      "taxonId": "6937",
+      "scientificName": "Anas crecca Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Anas",
+      "species": "Anas crecca",
+      "regionId": "savannah",
+      "gridCellId": "3215:-8111",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 77,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333191345"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3216:-8112-473-1",
+      "taxonId": "473",
+      "scientificName": "Fulica americana Gmelin, 1789",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Gruiformes",
+      "family": "Rallidae",
+      "genus": "Fulica",
+      "species": "Fulica americana",
+      "regionId": "savannah",
+      "gridCellId": "3216:-8112",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333368411"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3215:-8112-473-1",
+      "taxonId": "473",
+      "scientificName": "Fulica americana Gmelin, 1789",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Gruiformes",
+      "family": "Rallidae",
+      "genus": "Fulica",
+      "species": "Fulica americana",
+      "regionId": "savannah",
+      "gridCellId": "3215:-8112",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 41,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333191797"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3215:-8112-26159-1",
+      "taxonId": "26159",
+      "scientificName": "Alligator mississippiensis (Daudin, 1801)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Crocodylia",
+      "order": null,
+      "family": "Alligatoridae",
+      "genus": "Alligator",
+      "species": "Alligator mississippiensis",
+      "regionId": "savannah",
+      "gridCellId": "3215:-8112",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 59,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333192029"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3189:-8120-81804-1",
+      "taxonId": "81804",
+      "scientificName": "Sabal minor (Jacq.) Pers.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Liliopsida",
+      "order": "Arecales",
+      "family": "Arecaceae",
+      "genus": "Sabal",
+      "species": "Sabal minor",
+      "regionId": "savannah",
+      "gridCellId": "3189:-8120",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333349084"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3216:-8112-55411-1",
+      "taxonId": "55411",
+      "scientificName": "Raphanus raphanistrum L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Brassicales",
+      "family": "Brassicaceae",
+      "genus": "Raphanus",
+      "species": "Raphanus raphanistrum",
+      "regionId": "savannah",
+      "gridCellId": "3216:-8112",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 78,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333192493"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3217:-8110-3756-1",
+      "taxonId": "3756",
+      "scientificName": "Plegadis falcinellus (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Threskiornithidae",
+      "genus": "Plegadis",
+      "species": "Plegadis falcinellus",
+      "regionId": "savannah",
+      "gridCellId": "3217:-8110",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 30,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333199081"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3195:-8106-123481-1",
+      "taxonId": "123481",
+      "scientificName": "Sabal palmetto (Walter) Lodd. ex Schult. & Schult.f.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Liliopsida",
+      "order": "Arecales",
+      "family": "Arecaceae",
+      "genus": "Sabal",
+      "species": "Sabal palmetto",
+      "regionId": "savannah",
+      "gridCellId": "3195:-8106",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333157690"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3215:-8112-558446-1",
+      "taxonId": "558446",
+      "scientificName": "Circus hudsonius (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Accipitriformes",
+      "family": "Accipitridae",
+      "genus": "Circus",
+      "species": "Circus cyaneus",
+      "regionId": "savannah",
+      "gridCellId": "3215:-8112",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 68,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333192068"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3224:-8069-144491-1",
+      "taxonId": "144491",
+      "scientificName": "Tringa semipalmata (J.F.Gmelin, 1789)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Charadriiformes",
+      "family": "Scolopacidae",
+      "genus": "Tringa",
+      "species": "Tringa semipalmata",
+      "regionId": "savannah",
+      "gridCellId": "3224:-8069",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333157879"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3207:-8110-48502-1",
+      "taxonId": "48502",
+      "scientificName": "Cercis canadensis L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Fabales",
+      "family": "Fabaceae",
+      "genus": "Cercis",
+      "species": "Cercis canadensis",
+      "regionId": "savannah",
+      "gridCellId": "3207:-8110",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333188188"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3215:-8111-558438-1",
+      "taxonId": "558438",
+      "scientificName": "Spatula clypeata (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Spatula",
+      "species": "Spatula clypeata",
+      "regionId": "savannah",
+      "gridCellId": "3215:-8111",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 58,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333191744"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3189:-8120-123481-1",
+      "taxonId": "123481",
+      "scientificName": "Sabal palmetto (Walter) Lodd. ex Schult. & Schult.f.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Liliopsida",
+      "order": "Arecales",
+      "family": "Arecaceae",
+      "genus": "Sabal",
+      "species": "Sabal palmetto",
+      "regionId": "savannah",
+      "gridCellId": "3189:-8120",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 14,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333348057",
+          "https://www.inaturalist.org/observations/333348999"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3201:-8089-4328-1",
+      "taxonId": "4328",
+      "scientificName": "Pelecanus occidentalis Linnaeus, 1766",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Pelecanidae",
+      "genus": "Pelecanus",
+      "species": "Pelecanus occidentalis",
+      "regionId": "savannah",
+      "gridCellId": "3201:-8089",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333175933"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3216:-8112-4937-1",
+      "taxonId": "4937",
+      "scientificName": "Egretta caerulea (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Egretta",
+      "species": "Egretta caerulea",
+      "regionId": "savannah",
+      "gridCellId": "3216:-8112",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 21,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333192392"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3216:-8112-144479-1",
+      "taxonId": "144479",
+      "scientificName": "Gallinula galeata (Lichtenstein & Mhc, 1818)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Gruiformes",
+      "family": "Rallidae",
+      "genus": "Gallinula",
+      "species": "Gallinula chloropus",
+      "regionId": "savannah",
+      "gridCellId": "3216:-8112",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 31,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333192440"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3219:-8132-48484-1",
+      "taxonId": "48484",
+      "scientificName": "Harmonia axyridis (Pallas, 1773)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Coleoptera",
+      "family": "Coccinellidae",
+      "genus": "Harmonia",
+      "species": "Harmonia axyridis",
+      "regionId": "savannah",
+      "gridCellId": "3219:-8132",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333046195"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3217:-8110-4938-1",
+      "taxonId": "4938",
+      "scientificName": "Egretta tricolor (Statius Muller, 1776)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Egretta",
+      "species": "Egretta tricolor",
+      "regionId": "savannah",
+      "gridCellId": "3217:-8110",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 92,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333199002"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3213:-8125-5063-1",
+      "taxonId": "5063",
+      "scientificName": "Anhinga anhinga (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Suliformes",
+      "family": "Anhingidae",
+      "genus": "Anhinga",
+      "species": "Anhinga anhinga",
+      "regionId": "savannah",
+      "gridCellId": "3213:-8125",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333034197"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3216:-8112-3751-1",
+      "taxonId": "3751",
+      "scientificName": "Eudocimus albus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Threskiornithidae",
+      "genus": "Eudocimus",
+      "species": "Eudocimus albus",
+      "regionId": "savannah",
+      "gridCellId": "3216:-8112",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 20,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333192338"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3214:-8075-5063-1",
+      "taxonId": "5063",
+      "scientificName": "Anhinga anhinga (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Suliformes",
+      "family": "Anhingidae",
+      "genus": "Anhinga",
+      "species": "Anhinga anhinga",
+      "regionId": "savannah",
+      "gridCellId": "3214:-8075",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333314936"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3189:-8120-61324-1",
+      "taxonId": "61324",
+      "scientificName": "Quercus falcata Michx.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Fagales",
+      "family": "Fagaceae",
+      "genus": "Quercus",
+      "species": "Quercus falcata",
+      "regionId": "savannah",
+      "gridCellId": "3189:-8120",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 10,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333348815"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3216:-8110-485176-1",
+      "taxonId": "485176",
+      "scientificName": "Mareca americana (J.F.Gmelin, 1789)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Mareca",
+      "species": "Mareca americana",
+      "regionId": "savannah",
+      "gridCellId": "3216:-8110",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 41,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333198968"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3208:-8110-49668-1",
+      "taxonId": "49668",
+      "scientificName": "Phoradendron leucarpum (Raf.) Reveal & M.C.Johnst.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Santalales",
+      "family": "Viscaceae",
+      "genus": "Phoradendron",
+      "species": "Phoradendron leucarpum",
+      "regionId": "savannah",
+      "gridCellId": "3208:-8110",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 7,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333217005"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3223:-8078-123481-1",
+      "taxonId": "123481",
+      "scientificName": "Sabal palmetto (Walter) Lodd. ex Schult. & Schult.f.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Liliopsida",
+      "order": "Arecales",
+      "family": "Arecaceae",
+      "genus": "Sabal",
+      "species": "Sabal palmetto",
+      "regionId": "savannah",
+      "gridCellId": "3223:-8078",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333015897"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3189:-8120-127634-1",
+      "taxonId": "127634",
+      "scientificName": "Trichostema dichotomum L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Lamiales",
+      "family": "Lamiaceae",
+      "genus": "Trichostema",
+      "species": "Trichostema dichotomum",
+      "regionId": "savannah",
+      "gridCellId": "3189:-8120",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 11,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333348805"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3189:-8120-1617178-1",
+      "taxonId": "1617178",
+      "scientificName": "Poaceae",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Liliopsida",
+      "order": "Poales",
+      "family": "Poaceae",
+      "genus": null,
+      "species": null,
+      "regionId": "savannah",
+      "gridCellId": "3189:-8120",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333348968"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3189:-8120-83074-1",
+      "taxonId": "83074",
+      "scientificName": "Magnolia grandiflora L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Magnoliales",
+      "family": "Magnoliaceae",
+      "genus": "Magnolia",
+      "species": "Magnolia grandiflora",
+      "regionId": "savannah",
+      "gridCellId": "3189:-8120",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 7,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333348370"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3189:-8120-49013-1",
+      "taxonId": "49013",
+      "scientificName": "Quercus virginiana Mill.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Fagales",
+      "family": "Fagaceae",
+      "genus": "Quercus",
+      "species": "Quercus virginiana",
+      "regionId": "savannah",
+      "gridCellId": "3189:-8120",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333349162"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3189:-8120-127269-1",
+      "taxonId": "127269",
+      "scientificName": "Cirsium horridulum Michx.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Cirsium",
+      "species": "Cirsium horridulum",
+      "regionId": "savannah",
+      "gridCellId": "3189:-8120",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333349287"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3228:-8092-4756-1",
+      "taxonId": "4756",
+      "scientificName": "Cathartes aura (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Accipitriformes",
+      "family": "Cathartidae",
+      "genus": "Cathartes",
+      "species": "Cathartes aura",
+      "regionId": "savannah",
+      "gridCellId": "3228:-8092",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 10,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333640020"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3208:-8110-1095846-1",
+      "taxonId": "1095846",
+      "scientificName": "Bidens alba (L.) DC.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Bidens",
+      "species": "Bidens alba",
+      "regionId": "savannah",
+      "gridCellId": "3208:-8110",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333216752"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3216:-8112-43794-1",
+      "taxonId": "43794",
+      "scientificName": "Castor canadensis Kuhl, 1820",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Rodentia",
+      "family": "Castoridae",
+      "genus": "Castor",
+      "species": "Castor canadensis",
+      "regionId": "savannah",
+      "gridCellId": "3216:-8112",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 50,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333192219"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3216:-8112-9981-1",
+      "taxonId": "9981",
+      "scientificName": "Passerculus sandwichensis (J.F.Gmelin, 1789)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Passerculus",
+      "species": "Passerculus sandwichensis",
+      "regionId": "savannah",
+      "gridCellId": "3216:-8112",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 69,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333192280"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3208:-8110-57636-1",
+      "taxonId": "57636",
+      "scientificName": "Pteris vittata L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Polypodiopsida",
+      "order": "Polypodiales",
+      "family": "Pteridaceae",
+      "genus": "Pteris",
+      "species": "Pteris vittata",
+      "regionId": "savannah",
+      "gridCellId": "3208:-8110",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333216642"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3217:-8110-7044-1",
+      "taxonId": "7044",
+      "scientificName": "Aythya collaris (Donovan, 1809)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Aythya",
+      "species": "Aythya collaris",
+      "regionId": "savannah",
+      "gridCellId": "3217:-8110",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 43,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333198884"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3238:-8070-4981-1",
+      "taxonId": "4981",
+      "scientificName": "Nycticorax nycticorax (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Nycticorax",
+      "species": "Nycticorax nycticorax",
+      "regionId": "savannah",
+      "gridCellId": "3238:-8070",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 871,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334394870",
+          "https://www.inaturalist.org/observations/334903560"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3223:-8070-489673-1",
+      "taxonId": "489673",
+      "scientificName": "Lytta polita Say, 1824",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Coleoptera",
+      "family": "Meloidae",
+      "genus": "Lytta",
+      "species": "Lytta polita",
+      "regionId": "savannah",
+      "gridCellId": "3223:-8070",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 28,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335665659"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3224:-8078-7109-1",
+      "taxonId": "7109",
+      "scientificName": "Lophodytes cucullatus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Lophodytes",
+      "species": "Lophodytes cucullatus",
+      "regionId": "savannah",
+      "gridCellId": "3224:-8078",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 129,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334435180"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3186:-8121-84994-1",
+      "taxonId": "84994",
+      "scientificName": "Acanthocephala declivis (Say, 1832)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Hemiptera",
+      "family": "Coreidae",
+      "genus": "Acanthocephala",
+      "species": "Acanthocephala declivis",
+      "regionId": "savannah",
+      "gridCellId": "3186:-8121",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 351,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333861026"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3237:-8069-53587-1",
+      "taxonId": "53587",
+      "scientificName": "Ambrosia artemisiifolia L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Ambrosia",
+      "species": "Ambrosia artemisiifolia",
+      "regionId": "savannah",
+      "gridCellId": "3237:-8069",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334245870"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3224:-8078-39782-1",
+      "taxonId": "39782",
+      "scientificName": "Trachemys scripta (Thunberg In Schoepff, 1792)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Testudines",
+      "order": null,
+      "family": "Emydidae",
+      "genus": "Trachemys",
+      "species": "Trachemys scripta",
+      "regionId": "savannah",
+      "gridCellId": "3224:-8078",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 127,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334435544"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3238:-8069-3751-1",
+      "taxonId": "3751",
+      "scientificName": "Eudocimus albus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Threskiornithidae",
+      "genus": "Eudocimus",
+      "species": "Eudocimus albus",
+      "regionId": "savannah",
+      "gridCellId": "3238:-8069",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 224,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335740170"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3238:-8069-144479-1",
+      "taxonId": "144479",
+      "scientificName": "Gallinula galeata (Lichtenstein & Mhc, 1818)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Gruiformes",
+      "family": "Rallidae",
+      "genus": "Gallinula",
+      "species": "Gallinula chloropus",
+      "regionId": "savannah",
+      "gridCellId": "3238:-8069",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 224,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335741142"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3188:-8145-489673-1",
+      "taxonId": "489673",
+      "scientificName": "Lytta polita Say, 1824",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Coleoptera",
+      "family": "Meloidae",
+      "genus": "Lytta",
+      "species": "Lytta polita",
+      "regionId": "savannah",
+      "gridCellId": "3188:-8145",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335111854"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3200:-8085-48662-1",
+      "taxonId": "48662",
+      "scientificName": "Danaus plexippus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Lepidoptera",
+      "family": "Nymphalidae",
+      "genus": "Danaus",
+      "species": "Danaus plexippus",
+      "regionId": "savannah",
+      "gridCellId": "3200:-8085",
+      "month": 1,
+      "observationCount": 3,
+      "coordinateUncertainty": {
+        "summaryMeters": 122,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333978240",
+          "https://www.inaturalist.org/observations/335750026",
+          "https://www.inaturalist.org/observations/334128434"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3189:-8120-49658-1",
+      "taxonId": "49658",
+      "scientificName": "Liquidambar styraciflua L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Saxifragales",
+      "family": "Altingiaceae",
+      "genus": "Liquidambar",
+      "species": "Liquidambar styraciflua",
+      "regionId": "savannah",
+      "gridCellId": "3189:-8120",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335857543"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3204:-8129-336585-1",
+      "taxonId": "336585",
+      "scientificName": "Hypochaeris chillensis (Kunth) Britton",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Hypochaeris",
+      "species": "Hypochaeris chillensis",
+      "regionId": "savannah",
+      "gridCellId": "3204:-8129",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333875801"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3200:-8084-349374-1",
+      "taxonId": "349374",
+      "scientificName": "Rhopilema verrilli (Fewkes, 1887)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Scyphozoa",
+      "order": "Rhizostomeae",
+      "family": "Rhizostomatidae",
+      "genus": "Rhopilema",
+      "species": "Rhopilema verrilli",
+      "regionId": "savannah",
+      "gridCellId": "3200:-8084",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 12,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334157667"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3205:-8129-336585-1",
+      "taxonId": "336585",
+      "scientificName": "Hypochaeris chillensis (Kunth) Britton",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Hypochaeris",
+      "species": "Hypochaeris chillensis",
+      "regionId": "savannah",
+      "gridCellId": "3205:-8129",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333878609"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3202:-8085-144514-1",
+      "taxonId": "144514",
+      "scientificName": "Leucophaeus atricilla (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Charadriiformes",
+      "family": "Laridae",
+      "genus": "Leucophaeus",
+      "species": "Leucophaeus atricilla",
+      "regionId": "savannah",
+      "gridCellId": "3202:-8085",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335113540"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3196:-8102-144479-1",
+      "taxonId": "144479",
+      "scientificName": "Gallinula galeata (Lichtenstein & Mhc, 1818)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Gruiformes",
+      "family": "Rallidae",
+      "genus": "Gallinula",
+      "species": "Gallinula chloropus",
+      "regionId": "savannah",
+      "gridCellId": "3196:-8102",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334103870"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3193:-8132-26796-1",
+      "taxonId": "26796",
+      "scientificName": "Amphiuma means Garden, 1821",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Amphibia",
+      "order": "Caudata",
+      "family": "Amphiumidae",
+      "genus": "Amphiuma",
+      "species": "Amphiuma means",
+      "regionId": "savannah",
+      "gridCellId": "3193:-8132",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 50,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333745530"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3196:-8133-17008-1",
+      "taxonId": "17008",
+      "scientificName": "Sayornis phoebe (Latham, 1790)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Tyrannidae",
+      "genus": "Sayornis",
+      "species": "Sayornis phoebe",
+      "regionId": "savannah",
+      "gridCellId": "3196:-8133",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 7,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335069141"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3238:-8070-144479-1",
+      "taxonId": "144479",
+      "scientificName": "Gallinula galeata (Lichtenstein & Mhc, 1818)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Gruiformes",
+      "family": "Rallidae",
+      "genus": "Gallinula",
+      "species": "Gallinula chloropus",
+      "regionId": "savannah",
+      "gridCellId": "3238:-8070",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 10,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335262292",
+          "https://www.inaturalist.org/observations/335262201"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3234:-8130-17855-1",
+      "taxonId": "17855",
+      "scientificName": "Dryocopus pileatus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Piciformes",
+      "family": "Picidae",
+      "genus": "Dryocopus",
+      "species": "Dryocopus pileatus",
+      "regionId": "savannah",
+      "gridCellId": "3234:-8130",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335437929"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3237:-8069-127270-1",
+      "taxonId": "127270",
+      "scientificName": "Borrichia frutescens (L.) DC.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Borrichia",
+      "species": "Borrichia frutescens",
+      "regionId": "savannah",
+      "gridCellId": "3237:-8069",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334245810"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3195:-8102-3857-1",
+      "taxonId": "3857",
+      "scientificName": "Calidris alpina (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Charadriiformes",
+      "family": "Scolopacidae",
+      "genus": "Calidris",
+      "species": "Calidris alpina",
+      "regionId": "savannah",
+      "gridCellId": "3195:-8102",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 152,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333741350"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3217:-8090-41777-1",
+      "taxonId": "41777",
+      "scientificName": "Lontra canadensis (Schreber, 1777)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Carnivora",
+      "family": "Mustelidae",
+      "genus": "Lontra",
+      "species": "Lontra canadensis",
+      "regionId": "savannah",
+      "gridCellId": "3217:-8090",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 19,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334868178"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3203:-8105-144455-1",
+      "taxonId": "144455",
+      "scientificName": "Ardea alba Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Ardea",
+      "species": "Ardea alba",
+      "regionId": "savannah",
+      "gridCellId": "3203:-8105",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 7,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334232279"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3237:-8070-57065-1",
+      "taxonId": "57065",
+      "scientificName": "Melilotus indicus (L.) All.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Fabales",
+      "family": "Fabaceae",
+      "genus": "Melilotus",
+      "species": "Melilotus indicus",
+      "regionId": "savannah",
+      "gridCellId": "3237:-8070",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334245819"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3238:-8069-5063-1",
+      "taxonId": "5063",
+      "scientificName": "Anhinga anhinga (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Suliformes",
+      "family": "Anhingidae",
+      "genus": "Anhinga",
+      "species": "Anhinga anhinga",
+      "regionId": "savannah",
+      "gridCellId": "3238:-8069",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 224,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335741092"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3238:-8119-4937-1",
+      "taxonId": "4937",
+      "scientificName": "Egretta caerulea (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Egretta",
+      "species": "Egretta caerulea",
+      "regionId": "savannah",
+      "gridCellId": "3238:-8119",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335957197"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3224:-8078-59029-1",
+      "taxonId": "59029",
+      "scientificName": "Verbascum thapsus L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Lamiales",
+      "family": "Scrophulariaceae",
+      "genus": "Verbascum",
+      "species": "Verbascum thapsus",
+      "regionId": "savannah",
+      "gridCellId": "3224:-8078",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335100754"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3237:-8080-4937-1",
+      "taxonId": "4937",
+      "scientificName": "Egretta caerulea (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Egretta",
+      "species": "Egretta caerulea",
+      "regionId": "savannah",
+      "gridCellId": "3237:-8080",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334038796"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3194:-8106-222284-1",
+      "taxonId": "222284",
+      "scientificName": "Iridopsis defectaria (Guenée)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Lepidoptera",
+      "family": "Geometridae",
+      "genus": "Iridopsis",
+      "species": "Iridopsis defectaria",
+      "regionId": "savannah",
+      "gridCellId": "3194:-8106",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 7,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333643695"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3237:-8080-62529-1",
+      "taxonId": "62529",
+      "scientificName": "Platalea ajaja Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Threskiornithidae",
+      "genus": "Platalea",
+      "species": "Platalea ajaja",
+      "regionId": "savannah",
+      "gridCellId": "3237:-8080",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 303,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334903165"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3202:-8100-4364-1",
+      "taxonId": "4364",
+      "scientificName": "Larus delawarensis Ord, 1815",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Charadriiformes",
+      "family": "Laridae",
+      "genus": "Larus",
+      "species": "Larus delawarensis",
+      "regionId": "savannah",
+      "gridCellId": "3202:-8100",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334232272"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3224:-8076-161150-1",
+      "taxonId": "161150",
+      "scientificName": "Crotalaria spectabilis Roth",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Fabales",
+      "family": "Fabaceae",
+      "genus": "Crotalaria",
+      "species": "Crotalaria spectabilis",
+      "regionId": "savannah",
+      "gridCellId": "3224:-8076",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 11,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335100895"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3204:-8129-127269-1",
+      "taxonId": "127269",
+      "scientificName": "Cirsium horridulum Michx.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Cirsium",
+      "species": "Cirsium horridulum",
+      "regionId": "savannah",
+      "gridCellId": "3204:-8129",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333879745"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3224:-8078-12942-1",
+      "taxonId": "12942",
+      "scientificName": "Sialia sialis (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Turdidae",
+      "genus": "Sialia",
+      "species": "Sialia sialis",
+      "regionId": "savannah",
+      "gridCellId": "3224:-8078",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 31,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334434913"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3238:-8070-4938-1",
+      "taxonId": "4938",
+      "scientificName": "Egretta tricolor (Statius Muller, 1776)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Egretta",
+      "species": "Egretta tricolor",
+      "regionId": "savannah",
+      "gridCellId": "3238:-8070",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 7,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335262170"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3234:-8130-18236-1",
+      "taxonId": "18236",
+      "scientificName": "Colaptes auratus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Piciformes",
+      "family": "Picidae",
+      "genus": "Colaptes",
+      "species": "Colaptes auratus",
+      "regionId": "savannah",
+      "gridCellId": "3234:-8130",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335437928"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3238:-8069-4742-1",
+      "taxonId": "4742",
+      "scientificName": "Mycteria americana Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Ciconiiformes",
+      "family": "Ciconiidae",
+      "genus": "Mycteria",
+      "species": "Mycteria americana",
+      "regionId": "savannah",
+      "gridCellId": "3238:-8069",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 224,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335740824"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3193:-8132-101051-1",
+      "taxonId": "101051",
+      "scientificName": "Fundulus chrysotus (Günther, 1866)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": null,
+      "order": "Cyprinodontiformes",
+      "family": "Fundulidae",
+      "genus": "Fundulus",
+      "species": "Fundulus chrysotus",
+      "regionId": "savannah",
+      "gridCellId": "3193:-8132",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 29,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333897470"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3199:-8109-7089-1",
+      "taxonId": "7089",
+      "scientificName": "Branta canadensis (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Branta",
+      "species": "Branta canadensis",
+      "regionId": "savannah",
+      "gridCellId": "3199:-8109",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 134,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334560666"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3217:-8090-199840-1",
+      "taxonId": "199840",
+      "scientificName": "Haemorhous mexicanus (P.L.Statius Müller, 1776)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Fringillidae",
+      "genus": "Haemorhous",
+      "species": "Haemorhous mexicanus",
+      "regionId": "savannah",
+      "gridCellId": "3217:-8090",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 11,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334868193"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3238:-8070-145242-1",
+      "taxonId": "145242",
+      "scientificName": "Setophaga palmarum (J.F.Gmelin, 1789)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Parulidae",
+      "genus": "Setophaga",
+      "species": "Setophaga palmarum",
+      "regionId": "savannah",
+      "gridCellId": "3238:-8070",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 388,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334894772"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3214:-8078-119955-1",
+      "taxonId": "119955",
+      "scientificName": "Ilex vomitoria Aiton",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Aquifoliales",
+      "family": "Aquifoliaceae",
+      "genus": "Ilex",
+      "species": "Ilex vomitoria",
+      "regionId": "savannah",
+      "gridCellId": "3214:-8078",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334506864"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3217:-8090-8229-1",
+      "taxonId": "8229",
+      "scientificName": "Cyanocitta cristata (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Corvidae",
+      "genus": "Cyanocitta",
+      "species": "Cyanocitta cristata",
+      "regionId": "savannah",
+      "gridCellId": "3217:-8090",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334868247"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3217:-8090-13632-1",
+      "taxonId": "13632",
+      "scientificName": "Baeolophus bicolor (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Paridae",
+      "genus": "Baeolophus",
+      "species": "Baeolophus bicolor",
+      "regionId": "savannah",
+      "gridCellId": "3217:-8090",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 13,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334868268"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3199:-8111-53059-1",
+      "taxonId": "53059",
+      "scientificName": "Galium aparine L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Gentianales",
+      "family": "Rubiaceae",
+      "genus": "Galium",
+      "species": "Galium aparine",
+      "regionId": "savannah",
+      "gridCellId": "3199:-8111",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 34,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333878905"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3214:-8081-36514-1",
+      "taxonId": "36514",
+      "scientificName": "Anolis carolinensis Voigt, 1832",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Squamata",
+      "order": null,
+      "family": "Dactyloidae",
+      "genus": "Anolis",
+      "species": "Anolis carolinensis",
+      "regionId": "savannah",
+      "gridCellId": "3214:-8081",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 986,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333739639"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3222:-8078-6993-1",
+      "taxonId": "6993",
+      "scientificName": "Bucephala albeola (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Bucephala",
+      "species": "Bucephala albeola",
+      "regionId": "savannah",
+      "gridCellId": "3222:-8078",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 95,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333747381"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3238:-8119-49569-1",
+      "taxonId": "49569",
+      "scientificName": "Tillandsia usneoides (L.) L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Liliopsida",
+      "order": "Poales",
+      "family": "Bromeliaceae",
+      "genus": "Tillandsia",
+      "species": "Tillandsia usneoides",
+      "regionId": "savannah",
+      "gridCellId": "3238:-8119",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335958115"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3234:-8130-7428-1",
+      "taxonId": "7428",
+      "scientificName": "Bombycilla cedrorum Vieillot, 1808",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Bombycillidae",
+      "genus": "Bombycilla",
+      "species": "Bombycilla cedrorum",
+      "regionId": "savannah",
+      "gridCellId": "3234:-8130",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335437927"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3203:-8101-158586-1",
+      "taxonId": "158586",
+      "scientificName": "Ardisia crenata Sims",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Ericales",
+      "family": "Primulaceae",
+      "genus": "Ardisia",
+      "species": "Ardisia crenata",
+      "regionId": "savannah",
+      "gridCellId": "3203:-8101",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335467600"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3230:-8124-120113-1",
+      "taxonId": "120113",
+      "scientificName": "Anthrenus verbasci (Linnaeus, 1767)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Coleoptera",
+      "family": "Dermestidae",
+      "genus": "Anthrenus",
+      "species": "Anthrenus verbasci",
+      "regionId": "savannah",
+      "gridCellId": "3230:-8124",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 13,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335225860"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3207:-8110-120153-1",
+      "taxonId": "120153",
+      "scientificName": "Laetiporus gilbertsonii var. pallidus Burds.",
+      "commonName": null,
+      "kingdom": "Fungi",
+      "class": "Agaricomycetes",
+      "order": "Polyporales",
+      "family": "Laetiporaceae",
+      "genus": "Laetiporus",
+      "species": "Laetiporus gilbertsonii",
+      "regionId": "savannah",
+      "gridCellId": "3207:-8110",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334367367"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3179:-8123-5212-1",
+      "taxonId": "5212",
+      "scientificName": "Buteo jamaicensis (Gmelin, 1788)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Accipitriformes",
+      "family": "Accipitridae",
+      "genus": "Buteo",
+      "species": "Buteo jamaicensis",
+      "regionId": "savannah",
+      "gridCellId": "3179:-8123",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335069133"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3204:-8129-55882-1",
+      "taxonId": "55882",
+      "scientificName": "Hedera helix L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Apiales",
+      "family": "Araliaceae",
+      "genus": "Hedera",
+      "species": "Hedera helix",
+      "regionId": "savannah",
+      "gridCellId": "3204:-8129",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333875823"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3237:-8080-4940-1",
+      "taxonId": "4940",
+      "scientificName": "Egretta thula (Molina, 1782)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Egretta",
+      "species": "Egretta thula",
+      "regionId": "savannah",
+      "gridCellId": "3237:-8080",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334038795"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3234:-8130-145244-1",
+      "taxonId": "145244",
+      "scientificName": "Setophaga pinus (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Parulidae",
+      "genus": "Setophaga",
+      "species": "Setophaga pinus",
+      "regionId": "savannah",
+      "gridCellId": "3234:-8130",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335437931"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3193:-8107-41663-1",
+      "taxonId": "41663",
+      "scientificName": "Procyon lotor (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Carnivora",
+      "family": "Procyonidae",
+      "genus": "Procyon",
+      "species": "Procyon lotor",
+      "regionId": "savannah",
+      "gridCellId": "3193:-8107",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 33,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334796844",
+          "https://www.inaturalist.org/observations/334796901"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3200:-8085-235550-1",
+      "taxonId": "235550",
+      "scientificName": "Danaus plexippus plexippus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Lepidoptera",
+      "family": "Nymphalidae",
+      "genus": "Danaus",
+      "species": "Danaus plexippus",
+      "regionId": "savannah",
+      "gridCellId": "3200:-8085",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 488,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333987519"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3237:-8069-133305-1",
+      "taxonId": "133305",
+      "scientificName": "Houstonia procumbens (Walter ex J.F.Gmel.) Standl.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Gentianales",
+      "family": "Rubiaceae",
+      "genus": "Houstonia",
+      "species": "Houstonia procumbens",
+      "regionId": "savannah",
+      "gridCellId": "3237:-8069",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334244158"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3236:-8118-4756-1",
+      "taxonId": "4756",
+      "scientificName": "Cathartes aura (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Accipitriformes",
+      "family": "Cathartidae",
+      "genus": "Cathartes",
+      "species": "Cathartes aura",
+      "regionId": "savannah",
+      "gridCellId": "3236:-8118",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335996253"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3235:-8132-236935-1",
+      "taxonId": "236935",
+      "scientificName": "Anas platyrhynchos f. domesticus",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Anas",
+      "species": "Anas platyrhynchos",
+      "regionId": "savannah",
+      "gridCellId": "3235:-8132",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336248700"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3204:-8129-1452949-1",
+      "taxonId": "1452949",
+      "scientificName": "Packera dubia (Spreng.) Trock & Mabb.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Packera",
+      "species": "Packera dubia",
+      "regionId": "savannah",
+      "gridCellId": "3204:-8129",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334092777",
+          "https://www.inaturalist.org/observations/333879606"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3238:-8069-4981-1",
+      "taxonId": "4981",
+      "scientificName": "Nycticorax nycticorax (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Nycticorax",
+      "species": "Nycticorax nycticorax",
+      "regionId": "savannah",
+      "gridCellId": "3238:-8069",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 224,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335740952"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3195:-8131-29200-1",
+      "taxonId": "29200",
+      "scientificName": "Opheodrys aestivus Linnaeus, 1766",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Squamata",
+      "order": null,
+      "family": "Colubridae",
+      "genus": "Opheodrys",
+      "species": "Opheodrys aestivus",
+      "regionId": "savannah",
+      "gridCellId": "3195:-8131",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333749632"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3225:-8138-489673-1",
+      "taxonId": "489673",
+      "scientificName": "Lytta polita Say, 1824",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Coleoptera",
+      "family": "Meloidae",
+      "genus": "Lytta",
+      "species": "Lytta polita",
+      "regionId": "savannah",
+      "gridCellId": "3225:-8138",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334568732"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3234:-8130-12942-1",
+      "taxonId": "12942",
+      "scientificName": "Sialia sialis (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Turdidae",
+      "genus": "Sialia",
+      "species": "Sialia sialis",
+      "regionId": "savannah",
+      "gridCellId": "3234:-8130",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335437932"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3188:-8145-464189-1",
+      "taxonId": "464189",
+      "scientificName": "Herpothallon rubrocinctum (Ehrenb.) Aptroot, Lücking & G.Thor",
+      "commonName": null,
+      "kingdom": "Fungi",
+      "class": "Arthoniomycetes",
+      "order": "Arthoniales",
+      "family": "Arthoniaceae",
+      "genus": "Herpothallon",
+      "species": "Herpothallon rubrocinctum",
+      "regionId": "savannah",
+      "gridCellId": "3188:-8145",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 87,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335111867"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3196:-8106-58372-1",
+      "taxonId": "58372",
+      "scientificName": "Distichlis spicata (L.) Greene",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Liliopsida",
+      "order": "Poales",
+      "family": "Poaceae",
+      "genus": "Distichlis",
+      "species": "Distichlis spicata",
+      "regionId": "savannah",
+      "gridCellId": "3196:-8106",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334269693"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3193:-8132-68315-1",
+      "taxonId": "68315",
+      "scientificName": "Lyssomanes viridis (Walckenaer, 1837)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Arachnida",
+      "order": "Araneae",
+      "family": "Salticidae",
+      "genus": "Lyssomanes",
+      "species": "Lyssomanes viridis",
+      "regionId": "savannah",
+      "gridCellId": "3193:-8132",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 77,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333902490"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3194:-8131-54573-1",
+      "taxonId": "54573",
+      "scientificName": "Schizophyllum commune Fr.",
+      "commonName": null,
+      "kingdom": "Fungi",
+      "class": "Agaricomycetes",
+      "order": "Agaricales",
+      "family": "Schizophyllaceae",
+      "genus": "Schizophyllum",
+      "species": "Schizophyllum commune",
+      "regionId": "savannah",
+      "gridCellId": "3194:-8131",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333878751"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3196:-8133-14886-1",
+      "taxonId": "14886",
+      "scientificName": "Mimus polyglottos (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Mimidae",
+      "genus": "Mimus",
+      "species": "Mimus polyglottos",
+      "regionId": "savannah",
+      "gridCellId": "3196:-8133",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 7,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336131561"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3198:-8085-144514-1",
+      "taxonId": "144514",
+      "scientificName": "Leucophaeus atricilla (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Charadriiformes",
+      "family": "Laridae",
+      "genus": "Leucophaeus",
+      "species": "Leucophaeus atricilla",
+      "regionId": "savannah",
+      "gridCellId": "3198:-8085",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334559418"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3202:-8085-10373-1",
+      "taxonId": "10373",
+      "scientificName": "Molothrus ater (Boddaert, 1783)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Icteridae",
+      "genus": "Molothrus",
+      "species": "Molothrus ater",
+      "regionId": "savannah",
+      "gridCellId": "3202:-8085",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334433314"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3194:-8130-9083-1",
+      "taxonId": "9083",
+      "scientificName": "Cardinalis cardinalis (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Cardinalidae",
+      "genus": "Cardinalis",
+      "species": "Cardinalis cardinalis",
+      "regionId": "savannah",
+      "gridCellId": "3194:-8130",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335077566"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3198:-8085-144491-1",
+      "taxonId": "144491",
+      "scientificName": "Tringa semipalmata (J.F.Gmelin, 1789)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Charadriiformes",
+      "family": "Scolopacidae",
+      "genus": "Tringa",
+      "species": "Tringa semipalmata",
+      "regionId": "savannah",
+      "gridCellId": "3198:-8085",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334559314"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3223:-8128-144814-1",
+      "taxonId": "144814",
+      "scientificName": "Poecile carolinensis (Audubon, 1834)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Paridae",
+      "genus": "Poecile",
+      "species": "Poecile carolinensis",
+      "regionId": "savannah",
+      "gridCellId": "3223:-8128",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334760802"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3238:-8070-48098-1",
+      "taxonId": "48098",
+      "scientificName": "Acer rubrum L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Sapindales",
+      "family": "Sapindaceae",
+      "genus": "Acer",
+      "species": "Acer rubrum",
+      "regionId": "savannah",
+      "gridCellId": "3238:-8070",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 267,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334747876"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3217:-8090-9744-1",
+      "taxonId": "9744",
+      "scientificName": "Agelaius phoeniceus (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Icteridae",
+      "genus": "Agelaius",
+      "species": "Agelaius phoeniceus",
+      "regionId": "savannah",
+      "gridCellId": "3217:-8090",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334868283"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3207:-8132-4756-1",
+      "taxonId": "4756",
+      "scientificName": "Cathartes aura (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Accipitriformes",
+      "family": "Cathartidae",
+      "genus": "Cathartes",
+      "species": "Cathartes aura",
+      "regionId": "savannah",
+      "gridCellId": "3207:-8132",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 41,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334376865"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3200:-8085-4496-1",
+      "taxonId": "4496",
+      "scientificName": "Rynchops niger Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Charadriiformes",
+      "family": "Laridae",
+      "genus": "Rynchops",
+      "species": "Rynchops niger",
+      "regionId": "savannah",
+      "gridCellId": "3200:-8085",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335951248"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3237:-8069-77398-1",
+      "taxonId": "77398",
+      "scientificName": "Heterotheca subaxillaris (Lam.) Britton & Rusby",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Heterotheca",
+      "species": "Heterotheca subaxillaris",
+      "regionId": "savannah",
+      "gridCellId": "3237:-8069",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334245846"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3228:-8122-322872-1",
+      "taxonId": "322872",
+      "scientificName": "Artace cribrarius (Ljungh, 1825)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Lepidoptera",
+      "family": "Lasiocampidae",
+      "genus": "Artace",
+      "species": "Artace cribrarius",
+      "regionId": "savannah",
+      "gridCellId": "3228:-8122",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334011776"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3238:-8070-4742-1",
+      "taxonId": "4742",
+      "scientificName": "Mycteria americana Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Ciconiiformes",
+      "family": "Ciconiidae",
+      "genus": "Mycteria",
+      "species": "Mycteria americana",
+      "regionId": "savannah",
+      "gridCellId": "3238:-8070",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335741223"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3237:-8080-7109-1",
+      "taxonId": "7109",
+      "scientificName": "Lophodytes cucullatus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Lophodytes",
+      "species": "Lophodytes cucullatus",
+      "regionId": "savannah",
+      "gridCellId": "3237:-8080",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 202,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334903220"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3238:-8070-3751-1",
+      "taxonId": "3751",
+      "scientificName": "Eudocimus albus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Threskiornithidae",
+      "genus": "Eudocimus",
+      "species": "Eudocimus albus",
+      "regionId": "savannah",
+      "gridCellId": "3238:-8070",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 7,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335262578"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3211:-8081-126393-1",
+      "taxonId": "126393",
+      "scientificName": "Stomolophus meleagris Agassiz, 1860",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Scyphozoa",
+      "order": "Rhizostomeae",
+      "family": "Stomolophidae",
+      "genus": "Stomolophus",
+      "species": "Stomolophus meleagris",
+      "regionId": "savannah",
+      "gridCellId": "3211:-8081",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 213,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334961044"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3193:-8132-18463-1",
+      "taxonId": "18463",
+      "scientificName": "Sphyrapicus varius (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Piciformes",
+      "family": "Picidae",
+      "genus": "Sphyrapicus",
+      "species": "Sphyrapicus varius",
+      "regionId": "savannah",
+      "gridCellId": "3193:-8132",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 202,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335097375"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3197:-8116-22631-1",
+      "taxonId": "22631",
+      "scientificName": "Eleutherodactylus planirostris (Cope, 1862)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Amphibia",
+      "order": "Anura",
+      "family": "Eleutherodactylidae",
+      "genus": "Eleutherodactylus",
+      "species": "Eleutherodactylus planirostris",
+      "regionId": "savannah",
+      "gridCellId": "3197:-8116",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 45,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335528468"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3218:-8149-7513-1",
+      "taxonId": "7513",
+      "scientificName": "Thryothorus ludovicianus (Latham, 1790)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Troglodytidae",
+      "genus": "Thryothorus",
+      "species": "Thryothorus ludovicianus",
+      "regionId": "savannah",
+      "gridCellId": "3218:-8149",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334446488"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3218:-8073-4981-1",
+      "taxonId": "4981",
+      "scientificName": "Nycticorax nycticorax (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Nycticorax",
+      "species": "Nycticorax nycticorax",
+      "regionId": "savannah",
+      "gridCellId": "3218:-8073",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 32,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334434575"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3221:-8075-54590-1",
+      "taxonId": "54590",
+      "scientificName": "Clathrus columnatus Bosc",
+      "commonName": null,
+      "kingdom": "Fungi",
+      "class": "Agaricomycetes",
+      "order": "Phallales",
+      "family": "Phallaceae",
+      "genus": "Clathrus",
+      "species": "Clathrus columnatus",
+      "regionId": "savannah",
+      "gridCellId": "3221:-8075",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 20,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335610515"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3195:-8131-504587-1",
+      "taxonId": "504587",
+      "scientificName": "Amanita persicina (D.T.Jenkins) Tulloss & Geml",
+      "commonName": null,
+      "kingdom": "Fungi",
+      "class": "Agaricomycetes",
+      "order": "Agaricales",
+      "family": "Amanitaceae",
+      "genus": "Amanita",
+      "species": "Amanita persicina",
+      "regionId": "savannah",
+      "gridCellId": "3195:-8131",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333878771"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3199:-8109-558426-1",
+      "taxonId": "558426",
+      "scientificName": "Anser caerulescens (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Anser",
+      "species": "Anser caerulescens",
+      "regionId": "savannah",
+      "gridCellId": "3199:-8109",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 372,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335410553"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3208:-8111-34435-1",
+      "taxonId": "34435",
+      "scientificName": "Hemidactylus turcicus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Squamata",
+      "order": null,
+      "family": "Gekkonidae",
+      "genus": "Hemidactylus",
+      "species": "Hemidactylus turcicus",
+      "regionId": "savannah",
+      "gridCellId": "3208:-8111",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336029739"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3193:-8132-1668858-1",
+      "taxonId": "1668858",
+      "scientificName": "Dryophytes cinereus (Schneider, 1799)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Amphibia",
+      "order": "Anura",
+      "family": "Hylidae",
+      "genus": "Dryophytes",
+      "species": "Dryophytes cinereus",
+      "regionId": "savannah",
+      "gridCellId": "3193:-8132",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 39,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333801169"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3235:-8116-60997-1",
+      "taxonId": "60997",
+      "scientificName": "Ceratophyllum demersum L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Ceratophyllales",
+      "family": "Ceratophyllaceae",
+      "genus": "Ceratophyllum",
+      "species": "Ceratophyllum demersum",
+      "regionId": "savannah",
+      "gridCellId": "3235:-8116",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335956316"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3238:-8069-39782-1",
+      "taxonId": "39782",
+      "scientificName": "Trachemys scripta (Thunberg In Schoepff, 1792)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Testudines",
+      "order": null,
+      "family": "Emydidae",
+      "genus": "Trachemys",
+      "species": "Trachemys scripta",
+      "regionId": "savannah",
+      "gridCellId": "3238:-8069",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 224,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335740267"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3199:-8109-473-1",
+      "taxonId": "473",
+      "scientificName": "Fulica americana Gmelin, 1789",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Gruiformes",
+      "family": "Rallidae",
+      "genus": "Fulica",
+      "species": "Fulica americana",
+      "regionId": "savannah",
+      "gridCellId": "3199:-8109",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 214,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334560819"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3238:-8069-10286-1",
+      "taxonId": "10286",
+      "scientificName": "Mniotilta varia (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Parulidae",
+      "genus": "Mniotilta",
+      "species": "Mniotilta varia",
+      "regionId": "savannah",
+      "gridCellId": "3238:-8069",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 224,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335740631"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3232:-8091-4938-1",
+      "taxonId": "4938",
+      "scientificName": "Egretta tricolor (Statius Muller, 1776)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Egretta",
+      "species": "Egretta tricolor",
+      "regionId": "savannah",
+      "gridCellId": "3232:-8091",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 807,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334738209"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3189:-8120-362543-1",
+      "taxonId": "362543",
+      "scientificName": "Dolomedes albineus Hentz, 1845",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Arachnida",
+      "order": "Araneae",
+      "family": "Pisauridae",
+      "genus": "Dolomedes",
+      "species": "Dolomedes albineus",
+      "regionId": "savannah",
+      "gridCellId": "3189:-8120",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 11,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335856714"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3238:-8069-4940-1",
+      "taxonId": "4940",
+      "scientificName": "Egretta thula (Molina, 1782)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Egretta",
+      "species": "Egretta thula",
+      "regionId": "savannah",
+      "gridCellId": "3238:-8069",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 224,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335740711"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:38.740Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "savannah-center-envelope-v1"
+    }
+  ]
 }

@@ -1,20 +1,32 @@
 {
   "schemaVersion": "biodiversity-sidecar-v1",
   "metadata": {
-    "schemaVersion": "biodiversity-sidecar-v1",
     "regionId": "pittsburgh",
-    "sourceVintage": "2026-10-10",
-    "generatedAt": "2026-10-10T00:00:00.000Z",
-    "sourceAccess": "GBIF occurrence search API",
-    "sourceQuery": "Region boundary query; authenticated download required for large regions.",
-    "boundaryVersion": "pittsburgh-boundary-v1",
+    "sourceVintage": "2026-10-11",
+    "boundaryVersion": "pittsburgh-center-envelope-v1",
     "gbifDownloadDoi": null,
-    "inputRows": 0,
+    "generatedAt": "2026-10-11T01:53:18.737Z",
+    "fixture": false,
+    "sourceAccess": "GBIF occurrence search API",
+    "sourceQuery": "POLYGON((-80.44486939904381 40.089999999999996,-79.52513060095619 40.089999999999996,-79.52513060095619 40.79,-80.44486939904381 40.79,-80.44486939904381 40.089999999999996))",
+    "inputRows": 300,
+    "matchingRecordCount": 338752,
+    "coverageNote": null,
+    "schemaVersion": "biodiversity-sidecar-v1",
+    "acquisitionWorkflow": {
+      "mode": "occurrence-search",
+      "endpoint": "https://api.gbif.org/v1/occurrence/search",
+      "pageSize": 300,
+      "maxOffset": 100000
+    },
     "freshnessClass": "fresh",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
     "releaseState": "sidecar-available",
+    "qualityReview": {
+      "status": "not-reviewed"
+    },
     "gateReason": null,
     "safeguards": {
       "coordinateUncertaintyFiltering": true,
@@ -22,17 +34,5507 @@
       "privacyAwareAggregation": true,
       "sourceVintageTracked": true,
       "imageLicenseMetadataTracked": true
-    },
-    "qualityReview": {
-      "status": "not-reviewed"
-    },
-    "acquisitionWorkflow": {
-      "mode": "occurrence-search",
-      "endpoint": "https://api.gbif.org/v1/occurrence/search",
-      "pageSize": 300,
-      "maxOffset": 100000
-    },
-    "coverageNote": "No qualifying rows are currently published for this region; this is not evidence of absence."
+    }
   },
-  "records": []
+  "records": [
+    {
+      "recordId": "aggregate-4044:-7990-9083-1",
+      "taxonId": "9083",
+      "scientificName": "Cardinalis cardinalis (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Cardinalidae",
+      "genus": "Cardinalis",
+      "species": "Cardinalis cardinalis",
+      "regionId": "pittsburgh",
+      "gridCellId": "4044:-7990",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 21,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333019555"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4070:-7956-42652-1",
+      "taxonId": "42652",
+      "scientificName": "Didelphis virginiana Kerr, 1792",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Didelphimorphia",
+      "family": "Didelphidae",
+      "genus": "Didelphis",
+      "species": "Didelphis virginiana",
+      "regionId": "pittsburgh",
+      "gridCellId": "4070:-7956",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 24,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333515965",
+          "https://www.inaturalist.org/observations/335134718"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4048:-7984-3454-1",
+      "taxonId": "3454",
+      "scientificName": "Zenaida macroura (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Columbiformes",
+      "family": "Columbidae",
+      "genus": "Zenaida",
+      "species": "Zenaida macroura",
+      "regionId": "pittsburgh",
+      "gridCellId": "4048:-7984",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 205,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333183881"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4041:-7992-4364-1",
+      "taxonId": "4364",
+      "scientificName": "Larus delawarensis Ord, 1815",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Charadriiformes",
+      "family": "Laridae",
+      "genus": "Larus",
+      "species": "Larus delawarensis",
+      "regionId": "pittsburgh",
+      "gridCellId": "4041:-7992",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 15,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333386662"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4070:-7956-9083-1",
+      "taxonId": "9083",
+      "scientificName": "Cardinalis cardinalis (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Cardinalidae",
+      "genus": "Cardinalis",
+      "species": "Cardinalis cardinalis",
+      "regionId": "pittsburgh",
+      "gridCellId": "4070:-7956",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 24,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333517171",
+          "https://www.inaturalist.org/observations/333517623"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4070:-7956-10094-1",
+      "taxonId": "10094",
+      "scientificName": "Junco hyemalis (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Junco",
+      "species": "Junco hyemalis",
+      "regionId": "pittsburgh",
+      "gridCellId": "4070:-7956",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 24,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333518130"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4033:-8012-8229-1",
+      "taxonId": "8229",
+      "scientificName": "Cyanocitta cristata (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Corvidae",
+      "genus": "Cyanocitta",
+      "species": "Cyanocitta cristata",
+      "regionId": "pittsburgh",
+      "gridCellId": "4033:-8012",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333386660"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4045:-7992-46020-1",
+      "taxonId": "46020",
+      "scientificName": "Sciurus niger Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Rodentia",
+      "family": "Sciuridae",
+      "genus": "Sciurus",
+      "species": "Sciurus niger",
+      "regionId": "pittsburgh",
+      "gridCellId": "4045:-7992",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 86,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333637448"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4036:-8004-42223-1",
+      "taxonId": "42223",
+      "scientificName": "Odocoileus virginianus (Zimmermann, 1780)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Artiodactyla",
+      "family": "Cervidae",
+      "genus": "Odocoileus",
+      "species": "Odocoileus virginianus",
+      "regionId": "pittsburgh",
+      "gridCellId": "4036:-8004",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333647168"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4034:-8011-9096-1",
+      "taxonId": "9096",
+      "scientificName": "Melospiza georgiana (Latham, 1790)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Melospiza",
+      "species": "Melospiza georgiana",
+      "regionId": "pittsburgh",
+      "gridCellId": "4034:-8011",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333386659"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4047:-7995-9100-1",
+      "taxonId": "9100",
+      "scientificName": "Melospiza melodia (A.Wilson, 1810)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Melospiza",
+      "species": "Melospiza melodia",
+      "regionId": "pittsburgh",
+      "gridCellId": "4047:-7995",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 31,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333049098"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4043:-7994-9100-1",
+      "taxonId": "9100",
+      "scientificName": "Melospiza melodia (A.Wilson, 1810)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Melospiza",
+      "species": "Melospiza melodia",
+      "regionId": "pittsburgh",
+      "gridCellId": "4043:-7994",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 7,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333169246"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4035:-8004-128029-1",
+      "taxonId": "128029",
+      "scientificName": "Entodon seductrix (Hedw.) Müll.Hal.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Bryopsida",
+      "order": "Hypnales",
+      "family": "Entodontaceae",
+      "genus": "Entodon",
+      "species": "Entodon seductrix",
+      "regionId": "pittsburgh",
+      "gridCellId": "4035:-8004",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 17,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333647130"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4047:-7995-42223-1",
+      "taxonId": "42223",
+      "scientificName": "Odocoileus virginianus (Zimmermann, 1780)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Artiodactyla",
+      "family": "Cervidae",
+      "genus": "Odocoileus",
+      "species": "Odocoileus virginianus",
+      "regionId": "pittsburgh",
+      "gridCellId": "4047:-7995",
+      "month": 1,
+      "observationCount": 3,
+      "coordinateUncertainty": {
+        "summaryMeters": 31,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333048917",
+          "https://www.inaturalist.org/observations/335255243",
+          "https://www.inaturalist.org/observations/335255406"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4042:-8001-57824-1",
+      "taxonId": "57824",
+      "scientificName": "Sambucus racemosa L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Dipsacales",
+      "family": "Viburnaceae",
+      "genus": "Sambucus",
+      "species": "Sambucus racemosa",
+      "regionId": "pittsburgh",
+      "gridCellId": "4042:-8001",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333151129"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4070:-7971-54787-1",
+      "taxonId": "54787",
+      "scientificName": "Carya cordiformis (Wangenh.) K.Koch",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Fagales",
+      "family": "Juglandaceae",
+      "genus": "Carya",
+      "species": "Carya cordiformis",
+      "regionId": "pittsburgh",
+      "gridCellId": "4070:-7971",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 10,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333084426"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4044:-7991-196842-1",
+      "taxonId": "196842",
+      "scientificName": "Stereum complicatum (Fr.) Fr.",
+      "commonName": null,
+      "kingdom": "Fungi",
+      "class": "Agaricomycetes",
+      "order": "Russulales",
+      "family": "Stereaceae",
+      "genus": "Stereum",
+      "species": "Stereum complicatum",
+      "regionId": "pittsburgh",
+      "gridCellId": "4044:-7991",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 110,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333653941"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4036:-8003-81923-1",
+      "taxonId": "81923",
+      "scientificName": "Halyomorpha halys (Stål, 1855)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Hemiptera",
+      "family": "Pentatomidae",
+      "genus": "Halyomorpha",
+      "species": "Halyomorpha halys",
+      "regionId": "pittsburgh",
+      "gridCellId": "4036:-8003",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 20,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333485358"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4048:-7984-9083-1",
+      "taxonId": "9083",
+      "scientificName": "Cardinalis cardinalis (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Cardinalidae",
+      "genus": "Cardinalis",
+      "species": "Cardinalis cardinalis",
+      "regionId": "pittsburgh",
+      "gridCellId": "4048:-7984",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 205,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333184046",
+          "https://www.inaturalist.org/observations/333184119"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4044:-7991-153495-1",
+      "taxonId": "153495",
+      "scientificName": "Coras Simon, 1898",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Arachnida",
+      "order": "Araneae",
+      "family": "Agelenidae",
+      "genus": "Coras",
+      "species": null,
+      "regionId": "pittsburgh",
+      "gridCellId": "4044:-7991",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 124,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333028759"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4046:-7994-121594-1",
+      "taxonId": "121594",
+      "scientificName": "Thyridopteryx ephemeraeformis (Haworth, 1803)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Lepidoptera",
+      "family": "Psychidae",
+      "genus": "Thyridopteryx",
+      "species": "Thyridopteryx ephemeraeformis",
+      "regionId": "pittsburgh",
+      "gridCellId": "4046:-7994",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333365616"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4043:-7975-52757-1",
+      "taxonId": "52757",
+      "scientificName": "Polistes fuscatus (Fabricius, 1793)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Hymenoptera",
+      "family": "Eumenidae",
+      "genus": "Polistes",
+      "species": "Polistes fuscatus",
+      "regionId": "pittsburgh",
+      "gridCellId": "4043:-7975",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333639258"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4035:-8004-120583-1",
+      "taxonId": "120583",
+      "scientificName": "Parasteatoda tepidariorum (C.L.Koch, 1841)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Arachnida",
+      "order": "Araneae",
+      "family": "Theridiidae",
+      "genus": "Parasteatoda",
+      "species": "Parasteatoda tepidariorum",
+      "regionId": "pittsburgh",
+      "gridCellId": "4035:-8004",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 15,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333647145"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4070:-7956-1433448-1",
+      "taxonId": "1433448",
+      "scientificName": "Hesperomyces harmoniae Haelew. & De Kesel",
+      "commonName": null,
+      "kingdom": "Fungi",
+      "class": "Laboulbeniomycetes",
+      "order": "Laboulbeniales",
+      "family": "Laboulbeniaceae",
+      "genus": "Hesperomyces",
+      "species": "Hesperomyces harmoniae",
+      "regionId": "pittsburgh",
+      "gridCellId": "4070:-7956",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 24,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333344909"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4070:-7956-792988-1",
+      "taxonId": "792988",
+      "scientificName": "Dryobates pubescens (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Piciformes",
+      "family": "Picidae",
+      "genus": "Dryobates",
+      "species": "Dryobates pubescens",
+      "regionId": "pittsburgh",
+      "gridCellId": "4070:-7956",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 24,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333518476",
+          "https://www.inaturalist.org/observations/333516876"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4035:-8004-42223-1",
+      "taxonId": "42223",
+      "scientificName": "Odocoileus virginianus (Zimmermann, 1780)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Artiodactyla",
+      "family": "Cervidae",
+      "genus": "Odocoileus",
+      "species": "Odocoileus virginianus",
+      "regionId": "pittsburgh",
+      "gridCellId": "4035:-8004",
+      "month": 1,
+      "observationCount": 4,
+      "coordinateUncertainty": {
+        "summaryMeters": 21,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333369030",
+          "https://www.inaturalist.org/observations/333369023",
+          "https://www.inaturalist.org/observations/333369024",
+          "https://www.inaturalist.org/observations/333918694"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4043:-7991-699200-1",
+      "taxonId": "699200",
+      "scientificName": "Chionea scita Walker, 1848",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Diptera",
+      "family": "Limoniidae",
+      "genus": "Chionea",
+      "species": "Chionea scita",
+      "regionId": "pittsburgh",
+      "gridCellId": "4043:-7991",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 181,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333200785"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4035:-8004-324726-1",
+      "taxonId": "324726",
+      "scientificName": "Lycorma delicatula (White, 1845)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Hemiptera",
+      "family": "Fulgoridae",
+      "genus": "Lycorma",
+      "species": "Lycorma delicatula",
+      "regionId": "pittsburgh",
+      "gridCellId": "4035:-8004",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 11,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333647142",
+          "https://www.inaturalist.org/observations/333918696"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4048:-7984-9184-1",
+      "taxonId": "9184",
+      "scientificName": "Zonotrichia albicollis (J.F.Gmelin, 1789)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Zonotrichia",
+      "species": "Zonotrichia albicollis",
+      "regionId": "pittsburgh",
+      "gridCellId": "4048:-7984",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 205,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333183962"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4036:-8004-77835-1",
+      "taxonId": "77835",
+      "scientificName": "Lonicera japonica Thunb.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Dipsacales",
+      "family": "Caprifoliaceae",
+      "genus": "Lonicera",
+      "species": "Lonicera japonica",
+      "regionId": "pittsburgh",
+      "gridCellId": "4036:-8004",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 15,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333647167",
+          "https://www.inaturalist.org/observations/333647190"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4034:-8011-6924-1",
+      "taxonId": "6924",
+      "scientificName": "Anas rubripes Brewster, 1902",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Anas",
+      "species": "Anas rubripes",
+      "regionId": "pittsburgh",
+      "gridCellId": "4034:-8011",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333386658"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4070:-7956-18205-1",
+      "taxonId": "18205",
+      "scientificName": "Melanerpes carolinus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Piciformes",
+      "family": "Picidae",
+      "genus": "Melanerpes",
+      "species": "Melanerpes carolinus",
+      "regionId": "pittsburgh",
+      "gridCellId": "4070:-7956",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 25,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333517004",
+          "https://www.inaturalist.org/observations/333518606"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4070:-7956-48484-1",
+      "taxonId": "48484",
+      "scientificName": "Harmonia axyridis (Pallas, 1773)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Coleoptera",
+      "family": "Coccinellidae",
+      "genus": "Harmonia",
+      "species": "Harmonia axyridis",
+      "regionId": "pittsburgh",
+      "gridCellId": "4070:-7956",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 24,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333344191",
+          "https://www.inaturalist.org/observations/333344752"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4042:-8000-52899-1",
+      "taxonId": "52899",
+      "scientificName": "Solanum carolinense L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Solanales",
+      "family": "Solanaceae",
+      "genus": "Solanum",
+      "species": "Solanum carolinense",
+      "regionId": "pittsburgh",
+      "gridCellId": "4042:-8000",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333158824"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4061:-8004-27420-1",
+      "taxonId": "27420",
+      "scientificName": "Desmognathus fuscus (Rafinesque, 1820)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Amphibia",
+      "order": "Caudata",
+      "family": "Plethodontidae",
+      "genus": "Desmognathus",
+      "species": "Desmognathus fuscus",
+      "regionId": "pittsburgh",
+      "gridCellId": "4061:-8004",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 55,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333448061"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4035:-8004-120113-1",
+      "taxonId": "120113",
+      "scientificName": "Anthrenus verbasci (Linnaeus, 1767)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Coleoptera",
+      "family": "Dermestidae",
+      "genus": "Anthrenus",
+      "species": "Anthrenus verbasci",
+      "regionId": "pittsburgh",
+      "gridCellId": "4035:-8004",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 12,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333074258"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4044:-7991-224004-1",
+      "taxonId": "224004",
+      "scientificName": "Lithophane unimoda Lintner, 1878",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Lepidoptera",
+      "family": "Noctuidae",
+      "genus": "Lithophane",
+      "species": "Lithophane unimoda",
+      "regionId": "pittsburgh",
+      "gridCellId": "4044:-7991",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 113,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333028504"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4070:-7956-9100-1",
+      "taxonId": "9100",
+      "scientificName": "Melospiza melodia (A.Wilson, 1810)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Melospiza",
+      "species": "Melospiza melodia",
+      "regionId": "pittsburgh",
+      "gridCellId": "4070:-7956",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 24,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333519223",
+          "https://www.inaturalist.org/observations/333518865"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4044:-7991-67338-1",
+      "taxonId": "67338",
+      "scientificName": "Gloeophyllum sepiarium (Wulfen) P.Karst.",
+      "commonName": null,
+      "kingdom": "Fungi",
+      "class": "Agaricomycetes",
+      "order": "Gloeophyllales",
+      "family": "Gloeophyllaceae",
+      "genus": "Gloeophyllum",
+      "species": "Gloeophyllum sepiarium",
+      "regionId": "pittsburgh",
+      "gridCellId": "4044:-7991",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 89,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333655646"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4047:-7995-18205-1",
+      "taxonId": "18205",
+      "scientificName": "Melanerpes carolinus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Piciformes",
+      "family": "Picidae",
+      "genus": "Melanerpes",
+      "species": "Melanerpes carolinus",
+      "regionId": "pittsburgh",
+      "gridCellId": "4047:-7995",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 31,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333048981"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4070:-7971-129278-1",
+      "taxonId": "129278",
+      "scientificName": "Verbena urticifolia L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Lamiales",
+      "family": "Verbenaceae",
+      "genus": "Verbena",
+      "species": "Verbena urticifolia",
+      "regionId": "pittsburgh",
+      "gridCellId": "4070:-7971",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333084390"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4036:-8004-128620-1",
+      "taxonId": "128620",
+      "scientificName": "Hackelia virginiana (L.) I.M.Johnst.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Boraginales",
+      "family": "Boraginaceae",
+      "genus": "Hackelia",
+      "species": "Hackelia virginiana",
+      "regionId": "pittsburgh",
+      "gridCellId": "4036:-8004",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333647158"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4036:-8004-130893-1",
+      "taxonId": "130893",
+      "scientificName": "Euonymus fortunei (Turcz.) Hand.-Mazz.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Celastrales",
+      "family": "Celastraceae",
+      "genus": "Euonymus",
+      "species": "Euonymus fortunei",
+      "regionId": "pittsburgh",
+      "gridCellId": "4036:-8004",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 14,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333647194"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4042:-8001-8021-1",
+      "taxonId": "8021",
+      "scientificName": "Corvus brachyrhynchos C.L.Brehm, 1822",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Corvidae",
+      "genus": "Corvus",
+      "species": "Corvus brachyrhynchos",
+      "regionId": "pittsburgh",
+      "gridCellId": "4042:-8001",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333052179"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4043:-7991-10094-1",
+      "taxonId": "10094",
+      "scientificName": "Junco hyemalis (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Junco",
+      "species": "Junco hyemalis",
+      "regionId": "pittsburgh",
+      "gridCellId": "4043:-7991",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 31,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333640473",
+          "https://www.inaturalist.org/observations/335639164"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4044:-7991-61119-1",
+      "taxonId": "61119",
+      "scientificName": "Ilex verticillata (L.) A.Gray",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Aquifoliales",
+      "family": "Aquifoliaceae",
+      "genus": "Ilex",
+      "species": "Ilex verticillata",
+      "regionId": "pittsburgh",
+      "gridCellId": "4044:-7991",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333487224"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4044:-7991-9100-1",
+      "taxonId": "9100",
+      "scientificName": "Melospiza melodia (A.Wilson, 1810)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Melospiza",
+      "species": "Melospiza melodia",
+      "regionId": "pittsburgh",
+      "gridCellId": "4044:-7991",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 92,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333505005"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4058:-8007-63567-1",
+      "taxonId": "63567",
+      "scientificName": "Picea abies (L.) H.Karst.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Pinopsida",
+      "order": "Pinales",
+      "family": "Pinaceae",
+      "genus": "Picea",
+      "species": "Picea abies",
+      "regionId": "pittsburgh",
+      "gridCellId": "4058:-8007",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333476208"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4062:-8012-981-1",
+      "taxonId": "981",
+      "scientificName": "Phasianus colchicus Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Galliformes",
+      "family": "Phasianidae",
+      "genus": "Phasianus",
+      "species": "Phasianus colchicus",
+      "regionId": "pittsburgh",
+      "gridCellId": "4062:-8012",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 90,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333098825"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4070:-7956-8229-1",
+      "taxonId": "8229",
+      "scientificName": "Cyanocitta cristata (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Corvidae",
+      "genus": "Cyanocitta",
+      "species": "Cyanocitta cristata",
+      "regionId": "pittsburgh",
+      "gridCellId": "4070:-7956",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 25,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333517908"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4048:-7984-144814-1",
+      "taxonId": "144814",
+      "scientificName": "Poecile carolinensis (Audubon, 1834)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Paridae",
+      "genus": "Poecile",
+      "species": "Poecile carolinensis",
+      "regionId": "pittsburgh",
+      "gridCellId": "4048:-7984",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 205,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333184230"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4043:-7991-10224-1",
+      "taxonId": "10224",
+      "scientificName": "Passerina ciris (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Cardinalidae",
+      "genus": "Passerina",
+      "species": "Passerina ciris",
+      "regionId": "pittsburgh",
+      "gridCellId": "4043:-7991",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 15,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333386665"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4044:-7991-487130-1",
+      "taxonId": "487130",
+      "scientificName": "Orchesella villosa (C.von Linné, 1767)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Collembola",
+      "order": "Entomobryomorpha",
+      "family": "Orchesellidae",
+      "genus": "Orchesella",
+      "species": "Orchesella villosa",
+      "regionId": "pittsburgh",
+      "gridCellId": "4044:-7991",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 84,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333028650"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4044:-7991-127597-1",
+      "taxonId": "127597",
+      "scientificName": "Sedum ternatum Michx.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Saxifragales",
+      "family": "Crassulaceae",
+      "genus": "Sedum",
+      "species": "Sedum ternatum",
+      "regionId": "pittsburgh",
+      "gridCellId": "4044:-7991",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 130,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333654513"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4034:-8012-558439-1",
+      "taxonId": "558439",
+      "scientificName": "Mareca strepera (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Mareca",
+      "species": "Mareca strepera",
+      "regionId": "pittsburgh",
+      "gridCellId": "4034:-8012",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333386664"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4043:-7991-27420-1",
+      "taxonId": "27420",
+      "scientificName": "Desmognathus fuscus (Rafinesque, 1820)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Amphibia",
+      "order": "Caudata",
+      "family": "Plethodontidae",
+      "genus": "Desmognathus",
+      "species": "Desmognathus fuscus",
+      "regionId": "pittsburgh",
+      "gridCellId": "4043:-7991",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 63,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333198449"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4070:-7956-13632-1",
+      "taxonId": "13632",
+      "scientificName": "Baeolophus bicolor (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Paridae",
+      "genus": "Baeolophus",
+      "species": "Baeolophus bicolor",
+      "regionId": "pittsburgh",
+      "gridCellId": "4070:-7956",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 24,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333517758"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4070:-7956-42223-1",
+      "taxonId": "42223",
+      "scientificName": "Odocoileus virginianus (Zimmermann, 1780)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Artiodactyla",
+      "family": "Cervidae",
+      "genus": "Odocoileus",
+      "species": "Odocoileus virginianus",
+      "regionId": "pittsburgh",
+      "gridCellId": "4070:-7956",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 28,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333253329",
+          "https://www.inaturalist.org/observations/333517264"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4051:-8021-199840-1",
+      "taxonId": "199840",
+      "scientificName": "Haemorhous mexicanus (P.L.Statius Müller, 1776)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Fringillidae",
+      "genus": "Haemorhous",
+      "species": "Haemorhous mexicanus",
+      "regionId": "pittsburgh",
+      "gridCellId": "4051:-8021",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 392,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333011447"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4070:-7956-7513-1",
+      "taxonId": "7513",
+      "scientificName": "Thryothorus ludovicianus (Latham, 1790)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Troglodytidae",
+      "genus": "Thryothorus",
+      "species": "Thryothorus ludovicianus",
+      "regionId": "pittsburgh",
+      "gridCellId": "4070:-7956",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 24,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333518746"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4034:-8012-4956-1",
+      "taxonId": "4956",
+      "scientificName": "Ardea herodias Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Ardea",
+      "species": "Ardea herodias",
+      "regionId": "pittsburgh",
+      "gridCellId": "4034:-8012",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333386657"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4036:-8004-49662-1",
+      "taxonId": "49662",
+      "scientificName": "Platanus occidentalis L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Proteales",
+      "family": "Platanaceae",
+      "genus": "Platanus",
+      "species": "Platanus occidentalis",
+      "regionId": "pittsburgh",
+      "gridCellId": "4036:-8004",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 10,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333647180"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4042:-8000-14850-1",
+      "taxonId": "14850",
+      "scientificName": "Sturnus vulgaris Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Sturnidae",
+      "genus": "Sturnus",
+      "species": "Sturnus vulgaris",
+      "regionId": "pittsburgh",
+      "gridCellId": "4042:-8000",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 12,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333640466"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4036:-8004-55620-1",
+      "taxonId": "55620",
+      "scientificName": "Solanum dulcamara L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Solanales",
+      "family": "Solanaceae",
+      "genus": "Solanum",
+      "species": "Solanum dulcamara",
+      "regionId": "pittsburgh",
+      "gridCellId": "4036:-8004",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 18,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333647182"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4036:-8004-121594-1",
+      "taxonId": "121594",
+      "scientificName": "Thyridopteryx ephemeraeformis (Haworth, 1803)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Lepidoptera",
+      "family": "Psychidae",
+      "genus": "Thyridopteryx",
+      "species": "Thyridopteryx ephemeraeformis",
+      "regionId": "pittsburgh",
+      "gridCellId": "4036:-8004",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333647188"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4045:-7995-43111-1",
+      "taxonId": "43111",
+      "scientificName": "Sylvilagus floridanus (J.A.Allen, 1890)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Lagomorpha",
+      "family": "Leporidae",
+      "genus": "Sylvilagus",
+      "species": "Sylvilagus floridanus",
+      "regionId": "pittsburgh",
+      "gridCellId": "4045:-7995",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333303497"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4034:-8011-1264432-1",
+      "taxonId": "1264432",
+      "scientificName": "Neogale Gray, 1865",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Carnivora",
+      "family": "Mustelidae",
+      "genus": "Mustela",
+      "species": null,
+      "regionId": "pittsburgh",
+      "gridCellId": "4034:-8011",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334219361"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4043:-7994-495290-1",
+      "taxonId": "495290",
+      "scientificName": "Pogonognathellus elongatus (E.A.Maynard, 1951)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Collembola",
+      "order": "Entomobryomorpha",
+      "family": "Tomoceridae",
+      "genus": "Pogonognathellus",
+      "species": "Pogonognathellus elongatus",
+      "regionId": "pittsburgh",
+      "gridCellId": "4043:-7994",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 63,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333896665"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4035:-8003-59029-1",
+      "taxonId": "59029",
+      "scientificName": "Verbascum thapsus L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Lamiales",
+      "family": "Scrophulariaceae",
+      "genus": "Verbascum",
+      "species": "Verbascum thapsus",
+      "regionId": "pittsburgh",
+      "gridCellId": "4035:-8003",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333774215"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4044:-7991-48284-1",
+      "taxonId": "48284",
+      "scientificName": "Oniscus asellus Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Malacostraca",
+      "order": "Isopoda",
+      "family": "Oniscidae",
+      "genus": "Oniscus",
+      "species": "Oniscus asellus",
+      "regionId": "pittsburgh",
+      "gridCellId": "4044:-7991",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 131,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334124296"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4030:-7966-54834-1",
+      "taxonId": "54834",
+      "scientificName": "Prunus serotina Ehrh.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Rosales",
+      "family": "Rosaceae",
+      "genus": "Prunus",
+      "species": "Prunus serotina",
+      "regionId": "pittsburgh",
+      "gridCellId": "4030:-7966",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333989254"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4043:-7991-7458-1",
+      "taxonId": "7458",
+      "scientificName": "Certhia americana Bonaparte, 1838",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Certhiidae",
+      "genus": "Certhia",
+      "species": "Certhia americana",
+      "regionId": "pittsburgh",
+      "gridCellId": "4043:-7991",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334288198"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4043:-7991-7513-1",
+      "taxonId": "7513",
+      "scientificName": "Thryothorus ludovicianus (Latham, 1790)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Troglodytidae",
+      "genus": "Thryothorus",
+      "species": "Thryothorus ludovicianus",
+      "regionId": "pittsburgh",
+      "gridCellId": "4043:-7991",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 31,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335639284",
+          "https://www.inaturalist.org/observations/335639429"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4042:-7996-146964-1",
+      "taxonId": "146964",
+      "scientificName": "Disholcaspis Dalla Torre & Kieffer, 1910",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Hymenoptera",
+      "family": "Cynipidae",
+      "genus": "Disholcaspis",
+      "species": null,
+      "regionId": "pittsburgh",
+      "gridCellId": "4042:-7996",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 114,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334403428"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4051:-7990-154735-1",
+      "taxonId": "154735",
+      "scientificName": "Galerina marginata (Batsch) Kühner",
+      "commonName": null,
+      "kingdom": "Fungi",
+      "class": "Agaricomycetes",
+      "order": "Agaricales",
+      "family": "Hymenogastraceae",
+      "genus": "Galerina",
+      "species": "Galerina marginata",
+      "regionId": "pittsburgh",
+      "gridCellId": "4051:-7990",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333867053"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4017:-8041-792988-1",
+      "taxonId": "792988",
+      "scientificName": "Dryobates pubescens (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Piciformes",
+      "family": "Picidae",
+      "genus": "Dryobates",
+      "species": "Dryobates pubescens",
+      "regionId": "pittsburgh",
+      "gridCellId": "4017:-8041",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335843523"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4030:-8005-53227-1",
+      "taxonId": "53227",
+      "scientificName": "Boisea trivittata (Say, 1825)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Hemiptera",
+      "family": "Rhopalidae",
+      "genus": "Boisea",
+      "species": "Boisea trivittata",
+      "regionId": "pittsburgh",
+      "gridCellId": "4030:-8005",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334006259"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4070:-7956-178756-1",
+      "taxonId": "178756",
+      "scientificName": "Trichocera Meigen, 1803",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Diptera",
+      "family": "Trichoceridae",
+      "genus": "Trichocera",
+      "species": null,
+      "regionId": "pittsburgh",
+      "gridCellId": "4070:-7956",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 24,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334290796"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4043:-7991-9083-1",
+      "taxonId": "9083",
+      "scientificName": "Cardinalis cardinalis (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Cardinalidae",
+      "genus": "Cardinalis",
+      "species": "Cardinalis cardinalis",
+      "regionId": "pittsburgh",
+      "gridCellId": "4043:-7991",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 31,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335639678",
+          "https://www.inaturalist.org/observations/335639111"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4048:-7984-7513-1",
+      "taxonId": "7513",
+      "scientificName": "Thryothorus ludovicianus (Latham, 1790)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Troglodytidae",
+      "genus": "Thryothorus",
+      "species": "Thryothorus ludovicianus",
+      "regionId": "pittsburgh",
+      "gridCellId": "4048:-7984",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 205,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336122357"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4047:-7995-5212-1",
+      "taxonId": "5212",
+      "scientificName": "Buteo jamaicensis (Gmelin, 1788)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Accipitriformes",
+      "family": "Accipitridae",
+      "genus": "Buteo",
+      "species": "Buteo jamaicensis",
+      "regionId": "pittsburgh",
+      "gridCellId": "4047:-7995",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 31,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335255681"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4044:-7991-205720-1",
+      "taxonId": "205720",
+      "scientificName": "Dicyrtomina ornata (H.Nicolet, 1842)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Collembola",
+      "order": "Symphypleona",
+      "family": "Dicyrtomidae",
+      "genus": "Dicyrtomina",
+      "species": "Dicyrtomina ornata",
+      "regionId": "pittsburgh",
+      "gridCellId": "4044:-7991",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 49,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334124673"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4035:-8004-210119-1",
+      "taxonId": "210119",
+      "scientificName": "Armadillidium nasatum Budde-Lund, 1885",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Malacostraca",
+      "order": "Isopoda",
+      "family": "Armadillidiidae",
+      "genus": "Armadillidium",
+      "species": "Armadillidium nasatum",
+      "regionId": "pittsburgh",
+      "gridCellId": "4035:-8004",
+      "month": 1,
+      "observationCount": 3,
+      "coordinateUncertainty": {
+        "summaryMeters": 15,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333918682",
+          "https://www.inaturalist.org/observations/333918688",
+          "https://www.inaturalist.org/observations/333918683"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4046:-8022-81984-1",
+      "taxonId": "81984",
+      "scientificName": "Araniella displicata (Hentz, 1847)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Arachnida",
+      "order": "Araneae",
+      "family": "Araneidae",
+      "genus": "Araniella",
+      "species": "Araniella displicata",
+      "regionId": "pittsburgh",
+      "gridCellId": "4046:-8022",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 49,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334015000"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4042:-8000-48229-1",
+      "taxonId": "48229",
+      "scientificName": "Ranunculus repens L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Ranunculales",
+      "family": "Ranunculaceae",
+      "genus": "Ranunculus",
+      "species": "Ranunculus repens",
+      "regionId": "pittsburgh",
+      "gridCellId": "4042:-8000",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335832018"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4044:-7991-42223-1",
+      "taxonId": "42223",
+      "scientificName": "Odocoileus virginianus (Zimmermann, 1780)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Artiodactyla",
+      "family": "Cervidae",
+      "genus": "Odocoileus",
+      "species": "Odocoileus virginianus",
+      "regionId": "pittsburgh",
+      "gridCellId": "4044:-7991",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 141,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335991526"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.736Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4043:-7995-77835-1",
+      "taxonId": "77835",
+      "scientificName": "Lonicera japonica Thunb.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Dipsacales",
+      "family": "Caprifoliaceae",
+      "genus": "Lonicera",
+      "species": "Lonicera japonica",
+      "regionId": "pittsburgh",
+      "gridCellId": "4043:-7995",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335857252"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4030:-7966-82568-1",
+      "taxonId": "82568",
+      "scientificName": "Dryopteris intermedia (Muhl. ex Willd.) A.Gray",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Polypodiopsida",
+      "order": "Polypodiales",
+      "family": "Dryopteridaceae",
+      "genus": "Dryopteris",
+      "species": "Dryopteris intermedia",
+      "regionId": "pittsburgh",
+      "gridCellId": "4030:-7966",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 7,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333991246"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4032:-8011-53298-1",
+      "taxonId": "53298",
+      "scientificName": "Stellaria media (L.) Vill.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Caryophyllaceae",
+      "genus": "Stellaria",
+      "species": "Stellaria media",
+      "regionId": "pittsburgh",
+      "gridCellId": "4032:-8011",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 24,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334126237"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4051:-7990-118028-1",
+      "taxonId": "118028",
+      "scientificName": "Dacrymyces chrysospermus Berk. & M.A.Curtis",
+      "commonName": null,
+      "kingdom": "Fungi",
+      "class": "Dacrymycetes",
+      "order": "Dacrymycetales",
+      "family": "Dacrymycetaceae",
+      "genus": "Dacrymyces",
+      "species": "Dacrymyces chrysospermus",
+      "regionId": "pittsburgh",
+      "gridCellId": "4051:-7990",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333867937"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4035:-8004-3454-1",
+      "taxonId": "3454",
+      "scientificName": "Zenaida macroura (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Columbiformes",
+      "family": "Columbidae",
+      "genus": "Zenaida",
+      "species": "Zenaida macroura",
+      "regionId": "pittsburgh",
+      "gridCellId": "4035:-8004",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333918697"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4074:-7956-6917-1",
+      "taxonId": "6917",
+      "scientificName": "Cygnus columbianus (Ord, 1815)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Cygnus",
+      "species": "Cygnus columbianus",
+      "regionId": "pittsburgh",
+      "gridCellId": "4074:-7956",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 49,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334049853"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4043:-7995-914922-1",
+      "taxonId": "914922",
+      "scientificName": "Reynoutria japonica Houtt.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Polygonaceae",
+      "genus": "Reynoutria",
+      "species": "Reynoutria japonica",
+      "regionId": "pittsburgh",
+      "gridCellId": "4043:-7995",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335257482"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4051:-7990-63585-1",
+      "taxonId": "63585",
+      "scientificName": "Sarcomyxa serotina (Pers.) V.Papp",
+      "commonName": null,
+      "kingdom": "Fungi",
+      "class": "Agaricomycetes",
+      "order": "Agaricales",
+      "family": "Sarcomyxaceae",
+      "genus": "Sarcomyxa",
+      "species": "Sarcomyxa serotina",
+      "regionId": "pittsburgh",
+      "gridCellId": "4051:-7990",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 600,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333866445"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4041:-7992-117429-1",
+      "taxonId": "117429",
+      "scientificName": "Betula nigra L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Fagales",
+      "family": "Betulaceae",
+      "genus": "Betula",
+      "species": "Betula nigra",
+      "regionId": "pittsburgh",
+      "gridCellId": "4041:-7992",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334384634"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4040:-7997-128038-1",
+      "taxonId": "128038",
+      "scientificName": "Corydalis flavula (Raf.) DC.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Ranunculales",
+      "family": "Papaveraceae",
+      "genus": "Corydalis",
+      "species": "Corydalis flavula",
+      "regionId": "pittsburgh",
+      "gridCellId": "4040:-7997",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334727659"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4036:-8004-82342-1",
+      "taxonId": "82342",
+      "scientificName": "Lonicera maackii (Rupr.) Maxim.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Dipsacales",
+      "family": "Caprifoliaceae",
+      "genus": "Lonicera",
+      "species": "Lonicera maackii",
+      "regionId": "pittsburgh",
+      "gridCellId": "4036:-8004",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 15,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333758710"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4035:-8003-47787-1",
+      "taxonId": "47787",
+      "scientificName": "Yucca L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Liliopsida",
+      "order": "Asparagales",
+      "family": "Asparagaceae",
+      "genus": "Yucca",
+      "species": null,
+      "regionId": "pittsburgh",
+      "gridCellId": "4035:-8003",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333774235"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4044:-7991-17855-1",
+      "taxonId": "17855",
+      "scientificName": "Dryocopus pileatus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Piciformes",
+      "family": "Picidae",
+      "genus": "Dryocopus",
+      "species": "Dryocopus pileatus",
+      "regionId": "pittsburgh",
+      "gridCellId": "4044:-7991",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 74,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334006319"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4043:-7991-5212-1",
+      "taxonId": "5212",
+      "scientificName": "Buteo jamaicensis (Gmelin, 1788)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Accipitriformes",
+      "family": "Accipitridae",
+      "genus": "Buteo",
+      "species": "Buteo jamaicensis",
+      "regionId": "pittsburgh",
+      "gridCellId": "4043:-7991",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 89,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335413428"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4046:-8042-151767-1",
+      "taxonId": "151767",
+      "scientificName": "Punctelia rudecta (Ach.) Krog",
+      "commonName": null,
+      "kingdom": "Fungi",
+      "class": "Lecanoromycetes",
+      "order": "Lecanorales",
+      "family": "Parmeliaceae",
+      "genus": "Punctelia",
+      "species": "Punctelia rudecta",
+      "regionId": "pittsburgh",
+      "gridCellId": "4046:-8042",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335063147"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4048:-7984-144815-1",
+      "taxonId": "144815",
+      "scientificName": "Poecile atricapillus (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Paridae",
+      "genus": "Poecile",
+      "species": "Poecile atricapillus",
+      "regionId": "pittsburgh",
+      "gridCellId": "4048:-7984",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 205,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336122641"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4052:-7985-6930-1",
+      "taxonId": "6930",
+      "scientificName": "Anas platyrhynchos Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Anas",
+      "species": "Anas platyrhynchos",
+      "regionId": "pittsburgh",
+      "gridCellId": "4052:-7985",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 78,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334416879"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4034:-8007-155116-1",
+      "taxonId": "155116",
+      "scientificName": "Elymus villosus Muhl. ex Willd.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Liliopsida",
+      "order": "Poales",
+      "family": "Poaceae",
+      "genus": "Elymus",
+      "species": "Elymus villosus",
+      "regionId": "pittsburgh",
+      "gridCellId": "4034:-8007",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333853168"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4035:-8004-48284-1",
+      "taxonId": "48284",
+      "scientificName": "Oniscus asellus Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Malacostraca",
+      "order": "Isopoda",
+      "family": "Oniscidae",
+      "genus": "Oniscus",
+      "species": "Oniscus asellus",
+      "regionId": "pittsburgh",
+      "gridCellId": "4035:-8004",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 21,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333918689"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4058:-7997-48734-1",
+      "taxonId": "48734",
+      "scientificName": "Tsuga canadensis (L.) Carrière",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Pinopsida",
+      "order": "Pinales",
+      "family": "Pinaceae",
+      "genus": "Tsuga",
+      "species": "Tsuga canadensis",
+      "regionId": "pittsburgh",
+      "gridCellId": "4058:-7997",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 41,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335554186"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4035:-8004-130820-1",
+      "taxonId": "130820",
+      "scientificName": "Vespula vidua (de Saussure, 1854)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Hymenoptera",
+      "family": "Vespidae",
+      "genus": "Vespula",
+      "species": "Vespula vidua",
+      "regionId": "pittsburgh",
+      "gridCellId": "4035:-8004",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 12,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334514709"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4070:-7956-81923-1",
+      "taxonId": "81923",
+      "scientificName": "Halyomorpha halys (Stål, 1855)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Hemiptera",
+      "family": "Pentatomidae",
+      "genus": "Halyomorpha",
+      "species": "Halyomorpha halys",
+      "regionId": "pittsburgh",
+      "gridCellId": "4070:-7956",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 24,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333814945"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4035:-8004-127614-1",
+      "taxonId": "127614",
+      "scientificName": "Polydesmus Latreille, 1802",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Diplopoda",
+      "order": "Polydesmida",
+      "family": "Polydesmidae",
+      "genus": "Polydesmus",
+      "species": null,
+      "regionId": "pittsburgh",
+      "gridCellId": "4035:-8004",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 15,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333918685"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4043:-7991-154735-1",
+      "taxonId": "154735",
+      "scientificName": "Galerina marginata (Batsch) Kühner",
+      "commonName": null,
+      "kingdom": "Fungi",
+      "class": "Agaricomycetes",
+      "order": "Agaricales",
+      "family": "Hymenogastraceae",
+      "genus": "Galerina",
+      "species": "Galerina marginata",
+      "regionId": "pittsburgh",
+      "gridCellId": "4043:-7991",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335511338"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4043:-7991-43111-1",
+      "taxonId": "43111",
+      "scientificName": "Sylvilagus floridanus (J.A.Allen, 1890)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Lagomorpha",
+      "family": "Leporidae",
+      "genus": "Sylvilagus",
+      "species": "Sylvilagus floridanus",
+      "regionId": "pittsburgh",
+      "gridCellId": "4043:-7991",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335596907"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4040:-7997-130893-1",
+      "taxonId": "130893",
+      "scientificName": "Euonymus fortunei (Turcz.) Hand.-Mazz.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Celastrales",
+      "family": "Celastraceae",
+      "genus": "Euonymus",
+      "species": "Euonymus fortunei",
+      "regionId": "pittsburgh",
+      "gridCellId": "4040:-7997",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334868396"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4049:-7999-879877-1",
+      "taxonId": "879877",
+      "scientificName": "Exidia",
+      "commonName": null,
+      "kingdom": "Fungi",
+      "class": "Agaricomycetes",
+      "order": "Auriculariales",
+      "family": "Auriculariaceae",
+      "genus": "Exidia",
+      "species": null,
+      "regionId": "pittsburgh",
+      "gridCellId": "4049:-7999",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334609261"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4043:-7991-130893-1",
+      "taxonId": "130893",
+      "scientificName": "Euonymus fortunei (Turcz.) Hand.-Mazz.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Celastrales",
+      "family": "Celastraceae",
+      "genus": "Euonymus",
+      "species": "Euonymus fortunei",
+      "regionId": "pittsburgh",
+      "gridCellId": "4043:-7991",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 43,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334634004"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4035:-8003-62207-1",
+      "taxonId": "62207",
+      "scientificName": "Oenothera biennis L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Myrtales",
+      "family": "Onagraceae",
+      "genus": "Oenothera",
+      "species": "Oenothera biennis",
+      "regionId": "pittsburgh",
+      "gridCellId": "4035:-8003",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333774199"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4013:-8042-199840-1",
+      "taxonId": "199840",
+      "scientificName": "Haemorhous mexicanus (P.L.Statius Müller, 1776)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Fringillidae",
+      "genus": "Haemorhous",
+      "species": "Haemorhous mexicanus",
+      "regionId": "pittsburgh",
+      "gridCellId": "4013:-8042",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 199,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334520924"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4044:-7984-52998-1",
+      "taxonId": "52998",
+      "scientificName": "Conium maculatum L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Apiales",
+      "family": "Apiaceae",
+      "genus": "Conium",
+      "species": "Conium maculatum",
+      "regionId": "pittsburgh",
+      "gridCellId": "4044:-7984",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333735292"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4077:-7994-1032788-1",
+      "taxonId": "1032788",
+      "scientificName": "Lasius aphidicola",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Hymenoptera",
+      "family": "Formicidae",
+      "genus": "Lasius",
+      "species": "Lasius aphidicola",
+      "regionId": "pittsburgh",
+      "gridCellId": "4077:-7994",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 85,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334115019"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4060:-8003-128051-1",
+      "taxonId": "128051",
+      "scientificName": "Kretzschmaria deusta (Hoffm.) P.M.D.Martin",
+      "commonName": null,
+      "kingdom": "Fungi",
+      "class": "Sordariomycetes",
+      "order": "Xylariales",
+      "family": "Xylariaceae",
+      "genus": "Kretzschmaria",
+      "species": "Kretzschmaria deusta",
+      "regionId": "pittsburgh",
+      "gridCellId": "4060:-8003",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 54,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334156699"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4035:-8003-58205-1",
+      "taxonId": "58205",
+      "scientificName": "Maclura pomifera (Raf. ex Sarg.) C.K.Schneid.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Rosales",
+      "family": "Moraceae",
+      "genus": "Maclura",
+      "species": "Maclura pomifera",
+      "regionId": "pittsburgh",
+      "gridCellId": "4035:-8003",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333774216"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4044:-7996-46017-1",
+      "taxonId": "46017",
+      "scientificName": "Sciurus carolinensis Gmelin, 1788",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Rodentia",
+      "family": "Sciuridae",
+      "genus": "Sciurus",
+      "species": "Sciurus carolinensis",
+      "regionId": "pittsburgh",
+      "gridCellId": "4044:-7996",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334844504"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4046:-7997-9083-1",
+      "taxonId": "9083",
+      "scientificName": "Cardinalis cardinalis (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Cardinalidae",
+      "genus": "Cardinalis",
+      "species": "Cardinalis cardinalis",
+      "regionId": "pittsburgh",
+      "gridCellId": "4046:-7997",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 359,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335487824"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4070:-7956-56061-1",
+      "taxonId": "56061",
+      "scientificName": "Alliaria petiolata (M.Bieb.) Cavara & Grande",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Brassicales",
+      "family": "Brassicaceae",
+      "genus": "Alliaria",
+      "species": "Alliaria petiolata",
+      "regionId": "pittsburgh",
+      "gridCellId": "4070:-7956",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 20,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334280031"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4017:-8041-54134-1",
+      "taxonId": "54134",
+      "scientificName": "Trametes versicolor (L.) Lloyd",
+      "commonName": null,
+      "kingdom": "Fungi",
+      "class": "Agaricomycetes",
+      "order": "Polyporales",
+      "family": "Polyporaceae",
+      "genus": "Trametes",
+      "species": "Trametes versicolor",
+      "regionId": "pittsburgh",
+      "gridCellId": "4017:-8041",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335786606"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4043:-7991-199840-1",
+      "taxonId": "199840",
+      "scientificName": "Haemorhous mexicanus (P.L.Statius Müller, 1776)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Fringillidae",
+      "genus": "Haemorhous",
+      "species": "Haemorhous mexicanus",
+      "regionId": "pittsburgh",
+      "gridCellId": "4043:-7991",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 31,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335639043",
+          "https://www.inaturalist.org/observations/335639780"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4031:-8011-77114-1",
+      "taxonId": "77114",
+      "scientificName": "Euphorbia lathyris L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Malpighiales",
+      "family": "Euphorbiaceae",
+      "genus": "Euphorbia",
+      "species": "Euphorbia lathyris",
+      "regionId": "pittsburgh",
+      "gridCellId": "4031:-8011",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 64,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334171415"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4043:-7994-549112-1",
+      "taxonId": "549112",
+      "scientificName": "Megalopinus caelatus (Gravenhorst, 1802)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Coleoptera",
+      "family": "Staphylinidae",
+      "genus": "Megalopinus",
+      "species": "Megalopinus caelatus",
+      "regionId": "pittsburgh",
+      "gridCellId": "4043:-7994",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 149,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333897714"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4061:-8003-154735-1",
+      "taxonId": "154735",
+      "scientificName": "Galerina marginata (Batsch) Kühner",
+      "commonName": null,
+      "kingdom": "Fungi",
+      "class": "Agaricomycetes",
+      "order": "Agaricales",
+      "family": "Hymenogastraceae",
+      "genus": "Galerina",
+      "species": "Galerina marginata",
+      "regionId": "pittsburgh",
+      "gridCellId": "4061:-8003",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334155511"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4060:-8002-196842-1",
+      "taxonId": "196842",
+      "scientificName": "Stereum complicatum (Fr.) Fr.",
+      "commonName": null,
+      "kingdom": "Fungi",
+      "class": "Agaricomycetes",
+      "order": "Russulales",
+      "family": "Stereaceae",
+      "genus": "Stereum",
+      "species": "Stereum complicatum",
+      "regionId": "pittsburgh",
+      "gridCellId": "4060:-8002",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334154855"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4061:-8003-63585-1",
+      "taxonId": "63585",
+      "scientificName": "Sarcomyxa serotina (Pers.) V.Papp",
+      "commonName": null,
+      "kingdom": "Fungi",
+      "class": "Agaricomycetes",
+      "order": "Agaricales",
+      "family": "Sarcomyxaceae",
+      "genus": "Sarcomyxa",
+      "species": "Sarcomyxa serotina",
+      "regionId": "pittsburgh",
+      "gridCellId": "4061:-8003",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 147,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334156691"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4043:-7997-4246-1",
+      "taxonId": "4246",
+      "scientificName": "Podilymbus podiceps (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Podicipediformes",
+      "family": "Podicipedidae",
+      "genus": "Podilymbus",
+      "species": "Podilymbus podiceps",
+      "regionId": "pittsburgh",
+      "gridCellId": "4043:-7997",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 30,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334152395"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4044:-7991-455951-1",
+      "taxonId": "455951",
+      "scientificName": "Myosides seriehispidus Roelofs, 1873",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Coleoptera",
+      "family": "Curculionidae",
+      "genus": "Myosides",
+      "species": "Myosides seriehispidus",
+      "regionId": "pittsburgh",
+      "gridCellId": "4044:-7991",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 45,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334124392"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4062:-8001-60749-1",
+      "taxonId": "60749",
+      "scientificName": "Ilex opaca Aiton",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Aquifoliales",
+      "family": "Aquifoliaceae",
+      "genus": "Ilex",
+      "species": "Ilex opaca",
+      "regionId": "pittsburgh",
+      "gridCellId": "4062:-8001",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335501011"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4044:-8000-122767-1",
+      "taxonId": "122767",
+      "scientificName": "Columba livia var. domestica J.F.Gmelin, 1789",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Columbiformes",
+      "family": "Columbidae",
+      "genus": "Columba",
+      "species": "Columba livia",
+      "regionId": "pittsburgh",
+      "gridCellId": "4044:-8000",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 24,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334970270"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4041:-7992-7004-1",
+      "taxonId": "7004",
+      "scientificName": "Mergus merganser Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Mergus",
+      "species": "Mergus merganser",
+      "regionId": "pittsburgh",
+      "gridCellId": "4041:-7992",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 1,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334401164"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4044:-7991-47219-1",
+      "taxonId": "47219",
+      "scientificName": "Apis mellifera Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Hymenoptera",
+      "family": "Apidae",
+      "genus": "Apis",
+      "species": "Apis mellifera",
+      "regionId": "pittsburgh",
+      "gridCellId": "4044:-7991",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 108,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334006512"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4047:-7995-46017-1",
+      "taxonId": "46017",
+      "scientificName": "Sciurus carolinensis Gmelin, 1788",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Rodentia",
+      "family": "Sciuridae",
+      "genus": "Sciurus",
+      "species": "Sciurus carolinensis",
+      "regionId": "pittsburgh",
+      "gridCellId": "4047:-7995",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 31,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335254910"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4048:-7984-5212-1",
+      "taxonId": "5212",
+      "scientificName": "Buteo jamaicensis (Gmelin, 1788)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Accipitriformes",
+      "family": "Accipitridae",
+      "genus": "Buteo",
+      "species": "Buteo jamaicensis",
+      "regionId": "pittsburgh",
+      "gridCellId": "4048:-7984",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 205,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336121936"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4034:-8007-59675-1",
+      "taxonId": "59675",
+      "scientificName": "Pyrrharctia isabella J.E.Smith, 1797",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Lepidoptera",
+      "family": "Erebidae",
+      "genus": "Pyrrharctia",
+      "species": "Pyrrharctia isabella",
+      "regionId": "pittsburgh",
+      "gridCellId": "4034:-8007",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333848363"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4046:-7994-12727-1",
+      "taxonId": "12727",
+      "scientificName": "Turdus migratorius Linnaeus, 1766",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Turdidae",
+      "genus": "Turdus",
+      "species": "Turdus migratorius",
+      "regionId": "pittsburgh",
+      "gridCellId": "4046:-7994",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333771949"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4027:-8014-57920-1",
+      "taxonId": "57920",
+      "scientificName": "Xanthium strumarium L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Xanthium",
+      "species": "Xanthium strumarium",
+      "regionId": "pittsburgh",
+      "gridCellId": "4027:-8014",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333918698"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4055:-8032-880970-1",
+      "taxonId": "880970",
+      "scientificName": "Trametes conchifer (Schwein.) Pilát",
+      "commonName": null,
+      "kingdom": "Fungi",
+      "class": "Agaricomycetes",
+      "order": "Polyporales",
+      "family": "Polyporaceae",
+      "genus": "Poronidulus",
+      "species": "Poronidulus conchifer",
+      "regionId": "pittsburgh",
+      "gridCellId": "4055:-8032",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334023525"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4031:-8011-56171-1",
+      "taxonId": "56171",
+      "scientificName": "Leonurus cardiaca L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Lamiales",
+      "family": "Lamiaceae",
+      "genus": "Leonurus",
+      "species": "Leonurus cardiaca",
+      "regionId": "pittsburgh",
+      "gridCellId": "4031:-8011",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 79,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334171428"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4043:-7991-792988-1",
+      "taxonId": "792988",
+      "scientificName": "Dryobates pubescens (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Piciformes",
+      "family": "Picidae",
+      "genus": "Dryobates",
+      "species": "Dryobates pubescens",
+      "regionId": "pittsburgh",
+      "gridCellId": "4043:-7991",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334288196"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4056:-7996-14850-1",
+      "taxonId": "14850",
+      "scientificName": "Sturnus vulgaris Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Sturnidae",
+      "genus": "Sturnus",
+      "species": "Sturnus vulgaris",
+      "regionId": "pittsburgh",
+      "gridCellId": "4056:-7996",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 251,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333974646"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4043:-7991-14801-1",
+      "taxonId": "14801",
+      "scientificName": "Sitta carolinensis Latham, 1790",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Sittidae",
+      "genus": "Sitta",
+      "species": "Sitta carolinensis",
+      "regionId": "pittsburgh",
+      "gridCellId": "4043:-7991",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334288197"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4035:-8004-48292-1",
+      "taxonId": "48292",
+      "scientificName": "Philoscia muscorum (Scopoli, 1763)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Malacostraca",
+      "order": "Isopoda",
+      "family": "Philosciidae",
+      "genus": "Philoscia",
+      "species": "Philoscia muscorum",
+      "regionId": "pittsburgh",
+      "gridCellId": "4035:-8004",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 18,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333918679"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4060:-8021-360735-1",
+      "taxonId": "360735",
+      "scientificName": "Pseudeuophrys erratica (Walckenaer, 1826)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Arachnida",
+      "order": "Araneae",
+      "family": "Salticidae",
+      "genus": "Pseudeuophrys",
+      "species": "Pseudeuophrys erratica",
+      "regionId": "pittsburgh",
+      "gridCellId": "4060:-8021",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 29,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333736820"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4018:-7978-19893-1",
+      "taxonId": "19893",
+      "scientificName": "Strix varia Barton, 1799",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Strigiformes",
+      "family": "Strigidae",
+      "genus": "Strix",
+      "species": "Strix varia",
+      "regionId": "pittsburgh",
+      "gridCellId": "4018:-7978",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 34,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335119166"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4030:-8004-42652-1",
+      "taxonId": "42652",
+      "scientificName": "Didelphis virginiana Kerr, 1792",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Didelphimorphia",
+      "family": "Didelphidae",
+      "genus": "Didelphis",
+      "species": "Didelphis virginiana",
+      "regionId": "pittsburgh",
+      "gridCellId": "4030:-8004",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334172703"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4034:-8007-48599-1",
+      "taxonId": "48599",
+      "scientificName": "Phytolacca americana L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Phytolaccaceae",
+      "genus": "Phytolacca",
+      "species": "Phytolacca americana",
+      "regionId": "pittsburgh",
+      "gridCellId": "4034:-8007",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333849853"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4044:-7991-153734-1",
+      "taxonId": "153734",
+      "scientificName": "Tmarus angulatus (Walckenaer, 1837)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Arachnida",
+      "order": "Araneae",
+      "family": "Thomisidae",
+      "genus": "Tmarus",
+      "species": "Tmarus angulatus",
+      "regionId": "pittsburgh",
+      "gridCellId": "4044:-7991",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 93,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334006199"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4060:-8002-48529-1",
+      "taxonId": "48529",
+      "scientificName": "Tremella mesenterica (Schaeff.) Pers.",
+      "commonName": null,
+      "kingdom": "Fungi",
+      "class": "Tremellomycetes",
+      "order": "Tremellales",
+      "family": "Tremellaceae",
+      "genus": "Tremella",
+      "species": "Tremella mesenterica",
+      "regionId": "pittsburgh",
+      "gridCellId": "4060:-8002",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334155945"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4046:-8042-182670-1",
+      "taxonId": "182670",
+      "scientificName": "Evernia mesomorpha Nyl.",
+      "commonName": null,
+      "kingdom": "Fungi",
+      "class": "Lecanoromycetes",
+      "order": "Lecanorales",
+      "family": "Parmeliaceae",
+      "genus": "Evernia",
+      "species": "Evernia mesomorpha",
+      "regionId": "pittsburgh",
+      "gridCellId": "4046:-8042",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335063127"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4044:-7992-9744-1",
+      "taxonId": "9744",
+      "scientificName": "Agelaius phoeniceus (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Icteridae",
+      "genus": "Agelaius",
+      "species": "Agelaius phoeniceus",
+      "regionId": "pittsburgh",
+      "gridCellId": "4044:-7992",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 20,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334007369"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4044:-7990-3454-1",
+      "taxonId": "3454",
+      "scientificName": "Zenaida macroura (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Columbiformes",
+      "family": "Columbidae",
+      "genus": "Zenaida",
+      "species": "Zenaida macroura",
+      "regionId": "pittsburgh",
+      "gridCellId": "4044:-7990",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 59,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333791860"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4060:-8021-48484-1",
+      "taxonId": "48484",
+      "scientificName": "Harmonia axyridis (Pallas, 1773)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Coleoptera",
+      "family": "Coccinellidae",
+      "genus": "Harmonia",
+      "species": "Harmonia axyridis",
+      "regionId": "pittsburgh",
+      "gridCellId": "4060:-8021",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333919408"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4048:-7984-12727-1",
+      "taxonId": "12727",
+      "scientificName": "Turdus migratorius Linnaeus, 1766",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Turdidae",
+      "genus": "Turdus",
+      "species": "Turdus migratorius",
+      "regionId": "pittsburgh",
+      "gridCellId": "4048:-7984",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 205,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336122244"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4039:-7997-1503458-1",
+      "taxonId": "1503458",
+      "scientificName": "Plicatura crispa (Pers.) Rea",
+      "commonName": null,
+      "kingdom": "Fungi",
+      "class": "Agaricomycetes",
+      "order": "Amylocorticiales",
+      "family": "Amylocorticiaceae",
+      "genus": "Plicaturopsis",
+      "species": "Plicaturopsis crispa",
+      "regionId": "pittsburgh",
+      "gridCellId": "4039:-7997",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333883624"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4042:-7996-130893-1",
+      "taxonId": "130893",
+      "scientificName": "Euonymus fortunei (Turcz.) Hand.-Mazz.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Celastrales",
+      "family": "Celastraceae",
+      "genus": "Euonymus",
+      "species": "Euonymus fortunei",
+      "regionId": "pittsburgh",
+      "gridCellId": "4042:-7996",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334110383"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4048:-8014-145310-1",
+      "taxonId": "145310",
+      "scientificName": "Spinus tristis (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Fringillidae",
+      "genus": "Spinus",
+      "species": "Spinus tristis",
+      "regionId": "pittsburgh",
+      "gridCellId": "4048:-8014",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334976536"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4071:-8032-49662-1",
+      "taxonId": "49662",
+      "scientificName": "Platanus occidentalis L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Proteales",
+      "family": "Platanaceae",
+      "genus": "Platanus",
+      "species": "Platanus occidentalis",
+      "regionId": "pittsburgh",
+      "gridCellId": "4071:-8032",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 1,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334501580"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4032:-8011-60749-1",
+      "taxonId": "60749",
+      "scientificName": "Ilex opaca Aiton",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Aquifoliales",
+      "family": "Aquifoliaceae",
+      "genus": "Ilex",
+      "species": "Ilex opaca",
+      "regionId": "pittsburgh",
+      "gridCellId": "4032:-8011",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334125496"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4032:-8010-85383-1",
+      "taxonId": "85383",
+      "scientificName": "Polymnia canadensis L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Polymnia",
+      "species": "Polymnia canadensis",
+      "regionId": "pittsburgh",
+      "gridCellId": "4032:-8010",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334129698"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4056:-7991-18463-1",
+      "taxonId": "18463",
+      "scientificName": "Sphyrapicus varius (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Piciformes",
+      "family": "Picidae",
+      "genus": "Sphyrapicus",
+      "species": "Sphyrapicus varius",
+      "regionId": "pittsburgh",
+      "gridCellId": "4056:-7991",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335298670"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4048:-7984-792988-1",
+      "taxonId": "792988",
+      "scientificName": "Dryobates pubescens (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Piciformes",
+      "family": "Picidae",
+      "genus": "Dryobates",
+      "species": "Dryobates pubescens",
+      "regionId": "pittsburgh",
+      "gridCellId": "4048:-7984",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 205,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336121988"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:18.737Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "pittsburgh-center-envelope-v1"
+    }
+  ]
 }

@@ -1,20 +1,32 @@
 {
   "schemaVersion": "biodiversity-sidecar-v1",
   "metadata": {
-    "schemaVersion": "biodiversity-sidecar-v1",
     "regionId": "boise-meridian-idaho",
-    "sourceVintage": "2026-10-10",
-    "generatedAt": "2026-10-10T00:00:00.000Z",
-    "sourceAccess": "GBIF occurrence search API",
-    "sourceQuery": "Region boundary query; authenticated download required for large regions.",
-    "boundaryVersion": "boise-meridian-idaho-boundary-v1",
+    "sourceVintage": "2026-10-11",
+    "boundaryVersion": "boise-meridian-idaho-center-envelope-v1",
     "gbifDownloadDoi": null,
-    "inputRows": 0,
+    "generatedAt": "2026-10-11T01:53:27.680Z",
+    "fixture": false,
+    "sourceAccess": "GBIF occurrence search API",
+    "sourceQuery": "POLYGON((-116.49365132725829 43.424,-116.0103486727417 43.424,-116.0103486727417 43.773999999999994,-116.49365132725829 43.773999999999994,-116.49365132725829 43.424))",
+    "inputRows": 300,
+    "matchingRecordCount": 65154,
+    "coverageNote": null,
+    "schemaVersion": "biodiversity-sidecar-v1",
+    "acquisitionWorkflow": {
+      "mode": "occurrence-search",
+      "endpoint": "https://api.gbif.org/v1/occurrence/search",
+      "pageSize": 300,
+      "maxOffset": 100000
+    },
     "freshnessClass": "fresh",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
     "releaseState": "sidecar-available",
+    "qualityReview": {
+      "status": "not-reviewed"
+    },
     "gateReason": null,
     "safeguards": {
       "coordinateUncertaintyFiltering": true,
@@ -22,17 +34,5579 @@
       "privacyAwareAggregation": true,
       "sourceVintageTracked": true,
       "imageLicenseMetadataTracked": true
-    },
-    "qualityReview": {
-      "status": "not-reviewed"
-    },
-    "acquisitionWorkflow": {
-      "mode": "occurrence-search",
-      "endpoint": "https://api.gbif.org/v1/occurrence/search",
-      "pageSize": 300,
-      "maxOffset": 100000
-    },
-    "coverageNote": "No qualifying rows are currently published for this region; this is not evidence of absence."
+    }
   },
-  "records": []
+  "records": [
+    {
+      "recordId": "aggregate-4361:-11623-145308-1",
+      "taxonId": "145308",
+      "scientificName": "Spinus psaltria (Say, 1822)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Fringillidae",
+      "genus": "Spinus",
+      "species": "Spinus psaltria",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4361:-11623",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333345962"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4358:-11641-199840-1",
+      "taxonId": "199840",
+      "scientificName": "Haemorhous mexicanus (P.L.Statius Müller, 1776)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Fringillidae",
+      "genus": "Haemorhous",
+      "species": "Haemorhous mexicanus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4358:-11641",
+      "month": 1,
+      "observationCount": 4,
+      "coordinateUncertainty": {
+        "summaryMeters": 19,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333637574",
+          "https://www.inaturalist.org/observations/333517618",
+          "https://www.inaturalist.org/observations/334009060",
+          "https://www.inaturalist.org/observations/334008729"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4358:-11641-46020-1",
+      "taxonId": "46020",
+      "scientificName": "Sciurus niger Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Rodentia",
+      "family": "Sciuridae",
+      "genus": "Sciurus",
+      "species": "Sciurus niger",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4358:-11641",
+      "month": 1,
+      "observationCount": 5,
+      "coordinateUncertainty": {
+        "summaryMeters": 26,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333187616",
+          "https://www.inaturalist.org/observations/334425021",
+          "https://www.inaturalist.org/observations/334768372",
+          "https://www.inaturalist.org/observations/334284329",
+          "https://www.inaturalist.org/observations/335390221"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4369:-11637-20044-1",
+      "taxonId": "20044",
+      "scientificName": "Bubo virginianus (J.F.Gmelin, 1788)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Strigiformes",
+      "family": "Strigidae",
+      "genus": "Bubo",
+      "species": "Bubo virginianus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4369:-11637",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333213173"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4361:-11623-558438-1",
+      "taxonId": "558438",
+      "scientificName": "Spatula clypeata (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Spatula",
+      "species": "Spatula clypeata",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4361:-11623",
+      "month": 1,
+      "observationCount": 4,
+      "coordinateUncertainty": {
+        "summaryMeters": 248,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333345957",
+          "https://www.inaturalist.org/observations/335404129",
+          "https://www.inaturalist.org/observations/338381254",
+          "https://www.inaturalist.org/observations/338381267"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4358:-11641-1579017-1",
+      "taxonId": "1579017",
+      "scientificName": "Astur Lacepède, 1799",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Accipitriformes",
+      "family": "Accipitridae",
+      "genus": "Astur",
+      "species": null,
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4358:-11641",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 26,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333024954",
+          "https://www.inaturalist.org/observations/334502756"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4362:-11635-6994-1",
+      "taxonId": "6994",
+      "scientificName": "Bucephala islandica (J.F.Gmelin, 1789)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Bucephala",
+      "species": "Bucephala islandica",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4362:-11635",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333345968"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4363:-11624-7458-1",
+      "taxonId": "7458",
+      "scientificName": "Certhia americana Bonaparte, 1838",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Certhiidae",
+      "genus": "Certhia",
+      "species": "Certhia americana",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4363:-11624",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 203,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333345946",
+          "https://www.inaturalist.org/observations/352131566"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4363:-11624-7109-1",
+      "taxonId": "7109",
+      "scientificName": "Lophodytes cucullatus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Lophodytes",
+      "species": "Lophodytes cucullatus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4363:-11624",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333345943"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4359:-11624-10094-1",
+      "taxonId": "10094",
+      "scientificName": "Junco hyemalis (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Junco",
+      "species": "Junco hyemalis",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4359:-11624",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333188202"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4360:-11620-84640-1",
+      "taxonId": "84640",
+      "scientificName": "Polistes dominula (Christ, 1791)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Hymenoptera",
+      "family": "Eumenidae",
+      "genus": "Polistes",
+      "species": "Polistes dominula",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4360:-11620",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333213797"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4362:-11618-6317-1",
+      "taxonId": "6317",
+      "scientificName": "Calypte anna (R.Lesson, 1829)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Apodiformes",
+      "family": "Trochilidae",
+      "genus": "Calypte",
+      "species": "Calypte anna",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4362:-11618",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333378598"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4362:-11624-4364-1",
+      "taxonId": "4364",
+      "scientificName": "Larus delawarensis Ord, 1815",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Charadriiformes",
+      "family": "Laridae",
+      "genus": "Larus",
+      "species": "Larus delawarensis",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4362:-11624",
+      "month": 1,
+      "observationCount": 3,
+      "coordinateUncertainty": {
+        "summaryMeters": 11,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333472018",
+          "https://www.inaturalist.org/observations/334957807",
+          "https://www.inaturalist.org/observations/335309308"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4361:-11623-9100-1",
+      "taxonId": "9100",
+      "scientificName": "Melospiza melodia (A.Wilson, 1810)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Melospiza",
+      "species": "Melospiza melodia",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4361:-11623",
+      "month": 1,
+      "observationCount": 3,
+      "coordinateUncertainty": {
+        "summaryMeters": 566,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333345961",
+          "https://www.inaturalist.org/observations/335403989",
+          "https://www.inaturalist.org/observations/336730175"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4361:-11623-5206-1",
+      "taxonId": "5206",
+      "scientificName": "Buteo lineatus (Gmelin, 1788)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Accipitriformes",
+      "family": "Accipitridae",
+      "genus": "Buteo",
+      "species": "Buteo lineatus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4361:-11623",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333047405"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4361:-11623-7107-1",
+      "taxonId": "7107",
+      "scientificName": "Aix sponsa (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Aix",
+      "species": "Aix sponsa",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4361:-11623",
+      "month": 1,
+      "observationCount": 3,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333345951",
+          "https://www.inaturalist.org/observations/336730528",
+          "https://www.inaturalist.org/observations/338381258"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4359:-11625-10094-1",
+      "taxonId": "10094",
+      "scientificName": "Junco hyemalis (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Junco",
+      "species": "Junco hyemalis",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4359:-11625",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 12,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333337398"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4363:-11624-792988-1",
+      "taxonId": "792988",
+      "scientificName": "Dryobates pubescens (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Piciformes",
+      "family": "Picidae",
+      "genus": "Dryobates",
+      "species": "Dryobates pubescens",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4363:-11624",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333345947"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4363:-11624-2548-1",
+      "taxonId": "2548",
+      "scientificName": "Megaceryle alcyon (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Coraciiformes",
+      "family": "Alcedinidae",
+      "genus": "Megaceryle",
+      "species": "Megaceryle alcyon",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4363:-11624",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333345941"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4362:-11624-485176-1",
+      "taxonId": "485176",
+      "scientificName": "Mareca americana (J.F.Gmelin, 1789)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Mareca",
+      "species": "Mareca americana",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4362:-11624",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333471767"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4361:-11623-558439-1",
+      "taxonId": "558439",
+      "scientificName": "Mareca strepera (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Mareca",
+      "species": "Mareca strepera",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4361:-11623",
+      "month": 1,
+      "observationCount": 4,
+      "coordinateUncertainty": {
+        "summaryMeters": 10,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333345956",
+          "https://www.inaturalist.org/observations/333345955",
+          "https://www.inaturalist.org/observations/338381259",
+          "https://www.inaturalist.org/observations/338381262"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4361:-11623-7109-1",
+      "taxonId": "7109",
+      "scientificName": "Lophodytes cucullatus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Lophodytes",
+      "species": "Lophodytes cucullatus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4361:-11623",
+      "month": 1,
+      "observationCount": 3,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333345960",
+          "https://www.inaturalist.org/observations/338381252",
+          "https://www.inaturalist.org/observations/338381268"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4363:-11624-7089-1",
+      "taxonId": "7089",
+      "scientificName": "Branta canadensis (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Branta",
+      "species": "Branta canadensis",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4363:-11624",
+      "month": 1,
+      "observationCount": 3,
+      "coordinateUncertainty": {
+        "summaryMeters": 203,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333345948",
+          "https://www.inaturalist.org/observations/352131559",
+          "https://www.inaturalist.org/observations/352202298"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4362:-11627-793028-1",
+      "taxonId": "793028",
+      "scientificName": "Dryobates pubescens leucurus (Hartlaub, 1852)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Piciformes",
+      "family": "Picidae",
+      "genus": "Dryobates",
+      "species": "Dryobates pubescens",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4362:-11627",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333639485"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4371:-11638-167829-1",
+      "taxonId": "167829",
+      "scientificName": "Rhus typhina L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Sapindales",
+      "family": "Anacardiaceae",
+      "genus": "Rhus",
+      "species": "Rhus typhina",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4371:-11638",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333333367"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4358:-11641-237039-1",
+      "taxonId": "237039",
+      "scientificName": "Junco hyemalis montanus Ridgway, 1898",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Junco",
+      "species": "Junco hyemalis",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4358:-11641",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333637535"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4372:-11625-59029-1",
+      "taxonId": "59029",
+      "scientificName": "Verbascum thapsus L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Lamiales",
+      "family": "Scrophulariaceae",
+      "genus": "Verbascum",
+      "species": "Verbascum thapsus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4372:-11625",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333024623"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4356:-11615-4956-1",
+      "taxonId": "4956",
+      "scientificName": "Ardea herodias Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Ardea",
+      "species": "Ardea herodias",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4356:-11615",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333335082"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4361:-11623-6990-1",
+      "taxonId": "6990",
+      "scientificName": "Bucephala clangula (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Bucephala",
+      "species": "Bucephala clangula",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4361:-11623",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 22,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333470925"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4362:-11635-6990-1",
+      "taxonId": "6990",
+      "scientificName": "Bucephala clangula (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Bucephala",
+      "species": "Bucephala clangula",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4362:-11635",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333345970",
+          "https://www.inaturalist.org/observations/334452824"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4359:-11624-144815-1",
+      "taxonId": "144815",
+      "scientificName": "Poecile atricapillus (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Paridae",
+      "genus": "Poecile",
+      "species": "Poecile atricapillus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4359:-11624",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333187992"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4362:-11635-6930-1",
+      "taxonId": "6930",
+      "scientificName": "Anas platyrhynchos Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Anas",
+      "species": "Anas platyrhynchos",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4362:-11635",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333345973"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4362:-11635-558441-1",
+      "taxonId": "558441",
+      "scientificName": "Mareca penelope (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Mareca",
+      "species": "Mareca penelope",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4362:-11635",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333345965",
+          "https://www.inaturalist.org/observations/334452826"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4362:-11635-7089-1",
+      "taxonId": "7089",
+      "scientificName": "Branta canadensis (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Branta",
+      "species": "Branta canadensis",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4362:-11635",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333345969"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4359:-11625-18236-1",
+      "taxonId": "18236",
+      "scientificName": "Colaptes auratus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Piciformes",
+      "family": "Picidae",
+      "genus": "Colaptes",
+      "species": "Colaptes auratus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4359:-11625",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333017481"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4362:-11624-7004-1",
+      "taxonId": "7004",
+      "scientificName": "Mergus merganser Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Mergus",
+      "species": "Mergus merganser",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4362:-11624",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 24,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333471335"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4362:-11635-485176-1",
+      "taxonId": "485176",
+      "scientificName": "Mareca americana (J.F.Gmelin, 1789)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Mareca",
+      "species": "Mareca americana",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4362:-11635",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333345972",
+          "https://www.inaturalist.org/observations/334452825"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4361:-11623-19743-1",
+      "taxonId": "19743",
+      "scientificName": "Megascops kennicottii (D.G.Elliot, 1867)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Strigiformes",
+      "family": "Strigidae",
+      "genus": "Megascops",
+      "species": "Megascops kennicottii",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4361:-11623",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 15,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333048376"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4362:-11621-47382-1",
+      "taxonId": "47382",
+      "scientificName": "Latrodectus hesperus Chamberlin & Ivie, 1935",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Arachnida",
+      "order": "Araneae",
+      "family": "Theridiidae",
+      "genus": "Latrodectus",
+      "species": "Latrodectus hesperus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4362:-11621",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334409942"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4358:-11641-12727-1",
+      "taxonId": "12727",
+      "scientificName": "Turdus migratorius Linnaeus, 1766",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Turdidae",
+      "genus": "Turdus",
+      "species": "Turdus migratorius",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4358:-11641",
+      "month": 1,
+      "observationCount": 12,
+      "coordinateUncertainty": {
+        "summaryMeters": 55,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333761980",
+          "https://www.inaturalist.org/observations/335390255",
+          "https://www.inaturalist.org/observations/335690676",
+          "https://www.inaturalist.org/observations/335624500",
+          "https://www.inaturalist.org/observations/335456314",
+          "https://www.inaturalist.org/observations/334009211",
+          "https://www.inaturalist.org/observations/333983917",
+          "https://www.inaturalist.org/observations/334008603",
+          "https://www.inaturalist.org/observations/334502775",
+          "https://www.inaturalist.org/observations/333866554",
+          "https://www.inaturalist.org/observations/334158147",
+          "https://www.inaturalist.org/observations/336866292"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4351:-11606-59028-1",
+      "taxonId": "59028",
+      "scientificName": "Verbascum blattaria L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Lamiales",
+      "family": "Scrophulariaceae",
+      "genus": "Verbascum",
+      "species": "Verbascum blattaria",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4351:-11606",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334449269"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4363:-11624-7576-1",
+      "taxonId": "7576",
+      "scientificName": "Thryomanes bewickii (Audubon, 1827)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Troglodytidae",
+      "genus": "Thryomanes",
+      "species": "Thryomanes bewickii",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4363:-11624",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334452813"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4352:-11607-43109-1",
+      "taxonId": "43109",
+      "scientificName": "Sylvilagus nuttallii (Bachman, 1837)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Lagomorpha",
+      "family": "Leporidae",
+      "genus": "Sylvilagus",
+      "species": "Sylvilagus nuttallii",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4352:-11607",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335896172"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4362:-11623-48523-1",
+      "taxonId": "48523",
+      "scientificName": "Symphoricarpos albus (L.) K.Koch",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Dipsacales",
+      "family": "Caprifoliaceae",
+      "genus": "Symphoricarpos",
+      "species": "Symphoricarpos albus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4362:-11623",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 12,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335542234"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4365:-11630-43794-1",
+      "taxonId": "43794",
+      "scientificName": "Castor canadensis Kuhl, 1820",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Rodentia",
+      "family": "Castoridae",
+      "genus": "Castor",
+      "species": "Castor canadensis",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4365:-11630",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335277566"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4359:-11630-1579017-1",
+      "taxonId": "1579017",
+      "scientificName": "Astur Lacepède, 1799",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Accipitriformes",
+      "family": "Accipitridae",
+      "genus": "Astur",
+      "species": null,
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4359:-11630",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 164,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333872163"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4358:-11641-81579-1",
+      "taxonId": "81579",
+      "scientificName": "Steatoda triangulosa (Walckenaer, 1802)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Arachnida",
+      "order": "Araneae",
+      "family": "Theridiidae",
+      "genus": "Steatoda",
+      "species": "Steatoda triangulosa",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4358:-11641",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334978882",
+          "https://www.inaturalist.org/observations/337058910"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4358:-11641-10094-1",
+      "taxonId": "10094",
+      "scientificName": "Junco hyemalis (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Junco",
+      "species": "Junco hyemalis",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4358:-11641",
+      "month": 1,
+      "observationCount": 5,
+      "coordinateUncertainty": {
+        "summaryMeters": 20,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334009125",
+          "https://www.inaturalist.org/observations/333983868",
+          "https://www.inaturalist.org/observations/334693611",
+          "https://www.inaturalist.org/observations/336700214",
+          "https://www.inaturalist.org/observations/337408223"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4365:-11631-1578502-1",
+      "taxonId": "1578502",
+      "scientificName": "Tyto furcata (Temminck, 1827)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Strigiformes",
+      "family": "Tytonidae",
+      "genus": "Tyto",
+      "species": "Tyto furcata",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4365:-11631",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335553084"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4358:-11641-145308-1",
+      "taxonId": "145308",
+      "scientificName": "Spinus psaltria (Say, 1822)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Fringillidae",
+      "genus": "Spinus",
+      "species": "Spinus psaltria",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4358:-11641",
+      "month": 1,
+      "observationCount": 3,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333762027",
+          "https://www.inaturalist.org/observations/334806374",
+          "https://www.inaturalist.org/observations/334806402"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4358:-11641-145310-1",
+      "taxonId": "145310",
+      "scientificName": "Spinus tristis (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Fringillidae",
+      "genus": "Spinus",
+      "species": "Spinus tristis",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4358:-11641",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335748809",
+          "https://www.inaturalist.org/observations/335748695"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4360:-11638-7089-1",
+      "taxonId": "7089",
+      "scientificName": "Branta canadensis (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Branta",
+      "species": "Branta canadensis",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4360:-11638",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 71,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334284341"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4365:-11630-9100-1",
+      "taxonId": "9100",
+      "scientificName": "Melospiza melodia (A.Wilson, 1810)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Melospiza",
+      "species": "Melospiza melodia",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4365:-11630",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334892021"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4365:-11630-473-1",
+      "taxonId": "473",
+      "scientificName": "Fulica americana Gmelin, 1789",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Gruiformes",
+      "family": "Rallidae",
+      "genus": "Fulica",
+      "species": "Fulica americana",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4365:-11630",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 1,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334892022"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4361:-11623-46020-1",
+      "taxonId": "46020",
+      "scientificName": "Sciurus niger Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Rodentia",
+      "family": "Sciuridae",
+      "genus": "Sciurus",
+      "species": "Sciurus niger",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4361:-11623",
+      "month": 1,
+      "observationCount": 4,
+      "coordinateUncertainty": {
+        "summaryMeters": 10,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334452803",
+          "https://www.inaturalist.org/observations/334888942",
+          "https://www.inaturalist.org/observations/336730615",
+          "https://www.inaturalist.org/observations/338381253"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4358:-11627-347427-1",
+      "taxonId": "347427",
+      "scientificName": "Spinus psaltria hesperophilus (Oberholser, 1903)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Fringillidae",
+      "genus": "Spinus",
+      "species": "Spinus psaltria",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4358:-11627",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 877,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333637654"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4361:-11623-18467-1",
+      "taxonId": "18467",
+      "scientificName": "Sphyrapicus nuchalis S.F.Baird, 1858",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Piciformes",
+      "family": "Picidae",
+      "genus": "Sphyrapicus",
+      "species": "Sphyrapicus nuchalis",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4361:-11623",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334892024"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4361:-11623-1264432-1",
+      "taxonId": "1264432",
+      "scientificName": "Neogale Gray, 1865",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Carnivora",
+      "family": "Mustelidae",
+      "genus": "Mustela",
+      "species": null,
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4361:-11623",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 45,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335837198"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4362:-11624-4385-1",
+      "taxonId": "4385",
+      "scientificName": "Larus californicus Lawrence, 1854",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Charadriiformes",
+      "family": "Laridae",
+      "genus": "Larus",
+      "species": "Larus californicus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4362:-11624",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335309307"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4363:-11624-1289388-1",
+      "taxonId": "1289388",
+      "scientificName": "Corthylio calendula (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Regulidae",
+      "genus": "Regulus",
+      "species": "Regulus calendula",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4363:-11624",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334452814"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4366:-11639-5212-1",
+      "taxonId": "5212",
+      "scientificName": "Buteo jamaicensis (Gmelin, 1788)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Accipitriformes",
+      "family": "Accipitridae",
+      "genus": "Buteo",
+      "species": "Buteo jamaicensis",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4366:-11639",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 47,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336116462"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4361:-11623-4956-1",
+      "taxonId": "4956",
+      "scientificName": "Ardea herodias Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Ardea",
+      "species": "Ardea herodias",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4361:-11623",
+      "month": 1,
+      "observationCount": 4,
+      "coordinateUncertainty": {
+        "summaryMeters": 248,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335839577",
+          "https://www.inaturalist.org/observations/335404246",
+          "https://www.inaturalist.org/observations/336731672",
+          "https://www.inaturalist.org/observations/337373795"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4360:-11621-18236-1",
+      "taxonId": "18236",
+      "scientificName": "Colaptes auratus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Piciformes",
+      "family": "Picidae",
+      "genus": "Colaptes",
+      "species": "Colaptes auratus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4360:-11621",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 51,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335999905"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4358:-11641-13858-1",
+      "taxonId": "13858",
+      "scientificName": "Passer domesticus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passeridae",
+      "genus": "Passer",
+      "species": "Passer domesticus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4358:-11641",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 19,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335885282",
+          "https://www.inaturalist.org/observations/335492960"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4365:-11630-205320-1",
+      "taxonId": "205320",
+      "scientificName": "Diplolepis rosae (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Hymenoptera",
+      "family": "Cynipidae",
+      "genus": "Diplolepis",
+      "species": "Diplolepis rosae",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4365:-11630",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335279255"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4358:-11641-7428-1",
+      "taxonId": "7428",
+      "scientificName": "Bombycilla cedrorum Vieillot, 1808",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Bombycillidae",
+      "genus": "Bombycilla",
+      "species": "Bombycilla cedrorum",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4358:-11641",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 11,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335690651"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4361:-11623-60316-1",
+      "taxonId": "60316",
+      "scientificName": "Typha angustifolia L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Liliopsida",
+      "order": "Poales",
+      "family": "Typhaceae",
+      "genus": "Typha",
+      "species": "Typha angustifolia",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4361:-11623",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334452801"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4361:-11616-42220-1",
+      "taxonId": "42220",
+      "scientificName": "Odocoileus hemionus (Rafinesque, 1817)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Artiodactyla",
+      "family": "Cervidae",
+      "genus": "Odocoileus",
+      "species": "Odocoileus hemionus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4361:-11616",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 31,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334744588"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4358:-11618-145245-1",
+      "taxonId": "145245",
+      "scientificName": "Setophaga coronata (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Parulidae",
+      "genus": "Setophaga",
+      "species": "Setophaga coronata",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4358:-11618",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336267274"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4363:-11620-12890-1",
+      "taxonId": "12890",
+      "scientificName": "Catharus guttatus (Pallas, 1811)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Turdidae",
+      "genus": "Catharus",
+      "species": "Catharus guttatus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4363:-11620",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334452819"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4358:-11641-56083-1",
+      "taxonId": "56083",
+      "scientificName": "Armadillidium vulgare (Latreille, 1804)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Malacostraca",
+      "order": "Isopoda",
+      "family": "Armadillidiidae",
+      "genus": "Armadillidium",
+      "species": "Armadillidium vulgare",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4358:-11641",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334009261"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4361:-11622-46020-1",
+      "taxonId": "46020",
+      "scientificName": "Sciurus niger Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Rodentia",
+      "family": "Sciuridae",
+      "genus": "Sciurus",
+      "species": "Sciurus niger",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4361:-11622",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 14,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335254190"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4361:-11618-55884-1",
+      "taxonId": "55884",
+      "scientificName": "Rosa canina L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Rosales",
+      "family": "Rosaceae",
+      "genus": "Rosa",
+      "species": "Rosa canina",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4361:-11618",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334538368"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4376:-11612-1144240-1",
+      "taxonId": "1144240",
+      "scientificName": "Asemosyrphus polygrammus",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Diptera",
+      "family": "Syrphidae",
+      "genus": "Asemosyrphus",
+      "species": "Asemosyrphus polygrammus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4376:-11612",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 41,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335399894"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4358:-11641-14850-1",
+      "taxonId": "14850",
+      "scientificName": "Sturnus vulgaris Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Sturnidae",
+      "genus": "Sturnus",
+      "species": "Sturnus vulgaris",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4358:-11641",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 33,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335624524",
+          "https://www.inaturalist.org/observations/335390380"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4361:-11623-144815-1",
+      "taxonId": "144815",
+      "scientificName": "Poecile atricapillus (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Paridae",
+      "genus": "Poecile",
+      "species": "Poecile atricapillus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4361:-11623",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334452802"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4361:-11622-6930-1",
+      "taxonId": "6930",
+      "scientificName": "Anas platyrhynchos Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Anas",
+      "species": "Anas platyrhynchos",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4361:-11622",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 14,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335254926"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4360:-11621-7089-1",
+      "taxonId": "7089",
+      "scientificName": "Branta canadensis (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Branta",
+      "species": "Branta canadensis",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4360:-11621",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 72,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336162270"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4370:-11648-62045-1",
+      "taxonId": "62045",
+      "scientificName": "Lygaeus kalmii Stal, 1874",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Hemiptera",
+      "family": "Lygaeidae",
+      "genus": "Lygaeus",
+      "species": "Lygaeus kalmii",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4370:-11648",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334287959"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4360:-11621-46020-1",
+      "taxonId": "46020",
+      "scientificName": "Sciurus niger Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Rodentia",
+      "family": "Sciuridae",
+      "genus": "Sciurus",
+      "species": "Sciurus niger",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4360:-11621",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 20,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334606862",
+          "https://www.inaturalist.org/observations/334606799"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4363:-11620-6317-1",
+      "taxonId": "6317",
+      "scientificName": "Calypte anna (R.Lesson, 1829)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Apodiformes",
+      "family": "Trochilidae",
+      "genus": "Calypte",
+      "species": "Calypte anna",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4363:-11620",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334452817"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4356:-11615-792988-1",
+      "taxonId": "792988",
+      "scientificName": "Dryobates pubescens (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Piciformes",
+      "family": "Picidae",
+      "genus": "Dryobates",
+      "species": "Dryobates pubescens",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4356:-11615",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335962873"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4365:-11630-64237-1",
+      "taxonId": "64237",
+      "scientificName": "Phragmites australis (Cav.) Trin. ex Steud.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Liliopsida",
+      "order": "Poales",
+      "family": "Poaceae",
+      "genus": "Phragmites",
+      "species": "Phragmites australis",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4365:-11630",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335278407"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4362:-11624-6993-1",
+      "taxonId": "6993",
+      "scientificName": "Bucephala albeola (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Bucephala",
+      "species": "Bucephala albeola",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4362:-11624",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335309306"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4358:-11641-54134-1",
+      "taxonId": "54134",
+      "scientificName": "Trametes versicolor (L.) Lloyd",
+      "commonName": null,
+      "kingdom": "Fungi",
+      "class": "Agaricomycetes",
+      "order": "Polyporales",
+      "family": "Polyporaceae",
+      "genus": "Trametes",
+      "species": "Trametes versicolor",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4358:-11641",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336251179"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4365:-11619-13858-1",
+      "taxonId": "13858",
+      "scientificName": "Passer domesticus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passeridae",
+      "genus": "Passer",
+      "species": "Passer domesticus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4365:-11619",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335590583"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4345:-11614-63886-1",
+      "taxonId": "63886",
+      "scientificName": "Persicaria lapathifolia (L.) Gray",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Polygonaceae",
+      "genus": "Persicaria",
+      "species": "Persicaria lapathifolia",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4345:-11614",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335309280"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4358:-11623-505749-1",
+      "taxonId": "505749",
+      "scientificName": "Arocatus melanocephalus (Fabricius, 1798)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Hemiptera",
+      "family": "Lygaeidae",
+      "genus": "Arocatus",
+      "species": "Arocatus melanocephalus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4358:-11623",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333384689"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4345:-11614-474210-1",
+      "taxonId": "474210",
+      "scientificName": "Spizelloides arborea (A.Wilson, 1810)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Spizelloides",
+      "species": "Spizelloides arborea",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4345:-11614",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335309293",
+          "https://www.inaturalist.org/observations/335309283"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4363:-11627-18236-1",
+      "taxonId": "18236",
+      "scientificName": "Colaptes auratus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Piciformes",
+      "family": "Picidae",
+      "genus": "Colaptes",
+      "species": "Colaptes auratus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4363:-11627",
+      "month": 1,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 11,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335856928",
+          "https://www.inaturalist.org/observations/335856997"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4357:-11616-1579017-1",
+      "taxonId": "1579017",
+      "scientificName": "Astur Lacepède, 1799",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Accipitriformes",
+      "family": "Accipitridae",
+      "genus": "Astur",
+      "species": null,
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4357:-11616",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 378,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335966168"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4356:-11615-5305-1",
+      "taxonId": "5305",
+      "scientificName": "Haliaeetus leucocephalus (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Accipitriformes",
+      "family": "Accipitridae",
+      "genus": "Haliaeetus",
+      "species": "Haliaeetus leucocephalus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4356:-11615",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 51,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335960426"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4345:-11614-75598-1",
+      "taxonId": "75598",
+      "scientificName": "Artemisia tridentata (Nutt.) W.A.Weber",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Artemisia",
+      "species": "Artemisia tridentata",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4345:-11614",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335309276"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4345:-11614-57934-1",
+      "taxonId": "57934",
+      "scientificName": "Ericameria nauseosa (Pall. ex Pursh) G.L.Nesom & G.I.Baird",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Ericameria",
+      "species": "Ericameria nauseosa",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4345:-11614",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335309278"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4363:-11625-20044-1",
+      "taxonId": "20044",
+      "scientificName": "Bubo virginianus (J.F.Gmelin, 1788)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Strigiformes",
+      "family": "Strigidae",
+      "genus": "Bubo",
+      "species": "Bubo virginianus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4363:-11625",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334452806"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4368:-11642-128425-1",
+      "taxonId": "128425",
+      "scientificName": "Misgurnus anguillicaudatus (Cantor, 1842)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": null,
+      "order": "Cypriniformes",
+      "family": "Cobitidae",
+      "genus": "Misgurnus",
+      "species": "Misgurnus anguillicaudatus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4368:-11642",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 12,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335860147"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4371:-11626-4665-1",
+      "taxonId": "4665",
+      "scientificName": "Falco sparverius Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Falconiformes",
+      "family": "Falconidae",
+      "genus": "Falco",
+      "species": "Falco sparverius",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4371:-11626",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 10,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334779211"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.679Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4360:-11621-9100-1",
+      "taxonId": "9100",
+      "scientificName": "Melospiza melodia (A.Wilson, 1810)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Melospiza",
+      "species": "Melospiza melodia",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4360:-11621",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 20,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334607073"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4368:-11630-485176-1",
+      "taxonId": "485176",
+      "scientificName": "Mareca americana (J.F.Gmelin, 1789)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Mareca",
+      "species": "Mareca americana",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4368:-11630",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 7,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335979834"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4362:-11623-4956-1",
+      "taxonId": "4956",
+      "scientificName": "Ardea herodias Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Ardea",
+      "species": "Ardea herodias",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4362:-11623",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 248,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335843912"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4356:-11615-2548-1",
+      "taxonId": "2548",
+      "scientificName": "Megaceryle alcyon (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Coraciiformes",
+      "family": "Alcedinidae",
+      "genus": "Megaceryle",
+      "species": "Megaceryle alcyon",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4356:-11615",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 109,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335647999"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4358:-11641-153507-1",
+      "taxonId": "153507",
+      "scientificName": "Tegenaria domestica (Clerck, 1757)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Arachnida",
+      "order": "Araneae",
+      "family": "Agelenidae",
+      "genus": "Tegenaria",
+      "species": "Tegenaria domestica",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4358:-11641",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335390193"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4363:-11624-10286-1",
+      "taxonId": "10286",
+      "scientificName": "Mniotilta varia (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Parulidae",
+      "genus": "Mniotilta",
+      "species": "Mniotilta varia",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4363:-11624",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334452809"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4362:-11635-12727-1",
+      "taxonId": "12727",
+      "scientificName": "Turdus migratorius Linnaeus, 1766",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Turdidae",
+      "genus": "Turdus",
+      "species": "Turdus migratorius",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4362:-11635",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334452823"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4358:-11641-1470429-1",
+      "taxonId": "1470429",
+      "scientificName": "Forficula dentata Fabricius, 1775",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Dermaptera",
+      "family": "Forficulidae",
+      "genus": "Forficula",
+      "species": "Forficula dentata",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4358:-11641",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334009253"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4363:-11620-9176-1",
+      "taxonId": "9176",
+      "scientificName": "Zonotrichia leucophrys (J.R.Forster, 1772)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Zonotrichia",
+      "species": "Zonotrichia leucophrys",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4363:-11620",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334452820"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4362:-11635-4364-1",
+      "taxonId": "4364",
+      "scientificName": "Larus delawarensis Ord, 1815",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Charadriiformes",
+      "family": "Laridae",
+      "genus": "Larus",
+      "species": "Larus delawarensis",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4362:-11635",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334452828"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4363:-11627-54134-1",
+      "taxonId": "54134",
+      "scientificName": "Trametes versicolor (L.) Lloyd",
+      "commonName": null,
+      "kingdom": "Fungi",
+      "class": "Agaricomycetes",
+      "order": "Polyporales",
+      "family": "Polyporaceae",
+      "genus": "Trametes",
+      "species": "Trametes versicolor",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4363:-11627",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335748238"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4362:-11624-7109-1",
+      "taxonId": "7109",
+      "scientificName": "Lophodytes cucullatus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Lophodytes",
+      "species": "Lophodytes cucullatus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4362:-11624",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333472596"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4352:-11607-54605-1",
+      "taxonId": "54605",
+      "scientificName": "Marrubium vulgare L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Lamiales",
+      "family": "Lamiaceae",
+      "genus": "Marrubium",
+      "species": "Marrubium vulgare",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4352:-11607",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334434583"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4345:-11614-244075-1",
+      "taxonId": "244075",
+      "scientificName": "Syntrichia ruralis (Hedw.) F.Weber & D.Mohr",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Bryopsida",
+      "order": "Pottiales",
+      "family": "Pottiaceae",
+      "genus": "Syntrichia",
+      "species": "Syntrichia ruralis",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4345:-11614",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335309290"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4363:-11624-7004-1",
+      "taxonId": "7004",
+      "scientificName": "Mergus merganser Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Mergus",
+      "species": "Mergus merganser",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4363:-11624",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334452807"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4360:-11620-7109-1",
+      "taxonId": "7109",
+      "scientificName": "Lophodytes cucullatus (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Lophodytes",
+      "species": "Lophodytes cucullatus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4360:-11620",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 21,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334852306"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4365:-11619-9100-1",
+      "taxonId": "9100",
+      "scientificName": "Melospiza melodia (A.Wilson, 1810)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Melospiza",
+      "species": "Melospiza melodia",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4365:-11619",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335590609"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4363:-11624-9100-1",
+      "taxonId": "9100",
+      "scientificName": "Melospiza melodia (A.Wilson, 1810)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Melospiza",
+      "species": "Melospiza melodia",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4363:-11624",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334452804"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4361:-11636-7044-1",
+      "taxonId": "7044",
+      "scientificName": "Aythya collaris (Donovan, 1809)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Aythya",
+      "species": "Aythya collaris",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4361:-11636",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334452829"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4360:-11620-6993-1",
+      "taxonId": "6993",
+      "scientificName": "Bucephala albeola (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Bucephala",
+      "species": "Bucephala albeola",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4360:-11620",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334852386"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4363:-11624-4956-1",
+      "taxonId": "4956",
+      "scientificName": "Ardea herodias Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Pelecaniformes",
+      "family": "Ardeidae",
+      "genus": "Ardea",
+      "species": "Ardea herodias",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4363:-11624",
+      "month": 1,
+      "observationCount": 3,
+      "coordinateUncertainty": {
+        "summaryMeters": 203,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334452805",
+          "https://www.inaturalist.org/observations/352202297",
+          "https://www.inaturalist.org/observations/352202294"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4360:-11619-65979-1",
+      "taxonId": "65979",
+      "scientificName": "Lithobates catesbeianus (Shaw, 1802)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Amphibia",
+      "order": "Anura",
+      "family": "Ranidae",
+      "genus": "Lithobates",
+      "species": "Lithobates catesbeianus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4360:-11619",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 16,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335433833"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4363:-11620-205320-1",
+      "taxonId": "205320",
+      "scientificName": "Diplolepis rosae (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Hymenoptera",
+      "family": "Cynipidae",
+      "genus": "Diplolepis",
+      "species": "Diplolepis rosae",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4363:-11620",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334452816"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4361:-11623-7089-1",
+      "taxonId": "7089",
+      "scientificName": "Branta canadensis (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Branta",
+      "species": "Branta canadensis",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4361:-11623",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334888948"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4361:-11619-58729-1",
+      "taxonId": "58729",
+      "scientificName": "Toxicodendron rydbergii (Small ex Rydb.) Greene",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Sapindales",
+      "family": "Anacardiaceae",
+      "genus": "Toxicodendron",
+      "species": "Toxicodendron rydbergii",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4361:-11619",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335383577"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4363:-11621-48484-1",
+      "taxonId": "48484",
+      "scientificName": "Harmonia axyridis (Pallas, 1773)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Coleoptera",
+      "family": "Coccinellidae",
+      "genus": "Harmonia",
+      "species": "Harmonia axyridis",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4363:-11621",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 39,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335445101"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4362:-11624-4665-1",
+      "taxonId": "4665",
+      "scientificName": "Falco sparverius Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Falconiformes",
+      "family": "Falconidae",
+      "genus": "Falco",
+      "species": "Falco sparverius",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4362:-11624",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334957230"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4358:-11641-1289388-1",
+      "taxonId": "1289388",
+      "scientificName": "Corthylio calendula (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Regulidae",
+      "genus": "Regulus",
+      "species": "Regulus calendula",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4358:-11641",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 29,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334158186"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4362:-11618-57934-1",
+      "taxonId": "57934",
+      "scientificName": "Ericameria nauseosa (Pall. ex Pursh) G.L.Nesom & G.I.Baird",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Ericameria",
+      "species": "Ericameria nauseosa",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4362:-11618",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335385289"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4358:-11641-8010-1",
+      "taxonId": "8010",
+      "scientificName": "Corvus corax Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Corvidae",
+      "genus": "Corvus",
+      "species": "Corvus corax",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4358:-11641",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336531883"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4361:-11642-118552-1",
+      "taxonId": "118552",
+      "scientificName": "Felis catus Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Carnivora",
+      "family": "Felidae",
+      "genus": "Felis",
+      "species": "Felis catus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4361:-11642",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336288237"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4360:-11621-1289388-1",
+      "taxonId": "1289388",
+      "scientificName": "Corthylio calendula (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Regulidae",
+      "genus": "Regulus",
+      "species": "Regulus calendula",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4360:-11621",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 24,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336848901"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4358:-11623-12951-1",
+      "taxonId": "12951",
+      "scientificName": "Myadestes townsendi (Audubon, 1838)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Turdidae",
+      "genus": "Myadestes",
+      "species": "Myadestes townsendi",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4358:-11623",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 7,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336855813"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4358:-11641-229824-1",
+      "taxonId": "229824",
+      "scientificName": "Reesa vespulae (Milliron, 1939)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Coleoptera",
+      "family": "Dermestidae",
+      "genus": "Reesa",
+      "species": "Reesa vespulae",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4358:-11641",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 14,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336610513"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4358:-11641-209807-1",
+      "taxonId": "209807",
+      "scientificName": "Oxyopes scalaris Hentz, 1845",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Arachnida",
+      "order": "Araneae",
+      "family": "Oxyopidae",
+      "genus": "Oxyopes",
+      "species": "Oxyopes scalaris",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4358:-11641",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336363190"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4361:-11623-12890-1",
+      "taxonId": "12890",
+      "scientificName": "Catharus guttatus (Pallas, 1811)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Turdidae",
+      "genus": "Catharus",
+      "species": "Catharus guttatus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4361:-11623",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335839314"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4358:-11623-10094-1",
+      "taxonId": "10094",
+      "scientificName": "Junco hyemalis (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Junco",
+      "species": "Junco hyemalis",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4358:-11623",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336855767"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4359:-11643-470009-1",
+      "taxonId": "470009",
+      "scientificName": "Patapius spinosus (Rossi, 1790)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Hemiptera",
+      "family": "Leptopodidae",
+      "genus": "Patapius",
+      "species": "Patapius spinosus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4359:-11643",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336460091"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4356:-11615-4364-1",
+      "taxonId": "4364",
+      "scientificName": "Larus delawarensis Ord, 1815",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Charadriiformes",
+      "family": "Laridae",
+      "genus": "Larus",
+      "species": "Larus delawarensis",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4356:-11615",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 45,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336403936"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4358:-11623-7428-1",
+      "taxonId": "7428",
+      "scientificName": "Bombycilla cedrorum Vieillot, 1808",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Bombycillidae",
+      "genus": "Bombycilla",
+      "species": "Bombycilla cedrorum",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4358:-11623",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336855511"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4359:-11625-145310-1",
+      "taxonId": "145310",
+      "scientificName": "Spinus tristis (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Fringillidae",
+      "genus": "Spinus",
+      "species": "Spinus tristis",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4359:-11625",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 12,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333336570"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4358:-11623-14850-1",
+      "taxonId": "14850",
+      "scientificName": "Sturnus vulgaris Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Sturnidae",
+      "genus": "Sturnus",
+      "species": "Sturnus vulgaris",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4358:-11623",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 7,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336855675"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4356:-11612-42220-1",
+      "taxonId": "42220",
+      "scientificName": "Odocoileus hemionus (Rafinesque, 1817)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Artiodactyla",
+      "family": "Cervidae",
+      "genus": "Odocoileus",
+      "species": "Odocoileus hemionus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4356:-11612",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336298985"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4358:-11623-792988-1",
+      "taxonId": "792988",
+      "scientificName": "Dryobates pubescens (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Piciformes",
+      "family": "Picidae",
+      "genus": "Dryobates",
+      "species": "Dryobates pubescens",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4358:-11623",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 7,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336855451"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4358:-11618-792988-1",
+      "taxonId": "792988",
+      "scientificName": "Dryobates pubescens (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Piciformes",
+      "family": "Picidae",
+      "genus": "Dryobates",
+      "species": "Dryobates pubescens",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4358:-11618",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336267953"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4364:-11630-59029-1",
+      "taxonId": "59029",
+      "scientificName": "Verbascum thapsus L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Lamiales",
+      "family": "Scrophulariaceae",
+      "genus": "Verbascum",
+      "species": "Verbascum thapsus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4364:-11630",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335266256"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4361:-11622-468509-1",
+      "taxonId": "468509",
+      "scientificName": "Pleurotus populinus O.Hilber & O.K.Mill.",
+      "commonName": null,
+      "kingdom": "Fungi",
+      "class": "Agaricomycetes",
+      "order": "Agaricales",
+      "family": "Pleurotaceae",
+      "genus": "Pleurotus",
+      "species": "Pleurotus populinus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4361:-11622",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 27,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335257607"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4358:-11641-347427-1",
+      "taxonId": "347427",
+      "scientificName": "Spinus psaltria hesperophilus (Oberholser, 1903)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Fringillidae",
+      "genus": "Spinus",
+      "species": "Spinus psaltria",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4358:-11641",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/337449655"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4370:-11647-205320-1",
+      "taxonId": "205320",
+      "scientificName": "Diplolepis rosae (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Hymenoptera",
+      "family": "Cynipidae",
+      "genus": "Diplolepis",
+      "species": "Diplolepis rosae",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4370:-11647",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/337143905"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4354:-11609-7464-1",
+      "taxonId": "7464",
+      "scientificName": "Catherpes mexicanus (Swainson, 1829)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Troglodytidae",
+      "genus": "Catherpes",
+      "species": "Catherpes mexicanus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4354:-11609",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 978,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/337272565"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4361:-11619-126887-1",
+      "taxonId": "126887",
+      "scientificName": "Berberis aquifolium Pursh",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Ranunculales",
+      "family": "Berberidaceae",
+      "genus": "Mahonia",
+      "species": "Mahonia aquifolium",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4361:-11619",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335383503"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4361:-11623-126887-1",
+      "taxonId": "126887",
+      "scientificName": "Berberis aquifolium Pursh",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Ranunculales",
+      "family": "Berberidaceae",
+      "genus": "Mahonia",
+      "species": "Mahonia aquifolium",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4361:-11623",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 16,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335254741"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4368:-11642-129204-1",
+      "taxonId": "129204",
+      "scientificName": "Radix auricularia (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Gastropoda",
+      "order": null,
+      "family": "Lymnaeidae",
+      "genus": "Radix",
+      "species": "Radix auricularia",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4368:-11642",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335860112"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4359:-11624-236908-1",
+      "taxonId": "236908",
+      "scientificName": "Accipiter striatus velox (A.Wilson, 1812)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Accipitriformes",
+      "family": "Accipitridae",
+      "genus": "Accipiter",
+      "species": "Accipiter striatus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4359:-11624",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 18,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333188425"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4363:-11624-126887-1",
+      "taxonId": "126887",
+      "scientificName": "Berberis aquifolium Pursh",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Ranunculales",
+      "family": "Berberidaceae",
+      "genus": "Mahonia",
+      "species": "Mahonia aquifolium",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4363:-11624",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333345944"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4351:-11626-1579017-1",
+      "taxonId": "1579017",
+      "scientificName": "Astur Lacepède, 1799",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Accipitriformes",
+      "family": "Accipitridae",
+      "genus": "Astur",
+      "species": null,
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4351:-11626",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 20,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/342756294"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4360:-11621-7107-1",
+      "taxonId": "7107",
+      "scientificName": "Aix sponsa (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Aix",
+      "species": "Aix sponsa",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4360:-11621",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 45,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/342372184"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4360:-11621-6930-1",
+      "taxonId": "6930",
+      "scientificName": "Anas platyrhynchos Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Anas",
+      "species": "Anas platyrhynchos",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4360:-11621",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 61,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/342372181"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4360:-11621-144815-1",
+      "taxonId": "144815",
+      "scientificName": "Poecile atricapillus (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Paridae",
+      "genus": "Poecile",
+      "species": "Poecile atricapillus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4360:-11621",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 114,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/342372185"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4370:-11648-53809-1",
+      "taxonId": "53809",
+      "scientificName": "Phidippus audax (Hentz, 1845)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Arachnida",
+      "order": "Araneae",
+      "family": "Salticidae",
+      "genus": "Phidippus",
+      "species": "Phidippus audax",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4370:-11648",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 7,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/343538267"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4367:-11636-906-1",
+      "taxonId": "906",
+      "scientificName": "Meleagris gallopavo Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Galliformes",
+      "family": "Phasianidae",
+      "genus": "Meleagris",
+      "species": "Meleagris gallopavo",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4367:-11636",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/344636095"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4366:-11622-53226-1",
+      "taxonId": "53226",
+      "scientificName": "Boisea rubrolineata (Barber, 1926)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Hemiptera",
+      "family": "Rhopalidae",
+      "genus": "Boisea",
+      "species": "Boisea rubrolineata",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4366:-11622",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 20,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/344008457"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4353:-11610-2548-1",
+      "taxonId": "2548",
+      "scientificName": "Megaceryle alcyon (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Coraciiformes",
+      "family": "Alcedinidae",
+      "genus": "Megaceryle",
+      "species": "Megaceryle alcyon",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4353:-11610",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/344593074"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4356:-11615-54134-1",
+      "taxonId": "54134",
+      "scientificName": "Trametes versicolor (L.) Lloyd",
+      "commonName": null,
+      "kingdom": "Fungi",
+      "class": "Agaricomycetes",
+      "order": "Polyporales",
+      "family": "Polyporaceae",
+      "genus": "Trametes",
+      "species": "Trametes versicolor",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4356:-11615",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 10,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333349581"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4365:-11626-55829-1",
+      "taxonId": "55829",
+      "scientificName": "Cardamine hirsuta L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Brassicales",
+      "family": "Brassicaceae",
+      "genus": "Cardamine",
+      "species": "Cardamine hirsuta",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4365:-11626",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334867070"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4363:-11624-4364-1",
+      "taxonId": "4364",
+      "scientificName": "Larus delawarensis Ord, 1815",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Charadriiformes",
+      "family": "Laridae",
+      "genus": "Larus",
+      "species": "Larus delawarensis",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4363:-11624",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 203,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/352131562"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4363:-11624-20044-1",
+      "taxonId": "20044",
+      "scientificName": "Bubo virginianus (J.F.Gmelin, 1788)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Strigiformes",
+      "family": "Strigidae",
+      "genus": "Bubo",
+      "species": "Bubo virginianus",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4363:-11624",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 203,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/352202296"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4361:-11634-7089-1",
+      "taxonId": "7089",
+      "scientificName": "Branta canadensis (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Anseriformes",
+      "family": "Anatidae",
+      "genus": "Branta",
+      "species": "Branta canadensis",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4361:-11634",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 180,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/351884743"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4361:-11634-46020-1",
+      "taxonId": "46020",
+      "scientificName": "Sciurus niger Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Rodentia",
+      "family": "Sciuridae",
+      "genus": "Sciurus",
+      "species": "Sciurus niger",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4361:-11634",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 180,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/351884741"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-4361:-11634-2969-1",
+      "taxonId": "2969",
+      "scientificName": "Streptopelia decaocto (Frivaldszky, 1838)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Columbiformes",
+      "family": "Columbidae",
+      "genus": "Streptopelia",
+      "species": "Streptopelia decaocto",
+      "regionId": "boise-meridian-idaho",
+      "gridCellId": "4361:-11634",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 180,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/351884747"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:27.680Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "boise-meridian-idaho-center-envelope-v1"
+    }
+  ]
 }

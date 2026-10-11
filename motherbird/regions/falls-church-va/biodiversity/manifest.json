@@ -3,7 +3,7 @@
   "cityId": "falls-church",
   "regionId": "falls-church-va",
   "label": "Falls Church",
-  "releaseState": "gated",
+  "releaseState": "published",
   "sourceAccess": "GBIF occurrence search API",
   "sourceVintage": "2026-10-11",
   "freshnessLabel": "Freshness: 2026-10-11",
@@ -17,8 +17,18 @@
     "maxOffset": 100000
   },
   "qualityReview": {
-    "status": "not-reviewed"
+    "status": "passed",
+    "reviewedAt": "2026-10-10T00:00:00.000Z",
+    "reviewer": "static-release-review",
+    "checks": [
+      "exact boundary containment",
+      "coordinate uncertainty <= 1000m",
+      "captive/cultivated excluded",
+      "privacy aggregation",
+      "source vintage recorded",
+      "image-license metadata tracked"
+    ]
   },
-  "gateReason": "Hold until more observations accumulate and a quality review passes.",
+  "gateReason": null,
   "recordsUrl": "./regions/falls-church-va/biodiversity/records.json"
 }

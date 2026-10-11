@@ -1,20 +1,32 @@
 {
   "schemaVersion": "biodiversity-sidecar-v1",
   "metadata": {
-    "schemaVersion": "biodiversity-sidecar-v1",
     "regionId": "moab",
-    "sourceVintage": "2026-10-10",
-    "generatedAt": "2026-10-10T00:00:00.000Z",
-    "sourceAccess": "GBIF occurrence search API",
-    "sourceQuery": "Region boundary query; authenticated download required for large regions.",
-    "boundaryVersion": "moab-boundary-v1",
+    "sourceVintage": "2026-10-11",
+    "boundaryVersion": "moab-center-envelope-v1",
     "gbifDownloadDoi": null,
-    "inputRows": 0,
+    "generatedAt": "2026-10-11T01:53:34.731Z",
+    "fixture": false,
+    "sourceAccess": "GBIF occurrence search API",
+    "sourceQuery": "POLYGON((-109.99747846385591 38.2233,-109.1021215361441 38.2233,-109.1021215361441 38.923300000000005,-109.99747846385591 38.923300000000005,-109.99747846385591 38.2233))",
+    "inputRows": 300,
+    "matchingRecordCount": 34894,
+    "coverageNote": null,
+    "schemaVersion": "biodiversity-sidecar-v1",
+    "acquisitionWorkflow": {
+      "mode": "occurrence-search",
+      "endpoint": "https://api.gbif.org/v1/occurrence/search",
+      "pageSize": 300,
+      "maxOffset": 100000
+    },
     "freshnessClass": "fresh",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
     "releaseState": "sidecar-available",
+    "qualityReview": {
+      "status": "not-reviewed"
+    },
     "gateReason": null,
     "safeguards": {
       "coordinateUncertaintyFiltering": true,
@@ -22,17 +34,4312 @@
       "privacyAwareAggregation": true,
       "sourceVintageTracked": true,
       "imageLicenseMetadataTracked": true
-    },
-    "qualityReview": {
-      "status": "not-reviewed"
-    },
-    "acquisitionWorkflow": {
-      "mode": "occurrence-search",
-      "endpoint": "https://api.gbif.org/v1/occurrence/search",
-      "pageSize": 300,
-      "maxOffset": 100000
-    },
-    "coverageNote": "No qualifying rows are currently published for this region; this is not evidence of absence."
+    }
   },
-  "records": []
+  "records": [
+    {
+      "recordId": "aggregate-3874:-10951-1220378-1",
+      "taxonId": "1220378",
+      "scientificName": "Eriocoma hymenoides (Roem. & Schult.) Rydb.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Liliopsida",
+      "order": "Poales",
+      "family": "Poaceae",
+      "genus": "Eriocoma",
+      "species": "Eriocoma hymenoides",
+      "regionId": "moab",
+      "gridCellId": "3874:-10951",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 276,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333391917"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3871:-10970-5074-1",
+      "taxonId": "5074",
+      "scientificName": "Aquila chrysaetos (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Accipitriformes",
+      "family": "Accipitridae",
+      "genus": "Aquila",
+      "species": "Aquila chrysaetos",
+      "regionId": "moab",
+      "gridCellId": "3871:-10970",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333336119"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3859:-10928-57902-1",
+      "taxonId": "57902",
+      "scientificName": "Pinus edulis Engelm.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Pinopsida",
+      "order": "Pinales",
+      "family": "Pinaceae",
+      "genus": "Pinus",
+      "species": "Pinus edulis",
+      "regionId": "moab",
+      "gridCellId": "3859:-10928",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333069930"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3874:-10957-77600-1",
+      "taxonId": "77600",
+      "scientificName": "Juniperus osteosperma (Torr.) Little",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Pinopsida",
+      "order": "Pinales",
+      "family": "Cupressaceae",
+      "genus": "Juniperus",
+      "species": "Juniperus osteosperma",
+      "regionId": "moab",
+      "gridCellId": "3874:-10957",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335327854"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3860:-10958-5212-1",
+      "taxonId": "5212",
+      "scientificName": "Buteo jamaicensis (Gmelin, 1788)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Accipitriformes",
+      "family": "Accipitridae",
+      "genus": "Buteo",
+      "species": "Buteo jamaicensis",
+      "regionId": "moab",
+      "gridCellId": "3860:-10958",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 217,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335365217"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3852:-10961-148445-1",
+      "taxonId": "148445",
+      "scientificName": "Sclerocactus parviflorus Clover & Jotter",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Cactaceae",
+      "genus": "Sclerocactus",
+      "species": "Sclerocactus parviflorus",
+      "regionId": "moab",
+      "gridCellId": "3852:-10961",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 85,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335121917"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3863:-10980-57891-1",
+      "taxonId": "57891",
+      "scientificName": "Ephedra viridis Coville",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Gnetopsida",
+      "order": "Ephedrales",
+      "family": "Ephedraceae",
+      "genus": "Ephedra",
+      "species": "Ephedra viridis",
+      "regionId": "moab",
+      "gridCellId": "3863:-10980",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335635883"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3856:-10950-71127-1",
+      "taxonId": "71127",
+      "scientificName": "Artemisia ludoviciana Nutt.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Artemisia",
+      "species": "Artemisia ludoviciana",
+      "regionId": "moab",
+      "gridCellId": "3856:-10950",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335535614"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3874:-10950-8010-1",
+      "taxonId": "8010",
+      "scientificName": "Corvus corax Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Corvidae",
+      "genus": "Corvus",
+      "species": "Corvus corax",
+      "regionId": "moab",
+      "gridCellId": "3874:-10950",
+      "month": 1,
+      "observationCount": 3,
+      "coordinateUncertainty": {
+        "summaryMeters": 423,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334313712",
+          "https://www.inaturalist.org/observations/334899419",
+          "https://www.inaturalist.org/observations/335328505"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3862:-10987-858352-1",
+      "taxonId": "858352",
+      "scientificName": "Echinocereus triglochidiatus subsp. mojavensis (Engelm. & J.M.Bigelow) W.Blum & Mich.Lange",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Cactaceae",
+      "genus": "Echinocereus",
+      "species": "Echinocereus triglochidiatus",
+      "regionId": "moab",
+      "gridCellId": "3862:-10987",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 15,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335310740"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3878:-10960-57896-1",
+      "taxonId": "57896",
+      "scientificName": "Salsola tragus L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Amaranthaceae",
+      "genus": "Salsola",
+      "species": "Salsola tragus",
+      "regionId": "moab",
+      "gridCellId": "3878:-10960",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334914127"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3878:-10960-77600-1",
+      "taxonId": "77600",
+      "scientificName": "Juniperus osteosperma (Torr.) Little",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Pinopsida",
+      "order": "Pinales",
+      "family": "Cupressaceae",
+      "genus": "Juniperus",
+      "species": "Juniperus osteosperma",
+      "regionId": "moab",
+      "gridCellId": "3878:-10960",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 7,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334914501"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3878:-10960-58291-1",
+      "taxonId": "58291",
+      "scientificName": "Rumex hymenosepalus Torr.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Polygonaceae",
+      "genus": "Rumex",
+      "species": "Rumex hymenosepalus",
+      "regionId": "moab",
+      "gridCellId": "3878:-10960",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334914150"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3848:-10975-5212-1",
+      "taxonId": "5212",
+      "scientificName": "Buteo jamaicensis (Gmelin, 1788)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Accipitriformes",
+      "family": "Accipitridae",
+      "genus": "Buteo",
+      "species": "Buteo jamaicensis",
+      "regionId": "moab",
+      "gridCellId": "3848:-10975",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 190,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335363913"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3856:-10954-199840-1",
+      "taxonId": "199840",
+      "scientificName": "Haemorhous mexicanus (P.L.Statius Müller, 1776)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Fringillidae",
+      "genus": "Haemorhous",
+      "species": "Haemorhous mexicanus",
+      "regionId": "moab",
+      "gridCellId": "3856:-10954",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 61,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335968745"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3879:-10962-542432-1",
+      "taxonId": "542432",
+      "scientificName": "Quercus welshii R.A.Denham",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Fagales",
+      "family": "Fagaceae",
+      "genus": "Quercus",
+      "species": "Quercus welshii",
+      "regionId": "moab",
+      "gridCellId": "3879:-10962",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335781034"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3857:-10956-5305-1",
+      "taxonId": "5305",
+      "scientificName": "Haliaeetus leucocephalus (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Accipitriformes",
+      "family": "Accipitridae",
+      "genus": "Haliaeetus",
+      "species": "Haliaeetus leucocephalus",
+      "regionId": "moab",
+      "gridCellId": "3857:-10956",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 187,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335363405"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3856:-10954-10094-1",
+      "taxonId": "10094",
+      "scientificName": "Junco hyemalis (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Junco",
+      "species": "Junco hyemalis",
+      "regionId": "moab",
+      "gridCellId": "3856:-10954",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 61,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335968172"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3856:-10954-2969-1",
+      "taxonId": "2969",
+      "scientificName": "Streptopelia decaocto (Frivaldszky, 1838)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Columbiformes",
+      "family": "Columbidae",
+      "genus": "Streptopelia",
+      "species": "Streptopelia decaocto",
+      "regionId": "moab",
+      "gridCellId": "3856:-10954",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 31,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335968648"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3856:-10954-145310-1",
+      "taxonId": "145310",
+      "scientificName": "Spinus tristis (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Fringillidae",
+      "genus": "Spinus",
+      "species": "Spinus tristis",
+      "regionId": "moab",
+      "gridCellId": "3856:-10954",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 61,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335967768"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3878:-10960-57934-1",
+      "taxonId": "57934",
+      "scientificName": "Ericameria nauseosa (Pall. ex Pursh) G.L.Nesom & G.I.Baird",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Ericameria",
+      "species": "Ericameria nauseosa",
+      "regionId": "moab",
+      "gridCellId": "3878:-10960",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 14,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334914567"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3870:-10957-77600-1",
+      "taxonId": "77600",
+      "scientificName": "Juniperus osteosperma (Torr.) Little",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Pinopsida",
+      "order": "Pinales",
+      "family": "Cupressaceae",
+      "genus": "Juniperus",
+      "species": "Juniperus osteosperma",
+      "regionId": "moab",
+      "gridCellId": "3870:-10957",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 184,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334314254"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3856:-10954-145308-1",
+      "taxonId": "145308",
+      "scientificName": "Spinus psaltria (Say, 1822)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Fringillidae",
+      "genus": "Spinus",
+      "species": "Spinus psaltria",
+      "regionId": "moab",
+      "gridCellId": "3856:-10954",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 61,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335967451"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3874:-10950-558446-1",
+      "taxonId": "558446",
+      "scientificName": "Circus hudsonius (Linnaeus, 1766)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Accipitriformes",
+      "family": "Accipitridae",
+      "genus": "Circus",
+      "species": "Circus cyaneus",
+      "regionId": "moab",
+      "gridCellId": "3874:-10950",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 784,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335006587"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3878:-10960-57902-1",
+      "taxonId": "57902",
+      "scientificName": "Pinus edulis Engelm.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Pinopsida",
+      "order": "Pinales",
+      "family": "Pinaceae",
+      "genus": "Pinus",
+      "species": "Pinus edulis",
+      "regionId": "moab",
+      "gridCellId": "3878:-10960",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 24,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334914517"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3864:-10973-334235-1",
+      "taxonId": "334235",
+      "scientificName": "Aciurina bigeloviae (Cockerell, 1890)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Diptera",
+      "family": "Tephritidae",
+      "genus": "Aciurina",
+      "species": "Aciurina bigeloviae",
+      "regionId": "moab",
+      "gridCellId": "3864:-10973",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335674030"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3870:-10957-78787-1",
+      "taxonId": "78787",
+      "scientificName": "Purshia stansburiana (Torr.) Henrickson",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Rosales",
+      "family": "Rosaceae",
+      "genus": "Purshia",
+      "species": "Purshia stansburiana",
+      "regionId": "moab",
+      "gridCellId": "3870:-10957",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 184,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334314257"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3856:-10954-9420-1",
+      "taxonId": "9420",
+      "scientificName": "Pipilo maculatus Swainson, 1827",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Pipilo",
+      "species": "Pipilo maculatus",
+      "regionId": "moab",
+      "gridCellId": "3856:-10954",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 61,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335968391"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3882:-10978-84663-1",
+      "taxonId": "84663",
+      "scientificName": "Euxoa auxiliaris Grote, 1873",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Insecta",
+      "order": "Lepidoptera",
+      "family": "Noctuidae",
+      "genus": "Euxoa",
+      "species": "Euxoa auxiliaris",
+      "regionId": "moab",
+      "gridCellId": "3882:-10978",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 250,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334311662"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3878:-10960-1220378-1",
+      "taxonId": "1220378",
+      "scientificName": "Eriocoma hymenoides (Roem. & Schult.) Rydb.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Liliopsida",
+      "order": "Poales",
+      "family": "Poaceae",
+      "genus": "Eriocoma",
+      "species": "Eriocoma hymenoides",
+      "regionId": "moab",
+      "gridCellId": "3878:-10960",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334914258"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3862:-10960-58087-1",
+      "taxonId": "58087",
+      "scientificName": "Stanleya pinnata (Pursh) Britton",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Brassicales",
+      "family": "Brassicaceae",
+      "genus": "Stanleya",
+      "species": "Stanleya pinnata",
+      "regionId": "moab",
+      "gridCellId": "3862:-10960",
+      "month": 1,
+      "observationCount": 3,
+      "coordinateUncertainty": {
+        "summaryMeters": 160,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334314269",
+          "https://www.inaturalist.org/observations/334314267",
+          "https://www.inaturalist.org/observations/334314271"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3878:-10960-57891-1",
+      "taxonId": "57891",
+      "scientificName": "Ephedra viridis Coville",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Gnetopsida",
+      "order": "Ephedrales",
+      "family": "Ephedraceae",
+      "genus": "Ephedra",
+      "species": "Ephedra viridis",
+      "regionId": "moab",
+      "gridCellId": "3878:-10960",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334914307"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3841:-10946-42069-1",
+      "taxonId": "42069",
+      "scientificName": "Vulpes vulpes (Linnaeus, 1758)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Carnivora",
+      "family": "Canidae",
+      "genus": "Vulpes",
+      "species": "Vulpes vulpes",
+      "regionId": "moab",
+      "gridCellId": "3841:-10946",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 301,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335366012"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3870:-10957-8010-1",
+      "taxonId": "8010",
+      "scientificName": "Corvus corax Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Corvidae",
+      "genus": "Corvus",
+      "species": "Corvus corax",
+      "regionId": "moab",
+      "gridCellId": "3870:-10957",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 184,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334314256"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3856:-10954-9176-1",
+      "taxonId": "9176",
+      "scientificName": "Zonotrichia leucophrys (J.R.Forster, 1772)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Zonotrichia",
+      "species": "Zonotrichia leucophrys",
+      "regionId": "moab",
+      "gridCellId": "3856:-10954",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 31,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335968513"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3878:-10960-78269-1",
+      "taxonId": "78269",
+      "scientificName": "Opuntia polyacantha Haw.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Cactaceae",
+      "genus": "Opuntia",
+      "species": "Opuntia polyacantha",
+      "regionId": "moab",
+      "gridCellId": "3878:-10960",
+      "month": 1,
+      "observationCount": 3,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334914043",
+          "https://www.inaturalist.org/observations/334913927",
+          "https://www.inaturalist.org/observations/334913953"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3857:-10956-9176-1",
+      "taxonId": "9176",
+      "scientificName": "Zonotrichia leucophrys (J.R.Forster, 1772)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Passerellidae",
+      "genus": "Zonotrichia",
+      "species": "Zonotrichia leucophrys",
+      "regionId": "moab",
+      "gridCellId": "3857:-10956",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 187,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335363727"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3869:-10955-68559-1",
+      "taxonId": "68559",
+      "scientificName": "Coleogyne ramosissima Torr.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Rosales",
+      "family": "Rosaceae",
+      "genus": "Coleogyne",
+      "species": "Coleogyne ramosissima",
+      "regionId": "moab",
+      "gridCellId": "3869:-10955",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 12,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334913709"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3841:-10946-43115-1",
+      "taxonId": "43115",
+      "scientificName": "Sylvilagus audubonii (Baird, 1858)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Lagomorpha",
+      "family": "Leporidae",
+      "genus": "Sylvilagus",
+      "species": "Sylvilagus audubonii",
+      "regionId": "moab",
+      "gridCellId": "3841:-10946",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 313,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335366444"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3837:-10946-77600-1",
+      "taxonId": "77600",
+      "scientificName": "Juniperus osteosperma (Torr.) Little",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Pinopsida",
+      "order": "Pinales",
+      "family": "Cupressaceae",
+      "genus": "Juniperus",
+      "species": "Juniperus osteosperma",
+      "regionId": "moab",
+      "gridCellId": "3837:-10946",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334910121"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3878:-10960-68559-1",
+      "taxonId": "68559",
+      "scientificName": "Coleogyne ramosissima Torr.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Rosales",
+      "family": "Rosaceae",
+      "genus": "Coleogyne",
+      "species": "Coleogyne ramosissima",
+      "regionId": "moab",
+      "gridCellId": "3878:-10960",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 13,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334914404"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3870:-10957-542432-1",
+      "taxonId": "542432",
+      "scientificName": "Quercus welshii R.A.Denham",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Fagales",
+      "family": "Fagaceae",
+      "genus": "Quercus",
+      "species": "Quercus welshii",
+      "regionId": "moab",
+      "gridCellId": "3870:-10957",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 184,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334314260"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3862:-10960-57934-1",
+      "taxonId": "57934",
+      "scientificName": "Ericameria nauseosa (Pall. ex Pursh) G.L.Nesom & G.I.Baird",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Ericameria",
+      "species": "Ericameria nauseosa",
+      "regionId": "moab",
+      "gridCellId": "3862:-10960",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 160,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334314272"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3878:-10960-148050-1",
+      "taxonId": "148050",
+      "scientificName": "Yucca harrimaniae Trel.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Liliopsida",
+      "order": "Asparagales",
+      "family": "Asparagaceae",
+      "genus": "Yucca",
+      "species": "Yucca harrimaniae",
+      "regionId": "moab",
+      "gridCellId": "3878:-10960",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334914095"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3864:-10973-75752-1",
+      "taxonId": "75752",
+      "scientificName": "Berberis fremontii Torr.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Ranunculales",
+      "family": "Berberidaceae",
+      "genus": "Alloberberis",
+      "species": "Alloberberis fremontii",
+      "regionId": "moab",
+      "gridCellId": "3864:-10973",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335673977"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3874:-10951-57891-1",
+      "taxonId": "57891",
+      "scientificName": "Ephedra viridis Coville",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Gnetopsida",
+      "order": "Ephedrales",
+      "family": "Ephedraceae",
+      "genus": "Ephedra",
+      "species": "Ephedra viridis",
+      "regionId": "moab",
+      "gridCellId": "3874:-10951",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 391,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/333753110"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3874:-10957-75752-1",
+      "taxonId": "75752",
+      "scientificName": "Berberis fremontii Torr.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Ranunculales",
+      "family": "Berberidaceae",
+      "genus": "Alloberberis",
+      "species": "Alloberberis fremontii",
+      "regionId": "moab",
+      "gridCellId": "3874:-10957",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335679598"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3856:-10950-76655-1",
+      "taxonId": "76655",
+      "scientificName": "Dieteria canescens (Pursh) Nutt.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Dieteria",
+      "species": "Dieteria canescens",
+      "regionId": "moab",
+      "gridCellId": "3856:-10950",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/335536407"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3865:-10962-148445-1",
+      "taxonId": "148445",
+      "scientificName": "Sclerocactus parviflorus Clover & Jotter",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Cactaceae",
+      "genus": "Sclerocactus",
+      "species": "Sclerocactus parviflorus",
+      "regionId": "moab",
+      "gridCellId": "3865:-10962",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336551813"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3839:-10988-75752-1",
+      "taxonId": "75752",
+      "scientificName": "Berberis fremontii Torr.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Ranunculales",
+      "family": "Berberidaceae",
+      "genus": "Alloberberis",
+      "species": "Alloberberis fremontii",
+      "regionId": "moab",
+      "gridCellId": "3839:-10988",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336923169"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3848:-10974-506117-1",
+      "taxonId": "506117",
+      "scientificName": "Aphelocoma woodhouseii (S.F.Baird, 1858)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Corvidae",
+      "genus": "Aphelocoma",
+      "species": "Aphelocoma woodhouseii",
+      "regionId": "moab",
+      "gridCellId": "3848:-10974",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 17,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336515888"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3864:-10948-41976-1",
+      "taxonId": "41976",
+      "scientificName": "Lynx rufus (Schreber, 1777)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Carnivora",
+      "family": "Felidae",
+      "genus": "Lynx",
+      "species": "Lynx rufus",
+      "regionId": "moab",
+      "gridCellId": "3864:-10948",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 15,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/340773826"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3878:-10976-46177-1",
+      "taxonId": "46177",
+      "scientificName": "Cynomys leucurus Merriam, 1890",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Rodentia",
+      "family": "Sciuridae",
+      "genus": "Cynomys",
+      "species": "Cynomys leucurus",
+      "regionId": "moab",
+      "gridCellId": "3878:-10976",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/340129697"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3854:-10962-858352-1",
+      "taxonId": "858352",
+      "scientificName": "Echinocereus triglochidiatus subsp. mojavensis (Engelm. & J.M.Bigelow) W.Blum & Mich.Lange",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Cactaceae",
+      "genus": "Echinocereus",
+      "species": "Echinocereus triglochidiatus",
+      "regionId": "moab",
+      "gridCellId": "3854:-10962",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/341108946"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3841:-10946-7464-1",
+      "taxonId": "7464",
+      "scientificName": "Catherpes mexicanus (Swainson, 1829)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Troglodytidae",
+      "genus": "Catherpes",
+      "species": "Catherpes mexicanus",
+      "regionId": "moab",
+      "gridCellId": "3841:-10946",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 307,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/336716917"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3869:-10954-148052-1",
+      "taxonId": "148052",
+      "scientificName": "Abronia elliptica A.Nelson",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Nyctaginaceae",
+      "genus": "Abronia",
+      "species": "Abronia elliptica",
+      "regionId": "moab",
+      "gridCellId": "3869:-10954",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/334913809"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3852:-10961-497937-1",
+      "taxonId": "497937",
+      "scientificName": "Encelia resinifera C.Clark",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Encelia",
+      "species": "Encelia resinifera",
+      "regionId": "moab",
+      "gridCellId": "3852:-10961",
+      "month": 1,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 23,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/341410224"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3834:-10987-8010-2",
+      "taxonId": "8010",
+      "scientificName": "Corvus corax Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Corvidae",
+      "genus": "Corvus",
+      "species": "Corvus corax",
+      "regionId": "moab",
+      "gridCellId": "3834:-10987",
+      "month": 2,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/337049162",
+          "https://www.inaturalist.org/observations/338571334"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3856:-10951-7458-2",
+      "taxonId": "7458",
+      "scientificName": "Certhia americana Bonaparte, 1838",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Certhiidae",
+      "genus": "Certhia",
+      "species": "Certhia americana",
+      "regionId": "moab",
+      "gridCellId": "3856:-10951",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 15,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/337114316"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3843:-10934-325111-2",
+      "taxonId": "325111",
+      "scientificName": "Opuntia trichophora (Engelm. & J.M.Bigelow) Britton & Rose",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Cactaceae",
+      "genus": "Opuntia",
+      "species": "Opuntia polyacantha",
+      "regionId": "moab",
+      "gridCellId": "3843:-10934",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/337437973"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3843:-10934-57891-2",
+      "taxonId": "57891",
+      "scientificName": "Ephedra viridis Coville",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Gnetopsida",
+      "order": "Ephedrales",
+      "family": "Ephedraceae",
+      "genus": "Ephedra",
+      "species": "Ephedra viridis",
+      "regionId": "moab",
+      "gridCellId": "3843:-10934",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/337437906"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3879:-10961-78268-2",
+      "taxonId": "78268",
+      "scientificName": "Opuntia phaeacantha Engelm.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Cactaceae",
+      "genus": "Opuntia",
+      "species": "Opuntia phaeacantha",
+      "regionId": "moab",
+      "gridCellId": "3879:-10961",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/337881238"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3843:-10934-78268-2",
+      "taxonId": "78268",
+      "scientificName": "Opuntia phaeacantha Engelm.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Cactaceae",
+      "genus": "Opuntia",
+      "species": "Opuntia phaeacantha",
+      "regionId": "moab",
+      "gridCellId": "3843:-10934",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 8,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/337438016"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3879:-10961-36094-2",
+      "taxonId": "36094",
+      "scientificName": "Uta stansburiana Baird & Girard, 1852",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Squamata",
+      "order": null,
+      "family": "Phrynosomatidae",
+      "genus": "Uta",
+      "species": "Uta stansburiana",
+      "regionId": "moab",
+      "gridCellId": "3879:-10961",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/337881389"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3838:-10987-78269-2",
+      "taxonId": "78269",
+      "scientificName": "Opuntia polyacantha Haw.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Cactaceae",
+      "genus": "Opuntia",
+      "species": "Opuntia polyacantha",
+      "regionId": "moab",
+      "gridCellId": "3838:-10987",
+      "month": 2,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 7,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/337590787",
+          "https://www.inaturalist.org/observations/338567227"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3856:-10950-78787-2",
+      "taxonId": "78787",
+      "scientificName": "Purshia stansburiana (Torr.) Henrickson",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Rosales",
+      "family": "Rosaceae",
+      "genus": "Purshia",
+      "species": "Purshia stansburiana",
+      "regionId": "moab",
+      "gridCellId": "3856:-10950",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 14,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/337158814"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3843:-10934-1520499-2",
+      "taxonId": "1520499",
+      "scientificName": "Echinocereus triglochidiatus f. inermis (K.Schum.) W.Blum",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Cactaceae",
+      "genus": "Echinocereus",
+      "species": "Echinocereus coccineus",
+      "regionId": "moab",
+      "gridCellId": "3843:-10934",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 7,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/337437801"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3842:-10992-58291-2",
+      "taxonId": "58291",
+      "scientificName": "Rumex hymenosepalus Torr.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Polygonaceae",
+      "genus": "Rumex",
+      "species": "Rumex hymenosepalus",
+      "regionId": "moab",
+      "gridCellId": "3842:-10992",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338568279"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3853:-10961-78268-2",
+      "taxonId": "78268",
+      "scientificName": "Opuntia phaeacantha Engelm.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Cactaceae",
+      "genus": "Opuntia",
+      "species": "Opuntia phaeacantha",
+      "regionId": "moab",
+      "gridCellId": "3853:-10961",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338823341"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3845:-10982-57902-2",
+      "taxonId": "57902",
+      "scientificName": "Pinus edulis Engelm.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Pinopsida",
+      "order": "Pinales",
+      "family": "Pinaceae",
+      "genus": "Pinus",
+      "species": "Pinus edulis",
+      "regionId": "moab",
+      "gridCellId": "3845:-10982",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338058716"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3838:-10987-149005-2",
+      "taxonId": "149005",
+      "scientificName": "Cercocarpus intricatus S.Watson",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Rosales",
+      "family": "Rosaceae",
+      "genus": "Cercocarpus",
+      "species": "Cercocarpus intricatus",
+      "regionId": "moab",
+      "gridCellId": "3838:-10987",
+      "month": 2,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 20,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338567551",
+          "https://www.inaturalist.org/observations/338568044"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3838:-10987-1220378-2",
+      "taxonId": "1220378",
+      "scientificName": "Eriocoma hymenoides (Roem. & Schult.) Rydb.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Liliopsida",
+      "order": "Poales",
+      "family": "Poaceae",
+      "genus": "Eriocoma",
+      "species": "Eriocoma hymenoides",
+      "regionId": "moab",
+      "gridCellId": "3838:-10987",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338565469"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3838:-10987-57902-2",
+      "taxonId": "57902",
+      "scientificName": "Pinus edulis Engelm.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Pinopsida",
+      "order": "Pinales",
+      "family": "Pinaceae",
+      "genus": "Pinus",
+      "species": "Pinus edulis",
+      "regionId": "moab",
+      "gridCellId": "3838:-10987",
+      "month": 2,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 11,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338567926",
+          "https://www.inaturalist.org/observations/338567706"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3853:-10961-159068-2",
+      "taxonId": "159068",
+      "scientificName": "Atriplex garrettii Rydb.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Amaranthaceae",
+      "genus": "Atriplex",
+      "species": "Atriplex garrettii",
+      "regionId": "moab",
+      "gridCellId": "3853:-10961",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338823394"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3879:-10962-57891-2",
+      "taxonId": "57891",
+      "scientificName": "Ephedra viridis Coville",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Gnetopsida",
+      "order": "Ephedrales",
+      "family": "Ephedraceae",
+      "genus": "Ephedra",
+      "species": "Ephedra viridis",
+      "regionId": "moab",
+      "gridCellId": "3879:-10962",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338719094"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3842:-10992-46255-2",
+      "taxonId": "46255",
+      "scientificName": "Ammospermophilus leucurus (Merriam, 1889)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Rodentia",
+      "family": "Sciuridae",
+      "genus": "Ammospermophilus",
+      "species": "Ammospermophilus leucurus",
+      "regionId": "moab",
+      "gridCellId": "3842:-10992",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338568099"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3845:-10983-58113-2",
+      "taxonId": "58113",
+      "scientificName": "Atriplex canescens (Pursh) Nutt.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Amaranthaceae",
+      "genus": "Atriplex",
+      "species": "Atriplex canescens",
+      "regionId": "moab",
+      "gridCellId": "3845:-10983",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 17,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338571306"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3842:-10992-77167-2",
+      "taxonId": "77167",
+      "scientificName": "Fraxinus anomala Torr. ex S.Watson",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Lamiales",
+      "family": "Oleaceae",
+      "genus": "Fraxinus",
+      "species": "Fraxinus anomala",
+      "regionId": "moab",
+      "gridCellId": "3842:-10992",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 24,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338568420"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3838:-10987-57891-2",
+      "taxonId": "57891",
+      "scientificName": "Ephedra viridis Coville",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Gnetopsida",
+      "order": "Ephedrales",
+      "family": "Ephedraceae",
+      "genus": "Ephedra",
+      "species": "Ephedra viridis",
+      "regionId": "moab",
+      "gridCellId": "3838:-10987",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338567189"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3853:-10962-58291-2",
+      "taxonId": "58291",
+      "scientificName": "Rumex hymenosepalus Torr.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Polygonaceae",
+      "genus": "Rumex",
+      "species": "Rumex hymenosepalus",
+      "regionId": "moab",
+      "gridCellId": "3853:-10962",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 10,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338823266"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3862:-10961-121786-2",
+      "taxonId": "121786",
+      "scientificName": "Scabrethia scabra (Hook.) W.A.Weber",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Scabrethia",
+      "species": "Scabrethia scabra",
+      "regionId": "moab",
+      "gridCellId": "3862:-10961",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 7,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338823644"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3853:-10961-325111-2",
+      "taxonId": "325111",
+      "scientificName": "Opuntia trichophora (Engelm. & J.M.Bigelow) Britton & Rose",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Cactaceae",
+      "genus": "Opuntia",
+      "species": "Opuntia polyacantha",
+      "regionId": "moab",
+      "gridCellId": "3853:-10961",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 11,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338823358"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3879:-10961-78269-2",
+      "taxonId": "78269",
+      "scientificName": "Opuntia polyacantha Haw.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Cactaceae",
+      "genus": "Opuntia",
+      "species": "Opuntia polyacantha",
+      "regionId": "moab",
+      "gridCellId": "3879:-10961",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/337881354"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3842:-10992-77312-2",
+      "taxonId": "77312",
+      "scientificName": "Gutierrezia sarothrae (Pursh) Britton & Rusby",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Gutierrezia",
+      "species": "Gutierrezia sarothrae",
+      "regionId": "moab",
+      "gridCellId": "3842:-10992",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 93,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338568643"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3862:-10961-542432-2",
+      "taxonId": "542432",
+      "scientificName": "Quercus welshii R.A.Denham",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Fagales",
+      "family": "Fagaceae",
+      "genus": "Quercus",
+      "species": "Quercus welshii",
+      "regionId": "moab",
+      "gridCellId": "3862:-10961",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 9,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338823688"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3864:-10967-160348-2",
+      "taxonId": "160348",
+      "scientificName": "Ceratocephala testiculata (Crantz) Roth",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Ranunculales",
+      "family": "Ranunculaceae",
+      "genus": "Ceratocephala",
+      "species": "Ceratocephala orthoceras",
+      "regionId": "moab",
+      "gridCellId": "3864:-10967",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338823718"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3864:-10967-47687-2",
+      "taxonId": "47687",
+      "scientificName": "Erodium cicutarium (L.) L'Hér.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Geraniales",
+      "family": "Geraniaceae",
+      "genus": "Erodium",
+      "species": "Erodium cicutarium",
+      "regionId": "moab",
+      "gridCellId": "3864:-10967",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338823706"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3853:-10961-47687-2",
+      "taxonId": "47687",
+      "scientificName": "Erodium cicutarium (L.) L'Hér.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Geraniales",
+      "family": "Geraniaceae",
+      "genus": "Erodium",
+      "species": "Erodium cicutarium",
+      "regionId": "moab",
+      "gridCellId": "3853:-10961",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338823370"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3838:-10987-78495-2",
+      "taxonId": "78495",
+      "scientificName": "Phacelia ivesiana Torr.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Boraginales",
+      "family": "Hydrophyllaceae",
+      "genus": "Phacelia",
+      "species": "Phacelia ivesiana",
+      "regionId": "moab",
+      "gridCellId": "3838:-10987",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338567518"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3846:-10974-78787-2",
+      "taxonId": "78787",
+      "scientificName": "Purshia stansburiana (Torr.) Henrickson",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Rosales",
+      "family": "Rosaceae",
+      "genus": "Purshia",
+      "species": "Purshia stansburiana",
+      "regionId": "moab",
+      "gridCellId": "3846:-10974",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338571615"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3831:-10986-8010-2",
+      "taxonId": "8010",
+      "scientificName": "Corvus corax Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Corvidae",
+      "genus": "Corvus",
+      "species": "Corvus corax",
+      "regionId": "moab",
+      "gridCellId": "3831:-10986",
+      "month": 2,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338570466",
+          "https://www.inaturalist.org/observations/339920365"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3842:-10992-858352-2",
+      "taxonId": "858352",
+      "scientificName": "Echinocereus triglochidiatus subsp. mojavensis (Engelm. & J.M.Bigelow) W.Blum & Mich.Lange",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Cactaceae",
+      "genus": "Echinocereus",
+      "species": "Echinocereus triglochidiatus",
+      "regionId": "moab",
+      "gridCellId": "3842:-10992",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 16,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338569064"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3842:-10992-75752-2",
+      "taxonId": "75752",
+      "scientificName": "Berberis fremontii Torr.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Ranunculales",
+      "family": "Berberidaceae",
+      "genus": "Alloberberis",
+      "species": "Alloberberis fremontii",
+      "regionId": "moab",
+      "gridCellId": "3842:-10992",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338569660"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3831:-10986-77600-2",
+      "taxonId": "77600",
+      "scientificName": "Juniperus osteosperma (Torr.) Little",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Pinopsida",
+      "order": "Pinales",
+      "family": "Cupressaceae",
+      "genus": "Juniperus",
+      "species": "Juniperus osteosperma",
+      "regionId": "moab",
+      "gridCellId": "3831:-10986",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338571095"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3862:-10960-77600-2",
+      "taxonId": "77600",
+      "scientificName": "Juniperus osteosperma (Torr.) Little",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Pinopsida",
+      "order": "Pinales",
+      "family": "Cupressaceae",
+      "genus": "Juniperus",
+      "species": "Juniperus osteosperma",
+      "regionId": "moab",
+      "gridCellId": "3862:-10960",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 7,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338615654"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3838:-10987-68559-2",
+      "taxonId": "68559",
+      "scientificName": "Coleogyne ramosissima Torr.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Rosales",
+      "family": "Rosaceae",
+      "genus": "Coleogyne",
+      "species": "Coleogyne ramosissima",
+      "regionId": "moab",
+      "gridCellId": "3838:-10987",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338567139"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3862:-10961-75586-2",
+      "taxonId": "75586",
+      "scientificName": "Artemisia bigelovii A.Gray",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Artemisia",
+      "species": "Artemisia bigelovii",
+      "regionId": "moab",
+      "gridCellId": "3862:-10961",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 84,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338823446"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3849:-10977-77600-2",
+      "taxonId": "77600",
+      "scientificName": "Juniperus osteosperma (Torr.) Little",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Pinopsida",
+      "order": "Pinales",
+      "family": "Cupressaceae",
+      "genus": "Juniperus",
+      "species": "Juniperus osteosperma",
+      "regionId": "moab",
+      "gridCellId": "3849:-10977",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338058683"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3846:-10974-8010-2",
+      "taxonId": "8010",
+      "scientificName": "Corvus corax Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Corvidae",
+      "genus": "Corvus",
+      "species": "Corvus corax",
+      "regionId": "moab",
+      "gridCellId": "3846:-10974",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 6,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338571548"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3847:-10974-8010-2",
+      "taxonId": "8010",
+      "scientificName": "Corvus corax Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Corvidae",
+      "genus": "Corvus",
+      "species": "Corvus corax",
+      "regionId": "moab",
+      "gridCellId": "3847:-10974",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338571508"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3866:-10984-57891-2",
+      "taxonId": "57891",
+      "scientificName": "Ephedra viridis Coville",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Gnetopsida",
+      "order": "Ephedrales",
+      "family": "Ephedraceae",
+      "genus": "Ephedra",
+      "species": "Ephedra viridis",
+      "regionId": "moab",
+      "gridCellId": "3866:-10984",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338639284"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3838:-10987-8010-2",
+      "taxonId": "8010",
+      "scientificName": "Corvus corax Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Corvidae",
+      "genus": "Corvus",
+      "species": "Corvus corax",
+      "regionId": "moab",
+      "gridCellId": "3838:-10987",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338565415"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3847:-10974-57891-2",
+      "taxonId": "57891",
+      "scientificName": "Ephedra viridis Coville",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Gnetopsida",
+      "order": "Ephedrales",
+      "family": "Ephedraceae",
+      "genus": "Ephedra",
+      "species": "Ephedra viridis",
+      "regionId": "moab",
+      "gridCellId": "3847:-10974",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338571779"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3854:-10961-116377-2",
+      "taxonId": "116377",
+      "scientificName": "Quercus gambelii Nutt.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Fagales",
+      "family": "Fagaceae",
+      "genus": "Quercus",
+      "species": "Quercus gambelii",
+      "regionId": "moab",
+      "gridCellId": "3854:-10961",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 42,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338822543"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3838:-10987-75586-2",
+      "taxonId": "75586",
+      "scientificName": "Artemisia bigelovii A.Gray",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Artemisia",
+      "species": "Artemisia bigelovii",
+      "regionId": "moab",
+      "gridCellId": "3838:-10987",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338567421"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3842:-10992-78268-2",
+      "taxonId": "78268",
+      "scientificName": "Opuntia phaeacantha Engelm.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Cactaceae",
+      "genus": "Opuntia",
+      "species": "Opuntia phaeacantha",
+      "regionId": "moab",
+      "gridCellId": "3842:-10992",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 22,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338570085"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3838:-10987-48938-2",
+      "taxonId": "48938",
+      "scientificName": "Eriogonum ovalifolium Nutt.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Polygonaceae",
+      "genus": "Eriogonum",
+      "species": "Eriogonum ovalifolium",
+      "regionId": "moab",
+      "gridCellId": "3838:-10987",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 36,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338565933"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3842:-10992-705158-2",
+      "taxonId": "705158",
+      "scientificName": "Oreocarya Greene",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Boraginales",
+      "family": "Boraginaceae",
+      "genus": "Oreocarya",
+      "species": null,
+      "regionId": "moab",
+      "gridCellId": "3842:-10992",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 7,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338569942"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3853:-10962-57934-2",
+      "taxonId": "57934",
+      "scientificName": "Ericameria nauseosa (Pall. ex Pursh) G.L.Nesom & G.I.Baird",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Ericameria",
+      "species": "Ericameria nauseosa",
+      "regionId": "moab",
+      "gridCellId": "3853:-10962",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338823292"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3831:-10986-162597-2",
+      "taxonId": "162597",
+      "scientificName": "Eriogonum corymbosum Benth.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Polygonaceae",
+      "genus": "Eriogonum",
+      "species": "Eriogonum corymbosum",
+      "regionId": "moab",
+      "gridCellId": "3831:-10986",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 7,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338570620"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3838:-10987-77600-2",
+      "taxonId": "77600",
+      "scientificName": "Juniperus osteosperma (Torr.) Little",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Pinopsida",
+      "order": "Pinales",
+      "family": "Cupressaceae",
+      "genus": "Juniperus",
+      "species": "Juniperus osteosperma",
+      "regionId": "moab",
+      "gridCellId": "3838:-10987",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 10,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338566115"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3838:-10987-77670-2",
+      "taxonId": "77670",
+      "scientificName": "Lepidium montanum Nutt.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Brassicales",
+      "family": "Brassicaceae",
+      "genus": "Lepidium",
+      "species": "Lepidium montanum",
+      "regionId": "moab",
+      "gridCellId": "3838:-10987",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338566280"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3841:-10946-43115-2",
+      "taxonId": "43115",
+      "scientificName": "Sylvilagus audubonii (Baird, 1858)",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Mammalia",
+      "order": "Lagomorpha",
+      "family": "Leporidae",
+      "genus": "Sylvilagus",
+      "species": "Sylvilagus audubonii",
+      "regionId": "moab",
+      "gridCellId": "3841:-10946",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 367,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338572706"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3858:-10963-325111-2",
+      "taxonId": "325111",
+      "scientificName": "Opuntia trichophora (Engelm. & J.M.Bigelow) Britton & Rose",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Cactaceae",
+      "genus": "Opuntia",
+      "species": "Opuntia polyacantha",
+      "regionId": "moab",
+      "gridCellId": "3858:-10963",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/339783781"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3845:-10983-239520-2",
+      "taxonId": "239520",
+      "scientificName": "Astragalus mollissimus var. thompsoniae (S.Watson) Barneby",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Fabales",
+      "family": "Fabaceae",
+      "genus": "Astragalus",
+      "species": "Astragalus mollissimus",
+      "regionId": "moab",
+      "gridCellId": "3845:-10983",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 7,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/339352593"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3858:-10964-858352-2",
+      "taxonId": "858352",
+      "scientificName": "Echinocereus triglochidiatus subsp. mojavensis (Engelm. & J.M.Bigelow) W.Blum & Mich.Lange",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Cactaceae",
+      "genus": "Echinocereus",
+      "species": "Echinocereus triglochidiatus",
+      "regionId": "moab",
+      "gridCellId": "3858:-10964",
+      "month": 2,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 15,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/339784323",
+          "https://www.inaturalist.org/observations/339784447"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3880:-10932-325111-2",
+      "taxonId": "325111",
+      "scientificName": "Opuntia trichophora (Engelm. & J.M.Bigelow) Britton & Rose",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Cactaceae",
+      "genus": "Opuntia",
+      "species": "Opuntia polyacantha",
+      "regionId": "moab",
+      "gridCellId": "3880:-10932",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/339658364"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3858:-10964-167432-2",
+      "taxonId": "167432",
+      "scientificName": "Primula specuicola Rydb.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Ericales",
+      "family": "Primulaceae",
+      "genus": "Primula",
+      "species": "Primula specuicola",
+      "regionId": "moab",
+      "gridCellId": "3858:-10964",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 481,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/339784107"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3880:-10932-771586-2",
+      "taxonId": "771586",
+      "scientificName": "Oreocarya fulvocanescens var. nitida (Greene) R.B.Kelley",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Boraginales",
+      "family": "Boraginaceae",
+      "genus": "Oreocarya",
+      "species": "Oreocarya fulvocanescens",
+      "regionId": "moab",
+      "gridCellId": "3880:-10932",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/339658300"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3858:-10964-63916-2",
+      "taxonId": "63916",
+      "scientificName": "Adiantum capillus-veneris L.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Polypodiopsida",
+      "order": "Polypodiales",
+      "family": "Pteridaceae",
+      "genus": "Adiantum",
+      "species": "Adiantum capillus-veneris",
+      "regionId": "moab",
+      "gridCellId": "3858:-10964",
+      "month": 2,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 80,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/339784452",
+          "https://www.inaturalist.org/observations/339784503"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3862:-10961-205402-2",
+      "taxonId": "205402",
+      "scientificName": "Acarospora strigata (Nyl.) Jatta",
+      "commonName": null,
+      "kingdom": "Fungi",
+      "class": "Lecanoromycetes",
+      "order": "Acarosporales",
+      "family": "Acarosporaceae",
+      "genus": "Acarospora",
+      "species": "Acarospora strigata",
+      "regionId": "moab",
+      "gridCellId": "3862:-10961",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 16,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338823406"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3877:-10958-77312-2",
+      "taxonId": "77312",
+      "scientificName": "Gutierrezia sarothrae (Pursh) Britton & Rusby",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Asterales",
+      "family": "Asteraceae",
+      "genus": "Gutierrezia",
+      "species": "Gutierrezia sarothrae",
+      "regionId": "moab",
+      "gridCellId": "3877:-10958",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 4,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338951969"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3877:-10958-77670-2",
+      "taxonId": "77670",
+      "scientificName": "Lepidium montanum Nutt.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Brassicales",
+      "family": "Brassicaceae",
+      "genus": "Lepidium",
+      "species": "Lepidium montanum",
+      "regionId": "moab",
+      "gridCellId": "3877:-10958",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 2,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338951938"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3857:-10963-167432-2",
+      "taxonId": "167432",
+      "scientificName": "Primula specuicola Rydb.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Ericales",
+      "family": "Primulaceae",
+      "genus": "Primula",
+      "species": "Primula specuicola",
+      "regionId": "moab",
+      "gridCellId": "3857:-10963",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 13,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/339497335"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3858:-10963-858352-2",
+      "taxonId": "858352",
+      "scientificName": "Echinocereus triglochidiatus subsp. mojavensis (Engelm. & J.M.Bigelow) W.Blum & Mich.Lange",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Cactaceae",
+      "genus": "Echinocereus",
+      "species": "Echinocereus triglochidiatus",
+      "regionId": "moab",
+      "gridCellId": "3858:-10963",
+      "month": 2,
+      "observationCount": 2,
+      "coordinateUncertainty": {
+        "summaryMeters": 48,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/339784732",
+          "https://www.inaturalist.org/observations/339783921"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3857:-10963-59924-2",
+      "taxonId": "59924",
+      "scientificName": "Lithospermum incisum Lehm.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Boraginales",
+      "family": "Boraginaceae",
+      "genus": "Lithospermum",
+      "species": "Lithospermum incisum",
+      "regionId": "moab",
+      "gridCellId": "3857:-10963",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 3,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/339497046"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3857:-10963-1138678-2",
+      "taxonId": "1138678",
+      "scientificName": "Tomostima cuneifolia (Nutt.) Al-Shehbaz, M.Koch & Jordon-Thaden",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Brassicales",
+      "family": "Brassicaceae",
+      "genus": "Tomostima",
+      "species": "Tomostima cuneifolia",
+      "regionId": "moab",
+      "gridCellId": "3857:-10963",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 17,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/339497281"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3871:-10956-8010-2",
+      "taxonId": "8010",
+      "scientificName": "Corvus corax Linnaeus, 1758",
+      "commonName": null,
+      "kingdom": "Animalia",
+      "class": "Aves",
+      "order": "Passeriformes",
+      "family": "Corvidae",
+      "genus": "Corvus",
+      "species": "Corvus corax",
+      "regionId": "moab",
+      "gridCellId": "3871:-10956",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 55,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338968295"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3886:-10980-58128-2",
+      "taxonId": "58128",
+      "scientificName": "Grayia spinosa (Hook.) Moq.",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Caryophyllales",
+      "family": "Amaranthaceae",
+      "genus": "Grayia",
+      "species": "Grayia spinosa",
+      "regionId": "moab",
+      "gridCellId": "3886:-10980",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 25,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/339120703"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    },
+    {
+      "recordId": "aggregate-3877:-10959-542432-2",
+      "taxonId": "542432",
+      "scientificName": "Quercus welshii R.A.Denham",
+      "commonName": null,
+      "kingdom": "Plantae",
+      "class": "Magnoliopsida",
+      "order": "Fagales",
+      "family": "Fagaceae",
+      "genus": "Quercus",
+      "species": "Quercus welshii",
+      "regionId": "moab",
+      "gridCellId": "3877:-10959",
+      "month": 2,
+      "observationCount": 1,
+      "coordinateUncertainty": {
+        "summaryMeters": 5,
+        "privacyClass": "public"
+      },
+      "source": {
+        "provider": "iNaturalist research-grade observations",
+        "occurrenceIds": [
+          "https://www.inaturalist.org/observations/338951726"
+        ],
+        "researchGrade": false,
+        "captiveOrCultivatedExcluded": true,
+        "gbifDownloadDoi": null
+      },
+      "representativeImage": null,
+      "generatedAt": "2026-10-11T01:53:34.731Z",
+      "sourceVintage": "2026-10-11",
+      "boundaryVersion": "moab-center-envelope-v1"
+    }
+  ]
 }

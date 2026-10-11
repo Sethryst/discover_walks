@@ -76,6 +76,9 @@
     "import:biodiversity:nova": "node tools/import-biodiversity-nova.mjs",
     "fetch:biodiversity:nova": "node tools/fetch-biodiversity-nova.mjs",
     "fetch:biodiversity:region": "node tools/fetch-biodiversity-region.mjs",
+    "fetch:biodiversity:app-regions": "node tools/fetch-biodiversity-app-regions.mjs",
+    "refresh:biodiversity": "node tools/refresh-biodiversity-regions.mjs",
+    "check:biodiversity:release": "node tools/refresh-biodiversity-regions.mjs --skip-fetch",
     "build:biodiversity:regions": "node tools/build-biodiversity-region-sidecars.mjs",
     "test:biodiversity": "node tests/biodiversity.test.mjs"
   },

@@ -1,12 +1,17 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { booleanPointInPolygon, point } from '@turf/turf';
 import { normalizeOccurrences } from './normalize-biodiversity.mjs';
 
 const region = process.argv[2];
 const rowsWanted = Math.min(10000, Math.max(300, Number(process.argv[3] || 10000)));
+const repoRoot = path.resolve(fileURLToPath(new URL('../..', import.meta.url)));
+const fallsBoundary = JSON.parse(await fs.readFile(path.join(repoRoot, 'releases', 'falls-church-va', 'geography', 'boundary.geojson'), 'utf8'));
+const fallsFeature = fallsBoundary.features?.[0] || fallsBoundary;
 const definitions = {
   vienna: { regionId: 'vienna', boundaryVersion: 'vienna-city-envelope-v1', geometry: 'POLYGON((-77.32 38.86,-77.20 38.86,-77.20 38.96,-77.32 38.96,-77.32 38.86))', boundary: (lat, lon) => lat >= 38.86 && lat <= 38.96 && lon >= -77.32 && lon <= -77.20 },
-  'falls-church': { regionId: 'falls-church-va', boundaryVersion: 'falls-church-va-boundary-v1', geometry: 'POLYGON((-77.20 38.84,-77.14 38.84,-77.14 38.92,-77.20 38.92,-77.20 38.84))', boundary: (lat, lon) => lat >= 38.84 && lat <= 38.92 && lon >= -77.20 && lon <= -77.14 }
+  'falls-church': { regionId: 'falls-church-va', boundaryVersion: 'falls-church-va-boundary-v1', geometry: 'POLYGON((-77.20 38.84,-77.14 38.84,-77.14 38.92,-77.20 38.92,-77.20 38.84))', boundary: (lat, lon) => booleanPointInPolygon(point([lon, lat]), fallsFeature) }
 };
 const definition = definitions[region];
 if (!definition) throw new Error(`Usage: node tools/fetch-biodiversity-region.mjs ${Object.keys(definitions).join('|')} [rows]`);

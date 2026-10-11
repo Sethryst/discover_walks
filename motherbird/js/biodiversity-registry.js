@@ -19,14 +19,14 @@ export const BIODIVERSITY_REGIONS = [
     "regionId": "falls-church-va",
     "label": "Falls Church",
     "sidecarPath": "regions/falls-church-va/biodiversity/records.json",
-    "releaseState": "gated",
+    "releaseState": "published",
     "sourceAccess": "GBIF occurrence search API",
     "sourceVintage": "2026-10-11",
     "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "rich",
     "coverageLabel": "Rich coverage",
-    "recordCount": 5737,
-    "gateReason": "Hold until more observations accumulate and a quality review passes."
+    "recordCount": 813,
+    "gateReason": null
   },
   {
     "cityId": "norfolk",
@@ -35,11 +35,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/norfolk/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 253,
     "gateReason": null
   },
   {
@@ -49,11 +49,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/new-york-city/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 126,
     "gateReason": null
   },
   {
@@ -63,11 +63,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/philadelphia/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 211,
     "gateReason": null
   },
   {
@@ -77,11 +77,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/richmond/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 167,
     "gateReason": null
   },
   {
@@ -105,11 +105,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/tempe/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 221,
     "gateReason": null
   },
   {
@@ -133,11 +133,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/baltimore/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 226,
     "gateReason": null
   },
   {
@@ -147,11 +147,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/detroit/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 211,
     "gateReason": null
   },
   {
@@ -189,11 +189,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/seattle/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 187,
     "gateReason": null
   },
   {
@@ -217,11 +217,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/pittsburgh/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 166,
     "gateReason": null
   },
   {
@@ -231,11 +231,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/el-paso/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 153,
     "gateReason": null
   },
   {
@@ -245,11 +245,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/rochester/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 158,
     "gateReason": null
   },
   {
@@ -259,11 +259,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/buffalo/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 154,
     "gateReason": null
   },
   {
@@ -273,11 +273,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/cincinnati/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 169,
     "gateReason": null
   },
   {
@@ -301,11 +301,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/memphis/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 190,
     "gateReason": null
   },
   {
@@ -315,11 +315,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/sacramento/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 217,
     "gateReason": null
   },
   {
@@ -329,11 +329,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/tampa/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 207,
     "gateReason": null
   },
   {
@@ -343,11 +343,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/keystone-colorado/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 202,
     "gateReason": null
   },
   {
@@ -357,11 +357,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/prince-georges-county-md/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 205,
     "gateReason": null
   },
   {
@@ -427,11 +427,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/washington-dc/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 206,
     "gateReason": null
   },
   {
@@ -441,11 +441,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/sedona-arizona/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 203,
     "gateReason": null
   },
   {
@@ -455,11 +455,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/boise-meridian-idaho/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 167,
     "gateReason": null
   },
   {
@@ -469,11 +469,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/asheville/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 168,
     "gateReason": null
   },
   {
@@ -483,11 +483,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/boston/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 184,
     "gateReason": null
   },
   {
@@ -497,11 +497,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/boulder/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 181,
     "gateReason": null
   },
   {
@@ -539,11 +539,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/new-orleans/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 174,
     "gateReason": null
   },
   {
@@ -567,11 +567,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/portland-maine/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 205,
     "gateReason": null
   },
   {
@@ -581,11 +581,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/san-francisco/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 203,
     "gateReason": null
   },
   {
@@ -595,11 +595,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/santa-fe/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 186,
     "gateReason": null
   },
   {
@@ -623,11 +623,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/flagstaff/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 188,
     "gateReason": null
   },
   {
@@ -637,11 +637,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/moab/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 130,
     "gateReason": null
   },
   {
@@ -651,11 +651,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/lexington/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 151,
     "gateReason": null
   },
   {
@@ -665,11 +665,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/ann-arbor/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 179,
     "gateReason": null
   },
   {
@@ -679,11 +679,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/newark/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 166,
     "gateReason": null
   },
   {
@@ -735,11 +735,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/hartford/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 151,
     "gateReason": null
   },
   {
@@ -763,11 +763,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/providence/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 152,
     "gateReason": null
   },
   {
@@ -777,11 +777,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/savannah/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 152,
     "gateReason": null
   },
   {
@@ -791,11 +791,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/charleston/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 236,
     "gateReason": null
   },
   {
@@ -805,11 +805,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/eugene/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 176,
     "gateReason": null
   },
   {
@@ -875,11 +875,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/madison/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 166,
     "gateReason": null
   },
   {
@@ -959,11 +959,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/austin/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 217,
     "gateReason": null
   },
   {
@@ -973,11 +973,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/atlanta/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 199,
     "gateReason": null
   },
   {
@@ -987,11 +987,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/charlotte/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 184,
     "gateReason": null
   },
   {
@@ -1015,11 +1015,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/nashville/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 196,
     "gateReason": null
   },
   {
@@ -1043,11 +1043,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/salt-lake-city/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 167,
     "gateReason": null
   },
   {
@@ -1071,11 +1071,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/milwaukee/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 116,
     "gateReason": null
   },
   {
@@ -1085,11 +1085,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/st-louis/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 212,
     "gateReason": null
   },
   {
@@ -1099,11 +1099,11 @@ export const BIODIVERSITY_REGIONS = [
     "sidecarPath": "regions/cleveland/biodiversity/records.json",
     "releaseState": "sidecar-available",
     "sourceAccess": "GBIF occurrence search API",
-    "sourceVintage": "2026-10-10",
-    "freshnessLabel": "Freshness: 2026-10-10",
+    "sourceVintage": "2026-10-11",
+    "freshnessLabel": "Freshness: 2026-10-11",
     "coverageClass": "sparse",
     "coverageLabel": "Sparse coverage",
-    "recordCount": 0,
+    "recordCount": 171,
     "gateReason": null
   }
 ];
