@@ -53,7 +53,7 @@ export async function setupOnline() {
 }
   export async function openOnline() {
   await setupOnline();
-  const { renderFieldGuide } = await import('./field-guide.js?v=135-water-city-id');
+  const { renderFieldGuide } = await import('./field-guide.js?v=136-water-id-alias');
   openSheet('backpackSheet');
   await renderFieldGuide('online');
 }

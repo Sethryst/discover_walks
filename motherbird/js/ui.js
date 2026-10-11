@@ -5,7 +5,7 @@ import { renderArchive } from './archive.js';
 import { renderProfile } from './profile.js';
 import { renderCivic } from './civic.js';
 import { wordCount } from './reflection.js';
-import { renderFieldGuide } from './field-guide.js?v=135-water-city-id';
+import { renderFieldGuide } from './field-guide.js?v=136-water-id-alias';
 import { applyCompanionSettings } from './companion.js';
 import db from './storage.js';
 

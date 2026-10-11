@@ -466,7 +466,7 @@ export async function renderLearnHistory(target, point) {
     const features = (catalog.features || []).filter((feature) => featureInViewport(state.map, feature));
     const selected = features.find((feature) => feature.properties?.id === activeWatershedId) || null;
     const waterCatalog = await loadWaterJourneys();
-    const waterJourney = waterCatalog.journeys.find((journey) => journey.watershedId === activeWatershedId && journeysForCity([journey])[0]);
+    const waterJourney = journeysForCity(waterCatalog.journeys).find((journey) => journey.watershedId === activeWatershedId);
     setLearnSheetMin(!!selected);
     const inside = selected ? placesInWatershed(pois, selected).filter(isWalkNatureSite) : [];
     target.innerHTML = watershedListHtml(features, activeWatershedId, sortSitesByDistance(inside, point), waterJourney);

@@ -57,7 +57,11 @@ export async function loadWaterJourneys(fetchImpl = globalThis.fetch) {
 }
 
 export function primeWaterJourneys() { void loadWaterJourneys(); }
-export function journeysForCity(journeys, cityId = state.activeCity) { return (journeys || []).filter((journey) => !journey.cityIds?.length || journey.cityIds.includes(cityId)); }
+export function journeysForCity(journeys, cityId = state.activeCity) {
+  const id = String(cityId || '');
+  const aliases = new Set([id, id.replace(/-county-va$/, ''), id.replace(/-va$/, '')].filter(Boolean));
+  return (journeys || []).filter((journey) => !journey.cityIds?.length || journey.cityIds.some((candidate) => aliases.has(String(candidate))));
+}
 
 export function detectWaterCrossings({ previousPoint, point, journeys = [], toleranceMeters = CROSSING_TOLERANCE_METERS } = {}) {
   if (!finitePoint(previousPoint) || !finitePoint(point)) return [];
