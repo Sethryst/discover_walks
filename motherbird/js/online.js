@@ -53,7 +53,7 @@ export async function setupOnline() {
 }
   export async function openOnline() {
   await setupOnline();
-  const { renderFieldGuide } = await import('./field-guide.js?v=139-learn-by-me');
+  const { renderFieldGuide } = await import('./field-guide.js?v=140-live-learn-by-me');
   openSheet('backpackSheet');
   await renderFieldGuide('online');
 }

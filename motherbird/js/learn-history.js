@@ -161,7 +161,8 @@ function siteCard(poi, visited) {
   const name = poi.name || 'Unnamed place';
   const kind = siteKind(poi);
   const walkAction = state.activeWalk ? 'Add to this walk' : 'Walk there';
-  return `<article class="guide-card learn-site" data-learn-place="${escapeHtml(String(poi.id))}"><label class="learn-check"><input type="checkbox" data-learn-check="${escapeHtml(String(poi.id))}" ${visited ? 'checked' : ''} /><span>${escapeHtml(kind)}</span></label><h3>${escapeHtml(name)}</h3><div class="learn-site-actions"><button class="secondary-button" type="button" data-learn-walk="${escapeHtml(String(poi.id))}">${walkAction}</button></div></article>`;
+  const distance = Number.isFinite(poi._learnDistance) ? ` · ${poi._learnDistance < 1000 ? `${Math.round(poi._learnDistance)} m` : `${(poi._learnDistance / 1609.344).toFixed(1)} mi`} away` : '';
+  return `<article class="guide-card learn-site" data-learn-place="${escapeHtml(String(poi.id))}"><label class="learn-check"><input type="checkbox" data-learn-check="${escapeHtml(String(poi.id))}" ${visited ? 'checked' : ''} /><span>${escapeHtml(kind)}${distance}</span></label><h3>${escapeHtml(name)}</h3><div class="learn-site-actions"><button class="secondary-button" type="button" data-learn-walk="${escapeHtml(String(poi.id))}">${walkAction}</button></div></article>`;
 }
 
 function childSlot(folderId, child) {
@@ -457,7 +458,7 @@ export async function renderLearnHistory(target, point) {
     const waterJourneys = journeysForCity(catalog.journeys);
     const encounteredIds = new Set((state.walks || []).flatMap((walk) => (walk.waterEncounters || []).map((item) => String(item.journeyId))));
     const pointForPrompt = state.currentPosition || state.lastPosition || state.map?.getCenter?.();
-    const nearbyPlaces = sortSitesByDistance((state.cityPois[state.activeCity] || []).filter((poi) => isWalkNatureSite(poi) || isHistorySite(poi)), pointForPrompt).filter((poi) => !pointForPrompt || distanceMeters(pointForPrompt, poi) <= 8047).slice(0, 12);
+    const nearbyPlaces = sortSitesByDistance((state.cityPois[state.activeCity] || []).filter((poi) => isWalkNatureSite(poi) || isHistorySite(poi)), pointForPrompt).filter((poi) => !pointForPrompt || distanceMeters(pointForPrompt, poi) <= 8047).slice(0, 12).map((poi) => ({ ...poi, _learnDistance: pointForPrompt ? distanceMeters(pointForPrompt, poi) : null }));
     target.innerHTML = learnHomeHtml({ somethingNew: somethingNewNearby({ journeys: waterJourneys, encounteredIds, point: pointForPrompt }), nearbyPlaces });
     state.learnBoundsLayer?.remove(); state.learnBoundsLayer = null;
     return;

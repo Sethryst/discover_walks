@@ -359,7 +359,8 @@ export function initFieldGuideFilters() {
   window.addEventListener('map-overlay-changed', ({ detail }) => { if (!detail.open || detail.id !== 'backpackSheet') shadeLearnBounds(false); });
   window.addEventListener('layer-state-dirty', () => { if (state.modalOpen === 'backpackSheet' && state.fieldGuideTab === 'learn') void renderFieldGuide('learn'); });
   window.addEventListener('poi-visit-state-changed', () => { if (state.fieldGuideTab === 'learn') void renderFieldGuide('learn'); });
-  window.addEventListener('walk-position-received', () => { if (state.modalOpen === 'backpackSheet' && state.fieldGuideTab === 'discover') void renderFieldGuide('discover'); });
+  window.addEventListener('walk-position-received', () => { if (state.modalOpen === 'backpackSheet' && ['discover', 'learn'].includes(state.fieldGuideTab)) void renderFieldGuide(state.fieldGuideTab); });
+  window.addEventListener('map-viewport-changed', () => { if (state.modalOpen === 'backpackSheet' && state.fieldGuideTab === 'learn') void renderFieldGuide('learn'); });
   document.querySelector('.guide-tabs')?.addEventListener('click', (event) => {
     const button = event.target.closest('[data-guide-tab]');
     if (button) {
