@@ -56,6 +56,7 @@ test('map customization is local-first and Wolf Trap is a Fairfax compatibility 
   const routes = await readFile(new URL('../js/routes.js', import.meta.url), 'utf8');
   assert.match(map, /motherbird\.map-customization/);
   assert.match(map, /mapPlacesToggle/);
+  assert.doesNotMatch(map, /humanitarian|storybook|toy-atlas|creature-quest|pocket-park|retro-radar/);
   assert.match(constants, /aliasOf: 'fairfax'/);
   assert.doesNotMatch(routes, /city: 'wolf-trap-va'/);
 });

@@ -27,14 +27,7 @@ const MAP_CUSTOMIZATION_STORAGE_KEY = 'motherbird.map-customization';
 const DEFAULT_MAP_CUSTOMIZATION = Object.freeze({ tone: 'natural', showPlaces: true, showRoutes: true });
 export const BASEMAP_PRESETS = Object.freeze({
   street: { label: 'Street · OpenStreetMap', url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', maxZoom: 19, subdomains: 'abc', attribution: OSM_ATTRIBUTION },
-  humanitarian: { label: 'Humanitarian · high contrast', url: 'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', maxZoom: 19, subdomains: 'abc', attribution: '&copy; OpenStreetMap contributors, Tiles style by Humanitarian OpenStreetMap Team hosted by OpenStreetMap France' },
   topographic: { label: 'Topographic · contours', url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', maxZoom: 17, subdomains: 'abc', attribution: '&copy; OpenStreetMap contributors, SRTM | &copy; OpenTopoMap (CC-BY-SA)' },
-  usgs: { label: 'USGS · topo map', url: 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}', maxZoom: 16, attribution: 'Tiles courtesy of the U.S. Geological Survey' },
-  storybook: { label: 'Storybook · pastel trails', type: 'simplified', surface: 'storybook' },
-  'toy-atlas': { label: 'Toy Atlas · sticker map', type: 'simplified', surface: 'toy-atlas' },
-  'creature-quest': { label: 'Creature Quest · playful', type: 'simplified', surface: 'creature-quest' },
-  'pocket-park': { label: 'Pocket Park · green space', type: 'simplified', surface: 'pocket-park' },
-  'retro-radar': { label: 'Retro Radar · phosphor grid', type: 'simplified', surface: 'retro-radar' }
 });
 const NEIGHBORHOOD_ZOOM = 15;
 const DEFAULT_MAP_VIEW = Object.freeze({ lat: 38.9072, lng: -77.0369, zoom: NEIGHBORHOOD_ZOOM });
@@ -127,6 +120,7 @@ function initBasemapPicker() {
   const picker = document.getElementById('basemapPicker');
   if (!picker || picker.dataset.bound === 'true') return;
   picker.dataset.bound = 'true';
+  [...picker.options].filter((option) => !BASEMAP_PRESETS[option.value]).forEach((option) => option.remove());
   picker.value = state.onlineBasemapId;
   picker.addEventListener('change', () => setOnlineBasemap(picker.value));
 }
