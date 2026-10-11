@@ -27,7 +27,8 @@ export const BASEMAP_PRESETS = Object.freeze({
   street: { label: 'Street · OpenStreetMap', url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', maxZoom: 19, subdomains: 'abc', attribution: OSM_ATTRIBUTION },
   humanitarian: { label: 'Humanitarian · high contrast', url: 'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', maxZoom: 19, subdomains: 'abc', attribution: '&copy; OpenStreetMap contributors, Tiles style by Humanitarian OpenStreetMap Team hosted by OpenStreetMap France' },
   topographic: { label: 'Topographic · contours', url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', maxZoom: 17, subdomains: 'abc', attribution: '&copy; OpenStreetMap contributors, SRTM | &copy; OpenTopoMap (CC-BY-SA)' },
-  usgs: { label: 'USGS · topo map', url: 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}', maxZoom: 16, attribution: 'Tiles courtesy of the U.S. Geological Survey' }
+  usgs: { label: 'USGS · topo map', url: 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}', maxZoom: 16, attribution: 'Tiles courtesy of the U.S. Geological Survey' },
+  minimal: { label: 'Minimal · battery saver', type: 'minimal' }
 });
 const NEIGHBORHOOD_ZOOM = 15;
 const DEFAULT_MAP_VIEW = Object.freeze({ lat: 38.9072, lng: -77.0369, zoom: NEIGHBORHOOD_ZOOM });
@@ -51,6 +52,7 @@ function writeBasemapId(id) {
 
 function createOnlineBasemapLayer(id) {
   const preset = BASEMAP_PRESETS[id] || BASEMAP_PRESETS.street;
+  if (preset.type === 'minimal') return L.layerGroup();
   return L.tileLayer(preset.url, { maxZoom: preset.maxZoom, subdomains: preset.subdomains, attribution: preset.attribution, crossOrigin: true });
 }
 
@@ -66,7 +68,8 @@ export function setOnlineBasemap(id, { announce = true } = {}) {
   const picker = document.getElementById('basemapPicker');
   if (picker) picker.value = nextId;
   const status = document.getElementById('basemapPickerStatus');
-  if (status) status.textContent = state.nationalPoiMap || state.installedBasemapMap ? `${BASEMAP_PRESETS[nextId].label} selected; the active offline layer is still visible.` : `${BASEMAP_PRESETS[nextId].label} selected. Tiles are cached as you view them.`;
+  document.body.classList.toggle('map-battery-saver', nextId === 'minimal');
+  if (status) status.textContent = nextId === 'minimal' ? 'No raster tiles are downloaded or repainted. Routes and markers remain available.' : state.nationalPoiMap || state.installedBasemapMap ? `${BASEMAP_PRESETS[nextId].label} selected; the active offline layer is still visible.` : `${BASEMAP_PRESETS[nextId].label} selected. Tiles are cached as you view them.`;
   if (announce) toast(`${BASEMAP_PRESETS[nextId].label} selected`);
   return state.onlineBasemapLayer;
 }
@@ -97,6 +100,7 @@ export function initMap() {
   }, { passive: true });
   state.onlineBasemapId = readBasemapId();
   state.onlineBasemapLayer = createOnlineBasemapLayer(state.onlineBasemapId);
+  document.body.classList.toggle('map-battery-saver', state.onlineBasemapId === 'minimal');
   initBasemapPicker();
   if (navigator.onLine !== false) state.onlineBasemapLayer.addTo(state.map);
   state.historyRadiusLayer = L.layerGroup().addTo(state.map);
