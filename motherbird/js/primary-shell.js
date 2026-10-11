@@ -11,7 +11,7 @@ const actions = {
   ],
   library: [
     { id: 'library-field-guide', label: 'Field Guide', icon: './icons/book-open.svg', run: () => void openBackpack() },
-    { id: 'my-workspace', label: 'My Workspace', icon: './icons/book-open.svg', run: () => { state.settings.myPlacesSection = 'workspace'; window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'maps', forceOpen: true } })); } },
+    { id: 'my-workspace', label: 'Workspace', icon: './icons/book-open.svg', run: () => { state.settings.myPlacesSection = 'workspace'; window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'maps', forceOpen: true } })); } },
   ],
   me: [
     { id: 'me-companion', label: 'Companion', icon: './icons/heart.svg', run: () => window.dispatchEvent(new CustomEvent('companion-menu-requested')) },

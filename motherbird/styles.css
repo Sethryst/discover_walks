@@ -158,6 +158,8 @@
 .draw-region-label{display:block;margin-bottom:18px;color:#222;font-size:16px;font-weight:650}
 .draw-workspace>.workspace-section-label{display:flex;align-items:center;justify-content:space-between;padding-bottom:10px;border-bottom:1px solid #e8e8e8}
 .artifact-hide-all{border:0;background:transparent;color:#626c72;font-size:11px;font-weight:600}
+.artifact-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px;padding:7px 0;border-top:1px solid #e8e8e8;font-size:12px}
+.artifact-heading-actions{display:flex;align-items:center;gap:6px}
 .draw-shapes{position:absolute!important;z-index:4;top:8px;right:-58px;left:auto!important;bottom:auto!important;display:flex!important;flex-direction:column;align-items:stretch;gap:2px;width:52px!important;height:auto!important;padding:6px 4px!important;border:1px solid #e8e8e8;border-radius:6px;background:#fff;box-shadow:0 2px 7px rgba(0,0,0,.13)}
 .draw-shapes button{width:44px!important;min-height:42px!important;padding:4px 2px!important;border:0;border-radius:4px;background:#fff;color:#626c72;font-size:8px;font-weight:600}
 .draw-shapes button:hover,.draw-shapes button.active{background:#f1efff;color:#624eef}
@@ -887,10 +889,13 @@ body[data-storage-state="temporary"]:after{content:'Temporary device storage';po
 .advanced-filter-family{margin:10px 0;padding:0;border:1px solid var(--line);border-radius:10px;background:rgba(255,250,240,.42);overflow:hidden}.advanced-filter-family:first-child{margin-top:4px}.advanced-family-toggle{display:flex;align-items:center;gap:8px;width:100%;padding:11px 10px;border:0;border-left:4px solid var(--ink);background:var(--paper2);color:var(--ink);text-align:left;font-size:.82rem;font-weight:900;letter-spacing:.08em}.advanced-family-toggle small{font-size:.65rem;font-weight:650;letter-spacing:0;opacity:.68}.advanced-family-toggle b{margin-left:auto;font-size:.8rem;transition:transform .15s}.advanced-filter-family:not(.is-expanded) .advanced-family-toggle b{transform:rotate(-90deg)}.advanced-family-content{padding:0 10px 8px}.advanced-filter-family:not(.is-expanded) .advanced-family-content{display:none}.advanced-filter-family .layer-filter-group{margin:6px 0}.advanced-filter-family .national-osm-family{padding-top:3px}.advanced-filter-family .national-osm-layer-group{padding:9px 0 6px;border-top:1px dashed var(--line)}
 .region-row{flex-wrap:wrap}.region-sources{flex-basis:100%;border-top:1px solid var(--line);padding:5px 8px 7px;background:#fffaf0}.region-sources summary{cursor:pointer;font-size:.7rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}.region-source-row{display:flex;width:100%;justify-content:space-between;gap:8px;margin-top:4px;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:#fffdf7;text-align:left}.region-source-row.active{border-color:var(--orange);background:#fff2dc}
 /* My Workspace: a lightweight local-first field notebook surface. */
-.workspace-home { display: grid; gap: 1rem; padding: 1rem; }
+.workspace-home { display: grid; gap: .7rem; padding: .7rem; }
 .workspace-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: .75rem; }
 .workspace-heading h2 { margin: .2rem 0 .35rem; }
 .workspace-heading p { margin: 0; max-width: 38rem; color: var(--muted, #6f7168); }
+.workspace-toolbar { display: flex; align-items: center; justify-content: space-between; gap: .5rem; min-height: 28px; }
+.workspace-count { color: var(--muted, #6f7168); font-size: .68rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
+.workspace-new-button { width: 28px; height: 28px; padding: 0; border: 1px solid var(--line); border-radius: 50%; background: var(--paper2); color: var(--ink); font-size: 1rem; line-height: 1; }
 .workspace-filter-row { display: flex; gap: .45rem; overflow-x: auto; padding-bottom: .2rem; }
 .workspace-filter { border: 1px solid color-mix(in srgb, var(--ink, #173c35) 18%, transparent); border-radius: 999px; background: transparent; color: var(--ink, #173c35); padding: .45rem .7rem; white-space: nowrap; }
 .workspace-filter.active { background: var(--ink, #173c35); color: #fff; }
@@ -910,6 +915,8 @@ body[data-storage-state="temporary"]:after{content:'Temporary device storage';po
 .workspace-record-body { min-width: 0; overflow-wrap: anywhere; }
 .workspace-record-actions { display: flex; align-items: center; gap: .25rem; }
 .workspace-record-actions button { min-height: 32px; padding: .25rem .45rem; font-size: .68rem; }
+.workspace-record-actions .icon-button { display: grid; place-items: center; width: 28px; min-height: 28px; padding: 0; border: 1px solid var(--line); border-radius: 50%; background: var(--paper2); color: var(--ink); font-size: .9rem; }
+.workspace-record-actions .icon-button:hover { border-color: var(--accent, #e8740f); }
 .workspace-record-route .workspace-record-icon { background: #e4f1e7; }
 .workspace-record-observation .workspace-record-icon { background: #fff0d8; }
 .workspace-record-place .workspace-record-icon { background: #eee7f7; }
@@ -920,10 +927,11 @@ body[data-storage-state="temporary"]:after{content:'Temporary device storage';po
   .map-workspace-panel[data-destination="maps"] .my-maps-heading { gap: 6px; padding-bottom: 6px; }
   .map-workspace-panel[data-destination="maps"] .my-maps-heading h3 { font-size: .8rem; }
   .map-workspace-panel[data-destination="maps"] .my-maps-heading button { min-height: 32px; padding: 5px 8px; font-size: .64rem; }
-  .workspace-home { gap: .55rem; padding: .15rem 0; }
-  .workspace-heading { align-items: center; gap: .45rem; }
-  .workspace-heading h2 { margin: 0; font-size: 1rem; }
-  .workspace-heading .secondary-button { min-height: 32px; padding: 5px 7px; font-size: .62rem; white-space: nowrap; }
+  .workspace-home { gap: .45rem; padding: .15rem 0; }
+  .workspace-toolbar { min-height: 24px; }
+  .workspace-count { font-size: .58rem; }
+  .workspace-new-button { width: 24px; height: 24px; font-size: .85rem; }
+  .artifact-heading { margin-top: 6px; padding: 6px 0; }
   .workspace-filter-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; overflow: visible; padding: 0; }
   .workspace-filter { min-width: 0; min-height: 29px; padding: 4px 2px; font-size: .61rem; overflow: hidden; text-overflow: ellipsis; }
   .workspace-progress { padding: .4rem .55rem; font-size: .72rem; }
