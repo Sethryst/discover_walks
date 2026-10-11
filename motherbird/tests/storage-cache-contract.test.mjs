@@ -8,7 +8,8 @@ const storage = await readFile(new URL('../js/storage.js', import.meta.url), 'ut
 const cellCache = await readFile(new URL('../js/walking-cell-cache.js', import.meta.url), 'utf8');
 
 test('service worker keeps large regional and routing artifacts out of install precache', () => {
-  assert.match(worker, /const APP_CACHE = 'walk-wildlife-shell-v385';/);
+  // The shell version must change on UI releases; it is not a fixed contract.
+  assert.match(worker, /const APP_CACHE = 'walk-wildlife-shell-v[1-9]\d*';/);
   assert.match(worker, /const installShell = shell\.filter/);
   assert.match(worker, /runtime-graph/);
   assert.match(worker, /pmtiles/);

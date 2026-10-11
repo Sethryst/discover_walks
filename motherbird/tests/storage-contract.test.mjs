@@ -2,12 +2,15 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import db from '../js/storage.js';
 
-test('storage exposes the explicit durability contract and version 21 walking-cell migration', () => {
+test('storage exposes the durability contract and additive workspace migration', () => {
   assert.equal(db.databaseName, 'walk-wildlife-journal');
-  assert.equal(db.version, 21);
+  assert.equal(db.version, 22);
   assert.ok(['checking', 'durable', 'temporary', 'recovering', 'failed', 'quota-exceeded'].includes(db.persistenceState()));
-  assert.equal(db.migrationPlan(20)[0].version, 21);
+  assert.equal(db.migrationPlan(20)[0].version, db.version);
   assert.match(db.migrationPlan(20)[0].description, /walking-cell/i);
+  assert.equal(db.migrationPlan(21)[0].version, db.version);
+  assert.equal(db.migrationPlan(21)[0].risk, 'additive');
+  assert.deepEqual(db.migrationPlan(db.version), []);
 });
 
 test('unsupported IndexedDB falls back to temporary memory storage and records diagnostics', async () => {
@@ -36,6 +39,8 @@ test('migration backup contains local store records and never reports telemetry 
   assert.ok(parsed.offline);
   assert.equal(parsed.database, 'walk-wildlife-journal');
   assert.ok(Array.isArray(parsed.stores.settings));
+  assert.ok(Array.isArray(parsed.stores.workspaces));
+  assert.ok(Array.isArray(parsed.stores.workspace_links));
   assert.equal(Object.hasOwn(parsed, 'transitions'), false);
 });
 
