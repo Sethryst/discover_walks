@@ -369,7 +369,19 @@ body.route-focus-mode .walk-sketch{z-index:1200}
 .historical-topo-panel { width: 100%; max-width: 42rem; }
 .historical-topo-panel p { max-width: 65ch; line-height: 1.45; }
 .historical-topo-panel-toggle { display: none; }
+.learn-workspace-header{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;padding:.35rem 0 1rem;border-bottom:1px solid var(--line)}
+.learn-workspace-header h2{margin:.15rem 0 .25rem;font-size:clamp(1.35rem,3vw,2rem)}
+.learn-workspace-header p{margin:0;max-width:42ch;color:var(--muted);line-height:1.4}
+.learn-workspace-meta{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:.4rem}
+.learn-workspace-meta span{border:1px solid var(--line);border-radius:999px;padding:.35rem .55rem;background:rgba(255,250,240,.7);font-size:.7rem;font-weight:750;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.learn-workspace-toolbar{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.75rem 0;border-bottom:1px solid var(--line)}
+.learn-workspace-toolbar strong,.learn-workspace-toolbar small{display:block}.learn-workspace-toolbar small{margin-top:.2rem;color:var(--muted)}
+.learn-nearby-controls{display:flex;align-items:center;gap:.55rem;flex-wrap:wrap}.learn-nearby-controls button{white-space:nowrap}
+.learn-nearby{margin:.9rem 0 1.1rem;padding:.85rem;border:1px solid var(--line);border-radius:16px;background:rgba(216,232,216,.28)}
+.learn-nearby>header{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start;margin-bottom:.65rem}.learn-nearby>header h3{margin:.1rem 0}.learn-nearby>header p{margin:0;color:var(--muted)}.learn-nearby>header>span{font-weight:850;font-size:1.35rem;color:var(--green,#2d7259)}
+.learn-nearby .learn-site{background:rgba(255,250,240,.76)}
 @media (max-width: 720px) {
+  .learn-workspace-header,.learn-workspace-toolbar{display:block}.learn-workspace-meta{justify-content:flex-start;margin-top:.7rem}.learn-workspace-toolbar .learn-nearby-controls{margin-top:.7rem}
   .historical-topo-map-control { display: none; }
   .historical-topo-panel-toggle { display: block; min-height: 44px; width: 100%; margin: .5rem 0; }
 }
