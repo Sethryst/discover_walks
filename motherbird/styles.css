@@ -897,9 +897,12 @@ body[data-storage-state="temporary"]:after{content:'Temporary device storage';po
 .workspace-progress { display: grid; gap: .2rem; padding: .7rem .8rem; border-left: 3px solid var(--accent, #e8740f); background: color-mix(in srgb, var(--accent, #e8740f) 10%, transparent); }
 .workspace-progress span { color: var(--muted, #6f7168); font-size: .85rem; }
 .workspace-timeline { display: grid; gap: .65rem; }
-.workspace-record { display: grid; grid-template-columns: 2rem 1fr auto; align-items: center; gap: .7rem; padding: .8rem; border: 1px solid color-mix(in srgb, var(--ink, #173c35) 12%, transparent); border-radius: 14px; background: rgba(255,255,255,.72); }
+.workspace-record { display: grid; grid-template-columns: 2rem minmax(0, 1fr) repeat(3, max-content); align-items: center; gap: .7rem; padding: .8rem; border: 1px solid color-mix(in srgb, var(--ink, #173c35) 12%, transparent); border-radius: 14px; background: rgba(255,255,255,.72); }
+.workspace-record[data-workspace-focus] { cursor: pointer; }
+.workspace-record[data-workspace-focus]:hover { border-color: var(--accent, #e8740f); box-shadow: 0 3px 12px rgba(17,40,35,.1); }
+.workspace-map-action { color: var(--ink, #173c35); }
 .workspace-record h3, .workspace-record p { margin: .15rem 0; }
-.workspace-record > [data-workspace-delete] { grid-column: 3; min-height: 44px; }
+.workspace-record > [data-workspace-delete] { min-height: 44px; }
 .workspace-record > div:nth-child(2) { min-width: 0; overflow-wrap: anywhere; }
 .workspace-record p { color: var(--muted, #6f7168); font-size: .88rem; }
 .workspace-record small { text-transform: uppercase; letter-spacing: .08em; font-size: .68rem; color: var(--muted, #6f7168); }

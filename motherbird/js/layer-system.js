@@ -214,6 +214,12 @@ function applyLayerChanges({ rerenderFilters = true } = {}) {
   renderCityPois(); renderPersonalPlacesOnMap(); renderNewsMarkers(); renderRouteLights(); updateLayerBadge();
   if (rerenderFilters) renderLayerFilters();
   renderMapLights();
+  const placesVisibility = el('personalPlacesVisibility');
+  if (placesVisibility) {
+    const visible = state.layerLights.personal === true;
+    placesVisibility.textContent = visible ? 'Hide places' : 'Show places';
+    placesVisibility.setAttribute('aria-pressed', String(visible));
+  }
   drawStories();
   void syncNewsStory();
   void persistLayerState().catch(() => toast('Map choices changed, but could not be saved on this device.'));

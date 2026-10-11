@@ -143,6 +143,27 @@ function recordDetail(recordType, record) {
   return record.note || record.notes || record.description || 'Saved in this workspace';
 }
 
+function recordCoordinates(recordType, record) {
+  const points = recordType === 'route' || recordType === 'walk' ? (record.coordinates || record.points || []) : [];
+  if (Array.isArray(points)) {
+    const normalized = points.map((point) => Array.isArray(point) ? [Number(point[0]), Number(point[1])] : [Number(point?.lat), Number(point?.lng)]).filter(([lat, lng]) => Number.isFinite(lat) && Number.isFinite(lng));
+    if (normalized.length) return normalized;
+  }
+  const location = record.location || record.coordinates;
+  const lat = Number(record.lat ?? location?.lat);
+  const lng = Number(record.lng ?? location?.lng);
+  return Number.isFinite(lat) && Number.isFinite(lng) ? [[lat, lng]] : [];
+}
+
+function focusWorkspaceRecord(recordType, record) {
+  const map = state.map;
+  const coordinates = recordCoordinates(recordType, record);
+  if (!map || !coordinates.length) return;
+  if (coordinates.length === 1) map.flyTo(coordinates[0], Math.max(map.getZoom?.() || 14, 16));
+  else map.fitBounds(coordinates, { padding: [40, 40], maxZoom: 16 });
+  window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: '' } }));
+}
+
 export async function renderWorkspacePanel(target, { filter = 'all' } = {}) {
   if (!target) return;
   let workspace = state.workspaces.find((item) => item.id === state.activeWorkspaceId) || state.workspaces.find((item) => item.id === DEFAULT_WORKSPACE_ID) || state.workspaces[0];
@@ -160,13 +181,21 @@ export async function renderWorkspacePanel(target, { filter = 'all' } = {}) {
   const links = state.workspaceLinks.filter((link) => link.workspaceId === workspace.id && (filter === 'all' || link.recordType === filter || (filter === 'route' && link.recordType === 'walk')));
   const timeline = links.map((link) => ({ link, ...records.get(`${link.recordType}:${link.recordId}`) })).filter((item) => item.record).sort((a, b) => Date.parse(b.record.updatedAt || b.record.createdAt || 0) - Date.parse(a.record.updatedAt || a.record.createdAt || 0));
   const filterButtons = [['all', 'Everything'], ['route', 'Routes'], ['observation', 'Observations'], ['audio', 'Audio'], ['journal', 'Notes'], ['place', 'Places'], ['annotation', 'Annotations']].map(([id, label]) => `<button type="button" class="workspace-filter ${filter === id ? 'active' : ''}" data-workspace-filter="${id}">${label}</button>`).join('');
-  target.innerHTML = `<section class="workspace-home" aria-labelledby="workspaceTitle"><div class="workspace-heading"><div><p class="eyebrow">LIBRARY · FIELD NOTEBOOK</p><h2 id="workspaceTitle">${escapeHtml(workspace.name)}</h2><p>${escapeHtml(workspace.description)}</p></div><button type="button" class="secondary-button" data-create-workspace>New workspace</button></div><div class="workspace-filter-row" role="tablist" aria-label="Workspace filters">${filterButtons}</div><div class="workspace-progress"><strong>${timeline.length} linked record${timeline.length === 1 ? '' : 's'}</strong><span>Routes, places, observations, audio, notes, and annotations stay in their original local stores.</span></div><div class="workspace-timeline">${timeline.length ? timeline.map(({ link, record, type, store }) => `<article class="workspace-record workspace-record-${type}"><div class="workspace-record-icon" aria-hidden="true">${type === 'route' ? '↝' : type === 'audio' ? '◉' : type === 'observation' ? '◌' : type === 'annotation' ? '⌁' : type === 'place' ? '⌖' : '✎'}</div><div><small>${escapeHtml(type)}</small><h3>${escapeHtml(recordTitle(type, record))}</h3><p>${escapeHtml(recordDetail(type, record))}</p></div>${type === 'route' ? `<button type="button" class="text-button" data-edit-saved-route="${escapeHtml(record.id)}">Configure</button>` : ''}<button type="button" class="text-button danger-button" data-workspace-delete="${escapeHtml(record.id)}" data-record-type="${escapeHtml(type)}" data-record-store="${escapeHtml(store)}" aria-label="Delete ${escapeHtml(recordTitle(type, record))}">Delete</button></article>`).join('') : '<p class="empty-state">Nothing is linked here yet. Save a route, place, observation, audio note, or annotation to grow this workspace.</p>'}</div></section>`;
+  target.innerHTML = `<section class="workspace-home" aria-labelledby="workspaceTitle"><div class="workspace-heading"><h2 id="workspaceTitle">${escapeHtml(workspace.name)}</h2><button type="button" class="secondary-button" data-create-workspace>New workspace</button></div><div class="workspace-filter-row" role="tablist" aria-label="Workspace filters">${filterButtons}</div><div class="workspace-progress"><strong>${timeline.length} total</strong></div><div class="workspace-timeline">${timeline.length ? timeline.map(({ link, record, type, store }) => `<article class="workspace-record workspace-record-${type}" data-workspace-focus="${escapeHtml(record.id)}" data-record-type="${escapeHtml(type)}" data-record-store="${escapeHtml(store)}" title="Open on map"><div class="workspace-record-icon" aria-hidden="true">${type === 'route' ? '↝' : type === 'audio' ? '◉' : type === 'observation' ? '◌' : type === 'annotation' ? '⌁' : type === 'place' ? '⌖' : '✎'}</div><div><small>${escapeHtml(type)}</small><h3>${escapeHtml(recordTitle(type, record))}</h3><p>${escapeHtml(recordDetail(type, record))}</p></div><button type="button" class="text-button workspace-map-action" data-workspace-map="${escapeHtml(record.id)}" aria-label="Open ${escapeHtml(recordTitle(type, record))} on map">Map</button>${type === 'route' ? `<button type="button" class="text-button" data-edit-saved-route="${escapeHtml(record.id)}">Configure</button>` : ''}<button type="button" class="text-button danger-button" data-workspace-delete="${escapeHtml(record.id)}" data-record-type="${escapeHtml(type)}" data-record-store="${escapeHtml(store)}" aria-label="Delete ${escapeHtml(recordTitle(type, record))}">Delete</button></article>`).join('') : '<p class="empty-state">No records yet.</p>'}</div></section>`;
 }
 
 export function initWorkspaceRuntime() {
   if (initWorkspaceRuntime.bound) return;
   initWorkspaceRuntime.bound = true;
   document.addEventListener('click', async (event) => {
+    const mapButton = event.target.closest('[data-workspace-map]');
+    const mapRecord = mapButton?.closest('[data-workspace-focus]');
+    if (mapRecord) {
+      const store = mapRecord.dataset.recordStore;
+      const record = (await db.all(store)).find((item) => String(item.id) === mapRecord.dataset.workspaceFocus);
+      if (record) focusWorkspaceRecord(mapRecord.dataset.recordType, record);
+      return;
+    }
     const button = event.target.closest('[data-workspace-delete]');
     if (!button) return;
     if (!window.confirm('Delete this local record permanently? It will be removed from all workspaces on this device. This cannot be undone.')) return;
