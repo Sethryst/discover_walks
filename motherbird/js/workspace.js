@@ -110,6 +110,32 @@ export async function loadWorkspaceState() {
   await linkExistingRecords(workspace.id);
 }
 
+// Local visual fixture for checking the filled workspace at phone widths.
+// It is deliberately query-gated and never runs on a deployed origin.
+export async function seedWorkspaceDemo() {
+  const hostname = globalThis.location?.hostname || '';
+  const params = new URLSearchParams(globalThis.location?.search || '');
+  if (!['localhost', '127.0.0.1', '::1'].includes(hostname) || params.get('workspace-demo') !== '1') return false;
+  const now = Date.now();
+  const stamp = (offset) => new Date(now - offset * 60_000).toISOString();
+  const records = [
+    ['saved_routes', { id: 'demo-route', title: 'Riverside loop', routeMode: 'round-trip', coordinates: [[38.901, -77.041], [38.906, -77.034], [38.909, -77.042], [38.901, -77.041]], sections: [{ title: 'Waterfront loop' }], durationSeconds: 1680, updatedAt: stamp(5) }, 'route'],
+    ['walks', { id: 'demo-walk', title: 'Morning field walk', coordinates: [[38.901, -77.041], [38.904, -77.038], [38.907, -77.036]], note: 'Recorded beside the creek.', updatedAt: stamp(12) }, 'walk'],
+    ['observations', { id: 'demo-observation', species: 'Red-tailed hawk', location: { lat: 38.906, lng: -77.034 }, note: 'Circling above the tree line.', updatedAt: stamp(19) }, 'observation'],
+    ['geo_cypher_manifests', { id: 'demo-audio', title: 'Creek under the bridge', note: 'A short listening stop.', updatedAt: stamp(26) }, 'audio'],
+    ['personal_places', { id: 'demo-place', name: 'Pocket overlook', location: { lat: 38.909, lng: -77.042 }, note: 'Good shade and a clear view downstream.', updatedAt: stamp(33) }, 'place'],
+    ['moments', { id: 'demo-journal', type: 'journal', title: 'What changed here', note: 'The water is higher than last season.', updatedAt: stamp(40) }, 'journal'],
+    ['moments', { id: 'demo-annotation', type: 'drawing', title: 'Quiet edge', body: { shape: 'Line', measurement: '240 ft shoreline mark' }, updatedAt: stamp(47) }, 'annotation']
+  ];
+  const byStore = {};
+  for (const [store, record] of records) (byStore[store] ||= []).push(record);
+  await db.putMany(byStore);
+  const workspace = await ensureWorkspace();
+  for (const [, record, type] of records) await linkWorkspaceRecord(workspace.id, type, record.id);
+  window.dispatchEvent(new CustomEvent('workspace-changed'));
+  return true;
+}
+
 export async function createWorkspace(name) {
   const workspace = normalizeWorkspace({ name });
   await db.put('workspaces', workspace);

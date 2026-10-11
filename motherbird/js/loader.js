@@ -31,7 +31,7 @@ import { recoverWalkDraft, discardWalk } from './walk.js';
 import { initBiodiversity } from './biodiversity.js';
 import { initRegionalNavigation } from './regional-navigation.js?v=20261011-fairfax-subregions-1';
 import { initStorageDiagnostics } from './storage-diagnostics.js';
-import { loadWorkspaceState, initWorkspaceRuntime } from './workspace.js';
+import { loadWorkspaceState, initWorkspaceRuntime, seedWorkspaceDemo } from './workspace.js';
 import { normalizeSavedRoute } from './saved-routes.js';
 
 export async function init() {
@@ -115,6 +115,7 @@ export async function init() {
     }
     await loadLocalState();
     await loadWorkspaceState();
+    await seedWorkspaceDemo();
     initWorkspaceRuntime();
     await enterSingleInstalledRegion();
     void migrateLegacyJournalAudio().catch((error) => console.warn('Journal audio migration unavailable:', error.message));

@@ -4,7 +4,7 @@ import { readFile, readdir } from 'node:fs/promises';
 import db from '../js/storage.js';
 import { state } from '../js/state.js';
 import { ensurePlannedRouteSaved, updateSavedRoute } from '../js/saved-routes.js';
-import { DEFAULT_WORKSPACE_ID, loadWorkspaceState, linkWorkspaceRecord, deleteWorkspaceRecord, renderWorkspacePanel, ensureWorkspaceLinksForStore } from '../js/workspace.js';
+import { DEFAULT_WORKSPACE_ID, loadWorkspaceState, linkWorkspaceRecord, deleteWorkspaceRecord, renderWorkspacePanel, ensureWorkspaceLinksForStore, seedWorkspaceDemo } from '../js/workspace.js';
 
 globalThis.window = new EventTarget();
 test('startup and capture modules import one canonical storage singleton', async () => {
@@ -72,6 +72,15 @@ test('opening workspace reconciles old capture flows and Routes includes recorde
   await renderWorkspacePanel(target, { filter: 'route' });
   assert.match(target.innerHTML, /Recorded afternoon walk/);
   assert.doesNotMatch(target.innerHTML, /Voice memo/);
+});
+
+test('local workspace demo seeds one visual artifact of every supported type', async () => {
+  globalThis.location = new URL('http://127.0.0.1/?workspace-demo=1');
+  assert.equal(await seedWorkspaceDemo(), true);
+  const target = {};
+  await renderWorkspacePanel(target);
+  for (const title of ['Riverside loop', 'Morning field walk', 'Red-tailed hawk', 'Creek under the bridge', 'Pocket overlook', 'What changed here', 'Quiet edge']) assert.match(target.innerHTML, new RegExp(title));
+  assert.equal((await db.all('workspace_links')).filter((link) => link.recordId.startsWith('demo-')).length, 7);
 });
 
 for (const [type, store] of [['route', 'saved_routes'], ['walk', 'walks'], ['observation', 'observations'], ['place', 'personal_places'], ['annotation', 'moments'], ['journal', 'moments'], ['audio', 'voice_notes'], ['audio', 'geo_cypher_manifests']]) {
