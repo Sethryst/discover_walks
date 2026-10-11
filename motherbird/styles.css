@@ -897,7 +897,7 @@ body[data-storage-state="temporary"]:after{content:'Temporary device storage';po
 .workspace-progress { display: grid; gap: .2rem; padding: .7rem .8rem; border-left: 3px solid var(--accent, #e8740f); background: color-mix(in srgb, var(--accent, #e8740f) 10%, transparent); }
 .workspace-progress span { color: var(--muted, #6f7168); font-size: .85rem; }
 .workspace-timeline { display: grid; gap: .65rem; }
-.workspace-record { display: grid; grid-template-columns: 2rem minmax(0, 1fr) repeat(3, max-content); align-items: center; gap: .7rem; padding: .8rem; border: 1px solid color-mix(in srgb, var(--ink, #173c35) 12%, transparent); border-radius: 14px; background: rgba(255,255,255,.72); }
+.workspace-record { display: grid; grid-template-columns: 2rem minmax(0, 1fr) auto; align-items: center; gap: .7rem; padding: .8rem; border: 1px solid color-mix(in srgb, var(--ink, #173c35) 12%, transparent); border-radius: 14px; background: rgba(255,255,255,.72); }
 .workspace-record[data-workspace-focus] { cursor: pointer; }
 .workspace-record[data-workspace-focus]:hover { border-color: var(--accent, #e8740f); box-shadow: 0 3px 12px rgba(17,40,35,.1); }
 .workspace-map-action { color: var(--ink, #173c35); }
@@ -907,6 +907,36 @@ body[data-storage-state="temporary"]:after{content:'Temporary device storage';po
 .workspace-record p { color: var(--muted, #6f7168); font-size: .88rem; }
 .workspace-record small { text-transform: uppercase; letter-spacing: .08em; font-size: .68rem; color: var(--muted, #6f7168); }
 .workspace-record-icon { display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; background: #eef0e5; color: var(--ink, #173c35); font-size: 1.25rem; }
+.workspace-record-body { min-width: 0; overflow-wrap: anywhere; }
+.workspace-record-actions { display: flex; align-items: center; gap: .25rem; }
+.workspace-record-actions button { min-height: 32px; padding: .25rem .45rem; font-size: .68rem; }
+.workspace-record-route .workspace-record-icon { background: #e4f1e7; }
+.workspace-record-observation .workspace-record-icon { background: #fff0d8; }
+.workspace-record-place .workspace-record-icon { background: #eee7f7; }
+.workspace-record-audio .workspace-record-icon { background: #e3eff5; }
+.workspace-record-annotation .workspace-record-icon { background: #f2e8df; }
+@media(max-width:720px){
+  .map-workspace-panel[data-destination="maps"] > [data-map-panel="maps"] { padding: 8px; }
+  .map-workspace-panel[data-destination="maps"] .my-maps-heading { gap: 6px; padding-bottom: 6px; }
+  .map-workspace-panel[data-destination="maps"] .my-maps-heading h3 { font-size: .8rem; }
+  .map-workspace-panel[data-destination="maps"] .my-maps-heading button { min-height: 32px; padding: 5px 8px; font-size: .64rem; }
+  .workspace-home { gap: .55rem; padding: .15rem 0; }
+  .workspace-heading { align-items: center; gap: .45rem; }
+  .workspace-heading h2 { margin: 0; font-size: 1rem; }
+  .workspace-heading .secondary-button { min-height: 32px; padding: 5px 7px; font-size: .62rem; white-space: nowrap; }
+  .workspace-filter-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; overflow: visible; padding: 0; }
+  .workspace-filter { min-width: 0; min-height: 29px; padding: 4px 2px; font-size: .61rem; overflow: hidden; text-overflow: ellipsis; }
+  .workspace-progress { padding: .4rem .55rem; font-size: .72rem; }
+  .workspace-timeline { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .45rem; }
+  .workspace-record { grid-template-columns: 1.75rem minmax(0, 1fr); grid-template-areas: 'icon body' 'actions actions'; gap: .38rem .45rem; min-height: 86px; padding: .5rem; border-radius: 10px; }
+  .workspace-record-icon { grid-area: icon; width: 1.75rem; height: 1.75rem; font-size: 1rem; }
+  .workspace-record-body { grid-area: body; }
+  .workspace-record small { font-size: .55rem; }
+  .workspace-record h3 { margin: .1rem 0; font-size: .74rem; line-height: 1.15; }
+  .workspace-record p { margin: .1rem 0; font-size: .62rem; line-height: 1.2; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .workspace-record-actions { grid-area: actions; justify-content: stretch; border-top: 1px solid color-mix(in srgb, var(--ink, #173c35) 10%, transparent); padding-top: .3rem; }
+  .workspace-record-actions button { flex: 1; min-height: 27px; padding: 3px 2px; font-size: .58rem; }
+}
 .saved-route-editor { margin-top: .75rem; padding-top: .75rem; border-top: 1px solid color-mix(in srgb, var(--ink, #173c35) 12%, transparent); }
 .saved-route-editor summary { cursor: pointer; font-weight: 700; }
 .saved-route-editor form, .route-section-fields { display: grid; gap: .55rem; }
