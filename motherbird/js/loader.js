@@ -174,7 +174,7 @@ export async function init() {
     await refreshCityMap(false);
   });
   void (async () => {
-    await optionalBoot('walk controls', () => import('./events.js?v=20261009-workspace-1').then(({ initEvents }) => initEvents()));
+    await optionalBoot('walk controls', () => import('./events.js?v=20261010-fairfax-region-1').then(({ initEvents }) => initEvents()));
     initRadialMenu();
     await optionalBoot('radio', initRadio);
     await optionalBoot('geo-cypher', initGeoCypher);

@@ -1,7 +1,7 @@
 // Keep the whole module graph with the shell. Caching only app.js leaves an
 // offline (or briefly disconnected) reload with a blank app when any imported
 // module was not already in the runtime cache.
-const APP_CACHE = 'walk-wildlife-shell-v409'; // Keep large regional enrichment out of startup
+const APP_CACHE = 'walk-wildlife-shell-v410'; // Keep large regional enrichment out of startup
 const TILE_CACHE = 'walk-wildlife-map-tiles-v2';
 const LIBRARY_CACHE = 'walk-wildlife-library-v2';
 const COMPANION_CACHE = 'walk-wildlife-companion-media-v2';

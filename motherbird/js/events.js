@@ -746,9 +746,7 @@ function regionCards() {
 function renderRegions() {
   const favorites = new Set(state.settings.favoriteRegionIds || []);
   el('regionList').innerHTML = regionCards().map(([id, pack]) => {
-    const sources = Object.entries(CITIES).filter(([, source]) => source.isSource && source.sourceParentIds?.includes(id));
-    const sourceMenu = sources.length ? `<details class="region-sources" ${sources.some(([sourceId]) => sourceId === state.activeCity) ? 'open' : ''}><summary>Sites</summary>${sources.map(([sourceId, source]) => `<button type="button" class="region-source-row ${sourceId === state.activeCity ? 'active' : ''}" data-region="${sourceId}"><strong>${escapeHtml(source.name)}</strong><small>Site · ${escapeHtml(source.state || '')}</small></button>`).join('')}</details>` : '';
-    return `<article class="region-row ${id === state.activeCity ? 'active' : ''}"><button type="button" data-region="${id}"><strong>${escapeHtml(pack.name)}</strong><small>${escapeHtml(pack.state || '')}</small></button><button class="region-star" type="button" data-region-star="${id}" aria-label="${favorites.has(id) ? 'Remove favorite' : 'Favorite'} ${escapeHtml(pack.name)}">${favorites.has(id) ? '★' : '☆'}</button>${sourceMenu}</article>`;
+    return `<article class="region-row ${id === state.activeCity ? 'active' : ''}"><button type="button" data-region="${id}"><strong>${escapeHtml(pack.name)}</strong><small>${escapeHtml(pack.state || '')}</small></button><button class="region-star" type="button" data-region-star="${id}" aria-label="${favorites.has(id) ? 'Remove favorite' : 'Favorite'} ${escapeHtml(pack.name)}">${favorites.has(id) ? '★' : '☆'}</button></article>`;
   }).join('');
 }
 
