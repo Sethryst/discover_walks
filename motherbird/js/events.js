@@ -7,7 +7,7 @@ import { getCurrentLocation, startWalk, stopWalk } from './walk.js';
 import { openBackpack, openJournal, closeSheets, openSheet, renderGeofenceCategoryChips, setArchiveFilter, toast } from './ui.js';
 import { city, poiTags, searchPois } from './poi.js';
 import { localSearchHits, searchRowHtml, emptySearchHtml } from './search.js';
-import { initRegionalNavigation } from './regional-navigation.js';
+import { initRegionalNavigation } from './regional-navigation.js?v=20261011-fairfax-subregions-1';
 import { switchCity } from './city.js';
 import { generateTimeBasedPlan, lockSelectedPlanOnMap, changePlan, selectPlan, setPlanningMode } from './planner.js?v=20261011-cross-cell-stitch-2';
 import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261011-cross-cell-stitch-2';
