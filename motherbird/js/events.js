@@ -12,7 +12,7 @@ import { switchCity } from './city.js';
 import { generateTimeBasedPlan, lockSelectedPlanOnMap, changePlan, selectPlan, setPlanningMode } from './planner.js?v=20261009-route-lab-1';
 import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261007-ambient-routing-1';
 import { coordinateLabel, resolveRoutePlaceLabel } from './route-place-labels.js?v=20261006-route-labels-1';
-import { paintWalkPlan, paintCard, previewCard, sendCurrentWalkPlan } from './field-guide.js?v=133-source-catalogue';
+import { paintWalkPlan, paintCard, previewCard, sendCurrentWalkPlan } from './field-guide.js?v=134-water-journey';
 import { wordCount } from './reflection.js';
 import { refreshCompanionState } from './companion.js';
 import db from './storage.js';

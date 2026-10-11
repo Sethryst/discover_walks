@@ -14,6 +14,7 @@ import { isHistorySite, renderLearnHistory, setLearnView, setLearnScreen, setAct
 import { setPoiVisited } from './poi-visit-tracking.js';
 import { addWalkWaypoint, startWalk } from './walk.js';
 import { initMapsFolders, renderMapsLibrary } from './maps-folders.js';
+import { loadWaterJourneys } from './water-journey.js';
 import { listSpatialQueries, queryPrompt } from './spatial-query.js?v=20260928-spatial-query-fix';
 import { isBiodiversitySupported, renderBiodiversityGuide } from './biodiversity.js';
 
@@ -287,6 +288,19 @@ export function paintWalkPlan(plan) {
   return state.plannedRoute;
 }
 
+export async function paintWaterJourney(journeyId) {
+  const catalog = await loadWaterJourneys();
+  const journey = catalog.journeys.find((item) => String(item.id) === String(journeyId));
+  if (!journey?.accessPoints?.length) { toast('This water journey has no verified access points yet.'); return null; }
+  const stops = journey.accessPoints.map((point) => ({ id: point.id, name: point.name, lat: point.lat, lng: point.lng }));
+  state.plannedRoute = { id: `water-journey-${journey.id}`, format: FORMAT, pack_id: state.activeCity, title: journey.name, reason: journey.summary, routeMode: 'point-to-point', stops, coordinates: [], journeyId: journey.id, sourceUrl: journey.provenance?.officialUrl || null };
+  paintWalkConcept(state.plannedRoute);
+  await routePlannedPreview(state.plannedRoute);
+  closeSheets();
+  toast(`Mapped "${journey.name}". Tap Start Walk to begin.`);
+  return state.plannedRoute;
+}
+
 async function routePlannedPreview(plan) {
   const origin = state.currentPosition || state.map?.getCenter();
   if (!origin || !plan.stops?.length) return;
@@ -410,6 +424,8 @@ export function initFieldGuideFilters() {
     if (lensItem) { setActiveLensItem(lensItem.dataset.learnLensItem); void renderFieldGuide('learn'); return; }
     const openLearn = event.target.closest('[data-learn-open]');
     if (openLearn) { setLearnScreen(openLearn.dataset.learnOpen); void renderFieldGuide('learn'); return; }
+    const waterJourney = event.target.closest('[data-learn-water-journey]');
+    if (waterJourney) { void paintWaterJourney(waterJourney.dataset.learnWaterJourney); return; }
     const basin = event.target.closest('[data-learn-watershed]');
     if (basin) { setLearnScreen('watersheds'); setActiveWatershed(basin.dataset.learnWatershed); void renderFieldGuide('learn'); return; }
     const viewButton = event.target.closest('[data-learn-view]');

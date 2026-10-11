@@ -3,6 +3,7 @@ import { CITIES } from './constants.js';
 import { escapeHtml } from './utils.js';
 import { distanceMeters } from './geo.js';
 import { installedPackBounds } from './offline-view.js';
+import { journeysForCity, loadWaterJourneys, somethingNewNearby } from './water-journey.js';
 
 export const LEARN_INDEX_URL = './data/learn/index.json';
 export const LEARN_SPLITS_URL = './data/learn/history/pack-splits.json';
@@ -228,8 +229,9 @@ export function isWalkNatureSite(poi) {
 export function placesInWatershed(pois, feature) {
   return (pois || []).filter((poi) => Number.isFinite(Number(poi.lat)) && Number.isFinite(Number(poi.lng)) && pointInFeature(Number(poi.lng), Number(poi.lat), feature));
 }
-export function learnHomeHtml() {
-  return `<section class="learn-history learn-category-groups"><details open><summary class="guide-card learn-entry"><h3>Nature</h3><p>Water, protected land, wildlife, and the landscape around you.</p></summary><div class="learn-category-options"><button type="button" class="guide-card learn-entry" data-learn-open="watersheds"><h3>Watersheds</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="names"><h3>Named landscape</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="protected"><h3>Protected land</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="wildlife"><h3>Wildlife recorded here</h3></button></div></details><details open><summary class="guide-card learn-entry"><h3>History</h3><p>Historic places, battlefields, maps, and stories in view.</p></summary><div class="learn-category-options"><button type="button" class="guide-card learn-entry" data-learn-open="history"><h3>History sites</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="topo"><h3>Historic topo maps</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="battlefields"><h3>Historic battlefields</h3></button></div></details></section>`;
+export function learnHomeHtml({ somethingNew = null } = {}) {
+  const water = somethingNew ? `<article class="guide-card learn-water-prompt"><small>SOMETHING NEW NEARBY</small><h3>${escapeHtml(somethingNew.journey.name)}</h3><p>${escapeHtml(somethingNew.journey.summary || 'A nearby water story to explore on foot.')}</p><button type="button" class="primary-button" data-learn-water-journey="${escapeHtml(somethingNew.journey.id)}">Plan this water journey</button></article>` : '';
+  return `<section class="learn-history learn-category-groups">${water}<details open><summary class="guide-card learn-entry"><h3>Nature</h3><p>Water, protected land, wildlife, and the landscape around you.</p></summary><div class="learn-category-options"><button type="button" class="guide-card learn-entry" data-learn-open="watersheds"><h3>Watersheds</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="names"><h3>Named landscape</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="protected"><h3>Protected land</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="wildlife"><h3>Wildlife recorded here</h3></button></div></details><details open><summary class="guide-card learn-entry"><h3>History</h3><p>Historic places, battlefields, maps, and stories in view.</p></summary><div class="learn-category-options"><button type="button" class="guide-card learn-entry" data-learn-open="history"><h3>History sites</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="topo"><h3>Historic topo maps</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="battlefields"><h3>Historic battlefields</h3></button></div></details></section>`;
 }
 const TOPO_ERAS = ['1950s', '1960s', '1970s', '1980s'];
 export function historicalTopoHtml() {
@@ -326,13 +328,14 @@ export function paintHistoricalTopo({ map, leaflet, era = null }) {
   control.addTo(map); state.historicalTopoControl = control;
   state.historicalTopoLayer = layer; return layer;
 }
-export function watershedListHtml(features, selectedId, places) {
+export function watershedListHtml(features, selectedId, places, waterJourney = null) {
   const selected = (features || []).find((feature) => feature.properties?.id === selectedId);
   if (selected) {
     const item = selected.properties || {};
     const walk = (places || [])[0];
     const walkHtml = walk ? `<button class="secondary-button" type="button" data-learn-walk="${escapeHtml(String(walk.id))}">Walk inside</button>` : '';
-    return `<section class="learn-history learn-region"><button type="button" class="secondary-button" data-learn-watershed-back="1">← Back to watersheds</button><h3>${escapeHtml(item.name || 'Watershed')}</h3><p>${escapeHtml(item.protect || '')}</p>${walkHtml}</section>`;
+    const journeyHtml = waterJourney ? `<button type="button" class="primary-button" data-learn-water-journey="${escapeHtml(waterJourney.id)}">Follow this creek</button>` : '';
+    return `<section class="learn-history learn-region"><button type="button" class="secondary-button" data-learn-watershed-back="1">← Back to watersheds</button><h3>${escapeHtml(item.name || 'Watershed')}</h3><p>${escapeHtml(item.protect || '')}</p><div class="learn-site-actions">${walkHtml}${journeyHtml}</div></section>`;
   }
   const list = (features || []).map((feature) => {
     const item = feature.properties || {};
@@ -446,7 +449,11 @@ export async function renderLearnHistory(target, point) {
   if (learnScreen !== 'topo' && state.historicalTopoLayer) stopHistoricalTopo();
   if (learnScreen === 'home') {
     setLearnSheetMin(false);
-    target.innerHTML = learnHomeHtml();
+    const catalog = await loadWaterJourneys();
+    const waterJourneys = journeysForCity(catalog.journeys);
+    const encounteredIds = new Set((state.walks || []).flatMap((walk) => (walk.waterEncounters || []).map((item) => String(item.journeyId))));
+    const pointForPrompt = state.currentPosition || state.lastPosition || state.map?.getCenter?.();
+    target.innerHTML = learnHomeHtml({ somethingNew: somethingNewNearby({ journeys: waterJourneys, encounteredIds, point: pointForPrompt }) });
     state.learnBoundsLayer?.remove(); state.learnBoundsLayer = null;
     return;
   }
@@ -458,9 +465,11 @@ export async function renderLearnHistory(target, point) {
     const catalog = await loadWatersheds();
     const features = (catalog.features || []).filter((feature) => featureInViewport(state.map, feature));
     const selected = features.find((feature) => feature.properties?.id === activeWatershedId) || null;
+    const waterCatalog = await loadWaterJourneys();
+    const waterJourney = waterCatalog.journeys.find((journey) => journey.watershedId === activeWatershedId && journeysForCity([journey])[0]);
     setLearnSheetMin(!!selected);
     const inside = selected ? placesInWatershed(pois, selected).filter(isWalkNatureSite) : [];
-    target.innerHTML = watershedListHtml(features, activeWatershedId, sortSitesByDistance(inside, point));
+    target.innerHTML = watershedListHtml(features, activeWatershedId, sortSitesByDistance(inside, point), waterJourney);
     paintWatersheds({ map: state.map, leaflet: globalThis.L, features, selectedId: activeWatershedId });
     return;
   }

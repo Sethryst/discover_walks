@@ -53,7 +53,7 @@ export async function setupOnline() {
 }
   export async function openOnline() {
   await setupOnline();
-  const { renderFieldGuide } = await import('./field-guide.js?v=133-source-catalogue');
+  const { renderFieldGuide } = await import('./field-guide.js?v=134-water-journey');
   openSheet('backpackSheet');
   await renderFieldGuide('online');
 }

@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "artifactType": "learn-water-journeys",
+  "sourceName": "Fairfax County Stormwater Management and USGS Geographic Names Information System",
+  "sourceUrl": "https://www.fairfaxcounty.gov/publicworks/stormwater/accotink-creek-watershed",
+  "retrievedAt": "2026-10-10",
+  "journeys": [
+    {
+      "id": "accotink-creek-water-story",
+      "cityIds": ["fairfax-county-va", "alexandria-va"],
+      "streamId": "accotink-creek",
+      "name": "Follow Accotink Creek",
+      "summary": "Trace a short, walkable section of Accotink Creek and notice how parks, stream banks, and wildlife records connect before the creek reaches the Potomac.",
+      "watershedId": "accotink-creek",
+      "downstreamTo": "Potomac River",
+      "accessPoints": [
+        { "id": "accotink-upper", "name": "Upper Accotink Creek", "lat": 38.793, "lng": -77.228 },
+        { "id": "accotink-lower", "name": "Lower Accotink Creek", "lat": 38.7536, "lng": -77.0986 }
+      ],
+      "streamLine": [[38.793, -77.228], [38.7785, -77.2206], [38.7578, -77.2151], [38.7333, -77.214], [38.7085, -77.1907], [38.684, -77.173]],
+      "relationships": [
+        { "type": "inside", "targetType": "watershed", "targetId": "accotink-creek" },
+        { "type": "near", "targetType": "wildlife", "targetId": "great-blue-heron" }
+      ],
+      "provenance": {
+        "geometry": "Generalized centerline for encounter matching; do not use as a navigable trail.",
+        "officialUrl": "https://www.fairfaxcounty.gov/publicworks/stormwater/accotink-creek-watershed",
+        "nameAuthorityUrl": "https://www.usgs.gov/tools/geographic-names-information-system-gnis",
+        "confidence": "curated-derived"
+      }
+    }
+  ]
+}

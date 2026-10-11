@@ -30,6 +30,7 @@ import { walkIsActive } from './walk-state.js';
 import { suggestContextualQuote } from './quote-context.js';
 import { getCurrentPosition, watchPosition, clearWatch, isLocationSimulatorEnabled } from './location-simulator.js';
 import { gapBetween, reconstructedDistance, reconstructedPoints } from './route-gap-reconstruction.js';
+import { detectWaterCrossings, journeysForCity, loadWaterJourneys, primeWaterJourneys } from './water-journey.js';
 
 const DRAFT_ID = 'active-walk';
 
@@ -85,6 +86,7 @@ export function addWalkPoint(point) {
   }
   const detections = detectTrackEvents({ walk, point: smoothed, previousPoint: last, knownTrackPoints: state.knownTrackPoints, nowMs: now });
   detections.forEach((event) => void recordWalkEvent(event.type, event.location, event.metadata, event.timestamp));
+  void detectWaterJourneysForSegment(last, smoothed);
 
   if (!state.routeLine) state.routeLine = L.polyline([], { color: '#168cff', weight: 8, opacity: 1, lineCap: 'round', lineJoin: 'round' }).addTo(state.map);
   state.routeLine.addLatLng([smoothed.lat, smoothed.lng]);
@@ -284,7 +286,28 @@ export async function startWalk({ routeMode = 'tracking', transportMode = null }
   getCurrentLocation();
   toast('Walk started. Your route is being saved on this device.');
   window.dispatchEvent(new CustomEvent('walk-started', { detail: { id: state.activeWalk.id } }));
+  primeWaterJourneys();
   return state.activeWalk;
+}
+
+async function detectWaterJourneysForSegment(previousPoint, point) {
+  const walk = state.activeWalk;
+  if (!walk || !previousPoint || !point) return;
+  const catalog = await loadWaterJourneys();
+  const alreadyEncountered = new Set((walk.waterEncounters || []).map((item) => String(item.journeyId)));
+  const crossings = detectWaterCrossings({ previousPoint, point, journeys: journeysForCity(catalog.journeys, walk.city) })
+    .filter((item) => !alreadyEncountered.has(String(item.journey.id)));
+  for (const crossing of crossings) {
+    const timestamp = new Date().toISOString();
+    const encounter = { journeyId: String(crossing.journey.id), streamId: String(crossing.journey.streamId || ''), name: crossing.journey.name, timestamp, location: crossing.location, confidence: crossing.confidence };
+    walk.waterEncounters ||= [];
+    walk.waterEncounters.push(encounter);
+    const event = await recordWalkEvent('water-encounter', crossing.location, { journeyId: encounter.journeyId, streamId: encounter.streamId, name: encounter.name, confidence: encounter.confidence }, timestamp, 'completed');
+    if (event) {
+      await db.put('moments', { id: `water-encounter:${walk.id}:${encounter.journeyId}`, type: 'journal', city: walk.city, title: `Crossed ${encounter.name}`, note: `${encounter.name} is part of the local watershed. This encounter was recorded while you were walking.`, walkId: walk.id, location: encounter.location, source: crossing.journey.provenance?.officialUrl || null, createdAt: timestamp, updatedAt: timestamp });
+      window.dispatchEvent(new CustomEvent('journal-data-changed', { detail: { waterEncounter: encounter } }));
+    }
+  }
 }
 
 export function calculateWalkAward(walk, profile = state.profile) {

@@ -1,7 +1,7 @@
 // Keep the whole module graph with the shell. Caching only app.js leaves an
 // offline (or briefly disconnected) reload with a blank app when any imported
 // module was not already in the runtime cache.
-const APP_CACHE = 'walk-wildlife-shell-v403'; // Keep large regional enrichment out of startup
+const APP_CACHE = 'walk-wildlife-shell-v404'; // Keep large regional enrichment out of startup
 const TILE_CACHE = 'walk-wildlife-map-tiles-v2';
 const LIBRARY_CACHE = 'walk-wildlife-library-v2';
 const COMPANION_CACHE = 'walk-wildlife-companion-media-v2';
@@ -19,7 +19,7 @@ const shell = [
   './', './index.html', './research-lab.html', './research-lab.html?v=2', './watch.html', './styles.css', './radio.css', './shell.css', './splash-fix.css', './watch.css', './legal.css', './privacy.html', './terms.html', './app.js', './manifest.webmanifest', './watch.webmanifest', './supabase-config.js', './research/national-discovery/national-candidate-package.json', './research/national-discovery/focused-source-validation-2026-10-02.json', './research/national-discovery/focused-source-acceptance-2026-10-02.json', './research/national-discovery/honolulu-focused-event-package.json', './research/national-discovery/austin-focused-event-package.json', './research/national-discovery/albuquerque-focused-event-package.json', './research/national-discovery/cleveland-focused-event-package.json',
   './assets/pwa-icon-192.png', './assets/pwa-icon-512.png', './assets/pwa-maskable-512.png', './assets/apple-touch-icon.png', './assets/splash-screen.jpeg', './assets/splash-1170x2532.png', './assets/splash-1290x2796.png', './assets/splash-2048x2732.png',
   './js/archive.js', './js/backup.js', './js/city.js', './js/civic.js', './js/civic-news.js', './js/constants.js', './js/discovery.js', './js/discovery-taxonomy.js',
-  './js/entitlements.js', './js/cloud-journal.js', './js/events.js', './js/explore.js', './js/field-edition-loader.js', './js/field-guide.js', './js/messenger-bird.js', './js/maps-folders.js', './js/learn-change.js', './js/learn-explore.js', './js/learn-folders.js', './js/learn-history.js', './js/news-map.js', './js/search.js', './js/geo.js', './js/geofence.js', './js/primary-shell.js', './js/radio.js', './data/radio/labri.json',
+  './js/entitlements.js', './js/cloud-journal.js', './js/events.js', './js/explore.js', './js/field-edition-loader.js', './js/field-guide.js', './js/water-journey.js', './js/messenger-bird.js', './js/maps-folders.js', './js/learn-change.js', './js/learn-explore.js', './js/learn-folders.js', './js/learn-history.js', './js/news-map.js', './js/search.js', './js/geo.js', './js/geofence.js', './js/primary-shell.js', './js/radio.js', './data/radio/labri.json',
   './js/federal-boundaries.js', './js/federal-region-loader.js', './js/federal-region-progress.js', './js/poi-visit-tracking.js', './js/loader.js', './js/coach.js', './js/map.js', './js/observation.js', './js/online.js', './js/planner.js', './js/poi.js', './js/profile.js',
   './js/neighborhoods.js', './js/spatial-index.js', './js/spatial-index-providers.js', './js/spatial-overlay.js', './js/spatial-package-loader.js', './js/spatial-closure-reporting.js', './js/text-to-walk.js',
   './js/quiet-places.js', './js/source-adapters.js', './js/acquisition-package-runtime.js', './js/outbox-runtime.js', './js/region-api.js', './js/region-installer.js', './js/region-manager.js', './js/region-package.js', './js/osm-release.js',
@@ -31,7 +31,7 @@ const shell = [
   './data/dc-poi.json', './data/detroit-poi.json', './data/fort-worth-poi.json', './data/keystone-colorado-poi.json', './data/los-angeles-poi.json',
   './data/newyork-poi.json', './data/norfolk-poi.json', './data/pgcounty-poi.json', './data/philadelphia-poi.json', './data/pittsburgh-poi.json',
   './data/richmond-poi.json', './data/seattle-poi.json', './data/sedona-arizona-poi.json', './data/tempe-poi.json', './data/vienna-poi.json', './data/vienna-trails.json',
-  './data/learn/index.json', './data/learn/discover/watersheds.json', './data/learn/history/pack-splits.json', './data/learn/history/battlefields.json',
+  './data/learn/index.json', './data/learn/discover/watersheds.json', './data/learn/water-journeys.json', './data/learn/history/pack-splits.json', './data/learn/history/battlefields.json',
   // Routing graphs are fetched only after a user asks for routing.
   ...['asheville', 'boston', 'boulder', 'chicago', 'cleveland', 'denver', 'new-orleans', 'portland', 'portland-maine', 'san-francisco', 'santa-fe', 'wolf-trap-va'].map((region) => `./regions/${region}/pois.json`),
   ...['alexandria-va', 'arlington-va', 'baltimore', 'boise-meridian-idaho', 'boston', 'boulder', 'chicago', 'columbus', 'corpus-christi', 'denver', 'detroit', 'eugene', 'fairfax-county-va', 'falls-church-va', 'fort-worth', 'keystone-colorado', 'las-vegas', 'loudoun-county-va', 'madison', 'milwaukee', 'new-orleans', 'norfolk', 'nyc', 'philadelphia', 'pittsburgh', 'portland', 'portland-maine', 'prince-georges-county-md', 'providence', 'richmond', 'san-francisco', 'santa-fe', 'seattle', 'sedona-arizona', 'tempe', 'washington-dc'].flatMap((region) => [
