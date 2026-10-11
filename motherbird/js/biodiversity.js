@@ -16,7 +16,7 @@ const groups = [
 export const NOVA_BIODIVERSITY_REGIONS = new Set(['alexandria', 'arlington', 'fairfax', 'falls-church', 'loudoun', 'vienna']);
 export const PUBLISHED_BIODIVERSITY_REGIONS = new Set([...BIODIVERSITY_BY_CITY].filter(([, region]) => region.releaseState !== 'gated').map(([cityId]) => cityId));
 export function biodiversityRegion(regionId = state.activeCity) { return BIODIVERSITY_BY_CITY.get(String(regionId || '')); }
-export function isBiodiversitySupported(regionId = state.activeCity) { return Boolean(biodiversityRegion(regionId)?.releaseState !== 'gated'); }
+export function isBiodiversitySupported(regionId = state.activeCity) { const region = biodiversityRegion(regionId); return Boolean(region && region.releaseState !== 'gated'); }
 export function biodiversityDataUrl(regionId = state.activeCity) { return `./${biodiversityRegion(regionId)?.sidecarPath || `regions/${regionId}/biodiversity/records.json`}`; }
 export async function loadBiodiversity(regionId = state.activeCity) {
   if (!isBiodiversitySupported(regionId)) throw new Error('No biodiversity release is available for this area.');
