@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const projectRoot = path.resolve(root, '..');
-const regions = ['asheville', 'boston', 'boulder', 'chicago', 'denver', 'new-orleans', 'portland', 'portland-maine', 'san-francisco', 'santa-fe', 'wolf-trap-va'];
+const regions = ['asheville', 'boston', 'boulder', 'chicago', 'denver', 'new-orleans', 'portland', 'portland-maine', 'san-francisco', 'santa-fe'];
 
 for (const regionId of regions) {
   const releaseRoot = path.join(projectRoot, 'releases', regionId);

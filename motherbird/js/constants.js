@@ -256,10 +256,10 @@ export const MAX_DRIVE_SPEED_MPS = 70;
   },
   'wolf-trap-va': {
     name: 'Wolf Trap', state: 'VA', center: { lat: 38.9367, lng: -77.2656 }, zoom: 13,
-    dataFile: './regions/wolf-trap-va/pois.json',
+    dataFile: './regions/fairfax/pois.json', packId: 'fairfax', aliasOf: 'fairfax',
     civicFile: './regions/vienna/civic/index.json',
-    // Kept as a runtime source so existing Wolf Trap links and data remain
-    // valid, but surfaced under its parent regions instead of as a region.
+    // Legacy compatibility alias only. Wolf Trap is now part of Fairfax and
+    // must not appear as a standalone selectable region.
     isSource: true,
     sourceParentIds: ['fairfax']
   }

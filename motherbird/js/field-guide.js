@@ -78,6 +78,13 @@ function nearbyWalks(pois, point) {
     reason: 'A nearby place to explore on foot. Pick your own safe walking route to this stop.', stopPlaceIds: [String(poi.id)], distance: poi.distance
   }));
 }
+function fallbackDiscoverPlaces(pois, point) {
+  const ordered = sortGuideCardsByDistance(pois.filter((poi) => poi.category !== 'journey' && poi.name && Number.isFinite(poi.lat) && Number.isFinite(poi.lng) && isVisiblePoi(poi)), point, (poi) => [poi]);
+  return ordered.slice(0, 8).map((poi) => ({
+    id: `fallback:${poi.id}`, kind: 'nearby', title: `Explore ${poi.name}`,
+    reason: 'A local place from this installed pack. Choose it to build a walking route.', stopPlaceIds: [String(poi.id)], distance: poi.distance
+  }));
+}
 function discoverCard(card) {
   const selected = selectedPlaceId && card.stopPlaceIds?.includes(selectedPlaceId);
   return `<article class="guide-card ${selected ? 'selected' : ''}" data-guide-card="${escapeHtml(card.id)}"><small>${card.kind === 'journey' ? 'JOURNEY' : escapeHtml(card.kind.replaceAll('+', ' + '))}${distanceLabel(card.distance)}</small><h3>${escapeHtml(card.title)}</h3><p>${escapeHtml(card.reason)}</p><div class="card-actions"><button class="primary-button" type="button" data-guide-walk="${escapeHtml(card.id)}">Walk this</button><button class="secondary-button" type="button" data-guide-preview="${escapeHtml(card.id)}">View on map</button></div></article>`;
@@ -193,7 +200,8 @@ export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') 
     if (card.title) seenKeys.add(card.title);
     return true;
   }).sort((a, b) => (a.distance ?? Infinity) - (b.distance ?? Infinity)).slice(0, 12);
-  target.innerHTML = shown.length ? shown.map(discoverCard).join('') : '<p class="empty-state">No walkable places are available near this map view yet. Move the map or choose another area to explore.</p>';
+  const fallback = shown.length ? shown : fallbackDiscoverPlaces([...poiById.values()], point);
+  target.innerHTML = fallback.length ? fallback.map(discoverCard).join('') : '<article class="guide-card discover-fallback"><small>DISCOVER</small><h3>Explore this map</h3><p>Move the map or change the region to find places worth walking to. Discover will keep your next step here.</p><button class="secondary-button" type="button" data-discover-explore-map>Explore nearby map</button></article>';
 }
 
 async function renderSavedSpatialQueries() {
@@ -418,6 +426,8 @@ export function initFieldGuideFilters() {
     }
     const preview = event.target.closest('[data-guide-preview]');
     if (preview) { void previewCard(preview.dataset.guidePreview); return; }
+    const exploreDiscoverMap = event.target.closest('[data-discover-explore-map]');
+    if (exploreDiscoverMap) { closeSheets(); state.map?.invalidateSize?.(); toast('Pan the map or choose another region to discover a place.'); return; }
     const cardElement = event.target.closest('[data-guide-card]');
     if (cardElement && cardElement.dataset.guideCard && !event.target.closest('a,button')) { void paintCard(cardElement.dataset.guideCard); return; }
     const walk = event.target.closest('[data-guide-walk]'); if (walk) { void paintCard(walk.dataset.guideWalk); return; }

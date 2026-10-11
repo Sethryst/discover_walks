@@ -7,7 +7,7 @@ import { DC_OFFICIAL_TRAILS } from '../data/dc-official-trails.js';
 // are deliberately blocked from map rendering and time-based planning.
 export const CURATED_ROUTES = [
   {
-    id: 'wolf-trap-park-loop', city: 'wolf-trap-va', title: 'Wolf Trap Park Loop',
+    id: 'wolf-trap-park-loop', city: 'fairfax', title: 'Wolf Trap Park Loop',
     distanceMiles: 1.8, durationMinutes: 45, difficulty: 'Easy',
     description: 'A short nearby loop around Wolf Trap National Park for the Performing Arts and its wooded park setting.',
     sourceName: 'National Park Service', sourceUrl: 'https://www.nps.gov/wotr/planyourvisit/index.htm',
@@ -15,7 +15,7 @@ export const CURATED_ROUTES = [
     coordinates: [[38.9367, -77.2656], [38.9390, -77.2680], [38.9410, -77.2650], [38.9392, -77.2618], [38.9367, -77.2656]]
   },
   {
-    id: 'wolf-trap-neighborhood-walk', city: 'wolf-trap-va', title: 'Wolf Trap Neighborhood Walk',
+    id: 'wolf-trap-neighborhood-walk', city: 'fairfax', title: 'Wolf Trap Neighborhood Walk',
     distanceMiles: 3.1, durationMinutes: 75, difficulty: 'Moderate',
     description: 'A longer nearby walk from Wolf Trap through the surrounding green space and quiet local roads.',
     sourceName: 'National Park Service', sourceUrl: 'https://www.nps.gov/wotr/planyourvisit/index.htm',

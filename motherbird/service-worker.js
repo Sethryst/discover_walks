@@ -1,7 +1,7 @@
 // Keep the whole module graph with the shell. Caching only app.js leaves an
 // offline (or briefly disconnected) reload with a blank app when any imported
 // module was not already in the runtime cache.
-const APP_CACHE = 'walk-wildlife-shell-v417'; // Keep large regional enrichment out of startup
+const APP_CACHE = 'walk-wildlife-shell-v418'; // Keep large regional enrichment out of startup
 const TILE_CACHE = 'walk-wildlife-map-tiles-v2';
 const LIBRARY_CACHE = 'walk-wildlife-library-v2';
 const COMPANION_CACHE = 'walk-wildlife-companion-media-v2';
@@ -33,7 +33,7 @@ const shell = [
   './data/richmond-poi.json', './data/seattle-poi.json', './data/sedona-arizona-poi.json', './data/tempe-poi.json', './data/vienna-poi.json', './data/vienna-trails.json',
   './data/learn/index.json', './data/learn/discover/watersheds.json', './data/learn/water-journeys.json', './data/learn/history/pack-splits.json', './data/learn/history/battlefields.json',
   // Routing graphs are fetched only after a user asks for routing.
-  ...['asheville', 'boston', 'boulder', 'chicago', 'cleveland', 'denver', 'new-orleans', 'portland', 'portland-maine', 'san-francisco', 'santa-fe', 'wolf-trap-va'].map((region) => `./regions/${region}/pois.json`),
+  ...['asheville', 'boston', 'boulder', 'chicago', 'cleveland', 'denver', 'new-orleans', 'portland', 'portland-maine', 'san-francisco', 'santa-fe'].map((region) => `./regions/${region}/pois.json`),
   ...['alexandria-va', 'arlington-va', 'baltimore', 'boise-meridian-idaho', 'boston', 'boulder', 'chicago', 'columbus', 'corpus-christi', 'denver', 'detroit', 'eugene', 'fairfax-county-va', 'falls-church-va', 'fort-worth', 'keystone-colorado', 'las-vegas', 'loudoun-county-va', 'madison', 'milwaukee', 'new-orleans', 'norfolk', 'nyc', 'philadelphia', 'pittsburgh', 'portland', 'portland-maine', 'prince-georges-county-md', 'providence', 'richmond', 'san-francisco', 'santa-fe', 'seattle', 'sedona-arizona', 'tempe', 'washington-dc'].flatMap((region) => [
     `./regions/${region}/osm/pois.json`, `./regions/${region}/osm/manifest.json`, `./regions/${region}/osm/validation.json`,
     `./regions/${region}/osm/spatial-index-delta.json`, `./regions/${region}/osm/attribution.json`

@@ -46,6 +46,18 @@ test('Field Guide Learn actions are wired to route painting and map exploration'
   assert.match(guide, /const learnPlanPoint = event\.target\.closest\('\[data-learn-plan-point\]'\)/);
   assert.match(guide, /const learnWalk = event\.target\.closest\('\[data-learn-walk\]'\)/);
   assert.match(guide, /const waterJourney = event\.target\.closest\('\[data-learn-water-journey\]'\)/);
+  assert.match(guide, /fallbackDiscoverPlaces/);
+  assert.match(guide, /data-discover-explore-map/);
+});
+
+test('map customization is local-first and Wolf Trap is a Fairfax compatibility alias', async () => {
+  const map = await readFile(new URL('../js/map.js', import.meta.url), 'utf8');
+  const constants = await readFile(new URL('../js/constants.js', import.meta.url), 'utf8');
+  const routes = await readFile(new URL('../js/routes.js', import.meta.url), 'utf8');
+  assert.match(map, /motherbird\.map-customization/);
+  assert.match(map, /mapPlacesToggle/);
+  assert.match(constants, /aliasOf: 'fairfax'/);
+  assert.doesNotMatch(routes, /city: 'wolf-trap-va'/);
 });
 
 test('the shell removes redundant legacy Field Guide and Messenger controls', async () => {

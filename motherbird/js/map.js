@@ -23,6 +23,8 @@ import { OpfsRangeSource } from './opfs-range-source.js';
 
 const OSM_ATTRIBUTION = '&copy; OpenStreetMap contributors';
 const BASEMAP_STORAGE_KEY = 'motherbird.basemap';
+const MAP_CUSTOMIZATION_STORAGE_KEY = 'motherbird.map-customization';
+const DEFAULT_MAP_CUSTOMIZATION = Object.freeze({ tone: 'natural', showPlaces: true, showRoutes: true });
 export const BASEMAP_PRESETS = Object.freeze({
   street: { label: 'Street · OpenStreetMap', url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', maxZoom: 19, subdomains: 'abc', attribution: OSM_ATTRIBUTION },
   humanitarian: { label: 'Humanitarian · high contrast', url: 'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', maxZoom: 19, subdomains: 'abc', attribution: '&copy; OpenStreetMap contributors, Tiles style by Humanitarian OpenStreetMap Team hosted by OpenStreetMap France' },
@@ -52,6 +54,49 @@ function readBasemapId() {
 
 function writeBasemapId(id) {
   try { localStorage.setItem(BASEMAP_STORAGE_KEY, id); } catch { /* private browsing can deny localStorage */ }
+}
+
+function readMapCustomization() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(MAP_CUSTOMIZATION_STORAGE_KEY) || '{}');
+    return { ...DEFAULT_MAP_CUSTOMIZATION, ...saved, tone: ['natural', 'parchment', 'dusk', 'night', 'high-contrast'].includes(saved.tone) ? saved.tone : DEFAULT_MAP_CUSTOMIZATION.tone, showPlaces: saved.showPlaces !== false, showRoutes: saved.showRoutes !== false };
+  } catch { return { ...DEFAULT_MAP_CUSTOMIZATION }; }
+}
+
+function writeMapCustomization(value) {
+  try { localStorage.setItem(MAP_CUSTOMIZATION_STORAGE_KEY, JSON.stringify(value)); } catch { /* private browsing can deny localStorage */ }
+}
+
+export function applyMapCustomization(value = readMapCustomization()) {
+  const settings = { ...DEFAULT_MAP_CUSTOMIZATION, ...value };
+  document.body.classList.remove(...Array.from(document.body.classList).filter((name) => name.startsWith('map-tone-')));
+  if (settings.tone !== 'natural') document.body.classList.add(`map-tone-${settings.tone}`);
+  document.body.classList.toggle('map-hide-places', !settings.showPlaces);
+  if (state.map && state.poiLayer) {
+    if (settings.showPlaces && !state.map.hasLayer(state.poiLayer)) state.poiLayer.addTo(state.map);
+    if (!settings.showPlaces && state.map.hasLayer(state.poiLayer)) state.map.removeLayer(state.poiLayer);
+  }
+  const placesToggle = document.getElementById('mapPlacesToggle'); if (placesToggle) placesToggle.checked = settings.showPlaces;
+  const routesToggle = document.getElementById('mapRoutesToggle'); if (routesToggle) routesToggle.checked = settings.showRoutes;
+  const routePane = document.getElementById('plannerRoutePane'); if (routePane) routePane.style.display = settings.showRoutes ? '' : 'none';
+  const tonePicker = document.getElementById('mapTonePicker'); if (tonePicker) tonePicker.value = settings.tone;
+  return settings;
+}
+
+function initMapCustomization() {
+  const tonePicker = document.getElementById('mapTonePicker');
+  const placesToggle = document.getElementById('mapPlacesToggle');
+  const routesToggle = document.getElementById('mapRoutesToggle');
+  if (!tonePicker || tonePicker.dataset.bound === 'true') return;
+  tonePicker.dataset.bound = 'true';
+  let settings = readMapCustomization();
+  applyMapCustomization(settings);
+  const update = (key, value) => { settings = { ...settings, [key]: value }; writeMapCustomization(settings); applyMapCustomization(settings); };
+  tonePicker.addEventListener('change', () => update('tone', tonePicker.value));
+  placesToggle?.addEventListener('change', () => update('showPlaces', placesToggle.checked));
+  routesToggle?.addEventListener('change', () => update('showRoutes', routesToggle.checked));
+  window.addEventListener('walk-sketch-painted', () => applyMapCustomization(settings));
+  window.addEventListener('city-layer-data-changed', () => applyMapCustomization(settings));
 }
 
 function createOnlineBasemapLayer(id) {
@@ -112,6 +157,7 @@ export function initMap() {
   state.onlineBasemapLayer = createOnlineBasemapLayer(state.onlineBasemapId);
   applyMapStyleSurface(state.onlineBasemapId);
   initBasemapPicker();
+  initMapCustomization();
   if (navigator.onLine !== false) state.onlineBasemapLayer.addTo(state.map);
   state.historyRadiusLayer = L.layerGroup().addTo(state.map);
   state.observationLayer = L.layerGroup().addTo(state.map);
