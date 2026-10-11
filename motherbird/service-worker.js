@@ -1,7 +1,7 @@
 // Keep the whole module graph with the shell. Caching only app.js leaves an
 // offline (or briefly disconnected) reload with a blank app when any imported
 // module was not already in the runtime cache.
-const APP_CACHE = 'walk-wildlife-shell-v396'; // Keep large regional enrichment out of startup
+const APP_CACHE = 'walk-wildlife-shell-v397'; // Keep large regional enrichment out of startup
 const TILE_CACHE = 'walk-wildlife-osm-viewed-tiles-v1';
 const LIBRARY_CACHE = 'walk-wildlife-library-v2';
 const COMPANION_CACHE = 'walk-wildlife-companion-media-v2';
@@ -9,6 +9,7 @@ const CACHE_ENTRY_BUDGETS = Object.freeze({ [TILE_CACHE]: 250, [LIBRARY_CACHE]: 
 async function trimCache(cache, name) { const budget = CACHE_ENTRY_BUDGETS[name]; if (!budget) return; const keys = await cache.keys(); for (const key of keys.slice(0, Math.max(0, keys.length - budget))) await cache.delete(key); }
 const libraryPath = new URL('./vendor/', self.registration.scope).pathname;
 const shell = [
+  './css/radio-theme.css',
   ...['anchor', 'book-open', 'bookmark', 'coffee', 'download', 'droplet', 'eye', 'globe', 'newspaper', 'star', 'tree', 'walk', 'navigation', 'search', 'skip-back', 'skip-forward'].map((icon) => `./icons/${icon}.svg`),
   './js/online-pane.js', './js/qr-share.js', './js/open-payload.js', './js/sealed-data.js', './js/historical-media.js', './js/offline-view.js', './js/friend-walk.js', './js/place-details.js', './js/regional-data-worker.js',
   './js/offline-map-style.js', './js/installed-tiles.js', './js/story-audio.js',

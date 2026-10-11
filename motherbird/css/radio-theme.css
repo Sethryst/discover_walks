@@ -1,0 +1,172 @@
+/* Shared analogue-radio theme. Color/type only: each surface owns its layout. */
+:root {
+  --radio-cream: #fff8e9;
+  --radio-paper: #ead9b9;
+  --radio-button: #f7e6bb;
+  --radio-tan: #d7bd91;
+  --radio-console: #26332f;
+  --radio-ink: #2d241a;
+  --radio-muted: #4c3a2c;
+  --radio-wood: #573d2c;
+  --radio-copper: #8e5d36;
+  --radio-amber: #f6c76e;
+  --radio-rust: #d95f35;
+  --radio-action: #9b391f;
+  --radio-danger: #882e30;
+  --radio-serif: Georgia, 'Times New Roman', serif;
+  --radio-shadow: 0 8px 24px #2d241a33;
+  --ink: var(--radio-ink);
+  --ink2: var(--radio-console);
+  --paper: var(--radio-paper);
+  --paper2: var(--radio-cream);
+  --orange: var(--radio-action);
+  --muted: var(--radio-muted);
+  --line: #8e5d3659;
+  --shadow: var(--radio-shadow);
+}
+
+/* Parchment casing shared by every tab's sheets, menus and workspaces. */
+:is(.sheet, .primary-panel, .map-workspace-panel, .drop-panel, .walk-sketch,
+    .regional-navigation-menu, .field-guide-menu, .map-search-results,
+    .journal-nav-dropdown, .messenger-menu, .radial-wheel-menu) {
+  color: var(--radio-ink);
+  background: linear-gradient(155deg, var(--radio-cream), var(--radio-paper));
+  border: 1px solid var(--radio-copper);
+  border-radius: 12px;
+  box-shadow: var(--radio-shadow);
+}
+:is(.sheet, .primary-panel, .map-workspace-panel, .walk-sketch) :is(h1, h2, h3, h4) {
+  color: var(--radio-ink);
+  font-family: var(--radio-serif);
+}
+:is(.sheet-kicker, .eyebrow, .walk-planner-kicker, .workspace-record small) {
+  color: var(--radio-muted);
+  font-family: ui-monospace, monospace;
+  letter-spacing: .1em;
+}
+.eyebrow { font-size: .65rem; line-height: 1.5; font-weight: 700; }
+.workspace-heading h2 { font-size: 1.45rem; }
+:is(.sheet, .primary-panel, .map-workspace-panel) :is(.empty-state, .muted, .learn-progress) {
+  color: var(--radio-muted);
+}
+
+/* Dark console + amber selection, as on the Radio faceplate. */
+.primary-nav {
+  border: 3px solid var(--radio-wood);
+  background: var(--radio-console);
+  box-shadow: inset 0 0 0 1px var(--radio-copper), var(--radio-shadow);
+  border-radius: 12px;
+}
+.primary-nav button { color: var(--radio-button); border-radius: 8px; }
+.primary-nav button.active { background: var(--radio-amber); color: var(--radio-ink); }
+.primary-panel #primaryPanelActions button,
+:is(.secondary-button, .ink-control, .ink-chevron, .map-light, .map-light-chevron,
+    .workspace-filter, .my-places-chips button, .guide-tabs button, .poi-chip,
+    .artifact-list button, .artifact-heading button, .journal-nav button, .my-maps-heading button) {
+  color: var(--radio-ink);
+  background: var(--radio-button);
+  border: 1px solid var(--radio-copper);
+  border-radius: 8px;
+  box-shadow: 0 2px 0 #573d2c40;
+}
+:is(.primary-button, .radio-main-button, #radialWalkButton) {
+  background: var(--radio-action);
+  color: var(--radio-cream);
+  border: 1px solid var(--radio-copper);
+  border-radius: 8px;
+  box-shadow: 0 2px 0 var(--radio-wood);
+}
+#radioPlayer .radio-controls #radioPlayButton {
+  background: var(--radio-action) !important;
+  color: var(--radio-cream) !important;
+}
+#radialWalkButton { background: var(--radio-action) !important; color: var(--radio-cream) !important; }
+:is(.workspace-filter.active, .my-places-chips button[aria-selected="true"],
+    .guide-tabs button.active, .guide-tabs button[aria-selected="true"],
+    .poi-chip.active, .poi-chip[aria-pressed="true"], .map-light.on,
+    .secondary-button[aria-pressed="true"], .my-maps-heading button.on) {
+  color: var(--radio-ink);
+  background: var(--radio-amber);
+  border-color: var(--radio-copper);
+}
+:is(.sheet, .primary-panel, .map-workspace-panel, .drop-panel, .walk-sketch) .text-button {
+  color: var(--radio-action);
+}
+:is(.sheet, .map-workspace-panel) .danger-button {
+  color: var(--radio-danger);
+  background: var(--radio-cream);
+  border-color: var(--radio-danger);
+}
+:is(.sheet, .primary-panel, .map-workspace-panel, .drop-panel, .walk-sketch) button:disabled {
+  background: var(--radio-paper);
+  color: var(--radio-muted);
+  box-shadow: none;
+  opacity: .7;
+  cursor: not-allowed;
+}
+
+/* Keep inputs readable and preserve native check/radio/range semantics. */
+:is(.sheet, .primary-panel, .map-workspace-panel, .drop-panel, .walk-sketch)
+  :is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not([type="file"]), select, textarea) {
+  color: var(--radio-ink);
+  background: var(--radio-cream);
+  border: 1px solid var(--radio-copper);
+  border-radius: 7px;
+}
+:is(.sheet, .map-workspace-panel, .drop-panel) select { font-family: var(--radio-serif); }
+:is(input, textarea)::placeholder { color: #76522f; opacity: 1; }
+input { accent-color: var(--radio-action); }
+:is(button, a, input, select, textarea, summary):focus-visible {
+  outline: 3px solid var(--radio-action);
+  outline-offset: 3px;
+}
+:is(.primary-nav, .radio-console) :is(button, input, select):focus-visible {
+  outline-color: var(--radio-amber);
+}
+
+/* Inner cards retain semantic/category accents, on the same warm paper. */
+:is(.workspace-record, .personal-category-card, .guide-card, .moment-card,
+    .geo-cypher-card, .route-mode-card, .route-recommendation-card,
+    .saved-route-editor, .route-section-row, .room-sections > *, .artifact-list article) {
+  background: var(--radio-cream);
+  color: var(--radio-ink);
+  border-color: #8e5d3659;
+  border-radius: 10px;
+}
+.workspace-record p { color: var(--radio-muted); }
+.workspace-record-icon { background: var(--radio-button); color: var(--radio-copper); }
+.workspace-progress, .active-walk-card {
+  background: var(--radio-console);
+  color: var(--radio-button);
+  border: 3px solid var(--radio-wood);
+  box-shadow: inset 0 0 0 1px var(--radio-copper);
+  border-radius: 10px;
+}
+:is(.workspace-progress, .active-walk-card) :is(h2, strong, span, p) { color: var(--radio-button); }
+.route-mode-card:has(input:checked), .route-recommendation-card.is-selected {
+  background: var(--radio-button);
+  border-color: var(--radio-copper);
+}
+.map-search { background: var(--radio-cream); border-color: var(--radio-copper); color: var(--radio-ink); }
+.map-search input { color: var(--radio-ink); }
+.map-workspace-panel > header { border-bottom-color: var(--line); background: var(--radio-button); }
+.map-workspace-panel > header strong { font-family: var(--radio-serif); color: var(--radio-ink); }
+.map-workspace-panel > header small { color: var(--radio-muted); }
+.personal-map-toggle { background: var(--radio-button); color: var(--radio-ink); border-color: var(--radio-copper); }
+:is(.advanced-filters, .category-picker, #personalPlaceAdvanced) summary { border-bottom-color: var(--radio-copper); }
+
+/* Draw's rail has legacy !important layout rules; override colors only. */
+.map-workspace-panel[data-destination="draw"] .draw-shapes {
+  background: var(--radio-console) !important;
+  border-color: var(--radio-copper) !important;
+}
+.map-workspace-panel[data-destination="draw"] .draw-shapes button {
+  color: var(--radio-button) !important;
+}
+.map-workspace-panel[data-destination="draw"] .draw-tool-icon { filter: brightness(0) invert(1); }
+.map-workspace-panel[data-destination="draw"] .draw-shapes button:is(:hover, :focus-visible, .active) .draw-tool-icon { filter: brightness(0); }
+.map-workspace-panel[data-destination="draw"] .draw-shapes button:is(:hover, :focus-visible, .active) {
+  background: var(--radio-amber) !important;
+  color: var(--radio-ink) !important;
+  outline-color: var(--radio-copper);
+}
