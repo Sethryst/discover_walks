@@ -22,6 +22,13 @@ import { WalkingCellRegistry } from './walking-cell-registry.js?v=20261004-binar
 import { OpfsRangeSource } from './opfs-range-source.js';
 
 const OSM_ATTRIBUTION = '&copy; OpenStreetMap contributors';
+const BASEMAP_STORAGE_KEY = 'motherbird.basemap';
+export const BASEMAP_PRESETS = Object.freeze({
+  street: { label: 'Street · OpenStreetMap', url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', maxZoom: 19, subdomains: 'abc', attribution: OSM_ATTRIBUTION },
+  humanitarian: { label: 'Humanitarian · high contrast', url: 'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', maxZoom: 19, subdomains: 'abc', attribution: '&copy; OpenStreetMap contributors, Tiles style by Humanitarian OpenStreetMap Team hosted by OpenStreetMap France' },
+  topographic: { label: 'Topographic · contours', url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', maxZoom: 17, subdomains: 'abc', attribution: '&copy; OpenStreetMap contributors, SRTM | &copy; OpenTopoMap (CC-BY-SA)' },
+  usgs: { label: 'USGS · topo map', url: 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}', maxZoom: 16, attribution: 'Tiles courtesy of the U.S. Geological Survey' }
+});
 const NEIGHBORHOOD_ZOOM = 15;
 const DEFAULT_MAP_VIEW = Object.freeze({ lat: 38.9072, lng: -77.0369, zoom: NEIGHBORHOOD_ZOOM });
 const mapLibreZoom = () => Math.max(0, (state.map?.getZoom() || 0) - 1);
@@ -32,6 +39,44 @@ function nearestMappedCity(center) {
     .filter(([, candidate]) => candidate.dataFile && candidate.center)
     .map(([id, candidate]) => ({ id, distance: cityDistanceMeters(center, candidate.center) }))
     .sort((left, right) => left.distance - right.distance)[0];
+}
+
+function readBasemapId() {
+  try { return BASEMAP_PRESETS[localStorage.getItem(BASEMAP_STORAGE_KEY)] ? localStorage.getItem(BASEMAP_STORAGE_KEY) : 'street'; } catch { return 'street'; }
+}
+
+function writeBasemapId(id) {
+  try { localStorage.setItem(BASEMAP_STORAGE_KEY, id); } catch { /* private browsing can deny localStorage */ }
+}
+
+function createOnlineBasemapLayer(id) {
+  const preset = BASEMAP_PRESETS[id] || BASEMAP_PRESETS.street;
+  return L.tileLayer(preset.url, { maxZoom: preset.maxZoom, subdomains: preset.subdomains, attribution: preset.attribution, crossOrigin: true });
+}
+
+export function setOnlineBasemap(id, { announce = true } = {}) {
+  const nextId = BASEMAP_PRESETS[id] ? id : 'street';
+  const previous = state.onlineBasemapLayer;
+  const wasVisible = Boolean(previous && state.map?.hasLayer(previous));
+  if (previous && state.map?.hasLayer(previous)) state.map.removeLayer(previous);
+  state.onlineBasemapLayer = createOnlineBasemapLayer(nextId);
+  state.onlineBasemapId = nextId;
+  writeBasemapId(nextId);
+  if (wasVisible && navigator.onLine !== false && state.map && !state.installedBasemapMap && !state.nationalPoiMap) state.onlineBasemapLayer.addTo(state.map);
+  const picker = document.getElementById('basemapPicker');
+  if (picker) picker.value = nextId;
+  const status = document.getElementById('basemapPickerStatus');
+  if (status) status.textContent = state.nationalPoiMap || state.installedBasemapMap ? `${BASEMAP_PRESETS[nextId].label} selected; the active offline layer is still visible.` : `${BASEMAP_PRESETS[nextId].label} selected. Tiles are cached as you view them.`;
+  if (announce) toast(`${BASEMAP_PRESETS[nextId].label} selected`);
+  return state.onlineBasemapLayer;
+}
+
+function initBasemapPicker() {
+  const picker = document.getElementById('basemapPicker');
+  if (!picker || picker.dataset.bound === 'true') return;
+  picker.dataset.bound = 'true';
+  picker.value = state.onlineBasemapId;
+  picker.addEventListener('change', () => setOnlineBasemap(picker.value));
 }
 
 export function initMap() {
@@ -50,7 +95,9 @@ export function initMap() {
     state.map.invalidateSize({ pan: false });
     state.map.setView(center, zoom, { animate: false });
   }, { passive: true });
-  state.onlineBasemapLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: OSM_ATTRIBUTION, crossOrigin: true });
+  state.onlineBasemapId = readBasemapId();
+  state.onlineBasemapLayer = createOnlineBasemapLayer(state.onlineBasemapId);
+  initBasemapPicker();
   if (navigator.onLine !== false) state.onlineBasemapLayer.addTo(state.map);
   state.historyRadiusLayer = L.layerGroup().addTo(state.map);
   state.observationLayer = L.layerGroup().addTo(state.map);

@@ -1,18 +1,18 @@
 /* Shared analogue-radio theme. Color/type only: each surface owns its layout. */
 :root {
-  --radio-cream: #fff8e9;
-  --radio-paper: #ead9b9;
-  --radio-button: #f7e6bb;
-  --radio-tan: #d7bd91;
-  --radio-console: #26332f;
-  --radio-ink: #2d241a;
-  --radio-muted: #4c3a2c;
-  --radio-wood: #573d2c;
-  --radio-copper: #8e5d36;
-  --radio-amber: #f6c76e;
-  --radio-rust: #d95f35;
-  --radio-action: #9b391f;
-  --radio-danger: #882e30;
+  --radio-cream: #d4e8bf;
+  --radio-paper: #8eac7d;
+  --radio-button: #b8d7a0;
+  --radio-tan: #6c8c65;
+  --radio-console: #14261d;
+  --radio-ink: #10231a;
+  --radio-muted: #1f3c2a;
+  --radio-wood: #1c3a29;
+  --radio-copper: #4c7a52;
+  --radio-amber: #e8bd5a;
+  --radio-rust: #d7874a;
+  --radio-action: #1f6b45;
+  --radio-danger: #9b4b45;
   --radio-serif: Georgia, 'Times New Roman', serif;
   --radio-shadow: 0 8px 24px #2d241a33;
   --ink: var(--radio-ink);
@@ -28,8 +28,8 @@
 /* Printed field-guide texture and hardware-like geometry. */
 body {
   background-image:
-    linear-gradient(rgba(87, 61, 44, .028) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(87, 61, 44, .022) 1px, transparent 1px);
+    linear-gradient(rgba(76, 122, 82, .045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(76, 122, 82, .035) 1px, transparent 1px);
   background-size: 8px 8px;
 }
 
@@ -175,6 +175,10 @@ input { accent-color: var(--radio-action); }
 }
 .map-search { background: var(--radio-cream); border-color: var(--radio-copper); color: var(--radio-ink); }
 .map-search input { color: var(--radio-ink); }
+.basemap-picker { color: var(--radio-muted); background: rgba(20, 38, 29, .08); border: 1px solid var(--radio-copper); border-radius: 6px; }
+.basemap-picker label { color: var(--radio-ink); }
+.basemap-picker select { color: var(--radio-ink); background: var(--radio-cream); border-color: var(--radio-copper); }
+.basemap-picker small { color: var(--radio-muted); }
 .map-workspace-panel > header { border-bottom-color: var(--line); background: var(--radio-button); }
 .map-workspace-panel > header strong { font-family: var(--radio-serif); color: var(--radio-ink); }
 .map-workspace-panel > header small { color: var(--radio-muted); }

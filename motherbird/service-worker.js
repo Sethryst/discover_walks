@@ -1,8 +1,8 @@
 // Keep the whole module graph with the shell. Caching only app.js leaves an
 // offline (or briefly disconnected) reload with a blank app when any imported
 // module was not already in the runtime cache.
-const APP_CACHE = 'walk-wildlife-shell-v399'; // Keep large regional enrichment out of startup
-const TILE_CACHE = 'walk-wildlife-osm-viewed-tiles-v1';
+const APP_CACHE = 'walk-wildlife-shell-v400'; // Keep large regional enrichment out of startup
+const TILE_CACHE = 'walk-wildlife-map-tiles-v2';
 const LIBRARY_CACHE = 'walk-wildlife-library-v2';
 const COMPANION_CACHE = 'walk-wildlife-companion-media-v2';
 const CACHE_ENTRY_BUDGETS = Object.freeze({ [TILE_CACHE]: 250, [LIBRARY_CACHE]: 120, [COMPANION_CACHE]: 24 });
@@ -102,6 +102,7 @@ self.addEventListener('activate', (event) => event.waitUntil(
       keys
         .filter((key) => (
           (key.startsWith('walk-wildlife-shell-') && key !== APP_CACHE)
+          || (key.startsWith('walk-wildlife-osm-viewed-tiles-') && key !== TILE_CACHE)
           || (key.startsWith('walk-wildlife-companion-media-') && key !== COMPANION_CACHE)
         ))
         .map((key) => caches.delete(key))
@@ -120,7 +121,7 @@ self.addEventListener('activate', (event) => event.waitUntil(
 
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
-  const isMapTile = /(^|\.)tile\.openstreetmap\.org$/.test(url.hostname);
+  const isMapTile = new Set(['a.tile.openstreetmap.org', 'b.tile.openstreetmap.org', 'c.tile.openstreetmap.org', 'a.tile.openstreetmap.fr', 'b.tile.openstreetmap.fr', 'c.tile.openstreetmap.fr', 'a.tile.opentopomap.org', 'b.tile.opentopomap.org', 'c.tile.opentopomap.org', 'basemap.nationalmap.gov']).has(url.hostname);
 
   // PMTiles manages its own bounded byte-range reads. Never place an archive
   // response (partial or complete) in a service-worker cache.

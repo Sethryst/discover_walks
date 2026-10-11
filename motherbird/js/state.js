@@ -64,6 +64,7 @@ export const state = {
   geoCypherPrompted: new Set(),
   pmtilesProtocol: null,
   onlineBasemapLayer: null,
+  onlineBasemapId: 'street',
   mapPaintLayer: null,
   mapPaintActive: false,
   mapDrawingHistory: [],
