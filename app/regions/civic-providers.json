@@ -8,6 +8,6 @@
     "washington-dc": {"label": "DC.gov", "module": "app.pipeline.dc_civic", "pagination": "official Load More pages / 90-day window; bounded RSS source also configured"},
     "prince-georges-county-md": {"label": "PG Parks", "module": "app.pipeline.pgparks_civic", "pagination": "official next-page cursor / 90-day window"},
     "norfolk": {"label": "Norfolk Public Library Calendar", "module": "app.pipeline.ready_civic", "function": "norfolk", "pagination": "READY candidate / current dated events"},
-    "fairfax-county-va-wolf-trap": {"label": "Fairfax County + Wolf Trap events", "module": "app.pipeline.ready_civic", "function": "wolf_trap", "pagination": "READY candidate / current dated events"}
+    "fairfax-county-va-nps-events": {"label": "Fairfax County National Park events", "module": "app.pipeline.ready_civic", "function": "fairfax_wolf_trap", "pagination": "READY candidate / current dated events"}
   }
 }

@@ -9,7 +9,7 @@ from pathlib import Path
 from app.pipeline.osm_config import DEFAULT_CATEGORIES, DEFAULT_ENDPOINT
 
 
-BUILT_SNAPSHOTS = {"norfolk", "nyc", "philadelphia", "richmond", "wolf-trap-va"}
+BUILT_SNAPSHOTS = {"norfolk", "nyc", "philadelphia", "richmond"}
 UNAVAILABLE_REASON = "No approved reproducible regional OSM snapshot is checked into this repository; run the regional OSM build after source review."
 
 

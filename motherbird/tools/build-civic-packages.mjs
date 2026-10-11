@@ -18,7 +18,7 @@ const releases = option('--releases', path.join(workspaceRoot, 'releases'));
 const output = option('--output', path.join(appRoot, 'regions'));
 const onlyIndex = args.indexOf('--only');
 const onlyRegion = onlyIndex >= 0 ? args[onlyIndex + 1] : null;
-const aliases = { nyc: 'new-york-city', 'prince-georges-county-md': 'prince-georges-county', 'wolf-trap-va': 'fairfax' };
+const aliases = { nyc: 'new-york-city', 'prince-georges-county-md': 'prince-georges-county' };
 const civicNames = ['vote', 'meetings', 'volunteer', 'organizers', 'events', 'event-sources', 'volunteer-sources'];
 const packaged = [];
 

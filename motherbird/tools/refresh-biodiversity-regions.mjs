@@ -15,7 +15,7 @@ if (shouldFetch) run('tools/fetch-biodiversity-app-regions.mjs');
 run('tools/build-biodiversity-region-sidecars.mjs');
 
 const runtime = JSON.parse(await fs.readFile(path.join(root, 'data/biodiversity-runtime.json'), 'utf8'));
-const supportedCities = Object.entries(CITIES).filter(([cityId, city]) => city.dataFile && cityId !== 'wolf-trap-va');
+const supportedCities = Object.entries(CITIES).filter(([, city]) => city.dataFile);
 if (runtime.regions.length !== supportedCities.length) {
   throw new Error(`Regional registry mismatch: ${runtime.regions.length} generated for ${supportedCities.length} supported regions`);
 }

@@ -50,14 +50,14 @@ test('Field Guide Learn actions are wired to route painting and map exploration'
   assert.match(guide, /data-discover-explore-map/);
 });
 
-test('map customization is local-first and Wolf Trap is a Fairfax compatibility alias', async () => {
+test('map customization is local-first and Wolf Trap is represented by Fairfax routes', async () => {
   const map = await readFile(new URL('../js/map.js', import.meta.url), 'utf8');
   const constants = await readFile(new URL('../js/constants.js', import.meta.url), 'utf8');
   const routes = await readFile(new URL('../js/routes.js', import.meta.url), 'utf8');
   assert.match(map, /motherbird\.map-customization/);
   assert.match(map, /mapPlacesToggle/);
   assert.doesNotMatch(map, /humanitarian|storybook|toy-atlas|creature-quest|pocket-park|retro-radar/);
-  assert.match(constants, /aliasOf: 'fairfax'/);
+  assert.doesNotMatch(constants, /wolf-trap-va/);
   assert.doesNotMatch(routes, /city: 'wolf-trap-va'/);
 });
 

@@ -155,8 +155,7 @@ export const MAX_DRIVE_SPEED_MPS = 70;
     state: 'VA',
     center: { lat: 38.9012, lng: -77.2653 },
     zoom: 13,
-    dataFile: './regions/vienna/vienna-poi.json',
-    civicFile: './regions/vienna/civic/index.json'
+    dataFile: './regions/vienna/vienna-poi.json'
   },
   alexandria: {
     name: 'Alexandria',
@@ -254,15 +253,6 @@ export const MAX_DRIVE_SPEED_MPS = 70;
     name: 'Cleveland', state: 'OH', center: { lat: 41.4993, lng: -81.6944 }, zoom: 11,
     dataFile: './regions/cleveland/pois.json'
   },
-  'wolf-trap-va': {
-    name: 'Wolf Trap', state: 'VA', center: { lat: 38.9367, lng: -77.2656 }, zoom: 13,
-    dataFile: './regions/fairfax/pois.json', packId: 'fairfax', aliasOf: 'fairfax',
-    civicFile: './regions/vienna/civic/index.json',
-    // Legacy compatibility alias only. Wolf Trap is now part of Fairfax and
-    // must not appear as a standalone selectable region.
-    isSource: true,
-    sourceParentIds: ['fairfax']
-  }
 };
 Object.entries(CITIES).forEach(([cityId, city]) => { city.osm = runtimeOsmConfig(cityId, city); });
 // This is the first pack shown by onboarding, not a boot-time active city.

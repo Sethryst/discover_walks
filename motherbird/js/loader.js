@@ -121,9 +121,8 @@ export async function init() {
     const params = new URLSearchParams(globalThis.location?.search || '');
     const requestedCity = params.get('city') || (params.get('routecheck') === '1' ? 'alexandria' : null);
     if (requestedCity && CITIES[requestedCity] && navigator.onLine !== false) {
-      const canonicalCity = CITIES[requestedCity]?.aliasOf || requestedCity;
-      state.activeCity = canonicalCity;
-      state.settings.activeCity = canonicalCity;
+      state.activeCity = requestedCity;
+      state.settings.activeCity = requestedCity;
       await db.put('settings', state.settings);
     }
     await applyOfflineBootConditions();
@@ -274,9 +273,6 @@ export async function loadLocalState() {
   const [savedProfile, savedSettings, savedWalks, savedRoutes] = await Promise.all([db.get('profile', 'local-user'), db.get('settings', 'app-settings'), db.all('walks'), db.all('saved_routes')]);
   state.profile = savedProfile ? normalizeProfile(savedProfile) : await createMigratedProfile();
   state.settings = { ...DEFAULT_SETTINGS, ...(savedSettings || {}) };
-  const savedAlias = CITIES[state.settings.activeCity]?.aliasOf;
-  if (savedAlias) state.settings.activeCity = savedAlias;
-  if (Array.isArray(state.settings.favoriteRegionIds)) state.settings.favoriteRegionIds = [...new Set(state.settings.favoriteRegionIds.map((id) => CITIES[id]?.aliasOf || id))];
   if (!Array.isArray(state.settings.geofenceCategories) || !state.settings.geofenceCategories.length) state.settings.geofenceCategories = ['news', 'recreation', 'cuisine'];
   state.settings.entitlements = normalizedEntitlements(state.settings.entitlements);
   if (!CITIES[state.settings.activeCity]?.dataFile) {

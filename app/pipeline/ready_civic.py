@@ -51,4 +51,4 @@ def fetch_cards(now: datetime, region_id: str) -> list[dict]:
 
 def chicago(now: datetime) -> list[dict]: return fetch_cards(now, "chicago")
 def norfolk(now: datetime) -> list[dict]: return fetch_cards(now, "norfolk")
-def wolf_trap(now: datetime) -> list[dict]: return fetch_cards(now, "fairfax-county-va")
+def fairfax_wolf_trap(now: datetime) -> list[dict]: return fetch_cards(now, "fairfax-county-va")

@@ -190,7 +190,6 @@ export async function refreshCityMap(recenter = false) {
   renderProfile();
 }
 export async function switchCity(nextCity, recenter = true, { source = 'user' } = {}) {
-  nextCity = CITIES[nextCity]?.aliasOf || nextCity;
   if (!CITIES[nextCity]) return;
   const recordingWalk = state.activeWalk?.recordingStatus === 'recording';
   if (state.activeWalk && !recordingWalk) { toast('Finish the current walk before switching regions.'); return; }

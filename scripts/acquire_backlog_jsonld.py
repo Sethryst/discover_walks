@@ -23,7 +23,7 @@ def main() -> None:
     now = datetime.now(timezone.utc)
     records = json.loads(CATALOGUE.read_text(encoding="utf-8"))["records"]
     for record in records:
-        if not record["id"].startswith("events-") or record["regionId"] in {"philadelphia", "prince-georges-county-md", "wolf-trap-va"}:
+        if not record["id"].startswith("events-") or record["regionId"] in {"philadelphia", "prince-georges-county-md"}:
             continue
         source_id, name, region, url = record["id"], record["publisher"], record["regionId"], record["url"]
         config = SourceConfig(
