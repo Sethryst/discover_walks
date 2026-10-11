@@ -301,6 +301,18 @@ export async function paintWaterJourney(journeyId) {
   return state.plannedRoute;
 }
 
+export async function paintLearnPoint({ name, lat, lng }) {
+  const latitude = Number(lat); const longitude = Number(lng);
+  if (!name || !Number.isFinite(latitude) || !Number.isFinite(longitude)) { toast('This Learn story has no verified map point yet.'); return null; }
+  const plan = { id: `learn-point-${Date.now()}`, format: FORMAT, pack_id: state.activeCity, title: `Walk to ${name}`, reason: `A walk from Learn to notice the story of ${name}.`, routeMode: 'point-to-point', stops: [{ id: `learn:${name}`, name, lat: latitude, lng: longitude }], coordinates: [] };
+  state.plannedRoute = plan;
+  paintWalkConcept(plan);
+  await routePlannedPreview(plan);
+  closeSheets();
+  toast(`Mapped "${name}". Tap Start Walk to begin.`);
+  return plan;
+}
+
 async function routePlannedPreview(plan) {
   const origin = state.currentPosition || state.map?.getCenter();
   if (!origin || !plan.stops?.length) return;
@@ -426,6 +438,10 @@ export function initFieldGuideFilters() {
     if (openLearn) { setLearnScreen(openLearn.dataset.learnOpen); void renderFieldGuide('learn'); return; }
     const waterJourney = event.target.closest('[data-learn-water-journey]');
     if (waterJourney) { void paintWaterJourney(waterJourney.dataset.learnWaterJourney); return; }
+    const learnPlanPoint = event.target.closest('[data-learn-plan-point]');
+    if (learnPlanPoint) { void paintLearnPoint({ name: learnPlanPoint.dataset.learnPlanName, lat: learnPlanPoint.dataset.learnPlanLat, lng: learnPlanPoint.dataset.learnPlanLng }); return; }
+    const exploreLearnMap = event.target.closest('[data-learn-explore-map]');
+    if (exploreLearnMap) { closeSheets(); state.map?.invalidateSize?.(); toast('Historic topo is ready on the map. Pan to compare the landscape.'); return; }
     const basin = event.target.closest('[data-learn-watershed]');
     if (basin) { setLearnScreen('watersheds'); setActiveWatershed(basin.dataset.learnWatershed); void renderFieldGuide('learn'); return; }
     const viewButton = event.target.closest('[data-learn-view]');
