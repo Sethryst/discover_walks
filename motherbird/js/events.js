@@ -9,8 +9,8 @@ import { city, poiTags, searchPois } from './poi.js';
 import { localSearchHits, searchRowHtml, emptySearchHtml } from './search.js';
 import { initRegionalNavigation } from './regional-navigation.js';
 import { switchCity } from './city.js';
-import { generateTimeBasedPlan, lockSelectedPlanOnMap, changePlan, selectPlan, setPlanningMode } from './planner.js?v=20261009-route-lab-1';
-import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261007-ambient-routing-1';
+import { generateTimeBasedPlan, lockSelectedPlanOnMap, changePlan, selectPlan, setPlanningMode } from './planner.js?v=20261011-cross-cell-stitch-1';
+import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261011-cross-cell-stitch-1';
 import { coordinateLabel, resolveRoutePlaceLabel } from './route-place-labels.js?v=20261006-route-labels-1';
 import { paintWalkPlan, paintCard, previewCard, sendCurrentWalkPlan } from './field-guide.js?v=140-live-learn-by-me';
 import { wordCount } from './reflection.js';
@@ -174,7 +174,7 @@ function nearestRouteDistance(point, coordinates) {
   return best;
 }
 
-function setMapWorkspace(destination = '', { toggle = true, forceOpen = false } = {}) {
+async function setMapWorkspace(destination = '', { toggle = true, forceOpen = false } = {}) {
   const panel = el('mapWorkspacePanel');
   if (!panel) return;
   const current = panel.dataset.destination || '';
@@ -196,7 +196,7 @@ function setMapWorkspace(destination = '', { toggle = true, forceOpen = false } 
   if (next === 'maps') {
     renderPersonalPlacesPanel();
     const workspaceTarget = el('personalPlacesPanel');
-    if (workspaceTarget && !workspaceTarget.children.length) void renderWorkspacePanel(workspaceTarget);
+    if (workspaceTarget) await renderWorkspacePanel(workspaceTarget);
   }
   window.dispatchEvent(new CustomEvent('map-workspace-changed', { detail: { destination: next, open: Boolean(next) } }));
 }
@@ -295,7 +295,7 @@ async function moveRoutedPlanToMyPlaces(plan, { open = false } = {}) {
     state.settings.myPlacesSection = 'workspace';
     await db.put('settings', state.settings);
     window.dispatchEvent(new CustomEvent('personal-places-changed'));
-    window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'maps', forceOpen: true } }));
+    await setMapWorkspace('maps', { forceOpen: true });
     toast('Route saved in My Workspace.');
   } catch (error) {
     toast(error.message || 'Route could not be saved. Use View in workspace to retry.');

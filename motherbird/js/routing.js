@@ -63,13 +63,16 @@ export async function routeOnFoot(points, {
     if (activeWalkingCell.availability !== 'routing_available') return failure('GRAPH_VERSION_UNAVAILABLE', activeWalkingCell?.reason);
     const request = (cell, origin = routePoints[index], destination = routePoints[index + 1]) => requestRouteWithRetry({ city, profile, origin, destination, maxSnapMeters: 3000, maxVisitedNodes: 300000, avoid: { stairs: false, unverified_edges: false }, avoidEdges, graphVersion, cell, cellId: cell?.id, cellRelease: cellRelease || cell?.release });
     let result = await request(activeWalkingCell);
-    const neighborIds = new Set([...(activeWalkingCell.routingNeighbors || []), ...(destinationCell?.routingNeighbors || [])]);
     if (result.ok) legs.push(result);
     else if (destinationCell?.id && destinationCell.id !== activeWalkingCell.id && destinationCell.availability === 'routing_available') {
       let registry;
       try { registry = await getWalkingCellRegistry(); } catch (error) { return failure('GRAPH_VERSION_UNAVAILABLE', error.message); }
+      const neighborIds = new Set([...(activeWalkingCell.routingNeighbors || []), ...(destinationCell?.routingNeighbors || [])]);
+      // Metadata is a fast hint, not a gate: adaptive releases can omit one
+      // side of a shared boundary. Geometry-backed paths are handed to the
+      // stitcher, which proves the transfer with real graph searches.
       const cellPath = findCellPath(registry, activeWalkingCell.id, destinationCell.id);
-      if (!cellPath || (cellPath.length === 2 && !neighborIds.has(destinationCell.id))) return failure('CROSS_CELL_UNAVAILABLE', `${activeWalkingCell.id} -> ${destinationCell.id}`);
+      if (!cellPath) return failure('CROSS_CELL_UNAVAILABLE', `${activeWalkingCell.id} -> ${destinationCell.id}`);
       const stitched = await stitchCellPath(points[index], points[index + 1], cellPath, request);
       if (!stitched) return failure('BOUNDARY_STITCH_FAILED', cellPath.map((cell) => cell.id).join(' -> '));
       legs.push(...stitched);

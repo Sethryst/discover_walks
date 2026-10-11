@@ -90,6 +90,15 @@ test('adaptive overlapping cells can form a candidate bridge without metadata', 
   assert.deepEqual(findCellPath({ cells }, 'coarse', 'fine').map((cell) => cell.id), ['coarse', 'fine']);
 });
 
+test('shared-boundary cells can be stitched even when one-sided neighbor metadata is stale', () => {
+  const cells = [
+    { id: 'north', bounds: { west: 0, south: 1, east: 2, north: 2 }, routingNeighbors: [] },
+    { id: 'south', bounds: { west: 0, south: 0, east: 2, north: 1 }, routingNeighbors: [] }
+  ];
+  assert.deepEqual(findCellPath({ cells }, 'north', 'south').map((cell) => cell.id), ['north', 'south']);
+  assert.match(routing, /Geometry-backed paths are handed to the/);
+});
+
 test('registry can lock an out-of-bounds point to the nearest routable cell', () => {
   const registry = new WalkingCellRegistry({ format: 'motherbird-walking-cell-registry-v1', release: 'test', cells: [
     { id: 'near', bounds: [0, 0, 1, 1], artifacts: { map: { url: './map.pmtiles' }, graph: { url: './graph.json' } } },
