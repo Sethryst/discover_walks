@@ -114,13 +114,18 @@ async function requestRouteWithRetry(payload) {
 async function stitchCellPath(origin, destination, cells, request, index = 0, current = origin, legs = []) {
   if (index === cells.length - 1) {
     const last = await request(cells[index], current, destination);
-    return last.ok ? [...legs, last] : null;
+    if (!last.ok) return null;
+    const start = last.geometry?.coordinates?.[0];
+    const tolerance = current?.handoffToleranceMeters || 25;
+    if (index > 0 && (!start || distanceMeters(start, [current.lng, current.lat]) > tolerance)) return null;
+    return [...legs, last];
   }
   for (const transfer of boundaryTransferPoints(cells[index], cells[index + 1])) {
     const first = await request(cells[index], current, transfer);
     if (!first.ok) continue;
     const firstEnd = first.geometry?.coordinates?.at(-1);
-    if (!firstEnd || distanceMeters(firstEnd, [transfer.lng, transfer.lat]) > 25) continue;
+    const tolerance = transfer.handoffToleranceMeters || 25;
+    if (!firstEnd || distanceMeters(firstEnd, [transfer.lng, transfer.lat]) > tolerance) continue;
     const stitched = await stitchCellPath(origin, destination, cells, request, index + 1, transfer, [...legs, first]);
     if (stitched) return stitched;
   }
@@ -166,6 +171,11 @@ function boundaryTransferPoints(left, right) {
   } else if (Math.abs(a.north - b.south) < 1e-7 || Math.abs(b.north - a.south) < 1e-7) {
     const lat = Math.abs(a.north - b.south) < 1e-7 ? a.north : b.north;
     for (let index = 1; index <= 9; index += 1) points.push({ lat, lng: west + (east - west) * index / 10 });
+  } else if (Math.abs(south - north) < 1e-7 && Math.abs(west - east) < 1e-7) {
+    // Some buffered graph packages meet at a logical corner while the actual
+    // shared pedestrian node sits inside the buffered overlap. Let both
+    // workers snap to that junction instead of probing only the empty corner.
+    points.push({ lat: south, lng: west, handoffToleranceMeters: 250 });
   } else if (west <= east && south <= north) {
     // Adaptive-resolution cells often overlap rather than share an exact
     // edge. Offer a small deterministic set of interior handoffs.
