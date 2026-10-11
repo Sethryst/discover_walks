@@ -471,8 +471,11 @@ export function initFieldGuideFilters() {
     if (learnWalk) {
       const poi = (state.cityPois[state.activeCity] || []).find((item) => String(item.id) === learnWalk.dataset.learnWalk);
       if (poi) {
+        // Always create a plotted point-to-point plan so the routed geometry
+        // reaches the normal workspace autosave path. Keep the waypoint too
+        // when the user is already walking.
+        paintWalkPlan({ format: FORMAT, pack_id: state.activeCity, title: `Walk to ${poi.name}`, reason: 'A walk from Learn.', stop_place_ids: [poi.id] });
         if (state.activeWalk) void addWalkWaypoint(poi);
-        else paintWalkPlan({ format: FORMAT, pack_id: state.activeCity, title: `Walk to ${poi.name}`, reason: 'A walk from Learn.', stop_place_ids: [poi.id] });
       }
       return;
     }
