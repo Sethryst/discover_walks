@@ -1,6 +1,6 @@
 import { el } from './utils.js';
 import { toast } from './ui.js';
-import { currentWalkPlan } from './field-guide.js?v=134-water-journey';
+import { currentWalkPlan } from './field-guide.js?v=135-water-city-id';
 
 function shareText() {
   const invite = el('friendWalkInvite')?.value?.trim();

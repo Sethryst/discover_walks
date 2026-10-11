@@ -10,7 +10,7 @@ import { loadAllCityData, refreshCityMap } from './city.js?v=20261007-regional-w
 import { renderArchive } from './archive.js';
 import { normalizedEntitlements } from './entitlements.js';
 import { restoreLocalPoiClosures } from './spatial-closure-reporting.js';
-import { initFieldGuideFilters } from './field-guide.js?v=134-water-journey';
+import { initFieldGuideFilters } from './field-guide.js?v=135-water-city-id';
 import { initPersonalPlaces } from './personal-places.js';
 import { initLayerSystem } from './layer-system.js';
 import { initMapPaint } from './map-paint.js?v=20261009-workspace-drag-1';
