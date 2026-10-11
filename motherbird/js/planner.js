@@ -18,8 +18,14 @@ function interests() {
   return pressed.length ? pressed : (state.settings.favoriteCategories || []);
 }
 
-function candidateStops(origin, tags) {
-  const candidates = (state.cityPois[state.activeCity] || []).filter((poi) => Number.isFinite(poi.lat) && Number.isFinite(poi.lng) && poi.category !== 'journey');
+export function candidateStops(origin, tags) {
+  // Region packs use both the legacy top-level coordinates and the newer
+  // `{ location: { lat, lng } }` shape. Normalize before filtering so auto
+  // round trips do not report "no candidates" for valid place records.
+  const candidates = (state.cityPois[state.activeCity] || [])
+    .filter((poi) => poi.category !== 'journey')
+    .map(normalizeStop)
+    .filter(Boolean);
   const score = (poi) => {
     const poiTagSet = new Set(poiTags(poi));
     const interest = tags.filter((tag) => poiTagSet.has(tag)).length * 8;

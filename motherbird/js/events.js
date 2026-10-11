@@ -9,7 +9,7 @@ import { city, poiTags, searchPois } from './poi.js';
 import { localSearchHits, searchRowHtml, emptySearchHtml } from './search.js';
 import { initRegionalNavigation } from './regional-navigation.js?v=20261011-fairfax-subregions-1';
 import { switchCity } from './city.js';
-import { generateTimeBasedPlan, lockSelectedPlanOnMap, changePlan, selectPlan, setPlanningMode } from './planner.js?v=20261011-cross-cell-stitch-2';
+import { generateTimeBasedPlan, lockSelectedPlanOnMap, changePlan, selectPlan, setPlanningMode } from './planner.js?v=20261011-auto-candidate-1';
 import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261011-cross-cell-stitch-2';
 import { coordinateLabel, resolveRoutePlaceLabel } from './route-place-labels.js?v=20261006-route-labels-1';
 import { paintWalkPlan, paintCard, previewCard, sendCurrentWalkPlan } from './field-guide.js?v=140-live-learn-by-me';
