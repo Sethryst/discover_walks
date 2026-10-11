@@ -25,6 +25,14 @@
   --shadow: var(--radio-shadow);
 }
 
+/* Printed field-guide texture and hardware-like geometry. */
+body {
+  background-image:
+    linear-gradient(rgba(87, 61, 44, .028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(87, 61, 44, .022) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
 /* Parchment casing shared by every tab's sheets, menus and workspaces. */
 :is(.sheet, .primary-panel, .map-workspace-panel, .drop-panel, .walk-sketch,
     .regional-navigation-menu, .field-guide-menu, .map-search-results,
@@ -32,7 +40,7 @@
   color: var(--radio-ink);
   background: linear-gradient(155deg, var(--radio-cream), var(--radio-paper));
   border: 1px solid var(--radio-copper);
-  border-radius: 12px;
+  border-radius: 8px;
   box-shadow: var(--radio-shadow);
 }
 :is(.sheet, .primary-panel, .map-workspace-panel, .walk-sketch) :is(h1, h2, h3, h4) {
@@ -57,7 +65,7 @@
   box-shadow: inset 0 0 0 1px var(--radio-copper), var(--radio-shadow);
   border-radius: 12px;
 }
-.primary-nav button { color: var(--radio-button); border-radius: 8px; }
+.primary-nav button { color: var(--radio-button); border-radius: 4px; }
 .primary-nav button.active { background: var(--radio-amber); color: var(--radio-ink); }
 .primary-panel #primaryPanelActions button,
 :is(.secondary-button, .ink-control, .ink-chevron, .map-light, .map-light-chevron,
@@ -66,14 +74,14 @@
   color: var(--radio-ink);
   background: var(--radio-button);
   border: 1px solid var(--radio-copper);
-  border-radius: 8px;
+  border-radius: 4px;
   box-shadow: 0 2px 0 #573d2c40;
 }
 :is(.primary-button, .radio-main-button, #radialWalkButton) {
   background: var(--radio-action);
   color: var(--radio-cream);
   border: 1px solid var(--radio-copper);
-  border-radius: 8px;
+  border-radius: 4px;
   box-shadow: 0 2px 0 var(--radio-wood);
 }
 #radioPlayer .radio-controls #radioPlayButton {
@@ -111,7 +119,7 @@
   color: var(--radio-ink);
   background: var(--radio-cream);
   border: 1px solid var(--radio-copper);
-  border-radius: 7px;
+  border-radius: 4px;
 }
 :is(.sheet, .map-workspace-panel, .drop-panel) select { font-family: var(--radio-serif); }
 :is(input, textarea)::placeholder { color: #76522f; opacity: 1; }
@@ -131,7 +139,7 @@ input { accent-color: var(--radio-action); }
   background: var(--radio-cream);
   color: var(--radio-ink);
   border-color: #8e5d3659;
-  border-radius: 10px;
+  border-radius: 6px;
 }
 .workspace-record p { color: var(--radio-muted); }
 .workspace-record-icon { background: var(--radio-button); color: var(--radio-copper); }
@@ -140,7 +148,7 @@ input { accent-color: var(--radio-action); }
   color: var(--radio-button);
   border: 3px solid var(--radio-wood);
   box-shadow: inset 0 0 0 1px var(--radio-copper);
-  border-radius: 10px;
+  border-radius: 6px;
 }
 :is(.workspace-progress, .active-walk-card) :is(h2, strong, span, p) { color: var(--radio-button); }
 .route-mode-card:has(input:checked), .route-recommendation-card.is-selected {
