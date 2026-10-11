@@ -63,10 +63,23 @@ body {
   border: 3px solid var(--radio-wood);
   background: var(--radio-console);
   box-shadow: inset 0 0 0 1px var(--radio-copper), var(--radio-shadow);
-  border-radius: 12px;
+  border-radius: 8px;
 }
 .primary-nav button { color: var(--radio-button); border-radius: 4px; }
 .primary-nav button.active { background: var(--radio-amber); color: var(--radio-ink); }
+.ink-control,
+.map-search,
+.ink-chevron,
+.radial-route-btn,
+.radial-chevron {
+  border-color: var(--radio-copper);
+  border-radius: 4px;
+  box-shadow: 0 2px 0 var(--radio-wood), var(--radio-shadow);
+}
+.map-search { background: var(--radio-cream); }
+.radial-route-btn,
+.radial-chevron { background: var(--radio-button); color: var(--radio-ink); }
+.radial-chevron { border: 1px solid var(--radio-copper); }
 .primary-panel #primaryPanelActions button,
 :is(.secondary-button, .ink-control, .ink-chevron, .map-light, .map-light-chevron,
     .workspace-filter, .my-places-chips button, .guide-tabs button, .poi-chip,
