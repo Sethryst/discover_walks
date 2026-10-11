@@ -28,7 +28,12 @@ export const BASEMAP_PRESETS = Object.freeze({
   humanitarian: { label: 'Humanitarian · high contrast', url: 'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', maxZoom: 19, subdomains: 'abc', attribution: '&copy; OpenStreetMap contributors, Tiles style by Humanitarian OpenStreetMap Team hosted by OpenStreetMap France' },
   topographic: { label: 'Topographic · contours', url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', maxZoom: 17, subdomains: 'abc', attribution: '&copy; OpenStreetMap contributors, SRTM | &copy; OpenTopoMap (CC-BY-SA)' },
   usgs: { label: 'USGS · topo map', url: 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}', maxZoom: 16, attribution: 'Tiles courtesy of the U.S. Geological Survey' },
-  minimal: { label: 'Minimal · battery saver', type: 'minimal' }
+  minimal: { label: 'Minimal · battery saver', type: 'minimal', surface: 'battery-saver' },
+  storybook: { label: 'Storybook · pastel trails', type: 'simplified', surface: 'storybook' },
+  'toy-atlas': { label: 'Toy Atlas · sticker map', type: 'simplified', surface: 'toy-atlas' },
+  'creature-quest': { label: 'Creature Quest · playful', type: 'simplified', surface: 'creature-quest' },
+  'pocket-park': { label: 'Pocket Park · green space', type: 'simplified', surface: 'pocket-park' },
+  'retro-radar': { label: 'Retro Radar · phosphor grid', type: 'simplified', surface: 'retro-radar' }
 });
 const NEIGHBORHOOD_ZOOM = 15;
 const DEFAULT_MAP_VIEW = Object.freeze({ lat: 38.9072, lng: -77.0369, zoom: NEIGHBORHOOD_ZOOM });
@@ -52,7 +57,7 @@ function writeBasemapId(id) {
 
 function createOnlineBasemapLayer(id) {
   const preset = BASEMAP_PRESETS[id] || BASEMAP_PRESETS.street;
-  if (preset.type === 'minimal') return L.layerGroup();
+  if (preset.type === 'minimal' || preset.type === 'simplified') return L.layerGroup();
   return L.tileLayer(preset.url, { maxZoom: preset.maxZoom, subdomains: preset.subdomains, attribution: preset.attribution, crossOrigin: true });
 }
 
@@ -68,8 +73,8 @@ export function setOnlineBasemap(id, { announce = true } = {}) {
   const picker = document.getElementById('basemapPicker');
   if (picker) picker.value = nextId;
   const status = document.getElementById('basemapPickerStatus');
-  document.body.classList.toggle('map-battery-saver', nextId === 'minimal');
-  if (status) status.textContent = nextId === 'minimal' ? 'No raster tiles are downloaded or repainted. Routes and markers remain available.' : state.nationalPoiMap || state.installedBasemapMap ? `${BASEMAP_PRESETS[nextId].label} selected; the active offline layer is still visible.` : `${BASEMAP_PRESETS[nextId].label} selected. Tiles are cached as you view them.`;
+  applyMapStyleSurface(nextId);
+  if (status) status.textContent = BASEMAP_PRESETS[nextId].type === 'simplified' || nextId === 'minimal' ? 'Simplified local style: no raster tiles are downloaded or repainted. Routes and markers remain available.' : state.nationalPoiMap || state.installedBasemapMap ? `${BASEMAP_PRESETS[nextId].label} selected; the active offline layer is still visible.` : `${BASEMAP_PRESETS[nextId].label} selected. Tiles are cached as you view them.`;
   if (announce) toast(`${BASEMAP_PRESETS[nextId].label} selected`);
   return state.onlineBasemapLayer;
 }
@@ -80,6 +85,13 @@ function initBasemapPicker() {
   picker.dataset.bound = 'true';
   picker.value = state.onlineBasemapId;
   picker.addEventListener('change', () => setOnlineBasemap(picker.value));
+}
+
+function applyMapStyleSurface(id) {
+  const surface = BASEMAP_PRESETS[id]?.surface;
+  Array.from(document.body.classList).filter((name) => name.startsWith('map-style-')).forEach((name) => document.body.classList.remove(name));
+  document.body.classList.toggle('map-battery-saver', id === 'minimal');
+  if (surface) document.body.classList.add(`map-style-${surface}`);
 }
 
 export function initMap() {
@@ -100,7 +112,7 @@ export function initMap() {
   }, { passive: true });
   state.onlineBasemapId = readBasemapId();
   state.onlineBasemapLayer = createOnlineBasemapLayer(state.onlineBasemapId);
-  document.body.classList.toggle('map-battery-saver', state.onlineBasemapId === 'minimal');
+  applyMapStyleSurface(state.onlineBasemapId);
   initBasemapPicker();
   if (navigator.onLine !== false) state.onlineBasemapLayer.addTo(state.map);
   state.historyRadiusLayer = L.layerGroup().addTo(state.map);

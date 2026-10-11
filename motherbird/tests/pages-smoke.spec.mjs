@@ -16,8 +16,8 @@ test('fresh Pages context reaches startup-ready and responds to core controls', 
   await expect(page.locator('#appSplash')).toHaveClass(/app-splash--done/, { timeout: 5_000 });
   await page.locator('#libraryTab').click();
   await expect(page.getByRole('heading', { name: 'Library' })).toBeVisible();
-  await expect(page.locator('.primary-nav')).toHaveCSS('background-color', 'rgb(38, 51, 47)');
-  await expect(page.locator('#primaryPanel')).toHaveCSS('color', 'rgb(45, 36, 26)');
+  await expect(page.locator('.primary-nav')).toHaveCSS('background-color', 'rgb(20, 38, 29)');
+  await expect(page.locator('#primaryPanel')).toHaveCSS('color', 'rgb(16, 35, 26)');
   await expect(page.getByRole('button', { name: 'My Workspace', exact: true })).toBeVisible();
   await expect(page.locator('#saveWalkPlanButton')).toHaveText('View in workspace');
   await page.locator('#meTab').click();
