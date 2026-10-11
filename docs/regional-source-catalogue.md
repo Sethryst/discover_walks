@@ -234,7 +234,6 @@ The following index mirrors the regions currently represented by the regional na
 | tampa | [Tampa Parks and Recreation](https://www.tampa.gov/parks-and-recreation) |
 | tempe | [Tempe Parks and Recreation](https://www.tempe.gov/government/community-services/recreation-services) |
 | tucson | [City of Tucson](https://www.tucsonaz.gov/) |
-| wolf-trap-va | [Wolf Trap Foundation](https://www.wolftrap.org/) |
 
 ## Candidate-source backlog
 
