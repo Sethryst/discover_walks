@@ -53,7 +53,7 @@ export async function setupOnline() {
 }
   export async function openOnline() {
   await setupOnline();
-  const { renderFieldGuide } = await import('./field-guide.js?v=138-nearby-walk-fallback');
+  const { renderFieldGuide } = await import('./field-guide.js?v=139-learn-by-me');
   openSheet('backpackSheet');
   await renderFieldGuide('online');
 }

@@ -25,6 +25,7 @@ let activeEraId = null;
 let activeYear = null;
 let activeBattleId = null;
 let activeLensItemId = null;
+let learnNearbyOnly = false;
 
 function idsFromProfile(profile) {
   return new Set(profile?.visitedPoiIds || []);
@@ -229,9 +230,12 @@ export function isWalkNatureSite(poi) {
 export function placesInWatershed(pois, feature) {
   return (pois || []).filter((poi) => Number.isFinite(Number(poi.lat)) && Number.isFinite(Number(poi.lng)) && pointInFeature(Number(poi.lng), Number(poi.lat), feature));
 }
-export function learnHomeHtml({ somethingNew = null } = {}) {
+export function setLearnNearbyOnly(value) { learnNearbyOnly = Boolean(value); return learnNearbyOnly; }
+export function isLearnNearbyOnly() { return learnNearbyOnly; }
+export function learnHomeHtml({ somethingNew = null, nearbyPlaces = [] } = {}) {
   const water = somethingNew ? `<article class="guide-card learn-water-prompt"><small>SOMETHING NEW NEARBY</small><h3>${escapeHtml(somethingNew.journey.name)}</h3><p>${escapeHtml(somethingNew.journey.summary || 'A nearby water story to explore on foot.')}</p><button type="button" class="primary-button" data-learn-water-journey="${escapeHtml(somethingNew.journey.id)}">Plan this water journey</button></article>` : '';
-  return `<section class="learn-history learn-category-groups">${water}<details open><summary class="guide-card learn-entry"><h3>Nature</h3><p>Water, protected land, wildlife, and the landscape around you.</p></summary><div class="learn-category-options"><button type="button" class="guide-card learn-entry" data-learn-open="watersheds"><h3>Watersheds</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="names"><h3>Named landscape</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="protected"><h3>Protected land</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="wildlife"><h3>Wildlife recorded here</h3></button></div></details><details open><summary class="guide-card learn-entry"><h3>History</h3><p>Historic places, battlefields, maps, and stories in view.</p></summary><div class="learn-category-options"><button type="button" class="guide-card learn-entry" data-learn-open="history"><h3>History sites</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="topo"><h3>Historic topo maps</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="battlefields"><h3>Historic battlefields</h3></button></div></details></section>`;
+  const nearby = learnNearbyOnly ? `<section class="learn-nearby"><header><div><p class="learn-kicker">By me</p><h3>Learn nearby</h3><p>Places and stories within five miles of your location or map view.</p></div><span>${nearbyPlaces.length}</span></header>${nearbyPlaces.length ? nearbyPlaces.map((poi) => siteCard(poi, isCheckedSite(poi, state.profile))).join('') : '<p class="empty-state">No nearby learning places are loaded. Move the map or choose another area.</p>'}</section>` : '';
+  return `<section class="learn-history learn-category-groups">${water}<div class="learn-nearby-controls"><button type="button" class="secondary-button" data-learn-by-me>By me</button>${learnNearbyOnly ? '<button type="button" class="text-button" data-learn-all>Show all Learn categories</button>' : ''}</div>${nearby}<details open><summary class="guide-card learn-entry"><h3>Nature</h3><p>Water, protected land, wildlife, and the landscape around you.</p></summary><div class="learn-category-options"><button type="button" class="guide-card learn-entry" data-learn-open="watersheds"><h3>Watersheds</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="names"><h3>Named landscape</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="protected"><h3>Protected land</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="wildlife"><h3>Wildlife recorded here</h3></button></div></details><details open><summary class="guide-card learn-entry"><h3>History</h3><p>Historic places, battlefields, maps, and stories in view.</p></summary><div class="learn-category-options"><button type="button" class="guide-card learn-entry" data-learn-open="history"><h3>History sites</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="topo"><h3>Historic topo maps</h3></button><button type="button" class="guide-card learn-entry" data-learn-open="battlefields"><h3>Historic battlefields</h3></button></div></details></section>`;
 }
 const TOPO_ERAS = ['1950s', '1960s', '1970s', '1980s'];
 export function historicalTopoHtml() {
@@ -453,7 +457,8 @@ export async function renderLearnHistory(target, point) {
     const waterJourneys = journeysForCity(catalog.journeys);
     const encounteredIds = new Set((state.walks || []).flatMap((walk) => (walk.waterEncounters || []).map((item) => String(item.journeyId))));
     const pointForPrompt = state.currentPosition || state.lastPosition || state.map?.getCenter?.();
-    target.innerHTML = learnHomeHtml({ somethingNew: somethingNewNearby({ journeys: waterJourneys, encounteredIds, point: pointForPrompt }) });
+    const nearbyPlaces = sortSitesByDistance((state.cityPois[state.activeCity] || []).filter((poi) => isWalkNatureSite(poi) || isHistorySite(poi)), pointForPrompt).filter((poi) => !pointForPrompt || distanceMeters(pointForPrompt, poi) <= 8047).slice(0, 12);
+    target.innerHTML = learnHomeHtml({ somethingNew: somethingNewNearby({ journeys: waterJourneys, encounteredIds, point: pointForPrompt }), nearbyPlaces });
     state.learnBoundsLayer?.remove(); state.learnBoundsLayer = null;
     return;
   }

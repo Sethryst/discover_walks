@@ -10,7 +10,7 @@ import db from './storage.js';
 import { isVisiblePoi, selectImportantPois } from './poi.js';
 import { placeLight, publicPlaceSource, walkerDetails } from './place-details.js';
 import { installedPackBounds } from './offline-view.js';
-import { isHistorySite, renderLearnHistory, setLearnView, setLearnScreen, setActiveWatershed, setBattlefieldEra, setBattlefieldYear, setBattlefieldSite, stepBattlefieldBack, setActiveLensItem, paintHistoricalTopo, stopHistoricalTopo } from './learn-history.js';
+import { isHistorySite, renderLearnHistory, setLearnView, setLearnScreen, setActiveWatershed, setBattlefieldEra, setBattlefieldYear, setBattlefieldSite, stepBattlefieldBack, setActiveLensItem, paintHistoricalTopo, stopHistoricalTopo, setLearnNearbyOnly } from './learn-history.js';
 import { setPoiVisited } from './poi-visit-tracking.js';
 import { addWalkWaypoint, startWalk } from './walk.js';
 import { initMapsFolders, renderMapsLibrary } from './maps-folders.js';
@@ -443,6 +443,10 @@ export function initFieldGuideFilters() {
     if (lensItem) { setActiveLensItem(lensItem.dataset.learnLensItem); void renderFieldGuide('learn'); return; }
     const openLearn = event.target.closest('[data-learn-open]');
     if (openLearn) { setLearnScreen(openLearn.dataset.learnOpen); void renderFieldGuide('learn'); return; }
+    const learnByMe = event.target.closest('[data-learn-by-me]');
+    if (learnByMe) { setLearnNearbyOnly(true); void renderFieldGuide('learn'); return; }
+    const learnAll = event.target.closest('[data-learn-all]');
+    if (learnAll) { setLearnNearbyOnly(false); void renderFieldGuide('learn'); return; }
     const waterJourney = event.target.closest('[data-learn-water-journey]');
     if (waterJourney) { void paintWaterJourney(waterJourney.dataset.learnWaterJourney); return; }
     const learnPlanPoint = event.target.closest('[data-learn-plan-point]');
