@@ -253,7 +253,7 @@ export const MAX_DRIVE_SPEED_MPS = 70;
     // Kept as a runtime source so existing Wolf Trap links and data remain
     // valid, but surfaced under its parent regions instead of as a region.
     isSource: true,
-    sourceParentIds: ['fairfax', 'vienna']
+    sourceParentIds: ['fairfax']
   }
 };
 Object.entries(CITIES).forEach(([cityId, city]) => { city.osm = runtimeOsmConfig(cityId, city); });

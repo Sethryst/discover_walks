@@ -1,5 +1,5 @@
 import { state } from './state.js';
-import { el } from './utils.js';
+import { el, escapeHtml } from './utils.js';
 import { startWalk, stopWalk, pauseWalk, resumeWalk } from './walk.js';
 import db from './storage.js';
 
@@ -90,7 +90,11 @@ export function renderRadialWheel() {
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'radial-item-btn';
-    btn.innerHTML = `<span class="radial-item-icon">${item.icon || '⭐'}</span><span class="radial-item-label">${item.label}</span>`;
+    const icon = String(item.icon || '⭐');
+    const iconMarkup = /(?:\.svg|\.png|\.jpg|\.jpeg|\.webp)(?:$|\?)/i.test(icon)
+      ? `<img src="${escapeHtml(icon)}" alt="" aria-hidden="true">`
+      : escapeHtml(icon);
+    btn.innerHTML = `<span class="radial-item-icon">${iconMarkup}</span><span class="radial-item-label">${escapeHtml(item.label || 'Quick action')}</span>`;
     btn.addEventListener('click', () => {
       toggleRadialMenu(false);
       if (item.action) {

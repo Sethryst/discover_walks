@@ -28,7 +28,6 @@ export const BASEMAP_PRESETS = Object.freeze({
   humanitarian: { label: 'Humanitarian · high contrast', url: 'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', maxZoom: 19, subdomains: 'abc', attribution: '&copy; OpenStreetMap contributors, Tiles style by Humanitarian OpenStreetMap Team hosted by OpenStreetMap France' },
   topographic: { label: 'Topographic · contours', url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', maxZoom: 17, subdomains: 'abc', attribution: '&copy; OpenStreetMap contributors, SRTM | &copy; OpenTopoMap (CC-BY-SA)' },
   usgs: { label: 'USGS · topo map', url: 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}', maxZoom: 16, attribution: 'Tiles courtesy of the U.S. Geological Survey' },
-  minimal: { label: 'Minimal · battery saver', type: 'minimal', surface: 'battery-saver' },
   storybook: { label: 'Storybook · pastel trails', type: 'simplified', surface: 'storybook' },
   'toy-atlas': { label: 'Toy Atlas · sticker map', type: 'simplified', surface: 'toy-atlas' },
   'creature-quest': { label: 'Creature Quest · playful', type: 'simplified', surface: 'creature-quest' },
@@ -57,7 +56,7 @@ function writeBasemapId(id) {
 
 function createOnlineBasemapLayer(id) {
   const preset = BASEMAP_PRESETS[id] || BASEMAP_PRESETS.street;
-  if (preset.type === 'minimal' || preset.type === 'simplified') return L.layerGroup();
+  if (preset.type === 'simplified') return L.layerGroup();
   return L.tileLayer(preset.url, { maxZoom: preset.maxZoom, subdomains: preset.subdomains, attribution: preset.attribution, crossOrigin: true });
 }
 
@@ -74,7 +73,7 @@ export function setOnlineBasemap(id, { announce = true } = {}) {
   if (picker) picker.value = nextId;
   const status = document.getElementById('basemapPickerStatus');
   applyMapStyleSurface(nextId);
-  if (status) status.textContent = BASEMAP_PRESETS[nextId].type === 'simplified' || nextId === 'minimal' ? 'Simplified local style: no raster tiles are downloaded or repainted. Routes and markers remain available.' : state.nationalPoiMap || state.installedBasemapMap ? `${BASEMAP_PRESETS[nextId].label} selected; the active offline layer is still visible.` : `${BASEMAP_PRESETS[nextId].label} selected. Tiles are cached as you view them.`;
+  if (status) status.textContent = BASEMAP_PRESETS[nextId].type === 'simplified' ? 'Simplified local style: no raster tiles are downloaded or repainted. Routes, places, and markers remain available.' : state.nationalPoiMap || state.installedBasemapMap ? `${BASEMAP_PRESETS[nextId].label} selected; the active offline layer is still visible.` : `${BASEMAP_PRESETS[nextId].label} selected. Tiles are cached as you view them.`;
   if (announce) toast(`${BASEMAP_PRESETS[nextId].label} selected`);
   return state.onlineBasemapLayer;
 }
@@ -90,7 +89,6 @@ function initBasemapPicker() {
 function applyMapStyleSurface(id) {
   const surface = BASEMAP_PRESETS[id]?.surface;
   Array.from(document.body.classList).filter((name) => name.startsWith('map-style-')).forEach((name) => document.body.classList.remove(name));
-  document.body.classList.toggle('map-battery-saver', id === 'minimal');
   if (surface) document.body.classList.add(`map-style-${surface}`);
 }
 
@@ -98,7 +96,7 @@ export function initMap() {
   const active = city();
   const view = state.offlineView;
   const offlineCenter = view?.range?.type === 'radius' ? view.range.center : view?.range?.bbox ? { lat: (view.range.bbox.south + view.range.bbox.north) / 2, lng: (view.range.bbox.west + view.range.bbox.east) / 2 } : null;
-  const initialPosition = offlineCenter || state.currentPosition || state.lastPosition || DEFAULT_MAP_VIEW;
+  const initialPosition = offlineCenter || state.currentPosition || state.lastPosition || active?.center || DEFAULT_MAP_VIEW;
   // When location permission is granted at startup, begin at the actual
   // location—not the regional centroid—and keep enough zoom for a walk.
   const initialZoom = view?.zoom ?? ((state.currentPosition || state.lastPosition) ? Math.max(active.zoom, NEIGHBORHOOD_ZOOM) : DEFAULT_MAP_VIEW.zoom);
@@ -631,6 +629,8 @@ function exitFieldEdition() {
 
 export function renderUserLocation(point, pan = false) {
   state.currentPosition = point;
+  document.body.classList.add('location-available');
+  document.getElementById('locateButton')?.setAttribute('aria-label', 'Center on my location');
   window.dispatchEvent(new CustomEvent('field-edition-location'));
   const icon = L.divIcon({ className: '', html: '<div class="user-marker" role="img" aria-label="Your location"></div>', iconSize: [18, 18], iconAnchor: [9, 9] });
   if (!state.userMarker) state.userMarker = L.marker([point.lat, point.lng], { icon, zIndexOffset: 1000, title: 'Your location' }).addTo(state.map);

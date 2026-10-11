@@ -4,7 +4,7 @@ import { state } from './state.js';
 import { DEFAULT_SETTINGS, CITIES, DEFAULT_CITY_ID } from './constants.js';
 import { normalizeProfile, sitesForProfile } from './utils.js';
 import { toast } from './ui.js';
-import { initMap } from './map.js?v=20261010-basemap-switcher-3';
+import { initMap } from './map.js?v=20261010-basemap-switcher-4';
 import { applyStaticAppearance } from './ui.js';
 import { loadAllCityData, refreshCityMap } from './city.js?v=20261007-regional-worker-path-2';
 import { renderArchive } from './archive.js';
@@ -167,6 +167,11 @@ export async function init() {
   const optionalBoot = (label, task) => Promise.resolve().then(task).catch((error) => {
     console.warn(`[motherbird:optional-boot] ${label} unavailable:`, error?.message || error);
     return null;
+  });
+  void optionalBoot('regional map data', async () => {
+    const { loadCityData, refreshCityMap } = await import('./city.js');
+    await loadCityData(state.activeCity);
+    await refreshCityMap(false);
   });
   void (async () => {
     await optionalBoot('walk controls', () => import('./events.js?v=20261009-workspace-1').then(({ initEvents }) => initEvents()));

@@ -16,13 +16,13 @@ test('fresh Pages context reaches startup-ready and responds to core controls', 
   await expect(page.locator('#appSplash')).toHaveClass(/app-splash--done/, { timeout: 5_000 });
   await page.locator('#libraryTab').click();
   await expect(page.getByRole('heading', { name: 'Library' })).toBeVisible();
-  await expect(page.locator('.primary-nav')).toHaveCSS('background-color', 'rgb(20, 38, 29)');
-  await expect(page.locator('#primaryPanel')).toHaveCSS('color', 'rgb(16, 35, 26)');
+  await expect(page.locator('.primary-nav')).toHaveCSS('background-color', 'rgb(20, 35, 49)');
+  await expect(page.locator('#primaryPanel')).toHaveCSS('color', 'rgb(13, 27, 42)');
   await expect(page.getByRole('button', { name: 'My Workspace', exact: true })).toBeVisible();
   await expect(page.locator('#saveWalkPlanButton')).toHaveText('View in workspace');
   await page.locator('#meTab').click();
   await expect(page.getByRole('heading', { name: 'Me' })).toBeVisible();
-  await page.getByRole('button', { name: 'Close', exact: true }).click();
+  await page.locator('#meTab').click();
   await page.waitForTimeout(100);
   if (await page.locator('#regionalNavigationMenu').evaluate((node) => node.classList.contains('hidden'))) {
     await page.locator('#regionalNavigation').click();

@@ -1,20 +1,20 @@
 /* Shared analogue-radio theme. Color/type only: each surface owns its layout. */
 :root {
-  --radio-cream: #d4e8bf;
-  --radio-paper: #8eac7d;
-  --radio-button: #b8d7a0;
-  --radio-tan: #6c8c65;
-  --radio-console: #14261d;
-  --radio-ink: #10231a;
-  --radio-muted: #1f3c2a;
-  --radio-wood: #1c3a29;
-  --radio-copper: #4c7a52;
+  --radio-cream: #dbe9f7;
+  --radio-paper: #8ca9c3;
+  --radio-button: #b8d2e6;
+  --radio-tan: #6d88a2;
+  --radio-console: #142331;
+  --radio-ink: #0d1b2a;
+  --radio-muted: #20394f;
+  --radio-wood: #1d3448;
+  --radio-copper: #4d7ea6;
   --radio-amber: #e8bd5a;
   --radio-rust: #d7874a;
-  --radio-action: #1f6b45;
-  --radio-danger: #9b4b45;
+  --radio-action: #1d5b83;
+  --radio-danger: #a74851;
   --radio-serif: Georgia, 'Times New Roman', serif;
-  --radio-shadow: 0 8px 24px #2d241a33;
+  --radio-shadow: 0 8px 24px #10233733;
   --ink: var(--radio-ink);
   --ink2: var(--radio-console);
   --paper: var(--radio-paper);
@@ -28,8 +28,8 @@
 /* Printed field-guide texture and hardware-like geometry. */
 body {
   background-image:
-    linear-gradient(rgba(76, 122, 82, .045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(76, 122, 82, .035) 1px, transparent 1px);
+    linear-gradient(rgba(77, 126, 166, .045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(77, 126, 166, .035) 1px, transparent 1px);
   background-size: 8px 8px;
 }
 
@@ -175,7 +175,7 @@ input { accent-color: var(--radio-action); }
 }
 .map-search { background: var(--radio-cream); border-color: var(--radio-copper); color: var(--radio-ink); }
 .map-search input { color: var(--radio-ink); }
-.basemap-picker { color: var(--radio-muted); background: rgba(20, 38, 29, .08); border: 1px solid var(--radio-copper); border-radius: 6px; }
+.basemap-picker { color: var(--radio-muted); background: rgba(20, 35, 49, .08); border: 1px solid var(--radio-copper); border-radius: 6px; }
 .basemap-picker label { color: var(--radio-ink); }
 .basemap-picker select { color: var(--radio-ink); background: var(--radio-cream); border-color: var(--radio-copper); }
 .basemap-picker small { color: var(--radio-muted); }
