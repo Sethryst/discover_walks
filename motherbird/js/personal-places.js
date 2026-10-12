@@ -765,6 +765,7 @@ function bindPersonalPlaceControls() {
     const detail = event.detail || {};
     if (detail.categoryName) { detail.categoryId = (await ensurePersonalCategory(detail.categoryName)).id; detail.customIcon = detail.categoryName === 'custom'; }
     openPersonalPlaceForm(detail.customIcon ? { ...detail, draft: { ...detail } } : detail);
+    if (detail.commitImmediately) el('personalPlaceForm')?.requestSubmit();
   });
   window.addEventListener('personal-place-location-selected', (event) => finishPersonalPlaceCrosshair(event.detail));
   window.addEventListener('public-marker-focus-requested', (event) => {

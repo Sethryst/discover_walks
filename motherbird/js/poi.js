@@ -179,8 +179,28 @@ function updatePoiMarker(marker, poi) {
   marker.options.title = displayPoiName(poi);
   marker.options.place = poi;
   marker.options.interactive = !state.planningMode;
+  enablePoiDrag(marker);
   if (marker.getPopup()) marker.setPopupContent(poiPopup(poi)); else marker.bindPopup(poiPopup(poi));
   return marker;
+}
+
+function enablePoiDrag(marker) {
+  const icon = marker.getElement?.();
+  if (!icon || icon.dataset.poiDragBound === 'true') return;
+  icon.dataset.poiDragBound = 'true';
+  icon.draggable = true;
+  icon.setAttribute('aria-grabbed', 'false');
+  icon.addEventListener('dragstart', (event) => {
+    const poi = marker.options.place;
+    if (!poi) return;
+    event.stopPropagation();
+    icon.setAttribute('aria-grabbed', 'true');
+    const payload = JSON.stringify(poi);
+    event.dataTransfer?.setData('application/x-walk-wildlife-poi', payload);
+    event.dataTransfer?.setData('text/plain', payload);
+    if (event.dataTransfer) event.dataTransfer.effectAllowed = 'copy';
+  });
+  icon.addEventListener('dragend', () => icon.setAttribute('aria-grabbed', 'false'));
 }
 
 function getPoiMarker(poi) {
@@ -189,6 +209,7 @@ function getPoiMarker(poi) {
   let marker = state.poiMarkerCache.get(key);
   if (!marker) {
     marker = L.marker([poi.lat, poi.lng], { title: displayPoiName(poi), interactive: !state.planningMode, place: poi });
+    marker.on('add', () => enablePoiDrag(marker));
     marker.on('click', (event) => {
       if (!state.plannerSelecting) return;
       event._stopped = true;

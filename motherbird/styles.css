@@ -959,6 +959,7 @@ body[data-storage-state="temporary"]:after{content:'Temporary device storage';po
 .route-section-suggestions { color: var(--muted, #6f7168); font-size: .84rem; }
 .pin-drop-target { outline: 3px dashed #e8740f; outline-offset: -6px; }
 .draw-pin-grid button[draggable="true"] { cursor: grab; }
+.draw-pin-grid button.poi-drop-target { outline: 3px dashed #76558b; outline-offset: 2px; transform: translateY(-1px); }
 .basemap-picker { display: grid; gap: 5px; margin: 12px 0; padding: 9px; }
 .basemap-picker label { font: 800 .72rem/1.2 ui-monospace, monospace; letter-spacing: .08em; text-transform: uppercase; }
 .basemap-picker select { width: 100%; padding: 8px 9px; border: 1px solid var(--line); border-radius: 6px; font: 700 .82rem Georgia, serif; }

@@ -288,6 +288,32 @@ export async function initMapPaint() {
   drawTools?.before(pinGrid);
   pinGrid.addEventListener('click', (event) => { const pin = event.target.closest('[data-draw-pin]'); if (pin) window.dispatchEvent(new CustomEvent('personal-place-create-requested', { detail: { categoryName: pin.dataset.drawPin } })); });
   pinGrid.addEventListener('dragstart', (event) => { const pin = event.target.closest('[data-draw-pin]'); if (!pin) return; event.dataTransfer?.setData('text/plain', pin.dataset.drawPin); event.dataTransfer?.setData('application/x-walk-wildlife-pin', pin.dataset.drawPin); });
+  pinGrid.addEventListener('dragover', (event) => {
+    const pin = event.target.closest('[data-draw-pin]');
+    if (!pin || !event.dataTransfer?.types.includes('application/x-walk-wildlife-poi')) return;
+    event.preventDefault();
+    event.dataTransfer.dropEffect = 'copy';
+    pin.classList.add('poi-drop-target');
+  });
+  pinGrid.addEventListener('dragleave', (event) => event.target.closest('[data-draw-pin]')?.classList.remove('poi-drop-target'));
+  pinGrid.addEventListener('drop', (event) => {
+    const pin = event.target.closest('[data-draw-pin]');
+    const rawPoi = event.dataTransfer?.getData('application/x-walk-wildlife-poi');
+    if (!pin || !rawPoi) return;
+    event.preventDefault();
+    pin.classList.remove('poi-drop-target');
+    try {
+      const poi = JSON.parse(rawPoi);
+      if (!poi || !Number.isFinite(Number(poi.lat)) || !Number.isFinite(Number(poi.lng))) return;
+      window.dispatchEvent(new CustomEvent('personal-place-create-requested', { detail: {
+        categoryName: pin.dataset.drawPin,
+        sourcePoi: poi,
+        location: { lat: Number(poi.lat), lng: Number(poi.lng) },
+        name: displayPoiName(poi),
+        commitImmediately: true
+      } }));
+    } catch { /* Ignore malformed external drag payloads. */ }
+  });
   const updateRegionLabel = () => { const label = el('drawRegionLabel'); if (label) label.textContent = cityLabel(state.activeCity) || 'Installed region'; };
   updateRegionLabel();
   state.mapPaintLayer = L.featureGroup().addTo(state.map);
