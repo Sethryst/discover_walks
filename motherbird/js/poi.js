@@ -135,6 +135,78 @@ export function poiMatchesSelectedTags(poi, selectedTags = new Set()) {
   const tags = poiTags(poi);
   return [...selectedTags].some((tag) => tag === 'osm' ? isOsmPoi(poi) : tags.includes(tag));
 }
+
+function trailPathTolerance() {
+  const zoom = Number(state.map?.getZoom?.());
+  if (!Number.isFinite(zoom) || zoom < 12) return 0.0003;
+  if (zoom < 15) return 0.00012;
+  return 0.00004;
+}
+
+function simplifyTrailPath(coordinates = [], tolerance = trailPathTolerance()) {
+  if (coordinates.length < 3) return coordinates;
+  const squaredTolerance = tolerance * tolerance;
+  const keep = new Uint8Array(coordinates.length);
+  keep[0] = 1; keep[coordinates.length - 1] = 1;
+  const stack = [[0, coordinates.length - 1]];
+  const distanceToSegmentSquared = (point, start, end) => {
+    const dx = end[0] - start[0]; const dy = end[1] - start[1];
+    if (!dx && !dy) return (point[0] - start[0]) ** 2 + (point[1] - start[1]) ** 2;
+    const t = Math.max(0, Math.min(1, ((point[0] - start[0]) * dx + (point[1] - start[1]) * dy) / (dx * dx + dy * dy)));
+    const x = start[0] + t * dx; const y = start[1] + t * dy;
+    return (point[0] - x) ** 2 + (point[1] - y) ** 2;
+  };
+  while (stack.length) {
+    const [startIndex, endIndex] = stack.pop();
+    let farthest = squaredTolerance; let farthestIndex = -1;
+    for (let index = startIndex + 1; index < endIndex; index += 1) {
+      const distance = distanceToSegmentSquared(coordinates[index], coordinates[startIndex], coordinates[endIndex]);
+      if (distance > farthest) { farthest = distance; farthestIndex = index; }
+    }
+    if (farthestIndex !== -1) {
+      keep[farthestIndex] = 1;
+      stack.push([startIndex, farthestIndex], [farthestIndex, endIndex]);
+    }
+  }
+  return coordinates.filter((_, index) => keep[index]);
+}
+
+function updatePoiMarker(marker, poi) {
+  const tags = poiTags(poi);
+  const visual = markerVisual({ poi, tags });
+  marker.setLatLng([poi.lat, poi.lng]);
+  marker.setIcon(L.divIcon({ className: '', html: markerPinHtml(visual), iconSize: [27, 27], iconAnchor: [13, 13] }));
+  marker.options.title = displayPoiName(poi);
+  marker.options.place = poi;
+  marker.options.interactive = !state.planningMode;
+  if (marker.getPopup()) marker.setPopupContent(poiPopup(poi)); else marker.bindPopup(poiPopup(poi));
+  return marker;
+}
+
+function getPoiMarker(poi) {
+  state.poiMarkerCache ||= new Map();
+  const key = `${state.activeCity}:${poi.id}`;
+  let marker = state.poiMarkerCache.get(key);
+  if (!marker) {
+    marker = L.marker([poi.lat, poi.lng], { title: displayPoiName(poi), interactive: !state.planningMode, place: poi });
+    marker.on('click', (event) => {
+      if (!state.plannerSelecting) return;
+      event._stopped = true;
+      if (event.originalEvent) { event.originalEvent._stopped = true; L.DomEvent.stop(event.originalEvent); }
+      state.map?.closePopup();
+    });
+    marker.on('popupopen', (event) => event.popup.getElement()?.querySelector('[data-save-poi]')?.addEventListener('click', () => {
+      const current = marker.options.place;
+      window.dispatchEvent(new CustomEvent('personal-place-create-requested', { detail: { sourcePoi: current, location: { lat: current.lat, lng: current.lng }, name: displayPoiName(current) } }));
+    }, { once: true }));
+    marker.on('popupopen', (event) => event.popup.getElement()?.querySelector('[data-open-room]')?.addEventListener('click', () => {
+      window.dispatchEvent(new CustomEvent('room-open-requested', { detail: { place: marker.options.place } }));
+    }, { once: true }));
+    state.poiMarkerCache.set(key, marker);
+  }
+  return updatePoiMarker(marker, poi);
+}
+
 export function renderCityPois({ preserveInteraction = true } = {}) {
   if (!state.poiLayer) return;
   // Keep the complete POI backing store while using the normal marker-cluster
@@ -153,34 +225,14 @@ export function renderCityPois({ preserveInteraction = true } = {}) {
     .filter(isVisiblePoi)
     .filter(poiMatchesFilters)
     .filter(withinRenderBounds);
-  const markers = selectImportantPois(visiblePois)
-    .map((poi) => {
-      const tags = poiTags(poi);
-      const visual = markerVisual({ poi, tags });
-      const icon = L.divIcon({ className: '', html: markerPinHtml(visual), iconSize: [27, 27], iconAnchor: [13, 13] });
-      const marker = L.marker([poi.lat, poi.lng], { icon, title: displayPoiName(poi), interactive: !state.planningMode, place: poi });
-      marker.on('click', (event) => {
-        if (!state.plannerSelecting) return;
-        event._stopped = true;
-        if (event.originalEvent) {
-          event.originalEvent._stopped = true;
-          L.DomEvent.stop(event.originalEvent);
-        }
-        state.map?.closePopup();
-      });
-      marker.bindPopup(poiPopup(poi));
-      marker.on('popupopen', (event) => event.popup.getElement()?.querySelector('[data-save-poi]')?.addEventListener('click', () => {
-        window.dispatchEvent(new CustomEvent('personal-place-create-requested', { detail: { sourcePoi: poi, location: { lat: poi.lat, lng: poi.lng }, name: displayPoiName(poi) } }));
-      }, { once: true }));
-      marker.on('popupopen', (event) => event.popup.getElement()?.querySelector('[data-open-room]')?.addEventListener('click', () => {
-        window.dispatchEvent(new CustomEvent('room-open-requested', { detail: { place: poi } }));
-      }, { once: true }));
-      return marker;
-    });
+  const markers = selectImportantPois(visiblePois).map(getPoiMarker);
   if (state.poiLayer.addLayers) state.poiLayer.addLayers(markers); else markers.forEach((marker) => marker.addTo(state.poiLayer));
   const segments = state.trailSegments[state.activeCity] || [];
   if (state.layerLights?.recreation && state.layerFilters?.public?.trail !== false) {
-    segments.forEach((segment) => segment.coordinates.forEach((coordinates) => L.polyline(coordinates.map(([lng, lat]) => [lat, lng]), { color: '#2d7259', weight: 5, opacity: .82 }).bindTooltip(segment.name || 'Named trail').addTo(state.trailLayer)));
+    segments.forEach((segment) => segment.coordinates.forEach((coordinates) => {
+      const simplified = simplifyTrailPath(coordinates);
+      L.polyline(simplified.map(([lng, lat]) => [lat, lng]), { color: '#2d7259', weight: 5, opacity: .82, smoothFactor: 0.6 }).bindTooltip(segment.name || 'Named trail').addTo(state.trailLayer);
+    }));
   }
   // Enrichment can arrive while someone is reading a place. Reopen the same
   // popup after the atomic layer swap so the user does not lose their context.

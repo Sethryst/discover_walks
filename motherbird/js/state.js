@@ -43,6 +43,7 @@ export const state = {
   plannedRoute: null,
   observationLayer: null,
   poiLayer: null,
+  poiMarkerCache: new Map(),
   personalPlaceLayer: null,
   publicMarkerLayer: null,
   neighborhoodLayer: null,
