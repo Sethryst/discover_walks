@@ -88,10 +88,12 @@ function conceptReason(stops) {
 const AUTO_LOOP_RETRY_STATUSES = new Set(['BOUNDARY_STITCH_FAILED', 'CROSS_CELL_UNAVAILABLE']);
 
 async function routeAutoRoundTrip(stops, center, options) {
+  const attempts = [stops];
+  for (let count = stops.length - 1; count >= 1; count -= 1) attempts.push(stops.slice(0, count));
+  for (const stop of stops) attempts.push([stop]);
   let last = null;
   let lastStops = stops;
-  for (let count = stops.length; count >= 1; count -= 1) {
-    const attemptStops = stops.slice(0, count);
+  for (const attemptStops of attempts) {
     lastStops = attemptStops;
     const routed = await routeOnFoot([center, ...attemptStops, center], options).catch((error) => ({ ok: false, status: 'ROUTING_WORKER_ERROR', failure: { message: error?.message || 'Offline routing failed.' } }));
     if (routed.ok || !AUTO_LOOP_RETRY_STATUSES.has(routed.status)) return { routed, stops: attemptStops };
@@ -103,6 +105,12 @@ async function routeAutoRoundTrip(stops, center, options) {
 function planningFailureMessage(result, routeMode) {
   if (routeMode === 'auto-round-trip' && AUTO_LOOP_RETRY_STATUSES.has(result?.status)) {
     return 'We could not build a complete loop in the installed walking coverage. Try a shorter walk or move the map slightly and try again.';
+  }
+  if (routeMode === 'round-trip' && AUTO_LOOP_RETRY_STATUSES.has(result?.status)) {
+    return 'This round trip crosses a boundary the installed walking network cannot safely join. Choose a nearer destination or try a different mapped area.';
+  }
+  if (['ROUTING_TIMEOUT', 'ROUTING_GRAPH_UNAVAILABLE', 'ROUTING_WORKER_ERROR'].includes(result?.status)) {
+    return 'The walking network is still loading or temporarily unavailable. Try this route again in a moment.';
   }
   return routeFailureMessage(result);
 }
@@ -217,7 +225,12 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
     const nearby = candidateStops(routeOrigin, []).slice(0, 6).filter((stop) => distanceBetween(routeOrigin, stop) < 8);
     const discoveryStops = selectedStops.length ? selectedStops : nearby.filter((stop) => poiTags(stop).some((tag) => ['trail', 'park', 'nature', 'history', 'culture', 'water'].includes(tag))).slice(0, 2);
     const quietStops = nearby.filter((stop) => poiTags(stop).some((tag) => ['park', 'trail', 'nature', 'quiet'].includes(tag))).slice(0, 2);
-    const ambient = await generateAmbientOptions({ origin: routeOrigin, destination: state.plannerEnd, routeOnFoot, context: { availableMinutes, destination: state.plannerEnd, currentPaceMps: state.walk?.paceMps, routeHistoryCount: state.walks?.length || 0, rememberedPlaceCount: state.personalPlaces?.length || 0, avoidEdges: state.routingConstraints?.avoidEdges || state.avoidEdges || [], graphVersion: state.routingConstraints?.graphVersion || null, cellRelease: state.routingConstraints?.cellRelease || null }, memory: localMemory, discoveryStops, quietStops });
+    let ambient = { routes: [] };
+    try {
+      ambient = await generateAmbientOptions({ origin: routeOrigin, destination: state.plannerEnd, routeOnFoot, context: { availableMinutes, destination: state.plannerEnd, currentPaceMps: state.walk?.paceMps, routeHistoryCount: state.walks?.length || 0, rememberedPlaceCount: state.personalPlaces?.length || 0, avoidEdges: state.routingConstraints?.avoidEdges || state.avoidEdges || [], graphVersion: state.routingConstraints?.graphVersion || null, cellRelease: state.routingConstraints?.cellRelease || null }, memory: localMemory, discoveryStops, quietStops });
+    } catch (error) {
+      console.warn('Ambient route options unavailable; falling back to direct routing:', error);
+    }
     if (requestGeneration !== generation) return null;
     if (ambient.routes.length) {
       const optionRoutes = ambient.primary ? [ambient.primary, ...(ambient.alternatives || [])] : ambient.routes;
@@ -262,6 +275,7 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
     const detail = routed.failure?.reason || routed.failure?.message || routed.status;
     toast(`We couldn't find a walkable route there. ${planningFailureMessage(routed, routeMode)}`);
   }
+  if (!routed.ok && routeMode !== 'point-to-point') toast(planningFailureMessage(routed, routeMode));
   const plan = {
     id: `concept-${Date.now()}`, title: title || (routeMode === 'point-to-point' ? 'A route to your destination' : `${CITIES[state.activeCity]?.name || 'Local'} ${minutes}-minute sketch`),
     reason: reason || conceptReason(stops), city: state.activeCity, routeMode, estimatedDurationMinutes: routed.ok ? Math.round(Number(routed.durationSeconds || 0) / 60) : minutes,

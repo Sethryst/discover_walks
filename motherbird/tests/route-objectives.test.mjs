@@ -21,6 +21,8 @@ test('auto round trips normalize place locations and order stops before routing'
   assert.match(plannerSource, /fallbackAutoRoundTripStop/);
   assert.match(plannerSource, /routeAutoRoundTrip/);
   assert.match(plannerSource, /AUTO_LOOP_RETRY_STATUSES/);
+  assert.match(plannerSource, /for \(const stop of stops\)/);
+  assert.match(plannerSource, /falling back to direct routing/);
   assert.match(plannerSource, /\[center, \.\.\.stops, center\]/);
   assert.match(plannerSource, /routeOnFoot\(points/);
 });
