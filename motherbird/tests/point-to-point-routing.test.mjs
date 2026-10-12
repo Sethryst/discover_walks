@@ -60,6 +60,8 @@ test('point-to-point planning is destination-bounded instead of capped at the de
 test('point-to-point painting keeps returned geometry continuous', () => {
   assert.match(planner, /const routePaths = \(plan\.coordinates\?\.length \|\| 0\) > 1/);
   assert.match(planner, /\? \[plan\.coordinates\]/);
+  assert.match(planner, /: \[\];/);
+  assert.doesNotMatch(planner, /state\.plannerStart\.lat[\s\S]{0,160}state\.plannerEnd\.lng/);
   assert.doesNotMatch(planner, /splitDisconnectedRoute/);
   assert.doesNotMatch(planner, /As the crow flies/);
   assert.doesNotMatch(events, /As the crow flies/);

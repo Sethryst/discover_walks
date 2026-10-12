@@ -128,17 +128,12 @@ export function paintWalkConcept(plan = state.plannedRoute, { fit = true } = {})
   routePane.style.pointerEvents = 'none';
   const mood = plan.archetype || 'direct';
   plan.stops.forEach((stop, index) => L.marker([stop.lat, stop.lng], { icon: L.divIcon({ className: `sketch-stop sketch-stop--${mood}`, html: `<span>${index + 1}</span>`, iconSize: [30, 30], iconAnchor: [15, 15] }), title: stop.name }).bindTooltip(stop.name).addTo(state.planSketchLayer));
-  // Paint the route response as one continuous returned geometry. A large
-  // coordinate jump can indicate incomplete graph coverage, but splitting it
-  // here creates a blank that falsely suggests the whole route disappeared.
-  // The router's geometry remains the source of truth; do not invent a
-  // separate crow-flies or warning overlay.
+  // Paint only geometry returned by the pedestrian router. Never connect
+  // endpoints with a synthetic straight segment when a route is missing;
+  // that makes a failed or partial auto-loop look like a valid walk.
   const routePaths = (plan.coordinates?.length || 0) > 1
     ? [plan.coordinates]
-    : (state.plannerStart && state.plannerEnd ? [[
-      [state.plannerStart.lat, state.plannerStart.lng],
-      [state.plannerEnd.lat, state.plannerEnd.lng]
-    ]] : []);
+    : [];
   // Use a contrasting casing so the route remains obvious over satellite,
   // OSM, and greenway basemaps instead of disappearing into dark map detail.
   if (mood === 'discovery') ensureDiscoveryGradient(state.map);
