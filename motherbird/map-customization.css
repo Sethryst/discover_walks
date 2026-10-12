@@ -3,5 +3,7 @@
 .map-customization-grid{display:grid;gap:8px;margin-top:9px}.map-customization-grid label{display:grid;gap:4px;font-size:.74rem;font-weight:800}.map-customization-grid select{width:100%;border:1px solid var(--line);border-radius:7px;background:var(--paper2);padding:6px}.map-customization-check{display:flex!important;grid-template-columns:auto 1fr;align-items:center;gap:6px}.map-customization-float small{display:block;margin-top:8px;font-size:.65rem;opacity:.72}
 body.map-tone-parchment #map{background:#d9c49a}body.map-tone-dusk #map{background:#46526a}body.map-tone-night #map{background:#17252d}body.map-tone-high-contrast #map{background:#fff}
 body.map-tone-night .map-customization-float{background:rgba(24,39,45,.96);color:#e6f4e6}body.map-tone-night .map-customization-float select{background:#22343c;color:#e6f4e6;border-color:#78947e}
+.primary-panel .map-customization-float{position:static;width:auto;margin-top:12px;padding:12px 0 0;border:0;border-top:1px solid rgba(23,60,53,.2);border-radius:0;background:transparent;box-shadow:none;backdrop-filter:none}
+.primary-panel .map-customization-float summary{font-size:.82rem}
 body.map-hide-places .leaflet-marker-icon.poi-marker,body.map-hide-places .leaflet-marker-icon.public-place-marker{display:none!important}
 @media(max-width:720px){.map-customization-float{top:auto;right:8px;bottom:78px;width:min(240px,calc(100vw - 16px))}}

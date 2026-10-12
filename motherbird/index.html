@@ -34,7 +34,7 @@
     <link rel="stylesheet" href="./styles.css?v=20261011-compact-workspace-header-1" />
     <link rel="stylesheet" href="./radio.css?v=20261011-local-upload-1" />
   <link rel="stylesheet" href="./shell.css?v=4" />
-  <link rel="stylesheet" href="./map-customization.css?v=1" />
+  <link rel="stylesheet" href="./map-customization.css?v=2" />
   <link rel="stylesheet" href="./splash-fix.css?v=20261007-library-nav-fix-1" />
   <link rel="stylesheet" href="./css/radio-theme.css?v=20261011-blue-phosphor-1" />
   <title>Walk & Wildlife</title>
@@ -45,7 +45,7 @@
   <script>setTimeout(() => document.getElementById('appSplash')?.classList.add('app-splash--done'), 900);</script>
   <main class="app-shell">
     <nav class="primary-nav" aria-label="Main navigation"><button id="exploreTab" type="button" data-primary-tab="explore" class="active" aria-current="page">Explore</button><button id="libraryTab" type="button" data-primary-tab="library">Workspace</button><button id="meTab" type="button" data-primary-tab="me">Me</button></nav>
-    <aside class="primary-panel hidden" id="primaryPanel" aria-live="polite"><header><h2 id="primaryPanelTitle">Walk</h2><button type="button" id="closePrimaryPanel" aria-label="Close">×</button></header><div id="primaryPanelActions"></div></aside>
+    <aside class="primary-panel hidden" id="primaryPanel" aria-live="polite"><header><h2 id="primaryPanelTitle">Walk</h2><button type="button" id="closePrimaryPanel" aria-label="Close">×</button></header><div id="primaryPanelActions"></div><details class="map-customization-float" id="mapCustomization"><summary>Customize map</summary><div class="map-customization-grid"><label for="mapTonePicker">Background tone<select id="mapTonePicker"><option value="natural">Natural</option><option value="parchment">Parchment</option><option value="dusk">Dusk</option><option value="night">Night</option><option value="high-contrast">High contrast</option></select></label><label class="map-customization-check"><input id="mapPlacesToggle" type="checkbox" checked /> Show places</label><label class="map-customization-check"><input id="mapRoutesToggle" type="checkbox" checked /> Show route lines</label></div><small>These choices stay on this device.</small></details></aside>
     <div id="installedBasemap" class="installed-basemap hidden" aria-hidden="true"></div>
     <div id="map" role="application" aria-label="Map of installed-pack places"></div>
     <div id="walkingCellOverlay" class="walking-cell-overlay hidden" aria-hidden="true"></div>
@@ -266,7 +266,6 @@
             ]).finally(() => location.replace(cleanUrl));
           })();
         </script><script src="./vendor/leaflet/leaflet.js"></script><script src="./vendor/leaflet-markercluster/leaflet.markercluster.js"></script><script src="./vendor/leaflet-geoman/leaflet-geoman.min.js"></script><script src="./vendor/turf/turf.min.js"></script><script src="./vendor/maplibre-gl.js"></script><script async src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.105.0"></script><script src="https://w.soundcloud.com/player/api.js"></script><script src="./supabase-config.js"></script><script type="module" src="./app.js?v=20261011-visual-workspace-2"></script>
-<details class="map-customization-float" id="mapCustomization"><summary>Customize map</summary><div class="map-customization-grid"><label for="mapTonePicker">Background tone<select id="mapTonePicker"><option value="natural">Natural</option><option value="parchment">Parchment</option><option value="dusk">Dusk</option><option value="night">Night</option><option value="high-contrast">High contrast</option></select></label><label class="map-customization-check"><input id="mapPlacesToggle" type="checkbox" checked /> Show places</label><label class="map-customization-check"><input id="mapRoutesToggle" type="checkbox" checked /> Show route lines</label></div><small>These choices stay on this device.</small></details>
 </body>
 </html>
 
