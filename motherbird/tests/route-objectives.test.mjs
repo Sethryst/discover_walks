@@ -21,7 +21,9 @@ test('auto round trips normalize place locations and order stops before routing'
   assert.match(plannerSource, /fallbackAutoRoundTripStop/);
   assert.match(plannerSource, /routeAutoRoundTrip/);
   assert.match(plannerSource, /AUTO_LOOP_RETRY_STATUSES/);
-  assert.match(plannerSource, /for \(const stop of stops\)/);
+  assert.match(plannerSource, /AUTO_ROUTE_MAX_CANDIDATES/);
+  assert.match(plannerSource, /routeReusePenalty/);
+  assert.match(plannerSource, /candidatePool/);
   assert.match(plannerSource, /falling back to direct routing/);
   assert.match(plannerSource, /\[center, \.\.\.stops, center\]/);
   assert.match(plannerSource, /routeOnFoot\(points/);
@@ -38,5 +40,24 @@ test('auto round trip keeps candidates whose coordinates are nested in location'
   } finally {
     state.activeCity = previousCity;
     state.cityPois = previousPois;
+  }
+});
+
+test('auto round trips include workspace places and cuisine tags in the candidate pool', () => {
+  const previousCity = state.activeCity;
+  const previousPois = state.cityPois;
+  const previousPlaces = state.personalPlaces;
+  state.activeCity = 'test-city';
+  state.cityPois = { 'test-city': [] };
+  state.personalPlaces = [{ id: 'workspace-coffee', name: 'Corner Coffee', location: { lat: 38.901, lng: -77.001 }, packId: 'test-city', categoryId: 'coffee', tags: [] }];
+  try {
+    const [place] = candidateStops({ lat: 38.9, lng: -77 }, []);
+    assert.equal(place.name, 'Corner Coffee');
+    assert.ok(place.tags.includes('coffee'));
+    assert.equal(place.workspacePlace, true);
+  } finally {
+    state.activeCity = previousCity;
+    state.cityPois = previousPois;
+    state.personalPlaces = previousPlaces;
   }
 });

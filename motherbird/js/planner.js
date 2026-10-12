@@ -13,6 +13,9 @@ function plannerOrigin() { return state.plannerStart || state.currentPosition ||
 let generation = 0;
 installAmbientLearningListener();
 
+const AUTO_ROUTE_MAX_CANDIDATES = 14;
+const AUTO_ROUTE_MAX_STOPS = 7;
+
 function interests() {
   const pressed = [...document.querySelectorAll('[data-start-interest][aria-pressed="true"]')].map((button) => button.dataset.startInterest);
   return pressed.length ? pressed : (state.settings.favoriteCategories || []);
@@ -22,7 +25,17 @@ export function candidateStops(origin, tags) {
   // Region packs use both the legacy top-level coordinates and the newer
   // `{ location: { lat, lng } }` shape. Normalize before filtering so auto
   // round trips do not report "no candidates" for valid place records.
-  const candidates = (state.cityPois[state.activeCity] || [])
+  const imported = (state.cityPois[state.activeCity] || []);
+  const workspacePlaces = (state.personalPlaces || [])
+    .filter((place) => !place.packId || place.packId === state.activeCity)
+    .map((place) => ({
+      ...place,
+      lat: place.lat ?? place.location?.lat,
+      lng: place.lng ?? place.location?.lng,
+      tags: [...new Set([...(place.tags || []), place.categoryId, place.category_id, place.chipId, place.chip_id, place.light === 'cuisine' ? place.chipId || place.chip_id : null].filter(Boolean))],
+      workspacePlace: true
+    }));
+  const candidates = [...imported, ...workspacePlaces]
     .filter((poi) => poi.category !== 'journey')
     .map(normalizeStop)
     .filter(Boolean);
@@ -30,9 +43,13 @@ export function candidateStops(origin, tags) {
     const poiTagSet = new Set(poiTags(poi));
     const interest = tags.filter((tag) => poiTagSet.has(tag)).length * 8;
     const distance = Math.hypot((poi.lat - origin.lat) * 111, (poi.lng - origin.lng) * 88);
-    return interest + Number(poi.walkRelevanceScore || 0) - distance;
+    const tagsForStop = poiTags(poi);
+    const categoryValue = tagsForStop.some((tag) => ['coffee', 'coffee_shop', 'cafe', 'tea', 'restaurant', 'market'].includes(tag)) ? 3 : 0;
+    const workspaceValue = poi.workspacePlace ? 5 : 0;
+    return interest + categoryValue + workspaceValue + Number(poi.walkRelevanceScore || 0) - distance;
   };
-  return candidates.sort((a, b) => score(b) - score(a) || a.name.localeCompare(b.name));
+  return [...new Map(candidates.map((poi) => [`${poi.name}|${poi.lat.toFixed(5)}|${poi.lng.toFixed(5)}`, poi])).values()]
+    .sort((a, b) => score(b) - score(a) || a.name.localeCompare(b.name));
 }
 
 function normalizeStop(stop, index) {
@@ -87,19 +104,51 @@ function conceptReason(stops) {
 
 const AUTO_LOOP_RETRY_STATUSES = new Set(['BOUNDARY_STITCH_FAILED', 'CROSS_CELL_UNAVAILABLE']);
 
-async function routeAutoRoundTrip(stops, center, options) {
-  const attempts = [stops];
-  for (let count = stops.length - 1; count >= 1; count -= 1) attempts.push(stops.slice(0, count));
-  for (const stop of stops) attempts.push([stop]);
-  let last = null;
-  let lastStops = stops;
-  for (const attemptStops of attempts) {
-    lastStops = attemptStops;
-    const routed = await routeOnFoot([center, ...attemptStops, center], options).catch((error) => ({ ok: false, status: 'ROUTING_WORKER_ERROR', failure: { message: error?.message || 'Offline routing failed.' } }));
-    if (routed.ok || !AUTO_LOOP_RETRY_STATUSES.has(routed.status)) return { routed, stops: attemptStops };
-    last = routed;
+function stopValue(stop, interests = []) {
+  const tags = new Set(poiTags(stop));
+  const interest = interests.filter((tag) => tags.has(tag)).length * 8;
+  const useful = ['coffee', 'coffee_shop', 'cafe', 'tea', 'restaurant', 'market', 'park', 'trail', 'nature', 'history', 'culture', 'water'];
+  return 1 + interest + useful.filter((tag) => tags.has(tag)).length * 2 + (stop.workspacePlace ? 5 : 0) + Number(stop.walkRelevanceScore || 0);
+}
+
+function routeReusePenalty(route) {
+  const ids = (route?.edgeIds || []).map(String);
+  if (ids.length < 2) return 0;
+  return (ids.length - new Set(ids).size) / ids.length;
+}
+
+async function routeAutoRoundTrip(stops, center, options, { candidatePool = stops, minutes = 30, interests = [] } = {}) {
+  // Start with the highest-value workspace/imported candidates, but choose the
+  // actual sequence by repeatedly testing the whole loop on the pedestrian
+  // graph. This avoids the old straight-line ordering and backtracking trap.
+  const pool = [...new Map([...candidatePool, ...stops].map((stop) => [`${stop.name}|${stop.lat.toFixed(5)}|${stop.lng.toFixed(5)}`, stop])).values()]
+    .sort((a, b) => stopValue(b, interests) - stopValue(a, interests) || distanceBetween(center, a) - distanceBetween(center, b))
+    .slice(0, AUTO_ROUTE_MAX_CANDIDATES);
+  const budgetSeconds = Math.max(1, Number(minutes || 30)) * 60;
+  const selected = [];
+  let bestRoute = null;
+  let lastFailure = null;
+
+  for (let round = 0; round < AUTO_ROUTE_MAX_STOPS && selected.length < pool.length; round += 1) {
+    let best = null;
+    for (const stop of pool) {
+      if (selected.includes(stop)) continue;
+      const attemptStops = [...selected, stop];
+      const routed = await routeOnFoot([center, ...attemptStops, center], options).catch((error) => ({ ok: false, status: 'ROUTING_WORKER_ERROR', failure: { message: error?.message || 'Offline routing failed.' } }));
+      if (!routed.ok) { lastFailure = routed; continue; }
+      const durationSeconds = Number(routed.durationSeconds || Infinity);
+      if (durationSeconds > budgetSeconds) continue;
+      const addedMinutes = Math.max(0, (durationSeconds - Number(bestRoute?.durationSeconds || 0)) / 60);
+      const score = stopValue(stop, interests) / (1 + addedMinutes) - routeReusePenalty(routed) * 10;
+      if (!best || score > best.score || (score === best.score && durationSeconds < best.routed.durationSeconds)) best = { stop, routed, score };
+    }
+    if (!best) break;
+    selected.push(best.stop);
+    bestRoute = best.routed;
   }
-  return { routed: last || { ok: false, status: 'GRAPH_VERSION_UNAVAILABLE' }, stops: lastStops };
+
+  if (bestRoute) return { routed: bestRoute, stops: selected };
+  return { routed: lastFailure || { ok: false, status: 'GRAPH_VERSION_UNAVAILABLE' }, stops: selected.length ? selected : stops.slice(0, 1) };
 }
 
 function planningFailureMessage(result, routeMode) {
@@ -247,7 +296,8 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
   const routeOptions = { city: state.activeCity, profile: 'ordinary_walking_beta' };
   let routed;
   if (routeMode === 'auto-round-trip') {
-    const autoRoute = await routeAutoRoundTrip(stops, center, routeOptions);
+    const candidatePool = (seededStops?.length ? stops : nearbyAutoCandidates.length ? nearbyAutoCandidates : autoCandidates).slice(0, AUTO_ROUTE_MAX_CANDIDATES);
+    const autoRoute = await routeAutoRoundTrip(stops, center, routeOptions, { candidatePool, minutes, interests: interests() });
     routed = autoRoute.routed;
     stops = autoRoute.stops;
   } else {
