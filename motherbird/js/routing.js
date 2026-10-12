@@ -9,26 +9,28 @@ let workerReady = false;
 if (typeof window !== 'undefined') window.addEventListener('walking-cell-ready', ({ detail }) => { activeWalkingCell = detail; });
 
 export const ROUTE_FAILURE_MESSAGES = {
-  NO_NEARBY_PEDESTRIAN_EDGE: 'A start or destination is too far from the installed pedestrian network.',
-  ORIGIN_DISCONNECTED: 'The start is on a disconnected piece of the pedestrian network.',
-  DESTINATION_DISCONNECTED: 'The destination is on a disconnected piece of the pedestrian network.',
-  NO_ROUTE_IN_COMPONENT: 'Both points are near pedestrian geometry, but no connected route joins them.',
-  ROUTING_TIMEOUT: 'Offline routing timed out while loading or searching the cell.',
-  ROUTING_SEARCH_LIMIT: 'The installed routing shard is too large for a safe browser search.',
-  ROUTING_GRAPH_UNAVAILABLE: 'This routing graph could not be loaded or searched in the browser after a retry. Try again later or choose a nearby mapped cell.',
-  ROUTING_WORKER_ERROR: 'The offline routing worker stopped unexpectedly.',
-  GRAPH_ARTIFACT_MISMATCH: 'The installed routing artifact failed its integrity check.',
-  ACCESS_POLICY_BLOCKED: 'The installed geometry does not meet the selected access policy.',
-  ACCESSIBILITY_DATA_INSUFFICIENT: 'Ramp, stair, or grade evidence is insufficient for a verified accessible route.',
-  GRAPH_VERSION_UNAVAILABLE: 'We could not calculate that walk right now.',
-  NO_CELL_FOR_COORDINATE: 'One endpoint is outside the installed routing coverage. Pan to an installed area or choose a nearer point.',
-  CROSS_CELL_UNAVAILABLE: 'The selected points are in different routing cells that are not connected in the installed cell graph. Choose points inside the same mapped cell, or install the adjacent routing cell before retrying.',
-  BOUNDARY_STITCH_FAILED: 'Both points are mapped, but the pedestrian network does not have a verified handoff across their cell boundary. Try points on the same side of the boundary or choose a nearer crossing.',
-  INVALID_ROUTE_REQUEST: 'The route request could not be read.'
+  NO_NEARBY_PEDESTRIAN_EDGE: 'Choose a point a little closer to a mapped path.',
+  ORIGIN_DISCONNECTED: 'Choose a nearby point on a mapped path to start.',
+  DESTINATION_DISCONNECTED: 'Choose a nearby point on a mapped path to finish.',
+  NO_ROUTE_IN_COMPONENT: 'Try moving one or both points slightly onto a mapped path.',
+  ROUTING_TIMEOUT: 'The route is not ready yet. Try again in a moment.',
+  ROUTING_SEARCH_LIMIT: 'Try a shorter walk or a smaller map area.',
+  ROUTING_GRAPH_UNAVAILABLE: 'The route is not ready yet. Try again in a moment.',
+  ROUTING_WORKER_ERROR: 'The route is not ready yet. Try again in a moment.',
+  GRAPH_ARTIFACT_MISMATCH: 'The route is not available yet. Try again in a moment.',
+  ACCESS_POLICY_BLOCKED: 'That route is not available with the selected walking settings.',
+  ACCESSIBILITY_DATA_INSUFFICIENT: 'There is not enough accessibility information to verify that route.',
+  GRAPH_VERSION_UNAVAILABLE: 'The route is not ready yet. Try again in a moment.',
+  NO_CELL_FOR_COORDINATE: 'Choose points inside the mapped area or move them a little closer together.',
+  CROSS_CELL_UNAVAILABLE: 'Try a shorter walk or choose points inside the same mapped area.',
+  BOUNDARY_STITCH_FAILED: 'Try a slightly different crossing or choose points a little closer together.',
+  INVALID_ROUTE_REQUEST: 'We could not read that route request.'
 };
 
 export function routeFailureMessage(result) {
-  return result?.failure?.message || ROUTE_FAILURE_MESSAGES[result?.status] || 'We could not find a walkable route there. Try moving one or both points slightly onto a mapped path.';
+  // Worker messages are diagnostic data, not product copy. Prefer the stable
+  // status mapping after a retry so implementation details never leak into normal UI.
+  return ROUTE_FAILURE_MESSAGES[result?.status] || 'We could not find a walkable route there. Try moving one or both points slightly onto a mapped path.';
 }
 
 /**

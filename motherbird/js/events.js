@@ -9,8 +9,8 @@ import { city, poiTags, searchPois } from './poi.js';
 import { localSearchHits, searchRowHtml, emptySearchHtml } from './search.js';
 import { initRegionalNavigation } from './regional-navigation.js?v=20261011-fairfax-subregions-1';
 import { switchCity } from './city.js';
-import { generateTimeBasedPlan, lockSelectedPlanOnMap, changePlan, selectPlan, setPlanningMode } from './planner.js?v=20261011-auto-candidate-2';
-import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261011-cross-cell-stitch-2';
+import { generateTimeBasedPlan, lockSelectedPlanOnMap, changePlan, selectPlan, setPlanningMode } from './planner.js?v=20261011-auto-candidate-3';
+import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261011-cross-cell-stitch-3';
 import { coordinateLabel, resolveRoutePlaceLabel } from './route-place-labels.js?v=20261006-route-labels-1';
 import { paintWalkPlan, paintCard, previewCard, sendCurrentWalkPlan } from './field-guide.js?v=140-live-learn-by-me';
 import { wordCount } from './reflection.js';
@@ -373,6 +373,8 @@ function bindCompanionMenu() {
 }
 
 function renderWalkSketch(plan) {
+  // Keep the old generic "We could not find a walkable route there" wording
+  // out of the rendered failure path; internal statuses never reach users.
   if (!plan) return;
   setRouteFocusMode(true);
   el('sketchTitle').textContent = plan.title || 'Walk sketch';
@@ -415,12 +417,12 @@ function renderWalkSketch(plan) {
     const activeManeuver = el('activeManeuver');
     if (activeManeuver) {
       activeManeuver.dataset.routeId = plan.id;
-      activeManeuver.textContent = nextStep ? `Next: ${nextStep.text}${nextStep.distance_m ? ` · ${Math.round(nextStep.distance_m)} m` : ''}` : (plan.graphStatus ? `Route unavailable · ${plan.failureMessage || 'try a nearby mapped path'}` : 'Follow the mapped route.');
+      activeManeuver.textContent = nextStep ? `Next: ${nextStep.text}${nextStep.distance_m ? ` · ${Math.round(nextStep.distance_m)} m` : ''}` : (plan.graphStatus ? 'Choose a nearby mapped point to continue.' : 'Follow the mapped route.');
     }
     instructions.innerHTML = steps.length
       ? steps.map((step) => `<li>${escapeHtml(step.text)}${step.distance_m ? ` · ${Math.round(step.distance_m)} m` : ''}</li>`).join('')
       : `<li class="directions-unavailable">${escapeHtml(plan.graphStatus
-        ? plan.failureMessage || 'We could not find a walkable route there. Try moving one or both points slightly onto a mapped path.'
+        ? 'A route preview will appear when a walkable path is found.'
         : 'Turn-by-turn directions are not available for this route.')}</li>`;
   }
   // Once a route exists, clear the point-picking composer so the map and its

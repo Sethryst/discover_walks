@@ -2,7 +2,7 @@ import { state } from './state.js';
 import { setPlannerSelecting } from './planner-selection.js?v=20261004-planner-selection-1';
 import { CITIES } from './constants.js';
 import { poiTags } from './poi.js';
-import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261011-cross-cell-stitch-2';
+import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261011-cross-cell-stitch-3';
 import { escapeHtml } from './utils.js';
 import { toast } from './ui.js';
 import { buildAmbientExplanation, generateAmbientOptions, installAmbientLearningListener, readAmbientMemory } from './ambient-mip.js?v=20261007-walk-moods-1';
@@ -272,10 +272,11 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
     // Preserve both selected endpoints after a failed calculation so the
     // walker can retry or change one endpoint deliberately.
     setPlannerSelecting('End');
-    const detail = routed.failure?.reason || routed.failure?.message || routed.status;
-    toast(`We couldn't find a walkable route there. ${planningFailureMessage(routed, routeMode)}`);
+    toast(`We could not find a walkable route there. ${planningFailureMessage(routed, routeMode)}`);
   }
-  if (!routed.ok && routeMode !== 'point-to-point') toast(planningFailureMessage(routed, routeMode));
+  // Auto and round-trip modes already retry with simpler route shapes. Keep
+  // failed attempts quiet so internal graph boundaries do not become a user
+  // error stream; diagnostics remain available behind ?diagnose.
   const plan = {
     id: `concept-${Date.now()}`, title: title || (routeMode === 'point-to-point' ? 'A route to your destination' : `${CITIES[state.activeCity]?.name || 'Local'} ${minutes}-minute sketch`),
     reason: reason || conceptReason(stops), city: state.activeCity, routeMode, estimatedDurationMinutes: routed.ok ? Math.round(Number(routed.durationSeconds || 0) / 60) : minutes,
