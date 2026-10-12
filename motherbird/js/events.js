@@ -355,6 +355,9 @@ function bindLocationControls() {
 
 function bindCompanionMenu() {
   window.addEventListener('companion-menu-requested', () => {
+    const title = el('companionTitle'); if (title) title.textContent = 'Companion and Maps';
+    const kicker = document.querySelector('#companionSheet > .sheet-kicker'); if (kicker) kicker.textContent = 'WALKING COMPANION + MAPS';
+    const intro = document.querySelector('#companionSheet > p'); if (intro) intro.textContent = 'Choose what the map notices, how it behaves, and which offline-ready map layers stay available on this device.';
     const select = el('companionWalker');
     if (select) select.value = state.settings.companionWalker || 'inky';
     openSheet('companionSheet');
