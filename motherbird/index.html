@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="./vendor/leaflet-geoman/leaflet-geoman.css" />
   <link rel="stylesheet" href="./vendor/maplibre-gl.css" />
     <link rel="stylesheet" href="./styles.css?v=20261011-visual-workspace-2" />
-    <link rel="stylesheet" href="./radio.css?v=20261010-pipboy-terminal-1" />
+    <link rel="stylesheet" href="./radio.css?v=20261011-local-upload-1" />
   <link rel="stylesheet" href="./shell.css?v=4" />
   <link rel="stylesheet" href="./map-customization.css?v=1" />
   <link rel="stylesheet" href="./splash-fix.css?v=20261007-library-nav-fix-1" />
@@ -227,7 +227,8 @@
     <button class="close-sheet" id="radioCloseButton" type="button" aria-label="Close">×</button>
     <span class="sheet-kicker">WALKING BROADCAST · AMBIENT DISCOVERY</span><h2 id="radioTitle">Radio</h2>
     <p id="radioChannelDescription" class="radio-description">Start with one transmission. Listen, skip, and keep what stays with you.</p>
-    <fieldset class="radio-source-switches" aria-label="Broadcast sources"><legend>Sources</legend><label><input id="radioLiveSources" type="checkbox" /> Permissioned live broadcasts</label><label><input id="radioLocalSources" type="checkbox" checked /> Archive programs</label></fieldset>
+    <fieldset class="radio-source-switches" aria-label="Broadcast sources"><legend>Sources</legend><label><input id="radioLiveSources" type="checkbox" /> Permissioned live broadcasts</label><label><input id="radioLocalSources" type="checkbox" checked /> Local radio · archive programs and your audio</label></fieldset>
+    <div class="radio-local-upload"><label class="secondary-button import-label">＋ Add audio to local radio<input id="radioLocalUploadInput" type="file" accept="audio/*,.mp3,.m4a,.ogg,.wav,.webm,.flac" /></label><small>Stored privately on this device. It is not uploaded or shared.</small></div>
     <div class="radio-live-player hidden" id="radioLivePlayer" aria-live="polite"><div><small>LIVE SOUNDCLOUD</small><strong>Permissioned live broadcast</strong></div><label class="radio-live-picker">Find a playlist<input id="radioSoundcloudSearch" type="search" placeholder="Search 60 playlists…" autocomplete="off" /><span id="radioSoundcloudCount" aria-live="polite"></span></label><label class="radio-live-picker">Playlist<select id="radioSoundcloudSelect"></select></label><iframe id="radioSoundcloudFrame" title="SoundCloud live broadcast" allow="autoplay" loading="lazy"></iframe><label class="radio-live-picker">Track in this playlist<select id="radioSoundcloudTrackSelect"><option>Loading playlist tracks…</option></select><span id="radioSoundcloudTrackCount" aria-live="polite"></span></label></div>
     <div class="radio-console" id="radioPlayer" data-radio-state="paused">
       <div class="radio-on-air"><span class="radio-lamp" aria-hidden="true"></span><div><small id="radioStatus">paused</small><strong id="radioNowPlaying">No transmission selected</strong></div></div>

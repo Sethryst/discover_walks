@@ -26,3 +26,4 @@
 #radioPlayer>.radio-secondary-controls button{min-width:0;padding:8px 6px;font-size:.74rem;line-height:1.15}
 @media(max-width:520px){.radio-track-pickers,.radio-live-player{grid-template-columns:1fr}.radio-live-player>div,.radio-live-player iframe{grid-column:auto}.radio-live-player iframe{height:132px}.radio-source-switches{gap:6px}.radio-source-switches label{flex:1;justify-content:center}.radio-controls button{min-width:0}}
 .radio-place-prompt{display:grid;gap:5px;padding:5px 3px}.radio-place-prompt input,.radio-place-prompt textarea{width:100%;padding:7px;border:1px solid var(--radio-copper);border-radius:6px;background:var(--radio-cream);color:var(--radio-ink);font:600 .72rem Georgia,serif}
+.radio-local-upload{display:flex;align-items:center;gap:.65rem;flex-wrap:wrap;margin:.75rem 0 1rem;padding:.7rem;border:1px solid color-mix(in srgb,var(--ink-color,#332b24) 20%,transparent);border-radius:.65rem}.radio-local-upload small{opacity:.75}
