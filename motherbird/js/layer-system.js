@@ -413,7 +413,8 @@ function renderRouteLights() {
   if (!state.layerLights.recreation || state.layerFilters.public.__routes === false) return;
   routesInViewport().forEach((route) => {
     splitDisconnectedPaths(route.coordinates).forEach((coordinates) => {
-      const line = L.polyline(coordinates, { color: route.saved ? '#8b5e3c' : '#173c35', weight: route.saved ? 4 : 5, opacity: .82, dashArray: route.saved ? null : '9 6' });
+      const style = globalThis.__MOTHERBIRD_MAP_STYLE__;
+      const line = L.polyline(coordinates, { color: route.saved ? (style?.features?.recordedRoute || '#8b5e3c') : (style?.features?.discoveryRoute || '#173c35'), weight: route.saved ? 4 : 5, opacity: style?.features?.routeOpacity || .82, dashArray: route.saved ? null : '9 6', styleRole: route.saved ? 'recordedRoute' : 'discoveryRoute' });
       line.bindTooltip(escapeHtml(route.title || route.name || 'Saved walk'));
       if (route.saved) {
         line.bindPopup(`<div class="saved-walk-map-popup"><strong>${escapeHtml(route.title || 'Recorded walk')}</strong><small>Selecting this walk shows its saved route.</small><button type="button" class="danger-button" data-delete-recorded-walk="${escapeHtml(route.id)}">Delete walk</button></div>`);

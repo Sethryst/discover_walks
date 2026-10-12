@@ -186,10 +186,11 @@ export function paintWalkConcept(plan = state.plannedRoute, { fit = true } = {})
   // Use a contrasting casing so the route remains obvious over satellite,
   // OSM, and greenway basemaps instead of disappearing into dark map detail.
   if (mood === 'discovery') ensureDiscoveryGradient(state.map);
-  const routeColors = { direct: '#59C36A', discovery: 'url(#walkDiscoveryGradient)', quiet: '#168AAD' };
-  const casingColors = { direct: '#1f6b43', discovery: '#0d5570', quiet: '#123b72' };
-  const routeCasingLines = routePaths.map((coordinates) => L.polyline(coordinates, { pane: 'plannerRoutePane', color: casingColors[mood] || casingColors.direct, weight: 11, opacity: .98, lineCap: 'round', lineJoin: 'round', dashArray: mood === 'quiet' ? '10 8' : null }).addTo(state.map));
-  state.plannedRouteLines = routePaths.map((coordinates) => L.polyline(coordinates, { pane: 'plannerRoutePane', color: routeColors[mood] || routeColors.direct, weight: 8, opacity: 1, lineCap: 'round', lineJoin: 'round', dashArray: mood === 'quiet' ? '10 8' : null }).addTo(state.map));
+  const style = globalThis.__MOTHERBIRD_MAP_STYLE__;
+  const routeColors = { direct: style?.features?.plannedRoute || '#59C36A', discovery: style?.features?.discoveryRoute || '#168AAD', quiet: style?.features?.recordedRoute || '#168AAD' };
+  const casingColors = { direct: style?.appearance?.casing || '#1f6b43', discovery: style?.appearance?.casing || '#0d5570', quiet: style?.appearance?.casing || '#123b72' };
+  const routeCasingLines = routePaths.map((coordinates) => L.polyline(coordinates, { pane: 'plannerRoutePane', color: casingColors[mood] || casingColors.direct, weight: 11, opacity: .98, lineCap: 'round', lineJoin: 'round', dashArray: mood === 'quiet' ? '10 8' : null, styleRole: 'plannedCasing' }).addTo(state.map));
+  state.plannedRouteLines = routePaths.map((coordinates) => L.polyline(coordinates, { pane: 'plannerRoutePane', color: routeColors[mood] || routeColors.direct, weight: style?.features?.routeWidth || 8, opacity: style?.features?.routeOpacity || 1, lineCap: 'round', lineJoin: 'round', dashArray: mood === 'quiet' ? '10 8' : null, styleRole: 'plannedRoute' }).addTo(state.map));
   [...routeCasingLines, ...state.plannedRouteLines].forEach((line) => line.bringToFront());
   state.plannerRouteCasingLines = routeCasingLines;
   // Gap overlays are optional diagnostics. Keep the slot explicit even when

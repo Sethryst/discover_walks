@@ -231,7 +231,8 @@ export function renderCityPois({ preserveInteraction = true } = {}) {
   if (state.layerLights?.recreation && state.layerFilters?.public?.trail !== false) {
     segments.forEach((segment) => segment.coordinates.forEach((coordinates) => {
       const simplified = simplifyTrailPath(coordinates);
-      L.polyline(simplified.map(([lng, lat]) => [lat, lng]), { color: '#2d7259', weight: 5, opacity: .82, smoothFactor: 0.6 }).bindTooltip(segment.name || 'Named trail').addTo(state.trailLayer);
+      const color = globalThis.__MOTHERBIRD_MAP_STYLE__?.appearance?.road || '#2d7259';
+      L.polyline(simplified.map(([lng, lat]) => [lat, lng]), { color, weight: 5, opacity: .82, smoothFactor: 0.6, styleRole: 'trail' }).bindTooltip(segment.name || 'Named trail').addTo(state.trailLayer);
     }));
   }
   // Enrichment can arrive while someone is reading a place. Reopen the same

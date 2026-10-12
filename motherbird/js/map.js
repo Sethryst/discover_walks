@@ -591,7 +591,10 @@ export async function activateInstalledBasemap(region) {
       state.installedBasemapMap.jumpTo({ center: [next.lng, next.lat], zoom: mapLibreZoom(), bearing: 0, pitch: 0 });
     };
     state.map.on('move zoom', state.installedBasemapSync);
-    state.installedBasemapMap.once('load', state.installedBasemapSync);
+    state.installedBasemapMap.once('load', () => {
+      state.installedBasemapSync();
+      window.dispatchEvent(new CustomEvent('map-vector-renderer-ready', { detail: { map: state.installedBasemapMap } }));
+    });
     return true;
   } catch (error) {
     state.nationalPoiSuppressed = false;
@@ -634,6 +637,7 @@ async function activateFieldEdition(edition) {
       preserveDrawingBuffer: false
     });
     state.fieldEditionMap.addControl(new globalThis.maplibregl.NavigationControl({ showCompass: false }), 'bottom-right');
+    state.fieldEditionMap.once('load', () => window.dispatchEvent(new CustomEvent('map-vector-renderer-ready', { detail: { map: state.fieldEditionMap } })));
   } catch (error) {
     console.error('Unable to open Field Edition PMTiles:', error);
     toast('The installed Field Edition map could not be opened.');

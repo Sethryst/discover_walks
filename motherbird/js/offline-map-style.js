@@ -46,3 +46,21 @@ export function installedTileStyle(sourceUrl, presetId = DEFAULT_OFFLINE_PRESET)
     ]
   };
 }
+
+// Paint properties shared by the installed PMTiles and Field Edition vector
+// renderers. The online Street and Topographic layers are raster tiles and do
+// not expose these feature properties for editing.
+export function installedStylePaint(style) {
+  const c = style?.appearance || {};
+  return {
+    paper: { 'background-color': c.surface },
+    landuse: { 'fill-color': c.land },
+    landcover: { 'fill-color': c.park },
+    park: { 'fill-color': c.park },
+    water: { 'fill-color': c.water },
+    waterway: { 'line-color': c.water },
+    building: { 'fill-color': c.building, 'fill-outline-color': c.casing },
+    'roads-casing': { 'line-color': c.casing },
+    roads: { 'line-color': c.road }
+  };
+}

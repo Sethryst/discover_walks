@@ -88,7 +88,7 @@ export function addWalkPoint(point) {
   detections.forEach((event) => void recordWalkEvent(event.type, event.location, event.metadata, event.timestamp));
   void detectWaterJourneysForSegment(last, smoothed);
 
-  if (!state.routeLine) state.routeLine = L.polyline([], { color: '#168cff', weight: 8, opacity: 1, lineCap: 'round', lineJoin: 'round' }).addTo(state.map);
+  if (!state.routeLine) { const style = globalThis.__MOTHERBIRD_MAP_STYLE__; state.routeLine = L.polyline([], { color: style?.features?.recordedRoute || '#168cff', weight: style?.features?.routeWidth || 8, opacity: style?.features?.routeOpacity || 1, lineCap: 'round', lineJoin: 'round', styleRole: 'recordedRoute' }).addTo(state.map); }
   state.routeLine.addLatLng([smoothed.lat, smoothed.lng]);
   if (isLocationSimulatorEnabled() && walk.points.length > 1 && state.map?.fitBounds) {
     state.map.fitBounds(state.routeLine.getBounds(), { padding: [90, 90], maxZoom: 18, animate: false });
@@ -386,7 +386,7 @@ export async function recoverWalkDraft() {
   if (!draft?.walk || !['recording', 'stopped'].includes(draft.walk.recordingStatus)) return null;
   state.activeWalk = normalizeWalkArtifact(draft.walk);
   state.routeLine?.remove();
-  state.routeLine = L.polyline(state.activeWalk.points.map((point) => [point.lat, point.lng]), { color: '#245448', weight: 5, opacity: .85 }).addTo(state.map);
+  const style = globalThis.__MOTHERBIRD_MAP_STYLE__; state.routeLine = L.polyline(state.activeWalk.points.map((point) => [point.lat, point.lng]), { color: style?.features?.recordedRoute || '#245448', weight: style?.features?.routeWidth || 5, opacity: style?.features?.routeOpacity || .85, styleRole: 'recordedRoute' }).addTo(state.map);
   ensurePauseButton();
   el('walkButton').setAttribute('disabled', '');
   el('endWalkButton').classList.remove('hidden');
