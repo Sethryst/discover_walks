@@ -271,17 +271,17 @@ export function paintHistoricalTopo({ map, leaflet, era = null }) {
   const fallbackPane = leaflet.DomUtil.create('div', 'historical-topo-fallback', mapContainer);
   Object.assign(fallbackPane.style, { position: 'absolute', inset: '0', zIndex: '450', pointerEvents: 'none', overflow: 'hidden' });
   fallbackPane.replaceChildren();
-  const layer = leaflet.gridLayer({ opacity: 1, pane: 'historicalTopoPane', tileSize: 512, attribution: 'USGS Historical Topographic Map Collection', maxNativeZoom: 19, updateWhenIdle: false, keepBuffer: 2 });
+  const layer = leaflet.gridLayer({ opacity: 1, pane: 'historicalTopoPane', tileSize: 512, attribution: 'USGS Historical Topographic Map Collection', maxNativeZoom: 19, updateWhenIdle: true, updateWhenZooming: false, updateInterval: 120, keepBuffer: 2 });
   let total = 0; let done = 0; let failures = 0;
   layer.createTile = (coords, finish) => {
-    const image = document.createElement('img'); image.alt = ''; image.width = 512; image.height = 512;
+    const image = document.createElement('img'); image.alt = ''; image.width = 512; image.height = 512; image.decoding = 'async';
     const scale = 2 ** Math.max(0, coords.z - 1);
     const extent = 20037508.342789244;
     const west = -extent + coords.x / scale * extent * 2;
     const east = -extent + (coords.x + 1) / scale * extent * 2;
     const north = extent - coords.y / scale * extent * 2;
     const south = extent - (coords.y + 1) / scale * extent * 2;
-    const queryParams = { bbox: `${west},${south},${east},${north}`, bboxSR: '3857', imageSR: '3857', size: '1024,1024', dpi: '300', compressionQuality: '100', format: 'png', interpolation: 'RSP_NearestNeighbor', f: 'image' };
+    const queryParams = { bbox: `${west},${south},${east},${north}`, bboxSR: '3857', imageSR: '3857', size: '1024,1024', dpi: '200', compressionQuality: '88', format: 'jpg', interpolation: 'RSP_NearestNeighbor', f: 'image' };
     if (era) queryParams.time = era;
     const params = new URLSearchParams(queryParams);
     total += 1; setTopoProgress(done, total); setTopoStatus(`Rendering historic maps in the background… ${done} of ${total} images ready`);
@@ -309,18 +309,18 @@ export function paintHistoricalTopo({ map, leaflet, era = null }) {
   mapContainer.addEventListener('wheel', retainVisibleTiles, { capture: true, passive: true });
   mapContainer.addEventListener('touchstart', retainVisibleTiles, { capture: true, passive: true });
   mapContainer.addEventListener('dblclick', retainVisibleTiles, true);
-  map.on('zoomstart', retainVisibleTiles);
+  map.on('movestart', retainVisibleTiles);
   layer.on('load', () => fallbackPane.replaceChildren());
   const keepBaseHidden = ({ layer: added }) => {
     if (added === basemap && map.hasLayer(layer)) map.removeLayer(basemap);
   };
   map.on('layeradd', keepBaseHidden);
-  layer.on('remove', () => { map.off('layeradd', keepBaseHidden); map.off('zoomstart', retainVisibleTiles); mapContainer.removeEventListener('wheel', retainVisibleTiles, true); mapContainer.removeEventListener('touchstart', retainVisibleTiles, true); mapContainer.removeEventListener('dblclick', retainVisibleTiles, true); fallbackPane.replaceChildren(); });
+  layer.on('remove', () => { map.off('layeradd', keepBaseHidden); map.off('movestart', retainVisibleTiles); mapContainer.removeEventListener('wheel', retainVisibleTiles, true); mapContainer.removeEventListener('touchstart', retainVisibleTiles, true); mapContainer.removeEventListener('dblclick', retainVisibleTiles, true); fallbackPane.replaceChildren(); });
   const control = leaflet.control({ position: 'bottomright' });
   const toggle = () => {
     const on = map.hasLayer(layer);
     if (on) { map.removeLayer(layer); if (basemap && navigator.onLine !== false) basemap.addTo(map); setTopoStatus('Historic topo is off. Your base map is visible.'); }
-    else { if (basemap && map.hasLayer(basemap)) map.removeLayer(basemap); layer.addTo(map); map.on('layeradd', keepBaseHidden); map.on('zoomstart', retainVisibleTiles); mapContainer.addEventListener('wheel', retainVisibleTiles, { capture: true, passive: true }); mapContainer.addEventListener('touchstart', retainVisibleTiles, { capture: true, passive: true }); mapContainer.addEventListener('dblclick', retainVisibleTiles, true); setTopoStatus('Rendering historic maps in the background…'); }
+    else { if (basemap && map.hasLayer(basemap)) map.removeLayer(basemap); layer.addTo(map); map.on('layeradd', keepBaseHidden); map.on('movestart', retainVisibleTiles); mapContainer.addEventListener('wheel', retainVisibleTiles, { capture: true, passive: true }); mapContainer.addEventListener('touchstart', retainVisibleTiles, { capture: true, passive: true }); mapContainer.addEventListener('dblclick', retainVisibleTiles, true); setTopoStatus('Rendering historic maps in the background…'); }
     for (const button of [control.getContainer()?.querySelector('[data-historical-topo-toggle]'), document.querySelector('[data-historical-topo-panel-toggle]')]) {
       if (!button) continue;
       button.setAttribute('aria-pressed', String(!on));

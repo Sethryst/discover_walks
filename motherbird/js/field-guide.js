@@ -10,7 +10,7 @@ import db from './storage.js';
 import { isVisiblePoi, selectImportantPois } from './poi.js';
 import { placeLight, publicPlaceSource, walkerDetails } from './place-details.js';
 import { installedPackBounds } from './offline-view.js';
-import { isHistorySite, renderLearnHistory, setLearnView, setLearnScreen, setActiveWatershed, setBattlefieldEra, setBattlefieldYear, setBattlefieldSite, stepBattlefieldBack, setActiveLensItem, paintHistoricalTopo, stopHistoricalTopo, setLearnNearbyOnly } from './learn-history.js';
+import { isHistorySite, renderLearnHistory, setLearnView, setLearnScreen, setActiveWatershed, setBattlefieldEra, setBattlefieldYear, setBattlefieldSite, stepBattlefieldBack, setActiveLensItem, paintHistoricalTopo, stopHistoricalTopo, setLearnNearbyOnly } from './learn-history.js?v=20261011-historic-topo-1';
 import { setPoiVisited } from './poi-visit-tracking.js';
 import { addWalkWaypoint, startWalk } from './walk.js';
 import { initMapsFolders, renderMapsLibrary } from './maps-folders.js';

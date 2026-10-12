@@ -1,7 +1,7 @@
 // Keep the whole module graph with the shell. Caching only app.js leaves an
 // offline (or briefly disconnected) reload with a blank app when any imported
 // module was not already in the runtime cache.
-const APP_CACHE = 'walk-wildlife-shell-v430'; // Keep large regional enrichment out of startup
+const APP_CACHE = 'walk-wildlife-shell-v431'; // Keep large regional enrichment out of startup
 const TILE_CACHE = 'walk-wildlife-map-tiles-v2';
 const LIBRARY_CACHE = 'walk-wildlife-library-v2';
 const COMPANION_CACHE = 'walk-wildlife-companion-media-v2';
@@ -121,7 +121,7 @@ self.addEventListener('activate', (event) => event.waitUntil(
 
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
-  const isMapTile = new Set(['a.tile.openstreetmap.org', 'b.tile.openstreetmap.org', 'c.tile.openstreetmap.org', 'a.tile.openstreetmap.fr', 'b.tile.openstreetmap.fr', 'c.tile.openstreetmap.fr', 'a.tile.opentopomap.org', 'b.tile.opentopomap.org', 'c.tile.opentopomap.org', 'basemap.nationalmap.gov']).has(url.hostname);
+  const isMapTile = new Set(['a.tile.openstreetmap.org', 'b.tile.openstreetmap.org', 'c.tile.openstreetmap.org', 'a.tile.openstreetmap.fr', 'b.tile.openstreetmap.fr', 'c.tile.openstreetmap.fr', 'a.tile.opentopomap.org', 'b.tile.opentopomap.org', 'c.tile.opentopomap.org', 'basemap.nationalmap.gov', 'historical1.arcgis.com']).has(url.hostname);
 
   // PMTiles manages its own bounded byte-range reads. Never place an archive
   // response (partial or complete) in a service-worker cache.
