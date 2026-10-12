@@ -1037,3 +1037,68 @@ body[data-storage-state="temporary"]:after{content:'Temporary device storage';po
   .map-workspace-panel > header > .map-workspace-header-actions { display: flex !important; align-items: center; gap: 4px; margin-left: auto; }
   .map-workspace-panel > [data-map-panel] { inset: 105px 0 0; }
 }
+
+/* Keep the editor actions together: every drawing action stays available in
+   one compact row, which leaves the map and saved-annotation list visible. */
+.map-workspace-panel[data-destination="draw"] .draw-shapes {
+  display: grid !important;
+  grid-template-columns: repeat(8, minmax(0, 1fr)) !important;
+  gap: 4px !important;
+  padding: 0 0 8px !important;
+  overflow: visible !important;
+}
+.map-workspace-panel[data-destination="draw"] .draw-shapes button {
+  display: grid !important;
+  place-items: center !important;
+  gap: 2px !important;
+  min-width: 0 !important;
+  min-height: 42px !important;
+  padding: 4px 2px !important;
+  font-size: .56rem !important;
+}
+.map-workspace-panel[data-destination="draw"] .draw-shapes button[data-draw-shape] {
+  display: grid !important;
+}
+body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes button[data-draw-shape] {
+  display: grid !important;
+}
+body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
+  grid-template-columns: repeat(8, minmax(0, 1fr)) !important;
+}
+.map-workspace-panel[data-destination="draw"] .draw-shapes button span:last-child {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.map-workspace-panel[data-destination="draw"] .draw-shapes .draw-tool-icon {
+  width: 19px;
+  height: 19px;
+}
+.map-workspace-panel[data-destination="draw"] > [data-map-panel="draw"] {
+  max-height: calc(100dvh - 188px) !important;
+}
+.map-workspace-panel[data-destination="draw"] .draw-pin-grid {
+  grid-template-columns: repeat(8, minmax(0, 1fr)) !important;
+  gap: 4px !important;
+}
+.map-workspace-panel[data-destination="draw"] .draw-pin-grid button {
+  min-height: 36px !important;
+  padding: 3px 1px !important;
+  font-size: 0 !important;
+}
+.map-workspace-panel[data-destination="draw"] .draw-pin-grid button > span:first-child {
+  font-size: 1rem !important;
+}
+.map-workspace-panel[data-destination="draw"] .draw-pin-grid button > span:last-child {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
