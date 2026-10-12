@@ -1015,3 +1015,10 @@ body[data-storage-state="temporary"]:after{content:'Temporary device storage';po
 @keyframes user-location-pulse { 0%, 100% { box-shadow: 0 0 0 3px #1976d2, 0 0 0 6px rgba(25,118,210,.2), 0 2px 9px rgba(0,0,0,.42); } 55% { box-shadow: 0 0 0 3px #1976d2, 0 0 0 11px rgba(25,118,210,0), 0 2px 9px rgba(0,0,0,.42); } }
 .coverage-badge{display:inline-block;margin-left:5px;padding:2px 6px;border-radius:999px;font-size:.65rem;font-weight:700}.coverage-badge--rich{background:#dff1df;color:#1d633e}.coverage-badge--sparse{background:#fff0c7;color:#795400}.coverage-badge--historical{background:#e9e5f5;color:#55447d}
 .map-workspace-panel > header .map-workspace-header-actions button { display: grid !important; font-size: .72rem !important; }
+
+@media (min-width: 721px) {
+  .map-dock { top: 56px; }
+  .map-workspace-panel > header { height: 56px; padding: 10px 18px; }
+  .map-workspace-panel > header > .map-workspace-header-actions { display: flex !important; align-items: center; gap: 4px; margin-left: auto; }
+  .map-workspace-panel > [data-map-panel] { inset: 105px 0 0; }
+}
