@@ -33,6 +33,7 @@ import { initRegionalNavigation } from './regional-navigation.js?v=20261011-fair
 import { initStorageDiagnostics } from './storage-diagnostics.js';
 import { loadWorkspaceState, initWorkspaceRuntime, seedWorkspaceDemo } from './workspace.js';
 import { normalizeSavedRoute } from './saved-routes.js';
+import { initMapSettings } from './map-settings.js';
 
 export async function init() {
   const telemetry = (stage, details = {}) => globalThis.__MOTHERBIRD_STARTUP_MARK__?.(stage, details);
@@ -159,6 +160,7 @@ export async function init() {
   telemetry('controls');
   initStories();
   initPrimaryShell();
+  initMapSettings();
   initFieldGuideFilters();
   initBiodiversity();
 

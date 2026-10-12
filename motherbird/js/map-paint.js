@@ -329,6 +329,15 @@ export async function initMapPaint() {
     layer.remove();
   });
   window.addEventListener('local-drawings-changed', () => void renderMapDrawings());
+  window.addEventListener('map-drawings-visibility-requested', ({ detail }) => {
+    const visible = detail?.visible !== false;
+    for (const item of state.localDrawings || []) {
+      if (visible) hiddenArtifacts.delete(item.id);
+      else hiddenArtifacts.add(item.id);
+    }
+    saveHiddenArtifacts();
+    void renderMapDrawings();
+  });
   window.addEventListener('city-layer-data-changed', () => void renderMapDrawings());
   window.addEventListener('layer-state-dirty', renderSpatialQuery);
   window.addEventListener('spatial-query-restore-requested', ({ detail }) => restoreSpatialQuery(detail?.query));
