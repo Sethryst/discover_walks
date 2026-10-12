@@ -5,6 +5,7 @@ import { WalkingCellRegistry } from '../js/walking-cell-registry.js';
 import { findCellPath } from '../js/routing.js';
 
 const routing = await readFile(new URL('../js/routing.js', import.meta.url), 'utf8');
+const runtimeRouter = await readFile(new URL('../js/runtime-router.mjs', import.meta.url), 'utf8');
 const planner = await readFile(new URL('../js/planner.js', import.meta.url), 'utf8');
 const events = await readFile(new URL('../js/events.js', import.meta.url), 'utf8');
 const map = await readFile(new URL('../js/map.js', import.meta.url), 'utf8');
@@ -17,6 +18,8 @@ test('routing exposes specific cross-cell and boundary failure classes', () => {
   assert.match(routing, /NO_CELL_FOR_COORDINATE/);
   assert.match(routing, /maxVisitedNodes: 300000/);
   assert.match(routing, /requestRouteWithRetry/);
+  assert.match(runtimeRouter, /nearestEdges/);
+  assert.match(runtimeRouter, /_allowEndpointAlternatives/);
   assert.match(routing, /routeFailureMessage/);
   assert.match(routing, /ROUTING_GRAPH_UNAVAILABLE/);
   assert.match(routing, /after a retry/);

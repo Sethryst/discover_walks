@@ -37,18 +37,25 @@ export function routeRuntimeGraph(runtime, request, { maxSnapMeters = 150 } = {}
       }
     });
   }
-  const start = nearestEdge(runtime, origin, profileBit, maxSnapMeters);
-  const end = nearestEdge(runtime, destination, profileBit, maxSnapMeters);
-  if (!start || !end) {
+  const allowEndpointAlternatives = request._allowEndpointAlternatives === true;
+  const candidateLimit = allowEndpointAlternatives ? 6 : 1;
+  const startCandidates = nearestEdges(runtime, origin, profileBit, maxSnapMeters, candidateLimit);
+  const endCandidates = nearestEdges(runtime, destination, profileBit, maxSnapMeters, candidateLimit);
+  const start = startCandidates[0];
+  const end = endCandidates[0];
+  const usableStarts = startCandidates.filter((snap) => !avoidEdges.has(String(edgeId(runtime, snap.edge_index))));
+  const usableEnds = endCandidates.filter((snap) => !avoidEdges.has(String(edgeId(runtime, snap.edge_index))));
+  if (!usableStarts.length || !usableEnds.length) {
+    if (!allowEndpointAlternatives && (nearestEdges(runtime, origin, profileBit, maxSnapMeters, 6).length > 1 || nearestEdges(runtime, destination, profileBit, maxSnapMeters, 6).length > 1)) {
+      return routeRuntimeGraph(runtime, { ...request, _allowEndpointAlternatives: true }, { maxSnapMeters });
+    }
     const accessibilityBlocked = profile === 'accessible_verified'
-      && nearestEdge(runtime, start ? destination : origin, PROFILE_BITS.ordinary_walking_beta, maxSnapMeters);
+      && nearestEdge(runtime, !usableStarts.length ? origin : destination, PROFILE_BITS.ordinary_walking_beta, maxSnapMeters);
     return failure(accessibilityBlocked ? 'ACCESSIBILITY_DATA_INSUFFICIENT' : 'ACCESS_POLICY_BLOCKED', runtime, {
       profile,
-      blocked_endpoint: !start ? 'origin' : 'destination'
+      blocked_endpoint: !usableStarts.length ? 'origin' : 'destination'
     });
   }
-  if (avoidEdges.has(String(edgeId(runtime, start.edge_index))) || avoidEdges.has(String(edgeId(runtime, end.edge_index)))) return failure('ACCESS_POLICY_BLOCKED', runtime, { reason: 'avoid_edges_intersect_endpoint' });
-  if (start.edge_index === end.edge_index) return sameEdgeRoute(runtime, start, end, profile);
 
   // Binary cells already carry adjacency. Rebuilding a second array of
   // 1.5M node buckets here can exhaust a browser worker before routing starts;
@@ -59,12 +66,17 @@ export function routeRuntimeGraph(runtime, request, { maxSnapMeters = 150 } = {}
   const queue = new MinHeap();
   const maxVisitedNodes = Number.isFinite(Number(request.maxVisitedNodes)) ? Number(request.maxVisitedNodes) : Infinity;
   let visitedNodes = 0;
-  for (const seed of endpointCosts(runtime, start)) {
+  for (const snap of usableStarts) for (const seed of endpointCosts(runtime, snap)) {
+    if (seed.cost_m >= (distance.get(seed.node_index) ?? Infinity)) continue;
     distance.set(seed.node_index, seed.cost_m);
     previous.set(seed.node_index, { start_seed: seed });
     queue.push({ node_index: seed.node_index, cost_m: seed.cost_m, priority_m: seed.cost_m + heuristicMeters(runtime, seed.node_index, destination) });
   }
-  const goals = new Map(endpointCosts(runtime, end).map((goal) => [goal.node_index, goal]));
+  const goals = new Map();
+  for (const snap of usableEnds) for (const goal of endpointCosts(runtime, snap)) {
+    const previousGoal = goals.get(goal.node_index);
+    if (!previousGoal || goal.cost_m < previousGoal.cost_m) goals.set(goal.node_index, goal);
+  }
   let bestGoal = null;
   while (queue.size) {
     const current = queue.pop();
@@ -90,9 +102,14 @@ export function routeRuntimeGraph(runtime, request, { maxSnapMeters = 150 } = {}
       for (const step of adjacency[current.node_index] || []) relax(step.edge_index, step.node_index);
     }
   }
-  if (!bestGoal) return failure('NO_ROUTE_IN_COMPONENT', runtime, {
+  if (!bestGoal) {
+    if (!allowEndpointAlternatives && (nearestEdges(runtime, origin, profileBit, maxSnapMeters).length > 1 || nearestEdges(runtime, destination, profileBit, maxSnapMeters).length > 1)) {
+      return routeRuntimeGraph(runtime, { ...request, _allowEndpointAlternatives: true }, { maxSnapMeters });
+    }
+    return failure('NO_ROUTE_IN_COMPONENT', runtime, {
     profile, origin_edge_id: edgeId(runtime, start.edge_index), destination_edge_id: edgeId(runtime, end.edge_index)
-  });
+    });
+  }
 
   const steps = [];
   let cursor = bestGoal.node_index;
@@ -103,14 +120,14 @@ export function routeRuntimeGraph(runtime, request, { maxSnapMeters = 150 } = {}
   }
   steps.reverse();
   const startSeed = previous.get(cursor).start_seed;
-  const coordinates = partialToEndpoint(runtime, start, startSeed.node_index);
+  const coordinates = partialToEndpoint(runtime, startSeed.snap, startSeed.node_index);
   for (const step of steps) appendCoordinates(coordinates, orientedEdgeCoordinates(runtime, step.edge_index, step.from));
-  appendCoordinates(coordinates, partialFromEndpoint(runtime, end, bestGoal.node_index));
-  const edgeIndexes = unique([start.edge_index, ...steps.map((step) => step.edge_index), end.edge_index]);
+  appendCoordinates(coordinates, partialFromEndpoint(runtime, bestGoal.snap, bestGoal.node_index));
+  const edgeIndexes = unique([startSeed.snap.edge_index, ...steps.map((step) => step.edge_index), bestGoal.snap.edge_index]);
   if (edgeIndexes.some((index) => avoidEdges.has(String(edgeId(runtime, index))))) {
     return failure('ACCESS_POLICY_BLOCKED', runtime, { reason: 'avoid_edges_intersect_route' });
   }
-  return routeResponse(runtime, profile, coordinates, edgeIndexes, bestGoal.cost_m, start, end);
+  return routeResponse(runtime, profile, coordinates, edgeIndexes, bestGoal.cost_m, startSeed.snap, bestGoal.snap);
 }
 
 function sameEdgeRoute(runtime, start, end, profile) {
@@ -180,6 +197,10 @@ function bearing(from, to) {
 function normalizeBearingDelta(from, to) { return ((to - from + 540) % 360) - 180; }
 
 function nearestEdge(runtime, coordinate, profileBit, maxSnapMeters) {
+  return nearestEdges(runtime, coordinate, profileBit, maxSnapMeters, 1)[0] || null;
+}
+
+function nearestEdges(runtime, coordinate, profileBit, maxSnapMeters, limit = 6) {
   const lonE7 = Math.round(coordinate[0] * 1e7); const latE7 = Math.round(coordinate[1] * 1e7);
   const size = runtime.spatial_index.cell_size_e7;
   const cellX = Math.floor(lonE7 / size); const cellY = Math.floor(latE7 / size);
@@ -199,17 +220,17 @@ function nearestEdge(runtime, coordinate, profileBit, maxSnapMeters) {
   if (!candidates.size && edgeCount) {
     for (let edgeIndex = 0; edgeIndex < edgeCount; edgeIndex += 1) candidates.add(edgeIndex);
   }
-  let best = null;
+  const matches = [];
   const consider = (edgeIndex) => {
     if (profileBit !== null && !(edgeValue(runtime, edgeIndex, 6) & profileBit)) return;
     const projected = projectOnLine(coordinate, edgeCoordinates(runtime, edgeIndex));
-    if ((!best || projected.distance_m < best.distance_m) && projected.distance_m <= maxSnapMeters) best = { ...projected, edge_index: edgeIndex };
+    if (projected.distance_m <= maxSnapMeters) matches.push({ ...projected, edge_index: edgeIndex });
   };
   for (const edgeIndex of candidates) consider(edgeIndex);
-  if (!best && edgeCount) {
+  if (!matches.length && edgeCount) {
     for (let edgeIndex = 0; edgeIndex < edgeCount; edgeIndex += 1) consider(edgeIndex);
   }
-  return best;
+  return matches.sort((left, right) => left.distance_m - right.distance_m || left.edge_index - right.edge_index).filter((match, index, all) => index === all.findIndex((candidate) => candidate.edge_index === match.edge_index)).slice(0, limit);
 }
 
 function projectOnLine(pointValue, coordinates) {
@@ -232,7 +253,7 @@ function projectOnLine(pointValue, coordinates) {
 
 function endpointCosts(runtime, snap) {
   const length = edgeValue(runtime, snap.edge_index, 3) / 100;
-  return [{ node_index: edgeValue(runtime, snap.edge_index, 1), cost_m: length * snap.fraction }, { node_index: edgeValue(runtime, snap.edge_index, 2), cost_m: length * (1 - snap.fraction) }];
+  return [{ node_index: edgeValue(runtime, snap.edge_index, 1), cost_m: length * snap.fraction, snap }, { node_index: edgeValue(runtime, snap.edge_index, 2), cost_m: length * (1 - snap.fraction), snap }];
 }
 
 function edgeCoordinates(runtime, edgeIndex) {

@@ -1,4 +1,4 @@
-import { routeRuntimeGraph } from './runtime-router.mjs?v=20261007-ambient-routing-1';
+import { routeRuntimeGraph } from './runtime-router.mjs?v=20261011-routing-candidates-1';
 import { WalkingCellCache } from './walking-cell-cache.js';
 
 
