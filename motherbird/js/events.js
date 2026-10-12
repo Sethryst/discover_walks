@@ -25,7 +25,8 @@ import { initMessengerBird } from './messenger-bird.js';
 import { restartCoachMarks } from './coach.js';
 import { ensurePlannedRouteSaved } from './saved-routes.js';
 import { recordSessionRoutingOutcome } from './routing-feedback.js';
-import { openRoomForPlace } from './room-runtime.js';
+import { openRoomForPlace, currentRoomPlace } from './room-runtime.js';
+import { addPlaceToJournalRoom } from './journal-room.js';
 import { buildInWalkSuggestion, buildRouteRecommendations } from './ambient-mip.js?v=20261007-walk-moods-1';
 import { renderPersonalPlacesPanel } from './personal-places.js';
 import { renderWorkspacePanel } from './workspace.js';
@@ -57,6 +58,11 @@ export function initEvents() {
   window.addEventListener('room-sheet-open-requested', () => openSheet('roomSheet'));
   el('roomAudioButton')?.addEventListener('click', () => void openGeoCypher());
   el('roomJournalButton')?.addEventListener('click', () => void openJournal());
+  el('roomAddToJournalButton')?.addEventListener('click', async () => {
+    const result = await addPlaceToJournalRoom(currentRoomPlace());
+    toast(result.added ? 'Added to your Journal Room.' : 'Already in your Journal Room.');
+    if (result.added) void openJournal();
+  });
   el('roomRadioButton')?.addEventListener('click', () => {
     const title = document.getElementById('roomTitle');
     let stationIds = [];

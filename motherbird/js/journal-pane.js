@@ -4,6 +4,7 @@ import { el, escapeHtml, uid } from './utils.js';
 import db from './storage.js';
 import { displayPoiName, isOsmPoi, isVisiblePoi, poiObeysMapLights } from './poi.js';
 import { WALK_QUOTES } from './reflection.js';
+import { initJournalRoom } from './journal-room.js';
 
 const SHEET_STATES = ['collapsed', 'half', 'expanded'];
 
@@ -57,6 +58,7 @@ export function contextualNearbyPlaces(candidates, limit = 6) {
 }
 
 export function initJournalPane() {
+  initJournalRoom();
   const handle = el('journalDragHandle');
   const journal = el('persistentJournal');
   if (!handle || !journal) return;

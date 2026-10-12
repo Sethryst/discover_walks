@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="./vendor/leaflet-markercluster/MarkerCluster.Default.css" />
   <link rel="stylesheet" href="./vendor/leaflet-geoman/leaflet-geoman.css" />
   <link rel="stylesheet" href="./vendor/maplibre-gl.css" />
-  <link rel="stylesheet" href="./styles.css?v=20261012-poi-annotation-dnd-1" />
+  <link rel="stylesheet" href="./styles.css?v=20261012-journal-room-1" />
     <link rel="stylesheet" href="./radio.css?v=20261011-local-upload-1" />
   <link rel="stylesheet" href="./shell.css?v=20261011-me-panel-shell-1" />
   <link rel="stylesheet" href="./map-customization.css?v=20261012-map-studio-2" />
@@ -99,6 +99,7 @@
         <section id="longPauseQuotes" class="long-pause-quotes hidden" aria-live="polite"></section>
       <div class="journal-tool-row"><button id="journalTranscribeButton" type="button" aria-pressed="false">Transcribe</button><button id="observeButton" type="button">Observe</button><button id="journalNearbyButton" type="button" aria-expanded="false">Nearby</button><button id="journalRecordButton" type="button" aria-pressed="false">Record</button></div>
       <output id="journalMicStatus" class="journal-tool-status" aria-live="polite">Transcribe makes text. Record saves a private voice file.</output>
+      <section id="journalRoomPanel" class="journal-room-panel" aria-label="Journal Room"></section>
       <section id="nearbyList" class="hidden" aria-label="Nearby places"></section>
       <section id="journalHistoryList" class="journal-history-list" aria-label="Journal history, newest first"></section>
     </div>
@@ -240,7 +241,7 @@
     </div><p class="radio-note"><span id="radioStationCount">0 stations available</span> · Favorites stay available in the soundtrack library.</p>
   </section>
   <aside class="radio-mini-player hidden" id="radioMiniPlayer" aria-label="Radio mini player"><div><small id="radioMiniStatus">Paused</small><strong id="radioMiniTitle">Radio</strong></div><button id="radioMiniPreviousButton" type="button" aria-label="Previous track"><img src="./icons/skip-back.svg" alt="" /></button><button id="radioMiniPlayButton" type="button" aria-label="Play radio">▶</button><button id="radioMiniNextButton" type="button" aria-label="Next track"><img src="./icons/skip-forward.svg" alt="" /></button><button id="radioMiniOpenButton" type="button" aria-label="Open radio">↗</button></aside>
-  <section class="sheet hidden room-sheet" id="roomSheet" role="dialog" aria-modal="true" aria-labelledby="roomTitle"><button class="close-sheet" data-close-sheet aria-label="Close">×</button><span class="sheet-kicker" id="roomType">PRIVATE ROOM</span><h2 id="roomTitle">Place Room</h2><p id="roomBody">A Room is a deeper, place-specific experience. Private Rooms stay on this device; public publishing requires Field Edition.</p><div id="roomSections" class="room-sections"></div><div id="roomTraceSummary" class="room-trace-summary" aria-live="polite"></div><div class="sheet-actions"><button type="button" class="secondary-button" id="roomRadioButton">Featured Radio</button><button type="button" class="secondary-button" id="roomAudioButton">Add Audio Note</button><button type="button" class="secondary-button" id="roomJournalButton">Add Journal Note</button></div></section>
+  <section class="sheet hidden room-sheet" id="roomSheet" role="dialog" aria-modal="true" aria-labelledby="roomTitle"><button class="close-sheet" data-close-sheet aria-label="Close">×</button><span class="sheet-kicker" id="roomType">PRIVATE ROOM</span><h2 id="roomTitle">Place Room</h2><p id="roomBody">A Room is a deeper, place-specific experience. Private Rooms stay on this device; public publishing requires Field Edition.</p><div id="roomSections" class="room-sections"></div><div id="roomTraceSummary" class="room-trace-summary" aria-live="polite"></div><div class="sheet-actions"><button type="button" class="primary-button" id="roomAddToJournalButton">Add to Journal Room</button><button type="button" class="secondary-button" id="roomRadioButton">Featured Radio</button><button type="button" class="secondary-button" id="roomAudioButton">Add Audio Note</button><button type="button" class="secondary-button" id="roomJournalButton">Add Journal Note</button></div></section>
   <section class="sheet story-sheet hidden" id="storySheet" role="dialog" aria-modal="true" aria-labelledby="storyTitle">
     <button class="close-sheet" data-close-sheet aria-label="Close">×</button>
     <span class="sheet-kicker" id="storyStatus">CHANGING · EDITORIAL PROTOTYPE</span>
@@ -265,7 +266,7 @@
               navigator.serviceWorker?.getRegistrations().then((registrations) => Promise.all(registrations.map((registration) => registration.unregister())))
             ]).finally(() => location.replace(cleanUrl));
           })();
-        </script><script src="./vendor/leaflet/leaflet.js"></script><script src="./vendor/leaflet-markercluster/leaflet.markercluster.js"></script><script src="./vendor/leaflet-geoman/leaflet-geoman.min.js"></script><script src="./vendor/turf/turf.min.js"></script><script src="./vendor/maplibre-gl.js"></script><script async src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.105.0"></script><script src="https://w.soundcloud.com/player/api.js"></script><script src="./supabase-config.js"></script><script type="module" src="./app.js?v=20261012-map-studio-2"></script>
+        </script><script src="./vendor/leaflet/leaflet.js"></script><script src="./vendor/leaflet-markercluster/leaflet.markercluster.js"></script><script src="./vendor/leaflet-geoman/leaflet-geoman.min.js"></script><script src="./vendor/turf/turf.min.js"></script><script src="./vendor/maplibre-gl.js"></script><script async src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.105.0"></script><script src="https://w.soundcloud.com/player/api.js"></script><script src="./supabase-config.js"></script><script type="module" src="./app.js?v=20261012-journal-room-1"></script>
 </body>
 </html>
 

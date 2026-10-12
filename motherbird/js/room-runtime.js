@@ -8,6 +8,7 @@ import { state } from './state.js';
 export const ROOM_TYPES = Object.freeze(['building', 'park', 'trail', 'garden', 'historic-site', 'museum', 'neighborhood']);
 export const ROOM_VISIBILITY = Object.freeze(['private', 'bundled', 'public']);
 let activeRoom = null;
+let activeRoomPlace = null;
 
 export function createRoom({ placeId, type = 'building', name = '', geometry = null, visibility = 'private', data = {}, fieldEdition = false } = {}) {
   if (!placeId) throw new Error('A Room needs a place id.');
@@ -38,6 +39,7 @@ export function addRoomAudioStation(room, stationId) {
 
 export async function openRoomForPlace(place) {
   if (!place?.id) return null;
+  activeRoomPlace = place;
   let room = await resolveRoom(place.id);
   if (!room) room = await saveRoom(createRoom({ placeId: place.id, type: inferRoomType(place), name: place.name || 'Place Room', geometry: place.geometry || null, data: { featuredStationIds: place.radioStationIds || place.stationIds || [] } }));
   activeRoom = room;
@@ -66,6 +68,7 @@ export async function openRoomForPlace(place) {
 }
 
 export function currentRoom() { return activeRoom; }
+export function currentRoomPlace() { return activeRoomPlace; }
 
 export async function appendRoomTrace(roomId, { type, refId, location = null, createdAt = new Date().toISOString() } = {}) {
   if (!roomId || !type || !refId) return null;
