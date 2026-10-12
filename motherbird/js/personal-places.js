@@ -746,7 +746,7 @@ function bindPersonalPlaceControls() {
     event.preventDefault();
     const route = state.savedRoutes.find((item) => item.id === form.dataset.savedRouteEditor); if (!route) return;
     const sections = [...form.querySelectorAll('[data-route-section-row]')].map((row, index) => ({ id: route.sections?.[index]?.id || `section-${Date.now()}-${index + 1}`, title: row.querySelector('[name="sectionTitle"]')?.value || `Section ${index + 1}`, notes: row.querySelector('[name="sectionNotes"]')?.value || '', stops: (row.querySelector('[name="sectionStops"]')?.value || '').split(',').map((value) => value.trim()).filter(Boolean), coordinates: route.sections?.[index]?.coordinates || [], geometry: route.sections?.[index]?.geometry || null, distanceMeters: route.sections?.[index]?.distanceMeters ?? null, durationSeconds: route.sections?.[index]?.durationSeconds ?? null, status: route.sections?.[index]?.status || 'upcoming' }));
-    void updateSavedRoute(route.id, { title: form.querySelector('[name="title"]')?.value || route.title, notes: form.querySelector('[name="notes"]')?.value || '', sections, draft: false }).then(() => toast('Route workspace saved.'));
+    void updateSavedRoute(route.id, { title: form.querySelector('[name="title"]')?.value || route.title, color: form.querySelector('[name="color"]')?.value || route.color, notes: form.querySelector('[name="notes"]')?.value || '', sections, draft: false }).then(() => toast('Route workspace saved.'));
   });
   el('personalPlacesPanel')?.addEventListener('change', (event) => {
     if (event.target.id === 'personalPlaceSort') { state.settings.personalPlaceSort = event.target.value; void db.put('settings', state.settings); renderPersonalPlacesPanel(); return; }

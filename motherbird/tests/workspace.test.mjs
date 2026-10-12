@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { normalizeSavedRoute } from '../js/saved-routes.js';
+import { normalizeSavedRoute, savedRouteEditorHtml } from '../js/saved-routes.js';
 import { normalizeWorkspace, normalizeWorkspaceLink } from '../js/workspace.js';
 
 test('legacy saved routes migrate to one editable default section without losing route data', () => {
@@ -22,6 +22,13 @@ test('new sections preserve progress and section-local geometry', () => {
   assert.equal(route.sections[0].status, 'completed');
   assert.equal(route.sections[0].distanceMeters, 450);
   assert.deepEqual(route.sections[0].coordinates, [[1, 2], [1.5, 2.5]]);
+});
+
+test('saved route workspace exposes a persistent line color control', () => {
+  const route = normalizeSavedRoute({ id: 'styled-route', color: '#c45b32', coordinates: [[1, 2], [2, 3]] });
+  const editor = savedRouteEditorHtml(route);
+  assert.match(editor, /name="color"/);
+  assert.match(editor, /value="#c45b32"/);
 });
 
 test('workspace membership is link-shaped and keeps records in their source stores', () => {

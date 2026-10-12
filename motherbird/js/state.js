@@ -35,6 +35,8 @@ export const state = {
   curatedRouteLine: null,
   plannedRouteLine: null,
   plannedRouteLines: [],
+  workspaceRoutePreviewLines: [],
+  workspaceRoutePreviewId: null,
   plannerRouteCasingLines: [],
   plannerRouteGapLines: [],
   plannerRouteOverlayBound: false,

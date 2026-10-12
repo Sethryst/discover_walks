@@ -185,9 +185,24 @@ function focusWorkspaceRecord(recordType, record) {
   const map = state.map;
   const coordinates = recordCoordinates(recordType, record);
   if (!map || !coordinates.length) return;
+  clearWorkspaceRoutePreview();
+  if (recordType === 'route' && coordinates.length > 1 && globalThis.L) {
+    state.workspaceRoutePreviewId = String(record.id);
+    state.workspaceRoutePreviewLines = [globalThis.L.polyline(coordinates, {
+      color: /^#[0-9a-f]{6}$/i.test(record.color || '') ? record.color : '#173c35',
+      weight: 7, opacity: .95, lineCap: 'round', lineJoin: 'round', interactive: false
+    }).addTo(map)];
+    state.workspaceRoutePreviewLines[0].bringToFront();
+  }
   if (coordinates.length === 1) map.flyTo(coordinates[0], Math.max(map.getZoom?.() || 14, 16));
   else map.fitBounds(coordinates, { padding: [40, 40], maxZoom: 16 });
   window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: '' } }));
+}
+
+function clearWorkspaceRoutePreview() {
+  state.workspaceRoutePreviewLines?.forEach((line) => line.remove());
+  state.workspaceRoutePreviewLines = [];
+  state.workspaceRoutePreviewId = null;
 }
 
 export async function renderWorkspacePanel(target, { filter = 'all' } = {}) {
@@ -231,5 +246,10 @@ export function initWorkspaceRuntime() {
   });
   const stores = [['saved-routes-changed', 'saved_routes', 'route'], ['observations-changed', 'observations', 'observation'], ['geo-cyphers-changed', 'geo_cypher_manifests', 'audio'], ['local-drawings-changed', 'moments', 'annotation'], ['personal-places-changed', 'personal_places', 'place'], ['walks-changed', 'walks', 'walk']];
   stores.forEach(([event, store, type]) => window.addEventListener(event, () => void ensureWorkspaceLinksForStore(store, type)));
+  window.addEventListener('saved-routes-changed', () => {
+    if (!state.workspaceRoutePreviewId) return;
+    const route = state.savedRoutes.find((item) => String(item.id) === state.workspaceRoutePreviewId);
+    if (route) focusWorkspaceRecord('route', route); else clearWorkspaceRoutePreview();
+  });
   window.addEventListener('workspace-changed', () => window.dispatchEvent(new CustomEvent('journal-data-changed')));
 }
