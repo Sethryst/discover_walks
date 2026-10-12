@@ -25,12 +25,28 @@ function snapshotPlace(place) {
   };
 }
 
+function snapshotJournalNote(note) {
+  return { id: `journal:${String(note.id)}`, sourceId: String(note.id), kind: 'journal', name: String(note.title || 'Journal note').trim().slice(0, 120), type: 'journal note', category: 'journal note', location: null, tags: ['journal'], note: String(note.note || '').trim().slice(0, 600), addedAt: new Date().toISOString() };
+}
+
 export async function addPlaceToJournalRoom(place) {
   const room = await getJournalRoom();
   if (!place?.id) return { added: false, room };
   const items = Array.isArray(room.data?.items) ? room.data.items : [];
   if (items.some((item) => item.id === String(place.id))) return { added: false, room };
   const next = { ...room, data: { ...room.data, items: [...items, snapshotPlace(place)] }, updatedAt: new Date().toISOString() };
+  await db.put('rooms', next);
+  window.dispatchEvent(new CustomEvent('journal-room-changed'));
+  return { added: true, room: next };
+}
+
+export async function addJournalNoteToJournalRoom(note) {
+  const room = await getJournalRoom();
+  if (!note?.id || !String(note.note || '').trim()) return { added: false, room };
+  const items = Array.isArray(room.data?.items) ? room.data.items : [];
+  const item = snapshotJournalNote(note);
+  if (items.some((candidate) => candidate.id === item.id)) return { added: false, room };
+  const next = { ...room, data: { ...room.data, items: [...items, item] }, updatedAt: new Date().toISOString() };
   await db.put('rooms', next);
   window.dispatchEvent(new CustomEvent('journal-room-changed'));
   return { added: true, room: next };
@@ -71,9 +87,11 @@ export async function renderJournalRoom(target) {
     const x = spatial && bounds && item.location ? ((item.location.lng - bounds.minLng) / (bounds.maxLng - bounds.minLng)) * 100 : null;
     const y = spatial && bounds && item.location ? (1 - ((item.location.lat - bounds.minLat) / (bounds.maxLat - bounds.minLat))) * 100 : null;
     const style = spatial && x !== null ? `--journal-card-index:${index};--journal-x:${x.toFixed(2)}%;--journal-y:${y.toFixed(2)}%` : `--journal-card-index:${index}`;
-    return `<article class="journal-room-card${spatial ? ' journal-room-card-spatial' : ''}" style="${style}" data-journal-place="${escapeHtml(item.id)}"><div class="journal-room-card-top"><span class="journal-room-marker" aria-hidden="true">${index + 1}</span><button type="button" class="icon-button" data-journal-room-remove="${escapeHtml(item.id)}" aria-label="Remove ${escapeHtml(item.name)} from Journal Room">×</button></div><h4>${escapeHtml(item.name)}</h4><small>${escapeHtml(item.category || item.type || 'place')}${item.location ? ` · ${item.location.lat.toFixed(4)}, ${item.location.lng.toFixed(4)}` : ''}</small>${item.note ? `<p>${escapeHtml(item.note)}</p>` : ''}${item.tags?.length ? `<div class="journal-room-tags">${item.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join('')}</div>` : ''}</article>`;
+    return `<article class="journal-room-card${spatial ? ' journal-room-card-spatial' : ''}" style="${style}" data-journal-place="${escapeHtml(item.id)}" data-journal-kind="${escapeHtml(item.kind || 'poi')}"><div class="journal-room-card-top"><span class="journal-room-marker" aria-hidden="true">${index + 1}</span><button type="button" class="icon-button" data-journal-room-remove="${escapeHtml(item.id)}" aria-label="Remove ${escapeHtml(item.name)} from Journal Room">×</button></div><h4>${escapeHtml(item.name)}</h4><small>${escapeHtml(item.category || item.type || 'place')}${item.location ? ` · ${item.location.lat.toFixed(4)}, ${item.location.lng.toFixed(4)}` : ''}</small>${item.note ? `<p>${escapeHtml(item.note)}</p>` : ''}${item.tags?.length ? `<div class="journal-room-tags">${item.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join('')}</div>` : ''}</article>`;
   };
-  const content = items.length ? layout === 'alignment' ? `<div class="journal-room-alignment"><span class="journal-room-north">N</span><span class="journal-room-axis journal-room-axis-x"></span><span class="journal-room-axis journal-room-axis-y"></span>${items.map((item, index) => card(item, index, true)).join('')}</div>${located.length < items.length ? `<small class="journal-room-unlocated">${items.length - located.length} place${items.length - located.length === 1 ? '' : 's'} without coordinates stay available below.</small>` : ''}` : `<div class="journal-room-grid">${items.map(card).join('')}</div>` : '<div class="journal-room-empty"><strong>Your place page starts here.</strong><p>Open a place, then choose “Add to Journal Room” to bring it into this grid.</p></div>';
+  const unlocated = items.filter((item) => !item.location || !Number.isFinite(item.location.lat) || !Number.isFinite(item.location.lng));
+  const locatedItems = items.filter((item) => item.location && Number.isFinite(item.location.lat) && Number.isFinite(item.location.lng));
+  const content = items.length ? layout === 'alignment' ? `<div class="journal-room-alignment"><span class="journal-room-north">N</span><span class="journal-room-axis journal-room-axis-x"></span><span class="journal-room-axis journal-room-axis-y"></span>${locatedItems.map((item) => card(item, items.indexOf(item), true)).join('')}</div>${unlocated.length ? `<div class="journal-room-unlocated-grid">${unlocated.map((item) => card(item, items.indexOf(item))).join('')}</div>` : ''}` : `<div class="journal-room-grid">${items.map(card).join('')}</div>` : '<div class="journal-room-empty"><strong>Your place page starts here.</strong><p>Open a place, then choose “Add to Journal Room” to bring it into this grid.</p></div>';
   target.innerHTML = `<div class="journal-room-heading"><div><span class="sheet-kicker">PLACE COMPOSITION</span><h3>Journal Room</h3><p>Collect places here before arranging the page.</p></div><span class="journal-room-count">${items.length} place${items.length === 1 ? '' : 's'}</span></div><div class="journal-room-layouts" role="group" aria-label="Journal Room layout"><button type="button" data-journal-layout="grid" class="${layout === 'grid' ? 'active' : ''}">Grid</button><button type="button" data-journal-layout="alignment" class="${layout === 'alignment' ? 'active' : ''}">Align by location</button></div>${content}<div class="journal-room-guide"><span aria-hidden="true">⌗</span><span><strong>${layout === 'alignment' ? 'North-up alignment' : 'Alignment guide ready'}</strong><small>${layout === 'alignment' ? 'Cards are placed from their coordinates; the next layer can add real street lines.' : 'Street lines and nearby details will become the next layer of the page.'}</small></span></div>`;
 }
 

@@ -8,6 +8,7 @@ import { markerPinHtml, markerVisual } from './poi-icons.js';
 import { requestCompanionContext } from './companion.js';
 import { updateSavedRoute, deleteSavedRoute, savedRouteEditorHtml } from './saved-routes.js';
 import { renderWorkspacePanel, createWorkspace } from './workspace.js';
+import { addPlaceToJournalRoom } from './journal-room.js';
 import {
   postPublicMarker,
   publicMarkerIdentityReady,
@@ -284,7 +285,7 @@ export function renderPersonalPlacesPanel() {
     const rows = inCategory.length ? inCategory.map((place) => {
       const destination = (place.light || 'personal') === 'personal' ? category.name : markerCategoryLabel({ light: place.light, chip_id: place.chipId });
       const status = place.publicMarkerId ? `Posted ${place.visibility}` : 'Private on this device';
-      return `<li><span><strong>${escapeHtml(place.name)}</strong><small>${escapeHtml(destination)} · ${escapeHtml(status)}</small></span><button class="text-button" type="button" data-edit-personal-place="${escapeHtml(place.id)}">Edit</button>${place.publicMarkerId ? `<button class="text-button danger-button" type="button" data-withdraw-owned-marker="${escapeHtml(place.publicMarkerId)}">Withdraw</button>` : ''}</li>`;
+      return `<li><span><strong>${escapeHtml(place.name)}</strong><small>${escapeHtml(destination)} · ${escapeHtml(status)}</small></span><button class="text-button" type="button" data-add-personal-to-journal="${escapeHtml(place.id)}">Journal</button><button class="text-button" type="button" data-edit-personal-place="${escapeHtml(place.id)}">Edit</button>${place.publicMarkerId ? `<button class="text-button danger-button" type="button" data-withdraw-owned-marker="${escapeHtml(place.publicMarkerId)}">Withdraw</button>` : ''}</li>`;
     }).join('') : '<li class="personal-place-empty">No locations in this category yet.</li>';
     return `<article class="personal-category-card" style="--category-color:${escapeHtml(category.color)}"><header><span class="category-icon"><img data-inline-svg data-icon-fallback="" src="./icons/${escapeHtml(category.icon)}.svg" alt="" /></span><span><h3>${escapeHtml(category.name)}</h3><small>${inCategory.length} place${inCategory.length === 1 ? '' : 's'} · ${visible ? 'shown on map' : 'hidden on map'}</small></span></header>${category.description ? `<p>${escapeHtml(category.description)}</p>` : ''}<label class="personal-map-toggle"><input type="checkbox" data-personal-category-visible="${escapeHtml(category.id)}" ${visible ? 'checked' : ''} /> Show this category on the map</label><ul>${rows}</ul><button class="secondary-button" type="button" data-add-to-personal-category="${escapeHtml(category.id)}">Add location</button></article>`;
   }).join('');
@@ -719,6 +720,7 @@ function bindPersonalPlaceControls() {
     if (event.target.closest('#exportPersonalPlacesButton')) { exportPersonalPlaces(); return; }
     if (event.target.closest('#importPersonalPlacesButton')) { window.dispatchEvent(new CustomEvent('filter-import-requested')); return; }
     const add = event.target.closest('[data-add-to-personal-category]'); if (add) { openPersonalPlaceForm({ categoryId: add.dataset.addToPersonalCategory }); return; }
+    const addToJournal = event.target.closest('[data-add-personal-to-journal]'); if (addToJournal) { const place = state.personalPlaces.find((item) => item.id === addToJournal.dataset.addPersonalToJournal); if (place) void addPlaceToJournalRoom(place).then((result) => toast(result.added ? 'Added to your Journal Room.' : 'Already in your Journal Room.')); return; }
     const editPlace = event.target.closest('[data-edit-personal-place]'); if (editPlace) { openPersonalPlaceForm({ editId: editPlace.dataset.editPersonalPlace }); return; }
     if (event.target.closest('[data-create-workspace]')) { const name = window.prompt('Workspace name', 'My Workspace'); if (name?.trim()) void createWorkspace(name.trim()).then(() => renderPersonalPlacesPanel()); return; }
     const filter = event.target.closest('[data-workspace-filter]'); if (filter) { const section = event.target.closest('[data-my-places-section-panel="workspace"]'); if (section) void renderWorkspacePanel(section, { filter: filter.dataset.workspaceFilter }); return; }

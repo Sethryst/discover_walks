@@ -26,7 +26,7 @@ import { restartCoachMarks } from './coach.js';
 import { ensurePlannedRouteSaved } from './saved-routes.js';
 import { recordSessionRoutingOutcome } from './routing-feedback.js';
 import { openRoomForPlace, currentRoomPlace } from './room-runtime.js';
-import { addPlaceToJournalRoom } from './journal-room.js';
+import { addPlaceToJournalRoom, addJournalNoteToJournalRoom } from './journal-room.js';
 import { buildInWalkSuggestion, buildRouteRecommendations } from './ambient-mip.js?v=20261007-walk-moods-1';
 import { renderPersonalPlacesPanel } from './personal-places.js';
 import { renderWorkspacePanel } from './workspace.js';
@@ -62,6 +62,15 @@ export function initEvents() {
     const result = await addPlaceToJournalRoom(currentRoomPlace());
     toast(result.added ? 'Added to your Journal Room.' : 'Already in your Journal Room.');
     if (result.added) void openJournal();
+  });
+  el('journalAddToRoomButton')?.addEventListener('click', async () => {
+    const note = el('journalNote')?.value.trim();
+    if (!note) { toast('Write a note before placing it in the Journal Room.'); return; }
+    await saveJournalOnClose({ note, walkId: el('journalForm')?.dataset.walkId || '' });
+    const id = el('journalForm')?.dataset.momentId;
+    const saved = id ? await db.get('moments', id) : null;
+    const result = await addJournalNoteToJournalRoom(saved || { id: `draft-${Date.now()}`, title: 'Journal note', note });
+    toast(result.added ? 'Journal note placed in the Journal Room.' : 'That journal note is already in the room.');
   });
   el('roomRadioButton')?.addEventListener('click', () => {
     const title = document.getElementById('roomTitle');
