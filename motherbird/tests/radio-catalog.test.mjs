@@ -21,5 +21,5 @@ test('radio exposes the complete SoundCloud catalog and transport surfaces', asy
   for (const id of ['radioPreviousButton', 'radioPlayButton', 'radioNextButton', 'radioShuffleButton', 'radioRepeatButton', 'radioQueueButton', 'radioFavoriteButton', 'radioMiniPreviousButton', 'radioMiniPlayButton', 'radioMiniNextButton']) assert.match(html, new RegExp(`id="${id}"`));
   assert.match(html, /id="radioLiveSources"/);
   assert.match(html, /id="radioLocalSources"/);
-  assert.match(serviceWorker, /const APP_CACHE = 'walk-wildlife-shell-v441';/);
+  assert.match(serviceWorker, /const APP_CACHE = 'walk-wildlife-shell-v442';/);
 });

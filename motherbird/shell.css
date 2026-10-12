@@ -252,6 +252,51 @@ body.draw-pane-open .draw-tool-rail { display: flex !important; }
   }
 }
 
+/* Desktop map destinations share the same card language as the Me panel.
+   Keep the rail as a positioning container, but let the destination body
+   scroll inside a compact card instead of stretching into a full-height slab. */
+@media (min-width: 721px) {
+  .map-workspace {
+    top: 50%;
+    bottom: auto;
+    height: auto;
+    transform: translateY(-42%);
+    align-items: flex-start;
+    background: transparent;
+  }
+
+  .map-workspace-panel:not([data-destination="draw"]) {
+    position: relative !important;
+    inset: auto !important;
+    width: min(380px, calc(100vw - 112px)) !important;
+    height: auto !important;
+    max-height: 65dvh !important;
+    border: 1px solid rgba(23, 60, 53, .24) !important;
+    border-radius: 20px !important;
+    background: #fffaf0 !important;
+    box-shadow: 0 12px 42px rgba(23, 60, 53, .25) !important;
+    backdrop-filter: blur(10px);
+    overflow: hidden !important;
+  }
+
+  .map-workspace-panel:not([data-destination="draw"]) > header {
+    height: 56px !important;
+    padding: 10px 18px !important;
+    border-bottom: 1px solid var(--line) !important;
+    background: #fffaf0 !important;
+    font: inherit !important;
+  }
+
+  .map-workspace-panel:not([data-destination="draw"]) > [data-map-panel] {
+    position: static !important;
+    inset: auto !important;
+    max-height: calc(65dvh - 56px) !important;
+    padding: 16px !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+  }
+}
+
 /* Draw tools stay inside their panel and remain reachable above the primary nav. */
 .map-workspace-panel[data-destination="draw"] {
   position: fixed !important;
