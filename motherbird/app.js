@@ -17,7 +17,7 @@ startupTelemetry('document');
 globalThis.__MOTHERBIRD_STARTUP_MARK__ = startupTelemetry;
 startupTelemetry('app.js');
 
-import('./js/loader.js?v=20261011-historic-topo-2').then(({ init }) => {
+import('./js/loader.js?v=20261011-map-controls-1').then(({ init }) => {
   startupTelemetry('loader imported');
   return init();
 }).catch((error) => {

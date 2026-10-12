@@ -24,7 +24,7 @@ import { OpfsRangeSource } from './opfs-range-source.js';
 const OSM_ATTRIBUTION = '&copy; OpenStreetMap contributors';
 const BASEMAP_STORAGE_KEY = 'motherbird.basemap';
 const MAP_CUSTOMIZATION_STORAGE_KEY = 'motherbird.map-customization';
-const DEFAULT_MAP_CUSTOMIZATION = Object.freeze({ tone: 'natural', showPlaces: true, showRoutes: true });
+const DEFAULT_MAP_CUSTOMIZATION = Object.freeze({ tone: 'natural', markerOutline: 'light', showPlaces: true, showRoutes: true });
 export const BASEMAP_PRESETS = Object.freeze({
   street: { label: 'Street · OpenStreetMap', url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', maxZoom: 19, subdomains: 'abc', attribution: OSM_ATTRIBUTION },
   topographic: { label: 'Topographic · contours', url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', maxZoom: 17, subdomains: 'abc', attribution: '&copy; OpenStreetMap contributors, SRTM | &copy; OpenTopoMap (CC-BY-SA)' },
@@ -52,7 +52,7 @@ function writeBasemapId(id) {
 function readMapCustomization() {
   try {
     const saved = JSON.parse(localStorage.getItem(MAP_CUSTOMIZATION_STORAGE_KEY) || '{}');
-    return { ...DEFAULT_MAP_CUSTOMIZATION, ...saved, tone: ['natural', 'parchment', 'dusk', 'night', 'high-contrast'].includes(saved.tone) ? saved.tone : DEFAULT_MAP_CUSTOMIZATION.tone, showPlaces: saved.showPlaces !== false, showRoutes: saved.showRoutes !== false };
+    return { ...DEFAULT_MAP_CUSTOMIZATION, ...saved, tone: ['natural', 'parchment', 'dusk', 'night', 'high-contrast'].includes(saved.tone) ? saved.tone : DEFAULT_MAP_CUSTOMIZATION.tone, markerOutline: ['light', 'dark', 'none'].includes(saved.markerOutline) ? saved.markerOutline : DEFAULT_MAP_CUSTOMIZATION.markerOutline, showPlaces: saved.showPlaces !== false, showRoutes: saved.showRoutes !== false };
   } catch { return { ...DEFAULT_MAP_CUSTOMIZATION }; }
 }
 
@@ -64,6 +64,8 @@ export function applyMapCustomization(value = readMapCustomization()) {
   const settings = { ...DEFAULT_MAP_CUSTOMIZATION, ...value };
   document.body.classList.remove(...Array.from(document.body.classList).filter((name) => name.startsWith('map-tone-')));
   if (settings.tone !== 'natural') document.body.classList.add(`map-tone-${settings.tone}`);
+  document.body.classList.remove(...Array.from(document.body.classList).filter((name) => name.startsWith('map-outline-')));
+  if (settings.markerOutline !== 'light') document.body.classList.add(`map-outline-${settings.markerOutline}`);
   document.body.classList.toggle('map-hide-places', !settings.showPlaces);
   if (state.map && state.poiLayer) {
     if (settings.showPlaces && !state.map.hasLayer(state.poiLayer)) state.poiLayer.addTo(state.map);
@@ -73,11 +75,13 @@ export function applyMapCustomization(value = readMapCustomization()) {
   const routesToggle = document.getElementById('mapRoutesToggle'); if (routesToggle) routesToggle.checked = settings.showRoutes;
   const routePane = document.getElementById('plannerRoutePane'); if (routePane) routePane.style.display = settings.showRoutes ? '' : 'none';
   const tonePicker = document.getElementById('mapTonePicker'); if (tonePicker) tonePicker.value = settings.tone;
+  const markerOutline = document.getElementById('mapMarkerOutline'); if (markerOutline) markerOutline.value = settings.markerOutline;
   return settings;
 }
 
 function initMapCustomization() {
   const tonePicker = document.getElementById('mapTonePicker');
+  const markerOutline = document.getElementById('mapMarkerOutline');
   const placesToggle = document.getElementById('mapPlacesToggle');
   const routesToggle = document.getElementById('mapRoutesToggle');
   if (!tonePicker || tonePicker.dataset.bound === 'true') return;
@@ -86,6 +90,7 @@ function initMapCustomization() {
   applyMapCustomization(settings);
   const update = (key, value) => { settings = { ...settings, [key]: value }; writeMapCustomization(settings); applyMapCustomization(settings); };
   tonePicker.addEventListener('change', () => update('tone', tonePicker.value));
+  markerOutline?.addEventListener('change', () => update('markerOutline', markerOutline.value));
   placesToggle?.addEventListener('change', () => update('showPlaces', placesToggle.checked));
   routesToggle?.addEventListener('change', () => update('showRoutes', routesToggle.checked));
   window.addEventListener('walk-sketch-painted', () => applyMapCustomization(settings));
@@ -160,7 +165,7 @@ export function initMap() {
     cluster.getAllChildMarkers().forEach((marker) => { counts[placeLight(marker.options.place || {})] += 1; });
     const light = Object.keys(counts).sort((a,b) => counts[b] - counts[a])[0];
     const color = { news: '#8b3a4a', recreation: '#2d7259', cuisine: '#c65d0e' }[light];
-    return L.divIcon({ className: 'place-cluster', html: `<span style="--cluster-color:${color}">${cluster.getChildCount()}</span>`, iconSize: [36,36] });
+    return L.divIcon({ className: 'place-cluster', html: `<span class="place-cluster-glyph place-cluster-glyph--${light}" style="--cluster-color:${color}" aria-label="${light} places"></span>`, iconSize: [36,36] });
   } }) : L.layerGroup()).addTo(state.map);
   // Endpoint selection owns map clicks. POI markers and clusters must not open
   // popups, pan, or consume the user's endpoint gesture while selecting.
@@ -223,7 +228,7 @@ export function initMap() {
   // Viewport windowing: only build markers for what's on/near screen, recomputed
   // after panning/zooming settles. Stands in for server-side bbox filtering
   // until the backend described in the recommendations exists.
-  state.map.on('moveend zoomend', debounce(() => {
+  const refreshSettledViewport = debounce(() => {
     trackActiveViewport();
     const center = state.activeViewportBounds?.center;
     const nearest = center && nearestMappedCity(center);
@@ -238,7 +243,9 @@ export function initMap() {
     if (center) void activateWalkingCellAt(center).catch((error) => console.warn('Walking cell unavailable:', error.message));
     renderCityPois();
     window.dispatchEvent(new CustomEvent('map-viewport-changed'));
-  }, 200));
+  }, 260);
+  state.map.on('moveend', refreshSettledViewport);
+  state.map.on('zoomend', refreshSettledViewport);
   state.map.on('zoomend', syncNeighborhoodPresentation);
   trackActiveViewport();
   void activateWalkingCellAt(initialPosition).catch((error) => console.warn('Walking cell unavailable:', error.message));
