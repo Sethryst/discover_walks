@@ -56,6 +56,7 @@ export function initEvents() {
   el('geoCypherButton')?.addEventListener('click', () => void openGeoCypher());
   window.addEventListener('room-open-requested', (event) => void openRoomForPlace(event.detail?.place));
   window.addEventListener('room-sheet-open-requested', () => openSheet('roomSheet'));
+  window.addEventListener('journal-room-open-requested', () => void openJournal());
   el('roomAudioButton')?.addEventListener('click', () => void openGeoCypher());
   el('roomJournalButton')?.addEventListener('click', () => void openJournal());
   el('roomAddToJournalButton')?.addEventListener('click', async () => {
