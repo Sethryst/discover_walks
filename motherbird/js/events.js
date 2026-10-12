@@ -192,7 +192,7 @@ async function setMapWorkspace(destination = '', { toggle = true, forceOpen = fa
     button.setAttribute('aria-expanded', String(active));
   });
   document.querySelectorAll('[data-map-panel]').forEach((section) => section.classList.toggle('hidden', section.dataset.mapPanel !== next));
-  if (next) el('mapWorkspaceTitle').textContent = next === 'maps' ? 'Places' : next[0].toUpperCase() + next.slice(1);
+  if (next) el('mapWorkspaceTitle').textContent = next === 'maps' ? 'Workspace' : next[0].toUpperCase() + next.slice(1);
   if (next === 'maps') {
     renderPersonalPlacesPanel();
     const workspaceTarget = el('personalPlacesPanel')?.querySelector('[data-my-places-section-panel="workspace"]');
@@ -203,6 +203,7 @@ async function setMapWorkspace(destination = '', { toggle = true, forceOpen = fa
 
 function bindMapWorkspace() {
   el('closeMapWorkspace')?.addEventListener('click', () => setMapWorkspace(''));
+  el('mapFieldGuideButton')?.addEventListener('click', () => void openBackpack());
   window.addEventListener('map-workspace-open-requested', ({ detail }) => setMapWorkspace(detail?.destination ?? 'explore', { forceOpen: detail?.forceOpen === true }));
 }
 

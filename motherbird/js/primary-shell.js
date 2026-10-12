@@ -65,6 +65,12 @@ export function initPrimaryShell() {
       }));
       return;
     }
+    if (tab === 'library') {
+      panel.classList.add('hidden');
+      state.settings.myPlacesSection = 'workspace';
+      window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'maps', forceOpen: true } }));
+      return;
+    }
     // The map workspace belongs to Explore. Close it before showing a shell
     // pane so the two panels cannot become a conjoined white block.
     window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: '' } }));

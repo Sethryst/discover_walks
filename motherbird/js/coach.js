@@ -6,7 +6,7 @@ import { openSheet } from './ui.js';
 export const COACH_STEPS = [
   { target: 'mapSearchInput', text: 'Find a place or trail.' },
   { target: 'walkTab', text: 'Start or make a walk.' },
-  { target: 'libraryTab', text: 'Open Library to view and edit saved maps and drawings and routes and filters.' },
+  { target: 'libraryTab', text: 'Open Workspace to view and edit saved maps, routes, places, and drawings.' },
   { target: 'meTab', text: 'Your private tools.' },
 ];
 

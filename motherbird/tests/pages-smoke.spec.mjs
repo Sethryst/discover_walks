@@ -15,11 +15,12 @@ test('fresh Pages context reaches startup-ready and responds to core controls', 
   expect(uncaught, `uncaught browser errors: ${uncaught.join(' | ')}`).toEqual([]);
   await expect(page.locator('#appSplash')).toHaveClass(/app-splash--done/, { timeout: 5_000 });
   await page.locator('#libraryTab').click();
-  await expect(page.getByRole('heading', { name: 'Library' })).toBeVisible();
+  await expect.poll(() => page.evaluate(() => document.body.dataset.primaryTab)).toBe('library');
+  await expect(page.locator('#mapWorkspacePanel')).toBeVisible();
+  await expect(page.locator('#mapWorkspaceTitle')).toHaveText('Workspace');
   await expect(page.locator('.primary-nav')).toHaveCSS('background-color', 'rgb(20, 35, 49)');
   await expect(page.locator('#primaryPanel')).toHaveCSS('color', 'rgb(13, 27, 42)');
-  await expect(page.getByRole('button', { name: 'My Workspace', exact: true })).toBeVisible();
-  await expect(page.locator('#saveWalkPlanButton')).toHaveText('View in workspace');
+  await expect(page.locator('#personalPlacesPanel .workspace-home')).toBeVisible();
   await page.locator('#meTab').click();
   await expect(page.getByRole('heading', { name: 'Me' })).toBeVisible();
   await page.locator('#meTab').click();
