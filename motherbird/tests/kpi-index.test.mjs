@@ -17,6 +17,12 @@ test('KPI inventory reconciles the frontend and producer source contracts', asyn
   assert.equal(model.summary.producerRegions, model.configs.length);
   const backlog = JSON.parse(await readFile(new URL('../../expansion-queues/regional-source-backlog.json', import.meta.url), 'utf8'));
   assert.equal(model.summary.backlogCandidates, Number(backlog.summary?.candidateCount || 0));
+  assert.equal(model.acquisitionBacklog.configuredEndpoints, model.sources.length);
+  assert.equal(model.acquisitionBacklog.regionalReview.retiredCandidates, 54);
+  assert.equal(model.acquisitionBacklog.regionalReview.unresolvedRetiredCandidates, 49);
+  assert.equal(model.acquisitionBacklog.nationalDiscovery.reviewItems, 98);
+  assert.equal(model.acquisitionBacklog.nationalDiscovery.markets, 56);
+  assert.equal(model.acquisitionBacklog.coverage.eventGapRegions, 25);
   assert.equal(model.summary.coreReadyRegions, model.cities.filter((city) => city.missingRequiredFiles.length === 0).length);
   assert.ok(model.cities.every((city) => city.readinessScore >= 0 && city.readinessScore <= 100));
   assert.equal(model.summary.experienceModes, 3);

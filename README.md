@@ -11,6 +11,7 @@ Gremlin Lab is a data-rich walking project with two connected but deliberately s
 - [Where Walk & Wildlife is available](#where-walk--wildlife-is-available)
 - [Architecture](#architecture)
 - [Routing status](#routing-status)
+- [Data acquisition status](#data-acquisition-status)
 - [Development](#development)
 - [Libraries and data](#libraries-and-data)
 - [Project guides](#project-guides)
@@ -86,6 +87,19 @@ Routing is an active engineering area rather than a finished national coverage c
 - resumable per-cell publication with checksum and atomic-registry gates.
 
 The focused Motherbird suite currently covers Fairfax user journeys, route truth fixtures, route objectives, and walking-cell runtime behavior. See the latest GitHub Actions status and the routing handoff documents before treating coverage as complete.
+
+## Data acquisition status
+
+The acquisition backlog is now reported as separate source lanes so an empty active queue is not mistaken for zero remaining work. The current repository snapshot shows:
+
+| Acquisition lane | Current state |
+| --- | --- |
+| Governed producer endpoints | **75 configured** across **22 producer regions**; **9** name a required credential. Configuration is not evidence that a fetch is healthy or producing. |
+| Regional source review | **0 active queue items**. **54** retired candidates remain preserved with evidence: **49 unresolved**, **4 integrated into static packages**, and **1 explicitly do-not-investigate** under the normal-access policy. |
+| National discovery review | **98 research-only review items** across **56 markets**, backed by **98 validated seeds**. These are discovery work, not published app data. |
+| Regional coverage follow-up | **25 of 34 audited regions** still show an event gap. News is intentionally **untracked**, not inferred empty. |
+
+These lanes are shown side by side and are **not added into a unique-source total** because a candidate can appear in more than one research artifact. The [KPI Dashboard](https://sethryst.github.io/discover_walks/kpi/) now includes the same reconciliation and the [Source Atlas](https://sethryst.github.io/discover_walks/kpi/sources.html) remains the endpoint-level inventory. The underlying evidence is in [`expansion-queues/regional-source-backlog.json`](expansion-queues/regional-source-backlog.json), [`expansion-queues/national-ranked-review-queue.json`](expansion-queues/national-ranked-review-queue.json), and [`published/regional-source-coverage-audit.json`](published/regional-source-coverage-audit.json).
 
 ## Development
 

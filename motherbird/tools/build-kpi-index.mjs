@@ -336,6 +336,48 @@ export async function collectKpiInventory() {
   const backlog = await readJson(resolve(repoRoot, 'expansion-queues', 'regional-source-backlog.json'), {});
   const backlogItems = (backlog.regions || []).flatMap((region) => (region.queue || []).map((item) => ({ ...item, regionId: region.id, regionName: region.name })));
   const trackedBacklog = backlogItems.filter((item) => item.trackingState === 'TRACKED_REACHABLE');
+  const regionalRetiredCandidates = Array.isArray(backlog.retiredCandidates) ? backlog.retiredCandidates : [];
+  const regionalRetiredByStatus = Object.fromEntries(Object.entries(regionalRetiredCandidates.reduce((counts, item) => {
+    const status = item.status || 'UNCLASSIFIED';
+    counts[status] = (counts[status] || 0) + 1;
+    return counts;
+  }, {})).sort(([a], [b]) => a.localeCompare(b)));
+  const nationalReviewQueue = await readJson(resolve(repoRoot, 'expansion-queues', 'national-ranked-review-queue.json'), {});
+  const nationalMarketCoverage = await readJson(resolve(repoRoot, 'expansion-queues', 'national-market-coverage-summary.json'), {});
+  const nationalSeedValidation = await readJson(resolve(repoRoot, 'expansion-queues', 'national-seed-validation-report.json'), {});
+  const regionalCoverageAudit = await readJson(resolve(repoRoot, 'published', 'regional-source-coverage-audit.json'), {});
+  const nationalReviewItems = Array.isArray(nationalReviewQueue.items) ? nationalReviewQueue.items : [];
+  const nationalMarkets = nationalMarketCoverage.markets && typeof nationalMarketCoverage.markets === 'object' ? Object.keys(nationalMarketCoverage.markets) : [];
+  const acquisitionBacklog = {
+    schema: 'acquisition-backlog-reconciliation.v1',
+    asOf: backlog.generatedAt || null,
+    configuredEndpoints: sources.length,
+    credentialedEndpoints: sources.filter((source) => source.credential !== 'none').length,
+    regionalReview: {
+      activeQueue: backlogItems.length,
+      retiredCandidates: regionalRetiredCandidates.length,
+      unresolvedRetiredCandidates: regionalRetiredCandidates.filter((item) => !['INTEGRATED_STATIC', 'DO_NOT_INVESTIGATE'].includes(item.status)).length,
+      integratedStatic: regionalRetiredByStatus.INTEGRATED_STATIC || 0,
+      doNotInvestigate: regionalRetiredByStatus.DO_NOT_INVESTIGATE || 0,
+      byStatus: regionalRetiredByStatus,
+      source: 'expansion-queues/regional-source-backlog.json'
+    },
+    nationalDiscovery: {
+      reviewItems: nationalReviewItems.length,
+      markets: nationalMarkets.length,
+      seedCount: Number(nationalSeedValidation.seedCount || 0),
+      validationWarnings: Array.isArray(nationalSeedValidation.warnings) ? nationalSeedValidation.warnings.length : 0,
+      publicationState: nationalReviewQueue.publicationState || 'unknown',
+      source: 'expansion-queues/national-ranked-review-queue.json'
+    },
+    coverage: {
+      regions: Number(regionalCoverageAudit.summary?.regionCount || 0),
+      eventGapRegions: Number(regionalCoverageAudit.summary?.eventGapRegions || 0),
+      newsStatus: regionalCoverageAudit.summary?.newsStatus || 'unknown',
+      source: 'published/regional-source-coverage-audit.json'
+    },
+    interpretation: 'Workstreams are shown side by side and are not summed into a unique-source count; a candidate may appear in more than one research artifact.'
+  };
   const appSourceRecords = trackedBacklog.map((item) => ({
     id: item.id,
     name: item.publisher,
@@ -424,7 +466,7 @@ export async function collectKpiInventory() {
 
   const activeAcquisition = await readJson(resolve(motherbirdRoot, 'data', 'acquisition-packages', 'active.json'), null);
   return {
-    generatedAt: new Date().toISOString(), cities, configs: configs.map(({ id, name }) => ({ id, name })), sources, appSourceRecords, providers, gaps, backlogItems, automationJobs, productCapabilities, spatialSync, acquisitionMetrics, packageIntelligence, reviewPackages, sourceProposals, activeAcquisition,
+    generatedAt: new Date().toISOString(), cities, configs: configs.map(({ id, name }) => ({ id, name })), sources, appSourceRecords, providers, gaps, backlogItems, automationJobs, productCapabilities, spatialSync, acquisitionMetrics, packageIntelligence, acquisitionBacklog, reviewPackages, sourceProposals, activeAcquisition,
     endpointRegistry: {
       asOf: registrationRegistry.asOf,
       evidencePolicy: registrationRegistry.evidencePolicy,
@@ -470,6 +512,9 @@ export async function collectKpiInventory() {
       ,averagePoiMetadata: Math.round(cities.reduce((sum, city) => sum + city.metadata.averageCompleteness * city.poiCount, 0) / Math.max(cities.reduce((sum, city) => sum + city.poiCount, 0), 1))
       ,narrativeReadyPois: cities.reduce((sum, city) => sum + city.metadata.narrativeReady, 0)
       ,staticCatalogueRecords: Array.isArray(staticCatalogue.records) ? staticCatalogue.records.length : 0
+      ,acquisitionUnresolvedRegional: acquisitionBacklog.regionalReview.unresolvedRetiredCandidates
+      ,acquisitionNationalReviewItems: acquisitionBacklog.nationalDiscovery.reviewItems
+      ,acquisitionMarkets: acquisitionBacklog.nationalDiscovery.markets
     }
   };
 }
@@ -492,6 +537,10 @@ export function renderKpiHtml(model) {
     ['DC spatial package', summary.spatialIndexedPois.toLocaleString(), summary.spatialSyncReady ? 'Identity approved · local-only sync transport' : 'Identity needs approval'],
     ['Review backlog', summary.backlogCandidates, `${summary.readyBacklog} classified READY`],
     ['Tracked reachable sources', summary.trackedBacklog, `${summary.actionableBacklog} remain in the active operator queue`],
+    ['Unresolved regional candidates', summary.acquisitionUnresolvedRegional, 'Retired from the active queue; evidence and next paths retained'],
+    ['Regional backlog disposition', model.acquisitionBacklog.regionalReview.retiredCandidates, `${model.acquisitionBacklog.regionalReview.unresolvedRetiredCandidates} unresolved · ${model.acquisitionBacklog.regionalReview.integratedStatic} integrated · ${model.acquisitionBacklog.regionalReview.doNotInvestigate} do-not-investigate`],
+    ['National review items', summary.acquisitionNationalReviewItems, `${summary.acquisitionMarkets} markets · research-only`],
+    ['Event-gap regions', model.acquisitionBacklog.coverage.eventGapRegions, `of ${model.acquisitionBacklog.coverage.regions} audited regions · news ${model.acquisitionBacklog.coverage.newsStatus}`],
     ['National acquisition', model.acquisitionMetrics.plannedNeighbors, `${model.acquisitionMetrics.regionsSearched} replay region · ${model.acquisitionMetrics.duplicateDomains} duplicate domains`],
     ['Package requirements', model.packageIntelligence.frontendCategories.length, `${model.packageIntelligence.configuredRegions} configured regions · source-backed categories`],
     ['Priority repairs', summary.p0Gaps + summary.p1Gaps, `${summary.p0Gaps} P0 · ${summary.p1Gaps} P1`]
@@ -502,6 +551,17 @@ export function renderKpiHtml(model) {
     { key: 'host', label: 'Endpoint', render: (r) => `<a href="${escapeHtml(r.url)}" target="_blank" rel="noreferrer">${escapeHtml(r.host)} ↗</a>` },
     { key: 'credential', label: 'Credential' }, { key: 'frontend', label: 'Frontend connection' }
   ]);
+  const acquisitionRows = renderRows([
+    { lane: 'Configured producer endpoints', count: model.acquisitionBacklog.configuredEndpoints, status: 'Operational inventory', detail: `${model.acquisitionBacklog.credentialedEndpoints} require named credentials; configuration is not proof of healthy production.` },
+    { lane: 'Regional source review', count: model.acquisitionBacklog.regionalReview.unresolvedRetiredCandidates, status: 'Unresolved evidence', detail: `${model.acquisitionBacklog.regionalReview.activeQueue} active queue · ${model.acquisitionBacklog.regionalReview.retiredCandidates} retired candidates · ${model.acquisitionBacklog.regionalReview.integratedStatic} integrated static · ${model.acquisitionBacklog.regionalReview.doNotInvestigate} do-not-investigate.` },
+    { lane: 'National discovery review', count: model.acquisitionBacklog.nationalDiscovery.reviewItems, status: 'Research-only', detail: `${model.acquisitionBacklog.nationalDiscovery.markets} markets · ${model.acquisitionBacklog.nationalDiscovery.seedCount} validated seeds · ${model.acquisitionBacklog.nationalDiscovery.validationWarnings} validation warnings.` },
+    { lane: 'Regional coverage follow-up', count: model.acquisitionBacklog.coverage.eventGapRegions, status: 'Planning signal', detail: `${model.acquisitionBacklog.coverage.regions} audited regions have coverage estimates; event gaps remain in this many regions. News is ${model.acquisitionBacklog.coverage.newsStatus}.` }
+  ], [
+    { key: 'lane', label: 'Acquisition lane' }, { key: 'count', label: 'Items', render: (r) => `<b>${Number(r.count).toLocaleString()}</b>` },
+    { key: 'status', label: 'State', render: (r) => `<span class="pill ${/operational/i.test(r.status) ? 'good' : /research|planning/i.test(r.status) ? 'warn' : 'bad'}">${escapeHtml(r.status)}</span>` },
+    { key: 'detail', label: 'Interpretation' }
+  ]);
+  const acquisitionPanel = `<section class="panel" id="acquisitionBacklog"><h2>Data acquisition backlog · all source lanes</h2><p>The active regional queue is empty, but acquisition work is not. This reconciliation keeps configured endpoints, retired regional candidates, national discovery, and coverage follow-up visible together. Counts are lane totals, not a deduplicated unique-source total.</p><table><thead><tr><th>Acquisition lane</th><th>Items</th><th>State</th><th>Interpretation</th></tr></thead><tbody>${acquisitionRows}</tbody></table><p class="note"><b>Current read:</b> ${model.acquisitionBacklog.regionalReview.unresolvedRetiredCandidates} regional candidates still need evidence or an acquisition decision, while ${model.acquisitionBacklog.nationalDiscovery.reviewItems} national discovery items remain research-only across ${model.acquisitionBacklog.nationalDiscovery.markets} markets. The next useful work is resolution and promotion evidence, not expanding the active queue blindly.</p><small>Sources: <code>${escapeHtml(model.acquisitionBacklog.regionalReview.source)}</code>, <code>${escapeHtml(model.acquisitionBacklog.nationalDiscovery.source)}</code>, and <code>${escapeHtml(model.acquisitionBacklog.coverage.source)}</code>.</small></section>`;
   const cityRows = renderRows(model.cities, [
     { key: 'name', label: 'App region', render: (r) => `${escapeHtml(r.name)}, ${escapeHtml(r.state)}` },
     { key: 'poiCount', label: 'Places' }, { key: 'journeyCount', label: 'Walks/routes' }, { key: 'civicCount', label: 'Civic items' },
