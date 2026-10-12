@@ -67,7 +67,11 @@ export function initPrimaryShell() {
     if (tab === 'library') {
       panel.classList.add('hidden');
       state.settings.myPlacesSection = 'workspace';
-      window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'maps', forceOpen: true } }));
+      const mapWorkspace = document.getElementById('mapWorkspacePanel');
+      const workspaceOpen = mapWorkspace?.dataset.destination === 'maps' && !mapWorkspace.classList.contains('hidden');
+      window.dispatchEvent(new CustomEvent('map-workspace-open-requested', {
+        detail: { destination: workspaceOpen ? '' : 'maps', forceOpen: !workspaceOpen }
+      }));
       return;
     }
     // The map workspace belongs to Explore. Close it before showing a shell

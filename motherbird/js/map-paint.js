@@ -127,6 +127,17 @@ function setActive(active) {
   else state.map?.pm?.disableDraw();
 }
 
+function finishMapEditing() {
+  freehandActive = false;
+  setActive(false);
+  document.querySelectorAll('[data-draw-shape]').forEach((item) => {
+    item.classList.remove('active');
+    item.setAttribute('aria-pressed', 'false');
+  });
+  const status = el('drawWorkspaceStatus');
+  if (status) status.textContent = 'Editing paused. Choose a tool to add another map mark.';
+}
+
 export function validDrawing(points) {
   return Array.isArray(points) && points.length > 1 && points.length <= 20000 && points.every((point) => Array.isArray(point) && Number.isFinite(point[0]) && Number.isFinite(point[1]) && Math.abs(point[0]) <= 90 && Math.abs(point[1]) <= 180);
 }
@@ -380,12 +391,20 @@ export async function initMapPaint() {
     const tool = event.target.closest('[data-draw-shape]'); if (!tool) return;
     const shapes = { CustomIcon: 'CustomIcon', Marker: 'Marker', Line: 'Line', Freehand: 'Freehand', Polygon: 'Polygon', Rectangle: 'Rectangle', Circle: 'Circle' };
     const shape = shapes[tool.dataset.drawShape]; if (!shape) return;
+    if (tool.classList.contains('active')) { finishMapEditing(); return; }
     const labels = { Line: 'Test route', Freehand: 'Sketch area', Polygon: 'Area', Rectangle: 'Define area', Circle: 'Explore area' };
     if (labels[shape]) tool.querySelector('span:last-child').textContent = labels[shape];
     setActive(true); state.map.pm.disableDraw(); freehandActive = shape === 'Freehand';
     if (!freehandActive) state.map.pm.enableDraw(shape, { snappable: true, finishOn: 'dblclick' });
-    document.querySelectorAll('[data-draw-shape]').forEach((item) => item.classList.toggle('active', item === tool));
+    document.querySelectorAll('[data-draw-shape]').forEach((item) => {
+      const active = item === tool;
+      item.classList.toggle('active', active);
+      item.setAttribute('aria-pressed', String(active));
+    });
     el('drawWorkspaceStatus').textContent = `${tool.textContent.trim()} tool active. Draw on the map.`;
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && state.mapPaintActive) finishMapEditing();
   });
   el('undoMapDrawing')?.addEventListener('click', () => void undoDrawing());
   el('clearMapDrawings')?.addEventListener('click', () => void clearDrawings());
@@ -398,7 +417,7 @@ export async function initMapPaint() {
   el('manageMapLayers')?.addEventListener('click', () => window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'maps', forceOpen: true } })));
   window.addEventListener('map-workspace-changed', ({ detail }) => {
     const active = detail?.destination === 'draw' && detail.open;
-    if (!active) { freehandActive = false; setActive(false); document.querySelectorAll('[data-draw-shape]').forEach((item) => item.classList.remove('active')); }
+    if (!active) finishMapEditing();
     else { state.mapPaintActive = true; document.body.classList.add('map-painting'); button?.setAttribute('aria-pressed', 'true'); }
   });
 }
