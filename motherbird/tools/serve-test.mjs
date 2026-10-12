@@ -3,8 +3,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const defaultRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const port = Number(process.argv[2] || 4174);
+const root = path.resolve(process.argv[3] || defaultRoot);
 const types = {
   '.css': 'text/css; charset=utf-8',
   '.html': 'text/html; charset=utf-8',
@@ -29,7 +30,7 @@ const server = http.createServer((request, response) => {
 });
 
 server.listen(port, '127.0.0.1', () => {
-  console.log(`Motherbird test server: http://127.0.0.1:${port}/`);
+  console.log(`Motherbird test server: http://127.0.0.1:${port}/ (root ${root})`);
 });
 
 process.on('SIGINT', () => server.close(() => process.exit(0)));

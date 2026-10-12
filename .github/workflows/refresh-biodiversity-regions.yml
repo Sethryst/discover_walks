@@ -48,7 +48,14 @@ jobs:
         working-directory: motherbird
         run: |
           npm run build
-          npm run test:pages-smoke
+          node tools/serve-test.mjs 4174 dist > "$RUNNER_TEMP/motherbird-smoke-server.log" 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for attempt in {1..20}; do
+            curl --fail --silent http://127.0.0.1:4174/ >/dev/null && break
+            sleep 1
+          done
+          MOTHERBIRD_SMOKE_URL=http://127.0.0.1:4174/ npm run test:pages-smoke
 
       - name: Commit refreshed static artifacts
         shell: bash

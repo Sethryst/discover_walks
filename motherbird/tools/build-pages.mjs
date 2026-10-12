@@ -35,6 +35,7 @@ const publishEntries = [
   'index.html',
   'js',
   'legal.css',
+  'map-customization.css',
   'manifest.webmanifest',
   'privacy.html',
   'pilot-routing-test.html',

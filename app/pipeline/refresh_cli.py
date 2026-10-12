@@ -48,11 +48,16 @@ def main() -> int:
     parser.add_argument("--producer-version", default="scheduled")
     parser.add_argument("--only", nargs="*")
     parser.add_argument("--use-cache", action="store_true", help="Offline replay; use only for test or recovery runs.")
+    parser.add_argument(
+        "--allow-partial",
+        action="store_true",
+        help="Keep verified prior bundles for unavailable regions and exit successfully with a DEGRADED report.",
+    )
     args = parser.parse_args()
     configure_logging()
     timestamp = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
     selected = [path for path in _regions(args.regions_dir) if not args.only or path.stem in set(args.only)]
-    report: dict[str, object] = {"schemaVersion": 1, "generatedAt": timestamp, "completed": {}, "failed": {}}
+    report: dict[str, object] = {"schemaVersion": 1, "generatedAt": timestamp, "status": "COMPLETE", "completed": {}, "failed": {}}
     for path in selected:
         region_id = path.stem
         try:
@@ -75,7 +80,10 @@ def main() -> int:
             logging.getLogger(__name__).exception("Scheduled region refresh failed", extra={"region_id": region_id})
     args.output.mkdir(parents=True, exist_ok=True)
     (args.output / "refresh-report.json").write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    return 1 if report["failed"] else 0
+    if report["failed"]:
+        report["status"] = "DEGRADED"
+        (args.output / "refresh-report.json").write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    return 0 if args.allow_partial or not report["failed"] else 1
 
 
 if __name__ == "__main__":
