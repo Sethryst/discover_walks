@@ -85,6 +85,28 @@ function conceptReason(stops) {
   return `${ground[0].toUpperCase()}${ground.slice(1)} · ${stops.length} stop${stops.length === 1 ? '' : 's'} · ${stops.map((stop) => stop.name).slice(0, 2).join(' and ')}`;
 }
 
+const AUTO_LOOP_RETRY_STATUSES = new Set(['BOUNDARY_STITCH_FAILED', 'CROSS_CELL_UNAVAILABLE']);
+
+async function routeAutoRoundTrip(stops, center, options) {
+  let last = null;
+  let lastStops = stops;
+  for (let count = stops.length; count >= 1; count -= 1) {
+    const attemptStops = stops.slice(0, count);
+    lastStops = attemptStops;
+    const routed = await routeOnFoot([center, ...attemptStops, center], options).catch((error) => ({ ok: false, status: 'ROUTING_WORKER_ERROR', failure: { message: error?.message || 'Offline routing failed.' } }));
+    if (routed.ok || !AUTO_LOOP_RETRY_STATUSES.has(routed.status)) return { routed, stops: attemptStops };
+    last = routed;
+  }
+  return { routed: last || { ok: false, status: 'GRAPH_VERSION_UNAVAILABLE' }, stops: lastStops };
+}
+
+function planningFailureMessage(result, routeMode) {
+  if (routeMode === 'auto-round-trip' && AUTO_LOOP_RETRY_STATUSES.has(result?.status)) {
+    return 'We could not build a complete loop in the installed walking coverage. Try a shorter walk or move the map slightly and try again.';
+  }
+  return routeFailureMessage(result);
+}
+
 export function paintWalkConcept(plan = state.plannedRoute, { fit = true } = {}) {
   if (!plan || !state.map) return null;
   state.planSketchLayer?.remove();
@@ -181,7 +203,7 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
       : (nearbyAutoCandidates.length >= count ? nearbyAutoCandidates : autoCandidates).slice(0, count)
         .concat(autoCandidates.length ? [] : [fallbackAutoRoundTripStop(center, minutes)]))
       .map(normalizeStop).filter(Boolean);
-  const stops = routeMode === 'auto-round-trip' ? orderAutoRoundTripStops(rawStops, center) : rawStops;
+  let stops = routeMode === 'auto-round-trip' ? orderAutoRoundTripStops(rawStops, center) : rawStops;
   if (!stops.length && routeMode !== 'auto-round-trip') {
     toast('No candidate places nearby to sketch a walk. Try panning the map or picking an area with places.');
     return null;
@@ -214,8 +236,16 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
       return state.plannedRoute;
     }
   }
-  const points = ['round-trip', 'auto-round-trip'].includes(routeMode) ? [center, ...stops, center] : [routeOrigin, ...stops];
-  const routed = await routeOnFoot(points, { city: state.activeCity, profile: 'ordinary_walking_beta' }).catch((error) => ({ ok: false, status: 'ROUTING_WORKER_ERROR', failure: { message: error?.message || 'Offline routing failed.' } }));
+  const routeOptions = { city: state.activeCity, profile: 'ordinary_walking_beta' };
+  let routed;
+  if (routeMode === 'auto-round-trip') {
+    const autoRoute = await routeAutoRoundTrip(stops, center, routeOptions);
+    routed = autoRoute.routed;
+    stops = autoRoute.stops;
+  } else {
+    const points = routeMode === 'round-trip' ? [center, ...stops, center] : [routeOrigin, ...stops];
+    routed = await routeOnFoot(points, routeOptions).catch((error) => ({ ok: false, status: 'ROUTING_WORKER_ERROR', failure: { message: error?.message || 'Offline routing failed.' } }));
+  }
   if (requestGeneration !== generation) return null;
   if (new URLSearchParams(globalThis.location?.search || '').has('diagnose')) {
     globalThis.__lastRouteResult = routed;
@@ -230,13 +260,13 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
     // walker can retry or change one endpoint deliberately.
     setPlannerSelecting('End');
     const detail = routed.failure?.reason || routed.failure?.message || routed.status;
-    toast(`We couldn't find a walkable route there. ${routeFailureMessage(routed)}`);
+    toast(`We couldn't find a walkable route there. ${planningFailureMessage(routed, routeMode)}`);
   }
   const plan = {
     id: `concept-${Date.now()}`, title: title || (routeMode === 'point-to-point' ? 'A route to your destination' : `${CITIES[state.activeCity]?.name || 'Local'} ${minutes}-minute sketch`),
     reason: reason || conceptReason(stops), city: state.activeCity, routeMode, estimatedDurationMinutes: routed.ok ? Math.round(Number(routed.durationSeconds || 0) / 60) : minutes,
     stops, coordinates: routed.ok ? routed.coordinates : [], journeyId,
-    ...(routed.ok ? { distanceMeters: routed.distanceMeters, distanceMiles: Number((routed.distanceMeters / 1609.344).toFixed(2)), graphStatus: null, graphVersion: routed.graphVersion, cellId: routed.cellId, cellRelease: routed.cellRelease, edgeIds: routed.edgeIds, instructions: routed.instructions } : { graphStatus: routed.status || 'GRAPH_VERSION_UNAVAILABLE', failureMessage: routeFailureMessage(routed) })
+    ...(routed.ok ? { distanceMeters: routed.distanceMeters, distanceMiles: Number((routed.distanceMeters / 1609.344).toFixed(2)), graphStatus: null, graphVersion: routed.graphVersion, cellId: routed.cellId, cellRelease: routed.cellRelease, edgeIds: routed.edgeIds, instructions: routed.instructions } : { graphStatus: routed.status || 'GRAPH_VERSION_UNAVAILABLE', failureMessage: planningFailureMessage(routed, routeMode) })
   };
   state.plannedRoute = plan; state.planOptions = [plan];
   state.routePlanningFailures = routed.ok ? [] : [...(state.routePlanningFailures || []), routed];
