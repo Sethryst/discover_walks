@@ -13,6 +13,7 @@ import { showCategoryCoach } from './coach.js';
 import { syncNewsStory } from './learn-change.js';
 import { drawStories } from './stories.js';
 import { nationalOsmFamilyControlsHtml, setNationalOsmFamily } from './national-osm-layers.js';
+import { capabilityIsAvailable } from './regional-capabilities.js';
 
 export const LAYER_GROUPS = [
   { id: 'nature_observations', light: 'recreation', label: 'Nature & observations', description: 'Wildlife and biodiversity observations', tags: ['biodiversity:birds', 'biodiversity:plants', 'biodiversity:mammals', 'biodiversity:insects', 'biodiversity:fungi', 'biodiversity:reptiles', 'biodiversity:other'] },
@@ -310,8 +311,9 @@ function availableMapChips(kind) {
     let tags = chip.prefix ? [...availableTags].filter((id) => id.startsWith(chip.prefix)) : chip.tags;
     if (!tags.length && chip.prefix) tags = [chip.prefix];
     let available = tags.some((id) => availableTags.has(id));
-    if (chip.id === 'routes') available = routesForCity(state.activeCity).length > 0;
-    if (chip.id === 'trails') available = (state.trailSegments[state.activeCity] || []).length > 0;
+    if (chip.id === 'routes') available = capabilityIsAvailable(state.regionalCapabilities?.capabilities?.journeys) || routesForCity(state.activeCity).length > 0;
+    if (chip.id === 'trails') available = capabilityIsAvailable(state.regionalCapabilities?.capabilities?.walkingNetwork) || (state.trailSegments[state.activeCity] || []).length > 0;
+    if (chip.id === 'nature') available = capabilityIsAvailable(state.regionalCapabilities?.capabilities?.places) && available;
     if (chip.id === 'volunteer') available = civicAvailability.volunteer;
     if (packPublicMarkers(kind, chip.id).length) available = true;
     return { ...chip, tags, available };

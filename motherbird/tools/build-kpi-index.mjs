@@ -3,6 +3,7 @@ import { dirname, extname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { CITIES } from '../js/constants.js';
 import { DISCOVER_GROUPS, discoverGroupFor, publishingState } from '../js/discovery-taxonomy.js';
+import { buildRegionalCapabilities } from './build-regional-capabilities.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const motherbirdRoot = resolve(here, '..');
@@ -465,8 +466,9 @@ export async function collectKpiInventory() {
   ];
 
   const activeAcquisition = await readJson(resolve(motherbirdRoot, 'data', 'acquisition-packages', 'active.json'), null);
+  const capabilityManifest = await readJson(resolve(motherbirdRoot, 'data', 'regional-capabilities.json'), { schemaVersion: null, regions: {} });
   return {
-    generatedAt: new Date().toISOString(), cities, configs: configs.map(({ id, name }) => ({ id, name })), sources, appSourceRecords, providers, gaps, backlogItems, automationJobs, productCapabilities, spatialSync, acquisitionMetrics, packageIntelligence, acquisitionBacklog, reviewPackages, sourceProposals, activeAcquisition,
+    generatedAt: new Date().toISOString(), cities, configs: configs.map(({ id, name }) => ({ id, name })), sources, appSourceRecords, providers, gaps, backlogItems, automationJobs, productCapabilities, spatialSync, acquisitionMetrics, packageIntelligence, acquisitionBacklog, capabilityManifest, reviewPackages, sourceProposals, activeAcquisition,
     endpointRegistry: {
       asOf: registrationRegistry.asOf,
       evidencePolicy: registrationRegistry.evidencePolicy,
@@ -515,6 +517,8 @@ export async function collectKpiInventory() {
       ,acquisitionUnresolvedRegional: acquisitionBacklog.regionalReview.unresolvedRetiredCandidates
       ,acquisitionNationalReviewItems: acquisitionBacklog.nationalDiscovery.reviewItems
       ,acquisitionMarkets: acquisitionBacklog.nationalDiscovery.markets
+      ,capabilityManifestRegions: Object.keys(capabilityManifest.regions || {}).length
+      ,capabilityManifestSchema: capabilityManifest.schemaVersion
     }
   };
 }
@@ -541,6 +545,7 @@ export function renderKpiHtml(model) {
     ['Regional backlog disposition', model.acquisitionBacklog.regionalReview.retiredCandidates, `${model.acquisitionBacklog.regionalReview.unresolvedRetiredCandidates} unresolved · ${model.acquisitionBacklog.regionalReview.integratedStatic} integrated · ${model.acquisitionBacklog.regionalReview.doNotInvestigate} do-not-investigate`],
     ['National review items', summary.acquisitionNationalReviewItems, `${summary.acquisitionMarkets} markets · research-only`],
     ['Event-gap regions', model.acquisitionBacklog.coverage.eventGapRegions, `of ${model.acquisitionBacklog.coverage.regions} audited regions · news ${model.acquisitionBacklog.coverage.newsStatus}`],
+    ['Capability manifest', summary.capabilityManifestRegions, `generated contract · schema v${summary.capabilityManifestSchema}`],
     ['National acquisition', model.acquisitionMetrics.plannedNeighbors, `${model.acquisitionMetrics.regionsSearched} replay region · ${model.acquisitionMetrics.duplicateDomains} duplicate domains`],
     ['Package requirements', model.packageIntelligence.frontendCategories.length, `${model.packageIntelligence.configuredRegions} configured regions · source-backed categories`],
     ['Priority repairs', summary.p0Gaps + summary.p1Gaps, `${summary.p0Gaps} P0 · ${summary.p1Gaps} P1`]
@@ -686,6 +691,7 @@ export function renderSourceAtlasHtml(model) {
 }
 
 export async function buildKpiIndex(outputDirectory = resolve(motherbirdRoot, 'dist', 'kpi')) {
+  await buildRegionalCapabilities();
   const model = await collectKpiInventory();
   await mkdir(outputDirectory, { recursive: true });
   let indexHtml = renderKpiHtml(model);

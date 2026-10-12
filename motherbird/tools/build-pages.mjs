@@ -4,10 +4,13 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildKpiIndex } from './build-kpi-index.mjs';
 import { exportFederalRegionRuntime } from './export-federal-region-runtime.mjs';
+import { buildRegionalCapabilities } from './build-regional-capabilities.mjs';
 
 const toolDirectory = dirname(fileURLToPath(import.meta.url));
 const sourceDirectory = resolve(toolDirectory, '..');
 const outputDirectory = resolve(process.env.MOTHERBIRD_BUILD_DIR || resolve(sourceDirectory, 'dist'));
+
+await buildRegionalCapabilities();
 
 try {
   await exportFederalRegionRuntime();

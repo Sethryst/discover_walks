@@ -12,6 +12,7 @@ export const state = {
 
   // city / map data
   activeCity: null,
+  regionalCapabilities: null,
   cityPois: {},
   trailSegments: {},
   pois: [],

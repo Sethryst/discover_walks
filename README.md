@@ -142,6 +142,7 @@ Routing and map data may include OpenStreetMap and civic/open-data sources. Each
 - [`app/README.md`](app/README.md) — static-pack factory notes.
 - [`DOCUMENTATION.md`](DOCUMENTATION.md) — catalog of project documentation.
 - [`motherbird/docs/ProductBacklog.md`](motherbird/docs/ProductBacklog.md) — canonical product backlog.
+- [`motherbird/docs/RegionalCapabilitiesManifest.md`](motherbird/docs/RegionalCapabilitiesManifest.md) — generated regional capability contract.
 - [`HANDOFF-national-routing-tonight.md`](HANDOFF-national-routing-tonight.md) — routing handoff context.
 - [`AGENTS.md`](AGENTS.md) — repository workflow and deployment rules.
 

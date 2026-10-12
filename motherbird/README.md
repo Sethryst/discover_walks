@@ -16,6 +16,8 @@ Discover paints numbered **1**, **2**, and **3** from pack stop IDs. It does not
 
 Packs are static JSON emitted by Gremlin Lab. The device is the source of truth: GPS, journal entries, and photos never sync.
 
+Regional capability declarations are generated into [`data/regional-capabilities.json`](data/regional-capabilities.json) and consumed by [`js/regional-capabilities.js`](js/regional-capabilities.js). See [`docs/RegionalCapabilitiesManifest.md`](docs/RegionalCapabilitiesManifest.md) for the contract and publication boundary.
+
 ## Run locally
 
 Serve this directory with a static server. Do not open it with `file://`.

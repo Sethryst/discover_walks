@@ -64,6 +64,8 @@ test('KPI page exposes operator paths without publishing credential values', asy
   assert.match(html, /Live browser services/);
   assert.match(html, /Prioritized repair queue/);
   assert.match(html, /Product delivery progress/);
+  assert.match(html, /Capability manifest/);
+  assert.equal(model.summary.capabilityManifestRegions, Object.keys(model.capabilityManifest.regions).length);
   assert.match(html, /Repository automation/);
   assert.match(html, /Passkey sign-in/);
   assert.match(html, /id="operatorGate"/);

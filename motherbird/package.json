@@ -11,6 +11,7 @@
     "test:storage-contract": "node --test tests/storage-contract.test.mjs tests/storage-cache-contract.test.mjs tests/outbox-runtime.test.mjs tests/workspace.test.mjs tests/workspace-persistence.test.mjs",
     "verify:deployed-build": "node tools/verify-deployed-build.mjs",
     "build:kpi": "node tools/build-kpi-index.mjs",
+    "build:capabilities": "node tools/build-regional-capabilities.mjs",
     "build:vienna-osm": "node tools/build-vienna-osm-pois.mjs vienna",
     "build:municipal-seeds": "node tools/export-municipal-pois.mjs",
     "check:municipal-seeds": "node tools/export-municipal-pois.mjs --check",

@@ -11,6 +11,7 @@ import { loadNeighborhoodsForCity } from './neighborhoods.js';
 import { normalizeRegionDataConfig } from './osm-regions.js';
 import { activateInstalledRegionRuntime } from './installed-region-runtime.js';
 import { activateCountyAdditions } from './county-additions.js';
+import { capabilitiesForRegion, regionIdForCity } from './regional-capabilities.js';
 
 function perfMark(name, detail = {}) {
   if (!globalThis.performance?.mark) return;
@@ -63,6 +64,7 @@ export async function loadCityData(cityId) {
   const bootStart = `city-data:${cityId}:start`;
   perfMark(bootStart, { cityId });
   const config = normalizeRegionDataConfig(cityId, CITIES[cityId]);
+  state.regionalCapabilities = await capabilitiesForRegion(regionIdForCity(cityId, config)).catch(() => null);
   const saved = (await db.all('points_of_interest')).filter((poi) => poi.city === cityId);
   const metadata = await db.get('poi_metadata', `${cityId}-seed`);
   if (globalThis.navigator?.onLine === false) {
@@ -204,6 +206,7 @@ export async function switchCity(nextCity, recenter = true, { source = 'user' } 
   const manuallyLocked = recordingWalk && source === 'user';
   if (manuallyLocked) state.activeWalk.packOverride = nextCity;
   state.activeCity = nextCity; state.settings.activeCity = nextCity;
+  state.regionalCapabilities = await capabilitiesForRegion(regionIdForCity(nextCity, CITIES[nextCity])).catch(() => null);
   if (!state.cityPois[nextCity]) await loadCityData(nextCity);
   await activateInstalledRegionRuntime(nextCity);
   await activateCountyAdditions(nextCity);
