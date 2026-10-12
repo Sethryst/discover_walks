@@ -7,7 +7,7 @@ async function getJournalRoom() {
   let room = await db.get('rooms', JOURNAL_ROOM_ID);
   if (!room) {
     const now = new Date().toISOString();
-    room = { id: JOURNAL_ROOM_ID, schemaVersion: 1, placeId: JOURNAL_ROOM_ID, type: 'neighborhood', name: 'Journal Room', visibility: 'private', data: { items: [], layout: 'grid', alignment: 'street-lines' }, audioStationIds: [], traces: [], createdAt: now, updatedAt: now };
+    room = { id: JOURNAL_ROOM_ID, schemaVersion: 1, placeId: JOURNAL_ROOM_ID, type: 'neighborhood', name: 'Journal Room', visibility: 'private', data: { title: 'A place worth keeping', subtitle: 'Collect the places, details, and thoughts that belong together.', items: [], layout: 'grid', alignment: 'street-lines' }, audioStationIds: [], traces: [], createdAt: now, updatedAt: now };
     await db.put('rooms', room);
   }
   return room;
@@ -69,6 +69,26 @@ async function setJournalRoomLayout(layout) {
   window.dispatchEvent(new CustomEvent('journal-room-changed'));
 }
 
+async function updateJournalRoomMetadata(form) {
+  const room = await getJournalRoom();
+  const title = String(form.elements.title?.value || '').trim().slice(0, 120) || 'A place worth keeping';
+  const subtitle = String(form.elements.subtitle?.value || '').trim().slice(0, 220);
+  const next = { ...room, data: { ...room.data, title, subtitle }, updatedAt: new Date().toISOString() };
+  await db.put('rooms', next);
+  window.dispatchEvent(new CustomEvent('journal-room-changed'));
+}
+
+async function moveJournalRoomItem(itemId, direction) {
+  const room = await getJournalRoom();
+  const items = [...(room.data?.items || [])];
+  const index = items.findIndex((item) => item.id === String(itemId));
+  const target = index + direction;
+  if (index < 0 || target < 0 || target >= items.length) return;
+  [items[index], items[target]] = [items[target], items[index]];
+  await db.put('rooms', { ...room, data: { ...room.data, items }, updatedAt: new Date().toISOString() });
+  window.dispatchEvent(new CustomEvent('journal-room-changed'));
+}
+
 function alignmentStyle(items) {
   const located = items.filter((item) => item.location && Number.isFinite(item.location.lat) && Number.isFinite(item.location.lng));
   if (!located.length) return { located, bounds: null };
@@ -87,12 +107,12 @@ export async function renderJournalRoom(target) {
     const x = spatial && bounds && item.location ? ((item.location.lng - bounds.minLng) / (bounds.maxLng - bounds.minLng)) * 100 : null;
     const y = spatial && bounds && item.location ? (1 - ((item.location.lat - bounds.minLat) / (bounds.maxLat - bounds.minLat))) * 100 : null;
     const style = spatial && x !== null ? `--journal-card-index:${index};--journal-x:${x.toFixed(2)}%;--journal-y:${y.toFixed(2)}%` : `--journal-card-index:${index}`;
-    return `<article class="journal-room-card${spatial ? ' journal-room-card-spatial' : ''}" style="${style}" data-journal-place="${escapeHtml(item.id)}" data-journal-kind="${escapeHtml(item.kind || 'poi')}"><div class="journal-room-card-top"><span class="journal-room-marker" aria-hidden="true">${index + 1}</span><button type="button" class="icon-button" data-journal-room-remove="${escapeHtml(item.id)}" aria-label="Remove ${escapeHtml(item.name)} from Journal Room">×</button></div><h4>${escapeHtml(item.name)}</h4><small>${escapeHtml(item.category || item.type || 'place')}${item.location ? ` · ${item.location.lat.toFixed(4)}, ${item.location.lng.toFixed(4)}` : ''}</small>${item.note ? `<p>${escapeHtml(item.note)}</p>` : ''}${item.tags?.length ? `<div class="journal-room-tags">${item.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join('')}</div>` : ''}</article>`;
+    return `<article class="journal-room-card${spatial ? ' journal-room-card-spatial' : ''}" style="${style}" data-journal-place="${escapeHtml(item.id)}" data-journal-kind="${escapeHtml(item.kind || 'poi')}"><div class="journal-room-card-top"><span class="journal-room-marker" aria-hidden="true">${index + 1}</span><div class="journal-room-card-actions"><button type="button" class="icon-button" data-journal-room-move="${escapeHtml(item.id)}" data-journal-room-direction="-1" aria-label="Move ${escapeHtml(item.name)} earlier">↑</button><button type="button" class="icon-button" data-journal-room-move="${escapeHtml(item.id)}" data-journal-room-direction="1" aria-label="Move ${escapeHtml(item.name)} later">↓</button><button type="button" class="icon-button" data-journal-room-remove="${escapeHtml(item.id)}" aria-label="Remove ${escapeHtml(item.name)} from Journal Room">×</button></div></div><h4>${escapeHtml(item.name)}</h4><small>${escapeHtml(item.category || item.type || 'place')}${item.location ? ` · ${item.location.lat.toFixed(4)}, ${item.location.lng.toFixed(4)}` : ''}</small>${item.note ? `<p>${escapeHtml(item.note)}</p>` : ''}${item.tags?.length ? `<div class="journal-room-tags">${item.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join('')}</div>` : ''}</article>`;
   };
   const unlocated = items.filter((item) => !item.location || !Number.isFinite(item.location.lat) || !Number.isFinite(item.location.lng));
   const locatedItems = items.filter((item) => item.location && Number.isFinite(item.location.lat) && Number.isFinite(item.location.lng));
   const content = items.length ? layout === 'alignment' ? `<div class="journal-room-alignment"><span class="journal-room-north">N</span><span class="journal-room-axis journal-room-axis-x"></span><span class="journal-room-axis journal-room-axis-y"></span>${locatedItems.map((item) => card(item, items.indexOf(item), true)).join('')}</div>${unlocated.length ? `<div class="journal-room-unlocated-grid">${unlocated.map((item) => card(item, items.indexOf(item))).join('')}</div>` : ''}` : `<div class="journal-room-grid">${items.map(card).join('')}</div>` : '<div class="journal-room-empty"><strong>Your place page starts here.</strong><p>Open a place, then choose “Add to Journal Room” to bring it into this grid.</p></div>';
-  target.innerHTML = `<div class="journal-room-heading"><div><span class="sheet-kicker">PLACE COMPOSITION</span><h3>Journal Room</h3><p>Collect places here before arranging the page.</p></div><span class="journal-room-count">${items.length} place${items.length === 1 ? '' : 's'}</span></div><div class="journal-room-layouts" role="group" aria-label="Journal Room layout"><button type="button" data-journal-layout="grid" class="${layout === 'grid' ? 'active' : ''}">Grid</button><button type="button" data-journal-layout="alignment" class="${layout === 'alignment' ? 'active' : ''}">Align by location</button></div>${content}<div class="journal-room-guide"><span aria-hidden="true">⌗</span><span><strong>${layout === 'alignment' ? 'North-up alignment' : 'Alignment guide ready'}</strong><small>${layout === 'alignment' ? 'Cards are placed from their coordinates; the next layer can add real street lines.' : 'Street lines and nearby details will become the next layer of the page.'}</small></span></div>`;
+  target.innerHTML = `<div class="journal-room-heading"><div><span class="sheet-kicker">PLACE COMPOSITION</span><h3>Journal Room</h3><p>Shape the page before you publish or share it.</p></div><span class="journal-room-count">${items.length} item${items.length === 1 ? '' : 's'}</span></div><form class="journal-room-meta" data-journal-room-meta><label>Page title<input name="title" maxlength="120" value="${escapeHtml(room.data?.title || 'A place worth keeping')}" /></label><label>Page subtitle<textarea name="subtitle" maxlength="220" rows="2">${escapeHtml(room.data?.subtitle || '')}</textarea></label><button type="submit" class="secondary-button">Save page details</button></form><div class="journal-room-layouts" role="group" aria-label="Journal Room layout"><button type="button" data-journal-layout="grid" class="${layout === 'grid' ? 'active' : ''}">Grid</button><button type="button" data-journal-layout="alignment" class="${layout === 'alignment' ? 'active' : ''}">Align by location</button></div>${content}<div class="journal-room-guide"><span aria-hidden="true">⌗</span><span><strong>${layout === 'alignment' ? 'North-up alignment' : 'Alignment guide ready'}</strong><small>${layout === 'alignment' ? 'Cards are placed from their coordinates; the next layer can add real street lines.' : 'Move cards into a reading order; location alignment stays available when you need it.'}</small></span></div>`;
 }
 
 export function initJournalRoom() {
@@ -103,6 +123,14 @@ export function initJournalRoom() {
     if (button) void removePlaceFromJournalRoom(button.dataset.journalRoomRemove);
     const layout = event.target.closest('[data-journal-layout]');
     if (layout) void setJournalRoomLayout(layout.dataset.journalLayout);
+    const move = event.target.closest('[data-journal-room-move]');
+    if (move) void moveJournalRoomItem(move.dataset.journalRoomMove, Number(move.dataset.journalRoomDirection));
+  });
+  document.addEventListener('submit', (event) => {
+    const form = event.target.closest('[data-journal-room-meta]');
+    if (!form) return;
+    event.preventDefault();
+    void updateJournalRoomMetadata(form);
   });
   window.addEventListener('journal-room-changed', () => void renderJournalRoom(document.getElementById('journalRoomPanel')));
   void renderJournalRoom(document.getElementById('journalRoomPanel'));
