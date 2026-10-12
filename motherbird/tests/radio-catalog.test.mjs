@@ -28,5 +28,5 @@ test('radio exposes the complete SoundCloud catalog and transport surfaces', asy
   assert.doesNotMatch(map, /cluster\.getChildCount\(\)<\/span>/);
   assert.match(map, /state\.map\.on\('moveend', refreshSettledViewport\)/);
   assert.match(customization, /map-outline-dark/);
-  assert.match(serviceWorker, /const APP_CACHE = 'walk-wildlife-shell-v444';/);
+  assert.match(serviceWorker, /const APP_CACHE = 'walk-wildlife-shell-v445';/);
 });

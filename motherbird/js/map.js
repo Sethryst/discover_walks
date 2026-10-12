@@ -160,7 +160,7 @@ export function initMap() {
   if (navigator.onLine !== false) state.onlineBasemapLayer.addTo(state.map);
   state.historyRadiusLayer = L.layerGroup().addTo(state.map);
   state.observationLayer = L.layerGroup().addTo(state.map);
-  state.poiLayer = (L.markerClusterGroup ? L.markerClusterGroup({ maxClusterRadius: 42, disableClusteringAtZoom: 17, showCoverageOnHover: false, iconCreateFunction: (cluster) => {
+  state.poiLayer = (L.markerClusterGroup ? L.markerClusterGroup({ maxClusterRadius: 42, disableClusteringAtZoom: 17, animate: false, animateAddingMarkers: false, removeOutsideVisibleBounds: true, showCoverageOnHover: false, iconCreateFunction: (cluster) => {
     const counts = { news: 0, recreation: 0, cuisine: 0 };
     cluster.getAllChildMarkers().forEach((marker) => { counts[placeLight(marker.options.place || {})] += 1; });
     const light = Object.keys(counts).sort((a,b) => counts[b] - counts[a])[0];
