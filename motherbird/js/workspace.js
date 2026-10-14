@@ -317,3 +317,11 @@ export function initWorkspaceRuntime() {
   });
   window.addEventListener('workspace-changed', () => window.dispatchEvent(new CustomEvent('journal-data-changed')));
 }
+const workspaceHeaderObserver = typeof MutationObserver !== 'undefined' ? new MutationObserver(() => {
+  document.querySelectorAll('.workspace-experience-header h1').forEach((heading) => {
+    const active = heading.closest('.workspace-experience')?.querySelector('.workspace-tool-pills button.active');
+    const nextTitle = `Workspace · ${active?.textContent || 'Walk options'}`;
+    if (heading.textContent !== nextTitle) heading.textContent = nextTitle;
+  });
+}) : null;
+if (workspaceHeaderObserver && typeof document !== 'undefined' && document.body) workspaceHeaderObserver.observe(document.body, { childList: true, subtree: true });
