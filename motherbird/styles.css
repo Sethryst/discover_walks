@@ -1272,3 +1272,25 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
 .top-cluster>.map-search input { font-size: .7rem; padding-block: 3px; }
 .top-cluster>.locate-stack .ink-control,
 .top-cluster>.regional-navigation .regional-navigation-button { padding-inline: 6px; font-size: .64rem; }
+
+.context-help-button {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  padding: 0;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--radio-copper, #4d7ea6);
+  font-size: .66rem;
+  font-weight: 900;
+  line-height: 1;
+}
+.context-help-button:hover,
+.context-help-button:focus-visible { background: var(--radio-cream, #dbe9f7); }
+.location-help { margin: auto 4px auto 0; }
+body.location-available .location-help { display: none; }
+.map-light-row { align-items: center; }
+.light-help { margin: 0 0 0 3px; }
