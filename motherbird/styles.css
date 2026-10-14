@@ -1339,6 +1339,34 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
 #mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button:last-child {
   border-bottom-right-radius: 7px!important;
 }
+
+/* Color-blind-accessible Workspace controls: blue/orange plus structural state cues. */
+#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button {
+  border: 1px solid rgba(0,0,0,.22)!important;
+  background: #f4f4f4!important;
+  color: #17202a!important;
+  font-weight: 850;
+}
+#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button.active {
+  background: #0072b2!important;
+  color: #fff!important;
+  border-color: #003f63!important;
+  box-shadow: inset 0 -3px 0 #e69f00!important;
+}
+#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button:hover {
+  background: #e69f00!important;
+  color: #17202a!important;
+  border-color: #9b6100!important;
+}
+#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button:focus-visible {
+  outline: 3px solid #e69f00!important;
+  outline-offset: 1px;
+}
+#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button.active::before {
+  content: '✓';
+  margin-right: 3px;
+  font-size: .62rem;
+}
 #mapWorkspacePanel[data-destination="maps"] .workspace-route-summary,
 #mapWorkspacePanel[data-destination="maps"] .workspace-tool-page {
   padding-inline: 6px!important;
