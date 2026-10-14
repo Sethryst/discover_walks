@@ -320,7 +320,7 @@ export function initWorkspaceRuntime() {
 const workspaceHeaderObserver = typeof MutationObserver !== 'undefined' ? new MutationObserver(() => {
   document.querySelectorAll('.workspace-experience-header h1').forEach((heading) => {
     const active = heading.closest('.workspace-experience')?.querySelector('.workspace-tool-pills button.active');
-    const nextTitle = `Workspace · ${active?.textContent || 'Walk options'}`;
+    const nextTitle = `— ${active?.textContent || 'Walk options'}`;
     if (heading.textContent !== nextTitle) heading.textContent = nextTitle;
   });
 }) : null;
