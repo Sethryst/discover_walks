@@ -514,11 +514,13 @@ function renderRoutePointControls() {
 function bindWalkControls() {
   // Keep walk planning with the persistent bottom walk control so the map's
   // top edge stays reserved for search and location controls.
-  const bottomWalkBar = el('radialStack');
+  const bottomWalkBar = el('radialRouteOptionsButton')?.parentElement;
   const startPanel = el('startPanel');
+  if (startPanel && !el('plannerStartWalkButton')) startPanel.insertAdjacentHTML('afterbegin', '<button class="primary-button planner-start-walk" id="plannerStartWalkButton" type="button">Start walk</button>');
   decorateWalkPlanner();
   if (bottomWalkBar && startPanel && !bottomWalkBar.contains(startPanel)) bottomWalkBar.append(startPanel);
   el('walkButton')?.addEventListener('click', async () => { if (!state.activeWalk) await startWalk({ routeMode: 'tracking' }); });
+  el('plannerStartWalkButton')?.addEventListener('click', async () => { if (!state.activeWalk) await startWalk({ routeMode: 'tracking' }); });
   el('endWalkButton')?.addEventListener('click', () => void stopWalk());
   el('startChevron')?.addEventListener('click', () => togglePanel('startChevron', 'startPanel'));
   const routeOptionsButton = el('radialRouteOptionsButton');
@@ -528,15 +530,15 @@ function bindWalkControls() {
     document.querySelectorAll('.drop-panel').forEach((item) => item.classList.add('hidden'));
     document.querySelectorAll('.ink-chevron').forEach((item) => item.setAttribute('aria-expanded', 'false'));
     panel?.classList.toggle('hidden', !open);
+    if (panel) {
+      panel.style.display = open ? 'block' : '';
+      panel.style.position = open ? 'fixed' : '';
+      panel.style.top = open ? '58px' : '';
+      panel.style.left = open ? '12px' : '';
+      panel.style.zIndex = open ? '2000' : '';
+    }
     routeOptionsButton.setAttribute('aria-expanded', String(open));
     setPlanningMode(open);
-    if (open && !state.currentPosition && !state.plannerStart) {
-      const pointToPoint = document.querySelector('input[name="routeMode"][value="point-to-point"]');
-      if (pointToPoint && !pointToPoint.checked) {
-        pointToPoint.checked = true;
-        pointToPoint.dispatchEvent(new Event('change', { bubbles: true }));
-      }
-    }
   };
   // Keep one authoritative handler when the shell is re-initialized.
   if (routeOptionsButton) routeOptionsButton.onclick = openRouteOptions;
