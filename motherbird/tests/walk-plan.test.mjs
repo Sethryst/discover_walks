@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import db from '../js/storage.js';
-import { createWalkPlan, createSidecarContribution, saveSidecarContribution, saveWalkPlan, startWalkSession, appendSessionNote, privateMemoriesForPlace, explainWalkPlan } from '../js/walk-plan.js';
+import { createWalkPlan, createSidecarContribution, saveSidecarContribution, saveWalkPlan, startWalkSession, appendSessionNote, privateMemoriesForPlace, explainWalkPlan, reviseWalkPlan } from '../js/walk-plan.js';
 
 globalThis.window = new EventTarget();
 test.beforeEach(async () => { await db.clearAll(); });
@@ -23,6 +23,12 @@ test('sidecars target an existing encounter without changing geometry', async ()
   await saveSidecarContribution(contribution);
   assert.deepEqual((await db.get('walk_plans', plan.id)).route.geometry, route.coordinates);
   assert.equal((await db.get('sidecar_contributions', contribution.id)).placeId, 'park-1');
+});
+
+test('sidecars cannot introduce a new stop', async () => {
+  const plan = createWalkPlan({ route, encounters: [{ encounterId: 'enc-1', placeId: 'park-1' }] });
+  await saveWalkPlan(plan);
+  await assert.rejects(saveSidecarContribution(createSidecarContribution({ planId: plan.id, encounterId: 'new-enc', placeId: 'new-place', sidecar: 'story', kind: 'context', content: 'No' })), /already present/);
 });
 
 test('sessions separate actual track from planned geometry', async () => {
@@ -48,4 +54,12 @@ test('walk explanation preserves claim provenance and unknowns', () => {
   const explanation = explainWalkPlan(plan);
   assert.equal(explanation.claims[0].source, 'catalogue-1');
   assert.deepEqual(explanation.limitations, ['Shade is not verified.']);
+});
+
+test('revision keeps the stable plan id while changing the request', async () => {
+  const first = await saveWalkPlan(createWalkPlan({ request: { durationMinutes: 30 }, route }));
+  const second = await reviseWalkPlan(first, { request: { durationMinutes: 60 }, route, rationale: { summary: 'Longer walk' } });
+  assert.equal(second.id, first.id);
+  assert.equal(second.revision, 2);
+  assert.equal(second.request.durationMinutes, 60);
 });

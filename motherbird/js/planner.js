@@ -335,7 +335,7 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
     ...(routed.ok ? { distanceMeters: routed.distanceMeters, distanceMiles: Number((routed.distanceMeters / 1609.344).toFixed(2)), graphStatus: null, graphVersion: routed.graphVersion, cellId: routed.cellId, cellRelease: routed.cellRelease, edgeIds: routed.edgeIds, instructions: routed.instructions } : { graphStatus: routed.status || 'GRAPH_VERSION_UNAVAILABLE', failureMessage: planningFailureMessage(routed, routeMode) })
   };
   state.plannedRoute = plan; state.planOptions = [plan];
-  if (routed.ok) await saveWalkPlan(createWalkPlan({ request: recipeRequest(recipe, { city: state.activeCity, origin: routeOrigin, durationMinutes: minutes, routeMode, interests: interests() }), route: routed, encounters: stops.map((stop, index) => ({ ...stop, placeId: stop.id, position: index, reason: 'Selected by the route-and-encounter scorer.' })), rationale: { summary: plan.reason, limitations: [] } }));
+  if (routed.ok) await saveWalkPlan(createWalkPlan({ planId: state.walkPlan?.id || null, revision: Number(state.walkPlan?.revision || 0) + 1, request: recipeRequest(recipe, { city: state.activeCity, origin: routeOrigin, durationMinutes: minutes, routeMode, interests: interests() }), route: routed, encounters: stops.map((stop, index) => ({ ...stop, placeId: stop.id, position: index, reason: 'Selected by the route-and-encounter scorer.' })), rationale: { summary: plan.reason, limitations: [] } }));
   state.routePlanningFailures = routed.ok ? [] : [...(state.routePlanningFailures || []), routed];
   paintWalkConcept(plan);
   return plan;

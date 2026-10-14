@@ -50,7 +50,12 @@ export function createSidecarContribution({ planId, encounterId, placeId, sideca
   return { id: id('sidecar'), schema: 'sidecar-contribution/v1', planId, encounterId, placeId, sidecar, kind, content, evidenceRefs, createdAt: iso() };
 }
 
-export async function saveSidecarContribution(contribution) { await db.put('sidecar_contributions', contribution); return contribution; }
+export async function saveSidecarContribution(contribution) {
+  const plan = await db.get('walk_plans', contribution?.planId);
+  const encounter = plan?.encounters?.find((item) => String(item.encounterId) === String(contribution?.encounterId) && String(item.placeId) === String(contribution?.placeId));
+  if (!encounter) throw new Error('SidecarContribution must target an encounter already present in the WalkPlan.');
+  await db.put('sidecar_contributions', contribution); return contribution;
+}
 
 export async function startWalkSession(plan, { sessionId = null } = {}) {
   if (!plan?.id) throw new Error('A walk session requires a WalkPlan.');
