@@ -28,10 +28,10 @@ test('fresh Pages context reaches startup-ready and responds to core controls', 
   await expect(page.locator('.primary-nav')).toHaveCSS('background-color', 'rgb(20, 35, 49)');
   await expect(page.locator('#primaryPanel')).toHaveCSS('color', 'rgb(13, 27, 42)');
   await expect(page.locator('#personalPlacesPanel .workspace-home:visible')).toBeVisible();
-  await page.locator('#meTab').click();
-  await expect(page.locator('#primaryPanelTitle')).toHaveText('Me');
-  await expect(page.locator('#primaryPanel')).toBeVisible();
-  await page.locator('#meTab').click();
+  await page.locator('#profileAvatarButton').click();
+  await expect(page.locator('#profileMenu')).toBeVisible();
+  await expect(page.locator('#profileMenu [data-profile-action]')).toHaveText(['Companion', 'Map', 'Online behavior']);
+  await page.locator('#profileAvatarButton').click();
   await page.waitForTimeout(100);
   if (await page.locator('#regionalNavigationMenu').evaluate((node) => node.classList.contains('hidden'))) {
     await page.locator('#regionalNavigation').click();
