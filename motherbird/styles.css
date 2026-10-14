@@ -1118,3 +1118,77 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
 .top-cluster>.map-search{order:2!important}
 .top-cluster>.locate-stack{order:3!important}
 .top-cluster>.regional-navigation{order:4!important}
+
+/* Polished top bar: one quiet paper surface with intentional control hierarchy. */
+.top-cluster {
+  align-items: center;
+  gap: 0;
+  min-height: 42px;
+  border: 1px solid rgba(23,60,53,.22);
+  border-radius: 14px;
+  background: rgba(255,250,240,.92);
+  box-shadow: 0 8px 24px rgba(23,60,53,.16), 0 1px 2px rgba(23,60,53,.1);
+  backdrop-filter: blur(14px) saturate(1.08);
+  overflow: hidden;
+}
+.top-cluster>.profile-control,
+.top-cluster>.map-search,
+.top-cluster>.locate-stack,
+.top-cluster>.regional-navigation {
+  height: 42px;
+  border: 0;
+  border-right: 1px solid rgba(23,60,53,.14);
+  background: transparent;
+}
+.top-cluster>.profile-control { padding: 0 7px; }
+.top-cluster .profile-avatar { width: 34px; height: 34px; color: #9a6710; }
+.top-cluster>.map-search { min-width: 0; padding: 0 12px; }
+.top-cluster>.map-search img { opacity: .72; }
+.top-cluster>.map-search input { color: #173c35; font-size: .82rem; }
+.top-cluster>.map-search input::placeholder { color: rgba(23,60,53,.62); }
+.top-cluster>.locate-stack { flex: 0 0 auto; }
+.top-cluster>.locate-stack .ink-control,
+.top-cluster>.regional-navigation .regional-navigation-button {
+  height: 42px;
+  min-height: 42px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #173c35;
+  font-size: .72rem;
+  letter-spacing: .01em;
+}
+.top-cluster>.locate-stack .ink-control { padding: 0 13px; font-weight: 800; }
+.top-cluster>.locate-stack .ink-control:hover,
+.top-cluster>.locate-stack .ink-control:focus-visible { background: rgba(45,114,89,.1); }
+.top-cluster>.regional-navigation { margin-left: 0!important; border-right: 0; background: rgba(223,231,211,.58); }
+.top-cluster>.regional-navigation .regional-navigation-button { padding: 0 12px; font-weight: 850; }
+.top-cluster>.regional-navigation .regional-navigation-button:hover,
+.top-cluster>.regional-navigation .regional-navigation-button:focus-visible { background: rgba(45,114,89,.12); }
+@media (max-width: 560px) {
+  .top-cluster { min-height: 40px; border-radius: 12px; }
+  .top-cluster>.profile-control,
+  .top-cluster>.map-search,
+  .top-cluster>.locate-stack,
+  .top-cluster>.regional-navigation,
+  .top-cluster>.locate-stack .ink-control,
+  .top-cluster>.regional-navigation .regional-navigation-button { height: 40px; min-height: 40px; }
+  .top-cluster>.profile-control { padding-inline: 5px; }
+  .top-cluster .profile-avatar { width: 32px; height: 32px; }
+  .top-cluster>.map-search { padding-inline: 9px; }
+  .top-cluster>.locate-stack .ink-control { padding-inline: 10px; }
+  .top-cluster>.regional-navigation .regional-navigation-button { max-width: 128px; padding-inline: 9px; }
+}
+
+/* Match the region control to the established radio/dropdown blue. */
+.top-cluster>.regional-navigation {
+  background: var(--radio-copper, #4d7ea6);
+  color: #fff;
+}
+.top-cluster>.regional-navigation .regional-navigation-button {
+  color: #fff;
+}
+.top-cluster>.regional-navigation .regional-navigation-button:hover,
+.top-cluster>.regional-navigation .regional-navigation-button:focus-visible {
+  background: var(--radio-action, #1d5b83);
+}
