@@ -51,3 +51,15 @@ export async function startWalkSession(plan, { sessionId = null } = {}) {
   const session = { id: sessionId || id('walk-session'), planId: plan.id, planRevision: plan.revision, startedAt: iso(), actualTrack: [], visitedEncounterIds: [], observations: [], notes: [], status: 'active' };
   await db.put('walk_sessions', session); return session;
 }
+
+export async function appendSessionNote(session, note, encounterId = null) {
+  if (!session?.id || !String(note || '').trim()) return session;
+  const next = { ...session, notes: [...(session.notes || []), { id: id('memory'), encounterId, text: String(note).trim(), createdAt: iso() }], updatedAt: iso() };
+  await db.put('walk_sessions', next);
+  return next;
+}
+
+export async function privateMemoriesForPlace(placeId) {
+  const sessions = await db.all('walk_sessions');
+  return sessions.flatMap((session) => (session.notes || []).filter((note) => String(note.encounterId || '') === String(placeId) || String(note.placeId || '') === String(placeId)));
+}

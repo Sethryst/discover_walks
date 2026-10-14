@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import db from '../js/storage.js';
-import { createWalkPlan, createSidecarContribution, saveSidecarContribution, saveWalkPlan, startWalkSession } from '../js/walk-plan.js';
+import { createWalkPlan, createSidecarContribution, saveSidecarContribution, saveWalkPlan, startWalkSession, appendSessionNote, privateMemoriesForPlace } from '../js/walk-plan.js';
 
 globalThis.window = new EventTarget();
 test.beforeEach(async () => { await db.clearAll(); });
@@ -34,4 +34,11 @@ test('sessions separate actual track from planned geometry', async () => {
   assert.equal((await db.get('walk_plans', plan.id)).route.geometry.length, 2);
   assert.equal((await db.get('walk_sessions', session.id)).actualTrack.length, 1);
   assert.equal(session.planId, plan.id);
+});
+
+test('private encounter memory is available on a later visit', async () => {
+  const plan = createWalkPlan({ route, encounters: [{ encounterId: 'enc-1', placeId: 'park-1' }] });
+  const session = await startWalkSession(plan);
+  await appendSessionNote(session, 'The light was soft after rain.', 'park-1');
+  assert.equal((await privateMemoriesForPlace('park-1'))[0].text, 'The light was soft after rain.');
 });

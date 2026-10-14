@@ -9,6 +9,7 @@ import { markPoiVisited } from './poi-visit-tracking.js';
 import { attachWalkArtifact } from './walk-context.js';
 import { requestCompanionContext } from './companion.js';
 import { appendRoomTrace } from './room-runtime.js';
+import { appendSessionNote } from './walk-plan.js';
 
 export async function saveHistoryMoment() {
   const site = state.currentSite; if (!site) return;
@@ -49,6 +50,7 @@ export async function saveJournalOnClose({ note = '', walkId = '' } = {}) {
   const previous = await db.get('moments', existing);
   const moment = { ...previous, ...buildReflectionMoment({ id: existing, city: state.activeCity, heading: '', note: cleanNote, prompt: null, walkId: walkId || null, createdAt: previous?.createdAt || new Date().toISOString() }), roomId: state.activeRoom?.id || previous?.roomId || null, updatedAt: new Date().toISOString() };
   await db.put('moments', moment);
+  if (state.activeWalkSession) state.activeWalkSession = await appendSessionNote(state.activeWalkSession, cleanNote, form?.dataset.encounterId || null);
   if (moment.roomId) await appendRoomTrace(moment.roomId, { type: 'journal', refId: moment.id });
   requestCompanionContext('journal');
   await renderArchive();
