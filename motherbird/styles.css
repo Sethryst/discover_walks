@@ -1192,3 +1192,12 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
 .top-cluster>.regional-navigation .regional-navigation-button:focus-visible {
   background: var(--radio-action, #1d5b83);
 }
+
+/* Keep Locate me from drawing a second inset seam inside the shared bar. */
+.top-cluster>.locate-stack,
+.top-cluster>.locate-stack .ink-control,
+.top-cluster>.regional-navigation,
+.top-cluster>.regional-navigation .regional-navigation-button {
+  border-left: 0!important;
+}
+.top-cluster>.locate-stack .ink-control { border-right: 0!important; }
