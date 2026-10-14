@@ -1294,3 +1294,17 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
 body.location-available .location-help { display: none; }
 .map-light-row { align-items: center; }
 .light-help { margin: 0 0 0 3px; }
+body.location-available .top-cluster>.locate-stack .ink-control {
+  background: var(--radio-amber, #e8bd5a);
+  color: var(--radio-ink, #0d1b2a);
+  font-weight: 900;
+}
+body.location-available .top-cluster>.locate-stack .ink-control:hover,
+body.location-available .top-cluster>.locate-stack .ink-control:focus-visible {
+  background: var(--radio-rust, #d7874a);
+  color: #fff;
+}
+body.location-available .context-help-button {
+  background: transparent;
+  color: var(--radio-copper, #4d7ea6);
+}
