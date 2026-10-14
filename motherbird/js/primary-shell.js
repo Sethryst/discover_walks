@@ -157,4 +157,10 @@ export function initPrimaryShell() {
   select('explore', { initial: true });
   const region = document.body.dataset.regionName || CITIES[state.activeCity]?.name || 'Fairfax County';
   document.getElementById('mapSearchInput')?.setAttribute('placeholder', 'Search');
+  const regionalNavigation = document.getElementById('regionalNavigation')?.closest('.regional-navigation');
+  if (regionalNavigation && window.matchMedia('(max-width: 720px)').matches) {
+    regionalNavigation.style.position = 'static';
+    regionalNavigation.style.left = 'auto';
+    regionalNavigation.style.top = 'auto';
+  }
 }
