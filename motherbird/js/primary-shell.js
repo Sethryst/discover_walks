@@ -170,5 +170,5 @@ if (topCluster) {
   const search = topCluster.querySelector('.map-search');
   const region = topCluster.querySelector('.regional-navigation');
   const locate = topCluster.querySelector('.locate-stack');
-  [profile, search, region, locate].filter(Boolean).forEach((control) => topCluster.appendChild(control));
+  [profile, search, locate, region].filter(Boolean).forEach((control) => topCluster.appendChild(control));
 }
