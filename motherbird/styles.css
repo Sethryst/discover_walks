@@ -1313,6 +1313,22 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
   line-height: 1.05;
 }
 
+/* Workspace chips attach directly beneath the Workspace × header. */
+#mapWorkspacePanel[data-destination="maps"]>[data-map-panel="maps"] {
+  padding-top: 0!important;
+}
+#mapWorkspacePanel[data-destination="maps"] .workspace-experience {
+  gap: 0!important;
+}
+#mapWorkspacePanel[data-destination="maps"] .workspace-experience-header {
+  display: none!important;
+}
+#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills {
+  margin: 0!important;
+  padding: 2px 4px!important;
+  border-bottom: 1px solid rgba(23,60,53,.14);
+}
+
 .context-help-button {
   display: grid;
   place-items: center;
