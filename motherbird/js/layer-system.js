@@ -379,7 +379,8 @@ function expandedLightContent(light, expanded) {
 export function renderMapLights() {
   const root = el('mapLights');
   if (!root) return;
-  root.innerHTML = lightModel().filter((light) => light.id !== 'personal').map((light) => {
+  const fieldChips = '<div class="map-field-chips" aria-label="Field Guide"><button type="button" class="map-field-chip" data-field-guide-tab="discover">Discover</button><button type="button" class="map-field-chip" data-field-guide-tab="learn">Learn</button><button type="button" class="map-field-chip" data-field-guide-tab="biodiversity">Nature</button><button type="button" class="map-field-chip" data-field-action="journal">Journal</button><button type="button" class="map-field-chip" data-field-action="radio">Radio</button><button type="button" class="map-field-chip" data-field-action="draw">Annotate</button></div>';
+  root.innerHTML = fieldChips + lightModel().filter((light) => light.id !== 'personal').map((light) => {
     const on = state.layerLights[light.id] === true;
     return `<div class="map-light-wrap" data-map-light="${light.id}"><div class="map-light-row"><button type="button" class="map-light ${on ? 'on' : 'off'}" data-light="${light.id}" aria-pressed="${on}"><img src="./icons/${escapeHtml(light.icon)}.svg" alt="" aria-hidden="true"><span class="map-light-label">${escapeHtml(light.label)}</span></button></div></div>`;
   }).join('');
@@ -547,6 +548,12 @@ function openImportSheet() {
 
 function bindLayerControls() {
   el('mapLights')?.addEventListener('click', (event) => {
+    const guideTab = event.target.closest('[data-field-guide-tab]')?.dataset.fieldGuideTab;
+    if (guideTab) { window.dispatchEvent(new CustomEvent('field-guide-tab-requested', { detail: { tab: guideTab } })); return; }
+    const fieldAction = event.target.closest('[data-field-action]')?.dataset.fieldAction;
+    if (fieldAction === 'journal') { window.dispatchEvent(new CustomEvent('journal-open-requested')); return; }
+    if (fieldAction === 'radio') { window.dispatchEvent(new CustomEvent('radio-open-requested')); return; }
+    if (fieldAction === 'draw') { window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'draw', forceOpen: true } })); return; }
     if (event.target.closest('[data-open-my-maps]')) { window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'maps' } })); return; }
     if (event.target.closest('[data-add-my-place]')) { window.dispatchEvent(new CustomEvent('personal-place-create-requested')); return; }
     const newsMarker = event.target.closest('[data-news-marker]');

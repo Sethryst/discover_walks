@@ -363,6 +363,12 @@ export async function previewCard(cardId) {
 }
 export function initFieldGuideFilters() {
   initMapsFolders();
+  window.addEventListener('field-guide-tab-requested', ({ detail }) => {
+    const tab = detail?.tab || 'discover';
+    if (tab === 'learn' && state.fieldGuideTab === 'learn') setLearnScreen('home');
+    openSheet('backpackSheet');
+    void renderFieldGuide(tab);
+  });
   window.addEventListener('utility-tab-requested', ({ detail }) => { void renderFieldGuide(detail?.tab === 'export' ? 'export' : 'online'); });
   window.addEventListener('map-overlay-changed', ({ detail }) => { if (!detail.open || detail.id !== 'backpackSheet') shadeLearnBounds(false); });
   window.addEventListener('layer-state-dirty', () => { if (state.modalOpen === 'backpackSheet' && state.fieldGuideTab === 'learn') void renderFieldGuide('learn'); });

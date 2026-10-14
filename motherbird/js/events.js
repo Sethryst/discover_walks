@@ -54,6 +54,7 @@ export function initEvents() {
     closeFieldGuideMenu();
   });
   el('journalButton')?.addEventListener('click', () => void openJournal());
+  window.addEventListener('journal-open-requested', () => void openJournal());
   el('geoCypherButton')?.addEventListener('click', () => void openGeoCypher());
   window.addEventListener('room-open-requested', (event) => void openRoomForPlace(event.detail?.place));
   window.addEventListener('room-sheet-open-requested', () => openSheet('roomSheet'));
@@ -220,7 +221,6 @@ async function setMapWorkspace(destination = '', { toggle = true, forceOpen = fa
 
 function bindMapWorkspace() {
   el('closeMapWorkspace')?.addEventListener('click', () => setMapWorkspace(''));
-  el('mapFieldGuideButton')?.addEventListener('click', () => void openBackpack());
   window.addEventListener('map-workspace-open-requested', ({ detail }) => setMapWorkspace(detail?.destination ?? 'explore', { forceOpen: detail?.forceOpen === true }));
 }
 
