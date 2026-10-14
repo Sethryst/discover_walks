@@ -1248,3 +1248,27 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
 .top-cluster>.map-search { padding-inline: 7px; }
 .top-cluster>.locate-stack .ink-control,
 .top-cluster>.regional-navigation .regional-navigation-button { padding-inline: 7px; }
+
+/* Final micro-header sizing: reduce height and halve the search footprint. */
+.top-cluster,
+.top-cluster>.profile-control,
+.top-cluster>.map-search,
+.top-cluster>.locate-stack,
+.top-cluster>.regional-navigation,
+.top-cluster>.locate-stack .ink-control,
+.top-cluster>.regional-navigation .regional-navigation-button {
+  min-height: 28px!important;
+  height: 28px!important;
+}
+.top-cluster>.map-search {
+  flex: 0 0 220px!important;
+  width: min(220px, 35vw)!important;
+}
+.top-cluster {
+  width: max-content!important;
+  max-width: calc(100vw - 12px)!important;
+}
+.top-cluster .profile-avatar { width: 23px; height: 23px; }
+.top-cluster>.map-search input { font-size: .7rem; padding-block: 3px; }
+.top-cluster>.locate-stack .ink-control,
+.top-cluster>.regional-navigation .regional-navigation-button { padding-inline: 6px; font-size: .64rem; }
