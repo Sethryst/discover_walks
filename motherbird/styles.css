@@ -1381,6 +1381,30 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
   border-top: 0!important;
   border-bottom: 0!important;
 }
+
+/* Workspace and Explore share the same bottom-open surface and opacity. */
+#mapWorkspacePanel[data-destination="maps"],
+#mapWorkspacePanel[data-destination="explore"] {
+  bottom: calc(58px + env(safe-area-inset-bottom))!important;
+  transform: none!important;
+  background: rgba(255,250,240,.94)!important;
+  opacity: .96;
+  backdrop-filter: blur(10px) saturate(1.04);
+}
+@media (max-width: 720px) {
+  #mapWorkspacePanel[data-destination="maps"],
+  #mapWorkspacePanel[data-destination="explore"] {
+    left: 8px!important;
+    right: 8px!important;
+    bottom: calc(66px + env(safe-area-inset-bottom))!important;
+    width: auto!important;
+    max-height: min(52dvh,470px)!important;
+  }
+  #mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills {
+    left: 74px!important;
+    right: 28px!important;
+  }
+}
 #mapWorkspacePanel[data-destination="maps"] .workspace-experience> .workspace-route-summary,
 #mapWorkspacePanel[data-destination="maps"] .workspace-experience> .workspace-tool-page {
   margin-top: 0!important;
