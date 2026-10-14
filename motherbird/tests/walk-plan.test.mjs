@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import db from '../js/storage.js';
+import { contributeToWalkPlan, contributionsForWalkPlan } from '../js/walk-sidecars.js';
 import { createWalkPlan, createSidecarContribution, saveSidecarContribution, saveWalkPlan, startWalkSession, appendSessionNote, privateMemoriesForPlace, explainWalkPlan, reviseWalkPlan } from '../js/walk-plan.js';
 
 globalThis.window = new EventTarget();
@@ -69,4 +70,12 @@ test('every plan carries a normalized metadata envelope, including weak evidence
   assert.equal(plan.metadata.schema, 'walk-metadata/v1');
   assert.equal(plan.metadata.coverage.evidenceBacked, false);
   assert.deepEqual(plan.metadata.route.sourceProvenanceIds, []);
+});
+
+test('sidecar adapter emits a contribution only for a planned encounter', async () => {
+  const plan = await saveWalkPlan(createWalkPlan({ route, encounters: [{ encounterId: 'enc-1', placeId: 'park-1' }] }));
+  assert.equal(await contributeToWalkPlan({ plan, placeId: 'other', sidecar: 'nature', kind: 'field-note', content: { text: 'No new stop' } }), null);
+  const contribution = await contributeToWalkPlan({ plan, placeId: 'park-1', sidecar: 'story', kind: 'context', content: { text: 'Sourced context' }, evidenceRefs: ['source-1'] });
+  assert.equal(contribution.encounterId, 'enc-1');
+  assert.equal((await contributionsForWalkPlan(plan.id)).length, 1);
 });

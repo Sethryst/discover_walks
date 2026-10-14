@@ -4,6 +4,7 @@ import { openSheet } from './ui.js';
 import { DC_STORIES } from '../data/dc-stories.js';
 import { loadStoryChapterAudio, saveStoryAudioForVisit, savedStoryAudio, removeSavedStoryAudio } from './story-audio.js';
 import { distanceMeters } from './geo.js';
+import { contributeToWalkPlan } from './walk-sidecars.js';
 
 let storyLayer;
 let activeStory;
@@ -119,6 +120,7 @@ function speakChapter(button, chapter) {
 export function openStory(storyId) {
   activeStory = storiesForCity().find((story) => story.id === storyId);
   if (!activeStory) return;
+  void contributeToWalkPlan({ placeId: activeStory.placeId || activeStory.id, sidecar: 'story', kind: 'story-context', content: { title: activeStory.headline, hook: activeStory.hook }, evidenceRefs: (activeStory.sources || []).map((source) => source.id || source.url).filter(Boolean) });
   activeChapter = 0;
   autoplayStory = activeStory.id === 'east-potomac-changing-park';
   locationLockedStory = false;
