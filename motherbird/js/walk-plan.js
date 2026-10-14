@@ -3,6 +3,18 @@ import { state } from './state.js';
 
 export const WALK_PLAN_SCHEMA = 'walk-plan/v1';
 export const WALK_PLAN_PACKAGE_VERSIONS = { planner: 'mip-router-v1', evidence: 'static-catalogue-v1' };
+export const WALK_METADATA_SCHEMA = 'walk-metadata/v1';
+
+export function normalizeWalkMetadata({ request = {}, route = {}, encounters = [] } = {}) {
+  const sourceIds = [...new Set([...(route.sourceProvenanceIds || []), ...encounters.flatMap((item) => item.sourceIds || item.evidenceRefs || [])].filter(Boolean).map(String))];
+  return {
+    schema: WALK_METADATA_SCHEMA,
+    request: { recipeId: request.recipeId || null, hardConstraints: { ...(request.hardConstraints || {}) }, softPreferences: [...(request.softPreferences || [])] },
+    route: { graphVersion: route.graphVersion || null, cellId: route.cellId || null, cellRelease: route.cellRelease || null, sourceProvenanceIds: sourceIds, confidence: route.confidence || null, warnings: [...(route.warnings || [])] },
+    encounters: encounters.map((item) => ({ encounterId: item.encounterId || null, placeId: item.placeId || item.id || null, evidenceRefs: [...(item.evidenceRefs || [])], sourceIds: [...(item.sourceIds || [])].map(String), freshness: item.freshness || null, accessEvidence: item.accessEvidence || null, claims: Array.isArray(item.claims) ? item.claims : [] })),
+    coverage: { evidenceBacked: sourceIds.length > 0, claimsAvailable: encounters.some((item) => Array.isArray(item.claims) && item.claims.length > 0), accessVerified: encounters.every((item) => item.accessEvidence === 'verified' || !request.hardConstraints?.stepFree) }
+  };
+}
 
 export function explainWalkPlan(plan) {
   const claims = Array.isArray(plan?.rationale?.claims) ? plan.rationale.claims : [];
@@ -24,8 +36,8 @@ export function createWalkPlan({ request, route, encounters = [], rationale = {}
       distanceMeters: Number(route.distanceMeters || 0), durationSeconds: Number(route.durationSeconds || 0),
       graphVersion: route.graphVersion || null, warnings: [...(route.warnings || [])]
     },
-    encounters: encounters.map((item, index) => ({ encounterId: item.encounterId || id('encounter'), placeId: item.placeId || item.id || null, name: item.name || null, lat: Number.isFinite(Number(item.lat)) ? Number(item.lat) : null, lng: Number.isFinite(Number(item.lng)) ? Number(item.lng) : null, position: item.position ?? index, detour: Number(item.detour || 0), evidenceRefs: [...(item.evidenceRefs || [])], reason: item.reason || '' })),
-    rationale: structuredClone(rationale), packageVersions: { ...WALK_PLAN_PACKAGE_VERSIONS }, status: 'planned'
+    encounters: encounters.map((item, index) => ({ encounterId: item.encounterId || id('encounter'), placeId: item.placeId || item.id || null, name: item.name || null, lat: Number.isFinite(Number(item.lat)) ? Number(item.lat) : null, lng: Number.isFinite(Number(item.lng)) ? Number(item.lng) : null, position: item.position ?? index, detour: Number(item.detour || 0), evidenceRefs: [...(item.evidenceRefs || [])], sourceIds: [...(item.sourceIds || [])], freshness: item.freshness || null, accessEvidence: item.accessEvidence || null, claims: Array.isArray(item.claims) ? item.claims : [], reason: item.reason || '' })),
+    metadata: normalizeWalkMetadata({ request, route, encounters }), rationale: structuredClone(rationale), packageVersions: { ...WALK_PLAN_PACKAGE_VERSIONS }, status: 'planned'
   };
 }
 

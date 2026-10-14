@@ -63,3 +63,10 @@ test('revision keeps the stable plan id while changing the request', async () =>
   assert.equal(second.revision, 2);
   assert.equal(second.request.durationMinutes, 60);
 });
+
+test('every plan carries a normalized metadata envelope, including weak evidence', () => {
+  const plan = createWalkPlan({ request: { recipeId: 'shaded-nature', hardConstraints: {}, softPreferences: ['shade'] }, route, encounters: [{ placeId: 'p1' }] });
+  assert.equal(plan.metadata.schema, 'walk-metadata/v1');
+  assert.equal(plan.metadata.coverage.evidenceBacked, false);
+  assert.deepEqual(plan.metadata.route.sourceProvenanceIds, []);
+});
