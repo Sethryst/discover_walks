@@ -281,22 +281,24 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
     }
     if (requestGeneration !== generation) return null;
     if (ambient.routes.length) {
-      const optionRoutes = ambient.primary ? [ambient.primary, ...(ambient.alternatives || [])] : ambient.routes;
-      const plans = optionRoutes.slice(0, 3).map((routed, index) => ({
-        id: routed.id, title: index === 0 ? (title || 'A good walk from here') : (routed.archetype === 'discovery' ? (routed.facts?.discoveryFocus === 'historic-cultural' ? 'More history to notice' : routed.facts?.discoveryFocus === 'nature-trail' ? 'More nature to notice' : 'More to notice') : 'Quieter where mapped'),
+      const routed = ambient.primary || ambient.routes[0];
+      if (routed) {
+        const plans = [{
+        id: routed.id, title: title || 'Your composed walk',
         reason: buildAmbientExplanation(routed),
         city: state.activeCity, routeMode, estimatedDurationMinutes: Math.round(Number(routed.durationSeconds || 0) / 60),
         stops: routed.stops || [{ name: 'Selected destination', lat: state.plannerEnd.lat, lng: state.plannerEnd.lng }], coordinates: routed.coordinates,
         distanceMeters: routed.distanceMeters, distanceMiles: Number((routed.distanceMeters / 1609.344).toFixed(2)), graphStatus: null, graphVersion: routed.graphVersion,
         cellId: routed.cellId, cellRelease: routed.cellRelease, edgeIds: routed.edgeIds, avoidEdges: routed.avoidEdges || [], instructions: routed.instructions, destination: state.plannerEnd,
         archetype: routed.archetype, profile: routed.profile || 'ordinary_walking_beta', facts: routed.facts, ambientTraits: routed.ambientTraits || [], ambientIntention: ambient.intention
-      }));
-      state.planOptions = plans; state.plannedRoute = ambient.primary ? plans.find((plan) => plan.id === ambient.primary.id) || plans[0] : plans[0];
+      }];
+      state.planOptions = plans; state.plannedRoute = plans[0];
       const selected = state.plannedRoute;
       await saveWalkPlan(createWalkPlan({ planId: state.walkPlan?.id || null, revision: Number(state.walkPlan?.revision || 0) + 1, request: { city: state.activeCity, origin: routeOrigin, destination: state.plannerEnd, durationMinutes: minutes, routeMode, interests: interests() }, route: selected, encounters: (selected.stops || []).map((stop, index) => ({ ...stop, placeId: stop.id, position: index, reason: 'Selected by the route-and-encounter scorer.' })), rationale: { summary: selected.reason, limitations: [] } }));
       paintWalkConcept(state.plannedRoute);
       window.dispatchEvent(new CustomEvent('ambient-routes-ready', { detail: { options: plans, intention: ambient.intention } }));
       return state.plannedRoute;
+      }
     }
   }
   const routeOptions = { city: state.activeCity, profile: recipe.profile === 'accessible_verified' ? 'accessible_verified' : 'ordinary_walking_beta' };

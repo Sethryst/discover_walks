@@ -9,7 +9,7 @@ import { city, poiTags, searchPois } from './poi.js';
 import { localSearchHits, searchRowHtml, emptySearchHtml } from './search.js';
 import { initRegionalNavigation } from './regional-navigation.js?v=20261011-fairfax-subregions-1';
 import { switchCity } from './city.js';
-import { generateTimeBasedPlan, lockSelectedPlanOnMap, changePlan, selectPlan, setPlanningMode } from './planner.js?v=20261011-auto-candidate-5';
+import { generateTimeBasedPlan, lockSelectedPlanOnMap, changePlan, setPlanningMode } from './planner.js?v=20261014-single-composed-walk-1';
 import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261011-cross-cell-stitch-3';
 import { coordinateLabel, resolveRoutePlaceLabel } from './route-place-labels.js?v=20261006-route-labels-1';
 import { paintWalkPlan, paintCard, previewCard, sendCurrentWalkPlan } from './field-guide.js?v=140-live-learn-by-me';
@@ -27,7 +27,7 @@ import { ensurePlannedRouteSaved } from './saved-routes.js';
 import { recordSessionRoutingOutcome } from './routing-feedback.js';
 import { openRoomForPlace, currentRoomPlace } from './room-runtime.js';
 import { addPlaceToJournalRoom, addJournalNoteToJournalRoom } from './journal-room.js';
-import { buildInWalkSuggestion, buildRouteRecommendations } from './ambient-mip.js?v=20261007-walk-moods-1';
+import { buildInWalkSuggestion } from './ambient-mip.js?v=20261007-walk-moods-1';
 import { renderPersonalPlacesPanel } from './personal-places.js';
 import { renderWorkspacePanel } from './workspace.js';
 import { explainWalkPlan } from './walk-plan.js';
@@ -326,7 +326,7 @@ function decorateWalkPlanner() {
   panel.dataset.walkPlannerDecorated = 'true';
   const intro = document.createElement('div');
   intro.className = 'walk-planner-copy';
-  intro.innerHTML = '<p class="walk-planner-kicker">Choose a walk shape</p><p class="walk-planner-intro">Pick one, then generate the route.</p><p class="walk-selection-order">Point to point: select <strong>Start</strong> first, then choose a destination.</p>';
+  intro.innerHTML = '<p class="walk-planner-kicker">Set up your walk</p><p class="walk-planner-intro">Choose a time budget and route style. We will compose one evidence-aware walk, then you can try another recipe as a new version.</p><p class="walk-selection-order">Point to point: select <strong>Start</strong> first, then choose a destination.</p>';
   panel.prepend(intro);
   const recipeField = document.createElement('label');
   recipeField.className = 'walk-recipe-field';
@@ -417,15 +417,12 @@ function renderWalkSketch(plan) {
     el('sketchReason')?.after(recommendationCards);
   }
   if (recommendationCards) {
-    const recommendations = buildRouteRecommendations(state.planOptions || [plan], { recommendedId: state.planOptions?.[0]?.id || plan.id });
-    recommendationCards.innerHTML = recommendations.map((card) => `<button type="button" class="route-recommendation-card route-recommendation-card--${card.archetype} ${card.id === plan.id ? 'is-selected' : ''}" data-ambient-route-id="${escapeHtml(card.id)}" aria-pressed="${card.id === plan.id}"><span class="route-card-topline"><span class="route-card-swatch" aria-hidden="true"></span><small>${escapeHtml(card.subtitle)}</small>${card.recommended ? '<span class="route-card-badge">Recommended</span>' : ''}</span><strong>${escapeHtml(card.title)}</strong><span class="route-card-metrics">${card.durationMinutes} min · ${card.distanceMiles.toFixed(1)} mi</span><span class="route-card-tradeoff">${card.archetype === 'direct' ? 'Fastest way to arrive' : card.archetype === 'discovery' ? `+${card.extraMinutes} min → ${card.noticedCount} thing${card.noticedCount === 1 ? '' : 's'} to notice` : 'Lower-exposure route where mapped evidence supports it'}</span>${card.noticeLabels.length ? `<span class="route-card-labels">${card.noticeLabels.map((label) => `<em>${label}</em>`).join('')}</span>` : ''}</button>`).join('');
-    recommendationCards.querySelectorAll('[data-ambient-route-id]').forEach((button) => button.addEventListener('click', () => { const next = selectPlan(button.dataset.ambientRouteId); if (next) renderWalkSketch(next); }));
+    const revision = state.walkPlan?.id === plan.id ? ` · Revision ${state.walkPlan.revision || 1}` : '';
+    recommendationCards.innerHTML = `<div class="route-recommendation-card route-recommendation-card--${escapeHtml(plan.archetype || 'composed')} is-selected"><span class="route-card-topline"><span class="route-card-swatch" aria-hidden="true"></span><small>One composed walk${revision}</small><span class="route-card-badge">Selected</span></span><strong>${escapeHtml(plan.title || 'Your composed walk')}</strong><span class="route-card-metrics">${Math.round(plan.estimatedDurationMinutes || 0)} min · ${Number(plan.distanceMiles || 0).toFixed(1)} mi</span><span class="route-card-tradeoff">Ordered encounters are chosen for the selected recipe and route style.</span></div>`;
   }
   const alternatives = el('ambientRouteAlternatives');
-  const options = (state.planOptions || []).filter((option) => option.id !== plan.id);
-  alternatives.classList.toggle('hidden', !options.length);
-  alternatives.innerHTML = options.map((option) => `<button type="button" class="secondary-button ambient-route-alternative" data-ambient-route-id="${escapeHtml(option.id)}">${escapeHtml(option.title || 'Another route')}</button>`).join('');
-  alternatives.querySelectorAll('[data-ambient-route-id]').forEach((button) => button.addEventListener('click', () => { const next = selectPlan(button.dataset.ambientRouteId); if (next) renderWalkSketch(next); }));
+  alternatives.classList.add('hidden');
+  alternatives.innerHTML = '';
   el('sketchStops').innerHTML = (plan.stops || []).map((stop) => `<li>${escapeHtml(stop.name || 'Named stop')}</li>`).join('');
   const cutThrough = el('cutThroughPrompt');
   if (cutThrough) {
