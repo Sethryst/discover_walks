@@ -7,7 +7,7 @@ export const COACH_STEPS = [
   { target: 'mapSearchInput', text: 'Find a place or trail.' },
   { target: 'walkTab', text: 'Start or make a walk.' },
   { target: 'libraryTab', text: 'Open Workspace to view and edit saved maps, routes, places, and drawings.' },
-  { target: 'meTab', text: 'Your private tools.' },
+  { target: 'profileAvatarButton', text: 'Your private tools.' },
 ];
 
 const HINT_FLAG = 'mainShellHintSeenV1';
@@ -294,8 +294,8 @@ export async function finishCoach() {
 }
 export function openAppHelp() {
   void finishCoach();
-  const meTab = document.getElementById('meTab');
-  if (meTab) meTab.click();
+  const profileButton = document.getElementById('profileAvatarButton');
+  if (profileButton) profileButton.click();
   openSheet('helpSheet');
 }
 
