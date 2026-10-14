@@ -379,8 +379,7 @@ function expandedLightContent(light, expanded) {
 export function renderMapLights() {
   const root = el('mapLights');
   if (!root) return;
-  const fieldChips = '<div class="map-field-chips" aria-label="Field Guide"><button type="button" class="map-field-chip" data-field-guide-tab="discover">Discover</button><button type="button" class="map-field-chip" data-field-guide-tab="learn">Learn</button><button type="button" class="map-field-chip" data-field-guide-tab="biodiversity">Nature</button><button type="button" class="map-field-chip" data-field-action="journal">Journal</button><button type="button" class="map-field-chip" data-field-action="radio">Radio</button><button type="button" class="map-field-chip" data-field-action="draw">Annotate</button></div>';
-  root.innerHTML = fieldChips + lightModel().filter((light) => light.id !== 'personal').map((light) => {
+  root.innerHTML = lightModel().filter((light) => light.id !== 'personal').map((light) => {
     const on = state.layerLights[light.id] === true;
     return `<div class="map-light-wrap" data-map-light="${light.id}"><div class="map-light-row"><button type="button" class="map-light ${on ? 'on' : 'off'}" data-light="${light.id}" aria-pressed="${on}"><img src="./icons/${escapeHtml(light.icon)}.svg" alt="" aria-hidden="true"><span class="map-light-label">${escapeHtml(light.label)}</span></button></div></div>`;
   }).join('');
