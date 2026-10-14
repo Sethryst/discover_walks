@@ -4,7 +4,7 @@ import db from '../js/storage.js';
 
 test('storage exposes the durability contract and additive workspace migration', () => {
   assert.equal(db.databaseName, 'walk-wildlife-journal');
-  assert.equal(db.version, 22);
+  assert.equal(db.version, 23);
   assert.ok(['checking', 'durable', 'temporary', 'recovering', 'failed', 'quota-exceeded'].includes(db.persistenceState()));
   assert.equal(db.migrationPlan(20)[0].version, db.version);
   assert.match(db.migrationPlan(20)[0].description, /walking-cell/i);
