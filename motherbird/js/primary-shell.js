@@ -164,3 +164,11 @@ export function initPrimaryShell() {
     regionalNavigation.style.top = 'auto';
   }
 }
+const topCluster = document.querySelector('.top-cluster');
+if (topCluster) {
+  const profile = topCluster.querySelector('.profile-control');
+  const search = topCluster.querySelector('.map-search');
+  const region = topCluster.querySelector('.regional-navigation');
+  const locate = topCluster.querySelector('.locate-stack');
+  [profile, search, region, locate].filter(Boolean).forEach((control) => topCluster.appendChild(control));
+}
