@@ -1231,3 +1231,20 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
 .top-cluster>.locate-stack,
 .top-cluster>.locate-stack .ink-control { border: 0!important; box-shadow: none!important; }
 .top-cluster>.regional-navigation { border-left: 1px solid rgba(23,60,53,.18)!important; }
+
+/* Extra-thin variant for the compact map header. */
+.top-cluster,
+.top-cluster>.profile-control,
+.top-cluster>.map-search,
+.top-cluster>.locate-stack,
+.top-cluster>.regional-navigation,
+.top-cluster>.locate-stack .ink-control,
+.top-cluster>.regional-navigation .regional-navigation-button {
+  min-height: 32px!important;
+  height: 32px!important;
+}
+.top-cluster>.profile-control { padding-inline: 3px; }
+.top-cluster .profile-avatar { width: 26px; height: 26px; }
+.top-cluster>.map-search { padding-inline: 7px; }
+.top-cluster>.locate-stack .ink-control,
+.top-cluster>.regional-navigation .regional-navigation-button { padding-inline: 7px; }
