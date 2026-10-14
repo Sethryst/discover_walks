@@ -74,6 +74,14 @@ test('opening workspace reconciles old capture flows and Routes includes recorde
   assert.doesNotMatch(target.innerHTML, /Voice memo/);
 });
 
+test('workspace restores persisted composed walks as route records', async () => {
+  await db.put('walk_plans', { id: 'plan-1', request: { recipeLabel: 'Shaded nature' }, revision: 2, route: { geometry: [[38.9, -77.1], [38.91, -77.11]], durationSeconds: 900 }, updatedAt: new Date().toISOString() });
+  const target = {};
+  await renderWorkspacePanel(target, { filter: 'route' });
+  assert.match(target.innerHTML, /Shaded nature/);
+  assert.match(target.innerHTML, /revision 2/);
+});
+
 test('local workspace demo seeds one visual artifact of every supported type', async () => {
   globalThis.location = new URL('http://127.0.0.1/?workspace-demo=1');
   assert.equal(await seedWorkspaceDemo(), true);

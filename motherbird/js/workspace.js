@@ -5,7 +5,7 @@ import { escapeHtml, uid } from './utils.js';
 export const DEFAULT_WORKSPACE_ID = 'workspace:my-workspace';
 const LINKABLE_STORES = [
   ['saved_routes', 'route'], ['walks', 'walk'], ['observations', 'observation'],
-  ['geo_cypher_manifests', 'audio'], ['voice_notes', 'audio'], ['personal_places', 'place']
+  ['geo_cypher_manifests', 'audio'], ['voice_notes', 'audio'], ['personal_places', 'place'], ['walk_plans', 'plan']
 ];
 
 export function normalizeWorkspace(value = {}, now = new Date().toISOString()) {
@@ -76,7 +76,8 @@ export async function deleteWorkspaceRecord(recordType, recordId, sourceStore) {
   state.workspaceLinks = state.workspaceLinks.filter((link) => !removals.workspace_links.includes(link.id));
   const stateKeys = { route: 'savedRoutes', walk: 'walks', observation: 'observations', audio: 'geoCyphers', place: 'personalPlaces', annotation: 'moments', journal: 'moments' };
   const key = stateKeys[recordType];
-  state[key] = (state[key] || []).filter((record) => String(record.id) !== recordId);
+  if (key) state[key] = (state[key] || []).filter((record) => String(record.id) !== recordId);
+  if (recordType === 'plan' && String(state.walkPlan?.id) === recordId) state.walkPlan = null;
   const events = { route: 'saved-routes-changed', walk: 'walks-changed', observation: 'observations-changed', audio: 'geo-cyphers-changed', place: 'personal-places-changed', annotation: 'local-drawings-changed', journal: 'journal-data-changed' };
   window.dispatchEvent(new CustomEvent(events[recordType]));
   window.dispatchEvent(new CustomEvent('workspace-changed'));
@@ -156,6 +157,7 @@ function recordTitle(recordType, record) {
   return recordType === 'observation' ? (record.species || record.title || 'Observation')
     : recordType === 'audio' ? (record.title || 'Audio note')
       : recordType === 'route' ? (record.title || 'Saved walk')
+        : recordType === 'plan' ? (record.request?.recipeLabel || 'Composed walk')
         : recordType === 'walk' ? (record.title || 'Recorded walk')
           : recordType === 'place' ? (record.name || 'Saved place')
             : recordType === 'annotation' ? (record.title || 'Map annotation')
@@ -163,14 +165,14 @@ function recordTitle(recordType, record) {
 }
 
 function recordDetail(recordType, record) {
-  if (recordType === 'route') return `${(record.sections || []).length || 1} section${(record.sections || []).length === 1 ? '' : 's'} · ${record.durationSeconds ? `${Math.round(record.durationSeconds / 60)} min` : 'route workspace'}`;
+  if (recordType === 'route' || recordType === 'plan') return `${record.revision ? `revision ${record.revision} · ` : ''}${record.route?.durationSeconds ? `${Math.round(record.route.durationSeconds / 60)} min` : record.durationSeconds ? `${Math.round(record.durationSeconds / 60)} min` : 'route workspace'}`;
   if (recordType === 'annotation') return record.body?.measurement || record.body?.shape || 'Map drawing';
   if (recordType === 'audio') return record.note || record.notes || '';
   return record.note || record.notes || record.description || '';
 }
 
 function recordCoordinates(recordType, record) {
-  const points = recordType === 'route' || recordType === 'walk' ? (record.coordinates || record.points || []) : [];
+  const points = recordType === 'plan' ? (record.route?.geometry || []) : recordType === 'route' || recordType === 'walk' ? (record.coordinates || record.points || []) : [];
   if (Array.isArray(points)) {
     const normalized = points.map((point) => Array.isArray(point) ? [Number(point[0]), Number(point[1])] : [Number(point?.lat), Number(point?.lng)]).filter(([lat, lng]) => Number.isFinite(lat) && Number.isFinite(lng));
     if (normalized.length) return normalized;
@@ -186,7 +188,7 @@ function focusWorkspaceRecord(recordType, record) {
   const coordinates = recordCoordinates(recordType, record);
   if (!map || !coordinates.length) return;
   clearWorkspaceRoutePreview();
-  if (recordType === 'route' && coordinates.length > 1 && globalThis.L) {
+  if ((recordType === 'route' || recordType === 'plan') && coordinates.length > 1 && globalThis.L) {
     state.workspaceRoutePreviewId = String(record.id);
     state.workspaceRoutePreviewLines = [globalThis.L.polyline(coordinates, {
       color: /^#[0-9a-f]{6}$/i.test(record.color || '') ? record.color : '#173c35',
@@ -228,7 +230,7 @@ export async function renderWorkspacePanel(target, { filter = 'all' } = {}) {
   const records = new Map();
   for (const [store, type] of LINKABLE_STORES) for (const record of await db.all(store)) records.set(`${type}:${record.id}`, { record, type, store });
   for (const record of await db.all('moments')) if (['journal', 'history', 'drawing'].includes(record.type)) records.set(`${record.type === 'drawing' ? 'annotation' : 'journal'}:${record.id}`, { record, type: record.type === 'drawing' ? 'annotation' : 'journal', store: 'moments' });
-  const links = state.workspaceLinks.filter((link) => link.workspaceId === workspace.id && (filter === 'all' || link.recordType === filter || (filter === 'route' && link.recordType === 'walk')));
+  const links = state.workspaceLinks.filter((link) => link.workspaceId === workspace.id && (filter === 'all' || link.recordType === filter || (filter === 'route' && ['walk', 'plan'].includes(link.recordType))));
   const timeline = links.map((link) => ({ link, ...records.get(`${link.recordType}:${link.recordId}`) })).filter((item) => item.record).sort((a, b) => Date.parse(b.record.updatedAt || b.record.createdAt || 0) - Date.parse(a.record.updatedAt || a.record.createdAt || 0));
   const filterButtons = [['all', 'All'], ['route', 'Routes'], ['observation', 'Seen'], ['audio', 'Sound'], ['journal', 'Notes'], ['place', 'Places'], ['annotation', 'Marks']].map(([id, label]) => `<button type="button" class="workspace-filter ${filter === id ? 'active' : ''}" data-workspace-filter="${id}">${label}</button>`).join('');
   const journalRoomSummary = await renderJournalRoomWorkspaceSummary();
