@@ -1353,13 +1353,33 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
   width: auto!important;
   overflow: hidden;
   white-space: nowrap;
-  border-left: 1px solid rgba(23,60,53,.18)!important;
+  border-left: 0!important;
   padding-left: 4px!important;
+}
+#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills::before {
+  content: '·';
+  display: inline-grid;
+  place-items: center;
+  width: 10px;
+  color: var(--radio-copper, #4d7ea6);
+  font-size: 1.1rem;
+  line-height: 1;
 }
 #mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button,
 #mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button:first-child,
 #mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button:last-child {
   border-radius: 5px!important;
+}
+#mapWorkspacePanel[data-destination="maps"] {
+  top: auto!important;
+  bottom: calc(58px + env(safe-area-inset-bottom))!important;
+  transform: none!important;
+  background-image: none!important;
+}
+#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills,
+#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button {
+  border-top: 0!important;
+  border-bottom: 0!important;
 }
 #mapWorkspacePanel[data-destination="maps"] .workspace-experience> .workspace-route-summary,
 #mapWorkspacePanel[data-destination="maps"] .workspace-experience> .workspace-tool-page {
