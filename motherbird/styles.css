@@ -1343,6 +1343,17 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
 #mapWorkspacePanel[data-destination="maps"] .workspace-tool-page {
   padding-inline: 6px!important;
 }
+#mapWorkspacePanel[data-destination="maps"] { position: relative!important; }
+#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills {
+  position: absolute!important;
+  z-index: 3;
+  top: 0!important;
+  left: 74px!important;
+  right: 30px;
+  width: auto!important;
+  overflow: hidden;
+  white-space: nowrap;
+}
 #mapWorkspacePanel[data-destination="maps"] .workspace-experience> .workspace-route-summary,
 #mapWorkspacePanel[data-destination="maps"] .workspace-experience> .workspace-tool-page {
   margin-top: 0!important;
