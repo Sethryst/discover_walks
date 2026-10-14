@@ -136,6 +136,23 @@ export function initPrimaryShell() {
     if (item?.run) item.run();
   });
   document.getElementById('closePrimaryPanel')?.addEventListener('click', () => panel.classList.add('hidden'));
+  const profileButton = document.getElementById('profileAvatarButton');
+  const profileMenu = document.getElementById('profileMenu');
+  const closeProfileMenu = () => { profileMenu?.classList.add('hidden'); profileButton?.setAttribute('aria-expanded', 'false'); };
+  profileButton?.addEventListener('click', (event) => {
+    event.stopPropagation();
+    const opening = profileMenu?.classList.contains('hidden');
+    profileMenu?.classList.toggle('hidden', !opening);
+    profileButton.setAttribute('aria-expanded', String(opening));
+  });
+  profileMenu?.addEventListener('click', (event) => {
+    const action = event.target.closest('[data-profile-action]')?.dataset.profileAction;
+    if (!action) return;
+    closeProfileMenu();
+    if (action === 'companion' || action === 'map') window.dispatchEvent(new CustomEvent('companion-menu-requested'));
+    if (action === 'online') { openSheet('backpackSheet'); window.dispatchEvent(new CustomEvent('utility-tab-requested', { detail: { tab: 'online' } })); }
+  });
+  document.addEventListener('click', (event) => { if (!event.target.closest('.profile-control')) closeProfileMenu(); });
   window.addEventListener('primary-panel-close-requested', () => panel.classList.add('hidden'));
   select('explore', { initial: true });
   const region = document.body.dataset.regionName || CITIES[state.activeCity]?.name || 'Fairfax County';

@@ -17,7 +17,7 @@ export function renderProfile() {
   const avatar = el('profileAvatarButton');
   if (avatar) {
     const signedIn = Boolean(state.online.session);
-    avatar.classList.toggle('hidden', !signedIn);
+    avatar.classList.remove('hidden');
     el('profileAvatarGlyph').textContent = state.profile.avatarIcon || '✦';
     const image = el('profileAvatarImage'); image.src = state.profile.avatarImage || '';
     image.classList.toggle('hidden', !state.profile.avatarImage);
