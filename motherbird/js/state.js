@@ -42,6 +42,8 @@ export const state = {
   plannerRouteGapLines: [],
   plannerRouteOverlayBound: false,
   plannedRoute: null,
+  walkPlan: null,
+  activeWalkSession: null,
   observationLayer: null,
   poiLayer: null,
   poiMarkerCache: new Map(),

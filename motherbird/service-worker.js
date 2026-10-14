@@ -1,7 +1,7 @@
 // Keep the whole module graph with the shell. Caching only app.js leaves an
 // offline (or briefly disconnected) reload with a blank app when any imported
 // module was not already in the runtime cache.
-const APP_CACHE = 'walk-wildlife-shell-v455'; // Keep large regional enrichment out of startup
+const APP_CACHE = 'walk-wildlife-shell-v456'; // Keep large regional enrichment out of startup
 const TILE_CACHE = 'walk-wildlife-map-tiles-v2';
 const LIBRARY_CACHE = 'walk-wildlife-library-v2';
 const COMPANION_CACHE = 'walk-wildlife-companion-media-v2';
@@ -14,7 +14,7 @@ const shell = [
   './js/online-pane.js', './js/qr-share.js', './js/open-payload.js', './js/sealed-data.js', './js/historical-media.js', './js/offline-view.js', './js/friend-walk.js', './js/place-details.js', './js/regional-data-worker.js',
   './js/offline-map-style.js', './js/installed-tiles.js', './js/story-audio.js',
   './data/regional-capabilities.json', './data/biodiversity-regions.json', './data/biodiversity-nova-source.json', './data/biodiversity-import-report.json', './js/biodiversity.js', './data-contracts/biodiversity-record.schema.json', './regions/alexandria-va/biodiversity/manifest.json', './regions/alexandria-va/biodiversity/records.json', './regions/arlington-va/biodiversity/manifest.json', './regions/arlington-va/biodiversity/records.json', './regions/fairfax-county-va/biodiversity/manifest.json', './regions/fairfax-county-va/biodiversity/records.json', './regions/falls-church-va/biodiversity/manifest.json', './regions/falls-church-va/biodiversity/records.json', './regions/loudoun-county-va/biodiversity/manifest.json', './regions/loudoun-county-va/biodiversity/records.json', './regions/vienna/biodiversity/manifest.json', './regions/vienna/biodiversity/records.json',
-  './js/heartbeat.js', './js/onboarding.js', './js/reflection.js', './js/region-favorites.js', './js/spatial-sync-outbox.js', './js/spatial-sync-policy.js', './js/pwa-update.js', './js/radial-menu.js', './js/location-simulator.js',
+  './js/heartbeat.js', './js/onboarding.js', './js/reflection.js', './js/region-favorites.js', './js/spatial-sync-outbox.js', './js/spatial-sync-policy.js', './js/pwa-update.js', './js/radial-menu.js', './js/location-simulator.js', './js/routing-area-discovery-sidecar.js',
   './data/dc-official-trails.js', './data/dc-stories.js', './icons/plus.svg',
   './', './index.html', './research-lab.html', './research-lab.html?v=2', './watch.html', './styles.css', './radio.css', './shell.css', './splash-fix.css', './watch.css', './legal.css', './privacy.html', './terms.html', './app.js', './manifest.webmanifest', './watch.webmanifest', './supabase-config.js', './research/national-discovery/national-candidate-package.json', './research/national-discovery/focused-source-validation-2026-10-02.json', './research/national-discovery/focused-source-acceptance-2026-10-02.json', './research/national-discovery/honolulu-focused-event-package.json', './research/national-discovery/austin-focused-event-package.json', './research/national-discovery/albuquerque-focused-event-package.json', './research/national-discovery/cleveland-focused-event-package.json',
   './assets/pwa-icon-192.png', './assets/pwa-icon-512.png', './assets/pwa-maskable-512.png', './assets/apple-touch-icon.png', './assets/splash-screen.jpeg', './assets/splash-1170x2532.png', './assets/splash-1290x2796.png', './assets/splash-2048x2732.png',

@@ -6,6 +6,7 @@ import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261011-cross-
 import { escapeHtml } from './utils.js';
 import { toast } from './ui.js';
 import { buildAmbientExplanation, generateAmbientOptions, installAmbientLearningListener, readAmbientMemory } from './ambient-mip.js?v=20261007-walk-moods-1';
+import { createWalkPlan, saveWalkPlan } from './walk-plan.js';
 
 function selectedMinutes() { return Number(document.querySelector('input[name="walkTime"]:checked')?.value || 30); }
 function selectedRouteMode() { return document.querySelector('input[name="routeMode"]:checked')?.value || 'round-trip'; }
@@ -289,6 +290,8 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
         archetype: routed.archetype, profile: routed.profile || 'ordinary_walking_beta', facts: routed.facts, ambientTraits: routed.ambientTraits || [], ambientIntention: ambient.intention
       }));
       state.planOptions = plans; state.plannedRoute = ambient.primary ? plans.find((plan) => plan.id === ambient.primary.id) || plans[0] : plans[0];
+      const selected = state.plannedRoute;
+      await saveWalkPlan(createWalkPlan({ planId: state.walkPlan?.id || null, revision: Number(state.walkPlan?.revision || 0) + 1, request: { city: state.activeCity, origin: routeOrigin, destination: state.plannerEnd, durationMinutes: minutes, routeMode, interests: interests() }, route: selected, encounters: (selected.stops || []).map((stop, index) => ({ ...stop, placeId: stop.id, position: index, reason: 'Selected by the route-and-encounter scorer.' })), rationale: { summary: selected.reason, limitations: [] } }));
       paintWalkConcept(state.plannedRoute);
       window.dispatchEvent(new CustomEvent('ambient-routes-ready', { detail: { options: plans, intention: ambient.intention } }));
       return state.plannedRoute;
@@ -330,6 +333,7 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
     ...(routed.ok ? { distanceMeters: routed.distanceMeters, distanceMiles: Number((routed.distanceMeters / 1609.344).toFixed(2)), graphStatus: null, graphVersion: routed.graphVersion, cellId: routed.cellId, cellRelease: routed.cellRelease, edgeIds: routed.edgeIds, instructions: routed.instructions } : { graphStatus: routed.status || 'GRAPH_VERSION_UNAVAILABLE', failureMessage: planningFailureMessage(routed, routeMode) })
   };
   state.plannedRoute = plan; state.planOptions = [plan];
+  if (routed.ok) await saveWalkPlan(createWalkPlan({ request: { city: state.activeCity, origin: routeOrigin, durationMinutes: minutes, routeMode, interests: interests() }, route: routed, encounters: stops.map((stop, index) => ({ ...stop, placeId: stop.id, position: index, reason: 'Selected by the route-and-encounter scorer.' })), rationale: { summary: plan.reason, limitations: [] } }));
   state.routePlanningFailures = routed.ok ? [] : [...(state.routePlanningFailures || []), routed];
   paintWalkConcept(plan);
   return plan;

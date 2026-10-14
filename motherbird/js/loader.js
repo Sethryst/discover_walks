@@ -273,7 +273,7 @@ export async function createMigratedProfile() {
   return profile;
 }
 export async function loadLocalState() {
-  const [savedProfile, savedSettings, savedWalks, savedRoutes] = await Promise.all([db.get('profile', 'local-user'), db.get('settings', 'app-settings'), db.all('walks'), db.all('saved_routes')]);
+  const [savedProfile, savedSettings, savedWalks, savedRoutes, savedPlans] = await Promise.all([db.get('profile', 'local-user'), db.get('settings', 'app-settings'), db.all('walks'), db.all('saved_routes'), db.all('walk_plans')]);
   state.profile = savedProfile ? normalizeProfile(savedProfile) : await createMigratedProfile();
   state.settings = { ...DEFAULT_SETTINGS, ...(savedSettings || {}) };
   if (!Array.isArray(state.settings.geofenceCategories) || !state.settings.geofenceCategories.length) state.settings.geofenceCategories = ['news', 'recreation', 'cuisine'];
@@ -288,6 +288,8 @@ export async function loadLocalState() {
     try { return normalizeSavedRoute(route, route.updatedAt || route.createdAt || new Date().toISOString()); }
     catch { return route; }
   });
+  state.walkPlan = savedPlans.sort((a, b) => new Date(b.updatedAt || 0) - new Date(a.updatedAt || 0))[0] || null;
+  if (state.walkPlan) state.plannedRoute = { ...state.walkPlan.route, id: state.walkPlan.id, stops: state.walkPlan.encounters || [], reason: state.walkPlan.rationale?.summary || '' };
   state.knownTrackPoints = savedWalks.flatMap((walk) => (walk.points || []).filter((_, index) => index % 5 === 0));
   await restoreLocalPoiClosures();
   await Promise.all([db.put('profile', state.profile), db.put('settings', state.settings)]);

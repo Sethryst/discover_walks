@@ -1,8 +1,26 @@
+import { ROUTING_AREA_DISCOVERY_SIDECAR, discoveryForRoutingLocation } from './routing-area-discovery-sidecar.js';
+
 export const LOCATION_PRESETS = {
   alexandria: { name: 'Alexandria, VA', lat: 38.8048, lng: -77.0469 },
   dc: { name: 'Washington, DC', lat: 38.8951, lng: -77.0364 },
   pgcounty: { name: "Prince George's County, MD", lat: 38.8315, lng: -76.8465 },
   fairfax: { name: 'Fairfax County, VA', lat: 38.8462, lng: -77.3064 }
+};
+// Golden-path fixtures live inside the published Fairfax routing footprint.
+// They are deliberately varied enough to exercise parks, civic places,
+// historic places, and a longer cross-neighborhood handoff without leaving
+// the installed routing area.
+export const ROUTING_AREA_LOCATIONS = {
+  fairfaxCourthouse: { name: 'Fairfax Historic Courthouse', lat: 38.8456749128122, lng: -77.3075286029426 },
+  cityHistoricDistrict: { name: 'City of Fairfax Historic District', lat: 38.8461117, lng: -77.3068695 },
+  westmoreDogPark: { name: 'Westmore Dog Park', lat: 38.8483638, lng: -77.3277316 },
+  pineyBranch: { name: 'Piney Branch Stream Valley', lat: 38.8410265354766, lng: -77.3593960924766 },
+  patriotParkNorth: { name: 'Patriot Park North', lat: 38.82905929529559, lng: -77.37638267939614 },
+  rockyRunTrailhead: { name: 'Rocky Run Stream Valley Trailhead', lat: 38.8451594189837, lng: -77.39410660280099 },
+  difficultRunSouth: { name: 'Difficult Run South Trailhead', lat: 38.879888146267945, lng: -77.33101206996757 },
+  difficultRunNorth: { name: 'Difficult Run North Trailhead', lat: 38.888180920535184, lng: -77.32465830088303 },
+  heartHavenGarden: { name: 'Heart Haven Meditation Garden', lat: 38.8844016, lng: -77.3030556 },
+  viennaDogPark: { name: 'Vienna Dog Park', lat: 38.888426, lng: -77.2729342 }
 };
 const simulatorEnabled = typeof location !== 'undefined' && (location.hostname === 'localhost' || new URLSearchParams(location.search).has('devtools'));
 // Only the preset id is session-persisted. Coordinates are always derived in
@@ -30,9 +48,11 @@ const watches = new Map();
 let networkSimulation = 'normal';
 let playbackTimer = null;
 let originalFetch = null;
-export function simulatedPosition(preset) { const point = LOCATION_PRESETS[preset]; if (!point) throw new Error(`Unknown location preset: ${preset}`); return { coords: { latitude: point.lat, longitude: point.lng, accuracy: 10 }, timestamp: Date.now() }; }
+function pointForPreset(preset) { return ROUTING_AREA_LOCATIONS[preset] || LOCATION_PRESETS[preset]; }
+export { ROUTING_AREA_DISCOVERY_SIDECAR, discoveryForRoutingLocation };
+export function simulatedPosition(preset) { const point = pointForPreset(preset); if (!point) throw new Error(`Unknown location preset: ${preset}`); return { coords: { latitude: point.lat, longitude: point.lng, accuracy: 10 }, timestamp: Date.now() }; }
 function simulatedWalkPosition(preset) {
-  const point = LOCATION_PRESETS[preset];
+  const point = pointForPreset(preset);
   if (!point) throw new Error(`Unknown location preset: ${preset}`);
   simulatedSample += 1;
   // Roughly 13 m per sample, bounded to a small local path and below the
@@ -48,7 +68,7 @@ export function getCurrentPosition(success, error) { if (isSimulationActive()) r
 export function watchPosition(success, error, options) { if (!isSimulationActive()) return navigator.geolocation.watchPosition(success, error, options); const id = ++nextWatchId; watches.set(id, setInterval(() => success(simulatedWalkPosition(simulatedPreset)), 5000)); queueMicrotask(() => success(simulatedPosition(simulatedPreset))); return id; }
 export function clearWatch(id) { if (watches.has(id)) { clearInterval(watches.get(id)); watches.delete(id); } else navigator.geolocation.clearWatch(id); }
 export function stopLocationPlayback() { if (playbackTimer) clearInterval(playbackTimer); playbackTimer = null; }
-export function startLocationPlayback(presets = ['alexandria', 'dc', 'fairfax'], intervalMs = 1500) { stopLocationPlayback(); let index = 0; const emit = () => { simulatedPreset = presets[index % presets.length]; setSessionValue(simulatedPreset); dispatchPosition(); index += 1; }; emit(); playbackTimer = setInterval(emit, intervalMs); return stopLocationPlayback; }
+export function startLocationPlayback(presets = Object.keys(ROUTING_AREA_LOCATIONS), intervalMs = 1500) { stopLocationPlayback(); let index = 0; const emit = () => { const id = presets[index % presets.length]; const point = ROUTING_AREA_LOCATIONS[id] || LOCATION_PRESETS[id]; if (!point) throw new Error(`Unknown playback location: ${id}`); simulatedPreset = id; setSessionValue(simulatedPreset); dispatchPosition(); index += 1; }; emit(); playbackTimer = setInterval(emit, intervalMs); return stopLocationPlayback; }
 function setNetworkSimulation(mode) { networkSimulation = mode; if (!originalFetch) originalFetch = globalThis.fetch; if (mode === 'normal') { if (originalFetch) globalThis.fetch = originalFetch; return; } globalThis.fetch = async (...args) => { if (mode === 'offline') throw new TypeError('Devtools offline simulation'); if (mode === 'slow-3g') await new Promise((resolve) => setTimeout(resolve, 1200)); if (mode === 'flaky' && Math.random() < 0.35) throw new TypeError('Devtools intermittent network simulation'); return originalFetch(...args); }; }
 export async function clearOfflineScope(scope) { if (scope === 'tiles' && globalThis.caches) { for (const name of await caches.keys()) if (/tile|osm/i.test(name)) await caches.delete(name); return; } if (scope === 'sync') { const { default: db } = await import('./storage.js'); for (const item of await db.all('spatial_local_operations')) await db.remove('spatial_local_operations', item.id); } }
 async function storageReport() {
@@ -79,13 +99,13 @@ export async function offlineDiagnosticsReport() {
 function diagnosticsText(report) { return JSON.stringify({ ...report, privacy: { preciseLocationIncluded: false, networkTransmitted: false } }, null, 2); }
 function downloadDiagnostics(report) { const blob = new Blob([diagnosticsText(report)], { type: 'application/json' }); const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = `walk-wildlife-offline-diagnostics-${Date.now()}.json`; link.click(); setTimeout(() => URL.revokeObjectURL(link.href), 0); }
 function formatBytes(value) { if (!Number.isFinite(value)) return '—'; const units = ['B', 'KB', 'MB', 'GB']; let size = value; let unit = 0; while (size >= 1024 && unit < units.length - 1) { size /= 1024; unit += 1; } return `${size.toFixed(unit ? 1 : 0)} ${units[unit]}`; }
-function dispatchPosition() { window.dispatchEvent(new CustomEvent('location-updated', { detail: simulatedPosition(simulatedPreset) })); }
+function dispatchPosition() { if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('location-updated', { detail: simulatedPosition(simulatedPreset) })); }
 function renderPanel() {
   if (!simulatorEnabled) return;
   const panel = document.createElement('aside'); panel.id = 'locationSimulatorPanel'; panel.className = 'location-simulator-panel';
-  panel.innerHTML = `<details id="locationSimulatorDetails"><summary><strong>Location simulator</strong><span class="simulator-warning">DEVTOOLS · LOCAL ONLY</span></summary><label>Preset<select id="locationSimulatorPreset">${Object.entries(LOCATION_PRESETS).map(([id, point]) => `<option value="${id}">${point.name}</option>`).join('')}</select></label><div class="simulator-actions"><button type="button" id="useSimulatedLocationButton">Use simulated location</button><button type="button" id="moveSimulatedLocationButton">Move location</button><button type="button" id="playLocationSimulationButton">Play location route</button><button type="button" id="startSimulatedWalkButton">Start simulated walk</button><button type="button" id="clearSimulatedLocationButton">Clear simulation</button></div><output id="locationSimulatorCoordinates">No simulation active</output><small>Accuracy: <span id="locationSimulatorAccuracy">—</span></small><hr><strong>Offline diagnostics</strong><label>Network test<select id="networkSimulationSelect"><option value="normal">Normal network</option><option value="offline">Offline</option><option value="slow-3g">Slow 3G</option><option value="flaky">Intermittent</option></select></label><output id="offlineStorageReport">Storage not checked</output><div class="simulator-actions"><button type="button" id="refreshOfflineStorageButton">Refresh diagnostics</button><button type="button" id="exportOfflineDiagnosticsButton">Export privacy-safe report</button><button type="button" id="clearTileCacheButton">Clear tile cache</button><button type="button" id="clearSyncQueueButton">Clear sync queue</button></div></details>`;
+  panel.innerHTML = `<details id="locationSimulatorDetails"><summary><strong>Location simulator</strong><span class="simulator-warning">DEVTOOLS · LOCAL ONLY</span></summary><label>Preset<select id="locationSimulatorPreset">${Object.entries({ ...ROUTING_AREA_LOCATIONS, ...LOCATION_PRESETS }).map(([id, point]) => `<option value="${id}">${point.name}</option>`).join('')}</select></label><p class="simulator-route-note">Play location route uses 10 Fairfax routing-area stops.</p><div class="simulator-actions"><button type="button" id="useSimulatedLocationButton">Use simulated location</button><button type="button" id="moveSimulatedLocationButton">Move location</button><button type="button" id="playLocationSimulationButton">Play location route</button><button type="button" id="startSimulatedWalkButton">Start simulated walk</button><button type="button" id="clearSimulatedLocationButton">Clear simulation</button></div><output id="locationSimulatorCoordinates">No simulation active</output><div id="locationSimulatorDiscovery" class="simulator-discovery-note">Choose a routing-area stop to see its discovery invitation.</div><small>Accuracy: <span id="locationSimulatorAccuracy">—</span></small><hr><strong>Offline diagnostics</strong><label>Network test<select id="networkSimulationSelect"><option value="normal">Normal network</option><option value="offline">Offline</option><option value="slow-3g">Slow 3G</option><option value="flaky">Intermittent</option></select></label><output id="offlineStorageReport">Storage not checked</output><div class="simulator-actions"><button type="button" id="refreshOfflineStorageButton">Refresh diagnostics</button><button type="button" id="exportOfflineDiagnosticsButton">Export privacy-safe report</button><button type="button" id="clearTileCacheButton">Clear tile cache</button><button type="button" id="clearSyncQueueButton">Clear sync queue</button></div></details>`;
   document.body.append(panel); const select = panel.querySelector('#locationSimulatorPreset'); select.value = simulatedPreset || 'dc';
-  const update = () => { const point = isSimulationActive() ? LOCATION_PRESETS[simulatedPreset] : null; panel.querySelector('#locationSimulatorCoordinates').textContent = point ? `${point.lat.toFixed(4)}, ${point.lng.toFixed(4)}` : 'No simulation active'; panel.querySelector('#locationSimulatorAccuracy').textContent = point ? '10 m' : '—'; document.body.classList.toggle('simulated-location-active', Boolean(point)); };
+  const update = () => { const point = isSimulationActive() ? pointForPreset(simulatedPreset) : null; const discovery = discoveryForRoutingLocation(simulatedPreset); panel.querySelector('#locationSimulatorCoordinates').textContent = point ? `${point.lat.toFixed(4)}, ${point.lng.toFixed(4)}` : 'No simulation active'; panel.querySelector('#locationSimulatorDiscovery').textContent = discovery ? `${discovery.value} · ${discovery.invitation}` : 'Built-in location preset; no routing-area discovery sidecar.'; panel.querySelector('#locationSimulatorAccuracy').textContent = point ? '10 m' : '—'; document.body.classList.toggle('simulated-location-active', Boolean(point)); };
   window.addEventListener('location-updated', update);
   const activate = () => { simulatedPreset = select.value; setSessionValue(simulatedPreset); dispatchPosition(); update(); };
   panel.querySelector('#useSimulatedLocationButton').onclick = activate; panel.querySelector('#moveSimulatedLocationButton').onclick = activate;

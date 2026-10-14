@@ -12,6 +12,7 @@ from typing import Any
 from urllib.parse import urlsplit, urlunsplit
 
 from app.scout.engine import ScoutEngine
+from app.scout.discovery_intelligence import merge_observations, observation_from_candidate, rank_next_investigations
 
 
 DOMAIN_TO_CATEGORY = {
@@ -22,9 +23,12 @@ DOMAIN_TO_CATEGORY = {
 }
 
 
-def build_backlog(workspace: Path, generated_at: str | None = None) -> dict[str, Any]:
+def build_backlog(workspace: Path, generated_at: str | None = None, memory_path: Path | None = None) -> dict[str, Any]:
     """Normalize registries, deduplicate leads, and run the existing scout for all regions."""
     timestamp = generated_at or datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+    memory_file = memory_path or workspace / "expansion-queues" / "source-discovery-memory.json"
+    prior_memory = _read(memory_file) if memory_file.exists() else {}
+    prior_observations = prior_memory.get("observations", []) if isinstance(prior_memory, dict) else []
     regions_dir = workspace / "app" / "regions"
     region_configs = _region_configs(regions_dir)
     candidates: dict[str, list[dict[str, Any]]] = {region_id: [] for region_id in region_configs}
@@ -61,6 +65,7 @@ def build_backlog(workspace: Path, generated_at: str | None = None) -> dict[str,
 
     scout = ScoutEngine(workspace)
     region_results = []
+    current_observations: list[dict[str, Any]] = []
     total_candidates = 0
     classifications: dict[str, int] = {"READY": 0, "INVESTIGATE": 0, "REJECT": 0}
     for region_id, config in sorted(region_configs.items()):
@@ -69,11 +74,24 @@ def build_backlog(workspace: Path, generated_at: str | None = None) -> dict[str,
         total_candidates += len(result["queue"])
         for item in result["queue"]:
             classifications[item["classification"]] += 1
+        observations = [observation_from_candidate({**item, "regionId": region_id}, observed_at=timestamp) for item in unique]
+        current_observations.extend(observations)
+        memory = merge_observations([*prior_observations, *observations])
         region_results.append({
             "id": region_id,
             "name": config["name"],
             "coverage": result["region"],
             "queue": result["queue"],
+            "discoveryMemory": {
+                "schemaVersion": 1,
+                "observationCount": len(unique),
+                "observations": [row for row in memory if row.get("regionId") == region_id],
+            },
+            "nextInvestigations": rank_next_investigations(
+                unique,
+                missing_categories=set(result["region"].get("missingCategories", [])),
+                observations=memory,
+            ),
         })
 
     return {
@@ -83,6 +101,7 @@ def build_backlog(workspace: Path, generated_at: str | None = None) -> dict[str,
         "readOnly": True,
         "publicationPolicy": "Discovery never publishes app data. A reviewed provider, fixture, contract validation, and release build are required.",
         "summary": {"regionCount": len(region_results), "candidateCount": total_candidates, "classifications": classifications},
+        "discoveryMemory": {"schemaVersion": 1, "kind": "source-discovery-memory", "publicationState": "research-only", "observations": merge_observations([*prior_observations, *current_observations])},
         "regions": region_results,
         "omissions": sorted(omissions, key=lambda item: (item.get("regionId", ""), item.get("reason", ""))),
     }
@@ -206,10 +225,13 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Generate the governed all-region source review backlog.")
     parser.add_argument("--workspace", type=Path, default=Path("."))
     parser.add_argument("--output", type=Path, default=Path("expansion-queues/regional-source-backlog.json"))
+    parser.add_argument("--memory", type=Path, default=Path("expansion-queues/source-discovery-memory.json"))
     args = parser.parse_args()
-    result = build_backlog(args.workspace)
+    result = build_backlog(args.workspace, memory_path=args.memory)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    args.memory.parent.mkdir(parents=True, exist_ok=True)
+    args.memory.write_text(json.dumps(result["discoveryMemory"], indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(f"Wrote {result['summary']['candidateCount']} candidates across {result['summary']['regionCount']} regions to {args.output}")
     return 0
 

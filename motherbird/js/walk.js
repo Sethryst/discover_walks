@@ -13,6 +13,7 @@ import { checkGeofences } from './geofence.js';
 import { toast, setStatus, openJournal, closeSheets } from './ui.js';
 import db from './storage.js';
 import { linkSavedRecord } from './workspace.js';
+import { startWalkSession } from './walk-plan.js';
 import { updateProfile } from './profile.js';
 import { renderArchive } from './archive.js';
 import { refreshLiveConditions } from './weather.js';
@@ -273,6 +274,8 @@ export async function startWalk({ routeMode = 'tracking', transportMode = null }
     plannedRouteId: state.plannedRoute?.id || null,
     transportMode: selectedTransport
   });
+  if (state.walkPlan) state.activeWalkSession = await startWalkSession(state.walkPlan);
+  if (state.walkPlan) state.activeWalk.plannedRouteId = state.walkPlan.id;
   ensurePauseButton();
   state.routeLine?.remove();
   state.routeLine = L.polyline([], { color: '#168cff', weight: 8, opacity: 1, lineCap: 'round', lineJoin: 'round' }).addTo(state.map);
