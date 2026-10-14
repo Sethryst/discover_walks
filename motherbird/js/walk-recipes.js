@@ -1,0 +1,6 @@
+/** Finite, evidence-aware recipes. */
+export const WALK_RECIPES = Object.freeze({ shadedNature: { id: 'shaded-nature', label: 'Shaded nature', softTags: ['nature', 'park', 'trail', 'greenway'], hard: {}, profile: 'nature' }, waterHistory: { id: 'water-history', label: 'Water + local history', softTags: ['water', 'history', 'culture'], hard: {}, profile: 'discovery' }, stepFreeNeighborhood: { id: 'step-free-neighborhood', label: 'Step-free neighborhood discovery', softTags: ['neighborhood', 'culture', 'history'], hard: { stepFree: true, access: 'verified' }, profile: 'accessible_verified' } });
+export function recipeById(id) { return Object.values(WALK_RECIPES).find((recipe) => recipe.id === id) || WALK_RECIPES.shadedNature; }
+export function recipeFromDocument() { return recipeById(document.querySelector('[name="walkRecipe"]')?.value); }
+export function recipeCandidateAllowed(place, recipe) { if (!recipe?.hard?.stepFree) return true; const wheelchair = String(place?.wheelchair || place?.accessibility?.wheelchair || '').toLowerCase(); return wheelchair === 'yes' || place?.accessibilityVerified === true || place?.accessibility?.verified === true; }
+export function recipeRequest(recipe, request = {}) { return { ...request, recipeId: recipe.id, recipeLabel: recipe.label, hardConstraints: { ...recipe.hard }, softPreferences: [...recipe.softTags] }; }

@@ -18,7 +18,7 @@ export function createWalkPlan({ request, route, encounters = [], rationale = {}
       distanceMeters: Number(route.distanceMeters || 0), durationSeconds: Number(route.durationSeconds || 0),
       graphVersion: route.graphVersion || null, warnings: [...(route.warnings || [])]
     },
-    encounters: encounters.map((item, index) => ({ encounterId: item.encounterId || id('encounter'), placeId: item.placeId || item.id || null, position: item.position ?? index, detour: Number(item.detour || 0), evidenceRefs: [...(item.evidenceRefs || [])], reason: item.reason || '' })),
+    encounters: encounters.map((item, index) => ({ encounterId: item.encounterId || id('encounter'), placeId: item.placeId || item.id || null, name: item.name || null, lat: Number.isFinite(Number(item.lat)) ? Number(item.lat) : null, lng: Number.isFinite(Number(item.lng)) ? Number(item.lng) : null, position: item.position ?? index, detour: Number(item.detour || 0), evidenceRefs: [...(item.evidenceRefs || [])], reason: item.reason || '' })),
     rationale: structuredClone(rationale), packageVersions: { ...WALK_PLAN_PACKAGE_VERSIONS }, status: 'planned'
   };
 }

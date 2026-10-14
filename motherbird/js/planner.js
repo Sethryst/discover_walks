@@ -7,6 +7,7 @@ import { escapeHtml } from './utils.js';
 import { toast } from './ui.js';
 import { buildAmbientExplanation, generateAmbientOptions, installAmbientLearningListener, readAmbientMemory } from './ambient-mip.js?v=20261007-walk-moods-1';
 import { createWalkPlan, saveWalkPlan } from './walk-plan.js';
+import { recipeFromDocument, recipeCandidateAllowed, recipeRequest } from './walk-recipes.js';
 
 function selectedMinutes() { return Number(document.querySelector('input[name="walkTime"]:checked')?.value || 30); }
 function selectedRouteMode() { return document.querySelector('input[name="routeMode"]:checked')?.value || 'round-trip'; }
@@ -231,6 +232,7 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
   // destination simply because it exceeds the default 30 minutes.
   const availableMinutes = routeMode === 'point-to-point' ? Infinity : minutes;
   const center = plannerOrigin();
+  const recipe = recipeFromDocument();
   const needsMapDestination = ['round-trip', 'point-to-point'].includes(routeMode);
   if (routeMode === 'point-to-point' && !state.plannerStart && !state.currentPosition) {
     setPlannerSelecting('Start');
@@ -248,7 +250,7 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
   const autoRadiusKm = Math.max(1.5, minutes * 0.08);
   const nearbyAutoCandidates = autoCandidates.filter((stop) => {
     const normalized = normalizeStop(stop, 0);
-    return normalized && distanceBetween(center, normalized) <= autoRadiusKm;
+    return normalized && recipeCandidateAllowed(normalized, recipe) && distanceBetween(center, normalized) <= autoRadiusKm;
   });
   const rawStops = needsMapDestination
     ? [...selectedStops, { name: 'Selected destination', lat: state.plannerEnd.lat, lng: state.plannerEnd.lng }]
@@ -297,7 +299,7 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
       return state.plannedRoute;
     }
   }
-  const routeOptions = { city: state.activeCity, profile: 'ordinary_walking_beta' };
+  const routeOptions = { city: state.activeCity, profile: recipe.profile === 'accessible_verified' ? 'accessible_verified' : 'ordinary_walking_beta' };
   let routed;
   if (routeMode === 'auto-round-trip') {
     const candidatePool = (seededStops?.length ? stops : nearbyAutoCandidates.length ? nearbyAutoCandidates : autoCandidates).slice(0, AUTO_ROUTE_MAX_CANDIDATES);
@@ -333,7 +335,7 @@ export async function generateTimeBasedPlan({ stops: seededStops = null, title =
     ...(routed.ok ? { distanceMeters: routed.distanceMeters, distanceMiles: Number((routed.distanceMeters / 1609.344).toFixed(2)), graphStatus: null, graphVersion: routed.graphVersion, cellId: routed.cellId, cellRelease: routed.cellRelease, edgeIds: routed.edgeIds, instructions: routed.instructions } : { graphStatus: routed.status || 'GRAPH_VERSION_UNAVAILABLE', failureMessage: planningFailureMessage(routed, routeMode) })
   };
   state.plannedRoute = plan; state.planOptions = [plan];
-  if (routed.ok) await saveWalkPlan(createWalkPlan({ request: { city: state.activeCity, origin: routeOrigin, durationMinutes: minutes, routeMode, interests: interests() }, route: routed, encounters: stops.map((stop, index) => ({ ...stop, placeId: stop.id, position: index, reason: 'Selected by the route-and-encounter scorer.' })), rationale: { summary: plan.reason, limitations: [] } }));
+  if (routed.ok) await saveWalkPlan(createWalkPlan({ request: recipeRequest(recipe, { city: state.activeCity, origin: routeOrigin, durationMinutes: minutes, routeMode, interests: interests() }), route: routed, encounters: stops.map((stop, index) => ({ ...stop, placeId: stop.id, position: index, reason: 'Selected by the route-and-encounter scorer.' })), rationale: { summary: plan.reason, limitations: [] } }));
   state.routePlanningFailures = routed.ok ? [] : [...(state.routePlanningFailures || []), routed];
   paintWalkConcept(plan);
   return plan;

@@ -327,6 +327,10 @@ function decorateWalkPlanner() {
   intro.className = 'walk-planner-copy';
   intro.innerHTML = '<p class="walk-planner-kicker">Choose a walk shape</p><p class="walk-planner-intro">Pick one, then generate the route.</p><p class="walk-selection-order">Point to point: select <strong>Start</strong> first, then choose a destination.</p>';
   panel.prepend(intro);
+  const recipeField = document.createElement('label');
+  recipeField.className = 'walk-recipe-field';
+  recipeField.innerHTML = '<span>Walk recipe</span><select name="walkRecipe"><option value="shaded-nature">Shaded nature</option><option value="water-history">Water + local history</option><option value="step-free-neighborhood">Step-free neighborhood discovery</option></select>';
+  panel.insertBefore(recipeField, panel.querySelector('.sketch-route-options'));
   const timeLegend = panel.querySelector('#sketchTimeOptions legend');
   if (timeLegend) timeLegend.textContent = 'Walk length';
   const labels = {
