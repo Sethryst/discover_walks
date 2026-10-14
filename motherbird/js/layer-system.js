@@ -561,7 +561,7 @@ function bindLayerControls() {
     if (help) {
       event.stopPropagation();
       const model = lightModel().find((item) => item.id === help.dataset.lightHelp);
-      toast(`${model?.label || 'This layer'} best practice: turn it on when you want that context visible, and turn it off to keep the map quieter while walking.`);
+      toast(`${model?.label || 'This layer'} adds that context to the map.`);
       return;
     }
     const light = event.target.closest('[data-light]');

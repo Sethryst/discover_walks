@@ -1280,16 +1280,16 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
   height: 18px;
   flex: 0 0 18px;
   padding: 0;
-  border: 1px solid currentColor;
+  border: 0;
   border-radius: 50%;
-  background: transparent;
-  color: var(--radio-copper, #4d7ea6);
+  background: var(--radio-amber, #e8bd5a);
+  color: var(--radio-ink, #0d1b2a);
   font-size: .66rem;
   font-weight: 900;
   line-height: 1;
 }
 .context-help-button:hover,
-.context-help-button:focus-visible { background: var(--radio-cream, #dbe9f7); }
+.context-help-button:focus-visible { background: var(--radio-rust, #d7874a); color: #fff; }
 .location-help { margin: auto 4px auto 0; }
 body.location-available .location-help { display: none; }
 .map-light-row { align-items: center; }

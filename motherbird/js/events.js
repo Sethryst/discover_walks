@@ -358,7 +358,7 @@ function decorateWalkPlanner() {
 
 function bindLocationControls() {
   el('locateButton')?.addEventListener('click', getCurrentLocation);
-  el('locationHelpButton')?.addEventListener('click', () => toast('Location best practice: use Locate me when you want a route or nearby context. Your position stays on this device unless you choose to share it.'));
+  el('locationHelpButton')?.addEventListener('click', () => toast('Locate me centers the map on your current position.'));
   el('locateChevron')?.addEventListener('click', () => togglePanel('locateChevron', 'locatePanel'));
   const geofenceToggle = el('geofenceToggle');
   const geofenceRadius = el('geofenceRadiusSelect');
