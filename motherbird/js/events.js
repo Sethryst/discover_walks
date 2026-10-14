@@ -30,6 +30,7 @@ import { addPlaceToJournalRoom, addJournalNoteToJournalRoom } from './journal-ro
 import { buildInWalkSuggestion, buildRouteRecommendations } from './ambient-mip.js?v=20261007-walk-moods-1';
 import { renderPersonalPlacesPanel } from './personal-places.js';
 import { renderWorkspacePanel } from './workspace.js';
+import { explainWalkPlan } from './walk-plan.js';
 
 const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];
 function ambientResponse(plan, signal) { return { archetype: plan?.archetype, traits: plan?.ambientTraits || [], [signal]: true }; }
@@ -403,6 +404,10 @@ function renderWalkSketch(plan) {
   setRouteFocusMode(true);
   el('sketchTitle').textContent = plan.title || 'Walk sketch';
   el('sketchReason').textContent = plan.reason || 'A concept from named places in this installed pack.';
+  let evidence = el('walkEvidence');
+  if (!evidence) { evidence = document.createElement('details'); evidence.id = 'walkEvidence'; evidence.className = 'walk-evidence'; el('sketchReason')?.after(evidence); }
+  const explanation = explainWalkPlan(state.walkPlan?.id === plan.id ? state.walkPlan : plan);
+  evidence.innerHTML = `<summary>Why this walk</summary><p>${escapeHtml(explanation.summary)}</p>${explanation.claims.length ? `<ul>${explanation.claims.map((claim) => `<li><strong>${escapeHtml(claim.label || claim.claim || 'Claim')}</strong> — ${escapeHtml(claim.source || claim.evidence || 'Evidence recorded in the plan')}${claim.freshness ? ` · ${escapeHtml(claim.freshness)}` : ''}</li>`).join('')}</ul>` : ''}<p class="walk-evidence-limits"><strong>Could not establish:</strong> ${escapeHtml(explanation.limitations.join(' '))}</p>${explanation.evidenceRefs.length ? `<small>Evidence references: ${escapeHtml(explanation.evidenceRefs.join(', '))}</small>` : '<small>No encounter evidence references were recorded.</small>'}`;
   let recommendationCards = el('routeRecommendationCards');
   if (!recommendationCards) {
     recommendationCards = document.createElement('div');

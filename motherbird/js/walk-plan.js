@@ -4,6 +4,12 @@ import { state } from './state.js';
 export const WALK_PLAN_SCHEMA = 'walk-plan/v1';
 export const WALK_PLAN_PACKAGE_VERSIONS = { planner: 'mip-router-v1', evidence: 'static-catalogue-v1' };
 
+export function explainWalkPlan(plan) {
+  const claims = Array.isArray(plan?.rationale?.claims) ? plan.rationale.claims : [];
+  const refs = [...new Set((plan?.encounters || []).flatMap((encounter) => encounter.evidenceRefs || []))];
+  return { summary: plan?.rationale?.summary || 'This walk was composed from the installed pedestrian network and selected encounters.', claims, evidenceRefs: refs, limitations: Array.isArray(plan?.rationale?.limitations) ? plan.rationale.limitations : ['Freshness and access are only established where the installed evidence says so.'] };
+}
+
 const iso = () => new Date().toISOString();
 const id = (prefix) => `${prefix}:${globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(16).slice(2)}`}`;
 

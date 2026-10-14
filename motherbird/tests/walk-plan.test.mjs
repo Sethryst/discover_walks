@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import db from '../js/storage.js';
-import { createWalkPlan, createSidecarContribution, saveSidecarContribution, saveWalkPlan, startWalkSession, appendSessionNote, privateMemoriesForPlace } from '../js/walk-plan.js';
+import { createWalkPlan, createSidecarContribution, saveSidecarContribution, saveWalkPlan, startWalkSession, appendSessionNote, privateMemoriesForPlace, explainWalkPlan } from '../js/walk-plan.js';
 
 globalThis.window = new EventTarget();
 test.beforeEach(async () => { await db.clearAll(); });
@@ -41,4 +41,11 @@ test('private encounter memory is available on a later visit', async () => {
   const session = await startWalkSession(plan);
   await appendSessionNote(session, 'The light was soft after rain.', 'park-1');
   assert.equal((await privateMemoriesForPlace('park-1'))[0].text, 'The light was soft after rain.');
+});
+
+test('walk explanation preserves claim provenance and unknowns', () => {
+  const plan = createWalkPlan({ route, rationale: { summary: 'Mapped greenway', claims: [{ label: 'Greenway', source: 'catalogue-1', freshness: '2026-10-01' }], limitations: ['Shade is not verified.'] } });
+  const explanation = explainWalkPlan(plan);
+  assert.equal(explanation.claims[0].source, 'catalogue-1');
+  assert.deepEqual(explanation.limitations, ['Shade is not verified.']);
 });
