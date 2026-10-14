@@ -204,6 +204,7 @@ async function setMapWorkspace(destination = '', { toggle = true, forceOpen = fa
   panel.classList.toggle('hidden', !next);
   document.body.classList.toggle('map-workspace-open', Boolean(next));
   document.body.classList.toggle('draw-pane-open', next === 'draw');
+  el('closeMapWorkspace')?.classList.toggle('workspace-close-hidden', next === 'maps');
   document.querySelectorAll('[data-map-destination]').forEach((button) => {
     const active = button.dataset.mapDestination === next;
     button.classList.toggle('active', active);
