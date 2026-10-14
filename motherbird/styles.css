@@ -1273,6 +1273,46 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
 .top-cluster>.locate-stack .ink-control,
 .top-cluster>.regional-navigation .regional-navigation-button { padding-inline: 6px; font-size: .64rem; }
 
+/* Ultra-compact Workspace chrome: keep the utility row dense but readable. */
+.map-workspace-panel>header {
+  min-height: 28px!important;
+  height: 28px!important;
+  padding: 2px 7px!important;
+  border-bottom-color: rgba(23,60,53,.14);
+  font-size: .78rem!important;
+  line-height: 1;
+}
+.map-workspace-panel>header strong { font-size: .78rem!important; }
+.map-workspace-panel>header button {
+  width: 24px!important;
+  height: 24px!important;
+  min-height: 24px!important;
+  font-size: 1rem!important;
+}
+.map-workspace-panel>[data-map-panel] { padding: 6px!important; }
+.map-dock { gap: 1px!important; padding: 2px!important; border-radius: 9px!important; }
+.map-dock button {
+  width: 46px!important;
+  min-height: 30px!important;
+  padding: 2px!important;
+  gap: 1px!important;
+  border-radius: 6px!important;
+  font-size: .54rem!important;
+}
+.map-dock button>span:first-child { font-size: .85rem!important; }
+.map-dock button img { width: 14px!important; height: 14px!important; }
+.workspace-experience { gap: 4px!important; }
+.workspace-experience-header { gap: 5px!important; }
+.workspace-tool-pills,
+.workspace-tool-nav { gap: 0!important; }
+.workspace-tool-pills button,
+.workspace-tool-nav button {
+  min-height: 24px!important;
+  padding: 3px 6px!important;
+  font-size: .6rem!important;
+  line-height: 1.05;
+}
+
 .context-help-button {
   display: grid;
   place-items: center;
