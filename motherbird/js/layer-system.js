@@ -9,7 +9,6 @@ import { routesForCity, splitDisconnectedPaths } from './routes.js';
 import { refreshPublicMarkers } from './online.js';
 import { ICONS, markerPinHtml, markerVisual } from './poi-icons.js';
 import { civicNoticesFromPack, newsIsAvailable } from './civic-news.js';
-import { showCategoryCoach } from './coach.js';
 import { syncNewsStory } from './learn-change.js';
 import { drawStories } from './stories.js';
 import { nationalOsmFamilyControlsHtml, setNationalOsmFamily } from './national-osm-layers.js';
@@ -381,7 +380,7 @@ export function renderMapLights() {
   if (!root) return;
   root.innerHTML = lightModel().filter((light) => light.id !== 'personal').map((light) => {
     const on = state.layerLights[light.id] === true;
-    return `<div class="map-light-wrap" data-map-light="${light.id}"><div class="map-light-row"><button type="button" class="map-light ${on ? 'on' : 'off'}" data-light="${light.id}" aria-pressed="${on}"><img src="./icons/${escapeHtml(light.icon)}.svg" alt="" aria-hidden="true"><span class="map-light-label">${escapeHtml(light.label)}</span></button>${on ? `<button type="button" class="context-help-button light-help" data-light-help="${escapeHtml(light.id)}" aria-label="${escapeHtml(light.label)} best practices">?</button>` : ''}</div></div>`;
+    return `<div class="map-light-wrap" data-map-light="${light.id}"><div class="map-light-row"><button type="button" class="map-light ${on ? 'on' : 'off'}" data-light="${light.id}" aria-pressed="${on}"><img src="./icons/${escapeHtml(light.icon)}.svg" alt="" aria-hidden="true"><span class="map-light-label">${escapeHtml(light.label)}</span><span class="context-help-button light-help" data-light-help="${escapeHtml(light.id)}" aria-label="${escapeHtml(light.label)} best practices" role="button" tabindex="0">?</span></button></div></div>`;
   }).join('');
 }
 
@@ -574,7 +573,7 @@ function bindLayerControls() {
         }
         return;
       }
-      toggleLight(light.dataset.light); showCategoryCoach(light.textContent.trim()); return;
+      toggleLight(light.dataset.light); return;
     }
     const expand = event.target.closest('[data-light-expand]');
     if (expand) {
