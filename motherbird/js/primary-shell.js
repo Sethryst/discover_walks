@@ -145,6 +145,8 @@ export function initPrimaryShell() {
     profileMenu?.classList.toggle('hidden', !opening);
     profileButton.setAttribute('aria-expanded', String(opening));
   });
+  document.getElementById('quickRadioButton')?.addEventListener('click', () => window.dispatchEvent(new CustomEvent('radio-open-requested')));
+  document.getElementById('quickDrawButton')?.addEventListener('click', () => window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'draw', forceOpen: true } })));
   profileMenu?.addEventListener('click', (event) => {
     const action = event.target.closest('[data-profile-action]')?.dataset.profileAction;
     if (!action) return;
@@ -170,5 +172,7 @@ if (topCluster) {
   const search = topCluster.querySelector('.map-search');
   const region = topCluster.querySelector('.regional-navigation');
   const locate = topCluster.querySelector('.locate-stack');
-  [profile, search, locate, region].filter(Boolean).forEach((control) => topCluster.appendChild(control));
+  const radio = topCluster.querySelector('#quickRadioButton');
+  const draw = topCluster.querySelector('#quickDrawButton');
+  [profile, search, locate, radio, draw, region].filter(Boolean).forEach((control) => topCluster.appendChild(control));
 }
