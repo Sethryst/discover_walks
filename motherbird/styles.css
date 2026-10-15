@@ -1459,7 +1459,7 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
 .top-cluster > .regional-navigation { order: 6 !important; }
 #mapWorkspacePanel[data-destination="maps"] > [data-map-panel="maps"],
 #mapWorkspacePanel[data-destination="explore"] > [data-map-panel="explore"] {
-  padding-bottom: calc(16px + 72px) !important;
+  padding-bottom: 8px !important;
   overscroll-behavior: contain;
 }
 
@@ -1488,8 +1488,8 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
 #mapWorkspacePanel.workspace-small > [data-map-panel] { max-height: calc(30dvh - 34px) !important; }
 #mapWorkspacePanel.workspace-mid > [data-map-panel] { max-height: calc(48dvh - 34px) !important; }
 #mapWorkspacePanel.workspace-wide > [data-map-panel] { max-height: calc(84dvh - 34px) !important; }
-.map-workspace-header-actions { display: flex; align-items: center; gap: 4px; }
-.map-workspace-header-actions button { display: grid !important; place-items: center; }
+.map-workspace-header-actions { display: flex; align-items: center; gap: 0 !important; margin-left: auto; }
+.map-workspace-header-actions button { display: grid !important; place-items: center; width: 30px !important; height: 30px !important; min-height: 30px !important; }
 #resizeMapWorkspace { font-size: .9rem !important; }
 .sheet-header-actions { position: absolute; top: 10px; right: 12px; display: flex; gap: 4px; z-index: 2; }
 .sheet-header-actions .sheet-resize,
