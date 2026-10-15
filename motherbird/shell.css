@@ -93,6 +93,358 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
   .map-workspace-panel.workspace-mid > [data-map-panel] { max-height: calc(48dvh - 34px) !important; }
   .map-workspace-panel.workspace-wide > [data-map-panel] { max-height: calc(84dvh - 34px) !important; }
 }
+
+/* Final Explore compactness overrides: keep the title rail only as tall as
+   its controls, with no unused vertical band around the label. */
+.map-workspace-panel[data-destination="explore"] > header {
+  min-height: 20px !important;
+  height: 20px !important;
+  padding: 0 5px !important;
+}
+.map-workspace-panel[data-destination="explore"] > header strong {
+  font-size: .58rem !important;
+  line-height: 1 !important;
+}
+.map-workspace-panel[data-destination="explore"] > header button {
+  width: 16px !important;
+  height: 16px !important;
+  min-height: 16px !important;
+  font-size: .72rem !important;
+}
+
+/* Final compact Explore override. */
+.map-workspace-panel[data-destination="explore"].workspace-small > [data-map-panel="explore"] {
+  max-height: none !important;
+  height: auto !important;
+  overflow-y: visible !important;
+}
+.map-workspace-panel[data-destination="explore"].workspace-small.workspace-expanded > [data-map-panel="explore"] {
+  max-height: none !important;
+  height: auto !important;
+  overflow-y: visible !important;
+}
+
+/* The open Customize Explore disclosure must show all three parent bars in
+   the compact state; scrolling belongs to the explicitly expanded panel. */
+.map-workspace-panel[data-destination="explore"].workspace-small > [data-map-panel="explore"] {
+  max-height: none !important;
+  height: auto !important;
+  overflow-y: visible !important;
+}
+
+.map-workspace-panel[data-destination="explore"] .advanced-filters summary {
+  padding-top: 6px !important;
+  padding-bottom: 8px !important;
+  margin-bottom: 3px !important;
+}
+.map-workspace-panel[data-destination="explore"] .advanced-filter-family:first-child {
+  margin-top: -4px !important;
+}
+.map-workspace-panel[data-destination="explore"] .layer-filter-group .layer-collapse {
+  flex: 0 1 auto !important;
+  width: auto !important;
+  max-width: 72% !important;
+}
+.map-workspace-panel[data-destination="explore"] .layer-category-toggle {
+  margin-left: 2px !important;
+  padding: 1px 4px !important;
+  font-size: .52rem !important;
+  line-height: 1 !important;
+}
+.map-workspace-panel[data-destination="explore"] .layer-filter-group .layer-collapse b {
+  margin-left: 3px !important;
+}
+
+/* Uniform, compact parent folders. */
+.map-workspace-panel[data-destination="explore"] .advanced-filter-family {
+  margin: 0 !important;
+  border-radius: 0 !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+}
+.map-workspace-panel[data-destination="explore"] .advanced-family-toggle {
+  min-height: 17px !important;
+  height: 17px !important;
+  padding: 1px 6px !important;
+  border-left-width: 3px !important;
+  font-size: .6rem !important;
+  letter-spacing: .03em !important;
+}
+.map-workspace-panel[data-destination="explore"] .advanced-family-toggle b {
+  margin-left: auto !important;
+  font-size: .65rem !important;
+}
+.map-workspace-panel[data-destination="explore"] [data-advanced-family="news"] .advanced-family-toggle {
+  border-left-color: #4c89b8 !important;
+  background: rgba(76,137,184,.14) !important;
+  color: #2d5f8a !important;
+}
+.map-workspace-panel[data-destination="explore"] [data-advanced-family="recreation"] .advanced-family-toggle {
+  border-left-color: #4e8d68 !important;
+  background: rgba(78,141,104,.14) !important;
+  color: #356b4b !important;
+}
+.map-workspace-panel[data-destination="explore"] [data-advanced-family="cuisine"] .advanced-family-toggle {
+  border-left-color: #d47c35 !important;
+  background: rgba(212,124,53,.14) !important;
+  color: #a65d23 !important;
+}
+.map-workspace-panel[data-destination="explore"] .advanced-filter-family .layer-filter-group {
+  margin-top: 1px !important;
+}
+.map-workspace-panel[data-destination="explore"] .advanced-family-heading {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0 !important;
+}
+.map-workspace-panel[data-destination="explore"] .advanced-family-heading .advanced-family-toggle {
+  flex: 1 1 auto !important;
+}
+.map-workspace-panel[data-destination="explore"] .advanced-family-heading .layer-category-toggle {
+  flex: 0 0 auto !important;
+  margin: 0 5px 0 0 !important;
+  padding: 0 3px !important;
+  font-size: .46rem !important;
+  width: max-content !important;
+  min-width: max-content !important;
+  max-width: none !important;
+  overflow: visible !important;
+  white-space: nowrap !important;
+}
+.map-workspace-panel[data-destination="explore"] #poiTagFilters {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 2px !important;
+  align-items: start !important;
+}
+.map-workspace-panel[data-destination="explore"] #poiTagFilters .advanced-filter-family {
+  min-width: 0 !important;
+  margin: 0 !important;
+}
+.map-workspace-panel[data-destination="explore"].workspace-small {
+  height: auto !important;
+  max-height: none !important;
+}
+.map-workspace-panel[data-destination="explore"].workspace-small > [data-map-panel="explore"] {
+  max-height: none !important;
+  overflow: visible !important;
+}
+.map-workspace-panel[data-destination="explore"].workspace-small .advanced-filters summary {
+  padding-top: 8px !important;
+}
+.map-workspace-panel[data-destination="explore"] .advanced-family-content {
+  padding: 0 5px 3px !important;
+}
+.map-workspace-panel[data-destination="explore"] .advanced-family-content > .layer-options {
+  gap: 3px !important;
+}
+.map-workspace-panel[data-destination="explore"] .advanced-family-content .advanced-layer-chip {
+  min-height: 16px !important;
+  height: 16px !important;
+  padding: 1px 4px !important;
+  box-sizing: border-box !important;
+  flex: 1 1 100% !important;
+  width: 100% !important;
+  max-width: none !important;
+  justify-content: space-between !important;
+}
+
+/* Precise Explore chrome: squared outer sheet, rounded category pills. */
+.map-workspace-panel[data-destination="explore"] {
+  border-radius: 0 !important;
+}
+.map-workspace-panel[data-destination="explore"] .map-lights {
+  overflow: visible !important;
+  border-radius: 0 !important;
+}
+.map-workspace-panel[data-destination="explore"] .map-light-row,
+.map-workspace-panel[data-destination="explore"] .map-light {
+  border-radius: 999px !important;
+  overflow: visible !important;
+}
+.map-workspace-panel[data-destination="explore"] .map-light {
+  border: 1px solid rgba(23,60,53,.22) !important;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.25) !important;
+}
+.map-workspace-panel[data-destination="explore"] .map-lights {
+  margin-top: -6px !important;
+}
+.map-workspace-panel[data-destination="explore"] .advanced-filters {
+  margin-top: -5px !important;
+}
+.map-workspace-panel[data-destination="explore"] > header {
+  position: relative !important;
+  justify-content: center !important;
+  border-bottom-color: rgba(42,93,135,.35) !important;
+}
+.map-workspace-panel[data-destination="explore"] > header strong {
+  position: relative !important;
+  z-index: 1 !important;
+  padding: 2px 8px !important;
+  border-radius: 5px !important;
+  background: transparent !important;
+  color: var(--ink) !important;
+  font-size: .72rem !important;
+  font-weight: 900 !important;
+}
+.map-workspace-panel[data-destination="explore"] > header .map-workspace-header-actions {
+  position: absolute !important;
+  right: 5px !important;
+}
+.map-workspace-panel[data-destination="explore"] .advanced-family-toggle {
+  color: #2d5f8a !important;
+  border-left-color: #4c89b8 !important;
+  font-size: .58rem !important;
+  padding-top: 3px !important;
+  padding-bottom: 3px !important;
+}
+.map-workspace-panel[data-destination="explore"] .advanced-filter-family:first-child {
+  margin-top: -3px !important;
+}
+.map-workspace-panel[data-destination="explore"] .layer-filter-group .layer-collapse {
+  font-size: .66rem !important;
+  line-height: 1.05 !important;
+  padding: 2px 0 !important;
+  margin-top: -3px !important;
+  color: #2d5f8a !important;
+}
+.map-workspace-panel[data-destination="explore"] .layer-filter-group .layer-collapse small {
+  font-size: .55rem !important;
+}
+.map-workspace-panel[data-destination="explore"] .advanced-layer-chip {
+  min-height: 24px !important;
+  padding: 3px 6px !important;
+  gap: 4px !important;
+  border-radius: 7px !important;
+}
+.map-workspace-panel[data-destination="explore"] .advanced-layer-chip strong {
+  font-size: .62rem !important;
+  line-height: 1 !important;
+}
+.map-workspace-panel[data-destination="explore"] .advanced-layer-chip small {
+  font-size: .55rem !important;
+  line-height: 1 !important;
+}
+.map-workspace-panel[data-destination="explore"] > header button {
+  width: 14px !important;
+  height: 14px !important;
+  min-height: 14px !important;
+  font-size: .66rem !important;
+}
+#resizeMapWorkspace,
+#closeMapWorkspace {
+  width: 14px !important;
+  height: 14px !important;
+  min-height: 14px !important;
+  font-size: .5rem !important;
+  line-height: 1 !important;
+}
+
+/* Keep each category's title and its visibility action on one compact row. */
+.map-workspace-panel[data-destination="explore"] .layer-filter-group > header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  margin-bottom: 3px !important;
+}
+.map-workspace-panel[data-destination="explore"] .layer-filter-group .layer-collapse {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  width: auto !important;
+}
+.map-workspace-panel[data-destination="explore"] .layer-category-toggle {
+  flex: 0 0 auto !important;
+  margin: 0 !important;
+  padding: 2px 5px !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 999px !important;
+  background: var(--paper2) !important;
+  font-size: .58rem !important;
+  line-height: 1.1 !important;
+  white-space: nowrap !important;
+}
+.map-workspace-panel[data-destination="explore"] .advanced-filters summary {
+  padding-top: 3px !important;
+  padding-bottom: 1px !important;
+}
+.map-workspace-panel[data-destination="explore"] .advanced-filter-family:first-child {
+  margin-top: -4px !important;
+}
+
+/* Explore sheet: make the collapsed state read as a compact control strip.
+   The expanded state gets room for the category families, but keeps one
+   scroll owner on the panel body instead of creating nested wheels. */
+.map-workspace-panel[data-destination="explore"] > header {
+  min-height: 20px !important;
+  height: 20px !important;
+  padding: 0 5px !important;
+}
+.map-workspace-panel[data-destination="explore"] > header strong {
+  font-size: .58rem !important;
+  font-weight: 800 !important;
+  letter-spacing: .02em;
+  line-height: 1 !important;
+}
+.map-workspace-panel[data-destination="explore"] > header button {
+  width: 19px !important;
+  height: 19px !important;
+  min-height: 19px !important;
+  font-size: .9rem !important;
+}
+.map-workspace-panel[data-destination="explore"] > [data-map-panel="explore"] {
+  padding: 0 5px 2px !important;
+}
+.map-workspace-panel[data-destination="explore"] .map-lights {
+  gap: 3px !important;
+}
+.map-workspace-panel[data-destination="explore"] .map-light {
+  min-height: 27px !important;
+  height: 27px !important;
+  padding: 3px 2px !important;
+  gap: 3px !important;
+  border-radius: 7px !important;
+}
+.map-workspace-panel[data-destination="explore"] .map-light-label {
+  font-size: .58rem !important;
+  line-height: 1 !important;
+}
+.map-workspace-panel[data-destination="explore"] .map-light-help {
+  font-size: .55rem !important;
+}
+.map-workspace-panel[data-destination="explore"] .advanced-filters {
+  padding-top: 1px !important;
+}
+.map-workspace-panel[data-destination="explore"] .advanced-filters summary {
+  padding: 2px 0 2px !important;
+  font-size: .65rem !important;
+  line-height: 1.05 !important;
+}
+.map-workspace-panel[data-destination="explore"].workspace-small {
+  min-height: 0 !important;
+}
+.map-workspace-panel[data-destination="explore"].workspace-small > [data-map-panel="explore"] {
+  max-height: none !important;
+  overflow: hidden !important;
+}
+.map-workspace-panel[data-destination="explore"] .advanced-filter-family {
+  margin: 4px 0 !important;
+  border-radius: 8px !important;
+}
+.map-workspace-panel[data-destination="explore"] .advanced-family-toggle {
+  padding: 7px 7px !important;
+  font-size: .7rem !important;
+  letter-spacing: .04em !important;
+}
+.map-workspace-panel[data-destination="explore"] .advanced-family-content {
+  padding: 0 7px 5px !important;
+}
+.map-workspace-panel[data-destination="explore"] .advanced-filter-family .layer-filter-group {
+  margin: 3px 0 !important;
+}
+.map-workspace-panel[data-destination="explore"].workspace-expanded > [data-map-panel="explore"] {
+  overflow-y: scroll !important;
+  scrollbar-gutter: stable !important;
+}
 .map-workspace-panel[data-destination="draw"] .draw-shapes button {
   display: grid !important;
   flex: 0 0 52px !important;
@@ -581,5 +933,28 @@ body.draw-pane-open .draw-tool-rail { display: flex !important; }
     margin-left: auto !important;
     flex: 0 0 auto !important;
   }
+}
+
+/* Keep the collapsed Explore title rail free of unused vertical space. */
+.map-workspace-panel[data-destination="explore"] > header {
+  min-height: 20px !important;
+  height: 20px !important;
+  padding: 0 5px !important;
+}
+.map-workspace-panel[data-destination="explore"] > header strong {
+  font-size: .58rem !important;
+  line-height: 1 !important;
+}
+.map-workspace-panel[data-destination="explore"] > header button {
+  width: 16px !important;
+  height: 16px !important;
+  min-height: 16px !important;
+  font-size: .72rem !important;
+}
+
+.map-workspace-panel[data-destination="explore"].workspace-small > [data-map-panel="explore"] {
+  max-height: none !important;
+  height: auto !important;
+  overflow-y: visible !important;
 }
 

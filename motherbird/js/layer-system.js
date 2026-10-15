@@ -15,17 +15,17 @@ import { setNationalOsmFamily } from './national-osm-layers.js';
 import { capabilityIsAvailable } from './regional-capabilities.js';
 
 export const LAYER_GROUPS = [
-  { id: 'walking_nature', light: 'recreation', label: 'Rec · Walking network & nature', description: 'Walking, nature, comfort, and biodiversity places', tags: ['trail', 'walkway', 'crossing', 'barrier', 'nature', 'water', 'scenic', 'recreation', 'park', 'wildlife', 'water_access', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad', 'rest', 'bench', 'shelter', 'shade', 'restrooms', 'transit', 'biodiversity:birds', 'biodiversity:plants', 'biodiversity:mammals', 'biodiversity:insects', 'biodiversity:fungi', 'biodiversity:reptiles', 'biodiversity:other'] },
-  { id: 'history_sites', light: 'recreation', label: 'History Sites', description: 'Historic places, landmarks, monuments, museums, cemeteries, and markers', tags: ['history', 'history_landmark', 'history_monument', 'history_museum', 'history_cemetery', 'history_marker', 'historic'] },
-  { id: 'culture', light: 'news', label: 'News & culture', description: 'Events, art, and public stories', tags: ['event', 'art', 'public_art', 'civic'] },
-  { id: 'community', light: 'recreation', label: 'Community', description: 'Public services and shared spaces', tags: ['community', 'facility', 'library', 'recreation_center', 'pantry', 'wifi'] },
-  { id: 'cuisine', light: 'cuisine', label: 'Cuisine', description: 'Food, drinks, and places to stop', tags: ['market', 'farmers_market', 'restaurant', 'fast_food', 'coffee', 'coffee_shop', 'cafe', 'food_cart', 'bakery', 'argentinian', 'british', 'crepe', 'greek', 'latin_american', 'tea', 'turkish'] },
-  { id: 'more', light: 'cuisine', label: 'More map layers', description: 'OpenStreetMap places and additional regional categories', tags: ['osm'] }
+  { id: 'outdoors_recreation', light: 'recreation', label: 'Outdoors & Recreation', description: 'Trails, walkways, parks, gardens, community services, and places to rest', tags: ['trail', 'walkway', 'park', 'nature', 'water', 'scenic', 'recreation', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad', 'rest', 'bench', 'shelter', 'shade', 'restrooms', 'drinking_water', 'water_fountain', 'community', 'facility', 'library', 'recreation_center', 'pantry', 'wifi'] },
+  { id: 'history_culture', light: 'recreation', label: 'History Sites', description: 'Historical sites, markers, museums, landmarks, and monuments', tags: ['history', 'history_landmark', 'history_monument', 'history_museum', 'history_cemetery', 'history_marker', 'historic', 'museum', 'landmark', 'monument', 'cemetery'] },
+  { id: 'art', light: 'recreation', label: 'Art', description: 'Art and public art places', tags: ['art', 'public_art'] },
+  { id: 'culture', light: 'news', label: 'News & culture', description: 'Events and civic places', tags: ['event', 'civic'] },
+  { id: 'cuisine', light: 'cuisine', label: 'Food & Drink', description: 'Food, drink, and places to stop', tags: ['market', 'farmers_market', 'restaurant', 'fast_food', 'coffee', 'coffee_shop', 'cafe', 'food_cart', 'bakery', 'argentinian', 'british', 'crepe', 'greek', 'latin_american', 'tea', 'turkish'] },
+  { id: 'more', light: 'recreation', label: 'Other mapped places', description: 'Mapped places without a more specific category', tags: ['osm'] }
 ];
 
 const STATIC_LABELS = {
   walkway: 'Walkways', crossing: 'Crossings', barrier: 'Barriers', nature: 'Nature', scenic: 'Scenic places', recreation: 'Recreation', rest: 'Rest & comfort', historic: 'Historic places', civic: 'Civic places', transit: 'Transit', argentinian: 'Argentinian', british: 'British', crepe: 'Crepe', greek: 'Greek', latin_american: 'Latin American', tea: 'Tea', turkish: 'Turkish', 'biodiversity:birds': 'Birds', 'biodiversity:plants': 'Plants', 'biodiversity:mammals': 'Mammals', 'biodiversity:insects': 'Insects & invertebrates', 'biodiversity:fungi': 'Fungi & lichens', 'biodiversity:reptiles': 'Reptiles & amphibians', 'biodiversity:other': 'Other life',
-  drinking_water: 'Water fountains', water_fountain: 'Water fountains', water: 'Water', waste_basket: 'Trash receptacles', trash: 'Trash receptacles', bench: 'Benches', shelter: 'Shade shelters', shade: 'Shade', rest: 'Rest', restrooms: 'Restrooms', accessible_parking: 'Accessible parking', restaurant: 'Restaurants', fast_food: 'Quick-service food', mexican: 'Mexican food', filipino: 'Filipino food', coffee: 'Coffee shops', coffee_shop: 'Coffee shops', cafe: 'Cafés', food_cart: 'Food carts', bakery: 'Bakeries', trail: 'Trails', parking: 'Parking', bicycle_parking: 'Bike racks', bike_rack: 'Bike racks', osm: 'OpenStreetMap places'
+  drinking_water: 'Water fountains', water_fountain: 'Water fountains', water: 'Water', waste_basket: 'Trash receptacles', trash: 'Trash receptacles', bench: 'Benches', shelter: 'Shade shelters', shade: 'Shade', rest: 'Rest', restrooms: 'Restrooms', accessible_parking: 'Accessible parking', restaurant: 'Restaurants', fast_food: 'Quick-service food', mexican: 'Mexican food', filipino: 'Filipino food', coffee: 'Coffee shops', coffee_shop: 'Coffee shops', cafe: 'Cafés', food_cart: 'Food carts', bakery: 'Bakeries', trail: 'Trails', parking: 'Parking', bicycle_parking: 'Bike racks', bike_rack: 'Bike racks', osm: 'Other mapped places'
 };
 
 let searchQuery = '';
@@ -52,6 +52,9 @@ const MAP_TAGS = new Set([
   ...LIGHT_CHIPS.recreation.flatMap((chip) => chip.tags || []),
   ...LIGHT_CHIPS.cuisine.flatMap((chip) => chip.tags || [])
 ]);
+const FOOD_DRINK_TAGS = new Set(['market', 'farmers_market', 'restaurant', 'fast_food', 'coffee', 'coffee_shop', 'cafe', 'food_cart', 'bakery', 'argentinian', 'british', 'crepe', 'greek', 'latin_american', 'tea', 'turkish', 'açaí', 'american', 'asian', 'bubble_tea', 'french', 'ice_cream', 'indian', 'juice', 'korean', 'pizza', 'sandwich', 'smoothie']);
+const DRINK_TAGS = new Set(['coffee', 'coffee_shop', 'cafe', 'tea', 'açaí', 'bubble_tea', 'juice', 'smoothie', 'beer']);
+const FOOD_TAGS = new Set([...FOOD_DRINK_TAGS].filter((id) => !DRINK_TAGS.has(id)));
 
 function isMapTag(id) { return MAP_TAGS.has(id) || String(id).startsWith('history'); }
 
@@ -63,6 +66,9 @@ export async function initLayerSystem() {
   const explorePanel = document.querySelector('[data-map-panel="explore"]');
   const advancedFilters = document.querySelector('.advanced-filters');
   if (explorePanel && advancedFilters) {
+    const advancedSummary = advancedFilters.querySelector('summary');
+    if (advancedSummary) advancedSummary.textContent = 'Customize Explore';
+    advancedFilters.querySelector('.advanced-filters-intro')?.remove();
     explorePanel.append(advancedFilters);
     advancedFilters.open = false;
   }
@@ -75,7 +81,7 @@ export async function initLayerSystem() {
     state.layerFilters = { public: { ...state.offlineView.layers.public }, personal: { ...state.offlineView.layers.personal } };
     state.layerLights = { ...state.layerLights, ...state.offlineView.layers.lights };
   }
-  state.layerUiState = { expanded: { ...(savedUi?.expanded || {}) }, familyExpanded: { news: true, recreation: false, cuisine: false, ...(savedUi?.familyExpanded || {}) } };
+  state.layerUiState = { expanded: { ...(savedUi?.expanded || {}) }, familyExpanded: { news: false, recreation: false, cuisine: false } };
   civicAvailability = await loadCivicAvailability();
   if (!state.offlineView && savedFilters?.lights?.news == null) state.layerLights.news = newsAvailable();
   ensureLayerDefaults();
@@ -95,15 +101,30 @@ function buildAllLayerGroups() {
   const available = new Map(availablePoiTags(pois));
   const claimed = new Set();
   const groups = LAYER_GROUPS.map((group) => {
-    const options = group.tags.filter((id) => available.has(id) || shouldShowEmptyStandard(id)).map((id) => {
-      claimed.add(id);
-      return publicOption(id, available.get(id), pois);
-    });
+    const seen = new Set();
+    const options = group.tags.filter((id) => available.has(id) || (id === 'public_art' && (available.has('art') || available.has('public_art')))).map((id) => {
+      const optionId = id === 'public_art'
+        ? 'art'
+        : group.id === 'history_culture'
+          ? 'history_sites'
+          : ['garden', 'community_garden', 'rest', 'community', 'library', 'wifi'].includes(id)
+            ? 'community'
+            : id;
+      claimed.add(id); claimed.add(optionId);
+      if (seen.has(optionId)) return null;
+      seen.add(optionId);
+      return publicOption(optionId, optionId === 'art' ? 'Art' : optionId === 'history_sites' ? 'History Sites' : optionId === 'community' ? 'Community' : available.get(id), pois);
+    }).filter((option) => option && option.count > 0);
     return { ...group, options };
   });
-  const extras = [...available].filter(([id]) => !claimed.has(id));
-  groups.find((group) => group.id === 'cuisine').options.push(...extras.filter(([id]) => isFoodFilterTag(id)).map(([id, label]) => publicOption(id, label, pois)));
-  groups.find((group) => group.id === 'more').options.push(...extras.filter(([id]) => !isFoodFilterTag(id)).map(([id, label]) => publicOption(id, label, pois)));
+  // Every OSM record carries the provenance tag, but that tag is not a user
+  // category. Do not expose it as a duplicate fallback filter when a place
+  // already has a meaningful category; provenance remains on the record.
+  const extras = [...available].filter(([id]) => id !== 'osm' && !claimed.has(id));
+  groups.find((group) => group.id === 'cuisine').options.push(...extras.filter(([id]) => isFoodFilterTag(id)).map(([id, label]) => publicOption(id, label, pois)).filter((option) => option.count > 0));
+  groups.find((group) => group.id === 'more').options.push(...extras.filter(([id]) => !isFoodFilterTag(id)).map(([id, label]) => publicOption(id, label, pois)).filter((option) => option.count > 0));
+  const cuisine = groups.find((group) => group.id === 'cuisine');
+  if (cuisine?.options.length) cuisine.options = [publicOption('food', 'Food', pois), publicOption('drink', 'Drink', pois)];
   return groups.filter((group) => group.options.length);
 }
 
@@ -111,17 +132,24 @@ export function buildLayerGroups() {
   return buildAllLayerGroups().filter((group) => group.options.length && state.layerLights[group.light] !== false);
 }
 
-function shouldShowEmptyStandard(id) {
-  return ['event', 'history', 'art', 'public_art', 'trail', 'walkway', 'crossing', 'barrier', 'nature', 'water', 'scenic', 'recreation', 'rest', 'historic', 'civic', 'transit', 'restaurant', 'coffee', 'library', 'wifi', 'community', 'facility', 'recreation_center', 'pantry', 'osm', 'argentinian', 'british', 'crepe', 'greek', 'latin_american', 'tea', 'turkish'].includes(id) || id.startsWith('biodiversity:');
-}
-
 function publicOption(id, sourceLabel, pois) {
   const visual = markerVisual({ tags: [id] });
+  const sourceIds = id === 'art'
+    ? ['art', 'public_art']
+    : id === 'history_sites'
+      ? ['history', 'history_landmark', 'history_monument', 'history_museum', 'history_cemetery', 'history_marker', 'historic', 'museum', 'landmark', 'monument', 'cemetery']
+      : id === 'community'
+        ? ['garden', 'community_garden', 'rest', 'community', 'library', 'wifi']
+    : id === 'food'
+      ? [...FOOD_TAGS]
+      : id === 'drink'
+        ? [...DRINK_TAGS]
+      : [id];
   return {
     id, kind: 'public', label: cleanLabel(sourceLabel || STATIC_LABELS[id] || titleCase(id)),
     description: `Public map places tagged ${titleCase(id)}`,
     icon: ICONS[id] || 'map-pin', color: visual.color,
-    count: pois.filter((poi) => (id === 'osm' ? isOsmPoi(poi) : poiTags(poi).includes(id)) && inViewport(poi)).length
+    count: pois.filter((poi) => (id === 'osm' ? isOsmPoi(poi) : sourceIds.some((sourceId) => poiTags(poi).includes(sourceId))) && inViewport(poi)).length
   };
 }
 
@@ -175,7 +203,10 @@ export function renderLayerFilters() {
   ].map(([id, label]) => ({ id, label, groups: groups.filter((group) => group.light === id) })).filter((family) => family.groups.length);
   root.innerHTML = families.map((family) => {
     const expanded = state.layerUiState.familyExpanded[family.id] !== false;
-    return `<section class="advanced-filter-family ${expanded ? 'is-expanded' : ''}" data-advanced-family="${family.id}"><button class="advanced-family-toggle" type="button" data-advanced-family-toggle="${family.id}" aria-expanded="${expanded}"><span>${family.label}</span><small>${family.groups.reduce((total, group) => total + group.options.length, 0)} filters</small><b aria-hidden="true">⌄</b></button><div class="advanced-family-content ${expanded ? '' : 'hidden'}">${family.groups.map(groupHtml).join('')}</div></section>`;
+    const familyOptions = family.groups.flatMap((group) => group.options);
+    const enabledCount = familyOptions.filter((option) => state.layerFilters[option.kind][option.id] !== false).length;
+    const categoryEnabled = enabledCount > 0;
+    return `<section class="advanced-filter-family ${expanded ? 'is-expanded' : ''}" data-advanced-family="${family.id}"><div class="advanced-family-heading"><button class="advanced-family-toggle" type="button" data-advanced-family-toggle="${family.id}" aria-expanded="${expanded}"><span>${family.label}</span><small>${familyOptions.length} filters</small><b aria-hidden="true">⌄</b></button><button class="layer-category-toggle ${categoryEnabled ? 'on' : 'off'}" type="button" data-advanced-family-toggle-layers="${family.id}" aria-pressed="${categoryEnabled}">${categoryEnabled ? 'Hide category' : 'Show category'}</button></div><div class="advanced-family-content ${expanded ? '' : 'hidden'}"><div class="layer-options">${familyOptions.map(renderLayerOption).join('')}</div></div></section>`;
   }).join('') || `<p class="layer-empty">${query ? 'No filters match that search.' : 'Select a category first.'}</p>`;
   updateLayerStatus();
 }
@@ -589,6 +620,15 @@ function bindLayerControls() {
       state.layerUiState.familyExpanded[id] = !(state.layerUiState.familyExpanded[id] !== false);
       renderLayerFilters(); void persistLayerState(); return;
     }
+    const familyLayers = event.target.closest('[data-advanced-family-toggle-layers]');
+    if (familyLayers) {
+      const family = buildAllLayerGroups().filter((group) => group.light === familyLayers.dataset.advancedFamilyToggleLayers);
+      const options = family.flatMap((group) => group.options);
+      const enable = options.some((option) => state.layerFilters[option.kind][option.id] === false);
+      options.forEach((option) => { state.layerFilters[option.kind][option.id] = enable; });
+      applyLayerChanges();
+      return;
+    }
     const master = event.target.closest('[data-master-light]');
     if (master) { toggleLight(master.dataset.masterLight); return; }
     const groupToggle = event.target.closest('[data-layer-group-toggle]');
@@ -604,7 +644,16 @@ function bindLayerControls() {
     if (filter) {
       const [kind, ...idParts] = filter.dataset.layerFilter.split(':');
       const id = idParts.join(':');
-      state.layerFilters[kind][id] = state.layerFilters[kind][id] === false;
+      const next = state.layerFilters[kind][id] === false;
+      state.layerFilters[kind][id] = next;
+      if (kind === 'public' && id === 'art') state.layerFilters.public.public_art = next;
+      if (kind === 'public' && id === 'community') {
+        ['garden', 'community_garden', 'rest', 'community', 'library', 'wifi'].forEach((sourceId) => { state.layerFilters.public[sourceId] = next; });
+      }
+      if (kind === 'public' && (id === 'food' || id === 'drink')) {
+        const sourceTags = id === 'food' ? FOOD_TAGS : DRINK_TAGS;
+        sourceTags.forEach((sourceId) => { state.layerFilters.public[sourceId] = next; });
+      }
       applyLayerChanges();
       return;
     }

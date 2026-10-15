@@ -23,7 +23,7 @@ def normalize_overpass(elements: Iterable[dict[str, Any]], source_config_id: str
             if not (south <= lat <= north and west <= lng <= east):
                 warnings.append({"code": "out_of_bounds", "source": source_config_id, "detail": f"OSM {element.get('type')} {element.get('id')} is outside the configured bbox."})
                 continue
-        category = _category(tags)
+        category, subcategory, classification = classify_osm_place(tags)
         poi: dict[str, Any] = {
             "id": f"osm:{element['type']}:{element['id']}",
             "name": name,
@@ -31,6 +31,8 @@ def normalize_overpass(elements: Iterable[dict[str, Any]], source_config_id: str
             "lng": lng,
             "artifact_type": "pin",
             "category": category,
+            "subcategory": subcategory,
+            "classification": classification,
             "fromOsm": True,
             "sourceType": "osm_overpass",
             "osmElementType": element["type"],
@@ -73,7 +75,40 @@ def deduplicate_with_warnings(pois: Iterable[dict[str, Any]], source_config_id: 
     return sorted(chosen.values(), key=lambda item: item["id"]), warnings
 
 
+def classify_osm_place(tags: dict[str, str]) -> tuple[str, str | None, dict[str, Any]]:
+    """Classify an OSM place conservatively, retaining the evidence used.
+
+    Explicit OSM feature tags win.  Names/descriptions are used only for
+    distinctive place-type words; a proper name alone never creates a topic.
+    """
+    explicit = _category_from_tags(tags)
+    if explicit:
+        return explicit, _subcategory(tags, explicit), {"method": "explicit_osm_tag", "confidence": "high"}
+    text = " ".join(str(tags.get(key, "")) for key in ("name", "description", "historic", "heritage")).strip()
+    rules = (
+        ("history", "historic_site", r"\b(historic|historical|house|mansion|manor|homestead|plantation|memorial|monument|landmark|museum|cemetery|fort|battlefield)\b"),
+        ("art", "public_art", r"\b(gallery|theater|theatre|public art|sculpture|cultural center|cultural centre)\b"),
+        ("park", "outdoors", r"\b(park|garden|trail|waterfront|nature|preserve)\b"),
+        ("community", "civic_place", r"\b(library|community center|community centre|recreation center|recreation centre|pantry|wi[- ]?fi)\b"),
+        ("restaurant", "food_place", r"\b(bakery|restaurant|market|food hall|food truck)\b"),
+        ("coffee", "drink_place", r"\b(cafe|café|coffee|tea|juice|smoothie)\b"),
+    )
+    import re
+    matches = [(category, subtype) for category, subtype, pattern in rules if re.search(pattern, text, re.I)]
+    if len(matches) == 1:
+        category, subtype = matches[0]
+        return category, subtype, {"method": "strong_text_signal", "confidence": "high", "signal": subtype}
+    if len(matches) > 1:
+        return "community", None, {"method": "ambiguous_text_signal", "confidence": "review", "signals": [subtype for _, subtype in matches]}
+    return "community", None, {"method": "fallback", "confidence": "review", "reason": "no meaningful category evidence"}
+
+
 def _category(tags: dict[str, str]) -> str:
+    """Backward-compatible category helper for callers that only need the id."""
+    return classify_osm_place(tags)[0]
+
+
+def _category_from_tags(tags: dict[str, str]) -> str | None:
     if tags.get("leisure") in {"park", "nature_reserve"}:
         return "park"
     if tags.get("highway") in {"path", "footway", "pedestrian"}:
@@ -96,7 +131,11 @@ def _category(tags: dict[str, str]) -> str:
         return "water"
     if tags.get("amenity") in {"drinking_water", "shelter", "toilets"}:
         return "rest"
-    return "community"
+    return None
+
+
+def _subcategory(tags: dict[str, str], category: str) -> str | None:
+    return tags.get("historic") or tags.get("leisure") or tags.get("amenity") or tags.get("shop") or category
 
 
 def _is_coffee_stop(tags: dict[str, str]) -> bool:

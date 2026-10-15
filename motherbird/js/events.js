@@ -272,6 +272,12 @@ function bindMapWorkspace() {
     syncWorkspaceScroll(panel);
     event.target.classList.toggle('advanced-filters-scrollable', event.target.open);
   });
+  document.addEventListener('click', (event) => {
+    if (!event.target.closest('.advanced-filters summary')) return;
+    const panel = el('mapWorkspacePanel');
+    panel?.classList.add('workspace-expanded', 'workspace-scrollable');
+    if (panel) syncWorkspaceScroll(panel);
+  });
   window.addEventListener('map-workspace-open-requested', ({ detail }) => setMapWorkspace(detail?.destination ?? 'explore', { forceOpen: detail?.forceOpen === true }));
 }
 

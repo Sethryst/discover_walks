@@ -382,6 +382,13 @@ export function normalizePoiTags(poi) {
   // confirm). Only ~128/2266 had a `history` tag from import; the rest were
   // tagged solely by their physical park/location category.
   if (/historical sign/i.test(`${poi.name || ''} ${poi.source || ''}`) && !tags.includes('history')) tags.push('history');
+  // OSM imports sometimes preserve a historic place name but omit the
+  // historic tag. Use conservative architectural/site terms only for OSM
+  // records so named houses and landmarks still reach History Sites.
+  if (isOsmPoi(poi) && !tags.some((tag) => tag === 'history' || tag.startsWith('history_'))) {
+    const name = String(poi.name || '');
+    if (/\b(historic|historical|house|mansion|manor|homestead|plantation|memorial|monument|landmark|museum|cemetery|fort|battlefield)\b/i.test(name)) tags.push('history');
+  }
   return tags;
 }
 export function inferHistorySubtype(poi) {
