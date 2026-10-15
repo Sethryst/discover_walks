@@ -1225,8 +1225,13 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
 .top-cluster>.locate-stack .ink-control { padding-inline: 9px; font-size: .67rem; }
 .top-cluster>.regional-navigation .regional-navigation-button { max-width: 124px; padding-inline: 8px; font-size: .67rem; }
 
-/* Final alignment cleanup: flush to the top, with one divider only before Region. */
-.viewfinder-frame { padding-top: 0!important; }
+/* Final alignment cleanup: respect the installed PWA title-bar inset.  In
+   desktop window-controls-overlay mode the OS title bar occupies the top of
+   the viewport; without this inset the Workspace header and top controls are
+   painted underneath it. */
+.viewfinder-frame {
+  padding-top: max(12px, env(safe-area-inset-top), env(titlebar-area-height, 0px)) !important;
+}
 .top-cluster { margin-top: 0!important; }
 .top-cluster>.locate-stack,
 .top-cluster>.locate-stack .ink-control { border: 0!important; box-shadow: none!important; }
