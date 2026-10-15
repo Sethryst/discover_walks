@@ -1443,8 +1443,8 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
 /* Keep the last workspace controls above the fixed shell navigation, and let
    the avatar menu escape the compact top-bar clipping box. */
 .top-cluster { overflow: visible; }
-.quick-link-control { width: 40px; min-width: 40px; justify-content: center; padding-inline: 7px; }
-.quick-link-control img { width: 18px; height: 18px; }
+.quick-link-control { width: 34px; min-width: 34px; min-height: 40px; justify-content: center; padding-inline: 5px; }
+.quick-link-control img { width: 16px; height: 16px; }
 .top-cluster > #quickRadioButton { order: 4 !important; }
 .top-cluster > #quickDrawButton { order: 5 !important; }
 .top-cluster > .regional-navigation { order: 6 !important; }
