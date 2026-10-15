@@ -219,6 +219,21 @@ async function setMapWorkspace(destination = '', { toggle = true, forceOpen = fa
 
 function bindMapWorkspace() {
   el('closeMapWorkspace')?.addEventListener('click', () => setMapWorkspace(''));
+  el('resizeMapWorkspace')?.addEventListener('click', () => {
+    const panel = el('mapWorkspacePanel');
+    if (!panel) return;
+    const sizes = ['', 'workspace-resized', 'workspace-expanded'];
+    const current = sizes.indexOf(panel.dataset.resizeState || '');
+    const next = sizes[(current + 1) % sizes.length];
+    panel.dataset.resizeState = next;
+    panel.classList.toggle('workspace-resized', next === 'workspace-resized');
+    panel.classList.toggle('workspace-expanded', next === 'workspace-expanded');
+    el('resizeMapWorkspace')?.setAttribute('aria-pressed', String(Boolean(next)));
+  });
+  document.addEventListener('toggle', (event) => {
+    if (!event.target.matches('.advanced-filters')) return;
+    el('mapWorkspacePanel')?.classList.toggle('workspace-expanded', event.target.open);
+  });
   window.addEventListener('map-workspace-open-requested', ({ detail }) => setMapWorkspace(detail?.destination ?? 'explore', { forceOpen: detail?.forceOpen === true }));
 }
 

@@ -1459,6 +1459,37 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
   overscroll-behavior: contain;
 }
 
+/* Shared bottom-sheet geometry for Explore and Workspace. Reset the older
+   full-height desktop variant so the panel cannot hide under the PWA chrome. */
+#mapWorkspacePanel[data-destination="maps"],
+#mapWorkspacePanel[data-destination="explore"] {
+  top: auto !important;
+  height: auto !important;
+  width: min(560px, calc(100vw - 24px)) !important;
+  max-height: 48dvh !important;
+  bottom: calc(72px + env(safe-area-inset-bottom)) !important;
+  overflow: hidden !important;
+}
+#mapWorkspacePanel[data-destination="maps"].workspace-resized,
+#mapWorkspacePanel[data-destination="explore"].workspace-resized { max-height: 64dvh !important; }
+#mapWorkspacePanel[data-destination="maps"].workspace-expanded,
+#mapWorkspacePanel[data-destination="explore"].workspace-expanded { max-height: 84dvh !important; }
+#mapWorkspacePanel[data-destination="maps"] > [data-map-panel="maps"],
+#mapWorkspacePanel[data-destination="explore"] > [data-map-panel="explore"] { max-height: calc(48dvh - 34px) !important; }
+#mapWorkspacePanel.workspace-resized > [data-map-panel],
+#mapWorkspacePanel.workspace-expanded > [data-map-panel] { max-height: calc(84dvh - 34px) !important; }
+.map-workspace-header-actions { display: flex; align-items: center; gap: 4px; }
+.map-workspace-header-actions button { display: grid !important; place-items: center; }
+#resizeMapWorkspace { font-size: .9rem !important; }
+@media (max-width: 720px) {
+  #mapWorkspacePanel[data-destination="maps"],
+  #mapWorkspacePanel[data-destination="explore"] {
+    width: calc(100vw - 16px) !important;
+    bottom: calc(66px + env(safe-area-inset-bottom)) !important;
+    max-height: 52dvh !important;
+  }
+}
+
 .context-help-button {
   display: grid;
   place-items: center;
