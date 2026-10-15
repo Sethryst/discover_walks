@@ -1440,6 +1440,15 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
   border-top: 0!important;
 }
 
+/* Keep the last workspace controls above the fixed shell navigation, and let
+   the avatar menu escape the compact top-bar clipping box. */
+.top-cluster { overflow: visible; }
+#mapWorkspacePanel[data-destination="maps"] > [data-map-panel="maps"],
+#mapWorkspacePanel[data-destination="explore"] > [data-map-panel="explore"] {
+  padding-bottom: calc(16px + 72px) !important;
+  overscroll-behavior: contain;
+}
+
 .context-help-button {
   display: grid;
   place-items: center;
