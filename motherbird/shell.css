@@ -546,15 +546,15 @@ body.draw-pane-open .draw-tool-rail { display: flex !important; }
   .map-workspace-panel[data-destination="draw"] {
     position: fixed !important;
     top: auto !important;
-    right: 12px !important;
+    right: auto !important;
     bottom: calc(72px + env(safe-area-inset-bottom)) !important;
-    left: 12px !important;
+    left: 50% !important;
     inset-block-start: auto !important;
     inset-block-end: calc(72px + env(safe-area-inset-bottom)) !important;
     width: min(560px, calc(100vw - 24px)) !important;
     height: auto !important;
     max-height: 48dvh !important;
-    transform: none !important;
+    transform: translateX(-50%) !important;
     overflow: hidden !important;
   }
   .map-workspace-panel.workspace-small { max-height: 30dvh !important; }
