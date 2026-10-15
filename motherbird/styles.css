@@ -1489,7 +1489,9 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
 #mapWorkspacePanel.workspace-mid > [data-map-panel] { max-height: calc(48dvh - 34px) !important; }
 #mapWorkspacePanel.workspace-wide > [data-map-panel] { max-height: calc(84dvh - 34px) !important; }
 .map-workspace-header-actions { display: flex; align-items: center; gap: 0 !important; margin-left: auto; }
-.map-workspace-header-actions button { display: grid !important; place-items: center; width: 30px !important; height: 30px !important; min-height: 30px !important; }
+.map-workspace-header-actions button { display: grid !important; place-items: center; width: 30px !important; height: 30px !important; min-height: 30px !important; border-radius: 0 !important; }
+.map-workspace-header-actions #resizeMapWorkspace { margin-right: -1px; border-radius: 5px 0 0 5px !important; }
+.map-workspace-header-actions #closeMapWorkspace { border-radius: 0 5px 5px 0 !important; }
 #resizeMapWorkspace { font-size: .9rem !important; }
 .sheet-header-actions { position: absolute; top: 10px; right: 12px; display: flex; gap: 4px; z-index: 2; }
 .sheet-header-actions .sheet-resize,
