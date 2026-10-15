@@ -223,18 +223,31 @@ function bindMapWorkspace() {
     const panel = el('mapWorkspacePanel');
     if (!panel) return;
     const sizes = ['workspace-small', 'workspace-mid', 'workspace-wide'];
-    const current = sizes.indexOf(panel.dataset.resizeState || 'workspace-mid');
+    const current = sizes.indexOf(panel.dataset.resizeState || 'workspace-small');
     const next = sizes[(current + 1) % sizes.length];
     panel.dataset.resizeState = next;
     panel.classList.remove(...sizes);
     panel.classList.add(next);
     el('resizeMapWorkspace')?.setAttribute('aria-label', `Panel size: ${next.replace('workspace-', '')}`);
+    panel.classList.toggle('workspace-expanded', next !== 'workspace-small');
+    syncWorkspaceScroll(panel);
   });
   document.addEventListener('toggle', (event) => {
     if (!event.target.matches('.advanced-filters')) return;
-    el('mapWorkspacePanel')?.classList.toggle('workspace-expanded', event.target.open);
+    const panel = el('mapWorkspacePanel');
+    panel?.classList.toggle('workspace-expanded', event.target.open || panel.dataset.resizeState !== 'workspace-small');
+    syncWorkspaceScroll(panel);
   });
   window.addEventListener('map-workspace-open-requested', ({ detail }) => setMapWorkspace(detail?.destination ?? 'explore', { forceOpen: detail?.forceOpen === true }));
+}
+
+function syncWorkspaceScroll(panel) {
+  if (!panel) return;
+  const expanded = panel.classList.contains('workspace-expanded');
+  panel.classList.toggle('workspace-scrollable', expanded);
+  panel.querySelectorAll('[data-map-panel]').forEach((section) => {
+    section.style.overflowY = expanded ? 'auto' : 'hidden';
+  });
 }
 
 function closeFieldGuideMenu() {
