@@ -290,9 +290,9 @@ export function initWorkspaceRuntime() {
     if (event.target.closest('.workspace-start-walk')) { await startWalk({ routeMode: 'tracking' }); return; }
     if (event.target.closest('[data-workspace-journal]')) { await openJournal('workspace-current-walk'); return; }
     const tool = event.target.closest('[data-workspace-tool]')?.dataset.workspaceTool;
-    if (tool) { activeWorkspaceTool = tool; const target = document.querySelector('#personalPlacesPanel .workspace-home'); if (target) renderWorkspaceExperience(target); return; }
-    if (event.target.closest('[data-workspace-choice="new"]')) { activeWorkspaceTool = 'builder'; const target = document.querySelector('#personalPlacesPanel .workspace-home'); if (target) renderWorkspaceExperience(target); return; }
-    if (event.target.closest('[data-workspace-choice="today"]')) { activeWorkspaceTool = 'options'; const target = document.querySelector('#personalPlacesPanel .workspace-home'); if (target) renderWorkspaceExperience(target); return; }
+    if (tool) { activeWorkspaceTool = tool; const target = document.querySelector('#personalPlacesPanel .workspace-home'); if (target) void renderWorkspacePanel(target); return; }
+    if (event.target.closest('[data-workspace-choice="new"]')) { activeWorkspaceTool = 'builder'; const target = document.querySelector('#personalPlacesPanel .workspace-home'); if (target) void renderWorkspacePanel(target); return; }
+    if (event.target.closest('[data-workspace-choice="today"]')) { activeWorkspaceTool = 'options'; const target = document.querySelector('#personalPlacesPanel .workspace-home'); if (target) void renderWorkspacePanel(target); return; }
     if (event.target.closest('[data-workspace-close]')) { window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: '' } })); return; }
     const futurePlace = event.target.closest('[data-future-place]');
     if (futurePlace) { state.workspaceFuturePlaces ||= []; if (!state.workspaceFuturePlaces.includes(futurePlace.dataset.futurePlace)) state.workspaceFuturePlaces.push(futurePlace.dataset.futurePlace); futurePlace.textContent = 'Saved for future revision'; futurePlace.disabled = true; return; }

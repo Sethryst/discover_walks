@@ -29,7 +29,6 @@ import { openRoomForPlace, currentRoomPlace } from './room-runtime.js';
 import { addPlaceToJournalRoom, addJournalNoteToJournalRoom } from './journal-room.js';
 import { buildInWalkSuggestion } from './ambient-mip.js?v=20261007-walk-moods-1';
 import { renderPersonalPlacesPanel } from './personal-places.js';
-import { renderWorkspacePanel } from './workspace.js';
 import { explainWalkPlan } from './walk-plan.js';
 
 const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];
@@ -214,8 +213,6 @@ async function setMapWorkspace(destination = '', { toggle = true, forceOpen = fa
   if (next) el('mapWorkspaceTitle').textContent = next === 'maps' ? 'Workspace' : next[0].toUpperCase() + next.slice(1);
   if (next === 'maps') {
     renderPersonalPlacesPanel();
-    const workspaceTarget = el('personalPlacesPanel')?.querySelector('[data-my-places-section-panel="workspace"]');
-    if (workspaceTarget) await renderWorkspacePanel(workspaceTarget);
   }
   window.dispatchEvent(new CustomEvent('map-workspace-changed', { detail: { destination: next, open: Boolean(next) } }));
 }
