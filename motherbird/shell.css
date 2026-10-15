@@ -64,6 +64,29 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
   clip: auto !important;
   clip-path: none !important;
 }
+
+/* All desktop tool surfaces share one bottom-sheet rail. Keep this final so
+   the legacy desktop positioning rules above cannot pull a sheet back to the
+   top of the map. */
+@media (min-width: 721px) {
+  .map-workspace-panel[data-destination="maps"],
+  .map-workspace-panel[data-destination="explore"],
+  .map-workspace-panel[data-destination="draw"] {
+    position: fixed !important;
+    inset: auto 12px calc(72px + env(safe-area-inset-bottom)) 12px !important;
+    width: min(560px, calc(100vw - 24px)) !important;
+    height: auto !important;
+    max-height: 48dvh !important;
+    transform: none !important;
+    overflow: hidden !important;
+  }
+  .map-workspace-panel.workspace-small { max-height: 30dvh !important; }
+  .map-workspace-panel.workspace-mid { max-height: 48dvh !important; }
+  .map-workspace-panel.workspace-wide { max-height: 84dvh !important; }
+  .map-workspace-panel.workspace-small > [data-map-panel] { max-height: calc(30dvh - 34px) !important; }
+  .map-workspace-panel.workspace-mid > [data-map-panel] { max-height: calc(48dvh - 34px) !important; }
+  .map-workspace-panel.workspace-wide > [data-map-panel] { max-height: calc(84dvh - 34px) !important; }
+}
 .map-workspace-panel[data-destination="draw"] .draw-shapes button {
   display: grid !important;
   flex: 0 0 52px !important;
