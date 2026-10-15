@@ -1475,3 +1475,7 @@ body.location-available .context-help-button {
   background: transparent;
   color: var(--radio-copper, #4d7ea6);
 }
+/* Workspace owns its active tools in-page; reuse the existing live surfaces without modal positioning. */
+.workspace-experience .sheet { position: static; transform: none; width: auto; max-width: none; max-height: none; margin: 0; border: 0; border-radius: 12px; box-shadow: none; overflow: visible; }
+.workspace-experience .draw-workspace { position: static; padding: 0!important; overflow: visible!important; }
+.workspace-experience .draw-workspace .draw-shapes { position: static!important; display: grid!important; grid-template-columns: repeat(2,minmax(0,1fr))!important; width: auto!important; height: auto!important; padding: 0!important; border: 0!important; box-shadow: none!important; }

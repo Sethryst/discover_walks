@@ -224,6 +224,29 @@ const WORKSPACE_TOOLS = [['options', 'Walk options'], ['radio', 'Radio'], ['anno
 let activeWorkspaceTool = 'options';
 let workspaceBuilderMode = 'round-trip';
 let workspaceBuilderMinutes = 35;
+const embeddedWorkspaceSurfaces = new Map();
+function mountEmbeddedWorkspaceSurface(id, target) {
+  const node = id === 'drawWorkspace' ? document.querySelector('.draw-workspace') : document.getElementById(id);
+  if (!node || !target) return;
+  if (!embeddedWorkspaceSurfaces.has(id)) embeddedWorkspaceSurfaces.set(id, { node, parent: node.parentElement, next: node.nextSibling });
+  target.append(node);
+  node.classList.remove('hidden');
+  node.dataset.workspaceEmbedded = 'true';
+}
+function restoreEmbeddedWorkspaceSurfaces(activeId = '') {
+  for (const [id, entry] of embeddedWorkspaceSurfaces) {
+    if (id === activeId) continue;
+    if (entry.parent && entry.node.parentElement !== entry.parent) entry.parent.insertBefore(entry.node, entry.next && entry.next.parentElement === entry.parent ? entry.next : null);
+    entry.node.classList.add('hidden');
+    delete entry.node.dataset.workspaceEmbedded;
+  }
+}
+function mountActiveWorkspaceSurface(target) {
+  restoreEmbeddedWorkspaceSurfaces(activeWorkspaceTool === 'radio' ? 'radioSheet' : activeWorkspaceTool === 'journal' ? 'journalSheet' : activeWorkspaceTool === 'annotate' ? 'drawWorkspace' : '');
+  if (activeWorkspaceTool === 'radio') mountEmbeddedWorkspaceSurface('radioSheet', target.querySelector('[data-workspace-embedded="radio"]'));
+  if (activeWorkspaceTool === 'journal') mountEmbeddedWorkspaceSurface('journalSheet', target.querySelector('[data-workspace-embedded="journal"]'));
+  if (activeWorkspaceTool === 'annotate') mountEmbeddedWorkspaceSurface('drawWorkspace', target.querySelector('[data-workspace-embedded="draw"]'));
+}
 const currentWalk = { title: 'Anacostia sampler', stops: ['Anacostia Riverwalk', 'Kingman Island'], evidence: ['Water edge · source-mapped', 'Habitat edge · modeled'], revision: 'Revision 3', duration: '35 min', mode: 'Loop' };
 function workspaceToolNav() { return `<nav class="workspace-tool-nav" aria-label="Workspace tools">${WORKSPACE_TOOLS.filter(([id]) => id !== activeWorkspaceTool).map(([id, label]) => `<button type="button" data-workspace-tool="${id}">${label}</button>`).join('')}</nav>`; }
 function workspacePlaceSuggestions() { const pois = (state.cityPois[state.activeCity] || []).filter((poi) => poi?.name && !currentWalk.stops.includes(poi.name)).slice(0, 3); const personal = (state.personalPlaces || []).slice(0, 3); return { pois, personal }; }
@@ -231,9 +254,9 @@ function workspacePage() {
   const tool = activeWorkspaceTool;
   if (tool === 'options') return `<div class="workspace-route-summary"><p class="workspace-kicker">CURRENT WALK</p><h2>${currentWalk.title}</h2><div class="workspace-route-meta"><span>${currentWalk.duration}</span><span>${currentWalk.mode}</span><span>${currentWalk.revision}</span></div><p>Two connected stops, with route evidence kept separate from modeled habitat context.</p><div class="workspace-stop-list">${currentWalk.stops.map((stop, i) => `<div><strong>${i + 1}</strong><span>${stop}<small>${currentWalk.evidence[i]}</small></span></div>`).join('')}</div><button type="button" class="primary-button workspace-start-walk">Start this walk</button><details class="workspace-walk-selector" open><summary>Today’s walk</summary><div class="workspace-choice-list"><button type="button" data-workspace-choice="today">Today’s walk</button><button type="button" data-workspace-choice="new">New walk</button></div></details><details class="workspace-records"><summary>Saved Workspace records & Journal Room</summary><div id="workspaceRecordsMount"><p>Saved records stay in the existing Workspace data model.</p></div></details></div>`;
   if (tool === 'builder') return `<div class="workspace-tool-page"><p class="workspace-kicker">WALK BUILDER</p><h2>Compose a new walk</h2><div class="workspace-segmented"><button type="button" class="${workspaceBuilderMode === 'round-trip' ? 'active' : ''}" data-builder-mode="round-trip">Round trip</button><button type="button" class="${workspaceBuilderMode === 'point-to-point' ? 'active' : ''}" data-builder-mode="point-to-point">Point to point</button></div><div class="workspace-time-grid">${[20, 35, 60].map((v) => `<button type="button" class="${v === workspaceBuilderMinutes ? 'active' : ''}" data-builder-minutes="${v}">${v} min</button>`).join('')}</div><p>The current walk stays unchanged until you explicitly compose a revision.</p><button type="button" class="primary-button" data-workspace-compose>Compose walk</button><button type="button" class="secondary-button" data-workspace-tool="options">Back to current walk</button></div>`;
-  if (tool === 'radio') return `<div class="workspace-tool-page"><p class="workspace-kicker">ROUTE RADIO</p><h2>Radio for ${currentWalk.title}</h2><p>Audio is connected to this walk and follows its current route context.</p><div class="workspace-audio-placeholder"><button type="button" class="primary-button">Play route radio</button><span>Placeholder control · audio stays attached to the current walk</span></div><p class="workspace-context">Current route: ${currentWalk.stops.join(' · ')}</p><button type="button" class="secondary-button" data-workspace-tool="options">Back to walk</button></div>`;
-  if (tool === 'annotate') return `<div class="workspace-tool-page"><p class="workspace-kicker">PERSONAL LAYER</p><h2>Draw / annotate</h2><p>Personal annotations are separate from route geometry and never change this walk automatically.</p><div class="workspace-action-grid"><button type="button" data-draw-shape="Marker">Add a pin</button><button type="button" data-draw-shape="Line">Draw a line</button><button type="button" data-workspace-journal>Add a note</button></div><button type="button" class="secondary-button" data-workspace-tool="options">Back to walk</button></div>`;
-  if (tool === 'journal') return `<div class="workspace-tool-page"><p class="workspace-kicker">JOURNAL</p><h2>Field notes for ${currentWalk.title}</h2><p>Route context: ${currentWalk.stops.join(' and ')}. Evidence: ${currentWalk.evidence.join('; ')}. Route reference: ${currentWalk.revision}.</p><div class="workspace-fact-card"><strong>Generated facts</strong><span>Two route stops are attached to the current walk; habitat edge is modeled.</span></div><textarea rows="5" data-workspace-reflection placeholder="Add your reflection"></textarea><button type="button" class="secondary-button">Add voice note (coming soon)</button><button type="button" class="secondary-button" data-workspace-tool="options">Back to walk</button></div>`;
+  if (tool === 'radio') return `<div class="workspace-tool-page"><p class="workspace-kicker">ROUTE RADIO</p><h2>Radio for ${currentWalk.title}</h2><p>Audio stays attached to this walk while you work.</p><div data-workspace-embedded="radio"></div></div>`;
+  if (tool === 'annotate') return `<div class="workspace-tool-page"><p class="workspace-kicker">PERSONAL LAYER</p><h2>Draw / annotate</h2><p>Personal annotations stay on the map while you work.</p><div data-workspace-embedded="draw"></div></div>`;
+  if (tool === 'journal') return `<div class="workspace-tool-page"><p class="workspace-kicker">JOURNAL</p><h2>Field notes for ${currentWalk.title}</h2><p>Route context: ${currentWalk.stops.join(' and ')}. Evidence: ${currentWalk.evidence.join('; ')}. Route reference: ${currentWalk.revision}.</p><div data-workspace-embedded="journal"></div></div>`;
   if (tool === 'learn') return `<div class="workspace-tool-page"><p class="workspace-kicker">LEARN</p><h2>Learn along this walk</h2><div data-workspace-learn-list><p>Loading linked learning content…</p></div><p class="workspace-legend"><b>verified</b> · <b>source-mapped</b> · <b>modeled</b> · <b>unverified</b></p><button type="button" class="secondary-button" data-workspace-tool="options">Back to walk</button></div>`;
   const suggestions = workspacePlaceSuggestions(); return `<div class="workspace-tool-page"><p class="workspace-kicker">PLACES</p><h2>Places near this walk</h2><section><p class="workspace-section-label">Current route stops</p>${currentWalk.stops.map((stop) => `<div class="workspace-place-row"><strong>${stop}</strong><span>Current route stop</span></div>`).join('')}</section><section><p class="workspace-section-label">Nearby suggestions</p>${suggestions.pois.length ? suggestions.pois.map((poi) => `<div class="workspace-place-row"><strong>${escapeHtml(poi.name)}</strong><span>${escapeHtml(poi.category || 'Place')} · source-mapped <button type="button" data-future-place="${escapeHtml(poi.id || poi.name)}">Add to future revision</button></span></div>`).join('') : '<p>No nearby suggestions are available in this region.</p>'}</section><section><p class="workspace-section-label">Personal saved places</p>${suggestions.personal.length ? suggestions.personal.map((place) => `<div class="workspace-place-row"><strong>${escapeHtml(place.name)}</strong><span>Personal saved place</span></div>`).join('') : '<p>No personal places saved yet.</p>'}</section><button type="button" class="secondary-button" data-workspace-tool="options">Back to walk</button></div>`;
 }
@@ -262,6 +285,7 @@ export async function renderWorkspacePanel(target, { filter = 'all' } = {}) {
   }
   target.classList?.add?.('workspace-home');
   renderWorkspaceExperience(target);
+  mountActiveWorkspaceSurface(target);
   await renderWorkspaceRecordSummary(target);
   let workspace = state.workspaces.find((item) => item.id === state.activeWorkspaceId) || state.workspaces.find((item) => item.id === DEFAULT_WORKSPACE_ID) || state.workspaces[0];
   if (!workspace) {
