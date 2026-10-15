@@ -470,6 +470,16 @@ body.draw-pane-open .draw-tool-rail { display: flex !important; }
   border-radius: 0 10px 10px 0;
 }
 
+/* Installed desktop PWAs may use the title-bar overlay area. Keep the
+   Workspace/Explore surface below that OS chrome so its header and tool nav
+   remain visible and clickable. */
+@media (min-width: 721px) {
+  .map-workspace {
+    top: env(titlebar-area-height, 0px) !important;
+    height: calc(100dvh - env(titlebar-area-height, 0px)) !important;
+  }
+}
+
 /* The utility icons are part of the compact top strip, not full-size controls. */
 .top-cluster > .quick-link-control {
   flex: 0 0 30px;
