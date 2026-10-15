@@ -467,9 +467,18 @@ body.draw-pane-open .draw-tool-rail { display: flex !important; }
   justify-content: center;
   align-self: stretch;
   border: 0;
-  border-right: 1px solid rgba(23,60,53,.14);
+  border-right: 1px solid rgba(23,60,53,.16);
   border-radius: 0;
+  background: rgba(255,250,240,.94);
   box-shadow: none;
+}
+.top-cluster > #quickRadioButton {
+  border-left: 1px solid rgba(23,60,53,.16);
+  border-radius: 8px 0 0 8px;
+}
+.top-cluster > #quickDrawButton {
+  border-right: 0;
+  border-radius: 0 8px 8px 0;
 }
 .top-cluster > .quick-link-control img {
   width: 15px;
