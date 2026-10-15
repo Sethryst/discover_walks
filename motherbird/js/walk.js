@@ -105,6 +105,8 @@ export function updateWalkDisplay() {
     document.body.classList.remove('walk-active');
     el('walkButton')?.removeAttribute('disabled');
     el('endWalkButton')?.classList.add('hidden');
+    el('liveWalkOptionsButton')?.classList.add('hidden');
+    if (el('generateWalkButton')) el('generateWalkButton').textContent = 'Show walking route';
     globalThis.window?.dispatchEvent(new CustomEvent('walk-display-updated'));
     return;
   }
@@ -112,8 +114,30 @@ export function updateWalkDisplay() {
   updateWalkDurations(walk);
   el('walkButton')?.setAttribute('disabled', '');
   el('endWalkButton')?.classList.remove('hidden');
+  el('liveWalkOptionsButton')?.classList.remove('hidden');
   setCompanionState(companionStateForWalk(walk));
   globalThis.window?.dispatchEvent(new CustomEvent('walk-display-updated'));
+}
+
+export async function updateActiveWalkDirection(plan) {
+  const walk = state.activeWalk;
+  if (!walk || !plan) return false;
+  walk.routeMode = plan.routeMode || walk.routeMode || 'tracking';
+  walk.plannedRouteId = plan.id || null;
+  walk.liveDirection = { routeMode: walk.routeMode, title: plan.title || null, coordinates: Array.isArray(plan.coordinates) ? plan.coordinates : [], updatedAt: new Date().toISOString() };
+  state.liveDirectionLine?.remove();
+  state.liveDirectionLine = null;
+  if (state.map && globalThis.L && walk.liveDirection.coordinates.length > 1) {
+    const style = globalThis.__MOTHERBIRD_MAP_STYLE__;
+    state.liveDirectionLine = L.polyline(walk.liveDirection.coordinates, { color: style?.features?.plannedRoute || '#59C36A', weight: 7, opacity: .9, dashArray: '12 8', lineCap: 'round', lineJoin: 'round', styleRole: 'liveDirection' }).addTo(state.map);
+    state.liveDirectionLine.bringToFront();
+  }
+  await persistWalkDraft();
+  window.dispatchEvent(new CustomEvent('walk-direction-updated', { detail: { walk, plan } }));
+  const label = ({ 'point-to-point': 'Point-to-point', 'round-trip': 'Round-trip', 'auto-round-trip': 'Auto round-trip' })[walk.routeMode] || 'Walking';
+  setStatus(`${label} direction updated`, true);
+  toast(`${label} direction updated for this walk.`);
+  return true;
 }
 
 export function handlePosition(position, shouldPan = false) {
@@ -523,6 +547,8 @@ function resetActiveWalk() {
   stopGpsWatch();
   state.activeWalk = null;
   state.routeLine?.remove();
+  state.liveDirectionLine?.remove();
+  state.liveDirectionLine = null;
   state.routeLine = null;
   updateWalkDisplay();
   el('walkButton').removeAttribute('disabled');

@@ -3,7 +3,7 @@ import { setPlannerSelecting } from './planner-selection.js?v=20261004-planner-s
 import { CITIES } from './constants.js';
 import { el, escapeHtml } from './utils.js';
 import { saveJournal, saveJournalOnClose, renderArchive } from './archive.js';
-import { getCurrentLocation, startWalk, stopWalk } from './walk.js';
+import { getCurrentLocation, startWalk, stopWalk, updateActiveWalkDirection } from './walk.js';
 import { openBackpack, openJournal, closeSheets, openSheet, renderGeofenceCategoryChips, setArchiveFilter, toast } from './ui.js';
 import { city, poiTags, searchPois } from './poi.js';
 import { localSearchHits, searchRowHtml, emptySearchHtml } from './search.js';
@@ -515,12 +515,20 @@ function bindWalkControls() {
   // top edge stays reserved for search and location controls.
   const bottomWalkBar = el('radialRouteOptionsButton')?.parentElement;
   const startPanel = el('startPanel');
+  if (!el('liveWalkOptionsButton')) {
+    el('endWalkButton')?.insertAdjacentHTML('afterend', '<button class="ink-control hidden" id="liveWalkOptionsButton" type="button">Walk options</button>');
+  }
   if (startPanel && !el('plannerStartWalkButton')) startPanel.insertAdjacentHTML('afterbegin', '<button class="primary-button planner-start-walk" id="plannerStartWalkButton" type="button">Start walk</button>');
   decorateWalkPlanner();
   if (bottomWalkBar && startPanel && !bottomWalkBar.contains(startPanel)) bottomWalkBar.append(startPanel);
   el('walkButton')?.addEventListener('click', async () => { if (!state.activeWalk) await startWalk({ routeMode: 'tracking' }); });
   el('plannerStartWalkButton')?.addEventListener('click', async () => { if (!state.activeWalk) await startWalk({ routeMode: 'tracking' }); });
   el('endWalkButton')?.addEventListener('click', () => void stopWalk());
+  el('liveWalkOptionsButton')?.addEventListener('click', () => {
+    el('radialRouteOptionsButton')?.click();
+    const generateButton = el('generateWalkButton');
+    if (generateButton) generateButton.textContent = 'Update live direction';
+  });
   el('startChevron')?.addEventListener('click', () => togglePanel('startChevron', 'startPanel'));
   const routeOptionsButton = el('radialRouteOptionsButton');
   const openRouteOptions = () => {
@@ -603,7 +611,14 @@ function bindWalkControls() {
     renderRoutePointControls();
     toast('Start and destination swapped.');
   });
-  el('generateWalkButton')?.addEventListener('click', () => void generateTimeBasedPlan());
+  el('generateWalkButton')?.addEventListener('click', async () => {
+    const plan = await generateTimeBasedPlan();
+    if (state.activeWalk && plan) {
+      await updateActiveWalkDirection(plan);
+      el('startPanel')?.classList.add('hidden');
+      el('radialRouteOptionsButton')?.setAttribute('aria-expanded', 'false');
+    }
+  });
   window.addEventListener('walk-sketch-painted', (event) => {
     const plan = event.detail;
     renderWalkSketch(plan);

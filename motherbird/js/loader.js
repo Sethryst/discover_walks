@@ -177,7 +177,7 @@ export async function init() {
     await refreshCityMap(false);
   });
   void (async () => {
-    await optionalBoot('walk controls', () => import('./events.js?v=20261011-cross-cell-stitch-3').then(({ initEvents }) => initEvents()));
+    await optionalBoot('walk controls', () => import('./events.js?v=20261014-live-walk-options-1').then(({ initEvents }) => initEvents()));
     initRadialMenu();
     await optionalBoot('radio', initRadio);
     await optionalBoot('geo-cypher', initGeoCypher);
