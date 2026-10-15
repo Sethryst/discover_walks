@@ -228,6 +228,10 @@ function bindMapWorkspace() {
     panel.dataset.resizeState = next;
     panel.classList.remove(...sizes);
     panel.classList.add(next);
+    if (next === 'workspace-small') {
+      document.querySelectorAll('.advanced-filters[open]').forEach((details) => { details.open = false; });
+      panel.classList.remove('workspace-expanded', 'workspace-scrollable');
+    }
     el('resizeMapWorkspace')?.setAttribute('aria-label', `Panel size: ${next.replace('workspace-', '')}`);
     panel.classList.toggle('workspace-expanded', next !== 'workspace-small');
     syncWorkspaceScroll(panel);
@@ -237,6 +241,7 @@ function bindMapWorkspace() {
     const panel = el('mapWorkspacePanel');
     panel?.classList.toggle('workspace-expanded', event.target.open || panel.dataset.resizeState !== 'workspace-small');
     syncWorkspaceScroll(panel);
+    event.target.classList.toggle('advanced-filters-scrollable', event.target.open);
   });
   window.addEventListener('map-workspace-open-requested', ({ detail }) => setMapWorkspace(detail?.destination ?? 'explore', { forceOpen: detail?.forceOpen === true }));
 }

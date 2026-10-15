@@ -15,11 +15,9 @@ import { nationalOsmFamilyControlsHtml, setNationalOsmFamily } from './national-
 import { capabilityIsAvailable } from './regional-capabilities.js';
 
 export const LAYER_GROUPS = [
-  { id: 'nature_observations', light: 'recreation', label: 'Nature & observations', description: 'Wildlife and biodiversity observations', tags: ['biodiversity:birds', 'biodiversity:plants', 'biodiversity:mammals', 'biodiversity:insects', 'biodiversity:fungi', 'biodiversity:reptiles', 'biodiversity:other'] },
-  { id: 'walking_network', light: 'recreation', label: 'Walking network', description: 'Routes, crossings, and access conditions', tags: ['trail', 'walkway', 'crossing', 'barrier'] },
-  { id: 'nature_water', light: 'recreation', label: 'Nature & water', description: 'Nature, water, scenery, and recreation', tags: ['nature', 'water', 'scenic', 'recreation', 'park', 'wildlife', 'water_access', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad'] },
-  { id: 'places_services', light: 'recreation', label: 'Rest & comfort', description: 'Useful places along the walk', tags: ['rest', 'bench', 'shelter', 'shade', 'restrooms', 'transit'] },
-  { id: 'culture', light: 'news', label: 'News & culture', description: 'Events, history, art, and public stories', tags: ['event', 'history', 'history_landmark', 'history_monument', 'history_museum', 'history_cemetery', 'history_marker', 'art', 'public_art', 'historic', 'civic'] },
+  { id: 'walking_nature', light: 'recreation', label: 'Rec · Walking network & nature', description: 'Walking, nature, comfort, and biodiversity places', tags: ['trail', 'walkway', 'crossing', 'barrier', 'nature', 'water', 'scenic', 'recreation', 'park', 'wildlife', 'water_access', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad', 'rest', 'bench', 'shelter', 'shade', 'restrooms', 'transit', 'biodiversity:birds', 'biodiversity:plants', 'biodiversity:mammals', 'biodiversity:insects', 'biodiversity:fungi', 'biodiversity:reptiles', 'biodiversity:other'] },
+  { id: 'history_sites', light: 'news', label: 'History Sites', description: 'Historic places, landmarks, monuments, museums, cemeteries, and markers', tags: ['history', 'history_landmark', 'history_monument', 'history_museum', 'history_cemetery', 'history_marker', 'historic'] },
+  { id: 'culture', light: 'news', label: 'News & culture', description: 'Events, art, and public stories', tags: ['event', 'art', 'public_art', 'civic'] },
   { id: 'community', light: 'news', label: 'Community & essentials', description: 'Public services and shared spaces', tags: ['community', 'facility', 'library', 'recreation_center', 'pantry', 'wifi'] },
   { id: 'cuisine', light: 'cuisine', label: 'Cuisine', description: 'Food, drinks, and places to stop', tags: ['market', 'farmers_market', 'restaurant', 'fast_food', 'coffee', 'coffee_shop', 'cafe', 'food_cart', 'bakery', 'argentinian', 'british', 'crepe', 'greek', 'latin_american', 'tea', 'turkish'] },
   { id: 'more', light: 'cuisine', label: 'More map layers', description: 'OpenStreetMap places and additional regional categories', tags: ['osm'] }
@@ -104,7 +102,7 @@ function buildAllLayerGroups() {
     return { ...group, options };
   });
   const extras = [...available].filter(([id]) => !claimed.has(id));
-  groups.find((group) => group.id === 'places_services').options.push(...extras.filter(([id]) => isFoodFilterTag(id)).map(([id, label]) => publicOption(id, label, pois)));
+  groups.find((group) => group.id === 'cuisine').options.push(...extras.filter(([id]) => isFoodFilterTag(id)).map(([id, label]) => publicOption(id, label, pois)));
   groups.find((group) => group.id === 'more').options.push(...extras.filter(([id]) => !isFoodFilterTag(id)).map(([id, label]) => publicOption(id, label, pois)));
   return groups.filter((group) => group.options.length);
 }
