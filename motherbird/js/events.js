@@ -222,11 +222,11 @@ function bindMapWorkspace() {
   el('resizeMapWorkspace')?.addEventListener('click', () => {
     const panel = el('mapWorkspacePanel');
     if (!panel) return;
-    const sizes = ['', 'workspace-resized', 'workspace-expanded'];
+    const sizes = ['', 'workspace-compact', 'workspace-expanded'];
     const current = sizes.indexOf(panel.dataset.resizeState || '');
     const next = sizes[(current + 1) % sizes.length];
     panel.dataset.resizeState = next;
-    panel.classList.toggle('workspace-resized', next === 'workspace-resized');
+    panel.classList.toggle('workspace-compact', next === 'workspace-compact');
     panel.classList.toggle('workspace-expanded', next === 'workspace-expanded');
     el('resizeMapWorkspace')?.setAttribute('aria-pressed', String(Boolean(next)));
   });

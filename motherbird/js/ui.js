@@ -57,6 +57,14 @@ export function openSheet(id) {
   const sheet = el(id);
   if (!sheet) return;
   sheet.classList.remove('hidden');
+  if (id === 'radioSheet') {
+    const compact = el('toggleRadioCompact');
+    compact.onclick = () => {
+      const active = sheet.classList.toggle('radio-compact');
+      compact.setAttribute('aria-pressed', String(active));
+      compact.textContent = active ? '▦' : '▤';
+    };
+  }
   // Large contextual companion GIFs should load only when their sheet is
   // actually opened, then remain available through the runtime media cache.
   sheet.querySelectorAll('img[data-lazy-src]').forEach((image) => {
