@@ -69,6 +69,12 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
    the legacy desktop positioning rules above cannot pull a sheet back to the
    top of the map. */
 @media (min-width: 721px) {
+  .map-workspace {
+    top: 0 !important;
+    bottom: 0 !important;
+    height: 100dvh !important;
+    transform: none !important;
+  }
   .map-workspace-panel[data-destination="maps"],
   .map-workspace-panel[data-destination="explore"],
   .map-workspace-panel[data-destination="draw"] {
