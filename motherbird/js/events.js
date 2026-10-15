@@ -219,7 +219,8 @@ async function setMapWorkspace(destination = '', { toggle = true, forceOpen = fa
 
 function bindMapWorkspace() {
   el('closeMapWorkspace')?.addEventListener('click', () => setMapWorkspace(''));
-  el('resizeMapWorkspace')?.addEventListener('click', () => {
+  const resizeButton = el('resizeMapWorkspace');
+  const advanceWorkspaceSize = () => {
     const panel = el('mapWorkspacePanel');
     if (!panel) return;
     const sizes = ['workspace-small', 'workspace-mid', 'workspace-wide'];
@@ -231,10 +232,38 @@ function bindMapWorkspace() {
     if (next === 'workspace-small') {
       document.querySelectorAll('.advanced-filters[open]').forEach((details) => { details.open = false; });
       panel.classList.remove('workspace-expanded', 'workspace-scrollable');
+    } else {
+      const advancedFilters = panel.querySelector('.advanced-filters') || document.querySelector('.advanced-filters');
+      if (advancedFilters) advancedFilters.open = true;
     }
     el('resizeMapWorkspace')?.setAttribute('aria-label', `Panel size: ${next.replace('workspace-', '')}`);
     panel.classList.toggle('workspace-expanded', next !== 'workspace-small');
     syncWorkspaceScroll(panel);
+  };
+  let resizeDragStart = null;
+  let suppressResizeClick = false;
+  resizeButton?.addEventListener('pointerdown', (event) => {
+    resizeDragStart = event.clientY;
+    resizeButton.setPointerCapture?.(event.pointerId);
+  });
+  resizeButton?.addEventListener('pointermove', (event) => {
+    if (resizeDragStart == null || resizeDragStart - event.clientY <= 12) return;
+    resizeDragStart = null;
+    suppressResizeClick = true;
+    advanceWorkspaceSize();
+  });
+  resizeButton?.addEventListener('pointerup', (event) => {
+    if (resizeDragStart == null) return;
+    const draggedUp = resizeDragStart - event.clientY > 12;
+    resizeDragStart = null;
+    if (draggedUp) {
+      suppressResizeClick = true;
+      advanceWorkspaceSize();
+    }
+  });
+  resizeButton?.addEventListener('click', () => {
+    if (suppressResizeClick) { suppressResizeClick = false; return; }
+    advanceWorkspaceSize();
   });
   document.addEventListener('toggle', (event) => {
     if (!event.target.matches('.advanced-filters')) return;

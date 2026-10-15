@@ -11,14 +11,14 @@ import { ICONS, markerPinHtml, markerVisual } from './poi-icons.js';
 import { civicNoticesFromPack, newsIsAvailable } from './civic-news.js';
 import { syncNewsStory } from './learn-change.js';
 import { drawStories } from './stories.js';
-import { nationalOsmFamilyControlsHtml, setNationalOsmFamily } from './national-osm-layers.js';
+import { setNationalOsmFamily } from './national-osm-layers.js';
 import { capabilityIsAvailable } from './regional-capabilities.js';
 
 export const LAYER_GROUPS = [
   { id: 'walking_nature', light: 'recreation', label: 'Rec · Walking network & nature', description: 'Walking, nature, comfort, and biodiversity places', tags: ['trail', 'walkway', 'crossing', 'barrier', 'nature', 'water', 'scenic', 'recreation', 'park', 'wildlife', 'water_access', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad', 'rest', 'bench', 'shelter', 'shade', 'restrooms', 'transit', 'biodiversity:birds', 'biodiversity:plants', 'biodiversity:mammals', 'biodiversity:insects', 'biodiversity:fungi', 'biodiversity:reptiles', 'biodiversity:other'] },
-  { id: 'history_sites', light: 'news', label: 'History Sites', description: 'Historic places, landmarks, monuments, museums, cemeteries, and markers', tags: ['history', 'history_landmark', 'history_monument', 'history_museum', 'history_cemetery', 'history_marker', 'historic'] },
+  { id: 'history_sites', light: 'recreation', label: 'History Sites', description: 'Historic places, landmarks, monuments, museums, cemeteries, and markers', tags: ['history', 'history_landmark', 'history_monument', 'history_museum', 'history_cemetery', 'history_marker', 'historic'] },
   { id: 'culture', light: 'news', label: 'News & culture', description: 'Events, art, and public stories', tags: ['event', 'art', 'public_art', 'civic'] },
-  { id: 'community', light: 'news', label: 'Community & essentials', description: 'Public services and shared spaces', tags: ['community', 'facility', 'library', 'recreation_center', 'pantry', 'wifi'] },
+  { id: 'community', light: 'recreation', label: 'Community', description: 'Public services and shared spaces', tags: ['community', 'facility', 'library', 'recreation_center', 'pantry', 'wifi'] },
   { id: 'cuisine', light: 'cuisine', label: 'Cuisine', description: 'Food, drinks, and places to stop', tags: ['market', 'farmers_market', 'restaurant', 'fast_food', 'coffee', 'coffee_shop', 'cafe', 'food_cart', 'bakery', 'argentinian', 'british', 'crepe', 'greek', 'latin_american', 'tea', 'turkish'] },
   { id: 'more', light: 'cuisine', label: 'More map layers', description: 'OpenStreetMap places and additional regional categories', tags: ['osm'] }
 ];
@@ -175,8 +175,7 @@ export function renderLayerFilters() {
   ].map(([id, label]) => ({ id, label, groups: groups.filter((group) => group.light === id) })).filter((family) => family.groups.length);
   root.innerHTML = families.map((family) => {
     const expanded = state.layerUiState.familyExpanded[family.id] !== false;
-    const nationalFamily = family.id === 'recreation' ? 'recreation' : family.id;
-    return `<section class="advanced-filter-family ${expanded ? 'is-expanded' : ''}" data-advanced-family="${family.id}"><button class="advanced-family-toggle" type="button" data-advanced-family-toggle="${family.id}" aria-expanded="${expanded}"><span>${family.label}</span><small>${family.groups.reduce((total, group) => total + group.options.length, 0)} filters</small><b aria-hidden="true">⌄</b></button><div class="advanced-family-content ${expanded ? '' : 'hidden'}">${family.groups.map(groupHtml).join('')}<div class="national-osm-family" data-national-osm-family="${nationalFamily}">${nationalOsmFamilyControlsHtml(nationalFamily)}</div></div></section>`;
+    return `<section class="advanced-filter-family ${expanded ? 'is-expanded' : ''}" data-advanced-family="${family.id}"><button class="advanced-family-toggle" type="button" data-advanced-family-toggle="${family.id}" aria-expanded="${expanded}"><span>${family.label}</span><small>${family.groups.reduce((total, group) => total + group.options.length, 0)} filters</small><b aria-hidden="true">⌄</b></button><div class="advanced-family-content ${expanded ? '' : 'hidden'}">${family.groups.map(groupHtml).join('')}</div></section>`;
   }).join('') || `<p class="layer-empty">${query ? 'No filters match that search.' : 'Select a category first.'}</p>`;
   updateLayerStatus();
 }
