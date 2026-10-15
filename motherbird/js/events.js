@@ -222,13 +222,13 @@ function bindMapWorkspace() {
   el('resizeMapWorkspace')?.addEventListener('click', () => {
     const panel = el('mapWorkspacePanel');
     if (!panel) return;
-    const sizes = ['', 'workspace-compact', 'workspace-expanded'];
-    const current = sizes.indexOf(panel.dataset.resizeState || '');
+    const sizes = ['workspace-small', 'workspace-mid', 'workspace-wide'];
+    const current = sizes.indexOf(panel.dataset.resizeState || 'workspace-mid');
     const next = sizes[(current + 1) % sizes.length];
     panel.dataset.resizeState = next;
-    panel.classList.toggle('workspace-compact', next === 'workspace-compact');
-    panel.classList.toggle('workspace-expanded', next === 'workspace-expanded');
-    el('resizeMapWorkspace')?.setAttribute('aria-pressed', String(Boolean(next)));
+    panel.classList.remove(...sizes);
+    panel.classList.add(next);
+    el('resizeMapWorkspace')?.setAttribute('aria-label', `Panel size: ${next.replace('workspace-', '')}`);
   });
   document.addEventListener('toggle', (event) => {
     if (!event.target.matches('.advanced-filters')) return;
