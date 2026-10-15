@@ -1273,8 +1273,13 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
   height: 28px!important;
 }
 .top-cluster>.map-search {
-  flex: 0 0 220px!important;
-  width: min(220px, 35vw)!important;
+  /* Search is the elastic part of the header. The profile, locate, and
+     region controls keep their usable tap targets while this field gives up
+     width first as a phone viewport gets tighter. */
+  flex: 1 1 220px!important;
+  width: auto!important;
+  max-width: 220px!important;
+  min-width: 0!important;
 }
 .top-cluster {
   width: max-content!important;
@@ -1284,6 +1289,12 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
 .top-cluster>.map-search input { font-size: .7rem; padding-block: 3px; }
 .top-cluster>.locate-stack .ink-control,
 .top-cluster>.regional-navigation .regional-navigation-button { padding-inline: 6px; font-size: .64rem; }
+
+@media (max-width: 420px) {
+  .top-cluster>.map-search { flex-basis: 150px!important; }
+  .top-cluster>.map-search input { min-width: 0; }
+  .top-cluster>.regional-navigation .regional-navigation-button { max-width: 96px; }
+}
 
 /* Ultra-compact Workspace chrome: keep the utility row dense but readable. */
 .map-workspace-panel>header {

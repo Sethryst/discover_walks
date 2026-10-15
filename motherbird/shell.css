@@ -118,6 +118,33 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
   height: auto !important;
   overflow-y: visible !important;
 }
+
+/* On narrow phones the Explore light row needs its own breathing room. Keep
+   the panel title separate from the REC/CUISINE controls instead of letting
+   the first row tuck underneath the panel edge. */
+@media (max-width: 720px) {
+  .primary-nav {
+    gap: 2px;
+    padding: 3px;
+    border-radius: 14px;
+  }
+  .primary-nav button {
+    min-height: 38px;
+    padding: 5px 8px;
+    border-radius: 10px;
+    font-size: .7rem;
+    letter-spacing: .01em;
+  }
+  .map-workspace-panel[data-destination="explore"] > [data-map-panel="explore"] {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+    overflow-y: auto !important;
+    scroll-padding-top: 8px;
+  }
+  .map-workspace-panel[data-destination="explore"] .map-lights {
+    row-gap: 8px !important;
+  }
+}
 .map-workspace-panel[data-destination="explore"].workspace-small.workspace-expanded > [data-map-panel="explore"] {
   max-height: none !important;
   height: auto !important;
