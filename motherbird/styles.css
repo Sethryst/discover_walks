@@ -1296,6 +1296,13 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
   .top-cluster>.regional-navigation .regional-navigation-button { max-width: 96px; }
 }
 
+/* Keep the compact mobile header below the viewport/title-bar edge. */
+@media (max-width: 720px) {
+  .viewfinder-frame {
+    padding-top: max(28px, env(safe-area-inset-top)) !important;
+  }
+}
+
 /* Ultra-compact Workspace chrome: keep the utility row dense but readable. */
 .map-workspace-panel>header {
   min-height: 28px!important;
