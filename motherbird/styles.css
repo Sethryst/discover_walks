@@ -1515,6 +1515,25 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
 .map-workspace-header-actions #resizeMapWorkspace { cursor: ns-resize; touch-action: none; }
 .map-workspace-header-actions #closeMapWorkspace { border-radius: 0 5px 5px 0 !important; }
 #resizeMapWorkspace { font-size: .9rem !important; }
+.map-workspace-panel[data-destination="explore"] .map-workspace-header-actions {
+  position: absolute !important;
+  left: 6px;
+  right: auto;
+  margin-left: 0 !important;
+}
+.map-workspace-panel[data-destination="explore"] > header {
+  position: relative;
+  justify-content: center;
+  padding-inline: 72px;
+}
+.map-workspace-panel[data-destination="explore"] .advanced-filters {
+  margin-top: 8px;
+}
+@media (max-width: 720px) {
+  #mapWorkspacePanel[data-destination="explore"].workspace-small {
+    min-height: 96px !important;
+  }
+}
 .sheet-header-actions { position: absolute; top: 10px; right: 12px; display: flex; gap: 4px; z-index: 2; }
 .sheet-header-actions .sheet-resize,
 .sheet-header-actions .close-sheet { position: static; width: 32px; height: 32px; padding: 0; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 6px; background: #fff; font-size: 1rem; }
