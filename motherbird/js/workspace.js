@@ -262,7 +262,7 @@ function workspacePage() {
   if (tool === 'builder') return `<div class="workspace-tool-page"><p class="workspace-kicker">MAKE WALKS</p><h2>Build a route for the map</h2><p class="workspace-helper">Set the shape and time, then the generated route will paint onto the main map at a walkable zoom.</p><div class="workspace-segmented"><button type="button" class="${workspaceBuilderMode === 'auto-round-trip' ? 'active' : ''}" data-builder-mode="auto-round-trip">Loop</button><button type="button" class="${workspaceBuilderMode === 'point-to-point' ? 'active' : ''}" data-builder-mode="point-to-point">Point to point</button></div><div class="workspace-time-grid">${[20, 35, 60].map((v) => `<button type="button" class="${v === workspaceBuilderMinutes ? 'active' : ''}" data-builder-minutes="${v}">${v} min</button>`).join('')}</div><button type="button" class="primary-button" data-workspace-compose>Generate walk</button><button type="button" class="secondary-button" data-workspace-tool="options">Back to current walk</button></div>`;
   if (tool === 'radio') return '<div class="workspace-tool-page"><div data-workspace-embedded="radio"></div></div>';
   if (tool === 'annotate') return '<div class="workspace-tool-page"><div data-workspace-embedded="draw"></div></div>';
-  if (tool === 'journal') return '<div class="workspace-tool-page"><div data-workspace-embedded="journal"></div></div>';
+  if (tool === 'journal') return '<div class="workspace-tool-page workspace-journal-page"><div data-workspace-embedded="journal"></div></div>';
   if (tool === 'learn') return '<div class="workspace-tool-page"><div data-workspace-learn-list></div></div>';
   return workspacePlacesMarkup();
 }
