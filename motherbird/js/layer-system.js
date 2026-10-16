@@ -52,7 +52,7 @@ const MAP_TAGS = new Set([
   ...LIGHT_CHIPS.recreation.flatMap((chip) => chip.tags || []),
   ...LIGHT_CHIPS.cuisine.flatMap((chip) => chip.tags || [])
 ]);
-const FOOD_DRINK_TAGS = new Set(['market', 'farmers_market', 'restaurant', 'fast_food', 'coffee', 'coffee_shop', 'cafe', 'food_cart', 'bakery', 'argentinian', 'british', 'crepe', 'greek', 'latin_american', 'tea', 'turkish', 'açaí', 'american', 'asian', 'bubble_tea', 'french', 'ice_cream', 'indian', 'juice', 'korean', 'pizza', 'sandwich', 'smoothie']);
+const FOOD_DRINK_TAGS = new Set(['market', 'farmers_market', 'restaurant', 'fast_food', 'coffee', 'coffee_shop', 'cafe', 'food_cart', 'bakery', 'argentinian', 'british', 'crepe', 'greek', 'latin_american', 'tea', 'turkish', 'açaí', 'american', 'asian', 'bubble_tea', 'french', 'ice_cream', 'indian', 'juice', 'korean', 'pasta', 'pizza', 'sandwich', 'smoothie', 'tex_mex', 'thai', 'uyghur']);
 const DRINK_TAGS = new Set(['coffee', 'coffee_shop', 'cafe', 'tea', 'açaí', 'bubble_tea', 'juice', 'smoothie', 'beer']);
 const FOOD_TAGS = new Set([...FOOD_DRINK_TAGS].filter((id) => !DRINK_TAGS.has(id)));
 

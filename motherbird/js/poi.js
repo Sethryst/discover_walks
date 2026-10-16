@@ -17,7 +17,7 @@ const POI_FILTER_GROUPS = [
   { id: 'food', label: 'Food & drink', icon: '☕', tags: ['coffee', 'coffee_shop', 'cafe', 'tea'] },
   { id: 'other', label: 'More map layers', icon: '◇', tags: ['event', 'osm'] }
 ];
-const FOOD_FILTER_TAGS = new Set(['açaí', 'american', 'armenian', 'asian', 'bagel', 'bakery', 'beer', 'bistro', 'brazilian', 'breakfast', 'bubble_tea', 'burger', 'cake', 'caribbean', 'chinese', 'cookie', 'cuban', 'cupcake', 'deli', 'dessert', 'diner', 'donut', 'eclair', 'empanada', 'ethiopian', 'european', 'filipino', 'french', 'fusion', 'gelato', 'german', 'ice_cream', 'indian', 'italian', 'jamaican', 'japanese', 'juice', 'korean', 'lebanese', 'macaron', 'mediterranean', 'mexican', 'middle_eastern', 'nordic', 'pastry', 'peruvian', 'pie', 'pizza', 'pretzel', 'regional', 'salad', 'salvadoran', 'sandwich', 'shawarma', 'smoothie', 'swiss', 'tart', 'toast', 'vietnamese', 'wine']);
+const FOOD_FILTER_TAGS = new Set(['açaí', 'american', 'armenian', 'asian', 'bagel', 'bakery', 'beer', 'bistro', 'brazilian', 'breakfast', 'bubble_tea', 'burger', 'cake', 'caribbean', 'chinese', 'cookie', 'cuban', 'cupcake', 'deli', 'dessert', 'diner', 'donut', 'eclair', 'empanada', 'ethiopian', 'european', 'filipino', 'french', 'fusion', 'gelato', 'german', 'ice_cream', 'indian', 'italian', 'jamaican', 'japanese', 'juice', 'korean', 'lebanese', 'macaron', 'mediterranean', 'mexican', 'middle_eastern', 'nordic', 'pasta', 'pastry', 'peruvian', 'pie', 'pizza', 'pretzel', 'regional', 'salad', 'salvadoran', 'sandwich', 'shawarma', 'smoothie', 'swiss', 'tart', 'tex_mex', 'thai', 'toast', 'uyghur', 'vietnamese', 'wine']);
 export const isFoodFilterTag = (id) => FOOD_FILTER_TAGS.has(String(id).toLocaleLowerCase());
 
 export function renderPoiTagFilters() {

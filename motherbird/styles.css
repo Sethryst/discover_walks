@@ -1526,6 +1526,17 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
   justify-content: center;
   padding-inline: 72px;
 }
+.map-workspace-panel[data-destination="explore"] > [data-map-panel="explore"] {
+  display: flex;
+  flex-direction: column;
+}
+.map-workspace-panel[data-destination="explore"] .map-lights {
+  order: 0;
+  position: static !important;
+  transform: none !important;
+  width: 100%;
+  margin: 0;
+}
 .map-workspace-panel[data-destination="explore"] .advanced-filters {
   margin-top: 12px;
 }
