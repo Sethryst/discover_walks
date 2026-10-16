@@ -220,7 +220,7 @@ async function renderJournalRoomWorkspaceSummary() {
   return `<section class="workspace-journal-room" aria-label="Journal Room summary"><div class="workspace-journal-room-heading"><div><span class="sheet-kicker">PLACE COMPOSITION</span><h3>Journal Room</h3><p>${poiCount} POI${poiCount === 1 ? '' : 's'} · ${noteCount} journal note${noteCount === 1 ? '' : 's'}</p></div><button type="button" class="secondary-button" data-open-journal-room>Open room</button></div>${preview.length ? `<div class="workspace-journal-room-preview">${preview.map((item) => `<span class="workspace-journal-room-chip"><b>${item.kind === 'journal' ? '✎' : '⌖'}</b>${escapeHtml(item.name || 'Untitled')}</span>`).join('')}</div>` : '<p class="workspace-journal-room-empty">Your saved places and page notes will gather here.</p>'}</section>`;
 }
 
-const WORKSPACE_TOOLS = [['options', 'Walk options'], ['journal', 'Journal'], ['learn', 'Learn']];
+const WORKSPACE_TOOLS = [['options', 'Walk'], ['journal', 'Journal'], ['learn', 'Learn']];
 let activeWorkspaceTool = 'options';
 let workspaceBuilderMode = 'auto-round-trip';
 let workspaceBuilderMinutes = 35;
