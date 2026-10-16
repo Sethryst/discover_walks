@@ -1527,11 +1527,12 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
   padding-inline: 72px;
 }
 .map-workspace-panel[data-destination="explore"] .advanced-filters {
-  margin-top: 8px;
+  margin-top: 12px;
 }
 @media (max-width: 720px) {
   #mapWorkspacePanel[data-destination="explore"].workspace-small {
-    min-height: 96px !important;
+    min-height: 112px !important;
+    padding-bottom: 14px !important;
   }
 }
 .sheet-header-actions { position: absolute; top: 10px; right: 12px; display: flex; gap: 4px; z-index: 2; }
