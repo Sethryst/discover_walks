@@ -221,7 +221,7 @@ async function renderJournalRoomWorkspaceSummary() {
 }
 
 const WORKSPACE_TOOLS = [['options', 'Walk'], ['journal', 'Journal'], ['learn', 'Learn']];
-let activeWorkspaceTool = 'options';
+let activeWorkspaceTool = 'journal';
 let workspaceBuilderMode = 'auto-round-trip';
 let workspaceBuilderMinutes = 35;
 const embeddedWorkspaceSurfaces = new Map();
