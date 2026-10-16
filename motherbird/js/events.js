@@ -203,7 +203,7 @@ async function setMapWorkspace(destination = '', { toggle = true, forceOpen = fa
   panel.classList.toggle('hidden', !next);
   document.body.classList.toggle('map-workspace-open', Boolean(next));
   document.body.classList.toggle('draw-pane-open', next === 'draw');
-  el('closeMapWorkspace')?.classList.toggle('workspace-close-hidden', next === 'maps');
+  el('closeMapWorkspace')?.classList.remove('workspace-close-hidden');
   document.querySelectorAll('[data-map-destination]').forEach((button) => {
     const active = button.dataset.mapDestination === next;
     button.classList.toggle('active', active);
@@ -214,11 +214,32 @@ async function setMapWorkspace(destination = '', { toggle = true, forceOpen = fa
   if (next === 'maps') {
     renderPersonalPlacesPanel();
   }
+  document.querySelectorAll('[data-workspace-header-tab]').forEach((button) => {
+    const active = button.dataset.workspaceHeaderTab === 'walk';
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-selected', String(active));
+  });
   window.dispatchEvent(new CustomEvent('map-workspace-changed', { detail: { destination: next, open: Boolean(next) } }));
 }
 
 function bindMapWorkspace() {
   el('closeMapWorkspace')?.addEventListener('click', () => setMapWorkspace(''));
+  document.querySelectorAll('[data-workspace-header-tab]').forEach((button) => button.addEventListener('click', () => {
+    const tab = button.dataset.workspaceHeaderTab;
+    if (tab === 'walk') {
+      state.settings.myPlacesSection = 'workspace';
+      setMapWorkspace('maps', { forceOpen: true });
+      return;
+    }
+    if (tab === 'journal') {
+      void openJournal();
+      return;
+    }
+    if (tab === 'learn') {
+      openBackpack();
+      requestAnimationFrame(() => document.querySelector('[data-guide-tab="learn"]')?.click());
+    }
+  }));
   const resizeButton = el('resizeMapWorkspace');
   const advanceWorkspaceSize = () => {
     const panel = el('mapWorkspacePanel');
