@@ -1636,3 +1636,5 @@ body.location-available .context-help-button {
 .map-workspace-panel[data-destination="explore"] .map-light-row{padding-top:7px!important}.map-workspace-panel[data-destination="explore"] .map-light{height:50px!important;padding-top:13px!important;align-items:end!important}.map-workspace-panel[data-destination="explore"] .map-light:before{display:block!important;top:5px!important}
 /* Keep Explore category chips compact: remove the stray pseudo-dot and enlarge labels only. */
 .map-workspace-panel[data-destination="explore"] .map-light:before{display:none!important}.map-workspace-panel[data-destination="explore"] .map-light-label{font-size:.82rem!important;line-height:1!important}.map-workspace-panel[data-destination="explore"] .map-light{font-size:.82rem!important}
+/* Collapsed Customize Explore should end at its summary, with no empty tail. */
+.map-workspace-panel[data-destination="explore"] .advanced-filters:not([open]){margin-bottom:0!important;padding-bottom:0!important}.map-workspace-panel[data-destination="explore"]:has(.advanced-filters:not([open])){padding-bottom:0!important;min-height:0!important}
