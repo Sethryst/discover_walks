@@ -1631,16 +1631,19 @@ body.location-available .context-help-button {
 .workspace-home{min-height:0}.workspace-experience{min-height:0;max-height:100%;overflow:hidden}.workspace-experience>.workspace-tool-pills{flex:0 0 auto}.workspace-experience>.workspace-route-summary,.workspace-experience>.workspace-tool-page{min-height:0;overflow-y:auto;overscroll-behavior:contain;padding-bottom:4px}.workspace-route-controls{flex:0 0 auto}
 @media(max-width:720px){.map-workspace-panel[data-destination="maps"]>[data-map-panel="maps"]{display:flex;flex-direction:column;min-height:0}.map-workspace-panel[data-destination="maps"] #myMapsPanel,.map-workspace-panel[data-destination="maps"] #personalPlacesPanel{min-height:0;display:flex;flex-direction:column}.map-workspace-panel[data-destination="maps"] .workspace-home{min-height:0;overflow:hidden}.map-workspace-panel[data-destination="maps"] .workspace-experience{height:100%;max-height:100%;gap:7px}.map-workspace-panel[data-destination="maps"] .workspace-experience>.workspace-tool-pills{position:sticky;top:0;z-index:2;background:rgba(255,250,240,.97);padding-bottom:4px}.map-workspace-panel[data-destination="maps"] .workspace-experience>.workspace-route-summary,.map-workspace-panel[data-destination="maps"] .workspace-experience>.workspace-tool-page{overflow-y:auto}}
 .workspace-walk-card{display:grid;gap:12px;padding:14px;border:1px solid var(--line);border-radius:14px;background:#fff}.workspace-walk-card-heading{display:flex;justify-content:space-between;align-items:start}.workspace-walk-card-heading h2{margin:0;font:600 1.2rem Georgia,serif}.workspace-walk-card-heading>span{font-size:.7rem;font-weight:800;color:#66736d}.workspace-edit-stops{display:grid;gap:7px}.workspace-edit-stops label{display:flex;align-items:center;gap:8px}.workspace-edit-stops b{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--ink);color:var(--paper);font-size:.65rem}.workspace-edit-stops input{min-width:0;flex:1;border:1px solid var(--line);border-radius:8px;padding:8px;background:#fff;color:var(--ink);font:inherit}.workspace-edit-row{display:grid;grid-template-columns:1fr 1fr;gap:7px}.workspace-edit-row button,.workspace-edit-row select{min-height:36px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);font:inherit;font-size:.72rem;font-weight:750}
-.map-workspace-panel > header { gap: 0 !important; padding: 6px 8px !important; }
-.map-workspace-header-tabs { display: flex; align-items: center; gap: 3px; min-width: 0; overflow-x: auto; scrollbar-width: none; }
-.map-workspace-header-tabs::-webkit-scrollbar { display: none; }
-.map-workspace-header-tab { box-sizing: border-box; width: 83px; min-width: 83px; height: 44px; min-height: 44px !important; padding: 0 !important; border: 0 !important; border-radius: 13px !important; background: transparent !important; color: #173c35 !important; font: inherit; font-weight: 750 !important; font-size: .78rem !important; }
-.map-workspace-header-tab.active, .map-workspace-header-tab:hover, .map-workspace-header-tab:focus-visible { background: #173c35 !important; color: #fffaf0 !important; }
-.map-workspace-panel > header > .map-workspace-header-actions { flex: 0 0 auto; gap: 0 !important; margin-right: 3px !important; }
-.map-workspace-header-title { display: block; }
-.map-workspace-header-title strong { font-size: 16px; font-weight: 650; }
-.map-workspace-header-tabs { display: none; }
-.map-workspace-panel[data-destination="maps"] .map-workspace-header-title { display: none; }
-.map-workspace-panel[data-destination="maps"] .map-workspace-header-tabs { display: flex; }
-#mapWorkspacePanel[data-destination="maps"] .map-workspace-header-actions #closeMapWorkspace,#mapWorkspacePanel[data-destination="maps"] .map-workspace-header-actions #resizeMapWorkspace{width:44px!important;height:44px!important;min-height:44px!important}
-#mapWorkspacePanel[data-destination="maps"] .map-workspace-header-actions{width:92px!important;min-width:92px!important}
+ /* Workspace header: one stable row for title, section tabs, and actions. */
+ .map-workspace-panel > header { gap: 6px !important; padding: 6px 8px !important; }
+ .map-workspace-header-title { flex: 0 0 auto; min-width: 0; }
+ .map-workspace-header-title strong { display: block; font-size: 16px; font-weight: 650; white-space: nowrap; }
+ .map-workspace-header-tabs { display: flex !important; flex: 1 1 0% !important; width: auto !important; min-width: 0 !important; align-items: center; gap: 3px; overflow-x: auto; scrollbar-width: none; visibility: visible !important; opacity: 1 !important; }
+ .map-workspace-header-tabs::-webkit-scrollbar { display: none; }
+ .map-workspace-header-tab { display: grid !important; visibility: visible !important; opacity: 1 !important; place-items: center; box-sizing: border-box; flex: 1 1 0% !important; width: auto !important; min-width: 72px !important; height: 44px !important; min-height: 44px !important; padding: 0 10px !important; border: 0 !important; border-radius: 13px !important; background: transparent !important; color: #173c35 !important; font: inherit; font-weight: 750 !important; font-size: .78rem !important; line-height: 1; white-space: nowrap; }
+ .map-workspace-header-tab.active, .map-workspace-header-tab:hover, .map-workspace-header-tab:focus-visible { background: #173c35 !important; color: #fffaf0 !important; }
+ .map-workspace-panel > header > .map-workspace-header-actions { flex: 0 0 auto; width: 92px !important; min-width: 92px !important; gap: 0 !important; margin-left: auto !important; margin-right: 0 !important; }
+ .map-workspace-panel > header > .map-workspace-header-actions button { flex: 0 0 46px; width: 46px !important; height: 44px !important; min-height: 44px !important; white-space: nowrap; }
+ .map-workspace-panel[data-destination="maps"] .map-workspace-header-title { display: none; }
+ @media (max-width: 720px) {
+   .map-workspace-panel > header { gap: 4px !important; padding: 4px 6px !important; }
+   .map-workspace-panel > header > .map-workspace-header-actions { width: 92px !important; min-width: 92px !important; }
+   .map-workspace-header-tab { min-width: 68px; padding-inline: 6px !important; }
+ }
