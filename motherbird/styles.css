@@ -1642,3 +1642,5 @@ body.location-available .context-help-button {
 .map-workspace-header-tabs { display: none; }
 .map-workspace-panel[data-destination="maps"] .map-workspace-header-title { display: none; }
 .map-workspace-panel[data-destination="maps"] .map-workspace-header-tabs { display: flex; }
+#mapWorkspacePanel[data-destination="maps"] .map-workspace-header-actions #closeMapWorkspace,#mapWorkspacePanel[data-destination="maps"] .map-workspace-header-actions #resizeMapWorkspace{width:44px!important;height:44px!important;min-height:44px!important}
+#mapWorkspacePanel[data-destination="maps"] .map-workspace-header-actions{width:92px!important;min-width:92px!important}
