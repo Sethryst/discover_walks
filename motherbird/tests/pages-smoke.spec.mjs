@@ -42,3 +42,29 @@ test('fresh Pages context reaches startup-ready and responds to core controls', 
   await expect(page.locator('#radialWalkButton')).toBeVisible();
   await expect(page.locator('#ambientRouteAlternatives')).toBeAttached();
 });
+
+test.use({ serviceWorkers: 'block' });
+test('workspace lifecycle survives destination changes, Draw layers, close/reopen, and resize', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(`${url}${url.includes('?') ? '&' : '?'}workspace-flow=${Date.now()}`, { waitUntil: 'domcontentloaded' });
+  await expect.poll(async () => page.evaluate(() => globalThis.__MOTHERBIRD_STARTUP__?.stages?.some((stage) => stage.stage === 'startup-ready')), { timeout: deadline }).toBe(true);
+  const panel = page.locator('#mapWorkspacePanel');
+  await page.locator('#libraryTab').click();
+  await expect(panel).toBeVisible();
+  await expect(page.locator('#mapWorkspaceTitle')).toHaveText('Workspace');
+  await page.locator('#quickDrawButton').click();
+  await expect(panel).toBeVisible();
+  await expect(page.locator('#mapWorkspaceTitle')).toHaveText('Draw');
+  await expect(page.locator('#mapWorkspacePanel > header')).toBeVisible();
+  await page.locator('#manageMapLayers').click();
+  await expect(page.locator('#mapWorkspaceTitle')).toHaveText('Map layers');
+  await expect(page.locator('[data-map-panel="layers"]')).toContainText('Map layers');
+  await page.locator('#closeMapWorkspace').click({ force: true });
+  await expect(panel).toBeHidden();
+  await page.locator('#quickDrawButton').click();
+  await expect(panel).toBeVisible();
+  await page.locator('[data-workspace-header-tab="journal"]').click();
+  const before = await panel.getAttribute('data-resize-state');
+  await page.locator('#resizeMapWorkspace').click();
+  await expect(panel).not.toHaveAttribute('data-resize-state', before || '');
+});

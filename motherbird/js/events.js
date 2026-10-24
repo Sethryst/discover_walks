@@ -199,6 +199,7 @@ async function setMapWorkspace(destination = '', { toggle = true, forceOpen = fa
   // already selected must keep it open; otherwise the wide layout appears to
   // ignore the Explore click because boot opens this panel automatically.
   const next = !forceOpen && toggle && current === destination && !panel.classList.contains('hidden') ? '' : destination;
+  if (destination === 'layers' && current === 'draw') panel.dataset.returnDestination = 'draw';
   panel.dataset.destination = next;
   panel.classList.toggle('hidden', !next);
   document.body.classList.toggle('map-workspace-open', Boolean(next));
@@ -210,7 +211,7 @@ async function setMapWorkspace(destination = '', { toggle = true, forceOpen = fa
     button.setAttribute('aria-expanded', String(active));
   });
   document.querySelectorAll('[data-map-panel]').forEach((section) => section.classList.toggle('hidden', section.dataset.mapPanel !== next));
-  if (next) el('mapWorkspaceTitle').textContent = next === 'maps' ? 'Workspace' : next[0].toUpperCase() + next.slice(1);
+  if (next) el('mapWorkspaceTitle').textContent = ({ maps: 'Workspace', layers: 'Map layers', draw: 'Draw', explore: 'Explore' })[next] || next[0].toUpperCase() + next.slice(1);
   if (next === 'maps') {
     renderPersonalPlacesPanel();
   }
@@ -224,6 +225,11 @@ async function setMapWorkspace(destination = '', { toggle = true, forceOpen = fa
 
 function bindMapWorkspace() {
   el('closeMapWorkspace')?.addEventListener('click', () => setMapWorkspace(''));
+  document.addEventListener('click', (event) => {
+    if (event.target.closest('#manageMapLayers')) { setMapWorkspace('layers', { forceOpen: true }); return; }
+    if (event.target.closest('[data-return-draw]')) { setMapWorkspace('draw', { forceOpen: true }); return; }
+    if (event.target.closest('[data-return-explore]')) { setMapWorkspace('explore', { forceOpen: true }); }
+  });
   document.querySelectorAll('[data-workspace-header-tab]').forEach((button) => button.addEventListener('click', () => {
     const tab = button.dataset.workspaceHeaderTab;
     if (tab === 'walk') {

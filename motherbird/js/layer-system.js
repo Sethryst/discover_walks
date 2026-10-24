@@ -43,7 +43,8 @@ const LIGHT_CHIPS = {
   cuisine: [
     { id: 'cafes', label: 'cafés', tags: ['coffee', 'coffee_shop', 'cafe'] },
     { id: 'markets', label: 'markets', tags: ['market', 'farmers_market', 'grocery', 'supermarket', 'convenience'] },
-    { id: 'restaurants', label: 'restaurants', tags: ['restaurant', 'fast_food'] }
+    { id: 'restaurants', label: 'restaurants', tags: ['restaurant', 'fast_food'] },
+    { id: 'tex_mex', label: 'tex mex', tags: ['tex_mex'] }
   ]
 };
 

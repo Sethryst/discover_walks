@@ -414,7 +414,7 @@ export async function initMapPaint() {
     void renderMapDrawings();
   });
   el('exportMapArtifacts')?.addEventListener('click', exportMapArtifacts);
-  el('manageMapLayers')?.addEventListener('click', () => window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'maps', forceOpen: true } })));
+  el('manageMapLayers')?.addEventListener('click', () => window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'layers', forceOpen: true } })));
   window.addEventListener('map-workspace-changed', ({ detail }) => {
     const active = detail?.destination === 'draw' && detail.open;
     if (!active) finishMapEditing();
