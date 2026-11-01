@@ -1480,6 +1480,9 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
 }
 #mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button:hover { background: #d9e8f0!important; color: #17202a!important; }
 #mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button + button { margin-left: 0!important; }
+#mapWorkspacePanel[data-destination="maps"] .workspace-experience > .workspace-tool-pills { display: none!important; }
+#mapWorkspacePanel[data-destination="maps"] .map-workspace-header-tabs { display: grid!important; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px!important; flex: 1 1 auto!important; width: auto!important; min-width: 0!important; overflow: visible!important; }
+#mapWorkspacePanel[data-destination="maps"] .map-workspace-header-tab { width: 100%!important; min-width: 0!important; margin: 0!important; padding: 0 8px!important; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 /* Do not expose an orange style surface while the basemap is panning or zooming. */
 .app-shell #map,
