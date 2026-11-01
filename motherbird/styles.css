@@ -1448,6 +1448,46 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
   border-bottom: 0!important;
 }
 
+/* Workspace cleanup: keep the three destinations in one stable, evenly sized row. */
+#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills {
+  position: static!important;
+  display: grid!important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4px!important;
+  width: auto!important;
+  margin: 0!important;
+  padding: 4px!important;
+  overflow: visible!important;
+  white-space: normal!important;
+}
+#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills::before { display: none!important; }
+#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button,
+#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button:first-child,
+#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button:last-child {
+  width: 100%!important;
+  min-width: 0!important;
+  min-height: 34px!important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-radius: 7px!important;
+  box-shadow: none!important;
+}
+#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button.active {
+  background: #0072b2!important;
+  color: #fff!important;
+  box-shadow: none!important;
+}
+#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button:hover { background: #d9e8f0!important; color: #17202a!important; }
+
+/* Do not expose an orange style surface while the basemap is panning or zooming. */
+.app-shell #map,
+.app-shell #map.leaflet-container,
+.app-shell[class*="map-style-"] #map {
+  background-color: #dfe7d8!important;
+  background-image: none!important;
+}
+
 /* Workspace and Explore share the same bottom-open surface and opacity. */
 #mapWorkspacePanel[data-destination="maps"],
 #mapWorkspacePanel[data-destination="explore"] {
