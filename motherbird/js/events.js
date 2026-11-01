@@ -233,8 +233,8 @@ function bindMapWorkspace() {
   document.querySelectorAll('[data-workspace-header-tab]').forEach((button) => button.addEventListener('click', () => {
     const tab = button.dataset.workspaceHeaderTab;
     state.settings.myPlacesSection = 'workspace';
-    setMapWorkspace('maps', { forceOpen: true });
     window.dispatchEvent(new CustomEvent('workspace-tool-requested', { detail: { tool: tab === 'walk' ? 'options' : tab } }));
+    setMapWorkspace('maps', { forceOpen: true });
   }));
   const resizeButton = el('resizeMapWorkspace');
   const advanceWorkspaceSize = () => {
