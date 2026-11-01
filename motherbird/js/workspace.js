@@ -289,7 +289,7 @@ export async function renderWorkspacePanel(target, { filter = 'all' } = {}) {
     const rows = [];
     for (const [store, type] of LINKABLE_STORES) for (const record of await db.all(store)) if (filter === 'all' || type === filter || (filter === 'route' && ['walk', 'plan'].includes(type))) rows.push({ type, record });
     for (const record of await db.all('moments')) { const type = record.type === 'drawing' ? 'annotation' : 'journal'; if (['journal', 'history', 'drawing'].includes(record.type) && (filter === 'all' || type === filter)) rows.push({ type, record }); }
-    target.innerHTML = rows.map(({ type, record }) => `<article class="workspace-record workspace-record-${type}" data-workspace-delete="${escapeHtml(record.id)}"><h3>${escapeHtml(recordTitle(type, record))}</h3><p>${escapeHtml(recordDetail(type, record) || 'Saved locally')}</p></article>`).join('');
+    target.innerHTML = rows.map(({ type, record }) => `<article class="workspace-record workspace-record-${type} workspace-record-simple" data-workspace-delete="${escapeHtml(record.id)}"><div class="workspace-record-body"><h3>${escapeHtml(recordTitle(type, record))}</h3><p>${escapeHtml(recordDetail(type, record) || 'Saved locally')}</p></div></article>`).join('');
     return;
   }
   target.classList?.add?.('workspace-home');

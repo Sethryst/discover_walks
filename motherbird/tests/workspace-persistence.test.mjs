@@ -69,6 +69,7 @@ test('opening workspace reconciles old capture flows and Routes includes recorde
   const target = {};
   await renderWorkspacePanel(target);
   for (const title of ['Recorded afternoon walk', 'Voice memo', 'Boundary sketch', 'Field note']) assert.ok(target.innerHTML.includes(title));
+  assert.match(target.innerHTML, /workspace-record-simple[\s\S]*workspace-record-body/);
   await renderWorkspacePanel(target, { filter: 'route' });
   assert.match(target.innerHTML, /Recorded afternoon walk/);
   assert.doesNotMatch(target.innerHTML, /Voice memo/);
