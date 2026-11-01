@@ -1652,6 +1652,8 @@ body.location-available .context-help-button {
  .map-workspace-panel > header > .map-workspace-header-actions button { flex: 0 0 46px; width: 46px !important; height: 44px !important; min-height: 44px !important; white-space: nowrap; }
  .map-workspace-panel[data-destination="maps"] .map-workspace-header-title { display: none; }
  .map-workspace-panel[data-destination="explore"] .map-workspace-header-tabs { display: none !important; }
+ .map-workspace-panel[data-destination="maps"] .map-workspace-header-tabs { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)); flex: 1 1 auto !important; overflow: hidden; }
+ .map-workspace-panel[data-destination="maps"] .map-workspace-header-tab { min-width: 0 !important; width: 100% !important; overflow: hidden; text-overflow: ellipsis; }
  @media (max-width: 720px) {
    .map-workspace-panel > header { gap: 4px !important; padding: 4px 6px !important; }
    .map-workspace-panel > header > .map-workspace-header-actions { width: 92px !important; min-width: 92px !important; }
