@@ -222,6 +222,7 @@ async function renderJournalRoomWorkspaceSummary() {
 
 const WORKSPACE_TOOLS = [['options', 'Walk'], ['journal', 'Journal'], ['learn', 'Learn']];
 let activeWorkspaceTool = 'journal';
+let pendingWorkspaceTool = null;
 let workspaceBuilderMode = 'auto-round-trip';
 let workspaceBuilderMinutes = 35;
 const embeddedWorkspaceSurfaces = new Map();
@@ -274,7 +275,12 @@ function selectWorkspaceTool(tool) {
   if (!['options', 'journal', 'learn'].includes(tool)) return;
   activeWorkspaceTool = tool;
   const target = document.querySelector('#personalPlacesPanel .workspace-home');
-  if (target) void renderWorkspacePanel(target);
+  if (target) {
+    pendingWorkspaceTool = null;
+    void renderWorkspacePanel(target);
+  } else {
+    pendingWorkspaceTool = tool;
+  }
 }
 
 async function renderWorkspaceRecordSummary(target) {
@@ -334,6 +340,9 @@ export function initWorkspaceRuntime() {
   if (initWorkspaceRuntime.bound) return;
   initWorkspaceRuntime.bound = true;
   window.addEventListener('workspace-tool-requested', (event) => selectWorkspaceTool(event.detail?.tool));
+  window.addEventListener('map-workspace-changed', ({ detail }) => {
+    if (detail?.destination === 'maps' && pendingWorkspaceTool) requestAnimationFrame(() => selectWorkspaceTool(pendingWorkspaceTool));
+  });
   document.addEventListener('click', async (event) => {
     if (event.target.closest('.workspace-start-walk')) { await startWalk({ routeMode: 'tracking' }); return; }
     if (event.target.closest('[data-workspace-journal]')) { await openJournal('workspace-current-walk'); return; }
