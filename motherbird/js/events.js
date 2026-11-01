@@ -226,16 +226,6 @@ async function setMapWorkspace(destination = '', { toggle = true, forceOpen = fa
 function bindMapWorkspace() {
   el('closeMapWorkspace')?.addEventListener('click', () => setMapWorkspace(''));
   document.addEventListener('click', (event) => {
-    const button = event.target.closest?.('[data-workspace-header-tab]');
-    if (!button) return;
-    event.preventDefault();
-    event.stopImmediatePropagation();
-    const tab = button.dataset.workspaceHeaderTab;
-    state.settings.myPlacesSection = 'workspace';
-    setMapWorkspace('maps', { forceOpen: true });
-    window.setTimeout(() => window.dispatchEvent(new CustomEvent('workspace-tool-requested', { detail: { tool: tab === 'walk' ? 'options' : tab } })), 0);
-  }, true);
-  document.addEventListener('click', (event) => {
     if (event.target.closest('#manageMapLayers')) { setMapWorkspace('layers', { forceOpen: true }); return; }
     if (event.target.closest('[data-return-draw]')) { setMapWorkspace('draw', { forceOpen: true }); return; }
     if (event.target.closest('[data-return-explore]')) { setMapWorkspace('explore', { forceOpen: true }); }
