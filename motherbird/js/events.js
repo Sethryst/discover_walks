@@ -232,19 +232,9 @@ function bindMapWorkspace() {
   });
   document.querySelectorAll('[data-workspace-header-tab]').forEach((button) => button.addEventListener('click', () => {
     const tab = button.dataset.workspaceHeaderTab;
-    if (tab === 'walk') {
-      state.settings.myPlacesSection = 'workspace';
-      setMapWorkspace('maps', { forceOpen: true });
-      return;
-    }
-    if (tab === 'journal') {
-      void openJournal();
-      return;
-    }
-    if (tab === 'learn') {
-      openBackpack();
-      requestAnimationFrame(() => document.querySelector('[data-guide-tab="learn"]')?.click());
-    }
+    state.settings.myPlacesSection = 'workspace';
+    setMapWorkspace('maps', { forceOpen: true });
+    window.dispatchEvent(new CustomEvent('workspace-tool-requested', { detail: { tool: tab === 'walk' ? 'options' : tab } }));
   }));
   const resizeButton = el('resizeMapWorkspace');
   const advanceWorkspaceSize = () => {
