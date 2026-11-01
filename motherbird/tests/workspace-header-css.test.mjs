@@ -9,5 +9,6 @@ test('workspace header keeps visible tabs and 44px action targets', () => {
   assert.match(html, /class="map-workspace-header-tabs"/);
   assert.match(css, /\.map-workspace-header-tabs\s*\{[^}]*display:\s*flex\s*!important;[^}]*flex:\s*1 1 0%\s*!important/s);
   assert.match(css, /\.map-workspace-header-tab\s*\{[^}]*display:\s*grid\s*!important;[^}]*visibility:\s*visible\s*!important/s);
+  assert.match(css, /\.map-workspace-panel\[data-destination="explore"\] \.map-workspace-header-tabs\s*\{[^}]*display:\s*none\s*!important/s);
   assert.match(css, /\.map-workspace-panel > header > \.map-workspace-header-actions button\s*\{[^}]*height:\s*44px\s*!important/s);
 });
