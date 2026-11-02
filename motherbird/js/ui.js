@@ -57,20 +57,6 @@ export function openSheet(id) {
   const sheet = el(id);
   if (!sheet) return;
   sheet.classList.remove('hidden');
-  if (id === 'radioSheet') {
-    const resize = el('toggleRadioCompact');
-    resize.onclick = () => {
-      const sizes = ['sheet-small', 'sheet-mid', 'sheet-wide'];
-      const current = sizes.indexOf(sheet.dataset.size || 'sheet-mid');
-      const next = sizes[(current + 1) % sizes.length];
-      sheet.dataset.size = next;
-      sheet.classList.remove(...sizes);
-      sheet.classList.add(next);
-      resize.setAttribute('aria-label', `Radio size: ${next.replace('sheet-', '')}`);
-      resize.setAttribute('aria-pressed', String(next !== 'sheet-mid'));
-      resize.textContent = next === 'sheet-small' ? '▤' : next === 'sheet-wide' ? '▥' : '↕';
-    };
-  }
   // Large contextual companion GIFs should load only when their sheet is
   // actually opened, then remain available through the runtime media cache.
   sheet.querySelectorAll('img[data-lazy-src]').forEach((image) => {

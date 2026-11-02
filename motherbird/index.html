@@ -37,6 +37,7 @@
   <link rel="stylesheet" href="./map-customization.css?v=20261012-map-studio-2" />
   <link rel="stylesheet" href="./splash-fix.css?v=20261007-library-nav-fix-1" />
   <link rel="stylesheet" href="./css/radio-theme.css?v=20261011-blue-phosphor-1" />
+  <link rel="stylesheet" href="./css/biodiversity-icons.css?v=20261102-biodiversity-icons-1" />
   <style>.top-cluster .profile-control{order:-1}@media(max-width:720px){.top-cluster{grid-template-columns:40px 40px minmax(0,1fr)}.top-cluster .profile-control{grid-column:1;grid-row:1}.top-cluster .locate-stack{grid-column:2;grid-row:1}.top-cluster .map-search{grid-column:3;grid-row:1}}</style>
   <style>#radialRouteOptionsButton{display:none!important}.planner-start-walk{width:100%;justify-content:center;margin-bottom:8px}.top-cluster>.start-panel:not(.hidden){display:block!important;position:fixed!important;top:58px!important;left:12px!important;right:auto!important;z-index:2000!important}@media(max-width:720px){.top-cluster{grid-template-columns:40px minmax(0,1fr) 40px max-content!important}.top-cluster .profile-control{grid-column:1;grid-row:1}.top-cluster>.map-search{grid-column:2;grid-row:1;grid-area:auto;width:100%!important}.top-cluster .locate-stack{grid-column:3;grid-row:1}.top-cluster>.regional-navigation{position:static!important;left:auto!important;top:auto!important;grid-column:4;grid-row:1;grid-area:auto}.top-cluster>.start-panel:not(.hidden){top:auto!important;left:8px!important;right:8px!important;bottom:calc(64px + env(safe-area-inset-bottom))!important}}</style>
   <title>Walk & Wildlife</title>
@@ -228,7 +229,7 @@
   </section>
 
   <section class="sheet radio-sheet hidden" id="radioSheet" role="dialog" aria-modal="true" aria-labelledby="radioTitle">
-    <div class="sheet-header-actions"><button class="sheet-resize" id="toggleRadioCompact" type="button" aria-label="Toggle compact radio" aria-pressed="false">▤</button><button class="close-sheet" id="radioCloseButton" type="button" aria-label="Close">×</button></div>
+    <div class="sheet-header-actions"><button class="close-sheet" id="radioCloseButton" type="button" aria-label="Close">×</button></div>
     <h2 id="radioTitle">Radio</h2>
     <fieldset class="radio-source-switches" aria-label="Broadcast sources"><legend>Sources</legend><label><input id="radioLiveSources" type="checkbox" /> Live</label><label><input id="radioLocalSources" type="checkbox" checked /> Local</label></fieldset>
     <div class="radio-live-player hidden" id="radioLivePlayer" aria-live="polite"><div><small>LIVE SOUNDCLOUD</small><strong>Permissioned live broadcast</strong></div><label class="radio-live-picker">Find a playlist<input id="radioSoundcloudSearch" type="search" placeholder="Search 60 playlists…" autocomplete="off" /><span id="radioSoundcloudCount" aria-live="polite"></span></label><label class="radio-live-picker">Playlist<select id="radioSoundcloudSelect"></select></label><iframe id="radioSoundcloudFrame" title="SoundCloud live broadcast" allow="autoplay" loading="lazy"></iframe><label class="radio-live-picker">Track in this playlist<select id="radioSoundcloudTrackSelect"><option>Loading playlist tracks…</option></select><span id="radioSoundcloudTrackCount" aria-live="polite"></span></label></div>
