@@ -121,7 +121,7 @@ export async function openJournal(walkId = null) {
   else if (walkId && walkId !== previousWalkId) { el('journalNote').value = ''; delete form.dataset.momentId; }
   const walks = state.walks?.length || 0;
   const notes = moments.filter((item) => item.type === 'journal').length;
-  el('journalTitle').textContent = `${new Date().toLocaleDateString([], { month: 'short', day: 'numeric' })} · private on this device ⌄`;
+  el('journalTitle').innerHTML = `${new Date().toLocaleDateString([], { month: 'short', day: 'numeric' })} <span aria-hidden="true">⌄</span>`;
   el('journalNavDropdown')?.classList.add('hidden');
   el('journalTitle').setAttribute('aria-expanded', 'false');
   el('journalWordCount').textContent = `${wordCount(el('journalNote').value)} words`;

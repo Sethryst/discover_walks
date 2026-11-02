@@ -94,7 +94,7 @@
 
   <section class="sheet split-sheet hidden" id="journalSheet" role="dialog" aria-modal="false" aria-labelledby="journalTitle">
     <button class="close-sheet" data-close-sheet aria-label="Close">×</button>
-    <button class="journal-context" id="journalTitle" type="button" aria-expanded="false" aria-controls="journalNavDropdown">Today · private on this device ⌄</button>
+    <button class="journal-context" id="journalTitle" type="button" aria-expanded="false" aria-controls="journalNavDropdown">Today <span aria-hidden="true">⌄</span></button>
     <nav id="journalNavDropdown" class="journal-nav hidden" aria-label="Journal counts and jump"></nav>
     <div id="persistentJournal" class="journal-scroll" data-sheet-state="expanded">
         <form id="journalForm"><textarea class="lined-journal" id="journalNote" rows="5" maxlength="12000" aria-label="Current journal page" placeholder="What did you notice?"></textarea><small id="journalWordCount">0 words</small></form>
@@ -266,7 +266,7 @@
               navigator.serviceWorker?.getRegistrations().then((registrations) => Promise.all(registrations.map((registration) => registration.unregister())))
             ]).finally(() => location.replace(cleanUrl));
           })();
-        </script><script src="./vendor/leaflet/leaflet.js"></script><script src="./vendor/leaflet-markercluster/leaflet.markercluster.js"></script><script src="./vendor/leaflet-geoman/leaflet-geoman.min.js"></script><script src="./vendor/turf/turf.min.js"></script><script src="./vendor/maplibre-gl.js"></script><script src="./supabase-config.js"></script><script type="module" src="./app.js?v=workspace-tabs-20261101-32"></script>
+        </script><script src="./vendor/leaflet/leaflet.js"></script><script src="./vendor/leaflet-markercluster/leaflet.markercluster.js"></script><script src="./vendor/leaflet-geoman/leaflet-geoman.min.js"></script><script src="./vendor/turf/turf.min.js"></script><script src="./vendor/maplibre-gl.js"></script><script src="./supabase-config.js"></script><script type="module" src="./app.js?v=workspace-tabs-20261102-1"></script>
 </body>
 </html>
 

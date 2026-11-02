@@ -7,7 +7,7 @@ import { getCurrentLocation, startWalk, stopWalk, updateActiveWalkDirection } fr
 import { openBackpack, openJournal, closeSheets, openSheet, renderGeofenceCategoryChips, setArchiveFilter, toast } from './ui.js';
 import { city, poiTags, searchPois } from './poi.js';
 import { localSearchHits, searchRowHtml, emptySearchHtml } from './search.js';
-import { initRegionalNavigation } from './regional-navigation.js?v=20261011-fairfax-subregions-1';
+import { initRegionalNavigation } from './regional-navigation.js?v=20261101-conditional-menu-1';
 import { switchCity } from './city.js';
 import { generateTimeBasedPlan, lockSelectedPlanOnMap, changePlan, setPlanningMode } from './planner.js?v=20261014-single-composed-walk-1';
 import { routeOnFoot, routeFailureMessage } from './routing.js?v=20261011-cross-cell-stitch-3';
@@ -45,6 +45,13 @@ export function initEvents() {
     if (state.plannedRoute?.archetype) window.dispatchEvent(new CustomEvent('ambient-route-response', { detail: ambientResponse(state.plannedRoute, 'completed') }));
   });
   initJournalPane();
+  const journalScroll = document.getElementById('persistentJournal');
+  journalScroll?.addEventListener('wheel', (event) => {
+    if (Math.abs(event.deltaY) < 1) return;
+    journalScroll.scrollTop += event.deltaY;
+    event.preventDefault();
+    event.stopPropagation();
+  }, { passive: false });
   window.addEventListener('journal-data-changed', () => void renderArchive());
   bindSheets(); bindLocationControls(); bindCompanionMenu(); bindSearch(); bindJournal(); bindDeviceControls();
   initMessengerBird();

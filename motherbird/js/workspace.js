@@ -275,7 +275,7 @@ async function hydrateWorkspaceLearn(target) {
   const source = document.getElementById('fieldGuideList');
   if (!list || !source) return;
   const sections = [];
-  const guideTabs = [['discover', 'Nearby'], ['learn', 'Learn']];
+  const guideTabs = [['learn', 'Learn']];
   if (isBiodiversitySupported()) guideTabs.push(['biodiversity', 'Nature']);
   for (const [tab, title] of guideTabs) {
     await renderFieldGuide(tab);
