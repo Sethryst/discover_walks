@@ -331,11 +331,9 @@ export async function initMapPaint() {
   pinGrid.addEventListener('click', (event) => {
     const pin = event.target.closest('[data-draw-pin]'); if (!pin) return;
     customPinCategory = pin.dataset.drawPin;
-    customIconActive = true;
-    setActive(true);
-    state.map.pm.disableDraw();
-    state.map.pm.enableDraw('Marker', { snappable: true });
-    toast(`${pin.textContent.trim()} pin active. Click the map to place it.`);
+    customIconActive = false;
+    window.dispatchEvent(new CustomEvent('custom-pin-placement-requested', { detail: { categoryName: customPinCategory, customIcon: true } }));
+    toast(`${pin.textContent.trim()} pin selected. Move the map, then confirm the crosshair location.`);
   });
   window.addEventListener('personal-place-map-location-requested', () => {
     customPinCategory = null;

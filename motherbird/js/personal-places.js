@@ -467,12 +467,13 @@ export function openPersonalPlaceForm({ editId = null, publicMarkerId = null, ca
   if (point) el('personalPlaceName').focus();
 }
 
-function armPersonalPlaceCrosshair() {
-  state.personalPlaceDraft = readFormDraft();
+function armPersonalPlaceCrosshair(seed = null) {
+  state.personalPlaceDraft = { ...readFormDraft(), ...(seed || {}) };
   state.personalPlaceDraft.location = null;
   state.personalPlaceSelecting = true;
   document.body.classList.add('placing-personal-place');
   el('confirmCrosshairButton')?.classList.remove('hidden');
+  window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: '', forceOpen: true } }));
   closeSheets();
   const myPlacesButton = document.querySelector('[data-light="personal"]');
   if (myPlacesButton) {
@@ -497,7 +498,8 @@ function finishPersonalPlaceCrosshair(location) {
     if (nearest?.distance <= 100) draft.name = nearest.marker.name || nearest.marker.title || '';
   }
   state.personalPlaceDraft = null;
-  openPersonalPlaceForm({ draft });
+  if (draft.categoryName) window.dispatchEvent(new CustomEvent('personal-place-create-requested', { detail: draft }));
+  else openPersonalPlaceForm({ draft });
 }
 
 async function categoryForDraft(draft) {
@@ -763,6 +765,10 @@ function bindPersonalPlaceControls() {
     chooseLocation.textContent = 'Choose on map';
     chooseLocation.addEventListener('click', () => { closeSheets(); window.dispatchEvent(new CustomEvent('personal-place-map-location-requested')); });
   }
+  el('confirmCrosshairButton')?.addEventListener('click', () => {
+    const center = state.map?.getCenter?.();
+    if (center) window.dispatchEvent(new CustomEvent('personal-place-location-selected', { detail: { lat: center.lat, lng: center.lng } }));
+  });
   el('addAdvancedPlaceButton')?.addEventListener('click', () => openPersonalPlaceForm({ draft: { advancedOnly: true, visibility: 'private', light: 'personal' } }));
   if (el('advancedPlacesToggle')) el('advancedPlacesToggle').checked = Boolean(state.settings.showAdvancedPlaces);
   el('advancedPlacesToggle')?.addEventListener('change', async (event) => { state.settings.showAdvancedPlaces = event.target.checked; await db.put('settings', state.settings); renderPersonalPlacesOnMap(); renderPersonalPlacesPanel(); window.dispatchEvent(new CustomEvent('layer-state-dirty')); });
@@ -772,6 +778,7 @@ function bindPersonalPlaceControls() {
     openPersonalPlaceForm(detail.customIcon ? { ...detail, draft: { ...detail } } : detail);
     if (detail.commitImmediately) el('personalPlaceForm')?.requestSubmit();
   });
+  window.addEventListener('custom-pin-placement-requested', (event) => armPersonalPlaceCrosshair(event.detail || {}));
   window.addEventListener('personal-place-location-selected', (event) => finishPersonalPlaceCrosshair(event.detail));
   window.addEventListener('public-marker-focus-requested', (event) => {
     const marker = state.publicMarkers.find((candidate) => candidate.id === event.detail?.markerId);
