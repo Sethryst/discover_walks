@@ -774,13 +774,21 @@ function bindSearch() {
   initRegionalNavigation();
   const input = el('mapSearchInput'); const results = el('mapSearchResults');
   if (input) input.placeholder = 'Search';
-  let viewportRegionLabel = '';
-  window.addEventListener('viewport-region-changed', ({ detail }) => {
-    viewportRegionLabel = detail?.label || '';
-    if (input && (document.activeElement !== input || !input.value.trim())) input.value = viewportRegionLabel;
+  const searchControl = el('mapSearchControl');
+  const searchToggle = el('mapSearchToggle');
+  const collapseSearch = () => {
+    if (!input?.value.trim() && results?.classList.contains('hidden')) {
+      searchControl?.classList.remove('is-open');
+      searchToggle?.setAttribute('aria-expanded', 'false');
+    }
+  };
+  searchToggle?.addEventListener('click', (event) => {
+    event.stopPropagation();
+    searchControl?.classList.add('is-open');
+    searchToggle.setAttribute('aria-expanded', 'true');
+    input?.focus();
   });
-  input?.addEventListener('focus', () => { if (input.value === viewportRegionLabel) input.select(); });
-  input?.addEventListener('blur', () => { if (!input.value.trim() || input.value === viewportRegionLabel) input.value = viewportRegionLabel; });
+  input?.addEventListener('blur', () => setTimeout(collapseSearch, 0));
   let searchToken = 0;
   input?.addEventListener('input', () => {
     const query = input.value.trim();

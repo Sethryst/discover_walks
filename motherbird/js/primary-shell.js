@@ -137,10 +137,24 @@ export function initPrimaryShell() {
   });
   document.getElementById('closePrimaryPanel')?.addEventListener('click', () => panel.classList.add('hidden'));
   const profileButton = document.getElementById('profileAvatarButton');
-  profileButton?.addEventListener('click', () => {
+  const profileMenu = document.getElementById('profileMenu');
+  const closeProfileMenu = () => { profileMenu?.classList.add('hidden'); profileButton?.setAttribute('aria-expanded', 'false'); };
+  const openProfileSection = () => {
     select('me');
-    profileButton.setAttribute('aria-expanded', 'true');
+    const opening = profileMenu?.classList.contains('hidden');
+    profileMenu?.classList.toggle('hidden', !opening);
+    profileButton?.setAttribute('aria-expanded', String(opening));
+    if (opening) panel.classList.remove('hidden');
+  };
+  if (profileButton) profileButton.onclick = openProfileSection;
+  profileMenu?.addEventListener('click', (event) => {
+    const action = event.target.closest('[data-profile-action]')?.dataset.profileAction;
+    if (!action) return;
+    closeProfileMenu();
+    if (action === 'companion' || action === 'map') window.dispatchEvent(new CustomEvent('companion-menu-requested'));
+    if (action === 'online') { openSheet('backpackSheet'); window.dispatchEvent(new CustomEvent('utility-tab-requested', { detail: { tab: 'online' } })); }
   });
+  document.addEventListener('click', (event) => { if (!event.target.closest('.profile-control')) closeProfileMenu(); });
   document.getElementById('quickRadioButton')?.addEventListener('click', () => window.dispatchEvent(new CustomEvent('radio-open-requested')));
   document.getElementById('quickDrawButton')?.addEventListener('click', () => window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'draw', forceOpen: true } })));
   window.addEventListener('primary-panel-close-requested', () => panel.classList.add('hidden'));
