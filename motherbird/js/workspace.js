@@ -272,6 +272,12 @@ function workspacePage() {
 async function hydrateWorkspaceLearn(target) { const list = target.querySelector('[data-workspace-learn-list]'); const source = document.getElementById('fieldGuideList'); if (!list || !source) return; await renderFieldGuide('learn'); const clean = source.cloneNode(true); clean.querySelectorAll('.learn-workspace-header, .learn-workspace-toolbar, .learn-nearby').forEach((node) => node.remove()); list.innerHTML = clean.innerHTML || '<p class="empty-state">No linked learning content is available for this route yet.</p>'; }
 function renderWorkspaceExperience(target) {
   target.innerHTML = `<section class="workspace-experience" aria-label="Workspace"><header class="workspace-experience-header"><div><h1>${currentWalk.title}</h1></div></header><nav class="workspace-tool-pills" aria-label="Workspace sections" role="tablist">${WORKSPACE_TOOLS.map(([id, label]) => `<button type="button" role="tab" class="${activeWorkspaceTool === id ? 'active' : ''}" aria-selected="${activeWorkspaceTool === id}" data-workspace-tool="${id}">${label}</button>`).join('')}</nav>${workspacePage()}</section>`;
+  target.querySelector('.workspace-tool-pills')?.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-workspace-tool]');
+    if (!button || !button.closest('.workspace-tool-pills')) return;
+    event.preventDefault();
+    selectWorkspaceTool(button.dataset.workspaceTool);
+  });
   const header = target.querySelector('.workspace-experience-header');
   if (header && activeWorkspaceTool === 'options') {
     const chips = document.createElement('div');

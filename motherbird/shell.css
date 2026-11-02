@@ -188,6 +188,24 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
   outline-offset: 1px;
 }
 
+/* Final Explore startup state. The category strip and disclosure summary stay
+   visible, while opening Advanced Filters opts into the larger content area. */
+#mapWorkspacePanel[data-destination="explore"].workspace-small {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: 24dvh !important;
+  overflow: hidden !important;
+}
+#mapWorkspacePanel[data-destination="explore"].workspace-small > [data-map-panel="explore"] {
+  height: auto !important;
+  max-height: calc(24dvh - 20px) !important;
+  overflow: hidden !important;
+}
+#mapWorkspacePanel[data-destination="explore"].workspace-small .advanced-filters {
+  max-height: none !important;
+  overflow: visible !important;
+}
+
 /* Final Workspace contract. This stylesheet loads after the legacy shell rules. */
 #mapWorkspacePanel[data-destination="maps"] > header { flex: 0 0 auto; }
 #mapWorkspacePanel[data-destination="maps"] > [data-map-panel="maps"] { min-height: 0; display: flex; flex: 1 1 auto; flex-direction: column; overflow: hidden !important; }
