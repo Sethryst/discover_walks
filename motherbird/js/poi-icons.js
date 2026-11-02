@@ -4,7 +4,7 @@ import { HISTORY_SUBTYPES, POI_ICONS, POI_TAG_PRIORITY } from './constants.js';
 // masks, so an invalid id would otherwise silently produce a blank pin.
 export const ICON_IDS = new Set([
   'anchor', 'bench', 'book-open', 'bookmark', 'building', 'coffee', 'droplet',
-  'eye', 'home', 'map-pin', 'star', 'tree', 'utensils', 'walk'
+  'eye', 'home', 'map-pin', 'star', 'tree', 'utensils', 'walk', 'bird', 'paw-print', 'bug', 'mushroom', 'turtle', 'microscope'
 ]);
 
 // Shared tag-to-icon map for the map layer and the filter sheet. POI_ICONS is
@@ -28,7 +28,9 @@ export const ICONS = {
   mexican: 'utensils', filipino: 'utensils', food_cart: 'utensils', bakery: 'utensils',
   parking: 'parking', bicycle_parking: 'bike', bike_rack: 'bike', osm: 'map',
   community: 'home', facility: 'home', pantry: 'home', library: 'book-open',
-  recreation_center: 'building', wifi: 'home'
+  recreation_center: 'building', wifi: 'home',
+  'biodiversity:birds': 'bird', 'biodiversity:plants': 'tree', 'biodiversity:mammals': 'paw-print',
+  'biodiversity:insects': 'bug', 'biodiversity:fungi': 'mushroom', 'biodiversity:reptiles': 'turtle', 'biodiversity:other': 'microscope'
 };
 
 export const MARKER_COLORS = {
