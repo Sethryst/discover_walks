@@ -31,6 +31,7 @@ import { recoverWalkDraft, discardWalk } from './walk.js';
 import { initBiodiversity } from './biodiversity.js';
 import { initRegionalNavigation } from './regional-navigation.js?v=20261101-conditional-menu-1';
 import { initStorageDiagnostics } from './storage-diagnostics.js';
+import { initStorageHealth } from './storage-health.js';
 import { loadWorkspaceState, initWorkspaceRuntime, seedWorkspaceDemo } from './workspace.js?v=workspace-tabs-20261101-19';
 import { normalizeSavedRoute } from './saved-routes.js';
 import { initMapSettings } from './map-settings.js';
@@ -91,6 +92,7 @@ export async function init() {
   // available on browsers that finish booting slowly.
   const removePrimaryControlFallbacks = initPrimaryControls();
   initStorageDiagnostics();
+  initStorageHealth();
   const deferRegionalDataForBoot = true;
   try {
     setSplashStatus('Opening your journal…');
