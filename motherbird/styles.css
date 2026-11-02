@@ -1806,6 +1806,9 @@ body.location-available .context-help-button {
 }
 
 /* Keep Draw and Annotate tool glyphs distinct from the top quick controls. */
+.map-workspace-panel[data-destination="draw"] .draw-shapes [data-draw-shape="Marker"],
+#placeCrosshair,
+#confirmCrosshairButton { display: none !important; }
 .map-workspace-panel[data-destination="draw"] .workspace-heading-icon { display: none !important; }
 .map-workspace-panel[data-destination="draw"] #drawWorkspaceStatus { display: none !important; }
 .map-workspace-panel[data-destination="draw"] .draw-shapes .draw-tool-icon {

@@ -27,6 +27,7 @@ function saveHiddenArtifacts() {
 const hiddenArtifacts = readHiddenArtifacts();
 let freehandActive = false;
 let customIconActive = false;
+let customPinCategory = null;
 function queryCategory(poi) {
   const tags = poiTags(poi);
   if (tags.includes('event')) return 'news';
@@ -225,7 +226,8 @@ async function persistCreatedLayer(layer, shape) {
         const nearest = (state.publicMarkers || []).filter((marker) => marker.pack_id === state.activeCity && Number.isFinite(Number(marker.latitude)) && Number.isFinite(Number(marker.longitude))).map((marker) => ({ marker, distance: state.map.distance(point, [Number(marker.latitude), Number(marker.longitude)]) })).sort((a, b) => a.distance - b.distance)[0];
         layer.setIcon?.(L.divIcon({ className: 'custom-map-icon', html: '<span class="custom-icon-dot"></span>', iconSize: [22, 22], iconAnchor: [11, 11] }));
         layer.remove?.();
-        window.dispatchEvent(new CustomEvent('personal-place-create-requested', { detail: { location: { lat: point.lat, lng: point.lng }, name: nearest?.distance <= 100 ? (nearest.marker.name || 'Custom place') : 'Custom place', light: nearest?.marker.light || 'personal', sourcePoiId: nearest?.marker.id || null } }));
+        window.dispatchEvent(new CustomEvent('personal-place-create-requested', { detail: { categoryName: customPinCategory, location: { lat: point.lat, lng: point.lng }, name: nearest?.distance <= 100 ? (nearest.marker.name || 'Custom place') : 'Custom place', light: nearest?.marker.light || 'personal', sourcePoiId: nearest?.marker.id || null } }));
+        customPinCategory = null;
         return;
       }
       layer.remove?.();
@@ -297,7 +299,23 @@ export async function initMapPaint() {
   pinGrid.setAttribute('aria-label', 'Custom pin categories');
   pinGrid.innerHTML = [['Grocery', 'grocery', 'utensils', '#65b96a'], ['Shopping', 'shopping', 'building', '#8c63d8'], ['Cuisine', 'cuisine', 'coffee', '#ef8b2c'], ['Services', 'services', 'info', '#4b8ed8'], ['Health', 'health', 'heart', '#df5c55'], ['Home', 'home', 'home', '#9a6b47'], ['Transport', 'transport', 'route', '#7f8790'], ['Custom icon', 'custom', 'star', '#f6c928']].map(([label, id, icon, color]) => `<button type="button" draggable="true" aria-label="${label}; click to place or drag onto the map" data-draw-pin="${id}" style="--pin-color:${color}"><img src="./icons/${icon}.svg" alt="" aria-hidden="true"><span>${label}</span></button>`).join('');
   drawTools?.before(pinGrid);
-  pinGrid.addEventListener('click', (event) => { const pin = event.target.closest('[data-draw-pin]'); if (pin) window.dispatchEvent(new CustomEvent('personal-place-create-requested', { detail: { categoryName: pin.dataset.drawPin } })); });
+  pinGrid.addEventListener('click', (event) => {
+    const pin = event.target.closest('[data-draw-pin]'); if (!pin) return;
+    customPinCategory = pin.dataset.drawPin;
+    customIconActive = true;
+    setActive(true);
+    state.map.pm.disableDraw();
+    state.map.pm.enableDraw('Marker', { snappable: true });
+    toast(`${pin.textContent.trim()} pin active. Click the map to place it.`);
+  });
+  window.addEventListener('personal-place-map-location-requested', () => {
+    customPinCategory = null;
+    customIconActive = true;
+    setActive(true);
+    state.map.pm.disableDraw();
+    state.map.pm.enableDraw('Marker', { snappable: true });
+    toast('Custom pin active. Click the map to place it.');
+  });
   pinGrid.addEventListener('dragstart', (event) => { const pin = event.target.closest('[data-draw-pin]'); if (!pin) return; event.dataTransfer?.setData('text/plain', pin.dataset.drawPin); event.dataTransfer?.setData('application/x-walk-wildlife-pin', pin.dataset.drawPin); });
   pinGrid.addEventListener('dragover', (event) => {
     const pin = event.target.closest('[data-draw-pin]');

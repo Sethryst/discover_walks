@@ -421,7 +421,7 @@ function renderPersonalPlaceFormState() {
   document.querySelector('.personal-place-destination-step')?.classList.toggle('hidden', editingPublic);
   el('personalPlaceChooseLocation').classList.toggle('hidden', editingPublic);
   el('personalPlaceDetails').classList.remove('hidden');
-  el('personalPlaceLocationStatus').textContent = hasLocation ? 'Location ready' : 'Choose a destination, then drop the crosshair.';
+  el('personalPlaceLocationStatus').textContent = hasLocation ? 'Location ready' : 'Choose a destination, then choose a spot on the map.';
   el('personalPlaceSubmit').disabled = !hasLocation;
   el('personalPlaceSubmit').textContent = editingPublic ? 'Save Post' : (light === 'personal' && el('personalPlaceVisibility').value === 'private' ? 'Save' : 'Post');
 }
@@ -758,8 +758,11 @@ function bindPersonalPlaceControls() {
     if (event.target.matches('input[name="personalPlaceDestination"]')) populateChipSelect(event.target.value, defaultChip(event.target.value));
     renderPersonalPlaceFormState();
   });
-  el('personalPlaceChooseLocation')?.addEventListener('click', armPersonalPlaceCrosshair);
-  el('confirmCrosshairButton')?.addEventListener('click', () => { const center = state.map?.getCenter(); if (center) window.dispatchEvent(new CustomEvent('personal-place-location-selected', { detail: { lat: center.lat, lng: center.lng } })); });
+  const chooseLocation = el('personalPlaceChooseLocation');
+  if (chooseLocation) {
+    chooseLocation.textContent = 'Choose on map';
+    chooseLocation.addEventListener('click', () => { closeSheets(); window.dispatchEvent(new CustomEvent('personal-place-map-location-requested')); });
+  }
   el('addAdvancedPlaceButton')?.addEventListener('click', () => openPersonalPlaceForm({ draft: { advancedOnly: true, visibility: 'private', light: 'personal' } }));
   if (el('advancedPlacesToggle')) el('advancedPlacesToggle').checked = Boolean(state.settings.showAdvancedPlaces);
   el('advancedPlacesToggle')?.addEventListener('change', async (event) => { state.settings.showAdvancedPlaces = event.target.checked; await db.put('settings', state.settings); renderPersonalPlacesOnMap(); renderPersonalPlacesPanel(); window.dispatchEvent(new CustomEvent('layer-state-dirty')); });
