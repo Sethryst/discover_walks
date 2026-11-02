@@ -27,13 +27,14 @@ export async function loadRegionalNavigation() {
 
 function renderRegionalNavigation() {
   const id = activeId || state.activeCity;
-  const region = CITIES[id] || {};
+  const catalogueId = String(id || '').replace(/-va$/, '');
+  const region = CITIES[id] || CITIES[catalogueId] || {};
   const control = document.getElementById('regionalNavigation');
   const input = document.getElementById('mapSearchInput');
   if (!control) return;
   const label = region.name || id || 'Choose region';
-  const links = officialLinksForRegion(catalog, id);
-  const subregions = subregionsForRegion(catalog, id);
+  const links = officialLinksForRegion(catalog, catalogueId);
+  const subregions = subregionsForRegion(catalog, catalogueId);
   const hasMenu = links.length > 0 || subregions.length > 0;
   control.classList.toggle('has-menu', hasMenu);
   control.classList.remove('ink-control');
