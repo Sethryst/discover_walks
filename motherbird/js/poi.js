@@ -228,8 +228,24 @@ function getPoiMarker(poi) {
   return updatePoiMarker(marker, poi);
 }
 
+function prunePoiMarkerCache() {
+  if (!state.poiMarkerCache) return;
+  const activePrefix = `${state.activeCity}:`;
+  for (const [key, marker] of state.poiMarkerCache) {
+    if (key.startsWith(activePrefix)) continue;
+    // Marker instances retain popup, drag, and planner listeners even after
+    // a cluster layer removes them. Release those references when changing
+    // regions so repeated browsing cannot grow the heap indefinitely.
+    marker.closePopup?.();
+    marker.unbindPopup?.();
+    marker.off?.();
+    state.poiMarkerCache.delete(key);
+  }
+}
+
 export function renderCityPois({ preserveInteraction = true } = {}) {
   if (!state.poiLayer) return;
+  prunePoiMarkerCache();
   // Keep the complete POI backing store while using the normal marker-cluster
   // presentation for every city. Neighborhood area layers are managed separately.
   if (state.poiLayer.options && Object.prototype.hasOwnProperty.call(state.poiLayer.options, 'disableClusteringAtZoom')) {
