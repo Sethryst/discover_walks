@@ -343,6 +343,10 @@ export async function renderWorkspacePanel(target, { filter = 'all' } = {}) {
     return;
   }
   target.classList?.add?.('workspace-home');
+  // Embedded sheets live inside the Workspace surface while their tab is
+  // active. Restore them to their original document position before replacing
+  // the Workspace markup, otherwise the next render deletes the live sheet.
+  restoreEmbeddedWorkspaceSurfaces('');
   renderWorkspaceExperience(target);
   mountActiveWorkspaceSurface(target);
   let workspace = state.workspaces.find((item) => item.id === state.activeWorkspaceId) || state.workspaces.find((item) => item.id === DEFAULT_WORKSPACE_ID) || state.workspaces[0];
