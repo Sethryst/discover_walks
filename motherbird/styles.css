@@ -72,7 +72,9 @@
 .layer-filter-group .layer-collapse small{font-size:.68rem;font-weight:600;opacity:.7}
 .layer-filter-group .layer-collapse b{margin-left:auto}
 .layer-options{display:flex;flex-wrap:wrap;gap:5px}
-.advanced-layer-chip{display:inline-flex;align-items:center;gap:6px;min-height:34px;max-width:100%;padding:6px 9px;border:1px solid var(--line);border-left:3px solid var(--chip-color);border-radius:9px;background:var(--paper);color:var(--ink);text-align:left;box-shadow:0 2px 6px rgba(23,60,53,.08);transition:opacity .15s,background .15s}
+.advanced-layer-chip{display:inline-flex;align-items:center;gap:7px;min-height:34px;max-width:100%;padding:6px 9px;border:1px solid var(--line);border-left:3px solid var(--chip-color);border-radius:9px;background:var(--paper);color:var(--ink);text-align:left;box-shadow:0 2px 6px rgba(23,60,53,.08);transition:opacity .15s,background .15s}
+.advanced-layer-chip>img{width:18px;height:18px;flex:0 0 18px;filter:brightness(0) saturate(100%) invert(34%) sepia(14%) saturate(900%) hue-rotate(105deg)}
+.advanced-layer-chip>span{display:inline-flex;align-items:baseline;gap:6px;min-width:0}
 .advanced-layer-chip strong{font-size:.72rem;font-weight:750}
 .advanced-layer-chip small{font-size:.65rem;white-space:nowrap;opacity:.72}
 .advanced-layer-chip.off{opacity:.42;background:rgba(248,241,223,.68)}

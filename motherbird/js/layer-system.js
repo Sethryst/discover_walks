@@ -7,7 +7,7 @@ import { closeSheets, openSheet, toast } from './ui.js';
 import { CITIES } from './constants.js';
 import { routesForCity, splitDisconnectedPaths } from './routes.js';
 import { refreshPublicMarkers } from './online.js';
-import { ICONS, markerPinHtml, markerVisual } from './poi-icons.js';
+import { ICONS, ICON_IDS, markerPinHtml, markerVisual } from './poi-icons.js';
 import { civicNoticesFromPack, newsIsAvailable } from './civic-news.js';
 import { syncNewsStory } from './learn-change.js';
 import { drawStories } from './stories.js';
@@ -229,7 +229,8 @@ export function renderLayerFilters() {
 function renderLayerOption(option) {
   const enabled = state.layerFilters[option.kind][option.id] !== false;
   const countLabel = option.kind === 'personal' ? `${option.count} place${option.count === 1 ? '' : 's'}` : `${option.count} nearby`;
-  return `<button type="button" class="advanced-layer-chip ${enabled ? 'on' : 'off'}" style="--chip-color:${escapeHtml(option.color)}" data-layer-filter="${escapeHtml(option.kind)}:${escapeHtml(option.id)}" aria-pressed="${enabled}"><strong>${escapeHtml(option.label)}</strong><small>${escapeHtml(countLabel)}</small></button>`;
+  const icon = ICON_IDS.has(option.icon) ? option.icon : 'map-pin';
+  return `<button type="button" class="advanced-layer-chip ${enabled ? 'on' : 'off'}" style="--chip-color:${escapeHtml(option.color)}" data-layer-filter="${escapeHtml(option.kind)}:${escapeHtml(option.id)}" aria-pressed="${enabled}"><img src="./icons/${icon}.svg" alt="" aria-hidden="true"><span><strong>${escapeHtml(option.label)}</strong><small>${escapeHtml(countLabel)}</small></span></button>`;
 }
 
 function syncLegacyPoiTags() {
