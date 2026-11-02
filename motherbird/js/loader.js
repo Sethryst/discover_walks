@@ -38,6 +38,7 @@ import { initMapSettings } from './map-settings.js';
 export async function init() {
   const telemetry = (stage, details = {}) => globalThis.__MOTHERBIRD_STARTUP_MARK__?.(stage, details);
   performance.mark?.('motherbird:init:start');
+  initConnectivitySignals();
   const splashStatus = document.getElementById('appSplashStatus');
   const setSplashStatus = (message) => { if (splashStatus) splashStatus.textContent = message; };
   setSplashStatus('Getting your pencils sharpened…');
@@ -223,6 +224,17 @@ export async function init() {
     await generateTimeBasedPlan({ title: 'Published routing-cell verification' });
   }
 
+}
+
+function initConnectivitySignals() {
+  const update = (state, announce = true) => {
+    document.body.dataset.networkState = state;
+    if (announce && state === 'offline') toast('Offline mode: saved walks and installed places remain available.');
+    if (announce && state === 'online') toast('Connection restored. Online features can refresh when opened.');
+  };
+  update(navigator.onLine === false ? 'offline' : 'online', false);
+  window.addEventListener('offline', () => update('offline'));
+  window.addEventListener('online', () => update('online'));
 }
 
 async function offerWalkDraftRecovery() {
