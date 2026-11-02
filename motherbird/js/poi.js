@@ -255,18 +255,19 @@ export function renderCityPois({ preserveInteraction = true } = {}) {
   const openPopupSource = preserveInteraction ? state.map?._popup?._source : null;
   const openPopupId = openPopupSource?.options?.place?.id;
   state.poiLayer.clearLayers(); state.trailLayer.clearLayers();
+  const viewportBounds = state.map?.getBounds?.();
   const pois = state.cityPois[state.activeCity] || [];
   const visiblePois = pois
     .filter((poi) => poi.category !== 'journey')
     .filter((poi) => !hasPackTrailGeometry(poi))
     .filter(isVisiblePoi)
     .filter(poiMatchesFilters)
-    .filter(withinRenderBounds);
+    .filter((poi) => withinRenderBounds(poi, viewportBounds));
   const markers = selectImportantPois(visiblePois).map(getPoiMarker);
   if (state.poiLayer.addLayers) state.poiLayer.addLayers(markers); else markers.forEach((marker) => marker.addTo(state.poiLayer));
   const segments = state.trailSegments[state.activeCity] || [];
   if (state.layerLights?.recreation && state.layerFilters?.public?.trail !== false) {
-    segments.forEach((segment) => segment.coordinates.forEach((coordinates) => {
+    segments.filter((segment) => segment.coordinates?.some(([lng, lat]) => viewportBounds?.pad(0.15).contains([lat, lng]))).forEach((segment) => segment.coordinates.forEach((coordinates) => {
       const simplified = simplifyTrailPath(coordinates);
       const color = globalThis.__MOTHERBIRD_MAP_STYLE__?.appearance?.road || '#2d7259';
       L.polyline(simplified.map(([lng, lat]) => [lat, lng]), { color, weight: 5, opacity: .82, smoothFactor: 0.6, styleRole: 'trail' }).bindTooltip(segment.name || 'Named trail').addTo(state.trailLayer);
@@ -469,9 +470,9 @@ export function cityDiscoverableSites() {
     return (recreation && enabledStars.has('recreation')) || (cuisine && enabledStars.has('cuisine'));
   });
 }
-export function withinRenderBounds(poi) {
+export function withinRenderBounds(poi, bounds = state.map?.getBounds?.()) {
   if (!state.map) return true;
-  try { return state.map.getBounds().pad(0.6).contains([poi.lat, poi.lng]); } catch { return true; }
+  try { return bounds?.pad(0.15).contains([poi.lat, poi.lng]) ?? true; } catch { return true; }
 }
 export async function showHistory(site, distance) {
   if (!el('historySheet')) return;
