@@ -249,7 +249,6 @@ function mountActiveWorkspaceSurface(target) {
   if (activeWorkspaceTool === 'annotate') mountEmbeddedWorkspaceSurface('drawWorkspace', target.querySelector('[data-workspace-embedded="draw"]'));
 }
 let currentWalk = { title: 'Anacostia sampler', stops: ['Anacostia Riverwalk', 'Kingman Island'], evidence: ['Water edge · source-mapped', 'Habitat edge · modeled'], revision: 'Revision 3', duration: '35 min', mode: 'Loop' };
-function workspaceToolNav() { return `<nav class="workspace-tool-nav" aria-label="Workspace tools">${WORKSPACE_TOOLS.filter(([id]) => id !== activeWorkspaceTool).map(([id, label]) => `<button type="button" data-workspace-tool="${id}">${label}</button>`).join('')}</nav>`; }
 function workspacePlaceSuggestions() { const pois = (state.cityPois[state.activeCity] || []).filter((poi) => poi?.name && !currentWalk.stops.includes(poi.name)).slice(0, 3); const personal = (state.personalPlaces || []).slice(0, 3); return { pois, personal }; }
 function workspacePlacesMarkup() {
   const suggestions = workspacePlaceSuggestions();
@@ -391,11 +390,3 @@ export function initWorkspaceRuntime() {
   });
   window.addEventListener('workspace-changed', () => window.dispatchEvent(new CustomEvent('journal-data-changed')));
 }
-const workspaceHeaderObserver = typeof MutationObserver !== 'undefined' ? new MutationObserver(() => {
-  document.querySelectorAll('.workspace-experience-header h1').forEach((heading) => {
-    const active = heading.closest('.workspace-experience')?.querySelector('.workspace-tool-pills button.active');
-    const nextTitle = `— ${active?.textContent || 'Walk options'}`;
-    if (heading.textContent !== nextTitle) heading.textContent = nextTitle;
-  });
-}) : null;
-if (workspaceHeaderObserver && typeof document !== 'undefined' && document.body) workspaceHeaderObserver.observe(document.body, { childList: true, subtree: true });

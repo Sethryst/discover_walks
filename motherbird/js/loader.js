@@ -31,7 +31,7 @@ import { recoverWalkDraft, discardWalk } from './walk.js';
 import { initBiodiversity } from './biodiversity.js';
 import { initRegionalNavigation } from './regional-navigation.js?v=20261011-fairfax-subregions-1';
 import { initStorageDiagnostics } from './storage-diagnostics.js';
-import { loadWorkspaceState, initWorkspaceRuntime, seedWorkspaceDemo } from './workspace.js?v=workspace-resize-20261101-12';
+import { loadWorkspaceState, initWorkspaceRuntime, seedWorkspaceDemo } from './workspace.js?v=workspace-cleanup-20261101-14';
 import { normalizeSavedRoute } from './saved-routes.js';
 import { initMapSettings } from './map-settings.js';
 
@@ -177,7 +177,7 @@ export async function init() {
     await refreshCityMap(false);
   });
   void (async () => {
-    await optionalBoot('walk controls', () => import('./events.js?v=workspace-resize-20261101-12').then(({ initEvents }) => initEvents()));
+    await optionalBoot('walk controls', () => import('./events.js?v=workspace-cleanup-20261101-14').then(({ initEvents }) => initEvents()));
     initRadialMenu();
     await optionalBoot('radio', initRadio);
     await optionalBoot('geo-cypher', initGeoCypher);
