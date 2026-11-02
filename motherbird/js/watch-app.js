@@ -23,6 +23,20 @@ const view = {
 };
 
 const el = (id) => document.getElementById(id);
+let supabaseClientPromise = null;
+
+function loadSupabaseClient() {
+  if (window.supabase?.createClient) return Promise.resolve(window.supabase);
+  if (supabaseClientPromise) return supabaseClientPromise;
+  supabaseClientPromise = new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.105.0';
+    script.onload = () => window.supabase?.createClient ? resolve(window.supabase) : reject(new Error('Supabase client unavailable'));
+    script.onerror = () => reject(new Error('Online services could not load'));
+    document.head.append(script);
+  });
+  return supabaseClientPromise;
+}
 
 function announce(message) {
   el('watchToast').textContent = message;
@@ -164,18 +178,28 @@ async function handleCapture(kind) {
 
 async function initWatchAuth() {
   const config = window.WALK_WILDLIFE_SUPABASE || {};
-  if (!config.url || !config.anonKey || !window.supabase?.createClient) { renderAuth(); return; }
+  if (!config.url || !config.anonKey) { renderAuth(); return; }
+  renderAuth();
+}
+
+async function ensureWatchAuthClient() {
+  if (view.authClient) return view.authClient;
+  const config = window.WALK_WILDLIFE_SUPABASE || {};
+  if (!config.url || !config.anonKey) return null;
+  await loadSupabaseClient();
   view.authClient = window.supabase.createClient(config.url, config.anonKey, { auth: { experimental: { passkey: true } } });
   const { data, error } = await view.authClient.auth.getSession();
   if (error) announce('Account session could not be checked.');
   view.session = data?.session || null;
   view.authClient.auth.onAuthStateChange((_event, session) => { view.session = session; renderAuth(); });
   renderAuth();
+  return view.authClient;
 }
 
 async function handleWatchPasskeySignIn() {
-  if (!view.authClient?.auth?.signInWithPasskey) { announce('Face ID sign-in is unavailable in this browser.'); return; }
-  const { data, error } = await view.authClient.auth.signInWithPasskey();
+  const client = await ensureWatchAuthClient();
+  if (!client?.auth?.signInWithPasskey) { announce('Face ID sign-in is unavailable in this browser.'); return; }
+  const { data, error } = await client.auth.signInWithPasskey();
   if (error) { announce(error.message || 'Face ID sign-in could not start.'); return; }
   view.session = data?.session || view.session;
   renderAuth();

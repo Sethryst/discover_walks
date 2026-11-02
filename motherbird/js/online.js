@@ -16,9 +16,24 @@ import { activeFieldEditionSubscription } from './cloud-journal.js';
 
 const PUBLIC_MARKER_FIELDS = 'id,creator_id,creator_username,pack_id,name,description,latitude,longitude,light,chip_id,personal_category_label,status,upvote_count,created_at,updated_at';
 let publicMarkerEventsBound = false;
+let supabaseClientPromise = null;
+
+function loadSupabaseClient() {
+  if (globalThis.window?.supabase?.createClient) return Promise.resolve(window.supabase);
+  if (supabaseClientPromise) return supabaseClientPromise;
+  supabaseClientPromise = new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.105.0';
+    script.onload = () => window.supabase?.createClient ? resolve(window.supabase) : reject(new Error('Supabase client unavailable'));
+    script.onerror = () => reject(new Error('Online services could not load'));
+    document.head.append(script);
+  });
+  return supabaseClientPromise;
+}
 
 export async function setupOnline() {
   if (state.online.client || !onlineConfigured()) return;
+  await loadSupabaseClient();
   const config = onlineConfig();
   state.online.client = window.supabase.createClient(config.url, config.anonKey, {
     auth: { experimental: { passkey: true } }
@@ -535,5 +550,5 @@ export async function createOrganizerRequest(event) {
 export function onlineConfig() { return globalThis.window?.WALK_WILDLIFE_SUPABASE || {}; }
 export function onlineConfigured() {
   const config = onlineConfig();
-  return Boolean(config.url && config.anonKey && globalThis.window?.supabase?.createClient);
+  return Boolean(config.url && config.anonKey);
 }

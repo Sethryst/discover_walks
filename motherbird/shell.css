@@ -119,6 +119,58 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
   overflow-y: visible !important;
 }
 
+/* Final interaction contract: keep Explore compact and keep Workspace controls
+   above the scrolling content layer at every viewport size. */
+#mapWorkspacePanel[data-destination="explore"] #resizeMapWorkspace {
+  display: none !important;
+}
+#mapWorkspacePanel[data-destination="explore"] > [data-map-panel="explore"] {
+  padding: 8px 10px 10px !important;
+  overflow: visible !important;
+}
+#mapWorkspacePanel[data-destination="explore"] .map-lights {
+  position: static !important;
+  margin: 0 !important;
+  padding-top: 2px !important;
+  transform: none !important;
+  overflow: visible !important;
+}
+#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills {
+  position: relative !important;
+  z-index: 2 !important;
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  overflow: visible !important;
+  pointer-events: auto !important;
+  touch-action: manipulation !important;
+}
+#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button {
+  position: relative !important;
+  z-index: 1 !important;
+  display: grid !important;
+  place-items: center !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 38px !important;
+  height: 38px !important;
+  margin: 0 !important;
+  padding: 0 8px !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 0 !important;
+  pointer-events: auto !important;
+  touch-action: manipulation !important;
+  cursor: pointer !important;
+}
+#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button:first-child { border-radius: 7px 0 0 7px !important; }
+#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button:last-child { border-radius: 0 7px 7px 0 !important; }
+#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button + button { border-left: 0 !important; }
+#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--accent, #d95f35) 65%, white) !important;
+  outline-offset: 1px;
+}
+
 /* Final Workspace contract. This stylesheet loads after the legacy shell rules. */
 #mapWorkspacePanel[data-destination="maps"] > header { flex: 0 0 auto; }
 #mapWorkspacePanel[data-destination="maps"] > [data-map-panel="maps"] { min-height: 0; display: flex; flex: 1 1 auto; flex-direction: column; overflow: hidden !important; }

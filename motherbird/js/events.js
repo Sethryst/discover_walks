@@ -207,6 +207,11 @@ async function setMapWorkspace(destination = '', { toggle = true, forceOpen = fa
   document.body.classList.toggle('map-workspace-open', Boolean(next));
   document.body.classList.toggle('draw-pane-open', next === 'draw');
   el('closeMapWorkspace')?.classList.remove('workspace-close-hidden');
+  const resizeButton = el('resizeMapWorkspace');
+  const resizeAvailable = next !== 'explore';
+  resizeButton?.classList.toggle('hidden', !resizeAvailable);
+  resizeButton?.setAttribute('aria-hidden', String(!resizeAvailable));
+  resizeButton?.setAttribute('tabindex', resizeAvailable ? '0' : '-1');
   document.querySelectorAll('[data-map-destination]').forEach((button) => {
     const active = button.dataset.mapDestination === next;
     button.classList.toggle('active', active);
