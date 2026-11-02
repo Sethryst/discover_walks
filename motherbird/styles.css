@@ -1777,7 +1777,22 @@ body.location-available .context-help-button {
 .primary-nav #libraryTab { display: inline-flex; align-items: center; gap: 4px; }
 .primary-nav #libraryTab img { width: 15px; height: 15px; }
 /* Workspace opens at Explore's working size; keep the chrome identical. */
-#mapWorkspacePanel[data-destination="maps"] > header { height: 28px !important; min-height: 28px !important; padding: 2px 7px !important; }
-#mapWorkspacePanel[data-destination="maps"] > header button { width: 24px !important; height: 24px !important; min-height: 24px !important; }
+#mapWorkspacePanel[data-destination="maps"] > header { height: 20px !important; min-height: 20px !important; padding: 0 5px !important; gap: 4px !important; }
+#mapWorkspacePanel[data-destination="maps"] > header button { width: 16px !important; height: 16px !important; min-height: 16px !important; font-size: .72rem !important; }
+#mapWorkspacePanel[data-destination="maps"] .map-workspace-header-title { display: inline-flex !important; align-items: center !important; gap: 3px !important; min-width: 0; }
+#mapWorkspacePanel[data-destination="maps"] .workspace-heading-icon { display: inline-grid !important; place-items: center; width: 14px !important; height: 14px !important; margin: 0 !important; }
+#mapWorkspacePanel[data-destination="maps"] .workspace-heading-icon img { width: 12px !important; height: 12px !important; }
+#mapWorkspacePanel[data-destination="maps"] > header strong { font-size: .58rem !important; line-height: 1 !important; }
 #mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills { gap: 4px !important; padding: 3px 4px !important; }
-#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button { height: 34px !important; min-height: 34px !important; padding: 0 9px !important; font-size: .69rem !important; line-height: 1 !important; }
+#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button { height: 30px !important; min-height: 30px !important; padding: 0 7px !important; font-size: .63rem !important; line-height: 1 !important; }
+
+/* Keep the final equal-width Workspace tabs at Explore's compact control size. */
+#mapWorkspacePanel[data-destination="maps"] .workspace-experience > .workspace-tool-pills,
+#mapWorkspacePanel[data-destination="maps"] .workspace-experience > .workspace-tool-pills button,
+#mapWorkspacePanel[data-destination="maps"] .workspace-experience > .workspace-tool-pills button:first-child,
+#mapWorkspacePanel[data-destination="maps"] .workspace-experience > .workspace-tool-pills button:last-child {
+  min-height: 30px !important;
+  height: 30px !important;
+  padding: 0 7px !important;
+  font-size: .63rem !important;
+}
