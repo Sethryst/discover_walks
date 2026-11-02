@@ -150,6 +150,11 @@ export async function init() {
   initMap();
   telemetry('map');
   setSplashStatus('Initializing the map…');
+  // Draw and layer controls are part of the visible map surface. Bind them
+  // before startup-ready so fast devices cannot expose a clickable shell
+  // whose core controls are still waiting behind optional enrichment.
+  await initMapPaint().catch((error) => console.warn('Map paint unavailable:', error.message));
+  await initLayerSystem().catch((error) => console.warn('Layer system unavailable:', error.message));
   requestAnimationFrame(() => state.map?.invalidateSize({ pan: false }));
   // The walk planner is core map functionality. Bind it before optional
   // stories, radio, and companion layers can abort startup on bad local data.
@@ -185,9 +190,7 @@ export async function init() {
     removePrimaryControlFallbacks();
     await optionalBoot('installed-region', activateInstalledRegionRuntime);
     await optionalBoot('county additions', initCountyAdditions);
-    await optionalBoot('map paint', initMapPaint);
     await optionalBoot('personal places', initPersonalPlaces);
-    await optionalBoot('layer system', initLayerSystem);
   })();
   performance.measure?.('motherbird:init:ready', 'motherbird:init:start');
   telemetry('startup-ready', { city: state.activeCity, durableStorage: Boolean(db.isDurable?.()) });
