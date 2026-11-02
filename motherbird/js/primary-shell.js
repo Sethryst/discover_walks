@@ -1,17 +1,20 @@
-import { openBackpack, openJournal, openSheet, closeSheets } from './ui.js';
+import { openJournal, openSheet, closeSheets } from './ui.js';
 import { state } from './state.js';
 import { CITIES } from './constants.js';
 import { initRadialMenu, isActionStarred, toggleStarAction } from './radial-menu.js';
 import { generateTimeBasedPlan } from './planner.js';
+import { openObservation } from './observation.js';
+import { openGeoCypher } from './geo-cypher.js';
+import { openWorkspaceTool } from './workspace.js';
 
 const actions = {
   walk: [
-    { id: 'walk-field-guide', label: 'Follow a saved walk', icon: './icons/book-open.svg', run: () => void openBackpack() },
-    { id: 'walk-draw', label: 'Draw a route', icon: './icons/pencil.svg', run: () => window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'draw', forceOpen: true } })) }
+    { id: 'journal-observation', label: 'Add observation', icon: './icons/eye.svg', run: () => openObservation() },
+    { id: 'journal-audio', label: 'Audio note', icon: './icons/mic.svg', run: () => void openGeoCypher() }
   ],
   library: [
-    { id: 'library-field-guide', label: 'Field Guide', icon: './icons/book-open.svg', run: () => void openBackpack() },
-    { id: 'my-workspace', label: 'Workspace', icon: './icons/book-open.svg', run: () => { state.settings.myPlacesSection = 'workspace'; window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'maps', forceOpen: true } })); } },
+    { id: 'workspace-build-route', label: 'Build route', icon: './icons/route.svg', run: () => openWorkspaceTool('builder') },
+    { id: 'workspace-journal', label: 'Open journal', icon: './icons/book.svg', run: () => openJournal() },
   ],
   me: [
     { id: 'me-companion', label: 'Companion and Maps', icon: './icons/heart.svg', run: () => window.dispatchEvent(new CustomEvent('companion-menu-requested')) },

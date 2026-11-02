@@ -407,3 +407,8 @@ export function initWorkspaceRuntime() {
   });
   window.addEventListener('workspace-changed', () => window.dispatchEvent(new CustomEvent('journal-data-changed')));
 }
+
+export function openWorkspaceTool(tool) {
+  pendingWorkspaceTool = tool;
+  window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'maps', forceOpen: true } }));
+}
