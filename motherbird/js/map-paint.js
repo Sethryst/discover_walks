@@ -196,7 +196,7 @@ export async function renderMapDrawings() {
   }
   renderArtifactList();
 }
-function renderArtifactList() {
+async function renderArtifactList() {
   const list = el('mapArtifactList'); if (!list) return;
   list.replaceChildren();
   for (const item of state.localDrawings || []) {
@@ -205,6 +205,13 @@ function renderArtifactList() {
     const toggle = document.createElement('button'); toggle.type = 'button'; toggle.textContent = hiddenArtifacts.has(item.id) ? 'Show' : 'Hide';
     toggle.addEventListener('click', () => { hiddenArtifacts.has(item.id) ? hiddenArtifacts.delete(item.id) : hiddenArtifacts.add(item.id); saveHiddenArtifacts(); void renderMapDrawings(); });
     row.append(name, toggle); list.append(row);
+  }
+  const places = (await db.all('personal_places')).filter((place) => !place.packId || place.packId === state.activeCity);
+  for (const place of places) {
+    const row = document.createElement('article');
+    const name = document.createElement('strong'); name.textContent = place.name || place.personalCategoryLabel || 'Custom pin';
+    const type = document.createElement('small'); type.textContent = place.personalCategoryLabel || 'Custom pin';
+    row.append(name, type); list.append(row);
   }
 }
 async function renderSpatialQueryHistory() {

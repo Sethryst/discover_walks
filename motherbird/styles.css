@@ -1810,6 +1810,9 @@ body.location-available .context-help-button {
 .map-workspace-panel[data-destination="draw"] .draw-shapes [data-draw-shape="Marker"],
 #placeCrosshair,
 #confirmCrosshairButton { display: none !important; }
+.map-workspace-panel[data-destination="draw"] .draw-region-kicker,
+.map-workspace-panel[data-destination="draw"] .draw-region-label,
+.map-workspace-panel[data-destination="draw"] .artifact-heading > strong { display: none !important; }
 .map-workspace-panel[data-destination="draw"] .workspace-heading-icon { display: none !important; }
 .map-workspace-panel[data-destination="draw"] #drawWorkspaceStatus { display: none !important; }
 .map-workspace-panel[data-destination="draw"] .draw-shapes .draw-tool-icon {
