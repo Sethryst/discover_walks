@@ -1806,6 +1806,7 @@ body.location-available .context-help-button {
 }
 
 /* Keep Draw and Annotate tool glyphs distinct from the top quick controls. */
+.map-workspace-panel[data-destination="draw"] .workspace-heading-icon { display: none !important; }
 .map-workspace-panel[data-destination="draw"] .draw-shapes .draw-tool-icon {
   box-sizing: border-box;
   width: 24px !important;
