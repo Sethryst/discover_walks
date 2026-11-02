@@ -176,9 +176,9 @@ export async function init() {
   void (async () => {
     await optionalBoot('walk controls', () => import('./events.js?v=workspace-tabs-20261101-19').then(({ initEvents }) => initEvents()));
     initRadialMenu();
-    await optionalBoot('stories', initStories);
-    await optionalBoot('field guide filters', initFieldGuideFilters);
-    await optionalBoot('biodiversity', initBiodiversity);
+    void optionalBoot('stories', initStories);
+    void optionalBoot('field guide filters', initFieldGuideFilters);
+    void optionalBoot('biodiversity', initBiodiversity);
     await optionalBoot('radio', initRadio);
     await optionalBoot('geo-cypher', initGeoCypher);
     removePrimaryControlFallbacks();
