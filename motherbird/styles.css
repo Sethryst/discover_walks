@@ -908,7 +908,6 @@ body[data-storage-state="temporary"]:after{content:'Temporary device storage';po
 .map-workspace-panel .advanced-filters summary { padding: 5px 0 4px; border-bottom: 1px solid var(--line); font-size: .78rem; line-height: 1.15; }
 .map-workspace-panel:not(.workspace-scrollable) > [data-map-panel] { overflow-y: hidden !important; }
 .map-workspace-panel.workspace-scrollable > [data-map-panel] { overflow-y: auto !important; }
-.map-workspace-panel.workspace-expanded { height: 48dvh !important; }
 .map-workspace-panel.workspace-expanded > [data-map-panel] { overflow-y: scroll !important; }
 .advanced-filters[open] { overflow: visible; }
 .saved-routes-panel{margin:10px 0 14px;padding:10px;border:1px solid var(--line);border-radius:10px;background:rgba(255,247,223,.55)}.saved-routes-panel>.eyebrow{margin:0 0 5px}.saved-route-card{margin:7px 0;background:var(--paper2)}.saved-route-sections{margin:8px 0 0;padding-left:22px;font-size:.78rem;line-height:1.45}.route-config-actions{display:flex;gap:7px;margin-top:8px}

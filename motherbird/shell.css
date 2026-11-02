@@ -165,12 +165,6 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
     row-gap: 8px !important;
   }
 }
-.map-workspace-panel[data-destination="explore"].workspace-small.workspace-expanded > [data-map-panel="explore"] {
-  max-height: none !important;
-  height: auto !important;
-  overflow-y: visible !important;
-}
-
 /* The open Customize Explore disclosure must show all three parent bars in
    the compact state; scrolling belongs to the explicitly expanded panel. */
 .map-workspace-panel[data-destination="explore"].workspace-small > [data-map-panel="explore"] {
