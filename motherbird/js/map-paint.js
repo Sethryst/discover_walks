@@ -436,10 +436,10 @@ export async function initMapPaint() {
       item.classList.toggle('active', active);
       item.setAttribute('aria-pressed', String(active));
     });
-    const status = `${tool.textContent.trim()} tool active. Draw on the map.`;
+    const status = `${tool.textContent.trim()} tool active`;
     tool.title = status;
+    tool.dataset.tooltip = status;
     tool.setAttribute('aria-label', status);
-    el('drawWorkspaceStatus').textContent = status;
   });
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && state.mapPaintActive) finishMapEditing();

@@ -251,15 +251,22 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
 }
 #mapWorkspacePanel[data-destination="maps"] .workspace-experience { min-height: 0; height: 100%; display: flex; flex-direction: column; gap: 0; overflow: hidden; }
 #mapWorkspacePanel[data-destination="maps"] .workspace-experience-header { flex: 0 0 auto; }
-#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills { position: static !important; display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 6px !important; flex: 0 0 auto !important; width: 100% !important; height: auto !important; margin: 0 !important; padding: 6px !important; overflow: visible !important; }
+#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills { position: static !important; display: grid !important; grid-template-columns: repeat(4, minmax(0, 1fr)) !important; gap: 6px !important; flex: 0 0 auto !important; width: 100% !important; height: auto !important; margin: 0 !important; padding: 6px !important; overflow: visible !important; }
 #mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills::before { content: none !important; display: none !important; }
 #mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button { display: grid !important; place-items: center !important; width: 100% !important; min-width: 0 !important; height: 38px !important; min-height: 38px !important; padding: 0 8px !important; border: 1px solid rgba(23,60,53,.2) !important; border-radius: 8px !important; background: transparent !important; color: var(--ink) !important; font: inherit !important; font-size: .72rem !important; font-weight: 800 !important; line-height: 1 !important; text-align: center !important; box-shadow: none !important; }
 #mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button.active { background: var(--ink) !important; color: var(--paper) !important; }
 #mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button::before { content: none !important; display: none !important; }
+#mapWorkspacePanel[data-destination="maps"] .workspace-guide-section { margin: 0 0 16px; }
+#mapWorkspacePanel[data-destination="maps"] .workspace-guide-section h3 { margin: 0 0 8px; font: 700 1.15rem Georgia,serif; color: var(--ink); }
+#mapWorkspacePanel[data-destination="maps"] .workspace-guide-section + .workspace-guide-section { border-top: 1px solid var(--line); padding-top: 14px; }
 #mapWorkspacePanel[data-destination="maps"] .workspace-tool-page,
 #mapWorkspacePanel[data-destination="maps"] .workspace-walk-card { min-height: 0; flex: 1 1 auto; overflow-y: auto; overscroll-behavior: contain; }
 #mapWorkspacePanel[data-destination="maps"] .workspace-route-controls { flex: 0 0 auto; }
-#mapWorkspacePanel.workspace-small > [data-map-panel="maps"], #mapWorkspacePanel.workspace-small > [data-map-panel="explore"] { overflow: hidden !important; }
+#mapWorkspacePanel.workspace-small > [data-map-panel="maps"] { overflow-y: auto !important; overflow-x: hidden !important; }
+#mapWorkspacePanel.workspace-small > [data-map-panel="explore"] { overflow: hidden !important; }
+#mapWorkspacePanel[data-destination="maps"].workspace-small #myMapsPanel,
+#mapWorkspacePanel[data-destination="maps"].workspace-small #personalPlacesPanel,
+#mapWorkspacePanel[data-destination="maps"].workspace-small .workspace-home { min-height: max-content; overflow: visible; }
 #mapWorkspacePanel.workspace-mid > [data-map-panel="maps"], #mapWorkspacePanel.workspace-mid > [data-map-panel="explore"],
 #mapWorkspacePanel.workspace-wide > [data-map-panel="maps"], #mapWorkspacePanel.workspace-wide > [data-map-panel="explore"] { overflow-y: auto !important; overflow-x: hidden !important; }
 
@@ -643,8 +650,7 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
 /* Keep saved annotations visible beside the compact drawing rail. */
 .map-workspace-panel[data-destination="draw"] .draw-actions,
 .map-workspace-panel[data-destination="draw"] .artifact-heading,
-.map-workspace-panel[data-destination="draw"] .artifact-list,
-.map-workspace-panel[data-destination="draw"] #drawWorkspaceStatus {
+.map-workspace-panel[data-destination="draw"] .artifact-list {
   display: grid !important; position: fixed !important; left: 78px !important;
   width: min(300px, calc(100vw - 92px)) !important; pointer-events: auto !important;
   visibility: visible !important; opacity: 1 !important; clip: auto !important; clip-path: none !important;
@@ -653,6 +659,7 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
 .map-workspace-panel[data-destination="draw"] .artifact-heading { top: 50%; transform: translateY(-122px); }
 .map-workspace-panel[data-destination="draw"] .artifact-list { top: calc(50% - 76px); max-height: 32dvh; overflow: auto; }
 .map-workspace-panel[data-destination="draw"] #drawWorkspaceStatus { top: calc(50% + 18dvh); }
+.map-workspace-panel[data-destination="draw"] #drawWorkspaceStatus { display: none !important; }
 .map-workspace-panel[data-destination="draw"] .draw-shapes button:hover,
 .map-workspace-panel[data-destination="draw"] .draw-shapes button:focus-visible,
 .map-workspace-panel[data-destination="draw"] .draw-shapes button.active {
