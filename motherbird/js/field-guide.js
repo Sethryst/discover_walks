@@ -181,7 +181,7 @@ export async function renderFieldGuide(tab = state.fieldGuideTab || 'discover') 
     return;
   }
   if (tab === 'learn') {
-    await renderLearnHistory(target, point);
+    await renderLearnHistory(target, point, data.learn);
     return;
   }
   if (tab === 'discover') {

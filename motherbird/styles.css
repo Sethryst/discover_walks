@@ -1595,6 +1595,12 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
   }
 }
 .sheet-header-actions { position: absolute; top: 10px; right: 12px; display: flex; gap: 4px; z-index: 2; }
+.learn-authored-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.learn-authored .guide-card p { display: block; -webkit-line-clamp: unset; overflow: visible; }
+@media (max-width: 720px) {
+  #journalSheet .journal-history-list, #backpackSheet .guide-list { min-height: 0; overflow-y: auto; }
+  #backpackSheet .guide-card p { -webkit-line-clamp: 2; }
+}
 .sheet-header-actions .sheet-resize,
 .sheet-header-actions .close-sheet { position: static; width: 32px; height: 32px; padding: 0; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 6px; background: #fff; font-size: 1rem; }
 .radio-sheet.sheet-small { max-height: 30dvh !important; }
