@@ -31,6 +31,7 @@ const publishEntries = [
   'field-editions',
   'federal-regions',
   'icon.svg',
+  'icon-options.html',
   'icons',
   'index.html',
   'js',
