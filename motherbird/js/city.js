@@ -29,7 +29,20 @@ function perfMeasure(name, start, detail = {}) {
 
 let regionalDataWorker;
 let regionalDataRequest = 0;
+let regionalDataIdleTimer = null;
 const regionalDataPending = new Map();
+
+function scheduleRegionalWorkerTeardown() {
+  if (regionalDataIdleTimer) clearTimeout(regionalDataIdleTimer);
+  if (!regionalDataWorker || regionalDataPending.size) return;
+  regionalDataIdleTimer = setTimeout(() => {
+    regionalDataIdleTimer = null;
+    if (!regionalDataPending.size) {
+      regionalDataWorker.terminate();
+      regionalDataWorker = null;
+    }
+  }, 10000);
+}
 
 function readRegionalJson(file) {
   if (typeof Worker === 'undefined') return fetch(file).then((response) => response.json());
@@ -41,14 +54,18 @@ function readRegionalJson(file) {
       regionalDataPending.delete(data.id);
       if (data.ok) pending.resolve(data.pack);
       else pending.reject(new Error(data.error));
+      scheduleRegionalWorkerTeardown();
     };
     worker.onerror = (error) => {
+      if (regionalDataIdleTimer) clearTimeout(regionalDataIdleTimer);
+      regionalDataIdleTimer = null;
       for (const pending of regionalDataPending.values()) pending.reject(error.error || error);
       regionalDataPending.clear();
       regionalDataWorker = null;
     };
     return worker;
   })();
+  if (regionalDataIdleTimer) { clearTimeout(regionalDataIdleTimer); regionalDataIdleTimer = null; }
   const id = ++regionalDataRequest;
   return new Promise((resolve, reject) => {
     regionalDataPending.set(id, { resolve, reject });
