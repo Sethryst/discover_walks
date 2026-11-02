@@ -300,12 +300,20 @@ export async function initMapPaint() {
   if (!state.map.pm && globalThis.L?.PM?.Map) state.map.pm = new globalThis.L.PM.Map(state.map);
   if (!state.map.pm) return;
   const initialLabels = { Line: 'Test route', Freehand: 'Sketch area', Polygon: 'Area', Rectangle: 'Define area', Circle: 'Explore area' };
-  document.querySelectorAll('[data-draw-shape]').forEach((item) => { const label = initialLabels[item.dataset.drawShape]; if (label) item.querySelector('span:last-child').textContent = label; });
+  document.querySelectorAll('[data-draw-shape]').forEach((item) => {
+    const label = initialLabels[item.dataset.drawShape] || item.querySelector('span:last-child')?.textContent.trim();
+    if (label) {
+      item.querySelector('span:last-child').textContent = label;
+      item.title = `${label} tool active. Draw on the map.`;
+      item.setAttribute('aria-label', `${label} tool. Click to draw on the map.`);
+    }
+  });
   const pinGrid = document.createElement('div');
   pinGrid.className = 'draw-pin-grid';
   pinGrid.setAttribute('aria-label', 'Custom pin categories');
   pinGrid.innerHTML = [['Grocery', 'grocery', 'utensils', '#65b96a'], ['Shopping', 'shopping', 'building', '#8c63d8'], ['Cuisine', 'cuisine', 'coffee', '#ef8b2c'], ['Services', 'services', 'info', '#4b8ed8'], ['Health', 'health', 'heart', '#df5c55'], ['Home', 'home', 'home', '#9a6b47'], ['Transport', 'transport', 'route', '#7f8790'], ['Custom icon', 'custom', 'star', '#f6c928']].map(([label, id, icon, color]) => `<button type="button" draggable="true" aria-label="${label}; click to place or drag onto the map" data-draw-pin="${id}" style="--pin-color:${color}"><img src="./icons/${icon}.svg" alt="" aria-hidden="true"><span>${label}</span></button>`).join('');
   drawTools?.before(pinGrid);
+  pinGrid.querySelectorAll('[data-draw-pin]').forEach((pin) => { pin.title = `${pin.querySelector('span:last-child')?.textContent.trim() || 'Custom'} pin. Click the map to place it.`; });
   pinGrid.addEventListener('click', (event) => {
     const pin = event.target.closest('[data-draw-pin]'); if (!pin) return;
     customPinCategory = pin.dataset.drawPin;
