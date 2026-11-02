@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Motherbird icon options</title>
+  <style>
+    :root { color-scheme: light; --ink:#173c35; --paper:#fffaf0; --line:#d8d2c2; --muted:#65736b; }
+    * { box-sizing:border-box; }
+    body { margin:0; padding:32px; background:#f5f2e9; color:var(--ink); font:16px/1.45 system-ui,sans-serif; }
+    main { max-width:900px; margin:auto; }
+    h1 { margin:0 0 6px; font:700 2rem/1.1 Georgia,serif; }
+    .intro { color:var(--muted); margin:0 0 28px; }
+    section { margin:26px 0; }
+    h2 { font:700 1.25rem Georgia,serif; margin:0 0 10px; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; }
+    .card { min-height:150px; display:grid; place-items:center; gap:8px; padding:18px 12px; border:1px solid var(--line); border-radius:14px; background:var(--paper); text-align:center; }
+    .card img { width:64px; height:64px; }
+    .card strong { font-size:.9rem; }
+    .card small { color:var(--muted); font-size:.72rem; }
+    .region { display:flex; flex-wrap:wrap; gap:12px; }
+    .region-card { display:flex; align-items:center; gap:8px; padding:16px 18px; border:1px solid var(--line); border-radius:14px; background:var(--paper); }
+    .region-card img { width:22px; height:22px; }
+    .plain { box-shadow:none; }
+    .soft { box-shadow:0 3px 14px rgba(23,60,53,.16); }
+    code { color:var(--muted); font-size:.75rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Motherbird icon options</h1>
+    <p class="intro">Local preview of the custom SVG icons used by the starred quick menu. These assets load from the same folder as the app, so the showcase also works offline.</p>
+
+    <section>
+      <h2>Radio</h2>
+      <div class="grid">
+        <article class="card"><img src="./icons/radio.svg" alt="Radio icon"><strong>Radio</strong><small>Recommended</small></article>
+        <article class="card"><img src="./icons/music.svg" alt="Music icon"><strong>Music</strong><small>Existing fallback</small></article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Draw</h2>
+      <div class="grid">
+        <article class="card"><img src="./icons/route.svg" alt="Route icon"><strong>Route</strong><small>Recommended main Draw icon</small></article>
+        <article class="card"><img src="./icons/activity.svg" alt="Area icon"><strong>Area</strong><small>Existing area drawing icon</small></article>
+        <article class="card"><img src="./icons/pencil.svg" alt="Pencil icon"><strong>Pencil</strong><small>Free draw only</small></article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Region identifier</h2>
+      <div class="region">
+        <div class="region-card plain"><strong>Arlington County</strong><small>Plain status text</small></div>
+        <div class="region-card soft"><img src="./icons/map-2.svg" alt="Map icon"><strong>Arlington County</strong><small>Map + shadow</small></div>
+        <div class="region-card plain"><img src="./icons/map-pin.svg" alt="Map pin icon"><strong>Arlington County</strong><small>Pin + flat treatment</small></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Quick menu destinations</h2>
+      <div class="grid">
+        <article class="card"><img src="./icons/briefcase.svg" alt="Workspace icon"><strong>Workspace</strong><small>Saved walks and tools</small></article>
+        <article class="card"><img src="./icons/book-open.svg" alt="Field Guide icon"><strong>Field Guide</strong><small>Learn and browse</small></article>
+        <article class="card"><img src="./icons/compass.svg" alt="Companion icon"><strong>Companion</strong><small>Map and companion settings</small></article>
+        <article class="card"><img src="./icons/lock.svg" alt="Privacy icon"><strong>Privacy</strong><small>Local data controls</small></article>
+        <article class="card"><img src="./icons/pause.svg" alt="Pause icon"><strong>Pause</strong><small>Active walk state</small></article>
+        <article class="card"><img src="./icons/stop.svg" alt="Stop icon"><strong>Stop</strong><small>End walk state</small></article>
+      </div>
+    </section>
+
+    <p><code>Motherbird local SVG assets · 32px source viewBox · offline-safe</code></p>
+  </main>
+</body>
+</html>
