@@ -237,6 +237,7 @@ function bindMapWorkspace() {
   document.addEventListener('click', (event) => {
     if (event.target.closest('#manageMapLayers')) { setMapWorkspace('layers', { forceOpen: true }); return; }
     if (event.target.closest('[data-return-draw]')) { setMapWorkspace('draw', { forceOpen: true }); return; }
+    if (event.target.closest('[data-return-layers]')) { setMapWorkspace('layers', { forceOpen: true }); return; }
     if (event.target.closest('[data-return-explore]')) { setMapWorkspace('explore', { forceOpen: true }); }
   });
   const resizeButton = el('resizeMapWorkspace');
