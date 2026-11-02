@@ -34,7 +34,7 @@ function renderRegionalNavigation() {
   const label = region.name || id || 'Choose region';
   const links = officialLinksForRegion(catalog, id);
   const subregions = subregionsForRegion(catalog, id);
-  const hasMenu = links.length > 0 || subregions.length > 0 || Boolean(state.map);
+  const hasMenu = links.length > 0 || subregions.length > 0;
   control.classList.toggle('has-menu', hasMenu);
   control.classList.remove('ink-control');
   control.replaceChildren();
