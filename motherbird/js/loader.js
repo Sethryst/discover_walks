@@ -29,7 +29,7 @@ import { initStories } from './stories.js';
 import { initRadio } from './radio.js?v=20261009-radio-controls-2';
 import { recoverWalkDraft, discardWalk } from './walk.js';
 import { initBiodiversity } from './biodiversity.js';
-import { initRegionalNavigation } from './regional-navigation.js?v=20261011-fairfax-subregions-1';
+import { initRegionalNavigation } from './regional-navigation.js?v=20261101-display-only-1';
 import { initStorageDiagnostics } from './storage-diagnostics.js';
 import { loadWorkspaceState, initWorkspaceRuntime, seedWorkspaceDemo } from './workspace.js?v=workspace-tabs-20261101-19';
 import { normalizeSavedRoute } from './saved-routes.js';

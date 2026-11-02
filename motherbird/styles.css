@@ -1729,3 +1729,5 @@ body.location-available .context-help-button {
    .map-workspace-panel > header > .map-workspace-header-actions { width: 92px !important; min-width: 92px !important; }
  }
 
+/* The active map area is a status label, not a navigation control. */
+.regional-navigation-label { display: flex; align-items: center; white-space: nowrap; pointer-events: none; cursor: default; }
