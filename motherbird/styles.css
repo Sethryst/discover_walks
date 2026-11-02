@@ -1745,22 +1745,3 @@ body.location-available .context-help-button {
    .map-workspace-header-tab { min-width: 68px; padding-inline: 6px !important; }
  }
 
-/* Workspace contract: one fixed navigation row and one scrolling content area. */
-#mapWorkspacePanel[data-destination="maps"] > header { flex: 0 0 auto; }
-#mapWorkspacePanel[data-destination="maps"] > [data-map-panel="maps"] { min-height: 0; display: flex; flex: 1 1 auto; flex-direction: column; overflow: hidden !important; }
-#mapWorkspacePanel[data-destination="maps"] #myMapsPanel,
-#mapWorkspacePanel[data-destination="maps"] #personalPlacesPanel { min-height: 0; display: flex; flex: 1 1 auto; flex-direction: column; overflow: hidden; }
-#mapWorkspacePanel[data-destination="maps"] .workspace-home { min-height: 0; flex: 1 1 auto; overflow: hidden; }
-#mapWorkspacePanel[data-destination="maps"] .workspace-experience { min-height: 0; height: 100%; display: flex; flex-direction: column; gap: 0; overflow: hidden; }
-#mapWorkspacePanel[data-destination="maps"] .workspace-experience-header { flex: 0 0 auto; }
-#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills { position: static !important; display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 6px !important; flex: 0 0 auto !important; width: 100% !important; height: auto !important; margin: 0 !important; padding: 6px !important; overflow: visible !important; }
-#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills::before { content: none !important; display: none !important; }
-#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button { display: grid !important; place-items: center !important; width: 100% !important; min-width: 0 !important; height: 38px !important; min-height: 38px !important; padding: 0 8px !important; border: 1px solid rgba(23,60,53,.2) !important; border-radius: 8px !important; background: transparent !important; color: var(--ink) !important; font: inherit !important; font-size: .72rem !important; font-weight: 800 !important; line-height: 1 !important; text-align: center !important; box-shadow: none !important; }
-#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button.active { background: var(--ink) !important; color: var(--paper) !important; }
-#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button::before { content: none !important; display: none !important; }
-#mapWorkspacePanel[data-destination="maps"] .workspace-tool-page,
-#mapWorkspacePanel[data-destination="maps"] .workspace-walk-card { min-height: 0; flex: 1 1 auto; overflow-y: auto; overscroll-behavior: contain; }
-#mapWorkspacePanel[data-destination="maps"] .workspace-route-controls { flex: 0 0 auto; }
-#mapWorkspacePanel.workspace-small > [data-map-panel="maps"], #mapWorkspacePanel.workspace-small > [data-map-panel="explore"] { overflow: hidden !important; }
-#mapWorkspacePanel.workspace-mid > [data-map-panel="maps"], #mapWorkspacePanel.workspace-mid > [data-map-panel="explore"],
-#mapWorkspacePanel.workspace-wide > [data-map-panel="maps"], #mapWorkspacePanel.workspace-wide > [data-map-panel="explore"] { overflow-y: auto !important; overflow-x: hidden !important; }
