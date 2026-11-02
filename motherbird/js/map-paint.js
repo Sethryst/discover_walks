@@ -295,7 +295,7 @@ export async function initMapPaint() {
   const pinGrid = document.createElement('div');
   pinGrid.className = 'draw-pin-grid';
   pinGrid.setAttribute('aria-label', 'Custom pin categories');
-  pinGrid.innerHTML = [['Grocery', 'grocery', '#65b96a'], ['Shopping', 'shopping', '#8c63d8'], ['Cuisine', 'cuisine', '#ef8b2c'], ['Services', 'services', '#4b8ed8'], ['Health', 'health', '#df5c55'], ['Home', 'home', '#9a6b47'], ['Transport', 'transport', '#7f8790'], ['Custom icon', 'custom', '#f6c928']].map(([label, id, color]) => `<button type="button" draggable="true" aria-label="${label}; click to place or drag onto the map" data-draw-pin="${id}" style="--pin-color:${color}"><span aria-hidden="true">●</span><span>${label}</span></button>`).join('');
+  pinGrid.innerHTML = [['Grocery', 'grocery', 'utensils', '#65b96a'], ['Shopping', 'shopping', 'building', '#8c63d8'], ['Cuisine', 'cuisine', 'coffee', '#ef8b2c'], ['Services', 'services', 'info', '#4b8ed8'], ['Health', 'health', 'heart', '#df5c55'], ['Home', 'home', 'home', '#9a6b47'], ['Transport', 'transport', 'route', '#7f8790'], ['Custom icon', 'custom', 'star', '#f6c928']].map(([label, id, icon, color]) => `<button type="button" draggable="true" aria-label="${label}; click to place or drag onto the map" data-draw-pin="${id}" style="--pin-color:${color}"><img src="./icons/${icon}.svg" alt="" aria-hidden="true"><span>${label}</span></button>`).join('');
   drawTools?.before(pinGrid);
   pinGrid.addEventListener('click', (event) => { const pin = event.target.closest('[data-draw-pin]'); if (pin) window.dispatchEvent(new CustomEvent('personal-place-create-requested', { detail: { categoryName: pin.dataset.drawPin } })); });
   pinGrid.addEventListener('dragstart', (event) => { const pin = event.target.closest('[data-draw-pin]'); if (!pin) return; event.dataTransfer?.setData('text/plain', pin.dataset.drawPin); event.dataTransfer?.setData('application/x-walk-wildlife-pin', pin.dataset.drawPin); });
@@ -345,6 +345,7 @@ export async function initMapPaint() {
   const mapNode = state.map.getContainer();
   mapNode.addEventListener('dragover', (event) => { if (event.dataTransfer?.types.includes('application/x-walk-wildlife-pin') || event.dataTransfer?.types.includes('text/plain')) { event.preventDefault(); mapNode.classList.add('pin-drop-target'); } });
   mapNode.addEventListener('dragleave', () => mapNode.classList.remove('pin-drop-target'));
+  pinGrid.addEventListener('dragend', () => mapNode.classList.remove('pin-drop-target'));
   mapNode.addEventListener('drop', (event) => {
     const categoryName = event.dataTransfer?.getData('application/x-walk-wildlife-pin') || event.dataTransfer?.getData('text/plain');
     if (!categoryName) return;

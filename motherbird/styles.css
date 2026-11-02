@@ -1731,3 +1731,13 @@ body.location-available .context-help-button {
 
 /* The active map area is a status label, not a navigation control. */
 .regional-navigation-label { display: flex; align-items: center; white-space: nowrap; pointer-events: none; cursor: default; }
+/* Draw controls stay readable without hover and category pins use their real icons. */
+.map-workspace-panel[data-destination="draw"] .artifact-heading { align-items: center; min-width: 0; }
+.map-workspace-panel[data-destination="draw"] .artifact-heading-actions { flex: 0 0 auto; flex-wrap: nowrap; }
+.map-workspace-panel[data-destination="draw"] .artifact-heading-actions button { min-width: 0; padding: 5px 7px; color: var(--ink) !important; background: var(--paper) !important; opacity: 1 !important; white-space: nowrap; }
+.map-workspace-panel[data-destination="draw"] .draw-pin-grid { display: grid !important; grid-template-columns: repeat(4, minmax(0, 1fr)) !important; gap: 5px !important; }
+.map-workspace-panel[data-destination="draw"] .draw-pin-grid button { display: grid !important; place-items: center !important; gap: 3px !important; min-height: 52px !important; padding: 5px 2px !important; opacity: 1 !important; color: var(--ink) !important; background: color-mix(in srgb, var(--pin-color) 14%, white) !important; cursor: grab; }
+.map-workspace-panel[data-destination="draw"] .draw-pin-grid button:active { cursor: grabbing; }
+.map-workspace-panel[data-destination="draw"] .draw-pin-grid button img { display: block !important; width: 20px !important; height: 20px !important; object-fit: contain; filter: none !important; }
+.map-workspace-panel[data-destination="draw"] .draw-pin-grid button > span:last-child { position: static !important; width: auto !important; height: auto !important; margin: 0 !important; overflow: visible !important; clip: auto !important; color: var(--ink) !important; font-size: .58rem !important; line-height: 1.05 !important; white-space: normal !important; }
+.pin-drop-target { outline: 3px dashed #e8740f !important; outline-offset: -6px; }
