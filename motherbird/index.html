@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="./vendor/leaflet-geoman/leaflet-geoman.css" />
   <link rel="stylesheet" href="./vendor/maplibre-gl.css" />
   <link rel="stylesheet" href="./styles.css?v=workspace-tabs-20261101-22" />
-    <link rel="stylesheet" href="./radio.css?v=20261024-mini-dismiss-1" />
+    <link rel="stylesheet" href="./radio.css?v=20261101-radio-condensed-1" />
   <link rel="stylesheet" href="./shell.css?v=workspace-tabs-20261101-24" />
   <link rel="stylesheet" href="./map-customization.css?v=20261012-map-studio-2" />
   <link rel="stylesheet" href="./splash-fix.css?v=20261007-library-nav-fix-1" />
@@ -228,10 +228,8 @@
 
   <section class="sheet radio-sheet hidden" id="radioSheet" role="dialog" aria-modal="true" aria-labelledby="radioTitle">
     <div class="sheet-header-actions"><button class="sheet-resize" id="toggleRadioCompact" type="button" aria-label="Toggle compact radio" aria-pressed="false">▤</button><button class="close-sheet" id="radioCloseButton" type="button" aria-label="Close">×</button></div>
-    <span class="sheet-kicker">WALKING BROADCAST · AMBIENT DISCOVERY</span><h2 id="radioTitle">Radio</h2>
-    <p id="radioChannelDescription" class="radio-description">Start with one transmission. Listen, skip, and keep what stays with you.</p>
-    <fieldset class="radio-source-switches" aria-label="Broadcast sources"><legend>Sources</legend><label><input id="radioLiveSources" type="checkbox" /> Permissioned live broadcasts</label><label><input id="radioLocalSources" type="checkbox" checked /> Local radio · archive programs and your audio</label></fieldset>
-    <div class="radio-local-upload"><label class="secondary-button import-label">＋ Add audio to local radio<input id="radioLocalUploadInput" type="file" accept="audio/*,.mp3,.m4a,.ogg,.wav,.webm,.flac" /></label><small>Stored privately on this device. It is not uploaded or shared.</small></div>
+    <h2 id="radioTitle">Radio</h2>
+    <fieldset class="radio-source-switches" aria-label="Broadcast sources"><legend>Sources</legend><label><input id="radioLiveSources" type="checkbox" /> Live</label><label><input id="radioLocalSources" type="checkbox" checked /> Local</label></fieldset>
     <div class="radio-live-player hidden" id="radioLivePlayer" aria-live="polite"><div><small>LIVE SOUNDCLOUD</small><strong>Permissioned live broadcast</strong></div><label class="radio-live-picker">Find a playlist<input id="radioSoundcloudSearch" type="search" placeholder="Search 60 playlists…" autocomplete="off" /><span id="radioSoundcloudCount" aria-live="polite"></span></label><label class="radio-live-picker">Playlist<select id="radioSoundcloudSelect"></select></label><iframe id="radioSoundcloudFrame" title="SoundCloud live broadcast" allow="autoplay" loading="lazy"></iframe><label class="radio-live-picker">Track in this playlist<select id="radioSoundcloudTrackSelect"><option>Loading playlist tracks…</option></select><span id="radioSoundcloudTrackCount" aria-live="polite"></span></label></div>
     <div class="radio-console" id="radioPlayer" data-radio-state="paused">
       <div class="radio-on-air"><span class="radio-lamp" aria-hidden="true"></span><div><small id="radioStatus">paused</small><strong id="radioNowPlaying">No transmission selected</strong></div></div>
@@ -240,7 +238,7 @@
       <div class="radio-controls radio-secondary-controls"><button id="radioQueueButton" class="secondary-button" type="button">Queue selected track</button><button id="radioFavoriteButton" class="secondary-button" type="button" disabled>♡ Favorite</button></div>
       <div class="radio-queue hidden" id="radioQueue" aria-live="polite"></div>
       <button id="radioLibraryButton" class="secondary-button radio-library-button" type="button">♫ Soundtrack library</button><div id="radioLibrary" class="radio-library hidden" aria-live="polite"></div>
-    </div><p class="radio-note"><span id="radioStationCount">0 stations available</span> · Favorites stay available in the soundtrack library.</p>
+    </div><div class="radio-local-upload"><label class="secondary-button import-label">＋ Add audio to local radio<input id="radioLocalUploadInput" type="file" accept="audio/*,.mp3,.m4a,.ogg,.wav,.webm,.flac" /></label><small>Stored privately on this device. It is not uploaded or shared.</small></div><p class="radio-note"><span id="radioStationCount">0 stations available</span> · Favorites stay available in the soundtrack library.</p>
   </section>
       <aside class="radio-mini-player hidden" id="radioMiniPlayer" aria-label="Radio mini player"><div><small id="radioMiniStatus">Paused</small><strong id="radioMiniTitle">Radio</strong></div><button id="radioMiniPreviousButton" type="button" aria-label="Previous track"><img src="./icons/skip-back.svg" alt="" /></button><button id="radioMiniPlayButton" type="button" aria-label="Play radio">▶</button><button id="radioMiniNextButton" type="button" aria-label="Next track"><img src="./icons/skip-forward.svg" alt="" /></button><button id="radioMiniOpenButton" type="button" aria-label="Open radio">↗</button><button id="radioMiniCloseButton" type="button" aria-label="Hide radio mini player">×</button></aside>
   <section class="sheet hidden room-sheet" id="roomSheet" role="dialog" aria-modal="true" aria-labelledby="roomTitle"><button class="close-sheet" data-close-sheet aria-label="Close">×</button><span class="sheet-kicker" id="roomType">PRIVATE ROOM</span><h2 id="roomTitle">Place Room</h2><p id="roomBody">A Room is a deeper, place-specific experience. Private Rooms stay on this device; public publishing requires Field Edition.</p><div id="roomSections" class="room-sections"></div><div id="roomTraceSummary" class="room-trace-summary" aria-live="polite"></div><div class="sheet-actions"><button type="button" class="primary-button" id="roomAddToJournalButton">Add to Journal Room</button><button type="button" class="secondary-button" id="roomRadioButton">Featured Radio</button><button type="button" class="secondary-button" id="roomAudioButton">Add Audio Note</button><button type="button" class="secondary-button" id="roomJournalButton">Add Journal Note</button></div></section>
