@@ -1480,6 +1480,15 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
 #mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button:hover { background: #d9e8f0!important; color: #17202a!important; }
 #mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button + button { margin-left: 0!important; }
 
+/* Workspace uses the same compact selector language as Explore, with its own icon set. */
+#mapWorkspacePanel[data-destination="maps"] .workspace-heading-icon { display: inline-grid; place-items: center; width: 18px; height: 18px; margin-right: 3px; vertical-align: -4px; }
+#mapWorkspacePanel[data-destination="maps"] .workspace-heading-icon img { width: 15px; height: 15px; }
+#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 4px !important; padding: 3px 4px !important; }
+#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button { display: inline-flex !important; align-items: center; justify-content: center; gap: 4px; min-height: 30px !important; height: 30px !important; padding: 3px 5px !important; border: 1px solid rgba(23,60,53,.22) !important; border-radius: 7px !important; background: rgba(255,250,240,.88) !important; color: var(--ink) !important; font-size: .63rem !important; letter-spacing: .02em; }
+#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button img { width: 14px; height: 14px; opacity: .82; }
+#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button.active { background: var(--ink) !important; color: var(--paper) !important; }
+#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button.active img { filter: brightness(0) invert(1); opacity: 1; }
+
 /* Do not expose an orange style surface while the basemap is panning or zooming. */
 .app-shell #map,
 .app-shell #map.leaflet-container,

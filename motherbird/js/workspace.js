@@ -3,6 +3,7 @@ import { state } from './state.js';
 import { escapeHtml, uid } from './utils.js';
 import { generateTimeBasedPlan } from './planner.js';
 import { renderFieldGuide } from './field-guide.js';
+import { isBiodiversitySupported } from './biodiversity.js';
 import { startWalk } from './walk.js';
 import { openJournal } from './ui.js';
 
@@ -220,7 +221,7 @@ async function renderJournalRoomWorkspaceSummary() {
   return `<section class="workspace-journal-room" aria-label="Journal Room summary"><div class="workspace-journal-room-heading"><div><span class="sheet-kicker">PLACE COMPOSITION</span><h3>Journal Room</h3><p>${poiCount} POI${poiCount === 1 ? '' : 's'} · ${noteCount} journal note${noteCount === 1 ? '' : 's'}</p></div><button type="button" class="secondary-button" data-open-journal-room>Open room</button></div>${preview.length ? `<div class="workspace-journal-room-preview">${preview.map((item) => `<span class="workspace-journal-room-chip"><b>${item.kind === 'journal' ? '✎' : '⌖'}</b>${escapeHtml(item.name || 'Untitled')}</span>`).join('')}</div>` : '<p class="workspace-journal-room-empty">Your saved places and page notes will gather here.</p>'}</section>`;
 }
 
-const WORKSPACE_TOOLS = [['options', 'Walk'], ['journal', 'Journal'], ['learn', 'Learn']];
+const WORKSPACE_TOOLS = [['options', 'Walk', 'route'], ['journal', 'Journal', 'journal'], ['learn', 'Learn', 'learn']];
 let activeWorkspaceTool = 'journal';
 let pendingWorkspaceTool = null;
 let workspaceBuilderMode = 'auto-round-trip';
@@ -266,12 +267,27 @@ function workspacePage() {
   if (tool === 'radio') return '<div class="workspace-tool-page"><div data-workspace-embedded="radio"></div></div>';
   if (tool === 'annotate') return '<div class="workspace-tool-page"><div data-workspace-embedded="draw"></div></div>';
   if (tool === 'journal') return '<div class="workspace-tool-page workspace-journal-page"><div data-workspace-embedded="journal"></div></div>';
-  if (tool === 'learn') return '<div class="workspace-tool-page"><div data-workspace-learn-list></div></div>';
+  if (tool === 'learn') return '<div class="workspace-tool-page workspace-field-guide-page"><div data-workspace-guide-list></div></div>';
   return workspacePlacesMarkup();
 }
-async function hydrateWorkspaceLearn(target) { const list = target.querySelector('[data-workspace-learn-list]'); const source = document.getElementById('fieldGuideList'); if (!list || !source) return; await renderFieldGuide('learn'); const clean = source.cloneNode(true); clean.querySelectorAll('.learn-workspace-header, .learn-workspace-toolbar, .learn-nearby').forEach((node) => node.remove()); list.innerHTML = clean.innerHTML || '<p class="empty-state">No linked learning content is available for this route yet.</p>'; }
+async function hydrateWorkspaceLearn(target) {
+  const list = target.querySelector('[data-workspace-guide-list]');
+  const source = document.getElementById('fieldGuideList');
+  if (!list || !source) return;
+  const sections = [];
+  const guideTabs = [['discover', 'Nearby'], ['learn', 'Learn']];
+  if (isBiodiversitySupported()) guideTabs.push(['biodiversity', 'Nature']);
+  for (const [tab, title] of guideTabs) {
+    await renderFieldGuide(tab);
+    const clean = source.cloneNode(true);
+    clean.querySelectorAll('.learn-workspace-header, .learn-workspace-toolbar, .learn-nearby, #fieldGuideOrderNote').forEach((node) => node.remove());
+    const content = clean.innerHTML.trim();
+    if (content && !/^<p class="empty-state">/.test(content)) sections.push(`<section class="workspace-guide-section"><h3>${title}</h3>${content}</section>`);
+  }
+  list.innerHTML = sections.length ? sections.join('') : '<p class="empty-state">No field guide entries are available in this region yet.</p>';
+}
 function renderWorkspaceExperience(target) {
-  target.innerHTML = `<section class="workspace-experience" aria-label="Workspace"><header class="workspace-experience-header"><div><h1>${currentWalk.title}</h1></div></header><nav class="workspace-tool-pills" aria-label="Workspace sections" role="tablist">${WORKSPACE_TOOLS.map(([id, label]) => `<button type="button" role="tab" class="${activeWorkspaceTool === id ? 'active' : ''}" aria-selected="${activeWorkspaceTool === id}" data-workspace-tool="${id}">${label}</button>`).join('')}</nav>${workspacePage()}</section>`;
+  target.innerHTML = `<section class="workspace-experience" aria-label="Workspace"><header class="workspace-experience-header"><div><h1>${currentWalk.title}</h1></div></header><nav class="workspace-tool-pills" aria-label="Workspace sections" role="tablist">${WORKSPACE_TOOLS.map(([id, label, icon]) => `<button type="button" role="tab" class="${activeWorkspaceTool === id ? 'active' : ''}" aria-selected="${activeWorkspaceTool === id}" data-workspace-tool="${id}"><img src="./icons/${icon === 'route' ? 'route' : icon === 'journal' ? 'bookmark' : 'book-open'}.svg" alt="" aria-hidden="true"><span>${label}</span></button>`).join('')}</nav>${workspacePage()}</section>`;
   target.querySelector('.workspace-tool-pills')?.addEventListener('click', (event) => {
     const button = event.target.closest('[data-workspace-tool]');
     if (!button || !button.closest('.workspace-tool-pills')) return;
