@@ -1,7 +1,7 @@
 // Keep the whole module graph with the shell. Caching only app.js leaves an
 // offline (or briefly disconnected) reload with a blank app when any imported
 // module was not already in the runtime cache.
-const APP_CACHE = 'walk-wildlife-shell-v596'; // Keep large regional enrichment out of startup
+const APP_CACHE = 'walk-wildlife-shell-v597'; // Keep large regional enrichment out of startup
 const TILE_CACHE = 'walk-wildlife-map-tiles-v2';
 const LIBRARY_CACHE = 'walk-wildlife-library-v2';
 const COMPANION_CACHE = 'walk-wildlife-companion-media-v2';
@@ -58,6 +58,7 @@ shell.push('./js/regional-navigation.js', './data/regional-navigation.json');
 // download tens of megabytes and can leave mobile browsers looking frozen.
 const installShell = shell.filter((asset) => !asset.startsWith('./regions/') && !/(^|\/)(?:[^/]*-)?poi(?:s)?\.json$|(^|\/)records\.json$|(^|\/)cells\.json$|neighborhoods\.geojson$|runtime-graph\.json$|(?:fox|cloud|compass|splash)/i.test(asset));
 const shellPaths = new Set(installShell.map((asset) => new URL(asset, self.registration.scope).pathname));
+const staticAssetPattern = /\.(?:css|js|mjs|svg|png|jpe?g|webp|gif|ico|woff2?)$/i;
 const libraryAssets = [
   './vendor/leaflet/leaflet.css',
   './vendor/leaflet/leaflet.js',
@@ -164,6 +165,22 @@ self.addEventListener('fetch', (event) => {
   }
 
   if (url.origin === self.location.origin) {
+    // The shell is composed of versioned static assets. Once an asset has
+    // been installed, serve it immediately on repeat visits and during
+    // weak/intermittent connectivity; the version query strings and cache
+    // activation cleanup provide the update boundary. HTML and data remain
+    // network-first below so fresh content is still preferred.
+    if (staticAssetPattern.test(url.pathname)) {
+      event.respondWith(caches.match(event.request).then(async (cached) => {
+        if (cached) return cached;
+        const response = await fetch(event.request);
+        if (response.ok) {
+          event.waitUntil(caches.open(APP_CACHE).then((cache) => cache.put(event.request, response.clone())));
+        }
+        return response;
+      }).catch(() => caches.match(event.request)));
+      return;
+    }
     event.respondWith(
       fetch(event.request)
         .then((response) => {
