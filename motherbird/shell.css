@@ -496,18 +496,32 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
   font-size: .55rem !important;
 }
 .map-workspace-panel[data-destination="explore"] .advanced-layer-chip {
-  min-height: 24px !important;
-  padding: 3px 6px !important;
-  gap: 4px !important;
-  border-radius: 7px !important;
+  min-height: 42px !important;
+  flex: 1 1 190px;
+  max-width: 100%;
+  padding: 8px 10px !important;
+  gap: 8px !important;
+  border-radius: 10px !important;
 }
 .map-workspace-panel[data-destination="explore"] .advanced-layer-chip strong {
-  font-size: .62rem !important;
-  line-height: 1 !important;
+  font-size: .78rem !important;
+  line-height: 1.2 !important;
+  white-space: normal;
 }
 .map-workspace-panel[data-destination="explore"] .advanced-layer-chip small {
-  font-size: .55rem !important;
-  line-height: 1 !important;
+  font-size: .64rem !important;
+  line-height: 1.2 !important;
+}
+.map-workspace-panel[data-destination="explore"] .advanced-layer-chip > img {
+  width: 20px;
+  height: 20px;
+  flex-basis: 20px;
+}
+.map-workspace-panel[data-destination="explore"] .advanced-layer-chip > span {
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
 }
 .map-workspace-panel[data-destination="explore"] > header button {
   width: 14px !important;
