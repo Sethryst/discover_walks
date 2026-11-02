@@ -135,7 +135,7 @@ function finishMapEditing() {
     item.setAttribute('aria-pressed', 'false');
   });
   const status = el('drawWorkspaceStatus');
-  if (status) status.textContent = 'Editing paused. Choose a tool to add another map mark.';
+  if (status) status.textContent = '';
 }
 
 export function validDrawing(points) {

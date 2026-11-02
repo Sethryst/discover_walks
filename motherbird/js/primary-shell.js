@@ -15,8 +15,6 @@ const actions = {
   ],
   me: [
     { id: 'me-companion', label: 'Companion and Maps', icon: './icons/heart.svg', run: () => window.dispatchEvent(new CustomEvent('companion-menu-requested')) },
-    { id: 'me-draw', label: 'Draw & annotations', icon: './icons/pencil.svg', run: () => window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'draw', forceOpen: true } })) },
-    { id: 'me-radio', label: 'Radio', icon: './icons/music.svg', run: () => window.dispatchEvent(new CustomEvent('radio-open-requested')) },
     { id: 'me-online', label: 'Online', icon: './icons/globe.svg', run: () => { openSheet('backpackSheet'); window.dispatchEvent(new CustomEvent('utility-tab-requested', { detail: { tab: 'online' } })); } },
     { id: 'me-advanced', label: 'Advanced', advanced: true, children: [
       { id: 'me-export', label: 'Export data', icon: './icons/download.svg', run: () => { openSheet('backpackSheet'); window.dispatchEvent(new CustomEvent('utility-tab-requested', { detail: { tab: 'export' } })); } },
