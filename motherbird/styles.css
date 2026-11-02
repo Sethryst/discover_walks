@@ -724,6 +724,17 @@ body.route-focus-mode .walk-sketch{z-index:1200}
   line-height: 1.05 !important;
   text-align: center !important;
 }
+.map-workspace-panel[data-destination="layers"] .custom-pin-form { margin: 12px 0 16px; padding: 12px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255,255,255,.5); }
+.map-workspace-panel[data-destination="layers"] .custom-pin-form h3 { margin: 4px 0; font-size: 1rem; }
+.map-workspace-panel[data-destination="layers"] .custom-pin-form .workspace-helper { margin: 0 0 10px; }
+.map-workspace-panel[data-destination="layers"] .draw-pin-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+.map-workspace-panel[data-destination="layers"] .draw-pin-grid button { display: grid; place-items: center; gap: 3px; min-height: 58px; padding: 6px 3px; border: 1px solid color-mix(in srgb, var(--pin-color) 45%, var(--line)); border-radius: 9px; background: color-mix(in srgb, var(--pin-color) 14%, white); color: var(--ink); font-size: .62rem; font-weight: 800; }
+.map-workspace-panel[data-destination="layers"] .draw-pin-grid button:hover,
+.map-workspace-panel[data-destination="layers"] .draw-pin-grid button:focus-visible { transform: scale(1.04); box-shadow: 0 4px 12px rgba(23,60,53,.18); }
+.map-workspace-panel[data-destination="layers"] .draw-pin-grid img { width: 24px; height: 24px; padding: 4px; border-radius: 50%; background: var(--pin-color); }
+.map-workspace-panel[data-destination="draw"] .draw-shapes button[data-tooltip] { position: relative; }
+.map-workspace-panel[data-destination="draw"] .draw-shapes button[data-tooltip]:hover::after,
+.map-workspace-panel[data-destination="draw"] .draw-shapes button[data-tooltip]:focus-visible::after { content: attr(data-tooltip); position: absolute; z-index: 20; left: 50%; bottom: calc(100% + 8px); transform: translateX(-50%); width: max-content; max-width: 190px; padding: 8px 10px; border-radius: 8px; background: var(--ink); color: var(--paper); font-size: .78rem; line-height: 1.2; font-weight: 700; white-space: normal; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,.2); pointer-events: none; }
 .draw-shapes.draw-tool-rail {
   top: 76px !important;
   left: 78px !important;
