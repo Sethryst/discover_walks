@@ -158,11 +158,8 @@ export async function init() {
   initRadialMenu();
   initRegionalNavigation();
   telemetry('controls');
-  initStories();
   initPrimaryShell();
   initMapSettings();
-  initFieldGuideFilters();
-  initBiodiversity();
 
   // The core map is ready now. Optional local/network features must not hold
   // the whole app hostage behind a slow manifest, migration, or region fetch.
@@ -179,6 +176,9 @@ export async function init() {
   void (async () => {
     await optionalBoot('walk controls', () => import('./events.js?v=workspace-tabs-20261101-19').then(({ initEvents }) => initEvents()));
     initRadialMenu();
+    await optionalBoot('stories', initStories);
+    await optionalBoot('field guide filters', initFieldGuideFilters);
+    await optionalBoot('biodiversity', initBiodiversity);
     await optionalBoot('radio', initRadio);
     await optionalBoot('geo-cypher', initGeoCypher);
     removePrimaryControlFallbacks();
