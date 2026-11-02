@@ -215,11 +215,6 @@ async function setMapWorkspace(destination = '', { toggle = true, forceOpen = fa
   if (next === 'maps') {
     renderPersonalPlacesPanel();
   }
-  document.querySelectorAll('[data-workspace-header-tab]').forEach((button) => {
-    const active = button.dataset.workspaceHeaderTab === 'walk';
-    button.classList.toggle('active', active);
-    button.setAttribute('aria-selected', String(active));
-  });
   window.dispatchEvent(new CustomEvent('map-workspace-changed', { detail: { destination: next, open: Boolean(next) } }));
 }
 
@@ -231,6 +226,13 @@ function bindMapWorkspace() {
     if (event.target.closest('[data-return-explore]')) { setMapWorkspace('explore', { forceOpen: true }); }
   });
   const resizeButton = el('resizeMapWorkspace');
+  const updateResizeLabel = () => {
+    const panel = el('mapWorkspacePanel');
+    const label = { 'workspace-small': 'Small', 'workspace-mid': 'Medium', 'workspace-wide': 'Wide' }[panel?.dataset.resizeState || 'workspace-small'];
+    resizeButton?.setAttribute('aria-label', `Panel size: ${label}`);
+    resizeButton?.setAttribute('title', `Panel size: ${label}`);
+  };
+  updateResizeLabel();
   const advanceWorkspaceSize = () => {
     const panel = el('mapWorkspacePanel');
     if (!panel) return;
@@ -247,7 +249,7 @@ function bindMapWorkspace() {
       const advancedFilters = panel.querySelector('.advanced-filters') || document.querySelector('.advanced-filters');
       if (advancedFilters) advancedFilters.open = true;
     }
-    el('resizeMapWorkspace')?.setAttribute('aria-label', `Panel size: ${next.replace('workspace-', '')}`);
+    updateResizeLabel();
     panel.classList.toggle('workspace-expanded', next !== 'workspace-small');
     syncWorkspaceScroll(panel);
   };
