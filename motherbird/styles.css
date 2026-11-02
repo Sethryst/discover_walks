@@ -1774,3 +1774,10 @@ body.location-available .context-help-button {
 .map-workspace-panel[data-destination="draw"] .draw-shapes button.active { background: #f1efff !important; }
 .map-workspace-panel[data-destination="draw"] .draw-shapes .draw-tool-icon { opacity: 1 !important; visibility: visible !important; filter: none !important; }
 .pin-drop-target { outline: 3px dashed #e8740f !important; outline-offset: -6px; }
+.primary-nav #libraryTab { display: inline-flex; align-items: center; gap: 4px; }
+.primary-nav #libraryTab img { width: 15px; height: 15px; }
+/* Workspace opens at Explore's working size; keep the chrome identical. */
+#mapWorkspacePanel[data-destination="maps"] > header { height: 28px !important; min-height: 28px !important; padding: 2px 7px !important; }
+#mapWorkspacePanel[data-destination="maps"] > header button { width: 24px !important; height: 24px !important; min-height: 24px !important; }
+#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills { gap: 4px !important; padding: 3px 4px !important; }
+#mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills button { height: 34px !important; min-height: 34px !important; padding: 0 9px !important; font-size: .69rem !important; line-height: 1 !important; }

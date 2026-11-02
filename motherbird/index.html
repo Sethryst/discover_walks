@@ -46,7 +46,7 @@
   <div class="app-splash" id="appSplash" aria-hidden="true"><img src="./assets/splash-screen.jpeg" alt="" /><div class="app-splash-status" role="status" aria-live="polite"><span class="app-splash-status-dot" aria-hidden="true"></span><span id="appSplashStatus">Unfolding your journal…</span></div></div>
   <script>setTimeout(() => document.getElementById('appSplash')?.classList.add('app-splash--done'), 900);</script>
   <main class="app-shell">
-    <nav class="primary-nav" aria-label="Main navigation"><button id="exploreTab" type="button" data-primary-tab="explore" class="active" aria-current="page">Explore</button><button id="libraryTab" type="button" data-primary-tab="library">Workspace</button></nav>
+    <nav class="primary-nav" aria-label="Main navigation"><button id="exploreTab" type="button" data-primary-tab="explore" class="active" aria-current="page">Explore</button><button id="libraryTab" type="button" data-primary-tab="library"><img src="./icons/book-open.svg" alt="" aria-hidden="true" />Workspace</button></nav>
     <aside class="primary-panel hidden" id="primaryPanel" aria-live="polite"><header><h2 id="primaryPanelTitle">Walk</h2><button type="button" id="closePrimaryPanel" aria-label="Close">×</button></header><div id="primaryPanelActions"></div></aside>
     <div id="installedBasemap" class="installed-basemap hidden" aria-hidden="true"></div>
     <div id="map" role="application" aria-label="Map of installed-pack places"></div>
@@ -65,7 +65,7 @@
       <div class="place-crosshair" id="placeCrosshair" aria-hidden="true"><span></span></div><button class="crosshair-confirm hidden" id="confirmCrosshairButton" type="button">Use this spot</button>
       <div id="cutThroughPrompt" class="cut-through-prompt hidden" aria-live="polite"></div>
       <div class="map-workspace">
-        <aside class="map-workspace-panel workspace-small hidden" id="mapWorkspacePanel" data-resize-state="workspace-small" aria-label="Map workspace panel">
+        <aside class="map-workspace-panel workspace-mid hidden" id="mapWorkspacePanel" data-resize-state="workspace-mid" aria-label="Map workspace panel">
           <header><div class="map-workspace-header-title"><span class="workspace-heading-icon" aria-hidden="true"><img src="./icons/book-open.svg" alt="" /></span><strong id="mapWorkspaceTitle">Explore</strong></div><div class="map-workspace-header-actions"><button type="button" id="resizeMapWorkspace" aria-label="Resize panel" aria-pressed="false">↕</button><button type="button" id="closeMapWorkspace" aria-label="Close workspace panel">×</button></div></header>
         <section data-map-panel="explore"><div class="map-lights" id="mapLights" aria-label="Explore categories"></div></section>
           <section class="hidden" data-map-panel="maps"><section id="myMapsPanel"><div id="personalPlacesPanel"><section class="workspace-home workspace-placeholder" aria-label="Workspace"></section></div></section></section>
@@ -266,7 +266,7 @@
               navigator.serviceWorker?.getRegistrations().then((registrations) => Promise.all(registrations.map((registration) => registration.unregister())))
             ]).finally(() => location.replace(cleanUrl));
           })();
-        </script><script src="./vendor/leaflet/leaflet.js"></script><script src="./vendor/leaflet-markercluster/leaflet.markercluster.js"></script><script src="./vendor/leaflet-geoman/leaflet-geoman.min.js"></script><script src="./vendor/turf/turf.min.js"></script><script src="./vendor/maplibre-gl.js"></script><script src="./supabase-config.js"></script><script type="module" src="./app.js?v=workspace-tabs-20261101-27"></script>
+        </script><script src="./vendor/leaflet/leaflet.js"></script><script src="./vendor/leaflet-markercluster/leaflet.markercluster.js"></script><script src="./vendor/leaflet-geoman/leaflet-geoman.min.js"></script><script src="./vendor/turf/turf.min.js"></script><script src="./vendor/maplibre-gl.js"></script><script src="./supabase-config.js"></script><script type="module" src="./app.js?v=workspace-tabs-20261101-28"></script>
 </body>
 </html>
 

@@ -243,8 +243,8 @@ function bindMapWorkspace() {
   const advanceWorkspaceSize = () => {
     const panel = el('mapWorkspacePanel');
     if (!panel) return;
-    const sizes = ['workspace-small', 'workspace-mid', 'workspace-wide'];
-    const current = sizes.indexOf(panel.dataset.resizeState || 'workspace-small');
+    const sizes = panel.dataset.destination === 'maps' ? ['workspace-mid', 'workspace-wide'] : ['workspace-small', 'workspace-mid', 'workspace-wide'];
+    const current = sizes.indexOf(panel.dataset.resizeState || (panel.dataset.destination === 'maps' ? 'workspace-mid' : 'workspace-small'));
     const next = sizes[(current + 1) % sizes.length];
     panel.dataset.resizeState = next;
     panel.classList.remove(...sizes);
