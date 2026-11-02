@@ -309,6 +309,19 @@ export async function initMapPaint() {
       item.setAttribute('aria-label', `${label} tool`);
     }
   });
+  const tooltip = el('drawToolTooltip');
+  const hideTooltip = () => { if (!tooltip) return; tooltip.classList.remove('is-visible'); tooltip.setAttribute('aria-hidden', 'true'); };
+  const showTooltip = (item) => {
+    if (!tooltip) return;
+    tooltip.textContent = item.dataset.tooltip || item.title || '';
+    const rect = item.getBoundingClientRect(); tooltip.classList.add('is-visible'); tooltip.setAttribute('aria-hidden', 'false');
+    const gap = 10; const width = tooltip.offsetWidth; const height = tooltip.offsetHeight;
+    let left = rect.right + gap; let top = rect.top + (rect.height - height) / 2;
+    if (left + width > window.innerWidth - 8) left = Math.max(8, rect.left - width - gap);
+    if (top + height > window.innerHeight - 8) top = window.innerHeight - height - 8;
+    tooltip.style.left = `${Math.max(8, left)}px`; tooltip.style.top = `${Math.max(8, top)}px`;
+  };
+  document.querySelectorAll('[data-draw-shape]').forEach((item) => { item.addEventListener('mouseenter', () => showTooltip(item)); item.addEventListener('mouseleave', hideTooltip); item.addEventListener('focus', () => showTooltip(item)); item.addEventListener('blur', hideTooltip); });
   const pinGrid = el('customPinTools') || document.createElement('div');
   pinGrid.className = 'draw-pin-grid';
   pinGrid.setAttribute('aria-label', 'Custom pin categories');

@@ -742,6 +742,12 @@ body.route-focus-mode .walk-sketch{z-index:1200}
 .draw-tool-rail button[data-tooltip]:focus-visible::after { content: attr(data-tooltip); position: absolute; z-index: 6000; left: calc(100% + 10px); top: 50%; transform: translateY(-50%); width: max-content; max-width: min(210px, calc(100vw - 88px)); padding: 8px 10px; border-radius: 8px; background: #173c35; color: #fffaf0; font: 700 .78rem/1.2 system-ui,sans-serif; white-space: normal; overflow-wrap: anywhere; text-align: left; box-shadow: 0 4px 12px rgba(0,0,0,.22); pointer-events: none; }
 .map-workspace-panel[data-destination="draw"] .draw-workspace { padding-bottom: 0 !important; margin-bottom: 0 !important; }
 .map-workspace-panel[data-destination="draw"] .draw-shapes { margin-bottom: 0 !important; }
+.draw-tool-tooltip { position: fixed; z-index: 10000; display: none; max-width: min(220px, calc(100vw - 16px)); padding: 8px 10px; border-radius: 8px; background: #173c35; color: #fffaf0; font: 700 .78rem/1.2 system-ui,sans-serif; box-shadow: 0 4px 12px rgba(0,0,0,.22); pointer-events: none; }
+.draw-tool-tooltip.is-visible { display: block; }
+.map-workspace-panel[data-destination="draw"] .draw-shapes button[data-tooltip]:hover::after,
+.map-workspace-panel[data-destination="draw"] .draw-shapes button[data-tooltip]:focus-visible::after,
+.draw-tool-rail button[data-tooltip]:hover::after,
+.draw-tool-rail button[data-tooltip]:focus-visible::after { content: none !important; display: none !important; }
 .map-workspace-panel[data-destination="draw"] .draw-shapes.draw-tool-rail button[data-tooltip]:hover::after,
 .map-workspace-panel[data-destination="draw"] .draw-shapes.draw-tool-rail button[data-tooltip]:focus-visible::after { left: calc(100% + 8px); bottom: 50%; transform: translateY(50%); max-width: min(190px, calc(100vw - 84px)); }
 .draw-shapes.draw-tool-rail {
