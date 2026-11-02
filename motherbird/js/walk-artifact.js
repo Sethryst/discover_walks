@@ -11,7 +11,7 @@ export const WALK_EVENT_TYPES = Object.freeze([
   'poi-encounter'
 ]);
 
-export function createWalkArtifact({ id, city, startedAt = new Date().toISOString(), routeMode = 'tracking', plannedRouteId = null, transportMode = 'walking' } = {}) {
+export function createWalkArtifact({ id, city, startedAt = new Date().toISOString(), routeMode = 'tracking', plannedRouteId = null, outingDraftId = null, transportMode = 'walking' } = {}) {
   if (!id) throw new Error('A walk id is required.');
   return {
     schemaVersion: WALK_SCHEMA_VERSION,
@@ -32,6 +32,7 @@ export function createWalkArtifact({ id, city, startedAt = new Date().toISOStrin
     routeMode,
     transportMode: transportMode === 'driving' ? 'driving' : 'walking',
     plannedRouteId,
+    outingDraftId,
     events: [],
     associatedPlaceIds: [],
     poiEncounters: [],
@@ -57,7 +58,7 @@ export function normalizeWalkArtifact(walk = {}) {
   const startedAt = walk.startedAt || new Date().toISOString();
   const elapsed = Number(walk.elapsedDurationSeconds ?? walk.durationSeconds) || 0;
   return {
-    ...createWalkArtifact({ id: walk.id || 'unknown-walk', city: walk.city, startedAt, routeMode: walk.routeMode || 'tracking', plannedRouteId: walk.plannedRouteId || null, transportMode: walk.transportMode || 'walking' }),
+    ...createWalkArtifact({ id: walk.id || 'unknown-walk', city: walk.city, startedAt, routeMode: walk.routeMode || 'tracking', plannedRouteId: walk.plannedRouteId || null, outingDraftId: walk.outingDraftId || null, transportMode: walk.transportMode || 'walking' }),
     ...walk,
     schemaVersion: WALK_SCHEMA_VERSION,
     elapsedDurationSeconds: elapsed,

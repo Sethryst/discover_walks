@@ -199,7 +199,10 @@ export function initMap() {
       window.dispatchEvent(new CustomEvent('planner-point-selected', { detail: { type: selected, point } }));
       return;
     }
-    if (state.planningMode) return;
+    if (state.planningMode) {
+      window.dispatchEvent(new CustomEvent('map-context-requested', { detail: { lat: event.latlng.lat, lng: event.latlng.lng, composer: true } }));
+      return;
+    }
     if (showNationalPoiDetails(event)) return;
     window.dispatchEvent(new CustomEvent('map-context-requested', { detail: { lat: event.latlng.lat, lng: event.latlng.lng } }));
   });

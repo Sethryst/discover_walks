@@ -48,7 +48,8 @@ export async function saveJournalOnClose({ note = '', walkId = '' } = {}) {
   const existing = form?.dataset.momentId || (walkId ? `journal-${walkId}` : uid('moment'));
   if (form) form.dataset.momentId = existing;
   const previous = await db.get('moments', existing);
-  const moment = { ...previous, ...buildReflectionMoment({ id: existing, city: state.activeCity, heading: '', note: cleanNote, prompt: null, walkId: walkId || null, createdAt: previous?.createdAt || new Date().toISOString() }), roomId: state.activeRoom?.id || previous?.roomId || null, updatedAt: new Date().toISOString() };
+  const linkedWalk = walkId ? (state.activeWalk?.id === walkId ? state.activeWalk : await db.get('walks', walkId)) : null;
+  const moment = { ...previous, ...buildReflectionMoment({ id: existing, city: state.activeCity, heading: '', note: cleanNote, prompt: null, walkId: walkId || null, createdAt: previous?.createdAt || new Date().toISOString() }), outingDraftId: linkedWalk?.outingDraftId || previous?.outingDraftId || null, roomId: state.activeRoom?.id || previous?.roomId || null, updatedAt: new Date().toISOString() };
   await db.put('moments', moment);
   if (state.activeWalkSession) state.activeWalkSession = await appendSessionNote(state.activeWalkSession, cleanNote, form?.dataset.encounterId || null);
   if (moment.roomId) await appendRoomTrace(moment.roomId, { type: 'journal', refId: moment.id });

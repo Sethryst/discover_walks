@@ -43,6 +43,7 @@ export const state = {
   plannerRouteOverlayBound: false,
   plannedRoute: null,
   walkPlan: null,
+  outingDraft: null,
   activeWalkSession: null,
   observationLayer: null,
   poiLayer: null,

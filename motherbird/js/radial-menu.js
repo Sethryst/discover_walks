@@ -1,6 +1,6 @@
 import { state } from './state.js';
 import { el, escapeHtml } from './utils.js';
-import { startWalk, stopWalk, pauseWalk, resumeWalk } from './walk.js';
+import { stopWalk, pauseWalk, resumeWalk } from './walk.js';
 import db from './storage.js';
 
 const DEFAULT_STARRED = [
@@ -55,7 +55,7 @@ export function updateRadialWalkButton() {
 
   const walk = state.activeWalk;
   if (!walk) {
-    label.textContent = 'Start walk';
+    label.textContent = 'Compose an outing';
     btn.classList.remove('active-walk', 'paused');
     if (pauseBtn) pauseBtn.classList.add('hidden');
   } else if (walk.paused) {
@@ -130,7 +130,7 @@ export function initRadialMenu() {
   btn?.addEventListener('click', async () => {
     const walk = state.activeWalk;
     if (!walk) {
-      await startWalk({ routeMode: 'tracking' });
+      window.dispatchEvent(new CustomEvent('outing-composer-open-requested'));
     } else if (walk.paused) {
       await resumeWalk();
     } else {

@@ -30,6 +30,8 @@ import { addPlaceToJournalRoom, addJournalNoteToJournalRoom } from './journal-ro
 import { buildInWalkSuggestion } from './ambient-mip.js?v=20261007-walk-moods-1';
 import { renderPersonalPlacesPanel } from './personal-places.js';
 import { explainWalkPlan } from './walk-plan.js';
+import { initOutingComposer } from './outing-composer.js';
+import { completeOutingForWalk } from './outing-draft.js';
 
 const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];
 function ambientResponse(plan, signal) { return { archetype: plan?.archetype, traits: plan?.ambientTraits || [], [signal]: true }; }
@@ -41,8 +43,9 @@ export function initEvents() {
   // Those surfaces may be unavailable during a first boot or migration.
   bindWalkControls();
   window.addEventListener('walk-position-received', ({ detail }) => void updateActiveManeuver(detail));
-  window.addEventListener('walk-ended', () => {
+  window.addEventListener('walk-ended', ({ detail }) => {
     if (state.plannedRoute?.archetype) window.dispatchEvent(new CustomEvent('ambient-route-response', { detail: ambientResponse(state.plannedRoute, 'completed') }));
+    if (state.outingDraft?.activeWalkId) void completeOutingForWalk(detail?.id);
   });
   initJournalPane();
   const journalScroll = document.getElementById('persistentJournal');
@@ -424,7 +427,7 @@ function decorateWalkPlanner() {
   panel.prepend(intro);
   const recipeField = document.createElement('label');
   recipeField.className = 'walk-recipe-field';
-  recipeField.innerHTML = '<span>Walk recipe</span><select name="walkRecipe"><option value="shaded-nature">Shaded nature</option><option value="water-history">Water + local history</option><option value="step-free-neighborhood">Step-free neighborhood discovery</option></select>';
+  recipeField.innerHTML = '<span>What should this walk feel like?</span><select name="walkRecipe"><option value="shaded-nature">Green and shaded</option><option value="water-history">Water and stories</option><option value="step-free-neighborhood">Neighborhood places</option></select>';
   panel.insertBefore(recipeField, panel.querySelector('.sketch-route-options'));
   const timeLegend = panel.querySelector('#sketchTimeOptions legend');
   if (timeLegend) timeLegend.textContent = 'Walk length';
@@ -446,7 +449,22 @@ function decorateWalkPlanner() {
     routeFieldset?.append(label);
   });
   const generate = el('generateWalkButton');
-  if (generate) generate.textContent = 'Generate walk';
+  if (generate) generate.textContent = 'Build my walk';
+  updatePlannerSummary();
+}
+
+function updatePlannerSummary() {
+  const summary = el('plannerSummary');
+  if (!summary) return;
+  const minutes = document.querySelector('input[name="walkTime"]:checked')?.value || '30';
+  const mode = document.querySelector('input[name="routeMode"]:checked')?.value || 'round-trip';
+  const destination = state.plannerEnd?.label || (state.plannerEnd ? 'Map destination selected' : 'Choose a destination to begin');
+  const text = mode === 'auto-round-trip'
+    ? `About ${minutes} minutes · We’ll find a loop nearby.`
+    : mode === 'point-to-point'
+      ? `About ${minutes} minutes · Start: ${state.plannerStart ? 'Map point selected' : (state.currentPosition ? 'Current location' : 'Choose a start')} · Finish: ${destination}`
+      : `About ${minutes} minutes · Finish: ${destination}`;
+  summary.textContent = text;
 }
 
 function bindLocationControls() {
@@ -614,8 +632,9 @@ function bindWalkControls() {
   if (!el('liveWalkOptionsButton')) {
     el('endWalkButton')?.insertAdjacentHTML('afterend', '<button class="ink-control hidden" id="liveWalkOptionsButton" type="button">Walk options</button>');
   }
-  if (startPanel && !el('plannerStartWalkButton')) startPanel.insertAdjacentHTML('afterbegin', '<button class="primary-button planner-start-walk" id="plannerStartWalkButton" type="button">Start walk</button>');
+  if (startPanel && !el('plannerStartWalkButton')) startPanel.insertAdjacentHTML('afterbegin', '<button class="primary-button planner-start-walk" id="plannerStartWalkButton" type="button">Start recording</button>');
   decorateWalkPlanner();
+  void initOutingComposer();
   if (bottomWalkBar && startPanel && !bottomWalkBar.contains(startPanel)) bottomWalkBar.append(startPanel);
   el('walkButton')?.addEventListener('click', async () => { if (!state.activeWalk) await startWalk({ routeMode: 'tracking' }); });
   el('plannerStartWalkButton')?.addEventListener('click', async () => { if (!state.activeWalk) await startWalk({ routeMode: 'tracking' }); });
@@ -625,7 +644,10 @@ function bindWalkControls() {
     const generateButton = el('generateWalkButton');
     if (generateButton) generateButton.textContent = 'Update live direction';
   });
-  el('startChevron')?.addEventListener('click', () => togglePanel('startChevron', 'startPanel'));
+  el('startChevron')?.addEventListener('click', () => {
+    if (el('startPanel')?.classList.contains('hidden')) window.dispatchEvent(new CustomEvent('outing-composer-open-requested'));
+    else { el('startPanel')?.classList.add('hidden'); el('startChevron')?.setAttribute('aria-expanded', 'false'); state.planningMode = false; }
+  });
   const routeOptionsButton = el('radialRouteOptionsButton');
   const openRouteOptions = () => {
     const panel = el('startPanel');
@@ -648,12 +670,13 @@ function bindWalkControls() {
   if (!document.body.dataset.walkMenuDismissBound) {
     document.body.dataset.walkMenuDismissBound = 'true';
     document.addEventListener('click', (event) => {
-      if (event.target.closest('#startPanel, #radialRouteOptionsButton, #startChevron')) return;
-      if (state.plannerSelecting || document.body.classList.contains('route-selection-active') || event.target.closest('#map, .leaflet-container')) return;
+      if (event.target.closest('#startPanel, #radialRouteOptionsButton, #startChevron, #radialWalkButton')) return;
+      if (state.plannerSelecting || document.body.classList.contains('route-selection-active') || event.target.closest('#map, .leaflet-container, .leaflet-popup, .leaflet-popup-close-button')) return;
       const panel = el('startPanel');
       if (panel && !panel.classList.contains('hidden')) {
         panel.classList.add('hidden');
         el('radialRouteOptionsButton')?.setAttribute('aria-expanded', 'false');
+        state.planningMode = false;
       }
     });
   }
@@ -678,7 +701,9 @@ function bindWalkControls() {
     }
     el('startPanel')?.classList.remove('hidden');
     el('radialRouteOptionsButton')?.setAttribute('aria-expanded', 'true');
+    updatePlannerSummary();
   }));
+  document.querySelectorAll('input[name="walkTime"]').forEach((input) => input.addEventListener('change', updatePlannerSummary));
   const beginPointSelection = (type) => {
     setPlannerSelecting(type);
     state.map?.closePopup?.();
@@ -717,6 +742,7 @@ function bindWalkControls() {
   });
   window.addEventListener('walk-sketch-painted', (event) => {
     const plan = event.detail;
+    if (plan?.outingDraftId) return;
     renderWalkSketch(plan);
     if (plan?.coordinates?.length >= 2 && !plan.fromSavedRouteOption && !plan.workspaceSaved) void moveRoutedPlanToMyPlaces(plan);
   });
@@ -749,6 +775,7 @@ function bindWalkControls() {
         el('startPanel')?.classList.remove('hidden');
         el('radialRouteOptionsButton')?.setAttribute('aria-expanded', 'true');
       }
+      updatePlannerSummary();
       const status = el('routeComposerStatus');
       if (status) status.textContent = type === 'Start' ? 'Start selected. Choose a destination next.' : 'Destination added. Add another or show the route.';
       toast(type === 'Start' ? 'Starting point selected.' : 'Stop added to this walk.');
@@ -759,6 +786,7 @@ function bindWalkControls() {
     el('startPanel')?.classList.remove('hidden');
     el('radialRouteOptionsButton')?.setAttribute('aria-expanded', 'true');
     toast('Destination added. Review the route options, then show the route.');
+    updatePlannerSummary();
   });
   el('dismissWalkSketch')?.addEventListener('click', () => { changePlan(); setPlanningMode(false); setRouteFocusMode(false); el('walkSketch').classList.add('hidden'); });
   el('startPlannedWalkButton')?.addEventListener('click', async () => {

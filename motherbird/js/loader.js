@@ -157,7 +157,7 @@ export async function init() {
   // whose core controls are still waiting behind optional enrichment.
   await initMapPaint().catch((error) => console.warn('Map paint unavailable:', error.message));
   await initLayerSystem().catch((error) => console.warn('Layer system unavailable:', error.message));
-  await import('./events.js?v=workspace-tabs-20261102-20')
+  await import('./events.js?v=open-walk-composer-20261102-2')
     .then(({ initEvents }) => initEvents())
     .catch((error) => console.warn('Core controls unavailable:', error.message));
   requestAnimationFrame(() => state.map?.invalidateSize({ pan: false }));

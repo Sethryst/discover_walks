@@ -106,7 +106,7 @@ export function updateWalkDisplay() {
     el('walkButton')?.removeAttribute('disabled');
     el('endWalkButton')?.classList.add('hidden');
     el('liveWalkOptionsButton')?.classList.add('hidden');
-    if (el('generateWalkButton')) el('generateWalkButton').textContent = 'Show walking route';
+    if (el('generateWalkButton')) el('generateWalkButton').textContent = 'Build my walk';
     globalThis.window?.dispatchEvent(new CustomEvent('walk-display-updated'));
     return;
   }
@@ -287,7 +287,7 @@ export async function addWalkWaypoint(poi) {
   return true;
 }
 
-export async function startWalk({ routeMode = 'tracking', transportMode = null } = {}) {
+export async function startWalk({ routeMode = 'tracking', transportMode = null, outingDraftId = null, plannedPlaces = [] } = {}) {
   if (state.activeWalk) return state.activeWalk;
   if (!navigator.geolocation) { toast('Location is not supported in this browser.'); return null; }
   const selectedTransport = transportMode || document.querySelector('[name="transportMode"]')?.value || 'walking';
@@ -296,8 +296,11 @@ export async function startWalk({ routeMode = 'tracking', transportMode = null }
     city: state.activeCity,
     routeMode,
     plannedRouteId: state.plannedRoute?.id || null,
+    outingDraftId,
     transportMode: selectedTransport
   });
+  state.activeWalk.plannedPlaceIds = (plannedPlaces || []).map((item) => item.placeId).filter(Boolean).map(String);
+  state.activeWalk.plannedPlaces = (plannedPlaces || []).map((item) => ({ id: item.id, placeId: item.placeId || null, name: item.name, lat: item.lat, lng: item.lng, role: item.role }));
   if (state.walkPlan) state.activeWalkSession = await startWalkSession(state.walkPlan);
   if (state.walkPlan) state.activeWalk.plannedRouteId = state.walkPlan.id;
   ensurePauseButton();

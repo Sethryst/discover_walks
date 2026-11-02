@@ -223,6 +223,10 @@ function getPoiMarker(poi) {
     marker.on('popupopen', (event) => event.popup.getElement()?.querySelector('[data-open-room]')?.addEventListener('click', () => {
       window.dispatchEvent(new CustomEvent('room-open-requested', { detail: { place: marker.options.place } }));
     }, { once: true }));
+    marker.on('popupopen', (event) => event.popup.getElement()?.querySelectorAll('[data-outing-poi-role]').forEach((button) => button.addEventListener('click', () => {
+      window.dispatchEvent(new CustomEvent('outing-place-action', { detail: { place: marker.options.place, role: button.dataset.outingPoiRole } }));
+      marker.closePopup?.();
+    }, { once: true })));
     state.poiMarkerCache.set(key, marker);
   }
   return updatePoiMarker(marker, poi);
@@ -365,7 +369,7 @@ function packAttribution(poi) {
 function poiPopup(poi) {
   const source = publicPlaceSource(poi);
   const details = walkerDetails(poi).map((row) => `<p><small>${escapeHtml(row.group)}</small><br>${escapeHtml(row.text)}</p>`).join('');
-  return `<strong>${escapeHtml(displayPoiName(poi))}</strong>${details}<small>${escapeHtml(packAttribution(poi))}</small>${source ? `<br><a href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer">Public source ↗</a>` : ''}<br><button type="button" class="save-poi-button" data-save-poi="${escapeHtml(String(poi.id))}">Save to My Maps</button><button type="button" class="save-poi-button" data-open-room="${escapeHtml(String(poi.id))}">Enter Room</button>`;
+  return `<strong>${escapeHtml(displayPoiName(poi))}</strong>${details}<small>${escapeHtml(packAttribution(poi))}</small>${source ? `<br><a href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer">Public source ↗</a>` : ''}<div class="poi-outing-actions"><small>Inspecting only — add it if it belongs.</small><button type="button" data-outing-poi-role="possible-stop">Add to outing</button><button type="button" data-outing-poi-role="destination">Mark as destination</button><button type="button" data-outing-poi-role="pass-through">Pass through</button><button type="button" data-outing-poi-role="avoid">Avoid</button></div><button type="button" class="save-poi-button" data-save-poi="${escapeHtml(String(poi.id))}">Save to My Maps</button><button type="button" class="save-poi-button" data-open-room="${escapeHtml(String(poi.id))}">Enter Room</button>`;
 }
 
 function hasPackTrailGeometry(poi) {
