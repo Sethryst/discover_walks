@@ -1772,6 +1772,7 @@ body.location-available .context-help-button {
 .top-cluster>.regional-navigation.has-menu .regional-navigation-button { display:flex; align-items:center; gap:5px; height:40px; min-height:40px; padding:0 10px; border:0; border-left:1px solid rgba(23,60,53,.18); border-radius:0; background:transparent; color:var(--ink); font:850 .72rem system-ui,sans-serif; cursor:pointer; }
 .regional-navigation-button img { width:16px; height:16px; }
 .regional-navigation-button .regional-navigation-chevron { font-size:.8rem; opacity:.7; }
+.top-cluster>.regional-navigation .regional-navigation-button { opacity:1!important; color:#fff!important; background:var(--radio-copper,#4d7ea6)!important; }
 .regional-navigation.has-menu .regional-navigation-menu { top:44px; left:auto; right:0; }
 .top-cluster>.map-search { position:relative; flex:0 0 40px !important; width:40px !important; height:42px; min-height:42px; padding:0 9px; border:0; border-right:1px solid rgba(23,60,53,.14); border-radius:0; background:transparent; }
 .top-cluster>.map-search.is-open { flex:1 1 220px !important; width:min(260px,42vw) !important; }

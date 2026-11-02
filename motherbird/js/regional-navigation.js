@@ -45,7 +45,7 @@ function renderRegionalNavigation() {
     button.id = 'regionalNavigationButton';
     button.setAttribute('aria-label', `Open ${label} regional links`);
     button.setAttribute('aria-expanded', 'false');
-    button.innerHTML = `<img src="./icons/map-2.svg" alt="" aria-hidden="true"><span>${escapeHtml(label)}</span><span class="regional-navigation-chevron" aria-hidden="true">⌄</span>`;
+    button.innerHTML = `<span>${escapeHtml(label)}</span><span class="regional-navigation-chevron" aria-hidden="true">⌄</span>`;
     const menu = document.createElement('div');
     menu.className = 'regional-navigation-menu hidden';
     menu.id = 'regionalNavigationMenu';
