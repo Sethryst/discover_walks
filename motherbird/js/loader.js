@@ -155,6 +155,9 @@ export async function init() {
   // whose core controls are still waiting behind optional enrichment.
   await initMapPaint().catch((error) => console.warn('Map paint unavailable:', error.message));
   await initLayerSystem().catch((error) => console.warn('Layer system unavailable:', error.message));
+  await import('./events.js?v=workspace-tabs-20261102-20')
+    .then(({ initEvents }) => initEvents())
+    .catch((error) => console.warn('Core controls unavailable:', error.message));
   requestAnimationFrame(() => state.map?.invalidateSize({ pan: false }));
   // The walk planner is core map functionality. Bind it before optional
   // stories, radio, and companion layers can abort startup on bad local data.
@@ -180,7 +183,6 @@ export async function init() {
     await refreshCityMap(false);
   });
   void (async () => {
-    await optionalBoot('walk controls', () => import('./events.js?v=workspace-tabs-20261101-19').then(({ initEvents }) => initEvents()));
     initRadialMenu();
     void optionalBoot('stories', initStories);
     void optionalBoot('field guide filters', initFieldGuideFilters);
