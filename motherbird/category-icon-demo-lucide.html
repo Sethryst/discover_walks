@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nature category icon options</title>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root { color-scheme: light; font-family: Inter, ui-sans-serif, system-ui, sans-serif; background:#f4f1eb; color:#20332c; }
+    body { max-width:1100px; margin:0 auto; padding:56px 28px 72px; }
+    h1 { margin:0 0 8px; font-size:clamp(30px,4vw,48px); letter-spacing:-.04em; }
+    .lede { margin:0 0 36px; color:#66756d; font-size:18px; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; }
+    .card { background:#fff; border:1px solid #e5e0d8; border-radius:22px; padding:24px; box-shadow:0 8px 24px #40382b0d; }
+    .icon { width:64px; height:64px; display:grid; place-items:center; border-radius:18px; color:var(--accent); background:color-mix(in srgb,var(--accent) 13%,white); margin-bottom:22px; }
+    .icon svg { width:34px; height:34px; stroke-width:1.8; }
+    h2 { font-size:19px; margin:0 0 6px; }
+    p { margin:0; color:#66756d; line-height:1.45; }
+    code { display:inline-block; margin-top:14px; padding:4px 8px; border-radius:7px; background:#f1eee8; color:#59645e; font-size:12px; }
+    footer { margin-top:32px; color:#66756d; font-size:13px; }
+    a { color:#2d7259; }
+  </style>
+</head>
+<body>
+  <h1>Nature category icons</h1>
+  <p class="lede">Cleaner open-source options using Lucide icons, shown as map-layer category cards.</p>
+  <main class="grid">
+    <article class="card" style="--accent:#3f6fa8"><div class="icon"><i data-lucide="bird"></i></div><h2>Birds</h2><p>Dedicated bird silhouette for Aves observations.</p><code>bird</code></article>
+    <article class="card" style="--accent:#2d7259"><div class="icon"><i data-lucide="leaf"></i></div><h2>Plants</h2><p>Simple leaf mark for rooted life and flora.</p><code>leaf</code></article>
+    <article class="card" style="--accent:#9a6638"><div class="icon"><i data-lucide="paw-print"></i></div><h2>Mammals</h2><p>Recognizable paw print for mammal observations.</p><code>paw-print</code></article>
+    <article class="card" style="--accent:#8a5aa8"><div class="icon"><i data-lucide="bug"></i></div><h2>Insects &amp; invertebrates</h2><p>Compact bug symbol that stays legible at map scale.</p><code>bug</code></article>
+    <article class="card" style="--accent:#b06a45"><div class="icon"><i data-lucide="sprout"></i></div><h2>Fungi &amp; lichens</h2><p>Organic sprout glyph gives fungi a distinct natural identity.</p><code>sprout</code></article>
+    <article class="card" style="--accent:#4d8a55"><div class="icon"><i data-lucide="turtle"></i></div><h2>Reptiles &amp; amphibians</h2><p>Turtle glyph gives this category a clear animal silhouette.</p><code>turtle</code></article>
+    <article class="card" style="--accent:#68717a"><div class="icon"><i data-lucide="microscope"></i></div><h2>Other life</h2><p>Neutral specimen/microscope mark for uncategorized records.</p><code>microscope</code></article>
+  </main>
+  <footer>Icons from <a href="https://lucide.dev/" target="_blank" rel="noreferrer">Lucide</a>, released under the ISC License. This is a visual demo only; it does not modify the app.</footer>
+  <script>lucide.createIcons();</script>
+</body>
+</html>
