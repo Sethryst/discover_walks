@@ -35,6 +35,8 @@ const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];
 function ambientResponse(plan, signal) { return { archetype: plan?.archetype, traits: plan?.ambientTraits || [], [signal]: true }; }
 
 export function initEvents() {
+  if (initEvents.bound) return;
+  initEvents.bound = true;
   // Bind the user-walk controls before optional journal/companion surfaces.
   // Those surfaces may be unavailable during a first boot or migration.
   bindWalkControls();

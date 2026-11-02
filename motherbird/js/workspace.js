@@ -272,6 +272,20 @@ function workspacePage() {
 async function hydrateWorkspaceLearn(target) { const list = target.querySelector('[data-workspace-learn-list]'); const source = document.getElementById('fieldGuideList'); if (!list || !source) return; await renderFieldGuide('learn'); const clean = source.cloneNode(true); clean.querySelectorAll('.learn-workspace-header, .learn-workspace-toolbar, .learn-nearby').forEach((node) => node.remove()); list.innerHTML = clean.innerHTML || '<p class="empty-state">No linked learning content is available for this route yet.</p>'; }
 function renderWorkspaceExperience(target) {
   target.innerHTML = `<section class="workspace-experience" aria-label="Workspace"><header class="workspace-experience-header"><div><h1>${currentWalk.title}</h1></div></header><nav class="workspace-tool-pills" aria-label="Workspace sections" role="tablist">${WORKSPACE_TOOLS.map(([id, label]) => `<button type="button" role="tab" class="${activeWorkspaceTool === id ? 'active' : ''}" aria-selected="${activeWorkspaceTool === id}" data-workspace-tool="${id}">${label}</button>`).join('')}</nav>${workspacePage()}</section>`;
+  const header = target.querySelector('.workspace-experience-header');
+  if (header && activeWorkspaceTool === 'options') {
+    const chips = document.createElement('div');
+    chips.className = 'workspace-mode-chips';
+    chips.innerHTML = '<button type="button" data-workspace-tool="open">Open walks</button><button type="button" data-workspace-tool="builder">Make walks</button>';
+    header.querySelector('div')?.append(chips);
+  }
+  const list = target.querySelector('[data-workspace-saved-walks]');
+  if (list) {
+    void db.all('walk_plans').then((plans) => {
+      const recent = plans.slice().sort((a, b) => Date.parse(b.updatedAt || b.createdAt || 0) - Date.parse(a.updatedAt || a.createdAt || 0)).slice(0, 6);
+      list.innerHTML = recent.length ? recent.map((plan) => `<button type="button" class="workspace-saved-walk" data-workspace-saved-plan="${escapeHtml(plan.id)}"><strong>${escapeHtml(plan.title || plan.route?.title || 'Generated walk')}<small>${escapeHtml(plan.route?.city || plan.city || 'Local route')} · ${escapeHtml(plan.route?.routeMode || plan.routeMode || 'Walking')}</small></strong><span>Show map</span></button>`).join('') : '<p class="empty-state">No generated walks saved yet. Make a walk to start one.</p>';
+    });
+  }
   if (activeWorkspaceTool === 'learn') void hydrateWorkspaceLearn(target);
 }
 function selectWorkspaceTool(tool) {
@@ -319,25 +333,6 @@ export async function renderWorkspacePanel(target, { filter = 'all' } = {}) {
   // Reconcile on open too: older capture flows do not all emit change events.
   await linkExistingRecords(workspace.id);
 }
-
-// Keep the Workspace header focused on the two primary journey actions.
-function initWorkspaceJourneyChips() {
-  if (initWorkspaceJourneyChips.bound) return;
-  initWorkspaceJourneyChips.bound = true;
-  const observer = new MutationObserver(() => {
-    document.querySelectorAll('.workspace-experience-header').forEach((header) => {
-      if (header.querySelector('.workspace-mode-chips')) return;
-      const chips = document.createElement('div');
-      chips.className = 'workspace-mode-chips';
-      chips.innerHTML = '<button type="button" data-workspace-tool="open">Open walks</button><button type="button" data-workspace-tool="builder">Make walks</button>';
-      header.querySelector('div')?.append(chips);
-    });
-    const list = document.querySelector('[data-workspace-saved-walks]');
-    if (list && !list.dataset.hydrated) { list.dataset.hydrated = 'true'; void db.all('walk_plans').then((plans) => { const recent = plans.slice().sort((a, b) => Date.parse(b.updatedAt || b.createdAt || 0) - Date.parse(a.updatedAt || a.createdAt || 0)).slice(0, 6); list.innerHTML = recent.length ? recent.map((plan) => `<button type="button" class="workspace-saved-walk" data-workspace-saved-plan="${escapeHtml(plan.id)}"><strong>${escapeHtml(plan.title || plan.route?.title || 'Generated walk')}<small>${escapeHtml(plan.route?.city || plan.city || 'Local route')} · ${escapeHtml(plan.route?.routeMode || plan.routeMode || 'Walking')}</small></strong><span>Show map</span></button>`).join('') : '<p class="empty-state">No generated walks saved yet. Make a walk to start one.</p>'; }); }
-  });
-  observer.observe(document.body, { childList: true, subtree: true });
-}
-if (typeof document !== 'undefined') initWorkspaceJourneyChips();
 
 export function initWorkspaceRuntime() {
   if (initWorkspaceRuntime.bound) return;
