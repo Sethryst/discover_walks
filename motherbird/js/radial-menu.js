@@ -4,15 +4,19 @@ import { startWalk, stopWalk, pauseWalk, resumeWalk } from './walk.js';
 import db from './storage.js';
 
 const DEFAULT_STARRED = [
-  { id: 'journal', label: 'Journal', icon: '▦' },
-  { id: 'walk-field-guide', label: 'Field Guide', icon: '🎒' }
+  { id: 'journal-observation', label: 'Add observation', icon: './icons/eye.svg' },
+  { id: 'journal-audio', label: 'Audio note', icon: './icons/mic.svg' },
+  { id: 'workspace-build-route', label: 'Build route', icon: './icons/route.svg' },
+  { id: 'workspace-journal', label: 'Open journal', icon: './icons/book.svg' }
 ];
+const LEGACY_DEFAULT_IDS = new Set(['journal', 'walk-field-guide']);
 let radialMenuInitialized = false;
 
 export function getStarredActions() {
-  return Array.isArray(state.settings?.starredRadialActions)
-    ? state.settings.starredRadialActions
-    : DEFAULT_STARRED;
+  const saved = state.settings?.starredRadialActions;
+  if (!Array.isArray(saved)) return DEFAULT_STARRED;
+  if (saved.length === 2 && saved.every((item) => LEGACY_DEFAULT_IDS.has(item.id))) return DEFAULT_STARRED;
+  return saved;
 }
 
 export function isActionStarred(id) {
