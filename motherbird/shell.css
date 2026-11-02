@@ -135,6 +135,23 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
   transform: none !important;
   overflow: visible !important;
 }
+#mapWorkspacePanel[data-destination="explore"].workspace-expanded {
+  height: auto !important;
+  max-height: min(84dvh, calc(100dvh - 88px)) !important;
+  overflow: hidden !important;
+}
+#mapWorkspacePanel[data-destination="explore"].workspace-expanded > [data-map-panel="explore"] {
+  height: auto !important;
+  max-height: calc(min(84dvh, 100dvh - 88px) - 20px) !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  scrollbar-gutter: stable;
+}
+#mapWorkspacePanel[data-destination="explore"].workspace-expanded .advanced-filters,
+#mapWorkspacePanel[data-destination="explore"].workspace-expanded .advanced-filter-family,
+#mapWorkspacePanel[data-destination="explore"].workspace-expanded .advanced-family-content {
+  overflow: visible !important;
+}
 #mapWorkspacePanel[data-destination="maps"] .workspace-tool-pills {
   position: relative !important;
   z-index: 2 !important;
