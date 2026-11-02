@@ -18,6 +18,7 @@ export const LAYER_GROUPS = [
   { id: 'outdoors_recreation', light: 'recreation', label: 'Outdoors & Recreation', description: 'Trails, walkways, parks, gardens, community services, and places to rest', tags: ['trail', 'walkway', 'park', 'nature', 'water', 'scenic', 'recreation', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad', 'rest', 'bench', 'shelter', 'shade', 'restrooms', 'drinking_water', 'water_fountain', 'community', 'facility', 'library', 'recreation_center', 'pantry', 'wifi'] },
   { id: 'history_culture', light: 'recreation', label: 'History Sites', description: 'Historical sites, markers, museums, landmarks, and monuments', tags: ['history', 'history_landmark', 'history_monument', 'history_museum', 'history_cemetery', 'history_marker', 'historic', 'museum', 'landmark', 'monument', 'cemetery'] },
   { id: 'art', light: 'recreation', label: 'Art', description: 'Art and public art places', tags: ['art', 'public_art'] },
+  { id: 'biodiversity', light: 'recreation', label: 'Nature observations', description: 'Open-coordinate iNaturalist observations', tags: ['biodiversity:birds', 'biodiversity:plants', 'biodiversity:mammals', 'biodiversity:insects', 'biodiversity:fungi', 'biodiversity:reptiles', 'biodiversity:other'] },
   { id: 'culture', light: 'news', label: 'News & culture', description: 'Events and civic places', tags: ['event', 'civic'] },
   { id: 'cuisine', light: 'cuisine', label: 'Food & Drink', description: 'Food, drink, and places to stop', tags: ['market', 'farmers_market', 'restaurant', 'fast_food', 'coffee', 'coffee_shop', 'cafe', 'food_cart', 'bakery', 'argentinian', 'british', 'crepe', 'greek', 'latin_american', 'tea', 'turkish', 'tex_mex'] },
   { id: 'more', light: 'recreation', label: 'Other mapped places', description: 'Mapped places without a more specific category', tags: ['osm'] }
@@ -88,6 +89,7 @@ export async function initLayerSystem() {
   ensureLayerDefaults();
   syncLegacyPoiTags();
   bindLayerControls();
+  window.addEventListener('biodiversity-live-updated', () => { ensureLayerDefaults(); renderLayerFilters(); });
   renderLayerFilters();
   renderMapLights();
   renderNewsMarkers();
@@ -103,7 +105,7 @@ function buildAllLayerGroups() {
   const claimed = new Set();
   const groups = LAYER_GROUPS.map((group) => {
     const seen = new Set();
-    const options = group.tags.filter((id) => available.has(id) || (id === 'public_art' && (available.has('art') || available.has('public_art')))).map((id) => {
+    const options = group.tags.filter((id) => available.has(id) || group.id === 'biodiversity' || (id === 'public_art' && (available.has('art') || available.has('public_art')))).map((id) => {
       const optionId = id === 'public_art'
         ? 'art'
         : group.id === 'history_culture'
@@ -146,12 +148,24 @@ function publicOption(id, sourceLabel, pois) {
       : id === 'drink'
         ? [...DRINK_TAGS]
       : [id];
+  const biodiversityCount = id.startsWith('biodiversity:') ? (state.biodiversityLiveRecords || []).filter((record) => biodiversityCategoryFor(record) === id && inViewport(record)).length : null;
   return {
     id, kind: 'public', label: cleanLabel(sourceLabel || STATIC_LABELS[id] || titleCase(id)),
     description: `Public map places tagged ${titleCase(id)}`,
     icon: ICONS[id] || 'map-pin', color: visual.color,
-    count: pois.filter((poi) => (id === 'osm' ? isOsmPoi(poi) : sourceIds.some((sourceId) => poiTags(poi).includes(sourceId))) && inViewport(poi)).length
+    count: biodiversityCount ?? pois.filter((poi) => (id === 'osm' ? isOsmPoi(poi) : sourceIds.some((sourceId) => poiTags(poi).includes(sourceId))) && inViewport(poi)).length
   };
+}
+
+function biodiversityCategoryFor(record) {
+  const value = String(record?.class || '').toLowerCase();
+  if (value === 'aves') return 'biodiversity:birds';
+  if (value === 'mammalia') return 'biodiversity:mammals';
+  if (value === 'insecta' || value === 'arachnida' || value === 'malacostraca') return 'biodiversity:insects';
+  if (value === 'testudines' || value === 'reptilia' || value === 'amphibia') return 'biodiversity:reptiles';
+  if (String(record?.kingdom) === 'Plantae') return 'biodiversity:plants';
+  if (String(record?.kingdom) === 'Fungi' || /lichen/i.test(String(record?.class || ''))) return 'biodiversity:fungi';
+  return 'biodiversity:other';
 }
 
 function cleanLabel(label) { return String(label).replace(/^[^\p{L}\p{N}]+\s*/u, ''); }
@@ -173,7 +187,7 @@ function ensureLayerDefaults() {
       if (!(option.id in bucket)) {
         const groupLight = LAYER_GROUPS.find((group) => group.tags.includes(option.id))?.light;
         bucket[option.id] = option.kind === 'public'
-          ? (option.id.startsWith('biodiversity:') ? false : state.layerLights[groupLight || (isFoodFilterTag(option.id) ? 'cuisine' : 'news')] !== false)
+          ? state.layerLights[groupLight || (isFoodFilterTag(option.id) ? 'cuisine' : 'news')] !== false
           : true;
       }
     }
@@ -241,6 +255,7 @@ async function persistLayerState() {
 function applyLayerChanges({ rerenderFilters = true } = {}) {
   syncLegacyPoiTags();
   renderCityPois(); renderPersonalPlacesOnMap(); renderNewsMarkers(); renderRouteLights(); updateLayerBadge();
+  window.dispatchEvent(new CustomEvent('biodiversity-filters-changed'));
   if (rerenderFilters) renderLayerFilters();
   renderMapLights();
   const placesVisibility = el('personalPlacesVisibility');

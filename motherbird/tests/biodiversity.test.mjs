@@ -24,3 +24,11 @@ test('field guide uses live open/open public observations and no handoff export'
 test('regional navigation provides a viewport-aware iNaturalist link', async () => {
   const js = await fs.readFile(new URL('../js/regional-navigation.js', import.meta.url), 'utf8'); assert.match(js, /Explore hotspots on iNaturalist/); assert.match(js, /getBounds/); assert.match(js, /swlat/); assert.match(js, /nelng/);
 });
+
+test('live Nature categories are part of Recreation advanced filters', async () => {
+  const js = await fs.readFile(new URL('../js/layer-system.js', import.meta.url), 'utf8');
+  assert.match(js, /id: 'biodiversity', light: 'recreation'/);
+  assert.match(js, /biodiversity:birds/);
+  assert.match(js, /biodiversity-live-updated/);
+  assert.match(js, /biodiversity-filters-changed/);
+});
