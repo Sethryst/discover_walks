@@ -159,10 +159,16 @@ export async function init() {
   await import('./events.js?v=open-walk-composer-20261102-2')
     .then(({ initEvents }) => initEvents())
     .catch((error) => console.warn('Core controls unavailable:', error.message));
-  requestAnimationFrame(() => state.map?.invalidateSize({ pan: false }));
+  const refreshMapLayout = () => state.map?.invalidateSize({ pan: false });
+  const locateButton = document.getElementById('locateButton');
+  if (locateButton) Object.assign(locateButton.style, { width: '78px', minWidth: '78px', maxWidth: '78px', height: '40px', minHeight: '40px', maxHeight: '40px', overflow: 'hidden', lineHeight: '1', fontSize: '.76rem' });
+  requestAnimationFrame(refreshMapLayout);
   // The walk planner is core map functionality. Bind it before optional
   // stories, radio, and companion layers can abort startup on bad local data.
-  requestAnimationFrame(() => { state.map?.invalidateSize({ pan: false }); dismissSplash(); });
+  requestAnimationFrame(() => { refreshMapLayout(); dismissSplash(); });
+  window.setTimeout(refreshMapLayout, 400);
+  window.setTimeout(refreshMapLayout, 1200);
+  window.addEventListener('pageshow', refreshMapLayout, { once: true });
   // Bind the already-visible radial control before optional boot work can
   // leave a slow browser with an inert Start walk button.
   initRadialMenu();
