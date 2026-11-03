@@ -405,8 +405,13 @@ export function initWorkspaceRuntime() {
   });
   document.addEventListener('click', async (event) => {
     if (event.target.closest('[data-workspace-compose-open]')) {
-      window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'explore', forceOpen: true } }));
-      requestAnimationFrame(() => window.dispatchEvent(new CustomEvent('outing-composer-open-requested')));
+      // Close the Workspace surface before opening the composer. The composer
+      // lives in the walk controls; leaving Workspace mounted can place it
+      // underneath the panel, making the click appear to do nothing.
+      window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: '', forceOpen: true } }));
+      requestAnimationFrame(() => {
+        void import('./outing-composer.js').then(({ openOutingComposer }) => openOutingComposer());
+      });
       return;
     }
     if (event.target.closest('[data-workspace-compose]')) {
