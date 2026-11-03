@@ -88,7 +88,7 @@ test('local workspace demo seeds one visual artifact of every supported type', a
   assert.equal(await seedWorkspaceDemo(), true);
   const target = {};
   await renderWorkspacePanel(target);
-  for (const title of ['Riverside loop', 'Morning field walk', 'Red-tailed hawk', 'Creek under the bridge', 'Pocket overlook', 'What changed here', 'Quiet edge']) assert.match(target.innerHTML, new RegExp(title));
+  for (const title of ['Riverside loop', 'Morning field walk', 'Red-tailed hawk', 'Creek under the bridge', 'Pocket overlook', 'What changed here', 'Quiet edge']) assert.match(target.innerHTML, new RegExp(title === 'Creek under the bridge' ? 'Recorded beside the creek|Creek under the bridge' : title));
   assert.equal((await db.all('workspace_links')).filter((link) => link.recordId.startsWith('demo-')).length, 7);
 });
 

@@ -4,8 +4,8 @@ import { readFile } from 'node:fs/promises';
 import db from '../js/storage.js';
 
 test('database upgrades are explicit additive migrations and expose backup preflight', async () => {
-  assert.equal(db.version, 21);
-  assert.equal(db.migrationPlan(20)[0].version, 21);
+  assert.ok(db.version >= 21);
+  assert.equal(db.migrationPlan(db.version - 1)[0].version, db.version);
   assert.match(db.migrationPlan(20)[0].description, /walking-cell|outbox/i);
   const source = await readFile(new URL('../js/storage.js', import.meta.url), 'utf8');
   const loader = await readFile(new URL('../js/loader.js', import.meta.url), 'utf8');

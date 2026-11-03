@@ -15,7 +15,7 @@ test('coach marks use one short sentence per feature', async () => {
     assert.equal(targets.has(target), false);
     targets.add(target);
   }
-  assert.match(source, /walkTab/);
+  assert.match(source, /radialWalkButton/);
   assert.match(source, /libraryTab/);
 });
 

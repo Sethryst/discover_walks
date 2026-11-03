@@ -9,7 +9,7 @@ const cellCache = await readFile(new URL('../js/walking-cell-cache.js', import.m
 
 test('service worker keeps large regional and routing artifacts out of install precache', () => {
   // The shell version must change on UI releases; it is not a fixed contract.
-  assert.match(worker, /const APP_CACHE = 'walk-wildlife-shell-v[1-9]\d*';/);
+  assert.match(worker, /const APP_CACHE = 'walk-wildlife-shell-v[1-9]\d*[^']*';/);
   assert.match(worker, /const installShell = shell\.filter/);
   assert.match(worker, /runtime-graph/);
   assert.match(worker, /pmtiles/);

@@ -41,9 +41,9 @@ test('Geo Cypher rejects changed audio and caps recordings at two minutes', asyn
 test('prototype UI exposes immediate signed responses without attribution-delay copy', async () => {
   const html = await (await import('node:fs/promises')).readFile(new URL('../index.html', import.meta.url), 'utf8');
   const source = await (await import('node:fs/promises')).readFile(new URL('../js/geo-cypher.js', import.meta.url), 'utf8');
-  assert.match(html, /id="geoCypherButton"/);
-  assert.match(html, /Audio stays separate from your journal/);
-  assert.match(source, /geo-cypher-respond[\s\S]*startRecording\(pin\)/);
+  assert.doesNotMatch(html, /id="geoCypherButton"/);
+  assert.match(source, /Compatibility module name retained/);
+  assert.match(source, /shareAudioNote/);
   assert.doesNotMatch(source, /setTimeout\([^)]*,\s*5000\)|five.second delay/i);
 });
 

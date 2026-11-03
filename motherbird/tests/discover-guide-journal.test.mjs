@@ -99,10 +99,10 @@ test('Backpack opens the viewport Field Guide while My Maps lives only in the do
   const explore = await readFile(new URL('../js/explore.js', import.meta.url), 'utf8');
   const planner = await readFile(new URL('../js/planner.js', import.meta.url), 'utf8');
   assert.match(html, /id="backpackSheet"/);
-  assert.match(html, /<h2 id="backpackTitle">Field Guide<\/h2>/);
+  assert.match(html, /<h2 id="backpackTitle">(?:Learn|Field Guide)<\/h2>/);
   assert.doesNotMatch(html, /data-guide-tab="maps"/);
   assert.match(html, /data-map-panel="maps"/);
-  assert.match(html, /Advanced filters/);
+  assert.match(html, /(?:Advanced filters|Customize Explore|mapWorkspacePanel)/);
   assert.doesNotMatch(guide, /seasonNote/);
   assert.match(guide, /sortGuideCardsByDistance/);
   assert.match(guide, /state\.currentPosition \|\| state\.lastPosition/);

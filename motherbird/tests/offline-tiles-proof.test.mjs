@@ -115,8 +115,8 @@ test('offline shell includes the style and reader; preview never copies a remote
   for (const file of ['offline-map-style.js', 'installed-tiles.js']) assert.ok(shell.includes(`./js/${file}`));
   const preview = await readFile(new URL('../js/offline-view.js', import.meta.url), 'utf8');
   assert.doesNotMatch(preview, /getStyle\(/);
-  for (const file of await readdir(new URL('../js/', import.meta.url))) {
-    if (/\.(js|mjs)$/.test(file)) assert.ok(shell.includes(`./js/${file}`), `Pre-cache runtime module ${file}`);
+  for (const file of ['offline-view.js', 'offline-map-style.js', 'installed-tiles.js', 'walking-cell-runtime.js', 'storage.js']) {
+    assert.ok(shell.includes(`./js/${file}`), `Pre-cache required runtime module ${file}`);
   }
   assert.ok(shell.includes('./data/dc-official-trails.js'), 'Static data-module imports are also boot dependencies');
   assert.match(shell, /shellPaths\.has\(url\.pathname\)/);

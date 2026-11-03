@@ -25,7 +25,7 @@ export function normalizedNationalOsmLayers(saved = null) {
 }
 
 export function enabledNationalOsmLayerIds(settings = state.nationalOsmLayers) {
-  return NATIONAL_POI_CATEGORIES.filter(({ id }) => settings?.[id] === true && state.layerLights?.[nationalFamilyFor(id)] !== false).map(({ id }) => id);
+  return NATIONAL_POI_CATEGORIES.filter(({ id }) => settings?.[id] === true).map(({ id }) => id);
 }
 
 function nationalFamilyFor(id) { return Object.entries(NATIONAL_FAMILY_CATEGORIES).find(([, ids]) => ids.includes(id))?.[0] || 'recreation'; }

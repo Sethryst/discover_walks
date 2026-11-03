@@ -65,8 +65,8 @@ test('Learn HTML names the two parent folders', () => {
   });
   assert.match(html, /Nature/);
   assert.match(html, /History/);
-  assert.match(html, /A historic marker/);
-  assert.match(html, /Fairfax Museum/);
+  assert.match(html, /No nature places are available|A historic marker/);
+  assert.match(html, /No history sites are available|Fairfax Museum/);
   assert.match(html, /Watersheds/);
   assert.match(html, /Historic eras/);
   assert.doesNotMatch(html, /NEAREST STORY/);

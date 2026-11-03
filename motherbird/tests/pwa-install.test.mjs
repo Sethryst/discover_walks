@@ -37,7 +37,7 @@ test('national PMTiles stay range-only while My Maps exposes persisted category 
   const nationalMapRuntime = await readFile(new URL('../js/national-poi-map.js', import.meta.url), 'utf8');
   assert.match(html, /id="nationalPoiOverlay"/);
   assert.doesNotMatch(html, /id="nationalPoiLegend"/);
-  assert.match(html, /id="nationalOsmLayerControls"/);
+  assert.match(worker, /\.\/js\/national-osm-layers\.js/);
   assert.match(worker, /if \(\/\\\.pmtiles\$\/i\.test\(url\.pathname\)\)/);
   assert.match(releaseRuntime, /new pmtilesImpl\.PMTiles/);
   assert.doesNotMatch(releaseRuntime, /national[\s\S]{0,300}response\.blob\(\)/i);

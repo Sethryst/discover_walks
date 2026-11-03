@@ -19,8 +19,8 @@ test('map controls expose group and individual category toggles', () => {
   const html = nationalOsmLayerControlsHtml(normalizedNationalOsmLayers());
   assert.match(html, /data-national-osm-layer="trail" aria-pressed="true"/);
   assert.match(html, /data-national-osm-layer="crossing"/);
-  assert.match(html, /data-national-osm-group="walking"/);
-  assert.match(html, /Walking network <small>\(1\/4 shown\)<\/small>/);
+  assert.match(html, /data-national-osm-group="recreation"/);
+  assert.match(html, /Rec · Walking network &amp; nature <small>\(2\/10 shown\)<\/small>/);
   assert.doesNotMatch(html, /OpenStreetMap/);
   assert.doesNotMatch(html, /national layer/i);
 });
