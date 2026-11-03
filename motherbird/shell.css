@@ -439,13 +439,23 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
 }
 .map-workspace-panel[data-destination="explore"] #poiTagFilters {
   display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   gap: 2px !important;
   align-items: start !important;
 }
 .map-workspace-panel[data-destination="explore"] #poiTagFilters .advanced-filter-family {
   min-width: 0 !important;
   margin: 0 !important;
+}
+@media (max-width: 720px) {
+  .map-workspace-panel[data-destination="explore"] #poiTagFilters {
+    column-gap: 5px !important;
+  }
+  .map-workspace-panel[data-destination="explore"] .advanced-family-heading .layer-category-toggle {
+    font-size: .52rem !important;
+    padding-inline: 4px !important;
+    margin-right: 2px !important;
+  }
 }
 .map-workspace-panel[data-destination="explore"].workspace-small {
   height: auto !important;
