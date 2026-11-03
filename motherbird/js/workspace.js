@@ -279,6 +279,7 @@ async function hydrateWorkspaceLearn(target) {
   await renderFieldGuide('learn');
   const clean = source.cloneNode(true);
   clean.querySelectorAll('.learn-workspace-header, .learn-workspace-toolbar, .learn-nearby, #fieldGuideOrderNote').forEach((node) => node.remove());
+  clean.querySelectorAll('.biodiversity-guide, [data-biodiversity-workspace]').forEach((node) => node.remove());
   const content = clean.innerHTML.trim();
   list.innerHTML = content && !/^<p class="empty-state">/.test(content)
     ? `<section class="workspace-guide-section">${content}</section>`
