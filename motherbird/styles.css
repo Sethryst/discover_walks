@@ -1869,3 +1869,5 @@ body.location-available .context-help-button {
 .start-stack .start-panel:not(.hidden){display:block!important}
 .viewfinder-frame>.start-panel:not(.hidden){display:block!important;position:fixed;top:64px;left:12px;right:auto;z-index:2000;width:min(420px,calc(100vw - 24px));padding:0;border:0;background:transparent;box-shadow:none}
 @media(max-width:720px){.outing-composer{width:100%;max-height:70vh;border-radius:18px 18px 0 0;padding-bottom:calc(18px + env(safe-area-inset-bottom))}.outing-item{grid-template-columns:minmax(0,1fr) auto}.outing-item>[data-outing-remove]{grid-column:2}.outing-composer-actions>*{flex:1 1 44%}}
+.workspace-field-guide-page{min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding-right:4px}
+.workspace-field-guide-page [data-workspace-guide-list]{min-height:0;overflow:visible}
