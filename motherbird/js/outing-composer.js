@@ -251,7 +251,7 @@ export async function initOutingComposer() {
   target.addEventListener('click', async (event) => {
     const item = event.target.closest('[data-outing-item]');
     if (event.target.closest('[data-outing-remove]') && item) { const next = await removeOutingItem(item.dataset.outingItem); renderOutingComposer(next); await recalculateOutingRoute(next); return; }
-    if (event.target.closest('[data-outing-map-place]')) { target.classList.add('hidden'); toast('Tap anywhere on the map. You can inspect it before adding it.'); return; }
+    if (event.target.closest('[data-outing-map-place]')) { target.classList.add('outing-composer-picking'); toast('Tap anywhere on the map. You can inspect it before adding it.'); return; }
     if (event.target.closest('[data-outing-location]')) {
       if (state.currentPosition || state.lastPosition) await queueMapPoint({ name: 'My location', ...(state.currentPosition || state.lastPosition), source: 'location' }, 'start');
       else { getCurrentLocation(); toast('Finding your location. Tap “Use my location” again when the location marker appears.'); }

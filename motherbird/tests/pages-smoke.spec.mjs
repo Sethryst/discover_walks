@@ -37,6 +37,7 @@ test('fresh Pages context reaches startup-ready and responds to core controls', 
     await page.locator('#regionalNavigation').click();
   }
   await expect(page.locator('#regionalNavigationMenu')).toBeVisible();
+  await page.locator('#mapSearchToggle').click();
   await page.locator('#mapSearchInput').fill('park');
   await expect(page.locator('#mapSearchResults button').first()).toBeVisible({ timeout: deadline });
   await expect(page.locator('#radialWalkButton')).toBeVisible();
@@ -56,7 +57,7 @@ test('workspace lifecycle survives destination changes, Draw layers, close/reope
   await expect(panel).toBeVisible();
   await expect(page.locator('#mapWorkspaceTitle')).toHaveText('Draw');
   await expect(page.locator('#mapWorkspacePanel > header')).toBeVisible();
-  await page.locator('#manageMapLayers').click();
+  await page.locator('[data-return-layers]').click();
   await expect(page.locator('#mapWorkspaceTitle')).toHaveText('Map layers');
   await expect(page.locator('[data-map-panel="layers"]')).toContainText('Map layers');
   await page.locator('#closeMapWorkspace').click({ force: true });

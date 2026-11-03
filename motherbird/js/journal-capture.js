@@ -4,7 +4,7 @@ import { toast } from './ui.js';
 import db from './storage.js';
 import { ensureCurrentJournalNote, renderArchive } from './archive.js';
 import { renderNearbyPlaces } from './journal-pane.js';
-import { addJournalMarker } from './observation.js';
+import { addJournalMarker } from './observation.js?v=20261103-observation-icons-2';
 
 let recorder = null;
 let stream = null;

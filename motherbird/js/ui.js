@@ -109,6 +109,14 @@ function journalMomentSummary(now = new Date()) {
   const phaseNames = ['new moon', 'waxing crescent', 'first quarter', 'waxing gibbous', 'full moon', 'waning gibbous', 'last quarter', 'waning crescent'];
   return { label: `${date} ${day}${suffix} · ${timeOfDay}`, moon: moonPhases[phaseIndex], moonLabel: phaseNames[phaseIndex] };
 }
+export function syncJournalTitle() {
+  const title = el('journalTitle');
+  if (!title) return;
+  const moment = journalMomentSummary();
+  title.innerHTML = `<span class="journal-moment-copy">${moment.label}</span><span class="journal-moon" role="img" aria-label="${moment.moonLabel}">${moment.moon}</span><span aria-hidden="true">⌄</span>`;
+  title.title = `${moment.label}, ${moment.moonLabel}`;
+}
+syncJournalTitle();
 export async function openJournal(walkId = null) {
   if (state.modalOpen === 'journalSheet') { closeSheets(); return; }
   const form = el('journalForm');
@@ -120,9 +128,7 @@ export async function openJournal(walkId = null) {
   else if (walkId && walkId !== previousWalkId) { el('journalNote').value = ''; delete form.dataset.momentId; }
   const walks = state.walks?.length || 0;
   const notes = moments.filter((item) => item.type === 'journal').length;
-  const moment = journalMomentSummary();
-  el('journalTitle').innerHTML = `<span class="journal-moment-copy">${moment.label}</span><span class="journal-moon" role="img" aria-label="${moment.moonLabel}">${moment.moon}</span><span aria-hidden="true">⌄</span>`;
-  el('journalTitle').title = `${moment.label}, ${moment.moonLabel}`;
+  syncJournalTitle();
   el('journalNavDropdown')?.classList.add('hidden');
   el('journalTitle').setAttribute('aria-expanded', 'false');
   el('journalWordCount').textContent = `${wordCount(el('journalNote').value)} words`;

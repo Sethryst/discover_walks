@@ -16,7 +16,7 @@ import { paintWalkPlan, paintCard, previewCard, sendCurrentWalkPlan } from './fi
 import { wordCount } from './reflection.js';
 import { refreshCompanionState } from './companion.js';
 import db from './storage.js';
-import { openObservation, saveObservation } from './observation.js';
+import { openObservation, saveObservation } from './observation.js?v=20261103-observation-icons-2';
 import { transcribeJournal, toggleJournalRecording, stopJournalCapture } from './journal-capture.js';
 import { renderNearbyPlaces, initJournalPane } from './journal-pane.js';
 import { openRadioForContext } from './radio.js?v=20261009-radio-controls-2';
