@@ -270,6 +270,36 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
 #mapWorkspacePanel.workspace-mid > [data-map-panel="maps"], #mapWorkspacePanel.workspace-mid > [data-map-panel="explore"],
 #mapWorkspacePanel.workspace-wide > [data-map-panel="maps"], #mapWorkspacePanel.workspace-wide > [data-map-panel="explore"] { overflow-y: auto !important; overflow-x: hidden !important; }
 
+/* Learn renders a long field-guide page inside the Maps workspace. Keep the
+   workspace shell sized to the viewport, but let the Learn page own the
+   vertical scroll instead of clipping its content in the home wrapper. */
+#mapWorkspacePanel[data-destination="maps"] #myMapsPanel:has(.learn-history) {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+#mapWorkspacePanel[data-destination="maps"] #myMapsPanel:has(.learn-history) .workspace-home,
+#mapWorkspacePanel[data-destination="maps"] #myMapsPanel:has(.learn-history) .workspace-experience {
+  min-height: 0 !important;
+}
+#mapWorkspacePanel[data-destination="maps"] #myMapsPanel:has(.learn-history) .workspace-home {
+  height: calc(48dvh - 34px) !important;
+  max-height: calc(48dvh - 34px) !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+#mapWorkspacePanel.workspace-small[data-destination="maps"] #myMapsPanel:has(.learn-history) .workspace-home {
+  height: calc(30dvh - 34px) !important;
+  max-height: calc(30dvh - 34px) !important;
+}
+#mapWorkspacePanel.workspace-wide[data-destination="maps"] #myMapsPanel:has(.learn-history) .workspace-home {
+  height: calc(84dvh - 34px) !important;
+  max-height: calc(84dvh - 34px) !important;
+}
+#mapWorkspacePanel[data-destination="maps"] #myMapsPanel:has(.learn-history) .workspace-experience {
+  height: auto !important;
+  overflow: visible !important;
+}
+
 /* On narrow phones the Explore light row needs its own breathing room. Keep
    the panel title separate from the REC/CUISINE controls instead of letting
    the first row tuck underneath the panel edge. */
