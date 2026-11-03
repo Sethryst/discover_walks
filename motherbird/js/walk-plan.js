@@ -43,6 +43,12 @@ export function createWalkPlan({ request, route, encounters = [], rationale = {}
 
 export async function saveWalkPlan(plan) {
   if (!plan?.id) throw new Error('WalkPlan requires a stable id.');
+  if (Number(plan.route?.durationSeconds || 0) <= 0) {
+    await db.remove('walk_plans', plan.id);
+    if (state.walkPlan?.id === plan.id) state.walkPlan = null;
+    window.dispatchEvent(new CustomEvent('walk-plan-changed', { detail: null }));
+    return null;
+  }
   await db.put('walk_plans', plan);
   state.walkPlan = plan;
   state.plannedRoute = { ...(state.plannedRoute || {}), ...plan.route, id: plan.id, stops: plan.encounters };
