@@ -27,7 +27,7 @@ import { initRadialMenu } from './radial-menu.js?v=20261103-radial-start-walk-1'
 import { initStories } from './stories.js';
 import { initRadio } from './radio.js?v=20261009-radio-controls-2';
 import { recoverWalkDraft, discardWalk } from './walk.js';
-import { initBiodiversity } from './biodiversity.js';
+import { initBiodiversity } from './biodiversity.js?v=20261103-live-biodiversity-clusters-1';
 import { initRegionalNavigation } from './regional-navigation.js?v=20261101-conditional-menu-1';
 import { initStorageDiagnostics } from './storage-diagnostics.js';
 import { initStorageHealth } from './storage-health.js';

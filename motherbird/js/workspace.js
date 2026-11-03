@@ -3,9 +3,9 @@ import { state } from './state.js';
 import { escapeHtml, uid } from './utils.js';
 import { generateTimeBasedPlan } from './planner.js';
 import { renderFieldGuide } from './field-guide.js';
-import { isBiodiversitySupported } from './biodiversity.js';
+import { isBiodiversitySupported } from './biodiversity.js?v=20261103-live-biodiversity-clusters-1';
 import { startWalk } from './walk.js';
-import { openJournal } from './ui.js';
+import { openJournal, syncJournalTitle } from './ui.js?v=20261103-goal-batch-2';
 
 export const DEFAULT_WORKSPACE_ID = 'workspace:my-workspace';
 const LINKABLE_STORES = [
@@ -234,6 +234,7 @@ function mountEmbeddedWorkspaceSurface(id, target) {
   target.append(node);
   node.classList.remove('hidden');
   node.dataset.workspaceEmbedded = 'true';
+  if (id === 'journalSheet') syncJournalTitle();
 }
 function restoreEmbeddedWorkspaceSurfaces(activeId = '') {
   for (const [id, entry] of embeddedWorkspaceSurfaces) {
@@ -282,12 +283,12 @@ async function generateWorkspaceWalk() {
   }
   return plan;
 }
-function workspaceOpenWalksMarkup() { return `<div class="workspace-tool-page workspace-open-walks"><p class="workspace-kicker">OPEN WALKS</p><h2>Saved journeys</h2><p class="workspace-helper">Choose a generated walk to bring its route back onto the main map.</p><div data-workspace-saved-walks><p class="empty-state">Loading saved walks…</p></div><button type="button" class="secondary-button" data-workspace-tool="builder">Make a walk</button></div>`; }
+function workspaceOpenWalksMarkup() { return `<div class="workspace-tool-page workspace-open-walks"><h2 class="workspace-page-title">Saved journeys</h2><div data-workspace-saved-walks><p class="empty-state">Loading saved walks…</p></div><button type="button" class="secondary-button" data-workspace-tool="builder">Make a walk</button></div>`; }
 function workspacePage() {
   const tool = activeWorkspaceTool;
   if (tool === 'open') return workspaceOpenWalksMarkup();
   if (tool === 'options') return `${workspacePathLinks()}${currentWalk ? `<div class="workspace-walk-card"><div class="workspace-walk-card-heading"><div><p class="workspace-kicker">YOUR WALK</p><h2>${escapeHtml(currentWalk.title)}</h2></div><span>${escapeHtml(currentWalk.duration)}</span></div><div class="workspace-edit-stops">${currentWalk.stops.map((stop, index) => `<label><b>${index + 1}</b><input type="text" value="${escapeHtml(stop)}" data-walk-stop="${index}" aria-label="Stop ${index + 1}"></label>`).join('')}</div><div class="workspace-edit-row"><button type="button" data-workspace-add-stop>+ Add stop</button><select data-workspace-mode aria-label="Walk shape"><option ${currentWalk.mode === 'Loop' ? 'selected' : ''}>Loop</option><option ${currentWalk.mode === 'Point to point' ? 'selected' : ''}>Point to point</option></select></div><button type="button" class="primary-button workspace-start-walk">Start walk</button></div>` : '<p class="workspace-helper workspace-empty-walks">See your created walks here!<br>Try making one in New paths</p>'}`;
-  if (tool === 'builder') return `<div class="workspace-tool-page"><div class="workspace-builder-top">${workspacePathLinks()}</div><p class="workspace-kicker">MAKE WALKS</p><h2>Build a route for the map</h2><p class="workspace-helper">Set the shape and time, then the generated route will paint onto the main map at a walkable zoom.</p><div class="workspace-segmented"><button type="button" class="${workspaceBuilderMode === 'auto-round-trip' ? 'active' : ''}" data-builder-mode="auto-round-trip">Loop</button><button type="button" class="${workspaceBuilderMode === 'point-to-point' ? 'active' : ''}" data-builder-mode="point-to-point">Point to point</button></div><div class="workspace-time-grid">${[20, 35, 60].map((v) => `<button type="button" class="${v === workspaceBuilderMinutes ? 'active' : ''}" data-builder-minutes="${v}">${v} min</button>`).join('')}</div><button type="button" class="primary-button" data-workspace-compose>Generate walk</button><button type="button" class="secondary-button" data-workspace-compose-open>Compose a walk</button></div>`;
+  if (tool === 'builder') return `<div class="workspace-tool-page"><div class="workspace-builder-top">${workspacePathLinks()}</div><h2 class="workspace-page-title">Build a route for the map</h2><div class="workspace-segmented"><button type="button" class="${workspaceBuilderMode === 'auto-round-trip' ? 'active' : ''}" data-builder-mode="auto-round-trip">Loop</button><button type="button" class="${workspaceBuilderMode === 'point-to-point' ? 'active' : ''}" data-builder-mode="point-to-point">Point to point</button></div><label class="workspace-duration-control" for="workspaceDuration"><span>Walk length</span><output id="workspaceDurationValue">${workspaceBuilderMinutes} min</output><input id="workspaceDuration" type="range" min="15" max="90" step="5" value="${workspaceBuilderMinutes}" data-builder-duration></label><button type="button" class="primary-button" data-workspace-compose>Generate walk</button><button type="button" class="secondary-button" data-workspace-compose-open>Compose a walk</button></div>`;
   if (tool === 'radio') return '<div class="workspace-tool-page"><div data-workspace-embedded="radio"></div></div>';
   if (tool === 'annotate') return '<div class="workspace-tool-page"><div data-workspace-embedded="draw"></div></div>';
   if (tool === 'journal') return '<div class="workspace-tool-page workspace-journal-page"><div data-workspace-embedded="journal"></div></div>';
@@ -458,6 +459,14 @@ export function initWorkspaceRuntime() {
     button.disabled = true;
     try { await deleteWorkspaceRecord(button.dataset.recordType, button.dataset.workspaceDelete, button.dataset.recordStore); }
     catch { button.disabled = false; window.alert('Could not delete this record. Please try again.'); }
+  });
+  document.addEventListener('input', (event) => {
+    const slider = event.target.closest('[data-builder-duration]');
+    if (!slider) return;
+    workspaceBuilderMinutes = Number(slider.value) || 35;
+    const output = slider.closest('.workspace-duration-control')?.querySelector('output');
+    if (output) output.value = `${workspaceBuilderMinutes} min`;
+    if (output) output.textContent = `${workspaceBuilderMinutes} min`;
   });
   document.addEventListener('change', (event) => {
     const stop = event.target.closest('[data-walk-stop]');
