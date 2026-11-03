@@ -2103,6 +2103,12 @@ body.location-available .context-help-button {
 .top-cluster > #quickDrawButton img { display: block !important; width: 17px !important; height: 17px !important; filter: brightness(0) saturate(100%) invert(45%) sepia(23%) saturate(1000%) hue-rotate(164deg) brightness(87%) contrast(88%) !important; }
 .top-cluster > .weather-brief { align-self: center !important; flex: 0 1 92px !important; min-width: 60px !important; max-width: 108px !important; height: 28px !important; min-height: 28px !important; padding: 0 5px !important; font-size: .55rem !important; line-height: 1 !important; white-space: nowrap !important; overflow: hidden !important; }
 .top-cluster > .weather-brief .weather-brief-icon { width: 14px !important; height: 14px !important; flex-basis: 14px !important; margin-right: 4px !important; }
+@media (max-width: 720px) {
+  .top-cluster > .regional-navigation { flex: 0 1 92px !important; min-width: 76px !important; max-width: 108px !important; }
+  .top-cluster > .regional-navigation .regional-navigation-button { padding-inline: 5px !important; font-size: .56rem !important; }
+  .top-cluster > .weather-brief { flex: 0 1 58px !important; min-width: 46px !important; max-width: 66px !important; padding-inline: 3px !important; font-size: .5rem !important; }
+  .top-cluster > .weather-brief .weather-brief-icon { width: 12px !important; height: 12px !important; flex-basis: 12px !important; margin-right: 2px !important; }
+}
 
 /* Final top-bar contract: search is an overlay, the region owns the long
    label, weather is a bounded flush companion, and quick tools are centered
