@@ -177,8 +177,7 @@ export function initMap() {
       });
       const icon = Object.entries(counts).sort((a, b) => b[1] - a[1])[0]?.[0] || 'microscope';
       const asset = { tree: 'tree-fall', mushroom: 'mushroom-taxonomy', bug: 'bug-taxonomy', bird: 'bird-map', 'paw-print': 'paw-print-taxonomy', microscope: 'microscope-taxonomy' }[icon] || 'microscope-taxonomy';
-      const total = cluster.getChildCount();
-      return L.divIcon({ className: 'observation-cluster', html: `<span><img src="./icons/${asset}.svg" alt="" /><b>${total}</b></span>`, iconSize: [42, 42] });
+      return L.divIcon({ className: 'observation-cluster', html: `<span><img src="./icons/${asset}.svg" alt="" /></span>`, iconSize: [42, 42] });
     }
   }) : L.layerGroup()).addTo(state.map);
   state.poiLayer = (L.markerClusterGroup ? L.markerClusterGroup({ maxClusterRadius: (zoom) => zoom >= 18 ? 36 : zoom >= 17 ? 54 : zoom >= 15 ? 82 : 104, disableClusteringAtZoom: 19, animate: false, animateAddingMarkers: false, removeOutsideVisibleBounds: true, showCoverageOnHover: false, iconCreateFunction: (cluster) => {
@@ -190,7 +189,7 @@ export function initMap() {
     const dominantTaxon = Object.entries(taxonomy).sort((a,b) => b[1] - a[1])[0]?.[0];
     const taxonAsset = { 'biodiversity:plants': 'tree-taxonomy', 'biodiversity:fungi': 'mushroom-taxonomy', 'biodiversity:insects': 'bug-taxonomy', 'biodiversity:invertebrates': 'bug-taxonomy', 'biodiversity:mammals': 'paw-print-taxonomy', 'biodiversity:birds': 'bird-map', 'biodiversity:reptiles': 'turtle-taxonomy', 'biodiversity:amphibians': 'turtle-taxonomy' }[dominantTaxon];
     const total = cluster.getChildCount();
-    const html = taxonAsset ? `<span class="place-cluster-taxonomy"><img src="./icons/${taxonAsset}.svg" alt="" /><b>${total}</b></span>` : `<span class="place-cluster-glyph place-cluster-glyph--${light}" style="--cluster-color:${color}" aria-label="${light} places"><b>${total}</b></span>`;
+    const html = taxonAsset ? `<span class="place-cluster-taxonomy"><img src="./icons/${taxonAsset}.svg" alt="" /></span>` : `<span class="place-cluster-glyph place-cluster-glyph--${light}" style="--cluster-color:${color}" aria-label="${light} places"></span>`;
     return L.divIcon({ className: taxonAsset ? 'place-cluster place-cluster--taxonomy' : 'place-cluster', html, iconSize: [40,40] });
   } }) : L.layerGroup()).addTo(state.map);
   // Endpoint selection owns map clicks. POI markers and clusters must not open

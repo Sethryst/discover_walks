@@ -4,7 +4,7 @@ import { state } from './state.js';
 import { DEFAULT_SETTINGS, CITIES, DEFAULT_CITY_ID } from './constants.js';
 import { normalizeProfile, sitesForProfile } from './utils.js';
 import { toast } from './ui.js';
-import { initMap } from './map.js?v=20261103-taxonomy-clusters-1';
+import { initMap } from './map.js?v=20261103-taxonomy-clusters-2';
 import { applyStaticAppearance } from './ui.js';
 import { loadAllCityData, refreshCityMap } from './city.js?v=20261103-header-repair-2';
 import { renderArchive } from './archive.js';
@@ -27,7 +27,7 @@ import { initRadialMenu } from './radial-menu.js?v=20261103-radial-start-walk-1'
 import { initStories } from './stories.js';
 import { initRadio } from './radio.js?v=20261009-radio-controls-2';
 import { recoverWalkDraft, discardWalk } from './walk.js';
-import { initBiodiversity } from './biodiversity.js?v=20261103-live-biodiversity-clusters-1';
+import { initBiodiversity } from './biodiversity.js?v=20261103-live-biodiversity-clusters-2';
 import { initRegionalNavigation } from './regional-navigation.js?v=20261101-conditional-menu-1';
 import { initStorageDiagnostics } from './storage-diagnostics.js';
 import { initStorageHealth } from './storage-health.js';

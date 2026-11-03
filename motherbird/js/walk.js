@@ -1,4 +1,4 @@
-import { renderUserLocation } from './map.js?v=20261103-taxonomy-clusters-1';
+import { renderUserLocation } from './map.js?v=20261103-taxonomy-clusters-2';
 import { distanceMeters } from './geo.js';
 import { state } from './state.js';
 import {

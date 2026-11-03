@@ -16,7 +16,7 @@ import { addWalkWaypoint, startWalk } from './walk.js';
 import { initMapsFolders, renderMapsLibrary } from './maps-folders.js';
 import { loadWaterJourneys } from './water-journey.js';
 import { listSpatialQueries, queryPrompt } from './spatial-query.js?v=20260928-spatial-query-fix';
-import { isBiodiversitySupported, renderBiodiversityGuide } from './biodiversity.js?v=20261103-live-biodiversity-clusters-1';
+import { isBiodiversitySupported, renderBiodiversityGuide } from './biodiversity.js?v=20261103-live-biodiversity-clusters-2';
 
 const FORMAT = 'walk-wildlife-plan-v1';
 let selectedPlaceId = null;
