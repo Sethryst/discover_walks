@@ -1975,3 +1975,11 @@ body.location-available .context-help-button {
 @media(max-width:720px){.outing-composer{width:100%;max-height:70vh;border-radius:18px 18px 0 0;padding-bottom:calc(18px + env(safe-area-inset-bottom))}.outing-item{grid-template-columns:minmax(0,1fr) auto}.outing-item>[data-outing-remove]{grid-column:2}.outing-composer-actions>*{flex:1 1 44%}}
 .workspace-field-guide-page{min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding-right:4px}
 .workspace-field-guide-page [data-workspace-guide-list]{min-height:0;overflow:visible}
+
+/* Keep the weather in the spare top-bar space and dock the region at right. */
+.top-cluster { overflow: visible !important; }
+.top-cluster > .weather-brief { order: 5 !important; flex: 1 1 220px !important; min-width: 0 !important; max-width: none !important; color: #76558b !important; background: rgba(244,235,249,.9) !important; border-left: 1px solid rgba(23,60,53,.16) !important; border-right: 1px solid rgba(23,60,53,.16) !important; }
+.top-cluster > .regional-navigation { order: 6 !important; flex: 0 1 min(250px, 28vw) !important; min-width: 150px !important; margin-left: 0 !important; padding: 0 !important; overflow: visible !important; z-index: 1402 !important; background: var(--radio-copper, #4d7ea6) !important; }
+.top-cluster > .regional-navigation .regional-navigation-button { display: flex !important; align-items: center; justify-content: space-between; width: 100% !important; max-width: none !important; min-width: 0; padding-inline: 12px !important; overflow: hidden; color: #fff !important; background: var(--radio-copper, #4d7ea6) !important; }
+.top-cluster > .regional-navigation .regional-navigation-menu { left: auto !important; right: 0 !important; width: min(290px, calc(100vw - 16px)) !important; z-index: 1600 !important; }
+@media (max-width: 720px) { .top-cluster > .weather-brief { flex: 1 1 120px !important; font-size: .61rem; } .top-cluster > .regional-navigation { flex: 0 1 36% !important; min-width: 118px !important; } }
