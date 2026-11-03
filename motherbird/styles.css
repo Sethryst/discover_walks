@@ -1645,6 +1645,16 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
 .learn-authored-grid { padding-top:8px; }
 .learn-story-link { display:block; color:inherit; text-decoration:none; padding:9px 10px; }
 .learn-story-link h3 { margin:0; font-size:.78rem; line-height:1.2; }
+.learn-category { margin:0 0 8px; }
+.learn-category .learn-section-summary { font-size:.78rem; }
+.learn-category-options { display:grid; gap:5px; padding-top:7px; }
+.learn-category-options .learn-entry { padding:7px 9px; border:0; border-left:3px solid currentColor; border-radius:5px; background:color-mix(in srgb, currentColor 8%, var(--paper2)); text-align:left; }
+.learn-category-options .learn-entry h3 { margin:0; font-size:.7rem; line-height:1.15; font-weight:800; }
+.learn-category-nature { --learn-accent:#2f7d52; }
+.learn-category-history { --learn-accent:#3871a8; }
+.learn-category-nature .learn-section-summary, .learn-category-history .learn-section-summary { color:var(--learn-accent); border-color:color-mix(in srgb, var(--learn-accent) 35%, var(--line)); }
+.learn-category-nature .learn-entry, .learn-category-history .learn-entry { color:var(--learn-accent); }
+.learn-authored .learn-section-summary { color:#c46824; border-color:#c4682466; }
 .learn-workspace-header { min-height:0; padding:0; border:0; }
 .learn-workspace-meta { margin:0; }
 @media (max-width: 720px) {
