@@ -212,6 +212,11 @@ async function startComposedOuting() {
 export async function openOutingComposer() {
   const target = panel();
   if (!target) return;
+  // The shell can finish mounting after composer initialization. Re-home the
+  // panel at open time so it is not trapped inside the top toolbar's mobile
+  // layout, where fixed positioning can place it off-screen.
+  const frame = document.querySelector('.viewfinder-frame');
+  if (frame && target.parentElement !== frame) frame.append(target);
   const draft = state.outingDraft || await ensureOutingDraft({ city: state.activeCity });
   target.classList.remove('hidden');
   target.style.display = 'block';

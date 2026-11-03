@@ -29,7 +29,7 @@ import { addPlaceToJournalRoom, addJournalNoteToJournalRoom } from './journal-ro
 import { buildInWalkSuggestion } from './ambient-mip.js?v=20261007-walk-moods-1';
 import { renderPersonalPlacesPanel } from './personal-places.js';
 import { explainWalkPlan } from './walk-plan.js';
-import { initOutingComposer } from './outing-composer.js';
+import { initOutingComposer } from './outing-composer.js?v=20261103-compose-panel-viewport-1';
 import { completeOutingForWalk } from './outing-draft.js';
 
 const COSTUMES = ['Inky', 'Fox', 'Cloud', 'Compass'];
