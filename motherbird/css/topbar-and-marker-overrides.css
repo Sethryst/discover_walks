@@ -28,12 +28,12 @@
 .top-cluster > .profile-control .profile-avatar { width: 38px !important; min-width: 38px !important; max-width: 38px !important; padding: 0 !important; }
 .top-cluster > .profile-control .profile-avatar { border-radius: 12px !important; }
 .top-cluster > .profile-control { border-right: 1px solid #c5dce8 !important; border-radius: 12px 0 0 12px !important; overflow: hidden !important; padding: 0 !important; align-items: stretch !important; }
-.top-cluster > .map-search > button { width: 38px !important; min-width: 38px !important; max-width: 38px !important; padding: 0 !important; }
-.top-cluster > .map-search { padding: 0 !important; }
-.top-cluster > .map-search.is-open { position: relative !important; left: auto !important; top: auto !important; width: min(260px, 42vw) !important; flex: 0 1 260px !important; height: 38px !important; padding: 0 !important; border: 0 !important; border-right: 1px solid #c5dce8 !important; border-radius: 0 !important; background: #fff !important; box-shadow: none !important; overflow: hidden !important; }
-.top-cluster > .map-search.is-open > button { flex: 0 0 38px !important; }
+.top-cluster > .map-search > button { width: 30px !important; min-width: 30px !important; max-width: 30px !important; padding: 0 !important; }
+.top-cluster > .map-search { width: 30px !important; min-width: 30px !important; max-width: 30px !important; flex: 0 0 30px !important; padding: 0 !important; position: relative !important; border-right: 0 !important; }
+.top-cluster > .map-search::after { content: '' !important; position: absolute !important; top: 0 !important; right: 0 !important; width: 1px !important; height: 38px !important; background: #c5dce8 !important; pointer-events: none !important; }
+.top-cluster > .map-search.is-open { position: relative !important; left: auto !important; top: auto !important; width: min(260px, 42vw) !important; max-width: min(260px, 42vw) !important; flex: 0 1 260px !important; height: 38px !important; padding: 0 !important; border: 0 !important; border-radius: 0 !important; background: #fff !important; box-shadow: none !important; overflow: hidden !important; }
+.top-cluster > .map-search.is-open > button { flex: 0 0 30px !important; }
 .top-cluster > .map-search.is-open > input { width: auto !important; min-width: 0 !important; flex: 1 1 auto !important; opacity: 1 !important; padding: 0 8px 0 2px !important; }
-.top-cluster > .map-search { border-right: 1px solid #c5dce8 !important; }
 .top-cluster > .locate-stack { border-left: 1px solid #c5dce8 !important; }
 .top-cluster > .start-stack { display: none !important; width: 0 !important; min-width: 0 !important; flex: 0 0 0 !important; overflow: hidden !important; }
 .top-cluster > .start-stack:has(.control-row > :not(.hidden)) { width: auto !important; flex: 0 0 auto !important; overflow: visible !important; }
