@@ -2110,6 +2110,38 @@ body.location-available .context-help-button {
   .top-cluster > .weather-brief .weather-brief-icon { width: 12px !important; height: 12px !important; flex-basis: 12px !important; margin-right: 2px !important; }
 }
 
+/* Header rebuild: one explicit grid owns every top-bar column. */
+.top-cluster {
+  display: grid !important;
+  grid-template-columns: 30px 32px 88px 30px 30px minmax(150px, 1fr) 120px !important;
+  grid-template-areas: 'profile search locate radio draw region weather' !important;
+  align-items: center !important;
+  width: calc(100vw - 12px) !important;
+  max-width: calc(100vw - 12px) !important;
+  min-height: 36px !important;
+  height: 36px !important;
+  overflow: visible !important;
+}
+.top-cluster > .profile-control { grid-area: profile !important; width: 30px !important; height: 36px !important; padding: 0 !important; }
+.top-cluster > .map-search { grid-area: search !important; width: 32px !important; min-width: 32px !important; height: 32px !important; flex: none !important; padding: 0 !important; }
+.top-cluster > .locate-stack { grid-area: locate !important; width: 88px !important; height: 36px !important; }
+.top-cluster > #quickRadioButton { grid-area: radio !important; }
+.top-cluster > #quickDrawButton { grid-area: draw !important; }
+.top-cluster > .regional-navigation { grid-area: region !important; width: auto !important; min-width: 0 !important; max-width: none !important; height: 36px !important; }
+.top-cluster > .weather-brief { grid-area: weather !important; width: 120px !important; min-width: 0 !important; max-width: 120px !important; height: 28px !important; min-height: 28px !important; }
+.top-cluster > .map-search.is-open { position: absolute !important; left: 0 !important; top: calc(100% + 8px) !important; width: min(360px, calc(100vw - 16px)) !important; height: 38px !important; z-index: 1600 !important; }
+.top-cluster > .map-search-results { position: absolute !important; left: 0 !important; right: auto !important; top: calc(100% + 54px) !important; width: min(360px, calc(100vw - 16px)) !important; z-index: 1601 !important; }
+.top-cluster > #quickRadioButton img,
+.top-cluster > #quickDrawButton img { filter: brightness(0) saturate(100%) invert(43%) sepia(24%) saturate(1025%) hue-rotate(164deg) brightness(89%) contrast(88%) !important; }
+.top-cluster > .weather-brief > span { min-width: 0 !important; overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap !important; }
+@media (max-width: 720px) {
+  .top-cluster { grid-template-columns: 28px 32px 78px 30px 30px minmax(82px, 1fr) 64px !important; }
+  .top-cluster > .profile-control { width: 28px !important; }
+  .top-cluster > .locate-stack { width: 78px !important; }
+  .top-cluster > .weather-brief { width: 64px !important; max-width: 64px !important; padding-inline: 3px !important; font-size: .5rem !important; }
+  .top-cluster > .regional-navigation .regional-navigation-button { padding-inline: 5px !important; font-size: .56rem !important; }
+}
+
 /* Final top-bar contract: search is an overlay, the region owns the long
    label, weather is a bounded flush companion, and quick tools are centered
    icon controls rather than colored boxes. */
