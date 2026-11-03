@@ -172,17 +172,16 @@ function childSlot(folderId, child) {
 
 export function learnFolderHtml(folder, sites) {
   const open = folder.id === 'nature' ? 'open' : '';
-  const empty = folder.id === 'history' ? 'No checked history sites in this pack yet.' : 'No unchecked history sites remain in this pack.';
-  const visited = folder.id === 'history';
-  const list = sites.length ? sites.map((poi) => siteCard(poi, visited)).join('') : `<p class="empty-state">${empty}</p>`;
+  const empty = folder.id === 'history' ? 'No history sites are available in this pack yet.' : 'No nature places are available in this pack yet.';
+  const list = sites.length ? sites.map((poi) => siteCard(poi, poi._learnVisited === true)).join('') : `<p class="empty-state">${empty}</p>`;
   const slots = (folder.children || []).filter((child) => child.id !== 'sites' && child.status !== 'live').map((child) => childSlot(folder.id, child)).join('');
   return `<details class="learn-folder" data-learn-folder="${escapeHtml(folder.id)}" ${open}><summary>${escapeHtml(folder.label)}</summary><div class="learn-folder-body">${list}${slots}</div></details>`;
 }
 
-export function learnHistoryHtml({ progress, folders, remaining = [], seen = [] }) {
+export function learnHistoryHtml({ progress, folders, nature = [], history = [] }) {
   const discover = folders?.find((folder) => folder.id === 'nature') || { id: 'nature', label: 'Nature', children: [] };
-  const history = folders?.find((folder) => folder.id === 'history') || { id: 'history', label: 'History', children: [] };
-  return `<section class="learn-history"><button type="button" class="secondary-button" data-learn-home="1">Back</button>${learnFolderHtml(discover, remaining)}${learnFolderHtml(history, seen)}</section>`;
+  const historyFolder = folders?.find((folder) => folder.id === 'history') || { id: 'history', label: 'History', children: [] };
+  return `<section class="learn-history"><button type="button" class="secondary-button" data-learn-home="1">Back</button>${learnFolderHtml(discover, nature)}${learnFolderHtml(historyFolder, history.map((poi) => ({ ...poi, _learnVisited: isCheckedSite(poi, state.profile) })))}</section>`;
 }
 
 export function setLearnView(view) { learnView = LEARN_VIEWS.includes(view) ? view : 'discover'; return learnView; }
@@ -325,10 +324,13 @@ export function paintHistoricalTopo({ map, leaflet, era = null }) {
     for (const button of [control.getContainer()?.querySelector('[data-historical-topo-toggle]'), document.querySelector('[data-historical-topo-panel-toggle]')]) {
       if (!button) continue;
       button.setAttribute('aria-pressed', String(!on));
+      button.classList.toggle('is-on', !on);
+      button.classList.toggle('is-off', on);
       button.textContent = `Historic topo: ${on ? 'Off' : 'On'}`;
     }
   };
   const panelButton = document.querySelector('[data-historical-topo-panel-toggle]');
+  panelButton?.classList.add('is-on');
   panelButton?.addEventListener('click', toggle);
   control.onAdd = () => { const div = leaflet.DomUtil.create('div', 'leaflet-control historical-topo-map-control'); div.innerHTML = `<button type="button" data-historical-topo-toggle aria-pressed="true">Historic topo: On</button>`; leaflet.DomEvent.disableClickPropagation(div); div.querySelector('button').addEventListener('click', toggle); return div; };
   control.addTo(map); state.historicalTopoControl = control;
@@ -476,7 +478,8 @@ export async function renderLearnHistory(target, point, authoredCards = []) {
   const pois = state.cityPois[state.activeCity] || [];
   if (learnScreen === 'watersheds') {
     const catalog = await loadWatersheds();
-    const features = (catalog.features || []).filter((feature) => featureInViewport(state.map, feature));
+    const visibleFeatures = (catalog.features || []).filter((feature) => featureInViewport(state.map, feature));
+    const features = visibleFeatures.length ? visibleFeatures : (catalog.features || []);
     const selected = features.find((feature) => feature.properties?.id === activeWatershedId) || null;
     const waterCatalog = await loadWaterJourneys();
     const waterJourney = journeysForCity(waterCatalog.journeys).find((journey) => journey.watershedId === activeWatershedId);
@@ -488,7 +491,8 @@ export async function renderLearnHistory(target, point, authoredCards = []) {
   }
   if (learnScreen === 'battlefields') {
     const catalog = await loadBattlefields();
-    const eras = (catalog.eras || []).map((item) => ({ ...item, years: (item.years || []).map((year) => ({ ...year, battles: (year.battles || []).filter((battle) => battlefieldInViewport(state.map, battle)) })).filter((year) => year.battles.length) })).filter((item) => item.years.length);
+    const visibleEras = (catalog.eras || []).map((item) => ({ ...item, years: (item.years || []).map((year) => ({ ...year, battles: (year.battles || []).filter((battle) => battlefieldInViewport(state.map, battle)) })).filter((year) => year.battles.length) })).filter((item) => item.years.length);
+    const eras = visibleEras.length ? visibleEras : (catalog.eras || []);
     const era = eras.find((item) => item.id === activeEraId) || null;
     const year = era?.years?.find((item) => Number(item.year) === Number(activeYear)) || null;
     const battle = year?.battles?.find((item) => item.id === activeBattleId) || null;
@@ -502,8 +506,9 @@ export async function renderLearnHistory(target, point, authoredCards = []) {
     const lens = (catalog.lenses || []).find((item) => item.id === learnScreen) || null;
     const selected = (lens?.items || []).find((item) => item.id === activeLensItemId) || null;
     setLearnSheetMin(!!selected);
-    const visibleLens = lens ? { ...lens, items: (lens.items || []).filter((item) => viewboxContainsPoint(state.map, item)) } : null;
-    const visibleSelected = selected && viewboxContainsPoint(state.map, selected) ? selected : null;
+    const visibleItems = (lens?.items || []).filter((item) => viewboxContainsPoint(state.map, item));
+    const visibleLens = lens ? { ...lens, items: visibleItems.length ? visibleItems : (lens.items || []) } : null;
+    const visibleSelected = selected && (!visibleItems.length || viewboxContainsPoint(state.map, selected)) ? selected : null;
     setLearnSheetMin(!!visibleSelected);
     target.innerHTML = lensHtml(visibleLens, visibleSelected, countWildlifeNotes());
     paintLensItem({ map: state.map, leaflet: globalThis.L, lens: visibleLens, selected: visibleSelected });
@@ -517,7 +522,9 @@ export async function renderLearnHistory(target, point, authoredCards = []) {
     const index = await fetch(LEARN_INDEX_URL).then((response) => response.ok ? response.json() : null);
     if (index?.folders?.length) folders = index.folders;
   } catch {}
-  const visibleRemaining = split.remaining.filter((poi) => viewboxContainsPoint(state.map, poi));
-  const visibleSeen = split.seen.filter((poi) => viewboxContainsPoint(state.map, poi));
-  target.innerHTML = learnHistoryHtml({ progress, folders, remaining: sortSitesByDistance(visibleRemaining, point).slice(0, 40), seen: sortSitesByDistance(visibleSeen, point).slice(0, 40) });
+  const visibleNature = pois.filter(isWalkNatureSite).filter((poi) => viewboxContainsPoint(state.map, poi));
+  const visibleHistory = historySites(pois).filter((poi) => viewboxContainsPoint(state.map, poi));
+  const nature = sortSitesByDistance(visibleNature.length ? visibleNature : pois.filter(isWalkNatureSite), point).slice(0, 40);
+  const history = sortSitesByDistance(visibleHistory.length ? visibleHistory : historySites(pois), point).slice(0, 40);
+  target.innerHTML = learnHistoryHtml({ progress, folders, nature, history });
 }
