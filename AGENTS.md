@@ -10,6 +10,7 @@ The optional Supabase path remains available for a human operator who deliberate
 
 ## Live Pages and deployment verification
 
+- Do not run `npm test`, `npm run test:*`, `npm run test:all`, or other broad test commands unless the user explicitly asks for test execution in the current task. When tests are explicitly requested, run the narrowest relevant command first; otherwise prefer targeted syntax checks and task-specific validation.
 - The canonical live GitHub Pages URL for the Motherbird UI is https://sethryst.github.io/discover_walks/ (the app is served from the repository root; do not append `/motherbird/`).
 - When changing deployed Motherbird CSS, JavaScript, HTML, or service-worker behavior, bump the relevant asset query versions and the `APP_CACHE` version in `motherbird/service-worker.js` so GitHub Pages and existing clients cannot keep serving stale UI code; verify the refreshed live URL after deployment.
 - Before changing a deployed UI, inspect the currently live GitHub Pages deployment to understand the actual rendered behavior and distinguish stale deployment state from source behavior.
