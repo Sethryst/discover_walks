@@ -55,7 +55,7 @@ export function updateRadialWalkButton() {
 
   const walk = state.activeWalk;
   if (!walk) {
-    label.textContent = 'Compose an outing';
+    label.textContent = 'Start walk';
     btn.classList.remove('active-walk', 'paused');
     if (pauseBtn) pauseBtn.classList.add('hidden');
   } else if (walk.paused) {
@@ -130,7 +130,7 @@ export function initRadialMenu() {
   btn?.addEventListener('click', async () => {
     const walk = state.activeWalk;
     if (!walk) {
-      window.dispatchEvent(new CustomEvent('outing-composer-open-requested'));
+      await startWalk({ routeMode: 'tracking' });
     } else if (walk.paused) {
       await resumeWalk();
     } else {
