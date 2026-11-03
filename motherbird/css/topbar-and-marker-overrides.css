@@ -1,7 +1,7 @@
 /* User-facing polish overrides. Keep the color bands flush and preserve the
    teardrop marker silhouette used by the icon reference. */
 .top-cluster {
-  height: 40px !important;
+  height: 38px !important;
   align-items: stretch !important;
   border: 0 !important;
   border-radius: 0 !important;
@@ -9,7 +9,7 @@
   box-shadow: none !important;
   overflow: visible !important;
 }
-.top-cluster > * { height: 40px !important; min-height: 40px !important; max-height: 40px !important; align-self: stretch !important; border-top: 0 !important; border-bottom: 0 !important; }
+.top-cluster > * { height: 38px !important; min-height: 38px !important; max-height: 38px !important; align-self: stretch !important; margin: 0 !important; border: 0 !important; border-radius: 0 !important; }
 .top-cluster > .map-search,
 .top-cluster > .map-search > button,
 .top-cluster > .map-search > input,
@@ -18,7 +18,17 @@
 .top-cluster > .locate-stack .ink-control,
 .top-cluster > .regional-navigation,
 .top-cluster > .regional-navigation .regional-navigation-button,
-.top-cluster > .weather-brief { height: 40px !important; min-height: 40px !important; max-height: 40px !important; align-self: stretch !important; box-sizing: border-box !important; }
+.top-cluster > .weather-brief { height: 38px !important; min-height: 38px !important; max-height: 38px !important; align-self: stretch !important; box-sizing: border-box !important; border: 0 !important; }
+.top-cluster > .profile-control,
+.top-cluster > .profile-control .profile-avatar,
+.top-cluster > .map-search > button,
+.top-cluster > .locate-stack .ink-control,
+.top-cluster > #quickRadioButton,
+.top-cluster > #quickDrawButton { height: 38px !important; min-height: 38px !important; max-height: 38px !important; margin: 0 !important; box-sizing: border-box !important; }
+.top-cluster > .profile-control .profile-avatar { width: 38px !important; min-width: 38px !important; max-width: 38px !important; padding: 0 !important; }
+.top-cluster > .profile-control .profile-avatar { border-radius: 8px !important; }
+.top-cluster > .map-search > button { width: 38px !important; min-width: 38px !important; max-width: 38px !important; padding: 0 !important; }
+.top-cluster > .locate-stack { border-left: 1px solid rgba(23,60,53,.28) !important; }
 .top-cluster > .start-stack { display: none !important; width: 0 !important; min-width: 0 !important; flex: 0 0 0 !important; overflow: hidden !important; }
 .top-cluster > .start-stack:has(.control-row > :not(.hidden)) { width: auto !important; flex: 0 0 auto !important; overflow: visible !important; }
 .top-cluster > .profile-control,
