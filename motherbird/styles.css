@@ -2089,6 +2089,21 @@ body.location-available .context-help-button {
 .poi-marker-glyph-image{display:block;width:15px;height:15px;object-fit:contain;transform:rotate(45deg);filter:brightness(0) invert(1)}
 .poi-marker-glyph-image.is-detailed{filter:none}
 
+/* Last-mile visual corrections for the compact header. */
+.top-cluster > .map-search,
+.top-cluster > .map-search:not(.is-open) { flex: 0 0 32px !important; width: 32px !important; min-width: 32px !important; height: 32px !important; padding: 0 !important; overflow: hidden !important; }
+.top-cluster > .map-search > button { width: 32px !important; height: 32px !important; padding: 0 !important; }
+.top-cluster > .map-search > button img { display: none !important; }
+.top-cluster > .map-search > button::before { content: ''; display: block; width: 16px; height: 16px; margin: auto; background: #4d7ea6; mask: url('./icons/search.svg') center / contain no-repeat; -webkit-mask: url('./icons/search.svg') center / contain no-repeat; }
+.top-cluster > .map-search.is-open { flex: none !important; width: min(360px, calc(100vw - 16px)) !important; height: 38px !important; min-height: 38px !important; padding: 0 9px !important; overflow: visible !important; }
+.top-cluster > .map-search.is-open > button { width: 22px !important; height: 30px !important; }
+.top-cluster > #quickRadioButton,
+.top-cluster > #quickDrawButton { width: 30px !important; min-width: 30px !important; flex: 0 0 30px !important; height: 32px !important; min-height: 32px !important; padding: 0 !important; background: transparent !important; }
+.top-cluster > #quickRadioButton img,
+.top-cluster > #quickDrawButton img { display: block !important; width: 17px !important; height: 17px !important; filter: brightness(0) saturate(100%) invert(45%) sepia(23%) saturate(1000%) hue-rotate(164deg) brightness(87%) contrast(88%) !important; }
+.top-cluster > .weather-brief { align-self: center !important; flex: 0 1 92px !important; min-width: 60px !important; max-width: 108px !important; height: 28px !important; min-height: 28px !important; padding: 0 5px !important; font-size: .55rem !important; line-height: 1 !important; white-space: nowrap !important; overflow: hidden !important; }
+.top-cluster > .weather-brief .weather-brief-icon { width: 14px !important; height: 14px !important; flex-basis: 14px !important; margin-right: 4px !important; }
+
 /* Final top-bar contract: search is an overlay, the region owns the long
    label, weather is a bounded flush companion, and quick tools are centered
    icon controls rather than colored boxes. */
