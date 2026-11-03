@@ -24,7 +24,7 @@ export async function initPwaUpdates() {
     reloading = true;
     location.reload();
   });
-  const registration = await navigator.serviceWorker.register('./service-worker.js', { updateViaCache: 'none' });
+  const registration = await navigator.serviceWorker.register('./service-worker.js?v=20261102-627', { updateViaCache: 'none' });
   if (registration.waiting) showUpdate(registration);
   registration.addEventListener('updatefound', () => {
     const installing = registration.installing;
