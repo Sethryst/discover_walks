@@ -4,6 +4,7 @@ import { toast } from './ui.js';
 import db from './storage.js';
 import { ensureCurrentJournalNote, renderArchive } from './archive.js';
 import { renderNearbyPlaces } from './journal-pane.js';
+import { addJournalMarker } from './observation.js';
 
 let recorder = null;
 let stream = null;
@@ -72,6 +73,7 @@ export async function toggleJournalRecording() {
         await db.put('voice_notes', { id, momentId: note.id, walkId: note.walkId, city: note.city, createdAt: new Date().toISOString(), durationMs: Date.now() - started, mimeType: audio.type, audio, private: true });
         const current = await db.get('moments', note.id);
         await db.put('moments', { ...current, voiceIds: [...(current?.voiceIds || []), id] });
+        addJournalMarker({ ...current, location: current?.location || note.location, title: current?.title || 'Journal entry', note: current?.note || '' });
         status('Voice file saved on this device and attached to this page.');
         await renderArchive();
       } catch (error) { status('Voice file could not be saved. Check device storage.'); console.warn(error); }

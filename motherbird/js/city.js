@@ -5,7 +5,7 @@ import { el, cityLabel, localObservationCity } from './utils.js';
 import { renderCityExplorer, renderCityPois, migratePoi, city as cityLookup } from './poi.js';
 import { renderProfile } from './profile.js';
 import { setStatus, toast } from './ui.js';
-import { addObservationMarker } from './observation.js';
+import { addObservationMarker, addJournalMarker } from './observation.js';
 import { renderWeatherBrief } from './weather.js';
 import { loadNeighborhoodsForCity } from './neighborhoods.js';
 import { normalizeRegionDataConfig } from './osm-regions.js';
@@ -198,8 +198,9 @@ export async function loadAllCityData() {
 export async function refreshCityMap(recenter = false) {
   const active = cityLookup();
   state.observationLayer.clearLayers(); state.prompted.clear(); state.contextQuotePrompted.clear();
-  const observations = await db.all('observations');
+  const [observations, moments] = await Promise.all([db.all('observations'), db.all('moments')]);
   observations.filter((observation) => localObservationCity(observation) === state.activeCity).forEach(addObservationMarker);
+  moments.filter((moment) => moment.type === 'journal' && moment.city === state.activeCity).forEach(addJournalMarker);
   if (recenter) state.map.setView([active.center.lat, active.center.lng], active.zoom);
   if (el('activeCityLabel')) el('activeCityLabel').textContent = CITIES[state.activeCity]?.name || cityLabel(state.activeCity);
   el('map').setAttribute('aria-label', `Map of ${cityLabel(state.activeCity)} installed-pack places`);

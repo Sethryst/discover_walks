@@ -62,7 +62,7 @@ export async function ensureCurrentJournalNote() {
   if (!form.dataset.momentId) form.dataset.momentId = uid('moment');
   const id = form.dataset.momentId;
   const previous = await db.get('moments', id);
-  const note = { ...previous, id, type: 'journal', city: state.activeCity, title: previous?.title || 'Field note', note: el('journalNote')?.value || '', walkId: form.dataset.walkId || state.activeWalk?.id || null, roomId: state.activeRoom?.id || previous?.roomId || null, createdAt: previous?.createdAt || new Date().toISOString(), updatedAt: new Date().toISOString() };
+  const note = { ...previous, id, type: 'journal', city: state.activeCity, title: previous?.title || 'Field note', note: el('journalNote')?.value || '', walkId: form.dataset.walkId || state.activeWalk?.id || null, roomId: state.activeRoom?.id || previous?.roomId || null, location: previous?.location || state.currentPosition || (state.map ? { lat: state.map.getCenter().lat, lng: state.map.getCenter().lng } : null), createdAt: previous?.createdAt || new Date().toISOString(), updatedAt: new Date().toISOString() };
   await db.put('moments', note);
   if (note.roomId) await appendRoomTrace(note.roomId, { type: 'journal', refId: note.id });
   return note;

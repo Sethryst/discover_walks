@@ -34,6 +34,12 @@ export function addObservationMarker(observation) {
   const tags = (observation.personalTags || []).join(', ');
   marker.bindPopup(`<strong>${escapeHtml(observation.species)}</strong>${tags ? `<br><small>${escapeHtml(tags)}</small>` : ''}${observation.note ? `<br><span>${escapeHtml(observation.note)}</span>` : ''}`);
 }
+export function addJournalMarker(moment) {
+  if (!moment?.location || !state.observationLayer) return;
+  const icon = L.divIcon({ className: '', html: '<div class="wildlife-marker personal-observation-marker journal-map-marker">✎</div>', iconSize: [28, 28], iconAnchor: [14, 14] });
+  const marker = L.marker([moment.location.lat, moment.location.lng], { icon, title: moment.title || 'Journal entry' }).addTo(state.observationLayer);
+  marker.bindPopup(`<strong>${escapeHtml(moment.title || 'Journal entry')}</strong>${moment.note ? `<br><span>${escapeHtml(moment.note)}</span>` : ''}`);
+}
 export async function saveObservation(event) {
   event.preventDefault();
   const file = el('photoInput').files[0];
