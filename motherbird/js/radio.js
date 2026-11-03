@@ -14,6 +14,9 @@ function legacyJson(key, fallback) { try { const raw = globalThis.localStorage?.
 async function saveRadioPreferences(patch) { try { const current = await db.get('settings', PREF_ID) || { id: PREF_ID }; await db.put('settings', { ...current, ...patch }); } catch { /* durable storage is optional */ } }
 const STATES = Object.freeze({ paused: 'paused', buffering: 'buffering', playing: 'playing', jingle: 'jingle playing' });
 let miniDismissed = false;
+let recorder = null;
+let recorderStream = null;
+let recorderStopTimer = null;
 const FALLBACK_MANIFEST = {
   id: 'otr-time-machine', version: 1, epoch: '1950-01-01T00:00:00Z', slotMinutes: 45,
   channels: [{ id: 'x1', name: 'X-1 Signal', description: 'Science fiction from the golden age', genre: 'Drama', color: '#d96b3b' }, { id: 'vintage', name: 'Vintage Broadcast', description: 'News, variety, and field voices', genre: 'Broadcast', color: '#4f6f61' }],
@@ -110,13 +113,39 @@ async function importLocalAudio(file) {
     toast(error?.name === 'QuotaExceededError' ? 'Not enough device storage for that audio file.' : 'Could not add that audio file.');
   }
 }
+function setRecordStatus(message) { const node = el('radioRecordStatus'); if (node) node.textContent = message; }
+async function toggleChannelRecording() {
+  const button = el('radioRecordButton');
+  if (recorder?.state === 'recording') { recorder.stop(); return; }
+  if (!navigator.mediaDevices?.getUserMedia || !globalThis.MediaRecorder) { setRecordStatus('Recording is unavailable in this browser.'); return; }
+  try {
+    recorderStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    const chunks = [], mimeType = ['audio/webm;codecs=opus', 'audio/webm', 'audio/ogg;codecs=opus'].find((type) => MediaRecorder.isTypeSupported?.(type)) || '';
+    recorder = mimeType ? new MediaRecorder(recorderStream, { mimeType }) : new MediaRecorder(recorderStream);
+    const startedAt = Date.now();
+    recorder.ondataavailable = (event) => { if (event.data?.size) chunks.push(event.data); };
+    recorder.onerror = () => setRecordStatus('Recording stopped unexpectedly.');
+    recorder.onstop = async () => {
+      clearTimeout(recorderStopTimer); recorderStopTimer = null; recorderStream?.getTracks().forEach((track) => track.stop()); recorderStream = null;
+      const audio = new Blob(chunks, { type: recorder?.mimeType || mimeType || 'audio/webm' }); recorder = null;
+      button?.setAttribute('aria-pressed', 'false'); if (button) button.textContent = '● Record your channel';
+      if (!audio.size) { setRecordStatus('No audio captured. Nothing was saved.'); return; }
+      const id = `local-recording-${globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(16).slice(2)}`}`;
+      const track = { id, title: `Your channel · ${new Date(startedAt).toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}`, genre: 'Your channel', channel: 'your-channel', sourceType: 'local-recording', source: 'radio', audio, mediaType: audio.type, durationMs: Date.now() - startedAt, savedAt: Date.now(), categories: ['your-channel'] };
+      try { await db.put('radio_saved_tracks', track); state.localTracks = [...state.localTracks, track]; state.savedTrackIds.add(id); render(); setRecordStatus('Saved to Your channel.'); toast('Your recording is now a local radio channel.'); }
+      catch (error) { setRecordStatus(error?.name === 'QuotaExceededError' ? 'Not enough device storage.' : 'Could not save the recording.'); }
+    };
+    recorder.start(1000); recorderStopTimer = setTimeout(() => recorder?.state === 'recording' && recorder.stop(), 120000);
+    button?.setAttribute('aria-pressed', 'true'); if (button) button.textContent = '■ Stop recording'; setRecordStatus('Recording your channel…');
+  } catch (error) { recorderStream?.getTracks().forEach((track) => track.stop()); recorderStream = null; recorder = null; setRecordStatus(error?.name === 'NotAllowedError' ? 'Microphone access was not granted.' : 'The microphone could not start.'); }
+}
  function bindMiniPlayerDrag() { const player = el('radioMiniPlayer'); if (!player || player.dataset.dragBound) return; player.dataset.dragBound = 'true'; const clamp = () => { const x = Math.max(8, Math.min(innerWidth - player.offsetWidth - 8, player.offsetLeft)); const y = Math.max(52, Math.min(innerHeight - player.offsetHeight - 8, player.offsetTop)); player.style.left = `${x}px`; player.style.top = `${y}px`; player.style.right = 'auto'; player.style.bottom = 'auto'; player.style.transform = 'none'; }; const saved = legacyJson(MINI_POSITION_KEY, null); if (saved && Number.isFinite(saved.x) && Number.isFinite(saved.y)) { player.style.left = `${saved.x}px`; player.style.top = `${saved.y}px`; player.style.right = 'auto'; player.style.bottom = 'auto'; player.style.transform = 'none'; } let drag = null; player.addEventListener('pointerdown', (event) => { if (event.target.closest('button')) return; drag = { dx: event.clientX - player.offsetLeft, dy: event.clientY - player.offsetTop }; player.setPointerCapture(event.pointerId); player.classList.add('dragging'); }); player.addEventListener('pointermove', (event) => { if (!drag) return; const x = Math.max(8, Math.min(innerWidth - player.offsetWidth - 8, event.clientX - drag.dx)); const y = Math.max(52, Math.min(innerHeight - player.offsetHeight - 8, event.clientY - drag.dy)); player.style.left = `${x}px`; player.style.top = `${y}px`; player.style.right = 'auto'; player.style.bottom = 'auto'; player.style.transform = 'none'; }); player.addEventListener('pointerup', () => { if (!drag) return; drag = null; player.classList.remove('dragging'); clamp(); void saveRadioPreferences({ miniPosition: { x: player.offsetLeft, y: player.offsetTop } }); }); window.addEventListener('resize', clamp); }
 function pauseRadio() { state.playbackToken += 1; state.nextAudio?.pause(); state.nextAudio = null; state.activeAudio?.pause(); setStatus(STATES.paused, 'Paused'); updatePlayButtons(); }
 async function persistRadioState() {
   await db.put('radio_playback_state', { id: 'current', channelId: state.channelId, favoriteIds: [...state.favorites], history: state.history.slice(-100), updatedAt: Date.now() });
 }
 function recordRadioEvent(track, event) { if (!track?.id) return; state.history.push({ trackId: String(track.id), event, channelId: state.channelId, at: Date.now() }); void persistRadioState(); }
-function tracksForChannel() { const tracks = catalogTracks().filter((track) => !track.channel || track.channel === state.channelId || track.channelIds?.includes(state.channelId)); if (tracks.length || state.channelId !== 'jazz-club') return tracks; return [{ id: 'big-band-fallback', channel: 'jazz-club', title: 'Big Band Broadcast · public-domain set', genre: 'Big Band', archiveIdentifier: 'big-band-special', rightsStatus: 'review-required' }]; }
+function tracksForChannel() { const tracks = catalogTracks().filter((track) => track.sourceType === 'local-recording' || !track.channel || track.channel === state.channelId || track.channelIds?.includes(state.channelId)); if (tracks.length || state.channelId !== 'jazz-club') return tracks; return [{ id: 'big-band-fallback', channel: 'jazz-club', title: 'Big Band Broadcast · public-domain set', genre: 'Big Band', archiveIdentifier: 'big-band-special', rightsStatus: 'review-required' }]; }
 function sourceEnabled(track) { const live = el('radioLiveSources')?.checked !== false; const local = el('radioLocalSources')?.checked !== false; const kind = String(track?.sourceType || track?.source || track?.kind || '').toLowerCase(); if (!kind) return live || local; if (kind.includes('live') || kind.includes('broadcast')) return live; return local; }
 function chooseTrack() { const candidates = tracksForChannel().filter(sourceEnabled); if (!candidates.length) return null; const slot = Math.floor((Date.now() - Date.parse(state.manifest.epoch || '1950-01-01')) / ((state.manifest.slotMinutes || 45) * 60000)); return candidates[Math.abs(slot) % candidates.length]; }
 function chooseNextTrack() { if (state.queue.length) return state.queue.shift(); const candidates = tracksForChannel().filter(sourceEnabled); if (!candidates.length) return null; if (state.shuffle) return candidates[Math.floor(Math.random() * candidates.length)]; const currentIndex = candidates.findIndex((track) => String(track.id) === String(state.current?.id)); return candidates[(currentIndex + 1 + candidates.length) % candidates.length]; }
@@ -222,6 +251,7 @@ function bind() {
   el('radioSoundcloudSelect')?.addEventListener('change', (event) => { const frame = el('radioSoundcloudFrame'); if (frame) { soundcloudWidget = null; frame.src = soundcloudEmbedUrl(event.target.value); frame.addEventListener('load', bindSoundcloudWidget, { once: true }); } });
   el('radioSoundcloudTrackSelect')?.addEventListener('change', (event) => { if (soundcloudWidget) soundcloudWidget.skip(Number(event.target.value)); });
   el('radioLocalUploadInput')?.addEventListener('change', (event) => { const [file] = event.target.files || []; void importLocalAudio(file); event.target.value = ''; });
+  el('radioRecordButton')?.addEventListener('click', () => void toggleChannelRecording());
   el('radioSoundcloudSearch')?.addEventListener('input', () => { const previous = el('radioSoundcloudSelect')?.value; renderSoundcloudPlaylists(); const select = el('radioSoundcloudSelect'); const frame = el('radioSoundcloudFrame'); if (select && frame && select.value && select.value !== previous) frame.src = soundcloudEmbedUrl(select.value); });
   window.addEventListener('walk-started', async ({ detail }) => { walkSoundtrackStartedAt = Date.now(); const playlistId = detail?.playlistId; if (!playlistId) return; const tracks = (await db.all('radio_saved_tracks')).filter((track) => track.categories?.includes(playlistId)); state.queue = tracks.slice(); if (tracks[0]) void playTrack(tracks[0]); });
   window.addEventListener('walk-ended', async ({ detail }) => { if (!detail?.id) return; const since = walkSoundtrackStartedAt || 0; const trackIds = [...new Set(state.history.filter((event) => event.event === 'played' && event.at >= since).map((event) => event.trackId))]; await db.put('walk_soundtracks', { id: detail.id, walkId: detail.id, trackIds, savedAt: Date.now() }); const tracks = await db.all('radio_saved_tracks'); for (const track of tracks.filter((item) => trackIds.includes(String(item.id)) && item.returnPrompt)) await db.put('moments', { id: `soundtrack-return-${detail.id}-${track.id}`, type: 'journal', title: `Return prompt · ${track.title || track.id}`, note: track.returnPrompt, walkId: detail.id, soundtrackTrackId: track.id, placeName: track.placeName || null, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() }); window.dispatchEvent(new CustomEvent('journal-data-changed', { detail: { walkId: detail.id, soundtrack: true } })); walkSoundtrackStartedAt = null; });
@@ -245,6 +275,6 @@ export async function initRadio() {
   if (saved) { if (Array.isArray(saved.favoriteIds)) state.favorites = new Set(saved.favoriteIds); if (Array.isArray(saved.history)) state.history = saved.history.slice(-100); }
   const savedTracks = await db.all('radio_saved_tracks');
   state.savedTrackIds = new Set(savedTracks.map((track) => String(track.id)));
-  state.localTracks = savedTracks.filter((track) => track.sourceType === 'local-upload' && track.audio instanceof Blob);
+  state.localTracks = savedTracks.filter((track) => ['local-upload', 'local-recording'].includes(track.sourceType) && track.audio instanceof Blob);
   bind(); updateLivePlayer(); await loadManifest(); const firstStation = (state.manifest.channels || [])[0]; state.channelId = firstStation?.id || state.channelId; if (!state.current) { state.current = chooseTrack(); render(); }
 }

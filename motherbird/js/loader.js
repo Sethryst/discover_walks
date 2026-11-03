@@ -21,7 +21,6 @@ import { migrateLegacyJournalAudio } from './journal-capture.js';
 import { initOnlinePane } from './online-pane.js';
 import { startCoachMarks } from './coach.js';
 import { initNationalOsmLayers } from './national-osm-layers.js';
-import { initGeoCypher } from './geo-cypher.js';
 import { initPwaUpdates } from './pwa-update.js';
 import { initPrimaryShell } from './primary-shell.js';
 import { initRadialMenu } from './radial-menu.js';
@@ -190,7 +189,6 @@ export async function init() {
     void optionalBoot('field guide filters', initFieldGuideFilters);
     void optionalBoot('biodiversity', initBiodiversity);
     await optionalBoot('radio', initRadio);
-    await optionalBoot('geo-cypher', initGeoCypher);
     removePrimaryControlFallbacks();
     await optionalBoot('installed-region', activateInstalledRegionRuntime);
     await optionalBoot('county additions', initCountyAdditions);
@@ -263,11 +261,6 @@ function initPrimaryControls() {
   const controls = [
     [document.querySelector('[data-open-field-guide]'), () => import('./ui.js').then(({ openBackpack }) => openBackpack())],
     [document.getElementById('journalButton'), () => import('./ui.js').then(({ openJournal }) => openJournal())],
-    [document.getElementById('geoCypherButton'), async () => {
-    await initGeoCypher();
-    const { openGeoCypher } = await import('./geo-cypher.js');
-    await openGeoCypher();
-    }]
   ];
   controls.forEach(([button, handler]) => button?.addEventListener('click', handler));
   return () => controls.forEach(([button, handler]) => button?.removeEventListener('click', handler));

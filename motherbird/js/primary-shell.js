@@ -4,13 +4,11 @@ import { CITIES } from './constants.js';
 import { initRadialMenu, isActionStarred, toggleStarAction } from './radial-menu.js';
 import { generateTimeBasedPlan } from './planner.js';
 import { openObservation } from './observation.js';
-import { openGeoCypher } from './geo-cypher.js';
 import { openWorkspaceTool } from './workspace.js';
 
 const actions = {
   walk: [
     { id: 'journal-observation', label: 'Add observation', icon: './icons/eye.svg', run: () => openObservation() },
-    { id: 'journal-audio', label: 'Audio note', icon: './icons/mic.svg', run: () => void openGeoCypher() }
   ],
   library: [
     { id: 'workspace-build-route', label: 'Build route', icon: './icons/route.svg', run: () => openWorkspaceTool('builder') },

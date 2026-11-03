@@ -1,5 +1,5 @@
 import { state } from './state.js';
-import { el, cityLabel, escapeHtml, uid } from './utils.js';
+import { el, escapeHtml, uid } from './utils.js';
 import db from './storage.js';
 import { updateProfile } from './profile.js';
 import { openSheet, closeSheets, openJournal, toast } from './ui.js';
@@ -25,15 +25,8 @@ export function openObservation(location) {
   state.draftObservationLocation = loc;
   state.draftObservationIcon = 'camera';
   renderDraftMarker();
-  el('observationLocation').textContent = `Pinned at ${loc.lat.toFixed(4)}, ${loc.lng.toFixed(4)} in ${cityLabel(state.activeCity)}. Move it by closing this form and tapping a new spot on the map.`;
-  el('observationForm').reset(); el('photoName').textContent = 'Optional, stored only on this device';
-  document.querySelectorAll('[data-observation-icon]').forEach((button) => button.classList.toggle('active', button.dataset.observationIcon === state.draftObservationIcon));
+  el('observationForm').reset();
   openSheet('observationSheet');
-}
-export function setDraftObservationIcon(iconName) {
-  state.draftObservationIcon = iconName || 'camera';
-  document.querySelectorAll('[data-observation-icon]').forEach((button) => button.classList.toggle('active', button.dataset.observationIcon === state.draftObservationIcon));
-  renderDraftMarker();
 }
 export function addObservationMarker(observation) {
   const icon = observationIcon(observation.icon || 'camera');

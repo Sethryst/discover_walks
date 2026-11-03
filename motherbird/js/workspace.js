@@ -10,7 +10,7 @@ import { openJournal } from './ui.js';
 export const DEFAULT_WORKSPACE_ID = 'workspace:my-workspace';
 const LINKABLE_STORES = [
   ['saved_routes', 'route'], ['walks', 'walk'], ['observations', 'observation'],
-  ['geo_cypher_manifests', 'audio'], ['voice_notes', 'audio'], ['personal_places', 'place'], ['walk_plans', 'plan']
+  ['voice_notes', 'audio'], ['personal_places', 'place'], ['walk_plans', 'plan']
 ];
 
 export function normalizeWorkspace(value = {}, now = new Date().toISOString()) {

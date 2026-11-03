@@ -16,10 +16,9 @@ import { paintWalkPlan, paintCard, previewCard, sendCurrentWalkPlan } from './fi
 import { wordCount } from './reflection.js';
 import { refreshCompanionState } from './companion.js';
 import db from './storage.js';
-import { openObservation, saveObservation, setDraftObservationIcon } from './observation.js';
+import { openObservation, saveObservation } from './observation.js';
 import { transcribeJournal, toggleJournalRecording, stopJournalCapture } from './journal-capture.js';
 import { renderNearbyPlaces, initJournalPane } from './journal-pane.js';
-import { openGeoCypher } from './geo-cypher.js';
 import { openRadioForContext } from './radio.js?v=20261009-radio-controls-2';
 import { initMessengerBird } from './messenger-bird.js';
 import { restartCoachMarks } from './coach.js';
@@ -66,11 +65,9 @@ export function initEvents() {
   });
   el('journalButton')?.addEventListener('click', () => void openJournal());
   window.addEventListener('journal-open-requested', () => void openJournal());
-  el('geoCypherButton')?.addEventListener('click', () => void openGeoCypher());
   window.addEventListener('room-open-requested', (event) => void openRoomForPlace(event.detail?.place));
   window.addEventListener('room-sheet-open-requested', () => openSheet('roomSheet'));
   window.addEventListener('journal-room-open-requested', () => void openJournal());
-  el('roomAudioButton')?.addEventListener('click', () => void openGeoCypher());
   el('roomJournalButton')?.addEventListener('click', () => void openJournal());
   el('roomAddToJournalButton')?.addEventListener('click', async () => {
     const result = await addPlaceToJournalRoom(currentRoomPlace());
@@ -910,8 +907,6 @@ function bindJournal() {
     else { closeSheets(); state.map.flyTo([poi.lat, poi.lng], Math.max(16, state.map.getZoom())); }
   });
   el('observationForm')?.addEventListener('submit', saveObservation);
-  el('photoInput')?.addEventListener('change', (event) => { if (el('photoName')) el('photoName').textContent = event.target.files?.[0]?.name || 'Optional, stored only on this device'; });
-  document.querySelectorAll('[data-observation-icon]').forEach((button) => button.addEventListener('click', () => setDraftObservationIcon(button.dataset.observationIcon)));
 }
 
 function regionCards() {

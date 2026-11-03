@@ -5,7 +5,6 @@ import db from './storage.js';
 
 const DEFAULT_STARRED = [
   { id: 'journal-observation', label: 'Add observation', icon: './icons/eye.svg' },
-  { id: 'journal-audio', label: 'Audio note', icon: './icons/mic.svg' },
   { id: 'workspace-build-route', label: 'Build route', icon: './icons/route.svg' },
   { id: 'workspace-journal', label: 'Open journal', icon: './icons/book.svg' }
 ];
