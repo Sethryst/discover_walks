@@ -1748,7 +1748,7 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
 .radio-sheet.sheet-small { max-height: 30dvh !important; }
 .radio-sheet.sheet-mid { max-height: 48dvh !important; }
 .radio-sheet.sheet-wide { max-height: 84dvh !important; }
-.radio-sheet.sheet-small > :is(.sheet-kicker, .radio-description, .radio-source-switches, .radio-local-upload, .radio-live-player, .radio-track-pickers) { display: none !important; }
+  .radio-sheet.sheet-small > :is(.sheet-kicker, .radio-description, .radio-source-switches, .radio-live-player, .radio-track-pickers) { display: none !important; }
 .radio-sheet.sheet-small #radioTitle { margin-bottom: 8px; }
 .radio-sheet.sheet-small .radio-console { margin-top: 8px; }
 .radio-sheet.sheet-small .radio-controls { grid-template-columns: repeat(3, minmax(0, 1fr)); }
