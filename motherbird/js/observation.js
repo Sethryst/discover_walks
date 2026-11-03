@@ -9,8 +9,17 @@ import { attachWalkArtifact } from './walk-context.js';
 import { requestCompanionContext } from './companion.js';
 import { appendRoomTrace } from './room-runtime.js';
 
+const OBSERVATION_ASSETS = {
+  bird: 'bird-map', tree: 'tree-taxonomy', 'paw-print': 'paw-print-taxonomy',
+  bug: 'bug-taxonomy', mushroom: 'mushroom-taxonomy', turtle: 'turtle-taxonomy',
+  microscope: 'microscope-taxonomy', leaf: 'leaf-taxonomy', coffee: 'coffee-map',
+  utensils: 'utensils-taxonomy'
+};
+
 function observationIcon(iconName = 'camera') {
-  return L.divIcon({ className: '', html: `<div class="wildlife-marker personal-observation-marker"><img src="./icons/${escapeHtml(iconName)}.svg" alt="" /></div>`, iconSize: [28, 28], iconAnchor: [14, 14] });
+  const safeName = String(iconName || 'camera').replace(/[^a-z0-9-]/gi, '') || 'camera';
+  const asset = OBSERVATION_ASSETS[safeName] || safeName;
+  return L.divIcon({ className: '', html: `<div class="wildlife-marker personal-observation-marker"><img src="./icons/${escapeHtml(asset)}.svg" alt="" /></div>`, iconSize: [30, 30], iconAnchor: [15, 15] });
 }
 function renderDraftMarker() {
   if (state.draftMarker) state.draftMarker.remove();
@@ -29,14 +38,14 @@ export function openObservation(location) {
 }
 export function addObservationMarker(observation) {
   const icon = observationIcon(observation.icon || 'camera');
-  const marker = L.marker([observation.location.lat, observation.location.lng], { icon, title: observation.species }).addTo(state.observationLayer);
+  const marker = L.marker([observation.location.lat, observation.location.lng], { icon, title: observation.species, observationIcon: observation.icon || 'camera' }).addTo(state.observationLayer);
   const tags = (observation.personalTags || []).join(', ');
   marker.bindPopup(`<strong>${escapeHtml(observation.species)}</strong>${tags ? `<br><small>${escapeHtml(tags)}</small>` : ''}${observation.note ? `<br><span>${escapeHtml(observation.note)}</span>` : ''}`);
 }
 export function addJournalMarker(moment) {
   if (!moment?.location || !state.observationLayer) return;
   const icon = L.divIcon({ className: '', html: '<div class="wildlife-marker personal-observation-marker journal-map-marker">✎</div>', iconSize: [28, 28], iconAnchor: [14, 14] });
-  const marker = L.marker([moment.location.lat, moment.location.lng], { icon, title: moment.title || 'Journal entry' }).addTo(state.observationLayer);
+  const marker = L.marker([moment.location.lat, moment.location.lng], { icon, title: moment.title || 'Journal entry', observationIcon: 'microscope' }).addTo(state.observationLayer);
   marker.bindPopup(`<strong>${escapeHtml(moment.title || 'Journal entry')}</strong>${moment.note ? `<br><span>${escapeHtml(moment.note)}</span>` : ''}`);
 }
 export async function saveObservation(event) {

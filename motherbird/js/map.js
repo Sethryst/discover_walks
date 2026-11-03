@@ -159,7 +159,28 @@ export function initMap() {
   initMapCustomization();
   if (navigator.onLine !== false) state.onlineBasemapLayer.addTo(state.map);
   state.historyRadiusLayer = L.layerGroup().addTo(state.map);
-  state.observationLayer = L.layerGroup().addTo(state.map);
+  state.observationLayer = (L.markerClusterGroup ? L.markerClusterGroup({
+    // Personal observations can be much denser than place POIs. Keep the
+    // grouping gentle at neighborhood zooms, then let individual sightings
+    // separate at close range.
+    maxClusterRadius: (zoom) => zoom >= 15 ? 28 : 52,
+    disableClusteringAtZoom: 18,
+    animate: false,
+    animateAddingMarkers: false,
+    removeOutsideVisibleBounds: true,
+    showCoverageOnHover: false,
+    iconCreateFunction: (cluster) => {
+      const counts = {};
+      cluster.getAllChildMarkers().forEach((marker) => {
+        const icon = marker.options.observationIcon || 'microscope';
+        counts[icon] = (counts[icon] || 0) + 1;
+      });
+      const icon = Object.entries(counts).sort((a, b) => b[1] - a[1])[0]?.[0] || 'microscope';
+      const asset = { tree: 'tree-fall', mushroom: 'mushroom-taxonomy', bug: 'bug-taxonomy', bird: 'bird-map', 'paw-print': 'paw-print-taxonomy', microscope: 'microscope-taxonomy' }[icon] || 'microscope-taxonomy';
+      const total = cluster.getChildCount();
+      return L.divIcon({ className: 'observation-cluster', html: `<span><img src="./icons/${asset}.svg" alt="" /><b>${total}</b></span>`, iconSize: [42, 42] });
+    }
+  }) : L.layerGroup()).addTo(state.map);
   state.poiLayer = (L.markerClusterGroup ? L.markerClusterGroup({ maxClusterRadius: 42, disableClusteringAtZoom: 17, animate: false, animateAddingMarkers: false, removeOutsideVisibleBounds: true, showCoverageOnHover: false, iconCreateFunction: (cluster) => {
     const counts = { news: 0, recreation: 0, cuisine: 0 };
     cluster.getAllChildMarkers().forEach((marker) => { counts[placeLight(marker.options.place || {})] += 1; });
