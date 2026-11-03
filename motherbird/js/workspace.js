@@ -258,6 +258,30 @@ function workspacePlacesMarkup() {
 function workspaceRouteControls() {
   return `<nav class="workspace-route-controls" aria-label="Path routing controls"><button type="button" data-workspace-tool="open">My paths</button><button type="button" data-workspace-choice="new">New paths</button></nav>`;
 }
+function setWorkspacePlannerChoice({ mode, minutes }) {
+  const routeInput = document.querySelector(`input[name="routeMode"][value="${mode}"]`);
+  routeInput?.click();
+  let timeInput = document.querySelector(`input[name="walkTime"][value="${minutes}"]`);
+  if (!timeInput) {
+    timeInput = document.createElement('input');
+    timeInput.type = 'radio';
+    timeInput.name = 'walkTime';
+    timeInput.value = String(minutes);
+    timeInput.hidden = true;
+    document.querySelector('#sketchTimeOptions')?.append(timeInput);
+  }
+  timeInput.click();
+}
+async function generateWorkspaceWalk() {
+  setWorkspacePlannerChoice({ mode: workspaceBuilderMode, minutes: workspaceBuilderMinutes });
+  const plan = await generateTimeBasedPlan();
+  const target = document.querySelector('#personalPlacesPanel .workspace-home');
+  if (target && plan?.coordinates?.length) {
+    activeWorkspaceTool = 'options';
+    await renderWorkspacePanel(target);
+  }
+  return plan;
+}
 function workspaceOpenWalksMarkup() { return `<div class="workspace-tool-page workspace-open-walks"><p class="workspace-kicker">OPEN WALKS</p><h2>Saved journeys</h2><p class="workspace-helper">Choose a generated walk to bring its route back onto the main map.</p><div data-workspace-saved-walks><p class="empty-state">Loading saved walks…</p></div><button type="button" class="secondary-button" data-workspace-tool="builder">Make a walk</button></div>`; }
 function workspacePage() {
   const tool = activeWorkspaceTool;
@@ -380,6 +404,23 @@ export function initWorkspaceRuntime() {
     if (event.target.closest('[data-workspace-compose-open]')) {
       window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'explore', forceOpen: true } }));
       requestAnimationFrame(() => window.dispatchEvent(new CustomEvent('outing-composer-open-requested')));
+      return;
+    }
+    if (event.target.closest('[data-workspace-compose]')) {
+      try { await generateWorkspaceWalk(); }
+      catch (error) { console.error('Workspace walk generation failed:', error); }
+      return;
+    }
+    if (event.target.closest('[data-builder-mode]')) {
+      workspaceBuilderMode = event.target.closest('[data-builder-mode]').dataset.builderMode;
+      const target = document.querySelector('#personalPlacesPanel .workspace-home');
+      if (target) void renderWorkspacePanel(target);
+      return;
+    }
+    if (event.target.closest('[data-builder-minutes]')) {
+      workspaceBuilderMinutes = Number(event.target.closest('[data-builder-minutes]').dataset.builderMinutes) || 35;
+      const target = document.querySelector('#personalPlacesPanel .workspace-home');
+      if (target) void renderWorkspacePanel(target);
       return;
     }
     if (event.target.closest('.workspace-start-walk')) { await startWalk({ routeMode: 'tracking' }); return; }
