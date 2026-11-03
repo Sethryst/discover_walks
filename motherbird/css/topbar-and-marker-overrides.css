@@ -43,8 +43,9 @@
 .top-cluster > .regional-navigation,
 .top-cluster > .regional-navigation .regional-navigation-button { background: #4d7ea6 !important; }
 .top-cluster > .regional-navigation { border-right: 0 !important; }
+.top-cluster > .regional-navigation { margin-left: 0 !important; flex: 0 0 auto !important; }
 .top-cluster > .weather-brief,
-.top-cluster > #weatherBrief { background: #d7b9e5 !important; border-left: 0 !important; }
+.top-cluster > #weatherBrief { background: #d7b9e5 !important; border-left: 0 !important; margin-left: 0 !important; flex: 0 0 auto !important; }
 .top-cluster > #quickRadioButton:hover,
 .top-cluster > #quickRadioButton:focus-visible,
 .top-cluster > #quickDrawButton:hover,
