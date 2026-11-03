@@ -96,6 +96,19 @@ export function renderIncomingRequests() {
 }
 export function toast(message) { const node = el('toast'); node.textContent = message; node.classList.remove('hidden'); clearTimeout(toast.timeout); toast.timeout = setTimeout(() => node.classList.add('hidden'), 3200); }
 export function setStatus() { /* Map status copy is intentionally omitted. */ }
+function journalMomentSummary(now = new Date()) {
+  const hour = now.getHours();
+  const timeOfDay = hour < 5 ? 'late night' : hour < 9 ? 'early morning' : hour < 12 ? 'morning' : hour < 17 ? 'afternoon' : hour < 21 ? 'evening' : 'night';
+  const day = now.getDate();
+  const suffix = day % 10 === 1 && day !== 11 ? 'st' : day % 10 === 2 && day !== 12 ? 'nd' : day % 10 === 3 && day !== 13 ? 'rd' : 'th';
+  const date = now.toLocaleDateString([], { month: 'short' }).replace('.', '');
+  const age = ((now.getTime() - Date.UTC(2000, 0, 6, 18, 14)) / 86400000) % 29.530588853;
+  const phase = (age + 29.530588853) % 29.530588853;
+  const phaseIndex = Math.round((phase / 29.530588853) * 8) % 8;
+  const moonPhases = ['🌑', '🌒', '🌓', '🌔', '🌕', '🌖', '🌗', '🌘'];
+  const phaseNames = ['new moon', 'waxing crescent', 'first quarter', 'waxing gibbous', 'full moon', 'waning gibbous', 'last quarter', 'waning crescent'];
+  return { label: `${date} ${day}${suffix} · ${timeOfDay}`, moon: moonPhases[phaseIndex], moonLabel: phaseNames[phaseIndex] };
+}
 export async function openJournal(walkId = null) {
   if (state.modalOpen === 'journalSheet') { closeSheets(); return; }
   const form = el('journalForm');
@@ -107,7 +120,9 @@ export async function openJournal(walkId = null) {
   else if (walkId && walkId !== previousWalkId) { el('journalNote').value = ''; delete form.dataset.momentId; }
   const walks = state.walks?.length || 0;
   const notes = moments.filter((item) => item.type === 'journal').length;
-  el('journalTitle').innerHTML = `${new Date().toLocaleDateString([], { month: 'short', day: 'numeric' })} <span aria-hidden="true">⌄</span>`;
+  const moment = journalMomentSummary();
+  el('journalTitle').innerHTML = `<span class="journal-moment-copy">${moment.label}</span><span class="journal-moon" role="img" aria-label="${moment.moonLabel}">${moment.moon}</span><span aria-hidden="true">⌄</span>`;
+  el('journalTitle').title = `${moment.label}, ${moment.moonLabel}`;
   el('journalNavDropdown')?.classList.add('hidden');
   el('journalTitle').setAttribute('aria-expanded', 'false');
   el('journalWordCount').textContent = `${wordCount(el('journalNote').value)} words`;

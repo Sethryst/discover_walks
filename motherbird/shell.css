@@ -119,6 +119,17 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
   overflow-y: visible !important;
 }
 
+/* Journal moment marker and compact Learn choice cards. */
+.journal-moon { display:inline-block; margin-left:5px; font-family:"Apple Color Emoji","Segoe UI Emoji",sans-serif; font-size:.82rem; line-height:1; vertical-align:-1px; }
+.learn-category-options { gap:3px !important; padding-top:5px !important; }
+.learn-category-options .learn-entry,
+.learn-authored-grid .learn-story-link { min-height:0 !important; padding:5px 8px !important; border:1px solid var(--line) !important; border-left:3px solid currentColor !important; border-radius:6px !important; background:var(--paper2) !important; color:var(--ink) !important; text-align:left !important; }
+.learn-category-options .learn-entry h3,
+.learn-authored-grid .learn-story-link h3 { margin:0 !important; font-size:.64rem !important; line-height:1.1 !important; font-weight:800 !important; }
+.learn-category-nature .learn-entry { border-left-color:#2f7d52 !important; }
+.learn-category-history .learn-entry { border-left-color:#3871a8 !important; }
+.learn-authored-grid .learn-story-link { border-left-color:#c46824 !important; }
+
 /* Final interaction contract: keep Explore compact and keep Workspace controls
    above the scrolling content layer at every viewport size. */
 #mapWorkspacePanel[data-destination="explore"] #resizeMapWorkspace {
