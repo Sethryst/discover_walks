@@ -263,7 +263,7 @@ function workspacePage() {
   const tool = activeWorkspaceTool;
   if (tool === 'open') return workspaceOpenWalksMarkup();
   if (tool === 'options') return `${workspaceRouteControls()}<div class="workspace-walk-card"><div class="workspace-walk-card-heading"><div><p class="workspace-kicker">YOUR WALK</p><h2>${currentWalk.title}</h2></div><span>${currentWalk.duration}</span></div><div class="workspace-edit-stops">${currentWalk.stops.map((stop, index) => `<label><b>${index + 1}</b><input type="text" value="${escapeHtml(stop)}" data-walk-stop="${index}" aria-label="Stop ${index + 1}"></label>`).join('')}</div><div class="workspace-edit-row"><button type="button" data-workspace-add-stop>+ Add stop</button><select data-workspace-mode aria-label="Walk shape"><option ${currentWalk.mode === 'Loop' ? 'selected' : ''}>Loop</option><option ${currentWalk.mode === 'Point to point' ? 'selected' : ''}>Point to point</option></select></div><button type="button" class="primary-button workspace-start-walk">Start walk</button></div>`;
-  if (tool === 'builder') return `<div class="workspace-tool-page"><p class="workspace-kicker">MAKE WALKS</p><h2>Build a route for the map</h2><p class="workspace-helper">Set the shape and time, then the generated route will paint onto the main map at a walkable zoom.</p><div class="workspace-segmented"><button type="button" class="${workspaceBuilderMode === 'auto-round-trip' ? 'active' : ''}" data-builder-mode="auto-round-trip">Loop</button><button type="button" class="${workspaceBuilderMode === 'point-to-point' ? 'active' : ''}" data-builder-mode="point-to-point">Point to point</button></div><div class="workspace-time-grid">${[20, 35, 60].map((v) => `<button type="button" class="${v === workspaceBuilderMinutes ? 'active' : ''}" data-builder-minutes="${v}">${v} min</button>`).join('')}</div><button type="button" class="primary-button" data-workspace-compose>Generate walk</button><button type="button" class="secondary-button" data-workspace-tool="options">Back to current walk</button></div>`;
+  if (tool === 'builder') return `<div class="workspace-tool-page"><p class="workspace-kicker">MAKE WALKS</p><h2>Build a route for the map</h2><p class="workspace-helper">Set the shape and time, then the generated route will paint onto the main map at a walkable zoom.</p><div class="workspace-segmented"><button type="button" class="${workspaceBuilderMode === 'auto-round-trip' ? 'active' : ''}" data-builder-mode="auto-round-trip">Loop</button><button type="button" class="${workspaceBuilderMode === 'point-to-point' ? 'active' : ''}" data-builder-mode="point-to-point">Point to point</button></div><div class="workspace-time-grid">${[20, 35, 60].map((v) => `<button type="button" class="${v === workspaceBuilderMinutes ? 'active' : ''}" data-builder-minutes="${v}">${v} min</button>`).join('')}</div><button type="button" class="primary-button" data-workspace-compose>Generate walk</button><button type="button" class="secondary-button" data-workspace-compose-open>Compose a walk</button></div>`;
   if (tool === 'radio') return '<div class="workspace-tool-page"><div data-workspace-embedded="radio"></div></div>';
   if (tool === 'annotate') return '<div class="workspace-tool-page"><div data-workspace-embedded="draw"></div></div>';
   if (tool === 'journal') return '<div class="workspace-tool-page workspace-journal-page"><div data-workspace-embedded="journal"></div></div>';
@@ -274,17 +274,15 @@ async function hydrateWorkspaceLearn(target) {
   const list = target.querySelector('[data-workspace-guide-list]');
   const source = document.getElementById('fieldGuideList');
   if (!list || !source) return;
-  const sections = [];
-  const guideTabs = [['learn', 'Learn']];
-  if (isBiodiversitySupported()) guideTabs.push(['biodiversity', 'Nature']);
-  for (const [tab, title] of guideTabs) {
-    await renderFieldGuide(tab);
-    const clean = source.cloneNode(true);
-    clean.querySelectorAll('.learn-workspace-header, .learn-workspace-toolbar, .learn-nearby, #fieldGuideOrderNote').forEach((node) => node.remove());
-    const content = clean.innerHTML.trim();
-    if (content && !/^<p class="empty-state">/.test(content)) sections.push(`<section class="workspace-guide-section"><h3>${title}</h3>${content}</section>`);
-  }
-  list.innerHTML = sections.length ? sections.join('') : '<p class="empty-state">No field guide entries are available in this region yet.</p>';
+  // Keep Learn as one field-guide surface; Nature is available from the main
+  // Field Guide and should not be cloned into Learn as a second section.
+  await renderFieldGuide('learn');
+  const clean = source.cloneNode(true);
+  clean.querySelectorAll('.learn-workspace-header, .learn-workspace-toolbar, .learn-nearby, #fieldGuideOrderNote').forEach((node) => node.remove());
+  const content = clean.innerHTML.trim();
+  list.innerHTML = content && !/^<p class="empty-state">/.test(content)
+    ? `<section class="workspace-guide-section">${content}</section>`
+    : '<p class="empty-state">No field guide entries are available in this region yet.</p>';
 }
 function renderWorkspaceExperience(target) {
   target.innerHTML = `<section class="workspace-experience" aria-label="Workspace"><header class="workspace-experience-header"><div><h1>${currentWalk.title}</h1></div></header><nav class="workspace-tool-pills" aria-label="Workspace sections" role="tablist">${WORKSPACE_TOOLS.map(([id, label, icon]) => `<button type="button" role="tab" class="${activeWorkspaceTool === id ? 'active' : ''}" aria-selected="${activeWorkspaceTool === id}" data-workspace-tool="${id}"><img src="./icons/${icon === 'route' ? 'route' : icon === 'journal' ? 'bookmark' : 'book-open'}.svg" alt="" aria-hidden="true"><span>${label}</span></button>`).join('')}</nav>${workspacePage()}</section>`;
@@ -368,6 +366,11 @@ export function initWorkspaceRuntime() {
     if (detail?.destination === 'maps' && pendingWorkspaceTool) requestAnimationFrame(() => selectWorkspaceTool(pendingWorkspaceTool));
   });
   document.addEventListener('click', async (event) => {
+    if (event.target.closest('[data-workspace-compose-open]')) {
+      window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'explore', forceOpen: true } }));
+      requestAnimationFrame(() => window.dispatchEvent(new CustomEvent('outing-composer-open-requested')));
+      return;
+    }
     if (event.target.closest('.workspace-start-walk')) { await startWalk({ routeMode: 'tracking' }); return; }
     if (event.target.closest('[data-workspace-journal]')) { await openJournal('workspace-current-walk'); return; }
     const savedPlan = event.target.closest('[data-workspace-saved-plan]');
