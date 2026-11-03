@@ -1,6 +1,6 @@
 import { state } from './state.js';
 import { el, escapeHtml } from './utils.js';
-import { stopWalk, pauseWalk, resumeWalk } from './walk.js';
+import { startWalk, stopWalk, pauseWalk, resumeWalk } from './walk.js';
 import db from './storage.js';
 
 const DEFAULT_STARRED = [

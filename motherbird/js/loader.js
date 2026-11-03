@@ -23,7 +23,7 @@ import { startCoachMarks } from './coach.js';
 import { initNationalOsmLayers } from './national-osm-layers.js';
 import { initPwaUpdates } from './pwa-update.js';
 import { initPrimaryShell } from './primary-shell.js';
-import { initRadialMenu } from './radial-menu.js';
+import { initRadialMenu } from './radial-menu.js?v=20261103-radial-start-walk-1';
 import { initStories } from './stories.js';
 import { initRadio } from './radio.js?v=20261009-radio-controls-2';
 import { recoverWalkDraft, discardWalk } from './walk.js';
