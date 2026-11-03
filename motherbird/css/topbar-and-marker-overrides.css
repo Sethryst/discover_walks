@@ -31,3 +31,8 @@
   transform: rotate(-45deg) !important;
 }
 .poi-marker-glyph-image { transform: rotate(45deg) !important; }
+.poi-standalone-glyph {
+  width: 30px !important;
+  height: 30px !important;
+  object-fit: contain !important;
+}
