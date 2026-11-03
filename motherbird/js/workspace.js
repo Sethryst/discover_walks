@@ -249,7 +249,7 @@ function mountActiveWorkspaceSurface(target) {
   if (activeWorkspaceTool === 'journal') mountEmbeddedWorkspaceSurface('journalSheet', target.querySelector('[data-workspace-embedded="journal"]'));
   if (activeWorkspaceTool === 'annotate') mountEmbeddedWorkspaceSurface('drawWorkspace', target.querySelector('[data-workspace-embedded="draw"]'));
 }
-let currentWalk = { title: 'Anacostia sampler', stops: ['Anacostia Riverwalk', 'Kingman Island'], evidence: ['Water edge · source-mapped', 'Habitat edge · modeled'], revision: 'Revision 3', duration: '35 min', mode: 'Loop' };
+let currentWalk = null;
 function workspacePlaceSuggestions() { const pois = (state.cityPois[state.activeCity] || []).filter((poi) => poi?.name && !currentWalk.stops.includes(poi.name)).slice(0, 3); const personal = (state.personalPlaces || []).slice(0, 3); return { pois, personal }; }
 function workspacePlacesMarkup() {
   const suggestions = workspacePlaceSuggestions();
@@ -262,7 +262,7 @@ function workspaceOpenWalksMarkup() { return `<div class="workspace-tool-page wo
 function workspacePage() {
   const tool = activeWorkspaceTool;
   if (tool === 'open') return workspaceOpenWalksMarkup();
-  if (tool === 'options') return `${workspaceRouteControls()}<div class="workspace-walk-card"><div class="workspace-walk-card-heading"><div><p class="workspace-kicker">YOUR WALK</p><h2>${currentWalk.title}</h2></div><span>${currentWalk.duration}</span></div><div class="workspace-edit-stops">${currentWalk.stops.map((stop, index) => `<label><b>${index + 1}</b><input type="text" value="${escapeHtml(stop)}" data-walk-stop="${index}" aria-label="Stop ${index + 1}"></label>`).join('')}</div><div class="workspace-edit-row"><button type="button" data-workspace-add-stop>+ Add stop</button><select data-workspace-mode aria-label="Walk shape"><option ${currentWalk.mode === 'Loop' ? 'selected' : ''}>Loop</option><option ${currentWalk.mode === 'Point to point' ? 'selected' : ''}>Point to point</option></select></div><button type="button" class="primary-button workspace-start-walk">Start walk</button></div>`;
+  if (tool === 'options') return `${workspaceRouteControls()}${currentWalk ? `<div class="workspace-walk-card"><div class="workspace-walk-card-heading"><div><p class="workspace-kicker">YOUR WALK</p><h2>${escapeHtml(currentWalk.title)}</h2></div><span>${escapeHtml(currentWalk.duration)}</span></div><div class="workspace-edit-stops">${currentWalk.stops.map((stop, index) => `<label><b>${index + 1}</b><input type="text" value="${escapeHtml(stop)}" data-walk-stop="${index}" aria-label="Stop ${index + 1}"></label>`).join('')}</div><div class="workspace-edit-row"><button type="button" data-workspace-add-stop>+ Add stop</button><select data-workspace-mode aria-label="Walk shape"><option ${currentWalk.mode === 'Loop' ? 'selected' : ''}>Loop</option><option ${currentWalk.mode === 'Point to point' ? 'selected' : ''}>Point to point</option></select></div><button type="button" class="primary-button workspace-start-walk">Start walk</button></div>` : '<p class="workspace-helper workspace-empty-walks">See your created walks here!<br>Try making one in New paths</p>'}`;
   if (tool === 'builder') return `<div class="workspace-tool-page"><p class="workspace-kicker">MAKE WALKS</p><h2>Build a route for the map</h2><p class="workspace-helper">Set the shape and time, then the generated route will paint onto the main map at a walkable zoom.</p><div class="workspace-segmented"><button type="button" class="${workspaceBuilderMode === 'auto-round-trip' ? 'active' : ''}" data-builder-mode="auto-round-trip">Loop</button><button type="button" class="${workspaceBuilderMode === 'point-to-point' ? 'active' : ''}" data-builder-mode="point-to-point">Point to point</button></div><div class="workspace-time-grid">${[20, 35, 60].map((v) => `<button type="button" class="${v === workspaceBuilderMinutes ? 'active' : ''}" data-builder-minutes="${v}">${v} min</button>`).join('')}</div><button type="button" class="primary-button" data-workspace-compose>Generate walk</button><button type="button" class="secondary-button" data-workspace-compose-open>Compose a walk</button></div>`;
   if (tool === 'radio') return '<div class="workspace-tool-page"><div data-workspace-embedded="radio"></div></div>';
   if (tool === 'annotate') return '<div class="workspace-tool-page"><div data-workspace-embedded="draw"></div></div>';
@@ -286,7 +286,7 @@ async function hydrateWorkspaceLearn(target) {
     : '<p class="empty-state">No field guide entries are available in this region yet.</p>';
 }
 function renderWorkspaceExperience(target) {
-  target.innerHTML = `<section class="workspace-experience" aria-label="Workspace"><header class="workspace-experience-header"><div><h1>${currentWalk.title}</h1></div></header><nav class="workspace-tool-pills" aria-label="Workspace sections" role="tablist">${WORKSPACE_TOOLS.map(([id, label, icon]) => `<button type="button" role="tab" class="${activeWorkspaceTool === id ? 'active' : ''}" aria-selected="${activeWorkspaceTool === id}" data-workspace-tool="${id}"><img src="./icons/${icon === 'route' ? 'route' : icon === 'journal' ? 'bookmark' : 'book-open'}.svg" alt="" aria-hidden="true"><span>${label}</span></button>`).join('')}</nav>${workspacePage()}</section>`;
+  target.innerHTML = `<section class="workspace-experience" aria-label="Workspace"><header class="workspace-experience-header"><div><h1>${currentWalk ? escapeHtml(currentWalk.title) : 'Your walks'}</h1></div></header><nav class="workspace-tool-pills" aria-label="Workspace sections" role="tablist">${WORKSPACE_TOOLS.map(([id, label, icon]) => `<button type="button" role="tab" class="${activeWorkspaceTool === id ? 'active' : ''}" aria-selected="${activeWorkspaceTool === id}" data-workspace-tool="${id}"><img src="./icons/${icon === 'route' ? 'route' : icon === 'journal' ? 'bookmark' : 'book-open'}.svg" alt="" aria-hidden="true"><span>${label}</span></button>`).join('')}</nav>${workspacePage()}</section>`;
   target.querySelector('.workspace-tool-pills')?.addEventListener('click', (event) => {
     const button = event.target.closest('[data-workspace-tool]');
     if (!button || !button.closest('.workspace-tool-pills')) return;
@@ -342,6 +342,16 @@ export async function renderWorkspacePanel(target, { filter = 'all' } = {}) {
     return;
   }
   target.classList?.add?.('workspace-home');
+  if (!currentWalk && (state.walkPlan || state.savedRoutes?.length || state.walks?.length)) {
+    const plan = state.walkPlan || state.savedRoutes?.[0] || state.walks?.[0];
+    const route = plan?.route || plan;
+    currentWalk = {
+      title: plan.title || route?.title || 'Your walk',
+      stops: (plan.encounters || route?.sections || []).map((stop) => stop.name || stop.title || stop.label || 'Walking stop').slice(0, 6),
+      duration: route?.durationSeconds ? `${Math.round(route.durationSeconds / 60)} min` : 'Walking route',
+      mode: route?.routeMode === 'point-to-point' ? 'Point to point' : 'Loop'
+    };
+  }
   // Embedded sheets live inside the Workspace surface while their tab is
   // active. Restore them to their original document position before replacing
   // the Workspace markup, otherwise the next render deletes the live sheet.
