@@ -25,6 +25,14 @@ function weatherBriefHtml(text) {
   return `<img class="weather-brief-icon" src="${weatherIcon(text)}" alt="" aria-hidden="true"><span>${escapeHtml(text)}</span>`;
 }
 
+function nightAdjustedText(text, sun = null, period = null) {
+  const now = Date.now();
+  const nightBySun = sun?.sunrise && sun?.sunset && (now < Date.parse(sun.sunrise) || now >= Date.parse(sun.sunset));
+  const night = period?.isDaytime === false || nightBySun;
+  if (!night) return { text, night: false };
+  return { text: String(text).replace(/\bsunny\b|\bclear\b/gi, 'clear tonight'), night: true };
+}
+
 async function loadNwsPeriod(lat, lng) {
   try {
     const pointResponse = await fetch(`https://api.weather.gov/points/${encodeURIComponent(lat)},${encodeURIComponent(lng)}`);
@@ -73,8 +81,9 @@ export async function refreshLiveConditions() {
     const forecastText = String(nwsPeriod?.shortForecast || '');
     const rain = nwsObservation ? observationIsWet(nwsObservation) : Number(weather?.current?.precipitation) > 0 || /rain|shower|storm/i.test(forecastText);
     setCompanionEnvironment({ rain, sunny: /sunny|clear/i.test(`${forecastText} ${nwsObservation?.textDescription || ''}`) });
-    const summary = liveConditionsText(weather, sun, nwsPeriod);
-    target.innerHTML = weatherBriefHtml(summary);
+    const adjusted = nightAdjustedText(liveConditionsText(weather, sun, nwsPeriod), sun, nwsPeriod);
+    target.classList.toggle('is-night', adjusted.night);
+    target.innerHTML = weatherBriefHtml(adjusted.text);
   } catch {
     target.innerHTML = weatherBriefHtml('Weather unavailable');
   }
@@ -84,7 +93,8 @@ export async function renderWeatherBrief() {
   const target = el('weatherBrief');
   if (!target) return;
   const file = CITIES[state.activeCity]?.weatherFile;
-  target.classList.add('hidden');
+  target.innerHTML = weatherBriefHtml('Weather…');
+  target.classList.remove('hidden');
   if (!file) { await refreshLiveConditions(); return; }
   try {
     const response = await fetch(file);
@@ -96,7 +106,9 @@ export async function renderWeatherBrief() {
     const observation = await loadNwsObservation(Number(CITIES[state.activeCity].center.lat), Number(CITIES[state.activeCity].center.lng));
     const forecastText = `${alert?.event || ''} ${period?.shortForecast || ''}`;
     setCompanionEnvironment({ rain: observation ? observationIsWet(observation) : /rain|shower|storm/i.test(forecastText), sunny: /sunny|clear/i.test(`${forecastText} ${observation?.textDescription || ''}`) });
-    target.innerHTML = weatherBriefHtml(text);
+    const adjusted = nightAdjustedText(text, null, period);
+    target.classList.toggle('is-night', adjusted.night);
+    target.innerHTML = weatherBriefHtml(adjusted.text);
     target.classList.remove('hidden');
   } catch { target.innerHTML = weatherBriefHtml('Weather unavailable'); target.classList.remove('hidden'); }
 }

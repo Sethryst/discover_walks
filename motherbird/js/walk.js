@@ -16,7 +16,7 @@ import { linkSavedRecord } from './workspace.js';
 import { startWalkSession } from './walk-plan.js';
 import { updateProfile } from './profile.js';
 import { renderArchive } from './archive.js';
-import { refreshLiveConditions } from './weather.js';
+import { refreshLiveConditions } from './weather.js?v=20261103-night-weather-1';
 import {
   addEventToWalk,
   completeWalkEvent,
