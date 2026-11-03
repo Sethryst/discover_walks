@@ -6,12 +6,9 @@ import { setCompanionEnvironment } from './companion.js';
 export function liveConditionsText(weather, sun, nwsPeriod = null) {
   const current = weather?.current || {};
   const parts = [];
-  if (Number.isFinite(current.temperature_2m)) parts.push(`${Math.round(current.temperature_2m)}°C`);
-  if (Number.isFinite(current.apparent_temperature)) parts.push(`feels ${Math.round(current.apparent_temperature)}°C`);
-  if (Number.isFinite(current.uv_index)) parts.push(`UV ${Math.round(current.uv_index)}`);
-  if (Number.isFinite(current.precipitation) && current.precipitation > 0) parts.push(`${current.precipitation.toFixed(1)} mm rain now`);
   if (nwsPeriod?.shortForecast) parts.push(nwsPeriod.shortForecast);
-  if (sun?.results?.sunset) parts.push(`sunset ${new Date(sun.results.sunset).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`);
+  if (Number.isFinite(current.temperature_2m)) parts.push(`${Math.round((current.temperature_2m * 9) / 5 + 32)}°F`);
+  if (!parts.length && Number.isFinite(current.apparent_temperature)) parts.push(`Feels ${Math.round((current.apparent_temperature * 9) / 5 + 32)}°F`);
   return parts.join(' · ') || 'Live conditions unavailable';
 }
 
@@ -64,10 +61,11 @@ export async function refreshLiveConditions() {
     const observationText = nwsObservation?.textDescription ? ` · NWS: ${nwsObservation.textDescription}` : '';
     const rain = nwsObservation ? observationIsWet(nwsObservation) : Number(weather?.current?.precipitation) > 0 || /rain|shower|storm/i.test(forecastText);
     setCompanionEnvironment({ rain, sunny: /sunny|clear/i.test(`${forecastText} ${nwsObservation?.textDescription || ''}`) });
-    target.innerHTML = `${escapeHtml(liveConditionsText(weather, sun, nwsPeriod) + observationText)} <small>Uses ${escapeHtml(city.name)}’s map center; NWS station observations may lag by up to about 20 minutes.</small> <button class="text-button" id="refreshConditionsButton" type="button">Refresh</button>`;
+    const summary = liveConditionsText(weather, sun, nwsPeriod);
+    target.innerHTML = `${escapeHtml(summary + observationText)} <button class="text-button" id="refreshConditionsButton" type="button">Refresh</button>`;
     el('refreshConditionsButton')?.addEventListener('click', () => void refreshLiveConditions());
   } catch {
-    target.innerHTML = `Live conditions could not load. <button class="text-button" id="refreshConditionsButton" type="button">Try again</button>`;
+    target.innerHTML = `Weather unavailable <button class="text-button" id="refreshConditionsButton" type="button">Try again</button>`;
     el('refreshConditionsButton')?.addEventListener('click', () => void refreshLiveConditions());
   }
 }
@@ -77,7 +75,7 @@ export async function renderWeatherBrief() {
   if (!target) return;
   const file = CITIES[state.activeCity]?.weatherFile;
   target.classList.add('hidden');
-  if (!file) { target.innerHTML = 'Live conditions are available for this region. <button class="text-button" id="refreshConditionsButton" type="button">Refresh conditions</button>'; target.classList.remove('hidden'); el('refreshConditionsButton')?.addEventListener('click', () => void refreshLiveConditions()); return; }
+  if (!file) { await refreshLiveConditions(); return; }
   try {
     const response = await fetch(file);
     const weather = response.ok ? await response.json() : null;
@@ -92,5 +90,5 @@ export async function renderWeatherBrief() {
     target.innerHTML = `${escapeHtml(text + observationText)} <a href="${escapeHtml(weather.source?.url || 'https://www.weather.gov')}" target="_blank" rel="noreferrer">NWS ↗</a> <button class="text-button" id="refreshConditionsButton" type="button">Live conditions</button>`;
     target.classList.remove('hidden');
     el('refreshConditionsButton')?.addEventListener('click', () => void refreshLiveConditions());
-  } catch { target.innerHTML = 'Live conditions are available for this region. <button class="text-button" id="refreshConditionsButton" type="button">Refresh conditions</button>'; target.classList.remove('hidden'); el('refreshConditionsButton')?.addEventListener('click', () => void refreshLiveConditions()); }
+  } catch { target.innerHTML = 'Weather unavailable <button class="text-button" id="refreshConditionsButton" type="button">Try again</button>'; target.classList.remove('hidden'); el('refreshConditionsButton')?.addEventListener('click', () => void refreshLiveConditions()); }
 }

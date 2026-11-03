@@ -1978,8 +1978,9 @@ body.location-available .context-help-button {
 
 /* Keep the weather in the spare top-bar space and dock the region at right. */
 .top-cluster { overflow: visible !important; }
-.top-cluster > .weather-brief { order: 5 !important; flex: 1 1 220px !important; min-width: 0 !important; max-width: none !important; color: #76558b !important; background: rgba(244,235,249,.9) !important; border-left: 1px solid rgba(23,60,53,.16) !important; border-right: 1px solid rgba(23,60,53,.16) !important; }
 .top-cluster > .regional-navigation { order: 6 !important; flex: 0 1 min(250px, 28vw) !important; min-width: 150px !important; margin-left: 0 !important; padding: 0 !important; overflow: visible !important; z-index: 1402 !important; background: var(--radio-copper, #4d7ea6) !important; }
+.top-cluster > .weather-brief { order: 7 !important; flex: 0 1 min(190px, 20vw) !important; min-width: 112px !important; max-width: 190px !important; color: #76558b !important; background: rgba(244,235,249,.9) !important; border-left: 1px solid rgba(23,60,53,.16) !important; border-right: 0 !important; }
 .top-cluster > .regional-navigation .regional-navigation-button { display: flex !important; align-items: center; justify-content: space-between; width: 100% !important; max-width: none !important; min-width: 0; padding-inline: 12px !important; overflow: hidden; color: #fff !important; background: var(--radio-copper, #4d7ea6) !important; }
 .top-cluster > .regional-navigation .regional-navigation-menu { left: auto !important; right: 0 !important; width: min(290px, calc(100vw - 16px)) !important; z-index: 1600 !important; }
-@media (max-width: 720px) { .top-cluster > .weather-brief { flex: 1 1 120px !important; font-size: .61rem; } .top-cluster > .regional-navigation { flex: 0 1 36% !important; min-width: 118px !important; } }
+@media (max-width: 720px) { .top-cluster > .regional-navigation { flex: 0 1 34% !important; min-width: 118px !important; } .top-cluster > .weather-brief { flex: 0 1 26% !important; min-width: 104px !important; font-size: .61rem; } }
+@media (max-width: 480px) { .top-cluster > .regional-navigation { min-width: 104px !important; } .top-cluster > .weather-brief { min-width: 86px !important; max-width: 120px !important; padding-inline: 6px !important; } }
