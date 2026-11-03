@@ -1501,8 +1501,7 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
   .top-cluster > #quickDrawButton { flex-basis: 29px !important; width: 29px !important; min-width: 29px !important; }
   .top-cluster > .map-search { flex: 0 0 34px !important; width: 34px !important; padding-inline: 5px !important; }
   .top-cluster > .map-search input { display: none; }
-  .top-cluster > .locate-stack .ink-control { width: 38px !important; min-width: 38px !important; padding: 0 !important; font-size: 0 !important; justify-content: center; }
-  .top-cluster > .locate-stack .ink-control::after { content: '⌖'; font-size: 16px; line-height: 1; }
+  .top-cluster > .locate-stack .ink-control { width: auto !important; min-width: 66px !important; padding-inline: 7px !important; font-size: .58rem !important; }
   .top-cluster > .regional-navigation { flex: 1 1 86px !important; min-width: 72px !important; }
   .top-cluster > .regional-navigation .regional-navigation-button { max-width: none !important; padding-inline: 6px !important; font-size: .58rem !important; }
   .top-cluster > .weather-brief { flex: 0 1 70px !important; min-width: 58px !important; max-width: 86px !important; padding-inline: 5px !important; font-size: .55rem !important; }
