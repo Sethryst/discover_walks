@@ -1418,6 +1418,90 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
   .top-cluster>.regional-navigation .regional-navigation-button { max-width: 96px; }
 }
 
+
+/* Final compact header alignment: keep weather, radio, and draw controls in
+   the same bar as the region identifier without allowing them to wrap or
+   disappear while weather data is loading. */
+.top-cluster {
+  flex-wrap: nowrap !important;
+  overflow: visible !important;
+}
+.top-cluster > #quickRadioButton,
+.top-cluster > #quickDrawButton {
+  order: 4 !important;
+  flex: 0 0 32px !important;
+  width: 32px !important;
+  min-width: 32px !important;
+  height: 28px !important;
+  min-height: 28px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-left: 1px solid rgba(23,60,53,.14) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  justify-content: center;
+}
+.top-cluster > #quickDrawButton { order: 5 !important; }
+.top-cluster > #quickRadioButton:hover,
+.top-cluster > #quickRadioButton:focus-visible,
+.top-cluster > #quickDrawButton:hover,
+.top-cluster > #quickDrawButton:focus-visible {
+  background: rgba(45,114,89,.1) !important;
+}
+.top-cluster > #quickRadioButton img,
+.top-cluster > #quickDrawButton img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+.top-cluster > .regional-navigation {
+  order: 6 !important;
+  margin-left: 0 !important;
+  border-radius: 0 !important;
+}
+.top-cluster > .weather-brief {
+  order: 7 !important;
+  display: flex !important;
+  flex: 0 1 150px !important;
+  min-width: 92px !important;
+  max-width: 190px !important;
+  height: 28px !important;
+  min-height: 28px !important;
+  padding: 0 8px !important;
+  border-left: 1px solid rgba(23,60,53,.16) !important;
+  border-right: 0 !important;
+  border-radius: 0 9px 9px 0 !important;
+  background: rgba(244,235,249,.9) !important;
+  color: #76558b !important;
+  font-size: .62rem !important;
+  line-height: 1.1 !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.top-cluster > .weather-brief.hidden { display: flex !important; }
+.top-cluster > .map-search,
+.top-cluster > #quickRadioButton,
+.top-cluster > #quickDrawButton,
+.top-cluster > .regional-navigation {
+  background: var(--radio-copper, #4d7ea6) !important;
+  color: #fff !important;
+}
+.top-cluster > .map-search img,
+.top-cluster > #quickRadioButton img,
+.top-cluster > #quickDrawButton img { filter: brightness(0) invert(1); opacity: .96; }
+.top-cluster > .map-search input { color: #fff !important; }
+.top-cluster > .map-search input::placeholder { color: rgba(255,255,255,.82) !important; }
+.top-cluster > .weather-brief { color: #4b285d !important; background: #d7b9e5 !important; }
+.top-cluster > .weather-brief .weather-brief-icon { width: 16px; height: 16px; flex: 0 0 16px; margin-right: 5px; filter: saturate(.8) hue-rotate(235deg) brightness(.7); }
+.top-cluster > .weather-brief > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+@media (max-width: 560px) {
+  .top-cluster > #quickRadioButton,
+  .top-cluster > #quickDrawButton { flex-basis: 29px !important; width: 29px !important; min-width: 29px !important; }
+  .top-cluster > .weather-brief { min-width: 76px !important; max-width: 128px !important; padding-inline: 6px !important; font-size: .58rem !important; }
+}
+
 /* Keep the compact mobile header below the viewport/title-bar edge. */
 @media (max-width: 720px) {
   .viewfinder-frame {

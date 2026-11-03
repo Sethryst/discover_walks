@@ -12,6 +12,19 @@ export function liveConditionsText(weather, sun, nwsPeriod = null) {
   return parts.join(' · ') || 'Live conditions unavailable';
 }
 
+function weatherIcon(text = '') {
+  const value = String(text).toLowerCase();
+  if (/snow|blizzard|ice/.test(value)) return './icons/cloud-snow.svg';
+  if (/rain|shower|drizzle/.test(value)) return './icons/cloud-drizzle.svg';
+  if (/wind|breezy/.test(value)) return './icons/wind.svg';
+  if (/sunny|clear/.test(value)) return './icons/sunrise.svg';
+  return './icons/cloud.svg';
+}
+
+function weatherBriefHtml(text) {
+  return `<img class="weather-brief-icon" src="${weatherIcon(text)}" alt="" aria-hidden="true"><span>${escapeHtml(text)}</span>`;
+}
+
 async function loadNwsPeriod(lat, lng) {
   try {
     const pointResponse = await fetch(`https://api.weather.gov/points/${encodeURIComponent(lat)},${encodeURIComponent(lng)}`);
@@ -58,15 +71,12 @@ export async function refreshLiveConditions() {
     const weather = weatherResponse.ok ? await weatherResponse.json() : null;
     const sun = sunResponse.ok ? await sunResponse.json() : null;
     const forecastText = String(nwsPeriod?.shortForecast || '');
-    const observationText = nwsObservation?.textDescription ? ` · NWS: ${nwsObservation.textDescription}` : '';
     const rain = nwsObservation ? observationIsWet(nwsObservation) : Number(weather?.current?.precipitation) > 0 || /rain|shower|storm/i.test(forecastText);
     setCompanionEnvironment({ rain, sunny: /sunny|clear/i.test(`${forecastText} ${nwsObservation?.textDescription || ''}`) });
     const summary = liveConditionsText(weather, sun, nwsPeriod);
-    target.innerHTML = `${escapeHtml(summary + observationText)} <button class="text-button" id="refreshConditionsButton" type="button">Refresh</button>`;
-    el('refreshConditionsButton')?.addEventListener('click', () => void refreshLiveConditions());
+    target.innerHTML = weatherBriefHtml(summary);
   } catch {
-    target.innerHTML = `Weather unavailable <button class="text-button" id="refreshConditionsButton" type="button">Try again</button>`;
-    el('refreshConditionsButton')?.addEventListener('click', () => void refreshLiveConditions());
+    target.innerHTML = weatherBriefHtml('Weather unavailable');
   }
 }
 
@@ -86,9 +96,7 @@ export async function renderWeatherBrief() {
     const observation = await loadNwsObservation(Number(CITIES[state.activeCity].center.lat), Number(CITIES[state.activeCity].center.lng));
     const forecastText = `${alert?.event || ''} ${period?.shortForecast || ''}`;
     setCompanionEnvironment({ rain: observation ? observationIsWet(observation) : /rain|shower|storm/i.test(forecastText), sunny: /sunny|clear/i.test(`${forecastText} ${observation?.textDescription || ''}`) });
-    const observationText = observation?.textDescription ? ` · Current: ${observation.textDescription}` : '';
-    target.innerHTML = `${escapeHtml(text + observationText)} <a href="${escapeHtml(weather.source?.url || 'https://www.weather.gov')}" target="_blank" rel="noreferrer">NWS ↗</a> <button class="text-button" id="refreshConditionsButton" type="button">Live conditions</button>`;
+    target.innerHTML = weatherBriefHtml(text);
     target.classList.remove('hidden');
-    el('refreshConditionsButton')?.addEventListener('click', () => void refreshLiveConditions());
-  } catch { target.innerHTML = 'Weather unavailable <button class="text-button" id="refreshConditionsButton" type="button">Try again</button>'; target.classList.remove('hidden'); el('refreshConditionsButton')?.addEventListener('click', () => void refreshLiveConditions()); }
+  } catch { target.innerHTML = weatherBriefHtml('Weather unavailable'); target.classList.remove('hidden'); }
 }

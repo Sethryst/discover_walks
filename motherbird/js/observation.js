@@ -12,7 +12,6 @@ import { appendRoomTrace } from './room-runtime.js';
 function observationIcon(iconName = 'camera') {
   return L.divIcon({ className: '', html: `<div class="wildlife-marker personal-observation-marker"><img src="./icons/${escapeHtml(iconName)}.svg" alt="" /></div>`, iconSize: [28, 28], iconAnchor: [14, 14] });
 }
-
 function renderDraftMarker() {
   if (state.draftMarker) state.draftMarker.remove();
   if (!state.draftObservationLocation) return;
@@ -78,3 +77,4 @@ export async function saveObservation(event) {
   addObservationMarker(observation); closeSheets(); toast('Observation saved locally.'); await renderArchive();
   if (state.observationReturnToJournal) { state.observationReturnToJournal = false; await openJournal(); }
 }
+

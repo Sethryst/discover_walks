@@ -389,7 +389,7 @@ function lightModel() {
   return [
     { id: 'news', label: 'NEWS', icon: 'newspaper', available: true, chips: [], entries: newsEntries, hasChevron: false },
     { id: 'recreation', label: 'REC', icon: 'tree', available: true, chips: recreation, hasChevron: false },
-    { id: 'cuisine', label: 'CUISINE', icon: 'utensils', available: true, chips: cuisine, hasChevron: false },
+    { id: 'cuisine', label: 'CUISINE', icon: 'utensils-taxonomy', available: true, chips: cuisine, hasChevron: false },
     { id: 'personal', label: state.personalPlaceSelecting ? 'USE THIS SPOT' : 'MY PLACES', available: false, chips: personal, hasChevron: true }
   ].filter((light) => light.available);
 }
