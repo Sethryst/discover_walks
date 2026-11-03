@@ -1820,6 +1820,9 @@ body.location-available .context-help-button {
 .top-cluster>.regional-navigation { margin-right:0!important; padding-right:0!important; border-radius:0 10px 10px 0!important; }
 .top-cluster>.regional-navigation .regional-navigation-button { padding-right:12px!important; }
 .regional-navigation.has-menu .regional-navigation-menu { top:44px; left:auto; right:0; }
+.top-cluster { overflow: visible !important; }
+.top-cluster > .regional-navigation { z-index: 1402; }
+.regional-navigation-menu { z-index: 1500; }
 .top-cluster>.map-search { position:relative; flex:0 0 40px !important; width:40px !important; height:42px; min-height:42px; padding:0 9px; border:0; border-right:1px solid rgba(23,60,53,.14); border-radius:0; background:transparent; }
 .top-cluster>.map-search.is-open { flex:1 1 220px !important; width:min(260px,42vw) !important; }
 .top-cluster>.map-search-results { left:auto; right:0; top:48px; }
