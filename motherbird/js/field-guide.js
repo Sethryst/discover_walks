@@ -483,6 +483,12 @@ export function initFieldGuideFilters() {
       if (poi) void setPoiVisited(poi, check.checked);
       return;
     }
+    const learnStoryMap = event.target.closest('[data-learn-story-map]');
+    if (learnStoryMap) {
+      const poi = (state.cityPois[state.activeCity] || []).find((item) => String(item.id) === learnStoryMap.dataset.learnStoryMap);
+      if (poi) { event.preventDefault(); closeSheets(); state.map?.flyTo([poi.lat, poi.lng], Math.max(state.map.getZoom(), 16)); }
+      return;
+    }
     const learnWalk = event.target.closest('[data-learn-walk]');
     if (learnWalk) {
       const poi = (state.cityPois[state.activeCity] || []).find((item) => String(item.id) === learnWalk.dataset.learnWalk);
