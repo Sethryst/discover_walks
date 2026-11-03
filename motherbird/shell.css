@@ -558,7 +558,7 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
 .map-workspace-panel[data-destination="explore"] .advanced-layer-chip strong {
   font-size: .78rem !important;
   line-height: 1.2 !important;
-  white-space: normal;
+  white-space: nowrap;
 }
 .map-workspace-panel[data-destination="explore"] .advanced-layer-chip small {
   font-size: .64rem !important;
@@ -571,9 +571,11 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
 }
 .map-workspace-panel[data-destination="explore"] .advanced-layer-chip > span {
   min-width: 0;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 3px;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 5px;
 }
 .map-workspace-panel[data-destination="explore"] > header button {
   width: 14px !important;

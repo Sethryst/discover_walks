@@ -18,15 +18,15 @@ export const LAYER_GROUPS = [
   { id: 'outdoors_recreation', light: 'recreation', label: 'Outdoors & Recreation', description: 'Trails, walkways, parks, gardens, community services, and places to rest', tags: ['trail', 'walkway', 'park', 'nature', 'water', 'scenic', 'recreation', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad', 'rest', 'bench', 'shelter', 'shade', 'restrooms', 'drinking_water', 'water_fountain', 'community', 'facility', 'library', 'recreation_center', 'pantry', 'wifi'] },
   { id: 'history_culture', light: 'recreation', label: 'History Sites', description: 'Historical sites, markers, museums, landmarks, and monuments', tags: ['history', 'history_landmark', 'history_monument', 'history_museum', 'history_cemetery', 'history_marker', 'historic', 'museum', 'landmark', 'monument', 'cemetery'] },
   { id: 'art', light: 'recreation', label: 'Art', description: 'Art and public art places', tags: ['art', 'public_art'] },
-  { id: 'biodiversity', light: 'recreation', label: 'Nature observations', description: 'Open-coordinate iNaturalist observations', tags: ['biodiversity:birds', 'biodiversity:plants', 'biodiversity:mammals', 'biodiversity:insects', 'biodiversity:fungi', 'biodiversity:reptiles', 'biodiversity:other'] },
+  { id: 'biodiversity', light: 'recreation', label: 'Nature observations', description: 'Open-coordinate iNaturalist observations', tags: ['biodiversity:birds', 'biodiversity:plants', 'biodiversity:mammals', 'biodiversity:insects', 'biodiversity:invertebrates', 'biodiversity:fungi', 'biodiversity:lichen', 'biodiversity:reptiles', 'biodiversity:amphibians', 'biodiversity:other'] },
   { id: 'culture', light: 'news', label: 'News & culture', description: 'Events and civic places', tags: ['event', 'civic'] },
   { id: 'cuisine', light: 'cuisine', label: 'Food & Drink', description: 'Food, drink, and places to stop', tags: ['market', 'farmers_market', 'restaurant', 'fast_food', 'coffee', 'coffee_shop', 'cafe', 'food_cart', 'bakery', 'argentinian', 'british', 'crepe', 'greek', 'latin_american', 'tea', 'turkish', 'tex_mex'] },
-  { id: 'more', light: 'recreation', label: 'Other mapped places', description: 'Mapped places without a more specific category', tags: ['osm'] }
+  { id: 'more', light: 'recreation', label: 'Places', description: 'Places mapped in OpenStreetMap and not already grouped elsewhere', tags: ['osm'] }
 ];
 
 const STATIC_LABELS = {
-  walkway: 'Walkways', crossing: 'Crossings', barrier: 'Barriers', nature: 'Nature', scenic: 'Scenic places', recreation: 'Recreation', rest: 'Rest & comfort', historic: 'Historic places', civic: 'Civic places', transit: 'Transit', argentinian: 'Argentinian', british: 'British', crepe: 'Crepe', greek: 'Greek', latin_american: 'Latin American', tea: 'Tea', turkish: 'Turkish', tex_mex: 'Tex Mex', 'biodiversity:birds': 'Birds', 'biodiversity:plants': 'Plants', 'biodiversity:mammals': 'Mammals', 'biodiversity:insects': 'Insects & invertebrates', 'biodiversity:fungi': 'Fungi & lichens', 'biodiversity:reptiles': 'Reptiles & amphibians', 'biodiversity:other': 'Other life',
-  drinking_water: 'Water fountains', water_fountain: 'Water fountains', water: 'Water', waste_basket: 'Trash receptacles', trash: 'Trash receptacles', bench: 'Benches', shelter: 'Shade shelters', shade: 'Shade', rest: 'Rest', restrooms: 'Restrooms', accessible_parking: 'Accessible parking', restaurant: 'Restaurants', fast_food: 'Quick-service food', mexican: 'Mexican food', filipino: 'Filipino food', coffee: 'Coffee shops', coffee_shop: 'Coffee shops', cafe: 'Cafés', food_cart: 'Food carts', bakery: 'Bakeries', trail: 'Trails', parking: 'Parking', bicycle_parking: 'Bike racks', bike_rack: 'Bike racks', osm: 'Other mapped places'
+  walkway: 'Walkways', crossing: 'Crossings', barrier: 'Barriers', nature: 'Nature', scenic: 'Scenic places', recreation: 'Recreation', rest: 'Rest & comfort', historic: 'Historic places', civic: 'Civic places', transit: 'Transit', argentinian: 'Argentinian', british: 'British', crepe: 'Crepe', greek: 'Greek', latin_american: 'Latin American', tea: 'Tea', turkish: 'Turkish', tex_mex: 'Tex Mex', 'biodiversity:birds': 'Birds', 'biodiversity:plants': 'Plants', 'biodiversity:mammals': 'Mammals', 'biodiversity:insects': 'Insects', 'biodiversity:invertebrates': 'Invertebrates', 'biodiversity:fungi': 'Fungi', 'biodiversity:lichen': 'Lichen', 'biodiversity:reptiles': 'Reptiles', 'biodiversity:amphibians': 'Amphibians', 'biodiversity:other': 'Other life',
+  drinking_water: 'Water fountains', water_fountain: 'Water fountains', water: 'Water', waste_basket: 'Trash receptacles', trash: 'Trash receptacles', bench: 'Benches', shelter: 'Shade shelters', shade: 'Shade', rest: 'Rest', restrooms: 'Restrooms', accessible_parking: 'Accessible parking', restaurant: 'Restaurants', fast_food: 'Quick-service food', mexican: 'Mexican food', filipino: 'Filipino food', coffee: 'Coffee shops', coffee_shop: 'Coffee shops', cafe: 'Cafés', food_cart: 'Food carts', bakery: 'Bakeries', trail: 'Trails', parking: 'Parking', bicycle_parking: 'Bike racks', bike_rack: 'Bike racks', osm: 'Places'
 };
 
 let searchQuery = '';
@@ -161,10 +161,13 @@ function biodiversityCategoryFor(record) {
   const value = String(record?.class || '').toLowerCase();
   if (value === 'aves') return 'biodiversity:birds';
   if (value === 'mammalia') return 'biodiversity:mammals';
-  if (value === 'insecta' || value === 'arachnida' || value === 'malacostraca') return 'biodiversity:insects';
-  if (value === 'testudines' || value === 'reptilia' || value === 'amphibia') return 'biodiversity:reptiles';
+  if (value === 'insecta') return 'biodiversity:insects';
+  if (value === 'arachnida' || value === 'malacostraca') return 'biodiversity:invertebrates';
+  if (value === 'testudines' || value === 'reptilia') return 'biodiversity:reptiles';
+  if (value === 'amphibia') return 'biodiversity:amphibians';
   if (String(record?.kingdom) === 'Plantae') return 'biodiversity:plants';
-  if (String(record?.kingdom) === 'Fungi' || /lichen/i.test(String(record?.class || ''))) return 'biodiversity:fungi';
+  if (/lichen/i.test(String(record?.class || '')) || /lichen/i.test(String(record?.name || ''))) return 'biodiversity:lichen';
+  if (String(record?.kingdom) === 'Fungi') return 'biodiversity:fungi';
   return 'biodiversity:other';
 }
 

@@ -30,7 +30,7 @@ export const ICONS = {
   community: 'home', facility: 'home', pantry: 'home', library: 'book-open',
   recreation_center: 'building', wifi: 'home',
   'biodiversity:birds': 'bird', 'biodiversity:plants': 'tree', 'biodiversity:mammals': 'paw-print',
-  'biodiversity:insects': 'bug', 'biodiversity:fungi': 'mushroom', 'biodiversity:reptiles': 'turtle', 'biodiversity:other': 'microscope'
+  'biodiversity:insects': 'bug', 'biodiversity:invertebrates': 'bug', 'biodiversity:fungi': 'mushroom', 'biodiversity:lichen': 'leaf', 'biodiversity:reptiles': 'turtle', 'biodiversity:amphibians': 'turtle', 'biodiversity:other': 'microscope'
 };
 
 export const MARKER_COLORS = {
