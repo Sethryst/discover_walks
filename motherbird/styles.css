@@ -1244,6 +1244,56 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
   background: var(--radio-action, #1d5b83);
 }
 
+/* The region stays anchored at the right edge; weather gets the remaining
+   space without changing the width or position of the links menu. */
+.top-cluster>.regional-navigation {
+  flex: 0 1 min(240px, 24vw);
+  min-width: 150px;
+  overflow: visible;
+}
+.top-cluster>.regional-navigation .regional-navigation-button {
+  width: 100%;
+  max-width: none;
+  justify-content: space-between;
+  gap: 10px;
+  overflow: hidden;
+}
+.top-cluster>.regional-navigation .regional-navigation-button span:first-child {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.top-cluster>.weather-brief {
+  order: 5;
+  flex: 0 1 min(300px, 28vw);
+  min-width: 150px;
+  max-width: 300px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  border-left: 1px solid rgba(23,60,53,.14);
+  color: #76558b;
+  background: rgba(244,235,249,.78);
+  font-size: .68rem;
+  font-weight: 800;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.top-cluster>.weather-brief small,
+.top-cluster>.weather-brief button { display: none; }
+.top-cluster>.weather-brief a { color: inherit; }
+@media (max-width: 720px) {
+  .top-cluster>.regional-navigation { min-width: 126px; flex-basis: 34%; }
+  .top-cluster>.weather-brief { min-width: 112px; flex-basis: 24%; padding-inline: 8px; font-size: .61rem; }
+}
+@media (max-width: 560px) {
+  .top-cluster>.regional-navigation { min-width: 112px; }
+  .top-cluster>.weather-brief { min-width: 92px; height: 40px; }
+}
+
 /* Keep Locate me from drawing a second inset seam inside the shared bar. */
 .top-cluster>.locate-stack,
 .top-cluster>.locate-stack .ink-control,

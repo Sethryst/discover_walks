@@ -74,7 +74,7 @@ test('the shell removes redundant legacy Field Guide and Messenger controls', as
   assert.doesNotMatch(html, /<nav class="bottom-nav"/);
   assert.doesNotMatch(html, /id="filtersButton"/);
   assert.doesNotMatch(html, /class="map-key"/);
-  assert.doesNotMatch(html, /id="weatherBrief"/);
+  assert.match(html, /id="weatherBrief"/);
 });
 
 test('the Journal has local capture and a scrollable history without export chrome', async () => {
