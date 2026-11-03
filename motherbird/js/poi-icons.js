@@ -87,6 +87,12 @@ function colorForIcon(iconId) {
   if (['bookmark', 'building', 'book-open'].includes(iconId)) return MARKER_COLORS.historic;
   if (['coffee', 'utensils'].includes(iconId)) return MARKER_COLORS.cuisine;
   if (iconId === 'eye' || iconId === 'tree' || iconId === 'bench') return MARKER_COLORS.nature;
+  if (iconId === 'bird') return '#3f6fa8';
+  if (iconId === 'paw-print') return '#9a6638';
+  if (iconId === 'bug') return '#8a5aa8';
+  if (iconId === 'mushroom') return '#b06a45';
+  if (iconId === 'turtle') return '#4d8a55';
+  if (iconId === 'microscope') return '#68717a';
   if (iconId === 'home') return MARKER_COLORS.personal;
   return MARKER_COLORS.fallback;
 }
@@ -118,5 +124,8 @@ export function markerVisual({ poi = null, tags = [], light = null, chipId = nul
 export function markerPinHtml(visual) {
   const iconId = validIconId(visual?.iconId) || 'map-pin';
   const color = visual?.color || MARKER_COLORS.fallback;
-  return `<div class="poi-marker" style="--marker-color:${color}"><span class="poi-marker-glyph poi-icon-${iconId}" aria-hidden="true"></span></div>`;
+  const month = new Date().getMonth() + 1;
+  const asset = iconId === 'tree' && month >= 9 && month <= 11 ? 'tree-fall' : ({ bird: 'bird-map', coffee: 'coffee-map', mushroom: 'mushroom-map', turtle: 'turtle-map' }[iconId] || iconId);
+  const detailed = new Set(['bird-map', 'coffee-map', 'mushroom-map', 'tree', 'tree-fall', 'turtle-map']).has(asset);
+  return `<div class="poi-marker" style="--marker-color:${color}"><img class="poi-marker-glyph-image ${detailed ? 'is-detailed' : ''}" src="./icons/${asset}.svg" alt="" aria-hidden="true"></div>`;
 }

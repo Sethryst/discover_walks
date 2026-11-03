@@ -18,7 +18,7 @@ test('privacy and aggregation filters remain safe at build time', () => {
 
 test('field guide uses live open/open public observations and no handoff export', async () => {
   const html = await fs.readFile(new URL('../index.html', import.meta.url), 'utf8'); const js = await fs.readFile(new URL('../js/biodiversity.js', import.meta.url), 'utf8');
-  assert.match(html, /Nature recorded here/); assert.doesNotMatch(html, /Download handoff/); assert.doesNotMatch(js, /buildEncounterExport|inaturalist-encounter/); assert.match(js, /geoprivacy: 'open'/); assert.match(js, /taxon_geoprivacy: 'open'/); assert.match(js, /mappable: 'true'/); assert.match(js, /circleMarker/);
+  assert.match(html, /Nature recorded here/); assert.doesNotMatch(html, /Download handoff/); assert.doesNotMatch(js, /buildEncounterExport|inaturalist-encounter/); assert.match(js, /geoprivacy: 'open'/); assert.match(js, /taxon_geoprivacy: 'open'/); assert.match(js, /mappable: 'true'/); assert.match(js, /markerPinHtml/); assert.match(js, /L\.marker/);
 });
 
 test('regional navigation provides a viewport-aware iNaturalist link', async () => {
