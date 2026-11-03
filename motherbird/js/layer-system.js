@@ -7,7 +7,7 @@ import { closeSheets, openSheet, toast } from './ui.js';
 import { CITIES } from './constants.js';
 import { routesForCity, splitDisconnectedPaths } from './routes.js';
 import { refreshPublicMarkers } from './online.js';
-import { ICONS, ICON_IDS, markerPinHtml, markerVisual } from './poi-icons.js';
+import { ICONS, ICON_IDS, markerPinHtml, markerVisual } from './poi-icons.js?v=20261103-standalone-taxonomy-1';
 import { civicNoticesFromPack, newsIsAvailable } from './civic-news.js';
 import { syncNewsStory } from './learn-change.js';
 import { drawStories } from './stories.js';
@@ -212,7 +212,7 @@ export function renderLayerFilters() {
     const expanded = state.layerUiState.expanded[group.id] !== false;
     const enabledCount = group.options.filter((option) => state.layerFilters[option.kind][option.id] !== false).length;
     const categoryEnabled = enabledCount > 0;
-    return `<section class="layer-filter-group" data-layer-group="${escapeHtml(group.id)}"><header><button class="layer-collapse" type="button" data-layer-collapse="${escapeHtml(group.id)}" aria-expanded="${expanded}"><span>${escapeHtml(group.label)}</span><small>(${enabledCount}/${group.options.length} shown)</small><b aria-hidden="true">⌄</b></button><button class="layer-category-toggle ${categoryEnabled ? 'on' : 'off'}" type="button" data-layer-group-toggle="${escapeHtml(group.id)}" aria-pressed="${categoryEnabled}">${categoryEnabled ? 'Hide category' : 'Show category'}</button></header><div class="layer-options ${expanded ? '' : 'hidden'}">${group.options.length ? group.options.map(renderLayerOption).join('') : '<p class="layer-empty">Create a personal collection to add it here.</p>'}</div></section>`;
+    return `<section class="layer-filter-group" data-layer-group="${escapeHtml(group.id)}"><header><button class="layer-collapse" type="button" data-layer-collapse="${escapeHtml(group.id)}" aria-expanded="${expanded}"><span>${escapeHtml(group.label)}</span><small>(${enabledCount}/${group.options.length} shown)</small><b aria-hidden="true">⌄</b></button><button class="layer-category-toggle ${categoryEnabled ? 'on' : 'off'}" type="button" data-layer-group-toggle="${escapeHtml(group.id)}" aria-pressed="${categoryEnabled}">${categoryEnabled ? 'Hide all' : 'Show all'}</button></header><div class="layer-options ${expanded ? '' : 'hidden'}">${group.options.length ? group.options.map(renderLayerOption).join('') : '<p class="layer-empty">Create a personal collection to add it here.</p>'}</div></section>`;
   };
   const families = [
     ['news', 'NEWS'],
@@ -224,16 +224,15 @@ export function renderLayerFilters() {
     const familyOptions = family.groups.flatMap((group) => group.options);
     const enabledCount = familyOptions.filter((option) => state.layerFilters[option.kind][option.id] !== false).length;
     const categoryEnabled = enabledCount > 0;
-    return `<section class="advanced-filter-family ${expanded ? 'is-expanded' : ''}" data-advanced-family="${family.id}"><div class="advanced-family-heading"><button class="advanced-family-toggle" type="button" data-advanced-family-toggle="${family.id}" aria-expanded="${expanded}"><span>${family.label}</span><b aria-hidden="true">⌄</b></button><button class="layer-category-toggle ${categoryEnabled ? 'on' : 'off'}" type="button" data-advanced-family-toggle-layers="${family.id}" aria-pressed="${categoryEnabled}">${categoryEnabled ? 'Hide category' : 'Show category'}</button></div><div class="advanced-family-content ${expanded ? '' : 'hidden'}"><div class="layer-options">${familyOptions.map(renderLayerOption).join('')}</div></div></section>`;
+    return `<section class="advanced-filter-family ${expanded ? 'is-expanded' : ''}" data-advanced-family="${family.id}"><div class="advanced-family-heading"><button class="advanced-family-toggle" type="button" data-advanced-family-toggle="${family.id}" aria-expanded="${expanded}"><span>${family.label}</span><b aria-hidden="true">⌄</b></button><button class="layer-category-toggle ${categoryEnabled ? 'on' : 'off'}" type="button" data-advanced-family-toggle-layers="${family.id}" aria-pressed="${categoryEnabled}">${categoryEnabled ? 'Hide all' : 'Show all'}</button></div><div class="advanced-family-content ${expanded ? '' : 'hidden'}"><div class="layer-options">${familyOptions.map(renderLayerOption).join('')}</div></div></section>`;
   }).join('') || `<p class="layer-empty">${query ? 'No filters match that search.' : 'Select a category first.'}</p>`;
   updateLayerStatus();
 }
 
 function renderLayerOption(option) {
   const enabled = state.layerFilters[option.kind][option.id] !== false;
-  const countLabel = option.kind === 'personal' ? `${option.count} place${option.count === 1 ? '' : 's'}` : `${option.count} nearby`;
   const icon = ICON_IDS.has(option.icon) ? option.icon : 'map-pin';
-  return `<button type="button" class="advanced-layer-chip ${enabled ? 'on' : 'off'}" style="--chip-color:${escapeHtml(option.color)}" data-layer-filter="${escapeHtml(option.kind)}:${escapeHtml(option.id)}" aria-pressed="${enabled}"><img src="./icons/${icon}.svg" alt="" aria-hidden="true"><span><strong>${escapeHtml(option.label)}</strong><small>${escapeHtml(countLabel)}</small></span></button>`;
+  return `<button type="button" class="advanced-layer-chip ${enabled ? 'on' : 'off'}" style="--chip-color:${escapeHtml(option.color)}" data-layer-filter="${escapeHtml(option.kind)}:${escapeHtml(option.id)}" aria-pressed="${enabled}"><img src="./icons/${icon}.svg" alt="" aria-hidden="true"><span><strong>${escapeHtml(option.label)}</strong></span></button>`;
 }
 
 function syncLegacyPoiTags() {

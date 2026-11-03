@@ -77,7 +77,8 @@ export async function refreshLiveConditions() {
     const sunUrl = `https://api.sunrise-sunset.org/json?lat=${encodeURIComponent(lat)}&lng=${encodeURIComponent(lng)}&formatted=0`;
     const [weatherResponse, sunResponse, nwsPeriod, nwsObservation] = await Promise.all([fetch(weatherUrl), fetch(sunUrl), loadNwsPeriod(lat, lng), loadNwsObservation(lat, lng)]);
     const weather = weatherResponse.ok ? await weatherResponse.json() : null;
-    const sun = sunResponse.ok ? await sunResponse.json() : null;
+    const sunPayload = sunResponse.ok ? await sunResponse.json() : null;
+    const sun = sunPayload?.results || sunPayload;
     const forecastText = String(nwsPeriod?.shortForecast || '');
     const rain = nwsObservation ? observationIsWet(nwsObservation) : Number(weather?.current?.precipitation) > 0 || /rain|shower|storm/i.test(forecastText);
     setCompanionEnvironment({ rain, sunny: /sunny|clear/i.test(`${forecastText} ${nwsObservation?.textDescription || ''}`) });
@@ -104,7 +105,8 @@ export async function renderWeatherBrief() {
     const alert = weather.activeAlerts?.[0];
     const text = alert?.headline || alert?.event || (period ? `${period.name}: ${period.shortForecast}${period.temperature != null ? ` · ${period.temperature}°${period.temperatureUnit || ''}` : ''}` : 'Forecast available');
     const sunResponse = await fetch(`https://api.sunrise-sunset.org/json?lat=${encodeURIComponent(CITIES[state.activeCity].center.lat)}&lng=${encodeURIComponent(CITIES[state.activeCity].center.lng)}&formatted=0`);
-    const sun = sunResponse.ok ? await sunResponse.json() : null;
+    const sunPayload = sunResponse.ok ? await sunResponse.json() : null;
+    const sun = sunPayload?.results || sunPayload;
     const observation = await loadNwsObservation(Number(CITIES[state.activeCity].center.lat), Number(CITIES[state.activeCity].center.lng));
     const forecastText = `${alert?.event || ''} ${period?.shortForecast || ''}`;
     setCompanionEnvironment({ rain: observation ? observationIsWet(observation) : /rain|shower|storm/i.test(forecastText), sunny: /sunny|clear/i.test(`${forecastText} ${observation?.textDescription || ''}`) });

@@ -1,7 +1,7 @@
 import { state } from './state.js';
 import { db } from './storage.js';
 import { BIODIVERSITY_BY_CITY } from './biodiversity-registry.js';
-import { ICONS, markerPinHtml } from './poi-icons.js';
+import { ICONS, markerPinHtml } from './poi-icons.js?v=20261103-standalone-taxonomy-1';
 
 const recordsPromises = new Map();
 const livePromises = new Map();

@@ -3,7 +3,7 @@ import { el, cityLabel } from './utils.js';
 import { toast } from './ui.js';
 import db from './storage.js';
 import { displayPoiName, isVisiblePoi, poiTags } from './poi.js';
-import { markerPinHtml, markerVisual } from './poi-icons.js';
+import { markerPinHtml, markerVisual } from './poi-icons.js?v=20261103-standalone-taxonomy-1';
 import { generateTimeBasedPlan } from './planner.js';
 import { normalizePersonalCategory, upsertImportedPersonalData } from './personal-places.js';
 import { savePlannedRoute } from './saved-routes.js';

@@ -7,7 +7,7 @@ import { openSheet } from './ui.js';
 import db from './storage.js';
 import { isLocallyClosedPoi } from './spatial-closure-reporting.js';
 import { seasonalComparison, standoutObservation } from './revisit.js';
-import { markerPinHtml, markerVisual } from './poi-icons.js';
+import { markerPinHtml, markerVisual } from './poi-icons.js?v=20261103-standalone-taxonomy-1';
 
 const POI_FILTER_GROUPS = [
   { id: 'outdoors', label: 'Nature & outdoors', icon: '🌿', tags: ['park', 'trail', 'nature', 'wildlife', 'water', 'water_access', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad', 'rest'] },

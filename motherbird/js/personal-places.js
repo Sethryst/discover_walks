@@ -4,7 +4,7 @@ import { distanceMeters } from './geo.js';
 import { el, escapeHtml, uid } from './utils.js';
 import { closeSheets, openSheet, toast } from './ui.js';
 import { hydrateInlineIcons } from './icon-loader.js';
-import { markerPinHtml, markerVisual } from './poi-icons.js';
+import { markerPinHtml, markerVisual } from './poi-icons.js?v=20261103-standalone-taxonomy-1';
 import { requestCompanionContext } from './companion.js';
 import { updateSavedRoute, deleteSavedRoute, savedRouteEditorHtml } from './saved-routes.js';
 import { renderWorkspacePanel, createWorkspace } from './workspace.js';

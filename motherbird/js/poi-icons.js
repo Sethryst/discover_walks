@@ -129,6 +129,6 @@ export function markerPinHtml(visual) {
   const month = new Date().getMonth() + 1;
   const asset = iconId === 'tree' && month >= 9 && month <= 11 ? 'tree-fall' : ({ bird: 'bird-map', coffee: 'coffee-map', mushroom: 'mushroom-taxonomy', turtle: 'turtle-taxonomy', 'paw-print': 'paw-print-taxonomy', bug: 'bug-taxonomy', microscope: 'microscope-taxonomy', tree: 'tree-taxonomy', leaf: 'leaf-taxonomy', utensils: 'utensils-taxonomy' }[iconId] || iconId);
   const detailed = new Set(['bird-map', 'coffee-map', 'bug-taxonomy', 'leaf-taxonomy', 'mushroom-taxonomy', 'paw-print-taxonomy', 'microscope-taxonomy', 'tree-taxonomy', 'tree-fall', 'turtle-taxonomy', 'utensils-taxonomy']).has(asset);
-  if (asset === 'tree-taxonomy' || asset === 'tree-fall' || asset === 'leaf-taxonomy') return `<img class="poi-standalone-glyph" src="./icons/${asset}.svg" alt="" aria-hidden="true">`;
+  if (['tree-taxonomy', 'tree-fall', 'leaf-taxonomy', 'mushroom-taxonomy', 'bug-taxonomy', 'microscope-taxonomy', 'bird-map', 'turtle-taxonomy', 'paw-print-taxonomy'].includes(asset)) return `<img class="poi-standalone-glyph" src="./icons/${asset}.svg" alt="" aria-hidden="true">`;
   return `<div class="poi-marker" style="--marker-color:${color}"><img class="poi-marker-glyph-image ${detailed ? 'is-detailed' : ''}" src="./icons/${asset}.svg" alt="" aria-hidden="true"></div>`;
 }
