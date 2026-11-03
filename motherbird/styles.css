@@ -1231,6 +1231,17 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
   .top-cluster>.regional-navigation .regional-navigation-button { max-width: 128px; padding-inline: 9px; }
 }
 
+/* The weather segment is the only flexible member of the compact bar. Keep
+   it inside the shared surface instead of letting its loading text widen the
+   header past the viewport. */
+.top-cluster { width: calc(100vw - 12px) !important; max-width: calc(100vw - 12px) !important; }
+.top-cluster > .regional-navigation { flex: 0 1 132px !important; min-width: 88px !important; }
+.top-cluster > .weather-brief { flex: 1 1 120px !important; min-width: 0 !important; max-width: none !important; }
+@media (max-width: 720px) {
+  .top-cluster > .regional-navigation { flex-basis: 112px !important; min-width: 76px !important; }
+  .top-cluster > .weather-brief { flex: 1 1 80px !important; }
+}
+
 /* Match the region control to the established radio/dropdown blue. */
 .top-cluster>.regional-navigation {
   background: var(--radio-copper, #4d7ea6);
