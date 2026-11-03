@@ -108,7 +108,7 @@ export function nationalPoiStyle(sourceUrl, enabledCategoryIds = NATIONAL_POI_CA
           'heatmap-weight': 1,
           'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 8, 0.5, 12, 0.85],
           'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 8, 24, 12, 38],
-          'heatmap-opacity': ['interpolate', ['linear'], ['zoom'], 8, 0.55, 11, 0.42, 12, 0.22, 12.99, 0],
+          'heatmap-opacity': 0,
           'heatmap-color': ['interpolate', ['linear'], ['heatmap-density'], 0, 'rgba(0,0,0,0)', 0.08, 'rgba(232,237,211,0.22)', 0.25, 'rgba(163,192,151,0.38)', 0.55, 'rgba(91,145,111,0.58)', 1, 'rgba(43,101,81,0.76)']
         }
       },

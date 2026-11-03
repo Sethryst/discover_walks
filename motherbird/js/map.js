@@ -1,7 +1,7 @@
 import { state } from './state.js';
 import { setPlannerSelecting } from './planner-selection.js?v=20261004-planner-selection-1';
 import { CITIES } from './constants.js';
-import { city } from './poi.js';
+import { city, primaryPoiTag } from './poi.js';
 import { debounce } from './utils.js';
 import { renderCityPois } from './poi.js';
 import { regionInstaller } from './region-ui.js';
@@ -183,10 +183,15 @@ export function initMap() {
   }) : L.layerGroup()).addTo(state.map);
   state.poiLayer = (L.markerClusterGroup ? L.markerClusterGroup({ maxClusterRadius: (zoom) => zoom >= 18 ? 36 : zoom >= 17 ? 54 : zoom >= 15 ? 82 : 104, disableClusteringAtZoom: 19, animate: false, animateAddingMarkers: false, removeOutsideVisibleBounds: true, showCoverageOnHover: false, iconCreateFunction: (cluster) => {
     const counts = { news: 0, recreation: 0, cuisine: 0 };
-    cluster.getAllChildMarkers().forEach((marker) => { counts[placeLight(marker.options.place || {})] += 1; });
+    const taxonomy = {};
+    cluster.getAllChildMarkers().forEach((marker) => { const place = marker.options.place || {}; counts[placeLight(place)] += 1; const tag = primaryPoiTag(place); if (tag.startsWith('biodiversity:')) taxonomy[tag] = (taxonomy[tag] || 0) + 1; });
     const light = Object.keys(counts).sort((a,b) => counts[b] - counts[a])[0];
     const color = { news: '#8b3a4a', recreation: '#2d7259', cuisine: '#c65d0e' }[light];
-    return L.divIcon({ className: 'place-cluster', html: `<span class="place-cluster-glyph place-cluster-glyph--${light}" style="--cluster-color:${color}" aria-label="${light} places"></span>`, iconSize: [36,36] });
+    const dominantTaxon = Object.entries(taxonomy).sort((a,b) => b[1] - a[1])[0]?.[0];
+    const taxonAsset = { 'biodiversity:plants': 'tree-taxonomy', 'biodiversity:fungi': 'mushroom-taxonomy', 'biodiversity:insects': 'bug-taxonomy', 'biodiversity:invertebrates': 'bug-taxonomy', 'biodiversity:mammals': 'paw-print-taxonomy', 'biodiversity:birds': 'bird-map', 'biodiversity:reptiles': 'turtle-taxonomy', 'biodiversity:amphibians': 'turtle-taxonomy' }[dominantTaxon];
+    const total = cluster.getChildCount();
+    const html = taxonAsset ? `<span class="place-cluster-taxonomy"><img src="./icons/${taxonAsset}.svg" alt="" /><b>${total}</b></span>` : `<span class="place-cluster-glyph place-cluster-glyph--${light}" style="--cluster-color:${color}" aria-label="${light} places"><b>${total}</b></span>`;
+    return L.divIcon({ className: taxonAsset ? 'place-cluster place-cluster--taxonomy' : 'place-cluster', html, iconSize: [40,40] });
   } }) : L.layerGroup()).addTo(state.map);
   // Endpoint selection owns map clicks. POI markers and clusters must not open
   // popups, pan, or consume the user's endpoint gesture while selecting.
