@@ -2122,7 +2122,7 @@ body.location-available .context-help-button {
 /* Header rebuild: one explicit grid owns every top-bar column. */
 .top-cluster {
   display: grid !important;
-  grid-template-columns: 30px 32px 88px 30px 30px minmax(150px, 1fr) 120px !important;
+  grid-template-columns: 30px 32px 96px 30px 30px minmax(150px, 1fr) 120px !important;
   grid-template-areas: 'profile search locate radio draw region weather' !important;
   align-items: center !important;
   width: calc(100vw - 12px) !important;
@@ -2133,7 +2133,8 @@ body.location-available .context-help-button {
 }
 .top-cluster > .profile-control { grid-area: profile !important; width: 30px !important; height: 36px !important; padding: 0 !important; }
 .top-cluster > .map-search { grid-area: search !important; width: 32px !important; min-width: 32px !important; height: 32px !important; flex: none !important; padding: 0 !important; }
-.top-cluster > .locate-stack { grid-area: locate !important; width: 88px !important; height: 36px !important; }
+.top-cluster > .locate-stack { grid-area: locate !important; width: 96px !important; height: 36px !important; }
+.top-cluster > .locate-stack .ink-control { width: 96px !important; min-width: 96px !important; white-space: nowrap !important; }
 .top-cluster > #quickRadioButton { grid-area: radio !important; }
 .top-cluster > #quickDrawButton { grid-area: draw !important; }
 .top-cluster > .regional-navigation { grid-area: region !important; width: auto !important; min-width: 0 !important; max-width: none !important; height: 36px !important; }
@@ -2144,9 +2145,10 @@ body.location-available .context-help-button {
 .top-cluster > #quickDrawButton img { filter: brightness(0) saturate(100%) invert(43%) sepia(24%) saturate(1025%) hue-rotate(164deg) brightness(89%) contrast(88%) !important; }
 .top-cluster > .weather-brief > span { min-width: 0 !important; overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap !important; }
 @media (max-width: 720px) {
-  .top-cluster { grid-template-columns: 28px 32px 78px 30px 30px minmax(82px, 1fr) 64px !important; }
+  .top-cluster { grid-template-columns: 28px 32px 86px 30px 30px minmax(82px, 1fr) 64px !important; }
   .top-cluster > .profile-control { width: 28px !important; }
-  .top-cluster > .locate-stack { width: 78px !important; }
+  .top-cluster > .locate-stack { width: 86px !important; }
+  .top-cluster > .locate-stack .ink-control { width: 86px !important; min-width: 86px !important; }
   .top-cluster > .weather-brief { width: 64px !important; max-width: 64px !important; padding-inline: 3px !important; font-size: .5rem !important; }
   .top-cluster > .regional-navigation .regional-navigation-button { padding-inline: 5px !important; font-size: .56rem !important; }
 }
