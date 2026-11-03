@@ -18,18 +18,20 @@ function showUpdate(registration) {
 
 export async function initPwaUpdates() {
   if (!('serviceWorker' in navigator)) return null;
+  const isLocalDemo = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
   let reloading = false;
   navigator.serviceWorker.addEventListener('controllerchange', () => {
     if (reloading) return;
     reloading = true;
     location.reload();
   });
-  const registration = await navigator.serviceWorker.register('./service-worker.js?v=20261102-627', { updateViaCache: 'none' });
-  if (registration.waiting) showUpdate(registration);
+  const registration = await navigator.serviceWorker.register('./service-worker.js?v=20261103-656', { updateViaCache: 'none' });
+  const activateLocalUpdate = () => { if (isLocalDemo && registration.waiting) registration.waiting.postMessage({ type: 'SKIP_WAITING' }); };
+  if (registration.waiting) { if (isLocalDemo) activateLocalUpdate(); else showUpdate(registration); }
   registration.addEventListener('updatefound', () => {
     const installing = registration.installing;
     installing?.addEventListener('statechange', () => {
-      if (installing.state === 'installed' && navigator.serviceWorker.controller) showUpdate(registration);
+      if (installing.state === 'installed' && navigator.serviceWorker.controller) { if (isLocalDemo) activateLocalUpdate(); else showUpdate(registration); }
     });
   });
   // Check on every foreground launch; the browser can otherwise wait many
