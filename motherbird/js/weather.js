@@ -103,10 +103,12 @@ export async function renderWeatherBrief() {
     const period = weather.forecast?.[0];
     const alert = weather.activeAlerts?.[0];
     const text = alert?.headline || alert?.event || (period ? `${period.name}: ${period.shortForecast}${period.temperature != null ? ` · ${period.temperature}°${period.temperatureUnit || ''}` : ''}` : 'Forecast available');
+    const sunResponse = await fetch(`https://api.sunrise-sunset.org/json?lat=${encodeURIComponent(CITIES[state.activeCity].center.lat)}&lng=${encodeURIComponent(CITIES[state.activeCity].center.lng)}&formatted=0`);
+    const sun = sunResponse.ok ? await sunResponse.json() : null;
     const observation = await loadNwsObservation(Number(CITIES[state.activeCity].center.lat), Number(CITIES[state.activeCity].center.lng));
     const forecastText = `${alert?.event || ''} ${period?.shortForecast || ''}`;
     setCompanionEnvironment({ rain: observation ? observationIsWet(observation) : /rain|shower|storm/i.test(forecastText), sunny: /sunny|clear/i.test(`${forecastText} ${observation?.textDescription || ''}`) });
-    const adjusted = nightAdjustedText(text, null, period);
+    const adjusted = nightAdjustedText(text, sun, period);
     target.classList.toggle('is-night', adjusted.night);
     target.innerHTML = weatherBriefHtml(adjusted.text);
     target.classList.remove('hidden');
