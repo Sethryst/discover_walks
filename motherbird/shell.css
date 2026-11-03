@@ -472,6 +472,8 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
   padding: 0 5px 3px !important;
 }
 .map-workspace-panel[data-destination="explore"] .advanced-family-content > .layer-options {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   gap: 3px !important;
 }
 .map-workspace-panel[data-destination="explore"] .advanced-family-content .advanced-layer-chip {
@@ -479,8 +481,8 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
   height: 16px !important;
   padding: 1px 4px !important;
   box-sizing: border-box !important;
-  flex: 1 1 100% !important;
-  width: 100% !important;
+  flex: none !important;
+  width: auto !important;
   max-width: none !important;
   justify-content: space-between !important;
 }
