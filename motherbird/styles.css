@@ -2136,6 +2136,8 @@ body.location-available .context-help-button {
 .top-cluster > .map-search { grid-area: search !important; width: 26px !important; min-width: 26px !important; height: 30px !important; flex: none !important; padding: 0 !important; margin: 0 !important; justify-self: start !important; }
 .top-cluster > .locate-stack { grid-area: locate !important; width: 120px !important; height: 36px !important; overflow: visible !important; margin: 0 !important; justify-self: start !important; }
 .top-cluster > .locate-stack .ink-control { width: 120px !important; min-width: 120px !important; white-space: nowrap !important; overflow: visible !important; margin: 0 !important; }
+.top-cluster > .locate-stack .control-row { display:flex !important; align-items:center !important; flex-wrap:nowrap !important; width:120px !important; height:36px !important; }
+.top-cluster > .locate-stack .location-help { flex:0 0 20px !important; }
 .top-cluster > #quickRadioButton { grid-area: radio !important; }
 .top-cluster > #quickDrawButton { grid-area: draw !important; }
 .top-cluster > .regional-navigation { grid-area: region !important; width: auto !important; min-width: 0 !important; max-width: none !important; height: 36px !important; }
