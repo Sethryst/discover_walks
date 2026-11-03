@@ -90,7 +90,8 @@ export function poiObeysMapLights(poi) {
   const history = tags.filter((tag) => tag === 'history' || tag.startsWith('history_'));
   if (history.length) matches.push(state.layerLights?.recreation && anyEnabled(history));
   if (tags.includes('trail')) matches.push(state.layerLights?.recreation && state.layerFilters?.public?.trail !== false);
-  const foodFamily = tags.some((tag) => CAFE_TAGS.includes(tag)) ? CAFE_TAGS
+  const foodFamily = tags.some((tag) => isFoodFilterTag(tag)) ? tags.filter((tag) => isFoodFilterTag(tag))
+    : tags.some((tag) => CAFE_TAGS.includes(tag)) ? CAFE_TAGS
     : tags.some((tag) => MARKET_TAGS.includes(tag)) ? MARKET_TAGS
       : tags.some((tag) => RESTAURANT_TAGS.includes(tag)) ? RESTAURANT_TAGS : null;
   if (foodFamily) matches.push(state.layerLights?.cuisine && anyEnabled(foodFamily));
@@ -253,7 +254,7 @@ export function renderCityPois({ preserveInteraction = true } = {}) {
   // Keep the complete POI backing store while using the normal marker-cluster
   // presentation for every city. Neighborhood area layers are managed separately.
   if (state.poiLayer.options && Object.prototype.hasOwnProperty.call(state.poiLayer.options, 'disableClusteringAtZoom')) {
-    state.poiLayer.options.disableClusteringAtZoom = 17;
+    state.poiLayer.options.disableClusteringAtZoom = 19;
   }
   const renderStart = globalThis.performance?.now?.() || 0;
   const openPopupSource = preserveInteraction ? state.map?._popup?._source : null;

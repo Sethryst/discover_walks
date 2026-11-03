@@ -181,7 +181,7 @@ export function initMap() {
       return L.divIcon({ className: 'observation-cluster', html: `<span><img src="./icons/${asset}.svg" alt="" /><b>${total}</b></span>`, iconSize: [42, 42] });
     }
   }) : L.layerGroup()).addTo(state.map);
-  state.poiLayer = (L.markerClusterGroup ? L.markerClusterGroup({ maxClusterRadius: 42, disableClusteringAtZoom: 17, animate: false, animateAddingMarkers: false, removeOutsideVisibleBounds: true, showCoverageOnHover: false, iconCreateFunction: (cluster) => {
+  state.poiLayer = (L.markerClusterGroup ? L.markerClusterGroup({ maxClusterRadius: (zoom) => zoom >= 17 ? 34 : zoom >= 15 ? 58 : 76, disableClusteringAtZoom: 19, animate: false, animateAddingMarkers: false, removeOutsideVisibleBounds: true, showCoverageOnHover: false, iconCreateFunction: (cluster) => {
     const counts = { news: 0, recreation: 0, cuisine: 0 };
     cluster.getAllChildMarkers().forEach((marker) => { counts[placeLight(marker.options.place || {})] += 1; });
     const light = Object.keys(counts).sort((a,b) => counts[b] - counts[a])[0];
