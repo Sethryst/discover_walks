@@ -1285,6 +1285,34 @@ body.draw-pane-open #mapWorkspacePanel[data-destination="draw"] .draw-shapes {
 .top-cluster>.weather-brief small,
 .top-cluster>.weather-brief button { display: none; }
 .top-cluster>.weather-brief a { color: inherit; }
+.top-cluster>.regional-navigation .regional-navigation-menu {
+  z-index: 1500;
+  color: var(--ink);
+  pointer-events: auto;
+}
+.top-cluster>.regional-navigation .regional-navigation-menu a {
+  display: block;
+  color: var(--ink);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.top-cluster>.regional-navigation .regional-navigation-menu a:hover,
+.top-cluster>.regional-navigation .regional-navigation-menu a:focus-visible {
+  background: rgba(45,114,89,.12);
+  border-radius: 7px;
+}
+#startPanel:not(.hidden) {
+  display: block !important;
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 2000;
+}
+.outing-composer {
+  position: relative;
+  z-index: 2001;
+}
 @media (max-width: 720px) {
   .top-cluster>.regional-navigation { min-width: 126px; flex-basis: 34%; }
   .top-cluster>.weather-brief { min-width: 112px; flex-basis: 24%; padding-inline: 8px; font-size: .61rem; }
