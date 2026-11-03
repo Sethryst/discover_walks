@@ -1,0 +1,33 @@
+/* User-facing polish overrides. Keep the color bands flush and preserve the
+   teardrop marker silhouette used by the icon reference. */
+.top-cluster {
+  height: 40px !important;
+  align-items: stretch !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+.top-cluster > * { height: 40px !important; min-height: 40px !important; border-top: 0 !important; border-bottom: 0 !important; }
+.top-cluster > .start-stack { width: 0 !important; min-width: 0 !important; flex: 0 0 0 !important; overflow: hidden !important; }
+.top-cluster > .start-stack:has(.control-row > :not(.hidden)) { width: auto !important; flex: 0 0 auto !important; overflow: visible !important; }
+.top-cluster > .profile-control,
+.top-cluster > .map-search,
+.top-cluster > .locate-stack,
+.top-cluster > .locate-stack .control-row,
+.top-cluster > .locate-stack .ink-control { background: #fff !important; }
+.top-cluster > #quickRadioButton,
+.top-cluster > #quickDrawButton { background: #c5dce8 !important; }
+.top-cluster > .regional-navigation,
+.top-cluster > .regional-navigation .regional-navigation-button { background: #4d7ea6 !important; }
+.top-cluster > .weather-brief,
+.top-cluster > #weatherBrief { background: #d7b9e5 !important; }
+
+.poi-marker,
+.personal-place-marker,
+.public-place-marker {
+  border-radius: 50% 50% 50% 0 !important;
+  transform: rotate(-45deg) !important;
+}
+.poi-marker-glyph-image { transform: rotate(45deg) !important; }
