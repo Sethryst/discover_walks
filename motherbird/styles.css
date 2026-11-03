@@ -2122,7 +2122,7 @@ body.location-available .context-help-button {
 /* Header rebuild: one explicit grid owns every top-bar column. */
 .top-cluster {
   display: grid !important;
-  grid-template-columns: 30px 32px 96px 30px 30px minmax(150px, 1fr) 120px !important;
+  grid-template-columns: 30px 28px 106px 30px 30px minmax(150px, 1fr) 120px !important;
   grid-template-areas: 'profile search locate radio draw region weather' !important;
   align-items: center !important;
   width: calc(100vw - 12px) !important;
@@ -2132,9 +2132,9 @@ body.location-available .context-help-button {
   overflow: visible !important;
 }
 .top-cluster > .profile-control { grid-area: profile !important; width: 30px !important; height: 36px !important; padding: 0 !important; }
-.top-cluster > .map-search { grid-area: search !important; width: 32px !important; min-width: 32px !important; height: 32px !important; flex: none !important; padding: 0 !important; }
-.top-cluster > .locate-stack { grid-area: locate !important; width: 96px !important; height: 36px !important; }
-.top-cluster > .locate-stack .ink-control { width: 96px !important; min-width: 96px !important; white-space: nowrap !important; }
+.top-cluster > .map-search { grid-area: search !important; width: 28px !important; min-width: 28px !important; height: 30px !important; flex: none !important; padding: 0 !important; }
+.top-cluster > .locate-stack { grid-area: locate !important; width: 106px !important; height: 36px !important; overflow: visible !important; }
+.top-cluster > .locate-stack .ink-control { width: 106px !important; min-width: 106px !important; white-space: nowrap !important; overflow: visible !important; }
 .top-cluster > #quickRadioButton { grid-area: radio !important; }
 .top-cluster > #quickDrawButton { grid-area: draw !important; }
 .top-cluster > .regional-navigation { grid-area: region !important; width: auto !important; min-width: 0 !important; max-width: none !important; height: 36px !important; }
@@ -2145,10 +2145,10 @@ body.location-available .context-help-button {
 .top-cluster > #quickDrawButton img { filter: brightness(0) saturate(100%) invert(43%) sepia(24%) saturate(1025%) hue-rotate(164deg) brightness(89%) contrast(88%) !important; }
 .top-cluster > .weather-brief > span { min-width: 0 !important; overflow: hidden !important; text-overflow: ellipsis !important; white-space: nowrap !important; }
 @media (max-width: 720px) {
-  .top-cluster { grid-template-columns: 28px 32px 86px 30px 30px minmax(82px, 1fr) 64px !important; }
+  .top-cluster { grid-template-columns: 28px 28px 92px 30px 30px minmax(82px, 1fr) 64px !important; }
   .top-cluster > .profile-control { width: 28px !important; }
-  .top-cluster > .locate-stack { width: 86px !important; }
-  .top-cluster > .locate-stack .ink-control { width: 86px !important; min-width: 86px !important; }
+  .top-cluster > .locate-stack { width: 92px !important; }
+  .top-cluster > .locate-stack .ink-control { width: 92px !important; min-width: 92px !important; }
   .top-cluster > .weather-brief { width: 64px !important; max-width: 64px !important; padding-inline: 3px !important; font-size: .5rem !important; }
   .top-cluster > .regional-navigation .regional-navigation-button { padding-inline: 5px !important; font-size: .56rem !important; }
 }
@@ -2188,3 +2188,11 @@ body.location-available .context-help-button {
 .top-cluster > #quickDrawButton::before { mask-image:url('./icons/route.svg'); -webkit-mask-image:url('./icons/route.svg'); }
 @media (max-width:720px) { .top-cluster > .weather-brief { width:72px !important; min-width:72px !important; max-width:72px !important; padding-inline:4px !important; font-size:.52rem !important; } }
 @media (max-width:480px) { .top-cluster > .weather-brief { width:62px !important; min-width:62px !important; max-width:62px !important; padding-inline:3px !important; font-size:.5rem !important; } }
+
+/* Final color sequence: white ends at Locate, then tools use a cool gradient,
+   followed by the blue region chip and purple weather chip. */
+.top-cluster > #quickRadioButton,
+.top-cluster > #quickDrawButton { background:linear-gradient(180deg,#e7f1f5 0%,#c5dce8 100%) !important; border-radius:0 !important; }
+.top-cluster > .map-search > button { width:28px !important; min-width:28px !important; height:30px !important; }
+.top-cluster > .map-search > button::before { width:15px !important; height:15px !important; }
+.top-cluster > .regional-navigation { background:var(--radio-copper,#4d7ea6) !important; }
