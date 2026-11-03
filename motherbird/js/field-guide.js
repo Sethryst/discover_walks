@@ -46,7 +46,7 @@ async function guideData() {
     const source = publicSourceForPoi(poi, card);
     const why = card.why || card.whyText || card.reason || card.short;
     if (!poi || !source || !why) return null;
-    return { ...card, id: String(card.id || `learn:${placeId}`), placeId, question: card.question || poi.name, short: why, officialUrl: card.officialUrl || source.url, provenance: card.provenance || { name: source.name } };
+    return { ...card, id: String(card.id || `learn:${placeId}`), placeId, question: card.question || poi.name, short: why, provenance: card.provenance || { name: source.name } };
   }).filter(Boolean);
   const authoredById = new Map(learnCards.map((card) => [card.placeId, card]));
   const combined = pois.filter((poi) => isVisiblePoi(poi) && poi.name && Number.isFinite(poi.lat) && Number.isFinite(poi.lng)).flatMap((poi) => {
@@ -100,7 +100,7 @@ export function nearestLearnStories(cards, pois, point) {
   const byId = new Map(pois.map((poi) => [String(poi.id), poi]));
   const ordered = sortGuideCardsByDistance(cards, point, (card) => [byId.get(card.placeId)]);
   const important = new Set(selectImportantPois(ordered.map((card) => byId.get(card.placeId)).filter(Boolean)).map((poi) => String(poi.id)));
-  const eligible = ordered.filter((card) => important.has(card.placeId) && card.officialUrl);
+  const eligible = ordered.filter((card) => important.has(card.placeId));
   const intros = ['news','recreation','cuisine'].map((light) => eligible.find((card) => card.light === light)).filter(Boolean);
   const chosen = new Set(intros.map((card) => card.placeId));
   return { intros, remaining: eligible.filter((card) => !chosen.has(card.placeId)) };
