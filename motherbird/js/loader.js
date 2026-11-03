@@ -6,7 +6,7 @@ import { normalizeProfile, sitesForProfile } from './utils.js';
 import { toast } from './ui.js';
 import { initMap } from './map.js?v=20261012-map-studio-1';
 import { applyStaticAppearance } from './ui.js';
-import { loadAllCityData, refreshCityMap } from './city.js?v=20261007-regional-worker-path-2';
+import { loadAllCityData, refreshCityMap } from './city.js?v=20261103-header-repair-2';
 import { renderArchive } from './archive.js';
 import { normalizedEntitlements } from './entitlements.js';
 import { restoreLocalPoiClosures } from './spatial-closure-reporting.js';
@@ -160,8 +160,6 @@ export async function init() {
     .then(({ initEvents }) => initEvents())
     .catch((error) => console.warn('Core controls unavailable:', error.message));
   const refreshMapLayout = () => state.map?.invalidateSize({ pan: false });
-  const locateButton = document.getElementById('locateButton');
-  if (locateButton) Object.assign(locateButton.style, { width: '78px', minWidth: '78px', maxWidth: '78px', height: '40px', minHeight: '40px', maxHeight: '40px', overflow: 'hidden', lineHeight: '1', fontSize: '.76rem' });
   requestAnimationFrame(refreshMapLayout);
   // The walk planner is core map functionality. Bind it before optional
   // stories, radio, and companion layers can abort startup on bad local data.
