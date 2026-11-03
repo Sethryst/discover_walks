@@ -40,6 +40,24 @@ There is no first-party HTTP API. The PWA is a browser application, not a FastAP
 - Resumable routing-cell conversion and publication tooling.
 - A deliberately conservative routing contract: no invented straight-line paths or unverified network connections.
 
+## Feature map
+
+Walk & Wildlife is organized around a few broad product areas:
+
+| Area | What is there |
+| --- | --- |
+| **Explore & map** | Area selection, place search, map layers, regional POIs, trails, parks, civic places, food, historic places, weather context, and personal map pins. |
+| **Walks & navigation** | Start and record a walk, draw or build a route, add and reorder stops, save walks locally, follow verified pedestrian routing, and resume work offline where supported. |
+| **Journal & observations** | Add observations, audio notes, photos, private notes, route-linked records, biodiversity categories, and a journal view for revisiting what happened on a walk. |
+| **Workspace** | Durable saved walks, route builder tools, walk configuration, route sections, stop editing, learning/context cards, and a focused home for unfinished work. |
+| **Companion & radio** | Companion/map orientation, shared route or “birdnote” deliveries, radio/audio surfaces, live-style listening controls, and quiet local-first status handling. |
+| **Nature & learning** | Wildlife and biodiversity records, guides, stories, historical context, source-aware media, and category-specific iconography for birds, plants, mammals, insects, fungi, reptiles, and other life. |
+| **Personal data** | Browser-local storage for walks, observations, places, preferences, exports, privacy controls, and backup-oriented workflows. Supabase is optional and operator-controlled, not required for the static app. |
+| **Data & regional publishing** | Static regional packages, source catalogues, civic/open-data ingestion, provenance, validation, routing-cell artifacts, release registries, KPI reporting, and GitHub Pages publication. |
+| **Accessibility & resilience** | Offline-friendly PWA behavior, service-worker caching, responsive layouts, explicit unavailable states, honest route failures, and user-visible source/provenance cues. |
+
+The current icon and interaction reference is available at [`motherbird/icon-options.html`](motherbird/icon-options.html). It groups the visual language into map markers, walk/navigation controls, capture/workspace actions, biodiversity, system states, and the marker color palette.
+
 ## Where Walk & Wildlife is available
 
 Walk & Wildlife currently offers **80 selectable areas** in the app. Choosing an area changes the map, the search field, and the places the app searches. The list includes cities, counties, metro areas, and a few destination communities.
