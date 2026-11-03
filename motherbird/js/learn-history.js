@@ -454,13 +454,19 @@ export function paintLensItem({ map, leaflet, lens, selected }) {
 export async function renderLearnHistory(target, point, authoredCards = []) {
   if (learnScreen !== 'topo' && state.historicalTopoLayer) stopHistoricalTopo();
   if (learnScreen === 'home') {
+    const poisById = new Map((state.cityPois[state.activeCity] || []).map((poi) => [String(poi.id), poi]));
+    const orderedAuthoredCards = [...authoredCards].sort((a, b) => {
+      if (!point) return 0;
+      const distance = (card) => { const poi = poisById.get(String(card.placeId)); return poi ? distanceMeters(point, poi) : Number.POSITIVE_INFINITY; };
+      return distance(a) - distance(b);
+    });
     setLearnSheetMin(false);
     const catalog = await loadWaterJourneys();
     const waterJourneys = journeysForCity(catalog.journeys);
     const encounteredIds = new Set((state.walks || []).flatMap((walk) => (walk.waterEncounters || []).map((item) => String(item.journeyId))));
     const pointForPrompt = state.currentPosition || state.lastPosition || state.map?.getCenter?.();
     const nearbyPlaces = sortSitesByDistance((state.cityPois[state.activeCity] || []).filter((poi) => isWalkNatureSite(poi) || isHistorySite(poi)), pointForPrompt).filter((poi) => !pointForPrompt || distanceMeters(pointForPrompt, poi) <= 8047).slice(0, 12).map((poi) => ({ ...poi, _learnDistance: pointForPrompt ? distanceMeters(pointForPrompt, poi) : null }));
-    target.innerHTML = learnHomeHtml({ somethingNew: somethingNewNearby({ journeys: waterJourneys, encounteredIds, point: pointForPrompt }), nearbyPlaces, authoredCards });
+    target.innerHTML = learnHomeHtml({ somethingNew: somethingNewNearby({ journeys: waterJourneys, encounteredIds, point: pointForPrompt }), nearbyPlaces, authoredCards: orderedAuthoredCards });
     state.learnBoundsLayer?.remove(); state.learnBoundsLayer = null;
     return;
   }

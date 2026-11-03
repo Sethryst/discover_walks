@@ -122,6 +122,7 @@ body[data-primary-tab="explore"] .map-dock [data-map-destination="explore"],body
 /* Journal moment marker and compact Learn choice cards. */
 .journal-moon { display:inline-block; margin-left:5px; font-family:"Apple Color Emoji","Segoe UI Emoji",sans-serif; font-size:.82rem; line-height:1; vertical-align:-1px; }
 .learn-category-options { gap:3px !important; padding-top:5px !important; }
+.learn-category-options { grid-template-columns:repeat(3,minmax(0,1fr)) !important; }
 .learn-category-options .learn-entry,
 .learn-authored-grid .learn-story-link { min-height:0 !important; padding:5px 8px !important; border:1px solid var(--line) !important; border-left:3px solid currentColor !important; border-radius:6px !important; background:var(--paper2) !important; color:var(--ink) !important; text-align:left !important; }
 .learn-category-options .learn-entry h3,
