@@ -27,10 +27,10 @@
 .top-cluster > #quickDrawButton { height: 38px !important; min-height: 38px !important; max-height: 38px !important; margin: 0 !important; box-sizing: border-box !important; }
 .top-cluster > .profile-control .profile-avatar { width: 38px !important; min-width: 38px !important; max-width: 38px !important; padding: 0 !important; }
 .top-cluster > .profile-control .profile-avatar { border-radius: 12px !important; }
-.top-cluster > .profile-control { border-right: 2px solid #173c35 !important; border-radius: 12px 0 0 12px !important; overflow: hidden !important; }
+.top-cluster > .profile-control { border-right: 1px solid #c5dce8 !important; border-radius: 12px 0 0 12px !important; overflow: hidden !important; }
 .top-cluster > .map-search > button { width: 38px !important; min-width: 38px !important; max-width: 38px !important; padding: 0 !important; }
-.top-cluster > .map-search { border-right: 2px solid #173c35 !important; }
-.top-cluster > .locate-stack { border-left: 2px solid #173c35 !important; }
+.top-cluster > .map-search { border-right: 1px solid #c5dce8 !important; }
+.top-cluster > .locate-stack { border-left: 1px solid #c5dce8 !important; }
 .top-cluster > .start-stack { display: none !important; width: 0 !important; min-width: 0 !important; flex: 0 0 0 !important; overflow: hidden !important; }
 .top-cluster > .start-stack:has(.control-row > :not(.hidden)) { width: auto !important; flex: 0 0 auto !important; overflow: visible !important; }
 .top-cluster > .profile-control,
@@ -42,8 +42,13 @@
 .top-cluster > #quickDrawButton { background: #c5dce8 !important; }
 .top-cluster > .regional-navigation,
 .top-cluster > .regional-navigation .regional-navigation-button { background: #4d7ea6 !important; }
+.top-cluster > .regional-navigation { border-right: 0 !important; }
 .top-cluster > .weather-brief,
-.top-cluster > #weatherBrief { background: #d7b9e5 !important; }
+.top-cluster > #weatherBrief { background: #d7b9e5 !important; border-left: 0 !important; }
+.top-cluster > #quickRadioButton:hover,
+.top-cluster > #quickRadioButton:focus-visible,
+.top-cluster > #quickDrawButton:hover,
+.top-cluster > #quickDrawButton:focus-visible { background: #c5dce8 !important; opacity: 1 !important; }
 
 .poi-marker,
 .personal-place-marker,
