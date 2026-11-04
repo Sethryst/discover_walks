@@ -257,7 +257,9 @@ function workspacePlacesMarkup() {
   return `<details class="workspace-places"><summary>Places</summary><section><p class="workspace-section-label">Current route stops</p>${currentWalk.stops.map((stop) => `<div class="workspace-place-row"><strong>${stop}</strong><span>Current route stop</span></div>`).join('')}</section><section><p class="workspace-section-label">Nearby suggestions</p>${suggestions.pois.length ? suggestions.pois.map((poi) => `<div class="workspace-place-row"><strong>${escapeHtml(poi.name)}</strong><span>${escapeHtml(poi.category || 'Place')} · source-mapped <button type="button" data-future-place="${escapeHtml(poi.id || poi.name)}">Add to future revision</button></span></div>`).join('') : '<p>No nearby suggestions are available in this region.</p>'}</section><section><p class="workspace-section-label">Personal saved places</p>${suggestions.personal.length ? suggestions.personal.map((place) => `<div class="workspace-place-row"><strong>${escapeHtml(place.name)}</strong><span>Personal saved place</span></div>`).join('') : '<p>No personal places saved yet.</p>'}</section></details>`;
 }
 function workspacePathLinks() {
-  return `<nav class="workspace-path-links" aria-label="Walk paths"><button type="button" data-workspace-tool="open">My paths</button><button type="button" data-workspace-choice="new">New paths</button></nav>`;
+  // My paths is the default surface. Keep this control idempotent so clicking
+  // the already-selected destination never sends the walker to Saved journeys.
+  return `<nav class="workspace-path-links" aria-label="Walk paths"><button type="button" class="${activeWorkspaceTool === 'open' ? 'active' : ''}" ${activeWorkspaceTool === 'open' ? 'aria-current="page"' : ''} data-workspace-tool="open">My paths</button><button type="button" class="${activeWorkspaceTool === 'builder' ? 'active' : ''}" ${activeWorkspaceTool === 'builder' ? 'aria-current="page"' : ''} data-workspace-choice="new">New paths</button></nav>`;
 }
 function setWorkspacePlannerChoice({ mode, minutes }) {
   const routeInput = document.querySelector(`input[name="routeMode"][value="${mode}"]`);
@@ -283,7 +285,7 @@ async function generateWorkspaceWalk() {
   }
   return plan;
 }
-function workspaceOpenWalksMarkup() { return `<div class="workspace-tool-page workspace-open-walks"><h2 class="workspace-page-title">Saved journeys</h2><div data-workspace-saved-walks><p class="empty-state">Loading saved walks…</p></div><button type="button" class="secondary-button" data-workspace-tool="builder">Make a walk</button></div>`; }
+function workspaceOpenWalksMarkup() { return `<div class="workspace-tool-page workspace-open-walks">${workspacePathLinks()}<h2 class="workspace-page-title">My paths</h2><div data-workspace-saved-walks><p class="empty-state">Loading saved walks…</p></div></div>`; }
 function workspacePage() {
   const tool = activeWorkspaceTool;
   if (tool === 'open') return workspaceOpenWalksMarkup();
