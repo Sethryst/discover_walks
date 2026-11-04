@@ -42,6 +42,7 @@ const CHIP_FILTERS = {
   }
 };
 const publicLeafletMarkers = new Map();
+let loginStopPending = false;
 
 export function slugifyCategory(value = '') {
   return String(value).normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim()
@@ -831,7 +832,20 @@ function bindPersonalPlaceControls() {
   window.addEventListener('public-markers-changed', () => { renderPersonalPlacesPanel(); renderPersonalPlacesOnMap(); });
   window.addEventListener('walk-display-updated', renderPersonalPlacesPanel);
   window.addEventListener('journal-data-changed', () => renderPersonalPlacesPanel());
-  window.addEventListener('online-profile-changed', async () => { await ensureDefaultPersonalCategory(); personalDataChanged(); });
+  window.addEventListener('online-profile-changed', async () => {
+    await ensureDefaultPersonalCategory();
+    loginStopPending = Boolean(state.online.session);
+    if (loginStopPending && (state.currentPosition || state.lastPosition)) {
+      loginStopPending = false;
+      void saveLoginFirstStop().catch((error) => console.warn('Login stop could not be saved:', error));
+    }
+    personalDataChanged();
+  });
+  window.addEventListener('walk-position-received', () => {
+    if (!loginStopPending || !state.online.session) return;
+    loginStopPending = false;
+    void saveLoginFirstStop().catch((error) => console.warn('Login stop could not be saved:', error));
+  });
   window.addEventListener('personal-places-changed', async () => {
     if (state.personalPlaceCategories.length) return;
     await ensureDefaultPersonalCategory();
