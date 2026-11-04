@@ -151,7 +151,7 @@
     .top-cluster>.map-search.is-open>input{position:absolute!important;width:240px!important;max-width:240px!important;top:54px!important;left:0!important}
     /* Final two-row mobile bar: Locate is framed only by its two stack
        dividers; Search and the compact tools remain flush beside it. */
-    .top-cluster{flex-wrap:wrap!important;width:calc(100vw - 16px)!important;max-width:none!important;height:auto!important;margin:0 8px!important;gap:0!important;border:0!important;box-shadow:none!important}
+    .top-cluster{flex-wrap:wrap!important;width:max-content!important;max-width:calc(100vw - 16px)!important;height:auto!important;margin:0 8px!important;gap:0!important;border:0!important;box-shadow:none!important}
     .top-cluster>.profile-control{order:1!important;flex:0 0 38px!important;width:38px!important}
     .top-cluster>.locate-stack{order:2!important;flex:0 0 max-content!important;width:max-content!important;border-left:1px solid #c5dce8!important;border-right:1px solid #c5dce8!important}
     .top-cluster>.locate-stack .control-row{width:max-content!important;gap:0!important}
@@ -168,6 +168,16 @@
     .top-cluster>.weather-brief .weather-brief-icon,.top-cluster>#weatherBrief .weather-brief-icon{flex:0 0 20px!important;width:20px!important;height:20px!important}
     .top-cluster>.weather-brief>span,.top-cluster>#weatherBrief>span{display:block!important;flex:1 1 auto!important;min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
     .top-cluster>.weather-brief .weather-brief-time,.top-cluster>#weatherBrief .weather-brief-time{flex:0 0 auto!important;white-space:nowrap!important}
+    /* Use one intrinsic two-row grid so weather shares Region's exact right edge. */
+    .top-cluster{display:grid!important;grid-template-columns:38px max-content 30px 30px 30px 112px!important;grid-template-rows:38px 30px!important;width:max-content!important;max-width:calc(100vw - 16px)!important;height:auto!important;align-items:stretch!important}
+    .top-cluster>.profile-control{grid-column:1!important;grid-row:1!important}
+    .top-cluster>.locate-stack{grid-column:2!important;grid-row:1!important;width:max-content!important;flex:none!important}
+    .top-cluster>.map-search{grid-column:3!important;grid-row:1!important}
+    .top-cluster>#quickRadioButton{grid-column:4!important;grid-row:1!important}
+    .top-cluster>#quickDrawButton{grid-column:5!important;grid-row:1!important}
+    .top-cluster>.regional-navigation{grid-column:6!important;grid-row:1!important;position:static!important;width:112px!important;min-width:112px!important;max-width:112px!important}
+    .top-cluster>.regional-navigation .regional-navigation-button{width:112px!important;max-width:112px!important}
+    .top-cluster>.weather-brief,.top-cluster>#weatherBrief{grid-column:1 / -1!important;grid-row:2!important;width:100%!important;min-width:0!important;max-width:none!important;flex:none!important}
   </style>
   <title>Walk & Wildlife</title>
 </head>
