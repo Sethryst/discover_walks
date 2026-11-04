@@ -222,7 +222,7 @@ async function renderJournalRoomWorkspaceSummary() {
 }
 
 const WORKSPACE_TOOLS = [['options', 'Walk', 'route'], ['journal', 'Journal', 'journal'], ['learn', 'Learn', 'learn']];
-let activeWorkspaceTool = 'journal';
+let activeWorkspaceTool = 'open';
 let pendingWorkspaceTool = null;
 let workspaceBuilderMode = 'auto-round-trip';
 let workspaceBuilderMinutes = 35;
@@ -328,11 +328,8 @@ function renderWorkspaceExperience(target) {
   const list = target.querySelector('[data-workspace-saved-walks]');
   if (list) {
     void db.all('walk_plans').then((plans) => {
-      const valid = plans.filter((plan) => Number(plan.route?.durationSeconds || 0) > 0);
-      const zeroDuration = plans.filter((plan) => Number(plan.route?.durationSeconds || 0) <= 0);
-      if (zeroDuration.length) void Promise.all(zeroDuration.map((plan) => db.remove('walk_plans', plan.id)));
-      const recent = valid.slice().sort((a, b) => Date.parse(b.updatedAt || b.createdAt || 0) - Date.parse(a.updatedAt || a.createdAt || 0)).slice(0, 6);
-      list.innerHTML = recent.length ? recent.map((plan) => `<button type="button" class="workspace-saved-walk" data-workspace-saved-plan="${escapeHtml(plan.id)}"><strong>${escapeHtml(plan.title || plan.route?.title || 'Generated walk')}<small>${escapeHtml(plan.route?.city || plan.city || 'Local route')} · ${escapeHtml(plan.route?.routeMode || plan.routeMode || 'Walking')}</small></strong><span>Show map</span></button>`).join('') : '<p class="empty-state">No generated walks saved yet. Make a walk to start one.</p>';
+      const recent = plans.slice().sort((a, b) => Date.parse(b.updatedAt || b.createdAt || 0) - Date.parse(a.updatedAt || a.createdAt || 0)).slice(0, 6);
+      list.innerHTML = recent.length ? recent.map((plan) => `<button type="button" class="workspace-saved-walk" data-workspace-saved-plan="${escapeHtml(plan.id)}"><strong>${escapeHtml(plan.title || plan.route?.title || 'Generated walk')}<small>${escapeHtml(plan.route?.city || plan.city || 'Local route')} · ${escapeHtml(plan.route?.routeMode || plan.routeMode || 'Walking')} · ${Number(plan.route?.durationSeconds || 0) > 0 ? `${Math.round(plan.route.durationSeconds / 60)} min` : 'Saved route'}</small></strong><span>Show map</span></button>`).join('') : '<p class="empty-state">No generated walks saved yet. Make a walk to start one.</p>';
     });
   }
   if (activeWorkspaceTool === 'learn') void hydrateWorkspaceLearn(target);
