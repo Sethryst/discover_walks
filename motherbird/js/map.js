@@ -26,8 +26,8 @@ const BASEMAP_STORAGE_KEY = 'motherbird.basemap';
 const MAP_CUSTOMIZATION_STORAGE_KEY = 'motherbird.map-customization';
 const DEFAULT_MAP_CUSTOMIZATION = Object.freeze({ tone: 'natural', markerOutline: 'light', showPlaces: true, showRoutes: true });
 export const BASEMAP_PRESETS = Object.freeze({
-  street: { label: 'Street · OpenStreetMap', url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', maxZoom: 22, subdomains: 'abc', attribution: OSM_ATTRIBUTION },
-  topographic: { label: 'Topographic · contours', url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', maxZoom: 19, subdomains: 'abc', attribution: '&copy; OpenStreetMap contributors, SRTM | &copy; OpenTopoMap (CC-BY-SA)' },
+  street: { label: 'Street · OpenStreetMap', url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', maxZoom: 22, maxNativeZoom: 19, subdomains: 'abc', attribution: OSM_ATTRIBUTION },
+  topographic: { label: 'Topographic · contours', url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', maxZoom: 19, maxNativeZoom: 17, subdomains: 'abc', attribution: '&copy; OpenStreetMap contributors, SRTM | &copy; OpenTopoMap (CC-BY-SA)' },
 });
 const NEIGHBORHOOD_ZOOM = 15;
 const DEFAULT_MAP_VIEW = Object.freeze({ lat: 38.9072, lng: -77.0369, zoom: NEIGHBORHOOD_ZOOM });
@@ -100,7 +100,7 @@ function initMapCustomization() {
 function createOnlineBasemapLayer(id) {
   const preset = BASEMAP_PRESETS[id] || BASEMAP_PRESETS.street;
   if (preset.type === 'simplified') return L.layerGroup();
-  return L.tileLayer(preset.url, { maxZoom: preset.maxZoom, subdomains: preset.subdomains, attribution: preset.attribution, crossOrigin: true });
+  return L.tileLayer(preset.url, { maxZoom: preset.maxZoom, maxNativeZoom: preset.maxNativeZoom, subdomains: preset.subdomains, attribution: preset.attribution, crossOrigin: true });
 }
 
 export function setOnlineBasemap(id, { announce = true } = {}) {

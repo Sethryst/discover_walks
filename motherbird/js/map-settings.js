@@ -1,7 +1,7 @@
 import db from './storage.js';
 import { state } from './state.js';
 import { toast } from './ui.js';
-import { BASEMAP_PRESETS, applyMapCustomization, setOnlineBasemap } from './map.js?v=20261104-zoom-levels-1';
+import { BASEMAP_PRESETS, applyMapCustomization, setOnlineBasemap } from './map.js?v=20261104-zoom-levels-2';
 import { installedStylePaint } from './offline-map-style.js';
 
 const MAP_CUSTOMIZATION_KEY = 'motherbird.map-customization';
