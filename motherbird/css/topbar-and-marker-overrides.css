@@ -101,6 +101,38 @@
 .top-cluster > .regional-navigation .regional-navigation-button { width: 100% !important; max-width: none !important; justify-content: flex-start !important; }
 .top-cluster > .weather-brief { justify-content: flex-start !important; }
 
+/* Remove intrinsic-width slivers inside the grid tracks. */
+.top-cluster > .profile-control,
+.top-cluster > .profile-control .profile-avatar,
+.top-cluster > .map-search,
+.top-cluster > .locate-stack,
+.top-cluster > .locate-stack .control-row,
+.top-cluster > .locate-stack .ink-control,
+.top-cluster > #quickRadioButton,
+.top-cluster > #quickDrawButton,
+.top-cluster > .weather-brief,
+.top-cluster > .regional-navigation,
+.top-cluster > .regional-navigation .regional-navigation-button { width: 100% !important; min-width: 0 !important; max-width: none !important; box-sizing: border-box !important; }
+.top-cluster > .profile-control .profile-avatar { flex: 1 1 auto !important; }
+.top-cluster > .locate-stack .control-row { display: flex !important; }
+.top-cluster > .locate-stack .ink-control { flex: 1 1 auto !important; }
+.top-cluster > #quickRadioButton,
+.top-cluster > #quickDrawButton { justify-content: center !important; }
+
+/* Pixel alignment: the locate control hugs its label; region defaults to
+   weather width but can grow with a longer region name. */
+.top-cluster { grid-template-columns: 38px 30px max-content 38px 38px 112px !important; }
+.top-cluster > .locate-stack,
+.top-cluster > .locate-stack .control-row,
+.top-cluster > .locate-stack .ink-control { width: max-content !important; }
+.top-cluster > .locate-stack .ink-control { padding-inline: 8px !important; }
+.top-cluster > .map-search { border-left: 1px solid #c5dce8 !important; border-right: 1px solid #c5dce8 !important; }
+.top-cluster > .map-search::after { display: none !important; }
+.top-cluster > .weather-brief,
+.top-cluster > #weatherBrief,
+.top-cluster > .regional-navigation { width: 112px !important; }
+.top-cluster > .regional-navigation .regional-navigation-button { display: flex !important; align-items: center !important; }
+
 @media (max-width: 520px) {
-  .top-cluster { grid-template-columns: 38px 30px minmax(92px, 1fr) 38px 38px minmax(112px, 1.2fr) !important; }
+  .top-cluster { grid-template-columns: 38px 30px max-content 38px 38px 112px !important; }
 }
