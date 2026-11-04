@@ -31,7 +31,7 @@ import { initBiodiversity } from './biodiversity.js?v=20261103-live-biodiversity
 import { initRegionalNavigation } from './regional-navigation.js?v=20261101-conditional-menu-1';
 import { initStorageDiagnostics } from './storage-diagnostics.js';
 import { initStorageHealth } from './storage-health.js';
-import { loadWorkspaceState, initWorkspaceRuntime, seedWorkspaceDemo } from './workspace.js?v=workspace-tabs-20261104-persist-my-paths-1';
+import { loadWorkspaceState, initWorkspaceRuntime, seedWorkspaceDemo } from './workspace.js?v=workspace-tabs-20261104-min-save-3-1';
 import { normalizeSavedRoute } from './saved-routes.js';
 import { initMapSettings } from './map-settings.js';
 

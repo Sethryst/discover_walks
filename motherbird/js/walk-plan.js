@@ -4,6 +4,7 @@ import { state } from './state.js';
 export const WALK_PLAN_SCHEMA = 'walk-plan/v1';
 export const WALK_PLAN_PACKAGE_VERSIONS = { planner: 'mip-router-v1', evidence: 'static-catalogue-v1' };
 export const WALK_METADATA_SCHEMA = 'walk-metadata/v1';
+export const MIN_SAVED_WALK_DURATION_SECONDS = 3 * 60;
 
 export function normalizeWalkMetadata({ request = {}, route = {}, encounters = [] } = {}) {
   const sourceIds = [...new Set([...(route.sourceProvenanceIds || []), ...encounters.flatMap((item) => item.sourceIds || item.evidenceRefs || [])].filter(Boolean).map(String))];
@@ -43,7 +44,7 @@ export function createWalkPlan({ request, route, encounters = [], rationale = {}
 
 export async function saveWalkPlan(plan) {
   if (!plan?.id) throw new Error('WalkPlan requires a stable id.');
-  if (Number(plan.route?.durationSeconds || 0) <= 0) {
+  if (Number(plan.route?.durationSeconds || 0) < MIN_SAVED_WALK_DURATION_SECONDS) {
     await db.remove('walk_plans', plan.id);
     if (state.walkPlan?.id === plan.id) state.walkPlan = null;
     window.dispatchEvent(new CustomEvent('walk-plan-changed', { detail: null }));
