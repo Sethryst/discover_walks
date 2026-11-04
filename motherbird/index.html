@@ -189,6 +189,9 @@
     .top-cluster>.regional-navigation .regional-navigation-chevron{position:absolute!important;right:10px!important}
     .top-cluster>.weather-brief,.top-cluster>#weatherBrief{justify-self:stretch!important;box-sizing:border-box!important;max-width:100%!important;min-height:42px!important;height:auto!important;align-items:center!important;overflow:visible!important;padding-block:4px!important}
     .top-cluster>.weather-brief>span,.top-cluster>#weatherBrief>span{white-space:normal!important;line-height:1.05!important;display:block!important;overflow:visible!important}
+    .top-cluster>.profile-control{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;gap:1px!important;overflow:visible!important;position:relative!important}
+    .top-cluster>.profile-control .profile-avatar{flex:0 0 27px!important;width:27px!important;height:27px!important;min-height:27px!important;max-height:27px!important}
+    .top-cluster>.profile-control::after{content:'Profile';display:block!important;color:#8ab8cf!important;font-size:8px!important;line-height:9px!important;letter-spacing:.01em!important;white-space:nowrap!important;pointer-events:none!important}
   </style>
   <title>Walk & Wildlife</title>
 </head>
@@ -419,7 +422,7 @@
               navigator.serviceWorker?.getRegistrations().then((registrations) => Promise.all(registrations.map((registration) => registration.unregister())))
             ]).finally(() => location.replace(cleanUrl));
           })();
-        </script><script src="./vendor/leaflet/leaflet.js"></script><script src="./vendor/leaflet-markercluster/leaflet.markercluster.js"></script><script src="./vendor/leaflet-geoman/leaflet-geoman.min.js"></script><script src="./vendor/turf/turf.min.js"></script><script src="./vendor/maplibre-gl.js"></script><script src="./supabase-config.js"></script><script type="module" src="./app.js?v=cuisine-weather-intrinsic-20261104-1"></script>
+        </script><script src="./vendor/leaflet/leaflet.js"></script><script src="./vendor/leaflet-markercluster/leaflet.markercluster.js"></script><script src="./vendor/leaflet-geoman/leaflet-geoman.min.js"></script><script src="./vendor/turf/turf.min.js"></script><script src="./vendor/maplibre-gl.js"></script><script src="./supabase-config.js"></script><script type="module" src="./app.js?v=topbar-profile-20261104-1"></script>
 </body>
 </html>
 
