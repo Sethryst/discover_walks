@@ -171,7 +171,7 @@ function queueMapPoint(point, role) {
   return compositionMutation;
 }
 
-function openMapActionPopup({ lat, lng, place = null }) {
+export function openMapActionPopup({ lat, lng, place = null }) {
   if (!state.map || !globalThis.L || !Number.isFinite(Number(lat)) || !Number.isFinite(Number(lng))) return;
   const name = place?.name || 'This map place';
   const wrapper = document.createElement('div');
@@ -229,6 +229,10 @@ export async function initOutingComposer() {
   const target = panel();
   if (!target || initialized) return;
   initialized = true;
+  window.addEventListener('map-place-actions-requested', (event) => {
+    const place = event.detail?.place;
+    if (place) openMapActionPopup({ lat: place.lat, lng: place.lng, place });
+  });
   document.querySelector('.viewfinder-frame')?.append(target);
   target.innerHTML = composerMarkup();
   const composerToggle = document.getElementById('startChevron');

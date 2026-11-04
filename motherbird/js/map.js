@@ -225,12 +225,32 @@ export function initMap() {
       return;
     }
     if (state.planningMode) {
-      window.dispatchEvent(new CustomEvent('map-context-requested', { detail: { lat: event.latlng.lat, lng: event.latlng.lng, composer: true } }));
+      window.dispatchEvent(new CustomEvent('map-context-requested', { detail: { lat: event.latlng.lat, lng: event.latlng.lng } }));
       return;
     }
     if (showNationalPoiDetails(event)) return;
     window.dispatchEvent(new CustomEvent('map-context-requested', { detail: { lat: event.latlng.lat, lng: event.latlng.lng } }));
   });
+  state.map.on('dblclick', (event) => {
+    if (state.plannerSelecting) return;
+    L.DomEvent.stop(event.originalEvent);
+    state.map.closePopup();
+    window.dispatchEvent(new CustomEvent('map-place-actions-requested', { detail: { place: { name: 'This map place', lat: event.latlng.lat, lng: event.latlng.lng } } }));
+  });
+  let mapHoldTimer = null;
+  const mapContainer = state.map.getContainer();
+  const cancelMapHold = () => { if (mapHoldTimer) { clearTimeout(mapHoldTimer); mapHoldTimer = null; } };
+  mapContainer.addEventListener('pointerdown', (event) => {
+    if (event.target.closest('.leaflet-marker-icon, .leaflet-interactive')) return;
+    cancelMapHold();
+    mapHoldTimer = setTimeout(() => {
+      mapHoldTimer = null;
+      state.map.closePopup();
+      const point = state.map.containerPointToLatLng([event.offsetX, event.offsetY]);
+      window.dispatchEvent(new CustomEvent('map-place-actions-requested', { detail: { place: { name: 'This map place', lat: point.lat, lng: point.lng } } }));
+    }, 650);
+  }, { passive: true });
+  ['pointerup', 'pointercancel', 'pointerleave'].forEach((name) => mapContainer.addEventListener(name, cancelMapHold, { passive: true }));
   // Capture endpoint gestures before Leaflet or any marker/cluster handler can
   // see them. Leaflet dispatches marker clicks before the map click, so a
   // bubbling handler cannot reliably keep POI popups, cluster expansion, map

@@ -189,6 +189,18 @@ function enablePoiDrag(marker) {
   const icon = marker.getElement?.();
   if (!icon || icon.dataset.poiDragBound === 'true') return;
   icon.dataset.poiDragBound = 'true';
+  let holdTimer = null;
+  const cancelHold = () => { if (holdTimer) { clearTimeout(holdTimer); holdTimer = null; } };
+  icon.addEventListener('pointerdown', () => {
+    cancelHold();
+    holdTimer = setTimeout(() => {
+      holdTimer = null;
+      marker.options.suppressNextClick = true;
+      state.map?.closePopup();
+      window.dispatchEvent(new CustomEvent('map-place-actions-requested', { detail: { place: marker.options.place } }));
+    }, 650);
+  }, { passive: true });
+  ['pointerup', 'pointercancel', 'pointerleave'].forEach((name) => icon.addEventListener(name, cancelHold, { passive: true }));
   icon.draggable = true;
   icon.setAttribute('aria-grabbed', 'false');
   icon.addEventListener('dragstart', (event) => {
@@ -212,10 +224,23 @@ function getPoiMarker(poi) {
     marker = L.marker([poi.lat, poi.lng], { title: displayPoiName(poi), interactive: !state.planningMode, place: poi });
     marker.on('add', () => enablePoiDrag(marker));
     marker.on('click', (event) => {
+      if (marker.options.suppressNextClick) {
+        marker.options.suppressNextClick = false;
+        event._stopped = true;
+        if (event.originalEvent) { event.originalEvent._stopped = true; L.DomEvent.stop(event.originalEvent); }
+        state.map?.closePopup();
+        return;
+      }
       if (!state.plannerSelecting) return;
       event._stopped = true;
       if (event.originalEvent) { event.originalEvent._stopped = true; L.DomEvent.stop(event.originalEvent); }
       state.map?.closePopup();
+    });
+    marker.on('dblclick', (event) => {
+      if (state.plannerSelecting || state.planningMode) return;
+      L.DomEvent.stop(event.originalEvent);
+      state.map?.closePopup();
+      window.dispatchEvent(new CustomEvent('map-place-actions-requested', { detail: { place: marker.options.place } }));
     });
     marker.on('popupopen', (event) => event.popup.getElement()?.querySelector('[data-save-poi]')?.addEventListener('click', () => {
       const current = marker.options.place;
@@ -370,7 +395,7 @@ function packAttribution(poi) {
 function poiPopup(poi) {
   const source = publicPlaceSource(poi);
   const details = walkerDetails(poi).map((row) => `<p><small>${escapeHtml(row.group)}</small><br>${escapeHtml(row.text)}</p>`).join('');
-  return `<strong>${escapeHtml(displayPoiName(poi))}</strong>${details}<small>${escapeHtml(packAttribution(poi))}</small>${source ? `<br><a href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer">Public source ↗</a>` : ''}<div class="poi-outing-actions"><small>Inspecting only — add it if it belongs.</small><button type="button" data-outing-poi-role="possible-stop">Add to outing</button><button type="button" data-outing-poi-role="destination">Mark as destination</button><button type="button" data-outing-poi-role="pass-through">Pass through</button><button type="button" data-outing-poi-role="avoid">Avoid</button></div><button type="button" class="save-poi-button" data-save-poi="${escapeHtml(String(poi.id))}">Save to My Maps</button><button type="button" class="save-poi-button" data-open-room="${escapeHtml(String(poi.id))}">Enter Room</button>`;
+  return `<strong>${escapeHtml(displayPoiName(poi))}</strong>${details}<small>${escapeHtml(packAttribution(poi))}</small>${source ? `<br><a href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer">Public source ↗</a>` : ''}<button type="button" class="save-poi-button" data-save-poi="${escapeHtml(String(poi.id))}">Save to My Maps</button><button type="button" class="save-poi-button" data-open-room="${escapeHtml(String(poi.id))}">Enter Room</button>`;
 }
 
 function hasPackTrailGeometry(poi) {

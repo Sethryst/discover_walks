@@ -1,4 +1,4 @@
-import { renderUserLocation } from './map.js?v=20261104-zoom-levels-2';
+import { renderUserLocation } from './map.js?v=20261104-gestures-1';
 import { distanceMeters } from './geo.js';
 import { state } from './state.js';
 import {
