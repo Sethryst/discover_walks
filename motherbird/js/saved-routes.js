@@ -70,6 +70,7 @@ export function normalizeRouteSections(value = []) {
 }
 
 export async function savePlannedRoute(plan, fields = {}) {
+  if (Number(plan?.durationSeconds || 0) < 3 * 60) throw new Error('Routes must be at least 3 minutes long to save.');
   const route = normalizeSavedRoute({ ...plan, ...fields, id: fields.id || null, coordinates: plan.coordinates });
   await db.put('saved_routes', route);
   state.savedRoutes = [...state.savedRoutes.filter((item) => item.id !== route.id), route];
