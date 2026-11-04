@@ -21,6 +21,7 @@ const view = {
   authClient: null,
   session: null
 };
+let renderTimer = null;
 
 const el = (id) => document.getElementById(id);
 let supabaseClientPromise = null;
@@ -93,6 +94,8 @@ function render() {
   const pendingCount = [...view.observations, ...view.places].filter((item) => item.needsRefinement).length;
   el('watchPendingCount').textContent = `${pendingCount} quick capture${pendingCount === 1 ? '' : 's'} to refine`;
   renderAuth();
+  clearTimeout(renderTimer);
+  renderTimer = active && !walk.paused ? setTimeout(() => render(), 1000) : null;
 }
 
 function escapeText(value) {
@@ -231,7 +234,6 @@ async function init() {
   el('watchPasskeySignIn').addEventListener('click', handleWatchPasskeySignIn);
   el('watchSignOut').addEventListener('click', handleWatchSignOut);
   document.querySelectorAll('[data-quick-capture]').forEach((button) => button.addEventListener('click', () => handleCapture(button.dataset.quickCapture)));
-  setInterval(render, 1000);
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('./service-worker.js').catch(() => {});
 }
 
