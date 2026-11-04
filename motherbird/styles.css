@@ -2599,15 +2599,18 @@ body.location-available .top-cluster > .locate-stack .location-help {
   }
   .top-cluster > .regional-navigation {
     position: absolute !important;
-    left: 80px !important;
+    left: auto !important;
+    right: 0 !important;
     top: 42px !important;
-    width: min(180px, calc(100% - 80px)) !important;
-    max-width: 180px !important;
+    width: 112px !important;
+    max-width: 112px !important;
     min-height: 40px !important;
     z-index: 1402 !important;
     border-radius: 0 0 10px 10px !important;
   }
   .top-cluster > .regional-navigation .regional-navigation-button {
+    width: 100% !important;
+    max-width: none !important;
     border-radius: 0 10px 10px 10px !important;
   }
 }
