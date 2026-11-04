@@ -271,6 +271,5 @@ export async function initOutingComposer() {
     if (event.target.closest('[data-outing-accept-suggestion]') && suggestion) { const accepted = suggestion; suggestion = null; await queueMapPoint(accepted, 'possible-stop'); }
   });
   window.addEventListener('outing-draft-changed', (event) => renderOutingComposer(event.detail));
-  window.addEventListener('map-context-requested', (event) => openMapActionPopup(event.detail || {}));
   window.addEventListener('outing-place-action', (event) => void queueMapPoint(event.detail?.place || {}, event.detail?.role || 'possible-stop'));
 }
