@@ -169,7 +169,7 @@
     .top-cluster>.weather-brief>span,.top-cluster>#weatherBrief>span{display:block!important;flex:1 1 auto!important;min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
     .top-cluster>.weather-brief .weather-brief-time,.top-cluster>#weatherBrief .weather-brief-time{flex:0 0 auto!important;white-space:nowrap!important}
     /* Use one intrinsic two-row grid so weather shares Region's exact right edge. */
-    .top-cluster{display:grid!important;grid-template-columns:38px max-content 30px 30px 30px 112px!important;grid-template-rows:38px 30px!important;width:max-content!important;max-width:calc(100vw - 16px)!important;height:auto!important;align-items:stretch!important}
+    .top-cluster{display:grid!important;grid-template-columns:38px max-content 30px 30px 30px 112px!important;grid-template-rows:38px 42px!important;width:max-content!important;max-width:calc(100vw - 16px)!important;height:auto!important;align-items:stretch!important}
     .top-cluster>.profile-control{grid-column:1!important;grid-row:1!important}
     .top-cluster>.locate-stack{grid-column:2!important;grid-row:1!important;width:max-content!important;flex:none!important}
     .top-cluster>.locate-stack .location-help{display:none!important}
@@ -178,16 +178,17 @@
     .top-cluster>#quickDrawButton{grid-column:5!important;grid-row:1!important}
     .top-cluster>.regional-navigation{grid-column:6!important;grid-row:1!important;position:static!important;width:112px!important;min-width:112px!important;max-width:112px!important}
     .top-cluster>.regional-navigation .regional-navigation-button{width:112px!important;max-width:112px!important}
-    .top-cluster>.weather-brief,.top-cluster>#weatherBrief{grid-column:1 / -1!important;grid-row:2!important;width:100%!important;min-width:0!important;max-width:none!important;flex:none!important}
+    .top-cluster>.weather-brief,.top-cluster>#weatherBrief{grid-column:1 / -1!important;grid-row:2!important;width:100%!important;min-width:0!important;max-width:none!important;min-height:42px!important;height:42px!important;flex:none!important}
     /* Final flush geometry: Region absorbs the available row width while
        Locate keeps only its two light-blue dividers. */
-    .top-cluster{grid-template-columns:38px max-content 30px 30px 30px minmax(112px,1fr)!important;width:calc(100vw - 16px)!important;max-width:calc(100vw - 16px)!important;overflow:visible!important;box-sizing:border-box!important}
+    .top-cluster{grid-template-columns:38px max-content 30px 30px 30px minmax(112px,1fr)!important;grid-template-rows:38px 42px!important;width:calc(100vw - 36px)!important;max-width:calc(100vw - 36px)!important;overflow:visible!important;box-sizing:border-box!important}
     .top-cluster>.locate-stack{border-left:1px solid #c5dce8!important;border-right:1px solid #c5dce8!important;outline:0!important;box-shadow:none!important}
     .top-cluster>.locate-stack .control-row,.top-cluster>.locate-stack .ink-control{border:0!important;outline:0!important;box-shadow:none!important}
     .top-cluster>.regional-navigation{min-width:0!important;max-width:none!important;overflow:visible!important}
     .top-cluster>.regional-navigation .regional-navigation-button{width:100%!important;max-width:none!important;display:flex!important;align-items:center!important;justify-content:center!important;position:relative!important;box-sizing:border-box!important;overflow:hidden!important;margin-left:auto!important}
     .top-cluster>.regional-navigation .regional-navigation-chevron{position:absolute!important;right:10px!important}
-    .top-cluster>.weather-brief,.top-cluster>#weatherBrief{justify-self:stretch!important;box-sizing:border-box!important;max-width:100%!important;overflow:hidden!important}
+    .top-cluster>.weather-brief,.top-cluster>#weatherBrief{justify-self:stretch!important;box-sizing:border-box!important;max-width:100%!important;min-height:42px!important;height:42px!important;align-items:center!important;overflow:hidden!important;padding-block:4px!important}
+    .top-cluster>.weather-brief>span,.top-cluster>#weatherBrief>span{white-space:normal!important;line-height:1.05!important;display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:2!important;overflow:hidden!important}
   </style>
   <title>Walk & Wildlife</title>
 </head>
