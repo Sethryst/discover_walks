@@ -51,9 +51,9 @@ export function initPrimaryShell() {
     if (tab === 'explore') {
       panel.classList.add('hidden');
       if (initial) {
-        // Boot is deliberately map-only. Explore is a destination the user
-        // opens, not a panel that should appear on first load.
-        window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: '' } }));
+        // Explore is the default landing surface, so its category icons and
+        // data are visible immediately rather than waiting for a click.
+        window.dispatchEvent(new CustomEvent('map-workspace-open-requested', { detail: { destination: 'explore', forceOpen: true } }));
         return;
       }
       const mapWorkspace = document.getElementById('mapWorkspacePanel');
