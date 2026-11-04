@@ -230,6 +230,7 @@ export async function initOutingComposer() {
   if (!target || initialized) return;
   initialized = true;
   window.addEventListener('map-place-actions-requested', (event) => {
+    if (event.detail?.gesture !== 'intentional') return;
     const place = event.detail?.place;
     if (place) openMapActionPopup({ lat: place.lat, lng: place.lng, place });
   });
