@@ -197,7 +197,7 @@ function enablePoiDrag(marker) {
       holdTimer = null;
       marker.options.suppressNextClick = true;
       state.map?.closePopup();
-      window.dispatchEvent(new CustomEvent('map-place-actions-requested', { detail: { place: marker.options.place } }));
+      window.dispatchEvent(new CustomEvent('map-place-actions-requested', { detail: { gesture: 'intentional', place: marker.options.place } }));
     }, 650);
   }, { passive: true });
   ['pointerup', 'pointercancel', 'pointerleave'].forEach((name) => icon.addEventListener(name, cancelHold, { passive: true }));
@@ -240,7 +240,7 @@ function getPoiMarker(poi) {
       if (state.plannerSelecting || state.planningMode) return;
       L.DomEvent.stop(event.originalEvent);
       state.map?.closePopup();
-      window.dispatchEvent(new CustomEvent('map-place-actions-requested', { detail: { place: marker.options.place } }));
+      window.dispatchEvent(new CustomEvent('map-place-actions-requested', { detail: { gesture: 'intentional', place: marker.options.place } }));
     });
     marker.on('popupopen', (event) => event.popup.getElement()?.querySelector('[data-save-poi]')?.addEventListener('click', () => {
       const current = marker.options.place;

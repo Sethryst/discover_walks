@@ -235,7 +235,7 @@ export function initMap() {
     if (state.plannerSelecting) return;
     L.DomEvent.stop(event.originalEvent);
     state.map.closePopup();
-    window.dispatchEvent(new CustomEvent('map-place-actions-requested', { detail: { place: { name: 'This map place', lat: event.latlng.lat, lng: event.latlng.lng } } }));
+    window.dispatchEvent(new CustomEvent('map-place-actions-requested', { detail: { gesture: 'intentional', place: { name: 'This map place', lat: event.latlng.lat, lng: event.latlng.lng } } }));
   });
   let mapHoldTimer = null;
   const mapContainer = state.map.getContainer();
@@ -247,7 +247,7 @@ export function initMap() {
       mapHoldTimer = null;
       state.map.closePopup();
       const point = state.map.containerPointToLatLng([event.offsetX, event.offsetY]);
-      window.dispatchEvent(new CustomEvent('map-place-actions-requested', { detail: { place: { name: 'This map place', lat: point.lat, lng: point.lng } } }));
+      window.dispatchEvent(new CustomEvent('map-place-actions-requested', { detail: { gesture: 'intentional', place: { name: 'This map place', lat: point.lat, lng: point.lng } } }));
     }, 650);
   }, { passive: true });
   ['pointerup', 'pointercancel', 'pointerleave'].forEach((name) => mapContainer.addEventListener(name, cancelMapHold, { passive: true }));
