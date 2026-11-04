@@ -19,6 +19,10 @@ function showUpdate(registration) {
 export async function initPwaUpdates() {
   if (!('serviceWorker' in navigator)) return null;
   const isLocalDemo = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  // The localhost demo is a live source tree, not an installed PWA. A
+  // service-worker update/controllerchange cycle can otherwise reload the
+  // page repeatedly while the local server is serving changing source files.
+  if (isLocalDemo) return null;
   let reloading = false;
   navigator.serviceWorker.addEventListener('controllerchange', () => {
     if (reloading) return;
