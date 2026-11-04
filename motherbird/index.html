@@ -179,6 +179,12 @@
     .top-cluster>.regional-navigation{grid-column:6!important;grid-row:1!important;position:static!important;width:112px!important;min-width:112px!important;max-width:112px!important}
     .top-cluster>.regional-navigation .regional-navigation-button{width:112px!important;max-width:112px!important}
     .top-cluster>.weather-brief,.top-cluster>#weatherBrief{grid-column:1 / -1!important;grid-row:2!important;width:100%!important;min-width:0!important;max-width:none!important;flex:none!important}
+    /* Final flush geometry: Region absorbs the available row width while
+       Locate keeps only its two light-blue dividers. */
+    .top-cluster{grid-template-columns:38px max-content 30px 30px 30px minmax(112px,1fr)!important;width:calc(100vw - 16px)!important;max-width:calc(100vw - 16px)!important}
+    .top-cluster>.locate-stack{border-left:1px solid #c5dce8!important;border-right:1px solid #c5dce8!important;outline:0!important;box-shadow:none!important}
+    .top-cluster>.locate-stack .control-row,.top-cluster>.locate-stack .ink-control{border:0!important;outline:0!important;box-shadow:none!important}
+    .top-cluster>.regional-navigation .regional-navigation-button{width:100%!important;max-width:none!important;display:flex!important;align-items:center!important;justify-content:space-between!important;text-align:left!important;margin-left:auto!important}
   </style>
   <title>Walk & Wildlife</title>
 </head>

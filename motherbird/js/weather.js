@@ -22,14 +22,8 @@ function weatherIcon(text = '', night = false) {
   return './icons/cloud.svg';
 }
 
-function localTimeLabel(timeZone = null) {
-  try {
-    return new Intl.DateTimeFormat([], { timeZone: timeZone || undefined, hour: 'numeric', minute: '2-digit' }).format(new Date());
-  } catch { return new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }); }
-}
-
-function weatherBriefHtml(text, timeZone = null, night = false) {
-  return `<img class="weather-brief-icon" src="${weatherIcon(text, night)}" alt="" aria-hidden="true"><span>${escapeHtml(text)}</span><time class="weather-brief-time" datetime="${new Date().toISOString()}">${escapeHtml(localTimeLabel(timeZone))}</time>`;
+function weatherBriefHtml(text, _timeZone = null, night = false) {
+  return `<img class="weather-brief-icon" src="${weatherIcon(text, night)}" alt="" aria-hidden="true"><span>${escapeHtml(text)}</span>`;
 }
 
 function rainTimingText(periods = [], timeZone = null) {
