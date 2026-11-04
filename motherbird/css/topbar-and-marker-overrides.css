@@ -74,3 +74,33 @@
 .observation-cluster span { display:block; min-width:0; width:32px; height:32px; padding:0; border:0; border-radius:0; background:transparent; box-shadow:none; }
 .observation-cluster img { width:32px; height:32px; filter:none; }
 .top-cluster > .weather-brief.is-night { background:#5b3d78 !important; color:#f3eaff !important; }
+
+/* Keep the top tools as one continuous bar. Weather and region share the
+   final column so the region control sits directly beneath weather. */
+.top-cluster {
+  display: grid !important;
+  grid-template-columns: 38px 30px 112px 38px 38px minmax(118px, 1fr) !important;
+  grid-template-rows: 38px 38px !important;
+  gap: 0 !important;
+  width: min(100vw - 16px, 620px) !important;
+  max-width: none !important;
+  align-items: stretch !important;
+}
+.top-cluster > .profile-control { grid-column: 1; grid-row: 1; }
+.top-cluster > .map-search { grid-column: 2; grid-row: 1; }
+.top-cluster > .locate-stack { grid-column: 3; grid-row: 1; }
+.top-cluster > #quickRadioButton { grid-column: 4; grid-row: 1; }
+.top-cluster > #quickDrawButton { grid-column: 5; grid-row: 1; }
+.top-cluster > .weather-brief,
+.top-cluster > #weatherBrief { grid-column: 6; grid-row: 1; width: auto !important; min-width: 0 !important; }
+.top-cluster > .regional-navigation { grid-column: 6; grid-row: 2; width: auto !important; min-width: 0 !important; }
+.top-cluster > .weather-brief,
+.top-cluster > #weatherBrief,
+.top-cluster > .regional-navigation,
+.top-cluster > .regional-navigation .regional-navigation-button { height: 38px !important; min-height: 38px !important; max-height: 38px !important; }
+.top-cluster > .regional-navigation .regional-navigation-button { width: 100% !important; max-width: none !important; justify-content: flex-start !important; }
+.top-cluster > .weather-brief { justify-content: flex-start !important; }
+
+@media (max-width: 520px) {
+  .top-cluster { grid-template-columns: 38px 30px minmax(92px, 1fr) 38px 38px minmax(112px, 1.2fr) !important; }
+}
