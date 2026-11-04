@@ -4,12 +4,15 @@ import path from 'node:path';
 export default class QualificationReporter {
   onBegin(_, suite) { this.startedAt = new Date().toISOString(); this.results = []; this.total = suite.allTests().length; }
   onTestEnd(test, result) {
-    this.results.push({ project: test.parent.project()?.name || 'unknown', title: test.title, status: result.status, durationMs: result.duration, errors: result.errors.map((e) => e.message), attachments: result.attachments.map((a) => a.path).filter(Boolean) });
+    const errors = result.errors.map((e) => e.message);
+    const unavailable = errors.some((message) => /Executable doesn't exist|Please run the following command to download new browsers/i.test(message));
+    this.results.push({ project: test.parent.project()?.name || 'unknown', title: test.title, status: unavailable ? 'not-tested' : result.status, durationMs: result.duration, errors, attachments: result.attachments.map((a) => a.path).filter(Boolean) });
   }
   onEnd(result) {
     const output = process.env.QUALIFICATION_OUTPUT || path.resolve('test-results/qualification');
     fs.mkdirSync(output, { recursive: true });
-    const receipt = { generatedAt: new Date().toISOString(), startedAt: this.startedAt, outcome: result.status, total: this.total, results: this.results, physicalDevice: [
+    const outcome = this.results.some((item) => item.status === 'failed') ? 'failed' : 'completed-with-not-tested';
+    const receipt = { generatedAt: new Date().toISOString(), startedAt: this.startedAt, outcome, total: this.total, results: this.results, physicalDevice: [
       'NOT TESTED — real iPhone Safari/WebKit behavior and PWA install/update',
       'NOT TESTED — GPS permission, background/resume, motion/step sensors, camera, audio, battery and thermal behavior',
       'NOT TESTED — real regional Valhalla graph performance and large-package limits on iPhone storage/memory',

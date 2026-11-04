@@ -1,6 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
+  use: { baseURL: 'http://127.0.0.1:4174' },
   testDir: './tests',
   testMatch: /release-qualification\.spec\.mjs/,
   timeout: 45_000,
