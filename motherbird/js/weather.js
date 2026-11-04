@@ -100,7 +100,7 @@ export async function renderWeatherBrief() {
   try {
     const response = await fetch(file);
     const weather = response.ok ? await response.json() : null;
-    if (!weather || Date.now() >= Date.parse(weather.freshnessExpiresAt || '')) return;
+    if (!weather || Date.now() >= Date.parse(weather.freshnessExpiresAt || '')) { await refreshLiveConditions(); return; }
     const period = weather.forecast?.[0];
     const alert = weather.activeAlerts?.[0];
     const text = alert?.headline || alert?.event || (period ? `${period.name}: ${period.shortForecast}${period.temperature != null ? ` · ${period.temperature}°${period.temperatureUnit || ''}` : ''}` : 'Forecast available');

@@ -1,4 +1,4 @@
-import { renderUserLocation } from './map.js?v=20261103-taxonomy-clusters-2';
+import { renderUserLocation } from './map.js?v=20261104-zoom-levels-1';
 import { distanceMeters } from './geo.js';
 import { state } from './state.js';
 import {
@@ -16,7 +16,7 @@ import { linkSavedRecord } from './workspace.js';
 import { startWalkSession } from './walk-plan.js';
 import { updateProfile } from './profile.js';
 import { renderArchive } from './archive.js';
-import { refreshLiveConditions } from './weather.js?v=20261103-night-weather-3';
+import { refreshLiveConditions } from './weather.js?v=20261104-live-fallback-1';
 import {
   addEventToWalk,
   completeWalkEvent,

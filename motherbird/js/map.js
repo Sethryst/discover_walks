@@ -26,8 +26,8 @@ const BASEMAP_STORAGE_KEY = 'motherbird.basemap';
 const MAP_CUSTOMIZATION_STORAGE_KEY = 'motherbird.map-customization';
 const DEFAULT_MAP_CUSTOMIZATION = Object.freeze({ tone: 'natural', markerOutline: 'light', showPlaces: true, showRoutes: true });
 export const BASEMAP_PRESETS = Object.freeze({
-  street: { label: 'Street · OpenStreetMap', url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', maxZoom: 19, subdomains: 'abc', attribution: OSM_ATTRIBUTION },
-  topographic: { label: 'Topographic · contours', url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', maxZoom: 17, subdomains: 'abc', attribution: '&copy; OpenStreetMap contributors, SRTM | &copy; OpenTopoMap (CC-BY-SA)' },
+  street: { label: 'Street · OpenStreetMap', url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', maxZoom: 22, subdomains: 'abc', attribution: OSM_ATTRIBUTION },
+  topographic: { label: 'Topographic · contours', url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', maxZoom: 19, subdomains: 'abc', attribution: '&copy; OpenStreetMap contributors, SRTM | &copy; OpenTopoMap (CC-BY-SA)' },
 });
 const NEIGHBORHOOD_ZOOM = 15;
 const DEFAULT_MAP_VIEW = Object.freeze({ lat: 38.9072, lng: -77.0369, zoom: NEIGHBORHOOD_ZOOM });
@@ -144,7 +144,7 @@ export function initMap() {
   // When location permission is granted at startup, begin at the actual
   // location—not the regional centroid—and keep enough zoom for a walk.
   const initialZoom = view?.zoom ?? ((state.currentPosition || state.lastPosition) ? Math.max(active.zoom, NEIGHBORHOOD_ZOOM) : DEFAULT_MAP_VIEW.zoom);
-  state.map = L.map('map', { zoomControl: false, attributionControl: true, zoomAnimation: false, fadeAnimation: false, markerZoomAnimation: false, inertia: false }).setView([initialPosition.lat, initialPosition.lng], initialZoom);
+  state.map = L.map('map', { zoomControl: false, maxZoom: 22, attributionControl: true, zoomAnimation: false, fadeAnimation: false, markerZoomAnimation: false, inertia: false }).setView([initialPosition.lat, initialPosition.lng], initialZoom);
   // Resizing or rotating the viewport must never change the user's map zoom.
   window.addEventListener('resize', () => {
     if (!state.map) return;
