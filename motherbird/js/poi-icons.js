@@ -23,7 +23,7 @@ export const ICONS = {
   art: 'star', public_art: 'star',
   coffee: 'coffee', cafe: 'coffee', coffee_shop: 'coffee',
   market: 'utensils', farmers_market: 'utensils', grocery: 'utensils',
-  supermarket: 'utensils', restaurant: 'utensils', fast_food: 'utensils',
+  supermarket: 'utensils', restaurant: 'utensils', fast_food: 'utensils', juice: 'utensils', seafood: 'utensils', southern: 'utensils', milkshake: 'utensils', milkshakes: 'utensils', lunch: 'utensils', health_food: 'utensils',
   event: 'star', news: 'star',
   waste_basket: 'trash-2', trash: 'trash-2', accessible_parking: 'parking',
   mexican: 'utensils', filipino: 'utensils', food_cart: 'utensils', bakery: 'utensils',

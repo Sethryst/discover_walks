@@ -7,7 +7,7 @@ import { closeSheets, openSheet, toast } from './ui.js';
 import { CITIES } from './constants.js';
 import { routesForCity, splitDisconnectedPaths } from './routes.js';
 import { refreshPublicMarkers } from './online.js';
-import { ICONS, ICON_IDS, markerPinHtml, markerVisual } from './poi-icons.js?v=20261103-standalone-taxonomy-1';
+import { ICONS, ICON_IDS, markerPinHtml, markerVisual } from './poi-icons.js?v=20261104-cuisine-icons-1';
 import { civicNoticesFromPack, newsIsAvailable } from './civic-news.js';
 import { syncNewsStory } from './learn-change.js';
 import { drawStories } from './stories.js';
@@ -20,13 +20,13 @@ export const LAYER_GROUPS = [
   { id: 'art', light: 'recreation', label: 'Art', description: 'Art and public art places', tags: ['art', 'public_art'] },
   { id: 'biodiversity', light: 'recreation', label: 'Nature observations', description: 'Open-coordinate iNaturalist observations', tags: ['biodiversity:birds', 'biodiversity:plants', 'biodiversity:mammals', 'biodiversity:insects', 'biodiversity:invertebrates', 'biodiversity:fungi', 'biodiversity:lichen', 'biodiversity:reptiles', 'biodiversity:amphibians', 'biodiversity:other'] },
   { id: 'culture', light: 'news', label: 'News & culture', description: 'Events and civic places', tags: ['event', 'civic'] },
-  { id: 'cuisine', light: 'cuisine', label: 'Food & Drink', description: 'Food, drink, and places to stop', tags: ['market', 'farmers_market', 'restaurant', 'fast_food', 'coffee', 'coffee_shop', 'cafe', 'food_cart', 'bakery', 'argentinian', 'british', 'crepe', 'greek', 'latin_american', 'tea', 'turkish', 'tex_mex'] },
+  { id: 'cuisine', light: 'cuisine', label: 'Food & Drink', description: 'Food, drink, and places to stop', tags: ['market', 'farmers_market', 'restaurant', 'fast_food', 'coffee', 'coffee_shop', 'cafe', 'food_cart', 'bakery', 'argentinian', 'british', 'crepe', 'greek', 'latin_american', 'tea', 'turkish', 'tex_mex', 'juice', 'seafood', 'southern', 'milkshake', 'milkshakes', 'lunch', 'health_food'] },
   { id: 'more', light: 'recreation', label: 'Places', description: 'Places mapped in OpenStreetMap and not already grouped elsewhere', tags: ['osm'] }
 ];
 
 const STATIC_LABELS = {
   walkway: 'Walkways', crossing: 'Crossings', barrier: 'Barriers', nature: 'Nature', scenic: 'Scenic places', recreation: 'Recreation', rest: 'Rest & comfort', historic: 'Historic places', civic: 'Civic places', transit: 'Transit', argentinian: 'Argentinian', british: 'British', crepe: 'Crepe', greek: 'Greek', latin_american: 'Latin American', tea: 'Tea', turkish: 'Turkish', tex_mex: 'Tex Mex', 'biodiversity:birds': 'Birds', 'biodiversity:plants': 'Plants', 'biodiversity:mammals': 'Mammals', 'biodiversity:insects': 'Insects', 'biodiversity:invertebrates': 'Invertebrates', 'biodiversity:fungi': 'Fungi', 'biodiversity:lichen': 'Lichen', 'biodiversity:reptiles': 'Reptiles', 'biodiversity:amphibians': 'Amphibians', 'biodiversity:other': 'Other life',
-  drinking_water: 'Water fountains', water_fountain: 'Water fountains', water: 'Water', waste_basket: 'Trash receptacles', trash: 'Trash receptacles', bench: 'Benches', shelter: 'Shade shelters', shade: 'Shade', rest: 'Rest', restrooms: 'Restrooms', accessible_parking: 'Accessible parking', restaurant: 'Restaurants', fast_food: 'Quick-service food', mexican: 'Mexican food', filipino: 'Filipino food', coffee: 'Coffee shops', coffee_shop: 'Coffee shops', cafe: 'Cafés', food_cart: 'Food carts', bakery: 'Bakeries', trail: 'Trails', parking: 'Parking', bicycle_parking: 'Bike racks', bike_rack: 'Bike racks', osm: 'Places'
+  drinking_water: 'Water fountains', water_fountain: 'Water fountains', water: 'Water', waste_basket: 'Trash receptacles', trash: 'Trash receptacles', bench: 'Benches', shelter: 'Shade shelters', shade: 'Shade', rest: 'Rest', restrooms: 'Restrooms', accessible_parking: 'Accessible parking', restaurant: 'Restaurants', fast_food: 'Quick-service food', mexican: 'Mexican food', filipino: 'Filipino food', coffee: 'Coffee shops', coffee_shop: 'Coffee shops', cafe: 'Cafés', food_cart: 'Food carts', bakery: 'Bakeries', juice: 'Juices', seafood: 'Seafood', southern: 'Southern', milkshake: 'Milkshakes', milkshakes: 'Milkshakes', lunch: 'Lunch', health_food: 'Health Food', trail: 'Trails', parking: 'Parking', bicycle_parking: 'Bike racks', bike_rack: 'Bike racks', osm: 'Places'
 };
 
 let searchQuery = '';
@@ -54,8 +54,8 @@ const MAP_TAGS = new Set([
   ...LIGHT_CHIPS.recreation.flatMap((chip) => chip.tags || []),
   ...LIGHT_CHIPS.cuisine.flatMap((chip) => chip.tags || [])
 ]);
-const FOOD_DRINK_TAGS = new Set(['market', 'farmers_market', 'restaurant', 'fast_food', 'coffee', 'coffee_shop', 'cafe', 'food_cart', 'bakery', 'argentinian', 'british', 'crepe', 'greek', 'latin_american', 'tea', 'turkish', 'açaí', 'american', 'asian', 'bubble_tea', 'french', 'ice_cream', 'indian', 'juice', 'korean', 'pasta', 'pizza', 'sandwich', 'smoothie', 'tex_mex', 'thai', 'uyghur']);
-const DRINK_TAGS = new Set(['coffee', 'coffee_shop', 'cafe', 'tea', 'açaí', 'bubble_tea', 'juice', 'smoothie', 'beer']);
+const FOOD_DRINK_TAGS = new Set(['market', 'farmers_market', 'restaurant', 'fast_food', 'coffee', 'coffee_shop', 'cafe', 'food_cart', 'bakery', 'argentinian', 'british', 'crepe', 'greek', 'latin_american', 'tea', 'turkish', 'açaí', 'american', 'asian', 'bubble_tea', 'french', 'ice_cream', 'indian', 'juice', 'seafood', 'southern', 'milkshake', 'milkshakes', 'lunch', 'health_food', 'korean', 'pasta', 'pizza', 'sandwich', 'smoothie', 'tex_mex', 'thai', 'uyghur']);
+const DRINK_TAGS = new Set(['coffee', 'coffee_shop', 'cafe', 'tea', 'açaí', 'bubble_tea', 'juice', 'smoothie', 'beer', 'milkshake', 'milkshakes']);
 const FOOD_TAGS = new Set([...FOOD_DRINK_TAGS].filter((id) => !DRINK_TAGS.has(id)));
 
 function isMapTag(id) { return MAP_TAGS.has(id) || String(id).startsWith('history'); }
@@ -123,7 +123,8 @@ function buildAllLayerGroups() {
   // Every OSM record carries the provenance tag, but that tag is not a user
   // category. Do not expose it as a duplicate fallback filter when a place
   // already has a meaningful category; provenance remains on the record.
-  const extras = [...available].filter(([id]) => id !== 'osm' && !claimed.has(id));
+  const internalFilterTags = new Set(['yes', 'no', 'canon', 'true', 'false']);
+  const extras = [...available].filter(([id]) => id !== 'osm' && !claimed.has(id) && !internalFilterTags.has(String(id).toLowerCase()));
   groups.find((group) => group.id === 'cuisine').options.push(...extras.filter(([id]) => isFoodFilterTag(id)).map(([id, label]) => publicOption(id, label, pois)).filter((option) => option.count > 0));
   groups.find((group) => group.id === 'more').options.push(...extras.filter(([id]) => !isFoodFilterTag(id)).map(([id, label]) => publicOption(id, label, pois)).filter((option) => option.count > 0));
   const cuisine = groups.find((group) => group.id === 'cuisine');
@@ -152,7 +153,7 @@ function publicOption(id, sourceLabel, pois) {
   return {
     id, kind: 'public', label: cleanLabel(sourceLabel || STATIC_LABELS[id] || titleCase(id)),
     description: `Public map places tagged ${titleCase(id)}`,
-    icon: ICONS[id] || 'map-pin', color: visual.color,
+    icon: ICONS[id] || (isFoodFilterTag(id) ? 'utensils' : 'map-pin'), color: visual.color,
     count: biodiversityCount ?? pois.filter((poi) => (id === 'osm' ? isOsmPoi(poi) : sourceIds.some((sourceId) => poiTags(poi).includes(sourceId))) && inViewport(poi)).length
   };
 }

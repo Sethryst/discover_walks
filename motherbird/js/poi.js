@@ -7,7 +7,7 @@ import { openSheet } from './ui.js';
 import db from './storage.js';
 import { isLocallyClosedPoi } from './spatial-closure-reporting.js';
 import { seasonalComparison, standoutObservation } from './revisit.js';
-import { markerPinHtml, markerVisual } from './poi-icons.js?v=20261103-standalone-taxonomy-1';
+import { markerPinHtml, markerVisual } from './poi-icons.js?v=20261104-cuisine-icons-1';
 
 const POI_FILTER_GROUPS = [
   { id: 'outdoors', label: 'Nature & outdoors', icon: '🌿', tags: ['park', 'trail', 'nature', 'wildlife', 'water', 'water_access', 'community_garden', 'garden', 'playground', 'dog_park', 'splash_pad', 'rest'] },
@@ -17,7 +17,7 @@ const POI_FILTER_GROUPS = [
   { id: 'food', label: 'Food & drink', icon: '☕', tags: ['coffee', 'coffee_shop', 'cafe', 'tea'] },
   { id: 'other', label: 'More map layers', icon: '◇', tags: ['event', 'osm'] }
 ];
-const FOOD_FILTER_TAGS = new Set(['açaí', 'american', 'armenian', 'asian', 'bagel', 'bakery', 'beer', 'bistro', 'brazilian', 'breakfast', 'bubble_tea', 'burger', 'cake', 'caribbean', 'chinese', 'cookie', 'cuban', 'cupcake', 'deli', 'dessert', 'diner', 'donut', 'eclair', 'empanada', 'ethiopian', 'european', 'filipino', 'french', 'fusion', 'gelato', 'german', 'ice_cream', 'indian', 'italian', 'jamaican', 'japanese', 'juice', 'korean', 'lebanese', 'macaron', 'mediterranean', 'mexican', 'middle_eastern', 'nordic', 'pasta', 'pastry', 'peruvian', 'pie', 'pizza', 'pretzel', 'regional', 'salad', 'salvadoran', 'sandwich', 'shawarma', 'smoothie', 'swiss', 'tart', 'tex_mex', 'thai', 'toast', 'uyghur', 'vietnamese', 'wine']);
+const FOOD_FILTER_TAGS = new Set(['açaí', 'american', 'armenian', 'asian', 'bagel', 'bakery', 'beer', 'bistro', 'brazilian', 'breakfast', 'bubble_tea', 'burger', 'cake', 'caribbean', 'chinese', 'cookie', 'cuban', 'cupcake', 'deli', 'dessert', 'diner', 'donut', 'eclair', 'empanada', 'ethiopian', 'european', 'filipino', 'french', 'fusion', 'gelato', 'german', 'health_food', 'ice_cream', 'indian', 'italian', 'jamaican', 'japanese', 'juice', 'korean', 'lebanese', 'lunch', 'macaron', 'mediterranean', 'mexican', 'middle_eastern', 'milkshake', 'milkshakes', 'nordic', 'pasta', 'pastry', 'peruvian', 'pie', 'pizza', 'pretzel', 'regional', 'salad', 'salvadoran', 'sandwich', 'seafood', 'shawarma', 'smoothie', 'southern', 'swiss', 'tart', 'tex_mex', 'thai', 'toast', 'uyghur', 'vietnamese', 'wine']);
 export const isFoodFilterTag = (id) => FOOD_FILTER_TAGS.has(String(id).toLocaleLowerCase());
 
 export function renderPoiTagFilters() {
